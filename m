@@ -2,56 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F41F68B8C7
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB99268B8E1
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:45:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7099710E33F;
-	Mon,  6 Feb 2023 09:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCF810E352;
+	Mon,  6 Feb 2023 09:45:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F96A10E16B;
- Mon,  6 Feb 2023 09:35:59 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB0010E352;
+ Mon,  6 Feb 2023 09:45:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675676159; x=1707212159;
+ t=1675676716; x=1707212716;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=OV4hu9Cv4oGEnss556qD7ZX4r/ehOr4vxxDxMa+/ABo=;
- b=Wfbjp2AIM3/y2oVw5ILHnF1Kq8tZ5DhZAScTXfT05edJthfId7wChJ7S
- G96AVGMw+a1U1W3SoZQ/xvKSpuU0PkSUFr726Zqudz+c6UIN8OXP2Wnif
- gqUa5l72c32TjHE6daTlIDUPst4rkiZ94NN0IYIJ2Om4BalBOB1vjjhyn
- Zsxx+zitbsnOtJKjj6hntXjN8MH4hbAv2pJdiaO/5MSib1Ej40DxLAFyL
- EXiGXBRfzqYmgwduB84WeCzTvnEaGBXbru08ZTE60pkf2H+qxygVTNpLY
- 9ahguB4wap75to8vwKea3rTZjQ7wZ6Rm2qkkbJY04b+cXyCrgZa7MM5vU A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="330458337"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="330458337"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 01:35:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="668360569"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="668360569"
-Received: from vastrong-mobl.amr.corp.intel.com (HELO [10.213.203.226])
+ bh=hPsWrNl0e4B6gbmEyflkO0IZqCRbH7g6geB8jiNZ3F8=;
+ b=aQ32nUL3dOcndfZTmwQ2tK7GevLOqUiA12vOsvuhCZxa5kd/q7GptscT
+ 7rDOBqr4VRPYzmZXjHuGrE1z10OSVexwy2fFbZ8hyQJV+MQNNGajSPAF9
+ Wq3rQBFnI8f49MplPp5WTRhbt+ettTGLFEvnw6xtBpRpGVj5otKi+YwtF
+ XJfdB6G2XR/9oZxXZrjhZEXzbGqza4HAJqkSRh5VzkO88GZjPBdsXwyQW
+ wdsOkyAchGo7xD3Dx1o3LP4uqMRrPBgnH0niYqnGBovMUwlRIc1gwNyca
+ lOlJLcInLoXIFP7zv0aaOI4xu3d0h0vknfM5GZ44NVTsmIQji2eufasXO g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="317177737"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="317177737"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:45:15 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="666432858"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="666432858"
+Received: from kgurski-mobl3.ger.corp.intel.com (HELO [10.213.203.226])
  ([10.213.203.226])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 01:35:54 -0800
-Message-ID: <e2403d2c-b088-fb05-64a6-f933f12dfb40@linux.intel.com>
-Date: Mon, 6 Feb 2023 09:35:52 +0000
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:45:12 -0800
+Message-ID: <d58fff32-edad-4a7f-7409-7e57593df3ed@linux.intel.com>
+Date: Mon, 6 Feb 2023 09:45:10 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>
-References: <20230203164937.4035503-1-robdclark@gmail.com>
- <CAF6AEGvanLri-+Z5KgmgSFX2ShB09T7X7wxcSQk_0JV7PKGRng@mail.gmail.com>
+To: Deepak R Varma <drv@mailo.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>
+References: <Y91g081OauhQNxMe@ubun2204.myguest.virtualbox.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGvanLri-+Z5KgmgSFX2ShB09T7X7wxcSQk_0JV7PKGRng@mail.gmail.com>
+In-Reply-To: <Y91g081OauhQNxMe@ubun2204.myguest.virtualbox.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move fd_install after last use of
- fence
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Avoid redundant pointer
+ validity check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,108 +68,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, jason.ekstrand@collabora.com,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/02/2023 18:15, Rob Clark wrote:
-> On Fri, Feb 3, 2023 at 8:49 AM Rob Clark <robdclark@gmail.com> wrote:
->>
->> From: Rob Clark <robdclark@chromium.org>
->>
->> Because eb_composite_fence_create() drops the fence_array reference
->> after creation of the sync_file, only the sync_file holds a ref to the
->> fence.  But fd_install() makes that reference visable to userspace, so
->> it must be the last thing we do with the fence.
->>
-> 
-> Fixes: 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)")
+Hi,
 
-This is correct and the fix looks good to me.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-CI is green so I will merge it, thanks again for a fix Rob!
-
-Followup up question for Matthew Brost however is whether the composite 
-fence flow could be simplified. This block here comes late in 
-i915_gem_do_execbuffer and may mislead the user the composite fence is 
-held to the end of the function:
-
-	if (!out_fence && eb.composite_fence)
-		dma_fence_put(eb.composite_fence);
-
-Question is would it work to remove the !out_fence condition from here, 
-and remove "consumption" of the reference from eb_composite_fence_create 
-success path.
+Adding Matt & Thomas as potential candidates to review.
 
 Regards,
 
 Tvrtko
 
->> Signed-off-by: Rob Clark <robdclark@chromium.org>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 14 +++++++-------
->>   1 file changed, 7 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index f266b68cf012..0f2e056c02dd 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -3476,38 +3476,38 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->>
->>   err_request:
->>          eb_requests_get(&eb);
->>          err = eb_requests_add(&eb, err);
->>
->>          if (eb.fences)
->>                  signal_fence_array(&eb, eb.composite_fence ?
->>                                     eb.composite_fence :
->>                                     &eb.requests[0]->fence);
->>
->> +       if (unlikely(eb.gem_context->syncobj)) {
->> +               drm_syncobj_replace_fence(eb.gem_context->syncobj,
->> +                                         eb.composite_fence ?
->> +                                         eb.composite_fence :
->> +                                         &eb.requests[0]->fence);
->> +       }
->> +
->>          if (out_fence) {
->>                  if (err == 0) {
->>                          fd_install(out_fence_fd, out_fence->file);
->>                          args->rsvd2 &= GENMASK_ULL(31, 0); /* keep in-fence */
->>                          args->rsvd2 |= (u64)out_fence_fd << 32;
->>                          out_fence_fd = -1;
->>                  } else {
->>                          fput(out_fence->file);
->>                  }
->>          }
->>
->> -       if (unlikely(eb.gem_context->syncobj)) {
->> -               drm_syncobj_replace_fence(eb.gem_context->syncobj,
->> -                                         eb.composite_fence ?
->> -                                         eb.composite_fence :
->> -                                         &eb.requests[0]->fence);
->> -       }
->> -
->>          if (!out_fence && eb.composite_fence)
->>                  dma_fence_put(eb.composite_fence);
->>
->>          eb_requests_put(&eb);
->>
->>   err_vma:
->>          eb_release_vmas(&eb, true);
->>          WARN_ON(err == -EDEADLK);
->>          i915_gem_ww_ctx_fini(&eb.ww);
->>
->> --
->> 2.38.1
->>
+On 03/02/2023 19:30, Deepak R Varma wrote:
+> The macro definition of gen6_for_all_pdes() expands to a for loop such
+> that it breaks when the page table is null. Hence there is no need to
+> again test validity of the page table entry pointers in the pde list.
+> This change is identified using itnull.cocci semantic patch.
+> 
+> Signed-off-by: Deepak R Varma <drv@mailo.com>
+> ---
+> Please note: Proposed change is compile tested only.
+> 
+>   drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 5 ++---
+>   1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> index 5aaacc53fa4c..787b9e6d9f59 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> @@ -258,8 +258,7 @@ static void gen6_ppgtt_free_pd(struct gen6_ppgtt *ppgtt)
+>   	u32 pde;
+>   
+>   	gen6_for_all_pdes(pt, pd, pde)
+> -		if (pt)
+> -			free_pt(&ppgtt->base.vm, pt);
+> +		free_pt(&ppgtt->base.vm, pt);
+>   }
+>   
+>   static void gen6_ppgtt_cleanup(struct i915_address_space *vm)
+> @@ -304,7 +303,7 @@ static void pd_vma_unbind(struct i915_address_space *vm,
+>   
+>   	/* Free all no longer used page tables */
+>   	gen6_for_all_pdes(pt, ppgtt->base.pd, pde) {
+> -		if (!pt || atomic_read(&pt->used))
+> +		if (atomic_read(&pt->used))
+>   			continue;
+>   
+>   		free_pt(&ppgtt->base.vm, pt);
