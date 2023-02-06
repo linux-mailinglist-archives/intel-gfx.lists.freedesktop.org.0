@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB99268B8E1
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 751E768B8FE
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:51:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCF810E352;
-	Mon,  6 Feb 2023 09:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B71F10E35C;
+	Mon,  6 Feb 2023 09:51:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB0010E352;
- Mon,  6 Feb 2023 09:45:15 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CB210E348;
+ Mon,  6 Feb 2023 09:51:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675676716; x=1707212716;
+ t=1675677076; x=1707213076;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=hPsWrNl0e4B6gbmEyflkO0IZqCRbH7g6geB8jiNZ3F8=;
- b=aQ32nUL3dOcndfZTmwQ2tK7GevLOqUiA12vOsvuhCZxa5kd/q7GptscT
- 7rDOBqr4VRPYzmZXjHuGrE1z10OSVexwy2fFbZ8hyQJV+MQNNGajSPAF9
- Wq3rQBFnI8f49MplPp5WTRhbt+ettTGLFEvnw6xtBpRpGVj5otKi+YwtF
- XJfdB6G2XR/9oZxXZrjhZEXzbGqza4HAJqkSRh5VzkO88GZjPBdsXwyQW
- wdsOkyAchGo7xD3Dx1o3LP4uqMRrPBgnH0niYqnGBovMUwlRIc1gwNyca
- lOlJLcInLoXIFP7zv0aaOI4xu3d0h0vknfM5GZ44NVTsmIQji2eufasXO g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="317177737"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="317177737"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 01:45:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="666432858"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="666432858"
+ bh=ckeg6Faup2JNbftnJawOm9JyTMthGurgdsMcSMe7AAA=;
+ b=aMFFfkevHMQxsfb+CHgW1vebZavRg01dwT83nT3qoa34rJsmstgk0HTD
+ N61rRK73UmOjTlpq8rKlw0eP5ehNSkVWWZp3fRxLUm3RaDwL+hHOV0trh
+ 1Fb7C6pen/qEFtdrK2ENA+blhq5/V75GE/gg6Y0ocJwjVS3jpur4a72SZ
+ PBhz+qSoTdUogoJD5q9f2f2jSi5upNeyptp8jSQU0P3PN4KzhXLbwgbYY
+ rxUM2qi1Cgg3L58t/6hyNZKorj9758NjPTUTnDqmwiQt3mWA49qlO6lZE
+ rbKo9j6dOv8jxdtNek9zFAaD8+L5TMUCA0UIjX1z9UpCSeL42C8colYEh g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="312822565"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="312822565"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:51:14 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="790386854"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="790386854"
 Received: from kgurski-mobl3.ger.corp.intel.com (HELO [10.213.203.226])
  ([10.213.203.226])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 01:45:12 -0800
-Message-ID: <d58fff32-edad-4a7f-7409-7e57593df3ed@linux.intel.com>
-Date: Mon, 6 Feb 2023 09:45:10 +0000
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:51:13 -0800
+Message-ID: <f761df58-fd0d-4f08-649f-365e55b41f7b@linux.intel.com>
+Date: Mon, 6 Feb 2023 09:51:10 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: Deepak R Varma <drv@mailo.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Matthew Auld <matthew.auld@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>
-References: <Y91g081OauhQNxMe@ubun2204.myguest.virtualbox.org>
+To: Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230203135205.4051149-1-aravind.iddamsetty@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <Y91g081OauhQNxMe@ubun2204.myguest.virtualbox.org>
+In-Reply-To: <20230203135205.4051149-1-aravind.iddamsetty@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Avoid redundant pointer
- validity check
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Initialize the obj flags for
+ shmem objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +63,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Saurabh Singh Sengar <ssengar@microsoft.com>
+Cc: dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Hi,
 
-Adding Matt & Thomas as potential candidates to review.
+On 03/02/2023 13:52, Aravind Iddamsetty wrote:
+> Obj flags for shmem objects is not being set correctly. Fixes in setting
+> BO_ALLOC_USER flag which applies to shmem objs as well.
+> 
+> Fixes: 13d29c823738 ("drm/i915/ehl: unconditionally flush the pages on acquire")
+> Cc: <stable@vger.kernel.org> # v5.15+
+
+These tags should have been grouped with the ones below in one block.
+
+I have tidied this while pushing, thanks for the fix and review!
 
 Regards,
 
 Tvrtko
 
-On 03/02/2023 19:30, Deepak R Varma wrote:
-> The macro definition of gen6_for_all_pdes() expands to a for loop such
-> that it breaks when the page table is null. Hence there is no need to
-> again test validity of the page table entry pointers in the pde list.
-> This change is identified using itnull.cocci semantic patch.
+> v2: Add fixes tag (Tvrtko, Matt A)
 > 
-> Signed-off-by: Deepak R Varma <drv@mailo.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 > ---
-> Please note: Proposed change is compile tested only.
+>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->   drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> index 5aaacc53fa4c..787b9e6d9f59 100644
-> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> @@ -258,8 +258,7 @@ static void gen6_ppgtt_free_pd(struct gen6_ppgtt *ppgtt)
->   	u32 pde;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 114443096841..37d1efcd3ca6 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -596,7 +596,7 @@ static int shmem_object_init(struct intel_memory_region *mem,
+>   	mapping_set_gfp_mask(mapping, mask);
+>   	GEM_BUG_ON(!(mapping_gfp_mask(mapping) & __GFP_RECLAIM));
 >   
->   	gen6_for_all_pdes(pt, pd, pde)
-> -		if (pt)
-> -			free_pt(&ppgtt->base.vm, pt);
-> +		free_pt(&ppgtt->base.vm, pt);
->   }
->   
->   static void gen6_ppgtt_cleanup(struct i915_address_space *vm)
-> @@ -304,7 +303,7 @@ static void pd_vma_unbind(struct i915_address_space *vm,
->   
->   	/* Free all no longer used page tables */
->   	gen6_for_all_pdes(pt, ppgtt->base.pd, pde) {
-> -		if (!pt || atomic_read(&pt->used))
-> +		if (atomic_read(&pt->used))
->   			continue;
->   
->   		free_pt(&ppgtt->base.vm, pt);
+> -	i915_gem_object_init(obj, &i915_gem_shmem_ops, &lock_class, 0);
+> +	i915_gem_object_init(obj, &i915_gem_shmem_ops, &lock_class, flags);
+>   	obj->mem_flags |= I915_BO_FLAG_STRUCT_PAGE;
+>   	obj->write_domain = I915_GEM_DOMAIN_CPU;
+>   	obj->read_domains = I915_GEM_DOMAIN_CPU;
