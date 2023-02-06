@@ -1,51 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D746268B81F
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:06:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D61E68B871
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 10:19:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3ABA10E341;
-	Mon,  6 Feb 2023 09:06:13 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97EB110E34E;
- Mon,  6 Feb 2023 09:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3095D10E335;
+	Mon,  6 Feb 2023 09:19:10 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C772210E349;
+ Mon,  6 Feb 2023 09:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675674369; x=1707210369;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Kfq1KWsqadwVkhGpvsyOo0sMmifI+THGHlmz6hNva9U=;
- b=OoExqJubugfXmVw+LUjuEWAewL8uMzsTaTfO6O5s3C87Hd2nN4SGCVh6
- QPmQFxNoS+E/G9hj/QMUE8vnsJJ/nzT01uPEQjUyWWENdGL4R6q1frXHN
- vZsMg5MMdNcxIgtWtZt8r5lJcoEFcdTJ9peRMxUePuY9zq1lBo+IrmzkL
- JqKvDeca5szknSVPxQtYy0r8Zb8mdjyYOChm3lblGYpVLCEDE+nf22ffG
- Nu8z9F9fo/erD3KqrIV+7RtVXf1f+NT3AesMcEc4VZRKh/2uM+agMdLFY
- NTUQcvl6BP02EyoDsZPHD38Ik5X5nngJB3pncA+g+FGFediQ+JRbxTqNN A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="309495947"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="309495947"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 01:06:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="911862885"
-X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="911862885"
-Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
- by fmsmga006.fm.intel.com with ESMTP; 06 Feb 2023 01:06:08 -0800
-From: Yi Liu <yi.l.liu@intel.com>
-To: alex.williamson@redhat.com,
-	jgg@nvidia.com,
-	kevin.tian@intel.com
-Date: Mon,  6 Feb 2023 01:05:32 -0800
-Message-Id: <20230206090532.95598-15-yi.l.liu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230206090532.95598-1-yi.l.liu@intel.com>
-References: <20230206090532.95598-1-yi.l.liu@intel.com>
+ t=1675675148; x=1707211148;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=0nO/AsM6X4LFsVwbidohlP4WCxPKUtESu95d5rEswcA=;
+ b=VIT2rFY6TXoVeAF4s/uD8+UAd6nuy9g05xeplZu6YyWOSnUeqzmOwb4n
+ N9uDGFFQsQR/Ho+L4op1CbbxuQuT21/0dA14IgOT6nXLV9XDzDhHya51I
+ cuSJfCcs6qcy+x0kJKv5uthdWn9ic3GdtH/EV2NJX31J8gsNwOFvTNJ1o
+ 9LCRYfOj8KWY3GaN472phN21RSZ4dso0H5brnMQQnAXOuAdr6Bl2Ak3vw
+ S0J5u04VaRlmLjQ/fhRl1UoF3mLztJJZ3ydrnyTdnk4CeWGbekgwXiE4X
+ YkUbQbWZ2cGEU55AHzLQwNOGqxbSxl3W7BooHbMd3lJJFIeIt7irxi2PM w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="317172623"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="317172623"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:19:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10612"; a="729951169"
+X-IronPort-AV: E=Sophos;i="5.97,276,1669104000"; d="scan'208";a="729951169"
+Received: from vastrong-mobl.amr.corp.intel.com (HELO [10.213.203.226])
+ ([10.213.203.226])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 01:19:05 -0800
+Message-ID: <0edf920f-0ba8-2aa7-6b52-07facb400b3f@linux.intel.com>
+Date: Mon, 6 Feb 2023 09:19:02 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
+ Rob Clark <robdclark@chromium.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
+ <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
+ <20230203164224.6y3qx4yztt7hd5cu@kamilkon-desk1>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230203164224.6y3qx4yztt7hd5cu@kamilkon-desk1>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 14/14] vfio: Compile group optionally
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 8/8] gputop: Basic vendor
+ agnostic GPU top tool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,209 +69,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, yi.l.liu@intel.com, yi.y.sun@linux.intel.com,
- kvm@vger.kernel.org, mjrosato@linux.ibm.com, jasowang@redhat.com,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, peterx@redhat.com,
- eric.auger@redhat.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- chao.p.peng@linux.intel.com, lulu@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-group code is not needed for vfio device cdev, so with vfio device cdev
-introduced, the group infrastructures can be compiled out if only cdev
-is needed.
 
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
----
- drivers/vfio/Kconfig  | 18 +++++++++++
- drivers/vfio/Makefile |  2 +-
- drivers/vfio/vfio.h   | 69 +++++++++++++++++++++++++++++++++++++++++++
- include/linux/vfio.h  | 11 +++++++
- 4 files changed, 99 insertions(+), 1 deletion(-)
+On 03/02/2023 16:42, Kamil Konieczny wrote:
+> Hi Tvrtko,
+> 
+> On 2023-01-31 at 11:32:37 +0000, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be used
+>> to display a sorted by card and usage list of processes using GPUs.
+>>
+>> Borrows a bit of code from intel_gpu_top but for now omits the fancy
+>> features like interactive functionality, card selection, client
+>> aggregation, sort modes, JSON output  and pretty engine names. Also no
+>> support for global GPU or system metrics.
+>>
+>> On the other hand it shows clients from all DRM cards which
+>> intel_gpu_top does not do.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Rob Clark <robdclark@chromium.org>
+>> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+>> Acked-by: Christian König <christian.koenig@amd.com>
+> 
+> I run it with:
+> # ./gputop
+> 
+> but it do not work on my Skylake card, I see no output,
+> kernel 5.19.0-29-generic, ubuntu 22.10
 
-diff --git a/drivers/vfio/Kconfig b/drivers/vfio/Kconfig
-index 0476abf154f2..de0fedcdf4d6 100644
---- a/drivers/vfio/Kconfig
-+++ b/drivers/vfio/Kconfig
-@@ -15,6 +15,7 @@ if VFIO
- config VFIO_DEVICE_CDEV
- 	bool "Support for the VFIO cdev /dev/vfio/devices/vfioX"
- 	depends on IOMMUFD
-+	default !VFIO_GROUP
- 	help
- 	  The VFIO device cdev is another way for userspace to get device
- 	  access. Userspace gets device fd by opening device cdev under
-@@ -23,9 +24,26 @@ config VFIO_DEVICE_CDEV
- 
- 	  If you don't know what to do here, say N.
- 
-+config VFIO_ENABLE_GROUP
-+	bool
-+	default !VFIO_DEVICE_CDEV
-+
-+config VFIO_GROUP
-+	bool "Support for the VFIO group /dev/vfio/$group_id"
-+	select VFIO_ENABLE_GROUP
-+	default y
-+	help
-+	   VFIO group is legacy interface for userspace. For userspaces
-+	   adapted to iommufd and vfio device cdev, this can be N. For
-+	   now, before iommufd is ready and userspace applications fully
-+	   converted to iommufd and vfio device cdev, this should be Y.
-+
-+	   If you don't know what to do here, say Y.
-+
- config VFIO_CONTAINER
- 	bool "Support for the VFIO container /dev/vfio/vfio"
- 	select VFIO_IOMMU_TYPE1 if MMU && (X86 || S390 || ARM || ARM64)
-+	depends on VFIO_ENABLE_GROUP
- 	default y
- 	help
- 	  The VFIO container is the classic interface to VFIO for establishing
-diff --git a/drivers/vfio/Makefile b/drivers/vfio/Makefile
-index 245394aeb94b..4e81c3bbed30 100644
---- a/drivers/vfio/Makefile
-+++ b/drivers/vfio/Makefile
-@@ -2,9 +2,9 @@
- obj-$(CONFIG_VFIO) += vfio.o
- 
- vfio-y += vfio_main.o \
--	  group.o \
- 	  iova_bitmap.o
- vfio-$(CONFIG_VFIO_DEVICE_CDEV) += device_cdev.o
-+vfio-$(CONFIG_VFIO_ENABLE_GROUP) += group.o
- vfio-$(CONFIG_IOMMUFD) += iommufd.o
- vfio-$(CONFIG_VFIO_CONTAINER) += container.o
- vfio-$(CONFIG_VFIO_VIRQFD) += virqfd.o
-diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-index 8a290c1455e1..9f823cfff7be 100644
---- a/drivers/vfio/vfio.h
-+++ b/drivers/vfio/vfio.h
-@@ -62,6 +62,7 @@ enum vfio_group_type {
- 	VFIO_NO_IOMMU,
- };
- 
-+#if IS_ENABLED(CONFIG_VFIO_ENABLE_GROUP)
- struct vfio_group {
- 	struct device 			dev;
- 	struct cdev			cdev;
-@@ -105,6 +106,74 @@ bool vfio_group_has_dev(struct vfio_group *group, struct vfio_device *device);
- bool vfio_device_has_container(struct vfio_device *device);
- int __init vfio_group_init(void);
- void vfio_group_cleanup(void);
-+#else
-+struct vfio_group;
-+
-+static inline int vfio_device_set_group(struct vfio_device *device,
-+					enum vfio_group_type type)
-+{
-+	return 0;
-+}
-+
-+static inline void vfio_device_remove_group(struct vfio_device *device)
-+{
-+}
-+
-+static inline void vfio_device_group_register(struct vfio_device *device)
-+{
-+}
-+
-+static inline void vfio_device_group_unregister(struct vfio_device *device)
-+{
-+}
-+
-+static inline int vfio_device_group_use_iommu(struct vfio_device *device)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static inline void vfio_device_group_unuse_iommu(struct vfio_device *device)
-+{
-+}
-+
-+static inline void vfio_device_group_close(struct vfio_device_file *df)
-+{
-+}
-+
-+static inline struct vfio_group *vfio_group_from_file(struct file *file)
-+{
-+	return NULL;
-+}
-+
-+static inline bool vfio_group_enforced_coherent(struct vfio_group *group)
-+{
-+	return true;
-+}
-+
-+static inline void vfio_group_set_kvm(struct vfio_group *group, struct kvm *kvm)
-+{
-+}
-+
-+static inline bool vfio_group_has_dev(struct vfio_group *group,
-+				      struct vfio_device *device)
-+{
-+	return false;
-+}
-+
-+static inline bool vfio_device_has_container(struct vfio_device *device)
-+{
-+	return false;
-+}
-+
-+static inline int __init vfio_group_init(void)
-+{
-+	return 0;
-+}
-+
-+static inline void vfio_group_cleanup(void)
-+{
-+}
-+#endif /* CONFIG_VFIO_ENABLE_GROUP */
- 
- #if IS_ENABLED(CONFIG_VFIO_CONTAINER)
- /* events for the backend driver notify callback */
-diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-index fd4bf9c21ffe..4c7666f8c5da 100644
---- a/include/linux/vfio.h
-+++ b/include/linux/vfio.h
-@@ -43,7 +43,9 @@ struct vfio_device {
- 	 */
- 	const struct vfio_migration_ops *mig_ops;
- 	const struct vfio_log_ops *log_ops;
-+#if IS_ENABLED(CONFIG_VFIO_ENABLE_GROUP)
- 	struct vfio_group *group;
-+#endif
- 	struct vfio_device_set *dev_set;
- 	struct list_head dev_set_list;
- 	unsigned int migration_flags;
-@@ -56,8 +58,10 @@ struct vfio_device {
- 	refcount_t refcount;	/* user count on registered device*/
- 	unsigned int open_count;
- 	struct completion comp;
-+#if IS_ENABLED(CONFIG_VFIO_ENABLE_GROUP)
- 	struct list_head group_next;
- 	struct list_head iommu_entry;
-+#endif
- 	struct iommufd_access *iommufd_access;
- 	void (*put_kvm)(struct kvm *kvm);
- #if IS_ENABLED(CONFIG_IOMMUFD)
-@@ -255,7 +259,14 @@ int vfio_mig_get_next_state(struct vfio_device *device,
- /*
-  * External user API
-  */
-+#if IS_ENABLED(CONFIG_VFIO_ENABLE_GROUP)
- struct iommu_group *vfio_file_iommu_group(struct file *file);
-+#else
-+static inline struct iommu_group *vfio_file_iommu_group(struct file *file)
-+{
-+	return NULL;
-+}
-+#endif
- bool vfio_file_is_valid(struct file *file);
- bool vfio_file_enforced_coherent(struct file *file);
- void vfio_file_set_kvm(struct file *file, struct kvm *kvm);
--- 
-2.34.1
+Odd, 5.19 should have the support. Intel_gpu_top works - it is showing 
+the individual clients?
 
+> 
+> # ./lsgpu
+> card0                    Intel Skylake (Gen9)              drm:/dev/dri/card0
+> └─renderD128                                               drm:/dev/dri/renderD128
+> 
+> Please add some options like debug, version, debug with high
+> verbose level, help. It seems like q or Q do not exit.
+
+As the cover letter hints I was only set out to demonstrate an extremely 
+rudimentary vendor agnostic tool. To quote the cover letter more - "..It 
+also makes no effort to provide sorting modes, well any interactivity, 
+or any pretty names for GPUs or engines..". I have no scope presently to 
+make it better or nicer.
+
+The tool however can serve as a starting point and people had reported 
+it working as-is with a few other drivers, AMD, msm and most recently I 
+believe etnaviv. So perhaps a pool of people to further improve it will 
+be found there in the future.
+
+In summary I think it's worth reviewing so that the common code gets 
+extracted from intel_gpu_top into respective libraries. After that I was 
+hoping other people start contributing further improvements.
+
+Regards,
+
+Tvrtko
