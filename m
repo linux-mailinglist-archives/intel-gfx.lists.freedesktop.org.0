@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F2A68D6F4
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 13:40:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296E868D6F6
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 13:40:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D583010E20B;
-	Tue,  7 Feb 2023 12:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E4110E4ED;
+	Tue,  7 Feb 2023 12:40:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69AC210E20B
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 12:40:39 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891EF10E4ED
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 12:40:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675773639; x=1707309639;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LzFk349dL/YjfQcP2WsnaBiicKpGazrGcGNhdMzpvZU=;
- b=QQuaxGBVy89lJXAaZd3gqPBbhqIyKVtkpLWPXcivJFAmao/DgWuvbbf/
- 6awx45WpOuPelGJZE4tbkOqZNetzdMw8EJjF+x/Def8PVf5b617ogtjfM
- z2oLEh/+JvuFwl7NJJ3awwFJDsegM+BFWsiN2WsLVdNtzSiGfl4DySCCh
- q5DS+PuS4DqF1AT9D8ZFhSoXS5wQp0nD3D+kcpsiO6n7NVrkOF3cnd+Bv
- DTmSZzmVq5MzZNdatrWSCdEiIvqeSlSWlXAnBPwrhjN4HuZD9B/FzuzYa
- UIMoUiAEmcNU7jnjh8Qr13p1BPX/JHWMwwRde6hNA0NU+fXu3ztgRScXD A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="328136522"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="328136522"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 04:40:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="790791923"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="790791923"
+ t=1675773652; x=1707309652;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0/iH4Ueo7+9cwJv/OHWF6wMuTJcO6neTFMuLbkmIeys=;
+ b=XoUnp8X1pccXpXABQ/k2Aq+Ba3j1cGS/QQNHCyLKPpZE+cGWhmsYso45
+ S8dhmkoyHUGsAUns8zqKYrBbTH0Iugxk8ZXFwFn/gYICoqfug8DCZfj1F
+ b1Q3cZBLVIj6Iz/GEvp9slETYCqmN25cg2jvPVbeu+cpRB4mOJvKPMAF/
+ 2/OnLcWvHWBF9nfiDeFVrMaXxivGMPA4n1cFnX71oQdxKTRHaKKbij4Qt
+ gBVaT4OMj+75OIAMQGE7R0LvTUb7sTxps4QiDut7ZvKyKKF4TTpl5HnOv
+ 3AjdgCRjRadpvj3sQBbfRnD/KMtWez7fymSdifgDp71sDIeeFwAPLwQMi A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="309141418"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="309141418"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 04:40:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="697268432"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="697268432"
 Received: from tronach-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.11])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 04:40:30 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 04:40:35 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 14:40:23 +0200
-Message-Id: <20230207124026.2105442-1-jani.nikula@intel.com>
+Date: Tue,  7 Feb 2023 14:40:24 +0200
+Message-Id: <20230207124026.2105442-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230207124026.2105442-1-jani.nikula@intel.com>
+References: <20230207124026.2105442-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gt: add sparse lock annotation to
- avoid warnings
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/uncore: cast iomem to avoid sparse
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +63,46 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Annotate intel_gt_mcr_lock() and intel_gt_mcr_unlock() to fix sparse
-warnings:
+drmm_add_action_or_reset() is unaware of __iomem and the pointer needs
+to be a plain void *. Cast __iomem away and back while the pointer goes
+through drmm.
 
-drivers/gpu/drm/i915/gt/intel_gt_mcr.c:397:9: warning: context imbalance in 'intel_gt_mcr_lock' - wrong count at exit
-drivers/gpu/drm/i915/gt/intel_gt_mcr.c:412:6: warning: context imbalance in 'intel_gt_mcr_unlock' - unexpected unlock
+drivers/gpu/drm/i915/intel_uncore.c:2463:17: warning: incorrect type in argument 1 (different address spaces)
+drivers/gpu/drm/i915/intel_uncore.c:2463:17:    expected void volatile [noderef] __iomem *addr
+drivers/gpu/drm/i915/intel_uncore.c:2463:17:    got void *regs
+drivers/gpu/drm/i915/intel_uncore.c:2494:16: warning: incorrect type in argument 3 (different address spaces)
+drivers/gpu/drm/i915/intel_uncore.c:2494:16:    expected void *data
+drivers/gpu/drm/i915/intel_uncore.c:2494:16:    got void [noderef] __iomem *regs
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/intel_uncore.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index 169393a7ad88..a4a8b8bc5737 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -364,6 +364,7 @@ static u32 rw_with_mcr_steering(struct intel_gt *gt,
-  *          function call.
-  */
- void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
-+	__acquires(&gt->mcr_lock)
- {
- 	unsigned long __flags;
- 	int err = 0;
-@@ -410,6 +411,7 @@ void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
-  * Context: Releases gt->mcr_lock
-  */
- void intel_gt_mcr_unlock(struct intel_gt *gt, unsigned long flags)
-+	__releases(&gt->mcr_lock)
- {
- 	spin_unlock_irqrestore(&gt->mcr_lock, flags);
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index 8dee9e62a73e..f018da7ebaac 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -2460,7 +2460,7 @@ static int i915_pmic_bus_access_notifier(struct notifier_block *nb,
  
+ static void uncore_unmap_mmio(struct drm_device *drm, void *regs)
+ {
+-	iounmap(regs);
++	iounmap((void __iomem *)regs);
+ }
+ 
+ int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
+@@ -2491,7 +2491,8 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
+ 		return -EIO;
+ 	}
+ 
+-	return drmm_add_action_or_reset(&i915->drm, uncore_unmap_mmio, uncore->regs);
++	return drmm_add_action_or_reset(&i915->drm, uncore_unmap_mmio,
++					(void __force *)uncore->regs);
+ }
+ 
+ void intel_uncore_init_early(struct intel_uncore *uncore,
 -- 
 2.34.1
 
