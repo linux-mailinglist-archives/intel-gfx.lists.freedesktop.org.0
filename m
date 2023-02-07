@@ -2,56 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0193568D2DC
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 10:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E3468D2D8
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 10:32:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A59710E474;
-	Tue,  7 Feb 2023 09:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7646410E074;
+	Tue,  7 Feb 2023 09:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8957F10E094;
- Tue,  7 Feb 2023 09:33:13 +0000 (UTC)
-Received: by mail-lf1-x12f.google.com with SMTP id o20so21506773lfk.5;
- Tue, 07 Feb 2023 01:33:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=eijivl1ANPuVp5wmE3ro4xbyX2qtwhdfnM7SSH99g5I=;
- b=D/TfzWaMuRK2xsZZgNFvf1p1iOGf14QXzjmz0v2nL/9nlHLXXpjsXHcPDkueiIDAZJ
- 0+vkD6R8bG0/lplsUXBkelrQkC6u/3V5KNEz2cnLUclaBbitN1HnTpM3Ur5S7opoXOy1
- 9LOaAjtymq5RqKuJMgTb3AxIsVf/vve/wCuTWl7d7POhcq3Zxo+D6dCt19Y8CsOzyoQD
- Zsht9upIZNNTcWjSQFpSBKBnkt6GDvYea4jh4Vjpr9/LE8vtwhLwGNL1NJeCiaaLBFqV
- edf6ojBNon553kibo29c/ReGXCq0sEVPoJIjiv4pxRteG0h3bH1R/pg4rQ6TI+12egjU
- FMZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=eijivl1ANPuVp5wmE3ro4xbyX2qtwhdfnM7SSH99g5I=;
- b=PeHxTGzmUks5frMCAZtJRNeqvtVaBoguE+Y0s3ZWTKOyRO02ZN/iryAvw8DPWRccPs
- IdWY0DTK/loO1OOxKdfPYPOFyNuXlEDiCDqwuYI3ynE5D1gE9L3VTVVRos3S6Z4JBynd
- x7DGD7YtGA2oWO9y7DWjGjTWOoEtea0vL48douFfV85xFA00jNy2qEky+NFmHAPyAs3x
- eocoEz+fcISdxBMDDU3Vg+EM+iH+7eOS7IhkU+JlxWAmPophoamHcg9TlVTnnHVnWU1P
- 8QaoJvj2JZIDwI/Bb9H/mSQ+zYa6XZ6Izmi9m2uucd+rjhXy34MsdA5VafKFInU5oBoR
- pkRw==
-X-Gm-Message-State: AO0yUKVvJxtoOAGWRnK7LNnThuM/01bToRyKLJeoivuMG6f4nNJzoPQg
- MFU+HBL2sCbrUxgdZ4eGRMnsyZbvTNvWVU4RldX31bGd19jHfQ==
-X-Google-Smtp-Source: AK7set9qpE8+mdek+WDFffvZ0XdSI6YCvNdGUTBJpdVd3NHkwpE+WxJ51WLjmzFgYDWKyM/j4Bi9PXw3X/69JYO2jq4=
-X-Received: by 2002:ac2:562d:0:b0:4d5:7b89:7b67 with SMTP id
- b13-20020ac2562d000000b004d57b897b67mr310919lff.17.1675762391746; Tue, 07 Feb
- 2023 01:33:11 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D083910E074
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 09:32:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675762373; x=1707298373;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=2r8TmoAyt7CWwgNvZc6FD4qgj46E39oIcmFirpYFhs4=;
+ b=RwCm1Ufp/RLampNiB+RBKPrpRwk/GngrbTjEHCnSZcYgk+IOw9lhEcCn
+ cVkWqVj5xvA89jGQEeCrRUC7agXIS4fbMG3jGBFQV1QBzegGKBgFnbzFj
+ Hdwxvme91R7ZDlvNQSsYAo0ncJcLic4Lnp/YKZtDBj7uE44MxIdpHhAfp
+ N5wAut8r5n9BRz8y518IdnslwoG/7I7labCP1uwNZ7kRjTPzNjOxh/n6p
+ WhebGPQ5fMBJ+AKs2+eAdWF/GUWOahENd5merm0CUyN+O69eZ/UzYC3Cf
+ RQqLNN3ehda1be9cCrSfiDR+shvcoV+s1fGR7CszvFfpNsy6KUkCpb3KC w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="328101540"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="328101540"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 01:32:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="809453413"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="809453413"
+Received: from tronach-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.11])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 01:32:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230207064337.18697-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230207064337.18697-1-ville.syrjala@linux.intel.com>
+ <20230207064337.18697-4-ville.syrjala@linux.intel.com>
+Date: Tue, 07 Feb 2023 11:32:45 +0200
+Message-ID: <87zg9pyg5e.fsf@intel.com>
 MIME-Version: 1.0
-References: <20230203155309.1042297-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20230203155309.1042297-1-ashutosh.dixit@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 7 Feb 2023 09:32:44 +0000
-Message-ID: <CAM0jSHN421CatemTLzZMccGcjSQ_MJEA_vpqbCHgDrtuE_xC9w@mail.gmail.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Enable PL1 power limit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Pick the backlight controller
+ based on VBT on ICP+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +61,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 3 Feb 2023 at 15:54, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+On Tue, 07 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Previous documentation suggested that PL1 power limit is always
-> enabled. However we now find this not to be the case on some
-> platforms (such as ATSM). Therefore enable PL1 power limit during hwmon
-> initialization.
-
-For some reason it looks like this change is impacting the atsm in CI:
-https://intel-gfx-ci.01.org/tree/drm-tip/bat-atsm-1.html
-
+> Use the second backlight controller on ICP+ if the VBT asks
+> us to do so.
 >
-> Bspec: 51864
+> On pre-MTP we also check the chicken bit to make sure the
+> pins have been correctly muxed by the firmware.
 >
-> v2: Add Bspec reference (Gwan-gyeong)
-> v3: Add Fixes tag
->
-> Fixes: 99f55efb79114 ("drm/i915/hwmon: Power PL1 limit and TDP setting")
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8016
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_hwmon.c | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../gpu/drm/i915/display/intel_backlight.c    | 34 +++++++++++++++++--
+>  1 file changed, 31 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index 1225bc432f0d5..4683a5b96eff1 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -687,6 +687,11 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
->                 for_each_gt(gt, i915, i)
->                         hwm_energy(&hwmon->ddat_gt[i], &energy);
->         }
-> +
-> +       /* Enable PL1 power limit */
-> +       if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
-> +               hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
-> +                                                   PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu=
+/drm/i915/display/intel_backlight.c
+> index 5b7da72c95b8..a4e4b7f79e4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -1431,6 +1431,30 @@ bxt_setup_backlight(struct intel_connector *connec=
+tor, enum pipe unused)
+>  	return 0;
 >  }
->
->  void i915_hwmon_register(struct drm_i915_private *i915)
-> --
-> 2.38.0
->
+>=20=20
+> +static int cnp_num_backlight_controllers(struct drm_i915_private *i915)
+> +{
+> +	if (INTEL_PCH_TYPE(i915) >=3D PCH_DG1)
+> +		return 1;
+> +
+> +	if (INTEL_PCH_TYPE(i915) >=3D PCH_ICP)
+> +		return 2;
+> +
+> +	return 1;
+> +}
+
+At some point I think we should clean this up between backlight and
+pps. There's already intel_num_pps(). But let's get this merged as-is
+now.
+
+> +
+> +static bool cnp_backlight_controller_is_valid(struct drm_i915_private *i=
+915, int controller)
+> +{
+> +	if (controller < 0 || controller >=3D cnp_num_backlight_controllers(i91=
+5))
+> +		return false;
+> +
+> +	if (controller =3D=3D 1 &&
+> +	    INTEL_PCH_TYPE(i915) >=3D PCH_ICP &&
+> +	    INTEL_PCH_TYPE(i915) < PCH_MTP)
+> +		return intel_de_read(i915, SOUTH_CHICKEN1) & ICP_SECOND_PPS_IO_SELECT;
+
+I got a bit confused that MTP has two controllers but it doesn't have
+that bit. I first thought you were off by one with that < PCH_MTP. But
+looks like it's correct.
+
+Anyway,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> +
+> +	return true;
+> +}
+> +
+>  static int
+>  cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  {
+> @@ -1440,10 +1464,14 @@ cnp_setup_backlight(struct intel_connector *conne=
+ctor, enum pipe unused)
+>=20=20
+>  	/*
+>  	 * CNP has the BXT implementation of backlight, but with only one
+> -	 * controller. TODO: ICP has multiple controllers but we only use
+> -	 * controller 0 for now.
+> +	 * controller. ICP+ can have two controllers, depending on pin muxing.
+>  	 */
+> -	panel->backlight.controller =3D 0;
+> +	panel->backlight.controller =3D connector->panel.vbt.backlight.controll=
+er;
+> +	if (!cnp_backlight_controller_is_valid(i915, panel->backlight.controlle=
+r)) {
+> +		drm_dbg_kms(&i915->drm, "Invalid backlight controller %d, assuming 0\n=
+",
+> +			    panel->backlight.controller);
+> +		panel->backlight.controller =3D 0;
+> +	}
+>=20=20
+>  	pwm_ctl =3D intel_de_read(i915,
+>  				BXT_BLC_PWM_CTL(panel->backlight.controller));
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
