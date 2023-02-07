@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE9368D94C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 14:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3909668D9B7
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 14:53:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C562D10E501;
-	Tue,  7 Feb 2023 13:29:13 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 706C910E500;
- Tue,  7 Feb 2023 13:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675776551; x=1707312551;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0FY8vfq26Vt/7PQdukR9Mdk5g+H21k9qwWYwYJbq7iE=;
- b=Ng8C5A4beDjRC4BE0QNB3M7OPg4oETVEqlfzlq+XTIlvfHMTLITOMcWp
- 5j8mlZLOVnrUScrifeBcycj0pM7lCejtP+P8Moxl439rA9NV5LrCZ6G7P
- SxUIirwEyN9T2Vyv3BhMZ+qUO3ScycV67ueqUnYbdpQIaDnoHhFnoHPF6
- nqI+lV2yYR5S9hvBTEZ5OX+TTNE+JzRqJSSvmBZ2tJaeTJq9AduIukeHf
- jeWlDaTifv7LwvhnF5zxJ4FYYUg7kedn4CsZIYaCRtTrB7y/QXuLCwHyn
- 1mLwFbA7LK5sEAgLTuDixppmuFuVLN+Sj7T7NQ4XaFqo4iYzo8O4JZ/9V g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313150570"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="313150570"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 05:29:10 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="644449097"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="644449097"
-Received: from zmrowka-mobl.ger.corp.intel.com (HELO localhost) ([10.213.7.46])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 05:29:09 -0800
-Date: Tue, 7 Feb 2023 14:29:07 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230207132907.cagijhyexj5zteyu@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org,
- Caleb Callaway <caleb.callaway@intel.com>
-References: <20230203111636.4138202-4-tvrtko.ursulin@linux.intel.com>
- <20230203113119.4139041-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01E410E0A5;
+	Tue,  7 Feb 2023 13:53:42 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C1E2110E501;
+ Tue,  7 Feb 2023 13:53:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B90F1A02F0;
+ Tue,  7 Feb 2023 13:53:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2598630527458568163=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230203113119.4139041-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 3/3] intel_gpu_top: Add CSV output
- format
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 07 Feb 2023 13:53:40 -0000
+Message-ID: <167577802071.13141.6198364350526854925@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230207124026.2105442-1-jani.nikula@intel.com>
+In-Reply-To: <20230207124026.2105442-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/gt=3A_add_sparse_lock_anno?=
+ =?utf-8?q?tation_to_avoid_warnings?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,187 +41,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Caleb Callaway <caleb.callaway@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-02-03 at 11:31:19 +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Add CSV output mode.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Caleb Callaway <caleb.callaway@intel.com>
+--===============2598630527458568163==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+== Series Details ==
 
-> ---
->  man/intel_gpu_top.rst |  3 ++
->  tools/intel_gpu_top.c | 78 +++++++++++++++++++++++++++++++++++++++++--
->  2 files changed, 78 insertions(+), 3 deletions(-)
-> 
-> diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
-> index 69834756b81e..2d041457a95e 100644
-> --- a/man/intel_gpu_top.rst
-> +++ b/man/intel_gpu_top.rst
-> @@ -31,6 +31,9 @@ OPTIONS
->  -h
->      Show help text.
->  
-> +-c
-> +    Output CSV formatted data.
-> +
->  -J
->      Output JSON formatted data.
->  
-> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index a980cc7043dc..2e1365959d8b 100644
-> --- a/tools/intel_gpu_top.c
-> +++ b/tools/intel_gpu_top.c
-> @@ -1268,6 +1268,7 @@ usage(const char *appname)
->  		"\n"
->  		"\tThe following parameters are optional:\n\n"
->  		"\t[-h]            Show this help text.\n"
-> +		"\t[-c]            Output CSV formatted data.\n"
->  		"\t[-J]            Output JSON formatted data.\n"
->  		"\t[-l]            List plain text data.\n"
->  		"\t[-o <file|->]   Output to specified file or '-' for standard out.\n"
-> @@ -1283,6 +1284,7 @@ usage(const char *appname)
->  static enum {
->  	INTERACTIVE,
->  	TEXT,
-> +	CSV,
->  	JSON
->  } output_mode;
->  
-> @@ -1457,6 +1459,22 @@ text_add_member(const struct cnt_group *parent, struct cnt_item *item,
->  	return len > 0 ? len : 0;
->  }
->  
-> +static unsigned int
-> +csv_add_member(const struct cnt_group *parent, struct cnt_item *item,
-> +	       unsigned int headers)
-> +{
-> +	int len = 0;
-> +
-> +	if (headers)
-> +		fprintf(out, "%s %s", parent->display_name, item->unit);
-> +	else
-> +		len = fprintf(out, "%f",
-> +			      pmu_calc(&item->pmu->val, item->d, item->t,
-> +				       item->s));
-> +
-> +	return len > 0 ? len : 0;
-> +}
-> +
->  static void
->  term_open_struct(const char *name)
->  {
-> @@ -1540,6 +1558,46 @@ print_group(struct cnt_group *grp, unsigned int headers)
->  	return consumed;
->  }
->  
-> +static unsigned int csv_count, prev_csv_count;
-> +
-> +static void csv_close_struct(void)
-> +{
-> +	assert(text_level > 0);
-> +	if (--text_level == 0) {
-> +		csv_count = prev_csv_count = 0;
-> +		text_lines++;
-> +		fputs("\n", out);
-> +		fflush(out);
-> +	}
-> +}
-> +
-> +static bool
-> +csv_print_group(struct cnt_group *grp, unsigned int headers)
-> +{
-> +	unsigned int consumed = 0;
-> +	struct cnt_item *item;
-> +
-> +	if (!present_in_group(grp))
-> +		return false;
-> +
-> +	text_open_struct(grp->name);
-> +
-> +	for (item = grp->items; item->name; item++) {
-> +		if (!item->pmu || !item->pmu->present)
-> +			continue;
-> +
-> +		if (csv_count != prev_csv_count)
-> +			fprintf(out, ",");
-> +		prev_csv_count = csv_count++;
-> +
-> +		consumed += csv_add_member(grp, item, headers);
-> +	}
-> +
-> +	csv_close_struct();
-> +
-> +	return consumed;
-> +}
-> +
->  static bool
->  term_print_group(struct cnt_group *grp, unsigned int headers)
->  {
-> @@ -1570,6 +1628,13 @@ static const struct print_operations text_pops = {
->  	.print_group = print_group,
->  };
->  
-> +static const struct print_operations csv_pops = {
-> +	.open_struct = text_open_struct,
-> +	.close_struct = csv_close_struct,
-> +	.add_member = csv_add_member,
-> +	.print_group = csv_print_group,
-> +};
-> +
->  static const struct print_operations term_pops = {
->  	.open_struct = term_open_struct,
->  	.close_struct = term_close_struct,
-> @@ -1582,11 +1647,12 @@ static bool print_groups(struct cnt_group **groups)
->  	static bool headers_printed = false;
->  	bool print_data = true;
->  
-> -	if (output_mode == TEXT &&
-> +	if ((output_mode == TEXT || output_mode == CSV) &&
->  	    (text_header_repeat || !headers_printed)) {
-> +		const unsigned int header_lines = output_mode == TEXT ? 2 : 1;
->  		unsigned int headers = text_lines % TEXT_HEADER_REPEAT + 1;
->  
-> -		if (headers == 1 || headers == 2)
-> +		if (headers > 0 && headers <= header_lines)
->  			for (struct cnt_group **grp = groups; *grp; grp++)
->  				print_data = pops->print_group(*grp, headers);
->  
-> @@ -2469,7 +2535,7 @@ int main(int argc, char **argv)
->  	char *codename = NULL;
->  
->  	/* Parse options */
-> -	while ((ch = getopt(argc, argv, "o:s:d:pJLlh")) != -1) {
-> +	while ((ch = getopt(argc, argv, "o:s:d:pcJLlh")) != -1) {
->  		switch (ch) {
->  		case 'o':
->  			output_path = optarg;
-> @@ -2483,6 +2549,9 @@ int main(int argc, char **argv)
->  		case 'p':
->  			physical_engines = true;
->  			break;
-> +		case 'c':
-> +			output_mode = CSV;
-> +			break;
->  		case 'J':
->  			output_mode = JSON;
->  			break;
-> @@ -2532,6 +2601,9 @@ int main(int argc, char **argv)
->  	case TEXT:
->  		pops = &text_pops;
->  		break;
-> +	case CSV:
-> +		pops = &csv_pops;
-> +		break;
->  	case JSON:
->  		pops = &json_pops;
->  		break;
-> -- 
-> 2.34.1
-> 
+Series: series starting with [1/4] drm/i915/gt: add sparse lock annotation to avoid warnings
+URL   : https://patchwork.freedesktop.org/series/113738/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12708 -> Patchwork_113738v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_113738v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_113738v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/index.html
+
+Participating hosts (36 -> 36)
+------------------------------
+
+  Additional (1): bat-adls-5 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113738v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113738v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][3] -> [DMESG-FAIL][4] ([i915#5334] / [i915#7872])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-rpls-1}:       [DMESG-FAIL][5] ([i915#6367]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+    - {bat-adln-1}:       [DMESG-FAIL][7] ([i915#6997]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-adln-1/igt@i915_selftest@live@slpc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-adln-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-dg2-11}:       [DMESG-WARN][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12708 -> Patchwork_113738v1
+
+  CI-20190529: 20190529
+  CI_DRM_12708: e9426d9d1eeb72f84725043dd2a9e073d9a6f1d7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7153: f47f859f13376958a2bd199423b1f0ff53dddbe0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113738v1: e9426d9d1eeb72f84725043dd2a9e073d9a6f1d7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+aca857cd3324 drm/i915/pxp: fix __le64 access to get rid of sparse warning
+4f6355c50deb drm/i915/syncmap: squelch a sparse warning
+4b2d7248e2a7 drm/i915/uncore: cast iomem to avoid sparse warning
+04cbf603e3a8 drm/i915/gt: add sparse lock annotation to avoid warnings
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/index.html
+
+--===============2598630527458568163==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915/gt: add sparse lock annotation to avoid warnings</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113738/">https://patchwork.freedesktop.org/series/113738/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12708 -&gt; Patchwork_113738v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_113738v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_113738v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): bat-adls-5 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113738v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113738v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>
+<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-adln-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-adln-1/igt@i915_selftest@live@slpc.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12708/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113738v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12708 -&gt; Patchwork_113738v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12708: e9426d9d1eeb72f84725043dd2a9e073d9a6f1d7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7153: f47f859f13376958a2bd199423b1f0ff53dddbe0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113738v1: e9426d9d1eeb72f84725043dd2a9e073d9a6f1d7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>aca857cd3324 drm/i915/pxp: fix __le64 access to get rid of sparse warning<br />
+4f6355c50deb drm/i915/syncmap: squelch a sparse warning<br />
+4b2d7248e2a7 drm/i915/uncore: cast iomem to avoid sparse warning<br />
+04cbf603e3a8 drm/i915/gt: add sparse lock annotation to avoid warnings</p>
+
+</body>
+</html>
+
+--===============2598630527458568163==--
