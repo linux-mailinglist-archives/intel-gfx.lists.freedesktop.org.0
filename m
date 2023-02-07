@@ -1,154 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E521A68D18A
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 09:39:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DE268D1B9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 09:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47B810E459;
-	Tue,  7 Feb 2023 08:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6235410E480;
+	Tue,  7 Feb 2023 08:49:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2693410E03A;
- Tue,  7 Feb 2023 08:39:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675759172; x=1707295172;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=aABubgQJikNCe5vN9i9trw3kdC0d2q9HR9Egqcw/ODA=;
- b=ZimIZbSfeHhByTdIqCNTDyRlUAwyKRLiz3Iwy16JXlpZ1SQsdj2EjGK3
- A4/bTntZmqCIZW/+oAKXiAXDF/W2JOgKlJkXFgarQlX9blJgqsEqqKbZL
- 8NtU+qsgoYjCJUQyyB9deUB2d0Ig7azKaws7MyDrAeiqNnNt5ANcU1/T1
- SkMepgXHSRjHjGHz9p6qgYfEiJEbmLWaN9GHC5FQfuzzV+PHootUIcHYX
- BVc53ZE7fyJIYmQW/XH8yFs0c4XUQmiBTBgF725nL60ntuvsJTAZ5TLoY
- aTA9nZ35qD4zfbbmM7s7iFTfN5v0CVFqldMBkTKrClPF0J0xdf7/uPGyl g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="330741258"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="330741258"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 00:39:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="730348282"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="730348282"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 07 Feb 2023 00:39:30 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 7 Feb 2023 00:39:30 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 7 Feb 2023 00:39:30 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 7 Feb 2023 00:39:30 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.44) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 7 Feb 2023 00:39:29 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X1hAVDm9u13ZGpbnPpmr8DaLbINGiQAX1IgfaEXsDDlHIBCkEX5zXDkX1F6td2MYuR+64qQZCmJhILqyMVR5dWId+dUFPzkuX+KDwJmvFLjMTxYm8iUrw3UVZDR/7avHCkOX9DxyutZUCAz+DaasRK3K9t9HtAcH1LrEVRolyz/PFlnkxVNYh2a3e+V0C0PEqEqHrtbuzrnzH8wAfUpzpe5HS7EnTn5SJY8K71TWIJxUfSrqC4jk7Tt3MiosWPvqfONuR4A8m8j92pKHlb/b1gFIPtyYrnHY47Pq18HZjfTNsWXnhIfuyKch0PIGim+fQetZrCoFq2jXDuv+s+u+vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aABubgQJikNCe5vN9i9trw3kdC0d2q9HR9Egqcw/ODA=;
- b=CuuhjrEAPKX/f7LAfJ/psTYhwZAP1Gwz83gHZiNsw7G94Lpf9tPfP5bQC+zb5oirvdGPrV5qjrLYRQ3vXyzqX084kANGyAVXcOAAA/DhcJUoMXHEnjq2d8EfdB1qrT0H64kz9WRBq7Gd7TcCBRQm3Yev86B1Hi25gVF04IDt3JzjX6W7IgBV9fp0sYUAIXqdPfttcpWjNnFSDbkjWQR+0o73eK36T8KG311PPq/5497Tej7zEHspNrGWAgM/nKhfcEVL45cVn/iVouvwQGtxs2L5FXlMh0qi/Q8DU+vCx117wPT8gWeL5decvY95jDiSpW8rbJtlvMgZqw1wdPqPPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by DM4PR11MB8092.namprd11.prod.outlook.com (2603:10b6:8:184::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.35; Tue, 7 Feb
- 2023 08:39:28 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::e1fa:abbe:2009:b0a3]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::e1fa:abbe:2009:b0a3%3]) with mapi id 15.20.6064.034; Tue, 7 Feb 2023
- 08:39:27 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>
-Thread-Topic: [PATCH v2 05/14] kvm/vfio: Accept vfio device file from userspace
-Thread-Index: AQHZOgo25GLoA6ebv0uxW3UPksEhia7C1rcAgABQelA=
-Date: Tue, 7 Feb 2023 08:39:27 +0000
-Message-ID: <DS0PR11MB75291AF21AD96162E8099E84C3DB9@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230206090532.95598-1-yi.l.liu@intel.com>
- <20230206090532.95598-6-yi.l.liu@intel.com>
- <BN9PR11MB5276CC3B1773CF183E147D6B8CDB9@BN9PR11MB5276.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB5276CC3B1773CF183E147D6B8CDB9@BN9PR11MB5276.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DM4PR11MB8092:EE_
-x-ms-office365-filtering-correlation-id: bac23f7e-5d78-4b80-9094-08db08e6d2e2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: T0O1A8MF5QCKGLSiBIUmHFHgq72oXm/q7J1g9Qv5/TEAKSjYJ0pWxMH1vmmrKuc9INPoVe7pLPMoaUO+PMWk40AjxPJAZ1lGwIxgEGnq7AEWq5s3gbwwhzU35kL25OBD4U65h7zXFDWj4G6aS68C8ime2du99IeLhEFQEm3DQDyoECWlo7kBH+3iviL6x5rpIYJtbK7SsXEuw+GKLFzuHiaKEIGYI0wEIEFC+qXWRLzFJNDaHJ+o+Xslkfp40iZvssTYewBxWfHJWa1XZUUt7MMxrLei3x20tkFUZpF9JfUtcb/3MV2MJHXiA02eXtHAFIGUZ6JK7fp3rW4mkiw1Pv9ie8df/+fv8BIOXzkewB5tro4kMZtdmbYufdtMGn5zplawXHpe2nJy7AW/Ceq2FSxbyoEHPeK3POP3JUkD5S0J61BtR+DZilkrF0tpvkVmYEHCjH2r+RYZd7vF+Yb8BemN607hR2JdIKeXket7kZFfRyRfvR5wHgaHIjgdGMYylVNqFfhMKbEdg1yGub9CGRifbBNRN4IZ7to0NkH9y6LAlA4w1wInKvR3gvh47kiLOHYc7fSp0W3wqvsuweCdX9N6v2yAi6WAlOQS8TUTymH2d1p4G5f82/OSB64LvQ1YEBDBgGYCCd49cWLt12Or35hOAZVNHjxOBtCBExTJ6x1AiO8x2X3AoSDZRucOfdcGblbiKburHsMt1ZOHSeXhDg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(376002)(396003)(39860400002)(346002)(366004)(451199018)(2906002)(122000001)(38100700002)(38070700005)(83380400001)(5660300002)(66476007)(110136005)(66556008)(8676002)(316002)(54906003)(66946007)(66446008)(4326008)(76116006)(33656002)(8936002)(64756008)(52536014)(7416002)(55016003)(86362001)(41300700001)(6506007)(9686003)(26005)(7696005)(71200400001)(82960400001)(186003)(478600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WGJXdnRKeHovZGV0aEZMY05zUW9laWdTZFJLNVdWTVdJT2RNZWMvM1pMTm15?=
- =?utf-8?B?b1VVL25ldXo0bnRoVmRwSU1HWGZydWMvdFlRTTVvNVFoNmFEU3EzQmIwUHA5?=
- =?utf-8?B?dlRnaUI4SC82YjJTVGlmSFJ6dk1GWWd1NWV3eDVxZG83Mm1xWjFFOExoRkgz?=
- =?utf-8?B?YlRPWUZsbEtabVdKU3p3cEYxTHp3RDJOekgyWVdTYTJzN1pzZ2ViMWlPQTd2?=
- =?utf-8?B?OU53eFBpWDZDeUNOeEUyaytCbHNHY2loaWpUMTlXMVhHMFN0Z3NKeUJUY2pH?=
- =?utf-8?B?ZUkvcHVHSzJEelpkYzJKVWpYOXZPTjdQMThnUW5VTHI4N1JLNzg3bnJsLzFh?=
- =?utf-8?B?eXN0S0IvU3pSczdxMTlYREQzTVhRK2x6RDJRV1JiUlpFbjFhaHpnSHlyL3hH?=
- =?utf-8?B?N3lsYUZSV0RNbTlLNVFuNGExcS9udnRMMWNVaGVpeGZ4bUZ6dGJXQ0krNkgy?=
- =?utf-8?B?NWhROGd1U3NrODMzMmJUUVRERGtUZUE2THZja3FUejhieUtmUVRWcUN4Vk1T?=
- =?utf-8?B?OGhJU0MzMm5VcE8vM2gwQ0pEb1FQQnY0d1p1VHZvLzFRSitYN1NIN3h6V2tD?=
- =?utf-8?B?Nkk4L2MxNk9aWVIrdUsvVVkzS0QrUlF5MzVlamhCZlZkV3BoREZrb0dWNk8x?=
- =?utf-8?B?S0ZCR2ZUNDdzTnFGMHlkb1NKYklrUDdyRi9WSXk1SWYrd1hianhVRXpPVjJS?=
- =?utf-8?B?eW5uS20vLzhKVlhQQkVqSlhXUUUydmdaaWREeklPTENLUWUyMlB3WGt0ZmFR?=
- =?utf-8?B?SDZvL1JCVG43b014alIvdEg2TWhCNEw4cEQ2cTczWHFBSEdTcUpqTnFud1NL?=
- =?utf-8?B?QzlreWdEVUYxeXcxbnNJYUp1cU1BNWovMURKVkRyTG93M29IZ01KeHlhc1VB?=
- =?utf-8?B?eG56ZHY4bi9UZG9QZ2xJOGVPVGxmR1lpVDJBWjRVZWFwQ29LUHdxeXByS3hk?=
- =?utf-8?B?M2pISTc2eFBnK2JEWE4xMzFQQVlSRlEzUU5scjhTVnB3MlpoWnM3MjZjVU1S?=
- =?utf-8?B?YXY5aXhEaHhHMjlsTUhMRWNDbjBZK1pxS3lNM1dFVzk1T2VqNkpPc2FoZ0Yv?=
- =?utf-8?B?UmpOOEU1dXF5bGl5K1Y3YmdRY1BFY0lmZ1gxeEg3dkg3ZDZTc3JRaHJwQ2hG?=
- =?utf-8?B?d1FhbEZPNFdpeDA1a2xEV2MzRGJMZktRaVNHQlFOQWJaMjY5Mk1tcGtkSDU0?=
- =?utf-8?B?YkV6UFg3SDAwY2RCNGJueCtmUm56c0lyYTBBMUk5Ry9Pekk0U1oyS3czVkZQ?=
- =?utf-8?B?MzN0NjhZelkxdnd5QjhpTlZjaTFudnM5MXFubklnd3luV2pSR0xWWGRMNDZ3?=
- =?utf-8?B?dFMzamhhOXBIOWZ0ejNFWU1iOHlwcE9IbFlTa2c1YUxkUS9HQzgxR0pRc3Ir?=
- =?utf-8?B?UENNM010MmcrV1pYbUZ3Yjd0eFFKVmRJU1pva1pIMjc1N1NoTXkvOGFmMHov?=
- =?utf-8?B?bGpEUHZwMUtqQnFBTXFRT2V2VXNMWHhhUm1ZeEVHK2tlQkZwbE1qTkVtSEo2?=
- =?utf-8?B?WEluRkJ2WU0yWjBOemZsVXdlbk9hT3l5OTc4eE91N2hQQW9lc2lDTWs3eGpk?=
- =?utf-8?B?M3kxZjM4SkRRdG1uVWdqNllXRmNBN1AwaFZDS1ozZlVYbUF6bkdDZTU4Yzlt?=
- =?utf-8?B?N2RiY2Y3cHdrWEZFbDBUbjFYTjdNeUV0WGVjUXJPUEQyR1pNTTlBNUpLTXpJ?=
- =?utf-8?B?NkRYTEVMQkg2VVN4VlMxc3RZK1VpVnhYd0VuT0RtRUprSHdLRDcxTi9UNmNU?=
- =?utf-8?B?N0x0eGF4dDJqVmVpaXZ0RG9ScTRQcHR3UFl3SVVOSmlIK2owUVRRQ0x1bVV6?=
- =?utf-8?B?Y3l0c3EvQmNMWVZreXBYbjRJcHQzQ3VBenBOWUJmUXJ0NElYTzRJd0tSUWg2?=
- =?utf-8?B?alBTaTJIdjZCZkt6ZG1nUnJCV2RBL0RlazQyVXd2MWNnRDhDUVBBR0hjS3dK?=
- =?utf-8?B?SzhaZ1REdTdJazlpblZFNlZYQlZtRmlJWlgvSlBYcFh5Q00wU2gzSENOTWRR?=
- =?utf-8?B?VmxWemMzSUpoODJ3c01YY052UnZGWldzQXcwMk5ndVVEeVJhNzVPdUZMR1Ri?=
- =?utf-8?B?R1dKbHBId1pnMFNJcWcza29GaUtWV0s5SGliNXVFTS9SUTVCa2tSeEllZUpS?=
- =?utf-8?Q?ifIwAnz9edfjoBd/4dUuF0OBl?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDB810E480
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 08:49:34 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id i5so5602323wrc.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Feb 2023 00:49:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=NmdN5gKwZDVdlAKsQvd2ajpnUIin36pXf74crNjXxO8=;
+ b=Cdf9dK6ehVNXj9ebzQbgwv4NxkFkt0NiiwsWlmTSnnHFV9jB75Zsavv9cahmM40VL2
+ LTG+kWJs0dzuMkXBoewer4tMf7xfaSyZwaCTi9R1ggtkmGzVXoTLk6y1nbSS3uxWt7ok
+ 1C9BKZzGndIFnbbFYbMWTIoBJUqwdWhhJUpi7X9YV87uZHreTwDnpUgfba/fKL+uZlBf
+ FB3V/6X0ALcLA4LJeJWSYWNA8JAk9WBoFN/S5TTL/G1ulXEkQ1ZtSedHQSkmzXu8dja4
+ FpfleK+cILGCbloO/h5s9X8K1vzW+4bljwksqPLG0PPLtBTF5E4719tqeXoHR6Uw2c1d
+ kGrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NmdN5gKwZDVdlAKsQvd2ajpnUIin36pXf74crNjXxO8=;
+ b=0nA93YBI5ZvFDTHUI+8idfX3+9gKTrlslYbzoapmNYJ6+PbkFXdlUJD+TsBeF6w2+e
+ 0q/fJ6oVyquiNgdQwaOKRMfuJIk0b+j3LuDMyIaJnymOBdkSbscQSaR96fOsiMgp3YYH
+ ARloZ5oz8YwLSLpusMSh755/0+M0gn4b0Eotaef1R5bKsvTWCildrtuNIbXva6WnALf1
+ ytPT6gK6eiRQjf7pZKby3rt5CdIQOif5Z9ls1Y6x87V2t/w1Ps5fmmckMp1UEeB5m4Jk
+ Yv8GmCQ3B0JkoH2nvlOpymW01C6tkzwkFCkNnyfHe9e+ydC8tsG+4y0FqTnsGsYkvLFB
+ TdrA==
+X-Gm-Message-State: AO0yUKU4FyT7GxjCcHzCMIzH+E37+8qP4dkmK2jC6whhr2fOfrOgeG9/
+ GgUe8JynzjxomKa2lf8LTZo=
+X-Google-Smtp-Source: AK7set9pYEAI8Axov6xH3xCaTLOmfIJhVlLn44KG1EAT2OzQlw9GJmM2qy7z/5dEkxPn/gavNXZZ4A==
+X-Received: by 2002:adf:f5c5:0:b0:2c3:db63:3418 with SMTP id
+ k5-20020adff5c5000000b002c3db633418mr1934172wrp.49.1675759772934; 
+ Tue, 07 Feb 2023 00:49:32 -0800 (PST)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ t1-20020a5d4601000000b002bdfe3aca17sm10668720wrq.51.2023.02.07.00.49.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Feb 2023 00:49:32 -0800 (PST)
+Date: Tue, 7 Feb 2023 11:49:29 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Y+IQmSbWR6laNiHd@kadam>
+References: <Y+EMbhwPiF6zjBVR@kili>
+ <a41f5807-022f-1b4c-3baa-6bc928226853@linux.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bac23f7e-5d78-4b80-9094-08db08e6d2e2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2023 08:39:27.6308 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4k+wsG0pwvMyO/qgOvZ7l0Xr9ONPrSeMP61ebpFejaa3/bmZCSey8CPb1o1mxQe3a0R/xQOfYQbnZziQQ39ttg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8092
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 05/14] kvm/vfio: Accept vfio device file
- from userspace
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a41f5807-022f-1b4c-3baa-6bc928226853@linux.intel.com>
+Subject: Re: [Intel-gfx] [bug report] drm/i915: Allow compaction upto
+ SWIOTLB max segment size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,92 +71,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "peterx@redhat.com" <peterx@redhat.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiBGcm9tOiBUaWFuLCBLZXZpbiA8a2V2aW4udGlhbkBpbnRlbC5jb20+DQo+IFNlbnQ6IFR1ZXNk
-YXksIEZlYnJ1YXJ5IDcsIDIwMjMgMTE6MzcgQU0NCj4NCj4gPiBGcm9tOiBMaXUsIFlpIEwgPHlp
-LmwubGl1QGludGVsLmNvbT4NCj4gPiBTZW50OiBNb25kYXksIEZlYnJ1YXJ5IDYsIDIwMjMgNTow
-NSBQTQ0KPiA+DQo+ID4gVGhpcyBkZWZpbmVzIEtWTV9ERVZfVkZJT19GSUxFKiBhbmQgbWFrZSBh
-bGlhcyB3aXRoDQo+ID4gS1ZNX0RFVl9WRklPX0dST1VQKi4NCj4gPiBPbGQgdXNlcnNwYWNlIHVz
-ZXMgS1ZNX0RFVl9WRklPX0dST1VQKiB3b3JrcyBhcyB3ZWxsLg0KPiA+DQo+ID4gU2lnbmVkLW9m
-Zi1ieTogWWkgTGl1IDx5aS5sLmxpdUBpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gIERvY3VtZW50
-YXRpb24vdmlydC9rdm0vZGV2aWNlcy92ZmlvLnJzdCB8IDQwICsrKysrKysrKysrKysrLS0tLS0t
-LS0tLQ0KPiAtDQo+ID4gIGluY2x1ZGUvdWFwaS9saW51eC9rdm0uaCAgICAgICAgICAgICAgICB8
-IDE2ICsrKysrKystLS0NCj4gPiAgdmlydC9rdm0vdmZpby5jICAgICAgICAgICAgICAgICAgICAg
-ICAgIHwgMTYgKysrKystLS0tLQ0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDQyIGluc2VydGlvbnMo
-KyksIDMwIGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
-dmlydC9rdm0vZGV2aWNlcy92ZmlvLnJzdA0KPiA+IGIvRG9jdW1lbnRhdGlvbi92aXJ0L2t2bS9k
-ZXZpY2VzL3ZmaW8ucnN0DQo+ID4gaW5kZXggMmQyMGRjNTYxMDY5Li43Zjg0ZWMyNmNhNGEgMTAw
-NjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi92aXJ0L2t2bS9kZXZpY2VzL3ZmaW8ucnN0DQo+
-ID4gKysrIGIvRG9jdW1lbnRhdGlvbi92aXJ0L2t2bS9kZXZpY2VzL3ZmaW8ucnN0DQo+ID4gQEAg
-LTksMjMgKzksMjYgQEAgRGV2aWNlIHR5cGVzIHN1cHBvcnRlZDoNCj4gPiAgICAtIEtWTV9ERVZf
-VFlQRV9WRklPDQo+ID4NCj4gPiAgT25seSBvbmUgVkZJTyBpbnN0YW5jZSBtYXkgYmUgY3JlYXRl
-ZCBwZXIgVk0uICBUaGUgY3JlYXRlZCBkZXZpY2UNCj4gPiAtdHJhY2tzIFZGSU8gZ3JvdXBzIGlu
-IHVzZSBieSB0aGUgVk0gYW5kIGZlYXR1cmVzIG9mIHRob3NlIGdyb3Vwcw0KPiA+IC1pbXBvcnRh
-bnQgdG8gdGhlIGNvcnJlY3RuZXNzIGFuZCBhY2NlbGVyYXRpb24gb2YgdGhlIFZNLiAgQXMgZ3Jv
-dXBzDQo+ID4gLWFyZSBlbmFibGVkIGFuZCBkaXNhYmxlZCBmb3IgdXNlIGJ5IHRoZSBWTSwgS1ZN
-IHNob3VsZCBiZSB1cGRhdGVkDQo+ID4gLWFib3V0IHRoZWlyIHByZXNlbmNlLiAgV2hlbiByZWdp
-c3RlcmVkIHdpdGggS1ZNLCBhIHJlZmVyZW5jZSB0byB0aGUNCj4gPiAtVkZJTy1ncm91cCBpcyBo
-ZWxkIGJ5IEtWTS4NCj4gPiArdHJhY2tzIFZGSU8gZmlsZXMgKGdyb3VwIG9yIGRldmljZSkgaW4g
-dXNlIGJ5IHRoZSBWTSBhbmQgZmVhdHVyZXMNCj4gPiArb2YgdGhvc2UgZ3JvdXBzL2RldmljZXMg
-aW1wb3J0YW50IHRvIHRoZSBjb3JyZWN0bmVzcyBhbmQgYWNjZWxlcmF0aW9uDQo+ID4gK29mIHRo
-ZSBWTS4gQXMgZ3JvdXBzL2RldmljZXMgYXJlIGVuYWJsZWQgYW5kIGRpc2FibGVkIGZvciB1c2Ug
-YnkgdGhlDQo+ID4gK1ZNLCBLVk0gc2hvdWxkIGJlIHVwZGF0ZWQgYWJvdXQgdGhlaXIgcHJlc2Vu
-Y2UuICBXaGVuIHJlZ2lzdGVyZWQNCj4gd2l0aA0KPiA+ICtLVk0sIGEgcmVmZXJlbmNlIHRvIHRo
-ZSBWRklPIGZpbGUgaXMgaGVsZCBieSBLVk0uDQo+ID4NCj4gPiAgR3JvdXBzOg0KPiANCj4gIkZp
-bGVzIg0KDQpJdCBzaG91bGQgYmUgIkdyb3VwcyIg8J+YiiBIZXJlICJHcm91cHMiIG1lYW5zIHN1
-YmNtZCBncm91cHMuDQoNCj4gDQo+ID4gLSAgS1ZNX0RFVl9WRklPX0dST1VQDQo+ID4gLQ0KPiA+
-IC1LVk1fREVWX1ZGSU9fR1JPVVAgYXR0cmlidXRlczoNCj4gPiAtICBLVk1fREVWX1ZGSU9fR1JP
-VVBfQUREOiBBZGQgYSBWRklPIGdyb3VwIHRvIFZGSU8tS1ZNIGRldmljZQ0KPiA+IHRyYWNraW5n
-DQo+ID4gLQlrdm1fZGV2aWNlX2F0dHIuYWRkciBwb2ludHMgdG8gYW4gaW50MzJfdCBmaWxlIGRl
-c2NyaXB0b3INCj4gPiAtCWZvciB0aGUgVkZJTyBncm91cC4NCj4gPiAtICBLVk1fREVWX1ZGSU9f
-R1JPVVBfREVMOiBSZW1vdmUgYSBWRklPIGdyb3VwIGZyb20gVkZJTy1LVk0NCj4gPiBkZXZpY2Ug
-dHJhY2tpbmcNCj4gPiAtCWt2bV9kZXZpY2VfYXR0ci5hZGRyIHBvaW50cyB0byBhbiBpbnQzMl90
-IGZpbGUgZGVzY3JpcHRvcg0KPiA+IC0JZm9yIHRoZSBWRklPIGdyb3VwLg0KPiA+IC0gIEtWTV9E
-RVZfVkZJT19HUk9VUF9TRVRfU1BBUFJfVENFOiBhdHRhY2hlcyBhIGd1ZXN0IHZpc2libGUgVENF
-DQo+ID4gdGFibGUNCj4gPiArICBLVk1fREVWX1ZGSU9fRklMRQ0KPiA+ICsgIC0gYWxpYXM6IEtW
-TV9ERVZfVkZJT19HUk9VUA0KPiA+ICsNCj4gPiArS1ZNX0RFVl9WRklPX0ZJTEUgYXR0cmlidXRl
-czoNCj4gPiArICBLVk1fREVWX1ZGSU9fRklMRV9BREQ6IEFkZCBhIFZGSU8gZmlsZSAoZ3JvdXAv
-ZGV2aWNlKSB0byBWRklPLUtWTQ0KPiA+IGRldmljZQ0KPiA+ICsJdHJhY2tpbmcga3ZtX2Rldmlj
-ZV9hdHRyLmFkZHIgcG9pbnRzIHRvIGFuIGludDMyX3QgZmlsZSBkZXNjcmlwdG9yDQo+IA0KPiAi
-Li4uIGRldmljZSB0cmFja2luZyIgYW5kICJrdm1fZGV2aWNlLmF0dHIuYWRkciBwb2ludHMgdG8u
-Li4iIGFyZSB0d28NCj4gc2VudGVuY2VzLiBUaGV5IGFyZSBkZWxpYmVyYXRlbHkgYXJyYW5nZWQg
-dG8gYmUgaW4gZGlmZmVyZW50IGxpbmVzLg0KDQpPaCwgeWVzLg0KDQo+ID4gKwlmb3IgdGhlIFZG
-SU8gZmlsZS4NCj4gPiArCS0gYWxpYXM6IEtWTV9ERVZfVkZJT19HUk9VUF9BREQNCj4gPiArICBL
-Vk1fREVWX1ZGSU9fRklMRV9ERUw6IFJlbW92ZSBhIFZGSU8gZmlsZSAoZ3JvdXAvZGV2aWNlKSBm
-cm9tDQo+IFZGSU8tDQo+ID4gS1ZNDQo+ID4gKwlkZXZpY2UgdHJhY2tpbmcga3ZtX2RldmljZV9h
-dHRyLmFkZHIgcG9pbnRzIHRvIGFuIGludDMyX3QgZmlsZQ0KPiA+ICsJZGVzY3JpcHRvciBmb3Ig
-dGhlIFZGSU8gZmlsZS4NCj4gDQo+IGRpdHRvDQoNCldpbGwgY29udmVydC4NCg0KPiANCj4gPiAr
-CS0gYWxpYXM6IEtWTV9ERVZfVkZJT19HUk9VUF9ERUwNCj4gPiArICBLVk1fREVWX1ZGSU9fRklM
-RV9TRVRfU1BBUFJfVENFOiBhdHRhY2hlcyBhIGd1ZXN0IHZpc2libGUgVENFDQo+IHRhYmxlDQo+
-ID4gIAlhbGxvY2F0ZWQgYnkgc1BBUFIgS1ZNLg0KPiANCj4gc29tZWhvdyBoZXJlIGl0IHNob3Vs
-ZCBlbXBoYXNpemUgdGhhdCB0aGUgZmlsZSBjYW4gb25seSBiZSBncm91cA0KDQpZZXMuDQoNCj4g
-PiAgCWt2bV9kZXZpY2VfYXR0ci5hZGRyIHBvaW50cyB0byBhIHN0cnVjdDo6DQo+ID4NCj4gPiBA
-QCAtMzYsNiArMzksNyBAQCBLVk1fREVWX1ZGSU9fR1JPVVAgYXR0cmlidXRlczoNCj4gPg0KPiA+
-ICAJd2hlcmU6DQo+ID4NCj4gPiAtCS0gQGdyb3VwZmQgaXMgYSBmaWxlIGRlc2NyaXB0b3IgZm9y
-IGEgVkZJTyBncm91cDsNCj4gPiAtCS0gQHRhYmxlZmQgaXMgYSBmaWxlIGRlc2NyaXB0b3IgZm9y
-IGEgVENFIHRhYmxlIGFsbG9jYXRlZCB2aWENCj4gPiAtCSAgS1ZNX0NSRUFURV9TUEFQUl9UQ0Uu
-DQo+ID4gKwkqKSBAZ3JvdXBmZCBpcyBhIGZpbGUgZGVzY3JpcHRvciBmb3IgYSBWRklPIGdyb3Vw
-Ow0KPiA+ICsJKikgQHRhYmxlZmQgaXMgYSBmaWxlIGRlc2NyaXB0b3IgZm9yIGEgVENFIHRhYmxl
-IGFsbG9jYXRlZCB2aWENCj4gDQo+IHdoeSBjaGFuZ2luZyBhYm92ZSB0d28gbGluZXM/DQoNCnRo
-aXMgaXMgZHVlIHRvIGNoYW5naW5nICItIiB0byBiZSAiKikiIGFzIHN1YmJ1bGxldCBhcyBiZWxv
-dyBuZWVkDQp0byBhZGQgYWxpYXMuDQoNCj4gPiArCSAgIEtWTV9DUkVBVEVfU1BBUFJfVENFLg0K
-PiA+ICsJLSBhbGlhczogS1ZNX0RFVl9WRklPX0ZJTEVfU0VUX1NQQVBSX1RDRQ0KPiANCj4gR1JP
-VVANCg0KWWVzLg0KDQpSZWdhcmRzLA0KWWkgTGl1DQo=
+On Mon, Feb 06, 2023 at 04:59:36PM +0000, Tvrtko Ursulin wrote:
+> 
+> On 06/02/2023 14:19, Dan Carpenter wrote:
+> > [ Ancient code but the warning showed up again because the function was
+> >    renamed or something? - dan ]
+> > 
+> > Hello Chris Wilson,
+> > 
+> > The patch 871dfbd67d4e: "drm/i915: Allow compaction upto SWIOTLB max
+> > segment size" from Oct 11, 2016, leads to the following Smatch static
+> > checker warning:
+> > 
+> > 	drivers/gpu/drm/i915/gem/i915_gem_shmem.c:164 shmem_sg_alloc_table()
+> > 	warn: variable dereferenced before check 'sg' (see line 155)
+> 
+> Is smatch getting confused here? Not entirely sure but lets see below..
+
+Reading through your comments, it seems like you're saying the NULL
+check should be deleted.  I don't really consider that a "false positive".
+Hopefully, we both agree that by the time we get to the check the "sg"
+pointer has been dereferenced.
+
+> > 
+> > drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> >      58 int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
+> >      59                          size_t size, struct intel_memory_region *mr,
+> >      60                          struct address_space *mapping,
+> >      61                          unsigned int max_segment)
+> >      62 {
+> >      63         unsigned int page_count; /* restricted by sg_alloc_table */
+> >      64         unsigned long i;
+> >      65         struct scatterlist *sg;
+> >      66         struct page *page;
+> >      67         unsigned long last_pfn = 0;        /* suppress gcc warning */
+> >      68         gfp_t noreclaim;
+> >      69         int ret;
+> >      70
+> >      71         if (overflows_type(size / PAGE_SIZE, page_count))
+> >      72                 return -E2BIG;
+> >      73
+> >      74         page_count = size / PAGE_SIZE;
+> >      75         /*
+> >      76          * If there's no chance of allocating enough pages for the whole
+> >      77          * object, bail early.
+> >      78          */
+> >      79         if (size > resource_size(&mr->region))
+> >      80                 return -ENOMEM;
+> >      81
+> >      82         if (sg_alloc_table(st, page_count, GFP_KERNEL | __GFP_NOWARN))
+> >      83                 return -ENOMEM;
+> >      84
+> >      85         /*
+> >      86          * Get the list of pages out of our struct file.  They'll be pinned
+> >      87          * at this point until we release them.
+> >      88          *
+> >      89          * Fail silently without starting the shrinker
+> >      90          */
+> >      91         mapping_set_unevictable(mapping);
+> >      92         noreclaim = mapping_gfp_constraint(mapping, ~__GFP_RECLAIM);
+> >      93         noreclaim |= __GFP_NORETRY | __GFP_NOWARN;
+> >      94
+> >      95         sg = st->sgl;
+> >                 ^^^^^^^^^^^^
+> > "sg" set here.
+> 
+> It is guaranteed to be non-NULL since sg_alloc_table succeeded.
+> 
+
+Yeah.  This doesn't matter.  When I originally wrote this, I thought it
+mattered but then I re-read the code but forgot to delete this comment.
+
+In theory Smatch is supposed to be able to be tracking that "If
+sg_alloc_table() succeeds, then "st->sgl" is non-NULL," but
+__sg_alloc_table() has a do { } while() loop and Smatch is bad at
+parsing loops.
+
+However, Smatch does say that if sg_alloc_table() succeeds it means
+page_count is non-zero.
+
+> > 
+> >      96         st->nents = 0;
+> >      97         for (i = 0; i < page_count; i++) {
+
+Since page_count is non-zero we definitely enter this loop.
+
+> >      98                 const unsigned int shrink[] = {
+> >      99                         I915_SHRINK_BOUND | I915_SHRINK_UNBOUND,
+> >      100                         0,
+> >      101                 }, *s = shrink;
+> >      102                 gfp_t gfp = noreclaim;
+> >      103
+> >      104                 do {
+> >      105                         cond_resched();
+> >      106                         page = shmem_read_mapping_page_gfp(mapping, i, gfp);
+> >      107                         if (!IS_ERR(page))
+> >      108                                 break;
+> > 
+> > This should probably break out of the outer loop instead of the inner
+> > loop?
+> 
+> Don't think so, the loop has allocated a page and wants to break out the
+> inner loop so the page can be appended to the sg list.
+> 
+> > 
+> >      109
+> >      110                         if (!*s) {
+> >      111                                 ret = PTR_ERR(page);
+> >      112                                 goto err_sg;
+> >      113                         }
+> >      114
+> >      115                         i915_gem_shrink(NULL, i915, 2 * page_count, NULL, *s++);
+> >      116
+> >      117                         /*
+> >      118                          * We've tried hard to allocate the memory by reaping
+> >      119                          * our own buffer, now let the real VM do its job and
+> >      120                          * go down in flames if truly OOM.
+> >      121                          *
+> >      122                          * However, since graphics tend to be disposable,
+> >      123                          * defer the oom here by reporting the ENOMEM back
+> >      124                          * to userspace.
+> >      125                          */
+> >      126                         if (!*s) {
+> >      127                                 /* reclaim and warn, but no oom */
+> >      128                                 gfp = mapping_gfp_mask(mapping);
+> >      129
+> >      130                                 /*
+> >      131                                  * Our bo are always dirty and so we require
+> >      132                                  * kswapd to reclaim our pages (direct reclaim
+> >      133                                  * does not effectively begin pageout of our
+> >      134                                  * buffers on its own). However, direct reclaim
+> >      135                                  * only waits for kswapd when under allocation
+> >      136                                  * congestion. So as a result __GFP_RECLAIM is
+> >      137                                  * unreliable and fails to actually reclaim our
+> >      138                                  * dirty pages -- unless you try over and over
+> >      139                                  * again with !__GFP_NORETRY. However, we still
+> >      140                                  * want to fail this allocation rather than
+> >      141                                  * trigger the out-of-memory killer and for
+> >      142                                  * this we want __GFP_RETRY_MAYFAIL.
+> >      143                                  */
+> >      144                                 gfp |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
+> >      145                         }
+> >      146                 } while (1);
+> >      147
+> >      148                 if (!i ||
+> >      149                     sg->length >= max_segment ||
+> >      150                     page_to_pfn(page) != last_pfn + 1) {
+> >      151                         if (i)
+> >      152                                 sg = sg_next(sg);
+> >      153
+> >      154                         st->nents++;
+> >      155                         sg_set_page(sg, page, PAGE_SIZE, 0);
+> >                                              ^^
+> > Dereferenced.
+> 
+> Does smatch worry about the sg = sg_next(sg) here, or the initially
+> highlighted state? Even for the former we know we have allocated enough
+> entries (always allocate assuming worst possible fragmentation) so this will
+> still be valid whatever happens.
+
+None of that really matters.  What matters is that we dereference "sg"
+at the end of every iteration through the loop.
+
+Technically, it does slightly matter.  If Smatch were able to determine
+that a dereference is safe, then it doesn't print a warning.  But Smatch
+is probably always never going to know that sg_next() can't return NULL
+here.
+
+> 
+> > 
+> >      156                 } else {
+> >      157                         sg->length += PAGE_SIZE;
+> >                                  ^^
+> > Here too.
+> > 
+> >      158                 }
+> >      159                 last_pfn = page_to_pfn(page);
+> >      160
+> >      161                 /* Check that the i965g/gm workaround works. */
+> >      162                 GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
+> >      163         }
+> >  --> 164         if (sg) /* loop terminated early; short sg table */
+                     ^^^^^^
+
+> >      165                 sg_mark_end(sg);
+
+> > 
+> > If "sg" were NULL then we are already toasted.
+> 
+> AFAICT it can never be since the loop can never try to iterate past the last
+> sg entry.
+
+Right.  So this if statement can be deleted?
+
+regards,
+dan carpenter
+
