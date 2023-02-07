@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13D068D2E2
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 10:33:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1AF68D388
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 11:05:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41C4F10E074;
-	Tue,  7 Feb 2023 09:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDE410E0AA;
+	Tue,  7 Feb 2023 10:05:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9998510E491
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 09:33:38 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A74510E0AA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 10:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675762418; x=1707298418;
+ t=1675764352; x=1707300352;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=shxlFdbo+IQeq4jMbAy0V6h25PVc3TvINQxOt1PJoig=;
- b=ZhxDGWzRWH6I792xBtf+vttzqhP4wroBcQjArNOaWWtklABGh0frTAh1
- ZoyKgjkCUrwKdODe2QP5N49HJxmAtefq5l5h+UAnFcGN2tIeU2iGtabyW
- og2lOXQXiAjDzN2XlearAz1TD/mfZVSwCLcGqAXziYqDoGRfsOckAHu+t
- rMehjuQBhRCqz08fBUEWe5MKpI6h7pANDReLywG7QO3qqkqLqOaQhK2X1
- f0p6A34ELXm2KhJUxtP8FSwnK64p3zPzKNHTQpn8jKQIKBo8WQelgylT5
- tPgX9/AJzc61HJqiGQ6sCofEV3hzhpJkjO1zK2sLWe/nFamZJ6CvaYFyw Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="327149367"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="327149367"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 01:33:38 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="699194571"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="699194571"
+ message-id:mime-version;
+ bh=R2r6L5vOhO9PhloQnvkW+F0TzZjczykvZ48hTMjXng0=;
+ b=KTMPiLfzTXxqQiXXZp6870N//tZl6g2iYSELDVSBJDQXMwDpKFbLh7cT
+ msahpBbJ6peEJjrcqA/B8HO7FCugGnTePYx1PjIyCxa5dfm6ZhFLoglGp
+ ruYJKvQm1BNrp+onkI8sVasexUunbveo4XJaGKuTETPM1X+IIxljcIifl
+ cgNIwF52NO78x7qongKIGot+IvYlQj2+Ybh7NZDVZm+//VaFpC3JizrF9
+ umdotpWuXUGdPfaw9VcCI+m2vZVaeSMGymRnC/2oJ5BBaLDAVWSMTdIu9
+ QZNW0OdddIbnM9s5iNDtCEA03WbkN2EjOTYivk0M71xkqXCnmf12MMErB Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="313115667"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="313115667"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 02:05:50 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="735493857"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="735493857"
 Received: from tronach-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.11])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 01:33:36 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Y+IUV8OBG0P2mt2b@intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 02:05:45 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+In-Reply-To: <Y+Exp5Gk+JEVFvcq@ideak-desk.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230207064337.18697-1-ville.syrjala@linux.intel.com>
- <20230207064337.18697-2-ville.syrjala@linux.intel.com>
- <877cwtzw93.fsf@intel.com> <Y+IUV8OBG0P2mt2b@intel.com>
-Date: Tue, 07 Feb 2023 11:33:34 +0200
-Message-ID: <87wn4tyg41.fsf@intel.com>
+References: <cover.1675370801.git.jani.nikula@intel.com>
+ <2bff992c6db17dabe4470d3babf1fc1144ad4d83.1675370801.git.jani.nikula@intel.com>
+ <Y91n9NfNyV9F0dWw@ideak-desk.fi.intel.com> <87cz6mzrwo.fsf@intel.com>
+ <Y+Exp5Gk+JEVFvcq@ideak-desk.fi.intel.com>
+Date: Tue, 07 Feb 2023 12:05:43 +0200
+Message-ID: <87ttzxyemg.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Fix VBT DSI DVO port handling
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC 1/3] drm/i915/power: move dc state members to
+ struct i915_power_domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,119 +65,137 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Feb 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Feb 07, 2023 at 10:59:36AM +0200, Jani Nikula wrote:
->> On Tue, 07 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Mon, 06 Feb 2023, Imre Deak <imre.deak@intel.com> wrote:
+> On Mon, Feb 06, 2023 at 06:21:11PM +0200, Jani Nikula wrote:
+>> On Fri, 03 Feb 2023, Imre Deak <imre.deak@intel.com> wrote:
+>> > On Thu, Feb 02, 2023 at 10:47:46PM +0200, Jani Nikula wrote:
+>> >> There's only one reference to the struct intel_dmc members dc_state,
+>> >> target_dc_state, and allowed_dc_mask within intel_dmc.c, begging the
+>> >> question why they are under struct intel_dmc to begin with.
+>> >> 
+>> >> Moreover, the only references to i915->display.dmc outside of
+>> >> intel_dmc.c are to these members.
+>> >> 
+>> >> They don't belong. Move them from struct intel_dmc to struct
+>> >> i915_power_domains, which seems like a more suitable place.
+>> >> 
+>> >> Cc: Imre Deak <imre.deak@intel.com>
+>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >> ---
+>> >> [...]
+>> >>
+>> >> @@ -481,7 +482,7 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+>> >>  		}
+>> >>  	}
+>> >>  
+>> >> -	dev_priv->display.dmc.dc_state = 0;
+>> >> +	power_domains->dc_state = 0;
 >> >
->> > Turns out modern (icl+) VBTs still declare their DSI ports
->> > as MIPI-A and MIPI-C despite the PHYs now being A and B.
->> > Remap appropriately to allow the panels declared as MIPI-C
->> > to work.
->> >
->> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8016
->> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_bios.c | 33 ++++++++++++++++-------
->> >  1 file changed, 23 insertions(+), 10 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/d=
-rm/i915/display/intel_bios.c
->> > index e6ca51232dcf..06a2d98d2277 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> > @@ -2467,6 +2467,22 @@ static enum port dvo_port_to_port(struct drm_i9=
-15_private *i915,
->> >  					  dvo_port);
->> >  }
->> >=20=20
->> > +static enum port
->> > +dsi_dvo_port_to_port(struct drm_i915_private *i915, u8 dvo_port)
->> > +{
->> > +	switch (dvo_port) {
->> > +	case DVO_PORT_MIPIA:
->> > +		return PORT_A;
->>=20
->> I think I would add:
->>=20
->> 	case DVO_PORT_MIPIB:
->> 		if (DISPLAY_VER(i915) >=3D 11)
->> 			return PORT_B;
->> 		else
->> 			return PORT_NONE;
->>=20
->> just in case.
+>> > This could be dropped as well, as it's already inited by the time the
+>> > function is called.
+>> 
+>> The whole dc_state thing originates to 832dba889e27 ("drm/i915/gen9:
+>> Check for DC state mismatch"), and it's all about detecting
+>> mismatches. I'm not sure how that works and if it's still useful.
 >
-> Looks like Windows doesn't expect MIPI-B to be used ever.
-> So I'm tempted to leave it out as well.
+> On SKL writing the DC_STATE_EN register didn't take effect, so a
+> workaround was added to reread/verify the write. Yes, on newer platforms
+> we should probably revisit this and try to remove at least the part
+> rereading the register 5 times.
+>
+>> > I agree with making struct intel_dmc internal to intel_dmc.c. Since DC
+>> > state is a functionality provided by the firmware (except of DC9), an
+>> > alternative would be to move/add get/set/assert etc. DC state functions
+>> > to intel_dmc.c instead and call these from intel_display_power*.c.
+>> 
+>> That was actually the first patch I wrote but didn't send. There were a
+>> few reasons I switched to this one:
+>> 
+>> First, it adds a dependency between power well and dmc initialization.
+>
+> Do you mean the dependency that is there already?: taking some power ref
+> and keeping the whole runtime PM functionality disabled until the
+> firmware load completes. This is based on an earlier decision not to
+> support runtime PM w/o DMC.
 
-Okay then. $EXPLETIVE.
+intel_power_domains_init() is called very early. It adjusts
+allowed_dc_mask and target_dc_state.
 
-J.
+intel_dmc_ucode_init() is called later, and depends on
+intel_power_domains_init() in the way you describe above.
+
+If intel_dmc_ucode_init() starts allocating intel_dmc dynamically, it
+needs to exist before intel_power_domains_init() modifies
+allowed_dc_mask and target_dc_state.
+
+It's an interdependency that would need to be broken up somehow.
 
 >
->>=20
->> With that,
->>=20
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->> > +	case DVO_PORT_MIPIC:
->> > +		if (DISPLAY_VER(i915) >=3D 11)
->> > +			return PORT_B;
->> > +		else
->> > +			return PORT_C;
->> > +	default:
->> > +		return PORT_NONE;
->> > +	}
->> > +}
->> > +
->> >  static int parse_bdb_230_dp_max_link_rate(const int vbt_max_link_rate)
->> >  {
->> >  	switch (vbt_max_link_rate) {
->> > @@ -3442,19 +3458,16 @@ bool intel_bios_is_dsi_present(struct drm_i915=
-_private *i915,
->> >=20=20
->> >  		dvo_port =3D child->dvo_port;
->> >=20=20
->> > -		if (dvo_port =3D=3D DVO_PORT_MIPIA ||
->> > -		    (dvo_port =3D=3D DVO_PORT_MIPIB && DISPLAY_VER(i915) >=3D 11) ||
->> > -		    (dvo_port =3D=3D DVO_PORT_MIPIC && DISPLAY_VER(i915) < 11)) {
->> > -			if (port)
->> > -				*port =3D dvo_port - DVO_PORT_MIPIA;
->> > -			return true;
->> > -		} else if (dvo_port =3D=3D DVO_PORT_MIPIB ||
->> > -			   dvo_port =3D=3D DVO_PORT_MIPIC ||
->> > -			   dvo_port =3D=3D DVO_PORT_MIPID) {
->> > +		if (dsi_dvo_port_to_port(i915, dvo_port) =3D=3D PORT_NONE) {
->>=20
->> Yeah that monstrosity should've been a separate function a long time ago!
->>=20
->> >  			drm_dbg_kms(&i915->drm,
->> >  				    "VBT has unsupported DSI port %c\n",
->> >  				    port_name(dvo_port - DVO_PORT_MIPIA));
->> > +			continue;
->> >  		}
->> > +
->> > +		if (port)
->> > +			*port =3D dsi_dvo_port_to_port(i915, dvo_port);
->> > +		return true;
->> >  	}
->> >=20=20
->> >  	return false;
->> > @@ -3539,7 +3552,7 @@ bool intel_bios_get_dsc_params(struct intel_enco=
-der *encoder,
->> >  		if (!(child->device_type & DEVICE_TYPE_MIPI_OUTPUT))
->> >  			continue;
->> >=20=20
->> > -		if (child->dvo_port - DVO_PORT_MIPIA =3D=3D encoder->port) {
->> > +		if (dsi_dvo_port_to_port(i915, child->dvo_port) =3D=3D encoder->por=
-t) {
->> >  			if (!devdata->dsc)
->> >  				return false;
->>=20
->> --=20
+>> Second, it's a bunch of boilerplate, six get/set functions altogether,
+>> and all of them checking for dmc init in patch 3.
+>> 
+>> Third, it still seems funny to have these members stored in intel_dmc,
+>> accessed via intel_dmc.c, but intel_dmc.c not actually using them for
+>> anything internally. It's only the power well code that uses
+>> them. Should more of the DC state handling be moved to intel_dmc.c then?
+>
+> I thought that any functions accessing the DC_STATE_EN register would be
+> moved as well (besides the state checkers you refer to). I wasn't sure
+> if my suggestion makes sense without actually seeing the end result; I
+> think we can also regard the DC_STATE_EN register as a more general
+> display PM HW interface leaving that in intel_display_power* (since DC9
+> which isn't a DMC thing is also toggled via it) and leave only the
+> firmware loading/initialization in intel_dmc.c as in your RFC.
+
+Yeah, I don't know. *lots of shrugging* :)
+
+>
+>> BR,
+>> Jani.
+>> 
+>> >>  	gen9_set_dc_state_debugmask(dev_priv);
+>> >>  
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+>> >> index 88eae74dbcf2..da8ba246013e 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+>> >> @@ -40,9 +40,6 @@ struct intel_dmc {
+>> >>  		bool present;
+>> >>  	} dmc_info[DMC_FW_MAX];
+>> >>  
+>> >> -	u32 dc_state;
+>> >> -	u32 target_dc_state;
+>> >> -	u32 allowed_dc_mask;
+>> >>  	intel_wakeref_t wakeref;
+>> >>  };
+>> >>  
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>> >> index 2954759e9d12..cf13580af34a 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> >> @@ -702,6 +702,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+>> >>  {
+>> >>  	const u32 crtc_vdisplay = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
+>> >>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>> >> +	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+>> >>  	u32 exit_scanlines;
+>> >>  
+>> >>  	/*
+>> >> @@ -718,7 +719,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+>> >>  	if (crtc_state->enable_psr2_sel_fetch)
+>> >>  		return;
+>> >>  
+>> >> -	if (!(dev_priv->display.dmc.allowed_dc_mask & DC_STATE_EN_DC3CO))
+>> >> +	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_DC3CO))
+>> >>  		return;
+>> >>  
+>> >>  	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
+>> >> -- 
+>> >> 2.34.1
+>> >> 
+>> 
+>> -- 
 >> Jani Nikula, Intel Open Source Graphics Center
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
