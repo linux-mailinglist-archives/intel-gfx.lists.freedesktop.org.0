@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08CAA68CFA7
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 07:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 778AF68CFA8
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 07:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E757310E2F6;
-	Tue,  7 Feb 2023 06:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A62210E450;
+	Tue,  7 Feb 2023 06:43:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1953810E1D3
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 06:43:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F0210E446
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 06:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675752224; x=1707288224;
+ t=1675752227; x=1707288227;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VIQVVDvY2VWxQynQRZfsMOd4h6HBw9IsSNwPqm5y9eE=;
- b=M7r/bLF8xNDJP9yiZuoj2f7hxQMUzyk+WafeHnQc+stj/uuwWg1+uk2Q
- 6GETOGwoq9QNTLvDHnjYOPZRCFMTeo9gtwW+09o/XVJrjdn4O+ijIzCpZ
- YcD8yuaYz0g9/57oX6ab8g9s9kuwouTDyo8uqnoWwbJkmwGDAbRGTCNE5
- EADXU0QF24keFFYNGik+hVOAMOGhOdWsdGjkkih5FjZMxYDHmKTvSR0zU
- KA52bg+Y9e51dRW3sD//q9KstGn0hG1LsaREUBoeSmWGJouTUOEItiHAw
- T6+Pu3jXZz1dM+lT5DMCSpxbdF7WmPmpMo9NCMJj8KctXa2hP03lS98yH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="309067903"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="309067903"
+ bh=cLvZoIfli5c2ILmeCzMkkaWdDTQE7eyGniVGiBeW4nk=;
+ b=TWVuR2eVeuCfV+mI4Fk9RyLe3AcZVjeHLbV0PsVvnZGd9BOo7+jBCl6e
+ nvfxFtqmEt+RscAWXnSAlPZFaxiEjXUoFne4JkHuPykBwLKTQUWU24L2R
+ apndzTx4/vOj00QlFhcd6Fw3zRooNNUdCVqil6ozKc6gayFNDSyENTHzd
+ BQJEfiaCFsXBfCGY3XzYOjAJ04CaiOP9fhCvRYPwZ0v7NCTcmppqFxfrV
+ j95LrUm1r8K0lJ7x6pE4prN9OuLhLTdfUMjAtNTVT+qDBtC9Rz+Jzx2h2
+ aL6n8p7KVWYpKdxSikcAvsVy7rFCda9Kjf7unRo6WYD67j46+V1IPAcW7 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="309067911"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="309067911"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 22:43:43 -0800
+ 06 Feb 2023 22:43:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="660107531"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="660107531"
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="660107546"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="660107546"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga007.jf.intel.com with SMTP; 06 Feb 2023 22:43:41 -0800
+ by orsmga007.jf.intel.com with SMTP; 06 Feb 2023 22:43:45 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Feb 2023 08:43:41 +0200
+ Tue, 07 Feb 2023 08:43:44 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 08:43:35 +0200
-Message-Id: <20230207064337.18697-2-ville.syrjala@linux.intel.com>
+Date: Tue,  7 Feb 2023 08:43:36 +0200
+Message-Id: <20230207064337.18697-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230207064337.18697-1-ville.syrjala@linux.intel.com>
 References: <20230207064337.18697-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Fix VBT DSI DVO port handling
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Populate encoder->devdata for DSI
+ on icl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,78 +65,94 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Turns out modern (icl+) VBTs still declare their DSI ports
-as MIPI-A and MIPI-C despite the PHYs now being A and B.
-Remap appropriately to allow the panels declared as MIPI-C
-to work.
+We now have some eDP+DSI dual panel systems floating around
+where the DSI panel is the secondary LFP and thus needs to
+consult "panel type 2" in VBT in order to locate all the
+other panel type dependante stuff correctly.
+
+To that end we need to pass in the devdata to
+intel_bios_init_panel_late(), otherwise it'll just assume
+we want the primary panel type. So let's try to just populate
+the vbt.ports[] stuff and encoder->devdata for icl+ DSI
+panels as well.
+
+We can't do this on older platforms as there we risk a DSI
+port aliasing with a HDMI/DP port, which is a totally legal
+thing as the DSI ports live in their own little parallel
+universe.
 
 Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8016
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 33 ++++++++++++++++-------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c    |  3 ++-
+ drivers/gpu/drm/i915/display/intel_bios.c | 15 ++++++++++++---
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 003cac918228..05e749861658 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1951,7 +1951,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 	/* attach connector to encoder */
+ 	intel_connector_attach_encoder(intel_connector, encoder);
+ 
+-	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, NULL, NULL);
++	encoder->devdata = intel_bios_encoder_data_lookup(dev_priv, port);
++	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, encoder->devdata, NULL);
+ 
+ 	mutex_lock(&dev_priv->drm.mode_config.mutex);
+ 	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e6ca51232dcf..06a2d98d2277 100644
+index 06a2d98d2277..1cd8af88ce50 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2467,6 +2467,22 @@ static enum port dvo_port_to_port(struct drm_i915_private *i915,
- 					  dvo_port);
+@@ -2593,6 +2593,12 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
+ 		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
  }
  
-+static enum port
-+dsi_dvo_port_to_port(struct drm_i915_private *i915, u8 dvo_port)
++static bool
++intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata)
 +{
-+	switch (dvo_port) {
-+	case DVO_PORT_MIPIA:
-+		return PORT_A;
-+	case DVO_PORT_MIPIC:
-+		if (DISPLAY_VER(i915) >= 11)
-+			return PORT_B;
-+		else
-+			return PORT_C;
-+	default:
-+		return PORT_NONE;
-+	}
++	return devdata->child.device_type & DEVICE_TYPE_MIPI_OUTPUT;
 +}
 +
- static int parse_bdb_230_dp_max_link_rate(const int vbt_max_link_rate)
+ static int _intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata)
  {
- 	switch (vbt_max_link_rate) {
-@@ -3442,19 +3458,16 @@ bool intel_bios_is_dsi_present(struct drm_i915_private *i915,
+ 	if (!devdata || devdata->i915->display.vbt.version < 158)
+@@ -2643,7 +2649,7 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
+ {
+ 	struct drm_i915_private *i915 = devdata->i915;
+ 	const struct child_device_config *child = &devdata->child;
+-	bool is_dvi, is_hdmi, is_dp, is_edp, is_crt, supports_typec_usb, supports_tbt;
++	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
  
- 		dvo_port = child->dvo_port;
+ 	is_dvi = intel_bios_encoder_supports_dvi(devdata);
+@@ -2651,13 +2657,14 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
+ 	is_crt = intel_bios_encoder_supports_crt(devdata);
+ 	is_hdmi = intel_bios_encoder_supports_hdmi(devdata);
+ 	is_edp = intel_bios_encoder_supports_edp(devdata);
++	is_dsi = intel_bios_encoder_supports_dsi(devdata);
  
--		if (dvo_port == DVO_PORT_MIPIA ||
--		    (dvo_port == DVO_PORT_MIPIB && DISPLAY_VER(i915) >= 11) ||
--		    (dvo_port == DVO_PORT_MIPIC && DISPLAY_VER(i915) < 11)) {
--			if (port)
--				*port = dvo_port - DVO_PORT_MIPIA;
--			return true;
--		} else if (dvo_port == DVO_PORT_MIPIB ||
--			   dvo_port == DVO_PORT_MIPIC ||
--			   dvo_port == DVO_PORT_MIPID) {
-+		if (dsi_dvo_port_to_port(i915, dvo_port) == PORT_NONE) {
- 			drm_dbg_kms(&i915->drm,
- 				    "VBT has unsupported DSI port %c\n",
- 				    port_name(dvo_port - DVO_PORT_MIPIA));
-+			continue;
- 		}
-+
-+		if (port)
-+			*port = dsi_dvo_port_to_port(i915, dvo_port);
-+		return true;
- 	}
+ 	supports_typec_usb = intel_bios_encoder_supports_typec_usb(devdata);
+ 	supports_tbt = intel_bios_encoder_supports_tbt(devdata);
  
- 	return false;
-@@ -3539,7 +3552,7 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- 		if (!(child->device_type & DEVICE_TYPE_MIPI_OUTPUT))
- 			continue;
+ 	drm_dbg_kms(&i915->drm,
+-		    "Port %c VBT info: CRT:%d DVI:%d HDMI:%d DP:%d eDP:%d LSPCON:%d USB-Type-C:%d TBT:%d DSC:%d\n",
+-		    port_name(port), is_crt, is_dvi, is_hdmi, is_dp, is_edp,
++		    "Port %c VBT info: CRT:%d DVI:%d HDMI:%d DP:%d eDP:%d DSI:%d LSPCON:%d USB-Type-C:%d TBT:%d DSC:%d\n",
++		    port_name(port), is_crt, is_dvi, is_hdmi, is_dp, is_edp, is_dsi,
+ 		    HAS_LSPCON(i915) && child->lspcon,
+ 		    supports_typec_usb, supports_tbt,
+ 		    devdata->dsc != NULL);
+@@ -2710,6 +2717,8 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 	enum port port;
  
--		if (child->dvo_port - DVO_PORT_MIPIA == encoder->port) {
-+		if (dsi_dvo_port_to_port(i915, child->dvo_port) == encoder->port) {
- 			if (!devdata->dsc)
- 				return false;
+ 	port = dvo_port_to_port(i915, child->dvo_port);
++	if (port == PORT_NONE && DISPLAY_VER(i915) >= 11)
++		port = dsi_dvo_port_to_port(i915, child->dvo_port);
+ 	if (port == PORT_NONE)
+ 		return;
  
 -- 
 2.39.1
