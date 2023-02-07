@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDEF68DD90
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 17:04:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 021D668DDF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 17:29:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4610E550;
-	Tue,  7 Feb 2023 16:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB13C10E54F;
+	Tue,  7 Feb 2023 16:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AEA10E552
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 16:04:40 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED0910E54F;
+ Tue,  7 Feb 2023 16:29:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675785880; x=1707321880;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6v4WYo24Jo3YwZONIYeQ59hN/TUWn4sDvLAe0HHUUIs=;
- b=OO+GQYFlYtW7MPdWYWHdjIonhR4qw0xdRkBNL8H3RSSCZ9ARi+Xq0lks
- Oac/olSE3mX3+00Z1LIWKuAZM8I8ySz+4IOdCnpkrsRT6g4fIS9dyxfJ1
- UJ47u1uAVTDfw2vuFo0zrplT+zWklVKHT6+qZ1UbZqMlpFj0u8Wfa2Nb+
- 8VhAxujyorVnuOf4eQTL14iHH4AmG7DCLAinANUfCSx8xGSl/xYxlFWti
- ej0egc7bS6Es/am/HHnX7612hvNp03lfxGgTF/p70090kj7sh7taHxDNu
- uMIo9HuXs0ptrlfAlKiPdzs56ufOIzLjOHLLUxWC/3IXIK+L7U3glDP7X Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="356915883"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="356915883"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 08:03:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="840821397"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="840821397"
-Received: from kfurnanz-mobl.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.252.48.81])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 08:03:30 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 18:03:11 +0200
-Message-Id: <20230207160311.930772-4-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230207160311.930772-1-vinod.govindapillai@intel.com>
-References: <20230207160311.930772-1-vinod.govindapillai@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915/display: ignore link training
- failures in CI
+ t=1675787364; x=1707323364;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=k6DEVP/noOg9lgpyGaFLkK7QNE64/4xhAb4mROcQD6k=;
+ b=GnEIu1M/XoEdXItjBMMifDl9HHBfEN+aVB2ROqykbv0WTUy+gLrfwoSN
+ DQg/Mp8HIl3Cqitc6Qp2mYMQT0wtJe2KO2VwhguZILgWfmI7ZfU+AUZFU
+ H6nkini+9EzVhxJb983VIUvnIQaCONR5DcOsu0atFCcf+eWQvDTrnxHea
+ LIhVJS9mBkB1IHiGUzAwv2aGSmzLZI+y5Lj6wq+V/Jbotvru2vFldxl61
+ 4ZKRn+D78cnXh7kCDCvZtZe52Tn38+TB/4tQfoSQKSzohnMxzjPLR7nW2
+ FvIY41KF9TCFMglBlouySeAWiVuqHSwwugdP7n7Z9QnuFJwHSVCZzRM3R g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="309196923"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="309196923"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 08:29:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="668840496"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="668840496"
+Received: from aapotti-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.149.175])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 08:29:23 -0800
+Date: Tue, 07 Feb 2023 08:12:25 -0800
+Message-ID: <87357ho3o6.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+In-Reply-To: <CAM0jSHN421CatemTLzZMccGcjSQ_MJEA_vpqbCHgDrtuE_xC9w@mail.gmail.com>
+References: <20230203155309.1042297-1-ashutosh.dixit@intel.com>
+ <CAM0jSHN421CatemTLzZMccGcjSQ_MJEA_vpqbCHgDrtuE_xC9w@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Enable PL1 power limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,63 +60,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the ignore long HPD flag is set, ignore the link training
-failures as well. Because of spurious HPDs, some unexpected link
-training failures are happening while executing IGT test cases.
-Ignore the link training failures for the time being if the long
-HPDs are also ignored in the environments like CI.
+On Tue, 07 Feb 2023 01:32:44 -0800, Matthew Auld wrote:
+>
+> On Fri, 3 Feb 2023 at 15:54, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+> >
+> > Previous documentation suggested that PL1 power limit is always
+> > enabled. However we now find this not to be the case on some
+> > platforms (such as ATSM). Therefore enable PL1 power limit during hwmon
+> > initialization.
+>
+> For some reason it looks like this change is impacting the atsm in CI:
+> https://intel-gfx-ci.01.org/tree/drm-tip/bat-atsm-1.html
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Hmm, the change was meant for ATSM. Anyway let me try to get hold of an
+ATSM and see if I can figure out what might be going on with these
+seemingly unrelated failures and if I can repro them locally. Thanks!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3d3efcf02011..f90c627ab553 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1433,7 +1433,11 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
- void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 			       const struct intel_crtc_state *crtc_state)
- {
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	bool passed;
-+
- 	/*
- 	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
- 	 * HW state readout is added.
-@@ -1451,6 +1455,26 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 	else
- 		passed = intel_dp_link_train_all_phys(intel_dp, crtc_state, lttpr_count);
- 
-+	/*
-+	 * Ignore the link failure in CI
-+	 *
-+	 * In fixed enviroments like CI, sometimes unexpected long HPDs are
-+	 * generated by the displays. If ignore_long_hpd flag is set, such long
-+	 * HPDs are ignored. And probably as a consequence of these ignored
-+	 * long HPDs, subsequent link trainings are failed resulting into CI
-+	 * execution failures.
-+	 *
-+	 * For test cases which rely on the link training or processing of HPDs
-+	 * ignore_long_hpd flag can unset from the testcase.
-+	 */
-+	if (!passed && i915->display.hotplug.ignore_long_hpd) {
-+		drm_dbg_kms(&i915->drm,
-+			    "[CONNECTOR:%d:%s][ENCODER:%d:%s] Ignore the link failure\n",
-+			    connector->base.base.id, connector->base.name,
-+			    encoder->base.base.id, encoder->base.name);
-+		return;
-+	}
-+
- 	if (!passed)
- 		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
- }
--- 
-2.34.1
-
+>
+> >
+> > Bspec: 51864
+> >
+> > v2: Add Bspec reference (Gwan-gyeong)
+> > v3: Add Fixes tag
+> >
+> > Fixes: 99f55efb79114 ("drm/i915/hwmon: Power PL1 limit and TDP setting")
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_hwmon.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> > index 1225bc432f0d5..4683a5b96eff1 100644
+> > --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> > @@ -687,6 +687,11 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+> >                 for_each_gt(gt, i915, i)
+> >                         hwm_energy(&hwmon->ddat_gt[i], &energy);
+> >         }
+> > +
+> > +       /* Enable PL1 power limit */
+> > +       if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+> > +               hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
+> > +                                                   PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
+> >  }
+> >
+> >  void i915_hwmon_register(struct drm_i915_private *i915)
+> > --
+> > 2.38.0
+> >
