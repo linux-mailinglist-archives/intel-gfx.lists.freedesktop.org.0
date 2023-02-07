@@ -1,51 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891C368D545
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 12:16:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4313F68D561
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 12:26:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C384010E038;
-	Tue,  7 Feb 2023 11:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDC7510E4D5;
+	Tue,  7 Feb 2023 11:26:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3C010E038
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 11:16:32 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E65D10E4D5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 11:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675768592; x=1707304592;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0TRu6ICI1BT0OYHWf1pJPO652RlOs7P+i3Z9o+RUllo=;
- b=fLgz6V1uBq1I8yMcjVS6JKLFn3AE7vRyPBmsWsO5moI2jlKLVWSqVmgc
- SXXakKefXQazYjse+9n8UP30W3AxOgOB5nXCzkHIBpwJhYVwLIk1e3Y2z
- kXDvVk/xp4IZ+4QwXvVUh9RSufPg7YNKPNQxq2I7SJuOI+7PtCW4SO3xZ
- o5iJPCWKxNMwAE/C4S/BcjvSGZ88SdNvE05/SxdbNKgaPLHUYr984kaW7
- pWXRD1a3fPWXFwTSzoW1KIC/g7hXMG/m4FDr+GwrM53qUY6gEcJMmM5Vm
- t/Ant3rwNfipoUrrHB1K2D4fhMpGjN2Ogi1lPGacvCrM89k8ei8W+i31k Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="313127100"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="313127100"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 03:16:31 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="660194924"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="660194924"
-Received: from tronach-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.11])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 03:16:30 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 13:16:26 +0200
-Message-Id: <20230207111626.1839645-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1675769174; x=1707305174;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=BLzii2X/746nENyWVx0MA8Dt0rT0aZSD3Vp9JPBqoco=;
+ b=CqA7Lrnx04wYpM1B9zwfBkBaX2kWoLU4RdJaprmiObqVqFyh2JRSPomR
+ ZWVg4oJMjbiRo0RO4Peaw6gFOLlFmKnBvIK/xjxwoWxuPrNeOfrhVeFzW
+ u042elUuF0LHjCU5G37YLCslVgP0RpzN4tv7zbRZj4/83gajcWNxfN7Pq
+ dka+uIjfY4sbY62X8ZKQQA9Xk/kSwt2T8MaRZ+7QxbeZN0Yzx/OKpwlJH
+ SEdRgfUQEc5ikQWrgdSj9WmVznuosDG+MB0wu5LLhHDd7c1IPb+06Akl6
+ K/BmpjKOqjzEbSfNekwXeyfV7u8gRwNR8hxrq3sjnkTVjkX1iMwknXEy6 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="309128592"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="309128592"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 03:26:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="840729816"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="840729816"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga005.jf.intel.com with ESMTP; 07 Feb 2023 03:26:13 -0800
+Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
+ [10.252.3.204])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id F1C7358041D;
+ Tue,  7 Feb 2023 03:26:12 -0800 (PST)
+Received: from localhost ([127.0.0.1])
+ by linux.intel.com with esmtp (Exim 4.96)
+ (envelope-from <mauro.chehab@linux.intel.com>) id 1pPM70-00Cucj-2v;
+ Tue, 07 Feb 2023 12:26:10 +0100
+Message-ID: <d8d5ca0e-d368-3dbd-e6fc-b5a3fd5cbb96@linux.intel.com>
+Date: Tue, 7 Feb 2023 12:26:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/bios: set default backlight controller
- index
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230121190853.18722-1-gustavo.sousa@intel.com>
+ <Y9A0Dz4TtLB4a4Wn@intel.com>
+ <9d0f7ab2-d6a0-094d-56fa-7ded3592fb66@linux.intel.com>
+ <Y+EyEZA5VbcKSMjd@intel.com>
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+In-Reply-To: <Y+EyEZA5VbcKSMjd@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix sphinx warnings for
+ workarounds documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +73,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With backlight controller set to -1 in intel_panel_init_alloc() to
-distinguish uninitialized values, and controller later being set only if
-it's present in VBT, we can end up with -1 for the controller:
 
-    [drm:intel_bios_init_panel [i915]] VBT backlight PWM modulation
-    frequency 200 Hz, active high, min brightness 0, level 255,
-    controller 4294967295
+On 2/6/23 18:00, Rodrigo Vivi wrote:
+> On Tue, Jan 31, 2023 at 02:03:01PM +0100, Mauro Carvalho Chehab wrote:
+>> On 1/24/23 20:39, Rodrigo Vivi wrote:
+>>> On Sat, Jan 21, 2023 at 04:08:53PM -0300, Gustavo Sousa wrote:
+>>>> The wildchar ("*") used in the function name patterns in the
+>>>> documentation was taken as a start of an "emphasis" inline markup. Wrap
+>>>> the patterns with the inline literal markup and, for consistency, do the
+>>>> same for the other function names mentioned.
+>>>>
+>>>> Fixes: 0c3064cf33fb ("drm/i915/doc: Document where to implement register workarounds")
+>>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>>> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+>>>
+>>> just in case he sees some better alternative for the escaping the '*'
+>>>
+>>> My fear is that this ``*_fn_name()`` could create invalid links in the doc...
+>>
+>> Seems OK to me. ``foo`` is literal inline. It won't try to generate
+>> cross-references.
+>>
+>>
+>> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Gustavo and Mauro, please accept my apologies here.
+> I ended up pushing the patch from Bagas that had a escape \*
+> instead of the `` wrapper.
+>
+> For some unexcused reason I had missed Mauro's response here
+> and forgot about this. I'm really sorry.
+>
+> And the escape sounded more natural so I just pushed it immediately.
 
-There's no harm if it happens on platforms that ignore controller due to
-only one backlight controller being present, like on VLV above, but play
-it safe.
 
-Fixes: bf38bba3e7d6 ("drm/i915: Try to use the correct power sequencer intiially on bxt/glk")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 1 +
- 1 file changed, 1 insertion(+)
+No worries. An escape \* works.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e6ca51232dcf..ad833069f59c 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1033,6 +1033,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
- 	}
- 
- 	panel->vbt.backlight.type = INTEL_BACKLIGHT_DISPLAY_DDI;
-+	panel->vbt.backlight.controller = 0;
- 	if (i915->display.vbt.version >= 191) {
- 		size_t exp_size;
- 
--- 
-2.34.1
+
+Regards,
+
+Mauro
+
 
