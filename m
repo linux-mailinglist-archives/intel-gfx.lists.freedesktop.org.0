@@ -1,48 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7961D68DE83
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 18:10:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE4968DECB
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 18:21:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57C0A10E1E5;
-	Tue,  7 Feb 2023 17:10:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA6AF10E101;
+	Tue,  7 Feb 2023 17:21:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A895910E1E5
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 17:10:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9619710E1E9;
+ Tue,  7 Feb 2023 17:21:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675789805; x=1707325805;
+ t=1675790492; x=1707326492;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=c7Nx1+a9AbzHUKoEApM5nSH1xnWQBrcrsJ3HVH9uxfU=;
- b=ZgfPTeb1JKxt27MiBS/AOcAmmL6xZtMaS1FMykhI4XBB9tS8Hl23J++c
- dzUVntrGM5pLGljrv5mSqhq1JRkyoL6q4duVG7F6TNTc+d45S87fzW57w
- I2Y1PpvLoSoqKRGi6tdXi46xEUKS/mB/g66XNd8wrkfG2VQSWdz4+FU+c
- ami1KPDHdc8d1xptrrbGARWyxC/nuMT3/za41dn89qi69gOoyPpocN/16
- l+DGSijfMxYJClWrJ4tM12WWS6uWBJ02hywjCLj679hy1k3pdOxZPzVw9
- h+wzqm+JQOLyag53hkbRGwDdJYVs/hL6uB35dCDzY8qSI3dqmkXhTlRVS w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="317527610"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="317527610"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=HAM9bQDFxlH/EhH1WIAz6lDlb1Nt74UfKDXlh3LRyxA=;
+ b=HPmobpM59esY+p+TnsicI534QBFUCmb2aa/tPGkoWLO7ZiC2fLE6x8O+
+ KdCosrhq7i7/1dtmvNnkA6tgoyO5yK0yU9nxYxozwgk6ELwNDEmECJGUE
+ fNY4rIjBm9xNAWD8wx7DMV1uKQw2w4XJVGlzc/nyqCU35lBLFMl8UWPZS
+ s3t8FSqCcj12hsrYMssADkuRSu4Wh/zw4qlphu4xStp5RSiEQdLMbmdEa
+ JTQmDPz0QCG7ip8VpO85K8nFQUsZMLpC6c1e7r/9E8WEEA34M2Wkf031k
+ S5E6WRjJfbfcoNkc2+2/JW/7nTpUH2OsOZev8/JSicprA5fsWZh+VRPGQ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="317534431"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="317534431"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 06:03:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="775572328"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="775572328"
-Received: from srr4-3-linux-118-swatish2.iind.intel.com ([10.223.34.130])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 06:03:44 -0800
-From: Swati Sharma <swati2.sharma@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 19:35:57 +0530
-Message-Id: <20230207140557.18164-1-swati2.sharma@intel.com>
-X-Mailer: git-send-email 2.25.1
+ 07 Feb 2023 06:33:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="755641535"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="755641535"
+Received: from tronach-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.11])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 06:33:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  7 Feb 2023 16:33:37 +0200
+Message-Id: <20230207143337.2126678-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/selftest: Add pcode selftest
+Subject: [Intel-gfx] [PATCH] drm: Disable dynamic debug as broken
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,166 +58,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, jani.nikula@intel.com,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Maxime Ripard <mripard@kernel.org>, Jim Cromie <jim.cromie@gmail.com>,
+ stable@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Include pcode selftest for display to validate QGV points read.
-Failure of this selftest indicates a bad firmware rather than regular
-display issue.
+CONFIG_DRM_USE_DYNAMIC_DEBUG breaks debug prints for (at least modular)
+drm drivers. The debug prints can be reinstated by manually frobbing
+/sys/module/drm/parameters/debug after the fact, but at that point the
+damage is done and all debugs from driver probe are lost. This makes
+drivers totally undebuggable.
 
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+There's a more complete fix in progress [1], with further details, but
+we need this fixed in stable kernels. Mark the feature as broken and
+disable it by default, with hopes distros follow suit and disable it as
+well.
+
+[1] https://lore.kernel.org/r/20230125203743.564009-1-jim.cromie@gmail.com
+
+Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
+Cc: Jim Cromie <jim.cromie@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.1+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |  3 +-
- drivers/gpu/drm/i915/display/intel_bw.c       |  4 ++
- .../drm/i915/display/selftests/selftest_bw.c  | 54 +++++++++++++++++++
- .../i915/display/selftests/selftest_display.c | 18 +++++++
- .../i915/display/selftests/selftest_display.h |  6 +++
- .../drm/i915/selftests/i915_live_selftests.h  |  1 +
- 6 files changed, 85 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/i915/display/selftests/selftest_bw.c
- create mode 100644 drivers/gpu/drm/i915/display/selftests/selftest_display.c
- create mode 100644 drivers/gpu/drm/i915/display/selftests/selftest_display.h
+ drivers/gpu/drm/Kconfig | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 918470a04591..aa7d34b3f71c 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -350,7 +350,8 @@ i915-$(CONFIG_DRM_I915_SELFTEST) += \
- 	selftests/igt_mmap.o \
- 	selftests/igt_reset.o \
- 	selftests/igt_spinner.o \
--	selftests/librapl.o
-+	selftests/librapl.o \
-+	display/selftests/selftest_display.o
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index f42d4c6a19f2..dc0f94f02a82 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -52,7 +52,8 @@ config DRM_DEBUG_MM
  
- # virtual gpu code
- i915-y += i915_vgpu.o
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 202321ffbe2a..b0bfe04f2835 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1211,3 +1211,7 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
- 
- 	return 0;
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-+#include "selftests/selftest_bw.c"
-+#endif
-diff --git a/drivers/gpu/drm/i915/display/selftests/selftest_bw.c b/drivers/gpu/drm/i915/display/selftests/selftest_bw.c
-new file mode 100644
-index 000000000000..69d52201bd9b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/selftests/selftest_bw.c
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2020 Intel Corporation
-+ */
-+
-+#include "display/intel_bw.h"
-+#include "i915_drv.h"
-+#include "i915_selftest.h"
-+#include "soc/intel_dram.h"
-+#include "selftest_display.h"
-+
-+/**
-+ * intel_pcode_read_qgv_points_read_test - Test QGV point reads from pcode
-+ * @arg: i915 device instance
-+ *
-+ * Return 0 on success and error on fail and when dclk is zero
-+ */
-+int intel_pcode_read_qgv_points_test(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct intel_qgv_info qi;
-+	struct intel_qgv_point qp;
-+	int i, ret;
-+	bool fail = false;
-+	intel_wakeref_t wakeref;
-+
-+	if (DISPLAY_VER(i915) < 11) {
-+		drm_info(&i915->drm, "QGV doesn't support, skipping\n");
-+		return 0;
-+	}
-+
-+	with_intel_runtime_pm(i915->uncore.rpm, wakeref)
-+		intel_dram_detect(i915);
-+
-+	qi.num_points = i915->dram_info.num_qgv_points;
-+
-+	for (i = 0; i < qi.num_points; i++) {
-+		ret = intel_read_qgv_point_info(i915, &qp, i);
-+		if (ret) {
-+			drm_err(&i915->drm, "Pcode failed to read qgv point %d\n", i);
-+			fail = true;
-+		}
-+
-+		if (qp.dclk == 0) {
-+			drm_err(&i915->drm, "DCLK set to 0 for qgv point %d\n", i);
-+			fail = true;
-+		}
-+	}
-+
-+	if (fail)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/i915/display/selftests/selftest_display.c b/drivers/gpu/drm/i915/display/selftests/selftest_display.c
-new file mode 100644
-index 000000000000..1663c69f9ddc
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/selftests/selftest_display.c
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2020 Intel Corporation
-+ */
-+
-+#include "i915_drv.h"
-+#include "i915_selftest.h"
-+
-+#include "selftest_display.h"
-+
-+int intel_display_live_selftests(struct drm_i915_private *i915)
-+{
-+	static const struct i915_subtest tests[] = {
-+		SUBTEST(intel_pcode_read_qgv_points_test),
-+	};
-+
-+	return i915_subtests(tests, i915);
-+}
-diff --git a/drivers/gpu/drm/i915/display/selftests/selftest_display.h b/drivers/gpu/drm/i915/display/selftests/selftest_display.h
-new file mode 100644
-index 000000000000..c8d80d5945bb
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/selftests/selftest_display.h
-@@ -0,0 +1,6 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2020 Intel Corporation
-+ */
-+
-+int intel_pcode_read_qgv_points_test(void *arg);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-index 5aee6c9a8295..8f980483cca8 100644
---- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-+++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-@@ -42,6 +42,7 @@ selftest(gem_contexts, i915_gem_context_live_selftests)
- selftest(client, i915_gem_client_blt_live_selftests)
- selftest(gem_migrate, i915_gem_migrate_live_selftests)
- selftest(reset, intel_reset_live_selftests)
-+selftest(display, intel_display_live_selftests)
- selftest(memory_region, intel_memory_region_live_selftests)
- selftest(hangcheck, intel_hangcheck_live_selftests)
- selftest(execlists, intel_execlists_live_selftests)
+ config DRM_USE_DYNAMIC_DEBUG
+ 	bool "use dynamic debug to implement drm.debug"
+-	default y
++	default n
++	depends on BROKEN
+ 	depends on DRM
+ 	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
+ 	depends on JUMP_LABEL
 -- 
-2.25.1
+2.34.1
 
