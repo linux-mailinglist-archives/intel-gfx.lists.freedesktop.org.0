@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D99168D76D
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 13:59:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52EE868D917
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 14:15:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB47310E1C7;
-	Tue,  7 Feb 2023 12:59:54 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B552F10E1C7;
- Tue,  7 Feb 2023 12:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF8510E4DD;
+	Tue,  7 Feb 2023 13:15:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2230C10E2CF;
+ Tue,  7 Feb 2023 13:15:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675774792; x=1707310792;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=b/zS2z+oU7uGIJxYGzQqzvOunkWectcBBOnmqw3m0Zk=;
- b=QYHWa3G67LGVNdBvVqft2dklcEqLMqpZi2jYgreCykUeD8oEci5nbLtg
- 5v9DI9WvkF4LsEXruOkx+y9UpmRB7NuQd6BMbIxbN91z5socCx45d9NCn
- 7GdUoYl5/TMmzfEDh1r1Ws0wv1I7VyV0tKY/y8EQ2PTQMlQvpteB/pknK
- 5bZPYW0aCYcAW+R7kQqTdXsM0VkZlTIWmlljNCACVa7bGyszWTzjw6Bt0
- UkRfnXDD1Kej3AiLIQFUBqjfOZhsp02W8zIKUL6ZVM/OfQAjABxNWTi9E
- a19wiKTB0IG5Z9/5Vt7EVDZfCrvgthW7qfhIWkBhqPUQRwGhSAmq7kWYj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="356867599"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="356867599"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 04:59:51 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="730424307"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="730424307"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 04:59:48 -0800
-Date: Tue, 7 Feb 2023 14:59:45 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lyude Paul <lyude@redhat.com>, Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y+JLQfuSAS6xLPIS@ideak-desk.fi.intel.com>
-References: <20230206114856.2665066-1-imre.deak@intel.com>
+ t=1675775747; x=1707311747;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=k5klYlAX3lkLSQFw0qeLeqIEEzBDxZPJ8ccFOWElSPk=;
+ b=gWdhuwTzdyum4yAiqPQjYulrsfFMWRQONRpiTuCIxo40H/2LgFtDgfIc
+ xMJn7dfn3VTCLxRMFnq37mr0eKr75bXtppZDlkLf5PlOhNybKxWsoMSu/
+ +Zgud5exrHCyGYoRYH3q+rnRoPxU4+o/GeKawtFD2Q3sBN+6UWxF44dlN
+ wrGbRXhmAkSUSmMYvQQ0ctyMOpuPYtFWZytf47oAfNchoBxC7I/UfCclz
+ H9kd22Xfwz6lq/vPwoE2zZL0MWEEko+tSgdT/tE44v+7GesQe5fJZJxyL
+ P0XuoIHQVxSkBRYVNW7QHgrPaQWRgUx0i1wGXlvjD1zaUiaxMpuhdaYKT Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="330792432"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="330792432"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 05:15:45 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="660224606"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="660224606"
+Received: from zmrowka-mobl.ger.corp.intel.com (HELO localhost) ([10.213.7.46])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2023 05:15:43 -0800
+Date: Tue, 7 Feb 2023 14:15:41 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Message-ID: <20230207131541.dd7rfnqcculxplhe@kamilkon-desk1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Caleb Callaway <caleb.callaway@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+References: <20230203111636.4138202-1-tvrtko.ursulin@linux.intel.com>
+ <20230203111636.4138202-3-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230206114856.2665066-1-imre.deak@intel.com>
-Subject: Re: [Intel-gfx] [CI 1/4] drm/i915/dp_mst: Add the MST topology
- state for modesetted CRTCs
+In-Reply-To: <20230203111636.4138202-3-tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/3] intel_gpu_top: Rename
+ STDOUT to TEXT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,153 +63,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: Karol Herbst <kherbst@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
- Wayne Lin <Wayne.Lin@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Intel-gfx@lists.freedesktop.org, Caleb Callaway <caleb.callaway@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
-
-On Mon, Feb 06, 2023 at 01:48:53PM +0200, Imre Deak wrote:
-> Add the MST topology for a CRTC to the atomic state if the driver
-> needs to force a modeset on the CRTC after the encoder compute config
-> functions are called.
+On 2023-02-03 at 11:16:35 +0000, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Later the MST encoder's disable hook also adds the state, but that isn't
-> guaranteed to work (since in that hook getting the state may fail, which
-> can't be handled there). This should fix that, while a later patch fixes
-> the use of the MST state in the disable hook.
+> Internal cleanup only - the name text is more accurate given the output
+> can also go to a file.
 > 
-> v2: Add missing forward struct declartions, caught by hdrtest.
-> v3: Factor out intel_dp_mst_add_topology_state_for_connector() used
->     later in the patchset.
-> 
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: stable@vger.kernel.org # 6.1
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v2
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Caleb Callaway <caleb.callaway@intel.com>
 
-Is it ok to merge these 4 patches (also at [1]), via the i915 tree?
-
-If so could it be also acked from the AMD and Nouveau side?
-
-[1] https://patchwork.freedesktop.org/series/113703/
+Lgtm,
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c |  4 ++
->  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 61 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  4 ++
->  3 files changed, 69 insertions(+)
+>  tools/intel_gpu_top.c | 54 +++++++++++++++++++++----------------------
+>  1 file changed, 26 insertions(+), 28 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 166662ade593c..38106cf63b3b9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5936,6 +5936,10 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
->  		if (ret)
->  			return ret;
+> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+> index e2a7f4753099..a980cc7043dc 100644
+> --- a/tools/intel_gpu_top.c
+> +++ b/tools/intel_gpu_top.c
+> @@ -1282,7 +1282,7 @@ usage(const char *appname)
 >  
-> +		ret = intel_dp_mst_add_topology_state_for_crtc(state, crtc);
-> +		if (ret)
-> +			return ret;
-> +
->  		ret = intel_atomic_add_affected_planes(state, crtc);
->  		if (ret)
->  			return ret;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 8b0e4defa3f10..f3cb12dcfe0a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1223,3 +1223,64 @@ bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state)
->  	return crtc_state->mst_master_transcoder != INVALID_TRANSCODER &&
->  	       crtc_state->mst_master_transcoder != crtc_state->cpu_transcoder;
+>  static enum {
+>  	INTERACTIVE,
+> -	STDOUT,
+> +	TEXT,
+>  	JSON
+>  } output_mode;
+>  
+> @@ -1387,33 +1387,31 @@ json_add_member(const struct cnt_group *parent, struct cnt_item *item,
+>  	return 1;
 >  }
-> +
-> +/**
-> + * intel_dp_mst_add_topology_state_for_connector - add MST topology state for a connector
-> + * @state: atomic state
-> + * @connector: connector to add the state for
-> + * @crtc: the CRTC @connector is attached to
-> + *
-> + * Add the MST topology state for @connector to @state.
-> + *
-> + * Returns 0 on success, negative error code on failure.
-> + */
-> +static int
-> +intel_dp_mst_add_topology_state_for_connector(struct intel_atomic_state *state,
-> +					      struct intel_connector *connector,
-> +					      struct intel_crtc *crtc)
-> +{
-> +	struct drm_dp_mst_topology_state *mst_state;
-> +
-> +	if (!connector->mst_port)
-> +		return 0;
-> +
-> +	mst_state = drm_atomic_get_mst_topology_state(&state->base,
-> +						      &connector->mst_port->mst_mgr);
-> +	if (IS_ERR(mst_state))
-> +		return PTR_ERR(mst_state);
-> +
-> +	mst_state->pending_crtc_mask |= drm_crtc_mask(&crtc->base);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * intel_dp_mst_add_topology_state_for_crtc - add MST topology state for a CRTC
-> + * @state: atomic state
-> + * @crtc: CRTC to add the state for
-> + *
-> + * Add the MST topology state for @crtc to @state.
-> + *
-> + * Returns 0 on success, negative error code on failure.
-> + */
-> +int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
-> +					     struct intel_crtc *crtc)
-> +{
-> +	struct drm_connector *_connector;
-> +	struct drm_connector_state *conn_state;
-> +	int i;
-> +
-> +	for_each_new_connector_in_state(&state->base, _connector, conn_state, i) {
-> +		struct intel_connector *connector = to_intel_connector(_connector);
-> +		int ret;
-> +
-> +		if (conn_state->crtc != &crtc->base)
-> +			continue;
-> +
-> +		ret = intel_dp_mst_add_topology_state_for_connector(state, connector, crtc);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> index f7301de6cdfb3..f1815bb722672 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> @@ -8,6 +8,8 @@
 >  
->  #include <linux/types.h>
+> -static unsigned int stdout_level;
+> +static unsigned int text_level;
 >  
-> +struct intel_atomic_state;
-> +struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_digital_port;
->  struct intel_dp;
-> @@ -18,5 +20,7 @@ int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
->  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
->  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
->  bool intel_dp_mst_source_support(struct intel_dp *intel_dp);
-> +int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
-> +					     struct intel_crtc *crtc);
+> -#define STDOUT_HEADER_REPEAT 20
+> -static unsigned int stdout_lines = STDOUT_HEADER_REPEAT;
+> -static bool stdout_header_repeat;
+> +#define TEXT_HEADER_REPEAT 20
+> +static unsigned int text_lines = TEXT_HEADER_REPEAT;
+> +static bool text_header_repeat;
 >  
->  #endif /* __INTEL_DP_MST_H__ */
+> -static void
+> -stdout_open_struct(const char *name)
+> +static void text_open_struct(const char *name)
+>  {
+> -	stdout_level++;
+> -	assert(stdout_level > 0);
+> +	text_level++;
+> +	assert(text_level > 0);
+>  }
+>  
+> -static void
+> -stdout_close_struct(void)
+> +static void text_close_struct(void)
+>  {
+> -	assert(stdout_level > 0);
+> -	if (--stdout_level == 0) {
+> -		stdout_lines++;
+> +	assert(text_level > 0);
+> +	if (--text_level == 0) {
+> +		text_lines++;
+>  		fputs("\n", out);
+>  		fflush(out);
+>  	}
+>  }
+>  
+>  static unsigned int
+> -stdout_add_member(const struct cnt_group *parent, struct cnt_item *item,
+> -		  unsigned int headers)
+> +text_add_member(const struct cnt_group *parent, struct cnt_item *item,
+> +		unsigned int headers)
+>  {
+>  	unsigned int fmt_tot = item->fmt_width + (item->fmt_precision ? 1 : 0);
+>  	char buf[fmt_tot + 1];
+> @@ -1565,10 +1563,10 @@ static const struct print_operations json_pops = {
+>  	.print_group = print_group,
+>  };
+>  
+> -static const struct print_operations stdout_pops = {
+> -	.open_struct = stdout_open_struct,
+> -	.close_struct = stdout_close_struct,
+> -	.add_member = stdout_add_member,
+> +static const struct print_operations text_pops = {
+> +	.open_struct = text_open_struct,
+> +	.close_struct = text_close_struct,
+> +	.add_member = text_add_member,
+>  	.print_group = print_group,
+>  };
+>  
+> @@ -1584,9 +1582,9 @@ static bool print_groups(struct cnt_group **groups)
+>  	static bool headers_printed = false;
+>  	bool print_data = true;
+>  
+> -	if (output_mode == STDOUT &&
+> -	    (stdout_header_repeat || !headers_printed)) {
+> -		unsigned int headers = stdout_lines % STDOUT_HEADER_REPEAT + 1;
+> +	if (output_mode == TEXT &&
+> +	    (text_header_repeat || !headers_printed)) {
+> +		unsigned int headers = text_lines % TEXT_HEADER_REPEAT + 1;
+>  
+>  		if (headers == 1 || headers == 2)
+>  			for (struct cnt_group **grp = groups; *grp; grp++)
+> @@ -2492,7 +2490,7 @@ int main(int argc, char **argv)
+>  			list_device = true;
+>  			break;
+>  		case 'l':
+> -			output_mode = STDOUT;
+> +			output_mode = TEXT;
+>  			break;
+>  		case 'h':
+>  			usage(argv[0]);
+> @@ -2505,7 +2503,7 @@ int main(int argc, char **argv)
+>  	}
+>  
+>  	if (output_mode == INTERACTIVE && (output_path || isatty(1) != 1))
+> -		output_mode = STDOUT;
+> +		output_mode = TEXT;
+>  
+>  	if (output_path && strcmp(output_path, "-")) {
+>  		out = fopen(output_path, "w");
+> @@ -2519,7 +2517,7 @@ int main(int argc, char **argv)
+>  		out = stdout;
+>  	}
+>  
+> -	stdout_header_repeat = output_mode == STDOUT && isatty(fileno(out));
+> +	text_header_repeat = output_mode == TEXT && isatty(fileno(out));
+>  
+>  	if (signal(SIGINT, sigint_handler) == SIG_ERR)
+>  		fprintf(stderr, "Failed to install signal handler!\n");
+> @@ -2531,8 +2529,8 @@ int main(int argc, char **argv)
+>  		pops = &term_pops;
+>  		interactive_stdin();
+>  		break;
+> -	case STDOUT:
+> -		pops = &stdout_pops;
+> +	case TEXT:
+> +		pops = &text_pops;
+>  		break;
+>  	case JSON:
+>  		pops = &json_pops;
 > -- 
-> 2.37.1
+> 2.34.1
 > 
