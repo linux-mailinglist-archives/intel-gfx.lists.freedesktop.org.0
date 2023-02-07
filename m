@@ -1,50 +1,140 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2138868D0CC
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 08:45:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD0D68D0EA
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Feb 2023 08:50:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFE810E462;
-	Tue,  7 Feb 2023 07:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6324410E457;
+	Tue,  7 Feb 2023 07:50:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1761C10E45E
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 07:45:38 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCFC10E45E;
+ Tue,  7 Feb 2023 07:50:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675755938; x=1707291938;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6xkz6BrVZpW5rigfL7YOkTwi1DKxV1AtUAetUFkdRT4=;
- b=Io59wLjTK5jEAKJKWfhEq0CxxQremGstuRcgc/i8MxBisQ5ItrV1qacZ
- mu3slSnAs0qIxHXQ0j486XSFInWuHU2IpCQItS7cd7I8P6SFrcLcJR/zf
- I/ctKickabqcqcLBkOhLNZ9ZnaEVUrGUFxDec3iVJE+00MRz9gcEjc8XK
- I35guybxCcl+I1y/tGvNv6jFPNJyBeYgZZ2OU0tA5ubmIosSPxWTHEOlN
- OtGTsVQV+21xUDxy7xCtMWjc38jNWkWSOF7h1gTV51UgrTL3my2Iu8ihL
- RM/MgseQsIarf97bwImmzLYG+BcqRSd8AmAr3V/wIAz6vMW3POVSOkbmW w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="317449184"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="317449184"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2023 23:45:33 -0800
+ t=1675756251; x=1707292251;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2oTZboRbyS8EWg/IDGFFFUcVnHuNW4Jqd42K8IFMETI=;
+ b=KEUSV8exce5PZyVpX5JEJVWKYXCO6bD2qlnOdWbhfaAcyK0+uJydYeZB
+ qRfJDGdzdBetwMhjxgDhCo5C2XmXYhXbW8P3p26xBUssNbxIo4/WqFggi
+ Nd5cIK3FvDys4L6BN+XAGXVF5hlpJgmnFUdkPn5VZV6dM4H8PVhb71bnd
+ 3Rs4jCWyTr5v4FYWFlq8WsvIUECVdDODoQiwgtnP22AYnNCPlcr/N+GPu
+ IN8DR9EpeDkssCFIzJrasxV8Q+q+bCQpCE8oZ4mMqbgKdSqxNBNBHcJIM
+ +cU2VCD/j0T+nB3LdG4UIAwpxtiIAV9PIsC0EzUO3yPtYNAGg5qkn+SB4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="391828725"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="391828725"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2023 23:50:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="840674697"
-X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="840674697"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga005.jf.intel.com with ESMTP; 06 Feb 2023 23:45:31 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Feb 2023 13:14:16 +0530
-Message-Id: <20230207074416.3209722-8-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230207074416.3209722-1-suraj.kandpal@intel.com>
-References: <20230207074416.3209722-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10613"; a="668699543"
+X-IronPort-AV: E=Sophos;i="5.97,278,1669104000"; d="scan'208";a="668699543"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 06 Feb 2023 23:50:49 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 6 Feb 2023 23:50:47 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Mon, 6 Feb 2023 23:50:47 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Mon, 6 Feb 2023 23:50:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nVP6V8l5FAprc0C/ly8J+XNc5WKOFgtJg/nPSkbZGoJg1KbBCukOyY31+ABqsOSK8ly3+yHSDlMmAoxUVke0XPGwVRWW102G4k9Nx0A5G1wyq5NUDP+a8jUPDDgSoyefK7m++1OGfTXfESK0rYvVr7k1itiJWuOVXGFNHDOEv9l6bID2OvcSKfoA2v5BFcCoGQmJRt1mjQfhYpkYZLahIzrO2b8Vjqg2XI3q3HPpGKIGaR+ZZi4fGubxVhlgNrcrRjPoLOAvNpLr2s8dcgSdhnSzLEjlEtcphHbV1TlO26+ms+/DWpg3SB1vUhbw15dLl6/Zzns9T3uffQ2FjjHtOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fVfHXVQsxGaxKgCWj99IoSHwhLMkN/eDTqwXfoWS7Bc=;
+ b=Hdw0jYfBpSZTdeCYM+RZcdaR8lGX7cKGhZwEmutBv5ZAUeKNjkFphy8Af2rtaOZsWB16xHrY3aEyOrWKY3inaipiFlWqDbgSAXpbY4AnxPkgYxlR+bp34F4P7nOAmXO3M5BvfijPVMyp9CC31tAj6ZBhIEkRe9wI3YwdBCRX8A13Cw2HSfaBVT+AtM6/rr87p0IQXm+I85PCU33q6U6IzQj5AMMAjv3bKBbbHFb8pF67l6u2QmofRSzyqeQTBekKDWUvGCi8a/3f2ym0QQVErJeOLDzdYliJ0nyAopADocK6Mo2nexdAyeBABZWxep6GQ/UD1WxcMWp3EO7dbnrXuw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by CH0PR11MB8087.namprd11.prod.outlook.com (2603:10b6:610:187::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Tue, 7 Feb
+ 2023 07:50:40 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::e1fa:abbe:2009:b0a3]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::e1fa:abbe:2009:b0a3%3]) with mapi id 15.20.6064.034; Tue, 7 Feb 2023
+ 07:50:40 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: "Zhao, Yan Y" <yan.y.zhao@intel.com>
+Thread-Topic: [PATCH v2 13/14] vfio: Add ioctls for device cdev using iommufd
+Thread-Index: AQHZOgpFACxvcC0IEkiFAGPnOf4DEa7C1/iAgABFGdA=
+Date: Tue, 7 Feb 2023 07:50:40 +0000
+Message-ID: <DS0PR11MB752976AA5F3F5FF6A1CC246FC3DB9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230206090532.95598-1-yi.l.liu@intel.com>
+ <20230206090532.95598-14-yi.l.liu@intel.com>
+ <Y+HIWRM/TjWcuT6I@yzhao56-desk.sh.intel.com>
+In-Reply-To: <Y+HIWRM/TjWcuT6I@yzhao56-desk.sh.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|CH0PR11MB8087:EE_
+x-ms-office365-filtering-correlation-id: 7882da83-4530-449b-5ee6-08db08e0023f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QXaR5Gt0EXwRLdQ446p/UUFPoRAOW5oKlaK38lIpEVwuOOloeF9LgiLI80QWuTvIZK9lq1uTlyxqjUu+SFTnTeQe4d361xah7KDUt9T9JGK7XjBcLT5Vt4STHcsUzwieADY+5KlEEyy7BDRPkut9B95Ega1ynXmz+B9dqbxAA0HxC9Zbc5tnAQtrwxeKoxlLSqRK7y2A7T/SkAOtBwCuSwDA6RTmIrIlTjV7FjwEwwtFsS6q+iFpO56SYveMToLdRjk8qee0J+PlehbsKgjIPGevNjfjhy7M7R+rRKz5sf96t6PTMXCQ1Tq+s9uRqoplNlZTiYykFSoU4XlAlWjVyIUsKVErEkrZ7KRqYmAroNjZMLTgpwn0UDecvbaTH9Oy/KqfX9Bl5xEv+XmIAzW6XoSer4t1KDaoswBie6s2FSWUcuJd+Cg3wDo893Mt0xnKxld7AkbIHUtFWd4VTxo6WhMeGVydfCOqdMLYS96vSgUlP4h+LDqly/X5Rf6oNPqDuQu2rrS0Wun3YV+afVf4PIswVUQKDEFHOraJNOgNrhuP3A0NjdbhktJSbVrSiPS51upsQO7IhBWZKxBGhLwMOLweueHEhOoLQFzFX5DR3c3RC0fG1pC9/1K/sxMsnoXQ7r6bkvyVxPWEJT3N8fPAuzeDzAXV6G3kASoWAWUhofXco/IIN0iy0Yzd4KSSECrkaX6WcpZHmRLYP1obEbNvqA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(396003)(136003)(346002)(376002)(366004)(451199018)(33656002)(7696005)(41300700001)(7416002)(66946007)(71200400001)(316002)(38100700002)(54906003)(6506007)(6636002)(6862004)(478600001)(5660300002)(66446008)(52536014)(2906002)(66476007)(76116006)(8936002)(66556008)(4326008)(64756008)(8676002)(9686003)(26005)(38070700005)(55016003)(83380400001)(122000001)(86362001)(82960400001)(186003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kyASksqwhQ0HR7J0veWypp9c8dUVfeIfld2g1Qa5ZhY3R8MWotSpn7tzorDu?=
+ =?us-ascii?Q?FrgMoLtQ0RUzLpSNyqtuT7b7YPg3EZ8HW/nCog5dF24qpPukfeWdXX3wT6Ky?=
+ =?us-ascii?Q?np2H+uPwEfzotiVmhw1yOhFBrk6L1GQC/tEPS26xmt3ZoJmmisTf43Al8O+B?=
+ =?us-ascii?Q?RHLF6KOBe3ioPIi8MmToL4u0rmyrY8PZfke4qrUkOnsx5bL5xox1jgecLqok?=
+ =?us-ascii?Q?q7RQzyzZKK7GhpEPvkRtdoC9uTNJoOGU4U0hjSbvF6G92Gol7cVBt+wSdhny?=
+ =?us-ascii?Q?RoPbtJaDgvqrwmsb3wpDlyCm2Ysv/xCHgGrWgKVVkpH3V545ncMmjaS1Sd63?=
+ =?us-ascii?Q?R2J0uTRpizvGKE3iw6+Z7++SdG8w9nzp9E9VjuBYZvRQcfLaZjLpf1fuSKx5?=
+ =?us-ascii?Q?1B1IiKYUukeIRhhIwzy3ISS8SP4FO6So0VlhigX1YjrTtpPolqyJmvV2w39K?=
+ =?us-ascii?Q?x50EEWUnF36PTlHJ0hCMSUx/Ust+ocS3Pa4hiPiZ2RT3ihqF+Ou0Gk5MDZJs?=
+ =?us-ascii?Q?pekVcR223v+iYVCkHDb+VtBGyrYnXclsW8R3gQv17Pj/Sg555PCKgAx3my7x?=
+ =?us-ascii?Q?Xoozqp0SuTHE5emE+BH7E7krtACi3gOcbB1jYrAIMnAQbJ7r38RPrFuXIvSW?=
+ =?us-ascii?Q?cEygu7nwmQvToaFloOj5bJ/q1Xag439WWb3ngZH6AQ7VFx/QaPqGQ/sOv/f4?=
+ =?us-ascii?Q?uoDUwUXWGpYeRq0QRBhNL6j12tdmiNWH2C+gIT9wYr3aYHdk9FupMZHHxfid?=
+ =?us-ascii?Q?dK/PHz8NMx3S7dFRkpiDPpc8MAolKM4gEv8mftC1IoAVvXkoRkBGP6CHFDCV?=
+ =?us-ascii?Q?ebnYbPRLrQtQkj6ZDN72c/kFFdLsB72pGdBh+jY7azpnxIKuGr136DOles3D?=
+ =?us-ascii?Q?P4Sac0D3padlkASTtZjxyNqlYDao91QySECTzk+jsh+eoHCi1BNEaWaFvTCb?=
+ =?us-ascii?Q?jhy5WsKGARRi0WvZcVz/EsSm0iN78jlhFPzOWtL4OonCbJ9wlW1hI2cdvrB1?=
+ =?us-ascii?Q?H8t2jZry8UNbI0kvlxADZ9tKN7KTBE4uMncJoz9xmR7qSwtQ0imxTDkP2CId?=
+ =?us-ascii?Q?6NWjzEbL5iTyxWkIrxgpqoibb1tkVncuRLFdmhiLB7+xHvrEIzibKjNOUyew?=
+ =?us-ascii?Q?9gZ+zivG91uA6o7Q1LLBjRLVoYVOR3k3PWeOEAB408gMXfEgqH/vFNEfRYJP?=
+ =?us-ascii?Q?pIMhB3de2pB/qeK/HOnP9zJS5AvmkLz3ZxwvIVwByY8ZKG5Fsg2npdUahKBQ?=
+ =?us-ascii?Q?ELaLWfzar6t9oPcLlG9CsgwGXPCa29epuGcLgmNYlrIqHwK6wLMqZ88Woc2a?=
+ =?us-ascii?Q?+gSdAZ9thnpgNso0Rn2aMDiigf8AftkKGCDkG3leUBB3jVETDH8aFWQ7egll?=
+ =?us-ascii?Q?Z06afHd3t+Q+cDeDPrxeYchrcplwh7hyqwczNGTAPG1pZBm5BpblopFtOOKa?=
+ =?us-ascii?Q?xUrvO1VZ6UM4T79ak8pEJQUebUtjEoNDh8wgP1N9jdFXp7UAeyj2PxdBKe97?=
+ =?us-ascii?Q?qFxpZvxpiTw+7c5w+Xyeacm2nSH4mFPXBS5afHLjK2+rLVvzpP2qSGfrQKZe?=
+ =?us-ascii?Q?squTYEkQf9QFRKxFZe7QIsO0TQHGTZCJLquaznJk?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 7/7] drm/i915/dsc: Add debugfs entry to
- validate DSC output formats
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7882da83-4530-449b-5ee6-08db08e0023f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2023 07:50:40.5836 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fH8/FEPEwC72SUNhphB/8ps1jALN/GYhWOqYlVVK2fiCUpUXLTX4Yy7NawKxrOrga9x8kZSySlVVpRE1uWWJFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8087
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 13/14] vfio: Add ioctls for device cdev
+ using iommufd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,216 +147,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "jasowang@redhat.com" <jasowang@redhat.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "peterx@redhat.com" <peterx@redhat.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swati Sharma <swati2.sharma@intel.com>
+> From: Yan Zhao <yan.y.zhao@intel.com>
+> Sent: Tuesday, February 7, 2023 11:41 AM
+>=20
+> On Mon, Feb 06, 2023 at 01:05:31AM -0800, Yi Liu wrote:
+> ...
+>=20
+> > +void vfio_device_cdev_close(struct vfio_device_file *df)
+> > +{
+> > +	mutex_lock(&df->device->dev_set->lock);
+> > +	vfio_device_close(df);
+> > +	vfio_device_put_kvm(df->device);
+> > +	mutex_unlock(&df->device->dev_set->lock);
+> > +}
+> > +
+>=20
+> ...
+>=20
+> > +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+> > +				    unsigned long arg)
+> > +{
+> > +	struct vfio_device *device =3D df->device;
+> > +	struct vfio_device_bind_iommufd bind;
+> > +	struct iommufd_ctx *iommufd =3D NULL;
+> > +	unsigned long minsz;
+> > +	struct fd f;
+> > +	int ret;
+> > +
+> > +	minsz =3D offsetofend(struct vfio_device_bind_iommufd, iommufd);
+> > +
+> > +	if (copy_from_user(&bind, (void __user *)arg, minsz))
+> > +		return -EFAULT;
+> > +
+> > +	if (bind.argsz < minsz || bind.flags)
+> > +		return -EINVAL;
+> > +
+> > +	if (!device->ops->bind_iommufd)
+> > +		return -ENODEV;
+> > +
+> > +	mutex_lock(&device->dev_set->lock);
+> > +	/*
+> > +	 * If already been bound to an iommufd, or already set noiommu
+> > +	 * then fail it.
+> > +	 */
+> > +	if (df->iommufd || df->noiommu) {
+> > +		ret =3D -EINVAL;
+> > +		goto out_unlock;
+> > +	}
+> > +
+> > +	/* iommufd < 0 means noiommu mode */
+> > +	if (bind.iommufd < 0) {
+> > +		if (!capable(CAP_SYS_RAWIO)) {
+> > +			ret =3D -EPERM;
+> > +			goto out_unlock;
+> > +		}
+> > +		df->noiommu =3D true;
+> > +	} else {
+> > +		f =3D fdget(bind.iommufd);
+> > +		if (!f.file) {
+> > +			ret =3D -EBADF;
+> > +			goto out_unlock;
+> > +		}
+> > +		iommufd =3D iommufd_ctx_from_file(f.file);
+> > +		if (IS_ERR(iommufd)) {
+> > +			ret =3D PTR_ERR(iommufd);
+> > +			goto out_put_file;
+> > +		}
+> > +	}
+> > +
+> > +	/*
+> > +	 * Before the first device open, get the KVM pointer currently
+> > +	 * associated with the device file (if there is) and obtain a
+> > +	 * reference. This reference is held until device closed. Save
+> > +	 * the pointer in the device for use by drivers.
+> > +	 */
+> > +	vfio_device_get_kvm_safe(df);
+> > +
+> > +	df->iommufd =3D iommufd;
+> > +	ret =3D vfio_device_open(df, &bind.out_devid, NULL);
+> > +	if (ret)
+> > +		goto out_put_kvm;
+> > +
+> > +	ret =3D copy_to_user((void __user *)arg + minsz,
+> > +			   &bind.out_devid,
+> > +			   sizeof(bind.out_devid)) ? -EFAULT : 0;
+> > +	if (ret)
+> > +		goto out_close_device;
+> > +
+> > +	if (iommufd)
+> > +		fdput(f);
+> > +	else if (df->noiommu)
+> > +		dev_warn(device->dev, "vfio-noiommu device used by user
+> "
+> > +			 "(%s:%d)\n", current->comm,
+> task_pid_nr(current));
+> > +	mutex_unlock(&device->dev_set->lock);
+> > +	return 0;
+> > +
+> > +out_close_device:
+> > +	vfio_device_close(df);
+> vfio_device_close() is called here if any error after vfio_device_open().
+> But it will also be called unconditionally in vfio_device_cdev_close() an=
+d
+> cause a wrong value of device->open_count.
 
-DSC_Output_Format_Sink_Support entry is added to i915_dsc_fec_support_show
-to depict if sink supports DSC output formats (RGB/YCbCr420/YCbCr444).
-Also, new debugfs entry is created to enforce output format. This is
-required because of our driver policy. For ex. if a mode is supported
-in both RGB and YCbCr420 output formats by the sink, our policy is to
-try RGB first and fall back to YCbCr420, if mode cannot be shown
-using RGB. So, to test other output formats like YCbCr420 or YCbCr444,
-we need a debugfs entry (force_dsc_output_format) to force this
-output format.
+Oh, yes yes. Good catch. Vfio_device_cdev_close() should check either the
+open_count or access_granted.
 
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
----
- .../drm/i915/display/intel_crtc_state_dump.c  |  4 +-
- .../drm/i915/display/intel_crtc_state_dump.h  |  2 +
- .../drm/i915/display/intel_display_debugfs.c  | 77 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 11 +++
- 5 files changed, 93 insertions(+), 2 deletions(-)
+> df->access_granted in patch 07 can also be of wrong true value after
+> this vfio_device_close().
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 2422d6ef5777..9913f22e0f79 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -115,13 +115,13 @@ static void snprintf_output_types(char *buf, size_t len,
- 	WARN_ON_ONCE(output_types != 0);
- }
- 
--static const char * const output_format_str[] = {
-+const char * const output_format_str[] = {
- 	[INTEL_OUTPUT_FORMAT_RGB] = "RGB",
- 	[INTEL_OUTPUT_FORMAT_YCBCR420] = "YCBCR4:2:0",
- 	[INTEL_OUTPUT_FORMAT_YCBCR444] = "YCBCR4:4:4",
- };
- 
--static const char *output_formats(enum intel_output_format format)
-+const char *output_formats(enum intel_output_format format)
- {
- 	if (format >= ARRAY_SIZE(output_format_str))
- 		return "invalid";
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-index 9399c35b7e5e..daf0a7cc0702 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-@@ -8,9 +8,11 @@
- 
- struct intel_crtc_state;
- struct intel_atomic_state;
-+enum intel_output_format;
- 
- void intel_crtc_state_dump(const struct intel_crtc_state *crtc_state,
- 			   struct intel_atomic_state *state,
- 			   const char *context);
-+const char *output_formats(enum intel_output_format format);
- 
- #endif /* __INTEL_CRTC_STATE_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 9e2fb8626c96..27b7d8dafe66 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -12,6 +12,7 @@
- #include "i915_irq.h"
- #include "i915_reg.h"
- #include "intel_de.h"
-+#include "intel_crtc_state_dump.h"
- #include "intel_display_debugfs.h"
- #include "intel_display_power.h"
- #include "intel_display_power_well.h"
-@@ -1770,6 +1771,13 @@ static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
- 			   str_yes_no(crtc_state->dsc.compression_enable));
- 		seq_printf(m, "DSC_Sink_Support: %s\n",
- 			   str_yes_no(drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)));
-+		seq_printf(m, "DSC_Output_Format_Sink_Support: RGB: %s YCBCR420: %s YCBCR444: %s\n",
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_RGB)),
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_YCbCr420_Native)),
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_YCbCr444)));
- 		seq_printf(m, "Force_DSC_Enable: %s\n",
- 			   str_yes_no(intel_dp->force_dsc_en));
- 		if (!intel_dp_is_edp(intel_dp))
-@@ -1895,6 +1903,72 @@ static const struct file_operations i915_dsc_bpc_fops = {
- 	.write = i915_dsc_bpc_write
- };
- 
-+static int i915_dsc_output_format_show(struct seq_file *m, void *data)
-+{
-+	struct drm_connector *connector = m->private;
-+	struct drm_device *dev = connector->dev;
-+	struct drm_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
-+	int ret;
-+
-+	if (!encoder)
-+		return -ENODEV;
-+
-+	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	crtc = connector->state->crtc;
-+	if (connector->status != connector_status_connected || !crtc) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	crtc_state = to_intel_crtc_state(crtc->state);
-+	seq_printf(m, "DSC_Output_Format: %s\n", output_formats(crtc_state->output_format));
-+
-+out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-+
-+	return ret;
-+}
-+
-+static ssize_t i915_dsc_output_format_write(struct file *file,
-+					    const char __user *ubuf,
-+					    size_t len, loff_t *offp)
-+{
-+	struct drm_connector *connector =
-+		((struct seq_file *)file->private_data)->private;
-+	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	int dsc_output_format = 0;
-+	int ret;
-+
-+	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_output_format);
-+	if (ret < 0)
-+		return ret;
-+
-+	intel_dp->force_dsc_output_format = dsc_output_format;
-+	*offp += len;
-+
-+	return len;
-+}
-+
-+static int i915_dsc_output_format_open(struct inode *inode,
-+				       struct file *file)
-+{
-+	return single_open(file, i915_dsc_output_format_show, inode->i_private);
-+}
-+
-+static const struct file_operations i915_dsc_output_format_fops = {
-+	.owner = THIS_MODULE,
-+	.open = i915_dsc_output_format_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = i915_dsc_output_format_write
-+};
-+
- /*
-  * Returns the Current CRTC's bpc.
-  * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
-@@ -1966,6 +2040,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
- 
- 		debugfs_create_file("i915_dsc_bpc", 0644, root,
- 				    connector, &i915_dsc_bpc_fops);
-+
-+		debugfs_create_file("i915_dsc_output_format", 0644, root,
-+				    connector, &i915_dsc_output_format_fops);
- 	}
- 
- 	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 9ccae7a46020..9f7951b49c42 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1743,6 +1743,7 @@ struct intel_dp {
- 
- 	/* Display stream compression testing */
- 	bool force_dsc_en;
-+	int force_dsc_output_format;
- 	int force_dsc_bpc;
- 
- 	bool hobl_failed;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 250d9cdd14b8..bd2d3d11e85b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -76,6 +76,7 @@
- #include "intel_tc.h"
- #include "intel_vdsc.h"
- #include "intel_vrr.h"
-+#include "intel_crtc_state_dump.h"
- 
- /* DP DSC throughput values used for slice count calculations KPixels/s */
- #define DP_DSC_PEAK_PIXEL_RATE			2720000
-@@ -2063,6 +2064,16 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	bool ycbcr_420_only;
- 	int ret;
- 
-+	if (intel_dp->force_dsc_output_format) {
-+		crtc_state->output_format = intel_dp->force_dsc_output_format;
-+		drm_dbg_kms(&i915->drm, "DSC output format forced to %s",
-+			    output_formats(crtc_state->output_format));
-+
-+		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-+						   respect_downstream_limits);
-+		return ret;
-+	}
-+
- 	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
- 
- 	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
--- 
-2.25.1
+access_granted will surely be wrong if open_count is not correctly
+counted.
 
+Regards,
+Yi Liu
