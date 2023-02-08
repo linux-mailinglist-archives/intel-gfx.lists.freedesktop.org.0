@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787A568EE24
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF34A68EE22
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:43:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 192CF10E754;
-	Wed,  8 Feb 2023 11:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 865FA10E752;
+	Wed,  8 Feb 2023 11:43:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBBD10E744
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:43:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46AAA10E752
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:43:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675856586; x=1707392586;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bad3zioElFR4iOrfZwwggXy8NnitIvzl7wBCglVTA6A=;
- b=ccMlDU7yg4lHGaWwn+Wyb6vOlwzVSP8Q25RS4D0QL7/oGg1IcjJM1F+l
- J61PaJyVpWxHv9RSnDnM05PZf+KJAnyt6NeETgQ20kyLR7RfItwujsq4J
- xlS9XEXCJm5J0XLGKVC2mR5+ZpQcrYRQdD+pThtWluLNLCx59FMo0bLDi
- F5zbfm6F2Od1kVjEzzPj8/LOuTLbQUytJaDT2sX31mFpemKp5YZXie/HE
- xYxB4Q8EA2jWAVDoiwe5WUXXqn61R9ylyF4ZcRVTuF8l49DuvQWzV/kl/
- p1XRBlxR2GaocrqomXuIOM+2V8yiZSCKWfCojKrrP+IKnPW9pFcPjUZiN Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313415491"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313415491"
+ t=1675856587; x=1707392587;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=GYFJ4RRO8sMS4IIaBrtM9H0VOhtO57IEX8V6ZGCUXXU=;
+ b=SwCzsKTho2VbKJJj4rf2HAumLVH82JXGdS75na887FeSxE0NfHl73qUR
+ /+1ZXX0jU5q1VqtZX2khCXpyMlTIix1etIXmRaq8YLAhAAINXL9x19uGn
+ MOtx449jWIxWyTWbODrMBe/r2q7k3GrcZLiWWwDW0lcHOBrZZkCtduTcs
+ 8KF5wdImS11T2dB+uMHPmzwjRJ3YAdprXLWtB3p5za2NC5QLr2CAmBWp5
+ a55T8q7jD+aM8X6emNYXpYiBjYV78yKG4jWsqSXIA8w3VgnXuEuatj6Cd
+ GGkkSOQiOShtx1MjfYFfHupn7OfjOx5MFORwLtpPeOeA6Qqnjr6+YXp1O Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313415499"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313415499"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:43:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="699620685"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="699620685"
+ 08 Feb 2023 03:43:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="699620687"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="699620687"
 Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:43:04 -0800
+ 08 Feb 2023 03:43:06 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Feb 2023 13:42:57 +0200
-Message-Id: <20230208114300.3123934-2-imre.deak@intel.com>
+Date: Wed,  8 Feb 2023 13:42:58 +0200
+Message-Id: <20230208114300.3123934-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20230208114300.3123934-1-imre.deak@intel.com>
 References: <20230208114300.3123934-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915: Fix system suspend without
- fbdev being initialized
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: Move display power
+ initialization during driver probing later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,97 +57,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If fbdev is not initialized for some reason - in practice on platforms
-without display - suspending fbdev should be skipped during system
-suspend, fix this up. While at it add an assert that suspending fbdev
-only happens with the display present.
+Determining whether the display engine is present on a platform happens
+only in intel_device_info_runtime_init(). Initializing the display power
+functionality depends on this condition, so move
+intel_power_domains_init() later after the runtime init function has
+been called.
 
-This fixes the following:
+The next patch fixing platforms without display, depends on this patch.
 
-[   91.227923] PM: suspend entry (s2idle)
-[   91.254598] Filesystems sync: 0.025 seconds
-[   91.270518] Freezing user space processes
-[   91.272266] Freezing user space processes completed (elapsed 0.001 seconds)
-[   91.272686] OOM killer disabled.
-[   91.272872] Freezing remaining freezable tasks
-[   91.274295] Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
-[   91.659622] BUG: kernel NULL pointer dereference, address: 00000000000001c8
-[   91.659981] #PF: supervisor write access in kernel mode
-[   91.660252] #PF: error_code(0x0002) - not-present page
-[   91.660511] PGD 0 P4D 0
-[   91.660647] Oops: 0002 [#1] PREEMPT SMP NOPTI
-[   91.660875] CPU: 4 PID: 917 Comm: bash Not tainted 6.2.0-rc7+ #54
-[   91.661185] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS edk2-20221117gitfff6d81270b5-9.fc37 unknown
-[   91.661680] RIP: 0010:mutex_lock+0x19/0x30
-[   91.661914] Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 53 48 89 fb e8 62 d3 ff ff 31 c0 65 48 8b 14 25 00 15 03 00 <f0> 48 0f b1 13 75 06 5b c3 cc cc cc cc 48 89 df 5b eb b4 0f 1f 40
-[   91.662840] RSP: 0018:ffffa1e8011ffc08 EFLAGS: 00010246
-[   91.663087] RAX: 0000000000000000 RBX: 00000000000001c8 RCX: 0000000000000000
-[   91.663440] RDX: ffff8be455eb0000 RSI: 0000000000000001 RDI: 00000000000001c8
-[   91.663802] RBP: ffff8be459440000 R08: ffff8be459441f08 R09: ffffffff8e1432c0
-[   91.664167] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
-[   91.664532] R13: 00000000000001c8 R14: 0000000000000000 R15: ffff8be442f4fb20
-[   91.664905] FS:  00007f28ffc16740(0000) GS:ffff8be4bb900000(0000) knlGS:0000000000000000
-[   91.665334] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   91.665626] CR2: 00000000000001c8 CR3: 0000000114926006 CR4: 0000000000770ee0
-[   91.665988] PKRU: 55555554
-[   91.666131] Call Trace:
-[   91.666265]  <TASK>
-[   91.666381]  intel_fbdev_set_suspend+0x97/0x1b0 [i915]
-[   91.666738]  i915_drm_suspend+0xb9/0x100 [i915]
-[   91.667029]  pci_pm_suspend+0x78/0x170
-[   91.667234]  ? __pfx_pci_pm_suspend+0x10/0x10
-[   91.667461]  dpm_run_callback+0x47/0x150
-[   91.667673]  __device_suspend+0x10a/0x4e0
-[   91.667880]  dpm_suspend+0x134/0x270
-[   91.668069]  dpm_suspend_start+0x79/0x80
-[   91.668272]  suspend_devices_and_enter+0x11b/0x890
-[   91.668526]  pm_suspend.cold+0x270/0x2fc
-[   91.668737]  state_store+0x46/0x90
-[   91.668916]  kernfs_fop_write_iter+0x11b/0x200
-[   91.669153]  vfs_write+0x1e1/0x3a0
-[   91.669336]  ksys_write+0x53/0xd0
-[   91.669510]  do_syscall_64+0x58/0xc0
-[   91.669699]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
-[   91.669980]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
-[   91.670278]  ? syscall_exit_to_user_mode+0x17/0x40
-[   91.670524]  ? do_syscall_64+0x67/0xc0
-[   91.670717]  ? __irq_exit_rcu+0x3d/0x140
-[   91.670931]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
-[   91.671202] RIP: 0033:0x7f28ffd14284
-
-Fixes: f8cc091e0530 ("drm/i915/fbdev: suspend HPD before fbdev unregistration")
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8015
-Tested-by: iczero <iczero@hellomouse.net>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: iczero <iczero@hellomouse.net>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+ drivers/gpu/drm/i915/i915_driver.c           | 7 -------
+ 2 files changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 81b41148e592b..e719202d831f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -632,7 +632,13 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
- 	struct fb_info *info;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 166662ade593c..b3e7ed3866cde 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8634,6 +8634,10 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ 		goto cleanup_bios;
  
--	if (!ifbdev || !ifbdev->vma)
-+	if (!ifbdev)
-+		return;
+ 	/* FIXME: completely on the wrong abstraction layer */
++	ret = intel_power_domains_init(i915);
++	if (ret < 0)
++		goto cleanup_vga;
 +
-+	if (drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)))
-+		return;
-+
-+	if (!ifbdev->vma)
- 		goto set_suspend;
+ 	intel_power_domains_init_hw(i915, false);
  
- 	info = ifbdev->helper.info;
+ 	if (!HAS_DISPLAY(i915))
+@@ -8676,6 +8680,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ cleanup_vga_client_pw_domain_dmc:
+ 	intel_dmc_ucode_fini(i915);
+ 	intel_power_domains_driver_remove(i915);
++cleanup_vga:
+ 	intel_vga_unregister(i915);
+ cleanup_bios:
+ 	intel_bios_driver_remove(i915);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 13bf4fe52f9fe..fe2870a6ae631 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -251,9 +251,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	intel_detect_pch(dev_priv);
+ 
+ 	intel_pm_setup(dev_priv);
+-	ret = intel_power_domains_init(dev_priv);
+-	if (ret < 0)
+-		goto err_gem;
+ 	intel_irq_init(dev_priv);
+ 	intel_init_display_hooks(dev_priv);
+ 	intel_init_clock_gating_hooks(dev_priv);
+@@ -262,10 +259,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 
+ 	return 0;
+ 
+-err_gem:
+-	i915_gem_cleanup_early(dev_priv);
+-	intel_gt_driver_late_release_all(dev_priv);
+-	i915_drm_clients_fini(&dev_priv->clients);
+ err_rootgt:
+ 	intel_region_ttm_device_fini(dev_priv);
+ err_ttm:
 -- 
 2.37.1
 
