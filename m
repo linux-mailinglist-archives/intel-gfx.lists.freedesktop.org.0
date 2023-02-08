@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C7C68E5AD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 02:56:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 764F168E6F2
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 05:09:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD3E610E695;
-	Wed,  8 Feb 2023 01:55:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB05510E048;
+	Wed,  8 Feb 2023 04:09:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC8610E695
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 01:55:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7266210E048;
+ Wed,  8 Feb 2023 04:09:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675821356; x=1707357356;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=gcLUuqgZgT5wZxbqGazJ9dkNia+9K2Py+L4FMaloEHk=;
- b=SCuFkUz2UomolveoL4g4AGPipWMcQuyJ+THe5BbihWlnRLBO0YjAal9P
- brJ8h0BIJqQjkgcRyjrxbZ6Pywvhd0V+FvMrIqVxtxADRq/eHdhH2kQKE
- hDBcAZV2uw9Nx5ey+s7tEWvsiwwS3ndIMpO3yMVSazJpf82pN9DylIkZG
- Q+Y9oi3ykm2Wu6SOiQYmN9CeVQwYgXc6K6VcLcdPKVLfP5bpUTLoaNPPG
- mNN0cVd+qSR+ypEYPDEmfF9IYq0VuG/Pz+6Qt+ZzTQksdeP98gTVafgB+
- cn4YlCj3Le2mYw4xH+Rdq3at3IvAbyl0tm9OpvYtMsSz9zrK3a2dpCudw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="330974377"
-X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="330974377"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1675829356; x=1707365356;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JkNx6qLkoWhY7lyFgJxHgzGRDZb0xDKvEDDzL2/k6so=;
+ b=SWS5nXXKz122M5zdVTUYc1G2v6mVEdT5nLRKgUyWo4gC5zCYN0M7WWWL
+ sihXP1wOnE4sNV6LIRrd9ovNgGjpliNRGG4xcahMW3F+kPB/FR9BsvWpw
+ +CxI/TCcLozkQzjXeEeblB1H/4m/8aeHrP0wT3Ob59Y4UjXvB7yvaFaYV
+ NnughZA0dnfg8euv27/vlOyu6R7GgfRR+ex7mShBm8Js2xegK1DCrwAvA
+ hBoKr3tyO3pLBH12C9OTwIUU/xf0ZLD5kyk+B0p0Lyr/1V+Qukmeg5i3O
+ BbD5KmFev3b5Dms1U2LUICm1VhqcFcA1IQIQjabQswiV3wzYSoOE7wd58 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="330997971"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="330997971"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 17:55:43 -0800
+ 07 Feb 2023 20:09:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="644672725"
-X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="644672725"
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="697519792"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="697519792"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga006.jf.intel.com with SMTP; 07 Feb 2023 17:55:40 -0800
+ by orsmga008.jf.intel.com with SMTP; 07 Feb 2023 20:09:12 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Feb 2023 03:55:40 +0200
+ Wed, 08 Feb 2023 06:09:11 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Feb 2023 03:55:08 +0200
-Message-Id: <20230208015508.24824-11-ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed,  8 Feb 2023 06:09:09 +0200
+Message-Id: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
-References: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/10] drm/i915: Use encoder->devdata in eDP init
+Subject: [Intel-gfx] [PATCH 0/2] drm: Add plane SIZE_HINTS property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,116 +57,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Since we now populate encoder->devdata for all DP capable
-platforms we can consult it directly during the eDP
-connector init instead of taking a detour via some global
-list/array.
+Proposal for a new plane SIZE_HINTS property to essentially
+replace the cursor size caps, based on recent discussion
+in this gitlab bug:
+https://gitlab.freedesktop.org/drm/intel/-/issues/7687
 
-Unfortunately we can't quire get rid of
-intel_dp_is_port_edp() since it's still used by the higher
-level ilk/vlv/chv output setup code.
+As for userspace, so far I only did a quick modetest
+blob decoder (mainly to verify that it looks correct):
+https://gitlab.freedesktop.org/vsyrjala/libdrm/-/commits/plane_size_hints
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 17 +----------------
- drivers/gpu/drm/i915/display/intel_bios.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c   | 17 +++++++++++++----
- 3 files changed, 15 insertions(+), 20 deletions(-)
+Didn't yet update my modesetting ddx cursor size patch
+to use this or anything.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 1af175b48ae6..ec4544a8b333 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2584,7 +2584,7 @@ intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdata)
- 	return devdata->child.device_type & DEVICE_TYPE_DISPLAYPORT_OUTPUT;
- }
- 
--static bool
-+bool
- intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
- {
- 	return intel_bios_encoder_supports_dp(devdata) &&
-@@ -3413,21 +3413,6 @@ bool intel_bios_is_port_present(struct drm_i915_private *i915, enum port port)
- 	return false;
- }
- 
--/**
-- * intel_bios_is_port_edp - is the device in given port eDP
-- * @i915:	i915 device instance
-- * @port:	port to check
-- *
-- * Return true if the device in %port is eDP.
-- */
--bool intel_bios_is_port_edp(struct drm_i915_private *i915, enum port port)
--{
--	const struct intel_bios_encoder_data *devdata =
--		intel_bios_encoder_data_lookup(i915, port);
--
--	return devdata && intel_bios_encoder_supports_edp(devdata);
--}
--
- static bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata)
- {
- 	const struct child_device_config *child = &devdata->child;
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index eaff41256a9c..1a6ae38bd4f6 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -268,6 +268,7 @@ intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port);
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdata);
-+bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6b836afa0698..e4ea84b5d946 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5129,8 +5129,9 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
- 	return IRQ_HANDLED;
- }
- 
--/* check the VBT to see whether the eDP is on another port */
--bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port)
-+static bool _intel_dp_is_port_edp(struct drm_i915_private *dev_priv,
-+				  const struct intel_bios_encoder_data *devdata,
-+				  enum port port)
- {
- 	/*
- 	 * eDP not supported on g4x. so bail out early just
-@@ -5142,7 +5143,15 @@ bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port)
- 	if (DISPLAY_VER(dev_priv) < 9 && port == PORT_A)
- 		return true;
- 
--	return intel_bios_is_port_edp(dev_priv, port);
-+	return devdata && intel_bios_encoder_supports_edp(devdata);
-+}
-+
-+bool intel_dp_is_port_edp(struct drm_i915_private *i915, enum port port)
-+{
-+	const struct intel_bios_encoder_data *devdata =
-+		intel_bios_encoder_data_lookup(i915, port);
-+
-+	return _intel_dp_is_port_edp(i915, devdata, port);
- }
- 
- static bool
-@@ -5415,7 +5424,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
- 	intel_dp->attached_connector = intel_connector;
- 
--	if (intel_dp_is_port_edp(dev_priv, port)) {
-+	if (_intel_dp_is_port_edp(dev_priv, intel_encoder->devdata, port)) {
- 		/*
- 		 * Currently we don't support eDP on TypeC ports, although in
- 		 * theory it could work on TypeC legacy ports.
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Jonas Ådahl <jadahl@redhat.com>
+Cc: Daniel Stone <daniel@fooishbar.org>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+
+Ville Syrjälä (2):
+  drm: Introduce plane SIZE_HINTS property
+  drm/i915: Add SIZE_HINTS property for cursors
+
+ drivers/gpu/drm/drm_mode_config.c           |  7 +++++
+ drivers/gpu/drm/drm_plane.c                 | 33 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cursor.c | 24 +++++++++++++++
+ include/drm/drm_mode_config.h               |  5 ++++
+ include/drm/drm_plane.h                     |  4 +++
+ include/uapi/drm/drm_mode.h                 |  5 ++++
+ 6 files changed, 78 insertions(+)
+
 -- 
 2.39.1
 
