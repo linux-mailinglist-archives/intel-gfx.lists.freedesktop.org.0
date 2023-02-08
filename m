@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D4168F177
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 15:57:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D532368F153
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 15:55:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F117710E7B3;
-	Wed,  8 Feb 2023 14:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F73E10E7B0;
+	Wed,  8 Feb 2023 14:55:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB3BB10E7B0;
- Wed,  8 Feb 2023 14:57:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675868245; x=1707404245;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uV7AgTbrch/Eu7LxtX7piER6N6FgL/dvdUlPwqpriz0=;
- b=IqAgXwVtJIwpCdvv6s84vAZxUbU+FFGBx6YpekR+UbsIGOnGCVE2PO9B
- tojRLEnUQALkBE2jjUGMe4WW7kElM4lNGmLXTwpnD8xcK5WokdhxC1qSq
- 9OEmttkF2m/hjVHj6Kkkok70ymehu4+PcmQ0S+YkWQrZk1JgNRTSD+56I
- MOYd2I7qR/RaJ43e1r0y8SW+P7VfMXRg39hXBZhOI7z4Wknt7UEsgjL/u
- UtrX4igatqUAk0VzFsJu86ZBWhfQy37GpD/mzmwW4JNwdbU5vhfvuUtjn
- cUo/sCykg35B2SLoaUew+UszJKS5W2+M+UFglIWqDXrEggqHqhvirZ0VE A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="328469205"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="328469205"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 06:57:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="617233452"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="617233452"
-Received: from hassanka-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.31.252])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 06:57:24 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Feb 2023 14:53:19 +0000
-Message-Id: <20230208145319.397235-4-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230208145319.397235-1-matthew.auld@intel.com>
-References: <20230208145319.397235-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E2D4510E7AB;
+ Wed,  8 Feb 2023 14:55:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D9BA3A00E6;
+ Wed,  8 Feb 2023 14:55:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/radeon: handle NULL bo->resource in
- move callback
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tomas Winkler" <tomas.winkler@intel.com>
+Date: Wed, 08 Feb 2023 14:55:22 -0000
+Message-ID: <167586812286.385.7681152187769261049@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230208142358.1401618-1-tomas.winkler@intel.com>
+In-Reply-To: <20230208142358.1401618-1-tomas.winkler@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mei=3A_gsc_proxy_component?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +40,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The ttm bo now initially has NULL bo->resource, and leaves the driver
-the handle that. However it looks like we forgot to handle that for
-radeon.  It looks like this will just null-ptr-deref in
-radeon_bo_move(), if bo->resource is NULL.
+== Series Details ==
 
-Fix this by calling move_null().
+Series: mei: gsc proxy component
+URL   : https://patchwork.freedesktop.org/series/113786/
+State : warning
 
-Fixes: 180253782038 ("drm/ttm: stop allocating dummy resources during BO creation")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/radeon/radeon_ttm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
-index 67075c85f847..2220cdf6a3f6 100644
---- a/drivers/gpu/drm/radeon/radeon_ttm.c
-+++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-@@ -213,7 +213,8 @@ static int radeon_bo_move(struct ttm_buffer_object *bo, bool evict,
- 
- 	rbo = container_of(bo, struct radeon_bo, tbo);
- 	rdev = radeon_get_rdev(bo->bdev);
--	if (old_mem->mem_type == TTM_PL_SYSTEM && bo->ttm == NULL) {
-+	if (!old_mem || (old_mem->mem_type == TTM_PL_SYSTEM &&
-+			 bo->ttm == NULL)) {
- 		ttm_bo_move_null(bo, new_mem);
- 		goto out;
- 	}
--- 
-2.39.1
+Error: dim checkpatch failed
+18b0d2ae5b42 drm/i915/mtl: Define GSC Proxy component interface
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+1c1166a052a4 mei: gsc_proxy: add gsc proxy driver
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 238 lines checked
+
 
