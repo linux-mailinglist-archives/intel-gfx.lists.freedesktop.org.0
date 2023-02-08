@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13A968EF1D
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1F468EF1C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:38:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A436A10E771;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8A310E76C;
 	Wed,  8 Feb 2023 12:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBEDD10E76C
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB2A310E776
  for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 12:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1675859885; x=1707395885;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=I0Ew9aYs3CFE2JWPoEf5XA9IQcJWWwIY9K2aEensB+Q=;
- b=IDFqKcYAf8PqLQ+PxU6m1nc9KvCx9lts1YB9vk68RVodwI2+UuwZYqjw
- nlMnLT029VxHCz5ITEFzGlUn3oI9/t/7LhvwkJRyAvttXgNjMkiXa7WwE
- 0hVdqKm7Je165RKH2nVYGEnjj/dbNzkM2DwcxtyaxdJIQaCD2ojsgmc0z
- J6/UjBaDz2ipFqQux/2HNWLnNha/Rjy2G9o2zkhlzrOs7InYgGSbDGyGO
- LxSHwSgx8j+YxiffEGFRhwbbxiXzsjz8lygeqPWfOQ+cZs4ldVI1si9g2
- NavmKl528Ja62fzhN0vEx79aNnskwmvxXJFufq99PuxUx9VAGQNOluCGO w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313425674"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313425674"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=9MTIc1tdFbH0n1cBv/CkzSH7Uc8zTFL+pAKK3lgOxOQ=;
+ b=c71CcvurjayvPKLJ1OHFpMI3JgWCZEBhoFeOg91KuqXBDZ86neOg2mVi
+ greH5IUE9tEIr8xW2gcaREL6OxAElIzvsvH2jG7BF9+CUBUBU9WKNzkyH
+ sZc6/bX2IzALOn2iyO+q1YsCqlbEBHZ9lq/7EucA9WJ7LUbdDIBEireCi
+ CX/UqYmc3CWzAppW4fALl17EY976lQ0mVmCrVYDT464Vwgg8VtPYdlNvn
+ ACHCOBxJ6oHDsCBvJ7s0ZolNP4T22hwRMtaTcGXdbI46bPVJGC1yUCKNJ
+ t3lktC5xZmRdm06Dazz+WtAxaXlX+KoSrWwQd8aoBeG+9FtVg022O120M Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="394379188"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="394379188"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Feb 2023 04:38:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="809929261"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="809929261"
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="756036674"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="756036674"
 Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
- by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2023 04:38:04 -0800
+ by FMSMGA003.fm.intel.com with ESMTP; 08 Feb 2023 04:38:04 -0800
 Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pPji7-0004RY-1I;
+ (envelope-from <lkp@intel.com>) id 1pPji7-0004RW-1E;
  Wed, 08 Feb 2023 12:38:03 +0000
-Date: Wed, 8 Feb 2023 20:37:20 +0800
+Date: Wed, 8 Feb 2023 20:37:21 +0800
 From: kernel test robot <lkp@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202302082001.KuQFCeRp-lkp@intel.com>
+Message-ID: <202302082023.fQH3CQDb-lkp@intel.com>
 References: <6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -66,15 +66,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Jani,
 
-I love your patch! Perhaps something to improve:
+I love your patch! Yet something to improve:
 
-[auto build test WARNING on drm-tip/drm-tip]
+[auto build test ERROR on drm-tip/drm-tip]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-move-memory-frequency-detection-to-intel_dram-c/20230208-175057
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula%40intel.com
 patch subject: [Intel-gfx] [PATCH 04/10] drm/i915/wm: add .get_hw_state to watermark funcs
-config: x86_64-randconfig-a013-20230206 (https://download.01.org/0day-ci/archive/20230208/202302082001.KuQFCeRp-lkp@intel.com/config)
+config: i386-defconfig (https://download.01.org/0day-ci/archive/20230208/202302082023.fQH3CQDb-lkp@intel.com/config)
 compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
 reproduce (this is a W=1 build):
         # https://github.com/intel-lab-lkp/linux/commit/3be1dad7406a8c767260601b10af82797025aae3
@@ -83,17 +83,18 @@ reproduce (this is a W=1 build):
         git checkout 3be1dad7406a8c767260601b10af82797025aae3
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
 
-All warnings (new ones prefixed by >>):
+All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/display/i9xx_wm.c:3824:6: warning: no previous prototype for 'ilk_wm_get_hw_state' [-Wmissing-prototypes]
+>> drivers/gpu/drm/i915/display/i9xx_wm.c:3824:6: error: no previous prototype for 'ilk_wm_get_hw_state' [-Werror=missing-prototypes]
     3824 | void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
          |      ^~~~~~~~~~~~~~~~~~~
+   cc1: all warnings being treated as errors
 
 
 vim +/ilk_wm_get_hw_state +3824 drivers/gpu/drm/i915/display/i9xx_wm.c
