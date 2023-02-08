@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA2668EDED
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:29:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E8868EDF8
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:32:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E82910E747;
-	Wed,  8 Feb 2023 11:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3D510E744;
+	Wed,  8 Feb 2023 11:32:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFE4610E747
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:29:27 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976C510E744
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675855767; x=1707391767;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=lk9fKNuecWA/zg7zUsyAsAJtvxscXYPXkWShDy+v8AI=;
- b=EX1hLxpKKjdaH/7kPEuNsneWR0oroyU2eiojaeun3QJLVmpd7lptNCpj
- zcYFgGbtivSTNyxblqu2MUmcsC6bMvL3AjF7bHq2EyyN0/9Mg0ZcAl6Kr
- tlz/GWR10O1ca0O73v6xvOELwudmPAn5ZWtNI3e/HVsIpF9mJRqZ/Oodu
- w1uIFVGMN6t+AFngqNuFxbUNkKcQfLGKN1aWYyoCIt44znJMtuNMkZkog
- SNnOAeFxjNy0H/9qtL7jtlpJfDA7jL02lDiT8x79QRpPHCz0s0AK8zTLG
- T7Pp1K52k8NACVM4jjJ+JDstQt3scrlNnaFORqFLP5cdjidkeWi2sklVp g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="394364465"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="394364465"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:29:22 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="735909091"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="735909091"
-Received: from lxu17-mobl.ccr.corp.intel.com (HELO intel.com) ([10.252.63.161])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:29:21 -0800
-Date: Wed, 8 Feb 2023 12:29:18 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Swati Sharma <swati2.sharma@intel.com>
-Message-ID: <Y+OHjpIX43yFVKYS@ashyti-mobl2.lan>
-References: <20230208105932.21681-1-swati2.sharma@intel.com>
+ t=1675855935; x=1707391935;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=DjOSQqjZUkVFvNEQiVgyY0DEnNgmCfAG0uIHEgkBMZE=;
+ b=Y46F42jkwX1awsC/eo37908m1cK1elL/l7aw3Nro1fOK1p4ezBJeGD6e
+ 7LUBceJbjTIOpfKAuU30oeCsEI8gFH3S2GStb1TjbQ9hAFIDYvWIl/gw+
+ 6+1lhIFLv2NYIbZYZWnD50UoOnJ7r+GVgpus3v981oj3gB85n5uukySUg
+ oOZsuIbysqtM13+qKU/L1DdzDP8SZV5HphUf6nCZ+BxWmRf7Be8/Lk5+0
+ 9N1o2R/xSzXk+7hfdX0zzQiVZnYHV5JbMb+oDpVdrJFk/ExxTIJL1kiuk
+ SYGzIDghWMFSTlnZmxMoyj7M4MG6aTt3e/ji3q2/cefhch2RfTSCJxCi7 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="328429231"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="328429231"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 03:32:15 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="756015004"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="756015004"
+Received: from joergber-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.82])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 03:32:14 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Y+I3sg4xW+7K3hrG@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230207111626.1839645-1-jani.nikula@intel.com>
+ <Y+I3sg4xW+7K3hrG@intel.com>
+Date: Wed, 08 Feb 2023 13:32:11 +0200
+Message-ID: <87fsbgxuis.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230208105932.21681-1-swati2.sharma@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add a debugfs entry for
- fifo underruns
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: set default backlight
+ controller index
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,100 +60,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mohammed Khajapasha <mohammed.khajapasha@intel.com>,
- intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Swati,
+On Tue, 07 Feb 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Feb 07, 2023 at 01:16:26PM +0200, Jani Nikula wrote:
+>> With backlight controller set to -1 in intel_panel_init_alloc() to
+>> distinguish uninitialized values, and controller later being set only if
+>> it's present in VBT, we can end up with -1 for the controller:
+>>=20
+>>     [drm:intel_bios_init_panel [i915]] VBT backlight PWM modulation
+>>     frequency 200 Hz, active high, min brightness 0, level 255,
+>>     controller 4294967295
+>>=20
+>> There's no harm if it happens on platforms that ignore controller due to
+>> only one backlight controller being present, like on VLV above, but play
+>> it safe.
+>>=20
+>> Fixes: bf38bba3e7d6 ("drm/i915: Try to use the correct power sequencer i=
+ntiially on bxt/glk")
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
+/i915/display/intel_bios.c
+>> index e6ca51232dcf..ad833069f59c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -1033,6 +1033,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>>  	}
+>>=20=20
+>>  	panel->vbt.backlight.type =3D INTEL_BACKLIGHT_DISPLAY_DDI;
+>> +	panel->vbt.backlight.controller =3D 0;
+>>  	if (i915->display.vbt.version >=3D 191) {
+>>  		size_t exp_size;
+>
+> Ah right, older VBT didnt have this so we leave it untouched.
+> Zeroing in that case seems like the right thing to do.
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-[...]
+Thanks, pushed to din.
 
-> +static void intel_fifo_underrun_inc_count(struct intel_crtc *crtc,
-> +					  bool is_cpu_fifo)
+BR,
+Jani.
 
-I'm not a big fan of the true/false parameters in functions. I
-actually hate them because it's never clear from the caller what
-the true/false means.
-
-Isn't it clear to just have some wrappers
-
-#define intel_fifo_underrun_inc_cpu_count(...)
-#define intel_fifo_underrun_inc_cph_count(...)
-
-or similar?
-
-> +{
-> +#ifdef CONFIG_DEBUG_FS
-> +	if (is_cpu_fifo)
-> +		crtc->cpu_fifo_underrun_count++;
-> +	else
-> +		crtc->pch_fifo_underrun_count++;
-> +#endif
-> +}
-> +
->  static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> @@ -103,6 +114,7 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
->  	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
->  	intel_de_posting_read(dev_priv, reg);
->  
-> +	intel_fifo_underrun_inc_count(crtc, true);
->  	trace_intel_cpu_fifo_underrun(dev_priv, crtc->pipe);
->  	drm_err(&dev_priv->drm, "pipe %c underrun\n", pipe_name(crtc->pipe));
->  }
-> @@ -156,6 +168,7 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
->  	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
->  	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
->  
-> +	intel_fifo_underrun_inc_count(crtc, true);
->  	trace_intel_cpu_fifo_underrun(dev_priv, pipe);
->  	drm_err(&dev_priv->drm, "fifo underrun on pipe %c\n", pipe_name(pipe));
->  }
-> @@ -244,6 +257,7 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
->  		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
->  	intel_de_posting_read(dev_priv, SERR_INT);
->  
-> +	intel_fifo_underrun_inc_count(crtc, false);
->  	trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
->  	drm_err(&dev_priv->drm, "pch fifo underrun on pch transcoder %c\n",
->  		pipe_name(pch_transcoder));
-> @@ -286,6 +300,11 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
->  
->  	old = !crtc->cpu_fifo_underrun_disabled;
->  	crtc->cpu_fifo_underrun_disabled = !enable;
-> +#ifdef CONFIG_DEBUG_FS
-> +	/* don't reset count in fifo underrun irq path */
-> +	if (!in_irq() && !enable)
-> +		crtc->cpu_fifo_underrun_count = 0;
-> +#endif
->  
->  	if (HAS_GMCH(dev_priv))
->  		i9xx_set_fifo_underrun_reporting(dev, pipe, enable, old);
-> @@ -365,6 +384,11 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
->  
->  	old = !crtc->pch_fifo_underrun_disabled;
->  	crtc->pch_fifo_underrun_disabled = !enable;
-> +#ifdef CONFIG_DEBUG_FS
-> +	/* don't reset count in fifo underrun irq path */
-> +	if (!in_irq() && !enable)
-> +		crtc->pch_fifo_underrun_count = 0;
-> +#endif
-
-All these ifdefs are a bit ugly. Can we put all these stuff
-inside the debugfs.c file that is compiled only if DEBUG_FS is
-configured?
-
-Andi
-
->  
->  	if (HAS_PCH_IBX(dev_priv))
->  		ibx_set_fifo_underrun_reporting(&dev_priv->drm,
-> @@ -434,6 +458,7 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
->  			drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
->  	}
->  
-> +	intel_fifo_underrun_inc_count(crtc, true);
->  	intel_fbc_handle_fifo_underrun_irq(dev_priv);
->  }
+--=20
+Jani Nikula, Intel Open Source Graphics Center
