@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E8868EDF8
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A325168EE01
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:34:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3D510E744;
-	Wed,  8 Feb 2023 11:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8458510E752;
+	Wed,  8 Feb 2023 11:34:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976C510E744
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:32:15 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E65B410E74C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:34:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675855935; x=1707391935;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=DjOSQqjZUkVFvNEQiVgyY0DEnNgmCfAG0uIHEgkBMZE=;
- b=Y46F42jkwX1awsC/eo37908m1cK1elL/l7aw3Nro1fOK1p4ezBJeGD6e
- 7LUBceJbjTIOpfKAuU30oeCsEI8gFH3S2GStb1TjbQ9hAFIDYvWIl/gw+
- 6+1lhIFLv2NYIbZYZWnD50UoOnJ7r+GVgpus3v981oj3gB85n5uukySUg
- oOZsuIbysqtM13+qKU/L1DdzDP8SZV5HphUf6nCZ+BxWmRf7Be8/Lk5+0
- 9N1o2R/xSzXk+7hfdX0zzQiVZnYHV5JbMb+oDpVdrJFk/ExxTIJL1kiuk
- SYGzIDghWMFSTlnZmxMoyj7M4MG6aTt3e/ji3q2/cefhch2RfTSCJxCi7 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="328429231"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="328429231"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:32:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="756015004"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="756015004"
-Received: from joergber-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.82])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:32:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Y+I3sg4xW+7K3hrG@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230207111626.1839645-1-jani.nikula@intel.com>
- <Y+I3sg4xW+7K3hrG@intel.com>
-Date: Wed, 08 Feb 2023 13:32:11 +0200
-Message-ID: <87fsbgxuis.fsf@intel.com>
+ t=1675856048; x=1707392048;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=lgaJURp5bGXm7MwCtGXvyUzlk6Hi3RjWPtoEXD2VwMg=;
+ b=Yl7+QOpHNLszHy+8lF0iOsREtW+Zjdm4VT7Gx2QMdG/Ug2KHQQoNpvX6
+ 4QLmj1CEpupAwpbm+yq2XlcOcou4QXUMQADLZUQ6hzO4ftvbckwcJlUB2
+ Hxw7CPNFEAriQi5viZfBOrXh7ChrZ/X5Gd/rD7BOK3ABBsvhnQr7QeE/u
+ 5m7ESXkeYgA/luVFmvYYkJDT2yyQLokIlX0EhIGMaKBJjxNWLEo2zK1oY
+ 0ZOAZ43ziX5kXMvH9k5Zr1rYNG0U6mjP6hXnt9jBd2Gcy6byn06u3cOIr
+ MXIGJXLWfy0WYckG2GZ+XwNWXIDfxG5ELTXf6PSL3RQvpH+ckDtvvUPCt w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="331903987"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="331903987"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 03:34:08 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="617187766"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="617187766"
+Received: from lxu17-mobl.ccr.corp.intel.com (HELO intel.com) ([10.252.63.161])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 03:34:07 -0800
+Date: Wed, 8 Feb 2023 12:34:04 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <Y+OIrKmtqGgXrVP0@ashyti-mobl2.lan>
+References: <20230208094550.27730-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: set default backlight
- controller index
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230208094550.27730-1-stanislav.lisovskiy@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
+ configuration to pcode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +61,104 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Feb 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Feb 07, 2023 at 01:16:26PM +0200, Jani Nikula wrote:
->> With backlight controller set to -1 in intel_panel_init_alloc() to
->> distinguish uninitialized values, and controller later being set only if
->> it's present in VBT, we can end up with -1 for the controller:
->>=20
->>     [drm:intel_bios_init_panel [i915]] VBT backlight PWM modulation
->>     frequency 200 Hz, active high, min brightness 0, level 255,
->>     controller 4294967295
->>=20
->> There's no harm if it happens on platforms that ignore controller due to
->> only one backlight controller being present, like on VLV above, but play
->> it safe.
->>=20
->> Fixes: bf38bba3e7d6 ("drm/i915: Try to use the correct power sequencer i=
-ntiially on bxt/glk")
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c | 1 +
->>  1 file changed, 1 insertion(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
-/i915/display/intel_bios.c
->> index e6ca51232dcf..ad833069f59c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -1033,6 +1033,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
->>  	}
->>=20=20
->>  	panel->vbt.backlight.type =3D INTEL_BACKLIGHT_DISPLAY_DDI;
->> +	panel->vbt.backlight.controller =3D 0;
->>  	if (i915->display.vbt.version >=3D 191) {
->>  		size_t exp_size;
->
-> Ah right, older VBT didnt have this so we leave it untouched.
-> Zeroing in that case seems like the right thing to do.
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Hi Stanislav,
 
-Thanks, pushed to din.
+[...]
 
-BR,
-Jani.
+> +/**
+> + * intel_display_to_pcode- inform pcode for display config
+> + * @cdclk: current cdclk as per new or old state
+> + * @voltage_level: current voltage_level send to Pcode
+> + * @active_pipes: active pipes for more accurate power accounting
+> + */
+> +static void intel_display_to_pcode(struct drm_i915_private *dev_priv,
+> +				   unsigned int cdclk, u8 voltage_level,
+> +				   u8 active_pipes)
+> +{
+> +	int ret;
+> +
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+if (DISPLAY_VER(dev_priv) < 12)
+	return;
+
+the rest can go outside the if and we save one indentation leve.
+
+BTW... /dev_priv/i915/ ?
+
+> +	if (DISPLAY_VER(dev_priv) >= 12) {
+> +		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> +					SKL_CDCLK_PREPARE_FOR_CHANGE |
+> +					DISPLAY_TO_PCODE_MASK
+> +					(cdclk, active_pipes, voltage_level),
+> +					SKL_CDCLK_READY_FOR_CHANGE,
+> +					SKL_CDCLK_READY_FOR_CHANGE, 3);
+> +		if (ret) {
+> +			drm_err(&dev_priv->drm,
+> +					"Failed to inform PCU about display config (err %d)\n",
+> +					ret);
+> +			return;
+> +		}
+> +	}
+> +}
+
+[...]
+
+> +void intel_display_to_pcode_pre_notification(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	const struct intel_cdclk_state *old_cdclk_state =
+> +		intel_atomic_get_old_cdclk_state(state);
+> +	const struct intel_cdclk_state *new_cdclk_state =
+> +		intel_atomic_get_new_cdclk_state(state);
+> +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+> +				&new_cdclk_state->actual) &&
+> +				(new_cdclk_state->active_pipes ==
+> +				old_cdclk_state->active_pipes))
+> +		return;
+> +	if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
+> +					new_cdclk_state->actual.voltage_level,
+> +					new_cdclk_state->active_pipes);
+> +		return;
+> +	}
+> +	if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk) {
+> +		intel_display_to_pcode(dev_priv, old_cdclk_state->actual.cdclk,
+> +					old_cdclk_state->actual.voltage_level,
+> +					old_cdclk_state->active_pipes);
+> +		return;
+> +	}
+> +	if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes) {
+> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
+> +					new_cdclk_state->actual.voltage_level,
+> +					new_cdclk_state->active_pipes);
+> +		return;
+> +	}
+> +	intel_display_to_pcode(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
+> +				new_cdclk_state->actual.voltage_level,
+> +				new_cdclk_state->active_pipes);
+
+if you replace all the ifs with "else if"s you can have only one
+return and remove all the brackets.
+
+> +}
+> +
+> +/*intel_display_to_pcode_post_notification: after frequency change sending
+> + * voltage_level, active pipes, current CDCLK frequency.
+> + * @state: intel atomic state
+> + */
+> +void intel_display_to_pcode_post_notification(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	const struct intel_cdclk_state *new_cdclk_state =
+> +		intel_atomic_get_new_cdclk_state(state);
+> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
+> +					new_cdclk_state->actual.voltage_level,
+> +					new_cdclk_state->active_pipes);
+
+the indentation here is off
+
+> +}
+
+Andi
+
+[...]
