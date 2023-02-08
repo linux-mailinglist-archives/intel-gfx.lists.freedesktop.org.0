@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA87768ED31
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 11:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4239A68ED5B
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 11:51:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAFCD10E1F0;
-	Wed,  8 Feb 2023 10:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9110C10E1F0;
+	Wed,  8 Feb 2023 10:51:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E3FD10E1F0
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 10:44:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3880610E1F0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 10:51:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675853098; x=1707389098;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=EldwJPSJNo5ovdWkMVXCItjTzCnr9UxT3+JUZUVg+yc=;
- b=MKeoXDtbw90yjpXtZEwz07sNzUpjhwyg2JHOUsqTWEcdSaL2FT5L4WET
- aJKYgGR42+xliWMUwFNdSr7lfkPm4Mz4g7jgzkqenwMNd79hUtp4igXKC
- lm1T8RxlcPpuUYecAVuqQrwNdQJqECBwPW4zkcLTfdPmTCN3NSh7fp8Pd
- MhrdB80s4V22PlqCJymjDDqDKTJa2JHj5+fRtmkDnVV7MsAOqhQWktnB2
- 4kwewLAAqyBUwO9Lcd83Za6g6uCNbGKrvi/l+sWtxYn1sD3WXXtHY6qsY
- pr+K0avly9gbmvALjfZ3i6Ep3XRUHf7THUsT/UPK0t0oJWJskQkpn7aVD g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="310114564"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="310114564"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1675853500; x=1707389500;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Fzzy4nA1BohIEdOfFAKzzF/C7tspGLtWWQlc8tU3wBI=;
+ b=IU8123D1kFbvaTEzi5s7QA2JIhfRViliTXyOSBu4JQaoFReZmPmbHI81
+ BkNuF3mk8SJefp9jAgXZn6PAmbJStS3eX3z8MMAYakRjbHcEnUTP3+4dP
+ V13GcVY4gLgLLXO+2SkHeG7hKXp1smQtcj34ShV0fWNQ01e8m9RN3xnG6
+ 8R655988ovCod+Pr/Lg6GCpDke7iK1IVwltnj2kXSdh9WxmmOrcmCPTRv
+ qr3V6EFHmE8X/9j/igFT098xodvap+TvmtxUPNEHEDhULC5mRPtd6MlW6
+ AVZZSds7HKQj49uL0L9XaNyI+jPZqno1BpNINGzHPGaVxbw2Jq4wtiNW7 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="310115916"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="310115916"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 02:44:57 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="841139316"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="841139316"
-Received: from joergber-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.82])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 02:44:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-In-Reply-To: <Y+KjLLnhiFAldJjl@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230207110619.1821992-1-jani.nikula@intel.com>
- <Y+KjLLnhiFAldJjl@mdroper-desk1.amr.corp.intel.com>
-Date: Wed, 08 Feb 2023 12:44:53 +0200
-Message-ID: <87ilgcxwpm.fsf@intel.com>
+ 08 Feb 2023 02:51:39 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="996095432"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="996095432"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 02:51:37 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Feb 2023 11:51:30 +0100
+Message-Id: <20230208105130.3233420-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: drop "ucode" from function
- names
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4] drm/i915: add guard page to
+ ggtt->error_capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,199 +57,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Feb 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Tue, Feb 07, 2023 at 01:06:19PM +0200, Jani Nikula wrote:
->> The ucode part in the init, fini, suspend and resume function names is
->> just unnecessary. Drop it.
->> 
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Write-combining memory allows speculative reads by CPU.
+ggtt->error_capture is WC mapped to CPU, so CPU/MMU can try
+to prefetch memory beyond the error_capture, ie it tries
+to read memory pointed by next PTE in GGTT.
+If this PTE points to invalid address DMAR errors will occur.
+This behaviour was observed on ADL, RPL, DG2 platforms.
+To avoid it, guard scratch page should be added after error_capture.
+The patch fixes the most annoying issue with error capture but
+since WC reads are used also in other places there is a risk similar
+problem can affect them as well.
 
-Thanks for the review, pushed to din.
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+This patch tries to diminish plague of DMAR read errors present
+in CI for ADL*, RPL*, DG2 platforms, see for example [1] (grep DMAR).
+CI is usually tolerant for these errors, so the scale of the problem
+is not really visible.
+To show it I have counted lines containing DMAR read errors in dmesgs
+produced by CI for all three versions of the patch, but in contrast to v2
+I have grepped only for lines containing "PTE Read access".
+Below stats for kernel w/o patch vs patched one.
+v1: 210 vs 0
+v2: 201 vs 0
+v3: 214 vs 0
+Apparently the patch fixes all common PTE read errors.
 
-BR,
-Jani.
+In previous version there were different numbers due to less exact grepping,
+"grep DMAR" catched write errors and "DMAR: DRHD: handling fault status reg"
+lines, anyway the actual number of errors is much bigger - DMAR errors
+are rate-limited.
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c |  6 +++---
->>  drivers/gpu/drm/i915/display/intel_dmc.c     | 20 ++++++++++----------
->>  drivers/gpu/drm/i915/display/intel_dmc.h     |  8 ++++----
->>  drivers/gpu/drm/i915/i915_driver.c           |  6 +++---
->>  4 files changed, 20 insertions(+), 20 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 166662ade593..a8c91fda40a8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -8639,7 +8639,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
->>  	if (!HAS_DISPLAY(i915))
->>  		return 0;
->>  
->> -	intel_dmc_ucode_init(i915);
->> +	intel_dmc_init(i915);
->>  
->>  	i915->display.wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
->>  	i915->display.wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
->> @@ -8674,7 +8674,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
->>  	return 0;
->>  
->>  cleanup_vga_client_pw_domain_dmc:
->> -	intel_dmc_ucode_fini(i915);
->> +	intel_dmc_fini(i915);
->>  	intel_power_domains_driver_remove(i915);
->>  	intel_vga_unregister(i915);
->>  cleanup_bios:
->> @@ -9000,7 +9000,7 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
->>  /* part #3: call after gem init */
->>  void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
->>  {
->> -	intel_dmc_ucode_fini(i915);
->> +	intel_dmc_fini(i915);
->>  
->>  	intel_power_domains_driver_remove(i915);
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->> index 3b8e8193d042..f70ada2357dc 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->> @@ -918,13 +918,13 @@ static void dmc_load_work_fn(struct work_struct *work)
->>  }
->>  
->>  /**
->> - * intel_dmc_ucode_init() - initialize the firmware loading.
->> + * intel_dmc_init() - initialize the firmware loading.
->>   * @dev_priv: i915 drm device.
->>   *
->>   * This function is called at the time of loading the display driver to read
->>   * firmware from a .bin file and copied into a internal memory.
->>   */
->> -void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
->> +void intel_dmc_init(struct drm_i915_private *dev_priv)
->>  {
->>  	struct intel_dmc *dmc = &dev_priv->display.dmc;
->>  
->> @@ -1002,14 +1002,14 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
->>  }
->>  
->>  /**
->> - * intel_dmc_ucode_suspend() - prepare DMC firmware before system suspend
->> + * intel_dmc_suspend() - prepare DMC firmware before system suspend
->>   * @dev_priv: i915 drm device
->>   *
->>   * Prepare the DMC firmware before entering system suspend. This includes
->>   * flushing pending work items and releasing any resources acquired during
->>   * init.
->>   */
->> -void intel_dmc_ucode_suspend(struct drm_i915_private *dev_priv)
->> +void intel_dmc_suspend(struct drm_i915_private *dev_priv)
->>  {
->>  	if (!HAS_DMC(dev_priv))
->>  		return;
->> @@ -1022,13 +1022,13 @@ void intel_dmc_ucode_suspend(struct drm_i915_private *dev_priv)
->>  }
->>  
->>  /**
->> - * intel_dmc_ucode_resume() - init DMC firmware during system resume
->> + * intel_dmc_resume() - init DMC firmware during system resume
->>   * @dev_priv: i915 drm device
->>   *
->>   * Reinitialize the DMC firmware during system resume, reacquiring any
->> - * resources released in intel_dmc_ucode_suspend().
->> + * resources released in intel_dmc_suspend().
->>   */
->> -void intel_dmc_ucode_resume(struct drm_i915_private *dev_priv)
->> +void intel_dmc_resume(struct drm_i915_private *dev_priv)
->>  {
->>  	if (!HAS_DMC(dev_priv))
->>  		return;
->> @@ -1042,20 +1042,20 @@ void intel_dmc_ucode_resume(struct drm_i915_private *dev_priv)
->>  }
->>  
->>  /**
->> - * intel_dmc_ucode_fini() - unload the DMC firmware.
->> + * intel_dmc_fini() - unload the DMC firmware.
->>   * @dev_priv: i915 drm device.
->>   *
->>   * Firmmware unloading includes freeing the internal memory and reset the
->>   * firmware loading status.
->>   */
->> -void intel_dmc_ucode_fini(struct drm_i915_private *dev_priv)
->> +void intel_dmc_fini(struct drm_i915_private *dev_priv)
->>  {
->>  	enum intel_dmc_id dmc_id;
->>  
->>  	if (!HAS_DMC(dev_priv))
->>  		return;
->>  
->> -	intel_dmc_ucode_suspend(dev_priv);
->> +	intel_dmc_suspend(dev_priv);
->>  	drm_WARN_ON(&dev_priv->drm, dev_priv->display.dmc.wakeref);
->>  
->>  	for_each_dmc_id(dmc_id)
->> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
->> index 88eae74dbcf2..c9808bbe7162 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
->> @@ -46,14 +46,14 @@ struct intel_dmc {
->>  	intel_wakeref_t wakeref;
->>  };
->>  
->> -void intel_dmc_ucode_init(struct drm_i915_private *i915);
->> +void intel_dmc_init(struct drm_i915_private *i915);
->>  void intel_dmc_load_program(struct drm_i915_private *i915);
->>  void intel_dmc_disable_program(struct drm_i915_private *i915);
->>  void intel_dmc_enable_pipe(struct drm_i915_private *i915, enum pipe pipe);
->>  void intel_dmc_disable_pipe(struct drm_i915_private *i915, enum pipe pipe);
->> -void intel_dmc_ucode_fini(struct drm_i915_private *i915);
->> -void intel_dmc_ucode_suspend(struct drm_i915_private *i915);
->> -void intel_dmc_ucode_resume(struct drm_i915_private *i915);
->> +void intel_dmc_fini(struct drm_i915_private *i915);
->> +void intel_dmc_suspend(struct drm_i915_private *i915);
->> +void intel_dmc_resume(struct drm_i915_private *i915);
->>  bool intel_dmc_has_payload(struct drm_i915_private *i915);
->>  void intel_dmc_debugfs_register(struct drm_i915_private *i915);
->>  void intel_dmc_print_error_state(struct drm_i915_error_state_buf *m,
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
->> index 13bf4fe52f9f..57305bb00dbc 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -1004,7 +1004,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->>  	intel_suspend_encoders(i915);
->>  	intel_shutdown_encoders(i915);
->>  
->> -	intel_dmc_ucode_suspend(i915);
->> +	intel_dmc_suspend(i915);
->>  
->>  	i915_gem_suspend(i915);
->>  
->> @@ -1096,7 +1096,7 @@ static int i915_drm_suspend(struct drm_device *dev)
->>  
->>  	dev_priv->suspend_count++;
->>  
->> -	intel_dmc_ucode_suspend(dev_priv);
->> +	intel_dmc_suspend(dev_priv);
->>  
->>  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->>  
->> @@ -1217,7 +1217,7 @@ static int i915_drm_resume(struct drm_device *dev)
->>  	/* Must be called after GGTT is resumed. */
->>  	intel_dpt_resume(dev_priv);
->>  
->> -	intel_dmc_ucode_resume(dev_priv);
->> +	intel_dmc_resume(dev_priv);
->>  
->>  	i915_restore_display(dev_priv);
->>  	intel_pps_unlock_regs_wa(dev_priv);
->> -- 
->> 2.34.1
->> 
+[1]: http://gfx-ci.igk.intel.com/tree/drm-tip/CI_DRM_12678/bat-adln-1/dmesg0.txt
 
+Changelog:
+v2:
+    - modified commit message (I hope the diagnosis is correct),
+    - added bug checks to ensure scratch is initialized on gen3 platforms.
+      CI produces strange stacktrace for it suggesting scratch[0] is NULL,
+      to be removed after resolving the issue with gen3 platforms.
+v3:
+    - removed bug checks, replaced with gen check.
+v4:
+    - change code for scratch page insertion to support all platforms,
+    - add info in commit message there could be more similar issues
+
+Regards
+Andrzej
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 31 ++++++++++++++++++++++++----
+ 1 file changed, 27 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 842e69c7b21e49..6566d2066f1f8b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -503,6 +503,21 @@ static void cleanup_init_ggtt(struct i915_ggtt *ggtt)
+ 	mutex_destroy(&ggtt->error_mutex);
+ }
+ 
++static void
++ggtt_insert_scratch_pages(struct i915_ggtt *ggtt, u64 offset, u64 length)
++{
++	struct i915_address_space *vm = &ggtt->vm;
++
++	if (GRAPHICS_VER(ggtt->vm.i915) < 8)
++		return vm->clear_range(vm, offset, length);
++	/* clear_range since gen8 is nop */
++	while (length > 0) {
++		vm->insert_page(vm, px_dma(vm->scratch[0]), offset, I915_CACHE_NONE, 0);
++		offset += I915_GTT_PAGE_SIZE;
++		length -= I915_GTT_PAGE_SIZE;
++	}
++}
++
+ static int init_ggtt(struct i915_ggtt *ggtt)
+ {
+ 	/*
+@@ -551,8 +566,12 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+ 		 * paths, and we trust that 0 will remain reserved. However,
+ 		 * the only likely reason for failure to insert is a driver
+ 		 * bug, which we expect to cause other failures...
++		 *
++		 * Since CPU can perform speculative reads on error capture
++		 * (write-combining allows it) add scratch page after error
++		 * capture to avoid DMAR errors.
+ 		 */
+-		ggtt->error_capture.size = I915_GTT_PAGE_SIZE;
++		ggtt->error_capture.size = 2 * I915_GTT_PAGE_SIZE;
+ 		ggtt->error_capture.color = I915_COLOR_UNEVICTABLE;
+ 		if (drm_mm_reserve_node(&ggtt->vm.mm, &ggtt->error_capture))
+ 			drm_mm_insert_node_in_range(&ggtt->vm.mm,
+@@ -562,11 +581,15 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+ 						    0, ggtt->mappable_end,
+ 						    DRM_MM_INSERT_LOW);
+ 	}
+-	if (drm_mm_node_allocated(&ggtt->error_capture))
++	if (drm_mm_node_allocated(&ggtt->error_capture)) {
++		u64 start = ggtt->error_capture.start;
++		u64 size = ggtt->error_capture.size;
++
++		ggtt_insert_scratch_pages(ggtt, start, size);
+ 		drm_dbg(&ggtt->vm.i915->drm,
+ 			"Reserved GGTT:[%llx, %llx] for use by error capture\n",
+-			ggtt->error_capture.start,
+-			ggtt->error_capture.start + ggtt->error_capture.size);
++			start, start + size);
++	}
+ 
+ 	/*
+ 	 * The upper portion of the GuC address space has a sizeable hole
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
