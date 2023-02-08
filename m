@@ -2,50 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D3368EE38
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 12:46:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2370E68EE9D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:11:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA25410E02E;
-	Wed,  8 Feb 2023 11:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EEAF10E760;
+	Wed,  8 Feb 2023 12:11:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB96310E02E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 11:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675856804; x=1707392804;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=ePM0DchwNKI2VpCfvv7MoJC5pHgAu8cBqkmY7VgIVQs=;
- b=gFqwdYaXdZV4WkKcilmqDFmgYDA+Dw+6T5tPTzSZo1wArJ9KL6B2rk+J
- e9xX97K+NfOy7c9y6thPT9+ax/4qMeXuqNjt8hnLa6VVSe3fgGObv25OH
- B/qKcJaQ3IDzktbHALvE0eCyTm/k1UlqOX0ysHX2VuV5HU2a4W5gqlPE1
- QyroBG5rdkhQht1qm0Lv940Z3gItdPxCmpKXbOo6ePAl0wLAw8tQpBBbW
- XKp45yikFcBlz4meFkXbFD+zbnL4DOlEQmIjXExLbH0OY3Y0mRAxnfJn9
- qTu2hE+Wchgi8rzY4UJn5pmP3OSbgQC6oPT2eRDLvs+5IzwJVAeGzxeTo Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="329800349"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="329800349"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:46:44 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="809912799"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="809912799"
-Received: from joergber-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.82])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 03:46:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230208094550.27730-1-stanislav.lisovskiy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230208094550.27730-1-stanislav.lisovskiy@intel.com>
-Date: Wed, 08 Feb 2023 13:46:40 +0200
-Message-ID: <87cz6kxtun.fsf@intel.com>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2062.outbound.protection.outlook.com [40.107.102.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D489910E742;
+ Wed,  8 Feb 2023 12:11:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hGCCiZG4fslUIYmc5kxNF1qepvytcprypWOhKPOWoipzqG6/C8ziPTuoMJPOZi1OFUAIkOrZdhCN/0c6CTK4nQIlUg6Txxe4FmAlaPTPMPCg98N6TNxu8gINm4xqGMZ3/DFwe2rnubTSed5wQwdn3anId0dlWkdp9yVtjMgwKdwWaxADrSWG5mKo2wp+H8qxY4fXOQ2eMNuxCfbub9fOUvxZy0LvhwO4SUdr+fvDtKEpa3clCWV2fXbN5WOJEy+5BzwBgCjJA9sFR4Vwf86/8zPDLRgPL/zKvD+g71Ir+GfLLTU9f+yu6xZA8P3XaHUSWkeJA848/xeH5UUWEG+JFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d+9zhKgmqQqD/oShtP1HyRPPHTGAu55Lo5StNqYzcOw=;
+ b=DY4DCqFRXmyfdR1gnqh3cQ7k2qP7fu+UQ0l3PHzO7MedaabzpQsBrtZGRFpczXNbdUHV3TCHhTCY1euC5gIdjxiLk/HAzl1LunDDpUwBSzOnIClgnATKTAU1FGQXW2agZLmb04QCHP+eBrZEb2tXRGDiNf5rfBxSW+n86pGxEWDXtGqNMVCshZ/Z8AJ6xkkkcva33Pz7GMLMEyc/LVSQIl5BLsHhhbhi5s642lRe5xURCholjWuLdv3qEI013xG5u8d4Yt0aX/fUR6NL9DXtIuEhcF+v+cOi+Izp5EYnftdRCPNkRc7YfRCIiiamkXMpmpslPeqEumZbn431ZK+SeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d+9zhKgmqQqD/oShtP1HyRPPHTGAu55Lo5StNqYzcOw=;
+ b=0ZRPuryHRUTZeYCWpIkZzUn7P9sYcauw28xOAj19gMVpYWavoY7pxDnMTqcMvJ/nWLVi8dDsNY0gO0dXknrlBjBZKiGFE8E4xY25zDXv77gDQWtIe4C4RzKGiv2kuEsss/UjCtutxWuJ8i9aTQy8XJ3tHFtRFit+6YFvO+qSZO0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by SJ2PR12MB8064.namprd12.prod.outlook.com (2603:10b6:a03:4cc::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Wed, 8 Feb
+ 2023 12:11:13 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::2e4f:4041:28be:ba7a]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::2e4f:4041:28be:ba7a%6]) with mapi id 15.20.6064.032; Wed, 8 Feb 2023
+ 12:11:13 +0000
+Message-ID: <a918a254-5c8c-b5f5-853e-e70dc97a4ed0@amd.com>
+Date: Wed, 8 Feb 2023 13:11:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Content-Language: en-US
+To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-graphics-maintainer@vmware.com
+References: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
+ <20230208090106.9659-2-Amaranath.Somalapuram@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230208090106.9659-2-Amaranath.Somalapuram@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0133.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:94::20) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
- configuration to pcode
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SJ2PR12MB8064:EE_
+X-MS-Office365-Filtering-Correlation-Id: 65f621b6-87b2-43de-d214-08db09cd9219
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SGiM8/mD6MD0bvKSU+3TjodtOOjeIoDG/ZjTPB77AmqLIScdvmYyIjCIIPUTmyt7Xp8vplx58Ud4KaJZQGR6VfJ/DIjzUTkG1dcraCPJgdZ+xcVP2zYVUZe4jXWRD7GB38/U5PQoL7C++lzAyCXh1ioPQjsSbA1l6JTAnNy4d3L3/7vtrgBfq7lTQdyPnzDdDor6K4Zur5NCk9ex6/w4jwczlTvCoL8Khzdep0/xdr4dwwc/Y1uIEiLyOFIeCleHooCLBhvEzVIv1m3g1gXrdKRRpvx4x7rdbQbefHCouegDR2lmyWyqUmQd22d+khqpPTtnIsTqc8UXEH4w1IZfd6KsQt8iNlXvu5rCHTkkG3QWrwT4BAVyKkDnwZlQSFvpJbm4zH6wUtGu6Ao8CZ02RjuORRDh1P67k1rpPzmeoDWsYtxbAWRw+GE2K4sDtUisdgB23f+esPpKWYP6aq3fWvp6tRYI+WRH/0jzIt12Hl+UQZqbhiHggnp4dta84lTrnD+XI+zdcrydBCwquV0UDZbdM0uFDZtglpszcVhgO269o/EQW3Spt2tjVxt7N/Lj0ftC6TjSoCuxbI1xo+WFqJ+iVEI78HWUbsV7eg8U+8nIePJ0ciUe4dqYs71obW5d9EFx2+1f7grcGWKlqZ+wrMY8q0HfjK3zXPQlcQX6JD+Hs0456AmDngPO8jsv5ZFHFAjPiaB27lJJ9oUuwh5TPNnypkZZaV86NM0LSYutFzg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(136003)(366004)(39860400002)(396003)(376002)(451199018)(8936002)(5660300002)(2616005)(31696002)(66556008)(66476007)(6486002)(66946007)(8676002)(4326008)(38100700002)(478600001)(86362001)(41300700001)(2906002)(36756003)(316002)(83380400001)(31686004)(6512007)(186003)(6666004)(6506007)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUZRczhiVVZtU1NkS2xPN2w2Ykt2d2VsRk9HL1A1Z0RzQ1Rxc2Y1VVdxaXBP?=
+ =?utf-8?B?K3JOUWRnOSswTmlMdGpMM0YzY1FyL29IN25ZNmhNMFVPeTlsU1JBOXQ1YUJ1?=
+ =?utf-8?B?QlpWZ1hLTTZNS2RtS29QMWFLZ2k1aU4veFhZUjhHUVhlTDZYdndXcjhLOG9C?=
+ =?utf-8?B?Q3BRS09Dc2hDNjNVdHgyNDV3dnVRZ0JJYTJnL1dtWUtZQkQvbkg2UmdSOUU1?=
+ =?utf-8?B?dzBSaGZlRFg3N3hJdFpHL3liWTd4bWgrM2RrcTZPTll4RXpFYmp3d1kvUkc1?=
+ =?utf-8?B?ZUdPOTM3aHR1Ky9VVWd1NnlxaXRqY0pSMWM2TEYxcGxRUnVKSm5mNVo0L0Ny?=
+ =?utf-8?B?NU9CbVlkbXlkVWtTT1pPV2hGR0t3em9iZjFnMWZ6OTBxRm1LVEJPMmxKcmZE?=
+ =?utf-8?B?VHZ0WEptVWFaYXJUM0lxVTUyVDBzYzhEMWZZcHp3Z01ld08zSEN4aGxveXdC?=
+ =?utf-8?B?NjBzQTBnRlpKZW5Fa2JRNENoRmNQd1BiY1l2U3h5TXBYUERQSVlWc2xiYktR?=
+ =?utf-8?B?aDFReWwxUCtsOE45SE1EbVhlMnlkN0FHWXo4NEZLeDdsSXlpeXZxaElkQ3d4?=
+ =?utf-8?B?ZmtETEJoS2ltb1pnVG95bFpXVDJCeGFPUXlFd1BTMVZ2TW94bDdVUHRWWEVa?=
+ =?utf-8?B?cVU0am9MSjcyV0pnTDQrUWdoYU9sbVhHNCtaTWdKRUNzc0o4bVBPZWtoZ3NR?=
+ =?utf-8?B?QnNEZVlENjRweEtYL0cxVHlYZVlRbllyK1gybUx6QTg2NWZHS3Y2eFN2T1hy?=
+ =?utf-8?B?TGZoOFY3S0NjcFhWKzQ3M3d4TlA1L3JBS2dvQXh1THVjV3pJS2JoZDNtbjRH?=
+ =?utf-8?B?QzZmbTkrbjk5azh1MnFwR2owSVp6SmdzM2lDNkd2QWxsSlZFQXVDUlBYeWNr?=
+ =?utf-8?B?Ujg0M1ZPMStFT1JtK2J5SSs3aVlBRDhPd0hjSXQwS2YrQjZQMEtreFlBOEpr?=
+ =?utf-8?B?MlcyUkU3dE1kd25ibXJPYlJlVmg3anlOQkpwelVxQ01CMU1odGFGem5zeTlG?=
+ =?utf-8?B?b09JZWNOQWJwUUErZ2owY3BOZjR2UnQyS0F4RUdyNmk4RzZKT0x4dVk1akox?=
+ =?utf-8?B?SzFISXlZa29wWEtyTWN2ZUFzNUNVUHB3U3lHR21hSk5kbUdzZE0zVjVicmlt?=
+ =?utf-8?B?Q214Yy94VkMrTjUxL2tGdTEwTVErVGJWdTNVcFhzelgrRWRIVjRBTXFuaXcw?=
+ =?utf-8?B?bnZrNUZmQ1UxN1BVNDJkSEZXNlRPVWQ3NGZrdWJ4YkxxYjBuS3kycThMUjZk?=
+ =?utf-8?B?SHk4c2dvU2pGM01qelFUS3dPZzV2b01EeXhSaFlMZjNFSCtiOGFUMStsenFG?=
+ =?utf-8?B?Q0tGdnAwMDlweHY0L2srckY3NC85RDBGNVB2Zk42Y0QwL3dlckRweEdERCto?=
+ =?utf-8?B?d0MrQ3JoRnJDemU0MEVXNDJMeHJnZzc5VEZSbUxoNGI3T3VrOW5CK1ZYS0Mr?=
+ =?utf-8?B?dHlOTm5VcmtmZENhZ0hLL2d5VTNZQ0RaRkFtV0ZqdzQwRUxESjQwWEoyaUYv?=
+ =?utf-8?B?c3dxT1pWWTZHS1VlbDJqQXpBYi9YSkpWc21ucG50MW9tY1o2TE5mUnNsMmt5?=
+ =?utf-8?B?UjJ0WE5pRmc2VVNuWEJQM2x6bU9DdFhnZnlQUE5NdmlxY2d5S3ZwZERyQ2lR?=
+ =?utf-8?B?WkhZNWdEVjFabHU5UldSSFhDcTkvS0hYRnlOcE5hYks0b1ZQMzJIY0hOZUZw?=
+ =?utf-8?B?RHA1L3Bwd1FhNlRYaTYyL0hHTUFXV0FnVTFmQTdISVJqc2JiTGUwZng2QVE0?=
+ =?utf-8?B?M09wSnJDQjVnRWg0UmtXOVlYekVhQTdhUlhZVW1XNzV6b1FrZnREZENqYjY2?=
+ =?utf-8?B?WERiYTdiOXBQa2dDREdKZUZvQ1I0QlVQelc0Tjlvb0dYaWd3c0FOU2VxOFhK?=
+ =?utf-8?B?YWVQMjdvN3RDYTFMNlJqUy9ZdnViLzV2NU9SbXA2cVltRU1FY2FzblhYMzdX?=
+ =?utf-8?B?a1JjTE5BcnJBcVI1Q2ZwQnJQcHJibEwwV0tTTEN2OG52WFJMU3BsOWJKeFMx?=
+ =?utf-8?B?S045MDFZZXgyKzRZUHdXQ0dJeE5vNVBJT0EyVm9MRjV6elJEZzhCeFFsaTNS?=
+ =?utf-8?B?a1dZSmVuaWRGQnFLV05UZFJxbUdzYXlEWDlvNGNVN2NndHV3Z2xJMkxXL0lJ?=
+ =?utf-8?B?Rk5sM2xDSDNNSnlQV3ZmOS9GbFg2QVgrMi9tY01jeWVkdElsNmRDSHhqVHFj?=
+ =?utf-8?Q?8Zpo+CKWC0y5Gt6/4InHif/VFstkUoFCghpXXZGkP8zK?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65f621b6-87b2-43de-d214-08db09cd9219
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 12:11:12.9824 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1ZCOMQRr9MywI+v/rULwF4eQvoGtKbrsV0pnz03ZDTGoKAJhdETN7qCJ3hKpGAe6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8064
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/amdgpu: Remove TTM resource->start
+ visible VRAM condition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,220 +130,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alexander.deucher@amd.com, arunpravin.paneerselvam@amd.com,
+ arvind.yadav@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Feb 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> From: Jigar Bhatt <jigar.bhatt@intel.com>
+
+
+Am 08.02.23 um 10:01 schrieb Somalapuram Amaranath:
+> Use amdgpu_bo_in_cpu_visible_vram() instead.
 >
-> Display to communicate "display configuration" to Pcode for more accurate
-> power accounting for DG2. Existing sequence is only sending the voltage
-> value to the Pcode. Adding new sequence with current cdclk associate
-> with voltage value masking. Adding pcode request when any power well
-> will disable or enable.
->
-> v2: - Fixed identation(Stanislav Lisovskiy)
->     - Made conditions more specific(in the commit we declare that
->       we do this for DG2 only, however that commit changes >= to
->       == for many other platforms.(Stanislav Lisovskiy)
->
-> Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c   | 89 +++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_cdclk.h   |  2 +
->  drivers/gpu/drm/i915/display/intel_display.c |  6 ++
->  drivers/gpu/drm/i915/i915_reg.h              |  4 +
->  4 files changed, 98 insertions(+), 3 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 9 +++------
+>   1 file changed, 3 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 82da76b586ed..22ba0303ea28 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1908,10 +1908,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  		 * NOOP - No Pcode communication needed for
->  		 * Display versions 14 and beyond
->  		 */;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
->  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
->  				      cdclk_config->voltage_level);
-> -	else
-> +	if (DISPLAY_VER(dev_priv) < 11) {
->  		/*
->  		 * The timeout isn't specified, the 2ms used here is based on
->  		 * experiment.
-> @@ -1922,7 +1922,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
->  					      cdclk_config->voltage_level,
->  					      150, 2);
-> -
-> +	}
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
->  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-> @@ -2218,6 +2218,34 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  		    cdclk_config->voltage_level);
->  }
->  
-> +/**
-> + * intel_display_to_pcode- inform pcode for display config
-> + * @cdclk: current cdclk as per new or old state
-> + * @voltage_level: current voltage_level send to Pcode
-> + * @active_pipes: active pipes for more accurate power accounting
-> + */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> index 981010de0a28..d835ee2131d2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> @@ -600,7 +600,7 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
+>   
+>   	if (!amdgpu_gmc_vram_full_visible(&adev->gmc) &&
+>   	    bo->tbo.resource->mem_type == TTM_PL_VRAM &&
+> -	    bo->tbo.resource->start < adev->gmc.visible_vram_size >> PAGE_SHIFT)
+> +	    amdgpu_bo_in_cpu_visible_vram(bo))
+>   		amdgpu_cs_report_moved_bytes(adev, ctx.bytes_moved,
+>   					     ctx.bytes_moved);
+>   	else
+> @@ -1346,7 +1346,6 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+>   	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+>   	struct ttm_operation_ctx ctx = { false, false };
+>   	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
+> -	unsigned long offset;
+>   	int r;
+>   
+>   	/* Remember that this BO was accessed by the CPU */
+> @@ -1355,8 +1354,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+>   	if (bo->resource->mem_type != TTM_PL_VRAM)
+>   		return 0;
+>   
+> -	offset = bo->resource->start << PAGE_SHIFT;
+> -	if ((offset + bo->base.size) <= adev->gmc.visible_vram_size)
+> +	if (amdgpu_bo_in_cpu_visible_vram(abo))
+>   		return 0;
+>   
+>   	/* Can't move a pinned BO to visible VRAM */
+> @@ -1378,10 +1376,9 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+>   	else if (unlikely(r))
+>   		return VM_FAULT_SIGBUS;
+>   
+> -	offset = bo->resource->start << PAGE_SHIFT;
+>   	/* this should never happen */
+>   	if (bo->resource->mem_type == TTM_PL_VRAM &&
+> -	    (offset + bo->base.size) > adev->gmc.visible_vram_size)
+> +	    amdgpu_bo_in_cpu_visible_vram(abo))
 
-kernel-doc is usually discoraged for internal functions.
+This check needs to be inversed. E.g. we return the error if the BO is 
+not in visible VRAM.
 
-> +static void intel_display_to_pcode(struct drm_i915_private *dev_priv,
-> +				   unsigned int cdclk, u8 voltage_level,
-> +				   u8 active_pipes)
-> +{
-> +	int ret;
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 12) {
-> +		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-> +					SKL_CDCLK_PREPARE_FOR_CHANGE |
-> +					DISPLAY_TO_PCODE_MASK
-> +					(cdclk, active_pipes, voltage_level),
-> +					SKL_CDCLK_READY_FOR_CHANGE,
-> +					SKL_CDCLK_READY_FOR_CHANGE, 3);
-> +		if (ret) {
-> +			drm_err(&dev_priv->drm,
-> +					"Failed to inform PCU about display config (err %d)\n",
-> +					ret);
-> +			return;
-> +		}
-> +	}
-> +}
-> +
->  /**
->   * intel_set_cdclk - Push the CDCLK configuration to the hardware
->   * @dev_priv: i915 device
-> @@ -2287,6 +2315,61 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
->  	}
->  }
->  
-> +/**
-> + * intel_display_to_pcode_pre_notification: display to pcode notification
-> + * before the enabling power wells.
-> + * send notification with cdclk, number of pipes, voltage_level.
-> + * @state: intel atomic state
-> + */
-> +void intel_display_to_pcode_pre_notification(struct intel_atomic_state *state)
+Apart from that the patch looks good to me.
 
-The function name should indicate what is being
-notified. Pre-notification of what? Post-notification of what?
+Regards,
+Christian.
 
-Functions in this file should be prefixed intel_cdclk_*.
+>   		return VM_FAULT_SIGBUS;
+>   
+>   	ttm_bo_move_to_lru_tail_unlocked(bo);
 
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	const struct intel_cdclk_state *old_cdclk_state =
-> +		intel_atomic_get_old_cdclk_state(state);
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> +				&new_cdclk_state->actual) &&
-> +				(new_cdclk_state->active_pipes ==
-> +				old_cdclk_state->active_pipes))
-> +		return;
-> +	if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
-> +					new_cdclk_state->actual.voltage_level,
-> +					new_cdclk_state->active_pipes);
-> +		return;
-> +	}
-> +	if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk) {
-> +		intel_display_to_pcode(dev_priv, old_cdclk_state->actual.cdclk,
-> +					old_cdclk_state->actual.voltage_level,
-> +					old_cdclk_state->active_pipes);
-> +		return;
-> +	}
-> +	if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes) {
-> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
-> +					new_cdclk_state->actual.voltage_level,
-> +					new_cdclk_state->active_pipes);
-> +		return;
-> +	}
-> +	intel_display_to_pcode(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
-> +				new_cdclk_state->actual.voltage_level,
-> +				new_cdclk_state->active_pipes);
-> +}
-> +
-> +/*intel_display_to_pcode_post_notification: after frequency change sending
-> + * voltage_level, active pipes, current CDCLK frequency.
-> + * @state: intel atomic state
-> + */
-> +void intel_display_to_pcode_post_notification(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +		intel_display_to_pcode(dev_priv, new_cdclk_state->actual.cdclk,
-> +					new_cdclk_state->actual.voltage_level,
-> +					new_cdclk_state->active_pipes);
-> +}
-> +
->  /**
->   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
->   * @state: intel atomic state
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 51e2f6a11ce4..95d9d39d63be 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
->  			       const struct intel_cdclk_config *b);
->  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
->  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-> +void intel_display_to_pcode_pre_notification(struct intel_atomic_state *state);
-> +void intel_display_to_pcode_post_notification(struct intel_atomic_state *state);
->  void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  			     const struct intel_cdclk_config *cdclk_config,
->  			     const char *context);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 166662ade593..af0f0840e4b8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7462,6 +7462,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->  
->  	intel_atomic_prepare_plane_clear_colors(state);
->  
-> +	if (IS_DG2(dev_priv))
-> +		intel_display_to_pcode_pre_notification(state);
-> +
-
-This is very high level code and platform checks don't belong
-here. Let's not start now.
-
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		if (intel_crtc_needs_modeset(new_crtc_state) ||
-> @@ -7483,6 +7486,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->  		intel_modeset_verify_disabled(dev_priv, state);
->  	}
->  
-> +	if (IS_DG2(dev_priv))
-> +		intel_display_to_pcode_post_notification(state);
-> +
->  	intel_sagv_pre_plane_update(state);
->  
->  	/* Complete the events for pipes that have now been disabled */
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 596efc940ee7..b90c31862083 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6498,6 +6498,10 @@
->  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
->  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
->  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-> +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-> +#define   DISPLAY_TO_PCODE_MASK(cdclk, num_pipes, voltage_level) \
-> +		((1 << 31) | (num_pipes << 28) | \
-> +		(cdclk << 16) | (1 << 27) | voltage_level)
->  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
->  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
->  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
