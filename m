@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA0B68E5A8
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 02:55:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9873768E5A9
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 02:55:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0891010E691;
-	Wed,  8 Feb 2023 01:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAD2A10E692;
+	Wed,  8 Feb 2023 01:55:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C12F10E690
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 01:55:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B06710E692
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 01:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675821330; x=1707357330;
+ t=1675821333; x=1707357333;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jW6o6fEHRN5TbnJXmH9qD+RQ32MGpclHQX4qz/30LgU=;
- b=DdGwKXPDCCHxxzwrMRUiOJ3vy6whYh0f9JWUMyBQzX4mVsSFr1Ih/TS7
- DL30fCLGqw/91WniKMjySSU5/HZPCq92YImDbgI4q51m8ljHWKffWxg26
- fnGbCLoO+eG6+urAK6n7lPrVOsjlLMHj9EhI34s1RCWOq4fjAzig95M/n
- 0WXdZepwlVdJvMcArO0xj9J5smShlzRHvRTYp02nkCu5Fmicncy2Sp2Wr
- 4CyC92GgEiLvfg6C6Gdwb0AzGaj1c7P5wOgByNrmrAyQc3mSLPG9B/hQD
- qGnMKgqIzlWecxrLtCR9C0uWGNAxuLwKFxOCL+xMLbgzAKSaiyqpcdva+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="330974360"
-X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="330974360"
+ bh=IP0gmM0/D9ytyDK6SOvgVyRPbtVDx5xRk0QMehFw8ok=;
+ b=UeRIw1CXLyHyx5bET78xuGU8614eqkkREkX2muriIlNz1LguE1cLBWLd
+ aZZkSqLpaOndj5En1OEeG+Uh5zpZmHQKisFEEeiE5Esm5K1J54SP4FTfJ
+ 0miJ+GfZT2vnrrj8/mf13wkh7wj4NFxTYEoeEFc+/nKhNec4enDr1kdZQ
+ vCJstWOKaQHxoD0yPOz1H4ROtWZ5Ez7Cia46s244Rvms0NGjO8Z87tUWM
+ JYRClBFjFnhNMfDgaFtOxy7KuIUcClNXqXicLpvXZhDNnwJxJY8+CK3xG
+ E05aHnYDiSQkQdHlx6ubsV9+UUP5FFLm0AbcFdKk+yYZK4WKAi9exCB7x w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="330974363"
+X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="330974363"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2023 17:55:30 -0800
+ 07 Feb 2023 17:55:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="644672716"
-X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="644672716"
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="644672718"
+X-IronPort-AV: E=Sophos;i="5.97,279,1669104000"; d="scan'208";a="644672718"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga006.jf.intel.com with SMTP; 07 Feb 2023 17:55:28 -0800
+ by orsmga006.jf.intel.com with SMTP; 07 Feb 2023 17:55:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Feb 2023 03:55:27 +0200
+ Wed, 08 Feb 2023 03:55:30 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Feb 2023 03:55:04 +0200
-Message-Id: <20230208015508.24824-7-ville.syrjala@linux.intel.com>
+Date: Wed,  8 Feb 2023 03:55:05 +0200
+Message-Id: <20230208015508.24824-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
 References: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/10] drm/i915: Consult the registested
- encoders for the ICL combo PHY w/a
+Subject: [Intel-gfx] [PATCH 07/10] drm/i915: Populate encoder->devdata for
+ g4x+ DP/HDMI ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +65,87 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Display WA #1178 calls us to tweak some magic bits when doing AUX
-to an external combo PHY port. Instead of looking to see if the VBT
-has declared such a port (which could in theory even alias with a
-declared eDP port on the same PHY) just check the real situation
-based on the registered encoders.
+Let's make encoder->devdata (the VBT informaiton for the port)
+available on g4x+ platforms as well. Much easier when you can
+just grab it there instead of trying to find it from some global
+list array based on the port.
 
-The only slight chicken vs. egg situation here is during output
-probing. But typically we'd register the eDP ports first and so
-once we get to probe anything external on the combo PHY we have
-already determined if it's eDP or not.
+Note that (unlike DDI platforms) we don't currently require
+that each DP/HDMI port is actually declared in VBT. Perhaps
+in the future we may want to rethink that, but for now just
+stick in a debug+FIXME as a reminder.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_power_well.c   | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/g4x_dp.c   | 10 ++++++++++
+ drivers/gpu/drm/i915/display/g4x_hdmi.c | 10 ++++++++++
+ 2 files changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 8710dd41ffd4..56a20bf5825b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -391,6 +391,19 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
- 	hsw_wait_for_power_well_disable(dev_priv, power_well);
- }
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index fa754038d669..0cc1531a03a3 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -1279,11 +1279,19 @@ static const struct drm_encoder_funcs intel_dp_enc_funcs = {
+ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+ 		 i915_reg_t output_reg, enum port port)
+ {
++	const struct intel_bios_encoder_data *devdata;
+ 	struct intel_digital_port *dig_port;
+ 	struct intel_encoder *intel_encoder;
+ 	struct drm_encoder *encoder;
+ 	struct intel_connector *intel_connector;
  
-+static bool intel_port_is_edp(struct drm_i915_private *i915, enum port port)
-+{
-+	struct intel_encoder *encoder;
++	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
 +
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		if (encoder->type == INTEL_OUTPUT_EDP &&
-+		    encoder->port == port)
-+			return true;
-+	}
++	/* FIXME bail? */
++	if (!devdata)
++		drm_dbg_kms(&dev_priv->drm, "No VBT child device for DP-%c\n",
++			    port_name(port));
 +
-+	return false;
-+}
-+
- static void
- icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
- 				    struct i915_power_well *power_well)
-@@ -416,7 +429,7 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
+ 	if (!dig_port)
+ 		return false;
+@@ -1295,6 +1303,8 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+ 	intel_encoder = &dig_port->base;
+ 	encoder = &intel_encoder->base;
  
- 	/* Display WA #1178: icl */
- 	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
--	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
-+	    !intel_port_is_edp(dev_priv, (enum port)phy)) {
- 		val = intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
- 		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
- 		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
++	intel_encoder->devdata = devdata;
++
+ 	mutex_init(&dig_port->hdcp_mutex);
+ 
+ 	if (drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+index 64c3b3990702..e9ae4c67b8a4 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+@@ -548,10 +548,18 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
+ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port)
+ {
++	const struct intel_bios_encoder_data *devdata;
+ 	struct intel_digital_port *dig_port;
+ 	struct intel_encoder *intel_encoder;
+ 	struct intel_connector *intel_connector;
+ 
++	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
++
++	/* FIXME bail? */
++	if (!devdata)
++		drm_dbg_kms(&dev_priv->drm, "No VBT child device for HDMI-%c\n",
++			    port_name(port));
++
+ 	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
+ 	if (!dig_port)
+ 		return;
+@@ -564,6 +572,8 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 
+ 	intel_encoder = &dig_port->base;
+ 
++	intel_encoder->devdata = devdata;
++
+ 	mutex_init(&dig_port->hdcp_mutex);
+ 
+ 	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
 -- 
 2.39.1
 
