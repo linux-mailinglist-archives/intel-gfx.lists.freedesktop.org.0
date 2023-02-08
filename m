@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6198B68EF1E
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:38:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C13A968EF1D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:38:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A84B410E773;
-	Wed,  8 Feb 2023 12:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A436A10E771;
+	Wed,  8 Feb 2023 12:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0126510E773
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBEDD10E76C
  for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 12:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675859886; x=1707395886;
+ t=1675859885; x=1707395885;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=rtfe/oTEQJ45Jl4F2AZoj2YmMjYRdTWtPVHW/GN0dfw=;
- b=GG0bKifxVEBqGJAHvLIexa7c7v407swjlbdUA4PUijWXIyFQPNQmz5yN
- 2VDY/fkjng0Z5vUNIhQvlAxbuIwVvrB7RfJQngSavDhR5fcelPJ4b2kqV
- kp0hDpqFtwzosjHf0iSacO8b/qd+63oBKkg+SA+l6b9KFV0vu+rF5JQUe
- +q3M7JQKbFO7U/qEYiVcEVvNTH66GR8S/F4gmP/sDaa1MBHJeooGIW3EU
- zWtgTMyhWfeuzfOsu6ZPg98Y0pPrXF7zvYcZ2q1NHHw2vdAiq1FO584ey
- kHqcODXoP/p3kzmDCecd4PuMGmeKSRt5YessQDEJ3tc6asqljkGsYTbsv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313425677"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313425677"
+ bh=I0Ew9aYs3CFE2JWPoEf5XA9IQcJWWwIY9K2aEensB+Q=;
+ b=IDFqKcYAf8PqLQ+PxU6m1nc9KvCx9lts1YB9vk68RVodwI2+UuwZYqjw
+ nlMnLT029VxHCz5ITEFzGlUn3oI9/t/7LhvwkJRyAvttXgNjMkiXa7WwE
+ 0hVdqKm7Je165RKH2nVYGEnjj/dbNzkM2DwcxtyaxdJIQaCD2ojsgmc0z
+ J6/UjBaDz2ipFqQux/2HNWLnNha/Rjy2G9o2zkhlzrOs7InYgGSbDGyGO
+ LxSHwSgx8j+YxiffEGFRhwbbxiXzsjz8lygeqPWfOQ+cZs4ldVI1si9g2
+ NavmKl528Ja62fzhN0vEx79aNnskwmvxXJFufq99PuxUx9VAGQNOluCGO w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313425674"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313425674"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Feb 2023 04:38:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="809929264"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="809929264"
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="809929261"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="809929261"
 Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
  by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2023 04:38:04 -0800
 Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pPji7-0004Rb-1O;
+ (envelope-from <lkp@intel.com>) id 1pPji7-0004RY-1I;
  Wed, 08 Feb 2023 12:38:03 +0000
-Date: Wed, 8 Feb 2023 20:37:19 +0800
+Date: Wed, 8 Feb 2023 20:37:20 +0800
 From: kernel test robot <lkp@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202302082058.02NjQHJ5-lkp@intel.com>
+Message-ID: <202302082001.KuQFCeRp-lkp@intel.com>
 References: <6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -60,7 +60,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Cc: jani.nikula@intel.com, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -74,33 +74,26 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-move
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula%40intel.com
 patch subject: [Intel-gfx] [PATCH 04/10] drm/i915/wm: add .get_hw_state to watermark funcs
-config: x86_64-randconfig-a002-20230206 (https://download.01.org/0day-ci/archive/20230208/202302082058.02NjQHJ5-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+config: x86_64-randconfig-a013-20230206 (https://download.01.org/0day-ci/archive/20230208/202302082001.KuQFCeRp-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
 reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
         # https://github.com/intel-lab-lkp/linux/commit/3be1dad7406a8c767260601b10af82797025aae3
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Jani-Nikula/drm-i915-move-memory-frequency-detection-to-intel_dram-c/20230208-175057
         git checkout 3be1dad7406a8c767260601b10af82797025aae3
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
 
 All warnings (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/display/i9xx_wm.c:3824:6: warning: no previous prototype for function 'ilk_wm_get_hw_state' [-Wmissing-prototypes]
-   void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
-        ^
-   drivers/gpu/drm/i915/display/i9xx_wm.c:3824:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
-   ^
-   static 
-   1 warning generated.
+>> drivers/gpu/drm/i915/display/i9xx_wm.c:3824:6: warning: no previous prototype for 'ilk_wm_get_hw_state' [-Wmissing-prototypes]
+    3824 | void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+         |      ^~~~~~~~~~~~~~~~~~~
 
 
 vim +/ilk_wm_get_hw_state +3824 drivers/gpu/drm/i915/display/i9xx_wm.c
