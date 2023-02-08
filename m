@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2252A68EEFD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:31:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6198B68EF1E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Feb 2023 13:38:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 905E710E76C;
-	Wed,  8 Feb 2023 12:31:48 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00EBB10E769;
- Wed,  8 Feb 2023 12:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A84B410E773;
+	Wed,  8 Feb 2023 12:38:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0126510E773
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Feb 2023 12:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675859506; x=1707395506;
+ t=1675859886; x=1707395886;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=6KZsL++023J+OB6Ik+OVKqYUV01/584WDCGmA8ZCfkU=;
- b=BPkLW0MY05QlTfuWuOv/k+rcTrPWDF9EY1plxrW63X/3CuzlUkHNYZhI
- XnZ3YnBIPjZMPe8gtWd8fOm8NVDIQKu5fFI2UzWJbxrbS4PWjdZMEqgkf
- NKzzi2IlCSqvp7cWELtRv574rYaj+/g7VfGcNgiUtstdnoqtLrGwS5RaG
- +oI9vtNZGlniKMOx1Ut8DTglckm9anQYx+MxwXeh6fyv0abkFGqb0hTv/
- U6A6QKYPA9xlR8WOcXw6l0CGsI7T5nTuFoWNUSwoJ9yqVGsotgYnVV13N
- wBIip0o7+buZQTpNNl7oLh99KGSdD+yECKXpfCcGLj1tp1So3mOHlsUcZ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="327479613"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="327479613"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 04:31:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="730849017"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="730849017"
-Received: from kwolowsk-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.9.40])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 04:31:44 -0800
-Date: Wed, 8 Feb 2023 13:31:42 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230208123142.zudgou6bjt7qbin4@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org,
- Caleb Callaway <caleb.callaway@intel.com>
-References: <20230203111636.4138202-1-tvrtko.ursulin@linux.intel.com>
- <20230203111636.4138202-2-tvrtko.ursulin@linux.intel.com>
+ bh=rtfe/oTEQJ45Jl4F2AZoj2YmMjYRdTWtPVHW/GN0dfw=;
+ b=GG0bKifxVEBqGJAHvLIexa7c7v407swjlbdUA4PUijWXIyFQPNQmz5yN
+ 2VDY/fkjng0Z5vUNIhQvlAxbuIwVvrB7RfJQngSavDhR5fcelPJ4b2kqV
+ kp0hDpqFtwzosjHf0iSacO8b/qd+63oBKkg+SA+l6b9KFV0vu+rF5JQUe
+ +q3M7JQKbFO7U/qEYiVcEVvNTH66GR8S/F4gmP/sDaa1MBHJeooGIW3EU
+ zWtgTMyhWfeuzfOsu6ZPg98Y0pPrXF7zvYcZ2q1NHHw2vdAiq1FO584ey
+ kHqcODXoP/p3kzmDCecd4PuMGmeKSRt5YessQDEJ3tc6asqljkGsYTbsv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="313425677"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="313425677"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 04:38:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="809929264"
+X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; d="scan'208";a="809929264"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+ by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2023 04:38:04 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pPji7-0004Rb-1O;
+ Wed, 08 Feb 2023 12:38:03 +0000
+Date: Wed, 8 Feb 2023 20:37:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202302082058.02NjQHJ5-lkp@intel.com>
+References: <6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230203111636.4138202-2-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/3] intel_gpu_top: Do not repeat
- header lines in non-interactive output
+In-Reply-To: <6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915/wm: add .get_hw_state to
+ watermark funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,84 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Caleb Callaway <caleb.callaway@intel.com>
+Cc: jani.nikula@intel.com, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+Hi Jani,
 
-one small nit, see below.
+I love your patch! Perhaps something to improve:
 
-On 2023-02-03 at 11:16:34 +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> If output is redirected to a file, or a pipe, lets not repeat the headers
-> because that can usually mean user is trying to parse the data later and
-> so repeated headers are a hindrance.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Caleb Callaway <caleb.callaway@intel.com>
-> ---
->  tools/intel_gpu_top.c | 19 ++++++++++++++-----
->  1 file changed, 14 insertions(+), 5 deletions(-)
-> 
-> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index 0a1de41b3374..e2a7f4753099 100644
-> --- a/tools/intel_gpu_top.c
-> +++ b/tools/intel_gpu_top.c
-> @@ -1391,6 +1391,7 @@ static unsigned int stdout_level;
->  
->  #define STDOUT_HEADER_REPEAT 20
->  static unsigned int stdout_lines = STDOUT_HEADER_REPEAT;
-> +static bool stdout_header_repeat;
->  
->  static void
->  stdout_open_struct(const char *name)
-> @@ -1580,16 +1581,22 @@ static const struct print_operations term_pops = {
->  
->  static bool print_groups(struct cnt_group **groups)
->  {
-> -	unsigned int headers = stdout_lines % STDOUT_HEADER_REPEAT + 1;
-> +	static bool headers_printed = false;
------------------------------------ ^
-Remove this initialization (use checkpatch from Linux kernel).
+[auto build test WARNING on drm-tip/drm-tip]
 
-Please correct and resend (you can keep my r-b).
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-move-memory-frequency-detection-to-intel_dram-c/20230208-175057
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/6fc335ec79f163b7a612af012ce07be6d98f2ef9.1675849634.git.jani.nikula%40intel.com
+patch subject: [Intel-gfx] [PATCH 04/10] drm/i915/wm: add .get_hw_state to watermark funcs
+config: x86_64-randconfig-a002-20230206 (https://download.01.org/0day-ci/archive/20230208/202302082058.02NjQHJ5-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3be1dad7406a8c767260601b10af82797025aae3
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jani-Nikula/drm-i915-move-memory-frequency-detection-to-intel_dram-c/20230208-175057
+        git checkout 3be1dad7406a8c767260601b10af82797025aae3
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Regards,
-Kamil
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
 
->  	bool print_data = true;
->  
-> -	if (output_mode == STDOUT && (headers == 1 || headers == 2)) {
-> -		for (struct cnt_group **grp = groups; *grp; grp++)
-> -			print_data = pops->print_group(*grp, headers);
-> +	if (output_mode == STDOUT &&
-> +	    (stdout_header_repeat || !headers_printed)) {
-> +		unsigned int headers = stdout_lines % STDOUT_HEADER_REPEAT + 1;
-> +
-> +		if (headers == 1 || headers == 2)
-> +			for (struct cnt_group **grp = groups; *grp; grp++)
-> +				print_data = pops->print_group(*grp, headers);
-> +
-> +		headers_printed = print_data;
->  	}
->  
->  	for (struct cnt_group **grp = groups; print_data && *grp; grp++)
-> -		pops->print_group(*grp, false);
-> +		pops->print_group(*grp, 0);
->  
->  	return print_data;
->  }
-> @@ -2512,6 +2519,8 @@ int main(int argc, char **argv)
->  		out = stdout;
->  	}
->  
-> +	stdout_header_repeat = output_mode == STDOUT && isatty(fileno(out));
-> +
->  	if (signal(SIGINT, sigint_handler) == SIG_ERR)
->  		fprintf(stderr, "Failed to install signal handler!\n");
->  
-> -- 
-> 2.34.1
-> 
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/i9xx_wm.c:3824:6: warning: no previous prototype for function 'ilk_wm_get_hw_state' [-Wmissing-prototypes]
+   void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+        ^
+   drivers/gpu/drm/i915/display/i9xx_wm.c:3824:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+   ^
+   static 
+   1 warning generated.
+
+
+vim +/ilk_wm_get_hw_state +3824 drivers/gpu/drm/i915/display/i9xx_wm.c
+
+f21b5d6fc26440 Jani Nikula 2023-02-08  3823  
+f21b5d6fc26440 Jani Nikula 2023-02-08 @3824  void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+f21b5d6fc26440 Jani Nikula 2023-02-08  3825  {
+f21b5d6fc26440 Jani Nikula 2023-02-08  3826  	struct ilk_wm_values *hw = &dev_priv->display.wm.hw;
+f21b5d6fc26440 Jani Nikula 2023-02-08  3827  	struct intel_crtc *crtc;
+f21b5d6fc26440 Jani Nikula 2023-02-08  3828  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3829  	ilk_init_lp_watermarks(dev_priv);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3830  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3831  	for_each_intel_crtc(&dev_priv->drm, crtc)
+f21b5d6fc26440 Jani Nikula 2023-02-08  3832  		ilk_pipe_wm_get_hw_state(crtc);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3833  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3834  	hw->wm_lp[0] = intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3835  	hw->wm_lp[1] = intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3836  	hw->wm_lp[2] = intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3837  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3838  	hw->wm_lp_spr[0] = intel_uncore_read(&dev_priv->uncore, WM1S_LP_ILK);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3839  	if (DISPLAY_VER(dev_priv) >= 7) {
+f21b5d6fc26440 Jani Nikula 2023-02-08  3840  		hw->wm_lp_spr[1] = intel_uncore_read(&dev_priv->uncore, WM2S_LP_IVB);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3841  		hw->wm_lp_spr[2] = intel_uncore_read(&dev_priv->uncore, WM3S_LP_IVB);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3842  	}
+f21b5d6fc26440 Jani Nikula 2023-02-08  3843  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3844  	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
+f21b5d6fc26440 Jani Nikula 2023-02-08  3845  		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, WM_MISC) &
+f21b5d6fc26440 Jani Nikula 2023-02-08  3846  				    WM_MISC_DATA_PARTITION_5_6) ?
+f21b5d6fc26440 Jani Nikula 2023-02-08  3847  			INTEL_DDB_PART_5_6 : INTEL_DDB_PART_1_2;
+f21b5d6fc26440 Jani Nikula 2023-02-08  3848  	else if (IS_IVYBRIDGE(dev_priv))
+f21b5d6fc26440 Jani Nikula 2023-02-08  3849  		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2) &
+f21b5d6fc26440 Jani Nikula 2023-02-08  3850  				    DISP_DATA_PARTITION_5_6) ?
+f21b5d6fc26440 Jani Nikula 2023-02-08  3851  			INTEL_DDB_PART_5_6 : INTEL_DDB_PART_1_2;
+f21b5d6fc26440 Jani Nikula 2023-02-08  3852  
+f21b5d6fc26440 Jani Nikula 2023-02-08  3853  	hw->enable_fbc_wm =
+f21b5d6fc26440 Jani Nikula 2023-02-08  3854  		!(intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) & DISP_FBC_WM_DIS);
+f21b5d6fc26440 Jani Nikula 2023-02-08  3855  }
+f21b5d6fc26440 Jani Nikula 2023-02-08  3856  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
