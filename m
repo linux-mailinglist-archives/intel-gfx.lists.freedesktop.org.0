@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3A669046B
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 11:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C092C690471
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 11:09:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5005010E98A;
-	Thu,  9 Feb 2023 10:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0F910E98A;
+	Thu,  9 Feb 2023 10:09:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6D6C10E98A
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 10:06:27 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9CE810E98A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 10:09:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675937187; x=1707473187;
+ t=1675937342; x=1707473342;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=RBLPUzeAo1BlpCWsv8IoWcv5Zxq1yB+DPODANxWvEQk=;
- b=GVXUB2Zf+wjU2V9mqvNzOaF0QtGhNsCEhnztoB0r0V40sj9VmWZlChwl
- YpJlusfmtsUZhAmDK/NexEdYwaD+oYSz1jJTNNkuxLmdUASnz+g4u6Q0f
- qXd1eNA1BpZgpKDOXD1oads6UqqZgwYhzNt4JYSP2W1+kXFAdzjw+lsPI
- dH6oIScVvtt0j54akTUowiroyMhCxtye9dF4Ab5vLccr7CXeonwdNlLRm
- 9MTnmLmBp32q9HYkaKiK8zjYCPFNhiVbQwaC0p4e/YxW4XvEPtdNZ33XB
- 6K62jpTIM0oeG24zaNM7cRCT2BOm0rhi9kszn2vPEkPLh7mxDYQDklu5f A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="331354772"
-X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="331354772"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2023 02:06:27 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="697969951"
-X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="697969951"
+ bh=g7WnsC+B0ayej/Gohvxgl7TLYUBE3aGonWQxur5rPQM=;
+ b=Duz35ZcHS18JDtB+ELTXpvbHx1zTgFXuC7/KW3h5tSriYPJF4P+mJWhD
+ mduTXvxXhilZgzoTB1Lk55mZZDvMCyY5QuHGY1qi/zBi63rQsfRKLAVWR
+ /yjgmUylpxDwp1egEvffR3ClRpITKK53ewggF2fmGq0SMbQyIGbAz4PTV
+ XfcLpiLXLVqPdTdxW6gkG9f7fqqeqfzLqOL/OJ2sM3fi42U7ftaSW2ECr
+ W9+f4b2y6BjSiUq7DVUqhNJfgs27rJIo3Y1l7k6DXqsxiod+w9g8F2dOd
+ 64ZdUrm0bNiTLLnP6XAoUYotWwvVp4RC7RPhcw/8klp180lQPoyJYF8Qh A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="392450833"
+X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="392450833"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2023 02:09:02 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="660944321"
+X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="660944321"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2023 02:06:25 -0800
-Date: Thu, 9 Feb 2023 12:06:16 +0200
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2023 02:09:02 -0800
+Date: Thu, 9 Feb 2023 12:08:58 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y+TFmJkqLPG5lM1R@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y+TGOiWdl42KnJ1W@intel.com>
 References: <20230208094550.27730-1-stanislav.lisovskiy@intel.com>
- <87cz6kxtun.fsf@intel.com>
+ <Y+Ogay8+nKGJmhGe@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87cz6kxtun.fsf@intel.com>
+In-Reply-To: <Y+Ogay8+nKGJmhGe@intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
  configuration to pcode
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -62,21 +62,34 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 08, 2023 at 01:46:40PM +0200, Jani Nikula wrote:
-> On Wed, 08 Feb 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+On Wed, Feb 08, 2023 at 08:15:23AM -0500, Rodrigo Vivi wrote:
+> On Wed, Feb 08, 2023 at 11:45:50AM +0200, Stanislav Lisovskiy wrote:
 > > From: Jigar Bhatt <jigar.bhatt@intel.com>
-> >
+> > 
 > > Display to communicate "display configuration" to Pcode for more accurate
 > > power accounting for DG2. Existing sequence is only sending the voltage
 > > value to the Pcode. Adding new sequence with current cdclk associate
 > > with voltage value masking. Adding pcode request when any power well
 > > will disable or enable.
-> >
+> > 
 > > v2: - Fixed identation(Stanislav Lisovskiy)
 > >     - Made conditions more specific(in the commit we declare that
 > >       we do this for DG2 only, however that commit changes >= to
 > >       == for many other platforms.(Stanislav Lisovskiy)
-> >
+> 
+> 
+> Is this a DG2 only thing? or more like DGFX in general?
+> what about DG1?
+
+Need to check this, took over this task from Jigar, so not fully
+aware currently. At least my understanding and what commit says
+is that this is for DG2. Agree need to check if we can extend this
+to other platforms..
+
+Stan
+
+> 
+> > 
 > > Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
 > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > > ---
@@ -85,7 +98,7 @@ On Wed, Feb 08, 2023 at 01:46:40PM +0200, Jani Nikula wrote:
 > >  drivers/gpu/drm/i915/display/intel_display.c |  6 ++
 > >  drivers/gpu/drm/i915/i915_reg.h              |  4 +
 > >  4 files changed, 98 insertions(+), 3 deletions(-)
-> >
+> > 
 > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
 > > index 82da76b586ed..22ba0303ea28 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
@@ -122,9 +135,6 @@ On Wed, Feb 08, 2023 at 01:46:40PM +0200, Jani Nikula wrote:
 > > + * @voltage_level: current voltage_level send to Pcode
 > > + * @active_pipes: active pipes for more accurate power accounting
 > > + */
-> 
-> kernel-doc is usually discoraged for internal functions.
-> 
 > > +static void intel_display_to_pcode(struct drm_i915_private *dev_priv,
 > > +				   unsigned int cdclk, u8 voltage_level,
 > > +				   u8 active_pipes)
@@ -161,12 +171,6 @@ On Wed, Feb 08, 2023 at 01:46:40PM +0200, Jani Nikula wrote:
 > > + * @state: intel atomic state
 > > + */
 > > +void intel_display_to_pcode_pre_notification(struct intel_atomic_state *state)
-> 
-> The function name should indicate what is being
-> notified. Pre-notification of what? Post-notification of what?
-> 
-> Functions in this file should be prefixed intel_cdclk_*.
-> 
 > > +{
 > > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
 > > +	const struct intel_cdclk_state *old_cdclk_state =
@@ -242,19 +246,6 @@ On Wed, Feb 08, 2023 at 01:46:40PM +0200, Jani Nikula wrote:
 > > +	if (IS_DG2(dev_priv))
 > > +		intel_display_to_pcode_pre_notification(state);
 > > +
-> 
-> This is very high level code and platform checks don't belong
-> here. Let's not start now.
-
-Ohhh. Totally agree. That is one of those cases, when you wonder
-"why I didn't spot this myself(((". 
-Looks like I was a bit too soon with resending Jigar's patch, I took
-over. Just looked briefly for some obvious things.
-Will fix that.
-
-Stan
-
-> 
 > >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
 > >  					    new_crtc_state, i) {
 > >  		if (intel_crtc_needs_modeset(new_crtc_state) ||
@@ -283,6 +274,6 @@ Stan
 > >  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
 > >  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
 > >  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> > -- 
+> > 2.37.3
+> > 
