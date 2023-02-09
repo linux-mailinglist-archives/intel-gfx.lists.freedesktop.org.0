@@ -1,59 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E54690215
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 09:25:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1007369023B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 09:36:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 540DB10E947;
-	Thu,  9 Feb 2023 08:25:30 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C14010E92F;
- Thu,  9 Feb 2023 08:25:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675931129; x=1707467129;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Mh2ZogLL1yGUIioJ4VcGClIhVIm7/7upo5ccRQpZtt8=;
- b=J2yIala0+p/Sn7PnOk8FaHX0m+4PKVS+uD+rXcngr3vvtvNf0agOCmAT
- StBzfVt9O0si6KvLfTyL0x8raFicuMq0R3gZBrAeT7vMIGYJHhQxIT0Rz
- WdqqS5V5z/4SDdC5wgW9USUxtHbUpiTPjZwteOJ+/Anzd5Youk1Xziydj
- 2ipuUu7RO6wsHYrKUT9aycvydfyz3nWV5A5FXTJ0CP2moU6DxjajqpI18
- zKG6K5DTnCcmKxYW+L2YyCX8MKzyHBocX2eYmzTzSNleaSpzscpp83YO3
- oKBsYj8itfDIHwPf+qmHyJzt7d97vID9DNCHRl8bvdVAWDj9nVxJJtsGH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="330073685"
-X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="330073685"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2023 00:25:28 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="756331229"
-X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="756331229"
-Received: from jptoner-mobl2.ger.corp.intel.com (HELO [10.213.192.123])
- ([10.213.192.123])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2023 00:24:58 -0800
-Message-ID: <2825c998-3e11-ccc0-0e0a-ebb874d569fb@linux.intel.com>
-Date: Thu, 9 Feb 2023 08:24:56 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id A48EE10E959;
+	Thu,  9 Feb 2023 08:36:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95E1010E957;
+ Thu,  9 Feb 2023 08:36:06 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id E5CF4581F5B;
+ Thu,  9 Feb 2023 03:36:03 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 09 Feb 2023 03:36:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm2; t=
+ 1675931763; x=1675938963; bh=VI1F6qQwdnd2e/jklyUoxXjZqqg0CwEfy3v
+ gBWoA9XE=; b=LJP6WhY3JUuLN3032F4mQEvNtoV0gpe7Afcb5aDE8XSeBgcFP/K
+ jd1tBJ+EQXrA3t5m7q5/9qJ4i59t+GO6qYDjmGJPsO/tcuXTYYVmtXccREs0VJek
+ g2eh0nOuGiI7Jt5oA6vCXzqcxxl5xB1Jt+Eq6VFlPJnV1IhfbBNJksGQB1QnFVFw
+ RJ93ntQbQSme6YRCyqoIJts8xuFAi8DNSzyaiTlXub8n+VNeXafFjzS5tg2QFCwg
+ FGD5j7ISJKwAeeyIh0toxlMhifsFcF3dOzmH70ulLr9ZPVmPFH5OEOUDywD3gVQ+
+ eonPMrh1xHL9xyThYUaweVG485xhafRwX1A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1675931763; x=
+ 1675938963; bh=VI1F6qQwdnd2e/jklyUoxXjZqqg0CwEfy3vgBWoA9XE=; b=C
+ Q1T5jCRyvTJhVGRK+sRvUZLYcqB7JWE9FVXhqhzUiJEFokpkoHJDdpLgfiKS/CI7
+ TV8CyCU5ga5tigpmS18RjauXn2dxvvTLodqR3SX+tqHi7goJXdM8UGBu9IRH9aeG
+ 0wS2Lz1oWASrn20v1lKg+Zgri8dJDM7QabXe4tS+lMcazEUtJ4AxcabasdSaMzMW
+ 7Z9sMdTFlDJ6C6kY9Z+gXqfMWEzK4qvJ5q4HlNLwuANOogUWyGwnFtyHMEscetyE
+ 714fYEm/HuzUb3r/xql2RISjQz3QF6HH6rM4D635zJBYStcddM2fGCnIYxJ8bLam
+ /NZrqoE/TJto3QbskCPZQ==
+X-ME-Sender: <xms:c7DkYwadd3jmK2xCOGylQvPITAVnmfbfaVW_lA8qxR75XwFvxSdiYQ>
+ <xme:c7DkY7Zbf_8DHL0c8OaYY8U4Xd4sz5gAkrqhAZikz-B9C4BEIexLSIk4J7sFHdBaU
+ -_NBmuKV5oPu_f7YjE>
+X-ME-Received: <xmr:c7DkY6_ox4x2DDMtRcrIe4Zr3NDkZOMLRUx3QRo_WTLvk6u3dJZMTyrJ5AHNqa2njFKTsg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudehvddgieehucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeekheejgeeuhfethffgheekhedufeduhfejgfehffekudefgedugffhkeefhfev
+ vdenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:c7DkY6q4YhRmtWyXWrXZXpa6VVg1Z0jy8S-HUUCRM1hxebxcwBtw6g>
+ <xmx:c7DkY7og7URyQe1KCoA3Rx9zKdqC5nSoCgHaGbt57MPKkUtrAa9L4g>
+ <xmx:c7DkY4SnvFyf3QgUfzsW9pYtMks1bTepH3haDLrIQ7vxZz5JI6AaBA>
+ <xmx:c7DkY0ayDbNO7DMYSILAb7gjfmpv-6KWkkoIi-aZ6Ju2h0Qmhclzng>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 9 Feb 2023 03:36:02 -0500 (EST)
+Date: Thu, 9 Feb 2023 09:36:00 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230209083600.7hi6roht6xxgldgz@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- Caleb Callaway <caleb.callaway@intel.com>
-References: <20230203111636.4138202-1-tvrtko.ursulin@linux.intel.com>
- <20230203111636.4138202-2-tvrtko.ursulin@linux.intel.com>
- <20230208123142.zudgou6bjt7qbin4@kamilkon-desk1>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230208123142.zudgou6bjt7qbin4@kamilkon-desk1>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/3] intel_gpu_top: Do not repeat
- header lines in non-interactive output
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="u3oitxqnyciu556w"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,53 +81,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 08/02/2023 12:31, Kamil Konieczny wrote:
-> Hi Tvrtko,
-> 
-> one small nit, see below.
-> 
-> On 2023-02-03 at 11:16:34 +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> If output is redirected to a file, or a pipe, lets not repeat the headers
->> because that can usually mean user is trying to parse the data later and
->> so repeated headers are a hindrance.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Caleb Callaway <caleb.callaway@intel.com>
->> ---
->>   tools/intel_gpu_top.c | 19 ++++++++++++++-----
->>   1 file changed, 14 insertions(+), 5 deletions(-)
->>
->> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
->> index 0a1de41b3374..e2a7f4753099 100644
->> --- a/tools/intel_gpu_top.c
->> +++ b/tools/intel_gpu_top.c
->> @@ -1391,6 +1391,7 @@ static unsigned int stdout_level;
->>   
->>   #define STDOUT_HEADER_REPEAT 20
->>   static unsigned int stdout_lines = STDOUT_HEADER_REPEAT;
->> +static bool stdout_header_repeat;
->>   
->>   static void
->>   stdout_open_struct(const char *name)
->> @@ -1580,16 +1581,22 @@ static const struct print_operations term_pops = {
->>   
->>   static bool print_groups(struct cnt_group **groups)
->>   {
->> -	unsigned int headers = stdout_lines % STDOUT_HEADER_REPEAT + 1;
->> +	static bool headers_printed = false;
-> ----------------------------------- ^
-> Remove this initialization (use checkpatch from Linux kernel).
-> 
-> Please correct and resend (you can keep my r-b).
+--u3oitxqnyciu556w
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixed and pushed, thanks for the review!
+Hi Dave, Daniel,
 
-Regards,
+Here's this week drm-misc-fixes PR
 
-Tvrtko
+Maxime
+
+drm-misc-fixes-2023-02-09:
+A fix for a circular refcounting in drm/client, one for a memory leak in
+amdgpu and a virtio fence fix when interrupted
+The following changes since commit a3ee9e0b57f8ecca02d1c16fad4941e09bfe2941:
+
+  drm/panel: boe-tv101wum-nl6: Ensure DSI writes succeed during disable (20=
+23-02-01 11:41:15 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-02-09
+
+for you to fetch changes up to 85e26dd5100a182bf8448050427539c0a66ab793:
+
+  drm/client: fix circular reference counting issue (2023-02-07 09:42:56 +0=
+100)
+
+----------------------------------------------------------------
+A fix for a circular refcounting in drm/client, one for a memory leak in
+amdgpu and a virtio fence fix when interrupted
+
+----------------------------------------------------------------
+Bert Karwatzki (1):
+      drm/amdgpu: fix memory leak in amdgpu_cs_sync_rings
+
+Christian K=F6nig (1):
+      drm/client: fix circular reference counting issue
+
+Ryan Neph (1):
+      drm/virtio: exbuf->fence_fd unmodified on interrupted wait
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c |  5 ++++-
+ drivers/gpu/drm/drm_client.c           | 33 ++++++++++++++++++++----------=
+---
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c |  5 +----
+ include/drm/drm_client.h               |  5 -----
+ include/uapi/drm/virtgpu_drm.h         |  1 +
+ 5 files changed, 26 insertions(+), 23 deletions(-)
+
+--u3oitxqnyciu556w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY+SwcAAKCRDj7w1vZxhR
+xU/NAQD1IHX9BnOcsLN7opP6XSCjNMuzwU67vm17u1g+ZhMArgD+Jw6tPIzZqMBT
+izRNyZFor67fPtDnnFQ2P3YgMdqdLgs=
+=Wo3Q
+-----END PGP SIGNATURE-----
+
+--u3oitxqnyciu556w--
