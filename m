@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76BC691432
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 00:04:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F4D691449
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 00:22:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6480B10E123;
-	Thu,  9 Feb 2023 23:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDB5610EBF6;
+	Thu,  9 Feb 2023 23:22:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5CDD910E123;
- Thu,  9 Feb 2023 23:04:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 54AC7AADD5;
- Thu,  9 Feb 2023 23:04:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9121705006341027550=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB81910EBF6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 23:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675984953; x=1707520953;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hwyaMv5JrtDQClAoEBmYU6tp8N19nrA5DHAxDd8MLZw=;
+ b=aTx+eh0QThJIpNQXd0l9URSnHYVsDjcrE32OSD3SOw6xgV0wG2XnXGhH
+ QmsdGaI9eLUyKHX0p6Gp2Tp3t9RNhkaJNKsdiL13wiguhNQo739w6hfu7
+ kB8aqtPa5BjA7SIGBXBEtxZdPF20NPngffr4hyU2xdYJ1vzjN9bjSNdJl
+ PN3X3uLCpMT4TvNHon3wZe1j7m39b5IAvZGlSBtwWlSFE6UUfSX8z9o42
+ /1oPN5fMzJZOubkdQNaYZBi+pQnMae8GXjRjGoIrwD2+jQhfSf55aLTnI
+ nIbCV+QShQdulzWpP3AUXdowGB8T9wUZsKYn+74S0c7wPo/WcYPsMwlZ/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10616"; a="416505837"
+X-IronPort-AV: E=Sophos;i="5.97,285,1669104000"; d="scan'208";a="416505837"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2023 15:22:33 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10616"; a="756588974"
+X-IronPort-AV: E=Sophos;i="5.97,285,1669104000"; d="scan'208";a="756588974"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2023 15:22:33 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Feb 2023 15:22:28 -0800
+Message-Id: <20230209232228.859317-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 09 Feb 2023 23:04:18 -0000
-Message-ID: <167598385831.20200.3874811634493812427@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230209003251.32021-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230209003251.32021-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Populate_wm=2Emax=5Flev?=
- =?utf-8?q?el_for_everyone_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/xehp: LNCF/LBCF workarounds should
+ be on the GT list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,208 +55,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9121705006341027550==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Although registers in the L3 bank/node configuration ranges are marked
+as having "DEV" reset characteristics in the bspec, this appears to be a
+hold-over from pre-Xe_HP platforms.  In reality, these registers
+maintain their values across engine resets, meaning that workarounds
+and tuning settings targetting them should be placed on the GT
+workaround list rather than an engine workaround list.
 
-== Series Details ==
+Note that an extra clue here is that these registers moved from the
+RENDER forcewake domain to the GT forcewake domain in Xe_HP; generally
+RCS/CCS engine resets should not lead to the reset of a register that
+lives outside the RENDER domain.
 
-Series: series starting with [1/2] drm/i915: Populate wm.max_level for everyone (rev3)
-URL   : https://patchwork.freedesktop.org/series/113808/
-State : success
+Re-applying these registers on engine resets wouldn't actually hurt
+anything, but is unnecessary and just makes it more confusing to anyone
+trying to decipher how these registers really work.
 
-== Summary ==
+v2:
+ - Also move DG2's Wa_14010648519 to the GT list.  (Gustavo)
 
-CI Bug Log - changes from CI_DRM_12722 -> Patchwork_113808v3
-====================================================
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 70 ++++++++++++---------
+ 1 file changed, 42 insertions(+), 28 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 8859eb118510..989e9578e122 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1499,6 +1499,12 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	/* Wa_1409757795:xehpsdv */
+ 	wa_mcr_write_or(wal, SCCGCTL94DC, CG3DDISURB);
+ 
++	/* Wa_18011725039:xehpsdv */
++	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A1, STEP_B0)) {
++		wa_mcr_masked_dis(wal, MLTICTXCTL, TDONRENDER);
++		wa_mcr_write_or(wal, L3SQCREG1_CCS0, FLUSHALLNONCOH);
++	}
++
+ 	/* Wa_16011155590:xehpsdv */
+ 	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE,
+@@ -1548,6 +1554,9 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	/* Wa_14014368820:xehpsdv */
+ 	wa_mcr_write_or(wal, XEHP_GAMCNTRL_CTRL,
+ 			INVALIDATION_BROADCAST_MODE_DIS | GLOBAL_INVALIDATION_MODE);
++
++	/* Wa_14010670810:xehpsdv */
++	wa_mcr_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
+ }
+ 
+ static void
+@@ -1669,6 +1678,9 @@ dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	/* Wa_1509235366:dg2 */
+ 	wa_mcr_write_or(wal, XEHP_GAMCNTRL_CTRL,
+ 			INVALIDATION_BROADCAST_MODE_DIS | GLOBAL_INVALIDATION_MODE);
++
++	/* Wa_14010648519:dg2 */
++	wa_mcr_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
+ }
+ 
+ static void
+@@ -1684,6 +1696,9 @@ pvc_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	wa_mcr_write_or(wal, COMP_MOD_CTRL, FORCE_MISS_FTLB);
+ 	wa_mcr_write_or(wal, XEHP_VDBX_MOD_CTRL, FORCE_MISS_FTLB);
+ 	wa_mcr_write_or(wal, XEHP_VEBX_MOD_CTRL, FORCE_MISS_FTLB);
++
++	/* Wa_16016694945 */
++	wa_mcr_masked_en(wal, XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC);
+ }
+ 
+ static void
+@@ -1724,11 +1739,36 @@ xelpmp_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	debug_dump_steering(gt);
+ }
+ 
++/*
++ * The bspec performance guide has recommended MMIO tuning settings.  These
++ * aren't truly "workarounds" but we want to program them through the
++ * workaround infrastructure to make sure they're (re)applied at the proper
++ * times.
++ *
++ * The settings in this function are for settings that persist through
++ * engine resets and also are not part of any engine's register state context.
++ * I.e., settings that only need to be re-applied in the event of a full GT
++ * reset.
++ */
++static void gt_tuning_settings(struct intel_gt *gt, struct i915_wa_list *wal)
++{
++	if (IS_PONTEVECCHIO(gt->i915)) {
++		wa_mcr_write(wal, XEHPC_L3SCRUB,
++			     SCRUB_CL_DWNGRADE_SHARED | SCRUB_RATE_4B_PER_CLK);
++		wa_mcr_masked_en(wal, XEHPC_LNCFMISCCFGREG0, XEHPC_HOSTCACHEEN);
++	}
++
++	if (IS_DG2(gt->i915))
++		wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
++}
++
+ static void
+ gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
+ {
+ 	struct drm_i915_private *i915 = gt->i915;
+ 
++	gt_tuning_settings(gt, wal);
++
+ 	if (gt->type == GT_MEDIA) {
+ 		if (MEDIA_VER(i915) >= 13)
+ 			xelpmp_gt_workarounds_init(gt, wal);
+@@ -2403,16 +2443,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 				 MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0))
+ 		/* Wa_22010430635:dg2 */
+ 		wa_mcr_masked_en(wal,
+ 				 GEN9_ROW_CHICKEN4,
+ 				 GEN12_DISABLE_GRF_CLEAR);
+ 
+-		/* Wa_14010648519:dg2 */
+-		wa_mcr_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
+-	}
+-
+ 	/* Wa_14013202645:dg2 */
+ 	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_C0) ||
+ 	    IS_DG2_GRAPHICS_STEP(i915, G11, STEP_A0, STEP_B0))
+@@ -2897,16 +2933,8 @@ static void
+ add_render_compute_tuning_settings(struct drm_i915_private *i915,
+ 				   struct i915_wa_list *wal)
+ {
+-	if (IS_PONTEVECCHIO(i915)) {
+-		wa_mcr_write(wal, XEHPC_L3SCRUB,
+-			     SCRUB_CL_DWNGRADE_SHARED | SCRUB_RATE_4B_PER_CLK);
+-		wa_mcr_masked_en(wal, XEHPC_LNCFMISCCFGREG0, XEHPC_HOSTCACHEEN);
+-	}
+-
+-	if (IS_DG2(i915)) {
+-		wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
++	if (IS_DG2(i915))
+ 		wa_mcr_write_clr_set(wal, RT_CTRL, STACKID_CTRL, STACKID_CTRL_512);
+-	}
+ 
+ 	/*
+ 	 * This tuning setting proves beneficial only on ATS-M designs; the
+@@ -2988,11 +3016,6 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 			   0, false);
+ 	}
+ 
+-	if (IS_PONTEVECCHIO(i915)) {
+-		/* Wa_16016694945 */
+-		wa_mcr_masked_en(wal, XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC);
+-	}
+-
+ 	if (IS_XEHPSDV(i915)) {
+ 		/* Wa_1409954639 */
+ 		wa_mcr_masked_en(wal,
+@@ -3004,18 +3027,9 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				 GEN9_ROW_CHICKEN4,
+ 				 GEN12_DISABLE_GRF_CLEAR);
+ 
+-		/* Wa_14010670810:xehpsdv */
+-		wa_mcr_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
+-
+ 		/* Wa_14010449647:xehpsdv */
+ 		wa_mcr_masked_en(wal, GEN8_HALF_SLICE_CHICKEN1,
+ 				 GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
+-
+-		/* Wa_18011725039:xehpsdv */
+-		if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A1, STEP_B0)) {
+-			wa_mcr_masked_dis(wal, MLTICTXCTL, TDONRENDER);
+-			wa_mcr_write_or(wal, L3SQCREG1_CCS0, FLUSHALLNONCOH);
+-		}
+ 	}
+ 
+ 	if (IS_DG2(i915) || IS_PONTEVECCHIO(i915)) {
+-- 
+2.39.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/index.html
-
-Participating hosts (38 -> 36)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113808v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([fdo#109271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-skl-6600u/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [ABORT][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@dmabuf@all-tests@dma_fence_unwrap:
-    - fi-bsw-nick:        [DMESG-FAIL][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_unwrap.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_unwrap.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-skl-6600u:       [ABORT][7] ([i915#5122]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-skl-6600u/igt@gem_exec_suspend@basic-s0@smem.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-skl-6600u/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-n3050:       [FAIL][9] ([i915#6298]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6998]: https://gitlab.freedesktop.org/drm/intel/issues/6998
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12722 -> Patchwork_113808v3
-
-  CI-20190529: 20190529
-  CI_DRM_12722: ec3cb908765a89bf72518590473c464a543372ff @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7155: 75c508d4e19c65683d4060cb3a772df600aaf23e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113808v3: ec3cb908765a89bf72518590473c464a543372ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-47208142f8d2 drm/i915: Replace wm.max_levels with wm.num_levels and use it everywhere
-077f9b89e84b drm/i915: Populate wm.max_level for everyone
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/index.html
-
---===============9121705006341027550==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Populate wm.max_level for everyone (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113808/">https://patchwork.freedesktop.org/series/113808/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12722 -&gt; Patchwork_113808v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113808v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-skl-6600u/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_unwrap:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_unwrap.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_unwrap.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-skl-6600u/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-skl-6600u/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12722/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113808v3/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12722 -&gt; Patchwork_113808v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12722: ec3cb908765a89bf72518590473c464a543372ff @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7155: 75c508d4e19c65683d4060cb3a772df600aaf23e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113808v3: ec3cb908765a89bf72518590473c464a543372ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>47208142f8d2 drm/i915: Replace wm.max_levels with wm.num_levels and use it everywhere<br />
-077f9b89e84b drm/i915: Populate wm.max_level for everyone</p>
-
-</body>
-</html>
-
---===============9121705006341027550==--
