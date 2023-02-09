@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9B4690322
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 10:17:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE82A690411
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 10:45:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0D310E979;
-	Thu,  9 Feb 2023 09:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB4510E975;
+	Thu,  9 Feb 2023 09:45:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F78610E977;
- Thu,  9 Feb 2023 09:17:19 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5985D5C594;
- Thu,  9 Feb 2023 09:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1675934238; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ml7xqopXK7A5EqVx8Pth7EJ9pqrEgGkNY2Z0ShZzDww=;
- b=FTJSeJy2PTBe309s4IjHoIUtGx5TluH4FO3tChxiV1/yc3/2hZ+HDP/aUxuVQG7J8oRxSc
- 1wiNQCCTpswsCRyL5q4vmcoGXO2pg7LhKS8MXm2EGAScyOB1+H+fjrIYpFC9BSkY+ZqZ2A
- iPnzK/DA8VRdvPFzreAUWKj+B0eJ1pQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1675934238;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ml7xqopXK7A5EqVx8Pth7EJ9pqrEgGkNY2Z0ShZzDww=;
- b=E9UvPa4U0zv969ZO7oFLi6xe/aB8btmtX7gzTr2fn5gDcIIDmIZaPbpTqhzVAz5GOsnUPB
- 708ZLxYotTPcpjDg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1B5B61339E;
- Thu,  9 Feb 2023 09:17:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id +20PBR665GPiJwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 09 Feb 2023 09:17:18 +0000
-Date: Thu, 9 Feb 2023 10:17:16 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y+S6HBmaRJNPYiBG@linux-uq9g>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 653B810E975
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 09:45:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675935944; x=1707471944;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=+aLBfQaKYtosLqDwK1j5Xbhjv/K5r08HphLtd47e+tc=;
+ b=jUkhmUmYCoWpuD9x5IpvUcfg4QUonnVcQNukJbdfZHeNgnRuQg3P6BFN
+ 8A9faZ6SXlPyOzXrl01zS0Q8nsx+wISaWSVhI6KodpLT3BH2kW4yeACsh
+ KhLxZGiP24be5OXrZUs///e6vo6Sfc0BtjrYYEqtHSnIRND8yOS/68gl5
+ XrSO+LTTqj0NqKmJXWAagey8cmIAJ+y3i/ZsuNKkbhjPkL6RQ/05Et2DS
+ B6gxsUQPQQGLnQnmE3Kir1wuOaskS51fCnKl+MKiDBvEzHWdVYBpJM/VP
+ W007J4rSUxAaiPLiTOzSTv9biVAIMwEy38BZBGX2r+YdZk+2O7YdIF1rL g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="392447578"
+X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="392447578"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2023 01:45:41 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="660941238"
+X-IronPort-AV: E=Sophos;i="5.97,283,1669104000"; d="scan'208";a="660941238"
+Received: from grizzo-mobl.ger.corp.intel.com (HELO localhost) ([10.252.38.7])
+ by orsmga007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2023 01:45:39 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Y+OiilaLU1NtfAEp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1675849634.git.jani.nikula@intel.com>
+ <687d94454a784738aed104d715516a6dc065593a.1675849634.git.jani.nikula@intel.com>
+ <Y+OiilaLU1NtfAEp@intel.com>
+Date: Thu, 09 Feb 2023 11:45:36 +0200
+Message-ID: <87a61nxjcv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: move memory frequency
+ detection to intel_dram.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,77 +60,417 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Wed, 08 Feb 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Feb 08, 2023 at 11:48:39AM +0200, Jani Nikula wrote:
+>> The memory frequency detection is a bit spread out here and
+>> there. Consolidate to intel_dram.c.
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_rps.c   |  29 -----
+>>  drivers/gpu/drm/i915/intel_pm.c       | 101 ----------------
+>>  drivers/gpu/drm/i915/soc/intel_dram.c | 158 +++++++++++++++++++++++++-
+>>  3 files changed, 157 insertions(+), 131 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/=
+gt/intel_rps.c
+>> index f5d7b5126433..4d0dc9de23f9 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+>> @@ -1677,7 +1677,6 @@ static void vlv_init_gpll_ref_freq(struct intel_rp=
+s *rps)
+>>  static void vlv_rps_init(struct intel_rps *rps)
+>>  {
+>>  	struct drm_i915_private *i915 =3D rps_to_i915(rps);
+>> -	u32 val;
+>>=20=20
+>>  	vlv_iosf_sb_get(i915,
+>>  			BIT(VLV_IOSF_SB_PUNIT) |
+>> @@ -1686,21 +1685,6 @@ static void vlv_rps_init(struct intel_rps *rps)
+>>=20=20
+>>  	vlv_init_gpll_ref_freq(rps);
+>>=20=20
+>> -	val =3D vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+>> -	switch ((val >> 6) & 3) {
+>> -	case 0:
+>> -	case 1:
+>> -		i915->mem_freq =3D 800;
+>> -		break;
+>> -	case 2:
+>> -		i915->mem_freq =3D 1066;
+>> -		break;
+>> -	case 3:
+>> -		i915->mem_freq =3D 1333;
+>> -		break;
+>> -	}
+>> -	drm_dbg(&i915->drm, "DDR speed: %d MHz\n", i915->mem_freq);
+>> -
+>>  	rps->max_freq =3D vlv_rps_max_freq(rps);
+>>  	rps->rp0_freq =3D rps->max_freq;
+>>  	drm_dbg(&i915->drm, "max GPU freq: %d MHz (%u)\n",
+>> @@ -1727,7 +1711,6 @@ static void vlv_rps_init(struct intel_rps *rps)
+>>  static void chv_rps_init(struct intel_rps *rps)
+>>  {
+>>  	struct drm_i915_private *i915 =3D rps_to_i915(rps);
+>> -	u32 val;
+>>=20=20
+>>  	vlv_iosf_sb_get(i915,
+>>  			BIT(VLV_IOSF_SB_PUNIT) |
+>> @@ -1736,18 +1719,6 @@ static void chv_rps_init(struct intel_rps *rps)
+>>=20=20
+>>  	vlv_init_gpll_ref_freq(rps);
+>>=20=20
+>> -	val =3D vlv_cck_read(i915, CCK_FUSE_REG);
+>> -
+>> -	switch ((val >> 2) & 0x7) {
+>> -	case 3:
+>> -		i915->mem_freq =3D 2000;
+>> -		break;
+>> -	default:
+>> -		i915->mem_freq =3D 1600;
+>> -		break;
+>> -	}
+>> -	drm_dbg(&i915->drm, "DDR speed: %d MHz\n", i915->mem_freq);
+>> -
+>>  	rps->max_freq =3D chv_rps_max_freq(rps);
+>>  	rps->rp0_freq =3D rps->max_freq;
+>>  	drm_dbg(&i915->drm, "max GPU freq: %d MHz (%u)\n",
+>> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/inte=
+l_pm.c
+>> index e0364c4141b8..ee8f8d2d2a66 100644
+>> --- a/drivers/gpu/drm/i915/intel_pm.c
+>> +++ b/drivers/gpu/drm/i915/intel_pm.c
+>> @@ -131,101 +131,6 @@ static void glk_init_clock_gating(struct drm_i915_=
+private *dev_priv)
+>>  		   PWM1_GATING_DIS | PWM2_GATING_DIS);
+>>  }
+>>=20=20
+>> -static void pnv_get_mem_freq(struct drm_i915_private *dev_priv)
+>> -{
+>> -	u32 tmp;
+>> -
+>> -	tmp =3D intel_uncore_read(&dev_priv->uncore, CLKCFG);
+>> -
+>> -	switch (tmp & CLKCFG_FSB_MASK) {
+>> -	case CLKCFG_FSB_533:
+>> -		dev_priv->fsb_freq =3D 533; /* 133*4 */
+>> -		break;
+>> -	case CLKCFG_FSB_800:
+>> -		dev_priv->fsb_freq =3D 800; /* 200*4 */
+>> -		break;
+>> -	case CLKCFG_FSB_667:
+>> -		dev_priv->fsb_freq =3D  667; /* 167*4 */
+>> -		break;
+>> -	case CLKCFG_FSB_400:
+>> -		dev_priv->fsb_freq =3D 400; /* 100*4 */
+>> -		break;
+>> -	}
+>> -
+>> -	switch (tmp & CLKCFG_MEM_MASK) {
+>> -	case CLKCFG_MEM_533:
+>> -		dev_priv->mem_freq =3D 533;
+>> -		break;
+>> -	case CLKCFG_MEM_667:
+>> -		dev_priv->mem_freq =3D 667;
+>> -		break;
+>> -	case CLKCFG_MEM_800:
+>> -		dev_priv->mem_freq =3D 800;
+>> -		break;
+>> -	}
+>> -
+>> -	/* detect pineview DDR3 setting */
+>> -	tmp =3D intel_uncore_read(&dev_priv->uncore, CSHRDDR3CTL);
+>> -	dev_priv->is_ddr3 =3D (tmp & CSHRDDR3CTL_DDR3) ? 1 : 0;
+>> -}
+>> -
+>> -static void ilk_get_mem_freq(struct drm_i915_private *dev_priv)
+>> -{
+>> -	u16 ddrpll, csipll;
+>> -
+>> -	ddrpll =3D intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
+>> -	csipll =3D intel_uncore_read16(&dev_priv->uncore, CSIPLL0);
+>> -
+>> -	switch (ddrpll & 0xff) {
+>> -	case 0xc:
+>> -		dev_priv->mem_freq =3D 800;
+>> -		break;
+>> -	case 0x10:
+>> -		dev_priv->mem_freq =3D 1066;
+>> -		break;
+>> -	case 0x14:
+>> -		dev_priv->mem_freq =3D 1333;
+>> -		break;
+>> -	case 0x18:
+>> -		dev_priv->mem_freq =3D 1600;
+>> -		break;
+>> -	default:
+>> -		drm_dbg(&dev_priv->drm, "unknown memory frequency 0x%02x\n",
+>> -			ddrpll & 0xff);
+>> -		dev_priv->mem_freq =3D 0;
+>> -		break;
+>> -	}
+>> -
+>> -	switch (csipll & 0x3ff) {
+>> -	case 0x00c:
+>> -		dev_priv->fsb_freq =3D 3200;
+>> -		break;
+>> -	case 0x00e:
+>> -		dev_priv->fsb_freq =3D 3733;
+>> -		break;
+>> -	case 0x010:
+>> -		dev_priv->fsb_freq =3D 4266;
+>> -		break;
+>> -	case 0x012:
+>> -		dev_priv->fsb_freq =3D 4800;
+>> -		break;
+>> -	case 0x014:
+>> -		dev_priv->fsb_freq =3D 5333;
+>> -		break;
+>> -	case 0x016:
+>> -		dev_priv->fsb_freq =3D 5866;
+>> -		break;
+>> -	case 0x018:
+>> -		dev_priv->fsb_freq =3D 6400;
+>> -		break;
+>> -	default:
+>> -		drm_dbg(&dev_priv->drm, "unknown fsb frequency 0x%04x\n",
+>> -			csipll & 0x3ff);
+>> -		dev_priv->fsb_freq =3D 0;
+>> -		break;
+>> -	}
+>> -}
+>> -
+>>  static const struct cxsr_latency cxsr_latency_table[] =3D {
+>>  	{1, 0, 800, 400, 3382, 33382, 3983, 33983},    /* DDR2-400 SC */
+>>  	{1, 0, 800, 667, 3354, 33354, 3807, 33807},    /* DDR2-667 SC */
+>> @@ -4909,12 +4814,6 @@ void intel_init_pm(struct drm_i915_private *dev_p=
+riv)
+>>  		return;
+>>  	}
+>>=20=20
+>> -	/* For cxsr */
+>> -	if (IS_PINEVIEW(dev_priv))
+>> -		pnv_get_mem_freq(dev_priv);
+>> -	else if (GRAPHICS_VER(dev_priv) =3D=3D 5)
+>> -		ilk_get_mem_freq(dev_priv);
+>> -
+>>  	/* For FIFO watermark updates */
+>>  	if (HAS_PCH_SPLIT(dev_priv)) {
+>>  		ilk_setup_wm_latency(dev_priv);
+>> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i91=
+5/soc/intel_dram.c
+>> index bba8cb6e8ae4..ad767b677486 100644
+>> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+>> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+>> @@ -10,6 +10,7 @@
+>>  #include "intel_dram.h"
+>>  #include "intel_mchbar_regs.h"
+>>  #include "intel_pcode.h"
+>> +#include "vlv_sideband.h"
+>>=20=20
+>>  struct dram_dimm_info {
+>>  	u16 size;
+>> @@ -42,6 +43,156 @@ static const char *intel_dram_type_str(enum intel_dr=
+am_type type)
+>>=20=20
+>>  #undef DRAM_TYPE_STR
+>>=20=20
+>> +static void pnv_detect_mem_freq(struct drm_i915_private *dev_priv)
+>> +{
+>> +	u32 tmp;
+>> +
+>> +	tmp =3D intel_uncore_read(&dev_priv->uncore, CLKCFG);
+>> +
+>> +	switch (tmp & CLKCFG_FSB_MASK) {
+>> +	case CLKCFG_FSB_533:
+>> +		dev_priv->fsb_freq =3D 533; /* 133*4 */
+>> +		break;
+>> +	case CLKCFG_FSB_800:
+>> +		dev_priv->fsb_freq =3D 800; /* 200*4 */
+>> +		break;
+>> +	case CLKCFG_FSB_667:
+>> +		dev_priv->fsb_freq =3D  667; /* 167*4 */
+>> +		break;
+>> +	case CLKCFG_FSB_400:
+>> +		dev_priv->fsb_freq =3D 400; /* 100*4 */
+>> +		break;
+>> +	}
+>> +
+>> +	switch (tmp & CLKCFG_MEM_MASK) {
+>> +	case CLKCFG_MEM_533:
+>> +		dev_priv->mem_freq =3D 533;
+>> +		break;
+>> +	case CLKCFG_MEM_667:
+>> +		dev_priv->mem_freq =3D 667;
+>> +		break;
+>> +	case CLKCFG_MEM_800:
+>> +		dev_priv->mem_freq =3D 800;
+>> +		break;
+>> +	}
+>> +
+>> +	/* detect pineview DDR3 setting */
+>> +	tmp =3D intel_uncore_read(&dev_priv->uncore, CSHRDDR3CTL);
+>> +	dev_priv->is_ddr3 =3D (tmp & CSHRDDR3CTL_DDR3) ? 1 : 0;
+>> +}
+>> +
+>> +static void ilk_detect_mem_freq(struct drm_i915_private *dev_priv)
+>> +{
+>> +	u16 ddrpll, csipll;
+>> +
+>> +	ddrpll =3D intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
+>> +	switch (ddrpll & 0xff) {
+>> +	case 0xc:
+>> +		dev_priv->mem_freq =3D 800;
+>> +		break;
+>> +	case 0x10:
+>> +		dev_priv->mem_freq =3D 1066;
+>> +		break;
+>> +	case 0x14:
+>> +		dev_priv->mem_freq =3D 1333;
+>> +		break;
+>> +	case 0x18:
+>> +		dev_priv->mem_freq =3D 1600;
+>> +		break;
+>> +	default:
+>> +		drm_dbg(&dev_priv->drm, "unknown memory frequency 0x%02x\n",
+>> +			ddrpll & 0xff);
+>> +		dev_priv->mem_freq =3D 0;
+>> +		break;
+>> +	}
+>> +
+>> +	csipll =3D intel_uncore_read16(&dev_priv->uncore, CSIPLL0);
+>> +	switch (csipll & 0x3ff) {
+>> +	case 0x00c:
+>> +		dev_priv->fsb_freq =3D 3200;
+>> +		break;
+>> +	case 0x00e:
+>> +		dev_priv->fsb_freq =3D 3733;
+>> +		break;
+>> +	case 0x010:
+>> +		dev_priv->fsb_freq =3D 4266;
+>> +		break;
+>> +	case 0x012:
+>> +		dev_priv->fsb_freq =3D 4800;
+>> +		break;
+>> +	case 0x014:
+>> +		dev_priv->fsb_freq =3D 5333;
+>> +		break;
+>> +	case 0x016:
+>> +		dev_priv->fsb_freq =3D 5866;
+>> +		break;
+>> +	case 0x018:
+>> +		dev_priv->fsb_freq =3D 6400;
+>> +		break;
+>> +	default:
+>> +		drm_dbg(&dev_priv->drm, "unknown fsb frequency 0x%04x\n",
+>> +			csipll & 0x3ff);
+>> +		dev_priv->fsb_freq =3D 0;
+>> +		break;
+>> +	}
+>> +}
+>> +
+>> +static void chv_detect_mem_freq(struct drm_i915_private *i915)
+>> +{
+>> +	u32 val;
+>> +
+>> +	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_CCK));
+>> +	val =3D vlv_cck_read(i915, CCK_FUSE_REG);
+>> +	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_CCK));
+>> +
+>> +	switch ((val >> 2) & 0x7) {
+>> +	case 3:
+>> +		i915->mem_freq =3D 2000;
+>> +		break;
+>> +	default:
+>> +		i915->mem_freq =3D 1600;
+>> +		break;
+>> +	}
+>> +}
+>> +
+>> +static void vlv_detect_mem_freq(struct drm_i915_private *i915)
+>> +{
+>> +	u32 val;
+>> +
+>> +	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_PUNIT));
+>> +	val =3D vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+>> +	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_PUNIT));
+>> +
+>> +	switch ((val >> 6) & 3) {
+>> +	case 0:
+>> +	case 1:
+>> +		i915->mem_freq =3D 800;
+>> +		break;
+>> +	case 2:
+>> +		i915->mem_freq =3D 1066;
+>> +		break;
+>> +	case 3:
+>> +		i915->mem_freq =3D 1333;
+>> +		break;
+>> +	}
+>> +}
+>> +
+>> +static void detect_mem_freq(struct drm_i915_private *i915)
+>> +{
+>> +	/* For cxsr */
+>
+> Not true for all the platforms...
 
-here's the weekly PR for drm-misc-next-fixes.
+Yeah, I think I'll just remove the comment altogether.
 
-Best regards
-Thomas
+>
+>> +	if (IS_PINEVIEW(i915))
+>> +		pnv_detect_mem_freq(i915);
+>> +	else if (GRAPHICS_VER(i915) =3D=3D 5)
+>> +		ilk_detect_mem_freq(i915);
+>> +	else if (IS_CHERRYVIEW(i915))
+>> +		chv_detect_mem_freq(i915);
+>> +	else if (IS_VALLEYVIEW(i915))
+>> +		vlv_detect_mem_freq(i915);
+>> +
+>> +	if (i915->mem_freq)
+>> +		drm_dbg(&i915->drm, "DDR speed: %d MHz\n", i915->mem_freq);
+>> +}
+>> +
+>>  static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
+>>  {
+>>  	return dimm->ranks * 64 / (dimm->width ?: 1);
+>> @@ -507,8 +658,13 @@ void intel_dram_detect(struct drm_i915_private *i91=
+5)
+>>  	struct dram_info *dram_info =3D &i915->dram_info;
+>>  	int ret;
+>>=20=20
+>> -	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
+>> +	if (!HAS_DISPLAY(i915) || IS_DG2(i915))
+>> +		return;
+>
+> ...which also means doing the HAS_DISPLAY check befoae=20
+> detect_mem_freq() is kinda wrong.
+>
+> I suppose we don't have any !HAS_DISPLAY stuff on these
+> platforms, but would seem better to be consistent anyway.
 
-drm-misc-next-fixes-2023-02-09:
-Short summary of fixes pull:
+Right. No harm in calling it unconditionally, really.
 
-Contains a number of fixes to vc4 and ivpu. The patches to the probe
-helpers were cherry-picked from the regular development branch.
-The following changes since commit 84cc4c7aecc4c6a17ea1030c49199ad7dc0a6b55:
+BR,
+Jani.
 
-  drm/client: fix kernel-doc warning in drm_client.h (2023-02-01 16:32:35 +0100)
+>
+>> +
+>> +	if (GRAPHICS_VER(i915) < 9) {
+>> +		detect_mem_freq(i915);
+>>  		return;
+>> +	}
+>>=20=20
+>>  	/*
+>>  	 * Assume level 0 watermark latency adjustment is needed until proven
+>> --=20
+>> 2.34.1
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-02-09
-
-for you to fetch changes up to 467fbc77f673ecc9dcf4e58ffc1fa426a22df7fd:
-
-  dt-bindings: display: panel: visionox,vtdr6130: add missing reg property (2023-02-09 09:28:31 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-Contains a number of fixes to vc4 and ivpu. The patches to the probe
-helpers were cherry-picked from the regular development branch.
-
-----------------------------------------------------------------
-Andrzej Kacprowski (2):
-      accel/ivpu: Fix FW API data alignment issues
-      accel/ivpu: Send VPU_JSM_MSG_CONTEXT_DELETE when deleting context
-
-Arnd Bergmann (1):
-      drm/vc4: allow DRM_VC4_KUNIT_TEST to be a loadable module
-
-Dmitry Baryshkov (2):
-      drm/probe_helper: extract two helper functions
-      drm/probe_helper: sort out poll_running vs poll_enabled
-
-Neil Armstrong (1):
-      dt-bindings: display: panel: visionox,vtdr6130: add missing reg property
-
-Stanislaw Gruszka (2):
-      accel/ivpu: Set dma max_segment_size
-      accel/ivpu: Fix old dma_buf api usage
-
- .../bindings/display/panel/visionox,vtdr6130.yaml  |  34 ++++---
- drivers/accel/ivpu/ivpu_drv.c                      |   2 +
- drivers/accel/ivpu/ivpu_fw.c                       |  37 ++++---
- drivers/accel/ivpu/ivpu_gem.c                      |   8 +-
- drivers/accel/ivpu/ivpu_job.c                      |   5 +-
- drivers/accel/ivpu/ivpu_jsm_msg.c                  |  11 +++
- drivers/accel/ivpu/ivpu_jsm_msg.h                  |   2 +-
- drivers/accel/ivpu/vpu_jsm_api.h                   |  67 +++++++------
- drivers/gpu/drm/drm_probe_helper.c                 | 108 ++++++++++++---------
- drivers/gpu/drm/vc4/Kconfig                        |   2 +-
- 10 files changed, 165 insertions(+), 111 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+--=20
+Jani Nikula, Intel Open Source Graphics Center
