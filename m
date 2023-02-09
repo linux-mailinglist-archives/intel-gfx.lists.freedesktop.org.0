@@ -2,52 +2,140 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A6668FBFF
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 01:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 281FE68FC40
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Feb 2023 01:56:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A765810E8D1;
-	Thu,  9 Feb 2023 00:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED6010E8CE;
+	Thu,  9 Feb 2023 00:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E18410E8CE
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 00:32:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 105E510E8CE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 00:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675902778; x=1707438778;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=HMOq8WCqhV6GfO2AMQG/Mk4pJR58h4XE5AFWZ7+G1W8=;
- b=EHEW8/qBUSVCWIjWLzp2dJaeC2BdWTZRMpAWBd7ic+nTrwc9vl5KjYXL
- ikNGYoSR/AuaaDL+urNMTO5duh4qmI9lF0sJcyzuXHhjGgxlDTXENM2xK
- X0ofNUamRW9jRMVDvYTvr92MIZd4lC9L5sUOCViEJOswOHrW1B0jnP78V
- GWeMnZ89MaWxYMCw0tX+iZ95jxPDf32Nr5h6mS+z3et6GUDaxFbaQAfhi
- TpjOipTQ9gZqmdeOIbGKimAJCVzU0NskqYUxoUe4Faiv9Fro9ZjHryYjV
- 5KvVZb71uqFwS+wNJaKZBVZJ5uiN+oHzGdaUgq5UfFBbP0qFqY/K7yksj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="328618470"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="328618470"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2023 16:32:57 -0800
+ t=1675904214; x=1707440214;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=GLHrkvf3j+sv22NIbAD5JgQAsgnWp9LqjQVb+FFl2ds=;
+ b=dpolhQFud8/JyPGDsL+IpfF+d2b6kICEn29bM/ev2z6/gPInnuraf8LO
+ Mcce0WWPy5z+gAEpFPsNNk/lIbr7u3w7v+/7dK8wEks1HjWHUTwTtDUcB
+ N0+w5cCNFa5tcX99zkaZdN50Nxa+HnnVE7Qhc8Rbtj3AlaXgx/82bLl6S
+ 7UHJaPsnH5uI7s5oG6Mi1otckfle2Cp1LQhr60WNHIq3x3uxmfc/L44V7
+ ndv4aBvouv8Hi97AG+ZC8bq5GrMg0+mN6WkJ5qEmIgQwtbVFZKW1AavWU
+ e7HV5pWtaA1Wim58geS7Cndjg1Ux6Mk+dQF/qd5GVTEVA1ang/IovWijw Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="357375743"
+X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="357375743"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2023 16:56:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="699860227"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="699860227"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga001.jf.intel.com with SMTP; 08 Feb 2023 16:32:55 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Feb 2023 02:32:54 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Feb 2023 02:32:51 +0200
-Message-Id: <20230209003251.32021-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230209003251.32021-1-ville.syrjala@linux.intel.com>
-References: <20230209003251.32021-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="645070421"
+X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; d="scan'208";a="645070421"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 08 Feb 2023 16:56:52 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 8 Feb 2023 16:56:52 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 8 Feb 2023 16:56:52 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 8 Feb 2023 16:56:51 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nGBgk2MEgOaCimd7babe47vvd38jLdi8es0fHsX8R/yOcDh7deosOYI5GLtKBWiUqFaZK1N4kz9sXM4ywwGaUgkhN0fVJqDQFaX61xFGhS7Cb6Vdfw1YEATb1Ek951sNIcDax4tZFXweKideHgInv59Yj+kfFPnH6ZIabeMYhhFJMB733NSAHMVqzcpBnIvAjYdC0V4jXmDNiicVKgxg5hjomfc2i1hnkIHpAwnEqnUSckUKnMsZbj+AE78Fp6jr92DS9FZqzyTDD6JdxsH9LKq9ypgduGJNaJ1K0uW2MOJfSfoZI0LDmemPKK2TID4eWHIwKbLMkkjaEuGyQX/IdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LHVyNXfatI/riOTkJjhwPMW++/BZMLVSb4EF0v2eDMY=;
+ b=dlQF22fRSRmiC5lXVzrIv6U3fEXuAoREGnvc71id7DLTN9AIW39lFaJZ3FrfZSJp+ZQkxKVU04jnFlKHxtnM1zkjFRDVPBHwfHcFaXLVVgPMqjvz5pTzZjRs2OuwbjvSvgNzS+w+5FgO5QXwr5uE1Gd1kIN+ymP+DT3PWAC7NBxmWpr+vWX+Q0/AEQIniyZzRSviKJNSNtMAj1ZbHDNa5PTPAeupyWvK5UdKNOFWH6veBQEM0db2Eix3fK1DQ7kLrFHJpuQY2UME+yQP+8fyx3pXh4kkcdowOB/SgBzkGJljcYUX2kM6BmGxPE0i3y8bzcp/RCkampVMtxn1av59aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SJ0PR11MB5816.namprd11.prod.outlook.com (2603:10b6:a03:427::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Thu, 9 Feb
+ 2023 00:56:49 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::593:877e:dd33:5b7a]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::593:877e:dd33:5b7a%6]) with mapi id 15.20.6086.017; Thu, 9 Feb 2023
+ 00:56:49 +0000
+Date: Wed, 8 Feb 2023 16:56:38 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Message-ID: <20230209005638.7x2epal6etncaw4w@ldmartin-desk2.lan>
+X-Patchwork-Hint: comment
+References: <20230206165410.3056073-1-lucas.demarchi@intel.com>
+ <167571386943.27492.10730325104114115012@emeril.freedesktop.org>
+ <20230207190555.2zrcey4vnj2ctjw4@ldmartin-desk2.lan>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230207190555.2zrcey4vnj2ctjw4@ldmartin-desk2.lan>
+X-ClientProxiedBy: SJ0PR13CA0222.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::17) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Replace wm.max_levels with
- wm.num_levels and use it everywhere
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB5816:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb0db57e-94ea-476e-96a1-08db0a388649
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: d3d6hGDbMEuXJ6+UOpwsopfWTaVLlN78EELuxmb52XePJxdgNCwThh+KrgIuZ1QZb9EXkTyLLVQK9JS4mDIvEbQ54MQGLRK83S1t6pPqoqn+KQrPX2w1JZr/I84i8RWiiajQM+EPgSF3eG+im5hGHajS6SGiO0dsWG7O0SsNzqISKbxRCzgX2v2/Kfwj1k3XSJvuXCxA54dNlNK+8GnJPZBZrRAEDZeEYVS56BFsU9bK1dSIya9rjPJiv39hLUIsB/H8wpZVuw1mOY5s6nbhImCXjgoPratGaIkbOSGClAWtjoenHVbVqihxjbZXvrB5XcoEKO1m3FPyskWgVi1x1VvzlOQDDTHcHiRYgbOsDmvWwe91uyWwAjGLutVVsxL+0Dx3M1zD5R3nCK8zf3kUh77KnXt57cfiMwwjf/VANjE6L6Xc+Oh2je71fLstfY+Yxm5UGxD8CAjd98adGPAdwTT8/wT3jJWmkqOlpE/uzf/K7KYmTaze6RCnnQl/SKtlMjPP1BmhlT3jYEhwgkRjli6Dh1mvaN78O3qM/Dkz9a7OG7IRuvhBCILB/+6PvozVczXvh7ZQghMn7+T7mYE0FTaQO0lJ1xHdP8Bm7Ru1t31OoOcUgc0we2sko3FpJgF5CylIRG8sjBRFPrNawQUebyX57dqQcm5fWwy0yYz8UJw4ABGLAv3G06XynVOP8kIA
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(376002)(396003)(39860400002)(346002)(366004)(451199018)(316002)(83380400001)(107886003)(6666004)(36756003)(2906002)(478600001)(9686003)(26005)(186003)(6512007)(5660300002)(8936002)(66946007)(66556008)(6506007)(1076003)(66476007)(966005)(6486002)(82960400001)(86362001)(38100700002)(41300700001)(4326008)(6916009);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jJWEx/VLdIPTRjJ3Z62btrkniLspo92KGyK2jP8371aCClGUSAyWO9syQTQQ?=
+ =?us-ascii?Q?8w6swGWg+NGWDxnsOHwwlmh3YqRgyVN2NmLLGPzH4tE5R6yfX7JnWAoi7dFd?=
+ =?us-ascii?Q?96Nx1KUVQCQZWuauQHQIe1YNI24zz+7HssUvwBfXmGvAraFFMaFl1nRvuFuC?=
+ =?us-ascii?Q?qIDHbYI0w3WXTYCC6Ev+2cZAyGERFBqPARYzC495QzSzcCRg1ULSh2tixmF7?=
+ =?us-ascii?Q?ut+m6+9eBT8Y7LS2jChASYlBFZKo5hPldwCPq9cvmZedw7xLdpoxyUilmWLt?=
+ =?us-ascii?Q?Pm9Ya/zDDSc0h2vw4W0j44CdQou2dKd2S0PrSQIzgfwOTgez1R2eFKC5in6l?=
+ =?us-ascii?Q?38fNYOt8XpS1gIzd92merhsk+NKf+oiw/QAUq0suipxE2cjaExxMNfv3Jjmh?=
+ =?us-ascii?Q?snp/2hPZioXBwG9zsX57WjExAORmS673BB1hhSke7Vrjs+uUO/KZ/lPDQYGb?=
+ =?us-ascii?Q?nkoAP9spEoxT7dxwLMdwppg8NrMZpn+u2QV8Syrtm3Ylw5RnfzYDGd6IthEM?=
+ =?us-ascii?Q?LJQnYEDjvLO/EMrSYD6+pKassMFGvDCc5iAkNNW8pxc/spZsNfHXfw9i9vlK?=
+ =?us-ascii?Q?rSpHAgKK2gEGnf4wDr9ylf/eRcUGX1+oyHTSwmvZ5KkSpMJASiiP+qHFLUtW?=
+ =?us-ascii?Q?uWziSuq6zRpUIX5vm9mHHJMWQD94DViEtbLfwqsxRPYsT2KFZRJDg2ii1Fp4?=
+ =?us-ascii?Q?XSjRSts4iA1AnGPYVrKwkQ3KYYOSNC4n1UR5gJsJ9YZQLK43wRGvx+mgBRXr?=
+ =?us-ascii?Q?gmIiV4cuR/9Ao7AHhNqpO792ibC88nhnCZNshcZ8PfWZoUVgSEigjUhnDSwE?=
+ =?us-ascii?Q?yTZzLq0P6L/lUC32d5lh3GJjAIpuukZzP2IpSmp5P4GEmf83z9o96B27ASEv?=
+ =?us-ascii?Q?6H84GdJH0JnFGnC2VAZvuWhKpl7mopiWcEssFTHZdqDFbDg96R7mCwaLDb/U?=
+ =?us-ascii?Q?D1+YnLJsvqmixW8sKr9tyhbwLVCrDObVMc3x8r1K9cUpZwfsckc8MDZIS1Dk?=
+ =?us-ascii?Q?BMxsjEjnw4h4gh9PF3xlmJsiYzWijc655t6tmlcN0qXJVMEur/M3UA/QQL1k?=
+ =?us-ascii?Q?KA68MzbpdgL8bnrPawZCJAVYMiNzuRSqfEDLKXo1y8jJO70k9C3MYHfXWQSu?=
+ =?us-ascii?Q?UwibyKNgL+ChVvJC4p8EY9ckz/nMUE21lHbKjdI2gi4XNSmpp04Nv7W1p1bQ?=
+ =?us-ascii?Q?KOjg2Wu8b99SuNj82KNIhl5NArsjVGxQk9ZbouOkZWb47sSRUMzJUr/ZiH7D?=
+ =?us-ascii?Q?RWv+2ziZb1o2VEVOGBBZryoIqvM74pyKCjZifojN+ZqyuRUVAvEPJt7vS/yI?=
+ =?us-ascii?Q?JuNNyWCBj4nVBFfqjtnckODv316zkd1IOLsnGbQKTEtsvQZanjBbHNurocSG?=
+ =?us-ascii?Q?CCLn3sHAxDZk9lJtuUlzoJObRXP8PqVA5IoBYpL6Cw3r+1W2x6FF7IDpxBj0?=
+ =?us-ascii?Q?GZ2tv926+ekXNeKkjRZA/wKhgdrxhXQDCgI915ZMqJCrPKcbd0IzgtzBHV3M?=
+ =?us-ascii?Q?EiIieQRhevOwnLuW2pmtexlkmTfYxtXC9L8WCjycjKNfB+Ak0VFoFQka6gJ/?=
+ =?us-ascii?Q?RzrjdCKGk6i5yAHyDxDkT1ZwVVzrFZVc4XlEdixwZF9NR9V82VOMr9qg4kI1?=
+ =?us-ascii?Q?0Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb0db57e-94ea-476e-96a1-08db0a388649
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2023 00:56:49.2816 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: z73J0qoVjk8AZI19vjCynxRDDQZrCoOcZ1AF5YQOyiySlKfx5/pddz4rNiuoMDA3j911J3zjVCRgbdzatHHaWbmAyVfMB5SX1C9DrXcYCRo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5816
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv2=2C1/2=5D_drm/i915=3A_Fix_GEN8=5FMISCCP?=
+ =?utf-8?q?CTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,686 +148,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Feb 07, 2023 at 11:05:55AM -0800, Lucas De Marchi wrote:
+>On Mon, Feb 06, 2023 at 08:04:29PM +0000, Patchwork wrote:
+>>== Series Details ==
+>>
+>>Series: series starting with [v2,1/2] drm/i915: Fix GEN8_MISCCPCTL
+>>URL   : https://patchwork.freedesktop.org/series/113713/
+>>State : failure
+>>
+>>== Summary ==
+>>
+>>CI Bug Log - changes from CI_DRM_12704 -> Patchwork_113713v1
+>>====================================================
+>>
+>>Summary
+>>-------
+>>
+>> **FAILURE**
+>>
+>> Serious unknown changes coming with Patchwork_113713v1 absolutely need to be
+>> verified manually.
+>>
+>> If you think the reported changes have nothing to do with the changes
+>> introduced in Patchwork_113713v1, please notify your bug team to allow them
+>> to document this new failure mode, which will reduce false positives in CI.
+>>
+>> External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/index.html
+>>
+>>Participating hosts (36 -> 34)
+>>------------------------------
+>>
+>> Missing    (2): bat-atsm-1 fi-snb-2520m
+>>
+>>Possible new issues
+>>-------------------
+>>
+>> Here are the unknown changes that may have been introduced in Patchwork_113713v1:
+>>
+>>### IGT changes ###
+>>
+>>#### Possible regressions ####
+>>
+>> * igt@kms_flip@basic-flip-vs-modeset@b-dp1:
+>>   - fi-elk-e7500:       [PASS][1] -> [FAIL][2]
+>>  [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12704/fi-elk-e7500/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
+>>  [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/fi-elk-e7500/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
+>
+>unrelated fail. There were no changes between v1 and v2 except for the
+>commit message in the first patch. v1 got full pass:
+>https://patchwork.freedesktop.org/series/113626/
 
-Replaces wm.max_level with wm.num_levels, since that generally
-results in nicer looking code (for-loops can be in standard
-form etc.).
 
-Also get rid of the two different wrappers we have for this
-(ilk_wm_max_level() and intel_wm_num_levels()). They don't
-really do anything for us other than potentially slow things
-down if the compiler actually emits the function calls every
-time (num_planes*num_wm_levels*higher_level_wm_function_calls
-could be a big number). The watermark code already shows up
-far too prominently in cpu profiles. Though I must admit that
-I didn't look at the generated code this time.
+used these results as "it's safe enough to push" and applied.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  2 +-
- .../drm/i915/display/intel_display_debugfs.c  | 12 +--
- drivers/gpu/drm/i915/display/skl_watermark.c  | 62 +++++++------
- drivers/gpu/drm/i915/intel_pm.c               | 86 ++++++++-----------
- drivers/gpu/drm/i915/intel_pm.h               |  1 -
- 5 files changed, 70 insertions(+), 93 deletions(-)
+Lucas De Marchi
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index fb8670aa2932..25d778fb7d15 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -243,7 +243,7 @@ struct intel_wm {
- 		struct g4x_wm_values g4x;
- 	};
- 
--	u8 max_level;
-+	u8 num_levels;
- 
- 	/*
- 	 * Should be held around atomic WM register writing; also
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index b5a2f1a27870..49a7c00c0664 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1286,13 +1286,10 @@ static void wm_latency_show(struct seq_file *m, const u16 wm[8])
- {
- 	struct drm_i915_private *dev_priv = m->private;
- 	int level;
--	int num_levels;
--
--	num_levels = ilk_wm_max_level(dev_priv) + 1;
- 
- 	drm_modeset_lock_all(&dev_priv->drm);
- 
--	for (level = 0; level < num_levels; level++) {
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 		unsigned int latency = wm[level];
- 
- 		/*
-@@ -1395,13 +1392,10 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
- 	struct seq_file *m = file->private_data;
- 	struct drm_i915_private *dev_priv = m->private;
- 	u16 new[8] = { 0 };
--	int num_levels;
- 	int level;
- 	int ret;
- 	char tmp[32];
- 
--	num_levels = ilk_wm_max_level(dev_priv) + 1;
--
- 	if (len >= sizeof(tmp))
- 		return -EINVAL;
- 
-@@ -1413,12 +1407,12 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
- 	ret = sscanf(tmp, "%hu %hu %hu %hu %hu %hu %hu %hu",
- 		     &new[0], &new[1], &new[2], &new[3],
- 		     &new[4], &new[5], &new[6], &new[7]);
--	if (ret != num_levels)
-+	if (ret != dev_priv->display.wm.num_levels)
- 		return -EINVAL;
- 
- 	drm_modeset_lock_all(&dev_priv->drm);
- 
--	for (level = 0; level < num_levels; level++)
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++)
- 		wm[level] = new[level];
- 
- 	drm_modeset_unlock_all(&dev_priv->drm);
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 97dc66012bdc..962666e74333 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -359,7 +359,7 @@ static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
- 			continue;
- 
- 		/* Find the highest enabled wm level for this plane */
--		for (level = ilk_wm_max_level(i915);
-+		for (level = i915->display.wm.num_levels - 1;
- 		     !wm->wm[level].enable; --level)
- 		     { }
- 
-@@ -710,10 +710,10 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
- {
- 	struct intel_plane *plane = to_intel_plane(crtc_state->uapi.crtc->cursor);
- 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
--	int level, max_level = ilk_wm_max_level(i915);
- 	struct skl_wm_level wm = {};
- 	int ret, min_ddb_alloc = 0;
- 	struct skl_wm_params wp;
-+	int level;
- 
- 	ret = skl_compute_wm_params(crtc_state, 256,
- 				    drm_format_info(DRM_FORMAT_ARGB8888),
-@@ -722,7 +722,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
- 				    crtc_state->pixel_rate, &wp, 0);
- 	drm_WARN_ON(&i915->drm, ret);
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < i915->display.wm.num_levels; level++) {
- 		unsigned int latency = i915->display.wm.skl_latency[level];
- 
- 		skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
-@@ -1492,7 +1492,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 	 * Find the highest watermark level for which we can satisfy the block
- 	 * requirement of active planes.
- 	 */
--	for (level = ilk_wm_max_level(i915); level >= 0; level--) {
-+	for (level = i915->display.wm.num_levels - 1; level >= 0; level--) {
- 		blocks = 0;
- 		for_each_plane_id_on_crtc(crtc, plane_id) {
- 			const struct skl_plane_wm *wm =
-@@ -1568,7 +1568,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 	 * all levels as "enabled."  Go back now and disable the ones
- 	 * that aren't actually possible.
- 	 */
--	for (level++; level <= ilk_wm_max_level(i915); level++) {
-+	for (level++; level < i915->display.wm.num_levels; level++) {
- 		for_each_plane_id_on_crtc(crtc, plane_id) {
- 			const struct skl_ddb_entry *ddb =
- 				&crtc_state->wm.skl.plane_ddb[plane_id];
-@@ -1967,10 +1967,10 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
- 		      struct skl_wm_level *levels)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
--	int level, max_level = ilk_wm_max_level(i915);
- 	struct skl_wm_level *result_prev = &levels[0];
-+	int level;
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < i915->display.wm.num_levels; level++) {
- 		struct skl_wm_level *result = &levels[level];
- 		unsigned int latency = i915->display.wm.skl_latency[level];
- 
-@@ -2248,7 +2248,6 @@ void skl_write_plane_wm(struct intel_plane *plane,
- 			const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(plane->base.dev);
--	int level, max_level = ilk_wm_max_level(i915);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
-@@ -2256,8 +2255,9 @@ void skl_write_plane_wm(struct intel_plane *plane,
- 		&crtc_state->wm.skl.plane_ddb[plane_id];
- 	const struct skl_ddb_entry *ddb_y =
- 		&crtc_state->wm.skl.plane_ddb_y[plane_id];
-+	int level;
- 
--	for (level = 0; level <= max_level; level++)
-+	for (level = 0; level < i915->display.wm.num_levels; level++)
- 		skl_write_wm_level(i915, PLANE_WM(pipe, plane_id, level),
- 				   skl_plane_wm_level(pipe_wm, plane_id, level));
- 
-@@ -2285,14 +2285,14 @@ void skl_write_cursor_wm(struct intel_plane *plane,
- 			 const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(plane->base.dev);
--	int level, max_level = ilk_wm_max_level(i915);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
- 	const struct skl_ddb_entry *ddb =
- 		&crtc_state->wm.skl.plane_ddb[plane_id];
-+	int level;
- 
--	for (level = 0; level <= max_level; level++)
-+	for (level = 0; level < i915->display.wm.num_levels; level++)
- 		skl_write_wm_level(i915, CUR_WM(pipe, level),
- 				   skl_plane_wm_level(pipe_wm, plane_id, level));
- 
-@@ -2324,9 +2324,9 @@ static bool skl_plane_wm_equals(struct drm_i915_private *i915,
- 				const struct skl_plane_wm *wm1,
- 				const struct skl_plane_wm *wm2)
- {
--	int level, max_level = ilk_wm_max_level(i915);
-+	int level;
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < i915->display.wm.num_levels; level++) {
- 		/*
- 		 * We don't check uv_wm as the hardware doesn't actually
- 		 * use it. It only gets used for calculating the required
-@@ -2676,9 +2676,9 @@ static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
- 					 const struct skl_pipe_wm *new_pipe_wm)
- {
- 	struct drm_i915_private *i915 = to_i915(plane->base.dev);
--	int level, max_level = ilk_wm_max_level(i915);
-+	int level;
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < i915->display.wm.num_levels; level++) {
- 		/*
- 		 * We don't check uv_wm as the hardware doesn't actually
- 		 * use it. It only gets used for calculating the required
-@@ -2814,16 +2814,14 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
--	int level, max_level;
- 	enum plane_id plane_id;
-+	int level;
- 	u32 val;
- 
--	max_level = ilk_wm_max_level(i915);
--
- 	for_each_plane_id_on_crtc(crtc, plane_id) {
- 		struct skl_plane_wm *wm = &out->planes[plane_id];
- 
--		for (level = 0; level <= max_level; level++) {
-+		for (level = 0; level < i915->display.wm.num_levels; level++) {
- 			if (plane_id != PLANE_CURSOR)
- 				val = intel_de_read(i915, PLANE_WM(pipe, plane_id, level));
- 			else
-@@ -3006,9 +3004,9 @@ void intel_wm_state_verify(struct intel_crtc *crtc,
- 		struct skl_pipe_wm wm;
- 	} *hw;
- 	const struct skl_pipe_wm *sw_wm = &new_crtc_state->wm.skl.optimal;
--	int level, max_level = ilk_wm_max_level(i915);
- 	struct intel_plane *plane;
- 	u8 hw_enabled_slices;
-+	int level;
- 
- 	if (DISPLAY_VER(i915) < 9 || !new_crtc_state->hw.active)
- 		return;
-@@ -3035,7 +3033,7 @@ void intel_wm_state_verify(struct intel_crtc *crtc,
- 		const struct skl_wm_level *hw_wm_level, *sw_wm_level;
- 
- 		/* Watermarks */
--		for (level = 0; level <= max_level; level++) {
-+		for (level = 0; level < i915->display.wm.num_levels; level++) {
- 			hw_wm_level = &hw->wm.planes[plane->id].wm[level];
- 			sw_wm_level = skl_plane_wm_level(sw_wm, plane->id, level);
- 
-@@ -3157,7 +3155,7 @@ void skl_watermark_ipc_init(struct drm_i915_private *i915)
- 
- static void
- adjust_wm_latency(struct drm_i915_private *i915,
--		  u16 wm[], int max_level, int read_latency)
-+		  u16 wm[], int num_levels, int read_latency)
- {
- 	bool wm_lv_0_adjust_needed = i915->dram_info.wm_lv_0_adjust_needed;
- 	int i, level;
-@@ -3167,12 +3165,12 @@ adjust_wm_latency(struct drm_i915_private *i915,
- 	 * need to be disabled. We make sure to sanitize the values out
- 	 * of the punit to satisfy this requirement.
- 	 */
--	for (level = 1; level <= max_level; level++) {
-+	for (level = 1; level < num_levels; level++) {
- 		if (wm[level] == 0) {
--			for (i = level + 1; i <= max_level; i++)
-+			for (i = level + 1; i < num_levels; i++)
- 				wm[i] = 0;
- 
--			max_level = level - 1;
-+			num_levels = level;
- 			break;
- 		}
- 	}
-@@ -3185,7 +3183,7 @@ adjust_wm_latency(struct drm_i915_private *i915,
- 	 * from the punit when level 0 response data is 0us.
- 	 */
- 	if (wm[0] == 0) {
--		for (level = 0; level <= max_level; level++)
-+		for (level = 0; level < num_levels; level++)
- 			wm[level] += read_latency;
- 	}
- 
-@@ -3201,7 +3199,7 @@ adjust_wm_latency(struct drm_i915_private *i915,
- 
- static void mtl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- {
--	int max_level = ilk_wm_max_level(i915);
-+	int num_levels = i915->display.wm.num_levels;
- 	u32 val;
- 
- 	val = intel_de_read(i915, MTL_LATENCY_LP0_LP1);
-@@ -3216,12 +3214,12 @@ static void mtl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- 	wm[4] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
- 	wm[5] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
- 
--	adjust_wm_latency(i915, wm, max_level, 6);
-+	adjust_wm_latency(i915, wm, num_levels, 6);
- }
- 
- static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- {
--	int max_level = ilk_wm_max_level(i915);
-+	int num_levels = i915->display.wm.num_levels;
- 	int read_latency = DISPLAY_VER(i915) >= 12 ? 3 : 2;
- 	int mult = IS_DG2(i915) ? 2 : 1;
- 	u32 val;
-@@ -3253,15 +3251,15 @@ static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- 	wm[6] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
- 	wm[7] = REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
- 
--	adjust_wm_latency(i915, wm, max_level, read_latency);
-+	adjust_wm_latency(i915, wm, num_levels, read_latency);
- }
- 
- static void skl_setup_wm_latency(struct drm_i915_private *i915)
- {
- 	if (HAS_HW_SAGV_WM(i915))
--		i915->display.wm.max_level = 5;
-+		i915->display.wm.num_levels = 6;
- 	else
--		i915->display.wm.max_level = 7;
-+		i915->display.wm.num_levels = 8;
- 
- 	if (DISPLAY_VER(i915) >= 14)
- 		mtl_read_wm_latency(i915, i915->display.wm.skl_latency);
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 3e13b940444a..605d6a2d3e88 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -787,11 +787,6 @@ static bool is_enabling(int old, int new, int threshold)
- 	return old < threshold && new >= threshold;
- }
- 
--static int intel_wm_num_levels(struct drm_i915_private *dev_priv)
--{
--	return dev_priv->display.wm.max_level + 1;
--}
--
- bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
- 			    const struct intel_plane_state *plane_state)
- {
-@@ -1047,7 +1042,7 @@ static void g4x_setup_wm_latency(struct drm_i915_private *dev_priv)
- 	dev_priv->display.wm.pri_latency[G4X_WM_LEVEL_SR] = 12;
- 	dev_priv->display.wm.pri_latency[G4X_WM_LEVEL_HPLL] = 35;
- 
--	dev_priv->display.wm.max_level = G4X_WM_LEVEL_HPLL;
-+	dev_priv->display.wm.num_levels = G4X_WM_LEVEL_HPLL + 1;
- }
- 
- static int g4x_plane_fifo_size(enum plane_id plane_id, int level)
-@@ -1154,7 +1149,7 @@ static bool g4x_raw_plane_wm_set(struct intel_crtc_state *crtc_state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	bool dirty = false;
- 
--	for (; level < intel_wm_num_levels(dev_priv); level++) {
-+	for (; level < dev_priv->display.wm.num_levels; level++) {
- 		struct g4x_pipe_wm *raw = &crtc_state->wm.g4x.raw[level];
- 
- 		dirty |= raw->plane[plane_id] != value;
-@@ -1173,7 +1168,7 @@ static bool g4x_raw_fbc_wm_set(struct intel_crtc_state *crtc_state,
- 	/* NORMAL level doesn't have an FBC watermark */
- 	level = max(level, G4X_WM_LEVEL_SR);
- 
--	for (; level < intel_wm_num_levels(dev_priv); level++) {
-+	for (; level < dev_priv->display.wm.num_levels; level++) {
- 		struct g4x_pipe_wm *raw = &crtc_state->wm.g4x.raw[level];
- 
- 		dirty |= raw->fbc != value;
-@@ -1192,7 +1187,6 @@ static bool g4x_raw_plane_wm_compute(struct intel_crtc_state *crtc_state,
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
--	int num_levels = intel_wm_num_levels(to_i915(plane->base.dev));
- 	enum plane_id plane_id = plane->id;
- 	bool dirty = false;
- 	int level;
-@@ -1204,7 +1198,7 @@ static bool g4x_raw_plane_wm_compute(struct intel_crtc_state *crtc_state,
- 		goto out;
- 	}
- 
--	for (level = 0; level < num_levels; level++) {
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 		struct g4x_pipe_wm *raw = &crtc_state->wm.g4x.raw[level];
- 		int wm, max_wm;
- 
-@@ -1274,7 +1268,7 @@ static bool g4x_raw_crtc_wm_is_valid(const struct intel_crtc_state *crtc_state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 
--	if (level > dev_priv->display.wm.max_level)
-+	if (level >= dev_priv->display.wm.num_levels)
- 		return false;
- 
- 	return g4x_raw_plane_wm_is_valid(crtc_state, PLANE_PRIMARY, level) &&
-@@ -1610,13 +1604,13 @@ static void vlv_setup_wm_latency(struct drm_i915_private *dev_priv)
- 	/* all latencies in usec */
- 	dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_PM2] = 3;
- 
--	dev_priv->display.wm.max_level = VLV_WM_LEVEL_PM2;
-+	dev_priv->display.wm.num_levels = VLV_WM_LEVEL_PM2 + 1;
- 
- 	if (IS_CHERRYVIEW(dev_priv)) {
- 		dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_PM5] = 12;
- 		dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_DDR_DVFS] = 33;
- 
--		dev_priv->display.wm.max_level = VLV_WM_LEVEL_DDR_DVFS;
-+		dev_priv->display.wm.num_levels = VLV_WM_LEVEL_DDR_DVFS + 1;
- 	}
- }
- 
-@@ -1752,7 +1746,7 @@ static void vlv_invalidate_wms(struct intel_crtc *crtc,
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
--	for (; level < intel_wm_num_levels(dev_priv); level++) {
-+	for (; level < dev_priv->display.wm.num_levels; level++) {
- 		enum plane_id plane_id;
- 
- 		for_each_plane_id_on_crtc(crtc, plane_id)
-@@ -1779,10 +1773,9 @@ static bool vlv_raw_plane_wm_set(struct intel_crtc_state *crtc_state,
- 				 int level, enum plane_id plane_id, u16 value)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
--	int num_levels = intel_wm_num_levels(dev_priv);
- 	bool dirty = false;
- 
--	for (; level < num_levels; level++) {
-+	for (; level < dev_priv->display.wm.num_levels; level++) {
- 		struct g4x_pipe_wm *raw = &crtc_state->wm.vlv.raw[level];
- 
- 		dirty |= raw->plane[plane_id] != value;
-@@ -1798,7 +1791,6 @@ static bool vlv_raw_plane_wm_compute(struct intel_crtc_state *crtc_state,
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	enum plane_id plane_id = plane->id;
--	int num_levels = intel_wm_num_levels(to_i915(plane->base.dev));
- 	int level;
- 	bool dirty = false;
- 
-@@ -1807,7 +1799,7 @@ static bool vlv_raw_plane_wm_compute(struct intel_crtc_state *crtc_state,
- 		goto out;
- 	}
- 
--	for (level = 0; level < num_levels; level++) {
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 		struct g4x_pipe_wm *raw = &crtc_state->wm.vlv.raw[level];
- 		int wm = vlv_compute_wm_level(crtc_state, plane_state, level);
- 		int max_wm = plane_id == PLANE_CURSOR ? 63 : 511;
-@@ -1866,7 +1858,7 @@ static int _vlv_compute_pipe_wm(struct intel_crtc_state *crtc_state)
- 	int level;
- 
- 	/* initially allow all levels */
--	wm_state->num_levels = intel_wm_num_levels(dev_priv);
-+	wm_state->num_levels = dev_priv->display.wm.num_levels;
- 	/*
- 	 * Note that enabling cxsr with no primary/sprite planes
- 	 * enabled can wedge the pipe. Hence we only allow cxsr
-@@ -2129,7 +2121,7 @@ static void vlv_merge_wm(struct drm_i915_private *dev_priv,
- 	struct intel_crtc *crtc;
- 	int num_active_pipes = 0;
- 
--	wm->level = dev_priv->display.wm.max_level;
-+	wm->level = dev_priv->display.wm.num_levels - 1;
- 	wm->cxsr = true;
- 
- 	for_each_intel_crtc(&dev_priv->drm, crtc) {
-@@ -2836,7 +2828,7 @@ static void hsw_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- {
- 	u64 sskpd;
- 
--	i915->display.wm.max_level = 4;
-+	i915->display.wm.num_levels = 5;
- 
- 	sskpd = intel_uncore_read64(&i915->uncore, MCH_SSKPD);
- 
-@@ -2853,7 +2845,7 @@ static void snb_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- {
- 	u32 sskpd;
- 
--	i915->display.wm.max_level = 3;
-+	i915->display.wm.num_levels = 4;
- 
- 	sskpd = intel_uncore_read(&i915->uncore, MCH_SSKPD);
- 
-@@ -2867,7 +2859,7 @@ static void ilk_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- {
- 	u32 mltr;
- 
--	i915->display.wm.max_level = 2;
-+	i915->display.wm.num_levels = 3;
- 
- 	mltr = intel_uncore_read(&i915->uncore, MLTR_ILK);
- 
-@@ -2893,17 +2885,12 @@ static void intel_fixup_cur_wm_latency(struct drm_i915_private *dev_priv,
- 		wm[0] = 13;
- }
- 
--int ilk_wm_max_level(const struct drm_i915_private *dev_priv)
--{
--	return dev_priv->display.wm.max_level;
--}
--
- void intel_print_wm_latency(struct drm_i915_private *dev_priv,
- 			    const char *name, const u16 wm[])
- {
--	int level, max_level = ilk_wm_max_level(dev_priv);
-+	int level;
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 		unsigned int latency = wm[level];
- 
- 		if (latency == 0) {
-@@ -2931,13 +2918,13 @@ void intel_print_wm_latency(struct drm_i915_private *dev_priv,
- static bool ilk_increase_wm_latency(struct drm_i915_private *dev_priv,
- 				    u16 wm[5], u16 min)
- {
--	int level, max_level = ilk_wm_max_level(dev_priv);
-+	int level;
- 
- 	if (wm[0] >= min)
- 		return false;
- 
- 	wm[0] = max(wm[0], min);
--	for (level = 1; level <= max_level; level++)
-+	for (level = 1; level < dev_priv->display.wm.num_levels; level++)
- 		wm[level] = max_t(u16, wm[level], DIV_ROUND_UP(min, 5));
- 
- 	return true;
-@@ -3057,8 +3044,8 @@ static int ilk_compute_pipe_wm(struct intel_atomic_state *state,
- 	const struct intel_plane_state *pristate = NULL;
- 	const struct intel_plane_state *sprstate = NULL;
- 	const struct intel_plane_state *curstate = NULL;
--	int level, max_level = ilk_wm_max_level(dev_priv), usable_level;
- 	struct ilk_wm_maximums max;
-+	int level, usable_level;
- 
- 	pipe_wm = &crtc_state->wm.ilk.optimal;
- 
-@@ -3075,7 +3062,7 @@ static int ilk_compute_pipe_wm(struct intel_atomic_state *state,
- 	pipe_wm->sprites_enabled = crtc_state->active_planes & BIT(PLANE_SPRITE0);
- 	pipe_wm->sprites_scaled = crtc_state->scaled_planes & BIT(PLANE_SPRITE0);
- 
--	usable_level = max_level;
-+	usable_level = dev_priv->display.wm.num_levels - 1;
- 
- 	/* ILK/SNB: LP2+ watermarks only w/o sprites */
- 	if (DISPLAY_VER(dev_priv) <= 6 && pipe_wm->sprites_enabled)
-@@ -3129,7 +3116,7 @@ static int ilk_compute_intermediate_wm(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_pipe_wm *a = &new_crtc_state->wm.ilk.intermediate;
- 	const struct intel_pipe_wm *b = &old_crtc_state->wm.ilk.optimal;
--	int level, max_level = ilk_wm_max_level(dev_priv);
-+	int level;
- 
- 	/*
- 	 * Start with the final, target watermarks, then combine with the
-@@ -3146,7 +3133,7 @@ static int ilk_compute_intermediate_wm(struct intel_atomic_state *state,
- 	a->sprites_enabled |= b->sprites_enabled;
- 	a->sprites_scaled |= b->sprites_scaled;
- 
--	for (level = 0; level <= max_level; level++) {
-+	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 		struct intel_wm_level *a_wm = &a->wm[level];
- 		const struct intel_wm_level *b_wm = &b->wm[level];
- 
-@@ -3217,8 +3204,8 @@ static void ilk_wm_merge(struct drm_i915_private *dev_priv,
- 			 const struct ilk_wm_maximums *max,
- 			 struct intel_pipe_wm *merged)
- {
--	int level, max_level = ilk_wm_max_level(dev_priv);
--	int last_enabled_level = max_level;
-+	int level, num_levels = dev_priv->display.wm.num_levels;
-+	int last_enabled_level = num_levels - 1;
- 
- 	/* ILK/SNB/IVB: LP1+ watermarks only w/ single pipe */
- 	if ((DISPLAY_VER(dev_priv) <= 6 || IS_IVYBRIDGE(dev_priv)) &&
-@@ -3229,7 +3216,7 @@ static void ilk_wm_merge(struct drm_i915_private *dev_priv,
- 	merged->fbc_wm_enabled = DISPLAY_VER(dev_priv) >= 6;
- 
- 	/* merge each WM1+ level */
--	for (level = 1; level <= max_level; level++) {
-+	for (level = 1; level < num_levels - 1; level++) {
- 		struct intel_wm_level *wm = &merged->wm[level];
- 
- 		ilk_merge_wm_level(dev_priv, level, wm);
-@@ -3254,7 +3241,7 @@ static void ilk_wm_merge(struct drm_i915_private *dev_priv,
- 	/* ILK: LP2+ must be disabled when FBC WM is disabled but FBC enabled */
- 	if (DISPLAY_VER(dev_priv) == 5 && HAS_FBC(dev_priv) &&
- 	    dev_priv->params.enable_fbc && !merged->fbc_wm_enabled) {
--		for (level = 2; level <= max_level; level++) {
-+		for (level = 2; level < num_levels; level++) {
- 			struct intel_wm_level *wm = &merged->wm[level];
- 
- 			wm->enable = false;
-@@ -3349,10 +3336,9 @@ ilk_find_best_result(struct drm_i915_private *dev_priv,
- 		     struct intel_pipe_wm *r1,
- 		     struct intel_pipe_wm *r2)
- {
--	int level, max_level = ilk_wm_max_level(dev_priv);
--	int level1 = 0, level2 = 0;
-+	int level, level1 = 0, level2 = 0;
- 
--	for (level = 1; level <= max_level; level++) {
-+	for (level = 1; level < dev_priv->display.wm.num_levels; level++) {
- 		if (r1->wm[level].enable)
- 			level1 = level;
- 		if (r2->wm[level].enable)
-@@ -3626,14 +3612,14 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
- 		active->wm[0].spr_val = REG_FIELD_GET(WM0_PIPE_SPRITE_MASK, tmp);
- 		active->wm[0].cur_val = REG_FIELD_GET(WM0_PIPE_CURSOR_MASK, tmp);
- 	} else {
--		int level, max_level = ilk_wm_max_level(dev_priv);
-+		int level;
- 
- 		/*
- 		 * For inactive pipes, all watermark levels
- 		 * should be marked as enabled but zeroed,
- 		 * which is what we'd compute them to.
- 		 */
--		for (level = 0; level <= max_level; level++)
-+		for (level = 0; level < dev_priv->display.wm.num_levels; level++)
- 			active->wm[level].enable = true;
- 	}
- 
-@@ -3855,12 +3841,12 @@ void g4x_wm_sanitize(struct drm_i915_private *dev_priv)
- 		struct intel_plane_state *plane_state =
- 			to_intel_plane_state(plane->base.state);
- 		enum plane_id plane_id = plane->id;
--		int level, num_levels = intel_wm_num_levels(dev_priv);
-+		int level;
- 
- 		if (plane_state->uapi.visible)
- 			continue;
- 
--		for (level = 0; level < num_levels; level++) {
-+		for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 			struct g4x_pipe_wm *raw =
- 				&crtc_state->wm.g4x.raw[level];
- 
-@@ -3925,7 +3911,7 @@ void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Punit not acking DDR DVFS request, "
- 				    "assuming DDR DVFS is disabled\n");
--			dev_priv->display.wm.max_level = VLV_WM_LEVEL_PM5;
-+			dev_priv->display.wm.num_levels = VLV_WM_LEVEL_PM5 + 1;
- 		} else {
- 			val = vlv_punit_read(dev_priv, PUNIT_REG_DDR_SETUP2);
- 			if ((val & FORCE_DDR_HIGH_FREQ) == 0)
-@@ -4004,12 +3990,12 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
- 		struct intel_plane_state *plane_state =
- 			to_intel_plane_state(plane->base.state);
- 		enum plane_id plane_id = plane->id;
--		int level, num_levels = intel_wm_num_levels(dev_priv);
-+		int level;
- 
- 		if (plane_state->uapi.visible)
- 			continue;
- 
--		for (level = 0; level < num_levels; level++) {
-+		for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
- 			struct g4x_pipe_wm *raw =
- 				&crtc_state->wm.vlv.raw[level];
- 
-diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-index c09b872d65c8..55c2061d4d07 100644
---- a/drivers/gpu/drm/i915/intel_pm.h
-+++ b/drivers/gpu/drm/i915/intel_pm.h
-@@ -14,7 +14,6 @@ struct intel_plane_state;
- 
- void intel_init_clock_gating(struct drm_i915_private *dev_priv);
- void intel_suspend_hw(struct drm_i915_private *dev_priv);
--int ilk_wm_max_level(const struct drm_i915_private *dev_priv);
- void intel_init_pm(struct drm_i915_private *dev_priv);
- void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
- void intel_pm_setup(struct drm_i915_private *dev_priv);
--- 
-2.39.1
-
+>
+>Also, looking at https://intel-gfx-ci.01.org/tree/drm-tip/bat-all.html?testfilter=basic-flip-vs-modeset
+>It looks like this machine changed from DP to HDMI starting in
+>CI_DRM_12708?
+>
+>Lucas De Marchi
+>
+>
+>>
+>>
+>>Known issues
+>>------------
+>>
+>> Here are the changes found in Patchwork_113713v1 that come from known issues:
+>>
+>>### IGT changes ###
+>>
+>>#### Issues hit ####
+>>
+>> * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+>>   - bat-dg1-5:          NOTRUN -> [SKIP][3] ([i915#7828])
+>>  [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+>>
+>>
+>>#### Possible fixes ####
+>>
+>> * igt@i915_selftest@live@hangcheck:
+>>   - bat-dg1-5:          [ABORT][4] ([i915#4983]) -> [PASS][5]
+>>  [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12704/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+>>  [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+>>
+>> * igt@i915_selftest@live@slpc:
+>>   - {bat-rpls-1}:       [DMESG-FAIL][6] ([i915#6367]) -> [PASS][7]
+>>  [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12704/bat-rpls-1/igt@i915_selftest@live@slpc.html
+>>  [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+>>
+>> * igt@kms_busy@basic@modeset:
+>>   - fi-elk-e7500:       [FAIL][8] -> [PASS][9]
+>>  [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12704/fi-elk-e7500/igt@kms_busy@basic@modeset.html
+>>  [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/fi-elk-e7500/igt@kms_busy@basic@modeset.html
+>>
+>>
+>> {name}: This element is suppressed. This means it is ignored when computing
+>>         the status of the difference (SUCCESS, WARNING, or FAILURE).
+>>
+>> [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+>> [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+>> [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+>> [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+>> [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+>> [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+>>
+>>
+>>Build changes
+>>-------------
+>>
+>> * Linux: CI_DRM_12704 -> Patchwork_113713v1
+>>
+>> CI-20190529: 20190529
+>> CI_DRM_12704: 0f138ae07efe477bd51695d63b03394050bb6e07 @ git://anongit.freedesktop.org/gfx-ci/linux
+>> IGT_7152: 790b81207a0a6705213ec5ea645bc5e223b2ce1d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>> Patchwork_113713v1: 0f138ae07efe477bd51695d63b03394050bb6e07 @ git://anongit.freedesktop.org/gfx-ci/linux
+>>
+>>
+>>### Linux commits
+>>
+>>204afd36a3d7 drm/i915: Remove unused/wrong INF_UNIT_LEVEL_CLKGATE
+>>80322c878d54 drm/i915: Fix GEN8_MISCCPCTL
+>>
+>>== Logs ==
+>>
+>>For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113713v1/index.html
