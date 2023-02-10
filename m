@@ -2,33 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64CE56914E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 00:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7C4969151C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 01:08:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B4110EC01;
-	Thu,  9 Feb 2023 23:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C5610EBF9;
+	Fri, 10 Feb 2023 00:08:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C8F310EC01;
- Thu,  9 Feb 2023 23:50:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D254A03D2;
- Thu,  9 Feb 2023 23:50:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73D6710EBF9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 00:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1675987722;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BSw5daY010qcHCZuSVoAgV58dbuNqE0exBdvxUMk52M=;
+ b=HDE0rLv7PaKa9k+BCNUOkYm1dyzK1TdKJnvBXeg33z2jS6RrcA0a33ZDkGdCA3lXVnRaly
+ fPq4IwBm2HeMhJJuPABSGAMRMQuEjbHzNF3W3/r9MLteNrmYdeaPiVq8OU34puPcgZzwDt
+ +76FQ1kQ9NAMb3pyNDm4QoZ5MdK9FLM=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-577-3xM2F9M3NOez-3n-n5GegQ-1; Thu, 09 Feb 2023 19:08:41 -0500
+X-MC-Unique: 3xM2F9M3NOez-3n-n5GegQ-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ gw11-20020a0562140f0b00b0053b81ec39dfso2231442qvb.14
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 16:08:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=BSw5daY010qcHCZuSVoAgV58dbuNqE0exBdvxUMk52M=;
+ b=dvm7xoYgJrvxWcv9PIxtcbNfbBiZ724nVtthLiV+6qLt4psAIg+v04FwWsVV1jXRXw
+ 4cdcv0WJ6TEMhr0uju31dDSEj6D2BWwAiM+xtC5d6pkrNisuAbKVSuI++wm4Ki4JUNCu
+ C4gBBHrdp4uCariL7rH2MlYDX0xv85eeNxsYepido+Nif+4HWRMV99LELf3LPh0HFbvV
+ Cq2FAZY/BRZpM5aKBlxvPH1ftgmYe/bkQJQH1aHEcx/E7LzgpN90EcTwjrbVhZ6hxkRf
+ HzUZ144rLVb6coyZqqLiGS/p5ZVT6eRUQXsOZnLWrFetgcwBV/sAs1XT/23rlXTAItoH
+ 4FLQ==
+X-Gm-Message-State: AO0yUKUAeAYMoM0Iu/cw7RhUZ/ZohZYEDGHKtjHPdAAgP33AtKfNQPp2
+ oW0t8IT0xiI5ErITPe2UNs+IQhHxBfJ4cQlMLtcr40AoMkXnPUW1010omwflOa6N7lj6FQN4sjO
+ MTm0f06iQffiQQvGIIeQ26NJRdEkpEka9u60Oc2UauCGa
+X-Received: by 2002:ac8:5dc6:0:b0:3ba:8c0:8f89 with SMTP id
+ e6-20020ac85dc6000000b003ba08c08f89mr2003777qtx.89.1675987721134; 
+ Thu, 09 Feb 2023 16:08:41 -0800 (PST)
+X-Google-Smtp-Source: AK7set/5wZzJKpTlmro2WCCkMZCDMF0ZKN/0KTX+DGUF/pDMJLqFMcVYxsSLUcdNimpD7Zma28DTdnHBiJyhmcXCLF8=
+X-Received: by 2002:ac8:5dc6:0:b0:3ba:8c0:8f89 with SMTP id
+ e6-20020ac85dc6000000b003ba08c08f89mr2003771qtx.89.1675987720917; Thu, 09 Feb
+ 2023 16:08:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 09 Feb 2023 23:50:14 -0000
-Message-ID: <167598661404.20200.14962033206940541326@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230209232228.859317-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230209232228.859317-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/xehp=3A_LNCF/LBCF_workarounds_should_be_on_the_GT_?=
- =?utf-8?q?list?=
+References: <20230210104720.365557d8@canb.auug.org.au>
+In-Reply-To: <20230210104720.365557d8@canb.auug.org.au>
+From: David Airlie <airlied@redhat.com>
+Date: Fri, 10 Feb 2023 10:08:29 +1000
+Message-ID: <CAMwc25r3EQG7hHkC7SU9omHWFGqto7RuUY9uVNkC6vXUF_hVtg@mail.gmail.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] linux-next: duplicate patch in the drm-misc-fixes
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +76,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Feb 10, 2023 at 9:47 AM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>
+> Hi all,
+>
+> The following commit is also in the drm-fixes tree as a different commit
+> (but the same patch):
+>
+>   94d8b6572a1f ("nvidiafb: detect the hardware support before removing console.")
+>
+> This is commit
+>
+>   04119ab1a49f ("nvidiafb: detect the hardware support before removing console.")
+>
+> in the drm-fixes tree.
 
-Series: drm/i915/xehp: LNCF/LBCF workarounds should be on the GT list
-URL   : https://patchwork.freedesktop.org/series/113857/
-State : warning
+Just FYI misc team, I've force pushed drm-misc-fixes to drop this
+patch, please make sure any local misc fixes don't bring it back in if
+we can avoid it.
 
-== Summary ==
-
-Error: dim checkpatch failed
-c4134c967979 drm/i915/xehp: LNCF/LBCF workarounds should be on the GT list
--:10: WARNING:TYPO_SPELLING: 'targetting' may be misspelled - perhaps 'targeting'?
-#10: 
-and tuning settings targetting them should be placed on the GT
-                    ^^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 138 lines checked
-
+Dave.
 
