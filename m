@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBAC8692343
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 17:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 778B96923F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 18:05:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED1410E119;
-	Fri, 10 Feb 2023 16:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1038D10ED8F;
+	Fri, 10 Feb 2023 17:05:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE2F10E119;
- Fri, 10 Feb 2023 16:28:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676046524; x=1707582524;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=G0iNhNyMvoG7aTMwcuCf5JzmVSIkR8RNkqGsGM0bI38=;
- b=H3ncm30qdYpPOWSPzpZRK1kiOniC4pIPeg7PEkGE/t7azWZAz/ZT4/07
- DFKuPEsJ+oExURqBs/yUllE3YYiAJKxi3cwfZGhbl+V7IZZwwTSdeV5MX
- umwQZA1kIKV+s6SGEiUqz00zPKF3JQUXeBLsNk0OI7y5sTI1qzbZHGzEL
- rs4MhId76y26Rn6BNLd14IPnO9NITJ7FC6m4jmCgyPXGrVn7uXtjddm7x
- +jovNrEYjZtFxpq1Kd3PjGNz5UHAWV/RYmkr7nLr65UvqG+5YeXK+Q/ju
- DA27GGSaor6arrWLEYeuVbwVmyxd9kjhbpG/vvT0PQsRWBxY6RyPAX0YW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="318474821"
-X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="318474821"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2023 08:28:43 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="700527542"
-X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="700527542"
-Received: from barcinsk-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.213.16.80])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2023 08:28:42 -0800
-Date: Fri, 10 Feb 2023 17:28:39 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230210162839.4pigujhzu24ve2v5@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230210140259.hhfx7yu3myswrayl@kamilkon-desk1>
- <1954569.8hb0ThOEGa@jkrzyszt-mobl1.ger.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3686A10ED8F;
+ Fri, 10 Feb 2023 17:05:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1CE4EA66C9;
+ Fri, 10 Feb 2023 17:05:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6142680619067253019=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1954569.8hb0ThOEGa@jkrzyszt-mobl1.ger.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915_suspend: Free device list
- after *-without-i915 subtests
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 10 Feb 2023 17:05:05 -0000
+Message-ID: <167604870508.7874.14036795268450506418@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgV2Fp?=
+ =?utf-8?q?tboost_drm_syncobj_waits_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,156 +40,414 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+--===============6142680619067253019==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2023-02-10 at 15:21:20 +0100, Janusz Krzysztofik wrote:
-> On Friday, 10 February 2023 15:02:59 CET Kamil Konieczny wrote:
-> > Hi Janusz,
-> > 
-> > I have one nit, see below.
-> > 
-> > On 2023-02-09 at 20:32:31 +0100, Janusz Krzysztofik wrote:
-> > > If any of *-without-i915 subtests fails or skips for any reason, it may
-> > > leave the i915 module unloaded while keeping our device list populated
-> > > with initially collected data.  In a follow up igt_fixture section we then
-> > > try to reopen the device.  If the test has been executed with a device
-> > > filter specified, an attempt to open the device finds a matching entry
-> > > that belongs to the no longer existing device in that initially collected
-> > > device list, fails to stat() it, concludes that's because of the device
-> > > having been already open, and returns an error.
-> > > 
-> > > Fix this potentially confusing test result by freeing the potentially
-> > > outdated device list before continuing with drm_open_driver().
-> > > 
-> > > While being at it, add a comment that explains why we call
-> > > igt_device_scan() from __igt_device_card_match() but don't force device
-> > > rescan, and emit a debug message if we fail in _is_already_opened() on
-> > > unsuccessful device stat().
-> > > 
-> > > Subtest basic-s3-without-i915: FAIL (9.572s)
-> > > (i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
-> > > (i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
-> > > (i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
-> > > (i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
-> > > (i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
-> > > Test i915_suspend failed.
-> > > **** DEBUG ****
-> > > (i915_suspend:9050) drmtest-DEBUG: Looking for devices to open using filter 0: pci:vendor=intel,device=dg2
-> > > (i915_suspend:9050) drmtest-DEBUG: Filter matched /dev/dri/card0 | /dev/dri/renderD128
-> > > (i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
-> > > (i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
-> > > (i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
-> > > (i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
-> > > (i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
-> > > (i915_suspend:9050) igt_core-INFO: Stack trace:
-> > > (i915_suspend:9050) igt_core-INFO:   #0 ../lib/igt_core.c:2066 __igt_abort()
-> > > (i915_suspend:9050) igt_core-INFO:   #1 ../lib/drmtest.c:573 drm_open_driver()
-> > > (i915_suspend:9050) igt_core-INFO:   #2 ../tests/i915/i915_suspend.c:258 __igt_unique____real_main245()
-> > > (i915_suspend:9050) igt_core-INFO:   #3 ../tests/i915/i915_suspend.c:245 main()
-> > > (i915_suspend:9050) igt_core-INFO:   #4 ../sysdeps/nptl/libc_start_call_main.h:58 __libc_start_call_main()
-> > > (i915_suspend:9050) igt_core-INFO:   #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
-> > > (i915_suspend:9050) igt_core-INFO:   #6 [_start+0x2a]
-> > > ****  END  ****
-> > > 
-> > > Fixes: f7aff600ab16 ("tests/i915/i915_suspend: Disable d3cold_allowed for basic-s2idle-without-i915")
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > Cc: Riana Tauro <riana.tauro@intel.com>
-> > > ---
-> > >  lib/drmtest.c             |  2 +-
-> > >  lib/igt_device_scan.c     |  4 ++++
-> > >  tests/i915/i915_suspend.c | 10 +++++++++-
-> > >  3 files changed, 14 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/lib/drmtest.c b/lib/drmtest.c
-> > > index 16e80bdfcf..8e2d1ac50b 100644
-> > > --- a/lib/drmtest.c
-> > > +++ b/lib/drmtest.c
-> > > @@ -260,7 +260,7 @@ static bool _is_already_opened(const char *path, int as_idx)
-> > >  	 * we cannot even stat the device, so it's of no use - let's claim it's
-> > >  	 * already opened
-> > >  	 */
-> > > -	if (stat(path, &new) != 0)
-> > > +	if (igt_debug_on(stat(path, &new) != 0))
-> > 
-> > This one looks a little too much, for example it can return -ENOENT
-> 
-> I'm not sure what you mean by "too much", and why you think that's wrong.  
-> Maybe if you proposed some other approach, more proper in your opinion, not 
-> only suggest that something is wrong, than I would be more clear about your 
-> point.
-> 
-> I've surrounded the comparison of stat() return value against 0 with 
-> igt_debug_on().  The only effect of this is that a debug message will be 
-> emitted should stat() return an error.  Otherwise this is completely 
-> transparent, i.e., this doesn't affect the algorithm in any way.  The purpose 
-> of emitting the debug message is to make root cause analysis easier by 
-> providing a hint which exit point from _is_already_opened() was followed, IOW, 
-> why the device was believed to be open.
-> 
-> Thanks,
-> Janusz
+== Series Details ==
 
-Now I looked and checked igt_debug_on and it looks ok here, sorry.
+Series: Waitboost drm syncobj waits (rev2)
+URL   : https://patchwork.freedesktop.org/series/113846/
+State : failure
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+== Summary ==
 
-Regards,
-Kamil
+CI Bug Log - changes from CI_DRM_12727 -> Patchwork_113846v2
+====================================================
 
-> 
-> 
-> > 
-> > Rest looks ok.
-> > 
-> > Regards,
-> > Kamil
-> > 
-> > >  		return true;
-> > >  
-> > >  	for (int i = 0; i < as_idx; ++i) {
-> > > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> > > index 8b767eed20..ae69ed09f1 100644
-> > > --- a/lib/igt_device_scan.c
-> > > +++ b/lib/igt_device_scan.c
-> > > @@ -1918,6 +1918,10 @@ static bool __igt_device_card_match(const char *filter,
-> > >  		return false;
-> > >  	memset(card, 0, sizeof(*card));
-> > >  
-> > > +	/*
-> > > +	 * Scan devices in case the user hasn't yet,
-> > > +	 * but leave a decision on forced rescan on the user side.
-> > > +	 */
-> > >  	igt_devices_scan(false);
-> > >  
-> > >  	if (igt_device_filter_apply(filter) == false)
-> > > diff --git a/tests/i915/i915_suspend.c b/tests/i915/i915_suspend.c
-> > > index 815f1c8a2c..c68110476e 100644
-> > > --- a/tests/i915/i915_suspend.c
-> > > +++ b/tests/i915/i915_suspend.c
-> > > @@ -253,8 +253,16 @@ igt_main
-> > >  	igt_subtest("basic-s3-without-i915")
-> > >  		test_suspend_without_i915(SUSPEND_STATE_S3);
-> > >  
-> > > -	igt_fixture
-> > > +	igt_fixture {
-> > > +		/*
-> > > +		 * Since above tests may fail leaving the i915 module unloaded,
-> > > +		 * force refresh of device list before opening an i915 device
-> > > +		 * by cleaning up the current device list, otherwise we can fail
-> > > +		 * if we have been called with a device filter specified.
-> > > +		 */
-> > > +		igt_devices_free();
-> > >  		fd = drm_open_driver(DRIVER_INTEL);
-> > > +	}
-> > >  
-> > >  	igt_subtest("fence-restore-tiled2untiled") {
-> > >  		gem_require_mappable_ggtt(fd);
-> > 
-> 
-> 
-> 
-> 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_113846v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_113846v2, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/index.html
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Missing    (2): bat-atsm-1 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113846v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_busy@busy@all-engines:
+    - fi-ivb-3770:        [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-ivb-3770/igt@gem_busy@busy@all-engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-ivb-3770/igt@gem_busy@busy@all-engines.html
+
+  * igt@i915_module_load@load:
+    - fi-ilk-650:         [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-ilk-650/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-ilk-650/igt@i915_module_load@load.html
+    - fi-blb-e6850:       [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-blb-e6850/igt@i915_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-blb-e6850/igt@i915_module_load@load.html
+    - fi-bsw-n3050:       [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-bsw-n3050/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-bsw-n3050/igt@i915_module_load@load.html
+    - fi-rkl-11600:       [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-rkl-11600/igt@i915_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-rkl-11600/igt@i915_module_load@load.html
+    - fi-skl-6600u:       [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-skl-6600u/igt@i915_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-skl-6600u/igt@i915_module_load@load.html
+    - fi-apl-guc:         [PASS][13] -> [ABORT][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-apl-guc/igt@i915_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-apl-guc/igt@i915_module_load@load.html
+    - bat-dg1-5:          [PASS][15] -> [ABORT][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-5/igt@i915_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-5/igt@i915_module_load@load.html
+    - fi-pnv-d510:        [PASS][17] -> [ABORT][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-pnv-d510/igt@i915_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-pnv-d510/igt@i915_module_load@load.html
+    - fi-glk-j4005:       [PASS][19] -> [ABORT][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-glk-j4005/igt@i915_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-glk-j4005/igt@i915_module_load@load.html
+    - fi-skl-guc:         [PASS][21] -> [ABORT][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-skl-guc/igt@i915_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-skl-guc/igt@i915_module_load@load.html
+    - bat-dg1-6:          [PASS][23] -> [ABORT][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-6/igt@i915_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-6/igt@i915_module_load@load.html
+    - fi-kbl-7567u:       [PASS][25] -> [ABORT][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-7567u/igt@i915_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-7567u/igt@i915_module_load@load.html
+    - fi-cfl-8700k:       [PASS][27] -> [ABORT][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-8700k/igt@i915_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-8700k/igt@i915_module_load@load.html
+    - fi-elk-e7500:       [PASS][29] -> [ABORT][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-elk-e7500/igt@i915_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-elk-e7500/igt@i915_module_load@load.html
+    - fi-bsw-nick:        [PASS][31] -> [ABORT][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-bsw-nick/igt@i915_module_load@load.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-bsw-nick/igt@i915_module_load@load.html
+    - fi-tgl-1115g4:      [PASS][33] -> [ABORT][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-tgl-1115g4/igt@i915_module_load@load.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-tgl-1115g4/igt@i915_module_load@load.html
+    - fi-kbl-x1275:       [PASS][35] -> [ABORT][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-x1275/igt@i915_module_load@load.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-x1275/igt@i915_module_load@load.html
+    - fi-hsw-4770:        [PASS][37] -> [ABORT][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-hsw-4770/igt@i915_module_load@load.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-hsw-4770/igt@i915_module_load@load.html
+    - fi-cfl-8109u:       [PASS][39] -> [ABORT][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-8109u/igt@i915_module_load@load.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-8109u/igt@i915_module_load@load.html
+    - fi-kbl-guc:         [PASS][41] -> [ABORT][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-guc/igt@i915_module_load@load.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-guc/igt@i915_module_load@load.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_module_load@load:
+    - {bat-jsl-1}:        [PASS][43] -> [ABORT][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-jsl-1/igt@i915_module_load@load.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-jsl-1/igt@i915_module_load@load.html
+    - {bat-rpls-1}:       [PASS][45] -> [ABORT][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rpls-1/igt@i915_module_load@load.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rpls-1/igt@i915_module_load@load.html
+    - {bat-adlp-6}:       [PASS][47] -> [ABORT][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlp-6/igt@i915_module_load@load.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlp-6/igt@i915_module_load@load.html
+    - {bat-adls-5}:       [PASS][49] -> [ABORT][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adls-5/igt@i915_module_load@load.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adls-5/igt@i915_module_load@load.html
+    - {bat-dg1-7}:        [PASS][51] -> [ABORT][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-7/igt@i915_module_load@load.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-7/igt@i915_module_load@load.html
+    - {bat-jsl-3}:        [PASS][53] -> [ABORT][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-jsl-3/igt@i915_module_load@load.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-jsl-3/igt@i915_module_load@load.html
+    - {bat-adlp-9}:       [PASS][55] -> [ABORT][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlp-9/igt@i915_module_load@load.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlp-9/igt@i915_module_load@load.html
+    - {bat-dg2-11}:       [PASS][57] -> [ABORT][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-11/igt@i915_module_load@load.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-11/igt@i915_module_load@load.html
+    - {bat-adln-1}:       [PASS][59] -> [ABORT][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adln-1/igt@i915_module_load@load.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adln-1/igt@i915_module_load@load.html
+    - {bat-adlm-1}:       [PASS][61] -> [ABORT][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlm-1/igt@i915_module_load@load.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlm-1/igt@i915_module_load@load.html
+    - {bat-rplp-1}:       [PASS][63] -> [ABORT][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rplp-1/igt@i915_module_load@load.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rplp-1/igt@i915_module_load@load.html
+    - {bat-dg2-9}:        [PASS][65] -> [ABORT][66]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-9/igt@i915_module_load@load.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-9/igt@i915_module_load@load.html
+    - {bat-rpls-2}:       [PASS][67] -> [ABORT][68]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rpls-2/igt@i915_module_load@load.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rpls-2/igt@i915_module_load@load.html
+    - {bat-dg2-8}:        [PASS][69] -> [ABORT][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-8/igt@i915_module_load@load.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-8/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113846v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - fi-cfl-guc:         [PASS][71] -> [ABORT][72] ([i915#8141])
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-guc/igt@i915_module_load@load.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-guc/igt@i915_module_load@load.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#8141]: https://gitlab.freedesktop.org/drm/intel/issues/8141
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12727 -> Patchwork_113846v2
+
+  CI-20190529: 20190529
+  CI_DRM_12727: 571111c8567d76c5a5ec4641ba771bb1bdd278fc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7156: d10786443fef434534ec4d08e93db92dfad84c7b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113846v2: 571111c8567d76c5a5ec4641ba771bb1bdd278fc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+7a08fd7f270f drm/i915: Wait boost requests waited upon by others
+8c687c784061 drm/i915: Mark waits as explicit
+119d3caa3ca6 drm/i915: Waitboost external waits
+dfadc3ae295a drm/syncobj: Mark syncobj waits as external waiters
+9729003feb78 dma-fence: Track explicit waiters
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/index.html
+
+--===============6142680619067253019==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Waitboost drm syncobj waits (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113846/">https://patchwork.freedesktop.org/series/113846/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12727 -&gt; Patchwork_113846v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_113846v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_113846v2, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/index.html</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Missing    (2): bat-atsm-1 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113846v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@gem_busy@busy@all-engines:</p>
+<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-ivb-3770/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-ivb-3770/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-ilk-650/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-ilk-650/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-blb-e6850/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-blb-e6850/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-bsw-n3050/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-bsw-n3050/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-rkl-11600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-rkl-11600/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-skl-6600u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-skl-6600u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-apl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-apl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-5/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-pnv-d510/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-pnv-d510/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-glk-j4005/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-glk-j4005/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-skl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-skl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-6/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-7567u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-8700k/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-elk-e7500/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-elk-e7500/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-bsw-nick/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-bsw-nick/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-tgl-1115g4/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-tgl-1115g4/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-x1275/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-x1275/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-hsw-4770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-hsw-4770/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-8109u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-8109u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-kbl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-kbl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>
+<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-jsl-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-jsl-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rpls-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rpls-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlp-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlp-6/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-adls-5}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adls-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adls-5/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-dg1-7}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg1-7/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg1-7/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-jsl-3}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-jsl-3/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-jsl-3/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlp-9/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-11/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-11/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adln-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adln-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-adlm-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-adlm-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rplp-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rplp-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-9/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-rpls-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-rpls-2/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/bat-dg2-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/bat-dg2-8/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113846v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12727/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113846v2/fi-cfl-guc/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8141">i915#8141</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12727 -&gt; Patchwork_113846v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12727: 571111c8567d76c5a5ec4641ba771bb1bdd278fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7156: d10786443fef434534ec4d08e93db92dfad84c7b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113846v2: 571111c8567d76c5a5ec4641ba771bb1bdd278fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>7a08fd7f270f drm/i915: Wait boost requests waited upon by others<br />
+8c687c784061 drm/i915: Mark waits as explicit<br />
+119d3caa3ca6 drm/i915: Waitboost external waits<br />
+dfadc3ae295a drm/syncobj: Mark syncobj waits as external waiters<br />
+9729003feb78 dma-fence: Track explicit waiters</p>
+
+</body>
+</html>
+
+--===============6142680619067253019==--
