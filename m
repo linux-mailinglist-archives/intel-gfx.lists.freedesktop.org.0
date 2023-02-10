@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA7C6925FD
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 20:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF73692665
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 20:32:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C4B10EDD6;
-	Fri, 10 Feb 2023 19:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F93610EDD6;
+	Fri, 10 Feb 2023 19:32:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5728610EDD6;
- Fri, 10 Feb 2023 19:02:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F1CDAADD4;
- Fri, 10 Feb 2023 19:02:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1813809320080439588=="
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F8010EDD6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 19:32:19 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id A9870B825BC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 19:32:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F67AC4339B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 19:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1676057536;
+ bh=ug38gwWwqd9WD7MkHSHdssRPnvuW50g2Hiq4i4QvHrE=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=d97WB41x9xjhzbNzjAwTX9Yi6mkqWtq7nmD6+3AS7yRbfFgkI/OJmFEQ9/KeTOvGL
+ O+Rwsy/8AchBcU+vbWI8ya2/vTTi0SntQ1JNj6lUJvMXgW0wn4cGDxvaH99eHow16t
+ JQbwztARuN1Az1A0Y4dh2tPwk3WLAbzsV/MHaGKKrrF4Ets8SmBVJF1A/4k1RKK2Bw
+ W7ydIn4YLUUJdCteR4PTouz92ud6pa7GUbd/mmKSlvOWmjW3hJs1oN3VIkzLrHCYqW
+ 81gXzvcB2Cme6+7c9sHcUxIRikTJ5DgdVkh5pNovidwAxAhMGqdVjzqlLzdag7xiXL
+ rMviWfXhsIdiQ==
+Received: by mail-yb1-f179.google.com with SMTP id s203so2509171ybc.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 11:32:16 -0800 (PST)
+X-Gm-Message-State: AO0yUKWv54UaW6m2UzD0xGV7Sjjw/FljmpsANhfuV+bHn10zCNYHKPQ1
+ ISNTsDeBuuNEhtNtOVFlYWMbYNAbwF2UvbCoE7Q=
+X-Google-Smtp-Source: AK7set9Gpb9Gq1fYiZD9UwaPC7TNCPhV7FIDrrS322ktWhtu3+sWil4TSvcVf+ctl+QPhsmhHOpZHh/s+yJiqS3HkMw=
+X-Received: by 2002:a05:6902:c2:b0:85b:5c5b:db10 with SMTP id
+ i2-20020a05690200c200b0085b5c5bdb10mr1910879ybs.485.1676057535418; Fri, 10
+ Feb 2023 11:32:15 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Fri, 10 Feb 2023 19:02:34 -0000
-Message-ID: <167605575431.7868.11651221038600668547@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230210150344.1066991-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20230210150344.1066991-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Use_i915_instead_of_dev=5Fpriv_as_name_for_the_priv?=
- =?utf-8?q?ate_device?=
+References: <20230202165547.xb4uet45aywmt6js@gjsousa-mobl2>
+In-Reply-To: <20230202165547.xb4uet45aywmt6js@gjsousa-mobl2>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Fri, 10 Feb 2023 14:32:04 -0500
+X-Gmail-Original-Message-ID: <CA+5PVA4A8EEff7GTu+162+s_J3eP-_a_-PQk9dM0VSPCnHgPWg@mail.gmail.com>
+Message-ID: <CA+5PVA4A8EEff7GTu+162+s_J3eP-_a_-PQk9dM0VSPCnHgPWg@mail.gmail.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] PR for ADLP DMC v2.18
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,152 +59,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "jwboyer@kernel.org" <jwboyer@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ linux-firmware@kernel.org, "kyle@mcmartin.ca" <kyle@mcmartin.ca>, "Hutchings,
+ Ben" <ben@decadent.org.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1813809320080439588==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Feb 2, 2023 at 11:56 AM Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>
+> The following changes since commit 5c11a3742947810ee8bffbd476eb5a1b0c7999f2:
+>
+>   amdgpu: Add VCN 4.0.2 firmware (2023-01-25 07:40:41 -0500)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-firmware.git dmc-adlp_2.18
 
-== Series Details ==
+Pulled and pushed out.
 
-Series: drm/i915/gt: Use i915 instead of dev_priv as name for the private device
-URL   : https://patchwork.freedesktop.org/series/113899/
-State : success
+josh
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12729 -> Patchwork_113899v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113899v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - {bat-adlp-6}:       [ABORT][1] ([i915#7977]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12729/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12729 -> Patchwork_113899v1
-
-  CI-20190529: 20190529
-  CI_DRM_12729: d09b2cf01d8c5bf0a3a2b544dad1ac987727d9d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7157: 96d12fdc942cee9526a951b377b195ca9c8276b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113899v1: d09b2cf01d8c5bf0a3a2b544dad1ac987727d9d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-90c7802fa830 drm/i915/gt: Use i915 instead of dev_priv as name for the private device
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/index.html
-
---===============1813809320080439588==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Use i915 instead of dev_priv as name for the private device</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113899/">https://patchwork.freedesktop.org/series/113899/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12729 -&gt; Patchwork_113899v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113899v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@basic-rte:<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12729/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7977">i915#7977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113899v1/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12729 -&gt; Patchwork_113899v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12729: d09b2cf01d8c5bf0a3a2b544dad1ac987727d9d8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7157: 96d12fdc942cee9526a951b377b195ca9c8276b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113899v1: d09b2cf01d8c5bf0a3a2b544dad1ac987727d9d8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>90c7802fa830 drm/i915/gt: Use i915 instead of dev_priv as name for the private device</p>
-
-</body>
-</html>
-
---===============1813809320080439588==--
+> for you to fetch changes up to a5046f435699b88a20fe9f5803da2a5c2f604a7f:
+>
+>   i915: Add DMC v2.18 for ADLP (2023-02-02 12:58:28 -0300)
+>
+> ----------------------------------------------------------------
+> Gustavo Sousa (1):
+>       i915: Add DMC v2.18 for ADLP
+>
+>  WHENCE            |   3 +++
+>  i915/adlp_dmc.bin | Bin 0 -> 78500 bytes
+>  2 files changed, 3 insertions(+)
+>  create mode 100644 i915/adlp_dmc.bin
