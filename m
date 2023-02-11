@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F3CA692957
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Feb 2023 22:33:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BFC692D4B
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Feb 2023 03:15:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8274410E2A5;
-	Fri, 10 Feb 2023 21:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A16110EE9A;
+	Sat, 11 Feb 2023 02:14:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 713AD10E040;
- Fri, 10 Feb 2023 21:33:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B56110EE9A;
+ Sat, 11 Feb 2023 02:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676064813; x=1707600813;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mHu6rQqr2ancUN8i131MUgjoT0XN1rug8maagL9f++M=;
- b=mfR7uwjn5oCjMqVvdbbzzG2n3EclgGJdCYcAEBqJkVCdpiSA/fLM+Xd6
- RA9uVI/N1EEgA73MDUUR5WfZHNrf9qs00pbS2ffGkeFxarIizldw3NH0y
- JN1+Af8vBSwmAbySEZzHeo+YzY8ysx7xkN8Oa6CI8Oajag0x7EM0X5c+z
- Rw48asg1F/IxY/Y3MXXSEbdaiNRmoxm1VORkfLYA7KUuBDLxN6aE6Kb96
- cQIeHIVaqpqmuqdIXrMh7/eg9pKDIVfQSSZwHd3RAC6b1cQ6mzde/g+Jj
- zomLqXEWVFNs4Rc5y6x8XH5M2sa6QJTZdgOLiW8cgyHZI1FIqbB4+yhSM g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="318550644"
-X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="318550644"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2023 13:33:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="670136548"
-X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="670136548"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.0.158])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2023 13:33:24 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 10 Feb 2023 22:33:21 +0100
-Message-ID: <13320072.uLZWGnKmhe@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230209193231.57538-1-janusz.krzysztofik@linux.intel.com>
-References: <20230209193231.57538-1-janusz.krzysztofik@linux.intel.com>
+ t=1676081698; x=1707617698;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AFH7pAzH8z3MkAsbKr3xo6FcBDF2BLc1KAFzqHwB5bs=;
+ b=iaOyw950XhTEXZnHQmzPxwxShOGfoqYKmq1odEQ1fz6PdXhIo5I+AH71
+ WlbWu7O6CEAi9aCg9ljAD7mwcDpu2WusYoug7T+9bkpWsu15+ZuWmx7Ew
+ k1n62CFi+dsVid0s5iS3+1TA64rQB84mJPAtWllHBWuFIuJ64l0YR1avf
+ QFnOSVLUcEaJLzFB5FWrvkboUPsaxtiBWMGkYkYyr0avBG97Hi3snBzaH
+ y3DBTaUYaJiCJ1fRctAqAQ/QOtcodYGOwyeikXJHNS/sgC1u5rf0iQ9YA
+ 8UsepKmaangeYUOJEAxLUJTW4ohQi9WvNxThBD9+WZmKbBt9oGKED/1ep g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="330582021"
+X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="330582021"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2023 18:14:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="842213075"
+X-IronPort-AV: E=Sophos;i="5.97,287,1669104000"; d="scan'208";a="842213075"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+ by orsmga005.jf.intel.com with ESMTP; 10 Feb 2023 18:14:53 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pQfPg-0006B7-2O;
+ Sat, 11 Feb 2023 02:14:52 +0000
+Date: Sat, 11 Feb 2023 10:14:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <63e6fa07.0LOPaAs7kdy2KqZw%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915_suspend: Free device list
- after *-without-i915 subtests
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 6ba8a227fd19d19779005fb66ad7562608e1df83
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,128 +59,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: fsverity@lists.linux.dev, linux-doc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>, asahi@lists.linux.dev,
+ linux-trace-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, 9 February 2023 20:32:31 CET Janusz Krzysztofik wrote:
-> If any of *-without-i915 subtests fails or skips for any reason, it may
-> leave the i915 module unloaded while keeping our device list populated
-> with initially collected data.  In a follow up igt_fixture section we then
-> try to reopen the device.  If the test has been executed with a device
-> filter specified, an attempt to open the device finds a matching entry
-> that belongs to the no longer existing device in that initially collected
-> device list, fails to stat() it, concludes that's because of the device
-> having been already open, and returns an error.
-> 
-> Fix this potentially confusing test result by freeing the potentially
-> outdated device list before continuing with drm_open_driver().
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 6ba8a227fd19d19779005fb66ad7562608e1df83  Add linux-next specific files for 20230210
 
-Freeing device list occurred not safe if device scan was not performed before.  
-I can see 3 potential solutions:
-1) force device rescan instead of free before calling drm_open_driver(),
-2) teach igt_device_free() to return immediately if the device list has not 
-   been allocated,
-3) provide a has_device_list() helper for to be used if not sure before 
-   calling igt_device_free().
+Error/Warning reports:
 
-Any preferences?
+https://lore.kernel.org/oe-kbuild-all/202301302110.mEtNwkBD-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202301310939.TAgCOEZb-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302061911.C7xvHX9v-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302062224.ByzeTXh1-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302092211.54EYDhYH-lkp@intel.com
 
-Thanks,
-Janusz
+Error/Warning: (recently discovered and may have been fixed)
 
-> 
-> While being at it, add a comment that explains why we call
-> igt_device_scan() from __igt_device_card_match() but don't force device
-> rescan, and emit a debug message if we fail in _is_already_opened() on
-> unsuccessful device stat().
-> 
-> Subtest basic-s3-without-i915: FAIL (9.572s)
-> (i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
-> (i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
-> (i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
-> (i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
-> (i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
-> Test i915_suspend failed.
-> **** DEBUG ****
-> (i915_suspend:9050) drmtest-DEBUG: Looking for devices to open using filter 0: pci:vendor=intel,device=dg2
-> (i915_suspend:9050) drmtest-DEBUG: Filter matched /dev/dri/card0 | /dev/dri/renderD128
-> (i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
-> (i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
-> (i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
-> (i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
-> (i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
-> (i915_suspend:9050) igt_core-INFO: Stack trace:
-> (i915_suspend:9050) igt_core-INFO:   #0 ../lib/igt_core.c:2066 __igt_abort()
-> (i915_suspend:9050) igt_core-INFO:   #1 ../lib/drmtest.c:573 drm_open_driver()
-> (i915_suspend:9050) igt_core-INFO:   #2 ../tests/i915/i915_suspend.c:258 __igt_unique____real_main245()
-> (i915_suspend:9050) igt_core-INFO:   #3 ../tests/i915/i915_suspend.c:245 main()
-> (i915_suspend:9050) igt_core-INFO:   #4 ../sysdeps/nptl/libc_start_call_main.h:58 __libc_start_call_main()
-> (i915_suspend:9050) igt_core-INFO:   #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
-> (i915_suspend:9050) igt_core-INFO:   #6 [_start+0x2a]
-> ****  END  ****
-> 
-> Fixes: f7aff600ab16 ("tests/i915/i915_suspend: Disable d3cold_allowed for basic-s2idle-without-i915")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Riana Tauro <riana.tauro@intel.com>
-> ---
->  lib/drmtest.c             |  2 +-
->  lib/igt_device_scan.c     |  4 ++++
->  tests/i915/i915_suspend.c | 10 +++++++++-
->  3 files changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/lib/drmtest.c b/lib/drmtest.c
-> index 16e80bdfcf..8e2d1ac50b 100644
-> --- a/lib/drmtest.c
-> +++ b/lib/drmtest.c
-> @@ -260,7 +260,7 @@ static bool _is_already_opened(const char *path, int as_idx)
->  	 * we cannot even stat the device, so it's of no use - let's claim it's
->  	 * already opened
->  	 */
-> -	if (stat(path, &new) != 0)
-> +	if (igt_debug_on(stat(path, &new) != 0))
->  		return true;
->  
->  	for (int i = 0; i < as_idx; ++i) {
-> diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> index 8b767eed20..ae69ed09f1 100644
-> --- a/lib/igt_device_scan.c
-> +++ b/lib/igt_device_scan.c
-> @@ -1918,6 +1918,10 @@ static bool __igt_device_card_match(const char *filter,
->  		return false;
->  	memset(card, 0, sizeof(*card));
->  
-> +	/*
-> +	 * Scan devices in case the user hasn't yet,
-> +	 * but leave a decision on forced rescan on the user side.
-> +	 */
->  	igt_devices_scan(false);
->  
->  	if (igt_device_filter_apply(filter) == false)
-> diff --git a/tests/i915/i915_suspend.c b/tests/i915/i915_suspend.c
-> index 815f1c8a2c..c68110476e 100644
-> --- a/tests/i915/i915_suspend.c
-> +++ b/tests/i915/i915_suspend.c
-> @@ -253,8 +253,16 @@ igt_main
->  	igt_subtest("basic-s3-without-i915")
->  		test_suspend_without_i915(SUSPEND_STATE_S3);
->  
-> -	igt_fixture
-> +	igt_fixture {
-> +		/*
-> +		 * Since above tests may fail leaving the i915 module unloaded,
-> +		 * force refresh of device list before opening an i915 device
-> +		 * by cleaning up the current device list, otherwise we can fail
-> +		 * if we have been called with a device filter specified.
-> +		 */
-> +		igt_devices_free();
->  		fd = drm_open_driver(DRIVER_INTEL);
-> +	}
->  
->  	igt_subtest("fence-restore-tiled2untiled") {
->  		gem_require_mappable_ggtt(fd);
-> 
+Documentation/sphinx/templates/kernel-toc.html: 1:36 Invalid token: #}
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hubbub.c:1011:6: warning: no previous prototype for 'hubbub31_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hubbub.c:948:6: warning: no previous prototype for 'hubbub32_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hubp.c:158:6: warning: no previous prototype for 'hubp32_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource_helpers.c:62:18: warning: variable 'cursor_bpp' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:1296:32: warning: variable 'result_write_min_hblank' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:280:42: warning: variable 'ds_port' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_training.c:1586:38: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+ftrace-ops.c:(.init.text+0x2c3): undefined reference to `__udivdi3'
 
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
+drivers/clk/ingenic/jz4760-cgu.c:80 jz4760_cgu_calc_m_n_od() error: uninitialized symbol 'od'.
+drivers/iommu/apple-dart.c:1281:1: sparse: sparse: symbol 'apple_dart_pm_ops' was not declared. Should it be static?
+drivers/media/i2c/max9286.c:802 max9286_s_stream() error: buffer overflow 'priv->fmt' 4 <= 32
+drivers/thermal/qcom/tsens-v0_1.c:106:40: sparse: sparse: symbol 'tsens_9607_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v0_1.c:26:40: sparse: sparse: symbol 'tsens_8916_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v0_1.c:42:40: sparse: sparse: symbol 'tsens_8939_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v0_1.c:62:40: sparse: sparse: symbol 'tsens_8974_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v0_1.c:84:40: sparse: sparse: symbol 'tsens_8974_backup_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v1.c:24:40: sparse: sparse: symbol 'tsens_qcs404_nvmem' was not declared. Should it be static?
+drivers/thermal/qcom/tsens-v1.c:45:40: sparse: sparse: symbol 'tsens_8976_nvmem' was not declared. Should it be static?
+drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
+fs/verity/enable.c:29:2: warning: Null pointer passed as 1st argument to memory set function [clang-analyzer-unix.cstring.NullArg]
 
+Error/Warning ids grouped by kconfigs:
 
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- alpha-buildonly-randconfig-r006-20230210
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn31-dcn31_hubbub.c:warning:no-previous-prototype-for-hubbub31_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubbub.c:warning:no-previous-prototype-for-hubbub32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubp.c:warning:no-previous-prototype-for-hubp32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm64-randconfig-m041-20230210
+|   |-- drivers-clk-ingenic-jz4760-cgu.c-jz4760_cgu_calc_m_n_od()-error:uninitialized-symbol-od-.
+|   `-- drivers-media-i2c-max9286.c-max9286_s_stream()-error:buffer-overflow-priv-fmt
+|-- arm64-randconfig-s042-20230210
+|   `-- drivers-iommu-apple-dart.c:sparse:sparse:symbol-apple_dart_pm_ops-was-not-declared.-Should-it-be-static
+|-- i386-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn31-dcn31_hubbub.c:warning:no-previous-prototype-for-hubbub31_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubbub.c:warning:no-previous-prototype-for-hubbub32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubp.c:warning:no-previous-prototype-for-hubp32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|   `-- ftrace-ops.c:(.init.text):undefined-reference-to-__udivdi3
+|-- i386-randconfig-m021
+|   `-- kernel-trace-trace_events_synth.c-trace_event_raw_event_synth()-warn:inconsistent-indenting
+|-- i386-randconfig-s001
+|   |-- drivers-gpu-drm-i915-gem-i915_gem_ttm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-restricted-vm_fault_t-assigned-usertype-ret-got-int
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- i386-randconfig-s002
+|   `-- drivers-gpu-drm-i915-gem-i915_gem_ttm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-restricted-vm_fault_t-assigned-usertype-ret-got-int
+|-- i386-randconfig-s003
+clang_recent_errors
+`-- s390-randconfig-c005-20230210
+    `-- fs-verity-enable.c:warning:Null-pointer-passed-as-1st-argument-to-memory-set-function-clang-analyzer-unix.cstring.NullArg
+
+elapsed time: 1238m
+
+configs tested: 71
+configs skipped: 8
+
+gcc tested configs:
+alpha                            allyesconfig
+alpha                               defconfig
+arc                              allyesconfig
+arc                                 defconfig
+arc                        nsimosci_defconfig
+arm                              allmodconfig
+arm                              allyesconfig
+arm                                 defconfig
+arm                      footbridge_defconfig
+arm                            qcom_defconfig
+arm                           sunxi_defconfig
+arm64                            allyesconfig
+arm64                               defconfig
+csky                                defconfig
+i386                             allyesconfig
+i386                              debian-10.3
+i386                                defconfig
+i386                          randconfig-a016
+i386                          randconfig-c001
+ia64                             allmodconfig
+ia64                                defconfig
+loongarch                        allmodconfig
+loongarch                         allnoconfig
+loongarch                           defconfig
+m68k                             allmodconfig
+m68k                                defconfig
+m68k                        m5272c3_defconfig
+m68k                       m5275evb_defconfig
+mips                             allmodconfig
+mips                             allyesconfig
+mips                       bmips_be_defconfig
+mips                         db1xxx_defconfig
+nios2                               defconfig
+parisc                              defconfig
+parisc64                            defconfig
+powerpc                          allmodconfig
+powerpc                           allnoconfig
+riscv                            allmodconfig
+riscv                               defconfig
+s390                             allmodconfig
+s390                             allyesconfig
+s390                                defconfig
+sh                               allmodconfig
+sh                        edosk7760_defconfig
+sh                          sdk7786_defconfig
+sh                           se7343_defconfig
+sh                     sh7710voipgw_defconfig
+sparc                             allnoconfig
+sparc                               defconfig
+um                             i386_defconfig
+um                           x86_64_defconfig
+x86_64                            allnoconfig
+x86_64                           allyesconfig
+x86_64                              defconfig
+x86_64                                  kexec
+x86_64                        randconfig-a006
+x86_64                               rhel-8.3
+x86_64                          rhel-8.3-func
+
+clang tested configs:
+i386                              allnoconfig
+i386                          randconfig-a006
+mips                        qi_lb60_defconfig
+powerpc                     mpc5200_defconfig
+powerpc                    mvme5100_defconfig
+powerpc                      ppc64e_defconfig
+powerpc              randconfig-c003-20230210
+riscv                randconfig-c006-20230210
+s390                 randconfig-c005-20230210
+s390                 randconfig-r044-20230210
+x86_64                        randconfig-a005
+x86_64                        randconfig-a016
+x86_64                          rhel-8.3-rust
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
