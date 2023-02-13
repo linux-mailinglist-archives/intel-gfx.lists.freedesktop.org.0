@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04A269541F
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FE0695420
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16EBD10E765;
-	Mon, 13 Feb 2023 22:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B20F10E76B;
+	Mon, 13 Feb 2023 22:53:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8647010E763
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A79610E765
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676328789; x=1707864789;
+ t=1676328792; x=1707864792;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=M5TocMhppMgKSKapgjjCx7Uj5cVyxC/aIc8Zrw0KU74=;
- b=JhxH8iuQuhg9yJv+iF5zLCi04mImVVWgTHDa/6T+D3IjipqdXMRP8rhO
- lHuWCJ504Lbi1RrvCELPer8bI3yLJ/Rf3Ak6PelNQLS0pxV6sNfhEuedK
- LyAHo3IP1ataBAdNX9zX0IIkXybcOszsHkbPlCTN22dNmF9nmgnj/DFH/
- I2GGZniBH55wu/N8MvQvEWOPeAsSG6YC5/t3jsgnNEpbzx9J538UAunK9
- hCQ4MDaK+Of0i32CwutgfyzBue1IEMB1nPAq848PEAoYIGVBlaTrbxRmI
- j3pWfKYpA+nXToyJ1hTTd/zQjZf5w462T1ltl3V46VXhMubqRdylrycQJ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237377"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237377"
+ bh=OYvWcG7WC0YUuxXnoddaJsTTQhhD9+pWWPJzNc1iRMc=;
+ b=G4nuHvGAkiEaz+3qNilnNrrNCssX+SsR7/Ct2uDL3ezlLeY1/FcYfSCs
+ ri4vTmhQA5etVF3YHKtvhuLp4AmO2MrYvt0UweKytp9JJ321OA6ZxgF9L
+ qLAEAOt0HX8dPowMuaZa9fSWR6VVerA2BfsLii7B1lSLoS9oH67bQnJqT
+ NeQtM8YdbuTm9jJEFGty3an5k5mJKxQqPWZGBXgzSkiN9BLj2TAiVv10c
+ N6j6u9t4+362YNbeCWdRdP92tdQzV3gSq5aV5/VuxtlLBWs0o1B/QfIvk
+ Wt/2W20dYRSmu1S33nQ1l730R6AJ6UNh/8aI8avtAgGASHc/x+T/pwWTp A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237383"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237383"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 14:53:09 -0800
+ 13 Feb 2023 14:53:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766424"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766424"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766426"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766426"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:07 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:10 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 00:53:06 +0200
+ Tue, 14 Feb 2023 00:53:09 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 00:52:49 +0200
-Message-Id: <20230213225258.2127-4-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 00:52:50 +0200
+Message-Id: <20230213225258.2127-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 03/12] drm/i915: Give CPU transcoder timing
- registers TRANS_ prefix
+Subject: [Intel-gfx] [PATCH 04/12] drm/i915: s/PIPECONF/TRANSCONF/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,570 +64,955 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Name the CPU transcoder timing registers TRANS_FOO rather than
-just FOO. This is the modern name, after the pipe/transcoder split
-happened. Makes it a bit more obvious whether you pass in a pipe or
-a transcoder.
+Rename PIPECONF to TRANSCONF to make it clear what it actually
+applies to.
 
-PIPESRC is a bit special as it's a pipe register, even though it
-lives in the transcoder registers range (0x60000 instead of 0x70000).
+While the usual convention is to pick the earliers name I think
+in this case it's more clear to use the later name. Especially
+as even the register offset is in the wrong range (0x70000 vs.
+0x60000) and thus makes it look like this is per-pipe.
 
-And BCLRPAT I suppose is a transcoder register (since it has something
-to do with the timing generator), but it doesn't even exist after gen4
-so I left it to use the only name it ever had in bspec.
-
-And while at it let's pass in the correct enum in few more
-places why don't we. Although in all those places the distinction
-doesn't matter.
+There is one place in gvt that's doing something with TRANSCONF
+while iterating with for_each_pipe(). So that might not be doing
+the right thing for TRANSCODER_EDP, dunno. Not knowing what it
+does I left it as is to avoid breakage.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c        | 12 +--
- drivers/gpu/drm/i915/display/intel_crt.c      | 19 ++--
- drivers/gpu/drm/i915/display/intel_display.c  | 49 ++++++-----
- .../gpu/drm/i915/display/intel_pch_display.c  | 14 +--
- drivers/gpu/drm/i915/display/intel_psr.c      |  6 +-
- drivers/gpu/drm/i915/gvt/handlers.c           |  4 +-
- drivers/gpu/drm/i915/i915_reg.h               | 88 +++++++++----------
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   | 62 ++++++-------
- 8 files changed, 128 insertions(+), 126 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  16 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 171 +++++++++---------
+ .../i915/display/intel_display_power_well.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |   8 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   8 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  16 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/gvt/display.c            |  16 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  14 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 106 +++++------
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   8 +-
+ 12 files changed, 192 insertions(+), 191 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 05e749861658..e1fe59ca0892 100644
+index e1fe59ca0892..07897d6f9c53 100644
 --- a/drivers/gpu/drm/i915/display/icl_dsi.c
 +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -887,7 +887,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	/* program TRANS_HTOTAL register */
+@@ -976,11 +976,11 @@ static void gen11_dsi_enable_transcoder(struct intel_encoder *encoder)
+ 
  	for_each_dsi_port(port, intel_dsi->ports) {
  		dsi_trans = dsi_port_to_transcoder(port);
--		intel_de_write(dev_priv, HTOTAL(dsi_trans),
-+		intel_de_write(dev_priv, TRANS_HTOTAL(dsi_trans),
- 			       (hactive - 1) | ((htotal - 1) << 16));
- 	}
+-		intel_de_rmw(dev_priv, PIPECONF(dsi_trans), 0, PIPECONF_ENABLE);
++		intel_de_rmw(dev_priv, TRANSCONF(dsi_trans), 0, TRANSCONF_ENABLE);
  
-@@ -910,7 +910,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+ 		/* wait for transcoder to be enabled */
+-		if (intel_de_wait_for_set(dev_priv, PIPECONF(dsi_trans),
+-					  PIPECONF_STATE_ENABLE, 10))
++		if (intel_de_wait_for_set(dev_priv, TRANSCONF(dsi_trans),
++					  TRANSCONF_STATE_ENABLE, 10))
+ 			drm_err(&dev_priv->drm,
+ 				"DSI transcoder not enabled\n");
+ 	}
+@@ -1238,11 +1238,11 @@ static void gen11_dsi_disable_transcoder(struct intel_encoder *encoder)
+ 		dsi_trans = dsi_port_to_transcoder(port);
  
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_write(dev_priv, HSYNC(dsi_trans),
-+			intel_de_write(dev_priv, TRANS_HSYNC(dsi_trans),
- 				       (hsync_start - 1) | ((hsync_end - 1) << 16));
- 		}
- 	}
-@@ -924,7 +924,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 		 * struct drm_display_mode.
- 		 * For interlace mode: program required pixel minus 2
- 		 */
--		intel_de_write(dev_priv, VTOTAL(dsi_trans),
-+		intel_de_write(dev_priv, TRANS_VTOTAL(dsi_trans),
- 			       (vactive - 1) | ((vtotal - 1) << 16));
- 	}
+ 		/* disable transcoder */
+-		intel_de_rmw(dev_priv, PIPECONF(dsi_trans), PIPECONF_ENABLE, 0);
++		intel_de_rmw(dev_priv, TRANSCONF(dsi_trans), TRANSCONF_ENABLE, 0);
  
-@@ -938,7 +938,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	if (is_vid_mode(intel_dsi)) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_write(dev_priv, VSYNC(dsi_trans),
-+			intel_de_write(dev_priv, TRANS_VSYNC(dsi_trans),
- 				       (vsync_start - 1) | ((vsync_end - 1) << 16));
- 		}
+ 		/* wait for transcoder to be disabled */
+-		if (intel_de_wait_for_clear(dev_priv, PIPECONF(dsi_trans),
+-					    PIPECONF_STATE_ENABLE, 50))
++		if (intel_de_wait_for_clear(dev_priv, TRANSCONF(dsi_trans),
++					    TRANSCONF_STATE_ENABLE, 50))
+ 			drm_err(&dev_priv->drm,
+ 				"DSI trancoder not disabled\n");
  	}
-@@ -952,7 +952,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	if (is_vid_mode(intel_dsi)) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_write(dev_priv, VSYNCSHIFT(dsi_trans),
-+			intel_de_write(dev_priv, TRANS_VSYNCSHIFT(dsi_trans),
- 				       vsync_shift);
+@@ -1662,8 +1662,8 @@ static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
+ 			goto out;
  		}
+ 
+-		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
+-		ret = tmp & PIPECONF_ENABLE;
++		tmp = intel_de_read(dev_priv, TRANSCONF(dsi_trans));
++		ret = tmp & TRANSCONF_ENABLE;
  	}
-@@ -961,7 +961,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	if (DISPLAY_VER(dev_priv) >= 12) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_write(dev_priv, VBLANK(dsi_trans),
-+			intel_de_write(dev_priv, TRANS_VBLANK(dsi_trans),
- 				       (vactive - 1) | ((vtotal - 1) << 16));
- 		}
- 	}
+ out:
+ 	intel_display_power_put(dev_priv, encoder->power_domain, wakeref);
 diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index d5bb02f0868d..4b7f8cd416fe 100644
+index 4b7f8cd416fe..ef0c7f5b0ad6 100644
 --- a/drivers/gpu/drm/i915/display/intel_crt.c
 +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -678,10 +678,11 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
- }
- 
- static enum drm_connector_status
--intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
-+intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
- {
- 	struct drm_device *dev = crt->base.base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
-+	enum transcoder cpu_transcoder = (enum transcoder)pipe;
- 	u32 save_bclrpat;
- 	u32 save_vtotal;
- 	u32 vtotal, vactive;
-@@ -693,9 +694,9 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
- 
- 	drm_dbg_kms(&dev_priv->drm, "starting load-detect on CRT\n");
- 
--	save_bclrpat = intel_de_read(dev_priv, BCLRPAT(pipe));
--	save_vtotal = intel_de_read(dev_priv, VTOTAL(pipe));
--	vblank = intel_de_read(dev_priv, VBLANK(pipe));
-+	save_bclrpat = intel_de_read(dev_priv, BCLRPAT(cpu_transcoder));
-+	save_vtotal = intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder));
-+	vblank = intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
- 
- 	vtotal = ((save_vtotal >> 16) & 0xfff) + 1;
- 	vactive = (save_vtotal & 0x7ff) + 1;
-@@ -704,7 +705,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
- 	vblank_end = ((vblank >> 16) & 0xfff) + 1;
- 
- 	/* Set the border color to purple. */
--	intel_de_write(dev_priv, BCLRPAT(pipe), 0x500050);
-+	intel_de_write(dev_priv, BCLRPAT(cpu_transcoder), 0x500050);
+@@ -708,11 +708,11 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ 	intel_de_write(dev_priv, BCLRPAT(cpu_transcoder), 0x500050);
  
  	if (DISPLAY_VER(dev_priv) != 2) {
- 		u32 pipeconf = intel_de_read(dev_priv, PIPECONF(pipe));
-@@ -730,11 +731,11 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
- 		* Yes, this will flicker
- 		*/
- 		if (vblank_start <= vactive && vblank_end >= vtotal) {
--			u32 vsync = intel_de_read(dev_priv, VSYNC(pipe));
-+			u32 vsync = intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder));
- 			u32 vsync_start = (vsync & 0xffff) + 1;
+-		u32 pipeconf = intel_de_read(dev_priv, PIPECONF(pipe));
++		u32 transconf = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
  
- 			vblank_start = vsync_start;
--			intel_de_write(dev_priv, VBLANK(pipe),
-+			intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
- 				       (vblank_start - 1) | ((vblank_end - 1) << 16));
- 			restore_vblank = true;
- 		}
-@@ -766,7 +767,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
+-		intel_de_write(dev_priv, PIPECONF(pipe),
+-			       pipeconf | PIPECONF_FORCE_BORDER);
+-		intel_de_posting_read(dev_priv, PIPECONF(pipe));
++		intel_de_write(dev_priv, TRANSCONF(cpu_transcoder),
++			       transconf | TRANSCONF_FORCE_BORDER);
++		intel_de_posting_read(dev_priv, TRANSCONF(cpu_transcoder));
+ 		/* Wait for next Vblank to substitue
+ 		 * border color for Color info */
+ 		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
+@@ -721,7 +721,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+ 			connector_status_connected :
+ 			connector_status_disconnected;
  
- 		/* restore vblank if necessary */
- 		if (restore_vblank)
--			intel_de_write(dev_priv, VBLANK(pipe), vblank);
-+			intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder), vblank);
- 		/*
- 		 * If more than 3/4 of the scanline detected a monitor,
- 		 * then it is assumed to be present. This works even on i830,
-@@ -779,7 +780,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
- 	}
- 
- 	/* Restore previous settings */
--	intel_de_write(dev_priv, BCLRPAT(pipe), save_bclrpat);
-+	intel_de_write(dev_priv, BCLRPAT(cpu_transcoder), save_bclrpat);
- 
- 	return status;
- }
+-		intel_de_write(dev_priv, PIPECONF(pipe), pipeconf);
++		intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), transconf);
+ 	} else {
+ 		bool restore_vblank = false;
+ 		int count, detect;
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 322f3b2c741d..a93f3630e9f8 100644
+index a93f3630e9f8..0aca842df8f7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1848,7 +1848,7 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
- 	intel_set_transcoder_timings(crtc_state);
+@@ -396,8 +396,8 @@ intel_wait_for_pipe_off(const struct intel_crtc_state *old_crtc_state)
+ 		enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
  
- 	if (cpu_transcoder != TRANSCODER_EDP)
--		intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
-+		intel_de_write(dev_priv, TRANS_MULT(cpu_transcoder),
- 			       crtc_state->pixel_multiplier - 1);
+ 		/* Wait for the Pipe State to go off */
+-		if (intel_de_wait_for_clear(dev_priv, PIPECONF(cpu_transcoder),
+-					    PIPECONF_STATE_ENABLE, 100))
++		if (intel_de_wait_for_clear(dev_priv, TRANSCONF(cpu_transcoder),
++					    TRANSCONF_STATE_ENABLE, 100))
+ 			drm_WARN(&dev_priv->drm, 1, "pipe_off wait timed out\n");
+ 	} else {
+ 		intel_wait_for_pipe_scanline_stopped(crtc);
+@@ -418,8 +418,8 @@ void assert_transcoder(struct drm_i915_private *dev_priv,
+ 	power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
+ 	wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
+ 	if (wakeref) {
+-		u32 val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
+-		cur_state = !!(val & PIPECONF_ENABLE);
++		u32 val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
++		cur_state = !!(val & TRANSCONF_ENABLE);
  
- 	hsw_set_frame_start_delay(crtc_state);
-@@ -2844,21 +2844,21 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+ 		intel_display_power_put(dev_priv, power_domain, wakeref);
+ 	} else {
+@@ -531,15 +531,15 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+ 		intel_de_rmw(dev_priv, PIPE_ARB_CTL(pipe),
+ 			     0, PIPE_ARB_USE_PROG_SLOTS);
+ 
+-	reg = PIPECONF(cpu_transcoder);
++	reg = TRANSCONF(cpu_transcoder);
+ 	val = intel_de_read(dev_priv, reg);
+-	if (val & PIPECONF_ENABLE) {
++	if (val & TRANSCONF_ENABLE) {
+ 		/* we keep both pipes enabled on 830 */
+ 		drm_WARN_ON(&dev_priv->drm, !IS_I830(dev_priv));
+ 		return;
  	}
  
- 	if (DISPLAY_VER(dev_priv) > 3)
--		intel_de_write(dev_priv, VSYNCSHIFT(cpu_transcoder),
--		               vsyncshift);
-+		intel_de_write(dev_priv, TRANS_VSYNCSHIFT(cpu_transcoder),
-+			       vsyncshift);
+-	intel_de_write(dev_priv, reg, val | PIPECONF_ENABLE);
++	intel_de_write(dev_priv, reg, val | TRANSCONF_ENABLE);
+ 	intel_de_posting_read(dev_priv, reg);
  
--	intel_de_write(dev_priv, HTOTAL(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_HTOTAL(cpu_transcoder),
- 		       (adjusted_mode->crtc_hdisplay - 1) | ((adjusted_mode->crtc_htotal - 1) << 16));
--	intel_de_write(dev_priv, HBLANK(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
- 		       (adjusted_mode->crtc_hblank_start - 1) | ((adjusted_mode->crtc_hblank_end - 1) << 16));
--	intel_de_write(dev_priv, HSYNC(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
- 		       (adjusted_mode->crtc_hsync_start - 1) | ((adjusted_mode->crtc_hsync_end - 1) << 16));
+ 	/*
+@@ -570,9 +570,9 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+ 	 */
+ 	assert_planes_disabled(crtc);
  
--	intel_de_write(dev_priv, VTOTAL(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
- 		       (adjusted_mode->crtc_vdisplay - 1) | ((crtc_vtotal - 1) << 16));
--	intel_de_write(dev_priv, VBLANK(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
- 		       (adjusted_mode->crtc_vblank_start - 1) | ((crtc_vblank_end - 1) << 16));
--	intel_de_write(dev_priv, VSYNC(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder),
- 		       (adjusted_mode->crtc_vsync_start - 1) | ((adjusted_mode->crtc_vsync_end - 1) << 16));
+-	reg = PIPECONF(cpu_transcoder);
++	reg = TRANSCONF(cpu_transcoder);
+ 	val = intel_de_read(dev_priv, reg);
+-	if ((val & PIPECONF_ENABLE) == 0)
++	if ((val & TRANSCONF_ENABLE) == 0)
+ 		return;
  
- 	/* Workaround: when the EDP input selection is B, the VTOTAL_B must be
-@@ -2867,8 +2867,8 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	 * bits. */
- 	if (IS_HASWELL(dev_priv) && cpu_transcoder == TRANSCODER_EDP &&
- 	    (pipe == PIPE_B || pipe == PIPE_C))
--		intel_de_write(dev_priv, VTOTAL(pipe),
--		               intel_de_read(dev_priv, VTOTAL(cpu_transcoder)));
-+		intel_de_write(dev_priv, TRANS_VTOTAL(pipe),
-+			       intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder)));
+ 	/*
+@@ -580,11 +580,11 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+ 	 * so best keep it disabled when not needed.
+ 	 */
+ 	if (old_crtc_state->double_wide)
+-		val &= ~PIPECONF_DOUBLE_WIDE;
++		val &= ~TRANSCONF_DOUBLE_WIDE;
  
+ 	/* Don't disable pipe or pipe PLLs if needed */
+ 	if (!IS_I830(dev_priv))
+-		val &= ~PIPECONF_ENABLE;
++		val &= ~TRANSCONF_ENABLE;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 14)
+ 		intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder),
+@@ -594,7 +594,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+ 			     FECSTALL_DIS_DPTSTREAM_DPTTG, 0);
+ 
+ 	intel_de_write(dev_priv, reg, val);
+-	if ((val & PIPECONF_ENABLE) == 0)
++	if ((val & TRANSCONF_ENABLE) == 0)
+ 		intel_wait_for_pipe_off(old_crtc_state);
  }
  
-@@ -2910,33 +2910,33 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
- 	enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
- 	u32 tmp;
+@@ -2897,9 +2897,9 @@ static bool intel_pipe_is_interlaced(const struct intel_crtc_state *crtc_state)
  
--	tmp = intel_de_read(dev_priv, HTOTAL(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, TRANS_HTOTAL(cpu_transcoder));
- 	pipe_config->hw.adjusted_mode.crtc_hdisplay = (tmp & 0xffff) + 1;
- 	pipe_config->hw.adjusted_mode.crtc_htotal = ((tmp >> 16) & 0xffff) + 1;
+ 	if (DISPLAY_VER(dev_priv) >= 9 ||
+ 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+-		return intel_de_read(dev_priv, PIPECONF(cpu_transcoder)) & PIPECONF_INTERLACE_MASK_HSW;
++		return intel_de_read(dev_priv, TRANSCONF(cpu_transcoder)) & TRANSCONF_INTERLACE_MASK_HSW;
+ 	else
+-		return intel_de_read(dev_priv, PIPECONF(cpu_transcoder)) & PIPECONF_INTERLACE_MASK;
++		return intel_de_read(dev_priv, TRANSCONF(cpu_transcoder)) & TRANSCONF_INTERLACE_MASK;
+ }
  
- 	if (!transcoder_is_dsi(cpu_transcoder)) {
--		tmp = intel_de_read(dev_priv, HBLANK(cpu_transcoder));
-+		tmp = intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
- 		pipe_config->hw.adjusted_mode.crtc_hblank_start =
- 							(tmp & 0xffff) + 1;
- 		pipe_config->hw.adjusted_mode.crtc_hblank_end =
- 						((tmp >> 16) & 0xffff) + 1;
- 	}
--	tmp = intel_de_read(dev_priv, HSYNC(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder));
- 	pipe_config->hw.adjusted_mode.crtc_hsync_start = (tmp & 0xffff) + 1;
- 	pipe_config->hw.adjusted_mode.crtc_hsync_end = ((tmp >> 16) & 0xffff) + 1;
- 
--	tmp = intel_de_read(dev_priv, VTOTAL(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder));
- 	pipe_config->hw.adjusted_mode.crtc_vdisplay = (tmp & 0xffff) + 1;
- 	pipe_config->hw.adjusted_mode.crtc_vtotal = ((tmp >> 16) & 0xffff) + 1;
- 
- 	if (!transcoder_is_dsi(cpu_transcoder)) {
--		tmp = intel_de_read(dev_priv, VBLANK(cpu_transcoder));
-+		tmp = intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
- 		pipe_config->hw.adjusted_mode.crtc_vblank_start =
- 							(tmp & 0xffff) + 1;
- 		pipe_config->hw.adjusted_mode.crtc_vblank_end =
- 						((tmp >> 16) & 0xffff) + 1;
- 	}
--	tmp = intel_de_read(dev_priv, VSYNC(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder));
- 	pipe_config->hw.adjusted_mode.crtc_vsync_start = (tmp & 0xffff) + 1;
- 	pipe_config->hw.adjusted_mode.crtc_vsync_end = ((tmp >> 16) & 0xffff) + 1;
- 
-@@ -4092,7 +4092,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 	    !transcoder_is_dsi(pipe_config->cpu_transcoder)) {
- 		pipe_config->pixel_multiplier =
- 			intel_de_read(dev_priv,
--				      PIPE_MULT(pipe_config->cpu_transcoder)) + 1;
-+				      TRANS_MULT(pipe_config->cpu_transcoder)) + 1;
- 	} else {
- 		pipe_config->pixel_multiplier = 1;
- 	}
-@@ -8791,6 +8791,7 @@ int intel_modeset_init(struct drm_i915_private *i915)
- void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+@@ -2984,7 +2984,8 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
  {
- 	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
-+	enum transcoder cpu_transcoder = (enum transcoder)pipe;
- 	/* 640x480@60Hz, ~25175 kHz */
- 	struct dpll clock = {
- 		.m1 = 18,
-@@ -8817,12 +8818,12 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
- 		PLL_REF_INPUT_DREFCLK |
- 		DPLL_VCO_ENABLE;
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	u32 pipeconf = 0;
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 val = 0;
  
--	intel_de_write(dev_priv, HTOTAL(pipe), (640 - 1) | ((800 - 1) << 16));
--	intel_de_write(dev_priv, HBLANK(pipe), (640 - 1) | ((800 - 1) << 16));
--	intel_de_write(dev_priv, HSYNC(pipe), (656 - 1) | ((752 - 1) << 16));
--	intel_de_write(dev_priv, VTOTAL(pipe), (480 - 1) | ((525 - 1) << 16));
--	intel_de_write(dev_priv, VBLANK(pipe), (480 - 1) | ((525 - 1) << 16));
--	intel_de_write(dev_priv, VSYNC(pipe), (490 - 1) | ((492 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_HTOTAL(cpu_transcoder), (640 - 1) | ((800 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder), (640 - 1) | ((800 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder), (656 - 1) | ((752 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder), (480 - 1) | ((525 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder), (480 - 1) | ((525 - 1) << 16));
-+	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder), (490 - 1) | ((492 - 1) << 16));
- 	intel_de_write(dev_priv, PIPESRC(pipe), ((640 - 1) << 16) | (480 - 1));
+ 	/*
+ 	 * - We keep both pipes enabled on 830
+@@ -2992,18 +2993,18 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 	 * - During fastset the pipe is already enabled and must remain so
+ 	 */
+ 	if (IS_I830(dev_priv) || !intel_crtc_needs_modeset(crtc_state))
+-		pipeconf |= PIPECONF_ENABLE;
++		val |= TRANSCONF_ENABLE;
  
- 	intel_de_write(dev_priv, FP0(pipe), fp);
+ 	if (crtc_state->double_wide)
+-		pipeconf |= PIPECONF_DOUBLE_WIDE;
++		val |= TRANSCONF_DOUBLE_WIDE;
+ 
+ 	/* only g4x and later have fancy bpc/dither controls */
+ 	if (IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+ 	    IS_CHERRYVIEW(dev_priv)) {
+ 		/* Bspec claims that we can't use dithering for 30bpp pipes. */
+ 		if (crtc_state->dither && crtc_state->pipe_bpp != 30)
+-			pipeconf |= PIPECONF_DITHER_EN |
+-				    PIPECONF_DITHER_TYPE_SP;
++			val |= TRANSCONF_DITHER_EN |
++				TRANSCONF_DITHER_TYPE_SP;
+ 
+ 		switch (crtc_state->pipe_bpp) {
+ 		default:
+@@ -3011,13 +3012,13 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 			MISSING_CASE(crtc_state->pipe_bpp);
+ 			fallthrough;
+ 		case 18:
+-			pipeconf |= PIPECONF_BPC_6;
++			val |= TRANSCONF_BPC_6;
+ 			break;
+ 		case 24:
+-			pipeconf |= PIPECONF_BPC_8;
++			val |= TRANSCONF_BPC_8;
+ 			break;
+ 		case 30:
+-			pipeconf |= PIPECONF_BPC_10;
++			val |= TRANSCONF_BPC_10;
+ 			break;
+ 		}
+ 	}
+@@ -3025,23 +3026,23 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
+ 		if (DISPLAY_VER(dev_priv) < 4 ||
+ 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+-			pipeconf |= PIPECONF_INTERLACE_W_FIELD_INDICATION;
++			val |= TRANSCONF_INTERLACE_W_FIELD_INDICATION;
+ 		else
+-			pipeconf |= PIPECONF_INTERLACE_W_SYNC_SHIFT;
++			val |= TRANSCONF_INTERLACE_W_SYNC_SHIFT;
+ 	} else {
+-		pipeconf |= PIPECONF_INTERLACE_PROGRESSIVE;
++		val |= TRANSCONF_INTERLACE_PROGRESSIVE;
+ 	}
+ 
+ 	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+ 	     crtc_state->limited_color_range)
+-		pipeconf |= PIPECONF_COLOR_RANGE_SELECT;
++		val |= TRANSCONF_COLOR_RANGE_SELECT;
+ 
+-	pipeconf |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
++	val |= TRANSCONF_GAMMA_MODE(crtc_state->gamma_mode);
+ 
+-	pipeconf |= PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
++	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+ 
+-	intel_de_write(dev_priv, PIPECONF(crtc->pipe), pipeconf);
+-	intel_de_posting_read(dev_priv, PIPECONF(crtc->pipe));
++	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), val);
++	intel_de_posting_read(dev_priv, TRANSCONF(cpu_transcoder));
+ }
+ 
+ static bool i9xx_has_pfit(struct drm_i915_private *dev_priv)
+@@ -3200,20 +3201,20 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+ 
+ 	ret = false;
+ 
+-	tmp = intel_de_read(dev_priv, PIPECONF(crtc->pipe));
+-	if (!(tmp & PIPECONF_ENABLE))
++	tmp = intel_de_read(dev_priv, TRANSCONF(pipe_config->cpu_transcoder));
++	if (!(tmp & TRANSCONF_ENABLE))
+ 		goto out;
+ 
+ 	if (IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+ 	    IS_CHERRYVIEW(dev_priv)) {
+-		switch (tmp & PIPECONF_BPC_MASK) {
+-		case PIPECONF_BPC_6:
++		switch (tmp & TRANSCONF_BPC_MASK) {
++		case TRANSCONF_BPC_6:
+ 			pipe_config->pipe_bpp = 18;
+ 			break;
+-		case PIPECONF_BPC_8:
++		case TRANSCONF_BPC_8:
+ 			pipe_config->pipe_bpp = 24;
+ 			break;
+-		case PIPECONF_BPC_10:
++		case TRANSCONF_BPC_10:
+ 			pipe_config->pipe_bpp = 30;
+ 			break;
+ 		default:
+@@ -3223,12 +3224,12 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+ 	}
+ 
+ 	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+-	    (tmp & PIPECONF_COLOR_RANGE_SELECT))
++	    (tmp & TRANSCONF_COLOR_RANGE_SELECT))
+ 		pipe_config->limited_color_range = true;
+ 
+-	pipe_config->gamma_mode = REG_FIELD_GET(PIPECONF_GAMMA_MODE_MASK_I9XX, tmp);
++	pipe_config->gamma_mode = REG_FIELD_GET(TRANSCONF_GAMMA_MODE_MASK_I9XX, tmp);
+ 
+-	pipe_config->framestart_delay = REG_FIELD_GET(PIPECONF_FRAME_START_DELAY_MASK, tmp) + 1;
++	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
+ 
+ 	if (IS_CHERRYVIEW(dev_priv))
+ 		pipe_config->cgm_mode = intel_de_read(dev_priv,
+@@ -3238,7 +3239,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+ 	intel_color_get_config(pipe_config);
+ 
+ 	if (DISPLAY_VER(dev_priv) < 4)
+-		pipe_config->double_wide = tmp & PIPECONF_DOUBLE_WIDE;
++		pipe_config->double_wide = tmp & TRANSCONF_DOUBLE_WIDE;
+ 
+ 	intel_get_transcoder_timings(crtc, pipe_config);
+ 	intel_get_pipe_src_size(crtc, pipe_config);
+@@ -3308,7 +3309,7 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum pipe pipe = crtc->pipe;
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	u32 val = 0;
+ 
+ 	/*
+@@ -3316,7 +3317,7 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 	 * - During fastset the pipe is already enabled and must remain so
+ 	 */
+ 	if (!intel_crtc_needs_modeset(crtc_state))
+-		val |= PIPECONF_ENABLE;
++		val |= TRANSCONF_ENABLE;
+ 
+ 	switch (crtc_state->pipe_bpp) {
+ 	default:
+@@ -3324,26 +3325,26 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 		MISSING_CASE(crtc_state->pipe_bpp);
+ 		fallthrough;
+ 	case 18:
+-		val |= PIPECONF_BPC_6;
++		val |= TRANSCONF_BPC_6;
+ 		break;
+ 	case 24:
+-		val |= PIPECONF_BPC_8;
++		val |= TRANSCONF_BPC_8;
+ 		break;
+ 	case 30:
+-		val |= PIPECONF_BPC_10;
++		val |= TRANSCONF_BPC_10;
+ 		break;
+ 	case 36:
+-		val |= PIPECONF_BPC_12;
++		val |= TRANSCONF_BPC_12;
+ 		break;
+ 	}
+ 
+ 	if (crtc_state->dither)
+-		val |= PIPECONF_DITHER_EN | PIPECONF_DITHER_TYPE_SP;
++		val |= TRANSCONF_DITHER_EN | TRANSCONF_DITHER_TYPE_SP;
+ 
+ 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+-		val |= PIPECONF_INTERLACE_IF_ID_ILK;
++		val |= TRANSCONF_INTERLACE_IF_ID_ILK;
+ 	else
+-		val |= PIPECONF_INTERLACE_PF_PD_ILK;
++		val |= TRANSCONF_INTERLACE_PF_PD_ILK;
+ 
+ 	/*
+ 	 * This would end up with an odd purple hue over
+@@ -3354,18 +3355,18 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (crtc_state->limited_color_range &&
+ 	    !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+-		val |= PIPECONF_COLOR_RANGE_SELECT;
++		val |= TRANSCONF_COLOR_RANGE_SELECT;
+ 
+ 	if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
+-		val |= PIPECONF_OUTPUT_COLORSPACE_YUV709;
++		val |= TRANSCONF_OUTPUT_COLORSPACE_YUV709;
+ 
+-	val |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
++	val |= TRANSCONF_GAMMA_MODE(crtc_state->gamma_mode);
+ 
+-	val |= PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+-	val |= PIPECONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
++	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
++	val |= TRANSCONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
+ 
+-	intel_de_write(dev_priv, PIPECONF(pipe), val);
+-	intel_de_posting_read(dev_priv, PIPECONF(pipe));
++	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), val);
++	intel_de_posting_read(dev_priv, TRANSCONF(cpu_transcoder));
+ }
+ 
+ static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+@@ -3380,22 +3381,22 @@ static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+ 	 * - During fastset the pipe is already enabled and must remain so
+ 	 */
+ 	if (!intel_crtc_needs_modeset(crtc_state))
+-		val |= PIPECONF_ENABLE;
++		val |= TRANSCONF_ENABLE;
+ 
+ 	if (IS_HASWELL(dev_priv) && crtc_state->dither)
+-		val |= PIPECONF_DITHER_EN | PIPECONF_DITHER_TYPE_SP;
++		val |= TRANSCONF_DITHER_EN | TRANSCONF_DITHER_TYPE_SP;
+ 
+ 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+-		val |= PIPECONF_INTERLACE_IF_ID_ILK;
++		val |= TRANSCONF_INTERLACE_IF_ID_ILK;
+ 	else
+-		val |= PIPECONF_INTERLACE_PF_PD_ILK;
++		val |= TRANSCONF_INTERLACE_PF_PD_ILK;
+ 
+ 	if (IS_HASWELL(dev_priv) &&
+ 	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
+-		val |= PIPECONF_OUTPUT_COLORSPACE_YUV_HSW;
++		val |= TRANSCONF_OUTPUT_COLORSPACE_YUV_HSW;
+ 
+-	intel_de_write(dev_priv, PIPECONF(cpu_transcoder), val);
+-	intel_de_posting_read(dev_priv, PIPECONF(cpu_transcoder));
++	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), val);
++	intel_de_posting_read(dev_priv, TRANSCONF(cpu_transcoder));
+ }
+ 
+ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
+@@ -3620,33 +3621,33 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+ 	pipe_config->shared_dpll = NULL;
+ 
+ 	ret = false;
+-	tmp = intel_de_read(dev_priv, PIPECONF(crtc->pipe));
+-	if (!(tmp & PIPECONF_ENABLE))
++	tmp = intel_de_read(dev_priv, TRANSCONF(pipe_config->cpu_transcoder));
++	if (!(tmp & TRANSCONF_ENABLE))
+ 		goto out;
+ 
+-	switch (tmp & PIPECONF_BPC_MASK) {
+-	case PIPECONF_BPC_6:
++	switch (tmp & TRANSCONF_BPC_MASK) {
++	case TRANSCONF_BPC_6:
+ 		pipe_config->pipe_bpp = 18;
+ 		break;
+-	case PIPECONF_BPC_8:
++	case TRANSCONF_BPC_8:
+ 		pipe_config->pipe_bpp = 24;
+ 		break;
+-	case PIPECONF_BPC_10:
++	case TRANSCONF_BPC_10:
+ 		pipe_config->pipe_bpp = 30;
+ 		break;
+-	case PIPECONF_BPC_12:
++	case TRANSCONF_BPC_12:
+ 		pipe_config->pipe_bpp = 36;
+ 		break;
+ 	default:
+ 		break;
+ 	}
+ 
+-	if (tmp & PIPECONF_COLOR_RANGE_SELECT)
++	if (tmp & TRANSCONF_COLOR_RANGE_SELECT)
+ 		pipe_config->limited_color_range = true;
+ 
+-	switch (tmp & PIPECONF_OUTPUT_COLORSPACE_MASK) {
+-	case PIPECONF_OUTPUT_COLORSPACE_YUV601:
+-	case PIPECONF_OUTPUT_COLORSPACE_YUV709:
++	switch (tmp & TRANSCONF_OUTPUT_COLORSPACE_MASK) {
++	case TRANSCONF_OUTPUT_COLORSPACE_YUV601:
++	case TRANSCONF_OUTPUT_COLORSPACE_YUV709:
+ 		pipe_config->output_format = INTEL_OUTPUT_FORMAT_YCBCR444;
+ 		break;
+ 	default:
+@@ -3654,11 +3655,11 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+ 		break;
+ 	}
+ 
+-	pipe_config->gamma_mode = REG_FIELD_GET(PIPECONF_GAMMA_MODE_MASK_ILK, tmp);
++	pipe_config->gamma_mode = REG_FIELD_GET(TRANSCONF_GAMMA_MODE_MASK_ILK, tmp);
+ 
+-	pipe_config->framestart_delay = REG_FIELD_GET(PIPECONF_FRAME_START_DELAY_MASK, tmp) + 1;
++	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
+ 
+-	pipe_config->msa_timing_delay = REG_FIELD_GET(PIPECONF_MSA_TIMING_DELAY_MASK, tmp);
++	pipe_config->msa_timing_delay = REG_FIELD_GET(TRANSCONF_MSA_TIMING_DELAY_MASK, tmp);
+ 
+ 	pipe_config->csc_mode = intel_de_read(dev_priv,
+ 					      PIPE_CSC_MODE(crtc->pipe));
+@@ -3935,9 +3936,9 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
+ 			pipe_config->pch_pfit.force_thru = true;
+ 	}
+ 
+-	tmp = intel_de_read(dev_priv, PIPECONF(pipe_config->cpu_transcoder));
++	tmp = intel_de_read(dev_priv, TRANSCONF(pipe_config->cpu_transcoder));
+ 
+-	return tmp & PIPECONF_ENABLE;
++	return tmp & TRANSCONF_ENABLE;
+ }
+ 
+ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
+@@ -4041,9 +4042,9 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+ 
+ 	if (IS_HASWELL(dev_priv)) {
+ 		u32 tmp = intel_de_read(dev_priv,
+-					PIPECONF(pipe_config->cpu_transcoder));
++					TRANSCONF(pipe_config->cpu_transcoder));
+ 
+-		if (tmp & PIPECONF_OUTPUT_COLORSPACE_YUV_HSW)
++		if (tmp & TRANSCONF_OUTPUT_COLORSPACE_YUV_HSW)
+ 			pipe_config->output_format = INTEL_OUTPUT_FORMAT_YCBCR444;
+ 		else
+ 			pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+@@ -8855,8 +8856,8 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 		udelay(150); /* wait for warmup */
+ 	}
+ 
+-	intel_de_write(dev_priv, PIPECONF(pipe), PIPECONF_ENABLE);
+-	intel_de_posting_read(dev_priv, PIPECONF(pipe));
++	intel_de_write(dev_priv, TRANSCONF(pipe), TRANSCONF_ENABLE);
++	intel_de_posting_read(dev_priv, TRANSCONF(pipe));
+ 
+ 	intel_wait_for_pipe_scanline_moving(crtc);
+ }
+@@ -8879,8 +8880,8 @@ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	drm_WARN_ON(&dev_priv->drm,
+ 		    intel_de_read(dev_priv, CURCNTR(PIPE_B)) & MCURSOR_MODE_MASK);
+ 
+-	intel_de_write(dev_priv, PIPECONF(pipe), 0);
+-	intel_de_posting_read(dev_priv, PIPECONF(pipe));
++	intel_de_write(dev_priv, TRANSCONF(pipe), 0);
++	intel_de_posting_read(dev_priv, TRANSCONF(pipe));
+ 
+ 	intel_wait_for_pipe_scanline_stopped(crtc);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 8710dd41ffd4..b34851e42614 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1033,9 +1033,9 @@ static bool i9xx_always_on_power_well_enabled(struct drm_i915_private *dev_priv,
+ static void i830_pipes_power_well_enable(struct drm_i915_private *dev_priv,
+ 					 struct i915_power_well *power_well)
+ {
+-	if ((intel_de_read(dev_priv, PIPECONF(PIPE_A)) & PIPECONF_ENABLE) == 0)
++	if ((intel_de_read(dev_priv, TRANSCONF(PIPE_A)) & TRANSCONF_ENABLE) == 0)
+ 		i830_enable_pipe(dev_priv, PIPE_A);
+-	if ((intel_de_read(dev_priv, PIPECONF(PIPE_B)) & PIPECONF_ENABLE) == 0)
++	if ((intel_de_read(dev_priv, TRANSCONF(PIPE_B)) & TRANSCONF_ENABLE) == 0)
+ 		i830_enable_pipe(dev_priv, PIPE_B);
+ }
+ 
+@@ -1049,8 +1049,8 @@ static void i830_pipes_power_well_disable(struct drm_i915_private *dev_priv,
+ static bool i830_pipes_power_well_enabled(struct drm_i915_private *dev_priv,
+ 					  struct i915_power_well *power_well)
+ {
+-	return intel_de_read(dev_priv, PIPECONF(PIPE_A)) & PIPECONF_ENABLE &&
+-		intel_de_read(dev_priv, PIPECONF(PIPE_B)) & PIPECONF_ENABLE;
++	return intel_de_read(dev_priv, TRANSCONF(PIPE_A)) & TRANSCONF_ENABLE &&
++		intel_de_read(dev_priv, TRANSCONF(PIPE_B)) & TRANSCONF_ENABLE;
+ }
+ 
+ static void i830_pipes_power_well_sync_hw(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 29c6421cd666..fe4c531a2574 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -71,18 +71,18 @@ intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
+ 	u32 val, bit;
+ 
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		bit = PIPECONF_REFRESH_RATE_ALT_VLV;
++		bit = TRANSCONF_REFRESH_RATE_ALT_VLV;
+ 	else
+-		bit = PIPECONF_REFRESH_RATE_ALT_ILK;
++		bit = TRANSCONF_REFRESH_RATE_ALT_ILK;
+ 
+-	val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
++	val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
+ 
+ 	if (refresh_rate == DRRS_REFRESH_RATE_LOW)
+ 		val |= bit;
+ 	else
+ 		val &= ~bit;
+ 
+-	intel_de_write(dev_priv, PIPECONF(cpu_transcoder), val);
++	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), val);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+index f62d9a931349..091d4d36d9de 100644
+--- a/drivers/gpu/drm/i915/display/intel_fdi.c
++++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+@@ -902,7 +902,7 @@ void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
+ 	temp = intel_de_read(dev_priv, reg);
+ 	temp &= ~(FDI_DP_PORT_WIDTH_MASK | (0x7 << 16));
+ 	temp |= FDI_DP_PORT_WIDTH(crtc_state->fdi_lanes);
+-	temp |= (intel_de_read(dev_priv, PIPECONF(pipe)) & PIPECONF_BPC_MASK) << 11;
++	temp |= (intel_de_read(dev_priv, TRANSCONF(pipe)) & TRANSCONF_BPC_MASK) << 11;
+ 	intel_de_write(dev_priv, reg, temp | FDI_RX_PLL_ENABLE);
+ 
+ 	intel_de_posting_read(dev_priv, reg);
+@@ -958,7 +958,7 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
+ 	reg = FDI_RX_CTL(pipe);
+ 	temp = intel_de_read(dev_priv, reg);
+ 	temp &= ~(0x7 << 16);
+-	temp |= (intel_de_read(dev_priv, PIPECONF(pipe)) & PIPECONF_BPC_MASK) << 11;
++	temp |= (intel_de_read(dev_priv, TRANSCONF(pipe)) & TRANSCONF_BPC_MASK) << 11;
+ 	intel_de_write(dev_priv, reg, temp & ~FDI_RX_ENABLE);
+ 
+ 	intel_de_posting_read(dev_priv, reg);
+@@ -982,9 +982,9 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
+ 		temp &= ~FDI_LINK_TRAIN_NONE;
+ 		temp |= FDI_LINK_TRAIN_PATTERN_1;
+ 	}
+-	/* BPC in FDI rx is consistent with that in PIPECONF */
++	/* BPC in FDI rx is consistent with that in TRANSCONF */
+ 	temp &= ~(0x07 << 16);
+-	temp |= (intel_de_read(dev_priv, PIPECONF(pipe)) & PIPECONF_BPC_MASK) << 11;
++	temp |= (intel_de_read(dev_priv, TRANSCONF(pipe)) & TRANSCONF_BPC_MASK) << 11;
+ 	intel_de_write(dev_priv, reg, temp);
+ 
+ 	intel_de_posting_read(dev_priv, reg);
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 419221f4b454..e55bc4763278 100644
+index e55bc4763278..c1d336f39770 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -220,20 +220,20 @@ static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_s
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+@@ -267,7 +267,7 @@ static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
  
- 	intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
--		       intel_de_read(dev_priv, HTOTAL(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_HTOTAL(cpu_transcoder)));
- 	intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
--		       intel_de_read(dev_priv, HBLANK(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder)));
- 	intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
--		       intel_de_read(dev_priv, HSYNC(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder)));
+ 	reg = PCH_TRANSCONF(pipe);
+ 	val = intel_de_read(dev_priv, reg);
+-	pipeconf_val = intel_de_read(dev_priv, PIPECONF(pipe));
++	pipeconf_val = intel_de_read(dev_priv, TRANSCONF(pipe));
  
- 	intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
--		       intel_de_read(dev_priv, VTOTAL(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder)));
- 	intel_de_write(dev_priv, PCH_TRANS_VBLANK(pch_transcoder),
--		       intel_de_read(dev_priv, VBLANK(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder)));
- 	intel_de_write(dev_priv, PCH_TRANS_VSYNC(pch_transcoder),
--		       intel_de_read(dev_priv, VSYNC(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder)));
- 	intel_de_write(dev_priv, PCH_TRANS_VSYNCSHIFT(pch_transcoder),
--		       intel_de_read(dev_priv, VSYNCSHIFT(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_VSYNCSHIFT(cpu_transcoder)));
+ 	if (HAS_PCH_IBX(dev_priv)) {
+ 		/* Configure frame start delay to match the CPU */
+@@ -279,15 +279,15 @@ static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
+ 		 * that in pipeconf reg. For HDMI we must use 8bpc
+ 		 * here for both 8bpc and 12bpc.
+ 		 */
+-		val &= ~PIPECONF_BPC_MASK;
++		val &= ~TRANSCONF_BPC_MASK;
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+-			val |= PIPECONF_BPC_8;
++			val |= TRANSCONF_BPC_8;
+ 		else
+-			val |= pipeconf_val & PIPECONF_BPC_MASK;
++			val |= pipeconf_val & TRANSCONF_BPC_MASK;
+ 	}
+ 
+ 	val &= ~TRANS_INTERLACE_MASK;
+-	if ((pipeconf_val & PIPECONF_INTERLACE_MASK_ILK) == PIPECONF_INTERLACE_IF_ID_ILK) {
++	if ((pipeconf_val & TRANSCONF_INTERLACE_MASK_ILK) == TRANSCONF_INTERLACE_IF_ID_ILK) {
+ 		if (HAS_PCH_IBX(dev_priv) &&
+ 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+ 			val |= TRANS_INTERLACE_LEGACY_VSYNC_IBX;
+@@ -415,7 +415,7 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+ 	    intel_crtc_has_dp_encoder(crtc_state)) {
+ 		const struct drm_display_mode *adjusted_mode =
+ 			&crtc_state->hw.adjusted_mode;
+-		u32 bpc = (intel_de_read(dev_priv, PIPECONF(pipe)) & PIPECONF_BPC_MASK) >> 5;
++		u32 bpc = (intel_de_read(dev_priv, TRANSCONF(pipe)) & TRANSCONF_BPC_MASK) >> 5;
+ 		i915_reg_t reg = TRANS_DP_CTL(pipe);
+ 		enum port port;
+ 
+@@ -566,9 +566,9 @@ static void lpt_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
+ 
+ 	val = TRANS_ENABLE;
+-	pipeconf_val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
++	pipeconf_val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
+ 
+-	if ((pipeconf_val & PIPECONF_INTERLACE_MASK_HSW) == PIPECONF_INTERLACE_IF_ID_ILK)
++	if ((pipeconf_val & TRANSCONF_INTERLACE_MASK_HSW) == TRANSCONF_INTERLACE_IF_ID_ILK)
+ 		val |= TRANS_INTERLACE_INTERLACED;
+ 	else
+ 		val |= TRANS_INTERLACE_PROGRESSIVE;
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 2c945a949ad2..8d2e6e151ba0 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1000,7 +1000,7 @@ static bool intel_dsi_get_hw_state(struct intel_encoder *encoder,
+ 		 */
+ 		if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+ 		    port == PORT_C)
+-			enabled = intel_de_read(dev_priv, PIPECONF(PIPE_B)) & PIPECONF_ENABLE;
++			enabled = intel_de_read(dev_priv, TRANSCONF(PIPE_B)) & TRANSCONF_ENABLE;
+ 
+ 		/* Try command mode if video mode not enabled */
+ 		if (!enabled) {
+diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
+index 4d898b14de93..e0c5dfb788eb 100644
+--- a/drivers/gpu/drm/i915/gvt/display.c
++++ b/drivers/gpu/drm/i915/gvt/display.c
+@@ -63,7 +63,7 @@ static int edp_pipe_is_enabled(struct intel_vgpu *vgpu)
+ {
+ 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
+ 
+-	if (!(vgpu_vreg_t(vgpu, PIPECONF(_PIPE_EDP)) & PIPECONF_ENABLE))
++	if (!(vgpu_vreg_t(vgpu, TRANSCONF(TRANSCODER_EDP)) & TRANSCONF_ENABLE))
+ 		return 0;
+ 
+ 	if (!(vgpu_vreg(vgpu, _TRANS_DDI_FUNC_CTL_EDP) & TRANS_DDI_FUNC_ENABLE))
+@@ -79,7 +79,7 @@ int pipe_is_enabled(struct intel_vgpu *vgpu, int pipe)
+ 			pipe < PIPE_A || pipe >= I915_MAX_PIPES))
+ 		return -EINVAL;
+ 
+-	if (vgpu_vreg_t(vgpu, PIPECONF(pipe)) & PIPECONF_ENABLE)
++	if (vgpu_vreg_t(vgpu, TRANSCONF(pipe)) & TRANSCONF_ENABLE)
+ 		return 1;
+ 
+ 	if (edp_pipe_is_enabled(vgpu) &&
+@@ -187,8 +187,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+ 			  GEN8_DE_PORT_HOTPLUG(HPD_PORT_C));
+ 
+ 		for_each_pipe(dev_priv, pipe) {
+-			vgpu_vreg_t(vgpu, PIPECONF(pipe)) &=
+-				~(PIPECONF_ENABLE | PIPECONF_STATE_ENABLE);
++			vgpu_vreg_t(vgpu, TRANSCONF(pipe)) &=
++				~(TRANSCONF_ENABLE | TRANSCONF_STATE_ENABLE);
+ 			vgpu_vreg_t(vgpu, DSPCNTR(pipe)) &= ~DISP_ENABLE;
+ 			vgpu_vreg_t(vgpu, SPRCTL(pipe)) &= ~SPRITE_ENABLE;
+ 			vgpu_vreg_t(vgpu, CURCNTR(pipe)) &= ~MCURSOR_MODE_MASK;
+@@ -248,8 +248,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+ 		 *   TRANSCODER_A can be enabled. PORT_x depends on the input of
+ 		 *   setup_virtual_dp_monitor.
+ 		 */
+-		vgpu_vreg_t(vgpu, PIPECONF(PIPE_A)) |= PIPECONF_ENABLE;
+-		vgpu_vreg_t(vgpu, PIPECONF(PIPE_A)) |= PIPECONF_STATE_ENABLE;
++		vgpu_vreg_t(vgpu, TRANSCONF(TRANSCODER_A)) |= TRANSCONF_ENABLE;
++		vgpu_vreg_t(vgpu, TRANSCONF(TRANSCODER_A)) |= TRANSCONF_STATE_ENABLE;
+ 
+ 		/*
+ 		 * Golden M/N are calculated based on:
+@@ -506,7 +506,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
+ 		vgpu_vreg_t(vgpu, CURCNTR(pipe)) |= MCURSOR_MODE_DISABLE;
+ 	}
+ 
+-	vgpu_vreg_t(vgpu, PIPECONF(PIPE_A)) |= PIPECONF_ENABLE;
++	vgpu_vreg_t(vgpu, TRANSCONF(TRANSCODER_A)) |= TRANSCONF_ENABLE;
  }
  
- static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2954759e9d12..a021f59f0ac7 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1051,7 +1051,7 @@ void intel_psr_get_config(struct intel_encoder *encoder,
- 	}
- 
- 	if (DISPLAY_VER(dev_priv) >= 12) {
--		val = intel_de_read(dev_priv, EXITLINE(intel_dp->psr.transcoder));
-+		val = intel_de_read(dev_priv, TRANS_EXITLINE(intel_dp->psr.transcoder));
- 		val &= EXITLINE_MASK;
- 		pipe_config->dc3co_exitline = val;
- 	}
-@@ -1132,11 +1132,11 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		 * TODO: if future platforms supports DC3CO in more than one
- 		 * transcoder, EXITLINE will need to be unset when disabling PSR
- 		 */
--		val = intel_de_read(dev_priv, EXITLINE(cpu_transcoder));
-+		val = intel_de_read(dev_priv, TRANS_EXITLINE(cpu_transcoder));
- 		val &= ~EXITLINE_MASK;
- 		val |= intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT;
- 		val |= EXITLINE_ENABLE;
--		intel_de_write(dev_priv, EXITLINE(cpu_transcoder), val);
-+		intel_de_write(dev_priv, TRANS_EXITLINE(cpu_transcoder), val);
- 	}
- 
- 	if (HAS_PSR_HW_TRACKING(dev_priv) && HAS_PSR2_SEL_FETCH(dev_priv))
+ static void clean_virtual_dp_monitor(struct intel_vgpu *vgpu, int port_num)
+@@ -584,7 +584,7 @@ static int setup_virtual_dp_monitor(struct intel_vgpu *vgpu, int port_num,
+  * @turnon: Turn ON/OFF vblank_timer
+  *
+  * This function is used to turn on/off or update the per-vGPU vblank_timer
+- * when PIPECONF is enabled or disabled. vblank_timer period is also updated
++ * when TRANSCONF is enabled or disabled. vblank_timer period is also updated
+  * if guest changed the refresh rate.
+  *
+  */
 diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 735fc83e7026..eed15fbc7069 100644
+index eed15fbc7069..3c8e0d198c4f 100644
 --- a/drivers/gpu/drm/i915/gvt/handlers.c
 +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -666,8 +666,8 @@ static void vgpu_update_refresh_rate(struct intel_vgpu *vgpu)
- 	link_n = vgpu_vreg_t(vgpu, PIPE_LINK_N1(TRANSCODER_A));
+@@ -697,12 +697,12 @@ static int pipeconf_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
+ 	write_vreg(vgpu, offset, p_data, bytes);
+ 	data = vgpu_vreg(vgpu, offset);
  
- 	/* Get H/V total from transcoder timing */
--	htotal = (vgpu_vreg_t(vgpu, HTOTAL(TRANSCODER_A)) >> TRANS_HTOTAL_SHIFT);
--	vtotal = (vgpu_vreg_t(vgpu, VTOTAL(TRANSCODER_A)) >> TRANS_VTOTAL_SHIFT);
-+	htotal = (vgpu_vreg_t(vgpu, TRANS_HTOTAL(TRANSCODER_A)) >> TRANS_HTOTAL_SHIFT);
-+	vtotal = (vgpu_vreg_t(vgpu, TRANS_VTOTAL(TRANSCODER_A)) >> TRANS_VTOTAL_SHIFT);
+-	if (data & PIPECONF_ENABLE) {
+-		vgpu_vreg(vgpu, offset) |= PIPECONF_STATE_ENABLE;
++	if (data & TRANSCONF_ENABLE) {
++		vgpu_vreg(vgpu, offset) |= TRANSCONF_STATE_ENABLE;
+ 		vgpu_update_refresh_rate(vgpu);
+ 		vgpu_update_vblank_emulation(vgpu, true);
+ 	} else {
+-		vgpu_vreg(vgpu, offset) &= ~PIPECONF_STATE_ENABLE;
++		vgpu_vreg(vgpu, offset) &= ~TRANSCONF_STATE_ENABLE;
+ 		vgpu_update_vblank_emulation(vgpu, false);
+ 	}
+ 	return 0;
+@@ -2262,10 +2262,10 @@ static int init_generic_mmio_info(struct intel_gvt *gvt)
+ 	MMIO_DFH(GEN7_HALF_SLICE_CHICKEN1, D_ALL, F_MODE_MASK | F_CMD_ACCESS, NULL, NULL);
  
- 	if (dp_br && link_n && htotal && vtotal) {
- 		u64 pixel_clk = 0;
+ 	/* display */
+-	MMIO_DH(PIPECONF(PIPE_A), D_ALL, NULL, pipeconf_mmio_write);
+-	MMIO_DH(PIPECONF(PIPE_B), D_ALL, NULL, pipeconf_mmio_write);
+-	MMIO_DH(PIPECONF(PIPE_C), D_ALL, NULL, pipeconf_mmio_write);
+-	MMIO_DH(PIPECONF(_PIPE_EDP), D_ALL, NULL, pipeconf_mmio_write);
++	MMIO_DH(TRANSCONF(TRANSCODER_A), D_ALL, NULL, pipeconf_mmio_write);
++	MMIO_DH(TRANSCONF(TRANSCODER_B), D_ALL, NULL, pipeconf_mmio_write);
++	MMIO_DH(TRANSCONF(TRANSCODER_C), D_ALL, NULL, pipeconf_mmio_write);
++	MMIO_DH(TRANSCONF(TRANSCODER_EDP), D_ALL, NULL, pipeconf_mmio_write);
+ 	MMIO_DH(DSPSURF(PIPE_A), D_ALL, NULL, pri_surf_mmio_write);
+ 	MMIO_DH(REG_50080(PIPE_A, PLANE_PRIMARY), D_ALL, NULL,
+ 		reg50080_mmio_write);
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 596efc940ee7..28b1226688b8 100644
+index 28b1226688b8..04de4d0671b7 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1911,48 +1911,48 @@
- #define PIPE_CRC_RES_RES1_I915(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_RES1_A_I915)
- #define PIPE_CRC_RES_RES2_G4X(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_RES2_A_G4X)
+@@ -3444,61 +3444,61 @@
+ #define _PIPEADSL		0x70000
+ #define   PIPEDSL_CURR_FIELD	REG_BIT(31) /* ctg+ */
+ #define   PIPEDSL_LINE_MASK	REG_GENMASK(19, 0)
+-#define _PIPEACONF		0x70008
+-#define   PIPECONF_ENABLE			REG_BIT(31)
+-#define   PIPECONF_DOUBLE_WIDE			REG_BIT(30) /* pre-i965 */
+-#define   PIPECONF_STATE_ENABLE			REG_BIT(30) /* i965+ */
+-#define   PIPECONF_DSI_PLL_LOCKED		REG_BIT(29) /* vlv & pipe A only */
+-#define   PIPECONF_FRAME_START_DELAY_MASK	REG_GENMASK(28, 27) /* pre-hsw */
+-#define   PIPECONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(PIPECONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
+-#define   PIPECONF_PIPE_LOCKED			REG_BIT(25)
+-#define   PIPECONF_FORCE_BORDER			REG_BIT(25)
+-#define   PIPECONF_GAMMA_MODE_MASK_I9XX		REG_BIT(24) /* gmch */
+-#define   PIPECONF_GAMMA_MODE_MASK_ILK		REG_GENMASK(25, 24) /* ilk-ivb */
+-#define   PIPECONF_GAMMA_MODE_8BIT		REG_FIELD_PREP(PIPECONF_GAMMA_MODE_MASK, 0)
+-#define   PIPECONF_GAMMA_MODE_10BIT		REG_FIELD_PREP(PIPECONF_GAMMA_MODE_MASK, 1)
+-#define   PIPECONF_GAMMA_MODE_12BIT		REG_FIELD_PREP(PIPECONF_GAMMA_MODE_MASK_ILK, 2) /* ilk-ivb */
+-#define   PIPECONF_GAMMA_MODE_SPLIT		REG_FIELD_PREP(PIPECONF_GAMMA_MODE_MASK_ILK, 3) /* ivb */
+-#define   PIPECONF_GAMMA_MODE(x)		REG_FIELD_PREP(PIPECONF_GAMMA_MODE_MASK_ILK, (x)) /* pass in GAMMA_MODE_MODE_* */
+-#define   PIPECONF_INTERLACE_MASK		REG_GENMASK(23, 21) /* gen3+ */
+-#define   PIPECONF_INTERLACE_PROGRESSIVE	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK, 0)
+-#define   PIPECONF_INTERLACE_W_SYNC_SHIFT_PANEL	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK, 4) /* gen4 only */
+-#define   PIPECONF_INTERLACE_W_SYNC_SHIFT	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK, 5) /* gen4 only */
+-#define   PIPECONF_INTERLACE_W_FIELD_INDICATION	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK, 6)
+-#define   PIPECONF_INTERLACE_FIELD_0_ONLY	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK, 7) /* gen3 only */
++#define _TRANSACONF		0x70008
++#define   TRANSCONF_ENABLE			REG_BIT(31)
++#define   TRANSCONF_DOUBLE_WIDE			REG_BIT(30) /* pre-i965 */
++#define   TRANSCONF_STATE_ENABLE			REG_BIT(30) /* i965+ */
++#define   TRANSCONF_DSI_PLL_LOCKED		REG_BIT(29) /* vlv & pipe A only */
++#define   TRANSCONF_FRAME_START_DELAY_MASK	REG_GENMASK(28, 27) /* pre-hsw */
++#define   TRANSCONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANSCONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
++#define   TRANSCONF_PIPE_LOCKED			REG_BIT(25)
++#define   TRANSCONF_FORCE_BORDER			REG_BIT(25)
++#define   TRANSCONF_GAMMA_MODE_MASK_I9XX		REG_BIT(24) /* gmch */
++#define   TRANSCONF_GAMMA_MODE_MASK_ILK		REG_GENMASK(25, 24) /* ilk-ivb */
++#define   TRANSCONF_GAMMA_MODE_8BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK, 0)
++#define   TRANSCONF_GAMMA_MODE_10BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK, 1)
++#define   TRANSCONF_GAMMA_MODE_12BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 2) /* ilk-ivb */
++#define   TRANSCONF_GAMMA_MODE_SPLIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 3) /* ivb */
++#define   TRANSCONF_GAMMA_MODE(x)		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, (x)) /* pass in GAMMA_MODE_MODE_* */
++#define   TRANSCONF_INTERLACE_MASK		REG_GENMASK(23, 21) /* gen3+ */
++#define   TRANSCONF_INTERLACE_PROGRESSIVE	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 0)
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT_PANEL	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 4) /* gen4 only */
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 5) /* gen4 only */
++#define   TRANSCONF_INTERLACE_W_FIELD_INDICATION	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 6)
++#define   TRANSCONF_INTERLACE_FIELD_0_ONLY	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 7) /* gen3 only */
+ /*
+  * ilk+: PF/D=progressive fetch/display, IF/D=interlaced fetch/display,
+  * DBL=power saving pixel doubling, PF-ID* requires panel fitter
+  */
+-#define   PIPECONF_INTERLACE_MASK_ILK		REG_GENMASK(23, 21) /* ilk+ */
+-#define   PIPECONF_INTERLACE_MASK_HSW		REG_GENMASK(22, 21) /* hsw+ */
+-#define   PIPECONF_INTERLACE_PF_PD_ILK		REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 0)
+-#define   PIPECONF_INTERLACE_PF_ID_ILK		REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 1)
+-#define   PIPECONF_INTERLACE_IF_ID_ILK		REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 3)
+-#define   PIPECONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
+-#define   PIPECONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
+-#define   PIPECONF_REFRESH_RATE_ALT_ILK		REG_BIT(20)
+-#define   PIPECONF_MSA_TIMING_DELAY_MASK	REG_GENMASK(19, 18) /* ilk/snb/ivb */
+-#define   PIPECONF_MSA_TIMING_DELAY(x)		REG_FIELD_PREP(PIPECONF_MSA_TIMING_DELAY_MASK, (x))
+-#define   PIPECONF_CXSR_DOWNCLOCK		REG_BIT(16)
+-#define   PIPECONF_REFRESH_RATE_ALT_VLV		REG_BIT(14)
+-#define   PIPECONF_COLOR_RANGE_SELECT		REG_BIT(13)
+-#define   PIPECONF_OUTPUT_COLORSPACE_MASK	REG_GENMASK(12, 11) /* ilk-ivb */
+-#define   PIPECONF_OUTPUT_COLORSPACE_RGB	REG_FIELD_PREP(PIPECONF_OUTPUT_COLORSPACE_MASK, 0) /* ilk-ivb */
+-#define   PIPECONF_OUTPUT_COLORSPACE_YUV601	REG_FIELD_PREP(PIPECONF_OUTPUT_COLORSPACE_MASK, 1) /* ilk-ivb */
+-#define   PIPECONF_OUTPUT_COLORSPACE_YUV709	REG_FIELD_PREP(PIPECONF_OUTPUT_COLORSPACE_MASK, 2) /* ilk-ivb */
+-#define   PIPECONF_OUTPUT_COLORSPACE_YUV_HSW	REG_BIT(11) /* hsw only */
+-#define   PIPECONF_BPC_MASK			REG_GENMASK(7, 5) /* ctg-ivb */
+-#define   PIPECONF_BPC_8			REG_FIELD_PREP(PIPECONF_BPC_MASK, 0)
+-#define   PIPECONF_BPC_10			REG_FIELD_PREP(PIPECONF_BPC_MASK, 1)
+-#define   PIPECONF_BPC_6			REG_FIELD_PREP(PIPECONF_BPC_MASK, 2)
+-#define   PIPECONF_BPC_12			REG_FIELD_PREP(PIPECONF_BPC_MASK, 3)
+-#define   PIPECONF_DITHER_EN			REG_BIT(4)
+-#define   PIPECONF_DITHER_TYPE_MASK		REG_GENMASK(3, 2)
+-#define   PIPECONF_DITHER_TYPE_SP		REG_FIELD_PREP(PIPECONF_DITHER_TYPE_MASK, 0)
+-#define   PIPECONF_DITHER_TYPE_ST1		REG_FIELD_PREP(PIPECONF_DITHER_TYPE_MASK, 1)
+-#define   PIPECONF_DITHER_TYPE_ST2		REG_FIELD_PREP(PIPECONF_DITHER_TYPE_MASK, 2)
+-#define   PIPECONF_DITHER_TYPE_TEMP		REG_FIELD_PREP(PIPECONF_DITHER_TYPE_MASK, 3)
++#define   TRANSCONF_INTERLACE_MASK_ILK		REG_GENMASK(23, 21) /* ilk+ */
++#define   TRANSCONF_INTERLACE_MASK_HSW		REG_GENMASK(22, 21) /* hsw+ */
++#define   TRANSCONF_INTERLACE_PF_PD_ILK		REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 0)
++#define   TRANSCONF_INTERLACE_PF_ID_ILK		REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 1)
++#define   TRANSCONF_INTERLACE_IF_ID_ILK		REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 3)
++#define   TRANSCONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
++#define   TRANSCONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
++#define   TRANSCONF_REFRESH_RATE_ALT_ILK		REG_BIT(20)
++#define   TRANSCONF_MSA_TIMING_DELAY_MASK	REG_GENMASK(19, 18) /* ilk/snb/ivb */
++#define   TRANSCONF_MSA_TIMING_DELAY(x)		REG_FIELD_PREP(TRANSCONF_MSA_TIMING_DELAY_MASK, (x))
++#define   TRANSCONF_CXSR_DOWNCLOCK		REG_BIT(16)
++#define   TRANSCONF_REFRESH_RATE_ALT_VLV		REG_BIT(14)
++#define   TRANSCONF_COLOR_RANGE_SELECT		REG_BIT(13)
++#define   TRANSCONF_OUTPUT_COLORSPACE_MASK	REG_GENMASK(12, 11) /* ilk-ivb */
++#define   TRANSCONF_OUTPUT_COLORSPACE_RGB	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 0) /* ilk-ivb */
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV601	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 1) /* ilk-ivb */
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV709	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 2) /* ilk-ivb */
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV_HSW	REG_BIT(11) /* hsw only */
++#define   TRANSCONF_BPC_MASK			REG_GENMASK(7, 5) /* ctg-ivb */
++#define   TRANSCONF_BPC_8			REG_FIELD_PREP(TRANSCONF_BPC_MASK, 0)
++#define   TRANSCONF_BPC_10			REG_FIELD_PREP(TRANSCONF_BPC_MASK, 1)
++#define   TRANSCONF_BPC_6			REG_FIELD_PREP(TRANSCONF_BPC_MASK, 2)
++#define   TRANSCONF_BPC_12			REG_FIELD_PREP(TRANSCONF_BPC_MASK, 3)
++#define   TRANSCONF_DITHER_EN			REG_BIT(4)
++#define   TRANSCONF_DITHER_TYPE_MASK		REG_GENMASK(3, 2)
++#define   TRANSCONF_DITHER_TYPE_SP		REG_FIELD_PREP(TRANSCONF_DITHER_TYPE_MASK, 0)
++#define   TRANSCONF_DITHER_TYPE_ST1		REG_FIELD_PREP(TRANSCONF_DITHER_TYPE_MASK, 1)
++#define   TRANSCONF_DITHER_TYPE_ST2		REG_FIELD_PREP(TRANSCONF_DITHER_TYPE_MASK, 2)
++#define   TRANSCONF_DITHER_TYPE_TEMP		REG_FIELD_PREP(TRANSCONF_DITHER_TYPE_MASK, 3)
+ #define _PIPEASTAT		0x70024
+ #define   PIPE_FIFO_UNDERRUN_STATUS		(1UL << 31)
+ #define   SPRITE1_FLIP_DONE_INT_EN_VLV		(1UL << 30)
+@@ -3567,7 +3567,7 @@
+ #define PIPE_DSI0_OFFSET	0x7b000
+ #define PIPE_DSI1_OFFSET	0x7b800
  
--/* Pipe A timing regs */
--#define _HTOTAL_A	0x60000
--#define _HBLANK_A	0x60004
--#define _HSYNC_A	0x60008
--#define _VTOTAL_A	0x6000c
--#define _VBLANK_A	0x60010
--#define _VSYNC_A	0x60014
--#define _EXITLINE_A	0x60018
--#define _PIPEASRC	0x6001c
-+/* Pipe/transcoder A timing regs */
-+#define _TRANS_HTOTAL_A		0x60000
-+#define _TRANS_HBLANK_A		0x60004
-+#define _TRANS_HSYNC_A		0x60008
-+#define _TRANS_VTOTAL_A		0x6000c
-+#define _TRANS_VBLANK_A		0x60010
-+#define _TRANS_VSYNC_A		0x60014
-+#define _TRANS_EXITLINE_A	0x60018
-+#define _PIPEASRC		0x6001c
- #define   PIPESRC_WIDTH_MASK	REG_GENMASK(31, 16)
- #define   PIPESRC_WIDTH(w)	REG_FIELD_PREP(PIPESRC_WIDTH_MASK, (w))
- #define   PIPESRC_HEIGHT_MASK	REG_GENMASK(15, 0)
- #define   PIPESRC_HEIGHT(h)	REG_FIELD_PREP(PIPESRC_HEIGHT_MASK, (h))
--#define _BCLRPAT_A	0x60020
--#define _VSYNCSHIFT_A	0x60028
--#define _PIPE_MULT_A	0x6002c
-+#define _BCLRPAT_A		0x60020
-+#define _TRANS_VSYNCSHIFT_A	0x60028
-+#define _TRANS_MULT_A		0x6002c
+-#define PIPECONF(pipe)		_MMIO_PIPE2(pipe, _PIPEACONF)
++#define TRANSCONF(trans)	_MMIO_PIPE2((trans), _TRANSACONF)
+ #define PIPEDSL(pipe)		_MMIO_PIPE2(pipe, _PIPEADSL)
+ #define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe, _PIPEAFRAMEHIGH)
+ #define PIPEFRAMEPIXEL(pipe)	_MMIO_PIPE2(pipe, _PIPEAFRAMEPIXEL)
+@@ -4207,7 +4207,7 @@
  
--/* Pipe B timing regs */
--#define _HTOTAL_B	0x61000
--#define _HBLANK_B	0x61004
--#define _HSYNC_B	0x61008
--#define _VTOTAL_B	0x6100c
--#define _VBLANK_B	0x61010
--#define _VSYNC_B	0x61014
--#define _PIPEBSRC	0x6101c
--#define _BCLRPAT_B	0x61020
--#define _VSYNCSHIFT_B	0x61028
--#define _PIPE_MULT_B	0x6102c
-+/* Pipe/transcoder B timing regs */
-+#define _TRANS_HTOTAL_B		0x61000
-+#define _TRANS_HBLANK_B		0x61004
-+#define _TRANS_HSYNC_B		0x61008
-+#define _TRANS_VTOTAL_B		0x6100c
-+#define _TRANS_VBLANK_B		0x61010
-+#define _TRANS_VSYNC_B		0x61014
-+#define _PIPEBSRC		0x6101c
-+#define _BCLRPAT_B		0x61020
-+#define _TRANS_VSYNCSHIFT_B	0x61028
-+#define _TRANS_MULT_B		0x6102c
- 
- /* DSI 0 timing regs */
--#define _HTOTAL_DSI0		0x6b000
--#define _HSYNC_DSI0		0x6b008
--#define _VTOTAL_DSI0		0x6b00c
--#define _VSYNC_DSI0		0x6b014
--#define _VSYNCSHIFT_DSI0	0x6b028
-+#define _TRANS_HTOTAL_DSI0	0x6b000
-+#define _TRANS_HSYNC_DSI0	0x6b008
-+#define _TRANS_VTOTAL_DSI0	0x6b00c
-+#define _TRANS_VSYNC_DSI0	0x6b014
-+#define _TRANS_VSYNCSHIFT_DSI0	0x6b028
- 
- /* DSI 1 timing regs */
--#define _HTOTAL_DSI1		0x6b800
--#define _HSYNC_DSI1		0x6b808
--#define _VTOTAL_DSI1		0x6b80c
--#define _VSYNC_DSI1		0x6b814
--#define _VSYNCSHIFT_DSI1	0x6b828
-+#define _TRANS_HTOTAL_DSI1	0x6b800
-+#define _TRANS_HSYNC_DSI1	0x6b808
-+#define _TRANS_VTOTAL_DSI1	0x6b80c
-+#define _TRANS_VSYNC_DSI1	0x6b814
-+#define _TRANS_VSYNCSHIFT_DSI1	0x6b828
- 
- #define TRANSCODER_A_OFFSET 0x60000
- #define TRANSCODER_B_OFFSET 0x61000
-@@ -1963,18 +1963,18 @@
- #define TRANSCODER_DSI0_OFFSET	0x6b000
- #define TRANSCODER_DSI1_OFFSET	0x6b800
- 
--#define HTOTAL(trans)		_MMIO_TRANS2(trans, _HTOTAL_A)
--#define HBLANK(trans)		_MMIO_TRANS2(trans, _HBLANK_A)
--#define HSYNC(trans)		_MMIO_TRANS2(trans, _HSYNC_A)
--#define VTOTAL(trans)		_MMIO_TRANS2(trans, _VTOTAL_A)
--#define VBLANK(trans)		_MMIO_TRANS2(trans, _VBLANK_A)
--#define VSYNC(trans)		_MMIO_TRANS2(trans, _VSYNC_A)
--#define BCLRPAT(trans)		_MMIO_TRANS2(trans, _BCLRPAT_A)
--#define VSYNCSHIFT(trans)	_MMIO_TRANS2(trans, _VSYNCSHIFT_A)
--#define PIPESRC(trans)		_MMIO_TRANS2(trans, _PIPEASRC)
--#define PIPE_MULT(trans)	_MMIO_TRANS2(trans, _PIPE_MULT_A)
-+#define TRANS_HTOTAL(trans)	_MMIO_TRANS2((trans), _TRANS_HTOTAL_A)
-+#define TRANS_HBLANK(trans)	_MMIO_TRANS2((trans), _TRANS_HBLANK_A)
-+#define TRANS_HSYNC(trans)	_MMIO_TRANS2((trans), _TRANS_HSYNC_A)
-+#define TRANS_VTOTAL(trans)	_MMIO_TRANS2((trans), _TRANS_VTOTAL_A)
-+#define TRANS_VBLANK(trans)	_MMIO_TRANS2((trans), _TRANS_VBLANK_A)
-+#define TRANS_VSYNC(trans)	_MMIO_TRANS2((trans), _TRANS_VSYNC_A)
-+#define BCLRPAT(trans)		_MMIO_TRANS2((trans), _BCLRPAT_A)
-+#define TRANS_VSYNCSHIFT(trans)	_MMIO_TRANS2((trans), _TRANS_VSYNCSHIFT_A)
-+#define PIPESRC(pipe)		_MMIO_TRANS2((pipe), _PIPEASRC)
-+#define TRANS_MULT(trans)	_MMIO_TRANS2((trans), _TRANS_MULT_A)
- 
--#define EXITLINE(trans)		_MMIO_TRANS2(trans, _EXITLINE_A)
-+#define TRANS_EXITLINE(trans)	_MMIO_TRANS2((trans), _TRANS_EXITLINE_A)
- #define   EXITLINE_ENABLE	REG_BIT(31)
- #define   EXITLINE_MASK		REG_GENMASK(12, 0)
- #define   EXITLINE_SHIFT	0
+ /* Pipe B */
+ #define _PIPEBDSL		(DISPLAY_MMIO_BASE(dev_priv) + 0x71000)
+-#define _PIPEBCONF		(DISPLAY_MMIO_BASE(dev_priv) + 0x71008)
++#define _TRANSBCONF		(DISPLAY_MMIO_BASE(dev_priv) + 0x71008)
+ #define _PIPEBSTAT		(DISPLAY_MMIO_BASE(dev_priv) + 0x71024)
+ #define _PIPEBFRAMEHIGH		0x71040
+ #define _PIPEBFRAMEPIXEL	0x71044
 diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index c5cdff38cc5a..d649ff2bb780 100644
+index d649ff2bb780..2b3fe469b360 100644
 --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -219,41 +219,41 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(SPRSCALE(PIPE_C));
- 	MMIO_D(SPRSURFLIVE(PIPE_C));
- 	MMIO_D(REG_50080(PIPE_C, PLANE_SPRITE0));
--	MMIO_D(HTOTAL(TRANSCODER_A));
--	MMIO_D(HBLANK(TRANSCODER_A));
--	MMIO_D(HSYNC(TRANSCODER_A));
--	MMIO_D(VTOTAL(TRANSCODER_A));
--	MMIO_D(VBLANK(TRANSCODER_A));
--	MMIO_D(VSYNC(TRANSCODER_A));
-+	MMIO_D(TRANS_HTOTAL(TRANSCODER_A));
-+	MMIO_D(TRANS_HBLANK(TRANSCODER_A));
-+	MMIO_D(TRANS_HSYNC(TRANSCODER_A));
-+	MMIO_D(TRANS_VTOTAL(TRANSCODER_A));
-+	MMIO_D(TRANS_VBLANK(TRANSCODER_A));
-+	MMIO_D(TRANS_VSYNC(TRANSCODER_A));
- 	MMIO_D(BCLRPAT(TRANSCODER_A));
--	MMIO_D(VSYNCSHIFT(TRANSCODER_A));
-+	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_A));
- 	MMIO_D(PIPESRC(TRANSCODER_A));
--	MMIO_D(HTOTAL(TRANSCODER_B));
--	MMIO_D(HBLANK(TRANSCODER_B));
--	MMIO_D(HSYNC(TRANSCODER_B));
--	MMIO_D(VTOTAL(TRANSCODER_B));
--	MMIO_D(VBLANK(TRANSCODER_B));
--	MMIO_D(VSYNC(TRANSCODER_B));
-+	MMIO_D(TRANS_HTOTAL(TRANSCODER_B));
-+	MMIO_D(TRANS_HBLANK(TRANSCODER_B));
-+	MMIO_D(TRANS_HSYNC(TRANSCODER_B));
-+	MMIO_D(TRANS_VTOTAL(TRANSCODER_B));
-+	MMIO_D(TRANS_VBLANK(TRANSCODER_B));
-+	MMIO_D(TRANS_VSYNC(TRANSCODER_B));
- 	MMIO_D(BCLRPAT(TRANSCODER_B));
--	MMIO_D(VSYNCSHIFT(TRANSCODER_B));
-+	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_B));
- 	MMIO_D(PIPESRC(TRANSCODER_B));
--	MMIO_D(HTOTAL(TRANSCODER_C));
--	MMIO_D(HBLANK(TRANSCODER_C));
--	MMIO_D(HSYNC(TRANSCODER_C));
--	MMIO_D(VTOTAL(TRANSCODER_C));
--	MMIO_D(VBLANK(TRANSCODER_C));
--	MMIO_D(VSYNC(TRANSCODER_C));
-+	MMIO_D(TRANS_HTOTAL(TRANSCODER_C));
-+	MMIO_D(TRANS_HBLANK(TRANSCODER_C));
-+	MMIO_D(TRANS_HSYNC(TRANSCODER_C));
-+	MMIO_D(TRANS_VTOTAL(TRANSCODER_C));
-+	MMIO_D(TRANS_VBLANK(TRANSCODER_C));
-+	MMIO_D(TRANS_VSYNC(TRANSCODER_C));
- 	MMIO_D(BCLRPAT(TRANSCODER_C));
--	MMIO_D(VSYNCSHIFT(TRANSCODER_C));
-+	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_C));
- 	MMIO_D(PIPESRC(TRANSCODER_C));
--	MMIO_D(HTOTAL(TRANSCODER_EDP));
--	MMIO_D(HBLANK(TRANSCODER_EDP));
--	MMIO_D(HSYNC(TRANSCODER_EDP));
--	MMIO_D(VTOTAL(TRANSCODER_EDP));
--	MMIO_D(VBLANK(TRANSCODER_EDP));
--	MMIO_D(VSYNC(TRANSCODER_EDP));
-+	MMIO_D(TRANS_HTOTAL(TRANSCODER_EDP));
-+	MMIO_D(TRANS_HBLANK(TRANSCODER_EDP));
-+	MMIO_D(TRANS_HSYNC(TRANSCODER_EDP));
-+	MMIO_D(TRANS_VTOTAL(TRANSCODER_EDP));
-+	MMIO_D(TRANS_VBLANK(TRANSCODER_EDP));
-+	MMIO_D(TRANS_VSYNC(TRANSCODER_EDP));
- 	MMIO_D(BCLRPAT(TRANSCODER_EDP));
--	MMIO_D(VSYNCSHIFT(TRANSCODER_EDP));
-+	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_EDP));
- 	MMIO_D(PIPE_DATA_M1(TRANSCODER_A));
- 	MMIO_D(PIPE_DATA_N1(TRANSCODER_A));
- 	MMIO_D(PIPE_DATA_M2(TRANSCODER_A));
-@@ -494,9 +494,9 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(GAMMA_MODE(PIPE_A));
- 	MMIO_D(GAMMA_MODE(PIPE_B));
- 	MMIO_D(GAMMA_MODE(PIPE_C));
--	MMIO_D(PIPE_MULT(PIPE_A));
--	MMIO_D(PIPE_MULT(PIPE_B));
--	MMIO_D(PIPE_MULT(PIPE_C));
-+	MMIO_D(TRANS_MULT(TRANSCODER_A));
-+	MMIO_D(TRANS_MULT(TRANSCODER_B));
-+	MMIO_D(TRANS_MULT(TRANSCODER_C));
- 	MMIO_D(HSW_TVIDEO_DIP_CTL(TRANSCODER_A));
- 	MMIO_D(HSW_TVIDEO_DIP_CTL(TRANSCODER_B));
- 	MMIO_D(HSW_TVIDEO_DIP_CTL(TRANSCODER_C));
+@@ -118,10 +118,10 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(PIPEDSL(PIPE_B));
+ 	MMIO_D(PIPEDSL(PIPE_C));
+ 	MMIO_D(PIPEDSL(_PIPE_EDP));
+-	MMIO_D(PIPECONF(PIPE_A));
+-	MMIO_D(PIPECONF(PIPE_B));
+-	MMIO_D(PIPECONF(PIPE_C));
+-	MMIO_D(PIPECONF(_PIPE_EDP));
++	MMIO_D(TRANSCONF(TRANSCODER_A));
++	MMIO_D(TRANSCONF(TRANSCODER_B));
++	MMIO_D(TRANSCONF(TRANSCODER_C));
++	MMIO_D(TRANSCONF(TRANSCODER_EDP));
+ 	MMIO_D(PIPESTAT(PIPE_A));
+ 	MMIO_D(PIPESTAT(PIPE_B));
+ 	MMIO_D(PIPESTAT(PIPE_C));
 -- 
 2.39.1
 
