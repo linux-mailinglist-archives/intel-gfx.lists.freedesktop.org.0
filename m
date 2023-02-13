@@ -1,77 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFB56954AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:22:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0D76954B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:24:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 495CC10E786;
-	Mon, 13 Feb 2023 23:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2506B10E783;
+	Mon, 13 Feb 2023 23:24:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7994610E7A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 23:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1676330515;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PalnaCa+45zmfRne4PsaOrNHcKeNAHWEUJgujCCpms4=;
- b=fpLnoggxeCuQBlyblQwikOyp1o5A44uqB9/54QFsyVZ9X4FAhXvenzrkz9uQlssUYdAqPR
- fCd2gKHslv1bT9jeTEH0L2azbzfCdoNnQLGB0f+aNtNMvuuDFI7jxfqHAgNEmFxR2qOiFt
- KW5sAIFUoOBlTJj3mqV8lPnK/FxeDZM=
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
- [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-398-Ev_jMQAPMrWK0Y6646qlUA-1; Mon, 13 Feb 2023 18:21:54 -0500
-X-MC-Unique: Ev_jMQAPMrWK0Y6646qlUA-1
-Received: by mail-io1-f72.google.com with SMTP id
- t185-20020a6bc3c2000000b00733ef3dabe3so9339468iof.14
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 15:21:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=PalnaCa+45zmfRne4PsaOrNHcKeNAHWEUJgujCCpms4=;
- b=ZWUY05+AIbB8G3vki2+PppqDCqHFsmxsO/nMtPGbMbmy8cFYiNB1P+A8fvE6m6NWdv
- eUYfE4y4rmc3B8VzaOENUNrYLY3eUveGrkBvCsZwggx3qD9ik9xg73jT1N3YgSlkHCdF
- UNIUdeZeN0xNPjazlKsEFL+xbFpI0IxqXh3K7dYAaCLiln9q2c1DS51ikbHOKHonplJb
- UeKgE/Ge1XK+Otx8WbK0dMu2FZjmC0/Fl0M5CfO5qRVMxfkeZ5GeFxm774RAGD+ICAKk
- eaD4HgeIaIBit+IB9tEFCLBIwxFAybQHYLPqyW08cJMUIzrYYicuqaNNLqjlj8XK/W5j
- Nqow==
-X-Gm-Message-State: AO0yUKWkGIWPhCdK+ryX0fOJhKkNGjpT2sepMbZkBqL8VsM2evYl8+nL
- yyZxL4tN7zalCnUiCJGKYmogVQrSTf4w90iUzmEzjxMcI7UNEGrz6U09LMee39Erz65iJUI3t5A
- 6S/fcwintx341xm9bY9Gev5wsN9LN
-X-Received: by 2002:a05:6602:424e:b0:707:85b3:5dbb with SMTP id
- cc14-20020a056602424e00b0070785b35dbbmr247734iob.6.1676330513399; 
- Mon, 13 Feb 2023 15:21:53 -0800 (PST)
-X-Google-Smtp-Source: AK7set9iQtjrUB3qKlMbOa//wqF8gVTJyU2h1pAAMQbJhVobtNII43EJPHV4Swgm5qp296ZsP/lafg==
-X-Received: by 2002:a05:6602:424e:b0:707:85b3:5dbb with SMTP id
- cc14-20020a056602424e00b0070785b35dbbmr247701iob.6.1676330513164; 
- Mon, 13 Feb 2023 15:21:53 -0800 (PST)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- t66-20020a6bc345000000b00704878474c7sm4626794iof.53.2023.02.13.15.21.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Feb 2023 15:21:52 -0800 (PST)
-Date: Mon, 13 Feb 2023 16:21:50 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <20230213162150.7626055b.alex.williamson@redhat.com>
-In-Reply-To: <20230213151348.56451-4-yi.l.liu@intel.com>
-References: <20230213151348.56451-1-yi.l.liu@intel.com>
- <20230213151348.56451-4-yi.l.liu@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F34610E77E;
+ Mon, 13 Feb 2023 23:24:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 87A02AADD5;
+ Mon, 13 Feb 2023 23:24:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 03/15] vfio: Accept vfio device file in
- the driver facing kAPI
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 13 Feb 2023 23:24:27 -0000
+Message-ID: <167633066755.20212.12729127618611367100@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Transcoder_timing_stuff?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,40 +40,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com,
- mjrosato@linux.ibm.com, kvm@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
- peterx@redhat.com, suravee.suthikulpanit@amd.com, eric.auger@redhat.com,
- nicolinc@nvidia.com, shameerali.kolothum.thodi@huawei.com, jgg@nvidia.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Feb 2023 07:13:36 -0800
-Yi Liu <yi.l.liu@intel.com> wrote:
+== Series Details ==
 
-> This makes the vfio file kAPIs to accepte vfio device files, also a
-> preparation for vfio device cdev support.
-> 
-> For the kvm set with vfio device file, kvm pointer is stored in struct
-> vfio_device_file, and use kvm_ref_lock to protect kvm set and kvm
-> pointer usage within VFIO. This kvm pointer will be set to vfio_device
-> after device file is bound to iommufd in the cdev path.
-> 
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> ---
->  drivers/vfio/vfio.h      |  2 ++
->  drivers/vfio/vfio_main.c | 51 ++++++++++++++++++++++++++++++++++++----
->  2 files changed, 49 insertions(+), 4 deletions(-)
+Series: drm/i915: Transcoder timing stuff
+URL   : https://patchwork.freedesktop.org/series/113974/
+State : warning
 
-This subtly changes the behavior of the vfio-pci hot reset functions
-without updating the uAPI description or implementation to use less
-group-centric variables.  The new behavior appears to be that cdev fds
-can also be passed to prove ownership of the affected set of devices
-for a hot reset, but this probably needs to be examined for gaps.
-Thanks,
+== Summary ==
 
-Alex
+Error: dim checkpatch failed
+29054f91dc49 drm/i915: Rename intel_ddi_{enable, disable}_pipe_clock()
+90b8f6819152 drm/i915: Flatten intel_ddi_{enable, disable}_transcoder_clock()
+7fb6bce53da6 drm/i915: Give CPU transcoder timing registers TRANS_ prefix
+cbfdc446a13d drm/i915: s/PIPECONF/TRANSCONF/
+-:120: WARNING:LINE_SPACING: Missing a blank line after declarations
+#120: FILE: drivers/gpu/drm/i915/display/intel_display.c:422:
++		u32 val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
++		cur_state = !!(val & TRANSCONF_ENABLE);
+
+-:183: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#183: FILE: drivers/gpu/drm/i915/display/intel_display.c:2900:
++		return intel_de_read(dev_priv, TRANSCONF(cpu_transcoder)) & TRANSCONF_INTERLACE_MASK_HSW;
+
+-:186: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#186: FILE: drivers/gpu/drm/i915/display/intel_display.c:2902:
++		return intel_de_read(dev_priv, TRANSCONF(cpu_transcoder)) & TRANSCONF_INTERLACE_MASK;
+
+-:826: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#826: FILE: drivers/gpu/drm/i915/i915_reg.h:3453:
++#define   TRANSCONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANSCONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
+
+-:833: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
+#833: FILE: drivers/gpu/drm/i915/i915_reg.h:3460:
++#define   TRANSCONF_GAMMA_MODE_12BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 2) /* ilk-ivb */
+
+-:834: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
+#834: FILE: drivers/gpu/drm/i915/i915_reg.h:3461:
++#define   TRANSCONF_GAMMA_MODE_SPLIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 3) /* ivb */
+
+-:835: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
+#835: FILE: drivers/gpu/drm/i915/i915_reg.h:3462:
++#define   TRANSCONF_GAMMA_MODE(x)		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, (x)) /* pass in GAMMA_MODE_MODE_* */
+
+-:838: WARNING:LONG_LINE_COMMENT: line length of 115 exceeds 100 columns
+#838: FILE: drivers/gpu/drm/i915/i915_reg.h:3465:
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT_PANEL	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 4) /* gen4 only */
+
+-:839: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#839: FILE: drivers/gpu/drm/i915/i915_reg.h:3466:
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 5) /* gen4 only */
+
+-:841: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#841: FILE: drivers/gpu/drm/i915/i915_reg.h:3468:
++#define   TRANSCONF_INTERLACE_FIELD_0_ONLY	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 7) /* gen3 only */
+
+-:880: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#880: FILE: drivers/gpu/drm/i915/i915_reg.h:3478:
++#define   TRANSCONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
+
+-:881: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#881: FILE: drivers/gpu/drm/i915/i915_reg.h:3479:
++#define   TRANSCONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
+
+-:889: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#889: FILE: drivers/gpu/drm/i915/i915_reg.h:3487:
++#define   TRANSCONF_OUTPUT_COLORSPACE_RGB	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 0) /* ilk-ivb */
+
+-:890: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#890: FILE: drivers/gpu/drm/i915/i915_reg.h:3488:
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV601	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 1) /* ilk-ivb */
+
+-:891: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#891: FILE: drivers/gpu/drm/i915/i915_reg.h:3489:
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV709	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 2) /* ilk-ivb */
+
+total: 0 errors, 15 warnings, 0 checks, 819 lines checked
+a14b1fc40c0b drm/i915: Dump blanking start/end
+8797c05fff74 drm/i915: Define the "unmodified vblank" interrupt bit
+c4734266bd12 drm/i915/psr: Stop clobbering TRANS_SET_CONTEXT_LATENCY
+99cb9b3ea1a8 drm/i915: Add local adjusted_mode variable
+f165b7be5012 drm/i915: Define transcoder timing register bitmasks
+6c8a94324c47 drm/i915: Configure TRANS_SET_CONTEXT_LATENCY correctly on ADL+
+92ecde8830fd drm/i915: Sprinkle some FIXMEs about TGL+ DSI transcoder timing mess
+dc709edac43d drm/i915: Remove pointless register read
+
 
