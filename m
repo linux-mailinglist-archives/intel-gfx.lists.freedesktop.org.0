@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8CB4694D42
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 17:49:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3515C694E2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 18:37:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C946D10E631;
-	Mon, 13 Feb 2023 16:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 784A910E209;
+	Mon, 13 Feb 2023 17:37:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D846910E631;
- Mon, 13 Feb 2023 16:49:38 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CECD210E206;
+ Mon, 13 Feb 2023 17:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676306979; x=1707842979;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=t1xBIbEQD/XRdbDJMgcXTkeCfF/+M0r3RUlUtkRzpIE=;
- b=capBIStiDFtaHo69inSqTcQ2t9kTYP/iHqvIjuEokULTiUmeUno89aHa
- 09T2MNmo5ZjuZa6I0JwrknNSzEydY3CwuLb6arIilQW9Y3+r9HS5DS1NC
- ZwejjzIZswyymhepX3NiO1i74FyKBRB0r0bsDGNXxTJ3xUoB+NIxuPUoq
- L9jLDL4i8bU0WYm04KXNAcXa0nZSLc8Z9L4Sdu7Nied4e2lRBU33pMJx8
- P7FJiw4ofv3576rQ/MnbedcTZ0UCDYnxZqx7qsyfA6ecf4xzjBKSkCiKt
- ijyCjf3gOa6i93IcEVnGII4FR8TawrZSxMx+sxVqSryOL2JSlxDhAJPxF Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="393333324"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="393333324"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 08:49:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="792798272"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="792798272"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.19.172])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 08:49:33 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 13 Feb 2023 17:49:12 +0100
-Message-Id: <20230213164912.51132-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230213164912.51132-1-janusz.krzysztofik@linux.intel.com>
-References: <20230213164912.51132-1-janusz.krzysztofik@linux.intel.com>
+ t=1676309818; x=1707845818;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1hviPUsKTFpKeIzlgNJpSRgq3s8rv3mTWjkdP5IlzXM=;
+ b=nAxiWEqhNSHAeQ2Pm8hbSVUI7XHd1Iccvo6kD4JmQ8O/wHYPzNC0QNEz
+ Zo9alpCInnAvZ+oTqhbtti1JW5p7ABppEMBq+A7mHnVS1sMkm5uYiFeuY
+ C6nxma0MJSRBiqQgVAP7AWuqpIApIexe3ENYjWhBRomfpGRhIJt6RCT9a
+ ojmMN4ELdP1WQLtl/GBDbI8/C4ad0IZOdZVDVBGH0FD8skTCX0jOiC3BY
+ Po9ysFeIqQjUdD+aB0ZCrIMYddOpFfUVdK+y1aXujz3UjY8GNX5wDeYtk
+ 0oDrvQNr3cdxf9q4clDquAfNYWyC0QjIrslaprNzuQmGY7Df5EEqBXJcj w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332256589"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="332256589"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 09:36:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="662255406"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="662255406"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+ by orsmga007.jf.intel.com with ESMTP; 13 Feb 2023 09:36:29 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pRcke-0007ub-2n;
+ Mon, 13 Feb 2023 17:36:28 +0000
+Date: Tue, 14 Feb 2023 01:36:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <63ea7513.AYS2egZUfdd43B7s%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/active: Serialize access to
- barrier tasks lists
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 09e41676e35ab06e4bce8870ea3bf1f191c3cb90
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,277 +59,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-doc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-serial@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-trace-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Barriers are now deleted from a barrier tasks list by temporarily removing
-the list content, traversing that content with skip over the node to be
-deleted, then adding the modified content back to the list.  Since that
-complex operation is not serialized with other concurrent uses of the
-list, functions that depend on the list being either empty or not empty
-can take wrong decisions.
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 09e41676e35ab06e4bce8870ea3bf1f191c3cb90  Add linux-next specific files for 20230213
 
-One example is intel_engine_flush_barriers(), which is expected to queue
-a heartbeat request for an engine unless it finds that engine's barriers
-tasks list empty.  Timeouts on infinite __i915_active_wait() occurrences
-reported by igt@gem_barrier_race@remote-request subtest seem to be
-potentially caused by false positives from those llist_empty() checks.
+Error/Warning reports:
 
-Protect concurrent access to the list pending those complex barrier delete
-operations with a spinlock, and teach other sensitive users of the list to
-acquire the lock.  While using a spinlock to protect a lockless list may
-be considered suboptimal compared to converting the llist to a regular
-list, this approach seems to provide the smallest and least invasive but
-effective fix.
+https://lore.kernel.org/oe-kbuild-all/202301300743.bp7Dpazv-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202301302110.mEtNwkBD-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302061911.C7xvHX9v-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302062224.ByzeTXh1-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302092211.54EYDhYH-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302111601.jtY4lKrA-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302112104.g75cGHZd-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302131438.5tUJP2Sy-lkp@intel.com
 
-Fixes: d8af05ff38ae ("drm/i915: Allow sharing the idle-barrier from other kernel requests")
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: stable@vger.kernel.org # v5.4
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  6 +++
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 10 ++++-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  4 ++
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
- drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +
- .../drm/i915/gt/selftest_engine_heartbeat.c   |  5 +++
- drivers/gpu/drm/i915/i915_active.c            | 39 +++++++++++++++----
- 7 files changed, 59 insertions(+), 8 deletions(-)
+Error/Warning: (recently discovered and may have been fixed)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index d4e29da74612d..f82f6f7b89e7b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1148,6 +1148,7 @@ static int engine_setup_common(struct intel_engine_cs *engine)
- 	int err;
- 
- 	init_llist_head(&engine->barrier_tasks);
-+	spin_lock_init(&engine->barriers_lock);
- 
- 	err = init_status_page(engine);
- 	if (err)
-@@ -1418,6 +1419,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
- 	if (engine->kernel_context)
- 		intel_engine_destroy_pinned_context(engine->kernel_context);
- 
-+	/* No concurrent tasks expected on driver remove, no need to lock */
- 	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
- 	cleanup_status_page(engine);
- 
-@@ -2240,6 +2242,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 	struct i915_gpu_error * const error = &engine->i915->gpu_error;
- 	struct i915_request *rq;
- 	intel_wakeref_t wakeref;
-+	unsigned long flags;
- 	ktime_t dummy;
- 
- 	if (header) {
-@@ -2254,8 +2257,11 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 		drm_printf(m, "*** WEDGED ***\n");
- 
- 	drm_printf(m, "\tAwake? %d\n", atomic_read(&engine->wakeref.count));
-+	/* Serialize against ____active_del_barrier() for debugging accuracy */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	drm_printf(m, "\tBarriers?: %s\n",
- 		   str_yes_no(!llist_empty(&engine->barrier_tasks)));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 	drm_printf(m, "\tLatency: %luus\n",
- 		   ewma__engine_latency_read(&engine->latency));
- 	if (intel_engine_supports_stats(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9a527e1f5be65..ae1d4ffff2139 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -378,9 +378,17 @@ int intel_engine_flush_barriers(struct intel_engine_cs *engine)
- 	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
- 	struct intel_context *ce = engine->kernel_context;
- 	struct i915_request *rq;
-+	unsigned long flags;
- 	int err;
- 
--	if (llist_empty(&engine->barrier_tasks))
-+	/*
-+	 * Serialize against ____active_del_barrier()
-+	 * or we risk the barriers not flushed.
-+	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
-+	err = !llist_empty(&engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
-+	if (!err)
- 		return 0;
- 
- 	if (!intel_engine_pm_get_if_awake(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index e971b153fda97..209fb3f2bb786 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -236,6 +236,10 @@ static void call_idle_barriers(struct intel_engine_cs *engine)
- {
- 	struct llist_node *node, *next;
- 
-+	/*
-+	 * Locking around llist_del_all() not needed as long as we always
-+	 * call ____active_del_barrier() with engine's wakeref acquired.
-+	 */
- 	llist_for_each_safe(node, next, llist_del_all(&engine->barrier_tasks)) {
- 		struct dma_fence_cb *cb =
- 			container_of((struct list_head *)node,
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 4fd54fb8810fb..ab9e0a6de70d4 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -396,6 +396,7 @@ struct intel_engine_cs {
- 	struct intel_context *hung_ce;
- 
- 	struct llist_head barrier_tasks;
-+	spinlock_t barriers_lock;
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index c0637bf799a33..383a27b64634f 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -394,6 +394,8 @@ int mock_engine_init(struct intel_engine_cs *engine)
- {
- 	struct intel_context *ce;
- 
-+	spin_lock_init(&engine->barriers_lock);
-+
- 	INIT_LIST_HEAD(&engine->pinned_contexts_list);
- 
- 	engine->sched_engine = i915_sched_engine_create(ENGINE_MOCK);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index 273d440a53e3f..cbc03662fc693 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -90,6 +90,7 @@ static void pulse_unlock_wait(struct pulse *p)
- static int __live_idle_pulse(struct intel_engine_cs *engine,
- 			     int (*fn)(struct intel_engine_cs *cs))
- {
-+	unsigned long flags;
- 	struct pulse *p;
- 	int err;
- 
-@@ -113,13 +114,17 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	i915_active_release(&p->active);
- 
- 	GEM_BUG_ON(i915_active_is_idle(&p->active));
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	GEM_BUG_ON(llist_empty(&engine->barrier_tasks));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	err = fn(engine);
- 	if (err)
- 		goto out;
- 
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	if (engine_sync_barrier(engine)) {
- 		struct drm_printer m = drm_err_printer("pulse");
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 7412abf166a8c..8cadab6d83705 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -370,24 +370,34 @@ static bool ____active_del_barrier(struct i915_active *ref,
- {
- 	struct llist_node *head = NULL, *tail = NULL;
- 	struct llist_node *pos, *next;
-+	unsigned long flags;
- 
-+	/* Must be serialized via pm wakeref with call_idle_barriers() */
-+	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
- 	GEM_BUG_ON(node->timeline != engine->kernel_context->timeline->fence_context);
- 
- 	/*
- 	 * Rebuild the llist excluding our node. We may perform this
- 	 * outside of the kernel_context timeline mutex and so someone
- 	 * else may be manipulating the engine->barrier_tasks, in
--	 * which case either we or they will be upset :)
-+	 * which case either we or they could be upset :)
- 	 *
--	 * A second __active_del_barrier() will report failure to claim
--	 * the active_node and the caller will just shrug and know not to
-+	 * A second __active_del_barrier() would report failure to claim
-+	 * the active_node and the caller would just shrug and know not to
- 	 * claim ownership of its node.
- 	 *
--	 * A concurrent i915_request_add_active_barriers() will miss adding
--	 * any of the tasks, but we will try again on the next -- and since
--	 * we are actively using the barrier, we know that there will be
-+	 * A concurrent i915_request_add_active_barriers() would miss adding
-+	 * any of the tasks, but we would try again on the next -- and since
-+	 * we were actively using the barrier, we knew that there would be
- 	 * at least another opportunity when we idle.
-+	 *
-+	 * However, users that check for the list to be empty can be misleaded
-+	 * and can take wrong decisions, like e.g. intel_engine_flush_barriers()
-+	 * not submitting a flushing heartbeat when it finds the list empty
-+	 * while it is being rebuilt.  To avoid such races, we protect sensitive
-+	 * users with a dedicated spinlock.
- 	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	llist_for_each_safe(pos, next, llist_del_all(&engine->barrier_tasks)) {
- 		if (node == barrier_from_ll(pos)) {
- 			node = NULL;
-@@ -401,6 +411,7 @@ static bool ____active_del_barrier(struct i915_active *ref,
- 	}
- 	if (head)
- 		llist_add_batch(head, tail, &engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	return !node;
- }
-@@ -878,6 +889,9 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 		struct llist_node *prev = first;
- 		struct active_node *node;
- 
-+		/* Serialize with call_idle_barriers() via pm wakeref */
-+		intel_engine_pm_get(engine);
-+
- 		rcu_read_lock();
- 		node = reuse_idle_barrier(ref, idx);
- 		rcu_read_unlock();
-@@ -913,7 +927,6 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 		first->next = prev;
- 		if (!last)
- 			last = first;
--		intel_engine_pm_get(engine);
- 	}
- 
- 	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
-@@ -973,6 +986,12 @@ void i915_active_acquire_barrier(struct i915_active *ref)
- 		spin_unlock_irqrestore(&ref->tree_lock, flags);
- 
- 		GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
-+		/*
-+		 * As long as we serialize concurrent processing of
-+		 * barrier_tasks by multiple ____active_del_barrier(),
-+		 * it should be safe to add a new node without locking,
-+		 * even while the llist is temporarily emptied.
-+		 */
- 		llist_add(barrier_to_ll(node), &engine->barrier_tasks);
- 		intel_engine_pm_put_delay(engine, 2);
- 	}
-@@ -993,7 +1012,13 @@ void i915_request_add_active_barriers(struct i915_request *rq)
- 	GEM_BUG_ON(intel_engine_is_virtual(engine));
- 	GEM_BUG_ON(i915_request_timeline(rq) != engine->kernel_context->timeline);
- 
-+	/*
-+	 * Serialize against ____active_del_barrier() or we risk
-+	 * the barriers left intact, not replaced with the request.
-+	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	node = llist_del_all(&engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 	if (!node)
- 		return;
- 	/*
+Documentation/riscv/uabi.rst:24: WARNING: Enumerated list ends without a blank line; unexpected unindent.
+Documentation/sphinx/templates/kernel-toc.html: 1:36 Invalid token: #}
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.c:294:6: warning: no previous prototype for 'optc3_wait_drr_doublebuffer_pending_clear' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hubbub.c:1011:6: warning: no previous prototype for 'hubbub31_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hubbub.c:948:6: warning: no previous prototype for 'hubbub32_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hubp.c:158:6: warning: no previous prototype for 'hubp32_init' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource_helpers.c:62:18: warning: variable 'cursor_bpp' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:1296:32: warning: variable 'result_write_min_hblank' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:280:42: warning: variable 'ds_port' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_training.c:1586:38: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+ftrace-ops.c:(.init.text+0x2c3): undefined reference to `__udivdi3'
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+drivers/firmware/arm_scmi/bus.c:128:18-22: ERROR: reference preceded by free on line 102
+drivers/tty/serial/8250/8250_dfl.c:63 dfl_uart_get_params() error: uninitialized symbol 'clk_freq'.
+drivers/tty/serial/8250/8250_dfl.c:69 dfl_uart_get_params() error: uninitialized symbol 'fifo_len'.
+drivers/tty/serial/8250/8250_dfl.c:90 dfl_uart_get_params() error: uninitialized symbol 'reg_layout'.
+drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
+drivers/usb/gadget/function/uvc_configfs.c:545 uvcg_default_output_b_source_id_store() warn: inconsistent returns 'su_mutex'.
+pahole: .tmp_vmlinux.btf: No such file or directory
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn31-dcn31_hubbub.c:warning:no-previous-prototype-for-hubbub31_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubbub.c:warning:no-previous-prototype-for-hubbub32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubp.c:warning:no-previous-prototype-for-hubp32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arm64-randconfig-r003-20230212
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn31-dcn31_hubbub.c:warning:no-previous-prototype-for-hubbub31_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubbub.c:warning:no-previous-prototype-for-hubbub32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubp.c:warning:no-previous-prototype-for-hubp32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|-- csky-randconfig-r006-20230213
+|   `-- pahole:.tmp_vmlinux.btf:No-such-file-or-directory
+|-- csky-randconfig-r021-20230213
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- i386-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn31-dcn31_hubbub.c:warning:no-previous-prototype-for-hubbub31_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubbub.c:warning:no-previous-prototype-for-hubbub32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_hubp.c:warning:no-previous-prototype-for-hubp32_init
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|   `-- ftrace-ops.c:(.init.text):undefined-reference-to-__udivdi3
+|-- i386-randconfig-m021
+clang_recent_errors
+`-- riscv-randconfig-r036-20230213
+    |-- ld.lld:error:vmlinux.a(init-main.o):(function-rcu_lock_acquire:.text):relocation-R_RISCV_HI20-out-of-range:is-not-in-references-.Ltmp0
+    `-- ld.lld:error:vmlinux.a(init-main.o):(function-rcu_lock_release:.text):relocation-R_RISCV_HI20-out-of-range:is-not-in-references-.Ltmp1
+
+elapsed time: 727m
+
+configs tested: 100
+configs skipped: 7
+
+gcc tested configs:
+alpha                            allyesconfig
+alpha                               defconfig
+arc                              allyesconfig
+arc                                 defconfig
+arc                         haps_hs_defconfig
+arc                  randconfig-r043-20230212
+arc                  randconfig-r043-20230213
+arm                              allmodconfig
+arm                              allyesconfig
+arm                         assabet_defconfig
+arm                                 defconfig
+arm                  randconfig-r046-20230212
+arm64                            allyesconfig
+arm64                               defconfig
+csky                                defconfig
+i386                             allyesconfig
+i386                              debian-10.3
+i386                                defconfig
+i386                 randconfig-a011-20230213
+i386                 randconfig-a012-20230213
+i386                 randconfig-a013-20230213
+i386                 randconfig-a014-20230213
+i386                 randconfig-a015-20230213
+i386                 randconfig-a016-20230213
+i386                          randconfig-c001
+ia64                             allmodconfig
+ia64                                defconfig
+loongarch                        allmodconfig
+loongarch                         allnoconfig
+loongarch                           defconfig
+m68k                             allmodconfig
+m68k                             allyesconfig
+m68k                         apollo_defconfig
+m68k                          atari_defconfig
+m68k                                defconfig
+mips                             allmodconfig
+mips                             allyesconfig
+mips                         cobalt_defconfig
+mips                            gpr_defconfig
+nios2                               defconfig
+parisc                              defconfig
+parisc64                            defconfig
+powerpc                          allmodconfig
+powerpc                           allnoconfig
+powerpc                      tqm8xx_defconfig
+riscv                            allmodconfig
+riscv                             allnoconfig
+riscv                               defconfig
+riscv                randconfig-r042-20230213
+riscv                          rv32_defconfig
+s390                             allmodconfig
+s390                             allyesconfig
+s390                                defconfig
+s390                 randconfig-r044-20230213
+sh                               allmodconfig
+sh                         microdev_defconfig
+sh                          polaris_defconfig
+sh                           se7722_defconfig
+sh                   secureedge5410_defconfig
+sparc                               defconfig
+um                             i386_defconfig
+um                           x86_64_defconfig
+x86_64                            allnoconfig
+x86_64                           allyesconfig
+x86_64                              defconfig
+x86_64                                  kexec
+x86_64               randconfig-a011-20230213
+x86_64               randconfig-a012-20230213
+x86_64               randconfig-a013-20230213
+x86_64               randconfig-a014-20230213
+x86_64               randconfig-a015-20230213
+x86_64               randconfig-a016-20230213
+x86_64                               rhel-8.3
+
+clang tested configs:
+arm                          moxart_defconfig
+arm                        neponset_defconfig
+arm                       netwinder_defconfig
+arm                  randconfig-r046-20230213
+hexagon              randconfig-r041-20230212
+hexagon              randconfig-r041-20230213
+hexagon              randconfig-r045-20230212
+hexagon              randconfig-r045-20230213
+i386                 randconfig-a001-20230213
+i386                 randconfig-a002-20230213
+i386                 randconfig-a003-20230213
+i386                 randconfig-a004-20230213
+i386                 randconfig-a005-20230213
+i386                 randconfig-a006-20230213
+mips                        maltaup_defconfig
+mips                   sb1250_swarm_defconfig
+powerpc                    ge_imp3a_defconfig
+powerpc                 mpc836x_rdk_defconfig
+riscv                randconfig-r042-20230212
+s390                             alldefconfig
+s390                 randconfig-r044-20230212
+x86_64               randconfig-a001-20230213
+x86_64               randconfig-a002-20230213
+x86_64               randconfig-a003-20230213
+x86_64               randconfig-a004-20230213
+x86_64               randconfig-a005-20230213
+x86_64               randconfig-a006-20230213
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
