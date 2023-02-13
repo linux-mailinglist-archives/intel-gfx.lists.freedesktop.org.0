@@ -2,55 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34062694A7C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 16:13:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF07694A89
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 16:14:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7843210E5ED;
-	Mon, 13 Feb 2023 15:13:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7139610E5ED;
+	Mon, 13 Feb 2023 15:14:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7D0C10E5E4;
- Mon, 13 Feb 2023 15:13:01 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70DC810E5ED;
+ Mon, 13 Feb 2023 15:14:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676301181; x=1707837181;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=H36clka671RDw1FhzSGBSeD52zHbFPjr8GiDS8is9xY=;
- b=ExORhCieDoDLlDjfs+EIz9c7b2KTIzE2deJDYo6XFOmy42yOFcGfr/BW
- r3FAf8aR1i878dMxGexx0U9YQ2sAOPL7k+tmFD0Z8d8w5k8Cl5GeZsRNC
- j6FLDpkDptxr4UzHHJjuxRHGDrjaK+3/BaXEoFEe4bqTKeIEeOjU9/z6J
- TG3JtV4CnsFuRezPK6CayZAQ3G3xCTdr/TZ2kLmOtNml3xQFtyFOAtnFB
- EHZnR4OZBm6U3+X3MWPOnbb2r1F4DHo/xOfeNBDMvcGNjqixj+9EQyA7P
- YxiVU6JTdi9fVuRIsGhZRx50VRaLjcSKitH1UoSjPXhvldcvbY6iS7FWV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="310541854"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="310541854"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 07:13:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="792758879"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="792758879"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.19.172])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 07:12:57 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 13 Feb 2023 16:12:54 +0100
-Message-ID: <3663372.MHq7AAxBmi@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <167629606262.20213.9123371560394852051@emeril.freedesktop.org>
-References: <20230213130546.20370-1-janusz.krzysztofik@linux.intel.com>
- <167629606262.20213.9123371560394852051@emeril.freedesktop.org>
+ t=1676301251; x=1707837251;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NuL3WKfeg4daNOlumqOVMpxB8O0V9YixwTzc+OOAYBY=;
+ b=Ozu5WUhWEpAIXt3q9tWfr0Xyi/f8Cjbb1O+ioIE4enNA9RIKHJ9sFZ1+
+ WGhgGcXM/pHqu9evYbhjq7hGRCJPemw3Wpp1mGkf3q1I95j1NSYqQCaDF
+ uYiMxfRMm5Q6BbfGng7/I1Z4wp6POTc6iTj5gcaZwOMrOGFJARs67Riz4
+ gu2w0lL81Sc+9+j/cHLQe7xD/k3JjjZrPHcoz9AqQBm3sWUYfUKgODV0f
+ RSiAAyN+/8RcHm6uLcBFgx5PjMLfYHJCoe3adpgiYWhZrXcHOnhHh06Mo
+ q9NuxqikMMxh9DE/UWT1HEQRIiy1NKsB8hEsPtpZ5bXhhkgDCKJXgXQeC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="318931519"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="318931519"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 07:13:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="701289649"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="701289649"
+Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
+ by orsmga001.jf.intel.com with ESMTP; 13 Feb 2023 07:13:50 -0800
+From: Yi Liu <yi.l.liu@intel.com>
+To: joro@8bytes.org, alex.williamson@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com, robin.murphy@arm.com
+Date: Mon, 13 Feb 2023 07:13:33 -0800
+Message-Id: <20230213151348.56451-1-yi.l.liu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/active=3A_Fix_misuse_of_non-idle_barriers_as_fence_tracke?=
- =?utf-8?q?rs?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/15] Add vfio_device cdev for iommufd
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,166 +56,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-s390@vger.kernel.org, yi.l.liu@intel.com, yi.y.sun@linux.intel.com,
+ kvm@vger.kernel.org, mjrosato@linux.ibm.com, jasowang@redhat.com,
+ cohuck@redhat.com, peterx@redhat.com, eric.auger@redhat.com,
+ nicolinc@nvidia.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Monday, 13 February 2023 14:47:42 CET Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/active: Fix misuse of non-idle barriers as fence trackers
-> URL   : https://patchwork.freedesktop.org/series/113950/
-> State : success
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_12730 -> Patchwork_113950v1
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
-> 
->   No regressions found.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html
-> 
-> Participating hosts (40 -> 37)
-> ------------------------------
-> 
->   Missing    (3): fi-tgl-1115g4 bat-atsm-1 fi-snb-2520m 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_113950v1:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
+Existing VFIO provides group-centric user APIs for userspace. Userspace
+opens the /dev/vfio/$group_id first before getting device fd and hence
+getting access to device. This is not the desired model for iommufd. Per
+the conclusion of community discussion[1], iommufd provides device-centric
+kAPIs and requires its consumer (like VFIO) to be device-centric user
+APIs. Such user APIs are used to associate device with iommufd and also
+the I/O address spaces managed by the iommufd.
 
-No mor list corruptions, only issues already reported by the new 
-igt@gem_barrier_race@remote-request test before (without this patch in place).
+This series first introduces a per device file structure to be prepared
+for further enhancement and refactors the kvm-vfio code to be prepared
+for accepting device file from userspace. Then refactors the vfio to be
+able to handle iommufd binding. This refactor includes the mechanism of
+blocking device access before iommufd bind, making vfio_device_open() be
+exclusive between the group path and the cdev path. Eventually, adds the
+cdev support for vfio device, and makes group infrastructure optional as
+it is not needed when vfio device cdev is compiled.
 
->   * {igt@gem_barrier_race@remote-request@rcs0} (NEW):
->     - fi-rkl-11600:       NOTRUN -> [ABORT][1]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-rkl-11600/igt@gem_barrier_race@remote-request@rcs0.html
->     - bat-dg1-5:          NOTRUN -> [ABORT][2]
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-dg1-5/igt@gem_barrier_race@remote-request@rcs0.html
+This is also a prerequisite for iommu nesting for vfio device[2].
 
-Infinite __i915_active_wait(), similar to 
-https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_706/fi-cfl-8109u/igt@gem_barrier_race@remote-request@rcs0.html
+The complete code can be found in below branch, simple test done with the
+legacy group path and the cdev path. Draft QEMU branch can be found at[3]
 
->     - {bat-adlm-1}:       NOTRUN -> [DMESG-WARN][3]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-adlm-1/igt@gem_barrier_race@remote-request@rcs0.html
+https://github.com/yiliu1765/iommufd/tree/vfio_device_cdev_v3
+(config CONFIG_IOMMUFD=y CONFIG_VFIO_DEVICE_CDEV=y)
 
-Suspicious RCU usage, equivalent to 
-https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_706/bat-dg1-7/igt@gem_barrier_race@remote-request@rcs0.html,
-also seen before, e.g., 
-https://gitlab.freedesktop.org/drm/intel/-/issues/7390, 
-https://gitlab.freedesktop.org/drm/intel/-/issues/6616
+base-commit: 06a24ad
+
+[1] https://lore.kernel.org/kvm/BN9PR11MB5433B1E4AE5B0480369F97178C189@BN9PR11MB5433.namprd11.prod.outlook.com/
+[2] https://lore.kernel.org/linux-iommu/20230209043153.14964-1-yi.l.liu@intel.com/
+[3] https://github.com/yiliu1765/qemu/tree/iommufd_rfcv3 (it is based on Eric's
+    QEMU iommufd rfcv3 (https://lore.kernel.org/kvm/20230131205305.2726330-1-eric.auger@redhat.com/)
+    plus two commits to align with vfio_device_cdev v3)
+
+Change log:
+
+v3:
+ - Add r-b from Kevin on patch 03, 06, 07, 08.
+ - Refine the group and cdev path exclusion. Remove vfio_device:single_open;
+   add vfio_group::cdev_device_open_cnt to achieve exlucsion between group
+   path and cdev path (Kevin, Jason)
+ - Fix a bug in the error handling path (Yan Zhao)
+ - Address misc remarks from Kevin
+
+v2: https://lore.kernel.org/kvm/20230206090532.95598-1-yi.l.liu@intel.com/
+ - Add r-b from Kevin and Eric on patch 01 02 04.
+ - "Split kvm/vfio: Provide struct kvm_device_ops::release() insted of ::destroy()"
+   from this series and got applied. (Alex, Kevin, Jason, Mathhew)
+ - Add kvm_ref_lock to protect vfio_device_file->kvm instead of reusing
+   dev_set->lock as dead-lock is observed with vfio-ap which would try to
+   acquire kvm_lock. This is opposite lock order with kvm_device_release()
+   which holds kvm_lock first and then hold dev_set->lock. (Kevin)
+ - Use a separate ioctl for detaching IOAS. (Alex)
+ - Rename vfio_device_file::single_open to be is_cdev_device (Kevin, Alex)
+ - Move the vfio device cdev code into device_cdev.c and add a VFIO_DEVICE_CDEV
+   kconfig for it. (Kevin, Jason)
+
+v1: https://lore.kernel.org/kvm/20230117134942.101112-1-yi.l.liu@intel.com/
+ - Fix the circular refcount between kvm struct and device file reference. (JasonG)
+ - Address comments from KevinT
+ - Remained the ioctl for detach, needs to Alex's taste
+   (https://lore.kernel.org/kvm/BN9PR11MB5276BE9F4B0613EE859317028CFF9@BN9PR11MB5276.namprd11.prod.outlook.com/)
+
+rfc: https://lore.kernel.org/kvm/20221219084718.9342-1-yi.l.liu@intel.com/
 
 Thanks,
-Janusz
+	Yi Liu
 
-> 
->   
-> New tests
-> ---------
-> 
->   New tests have been introduced between CI_DRM_12730 and Patchwork_113950v1:
-> 
-> ### New IGT tests (2) ###
-> 
->   * igt@gem_barrier_race@remote-request:
->     - Statuses :
->     - Exec time: [None] s
-> 
->   * igt@gem_barrier_race@remote-request@rcs0:
->     - Statuses : 2 abort(s) 1 dmesg-warn(s) 27 pass(s) 5 skip(s)
->     - Exec time: [0.0] s
-> 
->   
-> 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_113950v1 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * {igt@gem_barrier_race@remote-request@rcs0} (NEW):
->     - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271])
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-pnv-d510/igt@gem_barrier_race@remote-request@rcs0.html
->     - fi-blb-e6850:       NOTRUN -> [SKIP][5] ([fdo#109271])
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-blb-e6850/igt@gem_barrier_race@remote-request@rcs0.html
->     - fi-ivb-3770:        NOTRUN -> [SKIP][6] ([fdo#109271])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ivb-3770/igt@gem_barrier_race@remote-request@rcs0.html
->     - fi-elk-e7500:       NOTRUN -> [SKIP][7] ([fdo#109271])
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-elk-e7500/igt@gem_barrier_race@remote-request@rcs0.html
->     - fi-ilk-650:         NOTRUN -> [SKIP][8] ([fdo#109271])
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ilk-650/igt@gem_barrier_race@remote-request@rcs0.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@i915_selftest@live@gt_heartbeat:
->     - fi-apl-guc:         [DMESG-FAIL][9] ([i915#5334]) -> [PASS][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-> 
->   * igt@i915_selftest@live@requests:
->     - {bat-rpls-2}:       [ABORT][11] ([i915#7982]) -> [PASS][12]
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/bat-rpls-2/igt@i915_selftest@live@requests.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-rpls-2/igt@i915_selftest@live@requests.html
-> 
->   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
->     - fi-bsw-n3050:       [FAIL][13] ([i915#6298]) -> [PASS][14]
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
->   [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
->   [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
->   [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
->   [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
->   [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
->   [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-> 
-> 
-> Build changes
-> -------------
-> 
->   * IGT: IGT_7157 -> TrybotIGT_706
->   * Linux: CI_DRM_12730 -> Patchwork_113950v1
-> 
->   CI-20190529: 20190529
->   CI_DRM_12730: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_7157: 96d12fdc942cee9526a951b377b195ca9c8276b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_113950v1: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux
->   TrybotIGT_706: https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_706/index.html
-> 
-> 
-> ### Linux commits
-> 
-> 44de67f6c674 drm/i915/active: Fix misuse of non-idle barriers as fence trackers
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html
-> 
+Yi Liu (15):
+  vfio: Allocate per device file structure
+  vfio: Refine vfio file kAPIs
+  vfio: Accept vfio device file in the driver facing kAPI
+  kvm/vfio: Rename kvm_vfio_group to prepare for accepting vfio device
+    fd
+  kvm/vfio: Accept vfio device file from userspace
+  vfio: Pass struct vfio_device_file * to vfio_device_open/close()
+  vfio: Block device access via device fd until device is opened
+  vfio: Add infrastructure for bind_iommufd from userspace
+  vfio-iommufd: Add detach_ioas support for physical VFIO devices
+  vfio-iommufd: Add detach_ioas for emulated VFIO devices
+  vfio: Add cdev_device_open_cnt to vfio_group
+  vfio: Make vfio_device_open() single open for device cdev path
+  vfio: Add cdev for vfio_device
+  vfio: Add ioctls for device cdev using iommufd
+  vfio: Compile group optionally
 
+ Documentation/driver-api/vfio.rst             |   8 +-
+ Documentation/virt/kvm/devices/vfio.rst       |  45 ++-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |   1 +
+ drivers/s390/cio/vfio_ccw_ops.c               |   1 +
+ drivers/s390/crypto/vfio_ap_ops.c             |   1 +
+ drivers/vfio/Kconfig                          |  29 ++
+ drivers/vfio/Makefile                         |   3 +-
+ drivers/vfio/device_cdev.c                    | 264 ++++++++++++++++
+ drivers/vfio/fsl-mc/vfio_fsl_mc.c             |   1 +
+ drivers/vfio/group.c                          | 149 +++++----
+ drivers/vfio/iommufd.c                        |  59 +++-
+ .../vfio/pci/hisilicon/hisi_acc_vfio_pci.c    |   2 +
+ drivers/vfio/pci/mlx5/main.c                  |   1 +
+ drivers/vfio/pci/vfio_pci.c                   |   1 +
+ drivers/vfio/pci/vfio_pci_core.c              |   4 +-
+ drivers/vfio/platform/vfio_amba.c             |   1 +
+ drivers/vfio/platform/vfio_platform.c         |   1 +
+ drivers/vfio/vfio.h                           | 168 +++++++++-
+ drivers/vfio/vfio_main.c                      | 295 ++++++++++++++++--
+ include/linux/iommufd.h                       |   6 +
+ include/linux/vfio.h                          |  28 +-
+ include/uapi/linux/kvm.h                      |  16 +-
+ include/uapi/linux/vfio.h                     |  86 +++++
+ virt/kvm/vfio.c                               | 141 ++++-----
+ 24 files changed, 1106 insertions(+), 205 deletions(-)
+ create mode 100644 drivers/vfio/device_cdev.c
 
-
+-- 
+2.34.1
 
