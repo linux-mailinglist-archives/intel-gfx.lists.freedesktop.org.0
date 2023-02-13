@@ -2,50 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1EC6954AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 122196954AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:22:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF2C10E79F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99C0C10E783;
 	Mon, 13 Feb 2023 23:21:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D77C10E780;
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2051.outbound.protection.outlook.com [40.107.220.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A00010E77E;
  Mon, 13 Feb 2023 23:21:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676330512; x=1707866512;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PQSfsrg002po4Vfg0NuMOQsTUwx7hvxQxFiWLzDAjVM=;
- b=Y9c1eEo5rKJsE74J/+SP9VaILZGnLYvpEXrh29EtPnwjx/H2avRSMgA8
- pa4o/TEVAtinoQUxZbON4PDbkMOg4HfJWUKfM+OmKM1wAWsiawW2Kdp3b
- TIOyHub7jyZW4S0WGRkMl60Uk+j/e9RAYDYfTpH5eTEve8uBJwzuvE0YV
- dENCK4TFFoipqSOhmKMcDYb7Ue33NYCghKhTA3HyVU9ffvU6T5mJL8Ilk
- BFJzMVJjc6+9OW1SeTckxYDBXmy0r24VxiIlIuwokP0z/IOAX6yNomVB7
- jnex4Ljss4bd1i6orDtt1vNLl/lAKcRYC2vlbaUm7TLkwotau5/Kb3xIa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="333161213"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="333161213"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 15:21:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="997860722"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="997860722"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.19.172])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 15:21:48 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 14 Feb 2023 00:21:28 +0100
-Message-Id: <20230213232128.59217-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230213232128.59217-1-janusz.krzysztofik@linux.intel.com>
-References: <20230213232128.59217-1-janusz.krzysztofik@linux.intel.com>
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ULDQnzW5BVTZeXuxGXTDu8s3INeV1MBCG9vuvUmkun4/nRRw+zDp6QzEJhaa2gFcEJNgjYT1N56NF1kUdLvjL1/bRtyvshYTDRr8dcaSv7jj7DwVPnTntbnJfAaT5vGg5aqBD3UafRvk5haj3wXwaiTuwlkQAjbIR75GEJIri+urcR/b5OKG74BG+QjLteaGn8XH4onmmu2gH6iG+5pgK/FyGJculnwCZwwmzXoH5laG54UKwatdNfLu82kYiktldwERVyQK1UO1AXF1JgbXx96uL/fuIgWsAfF9mzuwEmfrX5E3GSh+VyATLO9y/rtdVNZgQkQYFY6u94MPre+V6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0EDIFOUfuTVHZd1B/JeJJO2WXZLvjto/WY8vYEcbTJ4=;
+ b=Dsw5HMXLz04sKmXfJ2Rc1LXX2G7czT9akYIeulktq6w1jP+En9enA/OR0blbJLklAJl3faGotC1uwozelHVjfXkIL5wGH3FbN6gWHk6N2lRfeYE+aud7q3wu3CC/13ktNUNZ/fmrF2HQn7UhDcOQNLxjVWp8Rg7OM9BjX3fCWfJFdyXfVqhtxKAe9Pcxl5ls0Fm334oPnCBhCLMcLhcamuQhbgIoQk2kdEloL36GKqkBBpNTQxWL2QQgaa5s6vl4hlPvpJdj+Yz8hMk91pi3uP6g6ulHJPYDmvxd2um6M1d9sYBQ7/LwhsA80Zqbt2JLmuEAVI8J2yApNu+m+9TRLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0EDIFOUfuTVHZd1B/JeJJO2WXZLvjto/WY8vYEcbTJ4=;
+ b=haJyllCP3dU/CviO1Izyllpgidd7z14AAP92wHV9Uon+yUVBmXa8LHpnKeJeY5VFh+Imyq5X2rh9xUyxvAR7ol+SBR+JLGZ6WCBQrRQNWafVE36nLBHh7EkMsf6bQTVDgrGMQ05LSjgDmIVIy5tHKFPdyjNDB3BEul4iEjoFFflPP7FjOiajOKDgf0pKxFrkdpQqZOogJ0d/TEu42P6dIAjKBLgS3502onIgHDom/ZO1P+iLRJ6QRRbrqfeUc5aokpoEmcy3ybKfpmzRSIn7TAGWGiRr8q1Tsd0SJ2ZJSeikK49Sc0KhWNYNKRbpjtI+tX9cbZub8eqQ0Mq+gTOVXA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by CO6PR12MB5489.namprd12.prod.outlook.com (2603:10b6:303:139::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Mon, 13 Feb
+ 2023 23:21:50 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%6]) with mapi id 15.20.6086.023; Mon, 13 Feb 2023
+ 23:21:50 +0000
+Date: Mon, 13 Feb 2023 19:21:49 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <Y+rGDeEMTB8FxjAH@nvidia.com>
+References: <20230213151348.56451-1-yi.l.liu@intel.com>
+ <20230213124719.126eb828.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230213124719.126eb828.alex.williamson@redhat.com>
+X-ClientProxiedBy: BL1PR13CA0292.namprd13.prod.outlook.com
+ (2603:10b6:208:2bc::27) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/active: Serialize access to
- barrier tasks lists
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CO6PR12MB5489:EE_
+X-MS-Office365-Filtering-Correlation-Id: 681c4682-9dcf-477a-da8f-08db0e191588
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oIa+5d4JI2Rq1mScKrNPfswYq7CWbf+akXx7byfdHfuEbqUc9S80RsCvlhyQ2DKlRZf5PBYRgd0rz8t2AZmFtie/3OhLhzuzRtdOiL34f9gHdC/OEcVWt6FrArmvGe/cs1v48u0EjY8UwZMQTu0t5o1e9UStq7ssXH44b2a026kiuGHbECFqshvbTzY015DBw0hxRZDSTZYX3xrxzrHab1GXCIWwnauJjuranbrUJoL6cUlA8jvAuaf8HYOPbSjFWmwhXtBYnKDIBnAE+Z0RwX9BAkxrKoyuBU+Wm2GNs4wvMuUayyibgiZUeTSjOvPLP4sIk+Bf/HEI0YZ5Ga9LI66D+9HT1RaLdh5yeW9YdNnrzyWKLiCyy6hD0lkIjfTc8UXLxKbWe/cbZLVSWVAIeGL+FQHgDsbd4Fye/OspvV90XRw/24kDHqr6NUSjiiqhyS6qG86999Fdw48kOwPUfsXbsV72QwNOGUoxCdQQjRF6fN9aoHp5J8o4s3HiiLahMksRS67KSvLiF6RKvaX4u81dcmbEUpoPikpTShmaXMB84UwJ94lWSPiEvBAzSu0fAGVmRJSZ/A3DfU8JgVApG1UZonPgAxLt9hUUCHreQ3HYwYEtoaumESZhtcDf7BysaeZMTJarWG7hAItlJSLrC3M78SuuozlSsWZ+wW74qk5iO+bM4Kc7G24nZUPj8xAq
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(376002)(366004)(39860400002)(396003)(136003)(451199018)(4326008)(6916009)(8676002)(316002)(36756003)(41300700001)(38100700002)(2616005)(66476007)(66556008)(66946007)(478600001)(2906002)(8936002)(7416002)(5660300002)(4744005)(186003)(6486002)(6506007)(6512007)(86362001)(26005)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?J1Ys0ekUafDGidl6jyQC2nm5IEBncTrGvd0IB/3HiFdJ+fDfArmGZDj5cY/C?=
+ =?us-ascii?Q?bf7mlD1A//yxXoLh8PQUCGWjAZtrcDknw8k9lYK33gN5Ed4Krh6oVfIKufGM?=
+ =?us-ascii?Q?VJ2Jhk6+UuoU2aZBoaDNJ5hsQOb0pncq1Xr6qlYTN4RQwCCvd/qmcZnTH0TQ?=
+ =?us-ascii?Q?rtMTKIOns2eqwh9c5N7FcdSPhc9zhX1Lr76xd5ia0BTmzbJsKAHp49IRorDE?=
+ =?us-ascii?Q?jo2zk7lhebY9G0mgw/mhlkvgJHTBCT1I+QkFJTqs/I20kXkc3iV0/TZyklGD?=
+ =?us-ascii?Q?Q365J6ZWgx+q7GDx/Rz6QrNHigGqTnxBs5sfm7jARQCe4NpO6xuOQ34sFuxl?=
+ =?us-ascii?Q?6rW/ctaG7TuE9hiFhDrXolyvJU37oXw8eXM9Npim4fAsbxrSHCIuwKr0jtXL?=
+ =?us-ascii?Q?ZaO2CWSG/kvmMpYpol+MhFDVHbFBg1tKXq0PmlWbiVIKYqH34xy2VpXVSIW0?=
+ =?us-ascii?Q?bfWXcJkTeeCXwBuEVPDSsysXsXA0DUPk4ppqNClSVgNNA93ZxMYXTI2bEjhF?=
+ =?us-ascii?Q?qq5PyJHRf3sNNmCSbfo3z05e2F++VnpINgmU0pKQyA/oGCsN3JMmzUbB9HFM?=
+ =?us-ascii?Q?xEoZGHnCpD8MUOlb0d2CGaCpc6fHIKrHrIpp8mGxKv6SHHrX/YceIocwpmlJ?=
+ =?us-ascii?Q?APVfvJDOUfF+CnR/Y/9cS2ozhVFzDfw1zkS3XW0v0Y2gpP/vE9lJct5zhMYZ?=
+ =?us-ascii?Q?8FB64cG/2Mqyz1Xe/A1au8i0rv4jQQrkMynsX6/ZHRDo4zOEWDXbTqZBbdzU?=
+ =?us-ascii?Q?Vp3GE6yneaGyg4CKXTtCbiyGYzS89pOZmutAe0Bpx5YFZW0jdEHT58uPBovZ?=
+ =?us-ascii?Q?gV1EzpA2mA1Mm+uiFU8WxHJp8zN88XEt8DTbOfJ7gO6406F6abIWEUsK+8BQ?=
+ =?us-ascii?Q?o9BGUL9AsfevuymVMKtXSRir5rdxfMt6sPBuxm7vZkPnQ4oZpu0jBAMghMyP?=
+ =?us-ascii?Q?155fubmkuXWzCTy5l2W1FlRpdAFHs38xCniOXwTkfqo7HbFJtv0rNtpZvT1+?=
+ =?us-ascii?Q?9/0475zO1MX7wHFPbHhhfgKnBNmSreW+mjiLeHTAN6zWXqZaQ0b8Mjz3je1O?=
+ =?us-ascii?Q?a5QZusihOOh4uJO73OU7KyglrZ9jHNQox22JUhPIdFG8IzpYXCulszpyP7rP?=
+ =?us-ascii?Q?iaANeJGfKJdNy71kpAHPFObnaf8SANxyjrpycbne3JF/LULxwLzTbzopWou4?=
+ =?us-ascii?Q?kkD53K7fDsZYKvDvkg0Un5TPF4rNAQphS8zST2T9xCY+EsM+ViI+rbYQEkxX?=
+ =?us-ascii?Q?W79RYuyiAZg+RPgDWI2yLoMygxPLXSkm69Q6NgtfqYbvkeh8jyNHxiL30LPq?=
+ =?us-ascii?Q?gAbkQKJw/hCs4D2cW3WT9blZOP21OGgGjrPBJCoOVnP95n4pBLEOwdqTgvGt?=
+ =?us-ascii?Q?Y5bOvE9EG1SBv2a4fO6FO7kqKTXQ2sNni9jT11ypPvbbeqHTdZsOtqtBQp7G?=
+ =?us-ascii?Q?sm5uJvXVgTt/0MqVP1qBb5pUChb59dZCpL/bdUHjzWeKz7UsaKDLWlRtYDUo?=
+ =?us-ascii?Q?nqN/MaQMrg7XyrLbiXSBZwKfq9+LkNUsQGyW9a3iRnZFvx6ldLbKEj9AGE12?=
+ =?us-ascii?Q?5mMl6JqPUJx/GclnZNgJAyovOqn8UpbvkuCGpd1K?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 681c4682-9dcf-477a-da8f-08db0e191588
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2023 23:21:50.3193 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /r1LZuw1ZzohVizc3Bf25ma7wnjRWJBQr2qb9nCf+hDmB7/Zr/Qh8wfmSEmaLTHU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5489
+Subject: Re: [Intel-gfx] [PATCH v3 00/15] Add vfio_device cdev for iommufd
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,277 +115,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-s390@vger.kernel.org, Yi Liu <yi.l.liu@intel.com>,
+ yi.y.sun@linux.intel.com, mjrosato@linux.ibm.com, kvm@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
+ peterx@redhat.com, eric.auger@redhat.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Barriers are now deleted from a barrier tasks list by temporarily removing
-the list content, traversing that content with skip over the node to be
-deleted, then adding the modified content back to the list.  Since that
-complex operation is not serialized with other concurrent uses of the
-list, functions that depend on the list being either empty or not empty
-can take wrong decisions.
+On Mon, Feb 13, 2023 at 12:47:19PM -0700, Alex Williamson wrote:
 
-One example is intel_engine_flush_barriers(), which is expected to queue
-a heartbeat request for an engine unless it finds that engine's barriers
-tasks list empty.  Timeouts on infinite __i915_active_wait() occurrences
-reported by igt@gem_barrier_race@remote-request subtest seem to be
-potentially caused by false positives from those llist_empty() checks.
+> I think it's too late for v6.3 already, but given this needs at least
+> one more spin, let's set expectations of this being v6.4 material.  Thanks,
 
-Protect concurrent access to the list pending those complex barrier delete
-operations with a spinlock, and teach other sensitive users of the list to
-acquire the lock.  While using a spinlock to protect a lockless list may
-be considered suboptimal compared to converting the llist to a regular
-list, this approach seems to provide the smallest and least invasive but
-effective fix.
+Please let's continue to try to get this finished during the merge
+window, all the other series depend on it. We can manage it with a
+shared branch again..
 
-Fixes: d8af05ff38ae ("drm/i915: Allow sharing the idle-barrier from other kernel requests")
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: stable@vger.kernel.org # v5.4
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  6 +++
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 10 ++++-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  4 ++
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
- drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +
- .../drm/i915/gt/selftest_engine_heartbeat.c   |  5 +++
- drivers/gpu/drm/i915/i915_active.c            | 39 +++++++++++++++----
- 7 files changed, 59 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index d4e29da74612d..f82f6f7b89e7b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1148,6 +1148,7 @@ static int engine_setup_common(struct intel_engine_cs *engine)
- 	int err;
- 
- 	init_llist_head(&engine->barrier_tasks);
-+	spin_lock_init(&engine->barriers_lock);
- 
- 	err = init_status_page(engine);
- 	if (err)
-@@ -1418,6 +1419,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
- 	if (engine->kernel_context)
- 		intel_engine_destroy_pinned_context(engine->kernel_context);
- 
-+	/* No concurrent tasks expected on driver remove, no need to lock */
- 	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
- 	cleanup_status_page(engine);
- 
-@@ -2240,6 +2242,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 	struct i915_gpu_error * const error = &engine->i915->gpu_error;
- 	struct i915_request *rq;
- 	intel_wakeref_t wakeref;
-+	unsigned long flags;
- 	ktime_t dummy;
- 
- 	if (header) {
-@@ -2254,8 +2257,11 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 		drm_printf(m, "*** WEDGED ***\n");
- 
- 	drm_printf(m, "\tAwake? %d\n", atomic_read(&engine->wakeref.count));
-+	/* Serialize against ____active_del_barrier() for debugging accuracy */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	drm_printf(m, "\tBarriers?: %s\n",
- 		   str_yes_no(!llist_empty(&engine->barrier_tasks)));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 	drm_printf(m, "\tLatency: %luus\n",
- 		   ewma__engine_latency_read(&engine->latency));
- 	if (intel_engine_supports_stats(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9a527e1f5be65..ae1d4ffff2139 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -378,9 +378,17 @@ int intel_engine_flush_barriers(struct intel_engine_cs *engine)
- 	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
- 	struct intel_context *ce = engine->kernel_context;
- 	struct i915_request *rq;
-+	unsigned long flags;
- 	int err;
- 
--	if (llist_empty(&engine->barrier_tasks))
-+	/*
-+	 * Serialize against ____active_del_barrier()
-+	 * or we risk the barriers not flushed.
-+	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
-+	err = !llist_empty(&engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
-+	if (!err)
- 		return 0;
- 
- 	if (!intel_engine_pm_get_if_awake(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index e971b153fda97..209fb3f2bb786 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -236,6 +236,10 @@ static void call_idle_barriers(struct intel_engine_cs *engine)
- {
- 	struct llist_node *node, *next;
- 
-+	/*
-+	 * Locking around llist_del_all() not needed as long as we always
-+	 * call ____active_del_barrier() with engine's wakeref acquired.
-+	 */
- 	llist_for_each_safe(node, next, llist_del_all(&engine->barrier_tasks)) {
- 		struct dma_fence_cb *cb =
- 			container_of((struct list_head *)node,
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 4fd54fb8810fb..ab9e0a6de70d4 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -396,6 +396,7 @@ struct intel_engine_cs {
- 	struct intel_context *hung_ce;
- 
- 	struct llist_head barrier_tasks;
-+	spinlock_t barriers_lock;
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index c0637bf799a33..383a27b64634f 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -394,6 +394,8 @@ int mock_engine_init(struct intel_engine_cs *engine)
- {
- 	struct intel_context *ce;
- 
-+	spin_lock_init(&engine->barriers_lock);
-+
- 	INIT_LIST_HEAD(&engine->pinned_contexts_list);
- 
- 	engine->sched_engine = i915_sched_engine_create(ENGINE_MOCK);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index 273d440a53e3f..cbc03662fc693 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -90,6 +90,7 @@ static void pulse_unlock_wait(struct pulse *p)
- static int __live_idle_pulse(struct intel_engine_cs *engine,
- 			     int (*fn)(struct intel_engine_cs *cs))
- {
-+	unsigned long flags;
- 	struct pulse *p;
- 	int err;
- 
-@@ -113,13 +114,17 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	i915_active_release(&p->active);
- 
- 	GEM_BUG_ON(i915_active_is_idle(&p->active));
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	GEM_BUG_ON(llist_empty(&engine->barrier_tasks));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	err = fn(engine);
- 	if (err)
- 		goto out;
- 
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	if (engine_sync_barrier(engine)) {
- 		struct drm_printer m = drm_err_printer("pulse");
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index f9282b8c87c1c..35d6954a7b912 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -370,24 +370,34 @@ static bool ____active_del_barrier(struct i915_active *ref,
- {
- 	struct llist_node *head = NULL, *tail = NULL;
- 	struct llist_node *pos, *next;
-+	unsigned long flags;
- 
-+	/* Must be serialized via pm wakeref with call_idle_barriers() */
-+	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
- 	GEM_BUG_ON(node->timeline != engine->kernel_context->timeline->fence_context);
- 
- 	/*
- 	 * Rebuild the llist excluding our node. We may perform this
- 	 * outside of the kernel_context timeline mutex and so someone
- 	 * else may be manipulating the engine->barrier_tasks, in
--	 * which case either we or they will be upset :)
-+	 * which case either we or they could be upset :)
- 	 *
--	 * A second __active_del_barrier() will report failure to claim
--	 * the active_node and the caller will just shrug and know not to
-+	 * A second __active_del_barrier() would report failure to claim
-+	 * the active_node and the caller would just shrug and know not to
- 	 * claim ownership of its node.
- 	 *
--	 * A concurrent i915_request_add_active_barriers() will miss adding
--	 * any of the tasks, but we will try again on the next -- and since
--	 * we are actively using the barrier, we know that there will be
-+	 * A concurrent i915_request_add_active_barriers() would miss adding
-+	 * any of the tasks, but we would try again on the next -- and since
-+	 * we were actively using the barrier, we knew that there would be
- 	 * at least another opportunity when we idle.
-+	 *
-+	 * However, users that check for the list to be empty can be misleaded
-+	 * and can take wrong decisions, like e.g. intel_engine_flush_barriers()
-+	 * not submitting a flushing heartbeat when it finds the list empty
-+	 * while it is being rebuilt.  To avoid such races, we protect sensitive
-+	 * users with a dedicated spinlock.
- 	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	llist_for_each_safe(pos, next, llist_del_all(&engine->barrier_tasks)) {
- 		if (node == barrier_from_ll(pos)) {
- 			node = NULL;
-@@ -401,6 +411,7 @@ static bool ____active_del_barrier(struct i915_active *ref,
- 	}
- 	if (head)
- 		llist_add_batch(head, tail, &engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 
- 	return !node;
- }
-@@ -881,6 +892,9 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 		struct llist_node *prev = first;
- 		struct active_node *node;
- 
-+		/* Serialize with call_idle_barriers() via pm wakeref */
-+		intel_engine_pm_get(engine);
-+
- 		rcu_read_lock();
- 		node = reuse_idle_barrier(ref, idx);
- 		rcu_read_unlock();
-@@ -916,7 +930,6 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 		first->next = prev;
- 		if (!last)
- 			last = first;
--		intel_engine_pm_get(engine);
- 	}
- 
- 	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
-@@ -976,6 +989,12 @@ void i915_active_acquire_barrier(struct i915_active *ref)
- 		spin_unlock_irqrestore(&ref->tree_lock, flags);
- 
- 		GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
-+		/*
-+		 * As long as we serialize concurrent processing of
-+		 * barrier_tasks by multiple ____active_del_barrier(),
-+		 * it should be safe to add a new node without locking,
-+		 * even while the llist is temporarily emptied.
-+		 */
- 		llist_add(barrier_to_ll(node), &engine->barrier_tasks);
- 		intel_engine_pm_put_delay(engine, 2);
- 	}
-@@ -996,7 +1015,13 @@ void i915_request_add_active_barriers(struct i915_request *rq)
- 	GEM_BUG_ON(intel_engine_is_virtual(engine));
- 	GEM_BUG_ON(i915_request_timeline(rq) != engine->kernel_context->timeline);
- 
-+	/*
-+	 * Serialize against ____active_del_barrier() or we risk
-+	 * the barriers left intact, not replaced with the request.
-+	 */
-+	spin_lock_irqsave(&engine->barriers_lock, flags);
- 	node = llist_del_all(&engine->barrier_tasks);
-+	spin_unlock_irqrestore(&engine->barriers_lock, flags);
- 	if (!node)
- 		return;
- 	/*
--- 
-2.25.1
-
+Thanks,
+Jason
