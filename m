@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65868695426
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9833695427
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5ABD10E766;
-	Mon, 13 Feb 2023 22:53:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3591410E771;
+	Mon, 13 Feb 2023 22:53:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1066610E773
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D206910E773
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676328809; x=1707864809;
+ t=1676328811; x=1707864811;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=WUdJFAOaZI/8QPedi3HTfaZtwGR4i8iG//QktKeawq4=;
- b=WAyTImZN3Wk+rkLCJrAP1Svw7E/NWW3bJYZthNijDOoTsQZC7Nb+NKYo
- ohxcMHOvqKHwDHdv+BxTgregDCXF1UlHIC5374TY1JwnV/TewOCxJUPjY
- WVDiu7OtKtW0qbzgpDHiQv6AEo2/ag6CaCdh6IicCRmZagC5A/3i12spq
- mYG/NcW/zqGGYyJ4bA6jPFbsUe7ZqQU5u2mLLPsVuem9mjkzY093Daza+
- INf4LksebXerHbEu1ERBPte4fcpYVQBfQY580fbmi2z8t7Y7Oqd78LD99
- yI3Ev1SgonaRC5hYMPq8s7cmnTJVyQIFlVoADvLdFvwS545WRnfSLG934 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237418"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237418"
+ bh=6WJRlDwVgplA3/h0efMAZqqit2LBzPXTcpLaEBUvT0E=;
+ b=bBARIKyI5XGMiWOgRIHuCcor3Qy0KB7LU+gkCsltJvnDoXHNdwk9N0PO
+ AR7b0B6sq7zvuSQwG3tjX+cEZek8RwS3dvh1yFy+w0vVTvg0LS9rVYM89
+ aUApWaQa4cDMyfKkhxZavrXPrxvtPsJLZwRv0PEk8lH2Wm2QyC0JlIJnv
+ q1F+qzbEksEmZIDKtLlyg5eB4kFlKAUf3ni+w7U+5jPQtuSoKh0HTBImG
+ vIzz0RVJRoylnZD+cV1LTKDBlu7bbthwOnbA+fqC/dlO8/oJ5SDWy7gdd
+ TVihEC1INzWXUX+5XJKPRCTr3GGZSu9/5aUL+HniTWbSEU2x9VZF6qfml w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237425"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237425"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 14:53:28 -0800
+ 13 Feb 2023 14:53:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766449"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766449"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766454"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766454"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:27 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:29 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 00:53:26 +0200
+ Tue, 14 Feb 2023 00:53:29 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 00:52:56 +0200
-Message-Id: <20230213225258.2127-11-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 00:52:57 +0200
+Message-Id: <20230213225258.2127-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/12] drm/i915: Configure
- TRANS_SET_CONTEXT_LATENCY correctly on ADL+
+Subject: [Intel-gfx] [PATCH 11/12] drm/i915: Sprinkle some FIXMEs about TGL+
+ DSI transcoder timing mess
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,89 +65,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On TGL VBLANK.VBLANK_START was the mechanism by which we can
-delay the pipe's internal vblank in relation to the transcoder's
-vblank. On ADL+ that no longer does anything. Instead we must
-now use the new TRANS_SET_CONTEXT_LATENCY register. Program it
-accordingly.
-
-And since VBLANK.VBLANK_START is no longer used by the hardware
-on ADL+ let's just zero it out to make it stand out in register
-dumps. Seeing the zeroed value should hopefully remind people
-to check the other register instead.
+The DSI code has some local hacks to program TRANS_H/VBLANK on
+TGL+ (ICL DSI transcoders didn't have these registers). That
+will not work when we need to start using the delayed vblank
+(for DSB purposes). Too lazy to figure out what the is going
+on there, so just sprinkle FIXMEs in the hopes someone else
+will spot them eventually.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++++++++++---
- 1 file changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c       | 7 ++++++-
+ drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index def3aff4d717..b5316715bb3b 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -957,7 +957,12 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+ 		}
+ 	}
+ 
+-	/* program TRANS_VBLANK register, should be same as vtotal programmed */
++	/*
++	 * program TRANS_VBLANK register, should be same as vtotal programmed
++	 *
++	 * FIXME get rid of these local hacks and do it right,
++	 * this will not handle eg. delayed vblank correctly.
++	 */
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		for_each_dsi_port(port, intel_dsi->ports) {
+ 			dsi_trans = dsi_port_to_transcoder(port);
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1d92a789baab..92306246e907 100644
+index 92306246e907..4210ede5e52e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2821,12 +2821,14 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	enum pipe pipe = crtc->pipe;
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
--	u32 crtc_vtotal, crtc_vblank_end;
-+	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
- 	int vsyncshift = 0;
+@@ -2938,6 +2938,7 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+ 	adjusted_mode->crtc_hdisplay = REG_FIELD_GET(HACTIVE_MASK, tmp) + 1;
+ 	adjusted_mode->crtc_htotal = REG_FIELD_GET(HTOTAL_MASK, tmp) + 1;
  
- 	/* We need to be careful not to changed the adjusted mode, for otherwise
- 	 * the hw state checker will get angry at the mismatch. */
-+	crtc_vdisplay = adjusted_mode->crtc_vdisplay;
- 	crtc_vtotal = adjusted_mode->crtc_vtotal;
-+	crtc_vblank_start = adjusted_mode->crtc_vblank_start;
- 	crtc_vblank_end = adjusted_mode->crtc_vblank_end;
++	/* FIXME TGL+ DSI transcoders have this! */
+ 	if (!transcoder_is_dsi(cpu_transcoder)) {
+ 		tmp = intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
+ 		adjusted_mode->crtc_hblank_start = REG_FIELD_GET(HBLANK_START_MASK, tmp) + 1;
+@@ -2952,6 +2953,7 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+ 	adjusted_mode->crtc_vdisplay = REG_FIELD_GET(VACTIVE_MASK, tmp) + 1;
+ 	adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
  
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
-@@ -2843,6 +2845,21 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 			vsyncshift += adjusted_mode->crtc_htotal;
- 	}
- 
-+	/*
-+	 * VBLANK_START no longer works on ADL+, instead we must use
-+	 * TRANS_SET_CONTEXT_LATENCY to configure the pipe vblank start.
-+	 */
-+	if (DISPLAY_VER(dev_priv) >= 13) {
-+		intel_de_write(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder),
-+			       crtc_vblank_start - crtc_vdisplay);
-+
-+		/*
-+		 * VBLANK_START not used by hw, just clear it
-+		 * to make it stand out in register dumps.
-+		 */
-+		crtc_vblank_start = 1;
-+	}
-+
- 	if (DISPLAY_VER(dev_priv) > 3)
- 		intel_de_write(dev_priv, TRANS_VSYNCSHIFT(cpu_transcoder),
- 			       vsyncshift);
-@@ -2858,10 +2875,10 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
- 
- 	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
--		       VACTIVE(adjusted_mode->crtc_vdisplay - 1) |
-+		       VACTIVE(crtc_vdisplay - 1) |
- 		       VTOTAL(crtc_vtotal - 1));
- 	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
--		       VBLANK_START(adjusted_mode->crtc_vblank_start - 1) |
-+		       VBLANK_START(crtc_vblank_start - 1) |
- 		       VBLANK_END(crtc_vblank_end - 1));
- 	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder),
- 		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
-@@ -2949,6 +2966,11 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
- 		adjusted_mode->crtc_vtotal += 1;
++	/* FIXME TGL+ DSI transcoders have this! */
+ 	if (!transcoder_is_dsi(cpu_transcoder)) {
+ 		tmp = intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
+ 		adjusted_mode->crtc_vblank_start = REG_FIELD_GET(VBLANK_START_MASK, tmp) + 1;
+@@ -2967,6 +2969,7 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
  		adjusted_mode->crtc_vblank_end += 1;
  	}
-+
-+	if (DISPLAY_VER(dev_priv) >= 13 && !transcoder_is_dsi(cpu_transcoder))
-+		adjusted_mode->crtc_vblank_start =
-+			adjusted_mode->crtc_vdisplay +
-+			intel_de_read(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder));
- }
  
- static void intel_bigjoiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
++	/* FIXME ADL+ DSI transcoders have this! */
+ 	if (DISPLAY_VER(dev_priv) >= 13 && !transcoder_is_dsi(cpu_transcoder))
+ 		adjusted_mode->crtc_vblank_start =
+ 			adjusted_mode->crtc_vdisplay +
 -- 
 2.39.1
 
