@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA5069525B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 21:53:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 569D969525E
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 21:55:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE3DE10E72A;
-	Mon, 13 Feb 2023 20:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCB8A10E72A;
+	Mon, 13 Feb 2023 20:55:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBA910E72A
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 20:53:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8549410E72A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 20:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676321620; x=1707857620;
+ t=1676321722; x=1707857722;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=qU/Es3Ul4YVXbmkUa4qf9fvT89z+6WhVc5d7r6kXR/I=;
- b=F7HAaj1P61pTQOkYbDLOUxr/JEw2SLJYLeREfy2yzrS9inCZkaJQPgTw
- 7XXT4QnB7Y9G1CKXJNAS/5q1HrNjVMdft77+AifUdRkv+KxcLTf2vLxAb
- fwPaOOvs8FB/pPQW6S5Uo8S3k1pIunleIwsFBLguVHJkS5sGEqt4KsYIk
- ulmYraiKOkwB+oWEjkb8V0A5Fi8eiifBteCpq0/BfCTBoMHaR/ViJRdcJ
- TJGpYVeA9RuNZZCuUNxj+jc7Pmk/lser5D05TW5GqephaNnOS4Tw69ZPi
- ausvujDPXQofhvXxztXgA7DrrvWlxryK9x1zxycQTz2+P3ZwNED/txiOS A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="393399172"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="393399172"
+ bh=DE7fbA04i/14TMUxufBuiokQgrUCShukrR9PJOawGMc=;
+ b=UngD2nKLqkfZGKFag2IELSmLc0Bb+422i1y+8Eko1bQO6K0refh/f4uz
+ SkQpKTVAqJC21CF/NE3szQeRYr/uD+paHYrtzRsf68OapVQ/q+Gc46aVT
+ ADpas3qJRjzKL8XtBDNS1X1JrlnC2iNGlK65uil2j8W2HMW/NMhLwbXdp
+ z3TCZYApGDWvqD9lCxbJcxU22Bc5UKROMG1b39X8IxritUWU8uSu1qHO4
+ JMuNvZGE5dPy9t7t7JtqS54qR+bVSks8zRIphjkSnQp5uyYtXMJGZ6qg6
+ aB63KPR5xOOTJVPaKVqWrEdhz4PRECRQkuqUpdWXWISuEf9/rPHmvY2Ib g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="393399542"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="393399542"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 12:53:39 -0800
+ 13 Feb 2023 12:55:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="670973307"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="670973307"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="670973867"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="670973867"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by fmsmga007.fm.intel.com with SMTP; 13 Feb 2023 12:53:37 -0800
+ by fmsmga007.fm.intel.com with SMTP; 13 Feb 2023 12:55:19 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Feb 2023 22:53:36 +0200
-Date: Mon, 13 Feb 2023 22:53:36 +0200
+ Mon, 13 Feb 2023 22:55:18 +0200
+Date: Mon, 13 Feb 2023 22:55:18 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y+qjUAe0Y4LTwG67@intel.com>
+Message-ID: <Y+qjtr1xX7WwYnXC@intel.com>
 References: <cover.1676317696.git.jani.nikula@intel.com>
- <77c30bfdd258c4e0cf143c93514f94c92f371484.1676317696.git.jani.nikula@intel.com>
+ <6acf7b4c54a453bf4c47bfabc0000afe80bd0375.1676317696.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <77c30bfdd258c4e0cf143c93514f94c92f371484.1676317696.git.jani.nikula@intel.com>
+In-Reply-To: <6acf7b4c54a453bf4c47bfabc0000afe80bd0375.1676317696.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 5/7] drm/i915/wm: move watermark
- sanitization to intel_wm.[ch]
+Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/wm: move watermark debugfs
+ to intel_wm.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,340 +66,524 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 13, 2023 at 10:00:00PM +0200, Jani Nikula wrote:
-> Move the generic sanitize_watermarks() to intel_wm.[ch] and rename as
-
-It's not generic though. Only the ilk_ stuff uses it.
-
-> intel_wm_sanitize(). The slightly unfortunate downside is having to
-> expose intel_atomic_check() from intel_display.c, but this declutters
-> intel_display.c nicely.
+On Mon, Feb 13, 2023 at 10:00:01PM +0200, Jani Nikula wrote:
+> Follow the new convention of placing debugfs with the code.
 > 
 > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 124 +------------------
->  drivers/gpu/drm/i915/display/intel_display.h |   2 +
->  drivers/gpu/drm/i915/display/intel_wm.c      | 119 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_wm.h      |   1 +
->  4 files changed, 125 insertions(+), 121 deletions(-)
+>  .../drm/i915/display/intel_display_debugfs.c  | 219 +----------------
+>  drivers/gpu/drm/i915/display/intel_wm.c       | 226 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_wm.h       |   1 +
+
+My most recent though was actually a full skl+ vs. older
+split for these. But we can ponder that later.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  3 files changed, 229 insertions(+), 217 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 82efd96ace87..abb40112704b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6602,8 +6602,8 @@ static int intel_bigjoiner_add_affected_crtcs(struct intel_atomic_state *state)
->   * @dev: drm device
->   * @_state: state to validate
->   */
-> -static int intel_atomic_check(struct drm_device *dev,
-> -			      struct drm_atomic_state *_state)
-> +int intel_atomic_check(struct drm_device *dev,
-> +		       struct drm_atomic_state *_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_atomic_state *state = to_intel_atomic_state(_state);
-> @@ -8263,124 +8263,6 @@ void intel_modeset_init_hw(struct drm_i915_private *i915)
->  	cdclk_state->logical = cdclk_state->actual = i915->display.cdclk.hw;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 953cdffb3a66..25013f303c82 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -11,7 +11,6 @@
+>  #include "i915_debugfs.h"
+>  #include "i915_irq.h"
+>  #include "i915_reg.h"
+> -#include "i9xx_wm.h"
+>  #include "intel_de.h"
+>  #include "intel_display_debugfs.h"
+>  #include "intel_display_power.h"
+> @@ -30,7 +29,7 @@
+>  #include "intel_pm.h"
+>  #include "intel_psr.h"
+>  #include "intel_sprite.h"
+> -#include "skl_watermark.h"
+> +#include "intel_wm.h"
 >  
-> -static int sanitize_watermarks_add_affected(struct drm_atomic_state *state)
+>  static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
+>  {
+> @@ -1283,217 +1282,6 @@ static int i915_displayport_test_type_show(struct seq_file *m, void *data)
+>  }
+>  DEFINE_SHOW_ATTRIBUTE(i915_displayport_test_type);
+>  
+> -static void wm_latency_show(struct seq_file *m, const u16 wm[8])
 > -{
-> -	struct drm_plane *plane;
-> -	struct intel_crtc *crtc;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	int level;
 > -
-> -	for_each_intel_crtc(state->dev, crtc) {
-> -		struct intel_crtc_state *crtc_state;
+> -	drm_modeset_lock_all(&dev_priv->drm);
 > -
-> -		crtc_state = intel_atomic_get_crtc_state(state, crtc);
-> -		if (IS_ERR(crtc_state))
-> -			return PTR_ERR(crtc_state);
+> -	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
+> -		unsigned int latency = wm[level];
 > -
-> -		if (crtc_state->hw.active) {
-> -			/*
-> -			 * Preserve the inherited flag to avoid
-> -			 * taking the full modeset path.
-> -			 */
-> -			crtc_state->inherited = true;
-> -		}
+> -		/*
+> -		 * - WM1+ latency values in 0.5us units
+> -		 * - latencies are in us on gen9/vlv/chv
+> -		 */
+> -		if (DISPLAY_VER(dev_priv) >= 9 ||
+> -		    IS_VALLEYVIEW(dev_priv) ||
+> -		    IS_CHERRYVIEW(dev_priv) ||
+> -		    IS_G4X(dev_priv))
+> -			latency *= 10;
+> -		else if (level > 0)
+> -			latency *= 5;
+> -
+> -		seq_printf(m, "WM%d %u (%u.%u usec)\n",
+> -			   level, wm[level], latency / 10, latency % 10);
 > -	}
 > -
-> -	drm_for_each_plane(plane, state->dev) {
-> -		struct drm_plane_state *plane_state;
+> -	drm_modeset_unlock_all(&dev_priv->drm);
+> -}
 > -
-> -		plane_state = drm_atomic_get_plane_state(state, plane);
-> -		if (IS_ERR(plane_state))
-> -			return PTR_ERR(plane_state);
-> -	}
+> -static int pri_wm_latency_show(struct seq_file *m, void *data)
+> -{
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	const u16 *latencies;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.pri_latency;
+> -
+> -	wm_latency_show(m, latencies);
 > -
 > -	return 0;
 > -}
 > -
-> -/*
-> - * Calculate what we think the watermarks should be for the state we've read
-> - * out of the hardware and then immediately program those watermarks so that
-> - * we ensure the hardware settings match our internal state.
-> - *
-> - * We can calculate what we think WM's should be by creating a duplicate of the
-> - * current state (which was constructed during hardware readout) and running it
-> - * through the atomic check code to calculate new watermark values in the
-> - * state object.
-> - */
-> -static void sanitize_watermarks(struct drm_i915_private *dev_priv)
+> -static int spr_wm_latency_show(struct seq_file *m, void *data)
 > -{
-> -	struct drm_atomic_state *state;
-> -	struct intel_atomic_state *intel_state;
-> -	struct intel_crtc *crtc;
-> -	struct intel_crtc_state *crtc_state;
-> -	struct drm_modeset_acquire_ctx ctx;
-> -	int ret;
-> -	int i;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	const u16 *latencies;
 > -
-> -	/* Only supported on platforms that use atomic watermark design */
-> -	if (!dev_priv->display.funcs.wm->optimize_watermarks)
-> -		return;
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.spr_latency;
 > -
-> -	state = drm_atomic_state_alloc(&dev_priv->drm);
-> -	if (drm_WARN_ON(&dev_priv->drm, !state))
-> -		return;
+> -	wm_latency_show(m, latencies);
 > -
-> -	intel_state = to_intel_atomic_state(state);
-> -
-> -	drm_modeset_acquire_init(&ctx, 0);
-> -
-> -retry:
-> -	state->acquire_ctx = &ctx;
-> -
-> -	/*
-> -	 * Hardware readout is the only time we don't want to calculate
-> -	 * intermediate watermarks (since we don't trust the current
-> -	 * watermarks).
-> -	 */
-> -	if (!HAS_GMCH(dev_priv))
-> -		intel_state->skip_intermediate_wm = true;
-> -
-> -	ret = sanitize_watermarks_add_affected(state);
-> -	if (ret)
-> -		goto fail;
-> -
-> -	ret = intel_atomic_check(&dev_priv->drm, state);
-> -	if (ret)
-> -		goto fail;
-> -
-> -	/* Write calculated watermark values back */
-> -	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
-> -		crtc_state->wm.need_postvbl_update = true;
-> -		intel_optimize_watermarks(intel_state, crtc);
-> -
-> -		to_intel_crtc_state(crtc->base.state)->wm = crtc_state->wm;
-> -	}
-> -
-> -fail:
-> -	if (ret == -EDEADLK) {
-> -		drm_atomic_state_clear(state);
-> -		drm_modeset_backoff(&ctx);
-> -		goto retry;
-> -	}
-> -
-> -	/*
-> -	 * If we fail here, it means that the hardware appears to be
-> -	 * programmed in a way that shouldn't be possible, given our
-> -	 * understanding of watermark requirements.  This might mean a
-> -	 * mistake in the hardware readout code or a mistake in the
-> -	 * watermark calculations for a given platform.  Raise a WARN
-> -	 * so that this is noticeable.
-> -	 *
-> -	 * If this actually happens, we'll have to just leave the
-> -	 * BIOS-programmed watermarks untouched and hope for the best.
-> -	 */
-> -	drm_WARN(&dev_priv->drm, ret,
-> -		 "Could not determine valid watermarks for inherited state\n");
-> -
-> -	drm_atomic_state_put(state);
-> -
-> -	drm_modeset_drop_locks(&ctx);
-> -	drm_modeset_acquire_fini(&ctx);
+> -	return 0;
 > -}
 > -
->  static int intel_initial_commit(struct drm_device *dev)
->  {
->  	struct drm_atomic_state *state = NULL;
-> @@ -8657,7 +8539,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
->  	 * since the watermark calculation done here will use pstate->fb.
->  	 */
->  	if (!HAS_GMCH(i915))
-> -		sanitize_watermarks(i915);
-> +		intel_wm_sanitize(i915);
->  
->  	return 0;
+> -static int cur_wm_latency_show(struct seq_file *m, void *data)
+> -{
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	const u16 *latencies;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.cur_latency;
+> -
+> -	wm_latency_show(m, latencies);
+> -
+> -	return 0;
+> -}
+> -
+> -static int pri_wm_latency_open(struct inode *inode, struct file *file)
+> -{
+> -	struct drm_i915_private *dev_priv = inode->i_private;
+> -
+> -	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> -		return -ENODEV;
+> -
+> -	return single_open(file, pri_wm_latency_show, dev_priv);
+> -}
+> -
+> -static int spr_wm_latency_open(struct inode *inode, struct file *file)
+> -{
+> -	struct drm_i915_private *dev_priv = inode->i_private;
+> -
+> -	if (HAS_GMCH(dev_priv))
+> -		return -ENODEV;
+> -
+> -	return single_open(file, spr_wm_latency_show, dev_priv);
+> -}
+> -
+> -static int cur_wm_latency_open(struct inode *inode, struct file *file)
+> -{
+> -	struct drm_i915_private *dev_priv = inode->i_private;
+> -
+> -	if (HAS_GMCH(dev_priv))
+> -		return -ENODEV;
+> -
+> -	return single_open(file, cur_wm_latency_show, dev_priv);
+> -}
+> -
+> -static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
+> -				size_t len, loff_t *offp, u16 wm[8])
+> -{
+> -	struct seq_file *m = file->private_data;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	u16 new[8] = { 0 };
+> -	int level;
+> -	int ret;
+> -	char tmp[32];
+> -
+> -	if (len >= sizeof(tmp))
+> -		return -EINVAL;
+> -
+> -	if (copy_from_user(tmp, ubuf, len))
+> -		return -EFAULT;
+> -
+> -	tmp[len] = '\0';
+> -
+> -	ret = sscanf(tmp, "%hu %hu %hu %hu %hu %hu %hu %hu",
+> -		     &new[0], &new[1], &new[2], &new[3],
+> -		     &new[4], &new[5], &new[6], &new[7]);
+> -	if (ret != dev_priv->display.wm.num_levels)
+> -		return -EINVAL;
+> -
+> -	drm_modeset_lock_all(&dev_priv->drm);
+> -
+> -	for (level = 0; level < dev_priv->display.wm.num_levels; level++)
+> -		wm[level] = new[level];
+> -
+> -	drm_modeset_unlock_all(&dev_priv->drm);
+> -
+> -	return len;
+> -}
+> -
+> -
+> -static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
+> -				    size_t len, loff_t *offp)
+> -{
+> -	struct seq_file *m = file->private_data;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	u16 *latencies;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.pri_latency;
+> -
+> -	return wm_latency_write(file, ubuf, len, offp, latencies);
+> -}
+> -
+> -static ssize_t spr_wm_latency_write(struct file *file, const char __user *ubuf,
+> -				    size_t len, loff_t *offp)
+> -{
+> -	struct seq_file *m = file->private_data;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	u16 *latencies;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.spr_latency;
+> -
+> -	return wm_latency_write(file, ubuf, len, offp, latencies);
+> -}
+> -
+> -static ssize_t cur_wm_latency_write(struct file *file, const char __user *ubuf,
+> -				    size_t len, loff_t *offp)
+> -{
+> -	struct seq_file *m = file->private_data;
+> -	struct drm_i915_private *dev_priv = m->private;
+> -	u16 *latencies;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 9)
+> -		latencies = dev_priv->display.wm.skl_latency;
+> -	else
+> -		latencies = dev_priv->display.wm.cur_latency;
+> -
+> -	return wm_latency_write(file, ubuf, len, offp, latencies);
+> -}
+> -
+> -static const struct file_operations i915_pri_wm_latency_fops = {
+> -	.owner = THIS_MODULE,
+> -	.open = pri_wm_latency_open,
+> -	.read = seq_read,
+> -	.llseek = seq_lseek,
+> -	.release = single_release,
+> -	.write = pri_wm_latency_write
+> -};
+> -
+> -static const struct file_operations i915_spr_wm_latency_fops = {
+> -	.owner = THIS_MODULE,
+> -	.open = spr_wm_latency_open,
+> -	.read = seq_read,
+> -	.llseek = seq_lseek,
+> -	.release = single_release,
+> -	.write = spr_wm_latency_write
+> -};
+> -
+> -static const struct file_operations i915_cur_wm_latency_fops = {
+> -	.owner = THIS_MODULE,
+> -	.open = cur_wm_latency_open,
+> -	.read = seq_read,
+> -	.llseek = seq_lseek,
+> -	.release = single_release,
+> -	.write = cur_wm_latency_write
+> -};
+> -
+>  static ssize_t
+>  i915_fifo_underrun_reset_write(struct file *filp,
+>  			       const char __user *ubuf,
+> @@ -1574,9 +1362,6 @@ static const struct {
+>  	const struct file_operations *fops;
+>  } intel_display_debugfs_files[] = {
+>  	{"i915_fifo_underrun_reset", &i915_fifo_underrun_reset_ops},
+> -	{"i915_pri_wm_latency", &i915_pri_wm_latency_fops},
+> -	{"i915_spr_wm_latency", &i915_spr_wm_latency_fops},
+> -	{"i915_cur_wm_latency", &i915_cur_wm_latency_fops},
+>  	{"i915_dp_test_data", &i915_displayport_test_data_fops},
+>  	{"i915_dp_test_type", &i915_displayport_test_type_fops},
+>  	{"i915_dp_test_active", &i915_displayport_test_active_fops},
+> @@ -1603,7 +1388,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
+>  	intel_dmc_debugfs_register(i915);
+>  	intel_fbc_debugfs_register(i915);
+>  	intel_hpd_debugfs_register(i915);
+> -	skl_watermark_debugfs_register(i915);
+> +	intel_wm_debugfs_register(i915);
 >  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index cb6f520cc575..ed852f62721d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -32,6 +32,7 @@
 >  
->  enum drm_scaling_filter;
->  struct dpll;
-> +struct drm_atomic_state;
->  struct drm_connector;
->  struct drm_device;
->  struct drm_display_mode;
-> @@ -394,6 +395,7 @@ enum phy_fia {
->  			     ((connector) = to_intel_connector((__state)->base.connectors[__i].ptr), \
->  			     (new_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].new_state), 1))
->  
-> +int intel_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
->  int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
->  				     struct intel_crtc *crtc);
->  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
+>  static int i915_panel_show(struct seq_file *m, void *data)
 > diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
-> index c4d14a51869b..15fda0829c2f 100644
+> index 15fda0829c2f..b8626641d052 100644
 > --- a/drivers/gpu/drm/i915/display/intel_wm.c
 > +++ b/drivers/gpu/drm/i915/display/intel_wm.c
-> @@ -5,6 +5,7 @@
->  
->  #include "i915_drv.h"
->  #include "i9xx_wm.h"
-> +#include "intel_atomic.h"
->  #include "intel_display_types.h"
->  #include "intel_wm.h"
->  #include "skl_watermark.h"
-> @@ -173,6 +174,124 @@ void intel_print_wm_latency(struct drm_i915_private *dev_priv,
->  	}
+> @@ -299,3 +299,229 @@ void intel_wm_init(struct drm_i915_private *i915)
+>  	else
+>  		i9xx_wm_init(i915);
 >  }
->  
-> +static int sanitize_watermarks_add_affected(struct drm_atomic_state *state)
+> +
+> +static void wm_latency_show(struct seq_file *m, const u16 wm[8])
 > +{
-> +	struct drm_plane *plane;
-> +	struct intel_crtc *crtc;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	int level;
 > +
-> +	for_each_intel_crtc(state->dev, crtc) {
-> +		struct intel_crtc_state *crtc_state;
+> +	drm_modeset_lock_all(&dev_priv->drm);
 > +
-> +		crtc_state = intel_atomic_get_crtc_state(state, crtc);
-> +		if (IS_ERR(crtc_state))
-> +			return PTR_ERR(crtc_state);
+> +	for (level = 0; level < dev_priv->display.wm.num_levels; level++) {
+> +		unsigned int latency = wm[level];
 > +
-> +		if (crtc_state->hw.active) {
-> +			/*
-> +			 * Preserve the inherited flag to avoid
-> +			 * taking the full modeset path.
-> +			 */
-> +			crtc_state->inherited = true;
-> +		}
+> +		/*
+> +		 * - WM1+ latency values in 0.5us units
+> +		 * - latencies are in us on gen9/vlv/chv
+> +		 */
+> +		if (DISPLAY_VER(dev_priv) >= 9 ||
+> +		    IS_VALLEYVIEW(dev_priv) ||
+> +		    IS_CHERRYVIEW(dev_priv) ||
+> +		    IS_G4X(dev_priv))
+> +			latency *= 10;
+> +		else if (level > 0)
+> +			latency *= 5;
+> +
+> +		seq_printf(m, "WM%d %u (%u.%u usec)\n",
+> +			   level, wm[level], latency / 10, latency % 10);
 > +	}
 > +
-> +	drm_for_each_plane(plane, state->dev) {
-> +		struct drm_plane_state *plane_state;
+> +	drm_modeset_unlock_all(&dev_priv->drm);
+> +}
 > +
-> +		plane_state = drm_atomic_get_plane_state(state, plane);
-> +		if (IS_ERR(plane_state))
-> +			return PTR_ERR(plane_state);
-> +	}
+> +static int pri_wm_latency_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	const u16 *latencies;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.pri_latency;
+> +
+> +	wm_latency_show(m, latencies);
 > +
 > +	return 0;
 > +}
 > +
-> +/*
-> + * Calculate what we think the watermarks should be for the state we've read
-> + * out of the hardware and then immediately program those watermarks so that
-> + * we ensure the hardware settings match our internal state.
-> + *
-> + * We can calculate what we think WM's should be by creating a duplicate of the
-> + * current state (which was constructed during hardware readout) and running it
-> + * through the atomic check code to calculate new watermark values in the
-> + * state object.
-> + */
-> +void intel_wm_sanitize(struct drm_i915_private *dev_priv)
+> +static int spr_wm_latency_show(struct seq_file *m, void *data)
 > +{
-> +	struct drm_atomic_state *state;
-> +	struct intel_atomic_state *intel_state;
-> +	struct intel_crtc *crtc;
-> +	struct intel_crtc_state *crtc_state;
-> +	struct drm_modeset_acquire_ctx ctx;
-> +	int ret;
-> +	int i;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	const u16 *latencies;
 > +
-> +	/* Only supported on platforms that use atomic watermark design */
-> +	if (!dev_priv->display.funcs.wm->optimize_watermarks)
-> +		return;
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.spr_latency;
 > +
-> +	state = drm_atomic_state_alloc(&dev_priv->drm);
-> +	if (drm_WARN_ON(&dev_priv->drm, !state))
-> +		return;
+> +	wm_latency_show(m, latencies);
 > +
-> +	intel_state = to_intel_atomic_state(state);
-> +
-> +	drm_modeset_acquire_init(&ctx, 0);
-> +
-> +retry:
-> +	state->acquire_ctx = &ctx;
-> +
-> +	/*
-> +	 * Hardware readout is the only time we don't want to calculate
-> +	 * intermediate watermarks (since we don't trust the current
-> +	 * watermarks).
-> +	 */
-> +	if (!HAS_GMCH(dev_priv))
-> +		intel_state->skip_intermediate_wm = true;
-> +
-> +	ret = sanitize_watermarks_add_affected(state);
-> +	if (ret)
-> +		goto fail;
-> +
-> +	ret = intel_atomic_check(&dev_priv->drm, state);
-> +	if (ret)
-> +		goto fail;
-> +
-> +	/* Write calculated watermark values back */
-> +	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
-> +		crtc_state->wm.need_postvbl_update = true;
-> +		intel_optimize_watermarks(intel_state, crtc);
-> +
-> +		to_intel_crtc_state(crtc->base.state)->wm = crtc_state->wm;
-> +	}
-> +
-> +fail:
-> +	if (ret == -EDEADLK) {
-> +		drm_atomic_state_clear(state);
-> +		drm_modeset_backoff(&ctx);
-> +		goto retry;
-> +	}
-> +
-> +	/*
-> +	 * If we fail here, it means that the hardware appears to be
-> +	 * programmed in a way that shouldn't be possible, given our
-> +	 * understanding of watermark requirements.  This might mean a
-> +	 * mistake in the hardware readout code or a mistake in the
-> +	 * watermark calculations for a given platform.  Raise a WARN
-> +	 * so that this is noticeable.
-> +	 *
-> +	 * If this actually happens, we'll have to just leave the
-> +	 * BIOS-programmed watermarks untouched and hope for the best.
-> +	 */
-> +	drm_WARN(&dev_priv->drm, ret,
-> +		 "Could not determine valid watermarks for inherited state\n");
-> +
-> +	drm_atomic_state_put(state);
-> +
-> +	drm_modeset_drop_locks(&ctx);
-> +	drm_modeset_acquire_fini(&ctx);
+> +	return 0;
 > +}
 > +
->  void intel_wm_init(struct drm_i915_private *i915)
->  {
->  	if (DISPLAY_VER(i915) >= 9)
+> +static int cur_wm_latency_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	const u16 *latencies;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.cur_latency;
+> +
+> +	wm_latency_show(m, latencies);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pri_wm_latency_open(struct inode *inode, struct file *file)
+> +{
+> +	struct drm_i915_private *dev_priv = inode->i_private;
+> +
+> +	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> +		return -ENODEV;
+> +
+> +	return single_open(file, pri_wm_latency_show, dev_priv);
+> +}
+> +
+> +static int spr_wm_latency_open(struct inode *inode, struct file *file)
+> +{
+> +	struct drm_i915_private *dev_priv = inode->i_private;
+> +
+> +	if (HAS_GMCH(dev_priv))
+> +		return -ENODEV;
+> +
+> +	return single_open(file, spr_wm_latency_show, dev_priv);
+> +}
+> +
+> +static int cur_wm_latency_open(struct inode *inode, struct file *file)
+> +{
+> +	struct drm_i915_private *dev_priv = inode->i_private;
+> +
+> +	if (HAS_GMCH(dev_priv))
+> +		return -ENODEV;
+> +
+> +	return single_open(file, cur_wm_latency_show, dev_priv);
+> +}
+> +
+> +static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
+> +				size_t len, loff_t *offp, u16 wm[8])
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	u16 new[8] = { 0 };
+> +	int level;
+> +	int ret;
+> +	char tmp[32];
+> +
+> +	if (len >= sizeof(tmp))
+> +		return -EINVAL;
+> +
+> +	if (copy_from_user(tmp, ubuf, len))
+> +		return -EFAULT;
+> +
+> +	tmp[len] = '\0';
+> +
+> +	ret = sscanf(tmp, "%hu %hu %hu %hu %hu %hu %hu %hu",
+> +		     &new[0], &new[1], &new[2], &new[3],
+> +		     &new[4], &new[5], &new[6], &new[7]);
+> +	if (ret != dev_priv->display.wm.num_levels)
+> +		return -EINVAL;
+> +
+> +	drm_modeset_lock_all(&dev_priv->drm);
+> +
+> +	for (level = 0; level < dev_priv->display.wm.num_levels; level++)
+> +		wm[level] = new[level];
+> +
+> +	drm_modeset_unlock_all(&dev_priv->drm);
+> +
+> +	return len;
+> +}
+> +
+> +static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
+> +				    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	u16 *latencies;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.pri_latency;
+> +
+> +	return wm_latency_write(file, ubuf, len, offp, latencies);
+> +}
+> +
+> +static ssize_t spr_wm_latency_write(struct file *file, const char __user *ubuf,
+> +				    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	u16 *latencies;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.spr_latency;
+> +
+> +	return wm_latency_write(file, ubuf, len, offp, latencies);
+> +}
+> +
+> +static ssize_t cur_wm_latency_write(struct file *file, const char __user *ubuf,
+> +				    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct drm_i915_private *dev_priv = m->private;
+> +	u16 *latencies;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		latencies = dev_priv->display.wm.skl_latency;
+> +	else
+> +		latencies = dev_priv->display.wm.cur_latency;
+> +
+> +	return wm_latency_write(file, ubuf, len, offp, latencies);
+> +}
+> +
+> +static const struct file_operations i915_pri_wm_latency_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = pri_wm_latency_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = pri_wm_latency_write
+> +};
+> +
+> +static const struct file_operations i915_spr_wm_latency_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = spr_wm_latency_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = spr_wm_latency_write
+> +};
+> +
+> +static const struct file_operations i915_cur_wm_latency_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = cur_wm_latency_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = cur_wm_latency_write
+> +};
+> +
+> +void intel_wm_debugfs_register(struct drm_i915_private *i915)
+> +{
+> +	struct drm_minor *minor = i915->drm.primary;
+> +
+> +	debugfs_create_file("i915_pri_wm_latency", 0644, minor->debugfs_root,
+> +			    i915, &i915_pri_wm_latency_fops);
+> +
+> +	debugfs_create_file("i915_spr_wm_latency", 0644, minor->debugfs_root,
+> +			    i915, &i915_spr_wm_latency_fops);
+> +
+> +	debugfs_create_file("i915_cur_wm_latency", 0644, minor->debugfs_root,
+> +			    i915, &i915_cur_wm_latency_fops);
+> +
+> +	skl_watermark_debugfs_register(i915);
+> +}
 > diff --git a/drivers/gpu/drm/i915/display/intel_wm.h b/drivers/gpu/drm/i915/display/intel_wm.h
-> index dc582967a25e..a5233e7e5e8d 100644
+> index a5233e7e5e8d..2d22ea949e7f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_wm.h
 > +++ b/drivers/gpu/drm/i915/display/intel_wm.h
-> @@ -31,6 +31,7 @@ bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
->  			    const struct intel_plane_state *plane_state);
->  void intel_print_wm_latency(struct drm_i915_private *i915,
+> @@ -33,5 +33,6 @@ void intel_print_wm_latency(struct drm_i915_private *i915,
 >  			    const char *name, const u16 wm[]);
-> +void intel_wm_sanitize(struct drm_i915_private *i915);
+>  void intel_wm_sanitize(struct drm_i915_private *i915);
 >  void intel_wm_init(struct drm_i915_private *i915);
+> +void intel_wm_debugfs_register(struct drm_i915_private *i915);
 >  
 >  #endif /* __INTEL_WM_H__ */
 > -- 
