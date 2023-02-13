@@ -2,33 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B2F694759
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 14:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9CF694820
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 15:35:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58A3B10E5BD;
-	Mon, 13 Feb 2023 13:47:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62DE810E5CD;
+	Mon, 13 Feb 2023 14:35:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB5AB10E0C7;
- Mon, 13 Feb 2023 13:47:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A2D33A882E;
- Mon, 13 Feb 2023 13:47:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8996124704175047150=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9BF810E5CD;
+ Mon, 13 Feb 2023 14:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676298912; x=1707834912;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RLdy+YDxRqkkPnSQmk44oeoTfc/iFkmV40ZihiWJCmI=;
+ b=mgwcOAAY5xEro8XBodrmqawTxf1jK/64BS3hYN7OmsmWichOC/SOe6yW
+ v0s7RgQptEI+K7nwsZzv/2oZ0ExaBrcCNUdiHp53U+kGpSZ2Xl4mZWR+Q
+ 6hpRLAgTf7AcILsB8xQGbk3TQsbTEEL+asrvToQ7c8dpK8H2DebqlVP3f
+ 1ROa/XkcPWkwH1ulADjQ0mneaPyImPHLDY7WmpIhrvV/DLg5G+DABDgmq
+ VOYw6u6LM5LjRdWnL7OHmzsgKCwe/CQd3cozuRXd6qeDfXYAijGpsBEIc
+ Izp6MYlxXkwgdHPqXk32wDwQv8BjGeOjPWs34JgHbzTzl+i7s37rJOh92 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="310533206"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="310533206"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 06:35:11 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="914343932"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="914343932"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.19.172])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 06:35:09 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 13 Feb 2023 15:34:45 +0100
+Message-Id: <20230213143445.24228-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Mon, 13 Feb 2023 13:47:42 -0000
-Message-ID: <167629606262.20213.9123371560394852051@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230213130546.20370-1-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20230213130546.20370-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/active=3A_Fix_misuse_of_non-idle_barriers_as_fence_tracke?=
- =?utf-8?q?rs?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t v2] tests/i915_suspend: Refresh device
+ list after *-without-i915 subtests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,288 +55,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8996124704175047150==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If any of *-without-i915 subtests fails or skips for any reason, it may
+leave the i915 module unloaded while keeping our device list populated
+with initially collected data.  In a follow up igt_fixture section we then
+try to reopen the device.  If the test has been executed with a device
+filter specified, an attempt to open the device finds a matching entry
+that belongs to the no longer existing device in that initially collected
+device list, fails to stat() it, concludes that's because of the device
+having been already open, and returns an error.  While that error,
+triggered after subtests completion, doesn't affect results of the
+subtest, reported by CI togethger with those results it is confusing to
+users reviewing those reports.
 
-== Series Details ==
+Fix this issue by refreshing the potentially outdated device list before
+continuing with drm_open_driver() if we've been called with a device
+filter specified.
 
-Series: drm/i915/active: Fix misuse of non-idle barriers as fence trackers
-URL   : https://patchwork.freedesktop.org/series/113950/
-State : success
+While being at it, add a comment that explains why we call
+igt_devices_scan() from __igt_device_card_match() but don't force device
+rescan, and emit a debug message if we fail in _is_already_opened() on
+unsuccessful device stat().
 
-== Summary ==
+v2: don't free the device list -- we can't tell if it has been populated,
+    and igt_devices_free() fails if it hasn't,
+  - commit message updated, description improved.
 
-CI Bug Log - changes from CI_DRM_12730 -> Patchwork_113950v1
-====================================================
+Subtest basic-s3-without-i915: FAIL (9.572s)
+(i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
+(i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
+(i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
+(i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
+(i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
+Test i915_suspend failed.
+**** DEBUG ****
+(i915_suspend:9050) drmtest-DEBUG: Looking for devices to open using filter 0: pci:vendor=intel,device=dg2
+(i915_suspend:9050) drmtest-DEBUG: Filter matched /dev/dri/card0 | /dev/dri/renderD128
+(i915_suspend:9050) drmtest-WARNING: card maching filter 0 is already opened
+(i915_suspend:9050) drmtest-CRITICAL: Test abort in function drm_open_driver, file ../lib/drmtest.c:639:
+(i915_suspend:9050) drmtest-CRITICAL: abort condition: fd < 0
+(i915_suspend:9050) drmtest-CRITICAL: Last errno: 2, No such file or directory
+(i915_suspend:9050) drmtest-CRITICAL: No known gpu found for chipset flags 0x1 (intel)
+(i915_suspend:9050) igt_core-INFO: Stack trace:
+(i915_suspend:9050) igt_core-INFO:   #0 ../lib/igt_core.c:2066 __igt_abort()
+(i915_suspend:9050) igt_core-INFO:   #1 ../lib/drmtest.c:573 drm_open_driver()
+(i915_suspend:9050) igt_core-INFO:   #2 ../tests/i915/i915_suspend.c:258 __igt_unique____real_main245()
+(i915_suspend:9050) igt_core-INFO:   #3 ../tests/i915/i915_suspend.c:245 main()
+(i915_suspend:9050) igt_core-INFO:   #4 ../sysdeps/nptl/libc_start_call_main.h:58 __libc_start_call_main()
+(i915_suspend:9050) igt_core-INFO:   #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+(i915_suspend:9050) igt_core-INFO:   #6 [_start+0x2a]
+****  END  ****
 
-Summary
--------
+Fixes: f7aff600ab16 ("tests/i915/i915_suspend: Disable d3cold_allowed for basic-s2idle-without-i915")
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+---
+ lib/drmtest.c             |  2 +-
+ lib/igt_device_scan.c     |  4 ++++
+ tests/i915/i915_suspend.c | 12 +++++++++++-
+ 3 files changed, 16 insertions(+), 2 deletions(-)
 
-  **SUCCESS**
+diff --git a/lib/drmtest.c b/lib/drmtest.c
+index 16e80bdfcf..8e2d1ac50b 100644
+--- a/lib/drmtest.c
++++ b/lib/drmtest.c
+@@ -260,7 +260,7 @@ static bool _is_already_opened(const char *path, int as_idx)
+ 	 * we cannot even stat the device, so it's of no use - let's claim it's
+ 	 * already opened
+ 	 */
+-	if (stat(path, &new) != 0)
++	if (igt_debug_on(stat(path, &new) != 0))
+ 		return true;
+ 
+ 	for (int i = 0; i < as_idx; ++i) {
+diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+index 8b767eed20..ae69ed09f1 100644
+--- a/lib/igt_device_scan.c
++++ b/lib/igt_device_scan.c
+@@ -1918,6 +1918,10 @@ static bool __igt_device_card_match(const char *filter,
+ 		return false;
+ 	memset(card, 0, sizeof(*card));
+ 
++	/*
++	 * Scan devices in case the user hasn't yet,
++	 * but leave a decision on forced rescan on the user side.
++	 */
+ 	igt_devices_scan(false);
+ 
+ 	if (igt_device_filter_apply(filter) == false)
+diff --git a/tests/i915/i915_suspend.c b/tests/i915/i915_suspend.c
+index 815f1c8a2c..1d304a9317 100644
+--- a/tests/i915/i915_suspend.c
++++ b/tests/i915/i915_suspend.c
+@@ -253,8 +253,18 @@ igt_main
+ 	igt_subtest("basic-s3-without-i915")
+ 		test_suspend_without_i915(SUSPEND_STATE_S3);
+ 
+-	igt_fixture
++	igt_fixture {
++		/*
++		 * Since above subtests may fail, leaving i915 module unloaded
++		 * but device list populated, refresh the device list before
++		 * reopening the i915 device if we've been called with a device
++		 * filter specified, otherwise drm_open_driver() will fail
++		 * instead of reloading the i915 module.
++		 */
++		if (igt_device_filter_count())
++			igt_devices_scan(true);
+ 		fd = drm_open_driver(DRIVER_INTEL);
++	}
+ 
+ 	igt_subtest("fence-restore-tiled2untiled") {
+ 		gem_require_mappable_ggtt(fd);
+-- 
+2.25.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Missing    (3): fi-tgl-1115g4 bat-atsm-1 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_113950v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * {igt@gem_barrier_race@remote-request@rcs0} (NEW):
-    - fi-rkl-11600:       NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-rkl-11600/igt@gem_barrier_race@remote-request@rcs0.html
-    - bat-dg1-5:          NOTRUN -> [ABORT][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-dg1-5/igt@gem_barrier_race@remote-request@rcs0.html
-    - {bat-adlm-1}:       NOTRUN -> [DMESG-WARN][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-adlm-1/igt@gem_barrier_race@remote-request@rcs0.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_12730 and Patchwork_113950v1:
-
-### New IGT tests (2) ###
-
-  * igt@gem_barrier_race@remote-request:
-    - Statuses :
-    - Exec time: [None] s
-
-  * igt@gem_barrier_race@remote-request@rcs0:
-    - Statuses : 2 abort(s) 1 dmesg-warn(s) 27 pass(s) 5 skip(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113950v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * {igt@gem_barrier_race@remote-request@rcs0} (NEW):
-    - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-pnv-d510/igt@gem_barrier_race@remote-request@rcs0.html
-    - fi-blb-e6850:       NOTRUN -> [SKIP][5] ([fdo#109271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-blb-e6850/igt@gem_barrier_race@remote-request@rcs0.html
-    - fi-ivb-3770:        NOTRUN -> [SKIP][6] ([fdo#109271])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ivb-3770/igt@gem_barrier_race@remote-request@rcs0.html
-    - fi-elk-e7500:       NOTRUN -> [SKIP][7] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-elk-e7500/igt@gem_barrier_race@remote-request@rcs0.html
-    - fi-ilk-650:         NOTRUN -> [SKIP][8] ([fdo#109271])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ilk-650/igt@gem_barrier_race@remote-request@rcs0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][9] ([i915#5334]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-2}:       [ABORT][11] ([i915#7982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-n3050:       [FAIL][13] ([i915#6298]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-
-
-Build changes
--------------
-
-  * IGT: IGT_7157 -> TrybotIGT_706
-  * Linux: CI_DRM_12730 -> Patchwork_113950v1
-
-  CI-20190529: 20190529
-  CI_DRM_12730: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7157: 96d12fdc942cee9526a951b377b195ca9c8276b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113950v1: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux
-  TrybotIGT_706: https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_706/index.html
-
-
-### Linux commits
-
-44de67f6c674 drm/i915/active: Fix misuse of non-idle barriers as fence trackers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html
-
---===============8996124704175047150==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/active: Fix misuse of non-idle barriers as fence trackers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113950/">https://patchwork.freedesktop.org/series/113950/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12730 -&gt; Patchwork_113950v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Missing    (3): fi-tgl-1115g4 bat-atsm-1 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_113950v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>{igt@gem_barrier_race@remote-request@rcs0} (NEW):</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-rkl-11600/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a></p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-dg1-5/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a></p>
-</li>
-<li>
-<p>{bat-adlm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-adlm-1/igt@gem_barrier_race@remote-request@rcs0.html">DMESG-WARN</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_12730 and Patchwork_113950v1:</p>
-<h3>New IGT tests (2)</h3>
-<ul>
-<li>
-<p>igt@gem_barrier_race@remote-request:</p>
-<ul>
-<li>Statuses :</li>
-<li>Exec time: [None] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_barrier_race@remote-request@rcs0:</p>
-<ul>
-<li>Statuses : 2 abort(s) 1 dmesg-warn(s) 27 pass(s) 5 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113950v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>{igt@gem_barrier_race@remote-request@rcs0} (NEW):</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-pnv-d510/igt@gem_barrier_race@remote-request@rcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-blb-e6850/igt@gem_barrier_race@remote-request@rcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ivb-3770/igt@gem_barrier_race@remote-request@rcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-elk-e7500/igt@gem_barrier_race@remote-request@rcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-ilk-650/igt@gem_barrier_race@remote-request@rcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12730/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113950v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7157 -&gt; TrybotIGT_706</li>
-<li>Linux: CI_DRM_12730 -&gt; Patchwork_113950v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12730: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7157: 96d12fdc942cee9526a951b377b195ca9c8276b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113950v1: c54b5fcf3e686a0abfdd7d6af53e9014c137023a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  TrybotIGT_706: https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_706/index.html</p>
-<h3>Linux commits</h3>
-<p>44de67f6c674 drm/i915/active: Fix misuse of non-idle barriers as fence trackers</p>
-
-</body>
-</html>
-
---===============8996124704175047150==--
