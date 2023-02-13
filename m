@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE43694F02
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 19:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06286694F59
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 19:28:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78AB410E68C;
-	Mon, 13 Feb 2023 18:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5126F10E690;
+	Mon, 13 Feb 2023 18:28:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431C110E676
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 18:15:06 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A83F710E689
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 18:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676312106; x=1707848106;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lfHq3LlXYx4wZMkH8qe4zwVLDQOJ7KtdceSpfxe9EhA=;
- b=TgNt10n2hJLo3fvhjim2QsrtwbLNiRwUxkWyMQw9PZ9EcsG6kz4ZMNWj
- MpHVllrwyg62CgMT4lxU1A0uaWUftHFGzsf5beAuqKausPgsH6VWr7YdW
- 1K1vDFgaKNX7KMrVjanQYU29YYC1wqfzgL90NMNL0PcKrmQNGfC5/p666
- kbHlRtYPKX3frCsc1+LVbo5bRNq8xGN0jB0DPit39sGm9WR1Prkcb56mS
- 7o2O6dV3dQoQs+t5Uu4n/jnvYhURFby77pZJpvz4F35luIhSjGD8m+nYu
- lnDf2R5Jhmv+Ib0VS7wxo/bjmPx5C2gpd5eLZlvU5LmVRGFamf6OdNuSs g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="314598374"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="314598374"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 10:15:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="842858176"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="842858176"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga005.jf.intel.com with SMTP; 13 Feb 2023 10:15:03 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Feb 2023 20:15:02 +0200
-Date: Mon, 13 Feb 2023 20:15:02 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <Y+p+Jg32Emx1t8t9@intel.com>
-References: <20230213164453.5782-1-stanislav.lisovskiy@intel.com>
+ t=1676312879; x=1707848879;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=BovHgAo/QxZqdcoSveBM3zUacbeDRIO6ygXKLhepJkI=;
+ b=Y459dO59p5t3aWY2RPazltcGgdrynZwNM3mLOEcDGPM/ffj1fJ9vvaxo
+ BKrQlX7AEEfPW42yzxthG98kQp/xUd0DECz4HGvmG9fo0l8mRy4dA5y8G
+ Nehyl0KNRcsKnTsu3NtkP6FIDRXZLLmekYKyKvlN6/v+OjbPyFjU+xCCL
+ YWuu5v3PaANvWsEmORxFUd2bl5CUexuqNRyINK5/XI0COqHQnW8lMyxT2
+ 581Z2LcSmElnk1AdpKOEoUzOlGKyLp5lXj+J79nrq8JJsWrNLNIb/pC/S
+ 8imvuWbIdSVyJnvL+dOkFBU5qd1SqPjL0P3kN5cAo9IhW7ibRMCOcJ3bh w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="395572436"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="395572436"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 10:27:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="737606356"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="737606356"
+Received: from tkatila-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.147])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 10:27:55 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230202182012.3197674-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230202114613.3177235-2-suraj.kandpal@intel.com>
+ <20230202182012.3197674-1-suraj.kandpal@intel.com>
+Date: Mon, 13 Feb 2023 20:27:48 +0200
+Message-ID: <87zg9hto7v.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230213164453.5782-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] Copy highest enabled wm level to disabled
- wm levels for gen >= 9
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dp: Increase slice_height for DP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,97 +58,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 13, 2023 at 06:44:53PM +0200, Stanislav Lisovskiy wrote:
-> There was a specific SW workaround requested, which should prevent
-> some watermark issues happening, which requires copying highest
-> enabled wm level to those disabled wm levels(bit 31 is of course
-> still needs to be cleared).
-> This is related to different subsystems like PSR and others, which
-> may still consult a low power wm values ocassionally, despite those
-> are disabled. For that reason we need to keep sane values in
-> correspondent registers, even when those are disabled.
-> 
-> HSDES: 22016115093
-> 
-> v2: Remove redundant WA for ICL and extend this WA for all platforms
->     starting from SKL, as it seems that we needed this anyway on
->     all of those(Ville Syrjälä)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 26 +++++++++++---------
->  1 file changed, 15 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 962666e74333..227a777e4331 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -1407,16 +1407,22 @@ skl_check_nv12_wm_level(struct skl_wm_level *wm, struct skl_wm_level *uv_wm,
->  	}
+On Thu, 02 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> According VDSC spec 1.2a Section 3.8 Options for Slice
+> implies that 108 lines is an optimal slice height, but any
+> size can be used as long as vertical active
+> integer multiple and maximum vertical slice count requirements are met.
+>
+> Bspec: 49259
+>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 62cbab7402e9..cb4fbcd935db 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1415,6 +1415,30 @@ static int intel_dp_sink_dsc_version_minor(struct intel_dp *intel_dp)
+>  		DP_DSC_MINOR_SHIFT;
 >  }
 >  
-> -static bool icl_need_wm1_wa(struct drm_i915_private *i915,
-> -			    enum plane_id plane_id)
-> +static bool skl_need_wm_copy_wa(struct drm_i915_private *i915, int level,
-> +				const struct skl_plane_wm *wm)
+> +static int intel_dp_get_slice_height(int vactive)
+> +{
+> +	int slice_height;
+> +
+> +	/*
+> +	 * VDSC1.2a spec in Section 3.8 Options for Slices implies that
+> +	 * 108 lines is an optimal slice height,
+> +	 * but any size can be used as long as vertical active integer
+> +	 * multiple and maximum vertical slice count requirements are met.
+> +	 */
+> +	for (slice_height = 108; slice_height <= vactive; slice_height += 2)
+> +		if (vactive % slice_height == 0)
+> +			return slice_height;
+
+I realize now that this loop will always find the slice_height as it
+iterates to vactive inclusive. vactive % slice_height == 0 if
+slice_height == vactive.
+
+I did a bit of scripting on this. It seems pretty common to find a
+slice_height < 200, especially for any of the more standard vactives I
+checked, but maybe 8% go up to vactive/2, and 15% to vactive, for
+arbitrary even vactives. But the ones that go big are typically fairly
+obscure heights.
+
+Maybe it's good enough.
+
+> +
+> +	if (vactive % 8 == 0)
+> +		slice_height = 8;
+> +	else if (vactive % 4 == 0)
+> +		slice_height = 4;
+> +	else
+> +		slice_height = 2;
+> +
+> +	return slice_height;
+
+Sorry to say, given what I said above, this fallback appears to be
+unnecessary. Maybe just return 2 here instead of the if ladder?
+
+BR,
+Jani.
+
+
+> +}
+> +
+>  static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+>  				       struct intel_crtc_state *crtc_state)
 >  {
->  	/*
->  	 * Wa_1408961008:icl, ehl
->  	 * Wa_14012656716:tgl, adl
-> -	 * Underruns with WM1+ disabled
-> +	 * Wa_14017887344:icl
-> +	 * Wa_14017868169:adl, tgl
-
-Was there any w/a number for the "copy everything" issue?
-
-> +	 * Due to some power saving optimizations, different subsystems
-> +	 * like PSR, might still use even disabled wm level registers,
-> +	 * for "reference", so lets keep at least the values sane.
-> +	 * Considering amount of WA requiring us to do similar things, was
-> +	 * decided to simply do it for all of the platforms, as those wm
-> +	 * levels are disabled, this isn't going to do harm anyway.
->  	 */
-> -	return DISPLAY_VER(i915) == 11 ||
-> -	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
-> +	return DISPLAY_VER(i915) >= 9 && level > 0 && !wm->wm[level].enable;
-
-DISPLAY_VER check us now actually pointless since this
-code never runs on pre-skl.
-
->  }
+> @@ -1433,17 +1457,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+>  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
+>  	vdsc_cfg->pic_height = crtc_state->hw.adjusted_mode.crtc_vdisplay;
 >  
->  struct skl_plane_ddb_iter {
-> @@ -1585,12 +1591,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  			else
->  				skl_check_wm_level(&wm->wm[level], ddb);
+> -	/*
+> -	 * Slice Height of 8 works for all currently available panels. So start
+> -	 * with that if pic_height is an integral multiple of 8. Eventually add
+> -	 * logic to try multiple slice heights.
+> -	 */
+> -	if (vdsc_cfg->pic_height % 8 == 0)
+> -		vdsc_cfg->slice_height = 8;
+> -	else if (vdsc_cfg->pic_height % 4 == 0)
+> -		vdsc_cfg->slice_height = 4;
+> -	else
+> -		vdsc_cfg->slice_height = 2;
+> +	vdsc_cfg->slice_height = intel_dp_get_slice_height(vdsc_cfg->pic_height);
 >  
-> -			if (icl_need_wm1_wa(i915, plane_id) &&
-> -			    level == 1 && !wm->wm[level].enable &&
-> -			    wm->wm[0].enable) {
-
-Hmm. I was wondering about that enable check for the previous level, but
-you're right to remove it. We just want to cascade the last valid
-value (whether it's disabled or not) upwards to all disabled levels.
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> -				wm->wm[level].blocks = wm->wm[0].blocks;
-> -				wm->wm[level].lines = wm->wm[0].lines;
-> -				wm->wm[level].ignore_lines = wm->wm[0].ignore_lines;
-> +			if (skl_need_wm_copy_wa(i915, level, wm)) {
-> +				wm->wm[level].blocks = wm->wm[level - 1].blocks;
-> +				wm->wm[level].lines = wm->wm[level - 1].lines;
-> +				wm->wm[level].ignore_lines = wm->wm[level - 1].ignore_lines;
->  			}
->  		}
->  	}
-> -- 
-> 2.37.3
+>  	ret = intel_dsc_compute_params(crtc_state);
+>  	if (ret)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
