@@ -1,62 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E3569334A
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Feb 2023 20:24:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D2B694040
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 10:01:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDC210E361;
-	Sat, 11 Feb 2023 19:24:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD1010E4F9;
+	Mon, 13 Feb 2023 09:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com
- [IPv6:2607:f8b0:4864:20::a2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E844910E11A;
- Sat, 11 Feb 2023 19:24:34 +0000 (UTC)
-Received: by mail-vk1-xa2a.google.com with SMTP id b81so4366222vkf.1;
- Sat, 11 Feb 2023 11:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1676143474;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=UxlJ1ylLIbukjk1rqvmj0yN/uchUwg9M7RlTwLyGWuY=;
- b=GkOee6yuha8KCFlJkb58KhoIf1WvDhoQGtKv5bfk3o8tsTw+l/AsWr+2V/5JogWj5S
- e+tne2hDNFv1lpCplUyRYJ8XvXJT/A86j9C6i4RrCLDhYDzUH1pdJxgLHNZVq73aui39
- 5rcNE3u8qrpeAfy17RxKjgbVwdyWKa+QtwOz4hidJv8eZzgjnKhWEyvMMx14AqZH4Nq4
- TG8+24y9MmfpA6DBbd/7StK3VZjcYSfq4ZkK0A81/+Jg014d+TErR5x9m4vwOP0lQK2R
- C0H5Kz2iqI0dL1Yq2gcKuiAF8/iGmlIS/Vl6F/BWWqtKm9JR3f9wyanfKxR5l86KD4+I
- fzXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1676143474;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=UxlJ1ylLIbukjk1rqvmj0yN/uchUwg9M7RlTwLyGWuY=;
- b=Q57PO+OnV7MMnnQaLlOY2UrbrpONIb4At7LlrrJct1F7C7t2euXx4vOIMh0gWBivd3
- Ah/ZKl4vKUTjRnNgu4VQqivPPUgzDWjsqwzprKApqNakNkkXK0v6pPjp40lwAAsd3+QN
- YhLTpfJf0i7RwNTofIAFLq3tKQ/a/6ZBNDM7GeQbcsDx5CjXRP9cVtB6Jn93WG1bB2ea
- 5jvqj3YSIxlhgIk/ogdJxlIrRLOylKAri67sbgmrSvnmvxqbvndXPa0JyQ6Ijkwc9mdV
- SMLM4K3CYfprUGQ+68/3sCuCWBrGnxNsouGDASRzJ2O/xcAeTsQTca3H4WdRzAqsQCOa
- uYyw==
-X-Gm-Message-State: AO0yUKV3CC3jN4LmeLx+MERdEKMtZ/TGZXEIRmZ/T8t5TEknXBbtny8k
- 9g+pij2MU7s+GYNU1X4WsyYIlu91kjclbtt1HjE=
-X-Google-Smtp-Source: AK7set+VxozcaMiBwzTBA/oB2AIISrAuQ7Bedp9xn0ogNT61aLcgqppS9XrHSr2WISoF0Ecv104SL7WHbg5llfrzjs4=
-X-Received: by 2002:a1f:1444:0:b0:400:db9c:7a9f with SMTP id
- 65-20020a1f1444000000b00400db9c7a9fmr3680755vku.6.1676143473964; Sat, 11 Feb
- 2023 11:24:33 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7267C10E4ED;
+ Mon, 13 Feb 2023 09:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676278862; x=1707814862;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TVPbPsbhLVBBVEFIvz+vs2mLB3S73FKVZ2oK0CfB5hI=;
+ b=cN1goxKmSL5UTXEv7gd1gxIxt8er2jLNsU80ZCbIrk4EQUDSiJme6sPt
+ p2E8Du+Sws/p3bTu6hpten+vMq5fadOAvFFYRj7fvmc/8F6QDq9bn8fii
+ rLvFF0MazxsVJ77bRqjLy+d19C8Dp8Edcmvy2O+kEBkLpj6HWnrGbImoj
+ xotkseCvjhsYI/UdYT8dBbQmdpzL+AHUCBdFwqHtZp8TzJouoM3hxPbuO
+ 3xVQRS3pYDXEPQmnw7LyAcZbLA2HTnXkWEtsRm9ji3Loi4os1Hr1YGghg
+ dlcf0XljGcMPpMEmjyfb5kKsifKsDjsJ0M6YoHTL19ecKYwU1dN1trJV2 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="310477953"
+X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; d="scan'208";a="310477953"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 01:00:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="662106751"
+X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; d="scan'208";a="662106751"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.19.172])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 01:00:52 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Date: Mon, 13 Feb 2023 10:00:49 +0100
+Message-ID: <4806417.31r3eYUQgx@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <Y+Z95YFARrUijh1r@orsosgc001.jf.intel.com>
+References: <20230209115039.34441-1-janusz.krzysztofik@linux.intel.com>
+ <Y+Z82anLvt6+l/5Z@orsosgc001.jf.intel.com>
+ <Y+Z95YFARrUijh1r@orsosgc001.jf.intel.com>
 MIME-Version: 1.0
-References: <20230125203743.564009-1-jim.cromie@gmail.com>
- <20230125203743.564009-15-jim.cromie@gmail.com>
-In-Reply-To: <20230125203743.564009-15-jim.cromie@gmail.com>
-From: jim.cromie@gmail.com
-Date: Sat, 11 Feb 2023 12:24:07 -0700
-Message-ID: <CAJfuBxw+g6w9_p2ym-hpCQNbr01crRMK_aYb4oV4j_BhoPwQjw@mail.gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v3 14/19] drm_print: fix stale macro-name in
- comment
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2 1/1] tests/gem_ctx_exec:
+ Exercise barrier race
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,63 +61,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, daniel.vetter@ffwll.ch, seanpaul@chromium.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 25, 2023 at 1:38 PM Jim Cromie <jim.cromie@gmail.com> wrote:
->
-> Cited commit uses stale macro name, fix this, and explain better.
+Hi Umesh,
+
+On Friday, 10 February 2023 18:24:53 CET Umesh Nerlige Ramappa wrote:
+> On Fri, Feb 10, 2023 at 09:20:25AM -0800, Umesh Nerlige Ramappa wrote:
+> >On Thu, Feb 09, 2023 at 12:50:39PM +0100, Janusz Krzysztofik wrote:
+> >>Users reported oopses on list corruptions when using i915 perf with a
+> >>number of concurrently running graphics applications.  That indicates we
+> >>are currently missing some important tests for such scenarios.  Cover
+> >>that gap.
+> >>
+> >>Since root cause analysis pointed out to an issue in barrier processing
+> >>code, add a new subtest focused on exercising interaction between perf
+> >>open / close operations, which replace active barriers with perf requests
+> >>on kernel contexts, and concurrent barrier preallocate / acquire
+> >>operations performed during context first pin / last unpin.
+> >>
+> >>v2: convert to a separate subtest, not a variant of another one (that has
+> >>   been dropped from the series),
+> >> - move the subtest out of tests/i915/perf.c (Ashutosh), add it to
+> >>   tests/i915/gem_ctx_exec.c,
+> >> - don't touch lib/i915/perf.c (Umesh, Ashutosh), duplicate reused code
+> >>   from tests/i915/perf.c in tests/i915/gem_ctx_exec.c.
+> >>
+> >>References: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
+> >>Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> >>---
+> >>tests/i915/gem_ctx_exec.c | 123 ++++++++++++++++++++++++++++++++++++++
+> >>tests/meson.build         |   9 ++-
+> >>2 files changed, 131 insertions(+), 1 deletion(-)
+> >>
+> >>diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
+> >>index 3d94f01db9..97fbc50e97 100644
+> >>--- a/tests/i915/gem_ctx_exec.c
+> >>+++ b/tests/i915/gem_ctx_exec.c
+> >>@@ -42,6 +42,7 @@
+> >>
+> >>#include "i915/gem.h"
+> >>#include "i915/gem_create.h"
+> >>+#include "i915/perf.h"
+> >>#include "igt.h"
+> >>#include "igt_dummyload.h"
+> >>#include "igt_rand.h"
+> >>@@ -448,6 +449,115 @@ static void close_race(int i915)
+> >>	munmap(ctx_id, 4096);
+> >>}
+> >>
+> >>+static uint64_t timebase_scale(struct intel_perf *intel_perf, uint32_t u32_delta)
+> >>+{
+> >>+	return ((uint64_t)u32_delta * NSEC_PER_SEC) / intel_perf->devinfo.timestamp_frequency;
+> >>+}
+> >>+
+> >>+/* Returns: the largest OA exponent that will still result in a sampling period
+> >>+ * less than or equal to the given @period.
+> >>+ */
+> >>+static int max_oa_exponent_for_period_lte(struct intel_perf *intel_perf, uint64_t period)
+> >>+{
+> >>+	/* NB: timebase_scale() takes a uint32_t and an exponent of 30
+> >>+	 * would already represent a period of ~3 minutes so there's
+> >>+	 * really no need to consider higher exponents.
+> >>+	 */
+> >>+	for (int i = 0; i < 30; i++) {
+> >>+		uint64_t oa_period = timebase_scale(intel_perf, 2 << i);
+> >>+
+> >>+		if (oa_period > period)
+> >>+			return max(0, i - 1);
+> >>+	}
+> >>+
+> >>+	igt_assert(!"reached");
+> >>+	return -1;
+> >>+}
+> >>+
+> >>+static void perf_open_close_loop(int fd, int *done)
+> >>+{
+> >>+	struct intel_perf_metric_set *metric_set = NULL, *metric_set_iter;
+> >>+	struct intel_perf *intel_perf = intel_perf_for_fd(fd);
+> >>+	uint64_t properties[] = {
+> >>+		DRM_I915_PERF_PROP_SAMPLE_OA, true,
+> >>+		DRM_I915_PERF_PROP_OA_METRICS_SET, 0,
+> >>+		DRM_I915_PERF_PROP_OA_FORMAT, 0,
+> >>+		DRM_I915_PERF_PROP_OA_EXPONENT, 0,
+> >>+	};
+> >>+	struct drm_i915_perf_open_param param = {
+> >>+		.flags = I915_PERF_FLAG_FD_CLOEXEC,
+> >
+> >nit: If you also add I915_PERF_FLAG_DISABLED here, then OA buffer 
+> >reports will be disabled. This will make sure that the perf API does 
+> >not enable the OA unit. It will still run the code that you are 
+> >targeting.
+
+OK
+
+> >
+> >>+		.num_properties = sizeof(properties) / 16,
+> >>+		.properties_ptr = to_user_pointer(properties),
+> >>+	};
+> >>+	uint32_t devid = intel_get_drm_devid(fd);
+> >>+
+> >>+	igt_require(intel_perf);
+> >>+	intel_perf_load_perf_configs(intel_perf, fd);
+> >>+
+> >>+	igt_require(devid);
+> >>+	igt_list_for_each_entry(metric_set_iter, &intel_perf->metric_sets, link) {
+> >>+		if (!strcmp(metric_set_iter->symbol_name,
+> >>+			    IS_HASWELL(devid) ? "RenderBasic" : "TestOa")) {
+> >>+			metric_set = metric_set_iter;
+> >>+			break;
+> >>+		}
+> >>+	}
+> >>+	igt_require(metric_set);
+> >>+	igt_require(metric_set->perf_oa_metrics_set);
+> >>+	properties[3] = metric_set->perf_oa_metrics_set;
+> >>+	properties[5] = metric_set->perf_oa_format;
+> >>+
+> >>+	igt_require(intel_perf->devinfo.timestamp_frequency);
+> >>+	properties[7] = max_oa_exponent_for_period_lte(intel_perf, 1000);
+> >
+> >nit: The result of max_oa_exponent_for_period_lte() can be hard coded 
+> >here (likely 1 << 5) and you could remove the additional code added 
+> >for max_oa_exponent_for_period_lte(). This parameter only controls the 
+> >frequency at which the OA reports are captured into the OA buffer and 
+> >it has no relation to the barrier related code in perf.
+> 
+> My bad. The value would likely be 5. Anyways, it's just a nit.
+
+Thanks for your constructive comments, I'll follow your suggestions.
+
+Thanks,
+Janusz
+
+> 
+> >
+> >Thanks,
+> >Umesh
+> >
+> >>+
+> >>+	intel_perf_free(intel_perf);
+> >...
+> 
 
 
 
 
-So this patch is somehow drawing an 'F' flag from patchwork,
-but theres no hint of what went wrong.
-(I have seen a merge conflict, probably not that).
-
-https://patchwork.freedesktop.org/series/113361/
-
-https://patchwork.freedesktop.org/patch/520460/?series=113361&rev=1
-
-Without this resolved, I cant see BAT results or the more exhaustive tests.
-
-
-
-
-
->
-> When DRM_USE_DYNAMIC_DEBUG=y, DYNDBG_CLASSMAP_DEFINE() maps DRM_UT_*
-> onto BITs in drm.debug.  This still uses enum drm_debug_category, but
-> it is somewhat indirect, with the ordered set of DRM_UT_* enum-vals.
-> This requires that the macro args: DRM_UT_* list must be kept in sync
-> and in order.
->
-> Fixes: f158936b60a7 ("drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.")
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
-> . emphasize ABI non-change despite enum val change - Jani Nikula
-> . reorder to back of patchset to follow API name changes.
-> ---
->  include/drm/drm_print.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 6a27e8f26770..7695ba31b3a4 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -276,7 +276,10 @@ static inline struct drm_printer drm_err_printer(const char *prefix)
->   *
->   */
->  enum drm_debug_category {
-> -       /* These names must match those in DYNAMIC_DEBUG_CLASSBITS */
-> +       /*
-> +        * Keep DYNDBG_CLASSMAP_DEFINE args in sync with changes here,
-> +        * the enum-values define BIT()s in drm.debug, so are ABI.
-> +        */
->         /**
->          * @DRM_UT_CORE: Used in the generic drm code: drm_ioctl.c, drm_mm.c,
->          * drm_memory.c, ...
-> --
-> 2.39.1
->
