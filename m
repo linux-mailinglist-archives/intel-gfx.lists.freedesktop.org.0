@@ -1,33 +1,109 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CB46954E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:41:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1924B6954E9
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 00:43:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E98E210E794;
-	Mon, 13 Feb 2023 23:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B8710E795;
+	Mon, 13 Feb 2023 23:43:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8888410E794;
- Mon, 13 Feb 2023 23:41:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50E28A882E;
- Mon, 13 Feb 2023 23:41:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1905513576529618631=="
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on20615.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::615])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD38D10E07F;
+ Mon, 13 Feb 2023 23:43:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fsyA9qfwqNRO5aIu8zoFYP0LzbDwTr7NLeCUNsvaXGqQH/nE528wMYQGiScDgDcfYeN9LiPDNV+GsP+cvmkmvn5thVNMx3aXwAC+xzX4KE/YzDlqoW+bB2zxbuk6RmPEPTQ+RzsT4syPizdmFsPgc4Nn563uELPAsbHdAYdxqHNxdk+vxzllJC9qEpLrL0hGPIjzSOh11pjozGADNWKW1BqitykA7hMqiPO/3y5miarVbLtvQuTzx0TVcp4Q/HWvCnxUoL+Qxzu5Xpn+hRi9to9vYtnRxzZfIeoN37i9iSfW5nhfIHnd1ev3ZXy4V5enWTuaVZf+SZY2ZTc9lTapkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ge/DQO5aFqrJrH06n6mZWvL04n+zcXkOJT1C79YQEf0=;
+ b=F98fnT4b7ThQFqsDWj4uJJC3hqLCuJ1tlIQKK/HyCCxF0QNnCx2DUFwbWO85hevCEJfGpwaZQqBPbmyKeVsnuIdbcsKyUandeFkKy2ujLONVXqB3vrOxjjt37i35yT+brKQSN3DuG/dsiaYWpUi1PgmQvJPnvrD2COlYH0b1wMyXfphnKoi7Cc3I5C1G1rt+r0Pv4hxBtfrWnNTe+xyUX6VIOqt7WLChSdBRVjme0bhh1ORtR8FFD+MNi7rgp1yrcIvVTqc3XUEJWLdSz+4w5RNUTOAtbzGHMob32vG7UqtACwCIYPJP64ENUoXI1f5WnKA+EzBX7YGY/iS9gvdpUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ge/DQO5aFqrJrH06n6mZWvL04n+zcXkOJT1C79YQEf0=;
+ b=UUe+pDWRPU2dQ65DuaXbaDiYYr213RGANsEiHm5IH236S/gXHx3oGj5z9I3bAExDeP/wcBzlSd9UbQ1EvHVaeXBVZh9i/oxZeosv37UAWXH8xKbMuOS/dQ5MVTiKwHP7PR2n50Q7Yn/65AnmgKFNKKUqdnbeHmnkvapMFMWam9z09RjngWw2ZWURgwFneqDK6VK8CJNSVQ5JOkYBjII0B4Ap8KVcB+NOtPvSRHy6aAGN0KkdpT/CJTo3aRi483LmOOgJIXQniur01ws+2sKwBCd8Rhd4aawIYm3QE5r8ZfL56LuMMMQ6CSvrgyulM1TayDYI+v3LR3JCGgCWMcqVmA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by PH7PR12MB6000.namprd12.prod.outlook.com (2603:10b6:510:1dc::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.22; Mon, 13 Feb
+ 2023 23:43:40 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%6]) with mapi id 15.20.6086.023; Mon, 13 Feb 2023
+ 23:43:40 +0000
+Date: Mon, 13 Feb 2023 19:43:38 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <Y+rLKvCMivND0izd@nvidia.com>
+References: <20230213151348.56451-1-yi.l.liu@intel.com>
+ <20230213151348.56451-4-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230213151348.56451-4-yi.l.liu@intel.com>
+X-ClientProxiedBy: MN2PR10CA0024.namprd10.prod.outlook.com
+ (2603:10b6:208:120::37) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 13 Feb 2023 23:41:11 -0000
-Message-ID: <167633167132.20212.12605527270544915215@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Transcoder_timing_stuff?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|PH7PR12MB6000:EE_
+X-MS-Office365-Filtering-Correlation-Id: b615cd5f-132e-4bc1-3243-08db0e1c2297
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 410Sw2fQ8BBfBIYuIWI8O13HUgzDEH5e9AcNQdCJYwUO5ZdQXUlwXGAn0NobrgQJ2WHNPsOy5gvW2FAZRNl91drWg/8vei4JT16s8u9vkLwOd98DZCB3gHwx4pge8QxjKSpZeVlnRw09eLIW3PK8mPzPaisfPufo9OK81pXyhGdq5z7OvsrLAZJMQKohElsEXmcv9IgvKP3tjwiVwyTqFZHaFQ1w/8FH/48m1smY0hn+cCbxOd8WSTKaaZv3ZwdejEdRmavWpLX6ReiYSMudXslvNNrmyNwcM4xwg/RiYmzgFff5XtVBCXQm6xlHZWl3JqQT9TVNKX1Dgdz5sITXjk9Ng2+YamA4Y8IMMkIAexXlfIDJB0LEm0ZHpJr/Qc3uARLmct5GhB24CZ8mwYR8SzAJt6d5iVvB3GEWW5eVDvPpYg9lAcHa91t4s0ECPhgmMTj0uq1wa00UV/IWVpXZhZ3M1//RPMtHfHlGx0ghf1HcXosqK41mPbLYXmrbCkr4qBPDPN7igq+WrsHUdkyJmSrvbRW2OAgsDGt0v3ugcvYm09O6KTOonFuNwuxPwajMLLpXd326jO9CTTXQ0xp5lanHIxlbH5PmZ4VNyeri/ZgjXIAXf0xBWnjZOswhsJRr8HV1aaWP5vlTBBrx5UnaKDJh6ytio2R/LZtVFs3ntBuyBBloY5dTMnuMXmiD+j3T
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(396003)(366004)(376002)(346002)(136003)(39860400002)(451199018)(38100700002)(2616005)(26005)(6512007)(186003)(316002)(86362001)(8936002)(66946007)(2906002)(4326008)(6916009)(66476007)(36756003)(4744005)(8676002)(41300700001)(6486002)(5660300002)(478600001)(6506007)(7416002)(66556008)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AF6DVTzdPK3FEhfxdogVfiHylwZF26iPxzA0T1iYyTXZD5c/h7eJSUgDbUUz?=
+ =?us-ascii?Q?wHcTyX8t4qTEXUI1zjsfX1BR35crBvz6qBaCUL3bTVyCEURowah/RVQGadmS?=
+ =?us-ascii?Q?HP0/RRDZ881145Or6REYdLChUwdN4e2AcNGh/fcr7bS6i6FPj+TH5+KMy2hV?=
+ =?us-ascii?Q?3FMI9IZFnk3sy3it2rPJal2BN1elQ8emcd6ZXFgPpUK3kyfRTn3InJBckqiD?=
+ =?us-ascii?Q?AvjEpTAWflYDcrn6GM3YY4s9PS4vq1/pZwCFd+EAFj7dRmtftMZAhO5bG6Zn?=
+ =?us-ascii?Q?pAvU2XIxqXWBATCqVzeorFtkuMa/NvSBgV8EJR+hes0vjsiUwZ/KSyOMSm05?=
+ =?us-ascii?Q?GNgDvY3yzjbJcia5to2KxPhVB4HbwjHOmy1EHSDWZJloOOBOjgbBrZ8IAYYh?=
+ =?us-ascii?Q?bY4P++8eyQcKQwewIqw6VIh4aISbTf3ukkrErcNwHKZ1Dku4wDkka92MV6uc?=
+ =?us-ascii?Q?lXpxe+xBNjvvJdzgQKRui9Zl+XXtIopFQQNqg+yEB2uzrsxwXde68vW3qsEP?=
+ =?us-ascii?Q?ua2p2IDxQvblyS02kme1sMfk/ratMH6NoeVjRrxsLK3fxFBeJiK5s2oBYVkv?=
+ =?us-ascii?Q?cbwBi5PxH+ZHe/VOM+SiKsgQ/uzB432m82uEyH+gYt/cUa8NuKVWPwZxVm/W?=
+ =?us-ascii?Q?Z50a37n3NicX9bP9hqQ6M4OPlFbApytIZJZRM6eqOIGGEdwdECpudyeUKUt6?=
+ =?us-ascii?Q?XgUw0w56PN65ECkDW86UmYng/qfZEcsyfDi07POGI30w5oh3FE3HXbWnazw8?=
+ =?us-ascii?Q?WtRCN3eDPCHd0T6If2h9qoIRpYscI9fB56mQTo4AFpXvaIg3KgMbXap82h3Z?=
+ =?us-ascii?Q?RLWBRPhUdUK6Z/uk2F/pmWg+yHvaBP7zsUoWVg7vbqcGur+wnX7Bb6NXyx+y?=
+ =?us-ascii?Q?lBk4aDNil9T9pUdjIXKuuZo/0ZZTtv0V6BvbqNYmIxnKVCxP0iePalq+lyX+?=
+ =?us-ascii?Q?8sbxWhhPLEdltWw/veVaxY0PSuLbGGPILCXaon/4W42NGRK4ovlAhzzqKIBf?=
+ =?us-ascii?Q?a7/ilkLVYRmCPFl+SANtQdW8zI24aqdAl9EsN4uWYIg/LxzpJVPiQ3xoXTFM?=
+ =?us-ascii?Q?cxidg5hUlY9eOYu1NdRMBEMbtR9mY9nGcMZ++GIvJIYJbte/npZDk3iz7vRz?=
+ =?us-ascii?Q?jsOn/2eiskSGmp+Gm/2yzSBfREYo9I06I15ZDXIj8JBkU3wgacVrDhHqqVSP?=
+ =?us-ascii?Q?qzdmFatd8PLV58B2xK+68y8DF67HR2XcZJ6X0d7j1KHttOlIEXg/GQ25dA+H?=
+ =?us-ascii?Q?gbIvlToC5RlcALmf76aH/XHNrF2kGD17R9Zcx+ZwacVBQfy6uTrDTO8ge+LL?=
+ =?us-ascii?Q?gO3IQ1wPm72C1kdglJHQuzTqIhVB+nLCnCdLm+qNNEy4SuTthOfPs+e9mZun?=
+ =?us-ascii?Q?yxARtkQGoHkk4goM43mOlnJaqPb6/Or8zEXNAnloH5GGNo9NeF1/ND4ugcGs?=
+ =?us-ascii?Q?Q2BUGPaNZMbMxYZpLzyB/9FPMZbJJQZo/ppYhxN9pyUevGSVYAHInDcWtwvc?=
+ =?us-ascii?Q?u4fJcfkLtujbUV86utqV63c0Et5UaHsr1Quzvusgu3hgbsqK4e6cxTm9TYWd?=
+ =?us-ascii?Q?jiCNGPtN7OKMp+7+kzgX6fRtZhjtjw47Fp4lA79Q?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b615cd5f-132e-4bc1-3243-08db0e1c2297
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2023 23:43:40.6826 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +ForOPDIKwCvlhUgqgQDl1eSoCs88j6t2KmqiZVa20aOlXrPIQSVsGfj8WFyudNA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6000
+Subject: Re: [Intel-gfx] [PATCH v3 03/15] vfio: Accept vfio device file in
+ the driver facing kAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,195 +116,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com,
+ mjrosato@linux.ibm.com, kvm@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
+ peterx@redhat.com, eric.auger@redhat.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1905513576529618631==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 13, 2023 at 07:13:36AM -0800, Yi Liu wrote:
+> +static struct vfio_device *vfio_device_from_file(struct file *file)
+> +{
+> +	struct vfio_device_file *df = file->private_data;
+> +
+> +	if (file->f_op != &vfio_device_fops)
+> +		return NULL;
+> +	return df->device;
+> +}
+> +
+>  /**
+>   * vfio_file_is_valid - True if the file is usable with VFIO APIS
+>   * @file: VFIO group file or VFIO device file
+>   */
+>  bool vfio_file_is_valid(struct file *file)
+>  {
+> -	return vfio_group_from_file(file);
+> +	return vfio_group_from_file(file) ||
+> +	       vfio_device_from_file(file);
+>  }
+>  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
 
-== Series Details ==
+This can only succeed on a device cdev that has been fully opened.
 
-Series: drm/i915: Transcoder timing stuff
-URL   : https://patchwork.freedesktop.org/series/113974/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12734 -> Patchwork_113974v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/index.html
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113974v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rpls-1}:       [ABORT][1] ([i915#6311]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-glk-j4005:       [DMESG-FAIL][3] ([i915#5334]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-skl-guc:         [DMESG-WARN][5] ([i915#8073]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12734 -> Patchwork_113974v1
-
-  CI-20190529: 20190529
-  CI_DRM_12734: ffa7027c353c6821636559f42584dd11f527b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113974v1: ffa7027c353c6821636559f42584dd11f527b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-889cd17de917 drm/i915: Remove pointless register read
-761aa5806d17 drm/i915: Sprinkle some FIXMEs about TGL+ DSI transcoder timing mess
-62332cb0192d drm/i915: Configure TRANS_SET_CONTEXT_LATENCY correctly on ADL+
-a0acdae8655d drm/i915: Define transcoder timing register bitmasks
-9e57f957ca05 drm/i915: Add local adjusted_mode variable
-724998b8ebe7 drm/i915/psr: Stop clobbering TRANS_SET_CONTEXT_LATENCY
-31848145a8d2 drm/i915: Define the "unmodified vblank" interrupt bit
-f9d9e1e0118b drm/i915: Dump blanking start/end
-ee5a419f33be drm/i915: s/PIPECONF/TRANSCONF/
-a911344d5fe8 drm/i915: Give CPU transcoder timing registers TRANS_ prefix
-476bd003a4bd drm/i915: Flatten intel_ddi_{enable, disable}_transcoder_clock()
-97391c40a064 drm/i915: Rename intel_ddi_{enable, disable}_pipe_clock()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/index.html
-
---===============1905513576529618631==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Transcoder timing stuff</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113974/">https://patchwork.freedesktop.org/series/113974/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12734 -&gt; Patchwork_113974v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113974v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12734/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113974v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12734 -&gt; Patchwork_113974v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12734: ffa7027c353c6821636559f42584dd11f527b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113974v1: ffa7027c353c6821636559f42584dd11f527b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>889cd17de917 drm/i915: Remove pointless register read<br />
-761aa5806d17 drm/i915: Sprinkle some FIXMEs about TGL+ DSI transcoder timing mess<br />
-62332cb0192d drm/i915: Configure TRANS_SET_CONTEXT_LATENCY correctly on ADL+<br />
-a0acdae8655d drm/i915: Define transcoder timing register bitmasks<br />
-9e57f957ca05 drm/i915: Add local adjusted_mode variable<br />
-724998b8ebe7 drm/i915/psr: Stop clobbering TRANS_SET_CONTEXT_LATENCY<br />
-31848145a8d2 drm/i915: Define the "unmodified vblank" interrupt bit<br />
-f9d9e1e0118b drm/i915: Dump blanking start/end<br />
-ee5a419f33be drm/i915: s/PIPECONF/TRANSCONF/<br />
-a911344d5fe8 drm/i915: Give CPU transcoder timing registers TRANS_ prefix<br />
-476bd003a4bd drm/i915: Flatten intel_ddi_{enable, disable}<em>transcoder_clock()<br />
-97391c40a064 drm/i915: Rename intel_ddi</em>{enable, disable}_pipe_clock()</p>
-
-</body>
-</html>
-
---===============1905513576529618631==--
+Jason
