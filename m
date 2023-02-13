@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731D9695423
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB320695424
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 23:53:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A75BA10E76F;
-	Mon, 13 Feb 2023 22:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 723E910E76A;
+	Mon, 13 Feb 2023 22:53:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A668510E763
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7876810E76E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676328800; x=1707864800;
+ t=1676328803; x=1707864803;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=7FUsWKM9x08eDAv7scbZceNWCXdWM6+9kHGpW/5Udts=;
- b=AGtFI+cLNcOQwYjHNflAVTb2zbY03LZshzPhUb9Zt9z0JzVOZBLR3thF
- k9l5bSZrfCLYLjOGEV+BBR5wX5bFf3XHe2zMuEG1pMAZIAUfx9QTw9LzX
- 8iAHdtIXfO+HylxmcnTZqdgUPiflulZpWiysVxE+eIGHeJfS9bb1EoqzO
- Q+TBFenxdS50IeYR85tEGEwttrJv2pSDm1cSVCvL+l13BGdy8+J3LIC5t
- TXBpOscFAmczlJDzP4vXWkhMkX7y+bx1na5R6KbQX2R3TzF226wWIiuBw
- ikKr9cxMX7UBue5dWprH/+h7iMMHeSm6Ix9iNCNOqBoKu3TjOrk1Q5Ast A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237403"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237403"
+ bh=62QEB5Ugkj4ZUEXRekVhpY9bI2UGhiPSsm2sUeDVpao=;
+ b=avz2T1G62EhMJkZsL4yG0PnIIhVEups5I6nFOo8hPZK5V9h5U2uzy4Sa
+ IvXowQCXB31XOef6ae8iL0yhkM2gCQNSEuws5AnxBqmfDIsxVspOdMB7o
+ 4WmGXKCtNop0MEF5XPRHUZwnxGbLwD1n787EXDuUGPLupk+o+ejS76VRa
+ 5QYuvCc0ANCw7LlErpUnAJmMVdffYrkTQLboitFxwJcNhlF2BYZeFLDN3
+ DhkPNwUEKf1Ip19fiv2D35du2shNCdP21MLpUc3f32mwkJAyRHvpDyQez
+ jynAWH++2HilmvFJX6aGzjegJuJ7vRGWgeMHYqGcK2bSeOuEzQdz0yEcx A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417237408"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="417237408"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 14:53:20 -0800
+ 13 Feb 2023 14:53:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766434"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766434"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757766437"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="757766437"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:18 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 13 Feb 2023 14:53:21 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 00:53:18 +0200
+ Tue, 14 Feb 2023 00:53:20 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 00:52:53 +0200
-Message-Id: <20230213225258.2127-8-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 00:52:54 +0200
+Message-Id: <20230213225258.2127-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 07/12] drm/i915/psr: Stop clobbering
- TRANS_SET_CONTEXT_LATENCY
+Subject: [Intel-gfx] [PATCH 08/12] drm/i915: Add local adjusted_mode variable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,50 +64,77 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The PSR code has no business mucking around with the
-vblank delay. Currently nothing that depends on knowing
-the exact vblank start scanline (eg. vblank evasion)
-is aware of this and so will not work correctly.
-
-The w/a seems to be for pre-production hw only, so let's
-just nuke it.
+Clean up the eyesore in intel_get_transcoder_timings() a
+bit by adding a local 'adjusted_mode' variable.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 13 -------------
- 1 file changed, 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 35 +++++++++-----------
+ 1 file changed, 16 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index a021f59f0ac7..cb02f572e1d8 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1179,13 +1179,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
- 				     ADLP_1_BASED_X_GRANULARITY);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0aca842df8f7..ac021ca88e3c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2908,42 +2908,39 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+ 	struct drm_device *dev = crtc->base.dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
++	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	u32 tmp;
  
--		/* Wa_16011168373:adl-p */
--		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
--			intel_de_rmw(dev_priv,
--				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
--				     TRANS_SET_CONTEXT_LATENCY_MASK,
--				     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
--
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
- 		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
-@@ -1350,12 +1343,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 			     wa_16013835468_bit_get(intel_dp), 0);
+ 	tmp = intel_de_read(dev_priv, TRANS_HTOTAL(cpu_transcoder));
+-	pipe_config->hw.adjusted_mode.crtc_hdisplay = (tmp & 0xffff) + 1;
+-	pipe_config->hw.adjusted_mode.crtc_htotal = ((tmp >> 16) & 0xffff) + 1;
++	adjusted_mode->crtc_hdisplay = (tmp & 0xffff) + 1;
++	adjusted_mode->crtc_htotal = ((tmp >> 16) & 0xffff) + 1;
  
- 	if (intel_dp->psr.psr2_enabled) {
--		/* Wa_16011168373:adl-p */
--		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
--			intel_de_rmw(dev_priv,
--				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
--				     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
--
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
- 		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
+ 	if (!transcoder_is_dsi(cpu_transcoder)) {
+ 		tmp = intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
+-		pipe_config->hw.adjusted_mode.crtc_hblank_start =
+-							(tmp & 0xffff) + 1;
+-		pipe_config->hw.adjusted_mode.crtc_hblank_end =
+-						((tmp >> 16) & 0xffff) + 1;
++		adjusted_mode->crtc_hblank_start = (tmp & 0xffff) + 1;
++		adjusted_mode->crtc_hblank_end = ((tmp >> 16) & 0xffff) + 1;
+ 	}
+ 	tmp = intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder));
+-	pipe_config->hw.adjusted_mode.crtc_hsync_start = (tmp & 0xffff) + 1;
+-	pipe_config->hw.adjusted_mode.crtc_hsync_end = ((tmp >> 16) & 0xffff) + 1;
++	adjusted_mode->crtc_hsync_start = (tmp & 0xffff) + 1;
++	adjusted_mode->crtc_hsync_end = ((tmp >> 16) & 0xffff) + 1;
+ 
+ 	tmp = intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder));
+-	pipe_config->hw.adjusted_mode.crtc_vdisplay = (tmp & 0xffff) + 1;
+-	pipe_config->hw.adjusted_mode.crtc_vtotal = ((tmp >> 16) & 0xffff) + 1;
++	adjusted_mode->crtc_vdisplay = (tmp & 0xffff) + 1;
++	adjusted_mode->crtc_vtotal = ((tmp >> 16) & 0xffff) + 1;
+ 
+ 	if (!transcoder_is_dsi(cpu_transcoder)) {
+ 		tmp = intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
+-		pipe_config->hw.adjusted_mode.crtc_vblank_start =
+-							(tmp & 0xffff) + 1;
+-		pipe_config->hw.adjusted_mode.crtc_vblank_end =
+-						((tmp >> 16) & 0xffff) + 1;
++		adjusted_mode->crtc_vblank_start = (tmp & 0xffff) + 1;
++		adjusted_mode->crtc_vblank_end = ((tmp >> 16) & 0xffff) + 1;
+ 	}
+ 	tmp = intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder));
+-	pipe_config->hw.adjusted_mode.crtc_vsync_start = (tmp & 0xffff) + 1;
+-	pipe_config->hw.adjusted_mode.crtc_vsync_end = ((tmp >> 16) & 0xffff) + 1;
++	adjusted_mode->crtc_vsync_start = (tmp & 0xffff) + 1;
++	adjusted_mode->crtc_vsync_end = ((tmp >> 16) & 0xffff) + 1;
+ 
+ 	if (intel_pipe_is_interlaced(pipe_config)) {
+-		pipe_config->hw.adjusted_mode.flags |= DRM_MODE_FLAG_INTERLACE;
+-		pipe_config->hw.adjusted_mode.crtc_vtotal += 1;
+-		pipe_config->hw.adjusted_mode.crtc_vblank_end += 1;
++		adjusted_mode->flags |= DRM_MODE_FLAG_INTERLACE;
++		adjusted_mode->crtc_vtotal += 1;
++		adjusted_mode->crtc_vblank_end += 1;
+ 	}
+ }
+ 
 -- 
 2.39.1
 
