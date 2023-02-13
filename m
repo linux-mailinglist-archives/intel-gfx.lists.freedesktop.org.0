@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08746694C11
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 17:11:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE57694C13
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Feb 2023 17:12:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62C5F10E062;
-	Mon, 13 Feb 2023 16:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9DC10E062;
+	Mon, 13 Feb 2023 16:12:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE8810E062
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 16:11:16 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C199210E062
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 16:12:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676304676; x=1707840676;
+ t=1676304750; x=1707840750;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=6vrJtHR53zhySDQLUGgfqRqU70+NvVsT5Zi3yD1JqXQ=;
- b=eAPQeLdoUEcypRw4Hpy4yVvTv8KClxMOA9fT12RKLx+bKlP615Og0Fir
- WVV/nJ+qSRVHMF9LBrE7dbhFHWulkFgkb4N8DDJgAgd6L2giM63EZhYDN
- B1JfBiZGRlnmMSCJjT78ZwYtdrTUlPY1zN0PKBLtId1M4gmefM7ML2IAi
- hRyje29GmidIXyQ6pDEhOypdzIkuVv9GowiqqISfDAOR4B/iYNML9YqiD
- /T00Z79rO2Ytt+m3ddl6FaLmXDWWmcCxH98wKFosDRoZAT+V9Orho5cPR
- uHhVr751+9y32dV4eQYZ369cDSP5G4K/biB6M/K8J8MaZg1t/t9qPHlJZ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311283800"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="311283800"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 08:11:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="701316437"
-X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="701316437"
+ bh=JmBQEEg830MnXOge16n16X/HXWxi4uTqvMd8z5P5LaQ=;
+ b=I3v+foc8Qu1IObuWfhwmKJooMKvKn2r1tcZFJcBF7rCeZlOsWEBNxKCe
+ 9BuZ7p8x30Y+EL2BrXqMNvKmGdr1hVyvLtNtb05ZMLk5r6z0Zt712u7yF
+ 8L8YPer97vRMHtg24bqCe5kq/XZ/9hpEQl98/HgaE3OAsvSXfzK3vDB7Y
+ ydCZBSO47dnEayUEcezqBajXYid8ripDBN0BJ8BSrOZfub0ZdR3lcJVTR
+ 1kJXSXsp4RgsF5iJr4j3oP5cTyh2XRJ6qWf+X91r990SDevHtCLF796eA
+ ypaEB5FfWBHdt9w0VxquI7wCDHURPoQuybYPZp0oaem2Bt7+sPBV5qybO w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="333061610"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="333061610"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 08:12:29 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="662224685"
+X-IronPort-AV: E=Sophos;i="5.97,294,1669104000"; d="scan'208";a="662224685"
 Received: from tkatila-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.50.147])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 08:11:13 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2023 08:12:26 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230208015508.24824-7-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230208015508.24824-1-ville.syrjala@linux.intel.com>
-Date: Mon, 13 Feb 2023 18:11:05 +0200
-Message-ID: <87k00lv946.fsf@intel.com>
+ <20230208015508.24824-7-ville.syrjala@linux.intel.com>
+Date: Mon, 13 Feb 2023 18:12:19 +0200
+Message-ID: <87h6vpv924.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 00/10] drm/i915: Prep work for vbt.ports[]
- nukage
+Subject: Re: [Intel-gfx] [PATCH 06/10] drm/i915: Consult the registested
+ encoders for the ICL combo PHY w/a
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +66,64 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 08 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We need to get rid of the vbt.ports[] array. The main
-> reason being the bogus VBTs found on many ADL laptops
-> that declare both eDP+HDMI child devices for the same
-> port. The goal is to probe each of those in order and
-> stick to the first one that works. But the vbt.ports[]
-> array gets populated before we do any output probing=20
-> and, being indexed with the port, can't handle any
-> aliasing child devices.
->
-> Here's a bit of prep work to reduce our reliance on
-> vbt.ports[], mainly by expanding the encoder->devdata
-> (a direct pointer to the correct vbt child device from
-> the encoder) usage.
 
-On the series,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-with some nitpicks on commit messages.
+Subject: *registered
 
 >
-> Ville Syrj=C3=A4l=C3=A4 (10):
->   drm/i915: Pass the whole encoder to hotplug_enables()
->   drm/i915: Move variables to loop context
->   drm/i915: Replace intel_bios_is_lspcon_present() with
->     intel_bios_encoder_is_lspcon()
->   drm/i915: Replace intel_bios_is_lane_reversal_needed() with
->     intel_bios_encoder_lane_reversal()
->   drm/i915: Replace intel_bios_is_port_hpd_inverted() with
->     intel_bios_encoder_hpd_invert()
->   drm/i915: Consult the registested encoders for the ICL combo PHY w/a
->   drm/i915: Populate encoder->devdata for g4x+ DP/HDMI ports
->   drm/i915: Pass devdata to intel_bios_port_aux_ch()
->   drm/i915: Iterate all child devs in intel_bios_is_port_present()
->   drm/i915: Use encoder->devdata in eDP init
+> Display WA #1178 calls us to tweak some magic bits when doing AUX
+> to an external combo PHY port. Instead of looking to see if the VBT
+> has declared such a port (which could in theory even alias with a
+> declared eDP port on the same PHY) just check the real situation
+> based on the registered encoders.
 >
->  drivers/gpu/drm/i915/display/g4x_dp.c         |  12 +-
->  drivers/gpu/drm/i915/display/g4x_hdmi.c       |  12 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     | 128 ++++++------------
->  drivers/gpu/drm/i915/display/intel_bios.h     |  14 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
->  .../i915/display/intel_display_power_well.c   |  15 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  30 ++--
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   2 +-
->  drivers/gpu/drm/i915/display/intel_lspcon.c   |   2 +-
->  drivers/gpu/drm/i915/i915_irq.c               |  59 ++++----
->  10 files changed, 134 insertions(+), 146 deletions(-)
+> The only slight chicken vs. egg situation here is during output
+> probing. But typically we'd register the eDP ports first and so
+> once we get to probe anything external on the combo PHY we have
+> already determined if it's eDP or not.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_power_well.c   | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
+ivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 8710dd41ffd4..56a20bf5825b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -391,6 +391,19 @@ static void hsw_power_well_disable(struct drm_i915_p=
+rivate *dev_priv,
+>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>  }
+>=20=20
+> +static bool intel_port_is_edp(struct drm_i915_private *i915, enum port p=
+ort)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	for_each_intel_encoder(&i915->drm, encoder) {
+> +		if (encoder->type =3D=3D INTEL_OUTPUT_EDP &&
+> +		    encoder->port =3D=3D port)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  static void
+>  icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  				    struct i915_power_well *power_well)
+> @@ -416,7 +429,7 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_p=
+rivate *dev_priv,
+>=20=20
+>  	/* Display WA #1178: icl */
+>  	if (pw_idx >=3D ICL_PW_CTL_IDX_AUX_A && pw_idx <=3D ICL_PW_CTL_IDX_AUX_=
+B &&
+> -	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
+> +	    !intel_port_is_edp(dev_priv, (enum port)phy)) {
+>  		val =3D intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
+>  		val |=3D ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
+>  		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
