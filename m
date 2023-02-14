@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFC76960C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 11:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 821D46960CB
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 11:32:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1812810E868;
-	Tue, 14 Feb 2023 10:32:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D7A10E044;
+	Tue, 14 Feb 2023 10:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1FF310E868
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 10:32:22 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C45210E86A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 10:32:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676370742; x=1707906742;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=37OvYRt0PXCLUShr1L7yJQHaLHN7OUhVDszwH4cpRHA=;
- b=geBNIvyUR1plOTnfQNYjtzd28xPoQTmm4ykdtuabhEB6d6YEvFDnTjHn
- pNKMXC3BoL+VFodf71dIsRA9xUu4GKv715spr/DwsU3WW+K1/z59tcH5t
- 3V7TpV22bO1Zz2XRFWomCyQO/IqUinpiGo+vzq1Lt4DfDIl09eqiZj+Q4
- N1bpTvxOAQrORSrzLFqUXXbZQw6j60z/KzON8I8bsTHJI5ucnHYpE4hAm
- Tujw/SFxAoxQxbnOSr5AWH5BkuwXs+ZIffi8BV0YKv+iB77rLxEbgelch
- sfS1E+/0mEwLfh0Okz7eM8nb04eil9t6jk1EVTogECNnYr5rDjQhD2viE A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417347222"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="417347222"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 02:32:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="669118442"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="669118442"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga002.jf.intel.com with SMTP; 14 Feb 2023 02:32:16 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 12:32:15 +0200
-Date: Tue, 14 Feb 2023 12:32:15 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y+tjL+PVFpITLIuj@intel.com>
+ t=1676370773; x=1707906773;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=uQUDLdir3LE++hs4SmXmLWcvjtXyvCbPMPfQ+JTv5Jw=;
+ b=UE3zE+HbsFGXIWdnJzgxtDl8BXvhc2smoIMtSvc7t0xAuo5sJoDbyGrA
+ Xlx/LbOkdC9Asf0xQBw3aFjYcuqU3toyEUzf1/7za2PAFCU9BM+0luvAQ
+ 3UuJIivi3QcETt1E9HgMYskR+vnTYK5uGBUpWQ/XC5doFfQ1d9i2RUu1z
+ LRNkktYqTdbEx9rc3yZlLcPaqcEkMiZETjvLPR1ZGX4CRr7vxaZsLLrkI
+ rf/azYAqmd8jc3KTmd3vVX3OzsgypegzrRPJNTKYql8K4ksGR9Fs+V+jf
+ nCJ69EGF5XPoWYN3or3LA0sMZzy0LTRhvE8ZqXB23boU6F3j8lBVAUbz9 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="329755529"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="329755529"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 02:32:53 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="998027676"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="998027676"
+Received: from skalyan-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.13])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 02:32:51 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230213225258.2127-10-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230213225258.2127-1-ville.syrjala@linux.intel.com>
- <20230213225258.2127-5-ville.syrjala@linux.intel.com>
- <878rh0tvde.fsf@intel.com>
+ <20230213225258.2127-10-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 12:32:49 +0200
+Message-ID: <875yc4tu3y.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <878rh0tvde.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915: s/PIPECONF/TRANSCONF/
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 09/12] drm/i915: Define transcoder timing
+ register bitmasks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,35 +61,306 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 14, 2023 at 12:05:33PM +0200, Jani Nikula wrote:
-> On Tue, 14 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Rename PIPECONF to TRANSCONF to make it clear what it actually
-> > applies to.
-> >
-> > While the usual convention is to pick the earliers name I think
-> > in this case it's more clear to use the later name. Especially
-> > as even the register offset is in the wrong range (0x70000 vs.
-> > 0x60000) and thus makes it look like this is per-pipe.
-> >
-> > There is one place in gvt that's doing something with TRANSCONF
-> > while iterating with for_each_pipe(). So that might not be doing
-> > the right thing for TRANSCODER_EDP, dunno. Not knowing what it
-> > does I left it as is to avoid breakage.
-> 
-> I recently looked at _PIPE_EDP usage, and thought all of it looked a bit
-> suspect, but didn't bother to dig deeper. Maybe after this it could be
-> removed?
+On Tue, 14 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Define the contents of the transcoder timing registers using
+> REG_GENMASK() & co. For ease of maintenance let's just define
+> the bitmasks with the full 16bit width (also used by the
+> current hand rolled stuff) even though not all bits are actually
+> used. None of the unsued bits have ever contained anything.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c       | 10 +--
+>  drivers/gpu/drm/i915/display/intel_crt.c     | 13 ++--
+>  drivers/gpu/drm/i915/display/intel_display.c | 64 ++++++++++++--------
+>  drivers/gpu/drm/i915/i915_reg.h              | 24 ++++++++
+>  4 files changed, 75 insertions(+), 36 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 07897d6f9c53..def3aff4d717 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -888,7 +888,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans =3D dsi_port_to_transcoder(port);
+>  		intel_de_write(dev_priv, TRANS_HTOTAL(dsi_trans),
+> -			       (hactive - 1) | ((htotal - 1) << 16));
+> +			       HACTIVE(hactive - 1) | HTOTAL(htotal - 1));
+>  	}
+>=20=20
+>  	/* TRANS_HSYNC register to be programmed only for video mode */
+> @@ -911,7 +911,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans =3D dsi_port_to_transcoder(port);
+>  			intel_de_write(dev_priv, TRANS_HSYNC(dsi_trans),
+> -				       (hsync_start - 1) | ((hsync_end - 1) << 16));
+> +				       HSYNC_START(hsync_start - 1) | HSYNC_END(hsync_end - 1));
+>  		}
+>  	}
+>=20=20
+> @@ -925,7 +925,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  		 * For interlace mode: program required pixel minus 2
+>  		 */
+>  		intel_de_write(dev_priv, TRANS_VTOTAL(dsi_trans),
+> -			       (vactive - 1) | ((vtotal - 1) << 16));
+> +			       VACTIVE(vactive - 1) | VTOTAL(vtotal - 1));
+>  	}
+>=20=20
+>  	if (vsync_end < vsync_start || vsync_end > vtotal)
+> @@ -939,7 +939,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans =3D dsi_port_to_transcoder(port);
+>  			intel_de_write(dev_priv, TRANS_VSYNC(dsi_trans),
+> -				       (vsync_start - 1) | ((vsync_end - 1) << 16));
+> +				       VSYNC_START(vsync_start - 1) | VSYNC_END(vsync_end - 1));
+>  		}
+>  	}
+>=20=20
+> @@ -962,7 +962,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans =3D dsi_port_to_transcoder(port);
+>  			intel_de_write(dev_priv, TRANS_VBLANK(dsi_trans),
+> -				       (vactive - 1) | ((vtotal - 1) << 16));
+> +				       VBLANK_START(vactive - 1) | VBLANK_END(vtotal - 1));
+>  		}
+>  	}
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
+915/display/intel_crt.c
+> index ef0c7f5b0ad6..8f2ebead0826 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -698,11 +698,11 @@ intel_crt_load_detect(struct intel_crt *crt, enum p=
+ipe pipe)
+>  	save_vtotal =3D intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder));
+>  	vblank =3D intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
+>=20=20
+> -	vtotal =3D ((save_vtotal >> 16) & 0xfff) + 1;
+> -	vactive =3D (save_vtotal & 0x7ff) + 1;
+> +	vtotal =3D REG_FIELD_GET(VTOTAL_MASK, save_vtotal) + 1;
+> +	vactive =3D REG_FIELD_GET(VACTIVE_MASK, save_vtotal) + 1;
+>=20=20
+> -	vblank_start =3D (vblank & 0xfff) + 1;
+> -	vblank_end =3D ((vblank >> 16) & 0xfff) + 1;
+> +	vblank_start =3D REG_FIELD_GET(VBLANK_START_MASK, vblank) + 1;
+> +	vblank_end =3D REG_FIELD_GET(VBLANK_END_MASK, vblank) + 1;
 
-I think it needs to stay due to the pipe_offsets[] stuff
-and hw making a mess of pipe vs. transcoder registers.
-But no one should really use it anywhere else.
+I forget how these are defined in bspec and if the field size grows
+towards later platforms... but this widens the masks. I'm guess it'll
+probably read as zero anyway, but in theory that's a functional change.
 
--- 
-Ville Syrjälä
-Intel
+BR,
+Jani.
+
+>=20=20
+>  	/* Set the border color to purple. */
+>  	intel_de_write(dev_priv, BCLRPAT(cpu_transcoder), 0x500050);
+> @@ -732,11 +732,12 @@ intel_crt_load_detect(struct intel_crt *crt, enum p=
+ipe pipe)
+>  		*/
+>  		if (vblank_start <=3D vactive && vblank_end >=3D vtotal) {
+>  			u32 vsync =3D intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder));
+> -			u32 vsync_start =3D (vsync & 0xffff) + 1;
+> +			u32 vsync_start =3D REG_FIELD_GET(VSYNC_START_MASK, vsync) + 1;
+>=20=20
+>  			vblank_start =3D vsync_start;
+>  			intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
+> -				       (vblank_start - 1) | ((vblank_end - 1) << 16));
+> +				       VBLANK_START(vblank_start - 1) |
+> +				       VBLANK_END(vblank_end - 1));
+>  			restore_vblank =3D true;
+>  		}
+>  		/* sample in the vertical border, selecting the larger one */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index ac021ca88e3c..1d92a789baab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2848,18 +2848,24 @@ static void intel_set_transcoder_timings(const st=
+ruct intel_crtc_state *crtc_sta
+>  			       vsyncshift);
+>=20=20
+>  	intel_de_write(dev_priv, TRANS_HTOTAL(cpu_transcoder),
+> -		       (adjusted_mode->crtc_hdisplay - 1) | ((adjusted_mode->crtc_htot=
+al - 1) << 16));
+> +		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
+> +		       HTOTAL(adjusted_mode->crtc_htotal - 1));
+>  	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
+> -		       (adjusted_mode->crtc_hblank_start - 1) | ((adjusted_mode->crtc_=
+hblank_end - 1) << 16));
+> +		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
+> +		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
+>  	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+> -		       (adjusted_mode->crtc_hsync_start - 1) | ((adjusted_mode->crtc_h=
+sync_end - 1) << 16));
+> +		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+> +		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
+>=20=20
+>  	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
+> -		       (adjusted_mode->crtc_vdisplay - 1) | ((crtc_vtotal - 1) << 16));
+> +		       VACTIVE(adjusted_mode->crtc_vdisplay - 1) |
+> +		       VTOTAL(crtc_vtotal - 1));
+>  	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
+> -		       (adjusted_mode->crtc_vblank_start - 1) | ((crtc_vblank_end - 1)=
+ << 16));
+> +		       VBLANK_START(adjusted_mode->crtc_vblank_start - 1) |
+> +		       VBLANK_END(crtc_vblank_end - 1));
+>  	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder),
+> -		       (adjusted_mode->crtc_vsync_start - 1) | ((adjusted_mode->crtc_v=
+sync_end - 1) << 16));
+> +		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
+> +		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+>=20=20
+>  	/* Workaround: when the EDP input selection is B, the VTOTAL_B must be
+>  	 * programmed with the VTOTAL_EDP value. Same for VTOTAL_C. This is
+> @@ -2912,30 +2918,31 @@ static void intel_get_transcoder_timings(struct i=
+ntel_crtc *crtc,
+>  	u32 tmp;
+>=20=20
+>  	tmp =3D intel_de_read(dev_priv, TRANS_HTOTAL(cpu_transcoder));
+> -	adjusted_mode->crtc_hdisplay =3D (tmp & 0xffff) + 1;
+> -	adjusted_mode->crtc_htotal =3D ((tmp >> 16) & 0xffff) + 1;
+> +	adjusted_mode->crtc_hdisplay =3D REG_FIELD_GET(HACTIVE_MASK, tmp) + 1;
+> +	adjusted_mode->crtc_htotal =3D REG_FIELD_GET(HTOTAL_MASK, tmp) + 1;
+>=20=20
+>  	if (!transcoder_is_dsi(cpu_transcoder)) {
+>  		tmp =3D intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
+> -		adjusted_mode->crtc_hblank_start =3D (tmp & 0xffff) + 1;
+> -		adjusted_mode->crtc_hblank_end =3D ((tmp >> 16) & 0xffff) + 1;
+> +		adjusted_mode->crtc_hblank_start =3D REG_FIELD_GET(HBLANK_START_MASK, =
+tmp) + 1;
+> +		adjusted_mode->crtc_hblank_end =3D REG_FIELD_GET(HBLANK_END_MASK, tmp)=
+ + 1;
+>  	}
+> +
+>  	tmp =3D intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder));
+> -	adjusted_mode->crtc_hsync_start =3D (tmp & 0xffff) + 1;
+> -	adjusted_mode->crtc_hsync_end =3D ((tmp >> 16) & 0xffff) + 1;
+> +	adjusted_mode->crtc_hsync_start =3D REG_FIELD_GET(HSYNC_START_MASK, tmp=
+) + 1;
+> +	adjusted_mode->crtc_hsync_end =3D REG_FIELD_GET(HSYNC_END_MASK, tmp) + =
+1;
+>=20=20
+>  	tmp =3D intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder));
+> -	adjusted_mode->crtc_vdisplay =3D (tmp & 0xffff) + 1;
+> -	adjusted_mode->crtc_vtotal =3D ((tmp >> 16) & 0xffff) + 1;
+> +	adjusted_mode->crtc_vdisplay =3D REG_FIELD_GET(VACTIVE_MASK, tmp) + 1;
+> +	adjusted_mode->crtc_vtotal =3D REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
+>=20=20
+>  	if (!transcoder_is_dsi(cpu_transcoder)) {
+>  		tmp =3D intel_de_read(dev_priv, TRANS_VBLANK(cpu_transcoder));
+> -		adjusted_mode->crtc_vblank_start =3D (tmp & 0xffff) + 1;
+> -		adjusted_mode->crtc_vblank_end =3D ((tmp >> 16) & 0xffff) + 1;
+> +		adjusted_mode->crtc_vblank_start =3D REG_FIELD_GET(VBLANK_START_MASK, =
+tmp) + 1;
+> +		adjusted_mode->crtc_vblank_end =3D REG_FIELD_GET(VBLANK_END_MASK, tmp)=
+ + 1;
+>  	}
+>  	tmp =3D intel_de_read(dev_priv, TRANS_VSYNC(cpu_transcoder));
+> -	adjusted_mode->crtc_vsync_start =3D (tmp & 0xffff) + 1;
+> -	adjusted_mode->crtc_vsync_end =3D ((tmp >> 16) & 0xffff) + 1;
+> +	adjusted_mode->crtc_vsync_start =3D REG_FIELD_GET(VSYNC_START_MASK, tmp=
+) + 1;
+> +	adjusted_mode->crtc_vsync_end =3D REG_FIELD_GET(VSYNC_END_MASK, tmp) + =
+1;
+>=20=20
+>  	if (intel_pipe_is_interlaced(pipe_config)) {
+>  		adjusted_mode->flags |=3D DRM_MODE_FLAG_INTERLACE;
+> @@ -8816,13 +8823,20 @@ void i830_enable_pipe(struct drm_i915_private *de=
+v_priv, enum pipe pipe)
+>  		PLL_REF_INPUT_DREFCLK |
+>  		DPLL_VCO_ENABLE;
+>=20=20
+> -	intel_de_write(dev_priv, TRANS_HTOTAL(cpu_transcoder), (640 - 1) | ((80=
+0 - 1) << 16));
+> -	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder), (640 - 1) | ((80=
+0 - 1) << 16));
+> -	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder), (656 - 1) | ((752=
+ - 1) << 16));
+> -	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder), (480 - 1) | ((52=
+5 - 1) << 16));
+> -	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder), (480 - 1) | ((52=
+5 - 1) << 16));
+> -	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder), (490 - 1) | ((492=
+ - 1) << 16));
+> -	intel_de_write(dev_priv, PIPESRC(pipe), ((640 - 1) << 16) | (480 - 1));
+> +	intel_de_write(dev_priv, TRANS_HTOTAL(cpu_transcoder),
+> +		       HACTIVE(640 - 1) | HTOTAL(800 - 1));
+> +	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
+> +		       HBLANK_START(640 - 1) | HBLANK_END(800 - 1));
+> +	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+> +		       HSYNC_START(656 - 1) | HSYNC_END(752 - 1));
+> +	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
+> +		       VACTIVE(480 - 1) | VTOTAL(525 - 1));
+> +	intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
+> +		       VBLANK_START(480 - 1) | VBLANK_END(525 - 1));
+> +	intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder),
+> +		       VSYNC_START(490 - 1) | VSYNC_END(492 - 1));
+> +	intel_de_write(dev_priv, PIPESRC(pipe),
+> +		       PIPESRC_WIDTH(640 - 1) | PIPESRC_HEIGHT(480 - 1));
+>=20=20
+>  	intel_de_write(dev_priv, FP0(pipe), fp);
+>  	intel_de_write(dev_priv, FP1(pipe), fp);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 23886356af35..c5e073af983a 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1913,11 +1913,35 @@
+>=20=20
+>  /* Pipe/transcoder A timing regs */
+>  #define _TRANS_HTOTAL_A		0x60000
+> +#define   HTOTAL_MASK			REG_GENMASK(31, 16)
+> +#define   HTOTAL(htotal)		REG_FIELD_PREP(HTOTAL_MASK, (htotal))
+> +#define   HACTIVE_MASK			REG_GENMASK(15, 0)
+> +#define   HACTIVE(hdisplay)		REG_FIELD_PREP(HACTIVE_MASK, (hdisplay))
+>  #define _TRANS_HBLANK_A		0x60004
+> +#define   HBLANK_END_MASK		REG_GENMASK(31, 16)
+> +#define   HBLANK_END(hblank_end)	REG_FIELD_PREP(HBLANK_END_MASK, (hblank=
+_end))
+> +#define   HBLANK_START_MASK		REG_GENMASK(15, 0)
+> +#define   HBLANK_START(hblank_start)	REG_FIELD_PREP(HBLANK_START_MASK, (=
+hblank_start))
+>  #define _TRANS_HSYNC_A		0x60008
+> +#define   HSYNC_END_MASK		REG_GENMASK(31, 16)
+> +#define   HSYNC_END(hsync_end)		REG_FIELD_PREP(HSYNC_END_MASK, (hsync_en=
+d))
+> +#define   HSYNC_START_MASK		REG_GENMASK(15, 0)
+> +#define   HSYNC_START(hsync_start)	REG_FIELD_PREP(HSYNC_START_MASK, (hsy=
+nc_start))
+>  #define _TRANS_VTOTAL_A		0x6000c
+> +#define   VTOTAL_MASK			REG_GENMASK(31, 16)
+> +#define   VTOTAL(vtotal)		REG_FIELD_PREP(VTOTAL_MASK, (vtotal))
+> +#define   VACTIVE_MASK			REG_GENMASK(15, 0)
+> +#define   VACTIVE(vdisplay)		REG_FIELD_PREP(VACTIVE_MASK, (vdisplay))
+>  #define _TRANS_VBLANK_A		0x60010
+> +#define   VBLANK_END_MASK		REG_GENMASK(31, 16)
+> +#define   VBLANK_END(vblank_end)	REG_FIELD_PREP(VBLANK_END_MASK, (vblank=
+_end))
+> +#define   VBLANK_START_MASK		REG_GENMASK(15, 0)
+> +#define   VBLANK_START(vblank_start)	REG_FIELD_PREP(VBLANK_START_MASK, (=
+vblank_start))
+>  #define _TRANS_VSYNC_A		0x60014
+> +#define   VSYNC_END_MASK		REG_GENMASK(31, 16)
+> +#define   VSYNC_END(vsync_end)		REG_FIELD_PREP(VSYNC_END_MASK, (vsync_en=
+d))
+> +#define   VSYNC_START_MASK		REG_GENMASK(15, 0)
+> +#define   VSYNC_START(vsync_start)	REG_FIELD_PREP(VSYNC_START_MASK, (vsy=
+nc_start))
+>  #define _TRANS_EXITLINE_A	0x60018
+>  #define _PIPEASRC		0x6001c
+>  #define   PIPESRC_WIDTH_MASK	REG_GENMASK(31, 16)
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
