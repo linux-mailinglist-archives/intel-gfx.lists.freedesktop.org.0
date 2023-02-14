@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB58695E2C
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 10:07:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4C0695EB7
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 10:17:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D32010E820;
-	Tue, 14 Feb 2023 09:07:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 133E210E830;
+	Tue, 14 Feb 2023 09:17:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8286C10E82E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 09:07:32 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B6210E830
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 09:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676365652; x=1707901652;
+ t=1676366224; x=1707902224;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=z1J9ELmG1LPVEvZ4J0vGphxQGNzFao41PdOdQmqOzIk=;
- b=nh+47qsJpZFOv38cQx24Ft5s07E7Pd5+nlpJE/n049zBtlW/0WguZaFv
- Fg8cyjGoTx2q/ndslRFSRZbDH2aRV/6vypd/93IPBGyI/JydYKPEN/48H
- doyI2iSFpc5dzE1ztAqybMQOn4J7ukDs3tfozn3obaQ5sRJk2q+lERSDb
- /g+zVJ5mgY4Zr6XrE9q9cezDAqiOboh2ZZJqAwarXyInEOjJtuI0UmV9Z
- dBMsS51FGpKem9dvDMB8H4s19FAZLhGDa8KCzRZzxo0+opoIHARAuHoe9
- Y+4sStoaFjZ/zECwI2NETMegPOiwv8Wp0T3gzbCgEqpUyFI0nIep1RxcZ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="329743180"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="329743180"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 01:07:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="671157732"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="671157732"
+ bh=SIw5/uurHfRjpQsDLE3dgVVGS+FTD+vyQYvXOCl0w0E=;
+ b=cUXoYmorPNCYBICH8pB9B2h8Q0FyN2bjdOQHbg4VRE5wtjpZ2NnamLle
+ SIwhMbUC6qknNZyBUvKmJo87xux6MDeYavSAD4ppDwBUATmKJeIkzqaFY
+ GP0bh4ScqgRotZrjX4y8CzwJpKb0VASSKrvrsXoJdEMHhibrvFFkfBZkd
+ e6LQ4L1gMWIVBTIXyPdJG3i/hv9V+2BY17nWJckKUdnHlUlb0fxa1ZehO
+ XsGNjDnu5GU/OOCNwyFpfzFwMqqTUn/c9fSdS8iYCKBXqoLJly9QNTAdm
+ F7u9w9cSXA+9VBIJ5zF0dvE6+gvWtBIwPj6HNVAfbcQqEr5Ycy0qJh9Sl w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332431375"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332431375"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 01:17:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="618994802"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="618994802"
 Received: from skalyan-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.52.13])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 01:07:30 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 01:17:02 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230214052017.3312044-1-suraj.kandpal@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230208114300.3123934-2-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230202182012.3197674-1-suraj.kandpal@intel.com>
- <20230214052017.3312044-1-suraj.kandpal@intel.com>
-Date: Tue, 14 Feb 2023 11:07:28 +0200
-Message-ID: <87ttzoty27.fsf@intel.com>
+References: <20230208114300.3123934-1-imre.deak@intel.com>
+ <20230208114300.3123934-2-imre.deak@intel.com>
+Date: Tue, 14 Feb 2023 11:17:00 +0200
+Message-ID: <87r0ustxmb.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dp: Increase slice_height for DP
+Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915: Fix system suspend without
+ fbdev being initialized
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,83 +59,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> According VDSC spec 1.2a Section 3.8 Options for Slice
-> implies that 108 lines is an optimal slice height, but any
-> size can be used as long as vertical active
-> integer multiple and maximum vertical slice count requirements are met.
+On Wed, 08 Feb 2023, Imre Deak <imre.deak@intel.com> wrote:
+> If fbdev is not initialized for some reason - in practice on platforms
+> without display - suspending fbdev should be skipped during system
+> suspend, fix this up. While at it add an assert that suspending fbdev
+> only happens with the display present.
 >
-> Bspec: 49259
+> This fixes the following:
 >
-> --v3
-> -remove previous fallback code and return slice_height as 2 [Jani]
+> [   91.227923] PM: suspend entry (s2idle)
+> [   91.254598] Filesystems sync: 0.025 seconds
+> [   91.270518] Freezing user space processes
+> [   91.272266] Freezing user space processes completed (elapsed 0.001 seconds)
+> [   91.272686] OOM killer disabled.
+> [   91.272872] Freezing remaining freezable tasks
+> [   91.274295] Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
+> [   91.659622] BUG: kernel NULL pointer dereference, address: 00000000000001c8
+> [   91.659981] #PF: supervisor write access in kernel mode
+> [   91.660252] #PF: error_code(0x0002) - not-present page
+> [   91.660511] PGD 0 P4D 0
+> [   91.660647] Oops: 0002 [#1] PREEMPT SMP NOPTI
+> [   91.660875] CPU: 4 PID: 917 Comm: bash Not tainted 6.2.0-rc7+ #54
+> [   91.661185] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS edk2-20221117gitfff6d81270b5-9.fc37 unknown
+> [   91.661680] RIP: 0010:mutex_lock+0x19/0x30
+> [   91.661914] Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 53 48 89 fb e8 62 d3 ff ff 31 c0 65 48 8b 14 25 00 15 03 00 <f0> 48 0f b1 13 75 06 5b c3 cc cc cc cc 48 89 df 5b eb b4 0f 1f 40
+> [   91.662840] RSP: 0018:ffffa1e8011ffc08 EFLAGS: 00010246
+> [   91.663087] RAX: 0000000000000000 RBX: 00000000000001c8 RCX: 0000000000000000
+> [   91.663440] RDX: ffff8be455eb0000 RSI: 0000000000000001 RDI: 00000000000001c8
+> [   91.663802] RBP: ffff8be459440000 R08: ffff8be459441f08 R09: ffffffff8e1432c0
+> [   91.664167] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+> [   91.664532] R13: 00000000000001c8 R14: 0000000000000000 R15: ffff8be442f4fb20
+> [   91.664905] FS:  00007f28ffc16740(0000) GS:ffff8be4bb900000(0000) knlGS:0000000000000000
+> [   91.665334] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   91.665626] CR2: 00000000000001c8 CR3: 0000000114926006 CR4: 0000000000770ee0
+> [   91.665988] PKRU: 55555554
+> [   91.666131] Call Trace:
+> [   91.666265]  <TASK>
+> [   91.666381]  intel_fbdev_set_suspend+0x97/0x1b0 [i915]
+> [   91.666738]  i915_drm_suspend+0xb9/0x100 [i915]
+> [   91.667029]  pci_pm_suspend+0x78/0x170
+> [   91.667234]  ? __pfx_pci_pm_suspend+0x10/0x10
+> [   91.667461]  dpm_run_callback+0x47/0x150
+> [   91.667673]  __device_suspend+0x10a/0x4e0
+> [   91.667880]  dpm_suspend+0x134/0x270
+> [   91.668069]  dpm_suspend_start+0x79/0x80
+> [   91.668272]  suspend_devices_and_enter+0x11b/0x890
+> [   91.668526]  pm_suspend.cold+0x270/0x2fc
+> [   91.668737]  state_store+0x46/0x90
+> [   91.668916]  kernfs_fop_write_iter+0x11b/0x200
+> [   91.669153]  vfs_write+0x1e1/0x3a0
+> [   91.669336]  ksys_write+0x53/0xd0
+> [   91.669510]  do_syscall_64+0x58/0xc0
+> [   91.669699]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
+> [   91.669980]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
+> [   91.670278]  ? syscall_exit_to_user_mode+0x17/0x40
+> [   91.670524]  ? do_syscall_64+0x67/0xc0
+> [   91.670717]  ? __irq_exit_rcu+0x3d/0x140
+> [   91.670931]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+> [   91.671202] RIP: 0033:0x7f28ffd14284
 >
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 62cbab7402e9..fe98c7dec193 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1415,6 +1415,27 @@ static int intel_dp_sink_dsc_version_minor(struct intel_dp *intel_dp)
->  		DP_DSC_MINOR_SHIFT;
->  }
->  
-> +static int intel_dp_get_slice_height(int vactive)
-> +{
-> +	int slice_height;
-> +
-> +	/*
-> +	 * VDSC1.2a spec in Section 3.8 Options for Slices implies that
-> +	 * 108 lines is an optimal slice height,
-> +	 * but any size can be used as long as vertical active integer
-> +	 * multiple and maximum vertical slice count requirements are met.
-> +	 */
-> +	for (slice_height = 108; slice_height <= vactive; slice_height += 2)
-> +		if (vactive % slice_height == 0)
-> +			return slice_height;
-> +
-> +	/* Highly unlikely we reach here as most of the resloutions will end up
-> +	 * finding appropriate slice_height in above loop but returning slice_height as 2
-> +	 * here as it should work with all resolutions.
-> +	 */
+> Fixes: f8cc091e0530 ("drm/i915/fbdev: suspend HPD before fbdev unregistration")
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8015
+> Tested-by: iczero <iczero@hellomouse.net>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: iczero <iczero@hellomouse.net>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Thanks for the patch, pushed to drm-intel-next with the comment typo
-fixed.
+Cc: <stable@vger.kernel.org> # v6.1+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-BR,
-Jani.
-
-> +	return 2;
-> +}
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 81b41148e592b..e719202d831f0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -632,7 +632,13 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
+>  	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+>  	struct fb_info *info;
+>  
+> -	if (!ifbdev || !ifbdev->vma)
+> +	if (!ifbdev)
+> +		return;
 > +
->  static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  				       struct intel_crtc_state *crtc_state)
->  {
-> @@ -1433,17 +1454,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
->  	vdsc_cfg->pic_height = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+> +	if (drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)))
+> +		return;
+> +
+> +	if (!ifbdev->vma)
+>  		goto set_suspend;
 >  
-> -	/*
-> -	 * Slice Height of 8 works for all currently available panels. So start
-> -	 * with that if pic_height is an integral multiple of 8. Eventually add
-> -	 * logic to try multiple slice heights.
-> -	 */
-> -	if (vdsc_cfg->pic_height % 8 == 0)
-> -		vdsc_cfg->slice_height = 8;
-> -	else if (vdsc_cfg->pic_height % 4 == 0)
-> -		vdsc_cfg->slice_height = 4;
-> -	else
-> -		vdsc_cfg->slice_height = 2;
-> +	vdsc_cfg->slice_height = intel_dp_get_slice_height(vdsc_cfg->pic_height);
->  
->  	ret = intel_dsc_compute_params(crtc_state);
->  	if (ret)
+>  	info = ifbdev->helper.info;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
