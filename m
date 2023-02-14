@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE0969651A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC2769651B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:43:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAB6210E8D7;
-	Tue, 14 Feb 2023 13:43:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D3A510E1C6;
+	Tue, 14 Feb 2023 13:43:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12DE10E141
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:43:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5D110E8DB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676382232; x=1707918232;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VhbWQvbwlVSzJcOdoJ/w/zvuZ2g+uYbWP91P21XBJSY=;
- b=D2VrGj9YXiAT3ZMbPfz88SutAEMu0ENuoZj1pwN3s6Gxsnnt6cyLS+JH
- KrbpqzuW16Arq3nyOtSuclms+jsZaPCmBM/ude6IZnUkM1bBzh/WeXmAA
- XNRywrGn3xqEXlQ84ragEIbyvWZILB2ZXu0clZBlO0eTADapo8EuYsM3w
- 4Ez+bZX5CE4IKBXkpRenZYu0utl53EjGr2J3279EqkrU77mgtAhq1ZKU/
- s6iiBQrI8FiZM34Z8fhWSaJofBVJV14KEERYbg6be5qmrD8FBHdHKafz8
- bcgGFkhHjiNuQOPe3zMpbrqFTesfOY/rdjsu09yml5ifgV+ju/RHlURMv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311518939"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311518939"
+ t=1676382235; x=1707918235;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=I1bQVjwXUYv+DElXiv4hKYLIkQHdtWe7dxYnElfhx7w=;
+ b=lo6tC40oI4UAwux/Xb7NS6Yh1M+aBfiQ6npqvhHWS/CVmX9euhhA1F6c
+ twcaYYSP4UeIG9rV2tAB0lLtZ/nm/Lau+8upS1fNuvTiMN9rjQsilG96h
+ NM6wzY7Ca3hRx8hK99O9a18sYNNjs0NW9WNWlkq3IYvZXNnQIMAz7QSpi
+ NB7ZSh6EoHrj4aiay4mT8Aepjt0WpQ1DcEG9RqCcVMzI+DS7KZVwzrFHd
+ by0d/Uq1GEd1g5t8/4CB0mKwcoTwuiGgXr9slh1gcSkX3UyQPgdix/fMw
+ rwb06KWEopQCR94TOVg8U+FAD1v2VL5k6fyWLqdHxuJVEhd4WYwG3lTL3 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311518948"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311518948"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 05:43:51 -0800
+ 14 Feb 2023 05:43:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540392"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540392"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540396"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540396"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:43:49 -0800
+ by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:43:52 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 15:43:48 +0200
+ Tue, 14 Feb 2023 15:43:51 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 15:43:46 +0200
-Message-Id: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 15:43:47 +0200
+Message-Id: <20230214134348.11020-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
+References: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Don't switch to TPS1 when
- disabling DP_TP_CTL
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Don't send idle pattern after
+ DP2.0 link training
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,39 +65,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-AFAICS Bspec has never asked us to switch to TPS1 when *disabling*
-DP_TP_CTL. Let's stop doing that in case it confuses something.
-We do have to switch before we *enable* DP_TP_CTL, but that
-is already being handled correctly.
+Bspec calls us to select pattern 2 after link training for
+DP 2.0. Let's do that... by doing nothing because we will
+be transmitting pattern 2 at the end of the link training
+already.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bfd1e30a27b4..4af2ba2dfcad 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2624,8 +2624,7 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
- 		val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
--		val &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
--		val |= DP_TP_CTL_LINK_TRAIN_PAT1;
-+		val &= ~DP_TP_CTL_ENABLE;
- 		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 3d3efcf02011..b35af21a2761 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1379,10 +1379,6 @@ intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
+ 		}
  	}
  
-@@ -3153,8 +3152,7 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 			wait = true;
- 		}
- 
--		dp_tp_ctl &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
--		dp_tp_ctl |= DP_TP_CTL_LINK_TRAIN_PAT1;
-+		dp_tp_ctl &= ~DP_TP_CTL_ENABLE;
- 		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
- 		intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-	/* FIXME: Should DP_TRAINING_PATTERN_DISABLE be written first? */
+-	if (intel_dp->set_idle_link_train)
+-		intel_dp->set_idle_link_train(intel_dp, crtc_state);
+-
+ 	return true;
+ }
  
 -- 
 2.39.1
