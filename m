@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C7D69651E
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:44:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C393D69654F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:47:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5985A10E1CE;
-	Tue, 14 Feb 2023 13:44:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D9B210E8D7;
+	Tue, 14 Feb 2023 13:47:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 450B910E1CE
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:43:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B60E710E8D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676382238; x=1707918238;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=pheA9WE0QONzrOXmwzaP5ndUCTVe2nXo6Ky+9PudEVw=;
- b=mnAimuaFwhB2ajEv0vOK4HO8jO2GrkckE3C1/QjFSGvcLkc8gKxiFe5L
- OJbnLp6+PxNwe17NShY4LjrJookGM4KIXfw/6ToHFU+VPiyTj9EWPq73e
- PGfJep4QtKJ06oJnpsqaNvnf1YcZfcE7/9yyTh6auiRrHR6z2HFJlADx8
- uDfmMpkW1zjtQXftVR3dSPcDLUpoQmWOtX/2/ic07uX6X5IYD383GPxK3
- 3ZFTWwvAWutB+JXMAHJVLFYxy5CmVegVXxW8tx7KbquGywGycyeEatM1H
- 8UWEpIB9BcPuuMlXmfThdWNAmrnwBFe/n5Wch6Y6421+gPqZaFJ/erzBW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311518965"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311518965"
+ t=1676382462; x=1707918462;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JQuZGtjY/ATaLBeLVcrCMHgM4jt2Du/vRvYKLYUuHFs=;
+ b=XFk/Ik43CmURnrGOydTkgI7bGdjvAM+4nPdn5/lb6BLI7AgNU6nJRGAE
+ r7hXzFUTI92zta6QhuKBUsErYNRJa+hO3QYk2LcxUFw0zovCOrj8Bdn7n
+ 68+cXjpzE70EsAAwO2kkppAX1cBBxSSoxrt64w769tCiSlk6b0QNYCNRo
+ ilg1rw3kCp0WkFv8hbi6TT2wi8wH3HwwwrTCv5Si3J+7OkpjmXa7TsCgr
+ AAs++OAgQ5gKbpTAajw5DXqyQWTCt+X/QAx4K+2Oxsn/odzk7lCVdXRW0
+ ai1PIQ5OkCSHuGtSK+0uaK6fTzRQywOJO2KccIf3rKXyB97ZCNT/t2BTq A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311519652"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311519652"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 05:43:58 -0800
+ 14 Feb 2023 05:47:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540398"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540398"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540844"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540844"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:43:55 -0800
+ by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:47:40 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 15:43:54 +0200
+ Tue, 14 Feb 2023 15:47:39 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 15:43:48 +0200
-Message-Id: <20230214134348.11020-3-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 15:47:37 +0200
+Message-Id: <20230214134739.25077-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
-References: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Fix idle pattern enabling
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Make backlight setup debugs
+ consistent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,62 +63,140 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we are always switching to the idle pattern after the
-link training, but we don't always wait for the minimum number
-of idle patterns sent. That doesn't look to be what Bspec
-asks of us.
+It's confusing to debug backlight issues when one can't
+easily even tell what kind of backlight control was
+selected. Sprinkle uniform debug messages to all the
+backlight setup functions.
 
-According to bspec what we should do is switch to idle pattern
-and wait for it only in DP1.4 MST cases. In all other cases we
-should apparently do neither.
-
-What confuses matters further is that the port sync SST sequence
-asks us to "stay in idle pattern". But if we never switched to it
-how can we stay in it? This still needs further clarificaiton.
+Also the one that was already there (ext_pwm) was
+using drm_info() for some reason. I don't think that's
+warranted so switch it to drm_dbg_kms() as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 20 +++++++++-----------
- 1 file changed, 9 insertions(+), 11 deletions(-)
+ .../gpu/drm/i915/display/intel_backlight.c    | 36 +++++++++++++++++--
+ .../i915/display/intel_dsi_dcs_backlight.c    |  5 +++
+ 2 files changed, 39 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 4af2ba2dfcad..a3466b71d18a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3219,24 +3219,22 @@ static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp,
- {
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum port port = encoder->port;
- 	u32 val;
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index a4e4b7f79e4d..d1d54870aefd 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -1270,6 +1270,10 @@ static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unus
+ 			       cpu_ctl2 & ~BLM_PWM_ENABLE);
+ 	}
  
-+	/*
-+	 * FIXME DP modeset sequence says to switch to idle pattern
-+	 * only for DP1.4 MST cases, but port sync SST sequence asks
-+	 * us to "stay in Idle Pattern", implying that we should
-+	 * switch to it earlier. Which is it?
-+	 */
-+	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
-+		return;
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name);
 +
- 	val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
- 	val &= ~DP_TP_CTL_LINK_TRAIN_MASK;
- 	val |= DP_TP_CTL_LINK_TRAIN_IDLE;
- 	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+ 	return 0;
+ }
  
--	/*
--	 * Until TGL on PORT_A we can have only eDP in SST mode. There the only
--	 * reason we need to set idle transmission mode is to work around a HW
--	 * issue where we enable the pipe while not in idle link-training mode.
--	 * In this case there is requirement to wait for a minimum number of
--	 * idle patterns to be sent.
--	 */
--	if (port == PORT_A && DISPLAY_VER(dev_priv) < 12)
--		return;
--
- 	if (intel_de_wait_for_set(dev_priv,
- 				  dp_tp_status_reg(encoder, crtc_state),
- 				  DP_TP_STATUS_IDLE_DONE, 1))
+@@ -1297,6 +1301,10 @@ static int pch_setup_backlight(struct intel_connector *connector, enum pipe unus
+ 	panel->backlight.pwm_enabled = (cpu_ctl2 & BLM_PWM_ENABLE) &&
+ 		(pch_ctl1 & BLM_PCH_PWM_ENABLE);
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name);
++
+ 	return 0;
+ }
+ 
+@@ -1335,6 +1343,10 @@ static int i9xx_setup_backlight(struct intel_connector *connector, enum pipe unu
+ 
+ 	panel->backlight.pwm_enabled = val != 0;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name);
++
+ 	return 0;
+ }
+ 
+@@ -1364,6 +1376,10 @@ static int i965_setup_backlight(struct intel_connector *connector, enum pipe unu
+ 
+ 	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name);
++
+ 	return 0;
+ }
+ 
+@@ -1392,6 +1408,10 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+ 
+ 	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name);
++
+ 	return 0;
+ }
+ 
+@@ -1428,6 +1448,11 @@ bxt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+ 
+ 	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PWM for backlight control (controller=%d)\n",
++		    connector->base.base.id, connector->base.name,
++		    panel->backlight.controller);
++
+ 	return 0;
+ }
+ 
+@@ -1490,6 +1515,11 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+ 
+ 	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control (controller=%d)\n",
++		    connector->base.base.id, connector->base.name,
++		    panel->backlight.controller);
++
+ 	return 0;
+ }
+ 
+@@ -1538,8 +1568,10 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+ 			NSEC_PER_SEC / get_vbt_pwm_freq(connector);
+ 	}
+ 
+-	drm_info(&i915->drm, "Using %s PWM for LCD backlight control\n",
+-		 desc);
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using %s PWM for backlight control\n",
++		    connector->base.base.id, connector->base.name, desc);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+index 20e466d843ce..049443245310 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+@@ -162,6 +162,7 @@ static void dcs_enable_backlight(const struct intel_crtc_state *crtc_state,
+ static int dcs_setup_backlight(struct intel_connector *connector,
+ 			       enum pipe unused)
+ {
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
+ 
+ 	if (panel->vbt.backlight.brightness_precision_bits > 8)
+@@ -171,6 +172,10 @@ static int dcs_setup_backlight(struct intel_connector *connector,
+ 
+ 	panel->backlight.level = panel->backlight.max;
+ 
++	drm_dbg_kms(&i915->drm,
++		    "[CONNECTOR:%d:%s] Using DCS for backlight control\n",
++		    connector->base.base.id, connector->base.name);
++
+ 	return 0;
+ }
+ 
 -- 
 2.39.1
 
