@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 276476965B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 15:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31FE6965B6
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 15:05:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D08D10E8DE;
-	Tue, 14 Feb 2023 14:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E76B10E8DE;
+	Tue, 14 Feb 2023 14:05:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFAC10E8DE
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 14:04:19 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB23910E8E7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 14:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676383459; x=1707919459;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Uzu/WLXeGtywKyv7/YYVrUemkX/+Jxbcw5BqK6OFPGY=;
- b=AFM3mT3l5wahsowHSw8EjqZ5CEzZfgW9RPwq1fAGlk5fojOD7QDXy2As
- XaXfcQqovsyNeyEeN0cMTxShSfNu/u61lqS8fypaY9LmfXK+0Qt2L1bM6
- ym7VdfFxn+WF9spn+iNXnsaZGNVjOvEd9nLIcDFRIZ/w+iQTFX5iJHeCh
- FvzJZxDwhN2TxZ12/59RiwhiDGxd10u9dSfYDB5qqh6BklUZVBf/3zrXz
- LapK28Sr4BQfi5us5Vv54AKApdILRzBmyUd5YVcCtwCv4rmFA7e4dBrGn
- 6aMNSmM8qozEiUUVQA0YE4LQtwaI2NRomC2pwKiWSiCzJG/+6j5xfGppx Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="333302317"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="333302317"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 06:04:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="737888146"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="737888146"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by fmsmga004.fm.intel.com with SMTP; 14 Feb 2023 06:04:06 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 16:04:05 +0200
-Date: Tue, 14 Feb 2023 16:04:05 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <Y+uU1X84eAD+x4c3@intel.com>
-References: <20230214100132.24208-1-stanislav.lisovskiy@intel.com>
+ t=1676383503; x=1707919503;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=5hu/bOEIGsDcqFLIWeIikqiz23LsMrS199rylF8/cBM=;
+ b=TN+prAWZKFvIKjtd8GopWuJgI6NO//41fLMc26GHfsoNgguMSzm/4JOI
+ Tg60B040pyAgn/rIdTvQn+Nwq0X9j7HEwop4YA7glFVjE1+nt0i1QlIef
+ Nh/izwDWvEQmjcmic7N11TIrQhDL/dYivpCyNsbNjMc4AkMccChYqPVye
+ iliT92/GlBOal44aWUJc7I7ksVxLBBeRRdi37I6ZNOkV+Lg98eZDQ3W8j
+ f2dpVFddlqeL2w+YvGoYhuzVss3RLm5sh2y42ngjfSVm7I+ws09c7jxMr
+ IqrncGBYJO3nygysFU1jki/LKHlobrc7UfnndaeEzkVUrTuatd2eAu/hW g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="329789978"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="329789978"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 06:05:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="843175499"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="843175499"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 06:05:01 -0800
+Date: Tue, 14 Feb 2023 16:04:57 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y+uVCfwM5oTrDpE+@ideak-desk.fi.intel.com>
+References: <20230208114300.3123934-1-imre.deak@intel.com>
+ <20230208114300.3123934-3-imre.deak@intel.com>
+ <87h6votx8v.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230214100132.24208-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
- configuration to pcode
+In-Reply-To: <87h6votx8v.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: Move display power
+ initialization during driver probing later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,254 +59,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 14, 2023 at 12:01:32PM +0200, Stanislav Lisovskiy wrote:
-> From: Jigar Bhatt <jigar.bhatt@intel.com>
+On Tue, Feb 14, 2023 at 11:25:04AM +0200, Jani Nikula wrote:
+> On Wed, 08 Feb 2023, Imre Deak <imre.deak@intel.com> wrote:
+> > Determining whether the display engine is present on a platform happens
+> > only in intel_device_info_runtime_init(). Initializing the display power
+> > functionality depends on this condition, so move
+> > intel_power_domains_init() later after the runtime init function has
+> > been called.
+> >
+> > The next patch fixing platforms without display, depends on this patch.
+> >
 > 
-> Display to communicate "display configuration" to Pcode for more accurate
-> power accounting for DG2. Existing sequence is only sending the voltage
-> value to the Pcode. Adding new sequence with current cdclk associate
-> with voltage value masking. Adding pcode request when any power well
-> will disable or enable.
+> It's pretty hard to review we aren't using any of the power domain stuff
+> before the intel_power_domains_init() call. What happens if we do?
+
+That shouldn't happen before the HW state is read out in
+intel_power_domains_init_hw(). I can't see anything calling the display power
+get/put/is_enabled functions before that, but it would be good to ensure this.
+So how about also adding:
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7222502a760cc..7014e1770f57a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -213,6 +213,9 @@ bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
+ 	struct i915_power_well *power_well;
+ 	bool is_enabled;
+ 
++	drm_WARN_ON(&dev_priv->drm,
++		    dev_priv->display.power.domains.init_state < I915_POWER_DOMAINS_INITIALIZING);
++
+ 	if (dev_priv->runtime_pm.suspended)
+ 		return false;
+ 
+@@ -488,6 +491,9 @@ __intel_display_power_get_domain(struct drm_i915_private *dev_priv,
+ 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+ 	struct i915_power_well *power_well;
+ 
++	drm_WARN_ON(&dev_priv->drm,
++		    power_domains->init_state < I915_POWER_DOMAINS_INITIALIZING);
++
+ 	if (intel_display_power_grab_async_put_ref(dev_priv, domain))
+ 		return;
+ 
+@@ -1880,7 +1886,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *i915, bool resume)
+ {
+ 	struct i915_power_domains *power_domains = &i915->display.power.domains;
+ 
+-	power_domains->initializing = true;
++	power_domains->init_state = I915_POWER_DOMAINS_INITIALIZING;
+ 
+ 	if (DISPLAY_VER(i915) >= 11) {
+ 		icl_display_core_init(i915, resume);
+@@ -1924,7 +1930,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *i915, bool resume)
+ 	}
+ 	intel_power_domains_sync_hw(i915);
+ 
+-	power_domains->initializing = false;
++	power_domains->init_state = I915_POWER_DOMAINS_INITIALIZED;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index 2154d900b1aad..0d9aba94bae01 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -133,7 +133,11 @@ struct i915_power_domains {
+ 	 * Power wells needed for initialization at driver init and suspend
+ 	 * time are on. They are kept on until after the first modeset.
+ 	 */
+-	bool initializing;
++	enum {
++		I915_POWER_DOMAINS_UNINITIALIZED,
++		I915_POWER_DOMAINS_INITIALIZING,
++		I915_POWER_DOMAINS_INITIALIZED,
++	} init_state;
+ 	bool display_core_suspended;
+ 	int power_well_count;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 8710dd41ffd4c..66df7a733afb9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1208,7 +1208,7 @@ static void vlv_display_power_well_init(struct drm_i915_private *dev_priv)
+ 	 * During driver initialization/resume we can avoid restoring the
+ 	 * part of the HW/SW state that will be inited anyway explicitly.
+ 	 */
+-	if (dev_priv->display.power.domains.initializing)
++	if (dev_priv->display.power.domains.init_state < I915_POWER_DOMAINS_INITIALIZED)
+ 		return;
+ 
+ 	intel_hpd_init(dev_priv);
+
+> I approve of the change, but I can't in good faith claim I checked this.
 > 
-> v2: - Fixed identation(Stanislav Lisovskiy)
->     - Made conditions more specific(in the commit we declare that
->       we do this for DG2 only, however that commit changes >= to
->       == for many other platforms.(Stanislav Lisovskiy)
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> v3: - Refactored code for proper identation and smaller conditions
->       (Andi Shyti)
->     - Switched to proper function naming, removed platform specific
->       code from intel_atomic_commit_tail(Jani Nikula)
->     - Moved intel_cdclk_power_usage_to_pcode_pre/post_notification
->       to proper places, before and after setting CDCLK(Stanislav Lisovskiy)
 > 
-> Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 97 ++++++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +
->  drivers/gpu/drm/i915/i915_reg.h            |  4 +
->  3 files changed, 94 insertions(+), 9 deletions(-)
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+> >  drivers/gpu/drm/i915/i915_driver.c           | 7 -------
+> >  2 files changed, 5 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 166662ade593c..b3e7ed3866cde 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -8634,6 +8634,10 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+> >  		goto cleanup_bios;
+> >  
+> >  	/* FIXME: completely on the wrong abstraction layer */
+> > +	ret = intel_power_domains_init(i915);
+> > +	if (ret < 0)
+> > +		goto cleanup_vga;
+> > +
+> >  	intel_power_domains_init_hw(i915, false);
+> >  
+> >  	if (!HAS_DISPLAY(i915))
+> > @@ -8676,6 +8680,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+> >  cleanup_vga_client_pw_domain_dmc:
+> >  	intel_dmc_ucode_fini(i915);
+> >  	intel_power_domains_driver_remove(i915);
+> > +cleanup_vga:
+> >  	intel_vga_unregister(i915);
+> >  cleanup_bios:
+> >  	intel_bios_driver_remove(i915);
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > index 13bf4fe52f9fe..fe2870a6ae631 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -251,9 +251,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+> >  	intel_detect_pch(dev_priv);
+> >  
+> >  	intel_pm_setup(dev_priv);
+> > -	ret = intel_power_domains_init(dev_priv);
+> > -	if (ret < 0)
+> > -		goto err_gem;
+> >  	intel_irq_init(dev_priv);
+> >  	intel_init_display_hooks(dev_priv);
+> >  	intel_init_clock_gating_hooks(dev_priv);
+> > @@ -262,10 +259,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+> >  
+> >  	return 0;
+> >  
+> > -err_gem:
+> > -	i915_gem_cleanup_early(dev_priv);
+> > -	intel_gt_driver_late_release_all(dev_priv);
+> > -	i915_drm_clients_fini(&dev_priv->clients);
+> >  err_rootgt:
+> >  	intel_region_ttm_device_fini(dev_priv);
+> >  err_ttm:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 82da76b586ed..4f8bcc0b51e8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1908,10 +1908,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  		 * NOOP - No Pcode communication needed for
->  		 * Display versions 14 and beyond
->  		 */;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
->  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
->  				      cdclk_config->voltage_level);
-> -	else
-> +	if (DISPLAY_VER(dev_priv) < 11) {
->  		/*
->  		 * The timeout isn't specified, the 2ms used here is based on
->  		 * experiment.
-> @@ -1922,7 +1922,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
->  					      cdclk_config->voltage_level,
->  					      150, 2);
-> -
-> +	}
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
->  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-> @@ -2218,6 +2218,29 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  		    cdclk_config->voltage_level);
->  }
->  
-> +static void intel_pcode_notify(struct drm_i915_private *i915,
-> +			       unsigned int cdclk, u8 voltage_level,
-> +			       u8 active_pipes)
-> +{
-> +	int ret;
-> +
-> +	if (DISPLAY_VER(i915) < 12)
-> +		return;
-> +
-> +	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
-> +				SKL_CDCLK_PREPARE_FOR_CHANGE |
-
-Isn't that something we're supposed to set only *before*
-the change? Here it looks like we're setting also for the
-post call.
-
-> +				DISPLAY_TO_PCODE_MASK
-> +				(cdclk, active_pipes, voltage_level),
-> +				SKL_CDCLK_READY_FOR_CHANGE,
-> +				SKL_CDCLK_READY_FOR_CHANGE, 3);
-> +	if (ret) {
-> +		drm_err(&i915->drm,
-> +				"Failed to inform PCU about display config (err %d)\n",
-> +				ret);
-> +		return;
-> +	}
-> +}
-> +
->  /**
->   * intel_set_cdclk - Push the CDCLK configuration to the hardware
->   * @dev_priv: i915 device
-> @@ -2287,6 +2310,56 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
->  	}
->  }
->  
-> +/**
-> + * intel_cdclk_power_usage_to_pcode_pre_notification: display to pcode notification
-> + * before the enabling power wells.
-> + * send notification with cdclk, number of pipes, voltage_level.
-> + * @state: intel atomic state
-> + */
-> +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	const struct intel_cdclk_state *old_cdclk_state =
-> +		intel_atomic_get_old_cdclk_state(state);
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> +				 &new_cdclk_state->actual) &&
-> +				 (new_cdclk_state->active_pipes ==
-> +				 old_cdclk_state->active_pipes))
-> +		return;
-> +	else if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk)
-> +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> +				   new_cdclk_state->actual.voltage_level,
-> +				   new_cdclk_state->active_pipes);
-> +	else if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk)
-> +		intel_pcode_notify(dev_priv, old_cdclk_state->actual.cdclk,
-> +				   old_cdclk_state->actual.voltage_level,
-> +				   old_cdclk_state->active_pipes);
-> +	else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes)
-> +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> +				   new_cdclk_state->actual.voltage_level,
-> +				   new_cdclk_state->active_pipes);
-> +
-> +	intel_pcode_notify(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
-> +			   new_cdclk_state->actual.voltage_level,
-> +			   new_cdclk_state->active_pipes);
-
-I don't understand what is going on here. Are we trying to
-say something like
-
-intel_pcode_notify(...,
-		   max(old_cdclk, new_cdclk),
-		   max(old_voltage_level, new_voltage_level),
-		   old_active_pipes | new_active_pipes);
-?
-
-Also the inclusion of the pipes here would imply that
-we need to think about serialize vs. lock.
-
-> +}
-> +
-> +/* intel_cdclk_power_usage_to_pcode_post_notification: after frequency change sending
-> + * voltage_level, active pipes, current CDCLK frequency.
-> + * @state: intel atomic state
-> + */
-> +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> +				   new_cdclk_state->actual.voltage_level,
-> +				   new_cdclk_state->active_pipes);
-> +}
-> +
->  /**
->   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
->   * @state: intel atomic state
-> @@ -2297,7 +2370,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
->  void
->  intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	const struct intel_cdclk_state *old_cdclk_state =
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
-> @@ -2308,11 +2381,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  				 &new_cdclk_state->actual))
->  		return;
->  
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		intel_cdclk_power_usage_to_pcode_pre_notification(state);
-> +
->  	if (pipe == INVALID_PIPE ||
->  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-> -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
->  
-> -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
->  	}
->  }
->  
-> @@ -2326,7 +2402,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  void
->  intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	const struct intel_cdclk_state *old_cdclk_state =
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
-> @@ -2337,11 +2413,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
->  				 &new_cdclk_state->actual))
->  		return;
->  
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		intel_cdclk_power_usage_to_pcode_post_notification(state);
-> +
->  	if (pipe != INVALID_PIPE &&
->  	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
-> -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
->  
-> -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 51e2f6a11ce4..fa356adc61d9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
->  			       const struct intel_cdclk_config *b);
->  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
->  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-> +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state);
-> +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state);
->  void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  			     const struct intel_cdclk_config *cdclk_config,
->  			     const char *context);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 596efc940ee7..b90c31862083 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6498,6 +6498,10 @@
->  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
->  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
->  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-> +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-> +#define   DISPLAY_TO_PCODE_MASK(cdclk, num_pipes, voltage_level) \
-> +		((1 << 31) | (num_pipes << 28) | \
-> +		(cdclk << 16) | (1 << 27) | voltage_level)
->  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
->  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
->  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
 > -- 
-> 2.37.3
-
--- 
-Ville Syrjälä
-Intel
+> Jani Nikula, Intel Open Source Graphics Center
