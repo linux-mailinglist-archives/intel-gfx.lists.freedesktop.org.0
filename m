@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79FD0696280
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5F8696286
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:35:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B8910E899;
-	Tue, 14 Feb 2023 11:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E92B810E893;
+	Tue, 14 Feb 2023 11:35:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8B210E893
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 11:32:38 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD28610E08C;
+ Tue, 14 Feb 2023 11:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676374358; x=1707910358;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=G7k9LiH2RzCDt4bLSGTFY+WSGhg8twCo3n3FYbpWtqs=;
- b=B42E74kvHoxtJYdbwMKRKwwiShmSa+DOQI1rWE5em16tdDmkPKmr004e
- omBrdxZCMc5YBMFXUtd547NBMxDOxE/d6+JwxEiCzJPZivNtFaAhmW1yj
- nS0Z3cZoUDQBC3UaEx3smdqFz5cpFZ8uRig3Ci+MXsKWXWl0Z2I+O0ebY
- Kg9n0GGECI7qM/oTYB2Xo9ifibdYMSkvuU0c7b1KSg1/Y12mA7JctxMMt
- fYqhl15h8GUyZ4/xiXFt8+sg/Rae1L8rX79bCH86OvjT7WYUlMW/Pws/y
- u2emDvLWsc8WJGe/YDoZieCQJAJj/Upx7+WVpkFA5xTUl6KpCitfj/FsD A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="417357767"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="417357767"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:32:30 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="998042918"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="998042918"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.37.28])
- ([10.249.37.28])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:32:28 -0800
-Message-ID: <001462f1-acad-9a5f-0351-e37af3563a3a@linux.intel.com>
-Date: Tue, 14 Feb 2023 12:32:26 +0100
+ t=1676374536; x=1707910536;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=jtZ5PCi8GSmEnz2460D5rlnWgt7rQHRU2Rt5k9+j6u4=;
+ b=ZL/3P3IBl1n5noh6W1Lz4e2n2XUkrkDwbQZYUi1A9oVIdNaXKX9VjeLi
+ lKntBl1/36mMEds9QtpNlI9CGdW/E6xdVElyiu8i2/kSxqI4W9aivJw+N
+ kOwZc/opi7PG+iDlKtQrCbBmqcupUAA0O5qth5Kls3Ihj0IPbs32PD4tg
+ frgNKt6qXG9r0W1GVrWkXFkYu6A7uxN/vB0xOnZe8tCpJ4cWMPVEFMqzu
+ 3fvh6qtl73aZ/fXS86Y0IHUccCnEcFvu32w6/JV9h1A5sBwsnvz6cj0Tg
+ 7PRtT1aPzO986Mpimc3ajWST0ecX4gHx2UxUS+71dXodYLxOw2rTW9AQV A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332451649"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332451649"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 03:35:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732866612"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732866612"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by fmsmga008.fm.intel.com with SMTP; 14 Feb 2023 03:35:32 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Feb 2023 13:35:32 +0200
+Date: Tue, 14 Feb 2023 13:35:32 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Message-ID: <Y+tyBGmlQi6IGqF0@intel.com>
+References: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
+ <20230208040911.12590-2-ville.syrjala@linux.intel.com>
+ <20230208141312.76df0cb0.pekka.paalanen@collabora.com>
+ <Y+OdtR78JnQOTj38@intel.com> <Y+QRSH3kLD4Xrktc@intel.com>
+ <20230209135105.4137872c.pekka.paalanen@collabora.com>
+ <20230214114227.7fa94b78@eldfell> <Y+tiIYMVnQ6gyJ/e@intel.com>
+ <20230214131745.294d5363@eldfell>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20230210150344.1066991-1-andi.shyti@linux.intel.com>
- <17d5dc0d-4bb9-6e13-bac1-8d1e7aad3f17@linux.intel.com>
- <20230213233654.t6icjq5e2bhxn44k@ldmartin-desk2.lan>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230213233654.t6icjq5e2bhxn44k@ldmartin-desk2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Use i915 instead of dev_priv
- as name for the private device
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230214131745.294d5363@eldfell>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Introduce plane SIZE_HINTS property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +66,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org,
+ Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Feb 14, 2023 at 01:17:45PM +0200, Pekka Paalanen wrote:
+> On Tue, 14 Feb 2023 12:27:45 +0200
+> Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> 
+> > On Tue, Feb 14, 2023 at 11:42:27AM +0200, Pekka Paalanen wrote:
+> > > On Thu, 9 Feb 2023 13:51:05 +0200
+> > > Pekka Paalanen <pekka.paalanen@collabora.com> wrote:
+> > >   
+> > > > Maybe we could refine this so that userspace uses the stride and height
+> > > > implied by the caps for allocation, and then use the exact cursor image
+> > > > size for AddFB2? And have drivers pick any size between those two they
+> > > > can use. The kernel would need the userspace to promise that the
+> > > > padding is always zero-initialized, so the driver can simply scan out
+> > > > any area of the buffer it needs.
+> > > > 
+> > > > Then we don't need SIZE_HINTS.  
+> > > 
+> > > Would there be any problem with this?
+> > > 
+> > > If this works, it would seem the superior solution to me, because
+> > > userspace does not need to guess or test for the exact right size.
+> > > Simply allocate at the CAP size, pad the cursor image with transparent
+> > > pixels, and let the kernel scan out the optimal area.  
+> > 
+> > No, the hardware cannot scan out a smaller area because the
+> > stride will be wrong.
+> 
+> In another email of yours you said that hardware requires stride to be
+> equivalent to the width. So it's not that hardware supports only
+> specific strides, it must equal to width. That's really unfortunate and
+> surprising.
 
-On 2/14/2023 12:36 AM, Lucas De Marchi wrote:
-> On Mon, Feb 13, 2023 at 02:11:26PM +0100, Das, Nirmoy wrote:
->>
->> On 2/10/2023 4:03 PM, Andi Shyti wrote:
->>> It is becoming a strong habit to call the drm_i915_private
->>> structures "i915", but there are still many left that are called
->>> dev_priv.
->>>
->>> Sometimes this makes grepping a bit challenging and anyway it
->>> keeps a coherent style.
->>>
->>> Rename all the "dev_priv" structures in the gt/* directory to
->>> "i915".
->>>
->>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->>> ---
->>> Hi,
->>>
->>> just checking if we want something similar. I have this same
->>> replicated patch for the rest of i915 but I want to make sure we
->>> actually want it.
->>
->> I might be lacking historical context here but I assumption is we are 
->> moving towards replacing dev_priv with i915 everywhere.
->
-> Context: 20230201135329.514677-1-luciano.coelho@intel.com and 
-> 87bkml5wv4.fsf@intel.com
+Yeah, probably some Windows legacy hangover that refuses to die.
 
+Ye olde Intel gen2 desktop chipsets (i845/i865) had a somewhat
+programmable stride for cursors (still POT, but could exceed 
+the width), but the mobile chipsets (i830/i85x) did not.
+Unfortunately the mobile lineage won out and we've been stuck
+with this limitation ever since.
 
-Thanks, Lucas.
-
-
-> Lucas De Marchi
+-- 
+Ville Syrjälä
+Intel
