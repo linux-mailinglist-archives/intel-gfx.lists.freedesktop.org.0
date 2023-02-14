@@ -1,66 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 216BE695F7E
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 10:42:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EADED695FD9
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 10:54:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6353610E837;
-	Tue, 14 Feb 2023 09:42:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C87CB10E853;
+	Tue, 14 Feb 2023 09:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487F710E837;
- Tue, 14 Feb 2023 09:42:33 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id eq11so16455197edb.6;
- Tue, 14 Feb 2023 01:42:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=CneLcNePTxmxPCuMN5qgIM5RhFk7J8/AUOOpDjXCfTo=;
- b=YBEhYcRWrVFXOsfSSWfonp/Ty9WSpV18PzjzrXCoMq1c/cqAyRoXS9uO4qGQgKdiJ4
- YqC6SRScz+yHlIOFLmzJmgrBwj4jaV+mrZPyac77o7qscxPdhPeOxrParkCsPIU5zKOO
- V2+0b2yUPwYZhSondGbOVdNVAax98z/wurwVlUWkSsMWcCTWy79gURMOapAsQno7oRSJ
- kwEiq9vX/YM1PzRuP+jlSdulUOrTFkFbzZW6MawrvPyjeN1GnGQaQh9sM9FEG7fh7jHY
- 21ArKpcy96sfUEYHE1f/Pvsr3lhvAqBS90+d2sfJ2MU9dBGYVItFhY1c4JuyNlk3ahi8
- 7nUw==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10B8010E852
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 09:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1676368472;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Z7HSPywDWCEyMhCJb8lmwKntbACUIGI2KhBkTS9bkuM=;
+ b=GvO8hb+cp862t7+uhHUeSPDKWUF9ZO8BmltRFOz8ZC+l03gZYkGoz/mqSV5e+mctuZPnYn
+ PM67ME63inc8LfVxsNiRoleLm2fBYayPlRTUz5mWxUjVp64TnmTBA59KeQMrt6dfir5Z/n
+ 8pM6JYQMKFCOJKYYCgo/skLBf8we8/o=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-596-5HPeIAjTOfujT8M2zFy0Lw-1; Tue, 14 Feb 2023 04:54:31 -0500
+X-MC-Unique: 5HPeIAjTOfujT8M2zFy0Lw-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ g14-20020a056402090e00b0046790cd9082so9671685edz.21
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 01:54:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=CneLcNePTxmxPCuMN5qgIM5RhFk7J8/AUOOpDjXCfTo=;
- b=J8FFJJYz6u9EEj1txhwarrxPzT7uhiIFHpa4UFlrt/aDTdEcTz1W+TxDLoC6BOjUIO
- amsQRcdumu0UV1T8X4U2PHLNKf5/K0xri9oN7/s9ZRZXBnKUHzuZVieKtJXesIqNlwQQ
- fse9bkfnfrTdY9WiEOfOObcdduBhFJKhGAIHfZmhmYmsANpu6AKeRs8GhJPy/JBUfTBi
- QyYUWpQXk3ONPkF+WPzoYX0QMbSBNXAvidkKLeteewczDKwDMBlPRKJWteZez7fvJMrP
- vVJQH4rP9Ksu7PS09H5KNrRPxo0FyOb4IBs7nONHsk9510QEsgeuTmGh6xE8KScJtLUe
- PCKA==
-X-Gm-Message-State: AO0yUKUbDcegmawbemw7p/9Bk0RwedAmqnFc4p6wNAfcgdOh0LuFjqtx
- 9nITZHJ5geDwCNDRp3/XjoU=
-X-Google-Smtp-Source: AK7set/DKg4offrj49NOcxRraTwrBgS5kW5JzQYHzaPC48O0tJhS6QfPsTr0d+WQ7dX0m9sIgNFifA==
-X-Received: by 2002:a50:9b58:0:b0:4aa:c3da:3ac5 with SMTP id
- a24-20020a509b58000000b004aac3da3ac5mr1582849edj.3.1676367751641; 
- Tue, 14 Feb 2023 01:42:31 -0800 (PST)
-Received: from eldfell ([194.136.85.206]) by smtp.gmail.com with ESMTPSA id
- n12-20020a5099cc000000b004acce817ab7sm1884104edb.2.2023.02.14.01.42.30
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z7HSPywDWCEyMhCJb8lmwKntbACUIGI2KhBkTS9bkuM=;
+ b=7a5oOxWvwhOXJaOLyvbU4PYJqZ+LeMayGWjJ6n/0EfCkCuS30NjJmimAVjbOgcN8vE
+ ngeJBD5Js40Wo5yrj8rKEAqMK8uwUK0qbyORwvigBpBhjCdlvCzEHAYsy1PskTn8YQvl
+ AEDf9Rcb3XRWAmhlDr/cebTDCbIRGZGCvmymu9ZYI1T13ZFdmKPA2q0gx9c7Ho1tCJGx
+ BRwzYGZaB89n91xA1Q0M6DbM3aqc4h4FSo/HTY3BXKHZER9ULofnL0HzZdML2oaM1axH
+ aXp9Xn3BbDFAdTmTSTt7/X4ZXmgB/xmFyxBRpfRXZjDv71xonOqnkvlYhZ0pCxiazZQo
+ R9DQ==
+X-Gm-Message-State: AO0yUKWkT4AoWpBT4xTh3pouZDgF3vu+Hy7K7pyMiU8HBQNPQKfaK4pr
+ 6eUaFfH11X7ejq6x+A8q8TjictqMB2SyIfOVued0aWach4qyVuJBEyrTjbg+2htGd6Ypo4XR52w
+ peJUg5DOsB7tbu+lafsP1oCM3krbp
+X-Received: by 2002:a50:c01c:0:b0:4ab:4ad1:a381 with SMTP id
+ r28-20020a50c01c000000b004ab4ad1a381mr1954611edb.10.1676368469889; 
+ Tue, 14 Feb 2023 01:54:29 -0800 (PST)
+X-Google-Smtp-Source: AK7set88J5ZocxktBwxsuK0lcrXo0SBYTs8S0CBD3X/PxkY0meSnqP4Imhuh8weUsEXAp52UOlVP1w==
+X-Received: by 2002:a50:c01c:0:b0:4ab:4ad1:a381 with SMTP id
+ r28-20020a50c01c000000b004ab4ad1a381mr1954598edb.10.1676368469676; 
+ Tue, 14 Feb 2023 01:54:29 -0800 (PST)
+Received: from redhat.com (host-90-235-85-221.mobileonline.telia.com.
+ [90.235.85.221]) by smtp.gmail.com with ESMTPSA id
+ y5-20020a50bb05000000b004accd5604a8sm1994569ede.50.2023.02.14.01.54.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Feb 2023 01:42:31 -0800 (PST)
-Date: Tue, 14 Feb 2023 11:42:27 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20230214114227.7fa94b78@eldfell>
-In-Reply-To: <20230209135105.4137872c.pekka.paalanen@collabora.com>
-References: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
- <20230208040911.12590-2-ville.syrjala@linux.intel.com>
- <20230208141312.76df0cb0.pekka.paalanen@collabora.com>
- <Y+OdtR78JnQOTj38@intel.com> <Y+QRSH3kLD4Xrktc@intel.com>
- <20230209135105.4137872c.pekka.paalanen@collabora.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+ Tue, 14 Feb 2023 01:54:29 -0800 (PST)
+Date: Tue, 14 Feb 2023 10:54:27 +0100
+From: Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <Y+taU+zDiTO9aA0U@redhat.com>
+References: <20230208040911.12590-2-ville.syrjala@linux.intel.com>
+ <20230208211016.7034-1-ville.syrjala@linux.intel.com>
+ <Y+UAN7V+kA58yMfn@redhat.com> <Y+tTpH1nfHIG/Dxg@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/On3glXAj27+16GJv4.m=zYE";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Introduce plane SIZE_HINTS property
+In-Reply-To: <Y+tTpH1nfHIG/Dxg@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Introduce plane SIZE_HINTS
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,62 +86,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- Jonas =?UTF-8?B?w4VkYWhs?= <jadahl@redhat.com>,
- Daniel Stone <daniel@fooishbar.org>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniel@fooishbar.org>, dri-devel@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/On3glXAj27+16GJv4.m=zYE
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, Feb 14, 2023 at 11:25:56AM +0200, Ville Syrjälä wrote:
+> On Thu, Feb 09, 2023 at 03:16:23PM +0100, Jonas Ådahl wrote:
+> > On Wed, Feb 08, 2023 at 11:10:16PM +0200, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > Add a new immutable plane property by which a plane can advertise
+> > > a handful of recommended plane sizes. This would be mostly exposed
+> > > by cursor planes as a slightly more capable replacement for
+> > > the DRM_CAP_CURSOR_WIDTH/HEIGHT caps, which can only declare
+> > > a one size fits all limit for the whole device.
+> > > 
+> > > Currently eg. amdgpu/i915/nouveau just advertize the max cursor
+> > > size via the cursor size caps. But always using the max sized
+> > > cursor can waste a surprising amount of power, so a better
+> > > stragey is desirable.
+> > > 
+> > > Most other drivers don't specify any cursor size at all, in
+> > > which case the ioctl code just claims that 64x64 is a great
+> > > choice. Whether that is actually true is debatable.
+> > > 
+> > > A poll of various compositor developers informs us that
+> > > blindly probing with setcursor/atomic ioctl to determine
+> > > suitable cursor sizes is not acceptable, thus the
+> > > introduction of the new property to supplant the cursor
+> > > size caps. The compositor will now be free to select a
+> > > more optimal cursor size from the short list of options.
+> > > 
+> > > Note that the reported sizes (either via the property or the
+> > > caps) make no claims about things such as plane scaling. So
+> > > these things should only really be consulted for simple
+> > > "cursor like" use cases.
+> > > 
+> > > v2: Try to add some docs
+> > > 
+> > > Cc: Simon Ser <contact@emersion.fr>
+> > > Cc: Jonas Ådahl <jadahl@redhat.com>
+> > > Cc: Daniel Stone <daniel@fooishbar.org>
+> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> > > Acked-by: Harry Wentland <harry.wentland@amd.com>
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_mode_config.c |  7 +++++
+> > >  drivers/gpu/drm/drm_plane.c       | 48 +++++++++++++++++++++++++++++++
+> > >  include/drm/drm_mode_config.h     |  5 ++++
+> > >  include/drm/drm_plane.h           |  4 +++
+> > >  include/uapi/drm/drm_mode.h       | 11 +++++++
+> > >  5 files changed, 75 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+> > > index 87eb591fe9b5..21860f94a18c 100644
+> > > --- a/drivers/gpu/drm/drm_mode_config.c
+> > > +++ b/drivers/gpu/drm/drm_mode_config.c
+> > > @@ -374,6 +374,13 @@ static int drm_mode_create_standard_properties(struct drm_device *dev)
+> > >  		return -ENOMEM;
+> > >  	dev->mode_config.modifiers_property = prop;
+> > >  
+> > > +	prop = drm_property_create(dev,
+> > > +				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
+> > > +				   "SIZE_HINTS", 0);
+> > > +	if (!prop)
+> > > +		return -ENOMEM;
+> > > +	dev->mode_config.size_hints_property = prop;
+> > > +
+> > >  	return 0;
+> > >  }
+> > >  
+> > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> > > index 24e7998d1731..ae51b1f83755 100644
+> > > --- a/drivers/gpu/drm/drm_plane.c
+> > > +++ b/drivers/gpu/drm/drm_plane.c
+> > > @@ -140,6 +140,21 @@
+> > >   *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there have been
+> > >   *     various bugs in this area with inconsistencies between the capability
+> > >   *     flag and per-plane properties.
+> > > + *
+> > > + * SIZE_HINTS:
+> > > + *     Blob property which contains the set of recommended plane size
+> > > + *     which can used for simple "cursor like" use cases (eg. no scaling).
+> > > + *     Using these hints frees userspace from extensive probing of
+> > > + *     supported plane sizes through atomic/setcursor ioctls.
+> > > + *
+> > > + *     For optimal usage userspace should pick the smallest size
+> > > + *     that satisfies its own requirements.
+> > > + *
+> > > + *     The blob contains an array of struct drm_plane_size_hint.
+> > > + *
+> > > + *     Drivers should only attach this property to planes that
+> > > + *     support a very limited set of sizes (eg. cursor planes
+> > > + *     on typical hardware).
+> > 
+> > This is a bit awkward since problematic drivers would only expose
+> > this property if they are new enough.
+> > 
+> > A way to avoid this is for all new drivers expose this property, but
+> > special case the size 0x0 as "everything below the max limit goes". Then
+> > userspace can do (ignoring the missing cap fallback).
+> 
+> I don't think there are any drivers that need that.
+> So I'm thinking we can just ignore that for now.
 
-On Thu, 9 Feb 2023 13:51:05 +0200
-Pekka Paalanen <pekka.paalanen@collabora.com> wrote:
+None the less, userspace not seeing SIZE_HINTS will be required to
+indefinitely use the existing "old" behavior using the size cap as the
+buffer size with a fallback, and drivers without any size limitations
+that, i.e. details that are hard to express with a set of accepted
+sizes, will still use the inoptimal buffer sizes.
 
-> Maybe we could refine this so that userspace uses the stride and height
-> implied by the caps for allocation, and then use the exact cursor image
-> size for AddFB2? And have drivers pick any size between those two they
-> can use. The kernel would need the userspace to promise that the
-> padding is always zero-initialized, so the driver can simply scan out
-> any area of the buffer it needs.
->=20
-> Then we don't need SIZE_HINTS.
+If I read [1] correctly, AMD has no particular size limitations other
+than a size limit, but without a SIZE_HINTS, userspace still needs to
+use the maximum size.
 
-Would there be any problem with this?
-
-If this works, it would seem the superior solution to me, because
-userspace does not need to guess or test for the exact right size.
-Simply allocate at the CAP size, pad the cursor image with transparent
-pixels, and let the kernel scan out the optimal area.
-
-And if the kernel needs to do a pixel format conversion, it only needs
-to do the optimal minimum amount of work.
+[1] https://gitlab.freedesktop.org/drm/intel/-/issues/7687#note_1760865
 
 
-Thanks,
-pq
+Jonas
 
---Sig_/On3glXAj27+16GJv4.m=zYE
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+> 
+> > 
+> >     if (has(SIZE_HINTS))
+> >         size = figure_out_size(SIZE_HINTS,
+> > 	                       DRM_CAP_CURSOR_WIDTH,
+> > 			       DRM_CAP_CURSOR_HEIGHT,
+> > 			       preferred_size);
+> >     else
+> >         size = DRM_CAP_CURSOR_WIDTH x DRM_CAP_CURSOR_WIDTH;
+> > 
+> > With `figure_out_size()` knowing how to deal with 0x0 in the size hints
+> > to use `preferred_size` directly.
+> > 
+> > 
+> > Jonas
+> > 
+> > >   */
+> > >  
+> > >  static unsigned int drm_num_planes(struct drm_device *dev)
+> > > @@ -1582,3 +1597,36 @@ int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+> > >  	return 0;
+> > >  }
+> > >  EXPORT_SYMBOL(drm_plane_create_scaling_filter_property);
+> > > +
+> > > +/**
+> > > + * drm_plane_add_size_hint_property - create a size hint property
+> > > + *
+> > > + * @plane: drm plane
+> > > + * @hints: size hints
+> > > + * @num_hints: number of size hints
+> > > + *
+> > > + * Create a size hints property for the plane.
+> > > + *
+> > > + * RETURNS:
+> > > + * Zero for success or -errno
+> > > + */
+> > > +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> > > +				      const struct drm_plane_size_hint *hints,
+> > > +				      int num_hints)
+> > > +{
+> > > +	struct drm_device *dev = plane->dev;
+> > > +	struct drm_mode_config *config = &dev->mode_config;
+> > > +	struct drm_property_blob *blob;
+> > > +
+> > > +	blob = drm_property_create_blob(dev,
+> > > +					array_size(sizeof(hints[0]), num_hints),
+> > > +					hints);
+> > > +	if (IS_ERR(blob))
+> > > +		return PTR_ERR(blob);
+> > > +
+> > > +	drm_object_attach_property(&plane->base, config->size_hints_property,
+> > > +				   blob->base.id);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +EXPORT_SYMBOL(drm_plane_add_size_hints_property);
+> > > diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> > > index e5b053001d22..5bc8aed9b445 100644
+> > > --- a/include/drm/drm_mode_config.h
+> > > +++ b/include/drm/drm_mode_config.h
+> > > @@ -949,6 +949,11 @@ struct drm_mode_config {
+> > >  	 */
+> > >  	struct drm_property *modifiers_property;
+> > >  
+> > > +	/**
+> > > +	 * @size_hints_propertty: Plane SIZE_HINTS property.
+> > > +	 */
+> > > +	struct drm_property *size_hints_property;
+> > > +
+> > >  	/* cursor size */
+> > >  	uint32_t cursor_width, cursor_height;
+> > >  
+> > > diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> > > index 51291983ea44..1997d7d64b69 100644
+> > > --- a/include/drm/drm_plane.h
+> > > +++ b/include/drm/drm_plane.h
+> > > @@ -32,6 +32,7 @@
+> > >  #include <drm/drm_util.h>
+> > >  
+> > >  struct drm_crtc;
+> > > +struct drm_plane_size_hint;
+> > >  struct drm_printer;
+> > >  struct drm_modeset_acquire_ctx;
+> > >  
+> > > @@ -945,5 +946,8 @@ drm_plane_get_damage_clips(const struct drm_plane_state *state);
+> > >  
+> > >  int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+> > >  					     unsigned int supported_filters);
+> > > +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> > > +				      const struct drm_plane_size_hint *hints,
+> > > +				      int num_hints);
+> > >  
+> > >  #endif
+> > > diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> > > index 46becedf5b2f..9d7c5967264f 100644
+> > > --- a/include/uapi/drm/drm_mode.h
+> > > +++ b/include/uapi/drm/drm_mode.h
+> > > @@ -849,6 +849,17 @@ struct drm_color_lut {
+> > >  	__u16 reserved;
+> > >  };
+> > >  
+> > > +/**
+> > > + * struct drm_plane_size_hint - Plane size hints
+> > > + *
+> > > + * The plane SIZE_HINTS property blob contains an
+> > > + * array of struct drm_plane_size_hint.
+> > > + */
+> > > +struct drm_plane_size_hint {
+> > > +	__u16 width;
+> > > +	__u16 height;
+> > > +};
+> > > +
+> > >  /**
+> > >   * struct hdr_metadata_infoframe - HDR Metadata Infoframe Data.
+> > >   *
+> > > -- 
+> > > 2.39.1
+> > > 
+> 
+> -- 
+> Ville Syrjälä
+> Intel
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmPrV4MACgkQI1/ltBGq
-qqcRDBAAopAby9MTWTwn7DiqGy1CRVadFw6HjCoSZ0kej1evlbqCHy8YC2kkBM+g
-xw/rPWJ5Y8k4AKDw2iLKmWW+zCGMPCgodSBmfx+HTDs7AIhGK6hwCkeOQDUolDG/
-SJ2M6RX1IN/qE4Ru4Wav9SDPqTsre4ph58DjZtWQ0MWwXWJFNDdGLddxDzOrILXO
-2FkxZcCAAqRDm6Z5O+O2S2rQiuAv2fMgqLTr1tc2FpGcygmNSpJ6KKx6cmSD7pyE
-Ay9KiFdU68FGVqSmbvxttDBdM73cgrBF4VCb/lnSuIhn1qDrg4tzoya3gHVoEGTu
-QZHb+Zi9MhwCKZWjPShdILtcPDGG117CsZprzvb+7jEPezkX4OVvxIbm8A7fllxJ
-R37N+yAf8I/RxAYq1chm6vUG7ZMaLhSqRb5+Smi53m9dbbVW8sbiVO63A3oPia2r
-iS6b61C8GjfegLH7KLtBd+gmKgX4e3QlCcAz/cJnz7gkj7KWaBVCM0IL92isq1t/
-XhKsYQNnhuAolcGDq9ZYIBxk6C3ewktkhbYGlsiPjue8mk6oGDMWjPE7x2r1x3tS
-4p06RYdCrj4ZeF3lRVJv4WzABcqMQsrLXnW7hQbEytV2EyFLAvsvUQ4hl6u8JOyr
-5R5VRGBhAa7jhssmG9Uxi8DdwAt4yUr7HPV55ccMVRyGnneGpIs=
-=EWOM
------END PGP SIGNATURE-----
-
---Sig_/On3glXAj27+16GJv4.m=zYE--
