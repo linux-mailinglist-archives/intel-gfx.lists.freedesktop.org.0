@@ -1,77 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154946970B6
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 23:26:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDC06970D2
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 23:40:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40D8410E9B8;
-	Tue, 14 Feb 2023 22:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF8710E9B6;
+	Tue, 14 Feb 2023 22:40:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D82B310E9B8
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 22:26:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1676413592;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=um02ikLd6nJv6WURDElSwLGGHyUNRrZKQet69e40WFc=;
- b=eO4lzVwDKR0OMtpX2d2FXePsiRzXTB4ZwpP4ixFc/+mda3blH2KX+vkhoT6Jan3eckK6M8
- xod5w+X3GqgGqOhf3psR+lXVsPK6hmhVsrVFhMXSctDVYW/HQC5zpuam6azjZ47WQnXjxK
- GMzx58PeeC/2VeSL5TcnwLtX1d73Jhg=
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-120-jjwIyVI-N9uqGO7wK4QoyA-1; Tue, 14 Feb 2023 17:26:30 -0500
-X-MC-Unique: jjwIyVI-N9uqGO7wK4QoyA-1
-Received: by mail-io1-f69.google.com with SMTP id
- z25-20020a6be019000000b00716eaf80c1dso10933157iog.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 14:26:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=um02ikLd6nJv6WURDElSwLGGHyUNRrZKQet69e40WFc=;
- b=IneKIy9HeBfDkHExqoVGmcb1ht1FpmA40jx2sPIlPXsnCsObZ9z3qZqKFVx+GJeroM
- 6YDSI2vbn3yObj32FX23twA/zaRNueQXkv2rwj2aoIMixffHnb6YaUVQiUZ6Ehm1eaqT
- r0Wni+AVm0GhTtkPdDNZX2DX1cdXfFhuPYW2/nk9MH6dBAR98nxXcg0s6bvjn4afrP4A
- vl2HL6sJPbXI7ILE9aRgTXTnoHb1wkHUXRCSHXA43sx4Tu2giwSfaOgH+Kudd3b1l948
- 1Dqfg2i3XOPxLILUjvPAlXr9TnhIt11ncCoWBLN8kV0OeIo4qmurEPPGqSQEu00uZNim
- Bo0w==
-X-Gm-Message-State: AO0yUKWUNm6jAzLhd2AFS2e/vVdS2dIG45GArSpQE6wcLezdHoD6t6yR
- F4a4bWQmSqc+f64fCQveQhBRmbxCz4hUS6Jt7XXgAbMistBKyZ1Aj8QCQHI+iQRaA3HT1up5sQa
- V3wEomS0T6fuj4YN1uLztqLTj1xVo
-X-Received: by 2002:a05:6602:20d2:b0:71e:e53a:a79c with SMTP id
- 18-20020a05660220d200b0071ee53aa79cmr281528ioz.11.1676413589887; 
- Tue, 14 Feb 2023 14:26:29 -0800 (PST)
-X-Google-Smtp-Source: AK7set+VYTIXgsMK+7tBWS/U3lsgOPhP21SECGaNspZBfh8mZq44rA+9buxgj4l7+Ie0XelQ0kVlrA==
-X-Received: by 2002:a05:6602:20d2:b0:71e:e53a:a79c with SMTP id
- 18-20020a05660220d200b0071ee53aa79cmr281506ioz.11.1676413589497; 
- Tue, 14 Feb 2023 14:26:29 -0800 (PST)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- y20-20020a02c014000000b003a4419ba0c2sm5032096jai.139.2023.02.14.14.26.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Feb 2023 14:26:28 -0800 (PST)
-Date: Tue, 14 Feb 2023 15:26:27 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <20230214152627.3a399523.alex.williamson@redhat.com>
-In-Reply-To: <20230213151348.56451-6-yi.l.liu@intel.com>
-References: <20230213151348.56451-1-yi.l.liu@intel.com>
- <20230213151348.56451-6-yi.l.liu@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0CF110E9B6;
+ Tue, 14 Feb 2023 22:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676414446; x=1707950446;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=ck6GI+jjyZqM+owtdQih3v+KOSysNm4wZyg2plmvMuE=;
+ b=hNmExdpYeY8SiGemiNEKHcAze4JXE897s0QiCSG8casVi/5MBLIb8mCp
+ w5ldFsC0N9fwCuotDLbzuHmJwe59kuwBtuB8NFzaIkL37duvexgHxJLnQ
+ VLm070YONzstzlQ2Q/l53lAZPaNJG2Xie3+HZaKoTJxRSU7HzvDBmZ7FY
+ 8/gC2th4gE7fIzFaQBhSpq5gPrjcTln6WGPRp15qEIPvsgPSUj7Sy3cni
+ iicqBWx7dGtR1+Yy5YOYBhQvmwaYwlbPlquv7UIWUJJIxkriKdChsxMCn
+ 9UzRJ3beLnQF2XfLE8DEoVoU0+74pbhlzEg0psSI/8f+TX8g0ImW0+Zw/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="417510435"
+X-IronPort-AV: E=Sophos;i="5.97,297,1669104000"; d="scan'208";a="417510435"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 14:40:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="738057116"
+X-IronPort-AV: E=Sophos;i="5.97,297,1669104000"; d="scan'208";a="738057116"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.18.244])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 14:40:41 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Petri Latvala <adrinael@adrinael.net>, Arkadiusz Hiler <arek@hiler.eu>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Feb 2023 23:40:38 +0100
+Message-ID: <2215171.iZASKD2KPV@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230214212010.6qpjrdkcb3fnogjx@kamilkon-desk1>
+References: <20230213093132.12763-1-janusz.krzysztofik@linux.intel.com>
+ <20230213093132.12763-2-janusz.krzysztofik@linux.intel.com>
+ <20230214212010.6qpjrdkcb3fnogjx@kamilkon-desk1>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 05/15] kvm/vfio: Accept vfio device file
- from userspace
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH i-g-t v3 1/1] tests: Exercise remote request
+ vs barrier handling race
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,192 +71,304 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com,
- mjrosato@linux.ibm.com, kvm@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
- peterx@redhat.com, suravee.suthikulpanit@amd.com, eric.auger@redhat.com,
- nicolinc@nvidia.com, shameerali.kolothum.thodi@huawei.com, jgg@nvidia.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Feb 2023 07:13:38 -0800
-Yi Liu <yi.l.liu@intel.com> wrote:
+Hi Kamil,
 
-> This defines KVM_DEV_VFIO_FILE* and make alias with KVM_DEV_VFIO_GROUP*.
-> Old userspace uses KVM_DEV_VFIO_GROUP* works as well.
+Thanks for review.
+
+On Tuesday, 14 February 2023 22:20:10 CET Kamil Konieczny wrote:
+> Hi Janusz,
 > 
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  Documentation/virt/kvm/devices/vfio.rst | 45 ++++++++++++++++---------
->  include/uapi/linux/kvm.h                | 16 ++++++---
->  virt/kvm/vfio.c                         | 16 ++++-----
->  3 files changed, 50 insertions(+), 27 deletions(-)
+> On 2023-02-13 at 10:31:32 +0100, Janusz Krzysztofik wrote:
+> > Users reported oopses on list corruptions when using i915 perf with a
+> > number of concurrently running graphics applications.  That indicates we
+> > are currently missing some important tests for such scenarios.  Cover
+> > that gap.
+> > 
+> > Root cause analysis pointed out to an issue in barrier processing code and
+> > its interaction with perf replacing kernel contexts' active barriers with
+> > its own requests.
+> > 
+> > Add a new test intended for exercising intentionally racy barrier tasks
+> > list processing and its interaction with other i915 subsystems.  As a
+> > first subtest, add one that exercises the interaction of remote requests
+> > with barrier tasks list handling, especially barrier preallocate / acquire
+> > operations performed during context first pin / last unpin.
+> > 
+> > The code is partially inspired by Chris Wilson's igt@perf@open-race
+> > subtest, which I was not able to get an Ack for from upstream.
+> > 
+> > v3: don't add the new subtest to gem_ctx_exec which occurred blocklisted,
+> >     create a new test hosting the new subtest, update commit descripion,
+> >   - prepare parameters for perf open still in the main thread to avoid
+> >     test failures on platforms with no perf support (will skip now),
+> >   - call perf open with OA buffer reports disabled, this will make sure
+> >     that the perf API doesn't unnecessarily enable the OA unit, while the
+> >     test still runs the targeted code (Umesh),
+> >   - replace additional code for OA exponent calculations with a reasonable
+> >     hardcoded value (Umesh).
+> > v2: convert to a separate subtest, not a variant of another one (that has
+> >     been dropped from the series),
+> >   - move the subtest out of tests/i915/perf.c (Ashutosh), add it to
+> >     tests/i915/gem_ctx_exec.c,
+> >   - don't touch lib/i915/perf.c (Umesh, Ashutosh), duplicate reused code
+> >     from tests/i915/perf.c in tests/i915/gem_ctx_exec.c.
+> > 
+> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > Cc: Chris Wilson <chris.p.wilson@intel.com>
+> > Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > ---
+> >  tests/i915/gem_barrier_race.c | 159 ++++++++++++++++++++++++++++++++++
+> >  tests/meson.build             |   8 ++
+> >  2 files changed, 167 insertions(+)
+> >  create mode 100644 tests/i915/gem_barrier_race.c
+> > 
+> > diff --git a/tests/i915/gem_barrier_race.c b/tests/i915/gem_barrier_race.c
+> > new file mode 100644
+> > index 0000000000..fd0c7bdf1c
+> > --- /dev/null
+> > +++ b/tests/i915/gem_barrier_race.c
+> > @@ -0,0 +1,159 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright(c) 2023 Intel Corporation. All rights reserved.
+> > + */
+> > +
+> > +#include <stdint.h>
+> > +
+> > +#include "drmtest.h"
+> > +#include "igt_aux.h"
+> > +#include "igt_core.h"
+> > +#include "igt_gt.h"
+> > +#include "intel_chipset.h"
+> > +#include "intel_reg.h"
+> > +#include "ioctl_wrappers.h"
+> > +
+> > +#include "i915/gem.h"
+> > +#include "i915/gem_create.h"
+> > +#include "i915/gem_engine_topology.h"
+> > +#include "i915/perf.h"
+> > +
+> > +IGT_TEST_DESCRIPTION("Exercise barrier tasks list handling and its interation with other i915 subsystems");
+> ----------------------------------------------- ^^^^^^^^^^^^^ --------------^-------------- ^
+> s/interation/interaction/
+
+Thanks.
+
+> Please make it generic so it will not need to be changed soon,
+> for example:
+> IGT_TEST_DESCRIPTION("Exercise barrier tasks and its interaction with other subsystems");
+
+Since we are not exercising barrier tasks only barriers (the list name is 
+barrier_tasks, while another list is called preallocated_barriers, then 
+"tasks" without "list" may be confusing, I believe), I'll use:
+
+IGT_TEST_DESCRIPTION("Exercise barriers and their interaction with other subsystems");
+
+OK?
+
 > 
-> diff --git a/Documentation/virt/kvm/devices/vfio.rst b/Documentation/virt/kvm/devices/vfio.rst
-> index 2d20dc561069..90f22933dcfa 100644
-> --- a/Documentation/virt/kvm/devices/vfio.rst
-> +++ b/Documentation/virt/kvm/devices/vfio.rst
-> @@ -9,24 +9,37 @@ Device types supported:
->    - KVM_DEV_TYPE_VFIO
->  
->  Only one VFIO instance may be created per VM.  The created device
-> -tracks VFIO groups in use by the VM and features of those groups
-> -important to the correctness and acceleration of the VM.  As groups
-> -are enabled and disabled for use by the VM, KVM should be updated
-> -about their presence.  When registered with KVM, a reference to the
-> -VFIO-group is held by KVM.
-> +tracks VFIO files (group or device) in use by the VM and features
-> +of those groups/devices important to the correctness and acceleration
-> +of the VM.  As groups/devices are enabled and disabled for use by the
-> +VM, KVM should be updated about their presence.  When registered with
-> +KVM, a reference to the VFIO file is held by KVM.
->  
->  Groups:
-> -  KVM_DEV_VFIO_GROUP
-> -
-> -KVM_DEV_VFIO_GROUP attributes:
-> -  KVM_DEV_VFIO_GROUP_ADD: Add a VFIO group to VFIO-KVM device tracking
-> -	kvm_device_attr.addr points to an int32_t file descriptor
-> -	for the VFIO group.
-> -  KVM_DEV_VFIO_GROUP_DEL: Remove a VFIO group from VFIO-KVM device tracking
-> -	kvm_device_attr.addr points to an int32_t file descriptor
-> -	for the VFIO group.
-> -  KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE: attaches a guest visible TCE table
-> +  KVM_DEV_VFIO_FILE
-> +	alias: KVM_DEV_VFIO_GROUP
-> +
-> +KVM_DEV_VFIO_FILE attributes:
-> +  KVM_DEV_VFIO_FILE_ADD: Add a VFIO file (group/device) to VFIO-KVM device
-> +	tracking
-> +
-> +	alias: KVM_DEV_VFIO_GROUP_ADD
-> +
-> +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> +	VFIO file.
-> +  KVM_DEV_VFIO_FILE_DEL: Remove a VFIO file (group/device) from VFIO-KVM
-> +	device tracking
-> +
-> +	alias: KVM_DEV_VFIO_GROUP_DEL
-> +
-> +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> +	VFIO file.
-> +
-> +  KVM_DEV_VFIO_FILE_SET_SPAPR_TCE: attaches a guest visible TCE table
->  	allocated by sPAPR KVM.
-> +
-> +	alias: KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE
-> +
->  	kvm_device_attr.addr points to a struct::
->  
->  		struct kvm_vfio_spapr_tce {
-> @@ -39,3 +52,5 @@ KVM_DEV_VFIO_GROUP attributes:
->  	- @groupfd is a file descriptor for a VFIO group;
->  	- @tablefd is a file descriptor for a TCE table allocated via
->  	  KVM_CREATE_SPAPR_TCE.
-> +
-> +	only accepts vfio group file
-> diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-> index 55155e262646..484a8133bc69 100644
-> --- a/include/uapi/linux/kvm.h
-> +++ b/include/uapi/linux/kvm.h
-> @@ -1401,10 +1401,18 @@ struct kvm_device_attr {
->  	__u64	addr;		/* userspace address of attr data */
->  };
->  
-> -#define  KVM_DEV_VFIO_GROUP			1
-> -#define   KVM_DEV_VFIO_GROUP_ADD			1
-> -#define   KVM_DEV_VFIO_GROUP_DEL			2
-> -#define   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE		3
-> +#define  KVM_DEV_VFIO_FILE	1
-> +
-> +#define   KVM_DEV_VFIO_FILE_ADD			1
-> +#define   KVM_DEV_VFIO_FILE_DEL			2
-> +#define   KVM_DEV_VFIO_FILE_SET_SPAPR_TCE	3
-> +
-> +/* KVM_DEV_VFIO_GROUP aliases are for compile time uapi compatibility */
-> +#define  KVM_DEV_VFIO_GROUP	KVM_DEV_VFIO_FILE
-> +
-> +#define   KVM_DEV_VFIO_GROUP_ADD	KVM_DEV_VFIO_FILE_ADD
-> +#define   KVM_DEV_VFIO_GROUP_DEL	KVM_DEV_VFIO_FILE_DEL
-> +#define   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE	KVM_DEV_VFIO_FILE_SET_SPAPR_TCE
->  
->  enum kvm_device_type {
->  	KVM_DEV_TYPE_FSL_MPIC_20	= 1,
-> diff --git a/virt/kvm/vfio.c b/virt/kvm/vfio.c
-> index 857d6ba349e1..d869913baafd 100644
-> --- a/virt/kvm/vfio.c
-> +++ b/virt/kvm/vfio.c
-> @@ -286,18 +286,18 @@ static int kvm_vfio_set_file(struct kvm_device *dev, long attr,
->  	int32_t fd;
->  
->  	switch (attr) {
-> -	case KVM_DEV_VFIO_GROUP_ADD:
-> +	case KVM_DEV_VFIO_FILE_ADD:
->  		if (get_user(fd, argp))
->  			return -EFAULT;
->  		return kvm_vfio_file_add(dev, fd);
->  
-> -	case KVM_DEV_VFIO_GROUP_DEL:
-> +	case KVM_DEV_VFIO_FILE_DEL:
->  		if (get_user(fd, argp))
->  			return -EFAULT;
->  		return kvm_vfio_file_del(dev, fd);
->  
->  #ifdef CONFIG_SPAPR_TCE_IOMMU
-> -	case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> +	case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
->  		return kvm_vfio_file_set_spapr_tce(dev, arg);
+> > +
+> > +/* Based on code patterns found in tests/i915/perf.c */
+> > +static void perf_open_close_workload(int fd, int *done)
+> > +{
+> > +	struct intel_perf_metric_set *metric_set = NULL, *metric_set_iter;
+> > +	struct intel_perf *intel_perf = intel_perf_for_fd(fd);
+> > +	uint64_t properties[] = {
+> > +		DRM_I915_PERF_PROP_SAMPLE_OA, true,
+> > +		DRM_I915_PERF_PROP_OA_METRICS_SET, 0,
+> > +		DRM_I915_PERF_PROP_OA_FORMAT, 0,
+> > +		DRM_I915_PERF_PROP_OA_EXPONENT, 5,
+> > +	};
+> > +	struct drm_i915_perf_open_param param = {
+> > +		.flags = I915_PERF_FLAG_FD_CLOEXEC | I915_PERF_FLAG_DISABLED,
+> > +		.num_properties = sizeof(properties) / 16,
+> > +		.properties_ptr = to_user_pointer(properties),
+> > +	};
+> > +	uint32_t devid = intel_get_drm_devid(fd);
+> > +
+> > +	igt_require(intel_perf);
+> > +	intel_perf_load_perf_configs(intel_perf, fd);
+> > +
+> > +	igt_require(devid);
+> > +	igt_list_for_each_entry(metric_set_iter, &intel_perf->metric_sets, link) {
+> > +		if (!strcmp(metric_set_iter->symbol_name,
+> > +			    IS_HASWELL(devid) ? "RenderBasic" : "TestOa")) {
+> > +			metric_set = metric_set_iter;
+> > +			break;
+> > +		}
+> > +	}
+> > +	igt_require(metric_set);
+> > +	igt_require(metric_set->perf_oa_metrics_set);
+> > +	properties[3] = metric_set->perf_oa_metrics_set;
+> > +	properties[5] = metric_set->perf_oa_format;
+> > +
+> > +	intel_perf_free(intel_perf);
+> > +
+> > +	igt_fork(child, 1) {
+> > +		do {
+> > +			int stream = igt_ioctl(fd, DRM_IOCTL_I915_PERF_OPEN, &param);
+> > +
+> > +			igt_assert_fd(stream);
+> > +			close(stream);
+> > +
+> > +		} while (!READ_ONCE(*done));
+> > +	}
+> > +}
+> > +
+> > +static void remote_request_workload(int fd, int *done)
+> -------------- ^
+> > +{
+> > +	/*
+> > +	 * Use DRM_IOCTL_I915_PERF_OPEN / close as
+> > +	 * intel_context_prepare_remote_request() workload
+> > +	 */
+> > +	perf_open_close_workload(fd, done);
+> ------- ^
+> > +}
+> 
+> These is just calling one function as another name, imho just
+> rename perf_open_close_workload() into remote_request_workload()
 
-I don't see that the SPAPR code is so easily fungible to a device file
-descriptor.  The kvm_vfio_spapr_tce data structure includes a groupfd,
-which is required to match a groupfd on the file_list.  So a SPAPR user
-cannot pass a cdev via FILE_ADD if they intend to use this TCE code.
+The idea was to document the fact that we are using perf open / close 
+specifically as remote request workload, something that we may want to improve 
+if the driver ever provides a more simple way, but of course, I can do this 
+the way you prefer.
 
-Maybe SPAPR code is therefore tied to the group interface since there's
-nobody around advancing this code any longer.
+> 
+> > +
+> > +/* Copied from tests/i915/gem_ctx_exec.c */
+> > +static int exec(int fd, uint32_t handle, int ring, int ctx_id)
+> > +{
+> > +	struct drm_i915_gem_exec_object2 obj = { .handle = handle };
+> > +	struct drm_i915_gem_execbuffer2 execbuf = {
+> > +		.buffers_ptr = to_user_pointer(&obj),
+> > +		.buffer_count = 1,
+> > +		.flags = ring,
+> > +	};
+> > +
+> > +	i915_execbuffer2_set_context_id(execbuf, ctx_id);
+> > +
+> > +	return __gem_execbuf(fd, &execbuf);
+> > +}
+> > +
+> > +static void gem_create_nop_exec_sync_close_loop(int fd, uint64_t engine, int *done)
+> > +{
+> > +	const uint32_t batch[2] = { 0, MI_BATCH_BUFFER_END };
+> > +
+> > +	fd = gem_reopen_driver(fd);
+> > +
+> > +	do {
+> > +		uint32_t handle = gem_create(fd, 4096);
+> > +
+> > +		gem_write(fd, handle, 0, batch, sizeof(batch));
+> > +		igt_assert_eq(exec(fd, handle, engine, 0), 0);
+> > +
+> > +		gem_sync(fd, handle);
+> > +		gem_close(fd, handle);
+> > +
+> > +	} while (!READ_ONCE(*done));
+> > +}
+> > +
+> > +static void intel_context_first_pin_last_unpin_loop(int fd, uint64_t engine, int *done)
+> -------------- ^
+> > +{
+> > +	/*
+> > +	 * Use gem_create -> gem_write -> gem_execbuf -> gem_sync -> gem_close
+> > +	 * as intel context first pin / last unpin intensive workload
+> > +	 */
+> > +	gem_create_nop_exec_sync_close_loop(fd, engine, done);
+> ------- ^
+> > +}
+> 
+> Same here, just rename original function, maybe make it a little
+> shorter and put longer explanations in comments.
 
-That also makes me wonder what we're really gaining in forcing this
-generalization from group to file.  There's no userspace that's
-suddenly going to find itself with a device cdev to require an ABI
-compatible interface.  So we allow either groups or cdevs, but then we
-potentially end up with a file_list of both groups and device cdevs.
-Given the SPAPR issue above, is there some advantage to creating a
-parallel FILE interface alongside the GROUP interface, with separate
-file lists for each?  At least that would allow SPAPR to expose only a
-GROUP interface via the has_attr interface below.  Maybe there's some
-utility in general for being able to probe device cdev support here?
+Same here, but let me ask what you think is missing from comments that you 
+suggest to add longer explanations?
+
+> 
+> > +
+> > +static void test_remote_request(int fd, uint64_t engine, unsigned int timeout)
+> > +{
+> > +	int *done = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+> > +
+> > +	igt_assert(done != MAP_FAILED);
+> > +
+> > +	remote_request_workload(fd, done);
+> > +
+> > +	igt_fork(child, sysconf(_SC_NPROCESSORS_ONLN))
+> > +		intel_context_first_pin_last_unpin_loop(fd, engine, done);
+> > +
+> > +	sleep(timeout);
+> > +	*done = 1;
+> > +	igt_waitchildren();
+> > +	munmap(done, 4096);
+> > +}
+> > +
+> > +igt_main
+> > +{
+> > +	int fd;
+> > +
+> > +	igt_fixture {
+> > +		fd = drm_open_driver_render(DRIVER_INTEL);
+> > +		igt_require_gem(fd);
+> > +	}
+> > +
+> > +	igt_describe("Race intel_context_prepare_remote_request against intel_context_active_acquire/release");
+> > +	igt_subtest_with_dynamic("remote-request") {
+> > +		struct intel_execution_engine2 *e;
+> > +
+> > +		for_each_physical_engine(fd, e) {
+> > +			if (e->class != I915_ENGINE_CLASS_RENDER)
+> > +				continue;
+> > +
+> > +			igt_dynamic(e->name)
+> > +				test_remote_request(fd, e->flags, 5);
+> 
+> Do we need all physical engines to be tested ?
+
+From my point of view, more engines we exercise, better coverage we get.  
+But your priorities may be different.
+If there is more than one render engine available, which one do you propose to 
+select?  A random one?
+
 Thanks,
+Janusz
 
-Alex
 
->  #endif
->  	}
-> @@ -309,7 +309,7 @@ static int kvm_vfio_set_attr(struct kvm_device *dev,
->  			     struct kvm_device_attr *attr)
->  {
->  	switch (attr->group) {
-> -	case KVM_DEV_VFIO_GROUP:
-> +	case KVM_DEV_VFIO_FILE:
->  		return kvm_vfio_set_file(dev, attr->attr,
->  					 u64_to_user_ptr(attr->addr));
->  	}
-> @@ -321,12 +321,12 @@ static int kvm_vfio_has_attr(struct kvm_device *dev,
->  			     struct kvm_device_attr *attr)
->  {
->  	switch (attr->group) {
-> -	case KVM_DEV_VFIO_GROUP:
-> +	case KVM_DEV_VFIO_FILE:
->  		switch (attr->attr) {
-> -		case KVM_DEV_VFIO_GROUP_ADD:
-> -		case KVM_DEV_VFIO_GROUP_DEL:
-> +		case KVM_DEV_VFIO_FILE_ADD:
-> +		case KVM_DEV_VFIO_FILE_DEL:
->  #ifdef CONFIG_SPAPR_TCE_IOMMU
-> -		case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> +		case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
->  #endif
->  			return 0;
->  		}
+> 
+> Regards,
+> Kamil
+> > +		}
+> > +	}
+> > +}
+> > diff --git a/tests/meson.build b/tests/meson.build
+> > index 6fb1bb86c9..5670712ae8 100644
+> > --- a/tests/meson.build
+> > +++ b/tests/meson.build
+> > @@ -389,6 +389,14 @@ test_executables += executable('i915_pm_rc6_residency',
+> >  	   install : true)
+> >  test_list += 'i915_pm_rc6_residency'
+> >  
+> > +test_executables += executable('gem_barrier_race',
+> > +	   join_paths('i915', 'gem_barrier_race.c'),
+> > +	   dependencies : test_deps + [ lib_igt_i915_perf ],
+> > +	   install_dir : libexecdir,
+> > +	   install_rpath : libexecdir_rpathdir,
+> > +	   install : true)
+> > +test_list += 'gem_barrier_race'
+> > +
+> >  test_executables += executable('perf_pmu',
+> >  	   join_paths('i915', 'perf_pmu.c'),
+> >  	   dependencies : test_deps + [ lib_igt_perf ],
+> 
+
+
+
 
