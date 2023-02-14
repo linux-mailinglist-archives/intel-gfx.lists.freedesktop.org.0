@@ -1,67 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 597C6696236
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:18:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BE9696238
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:19:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C12C510E888;
-	Tue, 14 Feb 2023 11:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF6A810E88B;
+	Tue, 14 Feb 2023 11:19:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F255310E888;
- Tue, 14 Feb 2023 11:17:58 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id fi26so16790755edb.7;
- Tue, 14 Feb 2023 03:17:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=sbucsuXzTBHTPi5YgVujzJdJMdqlsrI6bpiVdNozqNU=;
- b=T5Yj/lA+1g10YN9izHCQDkOHkjVfkWS7nQYYqf3rsNhfTTUcaP82vzwrKTJpkuUceO
- OXQ0HSa8GVKfvSbxq7xrWblk3AQiMRICsJl2WOmsHv+YtLhkgdVWktBj4M26qEoc0sF1
- 4CzuR3KdhHcbKbQsbRnYFn5dFI4m9vvPgCOViZnBtUve4gIE6Oot+u8bVzMPizS1BTmY
- 3yoAMmpk40SPasbLQ7MxnFhM7UVI+lk0xZeVHQtbpVCdwj9v3FY8fkcAMhdS27GY8NgL
- oygHJLFv4K7ytnqLEFG7SgFMHxkMKv0w4Wdi03F9a0NMXXZnJQ9/Hs9oY2synuyuXI/O
- TZ9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=sbucsuXzTBHTPi5YgVujzJdJMdqlsrI6bpiVdNozqNU=;
- b=G58SMKpf2rKMdcj8looklXKMrLvyTwTaduoaFIHnEIgdyhA6tL0eYROGJqtZrkEJ5x
- vy/9C24gXQlOQ8NuHxKZtg8t8d81pqX5VRgZzfg0eZk2xZ7vjkFK0znE0zIeChi7xaD7
- dUcvOsvU37z80Rqyrdadc162u+PsKcMFoEiyatxYAL5CWSSecgPBuJxokAWKuYqQ+yzm
- y5GocDj8jhtgr+7aqg0my5QY7IX0WM+m0eX/gidrHDzGodIHDe2nKyuZxYdzwpL19+Kr
- +rxjYXEAe2xlwagkDOTNaTvwHwEP7pH+lZQi3jvoBdyyky8LjD3+qJxMDScuLxuzmd8q
- MFHQ==
-X-Gm-Message-State: AO0yUKWu1wX0W1hIbPPQwfEw0dIl4VAH21OztJEoWGbPrp8MBai5fMpE
- KOqn6v1xGGeLJ8OZNXGSXUA=
-X-Google-Smtp-Source: AK7set/MdHvrwZSd1nTndmLo4pUCBBrKAIlc0/pHFE8DTl4pL8nNRYzh/ZlZUca/burMPf4nnQpPAA==
-X-Received: by 2002:a50:9357:0:b0:4ac:bd84:43e1 with SMTP id
- n23-20020a509357000000b004acbd8443e1mr2125064eda.8.1676373477400; 
- Tue, 14 Feb 2023 03:17:57 -0800 (PST)
-Received: from eldfell ([194.136.85.206]) by smtp.gmail.com with ESMTPSA id
- z96-20020a509e69000000b004acb6d659eesm5094471ede.52.2023.02.14.03.17.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Feb 2023 03:17:57 -0800 (PST)
-Date: Tue, 14 Feb 2023 13:17:45 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20230214131745.294d5363@eldfell>
-In-Reply-To: <Y+tiIYMVnQ6gyJ/e@intel.com>
-References: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
- <20230208040911.12590-2-ville.syrjala@linux.intel.com>
- <20230208141312.76df0cb0.pekka.paalanen@collabora.com>
- <Y+OdtR78JnQOTj38@intel.com> <Y+QRSH3kLD4Xrktc@intel.com>
- <20230209135105.4137872c.pekka.paalanen@collabora.com>
- <20230214114227.7fa94b78@eldfell> <Y+tiIYMVnQ6gyJ/e@intel.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9FE210E88B;
+ Tue, 14 Feb 2023 11:19:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CFD0FAADE7;
+ Tue, 14 Feb 2023 11:19:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5777364259348592691=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/HNKsfv6m6Bq7=iO0SmPvXq5";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Introduce plane SIZE_HINTS property
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Date: Tue, 14 Feb 2023 11:19:19 -0000
+Message-ID: <167637355984.8403.7900602729434459285@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230214093459.3617293-1-arun.r.murthy@intel.com>
+In-Reply-To: <20230214093459.3617293-1-arun.r.murthy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRFAy?=
+ =?utf-8?q?=2E0_SDP_CRC16_for_128/132b_link_layer_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,85 +40,328 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- Jonas =?UTF-8?B?w4VkYWhs?= <jadahl@redhat.com>,
- Daniel Stone <daniel@fooishbar.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/HNKsfv6m6Bq7=iO0SmPvXq5
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--===============5777364259348592691==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, 14 Feb 2023 12:27:45 +0200
-Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
+== Series Details ==
 
-> On Tue, Feb 14, 2023 at 11:42:27AM +0200, Pekka Paalanen wrote:
-> > On Thu, 9 Feb 2023 13:51:05 +0200
-> > Pekka Paalanen <pekka.paalanen@collabora.com> wrote:
-> >  =20
-> > > Maybe we could refine this so that userspace uses the stride and heig=
-ht
-> > > implied by the caps for allocation, and then use the exact cursor ima=
-ge
-> > > size for AddFB2? And have drivers pick any size between those two they
-> > > can use. The kernel would need the userspace to promise that the
-> > > padding is always zero-initialized, so the driver can simply scan out
-> > > any area of the buffer it needs.
-> > >=20
-> > > Then we don't need SIZE_HINTS. =20
-> >=20
-> > Would there be any problem with this?
-> >=20
-> > If this works, it would seem the superior solution to me, because
-> > userspace does not need to guess or test for the exact right size.
-> > Simply allocate at the CAP size, pad the cursor image with transparent
-> > pixels, and let the kernel scan out the optimal area. =20
->=20
-> No, the hardware cannot scan out a smaller area because the
-> stride will be wrong.
+Series: DP2.0 SDP CRC16 for 128/132b link layer (rev2)
+URL   : https://patchwork.freedesktop.org/series/113134/
+State : success
 
-In another email of yours you said that hardware requires stride to be
-equivalent to the width. So it's not that hardware supports only
-specific strides, it must equal to width. That's really unfortunate and
-surprising.
+== Summary ==
 
-> >=20
-> > And if the kernel needs to do a pixel format conversion, it only needs
-> > to do the optimal minimum amount of work. =20
->=20
-> Involving the CPU (or GPU I suppose but that could involve big extra
-> latencies) in the kernel to massage the pixels around every time
-> seems extremely sub-optimal. Seems like we might as well use a
-> software cursor at that point.
+CI Bug Log - changes from CI_DRM_12736 -> Patchwork_113134v2
+====================================================
 
-I meant drivers that already do that anyway, because they cannot scan
-out ARGB8888 on the cursor plane.
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/index.html
+
+Participating hosts (38 -> 39)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-tgl-1115g4 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113134v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([i915#7456])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#7561])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][7] ([i915#7156] / [i915#7913])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][9] ([i915#7443])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium_edid@dp-edid-read:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#7828]) +7 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][11] ([fdo#109271]) +15 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([i915#4103])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([fdo#109285])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([fdo#110189]) +3 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([i915#3555])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-1115g4:      NOTRUN -> [SKIP][16] ([fdo#109295] / [i915#3301])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-dg2-11}:       [ABORT][17] ([i915#7913]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12736/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
+  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
 
 
-Thanks,
-pq
+Build changes
+-------------
 
---Sig_/HNKsfv6m6Bq7=iO0SmPvXq5
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  * Linux: CI_DRM_12736 -> Patchwork_113134v2
 
------BEGIN PGP SIGNATURE-----
+  CI-20190529: 20190529
+  CI_DRM_12736: a2aa96584caf1f5ad2047cae0689b26d12c51d2f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113134v2: a2aa96584caf1f5ad2047cae0689b26d12c51d2f @ git://anongit.freedesktop.org/gfx-ci/linux
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmPrbdkACgkQI1/ltBGq
-qqfHNw//TVEbYlVrxSFnsGG82oc/fiumTM7eBuRojlVklHaGY+EJKIId8JZkhflT
-i05/Fb3mL/bPkSRTCGlWsz+ELZm/Ie4WNDbcRyqqisIxJjQzVLOgRJRCxby0ZMBv
-+AceW2h0aQ3JIr4NRqmDCHQ/gjHrOlxqKvDNY91X4oCIFBw+3gxIE2QjhurW/oSz
-fGI7Vy0k09k7rtQAMXM5xhmzmRPcDFLo2QapVioBYwmH+h2GR13WlQ6ZlVhfY425
-g5bH20qixzA4UhcArc8edrBYxO5NWBLvG8NIm7WKf0gmQqdk4qtUg5pfYMpkzOTX
-c7fMsc6FYJ+6QOsPS9YhxoEDJ8hWLPUk2c8xAD7NZqY+xXvgRXjfE9g+Qg9vt+03
-Yhv8Ai6cTS+hnYZhNfkariYrxM79pEDZ7t2T/WF3RDyRZZtaOha/lgT5dubjM0c9
-DCPK8qwRzV9BHaW2VQ/1Lpf7lxoWyWmgyti9dPpTY5YbEwxuFVCKTPAwoXxvfkjm
-utATQTEYPxqDWFKMeyaxWKQDnhKSodXpc1sBkPsmPuehijroQx/O9dhwaGfaq0MD
-xXsghKDsf7w7/b3Uj3u/8Ts+Cplkjsm8zJR9+ejMZ0XinseJFi6CsDFA7CQ1YjjF
-tZsDAmKuUWGI6XhyhL+btK/svqICrvHgpB0yOVGBZGl5sDQuS4M=
-=ouHC
------END PGP SIGNATURE-----
 
---Sig_/HNKsfv6m6Bq7=iO0SmPvXq5--
+### Linux commits
+
+a57fe3bb23d7 i915/display/dp: SDP CRC16 for 128b132b link layer
+cca18423c78e drm: Add SDP Error Detection Configuration Register
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/index.html
+
+--===============5777364259348592691==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>DP2.0 SDP CRC16 for 128/132b link layer (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113134/">https://patchwork.freedesktop.org/series/113134/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12736 -&gt; Patchwork_113134v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 39)</h2>
+<p>Additional (2): fi-kbl-soraka fi-tgl-1115g4 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113134v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_edid@dp-edid-read:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12736/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113134v2/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12736 -&gt; Patchwork_113134v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12736: a2aa96584caf1f5ad2047cae0689b26d12c51d2f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113134v2: a2aa96584caf1f5ad2047cae0689b26d12c51d2f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a57fe3bb23d7 i915/display/dp: SDP CRC16 for 128b132b link layer<br />
+cca18423c78e drm: Add SDP Error Detection Configuration Register</p>
+
+</body>
+</html>
+
+--===============5777364259348592691==--
