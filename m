@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402696962AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF8169636D
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 13:24:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5241610E89F;
-	Tue, 14 Feb 2023 11:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58FDF10E215;
+	Tue, 14 Feb 2023 12:24:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBC610E89F
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 11:50:07 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4705210E215
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676375407; x=1707911407;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=CumQ+9sS6Pr28HbUXmInwdcFaWzBgsDF1NCx/jWYQWc=;
- b=AVFlldGNz7Ia9jRNgmIDxrssa1dfVzTSf6X1jkFOu72OXDcnjBiaJWvS
- ouGgcAfJwf/LaIA3DADJ+HCJaYyYXHsNS5M7BAG+EFdEJ3qhA8mkSiIxv
- bl8ktuAvb6OfIQvL6uf4y4+bdzQniRgtl6VG7EVCdO8b/cZ68X+L7+2FI
- lcJE0bPcKaInG4klKV8UiupKnrytwvlpISKwix+U/A0/xrl0wGT3Rc/EZ
- rNBPQHh53NT/7Ub4OA7J/JZdfBCIIf50z/I3XEMjuU4gh5DsYMT0ci7yX
- DoIHCVdklHWMN1R5CFIQuIwF5sHbvoXQdNPJXnZ/RPLMc1iFMC9+4NQTL g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="314785408"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="314785408"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:50:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699515458"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699515458"
+ t=1676377457; x=1707913457;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EEF09UbWEiZAG5e6trQiDvfz2wqDK0zgMeTjn8Psqhc=;
+ b=n5goXt+l3MZZCv2Rj1ExkawPX/d5Twd/A7oh7hNKN6dd2mLIvoV/5Fte
+ ICHDTsc+ltB7nvXjb4x1jfXkkdIMocjm8Fkd66UlQdRzGYSrGUL1w+lvF
+ Ed0VVl6ix75fTZI8QCAJEopooicR7o+ISzPT2YEe5IKardhLCLTVRaYZz
+ 02FClH1jwFbXxO7DhHDDvT8DXfdmKbCrMRBCz3quZVAz6f56bVg27Crhh
+ jl1B2u1xgDnpry81We5MM9MTk2YDR1qq+MQ8XdvxwtixR99XkYkVmVXHl
+ IqxKuCK/3kFzuniLRVtV03c5iDWPrVnxiLxZ4r7jkgx1RXgL95ocDxRP+ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="319178312"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="319178312"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 04:24:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757968862"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="757968862"
 Received: from skalyan-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.52.13])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:50:05 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2023 04:24:15 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230207074416.3209722-6-suraj.kandpal@intel.com>
+To: Swati Sharma <swati2.sharma@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230208105932.21681-1-swati2.sharma@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230207074416.3209722-1-suraj.kandpal@intel.com>
- <20230207074416.3209722-6-suraj.kandpal@intel.com>
-Date: Tue, 14 Feb 2023 13:50:02 +0200
-Message-ID: <87lel0sbyt.fsf@intel.com>
+References: <20230208105932.21681-1-swati2.sharma@intel.com>
+Date: Tue, 14 Feb 2023 14:24:12 +0200
+Message-ID: <87ilg4sadv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v9 5/7] drm/i915: Fill in native_420 field
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add a debugfs entry for
+ fifo underruns
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,173 +58,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Now that we have laid the groundwork for YUV420 Enablement
-> we fill up native_420 field in vdsc_cfg and add appropriate
-> checks wherever required.
+On Wed, 08 Feb 2023, Swati Sharma <swati2.sharma@intel.com> wrote:
+> From: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
 >
-> ---v2
-> -adding native_422 field as 0 [Vandita]
-> -filling in second_line_bpg_offset, second_line_offset_adj
-> and nsl_bpg_offset in vds_cfg when native_420 is true
+> Add a debugfs entry i915_fifo_underruns to indicate the count of
+> fifo underruns for each pipe.
 >
-> ---v3
-> -adding display version check to solve igt issue
->
-> --v7
-> -remove is_pipe_dsc check as its always true for D14 [Jani]
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c    |  2 -
->  drivers/gpu/drm/i915/display/intel_dp.c   |  3 -
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 72 ++++++++++++++++++++++-
->  3 files changed, 69 insertions(+), 8 deletions(-)
+>  .../drm/i915/display/intel_display_debugfs.c  | 28 ++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  .../drm/i915/display/intel_fifo_underrun.c    | 29 +++++++++++++++++++
+>  3 files changed, 59 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 003cac918228..f8c999fa3242 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1534,8 +1534,6 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
->  	if (crtc_state->dsc.slice_count > 1)
->  		crtc_state->dsc.dsc_split = true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 9e2fb8626c96..d64b4675766c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -9,6 +9,7 @@
+>  #include <drm/drm_fourcc.h>
 >  
-> -	vdsc_cfg->convert_rgb = true;
-> -
->  	/* FIXME: initialize from VBT */
->  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
+>  #include "i915_debugfs.h"
+> +#include "intel_crtc.h"
+>  #include "i915_irq.h"
+>  #include "i915_reg.h"
+>  #include "intel_de.h"
+> @@ -1057,6 +1058,32 @@ static int i915_lpsp_status(struct seq_file *m, void *unused)
+>  	return 0;
+>  }
 >  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 73a7baccd7d0..250d9cdd14b8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1470,9 +1470,6 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  		min(intel_dp_source_dsc_version_minor(intel_dp),
->  		    intel_dp_sink_dsc_version_minor(intel_dp));
->  
-> -	vdsc_cfg->convert_rgb = intel_dp->dsc_dpcd[DP_DSC_DEC_COLOR_FORMAT_CAP - DP_DSC_SUPPORT] &
-> -		DP_DSC_RGB;
+> +static int i915_fifo_underruns(struct seq_file *m, void *unused)
+> +{
+> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> +	struct intel_crtc *crtc;
+> +	enum pipe pipe;
+> +	unsigned long flags;
+> +	u32 cpu_fifo_underrun_count[I915_MAX_PIPES];
+> +	u32 pch_fifo_underrun_count[I915_MAX_PIPES];
+> +
+> +	spin_lock_irqsave(&dev_priv->irq_lock, flags);
+> +	for_each_pipe(dev_priv, pipe) {
+> +		crtc = intel_crtc_for_pipe(dev_priv, pipe);
 
-Are the sink caps taken into account somewhere else?
+See the implementation of intel_crtc_for_pipe(). Looping over pipes and
+then converting to crtcs is not great.
 
-> -
->  	line_buf_depth = drm_dp_dsc_sink_line_buf_depth(intel_dp->dsc_dpcd);
->  	if (!line_buf_depth) {
->  		drm_dbg_kms(&i915->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index ed16f63d6355..13ad853e24eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -460,14 +460,47 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
->  	vdsc_cfg->pic_width = pipe_config->hw.adjusted_mode.crtc_hdisplay;
->  	vdsc_cfg->slice_width = DIV_ROUND_UP(vdsc_cfg->pic_width,
->  					     pipe_config->dsc.slice_count);
-> -
-> -	/* Gen 11 does not support YCbCr */
-> +	/*
-> +	 * According to DSC 1.2 specs if colorspace is YCbCr then convert_rgb is 0
-> +	 * else 1
-> +	 */
-> +	vdsc_cfg->convert_rgb = !(pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> +				  pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR444);
+> +		cpu_fifo_underrun_count[pipe] = crtc->cpu_fifo_underrun_count;
+> +		pch_fifo_underrun_count[pipe] = crtc->pch_fifo_underrun_count;
+> +	}
+> +	spin_unlock_irqrestore(&dev_priv->irq_lock, flags);
+> +
+> +	seq_printf(m, "\t%-10s \t%10s\n", "cpu fifounderruns", "pch fifounderruns");
+> +	for_each_pipe(dev_priv, pipe)
+> +		seq_printf(m, "pipe:%c %10u %20u\n", pipe_name(pipe),
+> +			   cpu_fifo_underrun_count[pipe],
+> +			   pch_fifo_underrun_count[pipe]);
 
-Nitpick, IMO "format != x && format != y" reads better than "!(format ==
-x || format == y)"
+I would replace all of the above with a single for_each_intel_crtc()
+loop, and ditch the local count arrays here. I'm not sure we care about
+the counts being in sync across crtcs i.e. no need to take the irq lock
+across the whole loop.
+
+...
+
+No wait. I think I'd actually replace all of that with a *crtc* specific
+debugfs file instead. See below.
 
 > +
-> +	if (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-> +		vdsc_cfg->native_420 = true;
-> +	/* We do not support YcBCr422 as of now */
-> +	vdsc_cfg->native_422 = false;
-> +	/* Gen 11 does not support YCbCr422 */
->  	vdsc_cfg->simple_422 = false;
->  	/* Gen 11 does not support VBR */
->  	vdsc_cfg->vbr_enable = false;
->  
->  	/* Gen 11 only supports integral values of bpp */
->  	vdsc_cfg->bits_per_pixel = compressed_bpp << 4;
-> +	/*
-> +	 * According to DSC 1.2 specs if native_420 is set:
-> +	 * -We need to double the current bpp.
-> +	 * -second_line_bpg_offset is 12 in general and equal to 2*(slice_height-1) if slice
-> +	 * height < 8.
-> +	 * -second_line_offset_adj is 512 as shown by emperical values to yeild best chroma
-> +	 * preservation in second line.
-> +	 * -nsl_bpg_offset is calculated as second_line_offset/slice_height -1 then rounded
-> +	 * up to 16 fractional bits, we left shift second line offset by 11 to preserve 11
-> +	 * fractional bits.
-> +	 */
-> +	if (vdsc_cfg->native_420) {
-> +		vdsc_cfg->bits_per_pixel <<= 1;
-> +		if (vdsc_cfg->slice_height >= 8)
-> +			vdsc_cfg->second_line_bpg_offset = 12;
-> +		else
-> +			vdsc_cfg->second_line_bpg_offset =
-> +				2 * (vdsc_cfg->slice_height - 1);
-> +		vdsc_cfg->second_line_offset_adj = 512;
-> +		vdsc_cfg->nsl_bpg_offset = DIV_ROUND_UP(vdsc_cfg->second_line_bpg_offset << 11,
-> +							vdsc_cfg->slice_height - 1);
-> +	}
+> +	return 0;
+> +}
 > +
->  	vdsc_cfg->bits_per_component = pipe_config->pipe_bpp / 3;
+>  static int i915_dp_mst_info(struct seq_file *m, void *unused)
+>  {
+>  	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> @@ -1586,6 +1613,7 @@ static const struct drm_info_list intel_display_debugfs_list[] = {
+>  	{"i915_dp_mst_info", i915_dp_mst_info, 0},
+>  	{"i915_ddb_info", i915_ddb_info, 0},
+>  	{"i915_lpsp_status", i915_lpsp_status, 0},
+> +	{"i915_fifo_underruns", i915_fifo_underruns, 0},
+
+The direction now is to add debugfs files next to the implementation.
+
+So with the crtc specific files, you'd add
+
+void intel_fifo_underrun_debugfs_add(struct intel_crtc *crtc)
+
+in intel_fifo_underrun.[ch] and call that from intel_crtc_debugfs_add().
+
+It handles exactly one crtc. See for example
+intel_drrs_crtc_debugfs_add().
+
+>  };
 >  
->  	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
-> @@ -594,8 +627,13 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
->  		DSC_VER_MIN_SHIFT |
->  		vdsc_cfg->bits_per_component << DSC_BPC_SHIFT |
->  		vdsc_cfg->line_buf_depth << DSC_LINE_BUF_DEPTH_SHIFT;
-> -	if (vdsc_cfg->dsc_version_minor == 2)
-> +	if (vdsc_cfg->dsc_version_minor == 2) {
->  		pps_val |= DSC_ALT_ICH_SEL;
-> +		if (vdsc_cfg->native_420)
-> +			pps_val |= DSC_NATIVE_420_ENABLE;
-> +		if (vdsc_cfg->native_422)
-> +			pps_val |= DSC_NATIVE_422_ENABLE;
-> +	}
->  	if (vdsc_cfg->block_pred_enable)
->  		pps_val |= DSC_BLOCK_PREDICTION;
->  	if (vdsc_cfg->convert_rgb)
-> @@ -906,6 +944,34 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
->  				       pps_val);
+>  static const struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 9ccae7a46020..b0468ac70059 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1438,6 +1438,8 @@ struct intel_crtc {
+>  
+>  #ifdef CONFIG_DEBUG_FS
+>  	struct intel_pipe_crc pipe_crc;
+> +	u32 cpu_fifo_underrun_count;
+> +	u32 pch_fifo_underrun_count;
+>  #endif
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> index d636d21fa9ce..7131dd400ac3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> @@ -88,6 +88,17 @@ static bool cpt_can_enable_serr_int(struct drm_device *dev)
+>  	return true;
+>  }
+>  
+> +static void intel_fifo_underrun_inc_count(struct intel_crtc *crtc,
+> +					  bool is_cpu_fifo)
+
+What Andy said, but please don't add #defines, just add two separate
+functions like:
+
+intel_cpu_fifo_underrun_count_inc()
+intel_pch_fifo_underrun_count_inc()
+
+Those go hand in hand with:
+
+intel_cpu_fifo_underrun_count_reset()
+intel_pch_fifo_underrun_count_reset()
+
+which we'll also need instead of messing with the counts directly in
+some places and via accessors in some others.
+
+> +{
+> +#ifdef CONFIG_DEBUG_FS
+
+The #ifdefs go outside the function. See coding-style.rst.
+
+> +	if (is_cpu_fifo)
+> +		crtc->cpu_fifo_underrun_count++;
+> +	else
+> +		crtc->pch_fifo_underrun_count++;
+> +#endif
+> +}
+> +
+>  static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> @@ -103,6 +114,7 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
+>  	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+>  	intel_de_posting_read(dev_priv, reg);
+>  
+> +	intel_fifo_underrun_inc_count(crtc, true);
+>  	trace_intel_cpu_fifo_underrun(dev_priv, crtc->pipe);
+>  	drm_err(&dev_priv->drm, "pipe %c underrun\n", pipe_name(crtc->pipe));
+>  }
+> @@ -156,6 +168,7 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
+>  	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
+>  	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
+>  
+> +	intel_fifo_underrun_inc_count(crtc, true);
+>  	trace_intel_cpu_fifo_underrun(dev_priv, pipe);
+>  	drm_err(&dev_priv->drm, "fifo underrun on pipe %c\n", pipe_name(pipe));
+>  }
+> @@ -244,6 +257,7 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
+>  		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+>  	intel_de_posting_read(dev_priv, SERR_INT);
+>  
+> +	intel_fifo_underrun_inc_count(crtc, false);
+>  	trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
+>  	drm_err(&dev_priv->drm, "pch fifo underrun on pch transcoder %c\n",
+>  		pipe_name(pch_transcoder));
+> @@ -286,6 +300,11 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+>  
+>  	old = !crtc->cpu_fifo_underrun_disabled;
+>  	crtc->cpu_fifo_underrun_disabled = !enable;
+> +#ifdef CONFIG_DEBUG_FS
+> +	/* don't reset count in fifo underrun irq path */
+> +	if (!in_irq() && !enable)
+> +		crtc->cpu_fifo_underrun_count = 0;
+> +#endif
+
+Please, no #ifdefs inline in code. Use them to choose between defining
+alternate versions of a function,
+e.g. intel_cpu_fifo_underrun_count_reset()
+
+The in_irq() part needs to be handled in some other way, can't use that.
+
+As a tip, when using functions like this, see how much it's used
+elsewhere in kernel. A kind of popularity contest. If it's not widely
+used, figure out why, and think again.
+
+$ git grep -w "in_irq()" | wc -l
+12
+
+>  
+>  	if (HAS_GMCH(dev_priv))
+>  		i9xx_set_fifo_underrun_reporting(dev, pipe, enable, old);
+> @@ -365,6 +384,11 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+>  
+>  	old = !crtc->pch_fifo_underrun_disabled;
+>  	crtc->pch_fifo_underrun_disabled = !enable;
+> +#ifdef CONFIG_DEBUG_FS
+> +	/* don't reset count in fifo underrun irq path */
+> +	if (!in_irq() && !enable)
+> +		crtc->pch_fifo_underrun_count = 0;
+> +#endif
+>  
+>  	if (HAS_PCH_IBX(dev_priv))
+>  		ibx_set_fifo_underrun_reporting(&dev_priv->drm,
+> @@ -434,6 +458,7 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+>  			drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
 >  	}
 >  
-> +	if (DISPLAY_VER(dev_priv) >= 14) {
-> +		/* Populate PICTURE_PARAMETER_SET_17 registers */
-> +		pps_val = 0;
-> +		pps_val |= DSC_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
-> +		drm_dbg_kms(&dev_priv->drm, "PPS17 = 0x%08x\n", pps_val);
-> +		intel_de_write(dev_priv,
-> +			       MTL_DSC0_PICTURE_PARAMETER_SET_17(pipe),
-> +			       pps_val);
-> +		if (crtc_state->dsc.dsc_split)
-> +			intel_de_write(dev_priv,
-> +				       MTL_DSC1_PICTURE_PARAMETER_SET_17(pipe),
-> +				       pps_val);
+> +	intel_fifo_underrun_inc_count(crtc, true);
+>  	intel_fbc_handle_fifo_underrun_irq(dev_priv);
+>  }
+>  
+> @@ -449,6 +474,10 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+>  void intel_pch_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+>  					 enum pipe pch_transcoder)
+>  {
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pch_transcoder);
 > +
-> +		/* Populate PICTURE_PARAMETER_SET_18 registers */
-> +		pps_val = 0;
-> +		pps_val |= DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
-> +			   DSC_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
-> +		drm_dbg_kms(&dev_priv->drm, "PPS18 = 0x%08x\n", pps_val);
-> +		if (is_pipe_dsc(crtc, cpu_transcoder)) {
-
-This is still always true for display ver >= 14.
-
-> +			intel_de_write(dev_priv,
-> +				       MTL_DSC0_PICTURE_PARAMETER_SET_18(pipe),
-> +				       pps_val);
-> +			if (crtc_state->dsc.dsc_split)
-> +				intel_de_write(dev_priv,
-> +					       MTL_DSC1_PICTURE_PARAMETER_SET_18(pipe),
-> +					       pps_val);
-> +		}
-> +	}
->  	/* Populate the RC_BUF_THRESH registers */
->  	memset(rc_buf_thresh_dword, 0, sizeof(rc_buf_thresh_dword));
->  	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
+> +	intel_fifo_underrun_inc_count(crtc, false);
+> +
+>  	if (intel_set_pch_fifo_underrun_reporting(dev_priv, pch_transcoder,
+>  						  false)) {
+>  		trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
