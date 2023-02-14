@@ -1,53 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58FD0695AB4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 08:38:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E50A6695AC0
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 08:42:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0EB10E806;
-	Tue, 14 Feb 2023 07:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87DA210E042;
+	Tue, 14 Feb 2023 07:42:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54BEC10E7F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 07:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676360305; x=1707896305;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ue98hXhYLOzTVmbyQnO8lDPWMpAnP2SwoyqjxSnpQtc=;
- b=Do6Af6C2URerdQK1vSXnyZz2hjUPo0Jf2MQn5gLX699A28R2K//3akpw
- MV2E3LoVxAjgKYCVyVrBlLnCq8Ybii7r51JLMsNypgwWFsFlFrTDeta1d
- laXZibU3ImpuXn9s2C6lJ9z3GffouH+u8pxv3ab3w/U2pb6erRRXJdiAt
- C2zhX3DPdR/vQiOg6VhornlT6rC869EIYVZ/qiIQGvSIOk60859vxuweg
- mL8sblNWRP/pQsx18NznlD6slTRkFdntkMEliGox4XhFT99C5Ppf99Fih
- wccUKrjy442kB33VszoRAVNKyYN+yEUEWYjT2FTNJxciIEqSvrhno+Sd6 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="314744170"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="314744170"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2023 23:38:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="669070989"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="669070989"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga002.jf.intel.com with SMTP; 13 Feb 2023 23:38:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 09:38:18 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 09:38:18 +0200
-Message-Id: <20230214073818.20231-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230208015508.24824-10-ville.syrjala@linux.intel.com>
-References: <20230208015508.24824-10-ville.syrjala@linux.intel.com>
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C757A10E042;
+ Tue, 14 Feb 2023 07:42:42 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id y1so14679443wru.2;
+ Mon, 13 Feb 2023 23:42:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=xy4pf8U3PaAc9XKe8RmRoPJooTfu/zUcpdrWaen243w=;
+ b=HtX16xs8UUpsheVvHM28zTRL07ZMTFDjqsWHqRnYbVp03u1EX1YBitkbjkV0InDmpj
+ XaL8VqDjn8/uDdqwm4VGFtlsvG5Hp5MCYzIb8eAI+JjxcNsd2qJs7ef7tPJL2SOF9pny
+ FUCehzW9ZiyBHKCjCVe2lg72KB3ZhZZWg7jX8XkLW27Azn02xvQH9Qyv4nLYY58NwGSe
+ NMXqkBUhz+LCgdM67DBf2+NZVSjF714TazAyc9VrtyMvYho9g1OuM3BYI1Tv5R8Zjq2j
+ 5n2KvWIL5S7tD/mcbTIqU4ySzsyWsiNO5NweciY6dAtIYNsCLukMa4WeUKrMEbYOsgp5
+ ggtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=xy4pf8U3PaAc9XKe8RmRoPJooTfu/zUcpdrWaen243w=;
+ b=MpZQno4GRc1RfI+SPzI99K7PuN2PgDaLImma1gwqR8Qa3txiaW0+p0qUqbbUJvMJBY
+ r2MN78Bb7eRexVeKaEdWd5rAifMSZA8yGty1i8Cg7vDKbcgvhVuFcziTWu6ZgMWneHrk
+ Kaiwwz/oSvzAQCZ4lxOto86qW7lRu0iD8uC50Nqtz6A0xazCTlEgAWskLLXLvYFa3wf1
+ q5mDlagJdc/nm9qEY8ogNeE5eYnkJQ/wizjjW3uR3iUu5KUrebA65L17GEFKYsc4F6AL
+ 7diwZ4ZodWx7EogX2a3Xe/YsTDndErwfxD8AQ9rYygxAsgn/MKXCQ9eWxfzt4efbo/l1
+ a8SA==
+X-Gm-Message-State: AO0yUKVmf1Mbn1AUeDpFEsOOIsqE5EQpX4+vcHRmRM+HTMgIcM45b+jO
+ r5PFmQZd2SDRRtosm7vdz6Q5lkHETsU=
+X-Google-Smtp-Source: AK7set+7FWO1uxAe7QjT1iovOUZtvLN4s1m5nYKqCUgCnJtvRiGCVltgqpAGXnOGWp+MEeoG+HaSDA==
+X-Received: by 2002:adf:e590:0:b0:2c3:db4f:f336 with SMTP id
+ l16-20020adfe590000000b002c3db4ff336mr1144669wrm.39.1676360561192; 
+ Mon, 13 Feb 2023 23:42:41 -0800 (PST)
+Received: from able.fritz.box (p5b0ea2e7.dip0.t-ipconnect.de. [91.14.162.231])
+ by smtp.gmail.com with ESMTPSA id
+ e14-20020a5d65ce000000b002c561805a4csm1679855wrw.45.2023.02.13.23.42.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Feb 2023 23:42:40 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Tue, 14 Feb 2023 08:42:35 +0100
+Message-Id: <20230214074238.65865-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 09/10] drm/i915: Iterate all child devs in
- intel_bios_is_port_present()
+Subject: [Intel-gfx] Change TTM from using pfn to bytes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,57 +72,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Amaranath.Somalapuram@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi guys,
 
-Instead of consulting vbt.ports[] lets just go through the
-whole child device list to check whether a specific port
-was declared by the VBT or not.
+this is an extract from Amar's earlier patch set with quite some
+re-ordering, bug fixes and separating changes into smaller patches.
 
-Note that this doesn't change anything wrt. detecting duplicate
-child devices with the same port as vbt.ports[] would also always
-contain exactly one of the duplicates.
+Background is that we want to use GEM/TTM to manage all kind of
+resources which most are not accounted in pages but rather bytes or even
+arbitary units (hw blocks for example).
 
-v2: Include a is_port_valid() check to deal with some broken VBTs
-    Mention something about duplicate port detection (Jani)
+Sending this out so that the Intel CI can take another look at it.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+Regards,
+Christian.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index efe33af2259b..77964618664a 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3398,10 +3398,22 @@ bool intel_bios_is_lvds_present(struct drm_i915_private *i915, u8 *i2c_pin)
-  */
- bool intel_bios_is_port_present(struct drm_i915_private *i915, enum port port)
- {
-+	const struct intel_bios_encoder_data *devdata;
-+
- 	if (WARN_ON(!has_ddi_port_info(i915)))
- 		return true;
- 
--	return i915->display.vbt.ports[port];
-+	if (!is_port_valid(i915, port))
-+		return false;
-+
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
-+		const struct child_device_config *child = &devdata->child;
-+
-+		if (dvo_port_to_port(i915, child->dvo_port) == port)
-+			return true;
-+	}
-+
-+	return false;
- }
- 
- /**
--- 
-2.39.1
 
