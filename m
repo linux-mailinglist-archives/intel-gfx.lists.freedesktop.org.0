@@ -2,55 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7096961AE
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A1D6961AC
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 12:02:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1AC310E871;
-	Tue, 14 Feb 2023 11:02:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A96410E87A;
+	Tue, 14 Feb 2023 11:02:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC4B610E871
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 11:02:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676372535; x=1707908535;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=AgpVpQzRGVUzUVDbuwzNO8bdt9SfA72J6K1bWT6aBgo=;
- b=TaDtzcsoMjHfaMMRMQKWQnfD1j4BFY5Ij3QvS6jYD3v9vPbBW3uGB4ZF
- jKcch53hOv1/LPI+QQhhnZZG6fpQDoxTX/AxfBnyKzBPUnSV5LZ0SeHHX
- v4LXxPYo+GpI3lxin8lI/y2KobbQte4c58V4NuoSTVkj4a6Hi8vsP94tg
- hSkT6n2y5xrLm7GDAGZMimIRTS8Sv8J3D13B6eniOBK8f9NqgfoJC2wtB
- YNtzG7gbBeCr1MYDPA4bZHxWVSZGYL566n8cvYFiEnQZseuCAsD2OO5L2
- zeqE3CdHrcvBvWPUSSysYwo8NHzFiKTmjMesps5BaY6zSMfk0qgkvacx4 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="328844279"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="328844279"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:01:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="793078011"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="793078011"
-Received: from swatish2-mobl2.gar.corp.intel.com (HELO [10.215.195.133])
- ([10.215.195.133])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:01:50 -0800
-Message-ID: <e80e4e9b-c597-fe7e-c546-1bba2ffa98a8@intel.com>
-Date: Tue, 14 Feb 2023 16:31:47 +0530
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2619310E881
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 11:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1676372517;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=8b9p/fvt5+n9OOpxKgfeIj6wIuTrg7IC7U73UoDlpc0=;
+ b=UQJkyjmWc4Z7/n7G4YRr3B4jaHJdS8+IKtTOu/1+2jPu9I3t4XAOfnINQ4mrKRH4ALKpzY
+ 97q3PWUEzN6eJN0mvk5B7L4IsdSJJSGuBFpi1bhflEn5vkjD1NyBYRbTElax5F3KgMB/Lr
+ cAV6398IUmfvVCxaveQ8bPMaAyBcGgs=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-622-GmQjHJCyNiC6a3zz5eN1gA-1; Tue, 14 Feb 2023 06:01:54 -0500
+X-MC-Unique: GmQjHJCyNiC6a3zz5eN1gA-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ qk8-20020a1709077f8800b008af3fb43869so9063552ejc.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 03:01:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=8b9p/fvt5+n9OOpxKgfeIj6wIuTrg7IC7U73UoDlpc0=;
+ b=ING3a1wNuR539Ar46W2XeNrh5SYaNu8WLfO/8lXz8qUGd783/mipDdH3qStYX01KkB
+ 3LGXi8ZiszxQf1auTuz84Z4P+W26wmI7lPLYanzVXdq3sxtCGcQOdqgsajvKuo+ZGWUY
+ KA7mdgnM0QDhETdI4+6gNgcUK7g3qzwEXlCS6ocXqtnMdRXmuChcHA6Yh4c9a6dJaOUv
+ IhkA93fSt4z0zEb6Zjf6bjgPSxUX3ARNw5C3sjLt+bGzPNfc01Jxapn7jQCk/v1Q6lLn
+ JPteXKKbPHtsu/eEhgriWJpscSyUI5r/zTDTiva9mwWAFc/1bOzp9IUL7wvcrmk2MTJV
+ iCZQ==
+X-Gm-Message-State: AO0yUKUe9rHa7vfkTrpqF9Zc3ww8AskQIcQkxMdzAkuWOdKf8b+r9qg3
+ lbae2jiNvKXBn8alH87XoOXY5KCLB+poF05MjXxhQRHhe5Zq4v0OkbZdMC3XUFAJn0aDeFaT1iR
+ 4kiAXz4NwVblcmwqX0jhBhbZPO8Fc
+X-Received: by 2002:a17:907:11dc:b0:88f:13f0:4565 with SMTP id
+ va28-20020a17090711dc00b0088f13f04565mr2090753ejb.69.1676372513023; 
+ Tue, 14 Feb 2023 03:01:53 -0800 (PST)
+X-Google-Smtp-Source: AK7set+LAHCrVcn3GbZDnHJgOQ/w9D/ZDBvGVyEJ1AdGzJ5kjZPNNGppUGO0emHnnhI/wnJy39vNaA==
+X-Received: by 2002:a17:907:11dc:b0:88f:13f0:4565 with SMTP id
+ va28-20020a17090711dc00b0088f13f04565mr2090731ejb.69.1676372512713; 
+ Tue, 14 Feb 2023 03:01:52 -0800 (PST)
+Received: from redhat.com (host-90-235-85-221.mobileonline.telia.com.
+ [90.235.85.221]) by smtp.gmail.com with ESMTPSA id
+ u19-20020a1709067d1300b0088b93bfa765sm8082122ejo.138.2023.02.14.03.01.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Feb 2023 03:01:52 -0800 (PST)
+Date: Tue, 14 Feb 2023 12:01:49 +0100
+From: Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <Y+tqHZQ/sg3u/VxR@redhat.com>
+References: <20230208040911.12590-2-ville.syrjala@linux.intel.com>
+ <20230208211016.7034-1-ville.syrjala@linux.intel.com>
+ <Y+UAN7V+kA58yMfn@redhat.com> <Y+tTpH1nfHIG/Dxg@intel.com>
+ <Y+taU+zDiTO9aA0U@redhat.com> <Y+tiXJglfpzgUEFD@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230207074416.3209722-8-suraj.kandpal@intel.com>
- <20230214105122.27201-1-swati2.sharma@intel.com> <87ttzosenm.fsf@intel.com>
-Content-Language: en-US
-From: Swati Sharma <swati2.sharma@intel.com>
-Organization: Intel
-In-Reply-To: <87ttzosenm.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [v10] drm/i915/dsc: Add debugfs entry to validate
- DSC output formats
+In-Reply-To: <Y+tiXJglfpzgUEFD@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Introduce plane SIZE_HINTS
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,227 +87,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniel@fooishbar.org>, dri-devel@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Done. Thanks for the feedback. Next rev floated
-https://patchwork.freedesktop.org/patch/522697/?series=113729&rev=3
+On Tue, Feb 14, 2023 at 12:28:44PM +0200, Ville Syrjälä wrote:
+> On Tue, Feb 14, 2023 at 10:54:27AM +0100, Jonas Ådahl wrote:
+> > On Tue, Feb 14, 2023 at 11:25:56AM +0200, Ville Syrjälä wrote:
+> > > On Thu, Feb 09, 2023 at 03:16:23PM +0100, Jonas Ådahl wrote:
+> > > > On Wed, Feb 08, 2023 at 11:10:16PM +0200, Ville Syrjala wrote:
+> > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > 
+> > > > > Add a new immutable plane property by which a plane can advertise
+> > > > > a handful of recommended plane sizes. This would be mostly exposed
+> > > > > by cursor planes as a slightly more capable replacement for
+> > > > > the DRM_CAP_CURSOR_WIDTH/HEIGHT caps, which can only declare
+> > > > > a one size fits all limit for the whole device.
+> > > > > 
+> > > > > Currently eg. amdgpu/i915/nouveau just advertize the max cursor
+> > > > > size via the cursor size caps. But always using the max sized
+> > > > > cursor can waste a surprising amount of power, so a better
+> > > > > stragey is desirable.
+> > > > > 
+> > > > > Most other drivers don't specify any cursor size at all, in
+> > > > > which case the ioctl code just claims that 64x64 is a great
+> > > > > choice. Whether that is actually true is debatable.
+> > > > > 
+> > > > > A poll of various compositor developers informs us that
+> > > > > blindly probing with setcursor/atomic ioctl to determine
+> > > > > suitable cursor sizes is not acceptable, thus the
+> > > > > introduction of the new property to supplant the cursor
+> > > > > size caps. The compositor will now be free to select a
+> > > > > more optimal cursor size from the short list of options.
+> > > > > 
+> > > > > Note that the reported sizes (either via the property or the
+> > > > > caps) make no claims about things such as plane scaling. So
+> > > > > these things should only really be consulted for simple
+> > > > > "cursor like" use cases.
+> > > > > 
+> > > > > v2: Try to add some docs
+> > > > > 
+> > > > > Cc: Simon Ser <contact@emersion.fr>
+> > > > > Cc: Jonas Ådahl <jadahl@redhat.com>
+> > > > > Cc: Daniel Stone <daniel@fooishbar.org>
+> > > > > Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> > > > > Acked-by: Harry Wentland <harry.wentland@amd.com>
+> > > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/drm_mode_config.c |  7 +++++
+> > > > >  drivers/gpu/drm/drm_plane.c       | 48 +++++++++++++++++++++++++++++++
+> > > > >  include/drm/drm_mode_config.h     |  5 ++++
+> > > > >  include/drm/drm_plane.h           |  4 +++
+> > > > >  include/uapi/drm/drm_mode.h       | 11 +++++++
+> > > > >  5 files changed, 75 insertions(+)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+> > > > > index 87eb591fe9b5..21860f94a18c 100644
+> > > > > --- a/drivers/gpu/drm/drm_mode_config.c
+> > > > > +++ b/drivers/gpu/drm/drm_mode_config.c
+> > > > > @@ -374,6 +374,13 @@ static int drm_mode_create_standard_properties(struct drm_device *dev)
+> > > > >  		return -ENOMEM;
+> > > > >  	dev->mode_config.modifiers_property = prop;
+> > > > >  
+> > > > > +	prop = drm_property_create(dev,
+> > > > > +				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
+> > > > > +				   "SIZE_HINTS", 0);
+> > > > > +	if (!prop)
+> > > > > +		return -ENOMEM;
+> > > > > +	dev->mode_config.size_hints_property = prop;
+> > > > > +
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  
+> > > > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> > > > > index 24e7998d1731..ae51b1f83755 100644
+> > > > > --- a/drivers/gpu/drm/drm_plane.c
+> > > > > +++ b/drivers/gpu/drm/drm_plane.c
+> > > > > @@ -140,6 +140,21 @@
+> > > > >   *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there have been
+> > > > >   *     various bugs in this area with inconsistencies between the capability
+> > > > >   *     flag and per-plane properties.
+> > > > > + *
+> > > > > + * SIZE_HINTS:
+> > > > > + *     Blob property which contains the set of recommended plane size
+> > > > > + *     which can used for simple "cursor like" use cases (eg. no scaling).
+> > > > > + *     Using these hints frees userspace from extensive probing of
+> > > > > + *     supported plane sizes through atomic/setcursor ioctls.
+> > > > > + *
+> > > > > + *     For optimal usage userspace should pick the smallest size
+> > > > > + *     that satisfies its own requirements.
+> > > > > + *
+> > > > > + *     The blob contains an array of struct drm_plane_size_hint.
+> > > > > + *
+> > > > > + *     Drivers should only attach this property to planes that
+> > > > > + *     support a very limited set of sizes (eg. cursor planes
+> > > > > + *     on typical hardware).
+> > > > 
+> > > > This is a bit awkward since problematic drivers would only expose
+> > > > this property if they are new enough.
+> > > > 
+> > > > A way to avoid this is for all new drivers expose this property, but
+> > > > special case the size 0x0 as "everything below the max limit goes". Then
+> > > > userspace can do (ignoring the missing cap fallback).
+> > > 
+> > > I don't think there are any drivers that need that.
+> > > So I'm thinking we can just ignore that for now.
+> > 
+> > None the less, userspace not seeing SIZE_HINTS will be required to
+> > indefinitely use the existing "old" behavior using the size cap as the
+> > buffer size with a fallback, and drivers without any size limitations
+> > that, i.e. details that are hard to express with a set of accepted
+> > sizes, will still use the inoptimal buffer sizes.
+> > 
+> > If I read [1] correctly, AMD has no particular size limitations other
+> > than a size limit, but without a SIZE_HINTS, userspace still needs to
+> > use the maximum size.
+> 
+> Simon pointed out they have pretty much the same exact limits as i915.
+> Ie. only a few power of two sizes, and stride must match width.
 
-On 14-Feb-23 4:21 PM, Jani Nikula wrote:
-> On Tue, 14 Feb 2023, Swati Sharma <swati2.sharma@intel.com> wrote:
->> DSC_Output_Format_Sink_Support entry is added to i915_dsc_fec_support_show
->> to depict if sink supports DSC output formats (RGB/YCbCr420/YCbCr444).
->> Also, new debugfs entry is created to enforce output format. This is
->> required because of our driver policy. For ex. if a mode is supported
->> in both RGB and YCbCr420 output formats by the sink, our policy is to
->> try RGB first and fall back to YCbCr420, if mode cannot be shown
->> using RGB. So, to test other output formats like YCbCr420 or YCbCr444,
->> we need a debugfs entry (force_dsc_output_format) to force this
->> output format.
->>
->> v2: -Func name changed to intel_output_format_name() (Jani N)
->>      -Return forced o/p format from intel_dp_output_format() (Jani N)
->>
->> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
->> ---
->>   .../drm/i915/display/intel_crtc_state_dump.c  |  6 +-
->>   .../drm/i915/display/intel_crtc_state_dump.h  |  2 +
->>   .../drm/i915/display/intel_display_debugfs.c  | 77 +++++++++++++++++++
->>   .../drm/i915/display/intel_display_types.h    |  1 +
->>   drivers/gpu/drm/i915/display/intel_dp.c       |  4 +
->>   5 files changed, 87 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> index 2422d6ef5777..2408ba88b0b6 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> @@ -115,13 +115,13 @@ static void snprintf_output_types(char *buf, size_t len,
->>   	WARN_ON_ONCE(output_types != 0);
->>   }
->>   
->> -static const char * const output_format_str[] = {
->> +const char * const output_format_str[] = {
+How about various ARM drivers, where the cursor plane is a regular
+overlay plane with an artificial 'cursor' stamp on it?
+
+Either way, the documentation creates an impossible expectation -
+drivers, existing of future, that does not "support for a very limited
+set of sizes" but actually any size below a limit, can't communicate to
+userspace that it can handle cursor buffers with an arbitrary sizes,
+without userspace breaking on todays kernels.
+
+
+Jonas
+
 > 
-> This still must remain static.
+> > 
+> > [1] https://gitlab.freedesktop.org/drm/intel/-/issues/7687#note_1760865
+> > 
+> > 
+> > Jonas
+> > 
+> > > 
+> > > > 
+> > > >     if (has(SIZE_HINTS))
+> > > >         size = figure_out_size(SIZE_HINTS,
+> > > > 	                       DRM_CAP_CURSOR_WIDTH,
+> > > > 			       DRM_CAP_CURSOR_HEIGHT,
+> > > > 			       preferred_size);
+> > > >     else
+> > > >         size = DRM_CAP_CURSOR_WIDTH x DRM_CAP_CURSOR_WIDTH;
+> > > > 
+> > > > With `figure_out_size()` knowing how to deal with 0x0 in the size hints
+> > > > to use `preferred_size` directly.
+> > > > 
+> > > > 
+> > > > Jonas
+> > > > 
+> > > > >   */
+> > > > >  
+> > > > >  static unsigned int drm_num_planes(struct drm_device *dev)
+> > > > > @@ -1582,3 +1597,36 @@ int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  EXPORT_SYMBOL(drm_plane_create_scaling_filter_property);
+> > > > > +
+> > > > > +/**
+> > > > > + * drm_plane_add_size_hint_property - create a size hint property
+> > > > > + *
+> > > > > + * @plane: drm plane
+> > > > > + * @hints: size hints
+> > > > > + * @num_hints: number of size hints
+> > > > > + *
+> > > > > + * Create a size hints property for the plane.
+> > > > > + *
+> > > > > + * RETURNS:
+> > > > > + * Zero for success or -errno
+> > > > > + */
+> > > > > +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> > > > > +				      const struct drm_plane_size_hint *hints,
+> > > > > +				      int num_hints)
+> > > > > +{
+> > > > > +	struct drm_device *dev = plane->dev;
+> > > > > +	struct drm_mode_config *config = &dev->mode_config;
+> > > > > +	struct drm_property_blob *blob;
+> > > > > +
+> > > > > +	blob = drm_property_create_blob(dev,
+> > > > > +					array_size(sizeof(hints[0]), num_hints),
+> > > > > +					hints);
+> > > > > +	if (IS_ERR(blob))
+> > > > > +		return PTR_ERR(blob);
+> > > > > +
+> > > > > +	drm_object_attach_property(&plane->base, config->size_hints_property,
+> > > > > +				   blob->base.id);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +EXPORT_SYMBOL(drm_plane_add_size_hints_property);
+> > > > > diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> > > > > index e5b053001d22..5bc8aed9b445 100644
+> > > > > --- a/include/drm/drm_mode_config.h
+> > > > > +++ b/include/drm/drm_mode_config.h
+> > > > > @@ -949,6 +949,11 @@ struct drm_mode_config {
+> > > > >  	 */
+> > > > >  	struct drm_property *modifiers_property;
+> > > > >  
+> > > > > +	/**
+> > > > > +	 * @size_hints_propertty: Plane SIZE_HINTS property.
+> > > > > +	 */
+> > > > > +	struct drm_property *size_hints_property;
+> > > > > +
+> > > > >  	/* cursor size */
+> > > > >  	uint32_t cursor_width, cursor_height;
+> > > > >  
+> > > > > diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> > > > > index 51291983ea44..1997d7d64b69 100644
+> > > > > --- a/include/drm/drm_plane.h
+> > > > > +++ b/include/drm/drm_plane.h
+> > > > > @@ -32,6 +32,7 @@
+> > > > >  #include <drm/drm_util.h>
+> > > > >  
+> > > > >  struct drm_crtc;
+> > > > > +struct drm_plane_size_hint;
+> > > > >  struct drm_printer;
+> > > > >  struct drm_modeset_acquire_ctx;
+> > > > >  
+> > > > > @@ -945,5 +946,8 @@ drm_plane_get_damage_clips(const struct drm_plane_state *state);
+> > > > >  
+> > > > >  int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+> > > > >  					     unsigned int supported_filters);
+> > > > > +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> > > > > +				      const struct drm_plane_size_hint *hints,
+> > > > > +				      int num_hints);
+> > > > >  
+> > > > >  #endif
+> > > > > diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> > > > > index 46becedf5b2f..9d7c5967264f 100644
+> > > > > --- a/include/uapi/drm/drm_mode.h
+> > > > > +++ b/include/uapi/drm/drm_mode.h
+> > > > > @@ -849,6 +849,17 @@ struct drm_color_lut {
+> > > > >  	__u16 reserved;
+> > > > >  };
+> > > > >  
+> > > > > +/**
+> > > > > + * struct drm_plane_size_hint - Plane size hints
+> > > > > + *
+> > > > > + * The plane SIZE_HINTS property blob contains an
+> > > > > + * array of struct drm_plane_size_hint.
+> > > > > + */
+> > > > > +struct drm_plane_size_hint {
+> > > > > +	__u16 width;
+> > > > > +	__u16 height;
+> > > > > +};
+> > > > > +
+> > > > >  /**
+> > > > >   * struct hdr_metadata_infoframe - HDR Metadata Infoframe Data.
+> > > > >   *
+> > > > > -- 
+> > > > > 2.39.1
+> > > > > 
+> > > 
+> > > -- 
+> > > Ville Syrjälä
+> > > Intel
+> > > 
 > 
->>   	[INTEL_OUTPUT_FORMAT_RGB] = "RGB",
->>   	[INTEL_OUTPUT_FORMAT_YCBCR420] = "YCBCR4:2:0",
->>   	[INTEL_OUTPUT_FORMAT_YCBCR444] = "YCBCR4:4:4",
->>   };
->>   
->> -static const char *output_formats(enum intel_output_format format)
->> +const char *intel_output_format_name(enum intel_output_format format)
->>   {
->>   	if (format >= ARRAY_SIZE(output_format_str))
->>   		return "invalid";
->> @@ -179,7 +179,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
->>   		    "active: %s, output_types: %s (0x%x), output format: %s\n",
->>   		    str_yes_no(pipe_config->hw.active),
->>   		    buf, pipe_config->output_types,
->> -		    output_formats(pipe_config->output_format));
->> +		    intel_output_format_name(pipe_config->output_format));
->>   
->>   	drm_dbg_kms(&i915->drm,
->>   		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
->> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
->> index 9399c35b7e5e..780f3f1190d7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
->> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
->> @@ -8,9 +8,11 @@
->>   
->>   struct intel_crtc_state;
->>   struct intel_atomic_state;
->> +enum intel_output_format;
->>   
->>   void intel_crtc_state_dump(const struct intel_crtc_state *crtc_state,
->>   			   struct intel_atomic_state *state,
->>   			   const char *context);
->> +const char *intel_output_format_name(enum intel_output_format format);
->>   
->>   #endif /* __INTEL_CRTC_STATE_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 9e2fb8626c96..e4b04c690e4f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -12,6 +12,7 @@
->>   #include "i915_irq.h"
->>   #include "i915_reg.h"
->>   #include "intel_de.h"
->> +#include "intel_crtc_state_dump.h"
->>   #include "intel_display_debugfs.h"
->>   #include "intel_display_power.h"
->>   #include "intel_display_power_well.h"
->> @@ -1770,6 +1771,13 @@ static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
->>   			   str_yes_no(crtc_state->dsc.compression_enable));
->>   		seq_printf(m, "DSC_Sink_Support: %s\n",
->>   			   str_yes_no(drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)));
->> +		seq_printf(m, "DSC_Output_Format_Sink_Support: RGB: %s YCBCR420: %s YCBCR444: %s\n",
->> +			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
->> +								      DP_DSC_RGB)),
->> +			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
->> +								      DP_DSC_YCbCr420_Native)),
->> +			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
->> +								      DP_DSC_YCbCr444)));
->>   		seq_printf(m, "Force_DSC_Enable: %s\n",
->>   			   str_yes_no(intel_dp->force_dsc_en));
->>   		if (!intel_dp_is_edp(intel_dp))
->> @@ -1895,6 +1903,72 @@ static const struct file_operations i915_dsc_bpc_fops = {
->>   	.write = i915_dsc_bpc_write
->>   };
->>   
->> +static int i915_dsc_output_format_show(struct seq_file *m, void *data)
->> +{
->> +	struct drm_connector *connector = m->private;
->> +	struct drm_device *dev = connector->dev;
->> +	struct drm_crtc *crtc;
->> +	struct intel_crtc_state *crtc_state;
->> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
->> +	int ret;
->> +
->> +	if (!encoder)
->> +		return -ENODEV;
->> +
->> +	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
->> +	if (ret)
->> +		return ret;
->> +
->> +	crtc = connector->state->crtc;
->> +	if (connector->status != connector_status_connected || !crtc) {
->> +		ret = -ENODEV;
->> +		goto out;
->> +	}
->> +
->> +	crtc_state = to_intel_crtc_state(crtc->state);
->> +	seq_printf(m, "DSC_Output_Format: %s\n", intel_output_format_name(crtc_state->output_format));
->> +
->> +out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
->> +
->> +	return ret;
->> +}
->> +
->> +static ssize_t i915_dsc_output_format_write(struct file *file,
->> +					    const char __user *ubuf,
->> +					    size_t len, loff_t *offp)
->> +{
->> +	struct drm_connector *connector =
->> +		((struct seq_file *)file->private_data)->private;
->> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
->> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> +	int dsc_output_format = 0;
->> +	int ret;
->> +
->> +	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_output_format);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	intel_dp->force_dsc_output_format = dsc_output_format;
->> +	*offp += len;
->> +
->> +	return len;
->> +}
->> +
->> +static int i915_dsc_output_format_open(struct inode *inode,
->> +				       struct file *file)
->> +{
->> +	return single_open(file, i915_dsc_output_format_show, inode->i_private);
->> +}
->> +
->> +static const struct file_operations i915_dsc_output_format_fops = {
->> +	.owner = THIS_MODULE,
->> +	.open = i915_dsc_output_format_open,
->> +	.read = seq_read,
->> +	.llseek = seq_lseek,
->> +	.release = single_release,
->> +	.write = i915_dsc_output_format_write
->> +};
->> +
->>   /*
->>    * Returns the Current CRTC's bpc.
->>    * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
->> @@ -1966,6 +2040,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
->>   
->>   		debugfs_create_file("i915_dsc_bpc", 0644, root,
->>   				    connector, &i915_dsc_bpc_fops);
->> +
->> +		debugfs_create_file("i915_dsc_output_format", 0644, root,
->> +				    connector, &i915_dsc_output_format_fops);
->>   	}
->>   
->>   	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 9ccae7a46020..9f7951b49c42 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1743,6 +1743,7 @@ struct intel_dp {
->>   
->>   	/* Display stream compression testing */
->>   	bool force_dsc_en;
->> +	int force_dsc_output_format;
->>   	int force_dsc_bpc;
->>   
->>   	bool hobl_failed;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 4a5f7c476305..fccb69a58111 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -76,6 +76,7 @@
->>   #include "intel_tc.h"
->>   #include "intel_vdsc.h"
->>   #include "intel_vrr.h"
->> +#include "intel_crtc_state_dump.h"
->>   
->>   /* DP DSC throughput values used for slice count calculations KPixels/s */
->>   #define DP_DSC_PEAK_PIXEL_RATE			2720000
->> @@ -810,6 +811,9 @@ intel_dp_output_format(struct intel_connector *connector,
->>   {
->>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
->>   
->> +	if (intel_dp->force_dsc_output_format)
->> +		return intel_dp->force_dsc_output_format;
->> +
->>   	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
->>   		return INTEL_OUTPUT_FORMAT_RGB;
+> -- 
+> Ville Syrjälä
+> Intel
 > 
 
--- 
-~Swati Sharma
