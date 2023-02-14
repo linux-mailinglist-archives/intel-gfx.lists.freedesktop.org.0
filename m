@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A0D696550
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0544F696552
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Feb 2023 14:48:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBB610E8DC;
-	Tue, 14 Feb 2023 13:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F93810E141;
+	Tue, 14 Feb 2023 13:48:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2CA10E8EB
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:47:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B477110E8EA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 13:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676382465; x=1707918465;
+ t=1676382487; x=1707918487;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=a6DW008nCAfeb0f7soPHJjqcH/ay5A4GGQyMtLtiQbw=;
- b=FPutb26DG+NXSNHHjcdJ4I+LxVGjyuIHNqZK2PxU82Gx2rQroauLSg7W
- JDBCHnYkKl2VmXmI4ytafK5bsUb8nN9OonkPAXJgljmat/W9A7KnK5YAW
- 5BrL2U1QEeVbHBv7IizjBlTua1f04pFDFwAzUy+peh4O8JLWiGDG/bMiE
- MuVp0Y0fWz7Tae/r29pRgyzPPPl3lZiEWSFVO4ofAWDfCsEnYsMCdl237
- o0McJBPm1nJgrGHMun1tsu7hn3s3nVhloiC62WprOriUKNwEx7w4x/Hru
- KTRMw6b23cxBPgXYNTQUnfkTkZrSgFwZfcuO0sXmYxwBisvFVOX3bHdNq Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311519656"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311519656"
+ bh=P2Mfuhy0v5/3cn2rUPsuyuM52KAsbPbKOs1fynrgQ6o=;
+ b=kRgODIaCqHcp1LhdQ4i5BVswAfCUphE4qBaqYVl6QiIJv1nTjPEXzC6I
+ tuTeqhCSNreeYKUXMca4iwps751L01NbLhLV7YE0ki3Xu4HzfWJ7bqSIB
+ 1nJlb/ibNT0nszupTikjuf8XWJtaqK21fnAgnS9QyjseedPn4bi/gNLsX
+ Vtol4zl/7tS5G2FmtbPV+/ljaFzWmStdMz+ep5dijZxFYHRb3DsJn6hse
+ 0FF6MBGOgyUzt8s9PXKyzSr1kkyh9wYIgLT8quklf+d9sMuGfWymXg+Fw
+ QZHvFcfLscL9mrlmZeIN89WeNscRhxo3J6L05s2sFxHSYQicVqdrPVTv2 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="311519688"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="311519688"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 05:47:45 -0800
+ 14 Feb 2023 05:47:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540849"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540849"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="699540851"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="699540851"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:47:43 -0800
+ by orsmga008.jf.intel.com with SMTP; 14 Feb 2023 05:47:46 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Feb 2023 15:47:42 +0200
+ Tue, 14 Feb 2023 15:47:45 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 15:47:38 +0200
-Message-Id: <20230214134739.25077-2-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Feb 2023 15:47:39 +0200
+Message-Id: <20230214134739.25077-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214134739.25077-1-ville.syrjala@linux.intel.com>
 References: <20230214134739.25077-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Don't hide function calls with
- side effects
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Clean up g4x+ sprite TILEOFF
+ programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,30 +65,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Hiding a function call with side effects inside the
-variable declaration block is a bit rude. Make it
-stand out more.
+We defined the bitmasks for DVSTILEOFF but never used them.
+Remedy that.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_backlight.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_sprite.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index d1d54870aefd..e196da8c8f71 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -1614,8 +1614,9 @@ static void intel_pwm_disable_backlight(const struct drm_connector_state *conn_s
- static int intel_pwm_setup_backlight(struct intel_connector *connector, enum pipe pipe)
- {
- 	struct intel_panel *panel = &connector->panel;
--	int ret = panel->backlight.pwm_funcs->setup(connector, pipe);
-+	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index e6b4d24b9cd0..a16e56a60c30 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -1217,7 +1217,8 @@ g4x_sprite_update_arm(struct intel_plane *plane,
+ 	}
  
-+	ret = panel->backlight.pwm_funcs->setup(connector, pipe);
- 	if (ret < 0)
- 		return ret;
+ 	intel_de_write_fw(dev_priv, DVSLINOFF(pipe), linear_offset);
+-	intel_de_write_fw(dev_priv, DVSTILEOFF(pipe), (y << 16) | x);
++	intel_de_write_fw(dev_priv, DVSTILEOFF(pipe),
++			  DVS_OFFSET_Y(y) | DVS_OFFSET_X(x));
  
+ 	/*
+ 	 * The control register self-arms if the plane was previously
 -- 
 2.39.1
 
