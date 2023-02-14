@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E293F6971B3
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 00:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8CD6971B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 00:19:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB7B310E9B9;
-	Tue, 14 Feb 2023 23:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6267910E9BA;
+	Tue, 14 Feb 2023 23:19:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6CB10E9B8
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 23:19:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBB910E9B8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 23:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676416772; x=1707952772;
+ t=1676416775; x=1707952775;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=oMvrqiRbkBrj8E5ROIRgVJ/VR5Hb1EBly/tUygRchzM=;
- b=T8SPgq7FjrIp+GFqaCiHmKvOCGOVskbfhx9qeAossBjoWZXeJFzwKKnq
- dThA7eIhGWrp4mkd40i5aTG+mTq1aHmTrQSbV1izUL4Jbmedd/oJRqi3a
- ECh73Vui8zPFDoOAbz6ax+YMF2V989mH/nc7OLPp363+Wy5vYlMsQetw2
- ++MME7Q7+JpDroj0IPHw184sDsIe/6KYPDUtwuyHIOTWyL/4F72uPx07r
- 6roPnnxgVXrARN02GNKcoAqV9OYYf90gZqBk2X/qbC717pzY+iTM3B3rU
- FF98VQa7r+vzt3j5zetAi6ozBlpoS98GQPdnfXx+S9TmKi1YYwwIczuql Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="329924921"
-X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="329924921"
+ bh=wtyIDTxvGVb6W0oeSofzG2mfbRqg7+QxXTAEPwW6oDY=;
+ b=k8hcxUB56x36iUaH3wPMs8SBilM5wF67M5VMZ8Vz8CN1xTaiBHlxztxM
+ sZaK90uyOcG7vo42Qa/2uIEpUI0iAC3cYoOjnt5bC8C+l84dziL5G/zQ5
+ zd+3QUeP0ZHe1SHSYSTKdoToWXGPHgJKOrTOYK2usmN8uLPu881rfZEVZ
+ FTS3ZMKtZv3F/BQPVIaGqPS0GWikD/m/f+5BXWz1+DHJ3Y7zq3PotO6rr
+ bsZz7qfb3wxYuOMOjVjUBMHCVztY3r/D4nlL1PL6+fcybjfct8ZhJig4z
+ gfD31iJJHoVfjiEOj5L3AJoR7cl2TPO6XQQMuQThVppGUNbprH/66hv2J Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="329924929"
+X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="329924929"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 15:19:32 -0800
+ 14 Feb 2023 15:19:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="662717634"
-X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="662717634"
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="662717642"
+X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="662717642"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga007.jf.intel.com with SMTP; 14 Feb 2023 15:19:29 -0800
+ by orsmga007.jf.intel.com with SMTP; 14 Feb 2023 15:19:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 15 Feb 2023 01:19:29 +0200
+ Wed, 15 Feb 2023 01:19:32 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Feb 2023 01:19:24 +0200
-Message-Id: <20230214231925.26535-2-ville.syrjala@linux.intel.com>
+Date: Wed, 15 Feb 2023 01:19:25 +0200
+Message-Id: <20230214231925.26535-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
 References: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Sanitize child devices later
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Try to initialize DDI ports for
+ every VBT child device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,312 +65,249 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we sanitize the child device aux_ch/ddc_pin while parsing
-the ports from VBT. But that won't work when we have duplicate child
-devices for the same port.
+Try to deal with duplicate child devices for the same DDI port
+by attempting to initialize each in turn. The first on to succeed
+will be the one we use.
 
-Instead let's sanitize just before initializing the encoder,
-based on which resources were consumed by encoders that were
-(successfully) initialized earlier.
-
-I also included the intel_bios_encoder_sanitize() calls in the
-g4x+ DP/HDMI code, but there we need to be careful not confuse
-the split DP vs. HDMI encoders as conflicting child devices.
-Checking encoder->devdata for equality should suffice.
-
-TODO: the sanitation only affects the VBT assigned stuff, but
-      we could still have a conflict if one port came from VBT
-      with a non-default pin, and another port just used the
-      platform default which happens be the same pin...
-
-TODO: Need to double check the details on commit 41e35ffb380b ("drm/i915:
-      Favor last VBT child device with conflicting AUX ch/DDC pin")
-      to make sure we're not breaking stuff with the new
-      sanitation scheme
+TODO: Still very rough. Should probably just initialize DDIs
+      strictly in child device order, and just filter out the
+      ones that are bogus (eg. via device_info->port_mask etc.)?
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c     |  3 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_bios.c | 91 +++++++++++++----------
- drivers/gpu/drm/i915/display/intel_bios.h |  4 +-
- drivers/gpu/drm/i915/display/intel_ddi.c  |  4 +-
- 5 files changed, 62 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c     | 67 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_bios.h     |  6 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 29 ++++----
+ .../gpu/drm/i915/display/intel_display_core.h |  2 -
+ 4 files changed, 72 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 5a3e79484608..b794cd2ff7d5 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1279,13 +1279,14 @@ static const struct drm_encoder_funcs intel_dp_enc_funcs = {
- bool g4x_dp_init(struct drm_i915_private *dev_priv,
- 		 i915_reg_t output_reg, enum port port)
- {
--	const struct intel_bios_encoder_data *devdata;
-+	struct intel_bios_encoder_data *devdata;
- 	struct intel_digital_port *dig_port;
- 	struct intel_encoder *intel_encoder;
- 	struct drm_encoder *encoder;
- 	struct intel_connector *intel_connector;
- 
- 	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
-+	intel_bios_encoder_sanitize(devdata, port);
- 
- 	/* FIXME bail? */
- 	if (!devdata)
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 3a1144865c30..d6c6726bedf8 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -548,12 +548,13 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
- void g4x_hdmi_init(struct drm_i915_private *dev_priv,
- 		   i915_reg_t hdmi_reg, enum port port)
- {
--	const struct intel_bios_encoder_data *devdata;
-+	struct intel_bios_encoder_data *devdata;
- 	struct intel_digital_port *dig_port;
- 	struct intel_encoder *intel_encoder;
- 	struct intel_connector *intel_connector;
- 
- 	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
-+	intel_bios_encoder_sanitize(devdata, port);
- 
- 	/* FIXME bail? */
- 	if (!devdata)
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 22bbbca171dc..ac9fc07e5ccf 100644
+index ac9fc07e5ccf..73b1f18bc8c9 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2222,31 +2222,31 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
- 	return 0;
+@@ -2610,6 +2610,31 @@ intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata)
+ 	return devdata && HAS_LSPCON(devdata->i915) && devdata->child.lspcon;
  }
  
--static enum port get_port_by_ddc_pin(struct drm_i915_private *i915, u8 ddc_pin)
-+static struct intel_encoder *
-+get_encoder_by_ddc_pin(struct drm_i915_private *i915, u8 ddc_pin)
- {
--	enum port port;
-+	struct intel_encoder *encoder;
- 
- 	if (!ddc_pin)
--		return PORT_NONE;
-+		return NULL;
- 
--	for_each_port(port) {
--		const struct intel_bios_encoder_data *devdata =
--			i915->display.vbt.ports[port];
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		const struct intel_bios_encoder_data *devdata = encoder->devdata;
- 
- 		if (devdata && ddc_pin == devdata->child.ddc_pin)
--			return port;
-+			return encoder;
- 	}
- 
--	return PORT_NONE;
-+	return NULL;
- }
- 
- static void sanitize_ddc_pin(struct intel_bios_encoder_data *devdata,
- 			     enum port port)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
--	struct child_device_config *child;
-+	struct child_device_config *child = &devdata->child;
-+	struct intel_encoder *other;
- 	u8 mapped_ddc_pin;
--	enum port p;
- 
- 	if (!devdata->child.ddc_pin)
- 		return;
-@@ -2261,79 +2261,85 @@ static void sanitize_ddc_pin(struct intel_bios_encoder_data *devdata,
- 		return;
- 	}
- 
--	p = get_port_by_ddc_pin(i915, devdata->child.ddc_pin);
--	if (p == PORT_NONE)
-+	other = get_encoder_by_ddc_pin(i915, devdata->child.ddc_pin);
-+	if (!other)
-+		return;
++bool
++intel_bios_for_each_child(struct drm_i915_private *i915,
++			  enum port port,
++			  bool (*func)(struct drm_i915_private *i915,
++				       struct intel_bios_encoder_data *devdata,
++				       enum port port))
++{
++	struct intel_bios_encoder_data *devdata;
++	bool found = false;
 +
-+	/*
-+	 * Pre-HSW uses separate DP and HDMI encoders
-+	 * for the same port. Let them pass.
-+	 */
-+	if (!HAS_DDI(i915) && devdata == other->devdata)
- 		return;
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "port %c trying to use the same DDC pin (0x%x) as port %c, "
- 		    "disabling port %c DVI/HDMI support\n",
- 		    port_name(port), mapped_ddc_pin,
--		    port_name(p), port_name(p));
-+		    port_name(other->port), port_name(port));
- 
- 	/*
- 	 * If we have multiple ports supposedly sharing the pin, then dvi/hdmi
- 	 * couldn't exist on the shared port. Otherwise they share the same ddc
- 	 * pin and system couldn't communicate with them separately.
- 	 *
--	 * Give inverse child device order the priority, last one wins. Yes,
--	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
--	 * port A and port E with the same AUX ch and we must pick port E :(
-+	 * First successfully initialized encoder wins.
- 	 */
--	child = &i915->display.vbt.ports[p]->child;
--
- 	child->device_type &= ~DEVICE_TYPE_TMDS_DVI_SIGNALING;
- 	child->device_type |= DEVICE_TYPE_NOT_HDMI_OUTPUT;
- 
- 	child->ddc_pin = 0;
- }
- 
--static enum port get_port_by_aux_ch(struct drm_i915_private *i915, u8 aux_ch)
-+static struct intel_encoder *
-+get_encoder_by_aux_ch(struct drm_i915_private *i915, u8 aux_ch)
- {
--	enum port port;
-+	struct intel_encoder *encoder;
- 
- 	if (!aux_ch)
--		return PORT_NONE;
-+		return NULL;
- 
--	for_each_port(port) {
--		const struct intel_bios_encoder_data *devdata =
--			i915->display.vbt.ports[port];
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		const struct intel_bios_encoder_data *devdata = encoder->devdata;
- 
- 		if (devdata && aux_ch == devdata->child.aux_channel)
--			return port;
-+			return encoder;
- 	}
- 
--	return PORT_NONE;
-+	return NULL;
- }
- 
- static void sanitize_aux_ch(struct intel_bios_encoder_data *devdata,
- 			    enum port port)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
--	struct child_device_config *child;
--	enum port p;
-+	struct child_device_config *child = &devdata->child;
-+	struct intel_encoder *other;
- 
--	p = get_port_by_aux_ch(i915, devdata->child.aux_channel);
--	if (p == PORT_NONE)
-+	other = get_encoder_by_aux_ch(i915, devdata->child.aux_channel);
-+	if (!other)
-+		return;
++	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
++		const struct child_device_config *child = &devdata->child;
 +
-+	/*
-+	 * Pre-HSW uses separate DP and HDMI encoders
-+	 * for the same port. Let them pass.
-+	 */
-+	if (!HAS_DDI(i915) && devdata == other->devdata)
- 		return;
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "port %c trying to use the same AUX CH (0x%x) as port %c, "
- 		    "disabling port %c DP support\n",
- 		    port_name(port), devdata->child.aux_channel,
--		    port_name(p), port_name(p));
-+		    port_name(other->port), port_name(port));
- 
- 	/*
- 	 * If we have multiple ports supposedly sharing the aux channel, then DP
- 	 * couldn't exist on the shared port. Otherwise they share the same aux
- 	 * channel and system couldn't communicate with them separately.
- 	 *
--	 * Give inverse child device order the priority, last one wins. Yes,
--	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
--	 * port A and port E with the same AUX ch and we must pick port E :(
-+	 * First successfully initialized encoder wins.
- 	 */
--	child = &i915->display.vbt.ports[p]->child;
--
- 	child->device_type &= ~DEVICE_TYPE_DISPLAYPORT_OUTPUT;
- 	child->aux_channel = 0;
- }
-@@ -2744,13 +2750,20 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 
- 	sanitize_device_type(devdata, port);
- 
-+	i915->display.vbt.ports[port] = devdata;
++		if (dvo_port_to_port(i915, child->dvo_port) != port)
++			continue;
++
++		found = true;
++
++		if (func(i915, devdata, port))
++			break;
++	}
++
++	return found;
 +}
 +
-+void intel_bios_encoder_sanitize(struct intel_bios_encoder_data *devdata,
-+				 enum port port)
-+{
-+	if (!devdata)
-+		return;
-+
- 	if (intel_bios_encoder_supports_dvi(devdata))
- 		sanitize_ddc_pin(devdata, port);
+ /* This is an index in the HDMI/DVI DDI buffer translation table, or -1 */
+ int intel_bios_encoder_hdmi_level_shift(const struct intel_bios_encoder_data *devdata)
+ {
+@@ -2656,13 +2681,19 @@ static bool is_port_valid(struct drm_i915_private *i915, enum port port)
+ 	return true;
+ }
  
- 	if (intel_bios_encoder_supports_dp(devdata))
- 		sanitize_aux_ch(devdata, port);
+-static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
+-			   enum port port)
++static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ {
+ 	struct drm_i915_private *i915 = devdata->i915;
+ 	const struct child_device_config *child = &devdata->child;
+ 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
++	enum port port;
++
++	port = dvo_port_to_port(i915, child->dvo_port);
++	if (port == PORT_NONE && DISPLAY_VER(i915) >= 11)
++		port = dsi_dvo_port_to_port(i915, child->dvo_port);
++	if (port == PORT_NONE)
++		return;
+ 
+ 	is_dvi = intel_bios_encoder_supports_dvi(devdata);
+ 	is_dp = intel_bios_encoder_supports_dp(devdata);
+@@ -2741,16 +2772,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 		return;
+ 	}
+ 
+-	if (i915->display.vbt.ports[port]) {
+-		drm_dbg_kms(&i915->drm,
+-			    "More than one child device for port %c in VBT, using the first.\n",
+-			    port_name(port));
+-		return;
+-	}
+-
+ 	sanitize_device_type(devdata, port);
 -
 -	i915->display.vbt.ports[port] = devdata;
  }
  
- static bool has_ddi_port_info(struct drm_i915_private *i915)
-@@ -3711,7 +3724,7 @@ bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata
- 	return devdata && devdata->child.hpd_invert;
+ void intel_bios_encoder_sanitize(struct intel_bios_encoder_data *devdata,
+@@ -2774,7 +2796,6 @@ static bool has_ddi_port_info(struct drm_i915_private *i915)
+ static void parse_ddi_ports(struct drm_i915_private *i915)
+ {
+ 	struct intel_bios_encoder_data *devdata;
+-	enum port port;
+ 
+ 	if (!has_ddi_port_info(i915))
+ 		return;
+@@ -2782,10 +2803,8 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
+ 	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
+ 		parse_ddi_port(devdata);
+ 
+-	for_each_port(port) {
+-		if (i915->display.vbt.ports[port])
+-			print_ddi_port(i915->display.vbt.ports[port], port);
+-	}
++	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
++		print_ddi_port(devdata);
  }
  
--const struct intel_bios_encoder_data *
-+struct intel_bios_encoder_data *
+ static void
+@@ -3727,5 +3746,19 @@ bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata
+ struct intel_bios_encoder_data *
  intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port)
  {
- 	return i915->display.vbt.ports[port];
+-	return i915->display.vbt.ports[port];
++	struct intel_bios_encoder_data *devdata;
++
++	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
++		const struct child_device_config *child = &devdata->child;
++		enum port p;
++
++		p = dvo_port_to_port(i915, child->dvo_port);
++		if (p == PORT_NONE && DISPLAY_VER(i915) >= 11)
++			p = dsi_dvo_port_to_port(i915, child->dvo_port);
++
++		if (p == port)
++			return devdata;
++	}
++
++	return NULL;
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 0ce7ed7f28c9..7f72e35eec3d 100644
+index 7f72e35eec3d..c3b79793ec18 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.h
 +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -256,8 +256,10 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- 			       int dsc_max_bpc);
- bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, enum port port);
- bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum port port);
-+void intel_bios_encoder_sanitize(struct intel_bios_encoder_data *devdata,
-+				 enum port port);
+@@ -280,4 +280,10 @@ int intel_bios_encoder_hdmi_boost_level(const struct intel_bios_encoder_data *de
+ int intel_bios_encoder_hdmi_level_shift(const struct intel_bios_encoder_data *devdata);
+ int intel_bios_encoder_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata);
  
--const struct intel_bios_encoder_data *
-+struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port);
- 
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
++bool
++intel_bios_for_each_child(struct drm_i915_private *i915,
++			  enum port port,
++			  bool (*func)(struct drm_i915_private *i915,
++				       struct intel_bios_encoder_data *devdata, enum port port));
++
+ #endif /* _INTEL_BIOS_H_ */
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 655309ff5b55..2864592fe6b9 100644
+index 2864592fe6b9..b05eca899ace 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -35,6 +35,7 @@
- #include "intel_audio.h"
- #include "intel_audio_regs.h"
- #include "intel_backlight.h"
-+#include "intel_bios.h"
- #include "intel_combo_phy.h"
- #include "intel_combo_phy_regs.h"
- #include "intel_connector.h"
-@@ -4277,7 +4278,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+@@ -4274,11 +4274,12 @@ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
+ #define port_tc_name(port) ((port) - PORT_TC1 + '1')
+ #define tc_port_name(tc_port) ((tc_port) - TC_PORT_1 + '1')
+ 
+-void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
++static bool _intel_ddi_init(struct drm_i915_private *dev_priv,
++			    struct intel_bios_encoder_data *devdata,
++			    enum port port)
  {
  	struct intel_digital_port *dig_port;
  	struct intel_encoder *encoder;
--	const struct intel_bios_encoder_data *devdata;
-+	struct intel_bios_encoder_data *devdata;
+-	struct intel_bios_encoder_data *devdata;
  	bool init_hdmi, init_dp;
  	enum phy phy = intel_port_to_phy(dev_priv, port);
  
-@@ -4300,6 +4301,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 			    port_name(port));
- 		return;
+@@ -4291,16 +4292,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 	if (intel_hti_uses_phy(dev_priv, phy)) {
+ 		drm_dbg_kms(&dev_priv->drm, "PORT %c / PHY %c reserved by HTI\n",
+ 			    port_name(port), phy_name(phy));
+-		return;
++		return false;
  	}
-+	intel_bios_encoder_sanitize(devdata, port);
+ 
+-	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
+-	if (!devdata) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "VBT says port %c is not present\n",
+-			    port_name(port));
+-		return;
+-	}
+ 	intel_bios_encoder_sanitize(devdata, port);
  
  	init_hdmi = intel_bios_encoder_supports_dvi(devdata) ||
- 		intel_bios_encoder_supports_hdmi(devdata);
+@@ -4323,7 +4317,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "VBT says port %c is not DVI/HDMI/DP compatible, respect it\n",
+ 			    port_name(port));
+-		return;
++		return false;
+ 	}
+ 
+ 	if (intel_phy_is_snps(dev_priv, phy) &&
+@@ -4335,7 +4329,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 
+ 	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
+ 	if (!dig_port)
+-		return;
++		return false;
+ 
+ 	encoder = &dig_port->base;
+ 	encoder->devdata = devdata;
+@@ -4560,9 +4554,18 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 
+ 	intel_infoframe_init(dig_port);
+ 
+-	return;
++	return true;
+ 
+ err:
+ 	drm_encoder_cleanup(&encoder->base);
+ 	kfree(dig_port);
++	return false;
++}
++
++void intel_ddi_init(struct drm_i915_private *i915, enum port port)
++{
++	if (!intel_bios_for_each_child(i915, port, _intel_ddi_init))
++		drm_dbg_kms(&i915->drm,
++			    "VBT says port %c is not present\n",
++			    port_name(port));
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 25d778fb7d15..b63c5db76a97 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -34,7 +34,6 @@ struct i915_audio_component;
+ struct i915_hdcp_comp_master;
+ struct intel_atomic_state;
+ struct intel_audio_funcs;
+-struct intel_bios_encoder_data;
+ struct intel_cdclk_funcs;
+ struct intel_cdclk_vals;
+ struct intel_color_funcs;
+@@ -206,7 +205,6 @@ struct intel_vbt_data {
+ 	struct list_head display_devices;
+ 	struct list_head bdb_blocks;
+ 
+-	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if port present. */
+ 	struct sdvo_device_mapping {
+ 		u8 initialized;
+ 		u8 dvo_port;
 -- 
 2.39.1
 
