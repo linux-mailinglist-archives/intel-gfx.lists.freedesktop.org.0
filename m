@@ -2,52 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55918697F96
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 16:37:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA8569804C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 17:14:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6618010E162;
-	Wed, 15 Feb 2023 15:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3A5210E269;
+	Wed, 15 Feb 2023 16:14:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE8F10E162;
- Wed, 15 Feb 2023 15:37:40 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A511A10E236;
+ Wed, 15 Feb 2023 16:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676475460; x=1708011460;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7IMC4TKCsaB6fCeSRB2vScmVNKbwvw6HmFhZYBTr5u0=;
- b=KrIwGNvur4xVWEe8TttN+XObm6mDrLaYHdffZvZtGH/HSfDcRvL93Pl0
- s9ID0rfEm710EbjUHMrB5T5QDsuAF/dVnkq+PclApjSHijrYkqqQXuuFY
- gS+oJrZyc6aNbFepAPi9zhtZ2fluHRny7HHHKvHwQerW8Sejz+GDf2tRz
- 91bS7YFDCejI4Gd2cJyPPPNjBVmlXtPG//YK+9bEDpi1o9tiknaw8JPsl
- 2eh4WcgZwSS0eKwz4rOn0f0whhI+TSknacjQNaT0FbtkLKYK+kQ+BKI4K
- ul+xWiYpk+u79wV3m2Cx6u/etv0xroO59PXynKxUY2TsUYp3yjW16Zqjx Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="396078874"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="396078874"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 07:37:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="778835346"
-X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="778835346"
-Received: from gchung-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.51.244])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 07:37:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Ashutosh Dixit
- <ashutosh.dixit@intel.com>
-In-Reply-To: <Y+QBJLXJ7uTo3p7l@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230208190312.1611335-1-ashutosh.dixit@intel.com>
- <Y+QBJLXJ7uTo3p7l@intel.com>
-Date: Wed, 15 Feb 2023 17:37:30 +0200
-Message-ID: <877cwjq6rp.fsf@intel.com>
+ t=1676477668; x=1708013668;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=63jEmIdqFGbeZAGy9F/2+7ZHTEwokckWrPhHLYhSYF4=;
+ b=lJupWhVks3MWYEcl511pRsqRdLzveROoTFICuH5EdHt+ka8BytduP1Z3
+ 6OOriuKVapODYjh+++QgVFezfsNZQvIahpaF/jDpxM1fY6p8GbtLeqEwO
+ 7eCag19oHSYrw1y/wGaNPpPsttjVPfCWVxahr3SoXeJRQLt5V5epGCz+d
+ VMAla4gN5/nYEGJ6wb940UmodoXI7/xGKIHSMs0bxhPzoNYhE57wK/khP
+ mQ+4du4vR6a4A942mA72MXOpU4NB3DvqVZhIrkzHBK7ZmMz0jJMA40dEz
+ jd3BggPmMKRzUyPbjx9q/eQljazG0hf07+T+oKgaJjVrTDB8lR6PttCtb A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="393870616"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="393870616"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 08:14:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="758471611"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="758471611"
+Received: from auliel-mobl1.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
+ ([10.249.254.14])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 08:14:22 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 15 Feb 2023 17:13:49 +0100
+Message-Id: <20230215161405.187368-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/hwmon: Enable PL1 power
- limit"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC PATCH 00/16] Add a TTM shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +56,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Miaohe Lin <linmiaohe@huawei.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ David Hildenbrand <david@redhat.com>, NeilBrown <neilb@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@intel.com>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, linux-mm@kvack.org,
+ linux-graphics-maintainer@vmware.com, Peter Xu <peterx@redhat.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Dave Airlie <airlied@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Feb 08, 2023 at 11:03:12AM -0800, Ashutosh Dixit wrote:
->> This reverts commit 0349c41b05968befaffa5fbb7e73d0ee6004f610.
->> 
->> 0349c41b0596 ("drm/i915/hwmon: Enable PL1 power limit") is incorrect and
->> caused a major regression on ATSM. The change enabled the PL1 power limit
->> but FW sets the default value of the PL1 limit to 0 which implies HW now
->> works at minimum power and therefore the lowest effective frequency. This
->> means all workloads now run slower resulting in even GuC FW load operations
->> timing out, rendering ATSM unusable.
->> 
->> A different solution to the original issue of the PL1 limit being disabled
->> on ATSM is needed but till that is developed, revert 0349c41b0596.
->> 
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
->
-> pushed to drm-intel-next and removed from drm-intel-fixes.
->
-> Thanks for the quick reaction.
+This series introduces a TTM shrinker.
 
-Please always add Fixes: tags also to reverts.
+Currently the TTM subsystem allows a certain watermark fraction of
+system memory to be pinned by GPUs. Any allocation beyond that will
+cause TTM to attempt to copy memory to shmem objects for possible
+later swapout so that that fraction is fulfilled. That unnecessarily
+happens also on systems where swapping is not available, but still
+works reasonably well in many cases.
 
-I suppose we should fix dim to also detect reverts, but I ended up
-cherry-picking and pushing the original commit out to
-drm-intel-next-fixes before realizing it's been reverted.
+However there is no way for the system to swap out all of graphics
+memory even in situatons where graphics processes are suspended.
+
+So add a TTM shrinker capable of moving graphics memory pages to the
+swap cache for later laundring and free, and, in the case there is no
+swap available, freeing graphics memory that is kept around for
+caching purposes.
+
+For devices where the shrinker is active, the watermark
+fraction is disabled, but for devices not (yet) supporting shrinking
+or using dma_alloced memory which we can't insert into the swap-cache,
+keep it around.
+
+Each driver needs to implement a callback to enable the shrinker for
+its devices. Enable it for i915 as a POC. Will also be used by the
+new Intel xe driver if accepted.
+
+The parts of the series mostly needing consideration and feecback is
+
+*) The mm part, inserting pages into the swap-cache. Is it acceptable and,
+   if so, correct? It *might* be possible we can do without this part,
+   but then we'd have to be able to call read_mapping_page() and
+   trylock_page() on non-isolated shmem pages from reclaim context,
+   and need to be able to recover from failures.
+
+*) The TTM driver callback for shrinking
+
+*) The additional TTM functions to mark buffer-objects as not needed, but
+   good to have around for caching purposes.
+
+*) Swapin doesn't lose content on error and is also interruptible or at
+   least killable ATM. This complicates helpers. Should we
+   drop this and just drop content on error, and wait for swapin
+   uninterruptible? The TTM pool code could indeed do without additional
+   complication...
+
+*) Is there a better way to do shrink throttling to avoid filling the
+   swap-cache completely.
+
+*) Is it good enough for real-world workloads?
+
+The series has been tested using the i915 driver with a 4GiB
+VRAM DG1 on a system with 14GiB system memory and 16GiB SSD Swap, and using
+an old igt-gpu-tools version, 8c0bb07b7b4d, of gem_lmem_swapping
+which overcommits system memory quite extensively
+
+Patch walkthrough:
+
+Initial bugfixes, could be decoupled from the series.
+drm/ttm: Fix a NULL pointer dereference.
+drm/ttm/pool: Fix ttm_pool_alloc error path.
+
+Cleanups and restructuring:
+drm/ttm: Use the BIT macro for the TTM_TT_FLAGs
+drm/ttm, drm/vmwgfx: Update the TTM swapout interface
+drm/ttm: Unexport ttm_global_swapout()
+
+Adding shrinker without enabling it:
+drm/ttm: Don't use watermark accounting on shrinkable pools
+drm/ttm: Reduce the number of used allocation orders for TTM pages
+drm/ttm: Add a shrinker and shrinker accounting
+drm/ttm: Introduce shrink throttling
+drm/ttm: Remove pinned bos from shrinkable accounting
+drm/ttm: Add a simple api to set/ clear purgeable ttm_tt content
+
+Adding the core mm part to insert and read-back pages from the swap-cache:
+mm: Add interfaces to back up and recover folio contents using swap.
+
+TTM helpers for shrinking:
+drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting.
+drm/ttm: Provide helpers for shrinking.
+drm/ttm: Use fault-injection to test error paths.
+
+Enable i915:
+drm/i915, drm/ttm: Use the TTM shrinker rather than the external shmem pool
+
+Any feedback greatly appreciated.
+Thomas
+
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Cc: Miaohe Lin <linmiaohe@huawei.com>
+Cc: David Hildenbrand <david@redhat.com>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: Peter Xu <peterx@redhat.com>
+Cc: NeilBrown <neilb@suse.de>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: <linux-graphics-maintainer@vmware.com>
+Cc: <linux-mm@kvack.org>
+Cc: <intel-gfx@lists.freedesktop.org>
 
 
-BR,
-Jani.
+Thomas Hellström (16):
+  drm/ttm: Fix a NULL pointer dereference
+  drm/ttm/pool: Fix ttm_pool_alloc error path
+  drm/ttm: Use the BIT macro for the TTM_TT_FLAGs
+  drm/ttm, drm/vmwgfx: Update the TTM swapout interface
+  drm/ttm: Unexport ttm_global_swapout()
+  drm/ttm: Don't use watermark accounting on shrinkable pools
+  drm/ttm: Reduce the number of used allocation orders for TTM pages
+  drm/ttm: Add a shrinker and shrinker accounting
+  drm/ttm: Introduce shrink throttling.
+  drm/ttm: Remove pinned bos from shrinkable accounting
+  drm/ttm: Add a simple api to set / clear purgeable ttm_tt content
+  mm: Add interfaces to back up and recover folio contents using swap
+  drm/ttm: Make the call to ttm_tt_populate() interruptible when
+    faulting
+  drm/ttm: Provide helpers for shrinking
+  drm/ttm: Use fault-injection to test error paths
+  drm/i915, drm/ttm: Use the TTM shrinker rather than the external shmem
+    pool
 
-
->
->> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_hwmon.c | 5 -----
->>  1 file changed, 5 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
->> index 4683a5b96eff1..1225bc432f0d5 100644
->> --- a/drivers/gpu/drm/i915/i915_hwmon.c
->> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
->> @@ -687,11 +687,6 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
->>  		for_each_gt(gt, i915, i)
->>  			hwm_energy(&hwmon->ddat_gt[i], &energy);
->>  	}
->> -
->> -	/* Enable PL1 power limit */
->> -	if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
->> -		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
->> -						    PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
->>  }
->>  
->>  void i915_hwmon_register(struct drm_i915_private *i915)
->> -- 
->> 2.38.0
->> 
+ drivers/gpu/drm/Kconfig                       |  11 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   6 -
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 -
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |   5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 273 ++-------
+ drivers/gpu/drm/i915/i915_gem.c               |   3 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                  |  45 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c               |  19 +-
+ drivers/gpu/drm/ttm/ttm_device.c              |  85 ++-
+ drivers/gpu/drm/ttm/ttm_pool.c                | 522 ++++++++++++++++--
+ drivers/gpu/drm/ttm/ttm_tt.c                  | 336 +++++++++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   3 +-
+ include/drm/ttm/ttm_bo.h                      |   4 +-
+ include/drm/ttm/ttm_device.h                  |  36 +-
+ include/drm/ttm/ttm_pool.h                    |  19 +
+ include/drm/ttm/ttm_tt.h                      |  57 +-
+ include/linux/swap.h                          |  10 +
+ mm/Kconfig                                    |  18 +
+ mm/Makefile                                   |   2 +
+ mm/swap_backup_folio.c                        | 178 ++++++
+ mm/swap_backup_folio_test.c                   | 111 ++++
+ 21 files changed, 1361 insertions(+), 388 deletions(-)
+ create mode 100644 mm/swap_backup_folio.c
+ create mode 100644 mm/swap_backup_folio_test.c
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
