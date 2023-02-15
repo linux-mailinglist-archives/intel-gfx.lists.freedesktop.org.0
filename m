@@ -2,58 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4366977D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 09:14:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9AA69785C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 09:38:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF4D510EA76;
-	Wed, 15 Feb 2023 08:14:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CB810EA63;
- Wed, 15 Feb 2023 08:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9DE10EA69;
+	Wed, 15 Feb 2023 08:38:46 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0711F10EA69
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 08:38:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676448855; x=1707984855;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=RNKQox9CFqVlAFMw/lwU6eu6LZATD/8ysyzEDjMc2io=;
- b=YULl/UES9YCCCovarTPYYFiiGD5WjD2kh56yF5M8nI7y0lBVrzqWrDt1
- JkLidRgSzzXuXQDJE07Jg6WRAFMdXBQmfjkXrIyEoOuLmuORkur84IVgJ
- qanBfFelYA/0pif6sviwG/yTKGQP8+srqkJG+SzQ7CwQ8E+fcSGic3ocO
- B75serXTfpjG4vHVIuPdqI9FtQxgHF9QevyVn3tlY58O41yJuPSDpJMs7
- Qm/vZYug3x5b783rUr1zD8oUu14xkncI58exJ3ulv42SR3yzRPp0StLVR
- gyyNqc6ZpZDRofph31QlFrYUxsD+CWCFYcu3uEY4u8KAcgjhEdv8SYzu1 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="315026190"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="315026190"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 00:14:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="701937706"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="701937706"
-Received: from odaniele-mobl2.ger.corp.intel.com (HELO [10.213.228.205])
- ([10.213.228.205])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 00:14:14 -0800
-Message-ID: <6c122e1a-6634-fdbd-005b-abaa390f4656@linux.intel.com>
-Date: Wed, 15 Feb 2023 08:14:08 +0000
+ t=1676450325; x=1707986325;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8gqORQtZkFP9K77c5ukZb0qItoXyjvNwPP149Ucs25A=;
+ b=GqawzLyn8gEhxRQmUDTgviRmtMQmfx6QyZbuk5tXNsGn11HOWDNe7Xzl
+ mMxv1Z3ApN7BvDIDXMZW7dHevkf3/sHvwuGQX65zkm3UxkcNvAK3Wm3cP
+ eq+KfIueeYEnHL0Rl+0IDCdgrCIdtqGTbIRt6ugdeGuGBmATQ1wXBVKf5
+ VifFH/C1frkHyXsHep5rZodjdnroUWS4aNzwOfJHXBxiaZ0xh7IpCNKGE
+ 2a912NqpJpRuPKnhfoQw6UQFNTTEOByLrKXP8fmN9kAGsnwWbGTU3FXO2
+ dQjrFX+TMoycRYQVNuKZxCDFW7DIJFxVB+LptA4V+++EEmK6lfc3dJufY A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="332686596"
+X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="332686596"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 00:38:44 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="669528733"
+X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="669528733"
+Received: from vgovind2-mobl3.tm.intel.com ([10.237.50.37])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 00:38:42 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Feb 2023 10:38:30 +0200
+Message-Id: <20230215083832.287519-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
- <f575e344-e915-c85f-49cd-28fa426bcfd6@intel.com>
- <117482b6-7baf-5b79-27ed-7c33630bd86d@linux.intel.com>
- <983c9904-e9f7-1aa2-fb8c-738ad47195a7@intel.com>
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <983c9904-e9f7-1aa2-fb8c-738ad47195a7@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Consolidate TLB invalidation
- flow
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/2] Provision to ignore long HPDs in CI
+ systems
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,46 +56,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Some panels generate long HPDs during CI execution steps even
+while connected to the system and cause unexpected CI execution
+failures. In environments like CI, we don't expect to disconnect
+the panels in the middle of the CI execution.
 
-On 02/02/2023 09:39, Andrzej Hajda wrote:
-> On 02.02.2023 09:33, Tvrtko Ursulin wrote:
->>
->> On 02/02/2023 07:43, Andrzej Hajda wrote:
->>> On 01.02.2023 17:51, Tvrtko Ursulin wrote:
->>
->> [snip]
->>
->>
->>
->> Btw - do you have any idea why the test is suppressed already?! CI 
->> told me BAT was a success...
-> 
-> 
-> Except this patch, igt@i915_selftest@live@gt_tlb always succeeds[1][2]. 
-> So I guess this is just CI logic which do not trust new tests, sounds 
-> reasonable. Lets wait few days to see if it changes.
+There are two parts to handle this case - display driver and IGT
 
-Did another run and it is all still green. Also have another r-b from 
-Matt now. Okay to merge from your point of view?
+1. In the display driver, based on a flag, long HPDs are
+ignored. This flag can be set/unset using debugfs on systems
+where such panels are connected. Also random link training
+issues are popping up because of spurious HPDs, ignore the
+link training failures as well if the ignore long HPD is set.
 
-Regards,
+2. In IGT, add provision to set ignore long HPD debugfs entry
+on the driver and also set Force "on" the active connectors.
+With force on, the connector's detect sequences will not get
+initiated.
 
-Tvrtko
+This patchset address the driver part to handle this issue.
 
-> [1]: 
-> http://gfx-ci.igk.intel.com/cibuglog-ng/results/all?query_key=d3cc1f04e52acd0f911cd54fd855a3f085a40e14
-> [2]: 
-> https://lore.kernel.org/intel-gfx/?q=igt%40i915_selftest%40live%40gt_tlb
-> 
-> 
-> Regards
-> Andrzej
-> 
->>
->> Regards,
->>
->> Tvrtko
-> 
+Vinod Govindapillai (2):
+  drm/i915/display: ignore long HPDs based on a flag
+  drm/i915/display: ignore link training failures in CI
+
+ .../gpu/drm/i915/display/intel_display_core.h | 11 +++++++++
+ .../drm/i915/display/intel_dp_link_training.c | 24 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  9 +++++++
+ 3 files changed, 44 insertions(+)
+
+-- 
+2.34.1
+
