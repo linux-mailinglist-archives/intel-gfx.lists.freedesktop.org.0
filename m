@@ -1,64 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83CA26995AB
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2DB6995A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2004010E310;
-	Thu, 16 Feb 2023 13:24:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA24F10E2C0;
+	Thu, 16 Feb 2023 13:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 559 seconds by postgrey-1.36 at gabe;
- Wed, 15 Feb 2023 00:36:27 UTC
-Received: from raptorengineering.com (mail.raptorengineering.com
- [23.155.224.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540F710E09A;
- Wed, 15 Feb 2023 00:36:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id E454A37E180AFF;
- Tue, 14 Feb 2023 18:27:07 -0600 (CST)
-Received: from mail.rptsys.com ([127.0.0.1])
- by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id mxSS9AhdlaO9; Tue, 14 Feb 2023 18:27:05 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id 2586637E180AF1;
- Tue, 14 Feb 2023 18:27:05 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 2586637E180AF1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
- t=1676420825; bh=k+Zla+TXGT+u0A7tdHZXItJb2pEmHhwdwagw90wi1D4=;
- h=Date:From:To:Message-ID:MIME-Version;
- b=OyiReIBHBRqEu3Q9dt+hYtOGKVCGMQ9ln719/xjqjRm/2qaICeqBMgDGz6Sjabln8
- QCpeNljG3kau1Cuxk0Mll6bRX8fd/IJdUwLNfIqibC1OP5YlA0K7flHOJ+jZ4gRvbF
- QPZaQBGqYZz1M96qGrLoffu0T0EhuJ8Q8Q2SYw2s=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
- by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id oiirFsNpqpBI; Tue, 14 Feb 2023 18:27:04 -0600 (CST)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id CFA8837E180AEE;
- Tue, 14 Feb 2023 18:27:04 -0600 (CST)
-Date: Tue, 14 Feb 2023 18:27:03 -0600 (CST)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <595229255.11912427.1676420823058.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <Y+wkqnCAe42Ogcof@nvidia.com>
-References: <20230213151348.56451-1-yi.l.liu@intel.com>
- <20230213151348.56451-6-yi.l.liu@intel.com>
- <20230214152627.3a399523.alex.williamson@redhat.com>
- <Y+wYX34sPvPQmGSr@nvidia.com>
- <20230214164235.64e2dccb.alex.williamson@redhat.com>
- <Y+wkqnCAe42Ogcof@nvidia.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C54510E162;
+ Wed, 15 Feb 2023 15:58:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
+ From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=5kMmQ7eQcRUHs3Kq/pFvqrTP19hP+D8jOA/195A6v+U=; b=CN5JZavErT2GtiRNe7NS/9n4Sj
+ EI6/3HoUEtsPZndThG/3XBasMLBnWH2HuTkuC6q9B4DFEOz2yNdd6fCk9pVzuZ2GROSUQe8AAzxTe
+ jN1WUwzR1xrMjRtZVXDAq/Nkn6jgzapueLoPGa3fCFv59YOB/11DnkMX9HR4Sye5O+6gqJj+TYTec
+ WV1PmnHeyINzjL0kPpfxaal2WzMbWjUSSTxeGJ2XcmkvnpGV5hAvr5XNkOdt6G5Jd/f/gfK54pt0Z
+ qtZThkM54Iamz1MLWuxwW6BpbM8W6ba+Gcbj+ttD3W9QCOoX/STkAZW3Yz8b8besgscamYmFi7i/t
+ 0I80XCjw==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pSKAW-0038Cf-H3; Wed, 15 Feb 2023 16:58:04 +0100
+Message-ID: <ef4e39301a769ef83668074c341274e30db57f95.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org
+Date: Wed, 15 Feb 2023 16:58:03 +0100
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC110 (Linux)/8.5.0_GA_3042)
-Thread-Topic: kvm/vfio: Accept vfio device file from userspace
-Thread-Index: AsnTMrxzRGkgYuS3YUElHBx57ph+Og==
 X-Mailman-Approved-At: Thu, 16 Feb 2023 13:24:56 +0000
-Subject: Re: [Intel-gfx] [PATCH v3 05/15] kvm/vfio: Accept vfio device file
- from userspace
+Subject: [Intel-gfx] 2023 X.Org Foundation Membership deadline for voting in
+ the election
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +57,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390 <linux-s390@vger.kernel.org>, Yi Liu <yi.l.liu@intel.com>,
- yi y sun <yi.y.sun@linux.intel.com>, mjrosato@linux.ibm.com,
- kvm <kvm@vger.kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
- intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
- peterx@redhat.com, eric auger <eric.auger@redhat.com>, nicolinc@nvidia.com,
- shameerali kolothum thodi <shameerali.kolothum.thodi@huawei.com>,
- suravee suthikulpanit <suravee.suthikulpanit@amd.com>,
- intel-gfx@lists.freedesktop.org, chao p peng <chao.p.peng@linux.intel.com>,
- lulu@redhat.com, robin murphy <robin.murphy@arm.com>, jasowang@redhat.com
+Cc: board <board@foundation.x.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The 2023 X.Org Foundation elections are rapidly approaching. We will be
+forwarding the election schedule and nominating process to the
+membership shortly.
 
+Please note that only current members can vote in the upcoming election,
+and that the deadline for new memberships or renewals to vote in the
+upcoming election is 26 March 2023 at 23:59 UTC.
 
------ Original Message -----
-> From: "Jason Gunthorpe" <jgg@nvidia.com>
-> To: "Alex Williamson" <alex.williamson@redhat.com>
-> Cc: "Yi Liu" <yi.l.liu@intel.com>, joro@8bytes.org, "kevin tian" <kevin.tian@intel.com>, "robin murphy"
-> <robin.murphy@arm.com>, cohuck@redhat.com, "eric auger" <eric.auger@redhat.com>, nicolinc@nvidia.com, "kvm"
-> <kvm@vger.kernel.org>, mjrosato@linux.ibm.com, "chao p peng" <chao.p.peng@linux.intel.com>, "yi y sun"
-> <yi.y.sun@linux.intel.com>, peterx@redhat.com, jasowang@redhat.com, "shameerali kolothum thodi"
-> <shameerali.kolothum.thodi@huawei.com>, lulu@redhat.com, "suravee suthikulpanit" <suravee.suthikulpanit@amd.com>,
-> intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, "linux-s390" <linux-s390@vger.kernel.org>,
-> "Timothy Pearson" <tpearson@raptorengineering.com>, "Michael Ellerman" <mpe@ellerman.id.au>
-> Sent: Tuesday, February 14, 2023 6:17:46 PM
-> Subject: Re: [PATCH v3 05/15] kvm/vfio: Accept vfio device file from userspace
+If you are interested in joining the X.Org Foundation or in renewing
+your membership, please visit the membership system site at:
+https://members.x.org/
 
-> On Tue, Feb 14, 2023 at 04:42:35PM -0700, Alex Williamson wrote:
-> 
->> A device file opened through a group could be passed through this
->> interface though, right?
-> 
-> Yes, I think so
-> 
->> Do we just chalk that up to user error?  Maybe the SPAPR extension
->> at least needs to be documented as relying on registering groups
->> rather than devices.
-> 
-> The way these APIs work is you have to pass the same FD to all of
-> them. The SPAPR stuff is no different, if you used a cdev with
-> KVM_DEV_VFIO_GROUP_ADD then you have to use the same cdev fd with the
-> SPAPR group_fd. Yi just didn't rename it.
-> 
-> It is weird, but logically self consistent, I think.
-> 
->> > I'm still thinking about proposing to just delete all this SPAPR
->> > stuff. Power still hasn't had the patches applied to make it work
->> > again so it seems to all be dead.
->> 
->> There's been some off-list discussion about at least fixing SPAPR
->> support, but yes, it either needs to get some love or we ought to think
->> about its future.  Thanks,
-> 
-> The patches exist, they just need to be applied AFAIK. If the people
-> responsible can't care enough about this to even do that then I find
-> it hard to care at all about the state of SPAPR.
-> 
-> Jason
-
-I've been discussing the state of the patches offline, apologies for the delay in checking in here.
-
-I'll be taking over SPAPR support going forward, as we need it for our product line.  My current thoughts are to rebase / fix and test the patches that were already generated, to at least get support reenabled, then we can coordinate on further changes needed to maintain the support going forward.
-
-I should have a rebased patchset ready later this week.
-
-Thank you!
+Ricardo Garcia, on behalf of the X.Org elections committee
