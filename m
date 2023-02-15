@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CC9E69848F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 20:31:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D7E698491
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 20:33:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 816AE10E14B;
-	Wed, 15 Feb 2023 19:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63BE210E2BC;
+	Wed, 15 Feb 2023 19:33:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3A2E710E14B;
- Wed, 15 Feb 2023 19:31:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7703E10E2BC;
+ Wed, 15 Feb 2023 19:33:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2FEEDAA0ED;
- Wed, 15 Feb 2023 19:31:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72070AA0ED;
+ Wed, 15 Feb 2023 19:33:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5750396313228061283=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 15 Feb 2023 19:31:49 -0000
-Message-ID: <167648950916.30600.11524973732953111115@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 15 Feb 2023 19:33:02 -0000
+Message-ID: <167648958246.30603.4968471147328745136@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230215161405.187368-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230215161405.187368-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_a_TTM_shrinker?=
+References: <20230215121859.15923-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230215121859.15923-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Reduce_ELD_hex_dumps_a_bit_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,57 +45,199 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5750396313228061283==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Add a TTM shrinker
-URL   : https://patchwork.freedesktop.org/series/114060/
-State : warning
+Series: drm/i915: Reduce ELD hex dumps a bit (rev2)
+URL   : https://patchwork.freedesktop.org/series/114051/
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-868fc3be5310 drm/ttm: Fix a NULL pointer dereference
-98296903c17c drm/ttm/pool: Fix ttm_pool_alloc error path
-f7427cf5528b drm/ttm: Use the BIT macro for the TTM_TT_FLAGs
-c43883970a8f drm/ttm, drm/vmwgfx: Update the TTM swapout interface
-71e9cc6ac605 drm/ttm: Unexport ttm_global_swapout()
-28c5436faefb drm/ttm: Don't use watermark accounting on shrinkable pools
-0cbaa4650e8b drm/ttm: Reduce the number of used allocation orders for TTM pages
-0ffa5f3b05c3 drm/ttm: Add a shrinker and shrinker accounting
-d5139754ecca drm/ttm: Introduce shrink throttling.
-eb622f9e593b drm/ttm: Remove pinned bos from shrinkable accounting
-5f42659a9f7f drm/ttm: Add a simple api to set / clear purgeable ttm_tt content
-2f92445365a0 mm: Add interfaces to back up and recover folio contents using swap
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:109: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#109: 
-new file mode 100644
+CI Bug Log - changes from CI_DRM_12744 -> Patchwork_114051v2
+====================================================
 
-total: 0 errors, 1 warnings, 0 checks, 339 lines checked
-e76abab95b0c drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting
-fdd0475a9c94 drm/ttm: Provide helpers for shrinking
-629412555d1a drm/ttm: Use fault-injection to test error paths
--:24: WARNING:CONFIG_DESCRIPTION: please write a help paragraph that fully describes the config symbol
-#24: FILE: drivers/gpu/drm/Kconfig:205:
-+config DRM_TTM_SHRINK_FAULT_INJECT
-+	bool "Enable fault injection during TTM shrinking"
-+	depends on DRM_TTM
-+	default n
-+	help
-+	  Inject recoverable failures during TTM shrinking and recovery of
-+	  shrunken objects. For DRM driver developers only.
-+
-+	  If in doubt, choose N.
-+
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 51 lines checked
-714409e46b58 drm/i915, drm/ttm: Use the TTM shrinker rather than the external shmem pool
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/index.html
+
+Participating hosts (40 -> 39)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_114051v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-rplp-1}:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/bat-rplp-1/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/bat-rplp-1/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@dmabuf:
+    - {bat-rplp-1}:       [PASS][3] -> [DMESG-WARN][4] +5 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/bat-rplp-1/igt@i915_selftest@live@dmabuf.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/bat-rplp-1/igt@i915_selftest@live@dmabuf.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114051v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-n3050:       [PASS][5] -> [FAIL][6] ([i915#6298])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [DMESG-WARN][7] ([i915#8073]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12744 -> Patchwork_114051v2
+
+  CI-20190529: 20190529
+  CI_DRM_12744: 2e4cac06e4de01a35626de676b9eeb474ae7ab5d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114051v2: 2e4cac06e4de01a35626de676b9eeb474ae7ab5d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+04c9bd81cf4d drm/i915: Reduce ELD hex dumps a bit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/index.html
+
+--===============5750396313228061283==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Reduce ELD hex dumps a bit (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114051/">https://patchwork.freedesktop.org/series/114051/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12744 -&gt; Patchwork_114051v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/index.html</p>
+<h2>Participating hosts (40 -&gt; 39)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_114051v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/bat-rplp-1/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/bat-rplp-1/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@dmabuf:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/bat-rplp-1/igt@i915_selftest@live@dmabuf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/bat-rplp-1/igt@i915_selftest@live@dmabuf.html">DMESG-WARN</a> +5 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114051v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12744/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114051v2/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12744 -&gt; Patchwork_114051v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12744: 2e4cac06e4de01a35626de676b9eeb474ae7ab5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114051v2: 2e4cac06e4de01a35626de676b9eeb474ae7ab5d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>04c9bd81cf4d drm/i915: Reduce ELD hex dumps a bit</p>
+
+</body>
+</html>
+
+--===============5750396313228061283==--
