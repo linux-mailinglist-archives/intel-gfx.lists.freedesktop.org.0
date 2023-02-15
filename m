@@ -1,82 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96199697F8B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 16:33:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55918697F96
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 16:37:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B4F910E14D;
-	Wed, 15 Feb 2023 15:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6618010E162;
+	Wed, 15 Feb 2023 15:37:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7751410E144
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 15:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1676475186;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Dh5NdUXXqt2OwKe+bgzJIjOdCZFOJ5LseD3HaKSZilk=;
- b=a5QEqliyXu40M6w6kpYtTJjJMaLdCu1uXqrwYB+Vhd5kRvkQh7CR88faQsJhRRsIujzEz5
- GMnNDmayKp6mNGSY7/O9oQonvWP0DdtsKzShet5igctOYWaHAm//S17XsVOqelYPvPJyu6
- SOqFn82prYhB6WzNlHEkGO+sHOpYCGM=
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
- [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-21-fCr2Vl0ONI6l5NVZkVhwiA-1; Wed, 15 Feb 2023 10:32:48 -0500
-X-MC-Unique: fCr2Vl0ONI6l5NVZkVhwiA-1
-Received: by mail-il1-f198.google.com with SMTP id
- a4-20020a056e0208a400b003157c7e623cso38749ilt.14
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 07:32:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Dh5NdUXXqt2OwKe+bgzJIjOdCZFOJ5LseD3HaKSZilk=;
- b=Eq40H+mrKkQn9XJ6SjdLf5wmmaPck0GdJzQ5yQaDZX5daVKnMgh7vs/DlG04gc1IVO
- VqMfV9buJXFFrwnUkpYfEFDaq6eZJ82fpmK04hMETBxtm7GUXjGGFodpzcrW7JkyJxgm
- vK3sgrpvxziFgg7VJpzonjd8PAI7sJDyLkQ5gFMjpsisrYE2WzGyGurp5xjeq+UWLBuM
- 2GB4mBXYJKv5GQGVTJE+7eo/ZoE3sHmY8Ug025FzkoFcvEFrqWYet/wFXFtPcgaW/Qfg
- Z6xc8nwprjxqxxuW9wYJYswxq0jvQMobhwHTHCMBFpZ9v8+urcRxZQPd0+CywRpAsZ0a
- 1cjA==
-X-Gm-Message-State: AO0yUKV8piDPN1V+KOeJ1HT/sOilp+OXJn8v2KAeB5fuW+OknIqVA4qz
- AwbFBICtIwQTuxpoTj08fiVjOBLbZu8KAt+Xxtn9gwqEhyWZyCFi0Cu5SPOXoK5Sb0+sDx/PBbq
- ZveRH3bckty1U1uZ+xbzXBuHyjLyi
-X-Received: by 2002:a05:6e02:180a:b0:315:3036:4da with SMTP id
- a10-20020a056e02180a00b00315303604damr2903346ilv.30.1676475157568; 
- Wed, 15 Feb 2023 07:32:37 -0800 (PST)
-X-Google-Smtp-Source: AK7set9dYhmZ8agTRUin0PWV3DETcyMYPO5GFEHe0t1hXDUe9MWRtba6M7F5v8HJtVUnNqr1Vxo/uA==
-X-Received: by 2002:a05:6e02:180a:b0:315:3036:4da with SMTP id
- a10-20020a056e02180a00b00315303604damr2903310ilv.30.1676475157275; 
- Wed, 15 Feb 2023 07:32:37 -0800 (PST)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- u6-20020a02aa86000000b0038a822f87c3sm5723739jai.159.2023.02.15.07.32.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Feb 2023 07:32:36 -0800 (PST)
-Date: Wed, 15 Feb 2023 08:32:34 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20230215083234.194d07a9.alex.williamson@redhat.com>
-In-Reply-To: <Y+zwSn63eA7HrefO@nvidia.com>
-References: <20230213151348.56451-1-yi.l.liu@intel.com>
- <20230213151348.56451-4-yi.l.liu@intel.com>
- <Y+rLKvCMivND0izd@nvidia.com>
- <DS0PR11MB7529B43C7D357D8A0C2438C7C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <Y+zSRklKkL3rc2FB@nvidia.com>
- <DS0PR11MB75299F5D92AAC33FD8690694C3A39@DS0PR11MB7529.namprd11.prod.outlook.com>
- <Y+zwSn63eA7HrefO@nvidia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE8F10E162;
+ Wed, 15 Feb 2023 15:37:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676475460; x=1708011460;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7IMC4TKCsaB6fCeSRB2vScmVNKbwvw6HmFhZYBTr5u0=;
+ b=KrIwGNvur4xVWEe8TttN+XObm6mDrLaYHdffZvZtGH/HSfDcRvL93Pl0
+ s9ID0rfEm710EbjUHMrB5T5QDsuAF/dVnkq+PclApjSHijrYkqqQXuuFY
+ gS+oJrZyc6aNbFepAPi9zhtZ2fluHRny7HHHKvHwQerW8Sejz+GDf2tRz
+ 91bS7YFDCejI4Gd2cJyPPPNjBVmlXtPG//YK+9bEDpi1o9tiknaw8JPsl
+ 2eh4WcgZwSS0eKwz4rOn0f0whhI+TSknacjQNaT0FbtkLKYK+kQ+BKI4K
+ ul+xWiYpk+u79wV3m2Cx6u/etv0xroO59PXynKxUY2TsUYp3yjW16Zqjx Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="396078874"
+X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="396078874"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 07:37:39 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="778835346"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="778835346"
+Received: from gchung-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.51.244])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 07:37:33 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Ashutosh Dixit
+ <ashutosh.dixit@intel.com>
+In-Reply-To: <Y+QBJLXJ7uTo3p7l@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230208190312.1611335-1-ashutosh.dixit@intel.com>
+ <Y+QBJLXJ7uTo3p7l@intel.com>
+Date: Wed, 15 Feb 2023 17:37:30 +0200
+Message-ID: <877cwjq6rp.fsf@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 03/15] vfio: Accept vfio device file in
- the driver facing kAPI
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/hwmon: Enable PL1 power
+ limit"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,98 +60,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "peterx@redhat.com" <peterx@redhat.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- Paolo Bonzini <pbonzini@redhat.com>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Cc +Paolo]
+On Wed, 08 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Wed, Feb 08, 2023 at 11:03:12AM -0800, Ashutosh Dixit wrote:
+>> This reverts commit 0349c41b05968befaffa5fbb7e73d0ee6004f610.
+>> 
+>> 0349c41b0596 ("drm/i915/hwmon: Enable PL1 power limit") is incorrect and
+>> caused a major regression on ATSM. The change enabled the PL1 power limit
+>> but FW sets the default value of the PL1 limit to 0 which implies HW now
+>> works at minimum power and therefore the lowest effective frequency. This
+>> means all workloads now run slower resulting in even GuC FW load operations
+>> timing out, rendering ATSM unusable.
+>> 
+>> A different solution to the original issue of the PL1 limit being disabled
+>> on ATSM is needed but till that is developed, revert 0349c41b0596.
+>> 
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+>
+> pushed to drm-intel-next and removed from drm-intel-fixes.
+>
+> Thanks for the quick reaction.
 
-On Wed, 15 Feb 2023 10:46:34 -0400
-Jason Gunthorpe <jgg@nvidia.com> wrote:
+Please always add Fixes: tags also to reverts.
 
-> On Wed, Feb 15, 2023 at 02:43:20PM +0000, Liu, Yi L wrote:
-> > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > Sent: Wednesday, February 15, 2023 8:39 PM
-> > > 
-> > > On Tue, Feb 14, 2023 at 02:02:37AM +0000, Liu, Yi L wrote:  
-> > > > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > > > Sent: Tuesday, February 14, 2023 7:44 AM
-> > > > >
-> > > > > On Mon, Feb 13, 2023 at 07:13:36AM -0800, Yi Liu wrote:  
-> > > > > > +static struct vfio_device *vfio_device_from_file(struct file *file)
-> > > > > > +{
-> > > > > > +	struct vfio_device_file *df = file->private_data;
-> > > > > > +
-> > > > > > +	if (file->f_op != &vfio_device_fops)
-> > > > > > +		return NULL;
-> > > > > > +	return df->device;
-> > > > > > +}
-> > > > > > +
-> > > > > >  /**
-> > > > > >   * vfio_file_is_valid - True if the file is usable with VFIO APIS
-> > > > > >   * @file: VFIO group file or VFIO device file
-> > > > > >   */
-> > > > > >  bool vfio_file_is_valid(struct file *file)
-> > > > > >  {
-> > > > > > -	return vfio_group_from_file(file);
-> > > > > > +	return vfio_group_from_file(file) ||
-> > > > > > +	       vfio_device_from_file(file);
-> > > > > >  }
-> > > > > >  EXPORT_SYMBOL_GPL(vfio_file_is_valid);  
-> > > > >
-> > > > > This can only succeed on a device cdev that has been fully opened.  
-> > > >
-> > > > Actually, we cannot. This is used in the kvm-vfio code to see if the
-> > > > user-provided fd is vfio fds in the SET_KVM path. And we don't
-> > > > have the device cdev fully opened until BIND_IOMMUFD. But we do
-> > > > need to invoke SET_KVM before issuing BIND_IOMMUFD as the device
-> > > > open needs kvm pointer. So if we cannot apply fully opened limit to this
-> > > > interface. Maybe an updated function comment is needed.  
-> > > 
-> > > This also seems sketchy, KVM is using the VFIO fd as a "proof" to
-> > > enable the wbinvd stuff. A half opened cdev should not be used as that
-> > > proof.  
-> > 
-> > From this angle, the group path seems has the same concern. Device is not
-> > opened until VFIO_GROUP_GET_DEVICE_FD.   
-> 
-> Well, classically the device was DMA ownership claimed at least.
-> 
-> > But group path has one advantage, which make it ok. Group can only be
-> > opened by one application. So once it is opened, the devices within the
-> > group are somehow obtained by the application until group fd close.  
-> 
-> It depends on what do we want the KVM proof to actually mean.
-> 
-> Is simply having permissions on the cdev node sufficient proof for
-> wbinvd?
-> 
-> I admit I poorly understand the threat model for this in kvm beyond
-> that kvm doesn't want everyone to use wbinvd.
+I suppose we should fix dim to also detect reverts, but I ended up
+cherry-picking and pushing the original commit out to
+drm-intel-next-fixes before realizing it's been reverted.
 
-We've discussed this with Paolo before and I believe the bar of proof
-is not very high.  I suspect it's not a problem that the device itself
-is not yet accessible, so long as the user can prove they have the
-ability to access the device, such as access to a restricted file.  In
-most cases this isn't going to turn on wbinvd anyway since DMA will be
-coherent.  Thanks,
 
-Alex
+BR,
+Jani.
 
+
+>
+>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_hwmon.c | 5 -----
+>>  1 file changed, 5 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+>> index 4683a5b96eff1..1225bc432f0d5 100644
+>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+>> @@ -687,11 +687,6 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+>>  		for_each_gt(gt, i915, i)
+>>  			hwm_energy(&hwmon->ddat_gt[i], &energy);
+>>  	}
+>> -
+>> -	/* Enable PL1 power limit */
+>> -	if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+>> -		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
+>> -						    PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
+>>  }
+>>  
+>>  void i915_hwmon_register(struct drm_i915_private *i915)
+>> -- 
+>> 2.38.0
+>> 
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
