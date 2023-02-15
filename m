@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A035B6987C7
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 23:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F284A6987C8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 23:24:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A24E10EC6E;
-	Wed, 15 Feb 2023 22:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9938310EC68;
+	Wed, 15 Feb 2023 22:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3C4010EC68
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 22:24:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B2710EC68
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 22:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676499869; x=1708035869;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JgEZ6BHD5L38N3csVJrZ0u0jUPUH7jRZ3MC2RbrMCvk=;
- b=Gy5akJBGO7XVQ1e7uQX4ZveD1zVdOLQmfNizHbRVF00c1N+ywhFsjpbk
- sQ3quyAtC9RuSUTvUMNS3kVkwexKxFzJxWe38VX1kQju3saUckLCwU93p
- V1SKnKw12FjO+C6ZGdhSfoY+NFr7CPK2fqKo2xKpeCGj1ddH2f0riDHmn
- aHHJ5F5WLZYRzUvQ5d+4O9bA5blxoykNu9+kmyJiEvklXab70SaTEFhTd
- LJQf6+QpLg/kQ5vy3z7UASuzofQt/qbcaXy5O6BlBOKqoJFvB7dYFhiaj
- Vn3PoXjHeaIpFn9We1VPgFNrdXXAOYpsKE2CZ7/aoQNDhWphehF8LCYPD Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="311923721"
-X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="311923721"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 14:24:29 -0800
+ t=1676499873; x=1708035873;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=r9WhrL5ScuU7bm8VqRevlN86MpbBoxcyOX0R2zNtH8k=;
+ b=CMbmA6ugB3UjADuDjZv2D6jT6Wy8ch9DYwAEkjqCM+PZbhegRmCpQEVL
+ nuIhisxhRTYwrI1M8SKI47bBzd0mT98qKlBAE7roN3JLfWvIPDne7Wyxx
+ 3CrBu/cTN2bHXQP7pCjfRSwGA0+iciYNt4VaMXgoSYmMSALQuEyE7uRub
+ Xxfq2uK3yLpuUKCd4eesPor/QfmYOIEAfChCiBw2qC9sUKHgQvj5nUUtt
+ uB4+ywSNQpXi/+wp/ECiKvDzmD7GWLDS3/xY0tl2t9S/QeNPZ7+qpVeNX
+ hCtfORqU50SPoIXekquy1trpb4uzp6Am5Silx3NiWK8R1NTQwkNtRz1Nb A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="417780489"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="417780489"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 14:24:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="812708510"
-X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="812708510"
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="619771142"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="619771142"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by fmsmga001.fm.intel.com with SMTP; 15 Feb 2023 14:24:27 -0800
+ by orsmga003.jf.intel.com with SMTP; 15 Feb 2023 14:24:30 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Feb 2023 00:24:26 +0200
+ Thu, 16 Feb 2023 00:24:29 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 00:24:25 +0200
-Message-Id: <20230215222426.26085-1-ville.syrjala@linux.intel.com>
+Date: Thu, 16 Feb 2023 00:24:26 +0200
+Message-Id: <20230215222426.26085-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230215222426.26085-1-ville.syrjala@linux.intel.com>
+References: <20230215222426.26085-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Don't leak the DPT if
- drm_framebuffer_init() fails
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add a few more debugs for failed
+ framebuffer creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,35 +65,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We are failing to free the already allocated DPT if the final
-drm_framebuffer_init() fails. That would require idr_alloc() to
-fail, so not very likely, but let's add the cleanup code anyway.
+Most of the .fb_create() failure paths are annotated but there
+are a few that seem capable of failing silently (well, higher
+level code should print something, just not anything actually
+useful). Drop a few more hints into the log to aid in debugging.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 93d0e46e5481..1ba052a127b9 100644
+index 1ba052a127b9..799bdc81a6a9 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2017,11 +2017,14 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
- 	if (ret) {
- 		drm_err(&dev_priv->drm, "framebuffer init failed %d\n", ret);
--		goto err;
-+		goto err_free_dpt;
+@@ -2007,6 +2007,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 		vm = intel_dpt_create(intel_fb);
+ 		if (IS_ERR(vm)) {
++			drm_dbg_kms(&dev_priv->drm, "failed to create DPT\n");
+ 			ret = PTR_ERR(vm);
+ 			goto err;
+ 		}
+@@ -2049,6 +2050,7 @@ intel_user_framebuffer_create(struct drm_device *dev,
+ 	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
+ 		/* object is "remote", not in local memory */
+ 		i915_gem_object_put(obj);
++		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
+ 		return ERR_PTR(-EREMOTE);
  	}
  
- 	return 0;
- 
-+err_free_dpt:
-+	if (intel_fb_uses_dpt(fb))
-+		intel_dpt_destroy(intel_fb->dpt_vm);
- err:
- 	intel_frontbuffer_put(intel_fb->frontbuffer);
- 	return ret;
 -- 
 2.39.1
 
