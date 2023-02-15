@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 562476972E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 01:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BEF16972E9
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 01:54:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 912EF10E9FE;
-	Wed, 15 Feb 2023 00:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 179E510EA0F;
+	Wed, 15 Feb 2023 00:54:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C2D10E9FC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A68E710E9FE
  for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 00:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1676422460; x=1707958460;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KSHze+qnD95ogtex2ULaIxgPXWWGiVmgdRwjVcH7d58=;
- b=fnaRLVECQFbXOZwc2O5BNNQQWuPyGK+wm6/F9JcD+4Hjkg1caRY8+U5t
- gfzBPidjd8Q1ox8clZpe4WQsoJgKZVt/i/9E+e5ShHwstK4bPuoXkMxvJ
- eqVDy0O4tYy+yUXPnWEhK9dPt44SpJA4dneQmkOt1sBkN34knJ/ToLqsN
- 86S7ojA8DdiNcmgK9ETSjSpvSLkEic4tuQv2zqBbz8gfA5SaEfQT/AwcE
- ePNrosi/KhexF90zD/C3nhroOegQiXRihWKGyJA7g2fH6hNHBTEa9UWGh
- pHOOGleXsMzBGZ3ejCNLVsdT6AnJsMeKodqSO1i5OxwLI3AWbWBdZWF3Q Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="417536035"
-X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="417536035"
+ bh=2O6uc+QVi0oARNsPiXOzafZWvULuNta3lfLeuC9bC/c=;
+ b=ZQHl6Ctwvt8cZAVXppAmb3/HRDA5Fc+4qvDEzZBUFepxwv0kVlxDedDf
+ WAlnAigQH/G0ENTp5cZJ/v3TJhdjsBqW4zh7GUh+z7pQMMwVSNEmALWvO
+ Nlg8g4FkRyiY3+criG5vZWDE0lilDii7gECd74RbwIEhH9uoBJDLK0NRi
+ +8kUpGYc19/3DH8XqC1IMc5xaU5MqUzL4Y7VQleLYFkab9e58rIxuuNEP
+ 5Ic+BoK0D8yzl6qxRhLVamlbdFP4ui1FUFNx9nSEXRvWgPZk5AYeH1vz4
+ MkyrohFUWiL26iO9QBeRdNtWmfOxnRuz2ltB9OZrz3bLFa6qMCOh62Oy7 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="417536036"
+X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="417536036"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Feb 2023 16:54:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="914951613"
-X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="914951613"
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="914951616"
+X-IronPort-AV: E=Sophos;i="5.97,298,1669104000"; d="scan'208";a="914951616"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 16:54:19 -0800
+ 14 Feb 2023 16:54:20 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 16:54:11 -0800
-Message-Id: <20230215005419.2100887-2-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 14 Feb 2023 16:54:12 -0800
+Message-Id: <20230215005419.2100887-3-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20230215005419.2100887-1-umesh.nerlige.ramappa@intel.com>
 References: <20230215005419.2100887-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/9] drm/i915/perf: Drop wakeref on GuC RC error
+Subject: [Intel-gfx] [PATCH 2/9] drm/i915/perf: Add helper to check
+ supported OA engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,89 +61,64 @@ Cc: Lionel G Landwerlin <lionel.g.landwerlin@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
+Add helper to check for supported OA engines.
 
-If we fail to adjust the GuC run-control on opening the perf stream,
-make sure we unwind the wakeref just taken.
-
-Fixes: 01e742746785 ("drm/i915/guc: Support OA when Wa_16011777198 is enabled")
-Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 18 +++++++++++-------
- drivers/gpu/drm/i915/i915_perf_types.h |  6 ++++++
- 2 files changed, 17 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 824a34ec0b83..393a0da8b7c8 100644
+index 393a0da8b7c8..a879ae4bf8d7 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1592,9 +1592,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	/*
- 	 * Wa_16011777198:dg2: Unset the override of GUCRC mode to enable rc6.
- 	 */
--	if (intel_uc_uses_guc_rc(&gt->uc) &&
--	    (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
--	     IS_DG2_GRAPHICS_STEP(gt->i915, G11, STEP_A0, STEP_B0)))
-+	if (stream->override_gucrc)
- 		drm_WARN_ON(&gt->i915->drm,
- 			    intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc));
+@@ -1570,6 +1570,19 @@ free_noa_wait(struct i915_perf_stream *stream)
+ 	i915_vma_unpin_and_release(&stream->noa_wait, 0);
+ }
  
-@@ -3305,13 +3303,15 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 		if (ret) {
- 			drm_dbg(&stream->perf->i915->drm,
- 				"Unable to override gucrc mode\n");
--			goto err_config;
-+			goto err_fw;
- 		}
++static bool engine_supports_oa(const struct intel_engine_cs *engine)
++{
++	enum intel_platform platform = INTEL_INFO(engine->i915)->platform;
 +
-+		stream->override_gucrc = true;
- 	}
- 
- 	ret = alloc_oa_buffer(stream);
- 	if (ret)
--		goto err_oa_buf_alloc;
-+		goto err_gucrc;
- 
- 	stream->ops = &i915_oa_stream_ops;
- 
-@@ -3344,12 +3344,16 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 
- 	free_oa_buffer(stream);
- 
--err_oa_buf_alloc:
--	free_oa_configs(stream);
-+err_gucrc:
-+	if (stream->override_gucrc)
-+		intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc);
- 
-+err_fw:
- 	intel_uncore_forcewake_put(stream->uncore, FORCEWAKE_ALL);
- 	intel_engine_pm_put(stream->engine);
- 
-+	free_oa_configs(stream);
++	if (intel_engine_is_virtual(engine))
++		return false;
 +
- err_config:
- 	free_noa_wait(stream);
- 
-diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index ca150b7af3f2..e36f046fe2b6 100644
---- a/drivers/gpu/drm/i915/i915_perf_types.h
-+++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -316,6 +316,12 @@ struct i915_perf_stream {
- 	 * buffer should be checked for available data.
- 	 */
- 	u64 poll_oa_period;
++	switch (platform) {
++	default:
++		return engine->class == RENDER_CLASS;
++	}
++}
 +
-+	/**
-+	 * @override_gucrc: GuC RC has been overridden for the perf stream,
-+	 * and we need to restore the default configuration on release.
-+	 */
-+	bool override_gucrc:1;
- };
+ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
+ {
+ 	struct i915_perf *perf = stream->perf;
+@@ -2505,7 +2518,7 @@ static int gen8_configure_context(struct i915_gem_context *ctx,
+ 	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+ 		GEM_BUG_ON(ce == ce->engine->kernel_context);
  
- /**
+-		if (ce->engine->class != RENDER_CLASS)
++		if (!engine_supports_oa(ce->engine))
+ 			continue;
+ 
+ 		/* Otherwise OA settings will be set upon first use */
+@@ -2656,7 +2669,7 @@ oa_configure_all_contexts(struct i915_perf_stream *stream,
+ 	for_each_uabi_engine(engine, i915) {
+ 		struct intel_context *ce = engine->kernel_context;
+ 
+-		if (engine->class != RENDER_CLASS)
++		if (!engine_supports_oa(ce->engine))
+ 			continue;
+ 
+ 		regs[0].value = intel_sseu_make_rpcs(engine->gt, &ce->sseu);
+@@ -3369,7 +3382,7 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+ {
+ 	struct i915_perf_stream *stream;
+ 
+-	if (engine->class != RENDER_CLASS)
++	if (!engine_supports_oa(engine))
+ 		return;
+ 
+ 	/* perf.exclusive_stream serialised by lrc_configure_all_contexts() */
 -- 
 2.36.1
 
