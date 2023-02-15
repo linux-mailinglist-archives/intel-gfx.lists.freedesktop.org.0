@@ -2,72 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80C96995AA
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CA26995AB
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3264210E300;
-	Thu, 16 Feb 2023 13:24:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2004010E310;
+	Thu, 16 Feb 2023 13:24:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com
- [IPv6:2607:f8b0:4864:20::d2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC2910E7DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 06:15:28 +0000 (UTC)
-Received: by mail-io1-xd2a.google.com with SMTP id l128so5431879iof.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Feb 2023 22:15:28 -0800 (PST)
+X-Greylist: delayed 559 seconds by postgrey-1.36 at gabe;
+ Wed, 15 Feb 2023 00:36:27 UTC
+Received: from raptorengineering.com (mail.raptorengineering.com
+ [23.155.224.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 540F710E09A;
+ Wed, 15 Feb 2023 00:36:27 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id E454A37E180AFF;
+ Tue, 14 Feb 2023 18:27:07 -0600 (CST)
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
+ with ESMTP id mxSS9AhdlaO9; Tue, 14 Feb 2023 18:27:05 -0600 (CST)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id 2586637E180AF1;
+ Tue, 14 Feb 2023 18:27:05 -0600 (CST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 2586637E180AF1
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=adrinael-net.20210112.gappssmtp.com; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=i2RhLzVc92234r4F6uGN/lsCNre8nU12oIQiuGvrNzE=;
- b=T7nZGQFbluxCB5RnMysm/bvH/O4iA5kjQhjRf/VfZSM9s/JdDH/VX4XsPuc8SKWS+p
- b7d7GC/tpHg4aUPrW9gE6xPmdGfCKnB10EWds4m/Lp+WQnuaYwu8ecr00ChcyBmQ0aJT
- MuPYuxaVbZGnRcSqQsmKMYWg9d6I5ChWasVw/4IyP9kLGsQ38VB336vkiC5vszATfFWP
- hSLDTCTl1cF6BYvO4uu+nFkdDP+CvvoapYmy00jeSbxgBhfrPQXSMHB1xvQgw4FTeuxd
- XcIJeP6pTHoTYLOf1ajvV023WVMkKaodMjqBztslM/LFPGuuUVGn/BVmHU6IEnzGwTxg
- OMRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=i2RhLzVc92234r4F6uGN/lsCNre8nU12oIQiuGvrNzE=;
- b=Ak70GnWi0cgFlGCW6gNafyv9nvcwzrGFvH1bPyitq1+nNgMBYYSXf4EQyNwuP2AEPb
- c34lIB6MCzC9eqM4GzhwUgkevBPgF8iRy/R/SHI51CDUFBPSWdL2NwhdNm05CSVnp2wd
- uEVTCUJOFTrLoE3ib6sd3hDNAd7DzkBDzRHGMLkdseiEBbWzCtrBl/LIDg7GJSqdSm8f
- R8mDZqhr0uI/6adFPXL2m6tNbf/W7+vu1P9k+0PKVMR4EtKINWth3M09J1Pch/mVQjDw
- CXuHoZWDl89uCuedfQjH8bsXUYun+utqoSVUkodycPi8gm9abIu66AlFb2OAJYkcGXKk
- CU4g==
-X-Gm-Message-State: AO0yUKUNXeXY/DvYZWCbuGs8hciqAWAsiS6+gii7GqwYuut+1bJBwfSn
- yPyvTaDakfcAtdz38U5DvasDDg==
-X-Google-Smtp-Source: AK7set/q0aAbGp7Zx/OSCFS+uMmuI8Axrf1u5mAqIDEBOz8eItwQimyWWUTFFGCYDohc8cDui7Zsmg==
-X-Received: by 2002:a5d:9d13:0:b0:710:25f2:7c7e with SMTP id
- j19-20020a5d9d13000000b0071025f27c7emr1029687ioj.17.1676355327644; 
- Mon, 13 Feb 2023 22:15:27 -0800 (PST)
-Received: from hufflepuff.adrinael.net (dsl-hkibng21-54f8c5-237.dhcp.inet.fi.
- [84.248.197.237]) by smtp.gmail.com with ESMTPSA id
- s21-20020a056602011500b0070766817820sm4800190iot.20.2023.02.13.22.15.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Feb 2023 22:15:27 -0800 (PST)
-Received: from adrinael by hufflepuff.adrinael.net with local (Exim 4.94.2)
- (envelope-from <adrinael@adrinael.net>)
- id 1pRob7-00BgHZ-Aw; Tue, 14 Feb 2023 08:15:25 +0200
-Date: Tue, 14 Feb 2023 08:15:25 +0200
-From: Petri Latvala <adrinael@adrinael.net>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Message-ID: <Y+sm/Zr9LM8CK0IT@adrinael.net>
-References: <20230209193231.57538-1-janusz.krzysztofik@linux.intel.com>
- <13320072.uLZWGnKmhe@jkrzyszt-mobl1.ger.corp.intel.com>
- <20230213095139.c5gcznwdf4a5kpgo@zkempczy-mobl2>
+ d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
+ t=1676420825; bh=k+Zla+TXGT+u0A7tdHZXItJb2pEmHhwdwagw90wi1D4=;
+ h=Date:From:To:Message-ID:MIME-Version;
+ b=OyiReIBHBRqEu3Q9dt+hYtOGKVCGMQ9ln719/xjqjRm/2qaICeqBMgDGz6Sjabln8
+ QCpeNljG3kau1Cuxk0Mll6bRX8fd/IJdUwLNfIqibC1OP5YlA0K7flHOJ+jZ4gRvbF
+ QPZaQBGqYZz1M96qGrLoffu0T0EhuJ8Q8Q2SYw2s=
+X-Virus-Scanned: amavisd-new at rptsys.com
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id oiirFsNpqpBI; Tue, 14 Feb 2023 18:27:04 -0600 (CST)
+Received: from vali.starlink.edu (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id CFA8837E180AEE;
+ Tue, 14 Feb 2023 18:27:04 -0600 (CST)
+Date: Tue, 14 Feb 2023 18:27:03 -0600 (CST)
+From: Timothy Pearson <tpearson@raptorengineering.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <595229255.11912427.1676420823058.JavaMail.zimbra@raptorengineeringinc.com>
+In-Reply-To: <Y+wkqnCAe42Ogcof@nvidia.com>
+References: <20230213151348.56451-1-yi.l.liu@intel.com>
+ <20230213151348.56451-6-yi.l.liu@intel.com>
+ <20230214152627.3a399523.alex.williamson@redhat.com>
+ <Y+wYX34sPvPQmGSr@nvidia.com>
+ <20230214164235.64e2dccb.alex.williamson@redhat.com>
+ <Y+wkqnCAe42Ogcof@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230213095139.c5gcznwdf4a5kpgo@zkempczy-mobl2>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC110 (Linux)/8.5.0_GA_3042)
+Thread-Topic: kvm/vfio: Accept vfio device file from userspace
+Thread-Index: AsnTMrxzRGkgYuS3YUElHBx57ph+Og==
 X-Mailman-Approved-At: Thu, 16 Feb 2023 13:24:56 +0000
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tests/i915_suspend: Free
- device list after *-without-i915 subtests
+Subject: Re: [Intel-gfx] [PATCH v3 05/15] kvm/vfio: Accept vfio device file
+ from userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,46 +71,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: linux-s390 <linux-s390@vger.kernel.org>, Yi Liu <yi.l.liu@intel.com>,
+ yi y sun <yi.y.sun@linux.intel.com>, mjrosato@linux.ibm.com,
+ kvm <kvm@vger.kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
+ peterx@redhat.com, eric auger <eric.auger@redhat.com>, nicolinc@nvidia.com,
+ shameerali kolothum thodi <shameerali.kolothum.thodi@huawei.com>,
+ suravee suthikulpanit <suravee.suthikulpanit@amd.com>,
+ intel-gfx@lists.freedesktop.org, chao p peng <chao.p.peng@linux.intel.com>,
+ lulu@redhat.com, robin murphy <robin.murphy@arm.com>, jasowang@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 13, 2023 at 10:51:39AM +0100, Zbigniew Kempczyński wrote:
-> On Fri, Feb 10, 2023 at 10:33:21PM +0100, Janusz Krzysztofik wrote:
-> > On Thursday, 9 February 2023 20:32:31 CET Janusz Krzysztofik wrote:
-> > > If any of *-without-i915 subtests fails or skips for any reason, it may
-> > > leave the i915 module unloaded while keeping our device list populated
-> > > with initially collected data.  In a follow up igt_fixture section we then
-> > > try to reopen the device.  If the test has been executed with a device
-> > > filter specified, an attempt to open the device finds a matching entry
-> > > that belongs to the no longer existing device in that initially collected
-> > > device list, fails to stat() it, concludes that's because of the device
-> > > having been already open, and returns an error.
-> > > 
-> > > Fix this potentially confusing test result by freeing the potentially
-> > > outdated device list before continuing with drm_open_driver().
-> > 
-> > Freeing device list occurred not safe if device scan was not performed before.  
-> > I can see 3 potential solutions:
-> > 1) force device rescan instead of free before calling drm_open_driver(),
-> > 2) teach igt_device_free() to return immediately if the device list has not 
-> >    been allocated,
-> > 3) provide a has_device_list() helper for to be used if not sure before 
-> >    calling igt_device_free().
-> > 
-> > Any preferences?
-> 
-> I would enforce rescan.
-> 
-> BTW I wonder how it can happen if runner is executing each subtest
-> in new process so you're starting from scratch and rescan should be
-> executed automatically.
-> 
-> Is is the case you're running few tests from the console?
-
-For the record, igt_runner has --multiple-mode where multiple subtests
-are executed in the same exec.
 
 
--- 
-Petri Latvala
+----- Original Message -----
+> From: "Jason Gunthorpe" <jgg@nvidia.com>
+> To: "Alex Williamson" <alex.williamson@redhat.com>
+> Cc: "Yi Liu" <yi.l.liu@intel.com>, joro@8bytes.org, "kevin tian" <kevin.tian@intel.com>, "robin murphy"
+> <robin.murphy@arm.com>, cohuck@redhat.com, "eric auger" <eric.auger@redhat.com>, nicolinc@nvidia.com, "kvm"
+> <kvm@vger.kernel.org>, mjrosato@linux.ibm.com, "chao p peng" <chao.p.peng@linux.intel.com>, "yi y sun"
+> <yi.y.sun@linux.intel.com>, peterx@redhat.com, jasowang@redhat.com, "shameerali kolothum thodi"
+> <shameerali.kolothum.thodi@huawei.com>, lulu@redhat.com, "suravee suthikulpanit" <suravee.suthikulpanit@amd.com>,
+> intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, "linux-s390" <linux-s390@vger.kernel.org>,
+> "Timothy Pearson" <tpearson@raptorengineering.com>, "Michael Ellerman" <mpe@ellerman.id.au>
+> Sent: Tuesday, February 14, 2023 6:17:46 PM
+> Subject: Re: [PATCH v3 05/15] kvm/vfio: Accept vfio device file from userspace
+
+> On Tue, Feb 14, 2023 at 04:42:35PM -0700, Alex Williamson wrote:
+> 
+>> A device file opened through a group could be passed through this
+>> interface though, right?
+> 
+> Yes, I think so
+> 
+>> Do we just chalk that up to user error?  Maybe the SPAPR extension
+>> at least needs to be documented as relying on registering groups
+>> rather than devices.
+> 
+> The way these APIs work is you have to pass the same FD to all of
+> them. The SPAPR stuff is no different, if you used a cdev with
+> KVM_DEV_VFIO_GROUP_ADD then you have to use the same cdev fd with the
+> SPAPR group_fd. Yi just didn't rename it.
+> 
+> It is weird, but logically self consistent, I think.
+> 
+>> > I'm still thinking about proposing to just delete all this SPAPR
+>> > stuff. Power still hasn't had the patches applied to make it work
+>> > again so it seems to all be dead.
+>> 
+>> There's been some off-list discussion about at least fixing SPAPR
+>> support, but yes, it either needs to get some love or we ought to think
+>> about its future.  Thanks,
+> 
+> The patches exist, they just need to be applied AFAIK. If the people
+> responsible can't care enough about this to even do that then I find
+> it hard to care at all about the state of SPAPR.
+> 
+> Jason
+
+I've been discussing the state of the patches offline, apologies for the delay in checking in here.
+
+I'll be taking over SPAPR support going forward, as we need it for our product line.  My current thoughts are to rebase / fix and test the patches that were already generated, to at least get support reenabled, then we can coordinate on further changes needed to maintain the support going forward.
+
+I should have a rebased patchset ready later this week.
+
+Thank you!
