@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60849697E17
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 15:11:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C94697E23
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 15:16:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 859D310E135;
-	Wed, 15 Feb 2023 14:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE0810E135;
+	Wed, 15 Feb 2023 14:16:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 721F610E135
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 14:11:07 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9787810E135
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Feb 2023 14:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676470267; x=1708006267;
+ t=1676470591; x=1708006591;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=REP7cc9ydwl79qLQya7fr45yVNED36+yKbpNVIj5i98=;
- b=VRCQT+E2hAG06by+VtGco8vbh5U7vHlrkyRnDa4lEt1vt5hltqu4w9Xd
- /bL7A+gKVUZw57REMguyaveaetm0N5Tyy8DI5Z7o1LkbNZ6LXNbPqNaKq
- oDoAFgvoo9qg7xv0cj6XtjriHnoZ5/PluunJUTBlIHhPh6NZK4xRYzFZm
- 8zXqDfbSEr3WHOT0jph1tnFsm99Tww2gd2SrvFiBNwgzmD0HTn9jXc4R+
- m6tif2WcWe5n+bsRPEexgFmFVQW+lICLCmjEpkJ4ezfJo6TSrjJGTqlJV
- ftthXNda1HvplFzGzzGBmTV+/VKc5a8rdoXyifpzbndSvgWGdUbKF/dWf A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="396056952"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="396056952"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 06:11:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="778802922"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="778802922"
+ bh=tvbhdlDFKfHGBlkpty2TV0WiN2sL8m0/PCGIR3UICy4=;
+ b=V7Y9DoKDjeAxOoiHa7bOgY+mL2+VFhwCfdjy13VIwL6fClV0pXxvVZEJ
+ ysrh0Yw6tlkTcoi5siIWQNObQneoGLqcuL7ZyGiG/wCI/rgaakPx14F9g
+ GJ24GOnO7wga6113vxahGjqzolDpsb2Pht02yU6bMBo5UjNMuz/UPBVTx
+ FV5E3RgHbo0LvHv5qI5M/v0N74JuzpchYZLUzvLyaGoLKHVlOMjw+tp/c
+ clrci8ZhcJpQTKm6elhvbDdfqAXCAYEfRy5FE1mQK/DhAVx5+lDZwdxbR
+ Mqgrs3AjGyMDztEMNovOPGDfclgl3W45fkhrl0WvhKSnGrOcZ3TByXByq Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="417653814"
+X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="417653814"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 06:16:21 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="843588308"
+X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="843588308"
 Received: from gchung-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.51.244])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 06:11:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 06:16:20 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230215135616.30411-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230215140021.2843-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230214134739.25077-1-ville.syrjala@linux.intel.com>
- <20230215135616.30411-1-ville.syrjala@linux.intel.com>
-Date: Wed, 15 Feb 2023 16:11:02 +0200
-Message-ID: <87lekzqart.fsf@intel.com>
+References: <20230215140021.2843-1-ville.syrjala@linux.intel.com>
+Date: Wed, 15 Feb 2023 16:16:17 +0200
+Message-ID: <87ilg3qaj2.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Make backlight setup
- debugs consistent
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Include connector id+name in all
+ backlight debugs/errors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,266 +66,439 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 15 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> It's confusing to debug backlight issues when one can't
-> easily even tell what kind of backlight control was
-> selected. Sprinkle uniform debug messages to all the
-> backlight setup functions.
+> With multi panel machines becoming more prominent it's also
+> important to know which connector's backlight we're talking
+> about. Include that information in all the backlight debug/error
+> messages.
 >
-> Also the one that was already there (ext_pwm) was
-> using drm_info() for some reason. I don't think that's
-> warranted so switch it to drm_dbg_kms() as well.
->
-> v2: Deal with AUX backlights too (Jani)
->     Move the VLV/CHV initial pipe debug there too (Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+
 > ---
->  .../gpu/drm/i915/display/intel_backlight.c    | 36 +++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_dp.c       |  5 ---
->  .../drm/i915/display/intel_dp_aux_backlight.c | 29 +++++++++++----
->  .../i915/display/intel_dsi_dcs_backlight.c    |  5 +++
->  4 files changed, 62 insertions(+), 13 deletions(-)
+>  .../gpu/drm/i915/display/intel_backlight.c    | 60 ++++++++++++-------
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 55 ++++++++++-------
+>  2 files changed, 72 insertions(+), 43 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu=
 /drm/i915/display/intel_backlight.c
-> index a4e4b7f79e4d..cb1e4423decb 100644
+> index a4e4b7f79e4d..7e076bd5f07c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_backlight.c
 > +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -1270,6 +1270,10 @@ static int lpt_setup_backlight(struct intel_connec=
-tor *connector, enum pipe unus
->  			       cpu_ctl2 & ~BLM_PWM_ENABLE);
+> @@ -105,7 +105,8 @@ void intel_backlight_set_pwm_level(const struct drm_c=
+onnector_state *conn_state,
+>  	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct intel_panel *panel =3D &connector->panel;
+>=20=20
+> -	drm_dbg_kms(&i915->drm, "set backlight PWM =3D %d\n", val);
+> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] set backlight PWM =3D %d\n",
+> +		    connector->base.base.id, connector->base.name, val);
+>  	panel->backlight.pwm_funcs->set(conn_state, val);
+>  }
+>=20=20
+> @@ -283,7 +284,8 @@ intel_panel_actually_set_backlight(const struct drm_c=
+onnector_state *conn_state,
+>  	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct intel_panel *panel =3D &connector->panel;
+>=20=20
+> -	drm_dbg_kms(&i915->drm, "set backlight level =3D %d\n", level);
+> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] set backlight level =3D %d\n=
+",
+> +		    connector->base.base.id, connector->base.name, level);
+>=20=20
+>  	panel->backlight.funcs->set(conn_state, level);
+>  }
+> @@ -345,7 +347,8 @@ static void lpt_disable_backlight(const struct drm_co=
+nnector_state *old_conn_sta
+>  	 */
+>  	tmp =3D intel_de_read(i915, BLC_PWM_CPU_CTL2);
+>  	if (tmp & BLM_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "cpu backlight was enabled, disabling\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] CPU backlight was enabled, =
+disabling\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		intel_de_write(i915, BLC_PWM_CPU_CTL2, tmp & ~BLM_PWM_ENABLE);
 >  	}
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+> @@ -458,7 +461,8 @@ void intel_backlight_disable(const struct drm_connect=
+or_state *old_conn_state)
+>  	 * another client is not activated.
+>  	 */
+>  	if (i915->drm.switch_power_state =3D=3D DRM_SWITCH_POWER_CHANGING) {
+> -		drm_dbg_kms(&i915->drm, "Skipping backlight disable on vga switch\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Skipping backlight disable =
+on vga switch\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		return;
+>  	}
 >=20=20
-> @@ -1297,6 +1301,10 @@ static int pch_setup_backlight(struct intel_connec=
-tor *connector, enum pipe unus
->  	panel->backlight.pwm_enabled =3D (cpu_ctl2 & BLM_PWM_ENABLE) &&
->  		(pch_ctl1 & BLM_PCH_PWM_ENABLE);
+> @@ -482,7 +486,8 @@ static void lpt_enable_backlight(const struct intel_c=
+rtc_state *crtc_state,
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+>  	pch_ctl1 =3D intel_de_read(i915, BLC_PWM_PCH_CTL1);
+>  	if (pch_ctl1 & BLM_PCH_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "pch backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] PCH backlight already enabl=
+ed\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		pch_ctl1 &=3D ~BLM_PCH_PWM_ENABLE;
+>  		intel_de_write(i915, BLC_PWM_PCH_CTL1, pch_ctl1);
+>  	}
+> @@ -533,14 +538,16 @@ static void pch_enable_backlight(const struct intel=
+_crtc_state *crtc_state,
 >=20=20
-> @@ -1335,6 +1343,10 @@ static int i9xx_setup_backlight(struct intel_conne=
-ctor *connector, enum pipe unu
+>  	cpu_ctl2 =3D intel_de_read(i915, BLC_PWM_CPU_CTL2);
+>  	if (cpu_ctl2 & BLM_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "cpu backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] CPU backlight already enabl=
+ed\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		cpu_ctl2 &=3D ~BLM_PWM_ENABLE;
+>  		intel_de_write(i915, BLC_PWM_CPU_CTL2, cpu_ctl2);
+>  	}
 >=20=20
->  	panel->backlight.pwm_enabled =3D val !=3D 0;
+>  	pch_ctl1 =3D intel_de_read(i915, BLC_PWM_PCH_CTL1);
+>  	if (pch_ctl1 & BLM_PCH_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "pch backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] PCH backlight already enabl=
+ed\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		pch_ctl1 &=3D ~BLM_PCH_PWM_ENABLE;
+>  		intel_de_write(i915, BLC_PWM_PCH_CTL1, pch_ctl1);
+>  	}
+> @@ -578,7 +585,8 @@ static void i9xx_enable_backlight(const struct intel_=
+crtc_state *crtc_state,
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PWM for backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+>  	ctl =3D intel_de_read(i915, BLC_PWM_CTL);
+>  	if (ctl & BACKLIGHT_DUTY_CYCLE_MASK_PNV) {
+> -		drm_dbg_kms(&i915->drm, "backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] backlight already enabled\n=
+",
+> +			    connector->base.base.id, connector->base.name);
+>  		intel_de_write(i915, BLC_PWM_CTL, 0);
+>  	}
 >=20=20
-> @@ -1364,6 +1376,10 @@ static int i965_setup_backlight(struct intel_conne=
-ctor *connector, enum pipe unu
+> @@ -618,7 +626,8 @@ static void i965_enable_backlight(const struct intel_=
+crtc_state *crtc_state,
 >=20=20
->  	panel->backlight.pwm_enabled =3D ctl2 & BLM_PWM_ENABLE;
+>  	ctl2 =3D intel_de_read(i915, BLC_PWM_CTL2);
+>  	if (ctl2 & BLM_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] backlight already enabled\n=
+",
+> +			    connector->base.base.id, connector->base.name);
+>  		ctl2 &=3D ~BLM_PWM_ENABLE;
+>  		intel_de_write(i915, BLC_PWM_CTL2, ctl2);
+>  	}
+> @@ -653,7 +662,8 @@ static void vlv_enable_backlight(const struct intel_c=
+rtc_state *crtc_state,
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PWM for backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+>  	ctl2 =3D intel_de_read(i915, VLV_BLC_PWM_CTL2(pipe));
+>  	if (ctl2 & BLM_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] backlight already enabled\n=
+",
+> +			    connector->base.base.id, connector->base.name);
+>  		ctl2 &=3D ~BLM_PWM_ENABLE;
+>  		intel_de_write(i915, VLV_BLC_PWM_CTL2(pipe), ctl2);
+>  	}
+> @@ -685,7 +695,8 @@ static void bxt_enable_backlight(const struct intel_c=
+rtc_state *crtc_state,
+>  	if (panel->backlight.controller =3D=3D 1) {
+>  		val =3D intel_de_read(i915, UTIL_PIN_CTL);
+>  		if (val & UTIL_PIN_ENABLE) {
+> -			drm_dbg_kms(&i915->drm, "util pin already enabled\n");
+> +			drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] utility pin already enable=
+d\n",
+> +				    connector->base.base.id, connector->base.name);
+>  			val &=3D ~UTIL_PIN_ENABLE;
+>  			intel_de_write(i915, UTIL_PIN_CTL, val);
+>  		}
+> @@ -699,7 +710,8 @@ static void bxt_enable_backlight(const struct intel_c=
+rtc_state *crtc_state,
 >=20=20
-> @@ -1392,6 +1408,10 @@ static int vlv_setup_backlight(struct intel_connec=
-tor *connector, enum pipe pipe
+>  	pwm_ctl =3D intel_de_read(i915, BXT_BLC_PWM_CTL(panel->backlight.contro=
+ller));
+>  	if (pwm_ctl & BXT_BLC_PWM_ENABLE) {
+> -		drm_dbg_kms(&i915->drm, "backlight already enabled\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] backlight already enabled\n=
+",
+> +			    connector->base.base.id, connector->base.name);
+>  		pwm_ctl &=3D ~BXT_BLC_PWM_ENABLE;
+>  		intel_de_write(i915, BXT_BLC_PWM_CTL(panel->backlight.controller),
+>  			       pwm_ctl);
+> @@ -1468,7 +1480,8 @@ cnp_setup_backlight(struct intel_connector *connect=
+or, enum pipe unused)
+>  	 */
+>  	panel->backlight.controller =3D connector->panel.vbt.backlight.controll=
+er;
+>  	if (!cnp_backlight_controller_is_valid(i915, panel->backlight.controlle=
+r)) {
+> -		drm_dbg_kms(&i915->drm, "Invalid backlight controller %d, assuming 0\n=
+",
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Invalid backlight controlle=
+r %d, assuming 0\n",
+> +			    connector->base.base.id, connector->base.name,
+>  			    panel->backlight.controller);
+>  		panel->backlight.controller =3D 0;
+>  	}
+> @@ -1511,8 +1524,8 @@ static int ext_pwm_setup_backlight(struct intel_con=
+nector *connector,
+>  	}
 >=20=20
->  	panel->backlight.pwm_enabled =3D ctl2 & BLM_PWM_ENABLE;
+>  	if (IS_ERR(panel->backlight.pwm)) {
+> -		drm_err(&i915->drm, "Failed to get the %s PWM chip\n",
+> -			desc);
+> +		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to get the %s PWM chip\n=
+",
+> +			connector->base.base.id, connector->base.name, desc);
+>  		panel->backlight.pwm =3D NULL;
+>  		return -ENODEV;
+>  	}
+> @@ -1529,7 +1542,8 @@ static int ext_pwm_setup_backlight(struct intel_con=
+nector *connector,
+>  		level =3D intel_backlight_invert_pwm_level(connector, level);
+>  		panel->backlight.pwm_enabled =3D true;
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PWM for backlight control (on pipe=
- %c)\n",
-> +		    connector->base.base.id, connector->base.name, pipe_name(pipe));
-> +
->  	return 0;
->  }
+> -		drm_dbg_kms(&i915->drm, "PWM already enabled at freq %ld, VBT freq %d,=
+ level %d\n",
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] PWM already enabled at freq=
+ %ld, VBT freq %d, level %d\n",
+> +			    connector->base.base.id, connector->base.name,
+>  			    NSEC_PER_SEC / (unsigned long)panel->backlight.pwm_state.period,
+>  			    get_vbt_pwm_freq(connector), level);
+>  	} else {
+> @@ -1623,10 +1637,12 @@ int intel_backlight_setup(struct intel_connector =
+*connector, enum pipe pipe)
+>  	if (!connector->panel.vbt.backlight.present) {
+>  		if (intel_has_quirk(i915, QUIRK_BACKLIGHT_PRESENT)) {
+>  			drm_dbg_kms(&i915->drm,
+> -				    "no backlight present per VBT, but present per quirk\n");
+> +				    "[CONNECTOR:%d:%s] no backlight present per VBT, but present per=
+ quirk\n",
+> +				    connector->base.base.id, connector->base.name);
+>  		} else {
+>  			drm_dbg_kms(&i915->drm,
+> -				    "no backlight present per VBT\n");
+> +				    "[CONNECTOR:%d:%s] no backlight present per VBT\n",
+> +				    connector->base.base.id, connector->base.name);
+>  			return 0;
+>  		}
+>  	}
+> @@ -1642,16 +1658,16 @@ int intel_backlight_setup(struct intel_connector =
+*connector, enum pipe pipe)
 >=20=20
-> @@ -1428,6 +1448,11 @@ bxt_setup_backlight(struct intel_connector *connec=
-tor, enum pipe unused)
+>  	if (ret) {
+>  		drm_dbg_kms(&i915->drm,
+> -			    "failed to setup backlight for connector %s\n",
+> -			    connector->base.name);
+> +			    "[CONNECTOR:%d:%s] failed to setup backlight\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		return ret;
+>  	}
 >=20=20
->  	panel->backlight.pwm_enabled =3D pwm_ctl & BXT_BLC_PWM_ENABLE;
+>  	panel->backlight.present =3D true;
 >=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PWM for backlight control (control=
-ler=3D%d)\n",
+>  	drm_dbg_kms(&i915->drm,
+> -		    "Connector %s backlight initialized, %s, brightness %u/%u\n",
+> -		    connector->base.name,
+> +		    "[CONNECTOR:%d:%s] backlight initialized, %s, brightness %u/%u\n",
 > +		    connector->base.base.id, connector->base.name,
-> +		    panel->backlight.controller);
-> +
->  	return 0;
->  }
+>  		    str_enabled_disabled(panel->backlight.enabled),
+>  		    panel->backlight.level, panel->backlight.max);
 >=20=20
-> @@ -1490,6 +1515,11 @@ cnp_setup_backlight(struct intel_connector *connec=
-tor, enum pipe unused)
->=20=20
->  	panel->backlight.pwm_enabled =3D pwm_ctl & BXT_BLC_PWM_ENABLE;
->=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using native PCH PWM for backlight control (con=
-troller=3D%d)\n",
-> +		    connector->base.base.id, connector->base.name,
-> +		    panel->backlight.controller);
-> +
->  	return 0;
->  }
->=20=20
-> @@ -1538,8 +1568,10 @@ static int ext_pwm_setup_backlight(struct intel_co=
-nnector *connector,
->  			NSEC_PER_SEC / get_vbt_pwm_freq(connector);
->  	}
->=20=20
-> -	drm_info(&i915->drm, "Using %s PWM for LCD backlight control\n",
-> -		 desc);
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using %s PWM for backlight control\n",
-> +		    connector->base.base.id, connector->base.name, desc);
-> +
->  	return 0;
->  }
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index b92e0b0f5369..717be9a9ef5b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5256,11 +5256,6 @@ static void intel_edp_backlight_setup(struct intel=
-_dp *intel_dp,
->=20=20
->  		if (pipe !=3D PIPE_A && pipe !=3D PIPE_B)
->  			pipe =3D PIPE_A;
-> -
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[CONNECTOR:%d:%s] using pipe %c for initial backlight setup\n",
-> -			    connector->base.base.id, connector->base.name,
-> -			    pipe_name(pipe));
->  	}
->=20=20
->  	intel_backlight_setup(connector, pipe);
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/driv=
 ers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 83af95bce98d..8670b6956fee 100644
+> index 83af95bce98d..aaecd1c38172 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -273,6 +273,11 @@ intel_dp_aux_hdr_disable_backlight(const struct drm_=
-connector_state *conn_state,
->  	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_=
-pwm_level(connector, 0));
->  }
+> @@ -105,6 +105,11 @@ enum intel_dp_aux_backlight_modparam {
+>  	INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL =3D 3,
+>  };
 >=20=20
-> +static const char *dpcd_vs_pwm_str(bool aux)
+> +static bool is_intel_tcon_cap(const u8 tcon_cap[4])
 > +{
-> +	return aux ? "DPCD" : "PWM";
+> +	return tcon_cap[0] >=3D 1;
 > +}
 > +
->  static int
->  intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum=
- pipe pipe)
->  {
-> @@ -282,11 +287,11 @@ intel_dp_aux_hdr_setup_backlight(struct intel_conne=
-ctor *connector, enum pipe pi
->  		&connector->base.display_info.luminance_range;
->  	int ret;
+>  /* Intel EDP backlight callbacks */
+>  static bool
+>  intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+> @@ -125,14 +130,12 @@ intel_dp_aux_supports_hdr_backlight(struct intel_co=
+nnector *connector)
+>  	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
+>  		return false;
 >=20=20
-> -	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> -		drm_dbg_kms(&i915->drm, "SDR backlight is controlled through DPCD\n");
+> -	if (tcon_cap[0] >=3D 1) {
+> -		drm_dbg_kms(&i915->drm, "Detected Intel HDR backlight interface versio=
+n %d\n",
+> -			    tcon_cap[0]);
 > -	} else {
-> -		drm_dbg_kms(&i915->drm, "SDR backlight is controlled through PWM\n");
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled =
-through %s\n",
+> -		drm_dbg_kms(&i915->drm, "Detected unsupported HDR backlight interface =
+version %d\n",
+> -			    tcon_cap[0]);
+> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Detected %s HDR backlight in=
+terface version %d\n",
 > +		    connector->base.base.id, connector->base.name,
-> +		    dpcd_vs_pwm_str(panel->backlight.edp.intel.sdr_uses_aux));
+> +		    is_intel_tcon_cap(tcon_cap) ? "Intel" : "unsupported", tcon_cap[0]=
+);
+> +
+> +	if (!is_intel_tcon_cap(tcon_cap))
+>  		return false;
+> -	}
 >=20=20
-> +	if (!panel->backlight.edp.intel.sdr_uses_aux) {
+>  	/*
+>  	 * If we don't have HDR static metadata there is no way to
+> @@ -147,7 +150,8 @@ intel_dp_aux_supports_hdr_backlight(struct intel_conn=
+ector *connector)
+>  	    !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
+>  	      BIT(HDMI_STATIC_METADATA_TYPE1))) {
+>  		drm_info(&i915->drm,
+> -			 "Panel is missing HDR static metadata. Possible support for Intel HD=
+R backlight interface is not used. If your backlight controls don't work tr=
+y booting with i915.enable_dpcd_backlight=3D%d. needs this, please file a _=
+new_ bug report on drm/i915, see " FDO_BUG_URL " for details.\n",
+> +			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible su=
+pport for Intel HDR backlight interface is not used. If your backlight cont=
+rols don't work try booting with i915.enable_dpcd_backlight=3D%d. needs thi=
+s, please file a _new_ bug report on drm/i915, see " FDO_BUG_URL " for deta=
+ils.\n",
+> +			 connector->base.base.id, connector->base.name,
+>  			 INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL);
+>  		return false;
+>  	}
+> @@ -168,7 +172,8 @@ intel_dp_aux_hdr_get_backlight(struct intel_connector=
+ *connector, enum pipe pipe
+>  	u8 buf[2] =3D { 0 };
+>=20=20
+>  	if (drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS,=
+ &tmp) !=3D 1) {
+> -		drm_err(&i915->drm, "Failed to read current backlight mode from DPCD\n=
+");
+> +		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to read current backligh=
+t mode from DPCD\n",
+> +			connector->base.base.id, connector->base.name);
+>  		return 0;
+>  	}
+>=20=20
+> @@ -185,7 +190,8 @@ intel_dp_aux_hdr_get_backlight(struct intel_connector=
+ *connector, enum pipe pipe
+>=20=20
+>  	if (drm_dp_dpcd_read(&intel_dp->aux, INTEL_EDP_BRIGHTNESS_NITS_LSB, buf,
+>  			     sizeof(buf)) !=3D sizeof(buf)) {
+> -		drm_err(&i915->drm, "Failed to read brightness from DPCD\n");
+> +		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to read brightness from =
+DPCD\n",
+> +			connector->base.base.id, connector->base.name);
+>  		return 0;
+>  	}
+>=20=20
+> @@ -205,7 +211,8 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_c=
+onnector_state *conn_state,
+>=20=20
+>  	if (drm_dp_dpcd_write(&intel_dp->aux, INTEL_EDP_BRIGHTNESS_NITS_LSB, bu=
+f,
+>  			      sizeof(buf)) !=3D sizeof(buf))
+> -		drm_err(dev, "Failed to write brightness level to DPCD\n");
+> +		drm_err(dev, "[CONNECTOR:%d:%s] Failed to write brightness level to DP=
+CD\n",
+> +			connector->base.base.id, connector->base.name);
+>  }
+>=20=20
+>  static void
+> @@ -238,7 +245,8 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_=
+crtc_state *crtc_state,
+>=20=20
+>  	ret =3D drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PAR=
+AMS, &old_ctrl);
+>  	if (ret !=3D 1) {
+> -		drm_err(&i915->drm, "Failed to read current backlight control mode: %d=
+\n", ret);
+> +		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to read current backligh=
+t control mode: %d\n",
+> +			connector->base.base.id, connector->base.name, ret);
+>  		return;
+>  	}
+>=20=20
+> @@ -254,9 +262,10 @@ intel_dp_aux_hdr_enable_backlight(const struct intel=
+_crtc_state *crtc_state,
+>  		ctrl &=3D ~INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
+>  	}
+>=20=20
+> -	if (ctrl !=3D old_ctrl)
+> -		if (drm_dp_dpcd_writeb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAM=
+S, ctrl) !=3D 1)
+> -			drm_err(&i915->drm, "Failed to configure DPCD brightness controls\n");
+> +	if (ctrl !=3D old_ctrl &&
+> +	    drm_dp_dpcd_writeb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS=
+, ctrl) !=3D 1)
+> +		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to configure DPCD bright=
+ness controls\n",
+> +			connector->base.base.id, connector->base.name);
+>  }
+>=20=20
+>  static void
+> @@ -290,7 +299,8 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connect=
+or *connector, enum pipe pi
 >  		ret =3D panel->backlight.pwm_funcs->setup(connector, pipe);
 >  		if (ret < 0) {
 >  			drm_err(&i915->drm,
-> @@ -303,8 +308,10 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connec=
-tor *connector, enum pipe pi
->  		panel->backlight.min =3D 0;
->  	}
->=20=20
-> -	drm_dbg_kms(&i915->drm, "Using backlight range %d..%d\n", panel->backli=
-ght.min,
-> -		    panel->backlight.max);
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for =
-backlight control (range %d..%d)\n",
-> +		    connector->base.base.id, connector->base.name,
-> +		    panel->backlight.min, panel->backlight.max);
-> +
->=20=20
->  	panel->backlight.level =3D intel_dp_aux_hdr_get_backlight(connector, pi=
-pe);
->  	panel->backlight.enabled =3D panel->backlight.level !=3D 0;
-> @@ -386,6 +393,13 @@ static int intel_dp_aux_vesa_setup_backlight(struct =
-intel_connector *connector,
->  	if (ret < 0)
->  		return ret;
->=20=20
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] AUX VESA backlight enable is=
- controlled through %s\n",
-> +		    connector->base.base.id, connector->base.name,
-> +		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable));
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] AUX VESA backlight level is =
-controlled through %s\n",
-> +		    connector->base.base.id, connector->base.name,
-> +		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set));
-> +
->  	if (!panel->backlight.edp.vesa.info.aux_set || !panel->backlight.edp.ve=
-sa.info.aux_enable) {
->  		ret =3D panel->backlight.pwm_funcs->setup(connector, pipe);
->  		if (ret < 0) {
-> @@ -418,6 +432,9 @@ static int intel_dp_aux_vesa_setup_backlight(struct i=
-ntel_connector *connector,
+> -				"Failed to setup SDR backlight controls through PWM: %d\n", ret);
+> +				"[CONNECTOR:%d:%s] Failed to setup SDR backlight controls through PW=
+M: %d\n",
+> +				connector->base.base.id, connector->base.name, ret);
+>  			return ret;
 >  		}
 >  	}
+> @@ -390,8 +400,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct i=
+ntel_connector *connector,
+>  		ret =3D panel->backlight.pwm_funcs->setup(connector, pipe);
+>  		if (ret < 0) {
+>  			drm_err(&i915->drm,
+> -				"Failed to setup PWM backlight controls for eDP backlight: %d\n",
+> -				ret);
+> +				"[CONNECTOR:%d:%s] Failed to setup PWM backlight controls for eDP ba=
+cklight: %d\n",
+> +				connector->base.base.id, connector->base.name, ret);
+>  			return ret;
+>  		}
+>  	}
+> @@ -428,7 +438,8 @@ intel_dp_aux_supports_vesa_backlight(struct intel_con=
+nector *connector)
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
 >=20=20
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX VESA interface for=
- backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+>  	if (drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
+> -		drm_dbg_kms(&i915->drm, "AUX Backlight Control Supported!\n");
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] AUX Backlight Control Suppo=
+rted!\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		return true;
+>  	}
+>  	return false;
+> @@ -504,13 +515,15 @@ int intel_dp_aux_init_backlight_funcs(struct intel_=
+connector *connector)
+>  	 * interfaces is to probe for Intel's first, and VESA's second.
+>  	 */
+>  	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connecto=
+r)) {
+> -		drm_dbg_kms(dev, "Using Intel proprietary eDP backlight controls\n");
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using Intel proprietary eDP backli=
+ght controls\n",
+> +			    connector->base.base.id, connector->base.name);
+>  		panel->backlight.funcs =3D &intel_dp_hdr_bl_funcs;
+>  		return 0;
+>  	}
 >=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/dri=
-vers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> index 20e466d843ce..049443245310 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> @@ -162,6 +162,7 @@ static void dcs_enable_backlight(const struct intel_c=
-rtc_state *crtc_state,
->  static int dcs_setup_backlight(struct intel_connector *connector,
->  			       enum pipe unused)
->  {
-> +	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
->  	struct intel_panel *panel =3D &connector->panel;
->=20=20
->  	if (panel->vbt.backlight.brightness_precision_bits > 8)
-> @@ -171,6 +172,10 @@ static int dcs_setup_backlight(struct intel_connecto=
-r *connector,
->=20=20
->  	panel->backlight.level =3D panel->backlight.max;
->=20=20
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[CONNECTOR:%d:%s] Using DCS for backlight control\n",
-> +		    connector->base.base.id, connector->base.name);
-> +
->  	return 0;
->  }
+>  	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connecto=
+r)) {
+> -		drm_dbg_kms(dev, "Using VESA eDP backlight controls\n");
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\=
+n",
+> +			    connector->base.base.id, connector->base.name);
+>  		panel->backlight.funcs =3D &intel_dp_vesa_bl_funcs;
+>  		return 0;
+>  	}
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
