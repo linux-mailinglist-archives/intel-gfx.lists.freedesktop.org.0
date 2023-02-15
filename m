@@ -2,56 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DF5697BBF
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 13:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE00697BFC
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Feb 2023 13:38:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C4E110E10E;
-	Wed, 15 Feb 2023 12:30:25 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8602210E0B9;
- Wed, 15 Feb 2023 12:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676464222; x=1708000222;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=20t+hjDeumVKYIA26f5ntiUb7MxZW/ZHR6agrgPdo7A=;
- b=JtmQoxvlFbTDyjyoBqreQzVMH/EYE+WSxJq8ejEtkbwyibx5W9Epirlq
- h1pEIx0VcKr1VX+h3roEcmE51TYajBoHoXP4D8V0zHyf350I330Zl63zm
- CeiMk1BS6AgYzfcfrSK07oFdaAIdTsZrrLxg50NAMAF/Lqd/JN5Rsa9UR
- HLsltfKriS+PO2I/+i/9d3LfE0Qc7l5FTBcMeecvovF/fxDKH9eBqXAtO
- SvoqJ7LbTjJBXJ6wkKvrKAkZXoVtFU5Nspe46WbwbkWDf7wi/xUXC9EBP
- Hb+Kz7P+3Iiz1KL8WJIMVQj0C2LGzAWD0jdVjCkKcWdNNH4MBTGHVL2Cl w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="315070395"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="315070395"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 04:30:21 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="915132770"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="915132770"
-Received: from odaniele-mobl2.ger.corp.intel.com (HELO [10.213.228.205])
- ([10.213.228.205])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 04:30:20 -0800
-Message-ID: <f7eb5124-7db2-cbe1-0023-196885e8353b@linux.intel.com>
-Date: Wed, 15 Feb 2023 12:30:18 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB6B10E0B9;
+	Wed, 15 Feb 2023 12:38:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2068.outbound.protection.outlook.com [40.107.100.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B86810E0B9;
+ Wed, 15 Feb 2023 12:38:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DmlUpOuQee7lYv/JY5ahT2zG48IpS50Vy35rPMH2ucKYFBbwQ9ap4K2VWu2NsAE89kj8k/4TpL+hVU7IVYLiooTirnsdBh5UtpXkjbUH4mo5XWDJa3LEelNG3vlvspX7MpzW736aWOmIm4qdGssGKqRO6p38sVLAhdeMYTSop1ufeIsPgBSXjhbjc8Uzew7MShjmvaYf/ZE6ADJhGIFznTycKnMaqH56xKGBxyakngqdu0tfkNEK696us7Waqqy41Bl/JA8REI9Qs6D2KDwrEPOXpB6+3hGFq2jZRShgbvqrPlNtasgKIvEIE54Lg7aa2g0YXPDtGtqCy1VvFzrPbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0rg4azEtohh6NYT1shWI76C/Qx9/ow7g0FvLSUp9p/Y=;
+ b=giEmn6wU0YCOMYshDIwx//6iF9x8+AiWXhvN7uNL37gvQZvyPp5lH0NCSuSO2hlIoeLuTNGKfDLaTa5EEKNXYo0oGKMz4V5TVdRZ5bGwluQYcP675zbgZZMo7Cw3Bm/bA2t2eI/frOsaUPxj2axhMDtMnFzVD0lCg1x6znvWh/QTdHjG2k18BqAy/S6UGzfndVUqzeVoosap6gJMdshq48aJhDyrWyuGTOmij0/R9kBMZz1j90xIQK0c/9BI1V4XkP9vWonBSFMxEpgptHFdptrHaPfsMUPWfCqDE+khbbB1OO18ZvXDKeP7oTLhdF3OTrH5wMHHP3mrjHW04bimKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0rg4azEtohh6NYT1shWI76C/Qx9/ow7g0FvLSUp9p/Y=;
+ b=pkKoUR0dIIU4AHTmgNbaInelz6vmS2QjVRnblY/KTbfrMBPz9uAuVXkuYqA7G6hcQqpRuIyFxJrpV2G5NDkO/mvgBDAWZNkOgvid8ZlIo0MSDMGlu+N2qRP3XBZtfhoXyQphGcpTCbUHG9EyzRgyr0iA/l6M8JyJkEfbA+V4TouzBJM+WfaBRn0c4/wLDpKToVthhLpR2UwOINLnQnFhUk/NptnTq6TEZ76Q+gzTBrD9zOTjxAhgRjrANP+is0w8rFTdX6CaM5QFpRS2sDBRzhBIaiZDxCQyp66OXuBvdAwYK+bKs30rNe/6QRSoqzpYlTuH/ssBjyNoHi7YT9Vknw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by SA1PR12MB6823.namprd12.prod.outlook.com (2603:10b6:806:25e::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Wed, 15 Feb
+ 2023 12:38:32 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6086.024; Wed, 15 Feb 2023
+ 12:38:31 +0000
+Date: Wed, 15 Feb 2023 08:38:30 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <Y+zSRklKkL3rc2FB@nvidia.com>
+References: <20230213151348.56451-1-yi.l.liu@intel.com>
+ <20230213151348.56451-4-yi.l.liu@intel.com>
+ <Y+rLKvCMivND0izd@nvidia.com>
+ <DS0PR11MB7529B43C7D357D8A0C2438C7C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB7529B43C7D357D8A0C2438C7C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: MN2PR15CA0055.namprd15.prod.outlook.com
+ (2603:10b6:208:237::24) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20230214234856.744573-1-John.C.Harrison@Intel.com>
- <e07ec6ca-dbd7-2f17-a99f-7b91a530d359@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <e07ec6ca-dbd7-2f17-a99f-7b91a530d359@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't use stolen memory for ring
- buffers
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SA1PR12MB6823:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7bd8771f-24a6-4186-743c-08db0f518bd9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: llEzC51Tx4cPycIkVntN2azNifVmWIGSINRYkC9FgzbCxe+DII+Vjmq8CkXfl/n7BQJZ+NONhu+v/IcC/L0ijVdpp8zSzD/nOifxuIXA7TK/7LVpKH42ZUlIIUcUJ4DJKnyU+HzOTObUyDJiEAO0lLKj7oa+fkWD7U4R2LQ/N7XJKzfr+D8KiOZRT8fnjizXiH/yfEz6RGPRBfMghdDvNZWv25qeXaF2Zbcb+jxGpjLeFCX2M/X/u5wX8AJquYQ8zwHUnKHUaym1JgfisEsBdb4V9C2R1qjJallELskYWW45qjPo4qo3Ybt0U4s9JiuB7N6MRQqC3YCwaqcu8IfN6DWxl5WwJxSs0+2kxhOdtodEqJCgSmIIHou0bybbsiBRqyOQOIbdv9iTQI+FYpXXOgS8lQ9oDBHcrlf60NCcUqzLIXz+AB0xV8HeqY8es14hXhZ+nsZtDcw4dr2kx7y25m8YKNF8z3e37Cxv2F8KSzpH1RhKQDzwzGygzNWZaGJHBvnY6AbU8B7fRdoQyzrzmD5o8bmjxr/uhqfJy8mVfikmLXYBNsTCILpuSNb4R3Tb6aeVzwsYAzNLLDJSBpWQATv2y+WNNIwQSi+U+LkEi6BEFWKV2ZuY1VsFeLzbbu6nJYHgRrRq2rYIHflJDsUsAWmYmw4uBQfvzEIGfwAijQdU0A8d3dElpjF7iK9ic+s/
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(366004)(346002)(39860400002)(136003)(396003)(451199018)(4326008)(66556008)(36756003)(6486002)(2616005)(8936002)(7416002)(83380400001)(478600001)(66476007)(8676002)(2906002)(5660300002)(186003)(66946007)(6512007)(41300700001)(6506007)(26005)(54906003)(316002)(6916009)(38100700002)(86362001)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e+H5Qx8pUO4E0QQABcqsjY6pVejch48Z3EXJMkYVpFl8DYXF4PB/8VMP2npd?=
+ =?us-ascii?Q?hFxdLnCjidIssLQr8hr/XefDFgbW9T4edeBnQgrZCmBPsOcrpMShVkZmxZNn?=
+ =?us-ascii?Q?6GhLlglhhIKYTqY3FvqebIGBNlV6dX05fg0uMaPWXtVmA/aU4eL9vYCI19u+?=
+ =?us-ascii?Q?f/IgEp39dB2mVayoyDiI/Eg99dYNfjPrkPIeKDcZ6EjKJTFxMmGC5VRkIeJw?=
+ =?us-ascii?Q?ckXlRBQXnHdhatMP5qOalQkO3+M4QB8bl2UDys49wK0muMYuhYpsAmOkZJ5b?=
+ =?us-ascii?Q?/46dIruCAEoHhb800FBULKlvGjtQ5eC4p/9fbD0oDgCpqgYuTHj6MAV3A9sz?=
+ =?us-ascii?Q?Xf/Ods0Iydfn0ws1YK0iV4I0kBxVY3vXq9bv+aHjCpfAVpYhbs1MYOGvnMJb?=
+ =?us-ascii?Q?GfIkWBfics1qAFAW/3kINtLIkaPb8IGgeOHH+vIMcf2U2SXP0VnpGhuMhYJ2?=
+ =?us-ascii?Q?W96kK4cZ2wp3hWKRZTMW65IozXvYdtSMn/iyajRJzB6umOslFrTR368stuXf?=
+ =?us-ascii?Q?aMI7N5744dEHACoj3HN0f0IhMg9K2EFPnWAzBgl1nBHxjgz+ddlGqk6V70Df?=
+ =?us-ascii?Q?Mr9jclaySQn4sYUwM1QLdn5X7snX6a3hpg8f+KWKc22Z2f//wmwZzl1V1cCk?=
+ =?us-ascii?Q?FApAGpvwdjIy3gBhrz38VKvBxakL27uR3B461TdBblJZGK45WUIXrrdmgWxr?=
+ =?us-ascii?Q?9HVdqHNnmCNY6cI8sXDGpdcbEcQBUPh2noRQnRdrXEH/+WwO7gyl7UqwUuQJ?=
+ =?us-ascii?Q?PjKi1sfCSTX66LdADgaVCprZPncMXg2IbGKxHNbyAcYKm/zOaCZU18J6HMmg?=
+ =?us-ascii?Q?ekUNtn7QcNSMCyN1h+g3xKOAs3LiXKfl4Yn8LuvTqYAM17g6AP8pdKl8WIL9?=
+ =?us-ascii?Q?ITwh70S1L6AhGPtqif7vt3T3qgRFw4DXkjIC4X3rt7PX6bBcsUlzoLbi0iXZ?=
+ =?us-ascii?Q?0CjtHKFQgSuDhA+cwXZ1KGM/uRjs+adYDEyKxXjSYsI1K0MvpRe8FGuJFHC8?=
+ =?us-ascii?Q?fxrB9klnMk0d8onnlxipb2xJ8sOhkBh6vA9bYINLVaV14dn/QGGuOMbfvoMi?=
+ =?us-ascii?Q?/9d7PS33XyBu4ulQRuOh6hPvoo+bZZ0SQoNId3aGfHYzb8X3Pcj5MgIlBjl8?=
+ =?us-ascii?Q?bABCd1uIdRy+qPI0QBWZgqQKanqfTNnVM7UyOJn5JM2h6k04X41RZFF4AUCC?=
+ =?us-ascii?Q?3z9tPFGOwzZDm411vPEPXJwUxAVIVwlk1N8N1ydEPz8+xNuJHgY4Qxvh5SgD?=
+ =?us-ascii?Q?kPVs9npzgHw704GHRDYsnIakXANdHedUuyGtIcJW7YV69zeQr32A7yS0GTBx?=
+ =?us-ascii?Q?AU+fZuC7hhJTM5mRBCo0JFOYiJn305BmsFZoRbgmCatapLVqfTTti/S/n3rX?=
+ =?us-ascii?Q?o7KzsXztm2p36ife1ZTMOvUl+lGv5WehLGu0pZfnWbFklh3LDdZKhiy9+xnf?=
+ =?us-ascii?Q?qKM55idFAGo0AE20a1RpGa+CEH05MpbBY6ClOLZAvw1DpaeOzf0TXqKKMh/w?=
+ =?us-ascii?Q?1iczEquitf4mQNpg4/pcnQoex22OovvpotGq53KDKkyln6wGeBvMSulUdSWh?=
+ =?us-ascii?Q?YayWVvDHyoqjAP7x/FfvQlxQKRwdxfpRTl71ZQ4g?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bd8771f-24a6-4186-743c-08db0f518bd9
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2023 12:38:31.7995 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: elQcguz0GGDeL79vB4N9JqLij1pt2y5/gKnqmHr664gBCcAi166v0EflzWNMqWqE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6823
+Subject: Re: [Intel-gfx] [PATCH v3 03/15] vfio: Accept vfio device file in
+ the driver facing kAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,78 +117,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "peterx@redhat.com" <peterx@redhat.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 15/02/2023 01:56, Ceraolo Spurio, Daniele wrote:
+On Tue, Feb 14, 2023 at 02:02:37AM +0000, Liu, Yi L wrote:
+> > From: Jason Gunthorpe <jgg@nvidia.com>
+> > Sent: Tuesday, February 14, 2023 7:44 AM
+> > 
+> > On Mon, Feb 13, 2023 at 07:13:36AM -0800, Yi Liu wrote:
+> > > +static struct vfio_device *vfio_device_from_file(struct file *file)
+> > > +{
+> > > +	struct vfio_device_file *df = file->private_data;
+> > > +
+> > > +	if (file->f_op != &vfio_device_fops)
+> > > +		return NULL;
+> > > +	return df->device;
+> > > +}
+> > > +
+> > >  /**
+> > >   * vfio_file_is_valid - True if the file is usable with VFIO APIS
+> > >   * @file: VFIO group file or VFIO device file
+> > >   */
+> > >  bool vfio_file_is_valid(struct file *file)
+> > >  {
+> > > -	return vfio_group_from_file(file);
+> > > +	return vfio_group_from_file(file) ||
+> > > +	       vfio_device_from_file(file);
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
+> > 
+> > This can only succeed on a device cdev that has been fully opened.
 > 
-> 
-> On 2/14/2023 3:48 PM, John.C.Harrison@Intel.com wrote:
->> From: John Harrison <John.C.Harrison@Intel.com>
->>
->> Direction from hardware is that stolen memory should never be used for
->> ring buffer allocations. There are too many caching pitfalls due to the
->> way stolen memory accesses are routed. So it is safest to just not use
->> it.
-> 
-> I'm wondering if this applies to machines in ringbuffer mode as well, as 
-> some of the caching stuff that according to the HW team may not work 
-> properly with stolen mem accesses from the CS (mocs, ppat) came with 
-> gen8/gen9.
-> Maybe limit this change to gen8+, to avoid changing the behavior for 
-> very old platforms?
+> Actually, we cannot. This is used in the kvm-vfio code to see if the
+> user-provided fd is vfio fds in the SET_KVM path. And we don't
+> have the device cdev fully opened until BIND_IOMMUFD. But we do
+> need to invoke SET_KVM before issuing BIND_IOMMUFD as the device
+> open needs kvm pointer. So if we cannot apply fully opened limit to this
+> interface. Maybe an updated function comment is needed.
 
-If Gen8+ can have bugs due this then:
+This also seems sketchy, KVM is using the VFIO fd as a "proof" to
+enable the wbinvd stuff. A half opened cdev should not be used as that
+proof.
 
-Fixes: c58b735fc762 ("drm/i915: Allocate rings from stolen")
-Cc: <stable@vger.kernel.org> # v4.9+
+Regardless it needs to be fixed for the pci usage.
 
-Or even before:
-
-Fixes: ebc052e0c65f ("drm/i915: Allocate ringbuffers from stolen memory")
-Cc: <stable@vger.kernel.org> # v3.9+
-
-Hm lets see when BDW when out of force probe:
-
-Fixes: babb1903511f ("drm/i915/bdw: remove preliminary_hw_support flag from BDW")
-Cc: <stable@vger.kernel.org> # v3.14+
-
-Depends also how the problem statement interacts with LLC. If !LLC platforms are okay then the first one from the above list is enough.
-
-Because
-
-Regards,
-
-Tvrtko
-
->>
->> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_ring.c | 2 --
->>   1 file changed, 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c 
->> b/drivers/gpu/drm/i915/gt/intel_ring.c
->> index 15ec64d881c44..d1a47e1ae6452 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
->> @@ -116,8 +116,6 @@ static struct i915_vma *create_ring_vma(struct 
->> i915_ggtt *ggtt, int size)
->>       obj = i915_gem_object_create_lmem(i915, size, 
->> I915_BO_ALLOC_VOLATILE |
->>                         I915_BO_ALLOC_PM_VOLATILE);
->> -    if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt))
->> -        obj = i915_gem_object_create_stolen(i915, size);
-> 
-> There is code in ring_pin/unpin() that only applies to rings in stolen 
-> memory, so you need to remove that as well if you drop stolen for rings 
-> on all platforms.
-> 
-> Daniele
-> 
->>       if (IS_ERR(obj))
->>           obj = i915_gem_object_create_internal(i915, size);
->>       if (IS_ERR(obj))
-> 
+Jason
