@@ -2,60 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 602A76992DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 12:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E936992F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 12:19:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A12B710E15D;
-	Thu, 16 Feb 2023 11:12:22 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0975710ED19
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 11:12:20 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id y1so1495437wru.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 03:12:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1676545938;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=/9p5YKUpDfB/VIccEe/gl5TXkWsNme3I0Rd/ZJSwPZE=;
- b=daprNBF2cioSkaV/LaHMvRsLzymaFwYTfmNpbtoHjKT7Sk7wu0MquSVBUXgz7PQnnc
- PrwSpTRvCwpgn/+bHmTCXmQId048ksqxzkl9YY8RcymgN5s2s5Lg5cbLlWtekPM1P35W
- osp8BS7+ZJFdMfWCjabnAp+Ta0+ZH+PNIjT1I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1676545938;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=/9p5YKUpDfB/VIccEe/gl5TXkWsNme3I0Rd/ZJSwPZE=;
- b=viTq/7jnOT+JLVXNPKfXwRRd+RC74ZqbexUvZ2D0S6S1LZpORltuaWXGtTBSWrO9J2
- h7bg95aEuuExxIdg2MuCNgXc+0oJFcvDIp9xkso/l5uwMVbtbum1Su//BoLzor5xCtQZ
- DJX+Wf9TrMDMJax3CB+kuW1dgzgN6hLVX1MorXov8gmMPBT5pmQmO6tcW9fU81ihGna8
- RSpN8Z0Xkp5rz3UopeulH5wt27w4m+dHTKPCyMJu75ujjLQBhre4XUTtnfi1uL8VZVP0
- yWBRKWFq30FQk2en8qbJwWT0lP4C9/JyDn9kGeCmfLt5P67Ek1ibpWtCVloKjvHbtMHA
- T8NQ==
-X-Gm-Message-State: AO0yUKV6cACBINhzR3fhkgBLW2qxwno3FM73QIyM3qVzLNnJBAuj2KiV
- v8mSZDHKsgE/f2/mdf3jVbqG3w==
-X-Google-Smtp-Source: AK7set/V0HgKdwJ6CfD3OOAKl1s05e2DIcRxjV++t26IPN2C/xks2eE9SyhLBLK2KpcVGucfai4f8w==
-X-Received: by 2002:adf:dd82:0:b0:2c3:d296:7a94 with SMTP id
- x2-20020adfdd82000000b002c3d2967a94mr3158589wrl.3.1676545938440; 
- Thu, 16 Feb 2023 03:12:18 -0800 (PST)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- y12-20020adfe6cc000000b002c3dc4131f5sm1206658wrm.18.2023.02.16.03.12.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Feb 2023 03:12:18 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Thu, 16 Feb 2023 12:12:13 +0100
-Message-Id: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D259B10ED2E;
+	Thu, 16 Feb 2023 11:19:14 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9509510ED2E;
+ Thu, 16 Feb 2023 11:19:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676546353; x=1708082353;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Sm0QxvOk1DFvxa2ZYw2BmUCx3+7y7BguZyWw01wM+kg=;
+ b=VM9+fJ2wlC1YW+N6FU3NL7L/uYNUlnSrbqF3A970T3O6qkAkgluPW4Lj
+ +1TcrWazHjFC0kyC8PT+3E3p3EoeT4O2jqzAvj0QbPgA9N5SVDTJJ4pav
+ HjL1dnugOq0mgUFbSKTV+2q6y/oHhsGta1+pzaZzzBY3NK0tbBPEEJwFq
+ yf7+tkuWv4Cxq8jwXKRUjgWG6oDNqlwUqVOtnjd3EcJSUnokn+5wnI6or
+ /4dLlHmWBl/C+H2YUgb7wZQVTvG1P+e581wouV9aMqAhBZXUPtatsPXBr
+ cHEOiaWIjbl8A0YBsl4a9HfG3VzkQEBTFkQU0X4ikdpT8TNFKmIMkoNs/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="396333943"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="396333943"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 03:19:12 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="758897405"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="758897405"
+Received: from murrayal-mobl.ger.corp.intel.com (HELO [10.213.229.164])
+ ([10.213.229.164])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 03:19:11 -0800
+Message-ID: <2a70e80c-d683-f9af-93fd-9f81d5028825@linux.intel.com>
+Date: Thu, 16 Feb 2023 11:19:09 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/atomic-helpers: remove legacy_cursor_update
- hacks
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>
+References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,188 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>, linux-arm-msm@vger.kernel.org,
- harry.wentland@amd.com, =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
- Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-mediatek@lists.infradead.org,
- Maxime Ripard <maxime@cerno.tech>, Matthias Brugger <matthias.bgg@gmail.com>,
- mikita.lipski@amd.com, linux-arm-kernel@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- freedreno@lists.freedesktop.org, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>
+Cc: Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The stuff never really worked, and leads to lots of fun because it
-out-of-order frees atomic states. Which upsets KASAN, among other
-things.
 
-For async updates we now have a more solid solution with the
-->atomic_async_check and ->atomic_async_commit hooks. Support for that
-for msm and vc4 landed. nouveau and i915 have their own commit
-routines, doing something similar.
+On 14/02/2023 19:14, Rob Clark wrote:
+> On Fri, Feb 10, 2023 at 5:07 AM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> In i915 we have this concept of "wait boosting" where we give a priority boost
+>> for instance to fences which are actively waited upon from userspace. This has
+>> it's pros and cons and can certainly be discussed at lenght. However fact is
+>> some workloads really like it.
+>>
+>> Problem is that with the arrival of drm syncobj and a new userspace waiting
+>> entry point it added, the waitboost mechanism was bypassed. Hence I cooked up
+>> this mini series really (really) quickly to see if some discussion can be had.
+>>
+>> It adds a concept of "wait count" to dma fence, which is incremented for every
+>> explicit dma_fence_enable_sw_signaling and dma_fence_add_wait_callback (like
+>> dma_fence_add_callback but from explicit/userspace wait paths).
+> 
+> I was thinking about a similar thing, but in the context of dma_fence
+> (or rather sync_file) fd poll()ing.  How does the kernel differentiate
+> between "housekeeping" poll()ers that don't want to trigger boost but
+> simply know when to do cleanup, and waiters who are waiting with some
+> urgency.  I think we could use EPOLLPRI for this purpose.
 
-For everyone else it's probably better to remove the use-after-free
-bug, and encourage folks to use the async support instead. The
-affected drivers which register a legacy cursor plane and don't either
-use the new async stuff or their own commit routine are: amdgpu,
-atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx.
+Sounds plausible to allow distinguishing the two.
 
-Inspired by an amdgpu bug report.
+I wasn't aware one can set POLLPRI in pollfd.events but it appears it could be allowed:
 
-v2: Drop RFC, I think with amdgpu converted over to use
-atomic_async_check/commit done in
+/* Event types that can be polled for.  These bits may be set in `events'
+    to indicate the interesting event types; they will appear in `revents'
+    to indicate the status of the file descriptor.  */
+#define POLLIN          0x001           /* There is data to read.  */
+#define POLLPRI         0x002           /* There is urgent data to read.  */
+#define POLLOUT         0x004           /* Writing now will not block.  */
 
-commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
-Author: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Date:   Wed Dec 5 14:59:07 2018 -0500
+> Not sure how that translates to waits via the syncobj.  But I think we
+> want to let userspace give some hint about urgent vs housekeeping
+> waits.
 
-    drm/amd/display: Add fast path for cursor plane updates
+Probably DRM_SYNCOBJ_WAIT_FLAGS_<something>.
 
-we don't have any driver anymore where we have userspace expecting
-solid legacy cursor support _and_ they are using the atomic helpers in
-their fully glory. So we can retire this.
+Both look easy additions on top of my series. It would be just a matter of dma_fence_add_callback vs dma_fence_add_wait_callback based on flags, as that's how I called the "explicit userspace wait" one.
 
-v3: Paper over msm and i915 regression. The complete_all is the only
-thing missing afaict.
+It would require userspace changes to make use of it but that is probably okay, or even preferable, since it makes the thing less of a heuristic. What I don't know however is how feasible is to wire it up with say OpenCL, OpenGL or Vulkan, to allow application writers distinguish between house keeping vs performance sensitive waits.
 
-v4: Fixup i915 fixup ...
+> Also, on a related topic: https://lwn.net/Articles/868468/
 
-v5: Unallocate the crtc->event in msm to avoid hitting a WARN_ON in
-dpu_crtc_atomic_flush(). This is a bit a hack, but simplest way to
-untangle this all. Thanks to Abhinav Kumar for the debug help.
+Right, I missed that one.
 
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Maxime Ripard <maxime@cerno.tech>
-References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-References: https://lore.kernel.org/all/20220221134155.125447-9-maxime@cerno.tech/
-References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-Cc: Maxime Ripard <maxime@cerno.tech>
-Tested-by: Maxime Ripard <maxime@cerno.tech>
-Cc: mikita.lipski@amd.com
-Cc: Michel Dänzer <michel@daenzer.net>
-Cc: harry.wentland@amd.com
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "Ville Syrjälä" <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: freedreno@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mediatek@lists.infradead.org
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/drm_atomic_helper.c          | 13 -------------
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
- drivers/gpu/drm/msm/msm_atomic.c             | 15 +++++++++++++++
- 3 files changed, 29 insertions(+), 13 deletions(-)
+One thing to mention is that my motivation here wasn't strictly waits relating to frame presentation but clvk workloads which constantly move between the CPU and GPU. Even outside the compute domain, I think this is a workload characteristic where waitboost in general helps. The concept of deadline could still be used I guess, just setting it for some artificially early value, when the actual time does not exist. But scanning that discussion seems the proposal got bogged down in interactions between mode setting and stuff?
 
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index d579fd8f7cb8..f6b4c3a00684 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -1587,13 +1587,6 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
- 	int i, ret;
- 	unsigned int crtc_mask = 0;
- 
--	 /*
--	  * Legacy cursor ioctls are completely unsynced, and userspace
--	  * relies on that (by doing tons of cursor updates).
--	  */
--	if (old_state->legacy_cursor_update)
--		return;
--
- 	for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state, new_crtc_state, i) {
- 		if (!new_crtc_state->active)
- 			continue;
-@@ -2244,12 +2237,6 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
- 			continue;
- 		}
- 
--		/* Legacy cursor updates are fully unsynced. */
--		if (state->legacy_cursor_update) {
--			complete_all(&commit->flip_done);
--			continue;
--		}
--
- 		if (!new_crtc_state->event) {
- 			commit->event = kzalloc(sizeof(*commit->event),
- 						GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3479125fbda6..2454451fcf95 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7651,6 +7651,20 @@ static int intel_atomic_commit(struct drm_device *dev,
- 		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 		return ret;
- 	}
-+
-+	/*
-+	 * FIXME: Cut over to (async) commit helpers instead of hand-rolling
-+	 * everything.
-+	 */
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_crtc_state *new_crtc_state;
-+		struct intel_crtc *crtc;
-+		int i;
-+
-+		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-+			complete_all(&new_crtc_state->uapi.commit->flip_done);
-+	}
-+
- 	intel_shared_dpll_swap_state(state);
- 	intel_atomic_track_fbs(state);
- 
-diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-index 1686fbb611fd..b7151767b567 100644
---- a/drivers/gpu/drm/msm/msm_atomic.c
-+++ b/drivers/gpu/drm/msm/msm_atomic.c
-@@ -189,6 +189,19 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
- 	bool async = kms->funcs->vsync_time &&
- 			can_do_async(state, &async_crtc);
- 
-+	/*
-+	 * FIXME: Convert to async plane helpers and remove the various hacks to
-+	 * keep the old legacy_cursor_way of doing async commits working for the
-+	 * dpu code, like the expectation that these don't have a crtc->event.
-+	 */
-+	if (async) {
-+		/* both ->event itself and the pointer hold a reference! */
-+		drm_crtc_commit_put(async_crtc->state->commit);
-+		drm_crtc_commit_put(async_crtc->state->commit);
-+		kfree(async_crtc->state->event);
-+		async_crtc->state->event = NULL;
-+	}
-+
- 	trace_msm_atomic_commit_tail_start(async, crtc_mask);
- 
- 	kms->funcs->enable_commit(kms);
-@@ -222,6 +235,8 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
- 		/* async updates are limited to single-crtc updates: */
- 		WARN_ON(crtc_mask != drm_crtc_mask(async_crtc));
- 
-+		complete_all(&async_crtc->state->commit->flip_done);
-+
- 		/*
- 		 * Start timer if we don't already have an update pending
- 		 * on this crtc:
--- 
-2.39.0
+Regards,
 
+Tvrtko
