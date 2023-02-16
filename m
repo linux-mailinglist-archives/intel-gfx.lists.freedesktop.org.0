@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5A46991C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:39:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6FB6991F5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:43:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB3E10ED1C;
-	Thu, 16 Feb 2023 10:39:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109CD10ED2A;
+	Thu, 16 Feb 2023 10:43:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05E1F10ED1C;
- Thu, 16 Feb 2023 10:39:32 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 50E202231E;
- Thu, 16 Feb 2023 10:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1676543970; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=cOJbDqyVM4UkjpAdBQqHri1wUhQAVEtatgbpQX2k24o=;
- b=j0/J/doFQigMYkFcuxrqq4WxVq0MTlFDosIOgEkNtSsUa/s1gWhV8gtNgDW2eYhPkHI0vU
- wA3YKmdUoEOyVQ7XpFMONjjUx2yDjaN8csGioBUq0i2q5K/Eu+6obcslP/eceDSIhJvxlx
- fZXcxrhD6FZjEkRWx4M0AuFHh3SNnW8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1676543970;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=cOJbDqyVM4UkjpAdBQqHri1wUhQAVEtatgbpQX2k24o=;
- b=KxdPV9o5cUyK/06KXlJ+yjknJWWKi2GJAxpTOwzR5uaXvGrNxJnLpXYIaWCy8rlYnyqbef
- fiyhVCn4gbPj9SCg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 196E3139B5;
- Thu, 16 Feb 2023 10:39:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id V5RJBeIH7mPhSAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 16 Feb 2023 10:39:30 +0000
-Date: Thu, 16 Feb 2023 11:39:28 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y+4H4C4E6cZcM9+J@linux-uq9g>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4E010ED2D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 10:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676544201; x=1708080201;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=PwqH6pgP/sTbNd6OlFEsWpslG4WQJ0kSrmM3G545GTY=;
+ b=QMKMLZJGGKI72GdGFEQBvkAw9U1L3qfQrbMEUufem8ymcbhmCeWDPm3P
+ Ru5OsWjhybYRTa3cyetACgJMkw2qWBKEAl1x8r13SY9eGfNZbnKOwH8SC
+ dzwcxOhYQVaes1zIpAIDkanUpOd8sLp9nX+JMFl4aTV46e+JbxZp0Tmpr
+ G4EJmBvKEJMw+NJPB89vj9RnNkCLjvZ+6mBI0SOZJGFD2i5BXruBP5rCJ
+ JoB6RIAf1Wi1hLRNCBvP8ATN41RTJScvLosKimKZcYviC1QEBNC3KMaXE
+ g7tgA4WlbsoLMavDNZ9odhw6RkKfvOsEq7SrhPbicO9Ble5fsllbyR75n Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="315362628"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="315362628"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 02:43:21 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="702509136"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="702509136"
+Received: from aaronov-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.37.86])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 02:43:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, Umesh Nerlige Ramappa
+ <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <87wn4im972.wl-ashutosh.dixit@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230215005419.2100887-1-umesh.nerlige.ramappa@intel.com>
+ <20230215005419.2100887-5-umesh.nerlige.ramappa@intel.com>
+ <87wn4im972.wl-ashutosh.dixit@intel.com>
+Date: Thu, 16 Feb 2023 12:43:16 +0200
+Message-ID: <87o7pt28mz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/perf: Fail modprobe if
+ i915_perf_init fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,66 +61,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Lionel G Landwerlin <lionel.g.landwerlin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Wed, 15 Feb 2023, "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
+> On Tue, 14 Feb 2023 16:54:14 -0800, Umesh Nerlige Ramappa wrote:
+>>
+>> Check for return value from i915_perf_init and fail driver init if perf
+>> init fails.
+>
+> Guess we'll start returning anything other than zero later:
 
-here's the PR for drm-misc-next-fixes for this week.
+And before doing so, this change is useless, and IMO should not be
+merged. If it can't or doesn't fail, it should be void. The probe is
+complicated enough as is, let's not complicate it unless there's a
+reason for it.
 
-Best regards
-Thomas
+Moreover, we'll probably want to consider what parts of the driver probe
+are allowed to fail, and the driver can still function. I'm pretty sure
+most people prefer a working screen without OA over failing probe.
 
-drm-misc-next-fixes-2023-02-16:
-Short summary of fixes pull:
+BR,
+Jani.
 
-Contains fixes for DP MST and the panel orientation on an Lenovo
-IdeaPad model.
-The following changes since commit 467fbc77f673ecc9dcf4e58ffc1fa426a22df7fd:
 
-  dt-bindings: display: panel: visionox,vtdr6130: add missing reg property (2023-02-09 09:28:31 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-02-16
-
-for you to fetch changes up to 38b2d8efd03d2e56431b611e3523f0158306451d:
-
-  drm: panel-orientation-quirks: Add quirk for Lenovo IdeaPad Duet 3 10IGL5 (2023-02-15 10:46:05 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-Contains fixes for DP MST and the panel orientation on an Lenovo
-IdeaPad model.
-
-----------------------------------------------------------------
-Darrell Kavanagh (1):
-      drm: panel-orientation-quirks: Add quirk for Lenovo IdeaPad Duet 3 10IGL5
-
-Imre Deak (4):
-      drm/i915/dp_mst: Add the MST topology state for modesetted CRTCs
-      drm/display/dp_mst: Handle old/new payload states in drm_dp_remove_payload()
-      drm/display/dp_mst: Add drm_atomic_get_old_mst_topology_state()
-      drm/i915/dp_mst: Fix payload removal during output disabling
-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  |  2 +-
- drivers/gpu/drm/display/drm_dp_mst_topology.c      | 59 ++++++++++++-----
- drivers/gpu/drm/drm_panel_orientation_quirks.c     |  6 ++
- drivers/gpu/drm/i915/display/intel_display.c       |  4 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c        | 75 ++++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.h        |  4 ++
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |  2 +-
- include/drm/display/drm_dp_mst_helper.h            |  6 +-
- 8 files changed, 135 insertions(+), 23 deletions(-)
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+>>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_driver.c | 4 +++-
+>>  drivers/gpu/drm/i915/i915_perf.c   | 4 +++-
+>>  drivers/gpu/drm/i915/i915_perf.h   | 2 +-
+>>  3 files changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 0c0ae3eabb4b..998ca41c9713 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -477,7 +477,9 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>>	if (ret)
+>>		return ret;
+>>
+>> -	i915_perf_init(dev_priv);
+>> +	ret = i915_perf_init(dev_priv);
+>> +	if (ret)
+>> +		return ret;
+>>
+>>	ret = i915_ggtt_probe_hw(dev_priv);
+>>	if (ret)
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> index 0b2097ad000e..e134523576f8 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> @@ -4845,7 +4845,7 @@ static void i915_perf_init_info(struct drm_i915_private *i915)
+>>   * Note: i915-perf initialization is split into an 'init' and 'register'
+>>   * phase with the i915_perf_register() exposing state to userspace.
+>>   */
+>> -void i915_perf_init(struct drm_i915_private *i915)
+>> +int i915_perf_init(struct drm_i915_private *i915)
+>>  {
+>>	struct i915_perf *perf = &i915->perf;
+>>
+>> @@ -4962,6 +4962,8 @@ void i915_perf_init(struct drm_i915_private *i915)
+>>
+>>		oa_init_supported_formats(perf);
+>>	}
+>> +
+>> +	return 0;
+>>  }
+>>
+>>  static int destroy_config(int id, void *p, void *data)
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.h b/drivers/gpu/drm/i915/i915_perf.h
+>> index f96e09a4af04..253637651d5e 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.h
+>> +++ b/drivers/gpu/drm/i915/i915_perf.h
+>> @@ -18,7 +18,7 @@ struct i915_oa_config;
+>>  struct intel_context;
+>>  struct intel_engine_cs;
+>>
+>> -void i915_perf_init(struct drm_i915_private *i915);
+>> +int i915_perf_init(struct drm_i915_private *i915);
+>>  void i915_perf_fini(struct drm_i915_private *i915);
+>>  void i915_perf_register(struct drm_i915_private *i915);
+>>  void i915_perf_unregister(struct drm_i915_private *i915);
+>> --
+>> 2.36.1
+>>
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+Jani Nikula, Intel Open Source Graphics Center
