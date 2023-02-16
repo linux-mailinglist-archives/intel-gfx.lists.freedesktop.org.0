@@ -2,53 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D08698EF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 09:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6252698F5F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 10:10:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E964410E321;
-	Thu, 16 Feb 2023 08:48:27 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD7710E315;
+	Thu, 16 Feb 2023 09:10:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62CEB10E321;
- Thu, 16 Feb 2023 08:48:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2864E10E159;
+ Thu, 16 Feb 2023 09:10:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676537306; x=1708073306;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ZI0M1gB6CVRszJ80drCePHEr/lyzccBHVgAyVK/t4rs=;
- b=UbcROYRrW++2OONGOPG2SoRT9d8B8Ef+qd6i0gLPrZUa3h0PFm05xSBG
- 2W8wxTbLTIXAItzk03/b4zrknhY7aT+MxrdI0F0vPId63EiWdYpQSpdBN
- 1SH/HsyYC9Z69/FaKUntQs6rRVPNAFZ09w4zNkzQcJMLTOqjUO2gQUZ3A
- unqWWCOxH14AUsRnZknXp1/EPbrEuXtEwLzCqi482vMi3CYAv9LBtHc5K
- qdMS7ry5yTM0CE8k4UbB4gAwim9V4fRY6GnTbaUFSvlAw+l0TUeqmRr3B
- FdP6YCFLcMeOL3vsRPko6ehuxvblE8T2+RqowKy0GuwlZsvVz6n2O5HhU w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="396304979"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="396304979"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ t=1676538611; x=1708074611;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2huVKU/DZOrRNQScGUvmmXUvec/KN1MgYhomuLb1+VM=;
+ b=e3QPeVty1XQKv6okMsKyAvr2ufIuSyReaBBCT1TsSCe1jOheA1Teoys9
+ vgrTQrz2ldbh8W01SfWRop75Qr2NS1J6xKDb2WXkyGhFHU3ruWpWDxVRS
+ hSMXerNfqmCGpD8QZPdQpm86vcYrCjKk1zo9Y2Npgc0RemIJV36W/kwgx
+ einKi7IsbQYogD+cSpxyz96HQCSHeZECRdRsugMJdSYsToeZn9o7APd2y
+ XXwWZbuCRrFcPH52HabhNzD68jjIydzwAvEqZxohXqVzWbScppTk7dWD2
+ g3EN8c8PeH0ezlYqOh7ZMqJNlr1nLZu8znm+umu2k1zKGGBmP4/wqCD/v g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="396309824"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="396309824"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 00:48:25 -0800
+ 16 Feb 2023 01:10:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="670045415"
-X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="670045415"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 16 Feb 2023 00:48:22 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pSZwE-000A9r-0P;
- Thu, 16 Feb 2023 08:48:22 +0000
-Date: Thu, 16 Feb 2023 16:47:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: John.C.Harrison@intel.com, Intel-GFX@lists.freedesktop.org
-Message-ID: <202302161616.UKxjGXPv-lkp@intel.com>
-References: <20230216002248.1851966-3-John.C.Harrison@Intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="663390204"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="663390204"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga007.jf.intel.com with ESMTP; 16 Feb 2023 01:10:09 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 16 Feb 2023 01:10:09 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 16 Feb 2023 01:10:09 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 16 Feb 2023 01:10:08 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P9rR5ns0gbQheNo6sp7nSG9DgBupOKFm6w2I1T7iY2nppj9XwfwEIfw2cRS1naqbPQ88wQycJjIgCSM2hnLQbXXqLqoCVK8ZjptkbCwrLu0hgnlOsU7jZtppDr18m9E0wDLNXtK0KtXwSUtGyNnZ9zn77f8i/FHz3MRoe/GFHeN9chXQI5TnZyfmYBzDSJyqpCk/o2QqnvK8d/Dz1wM5vWslb4+PUOl2V6CfD9dSlIW2W9rI+zlQYfFrzG6rBPCw5o9c5lnmu5nUoEB4fKxB2XjkZTdtqjT0j6Vpf4KsgU6C5q0o9twsi0sDxtfYjUZeWrpYiLhaciKO+zpe+QUN8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=caVkzJFqF5LTAMuWsYTUQ0xSi3hbM1jzd1Q4mqqrqNc=;
+ b=ZT/OjpbIQRoAZjzcOzb9zSItZj/T39ENGXgaquUbBywoSOtQYvTG+9QYP+p9dGftpdaHrprdgfXCKFNAZtATc6DwD4Ym9vf9XxrQaIowtLXMzApxmeDhv7aCq65OZ7nJHMRvICaQIksDicjRqf9xnREi3XVbzD8zj9xaG1mLRKrkLCK9009Yw7A98btYWQyfk7kRpDuB3+wrNeXzpgy5tfummNaLWoJGPiNr8OjdhYguF5sPz04xW60eH4WMzQBPLk26CvulqkznB1F+rOYnQhUXsJgDyZgvjpUGWeftBxTSDb6au5fJ9eUH9nndk8LlIDTJbI/JGc5yHxmekIJp0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB7540.namprd11.prod.outlook.com (2603:10b6:806:340::7)
+ by MN2PR11MB4549.namprd11.prod.outlook.com (2603:10b6:208:26d::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13; Thu, 16 Feb
+ 2023 09:10:07 +0000
+Received: from SN7PR11MB7540.namprd11.prod.outlook.com
+ ([fe80::13ce:e90b:7753:6c2c]) by SN7PR11MB7540.namprd11.prod.outlook.com
+ ([fe80::13ce:e90b:7753:6c2c%5]) with mapi id 15.20.6086.024; Thu, 16 Feb 2023
+ 09:10:06 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: "Zhao, Yan Y" <yan.y.zhao@intel.com>
+Thread-Topic: [PATCH v3 14/15] vfio: Add ioctls for device cdev using iommufd
+Thread-Index: AQHZP73TMP7ZzqInoUK0sXtp8iwKVK7RQKyAgAAL3yA=
+Date: Thu, 16 Feb 2023 09:10:06 +0000
+Message-ID: <SN7PR11MB754074DEC60C9852D42EA4A6C3A09@SN7PR11MB7540.namprd11.prod.outlook.com>
+References: <20230213151348.56451-1-yi.l.liu@intel.com>
+ <20230213151348.56451-15-yi.l.liu@intel.com>
+ <Y+3oObuMG/v3+x0N@yzhao56-desk.sh.intel.com>
+In-Reply-To: <Y+3oObuMG/v3+x0N@yzhao56-desk.sh.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB7540:EE_|MN2PR11MB4549:EE_
+x-ms-office365-filtering-correlation-id: d2b2a329-31e3-44c5-8817-08db0ffd9866
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cmCZxNs+mdQdMo3iRNMuwsbO9JTMneBoTSG3FzOFlI2cGmjKp415WAHNP1R0mbmMjVh5uC5tIA0UqjYEkG5mjt5CIywEZtGAI5RDFZAPCRmhgurYlOLyyEOjOwll7Wc4K3XdMCdo4TohTmmyQ0Kdiqi2xDiSuCnJzhiT3oRj35TVUUolnXmWU5+5gG9Z9jJCafvYdvCRcdxucREnW58DbuJ2qhPAveFeD58AG/e7kwZGIlZkEgMBHvkn65p90MKCEIJ5QmTt13/BQT11ew2e1GJC6ug8awmrHpgwIXOYdQC5ZD10AY++moQjvqPhxRIFAZfkcXCtm56W4im0GXRa8zA6CxBAoG+IU2OfxkzLSlKY3zwNgE9A5dxs2a3oT9HM7L+zq29/z1KTtwfr9+hxZPY2crBNu0eH8bCkRcNM8QmDBfGaCCdgDhFgjqxU2RZeshg3YM4WjnK9m0WHcXzZe/g11Rdzt2zDtrfECXIJbe0FvVkqDc0s4EGVkpuYtjVG8SsfYWiRz7hq92xhZBd/72jGns46itJHOLAMyFjr2Gaj1QfZHDN3Wyk2MBvwp14ImVE0RVUJZBqppOlM5sVvpzBELQSVowDOCJyTHiSF6A0fPn+0zG9gTdpATBkxLDgUqzktRJiKmCK1Ho5y1AKYfzAur6+ZfXOp5hBTiEVL4kUiGN3rfsDRlQFVsSl+N97iT8ZZTH3UVWFilFzpkG9iqA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB7540.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(366004)(396003)(39860400002)(376002)(346002)(451199018)(86362001)(6636002)(54906003)(316002)(52536014)(55016003)(8936002)(7416002)(5660300002)(38070700005)(6862004)(478600001)(76116006)(33656002)(41300700001)(66556008)(4326008)(64756008)(8676002)(66946007)(66476007)(66446008)(186003)(26005)(9686003)(6506007)(2906002)(38100700002)(122000001)(82960400001)(83380400001)(71200400001)(7696005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YU6Vp1n7h01zEWmdrNuSoSWZ7UT2/xrfAjG2Fg7atyLLPJVttnod2QZd46Qp?=
+ =?us-ascii?Q?cQ+RFOUbOrLAsNgI2Yo5XPSeDOIdojWKrLjYsUs6cJ3V9BV7zdTg6qtQnaau?=
+ =?us-ascii?Q?1IlYHvy0Hbpd2Kq5KT+2/Cy3p4e83BVviOZjvVdmHTFMPwCuu6CJXKOGEWUI?=
+ =?us-ascii?Q?DBvtVeDi2o0nE15iKSEdpsCBXS/VwHUhlDd5L7bZ9t5CmB+ZuuGWpebFpI1c?=
+ =?us-ascii?Q?IphMqwiS5LQ3eD5dz8hzQbpdpOhHQWqzcB3MJeo9FEEVhnqoKQB8UShMugKB?=
+ =?us-ascii?Q?QhqIbFHMA8RKwQlpOwuasXYzXNv6uRGWsHo1t4tdVhNpnIIRsd8n05nNBg7w?=
+ =?us-ascii?Q?0C0T2EyQF1t7Pz4uWHb1KH3OXd5SyCif6O5bgvVavQBlvUXz3gSa4ic9eZ28?=
+ =?us-ascii?Q?FH12mqQvhT9KdtK1yycVXzZoLmlkrD2mimkjsoGAnZWHlEOUX//8tg8LTT/8?=
+ =?us-ascii?Q?wXnPY2cLDwN7xzNs/E49GON+fcA88dpbbCnFErSigIYICLsxiZxqPZORulFw?=
+ =?us-ascii?Q?WFBWplnQX5B9H0eE48CdFGhh7uTtPd8CKDW/w59l8IhKYHx0xJoZ/sKkOTbU?=
+ =?us-ascii?Q?MLHzg40/tpC7uUzDZtlqktb00Fc90YvhA9eDJfPhnSC/Z0erY9nx7N1yVPL+?=
+ =?us-ascii?Q?f3BfScffIh19wqFeoQ8kfATqdTBLWJMN1bJskrgESzTO9mkBOmfL87tBTnVu?=
+ =?us-ascii?Q?MEdqQ2wmesIpQlcLo1O5Dk3/Lob/Dl6lq/+nG0tmUGFEKPZVxCz74umsMnPU?=
+ =?us-ascii?Q?qlMz5/65R6TVUcchgj3Qqy+lqoR7jsTFmtmcGBTsANi9o56JGyRsRMiiaZRD?=
+ =?us-ascii?Q?I1Ku1lrSQnuvq9HAOitascRSDzoqtWMgwMU7khxBFIxPhdVXSdMEAXMFNHBS?=
+ =?us-ascii?Q?rdrp6xS2Dyy9TZ1X0PQnQRdhs+LxZ8i8qvQkl3yZKfe+z6B2pO87jgfGI2LV?=
+ =?us-ascii?Q?UwOLNdxFeivRNLEtnOY5nYZtlyute126hSEjQxQ0aMS2ocaDkO1+6N6SW+yn?=
+ =?us-ascii?Q?nyV7tjnp5sINpUSm5KHOo0+A1zBVG66EY2vL3FiotbH4LRrz2Ap2eivwiFSP?=
+ =?us-ascii?Q?RhTZtjxS9V7Q3rHPxOePGvkMrVo5j6OPSLHwqO1jCIwmoLkfBMTKGSM1U4KO?=
+ =?us-ascii?Q?NIinD6gz0oU+DH24YFLZnGRwvgHjTk46aAnZ2FDGbyrpbEj9Fa1AYCTVJc0Y?=
+ =?us-ascii?Q?s4yOEIFf+NMtnkcdFCrn8tvTCMhvsPqsxB+Srh/Jwqnd9UmjsF1t0oFkWxTq?=
+ =?us-ascii?Q?NL5Bn76T8mDjzvEq+L6RM4xKrlapGOnIBBIQR3wGs1P0OncId9KTT7fBuw8N?=
+ =?us-ascii?Q?ClD99cV3Jbqwzc9kuBDcvVBNBmJmkLJrlELNbkW2fZOAiGtCh/hlOdW9n7O9?=
+ =?us-ascii?Q?6sTf6UyKkgLuZbCHaKi75DYWqLxX3r+uRD0SOATukNAVWkVJrOsb7mI2eVNw?=
+ =?us-ascii?Q?ZE3hS3Xhxq0E5QVDmkLA/rtHahMsPL0ICM4oBpP89u0NzWAf+uG4ZrU0iuDX?=
+ =?us-ascii?Q?2NBYLDZQx+Ew5IHMD42VOcoExmQn71IYSXzR7clyn+wviIAc47zn3NA9hPcJ?=
+ =?us-ascii?Q?GHzl/mYXkNFbIllJDZLIRSLcpIp3CSWQVxzaTvRU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230216002248.1851966-3-John.C.Harrison@Intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Don't use BAR mappings for
- ring buffers with LLC
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7540.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2b2a329-31e3-44c5-8817-08db0ffd9866
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2023 09:10:06.0587 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iroCEE8sK1TniGJjtHBwI+K6ob4VYxY1L+VJfqTIAQFt92FzoXSDl0sdq88ZahmIiMXXhVuq2mW7IZqNtlPkLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4549
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3 14/15] vfio: Add ioctls for device cdev
+ using iommufd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,213 +147,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- DRI-Devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- oe-kbuild-all@lists.linux.dev, stable@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "peterx@redhat.com" <peterx@redhat.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+> From: Zhao, Yan Y <yan.y.zhao@intel.com>
+> Sent: Thursday, February 16, 2023 4:24 PM
+>=20
+> On Mon, Feb 13, 2023 at 07:13:47AM -0800, Yi Liu wrote:
+> ...
+>=20
+> > +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+> > +				    unsigned long arg)
+> > +{
+> > +	struct vfio_device *device =3D df->device;
+> > +	struct vfio_device_bind_iommufd bind;
+> > +	struct iommufd_ctx *iommufd =3D NULL;
+> > +	struct fd f;
+> > +	unsigned long minsz;
+> > +	int ret;
+> > +
+> > +	minsz =3D offsetofend(struct vfio_device_bind_iommufd, out_devid);
+> > +
+> > +	if (copy_from_user(&bind, (void __user *)arg, minsz))
+> > +		return -EFAULT;
+> > +
+> > +	if (bind.argsz < minsz || bind.flags)
+> > +		return -EINVAL;
+> > +
+> > +	if (!device->ops->bind_iommufd)
+> > +		return -ENODEV;
+> > +
+> > +	ret =3D vfio_device_claim_group(device);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	mutex_lock(&device->dev_set->lock);
+> > +	/*
+> > +	 * If already been bound to an iommufd, or already set noiommu
+> > +	 * then fail it.
+> > +	 */
+> > +	if (df->iommufd || df->noiommu) {
+> > +		ret =3D -EINVAL;
+> > +		goto out_unlock;
+> > +	}
+> > +
+> > +	/* iommufd < 0 means noiommu mode */
+> > +	if (bind.iommufd < 0) {
+> > +		if (!capable(CAP_SYS_RAWIO)) {
+> > +			ret =3D -EPERM;
+> > +			goto out_unlock;
+> > +		}
+> > +		df->noiommu =3D true;
+> > +	} else {
+> > +		f =3D fdget(bind.iommufd);
+> Here, the iommufd file count + 1,
+>=20
+> > +		if (!f.file) {
+> > +			ret =3D -EBADF;
+> > +			goto out_unlock;
+> > +		}
+> > +		iommufd =3D iommufd_ctx_from_file(f.file);
+> iommufd file count + 1, again
+>=20
+> > +		if (IS_ERR(iommufd)) {
+> > +			ret =3D PTR_ERR(iommufd);
+> > +			goto out_put_file;
+> > +		}
+> > +	}
+> > +
+> > +	/*
+> > +	 * Before the device open, get the KVM pointer currently
+> > +	 * associated with the device file (if there is) and obtain a
+> > +	 * reference. This reference is held until device closed. Save
+> > +	 * the pointer in the device for use by drivers.
+> > +	 */
+> > +	vfio_device_get_kvm_safe(df);
+> > +
+> > +	df->iommufd =3D iommufd;
+> > +	ret =3D vfio_device_open(df, &bind.out_devid, NULL);
+> iommufd file count + 1 in iommufd_device_bind for first open.
+>=20
+> > +	if (ret)
+> > +		goto out_put_kvm;
+> > +
+> > +	ret =3D copy_to_user((void __user *)arg +
+> > +			   offsetofend(struct vfio_device_bind_iommufd,
+> iommufd),
+> > +			   &bind.out_devid,
+> > +			   sizeof(bind.out_devid)) ? -EFAULT : 0;
+> > +	if (ret)
+> > +		goto out_close_device;
+> > +
+> > +	if (iommufd)
+> > +		fdput(f);
+> But, only one file count is put.
 
-Thank you for the patch! Yet something to improve:
+Good catch! Yes it is missed. And needs to call iommufd_ctx_put()
+in vfio_device_cdev_close() as well.
 
-[auto build test ERROR on drm-tip/drm-tip]
+> Need a paring iommufd_ctx_put() after a successful
+> iommufd_ctx_from_file()
+> above to avoid iommufd_fops_release() never being called.
+>=20
+> e.g.
+>=20
+> @@ -1222,11 +1226,13 @@ static long
+> vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+>                         ret =3D -EBADF;
+>                         goto out_unlock;
+>                 }
+>                 iommufd =3D iommufd_ctx_from_file(f.file);
+>                 if (IS_ERR(iommufd)) {
+>                         ret =3D PTR_ERR(iommufd);
+>                         goto out_put_file;
+>                 }
+> +               iommufd_ctx_put(iommufd);
 
-url:    https://github.com/intel-lab-lkp/linux/commits/John-C-Harrison-Intel-com/drm-i915-Don-t-use-stolen-memory-for-ring-buffers-with-LLC/20230216-082552
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230216002248.1851966-3-John.C.Harrison%40Intel.com
-patch subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: Don't use BAR mappings for ring buffers with LLC
-config: i386-randconfig-a005-20230213 (https://download.01.org/0day-ci/archive/20230216/202302161616.UKxjGXPv-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/fa748ad303922e4138a246d4db247dfa96e45651
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review John-C-Harrison-Intel-com/drm-i915-Don-t-use-stolen-memory-for-ring-buffers-with-LLC/20230216-082552
-        git checkout fa748ad303922e4138a246d4db247dfa96e45651
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+Since iommufd is recorded in df, so needs to hold refcount till
+df->iommufd=3DNULL;
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302161616.UKxjGXPv-lkp@intel.com/
+Thanks,
+Yi Liu
 
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gt/intel_ring.c:103:2: error: expected expression
-           else
-           ^
->> drivers/gpu/drm/i915/gt/intel_ring.c:111:1: error: function definition is not allowed here
-   {
-   ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:146:1: error: function definition is not allowed here
-   {
-   ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:184:1: error: function definition is not allowed here
-   {
-   ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:195:1: error: function definition is not allowed here
-   {
-   ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:230:1: error: function definition is not allowed here
-   {
-   ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:312:1: error: function definition is not allowed here
-   {
-   ^
->> drivers/gpu/drm/i915/gt/intel_ring.c:336:7: error: expected '}'
-   #endif
-         ^
-   drivers/gpu/drm/i915/gt/intel_ring.c:94:1: note: to match this '{'
-   {
-   ^
-   8 errors generated.
-
-
-vim +103 drivers/gpu/drm/i915/gt/intel_ring.c
-
-2871ea85c119e6 Chris Wilson           2019-10-24   92  
-2871ea85c119e6 Chris Wilson           2019-10-24   93  void intel_ring_unpin(struct intel_ring *ring)
-2871ea85c119e6 Chris Wilson           2019-10-24   94  {
-2871ea85c119e6 Chris Wilson           2019-10-24   95  	struct i915_vma *vma = ring->vma;
-2871ea85c119e6 Chris Wilson           2019-10-24   96  
-2871ea85c119e6 Chris Wilson           2019-10-24   97  	if (!atomic_dec_and_test(&ring->pin_count))
-2871ea85c119e6 Chris Wilson           2019-10-24   98  		return;
-2871ea85c119e6 Chris Wilson           2019-10-24   99  
-2871ea85c119e6 Chris Wilson           2019-10-24  100  	i915_vma_unset_ggtt_write(vma);
-fa748ad303922e Daniele Ceraolo Spurio 2023-02-15  101  	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
-2871ea85c119e6 Chris Wilson           2019-10-24  102  		i915_vma_unpin_iomap(vma);
-2871ea85c119e6 Chris Wilson           2019-10-24 @103  	else
-2871ea85c119e6 Chris Wilson           2019-10-24  104  		i915_gem_object_unpin_map(vma->obj);
-2871ea85c119e6 Chris Wilson           2019-10-24  105  
-2871ea85c119e6 Chris Wilson           2019-10-24  106  	i915_vma_make_purgeable(vma);
-a266bf42006004 Chris Wilson           2019-11-18  107  	i915_vma_unpin(vma);
-2871ea85c119e6 Chris Wilson           2019-10-24  108  }
-2871ea85c119e6 Chris Wilson           2019-10-24  109  
-2871ea85c119e6 Chris Wilson           2019-10-24  110  static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
-2871ea85c119e6 Chris Wilson           2019-10-24 @111  {
-2871ea85c119e6 Chris Wilson           2019-10-24  112  	struct i915_address_space *vm = &ggtt->vm;
-2871ea85c119e6 Chris Wilson           2019-10-24  113  	struct drm_i915_private *i915 = vm->i915;
-2871ea85c119e6 Chris Wilson           2019-10-24  114  	struct drm_i915_gem_object *obj;
-2871ea85c119e6 Chris Wilson           2019-10-24  115  	struct i915_vma *vma;
-2871ea85c119e6 Chris Wilson           2019-10-24  116  
-0d8ee5ba8db46c Thomas Hellström       2021-09-22  117  	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE |
-0d8ee5ba8db46c Thomas Hellström       2021-09-22  118  					  I915_BO_ALLOC_PM_VOLATILE);
-bb5623500723f7 John Harrison          2023-02-15  119  	if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt) && !HAS_LLC(i915))
-2871ea85c119e6 Chris Wilson           2019-10-24  120  		obj = i915_gem_object_create_stolen(i915, size);
-2871ea85c119e6 Chris Wilson           2019-10-24  121  	if (IS_ERR(obj))
-2871ea85c119e6 Chris Wilson           2019-10-24  122  		obj = i915_gem_object_create_internal(i915, size);
-2871ea85c119e6 Chris Wilson           2019-10-24  123  	if (IS_ERR(obj))
-2871ea85c119e6 Chris Wilson           2019-10-24  124  		return ERR_CAST(obj);
-2871ea85c119e6 Chris Wilson           2019-10-24  125  
-2871ea85c119e6 Chris Wilson           2019-10-24  126  	/*
-2871ea85c119e6 Chris Wilson           2019-10-24  127  	 * Mark ring buffers as read-only from GPU side (so no stray overwrites)
-2871ea85c119e6 Chris Wilson           2019-10-24  128  	 * if supported by the platform's GGTT.
-2871ea85c119e6 Chris Wilson           2019-10-24  129  	 */
-2871ea85c119e6 Chris Wilson           2019-10-24  130  	if (vm->has_read_only)
-2871ea85c119e6 Chris Wilson           2019-10-24  131  		i915_gem_object_set_readonly(obj);
-2871ea85c119e6 Chris Wilson           2019-10-24  132  
-2871ea85c119e6 Chris Wilson           2019-10-24  133  	vma = i915_vma_instance(obj, vm, NULL);
-2871ea85c119e6 Chris Wilson           2019-10-24  134  	if (IS_ERR(vma))
-2871ea85c119e6 Chris Wilson           2019-10-24  135  		goto err;
-2871ea85c119e6 Chris Wilson           2019-10-24  136  
-2871ea85c119e6 Chris Wilson           2019-10-24  137  	return vma;
-2871ea85c119e6 Chris Wilson           2019-10-24  138  
-2871ea85c119e6 Chris Wilson           2019-10-24  139  err:
-2871ea85c119e6 Chris Wilson           2019-10-24  140  	i915_gem_object_put(obj);
-2871ea85c119e6 Chris Wilson           2019-10-24  141  	return vma;
-2871ea85c119e6 Chris Wilson           2019-10-24  142  }
-2871ea85c119e6 Chris Wilson           2019-10-24  143  
-2871ea85c119e6 Chris Wilson           2019-10-24  144  struct intel_ring *
-2871ea85c119e6 Chris Wilson           2019-10-24  145  intel_engine_create_ring(struct intel_engine_cs *engine, int size)
-2871ea85c119e6 Chris Wilson           2019-10-24  146  {
-2871ea85c119e6 Chris Wilson           2019-10-24  147  	struct drm_i915_private *i915 = engine->i915;
-2871ea85c119e6 Chris Wilson           2019-10-24  148  	struct intel_ring *ring;
-2871ea85c119e6 Chris Wilson           2019-10-24  149  	struct i915_vma *vma;
-2871ea85c119e6 Chris Wilson           2019-10-24  150  
-2871ea85c119e6 Chris Wilson           2019-10-24  151  	GEM_BUG_ON(!is_power_of_2(size));
-2871ea85c119e6 Chris Wilson           2019-10-24  152  	GEM_BUG_ON(RING_CTL_SIZE(size) & ~RING_NR_PAGES);
-2871ea85c119e6 Chris Wilson           2019-10-24  153  
-2871ea85c119e6 Chris Wilson           2019-10-24  154  	ring = kzalloc(sizeof(*ring), GFP_KERNEL);
-2871ea85c119e6 Chris Wilson           2019-10-24  155  	if (!ring)
-2871ea85c119e6 Chris Wilson           2019-10-24  156  		return ERR_PTR(-ENOMEM);
-2871ea85c119e6 Chris Wilson           2019-10-24  157  
-2871ea85c119e6 Chris Wilson           2019-10-24  158  	kref_init(&ring->ref);
-2871ea85c119e6 Chris Wilson           2019-10-24  159  	ring->size = size;
-5ba32c7be81e53 Chris Wilson           2020-02-07  160  	ring->wrap = BITS_PER_TYPE(ring->size) - ilog2(size);
-2871ea85c119e6 Chris Wilson           2019-10-24  161  
-2871ea85c119e6 Chris Wilson           2019-10-24  162  	/*
-2871ea85c119e6 Chris Wilson           2019-10-24  163  	 * Workaround an erratum on the i830 which causes a hang if
-2871ea85c119e6 Chris Wilson           2019-10-24  164  	 * the TAIL pointer points to within the last 2 cachelines
-2871ea85c119e6 Chris Wilson           2019-10-24  165  	 * of the buffer.
-2871ea85c119e6 Chris Wilson           2019-10-24  166  	 */
-2871ea85c119e6 Chris Wilson           2019-10-24  167  	ring->effective_size = size;
-2871ea85c119e6 Chris Wilson           2019-10-24  168  	if (IS_I830(i915) || IS_I845G(i915))
-2871ea85c119e6 Chris Wilson           2019-10-24  169  		ring->effective_size -= 2 * CACHELINE_BYTES;
-2871ea85c119e6 Chris Wilson           2019-10-24  170  
-2871ea85c119e6 Chris Wilson           2019-10-24  171  	intel_ring_update_space(ring);
-2871ea85c119e6 Chris Wilson           2019-10-24  172  
-2871ea85c119e6 Chris Wilson           2019-10-24  173  	vma = create_ring_vma(engine->gt->ggtt, size);
-2871ea85c119e6 Chris Wilson           2019-10-24  174  	if (IS_ERR(vma)) {
-2871ea85c119e6 Chris Wilson           2019-10-24  175  		kfree(ring);
-2871ea85c119e6 Chris Wilson           2019-10-24  176  		return ERR_CAST(vma);
-2871ea85c119e6 Chris Wilson           2019-10-24  177  	}
-2871ea85c119e6 Chris Wilson           2019-10-24  178  	ring->vma = vma;
-2871ea85c119e6 Chris Wilson           2019-10-24  179  
-2871ea85c119e6 Chris Wilson           2019-10-24  180  	return ring;
-2871ea85c119e6 Chris Wilson           2019-10-24  181  }
-2871ea85c119e6 Chris Wilson           2019-10-24  182  
-2871ea85c119e6 Chris Wilson           2019-10-24  183  void intel_ring_free(struct kref *ref)
-2871ea85c119e6 Chris Wilson           2019-10-24  184  {
-2871ea85c119e6 Chris Wilson           2019-10-24  185  	struct intel_ring *ring = container_of(ref, typeof(*ring), ref);
-2871ea85c119e6 Chris Wilson           2019-10-24  186  
-2871ea85c119e6 Chris Wilson           2019-10-24  187  	i915_vma_put(ring->vma);
-2871ea85c119e6 Chris Wilson           2019-10-24  188  	kfree(ring);
-2871ea85c119e6 Chris Wilson           2019-10-24  189  }
-2871ea85c119e6 Chris Wilson           2019-10-24  190  
-2871ea85c119e6 Chris Wilson           2019-10-24  191  static noinline int
-2871ea85c119e6 Chris Wilson           2019-10-24  192  wait_for_space(struct intel_ring *ring,
-2871ea85c119e6 Chris Wilson           2019-10-24  193  	       struct intel_timeline *tl,
-2871ea85c119e6 Chris Wilson           2019-10-24  194  	       unsigned int bytes)
-2871ea85c119e6 Chris Wilson           2019-10-24 @195  {
-2871ea85c119e6 Chris Wilson           2019-10-24  196  	struct i915_request *target;
-2871ea85c119e6 Chris Wilson           2019-10-24  197  	long timeout;
-2871ea85c119e6 Chris Wilson           2019-10-24  198  
-2871ea85c119e6 Chris Wilson           2019-10-24  199  	if (intel_ring_update_space(ring) >= bytes)
-2871ea85c119e6 Chris Wilson           2019-10-24  200  		return 0;
-2871ea85c119e6 Chris Wilson           2019-10-24  201  
-2871ea85c119e6 Chris Wilson           2019-10-24  202  	GEM_BUG_ON(list_empty(&tl->requests));
-2871ea85c119e6 Chris Wilson           2019-10-24  203  	list_for_each_entry(target, &tl->requests, link) {
-2871ea85c119e6 Chris Wilson           2019-10-24  204  		if (target->ring != ring)
-2871ea85c119e6 Chris Wilson           2019-10-24  205  			continue;
-2871ea85c119e6 Chris Wilson           2019-10-24  206  
-2871ea85c119e6 Chris Wilson           2019-10-24  207  		/* Would completion of this request free enough space? */
-2871ea85c119e6 Chris Wilson           2019-10-24  208  		if (bytes <= __intel_ring_space(target->postfix,
-2871ea85c119e6 Chris Wilson           2019-10-24  209  						ring->emit, ring->size))
-2871ea85c119e6 Chris Wilson           2019-10-24  210  			break;
-2871ea85c119e6 Chris Wilson           2019-10-24  211  	}
-2871ea85c119e6 Chris Wilson           2019-10-24  212  
-2871ea85c119e6 Chris Wilson           2019-10-24  213  	if (GEM_WARN_ON(&target->link == &tl->requests))
-2871ea85c119e6 Chris Wilson           2019-10-24  214  		return -ENOSPC;
-2871ea85c119e6 Chris Wilson           2019-10-24  215  
-2871ea85c119e6 Chris Wilson           2019-10-24  216  	timeout = i915_request_wait(target,
-2871ea85c119e6 Chris Wilson           2019-10-24  217  				    I915_WAIT_INTERRUPTIBLE,
-2871ea85c119e6 Chris Wilson           2019-10-24  218  				    MAX_SCHEDULE_TIMEOUT);
-2871ea85c119e6 Chris Wilson           2019-10-24  219  	if (timeout < 0)
-2871ea85c119e6 Chris Wilson           2019-10-24  220  		return timeout;
-2871ea85c119e6 Chris Wilson           2019-10-24  221  
-2871ea85c119e6 Chris Wilson           2019-10-24  222  	i915_request_retire_upto(target);
-2871ea85c119e6 Chris Wilson           2019-10-24  223  
-2871ea85c119e6 Chris Wilson           2019-10-24  224  	intel_ring_update_space(ring);
-2871ea85c119e6 Chris Wilson           2019-10-24  225  	GEM_BUG_ON(ring->space < bytes);
-2871ea85c119e6 Chris Wilson           2019-10-24  226  	return 0;
-2871ea85c119e6 Chris Wilson           2019-10-24  227  }
-2871ea85c119e6 Chris Wilson           2019-10-24  228  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>         }
+>=20
+>         /* df->kvm is supposed to be set in vfio_device_file_set_kvm() */
+>=20
+> > +	else if (df->noiommu)
+> > +		dev_warn(device->dev, "vfio-noiommu device used by user
+> "
+> > +			 "(%s:%d)\n", current->comm,
+> task_pid_nr(current));
+> > +	mutex_unlock(&device->dev_set->lock);
+> > +	return 0;
+> > +
+> > +out_close_device:
+> > +	vfio_device_close(df);
+> > +out_put_kvm:
+> > +	df->iommufd =3D NULL;
+> > +	df->noiommu =3D false;
+> > +	vfio_device_put_kvm(device);
+> > +out_put_file:
+> > +	if (iommufd)
+> > +		fdput(f);
+> > +out_unlock:
+> > +	mutex_unlock(&device->dev_set->lock);
+> > +	vfio_device_release_group(device);
+> > +	return ret;
+> > +}
+> > +
