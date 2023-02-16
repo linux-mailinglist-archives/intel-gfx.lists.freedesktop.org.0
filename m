@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD8C26995A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AA46995AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 14:25:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD6BA10ED73;
-	Thu, 16 Feb 2023 13:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A99E310ED5D;
+	Thu, 16 Feb 2023 13:24:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E39B810E142;
- Wed, 15 Feb 2023 20:53:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
- From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DbZhMIqbxxxVLTui1okwUmu8iO/ZN5e4U1qMEUfbdtU=; b=ZvFsUU3+u3FgKVWAPWwQbxZW94
- SdCoE/rVS2BNGSYETy8LJSh7krL6LwpBL+5EWl6D9zhaoiRA+tyDs62+2KF48egXWoDtDANTJtAcl
- uI5bJ3SWVbIklJ1STLUDs3VaOJFcjoJnyrM70zpeI750DfP2oowqZlKCo/JY6ZRSXE8IzOitNlMDr
- FQlODtgPes1Pb0zWn68FV+YUPhKNTC0rSC95YyKR0BMQ4nD2CDFKfVYqm9/CG7xRQlawzkgT0q7SD
- Qp+xCPiFY6LMYm5B+HZWoV3kBWIBCtr96bPvyj85mIUGJ1Aq9ftXvzQkTE+O2d4azajeaTuN3EOmk
- PkSMYvDQ==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pSOmQ-003Vjs-Sg; Wed, 15 Feb 2023 21:53:30 +0100
-Message-ID: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Wed, 15 Feb 2023 21:53:30 +0100
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+X-Greylist: delayed 547 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Feb 2023 01:14:43 UTC
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BBA10E2BA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 01:14:43 +0000 (UTC)
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=weissschuh.net;
+ s=mail; t=1676509534;
+ bh=IVBAbq+p3hoTXWJlTZmLI/40oSSDdV0kZu4KVH+IXTU=;
+ h=From:Date:Subject:To:Cc:From;
+ b=KZVerghpYl9EniP5JD5JDJPwaYLf0qJbVq/OwA8lTrs48a6VquniofrHaf/nsMg40
+ on7rRTjKRDEq5Ba+udGj0aaFuuQ027fqXPOoOL4rn5HWOBZmSW7V2Ws6AYWdMpmlnk
+ 8NDg8yai1NgjZtZwm6VGUZj8xe9/X2kfrZNcOdRQ=
+Date: Thu, 16 Feb 2023 01:05:30 +0000
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230216-kobj_type-i915-v1-1-ca65c9b93518@weissschuh.net>
+X-B4-Tracking: v=1; b=H4sIAFmB7WMC/x2NUQqDMBAFryL73YBJMKhXkVKycaurEiWp0iLe3
+ aWfM4/hnZApMWVoixMSHZx5jQL6UUAYfRxIcS8MpjS2NNqpecXp9fltMjS6UnXtkDBYp00DEqH
+ PpDD5GEbJ4r4sIrdEb/7+X7rndd3pJkikdQAAAA==
+To: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1676509531; l=1627;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=IVBAbq+p3hoTXWJlTZmLI/40oSSDdV0kZu4KVH+IXTU=;
+ b=aIk/xPnRJGbvs8WW/pbryE5nyXYrxV32q9QWxWXyvNiJdzUCmtbetX0pMdJrPwLDPXagAALvt
+ gskrXgwRwvcDKdJ4nHFUnGBIb3I57Pg+AdOpk3dVby4wF8bw30972kY
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Thu, 16 Feb 2023 13:24:56 +0000
-Subject: [Intel-gfx] 2023 X.Org Board of Directors Elections Nomination
- period is NOW
+Subject: [Intel-gfx] [PATCH] drm/i915: Make kobj_type structures constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,51 +57,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are seeking nominations for candidates for election to the X.Org
-Foundation Board of Directors. All X.Org Foundation members are eligible
-for election to the board.
+Since commit ee6d3dd4ed48 ("driver core: make kobj_type constant.")
+the driver core allows the usage of const struct kobj_type.
 
-Nominations for the 2023 election are now open and will remain open
-until 23:59 UTC on 19 March 2023.
+Take advantage of this to constify the structure definitions to prevent
+modification at runtime.
 
-The Board consists of directors elected from the membership. Each year,
-an election is held to bring the total number of directors to eight. The
-four members receiving the highest vote totals will serve as directors
-for two year terms.
+Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c | 2 +-
+ drivers/gpu/drm/i915/gt/sysfs_engines.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-The directors who received two year terms starting in 2022 were Emma
-Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
-continue to serve until their term ends in 2024. Current directors whose
-term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
-Lyude Paul and Daniel Vetter.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+index 9486dd3bed99..df15b17caf89 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+@@ -71,7 +71,7 @@ static void kobj_gt_release(struct kobject *kobj)
+ {
+ }
+ 
+-static struct kobj_type kobj_gt_type = {
++static const struct kobj_type kobj_gt_type = {
+ 	.release = kobj_gt_release,
+ 	.sysfs_ops = &kobj_sysfs_ops,
+ 	.default_groups = id_groups,
+diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+index f2d9858d827c..b5e0fe5dbf6c 100644
+--- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
++++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+@@ -421,7 +421,7 @@ static void kobj_engine_release(struct kobject *kobj)
+ 	kfree(kobj);
+ }
+ 
+-static struct kobj_type kobj_engine_type = {
++static const struct kobj_type kobj_engine_type = {
+ 	.release = kobj_engine_release,
+ 	.sysfs_ops = &kobj_sysfs_ops
+ };
 
-A director is expected to participate in the fortnightly IRC meeting to
-discuss current business and to attend the annual meeting of the X.Org
-Foundation, which will be held at a location determined in advance by
-the Board of Directors.
+---
+base-commit: 033c40a89f55525139fd5b6342281b09b97d05bf
+change-id: 20230216-kobj_type-i915-886bebc36129
 
-A member may nominate themselves or any other member they feel is
-qualified. Nominations should be sent to the Election Committee at
-elections at x.org.
-
-Nominees shall be required to be current members of the X.Org
-Foundation, and submit a personal statement of up to 200 words that will
-be provided to prospective voters. The collected statements, along with
-the statement of contribution to the X.Org Foundation in the member's
-account page on http://members.x.org, will be made available to all
-voters to help them make their voting decisions.
-
-Nominations, membership applications or renewals and completed personal
-statements must be received no later than 23:59 UTC on 19 March 2023.
-
-The slate of candidates will be published 26 March 2023 and candidate
-Q&A will begin then. The deadline for Xorg membership applications and
-renewals is 26 March 2023.
-
-Cheers,
-Ricardo Garcia, on behalf of the X.Org BoD
+Best regards,
+-- 
+Thomas Weißschuh <linux@weissschuh.net>
 
