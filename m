@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F40698AB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 03:55:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8AAC698B4F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 05:08:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6EC10E30F;
-	Thu, 16 Feb 2023 02:55:20 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F6910E30D;
- Thu, 16 Feb 2023 02:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B68F10E2BB;
+	Thu, 16 Feb 2023 04:08:17 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF34810E2BB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 04:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676516117; x=1708052117;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=d7opapgYHxV0e1r4lhHkshJnywNZR/QjUzPjOtRV6Tc=;
- b=GOClUipZcBzeN3jO+UZa9wqcOVb/cgTCIXwwvWSQGItneMtP8I31bBvU
- LrIAwRNU5DirPPA6pVomNWjUsvsKOHfuN/k7i6MWBxAeBUdS8JmiwFIgi
- tURIq7lddVqdsdchBsrf37O4xsciMu2A7pAzCwnTufOCQyCGWN5iPoyso
- os9i1yDUcOGiLl1Mn3iUoMRXlvhEWgyCS4qXoTxyY9Wu3qP0v+NKDhCt7
- dvWsSytUj7xn4L16LNvuEuvksRB03Y/sg9Yhkh2KvwAQiIl+0sXddftha
- I4iAFsXkFcIEv/G7w5RCAmn5CGFxFr1GADWUo2/rILbVwtFKw6R1qOqO8 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="315281182"
-X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="315281182"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 18:55:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="663300766"
-X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="663300766"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 15 Feb 2023 18:55:14 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pSUQT-0009xh-15;
- Thu, 16 Feb 2023 02:55:13 +0000
-Date: Thu, 16 Feb 2023 10:54:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: John.C.Harrison@intel.com, Intel-GFX@lists.freedesktop.org
-Message-ID: <202302161021.TjavhrpH-lkp@intel.com>
-References: <20230216002248.1851966-3-John.C.Harrison@Intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230216002248.1851966-3-John.C.Harrison@Intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Don't use BAR mappings for
- ring buffers with LLC
+ t=1676520495; x=1708056495;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=ZYnaDKFKb69IwKuqpQfrOOLeUweXsYL1L298hEW1LkM=;
+ b=Z1Dc/bIDlK26A0nlYEasvy3Lr6elsY6+JZTA1diBkis4J/xmhSQnAlIa
+ 5sl+vxR7TzXBtQGz815IzMp4OX6el48V9tBN985+bgCKfFG64+JNaNHxC
+ bAFxdTpXMX9kfSscl10qrPFn6BgikgQiXbXQ6LP3yKJv/ux690zZ6ZCbV
+ f9JOTXtQzK0usFJMm0L49KFjtdiq8E0NcwnmVyWrb4xjcw9KywOWSVumT
+ TAzbFRhfm3tdaB9pQaiXXNP/tHwddFqMxRfh4weU44rv7Rkxw3FAI9yQG
+ UzOaNVgUZxJfkd5v4dNAXu2oxHzxQow3auA2mwwH+GOGCfUZ752T2rriG w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="417841410"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="417841410"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 20:08:15 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="843993760"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="843993760"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.251.28.186])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 20:08:14 -0800
+Date: Wed, 15 Feb 2023 19:56:38 -0800
+Message-ID: <873576ntzd.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20230215005419.2100887-2-umesh.nerlige.ramappa@intel.com>
+References: <20230215005419.2100887-1-umesh.nerlige.ramappa@intel.com>	<20230215005419.2100887-2-umesh.nerlige.ramappa@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915/perf: Drop wakeref on GuC RC
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +60,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev,
- stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- DRI-Devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lionel G Landwerlin <lionel.g.landwerlin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Tue, 14 Feb 2023 16:54:11 -0800, Umesh Nerlige Ramappa wrote:
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 824a34ec0b83..393a0da8b7c8 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -1592,9 +1592,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
+>	/*
+>	 * Wa_16011777198:dg2: Unset the override of GUCRC mode to enable rc6.
+>	 */
+> -	if (intel_uc_uses_guc_rc(&gt->uc) &&
+> -	    (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
+> -	     IS_DG2_GRAPHICS_STEP(gt->i915, G11, STEP_A0, STEP_B0)))
+> +	if (stream->override_gucrc)
+>		drm_WARN_ON(&gt->i915->drm,
+>			    intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc));
+>
+> @@ -3305,13 +3303,15 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>		if (ret) {
+>			drm_dbg(&stream->perf->i915->drm,
+>				"Unable to override gucrc mode\n");
+> -			goto err_config;
+> +			goto err_fw;
+>		}
+> +
+> +		stream->override_gucrc = true;
+>	}
+>
+>	ret = alloc_oa_buffer(stream);
+>	if (ret)
+> -		goto err_oa_buf_alloc;
+> +		goto err_gucrc;
+>
+>	stream->ops = &i915_oa_stream_ops;
+>
+> @@ -3344,12 +3344,16 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>
+>	free_oa_buffer(stream);
+>
+> -err_oa_buf_alloc:
+> -	free_oa_configs(stream);
+> +err_gucrc:
+> +	if (stream->override_gucrc)
+> +		intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc);
+>
+> +err_fw:
+>	intel_uncore_forcewake_put(stream->uncore, FORCEWAKE_ALL);
+>	intel_engine_pm_put(stream->engine);
+>
+> +	free_oa_configs(stream);
+> +
+>  err_config:
+>	free_noa_wait(stream);
 
-Thank you for the patch! Yet something to improve:
+[nice-to-have] The previous naming scheme for labels in the function is the
+place from which the goto is issued so err_fw should be named err_gucrc and
+err_gucrc should be called the preevious name err_oa_buf_alloc but
+otherwise the code seems correct so this is:
 
-[auto build test ERROR on drm-tip/drm-tip]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/John-C-Harrison-Intel-com/drm-i915-Don-t-use-stolen-memory-for-ring-buffers-with-LLC/20230216-082552
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230216002248.1851966-3-John.C.Harrison%40Intel.com
-patch subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: Don't use BAR mappings for ring buffers with LLC
-config: i386-randconfig-a011-20230213 (https://download.01.org/0day-ci/archive/20230216/202302161021.TjavhrpH-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/fa748ad303922e4138a246d4db247dfa96e45651
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review John-C-Harrison-Intel-com/drm-i915-Don-t-use-stolen-memory-for-ring-buffers-with-LLC/20230216-082552
-        git checkout fa748ad303922e4138a246d4db247dfa96e45651
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302161021.TjavhrpH-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/gt/intel_ring.c: In function 'intel_ring_unpin':
->> drivers/gpu/drm/i915/gt/intel_ring.c:103:9: error: expected '}' before 'else'
-     103 |         else
-         |         ^~~~
-
-
-vim +103 drivers/gpu/drm/i915/gt/intel_ring.c
-
-2871ea85c119e6f Chris Wilson           2019-10-24   92  
-2871ea85c119e6f Chris Wilson           2019-10-24   93  void intel_ring_unpin(struct intel_ring *ring)
-2871ea85c119e6f Chris Wilson           2019-10-24   94  {
-2871ea85c119e6f Chris Wilson           2019-10-24   95  	struct i915_vma *vma = ring->vma;
-2871ea85c119e6f Chris Wilson           2019-10-24   96  
-2871ea85c119e6f Chris Wilson           2019-10-24   97  	if (!atomic_dec_and_test(&ring->pin_count))
-2871ea85c119e6f Chris Wilson           2019-10-24   98  		return;
-2871ea85c119e6f Chris Wilson           2019-10-24   99  
-2871ea85c119e6f Chris Wilson           2019-10-24  100  	i915_vma_unset_ggtt_write(vma);
-fa748ad303922e4 Daniele Ceraolo Spurio 2023-02-15  101  	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
-2871ea85c119e6f Chris Wilson           2019-10-24  102  		i915_vma_unpin_iomap(vma);
-2871ea85c119e6f Chris Wilson           2019-10-24 @103  	else
-2871ea85c119e6f Chris Wilson           2019-10-24  104  		i915_gem_object_unpin_map(vma->obj);
-2871ea85c119e6f Chris Wilson           2019-10-24  105  
-2871ea85c119e6f Chris Wilson           2019-10-24  106  	i915_vma_make_purgeable(vma);
-a266bf420060043 Chris Wilson           2019-11-18  107  	i915_vma_unpin(vma);
-2871ea85c119e6f Chris Wilson           2019-10-24  108  }
-2871ea85c119e6f Chris Wilson           2019-10-24  109  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
