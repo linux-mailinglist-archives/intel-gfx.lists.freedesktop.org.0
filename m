@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92EE2699A25
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 17:34:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44678699A26
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 17:35:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6349110EE10;
-	Thu, 16 Feb 2023 16:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4F9410EE13;
+	Thu, 16 Feb 2023 16:34:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE4610EE0F
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 16:34:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4C110EE13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 16:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676565291; x=1708101291;
+ t=1676565295; x=1708101295;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vheF0sAtn4yS1iTYVauBJvn9k8fMmmUtmkJrSMmEIpY=;
- b=j2MLkby2UTaO4x6FjtoeB02V5NhoGvzC1og4UUMW+soIkLyX0PylX9DD
- 490NFYc9f8aY2jcL4RbbJCEA+YS8ld+RdnRU8Wl5DNtlLZtZ2taxzIktm
- lAKu4UXAj4GKrJotK0uwLrhe+uClT6jIpIvISrNzsFusmXSXgE2/msI6K
- nPooLv2PbufMUC3ECk8sBEX1SNc/HqKikObQcIj05V/TnVfhwRN0b2XgD
- fHCWOBCdXonqDNGVOA65guaVdLIUQwVK5ceva+vKpqlmde1cgrZoUDtpk
- twbmHGvSP00wYgOBUBu3MNRsw/JY11qiwvDw5rmz/N2wLs3zCzttf2fzc Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="333950342"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="333950342"
+ bh=QRsV7SvevKw0rjXKC2lubV1842FMW89lC7UO/cusdE8=;
+ b=gxrAGCsARLxw8JasYQP4iJCyKvGoYgcRmdE2Zqg7EB/wuZWydCYl+AhE
+ ixvp+mDolBReFRBRca16zsZYxanIvmMN6tA5kvRMjXFgPtp1KG368ZayQ
+ 0ez2VHfKYnx22GIPGSkiysCGAs8P9kLve/w4viVe+oPayy1TLNKiRMayc
+ CJShmnPBWsY3Wy5++MV4T0d+SEVjRf5wUjPbBr4qE+gJIhdj33dsc708h
+ Qf2kjv8X4Zsx7xV9ULBeXPPpx8H4Z4MIY9596UHmvLYSP7XJ0fP/Bp8BK
+ 9cXVFV26CRXwVbKMgXRnK9G23JYu7MhZskYJDDyGIjhvuumkJ7iqRUxKL g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="333950379"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="333950379"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 08:17:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="700548966"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="700548966"
+ 16 Feb 2023 08:17:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="700548988"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="700548988"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.155])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 08:17:50 -0800
+ 16 Feb 2023 08:17:55 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 18:17:38 +0200
-Message-Id: <20230216161739.668294-2-jani.nikula@intel.com>
+Date: Thu, 16 Feb 2023 18:17:39 +0200
+Message-Id: <20230216161739.668294-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230216161739.668294-1-jani.nikula@intel.com>
 References: <20230216161739.668294-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/3] drm/i915/dmc: add i915_to_dmc() and
- dmc->i915 and use them
+Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/dmc: allocate dmc structure
+ dynamically
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,298 +62,225 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Start preparing for dynamically allocated struct intel_dmc by adding
-i915_to_dmc() and dmc->i915, and using them.
+sizeof(struct intel_dmc) > 1024 bytes, allocated on all platforms as
+part of struct drm_i915_private, whether they have DMC or not.
+
+Allocate struct intel_dmc dynamically, and hide all the dmc details
+behind an opaque pointer in intel_dmc.c.
+
+Care must be taken to take into account all cases: DMC not supported on
+the platform, DMC supported but not initialized, and DMC initialized but
+not loaded. For the second case, we need to move the wakeref out of
+struct intel_dmc.
 
 Cc: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 90 ++++++++++++++----------
- drivers/gpu/drm/i915/display/intel_dmc.h |  1 +
- 2 files changed, 55 insertions(+), 36 deletions(-)
+ .../gpu/drm/i915/display/intel_display_core.h |  8 ++-
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 50 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dmc.h      | 34 +------------
+ .../drm/i915/display/intel_modeset_setup.c    |  1 +
+ 4 files changed, 53 insertions(+), 40 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index b870f7f47f2b..ff51149c5fcb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -19,7 +19,6 @@
+ #include "intel_cdclk.h"
+ #include "intel_display_limits.h"
+ #include "intel_display_power.h"
+-#include "intel_dmc.h"
+ #include "intel_dpll_mgr.h"
+ #include "intel_fbc.h"
+ #include "intel_global_state.h"
+@@ -40,6 +39,7 @@ struct intel_cdclk_vals;
+ struct intel_color_funcs;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_dmc;
+ struct intel_dpll_funcs;
+ struct intel_dpll_mgr;
+ struct intel_fbdev;
+@@ -340,6 +340,11 @@ struct intel_display {
+ 		spinlock_t phy_lock;
+ 	} dkl;
+ 
++	struct {
++		struct intel_dmc *dmc;
++		intel_wakeref_t wakeref;
++	} dmc;
++
+ 	struct {
+ 		/* VLV/CHV/BXT/GLK DSI MMIO register base address */
+ 		u32 mmio_base;
+@@ -467,7 +472,6 @@ struct intel_display {
+ 
+ 	/* Grouping using named structs. Keep sorted. */
+ 	struct intel_audio audio;
+-	struct intel_dmc dmc;
+ 	struct intel_dpll dpll;
+ 	struct intel_fbc *fbc[I915_MAX_FBCS];
+ 	struct intel_frontbuffer_tracking fb_tracking;
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index ab4fdedd4c5f..1d156ac2eb4c 100644
+index 1d156ac2eb4c..8428d08e0c3d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -38,6 +38,11 @@
+@@ -38,9 +38,37 @@
   * low-power state and comes back to normal.
   */
  
-+static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
-+{
-+	return &i915->display.dmc;
-+}
++enum intel_dmc_id {
++	DMC_FW_MAIN = 0,
++	DMC_FW_PIPEA,
++	DMC_FW_PIPEB,
++	DMC_FW_PIPEC,
++	DMC_FW_PIPED,
++	DMC_FW_MAX
++};
 +
++struct intel_dmc {
++	struct drm_i915_private *i915;
++	struct work_struct work;
++	const char *fw_path;
++	u32 max_fw_size; /* bytes */
++	u32 version;
++	struct dmc_fw_info {
++		u32 mmio_count;
++		i915_reg_t mmioaddr[20];
++		u32 mmiodata[20];
++		u32 dmc_offset;
++		u32 start_mmioaddr;
++		u32 dmc_fw_size; /*dwords */
++		u32 *payload;
++		bool present;
++	} dmc_info[DMC_FW_MAX];
++};
++
++/* Note: This may be NULL. */
+ static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
+ {
+-	return &i915->display.dmc;
++	return i915->display.dmc.dmc;
+ }
+ 
  #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
- #define DMC_VERSION_MAJOR(version)	((version) >> 16)
- #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
-@@ -259,7 +264,9 @@ static bool is_valid_dmc_id(enum intel_dmc_id dmc_id)
- 
- static bool has_dmc_id_fw(struct drm_i915_private *i915, enum intel_dmc_id dmc_id)
- {
--	return i915->display.dmc.dmc_info[dmc_id].payload;
-+	struct intel_dmc *dmc = i915_to_dmc(i915);
-+
-+	return dmc && dmc->dmc_info[dmc_id].payload;
- }
- 
- bool intel_dmc_has_payload(struct drm_i915_private *i915)
-@@ -450,7 +457,7 @@ void intel_dmc_disable_pipe(struct drm_i915_private *i915, enum pipe pipe)
- void intel_dmc_load_program(struct drm_i915_private *dev_priv)
- {
- 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
--	struct intel_dmc *dmc = &dev_priv->display.dmc;
-+	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
- 	enum intel_dmc_id dmc_id;
- 	u32 i;
- 
-@@ -515,8 +522,11 @@ void intel_dmc_disable_program(struct drm_i915_private *i915)
- 
- void assert_dmc_loaded(struct drm_i915_private *i915)
- {
--	drm_WARN_ONCE(&i915->drm,
--		      !intel_de_read(i915, DMC_PROGRAM(i915->display.dmc.dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)),
-+	struct intel_dmc *dmc = i915_to_dmc(i915);
-+
-+	drm_WARN_ONCE(&i915->drm, !dmc, "DMC not initialized\n");
-+	drm_WARN_ONCE(&i915->drm, dmc &&
-+		      !intel_de_read(i915, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)),
- 		      "DMC program storage start is NULL\n");
- 	drm_WARN_ONCE(&i915->drm, !intel_de_read(i915, DMC_SSP_BASE),
- 		      "DMC SSP Base Not fine\n");
-@@ -551,11 +561,10 @@ static void dmc_set_fw_offset(struct intel_dmc *dmc,
- 			      const struct stepping_info *si,
- 			      u8 package_ver)
- {
-+	struct drm_i915_private *i915 = dmc->i915;
- 	enum intel_dmc_id dmc_id;
- 	unsigned int i;
- 
--	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), display.dmc);
--
- 	for (i = 0; i < num_entries; i++) {
- 		dmc_id = package_ver <= 1 ? DMC_FW_MAIN : fw_info[i].dmc_id;
- 
-@@ -582,7 +591,7 @@ static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc,
- 				       const u32 *mmioaddr, u32 mmio_count,
- 				       int header_ver, enum intel_dmc_id dmc_id)
- {
--	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), display.dmc);
-+	struct drm_i915_private *i915 = dmc->i915;
- 	u32 start_range, end_range;
- 	int i;
- 
-@@ -615,7 +624,7 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 			       const struct intel_dmc_header_base *dmc_header,
- 			       size_t rem_size, enum intel_dmc_id dmc_id)
- {
--	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), display.dmc);
-+	struct drm_i915_private *i915 = dmc->i915;
- 	struct dmc_fw_info *dmc_info = &dmc->dmc_info[dmc_id];
- 	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
- 	const u32 *mmioaddr, *mmiodata;
-@@ -726,7 +735,7 @@ parse_dmc_fw_package(struct intel_dmc *dmc,
- 		     const struct stepping_info *si,
- 		     size_t rem_size)
- {
--	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), display.dmc);
-+	struct drm_i915_private *i915 = dmc->i915;
- 	u32 package_size = sizeof(struct intel_package_header);
- 	u32 num_entries, max_entries;
- 	const struct intel_fw_info *fw_info;
-@@ -780,7 +789,7 @@ static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
- 			    struct intel_css_header *css_header,
- 			    size_t rem_size)
- {
--	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), display.dmc);
-+	struct drm_i915_private *i915 = dmc->i915;
- 
- 	if (rem_size < sizeof(struct intel_css_header)) {
- 		drm_err(&i915->drm, "Truncated DMC firmware, refusing.\n");
-@@ -800,13 +809,12 @@ static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
- 	return sizeof(struct intel_css_header);
- }
- 
--static void parse_dmc_fw(struct drm_i915_private *dev_priv,
--			 const struct firmware *fw)
-+static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
- {
-+	struct drm_i915_private *dev_priv = dmc->i915;
- 	struct intel_css_header *css_header;
- 	struct intel_package_header *package_header;
- 	struct intel_dmc_header_base *dmc_header;
--	struct intel_dmc *dmc = &dev_priv->display.dmc;
- 	struct stepping_info display_info = { '*', '*'};
- 	const struct stepping_info *si = intel_get_stepping_info(dev_priv, &display_info);
- 	enum intel_dmc_id dmc_id;
-@@ -833,7 +841,7 @@ static void parse_dmc_fw(struct drm_i915_private *dev_priv,
- 	readcount += r;
- 
- 	for_each_dmc_id(dmc_id) {
--		if (!dev_priv->display.dmc.dmc_info[dmc_id].present)
-+		if (!dmc->dmc_info[dmc_id].present)
- 			continue;
- 
- 		offset = readcount + dmc->dmc_info[dmc_id].dmc_offset * 4;
-@@ -872,16 +880,13 @@ static const char *dmc_fallback_path(struct drm_i915_private *i915)
- 
- static void dmc_load_work_fn(struct work_struct *work)
- {
--	struct drm_i915_private *dev_priv;
--	struct intel_dmc *dmc;
-+	struct intel_dmc *dmc = container_of(work, typeof(*dmc), work);
-+	struct drm_i915_private *dev_priv = dmc->i915;
- 	const struct firmware *fw = NULL;
- 	const char *fallback_path;
- 	int err;
- 
--	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
--	dmc = &dev_priv->display.dmc;
--
--	err = request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-+	err = request_firmware(&fw, dmc->fw_path, dev_priv->drm.dev);
- 
- 	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
- 		fallback_path = dmc_fallback_path(dev_priv);
-@@ -892,11 +897,11 @@ static void dmc_load_work_fn(struct work_struct *work)
- 				    fallback_path);
- 			err = request_firmware(&fw, fallback_path, dev_priv->drm.dev);
- 			if (err == 0)
--				dev_priv->display.dmc.fw_path = fallback_path;
-+				dmc->fw_path = fallback_path;
- 		}
- 	}
- 
--	parse_dmc_fw(dev_priv, fw);
-+	parse_dmc_fw(dmc, fw);
- 
- 	if (intel_dmc_has_payload(dev_priv)) {
- 		intel_dmc_load_program(dev_priv);
-@@ -904,7 +909,7 @@ static void dmc_load_work_fn(struct work_struct *work)
- 
- 		drm_info(&dev_priv->drm,
- 			 "Finished loading DMC firmware %s (v%u.%u)\n",
--			 dev_priv->display.dmc.fw_path, DMC_VERSION_MAJOR(dmc->version),
-+			 dmc->fw_path, DMC_VERSION_MAJOR(dmc->version),
- 			 DMC_VERSION_MINOR(dmc->version));
- 	} else {
- 		drm_notice(&dev_priv->drm,
-@@ -927,13 +932,16 @@ static void dmc_load_work_fn(struct work_struct *work)
-  */
- void intel_dmc_init(struct drm_i915_private *dev_priv)
- {
--	struct intel_dmc *dmc = &dev_priv->display.dmc;
--
--	INIT_WORK(&dev_priv->display.dmc.work, dmc_load_work_fn);
-+	struct intel_dmc *dmc;
- 
+@@ -937,7 +965,10 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
  	if (!HAS_DMC(dev_priv))
  		return;
  
-+	dmc = i915_to_dmc(dev_priv);
-+	dmc->i915 = dev_priv;
+-	dmc = i915_to_dmc(dev_priv);
++	dmc = kzalloc(sizeof(*dmc), GFP_KERNEL);
++	if (!dmc)
++		return;
 +
-+	INIT_WORK(&dmc->work, dmc_load_work_fn);
-+
- 	/*
- 	 * Obtain a runtime pm reference, until DMC is loaded, to avoid entering
- 	 * runtime-suspend.
-@@ -999,7 +1007,7 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+ 	dmc->i915 = dev_priv;
+ 
+ 	INIT_WORK(&dmc->work, dmc_load_work_fn);
+@@ -991,10 +1022,9 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+ 
+ 	if (dev_priv->params.dmc_firmware_path) {
+ 		if (strlen(dev_priv->params.dmc_firmware_path) == 0) {
+-			dmc->fw_path = NULL;
+ 			drm_info(&dev_priv->drm,
+ 				 "Disabling DMC firmware and runtime PM\n");
+-			return;
++			goto out;
+ 		}
+ 
+ 		dmc->fw_path = dev_priv->params.dmc_firmware_path;
+@@ -1003,11 +1033,18 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+ 	if (!dmc->fw_path) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "No known DMC firmware for platform, disabling runtime PM\n");
+-		return;
++		goto out;
  	}
  
++	dev_priv->display.dmc.dmc = dmc;
++
  	drm_dbg_kms(&dev_priv->drm, "Loading %s\n", dmc->fw_path);
--	schedule_work(&dev_priv->display.dmc.work);
-+	schedule_work(&dmc->work);
+ 	schedule_work(&dmc->work);
++
++	return;
++
++out:
++	kfree(dmc);
  }
  
  /**
-@@ -1012,10 +1020,13 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
-  */
- void intel_dmc_suspend(struct drm_i915_private *dev_priv)
- {
-+	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
+@@ -1074,6 +1111,9 @@ void intel_dmc_fini(struct drm_i915_private *dev_priv)
+ 	if (dmc) {
+ 		for_each_dmc_id(dmc_id)
+ 			kfree(dmc->dmc_info[dmc_id].payload);
 +
- 	if (!HAS_DMC(dev_priv))
- 		return;
- 
--	flush_work(&dev_priv->display.dmc.work);
-+	if (dmc)
-+		flush_work(&dmc->work);
- 
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!intel_dmc_has_payload(dev_priv))
-@@ -1051,6 +1062,7 @@ void intel_dmc_resume(struct drm_i915_private *dev_priv)
-  */
- void intel_dmc_fini(struct drm_i915_private *dev_priv)
- {
-+	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
- 	enum intel_dmc_id dmc_id;
- 
- 	if (!HAS_DMC(dev_priv))
-@@ -1059,36 +1071,42 @@ void intel_dmc_fini(struct drm_i915_private *dev_priv)
- 	intel_dmc_suspend(dev_priv);
- 	drm_WARN_ON(&dev_priv->drm, dev_priv->display.dmc.wakeref);
- 
--	for_each_dmc_id(dmc_id)
--		kfree(dev_priv->display.dmc.dmc_info[dmc_id].payload);
-+	if (dmc) {
-+		for_each_dmc_id(dmc_id)
-+			kfree(dmc->dmc_info[dmc_id].payload);
-+	}
++		kfree(dmc);
++		dev_priv->display.dmc.dmc = NULL;
+ 	}
  }
- 
- void intel_dmc_print_error_state(struct drm_i915_error_state_buf *m,
- 				 struct drm_i915_private *i915)
- {
--	struct intel_dmc *dmc = &i915->display.dmc;
-+	struct intel_dmc *dmc = i915_to_dmc(i915);
- 
- 	if (!HAS_DMC(i915))
- 		return;
- 
-+	i915_error_printf(m, "DMC initialized: %s\n", str_yes_no(dmc));
- 	i915_error_printf(m, "DMC loaded: %s\n",
- 			  str_yes_no(intel_dmc_has_payload(i915)));
--	i915_error_printf(m, "DMC fw version: %d.%d\n",
--			  DMC_VERSION_MAJOR(dmc->version),
--			  DMC_VERSION_MINOR(dmc->version));
-+	if (dmc)
-+		i915_error_printf(m, "DMC fw version: %d.%d\n",
-+				  DMC_VERSION_MAJOR(dmc->version),
-+				  DMC_VERSION_MINOR(dmc->version));
- }
- 
- static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *i915 = m->private;
-+	struct intel_dmc *dmc = i915_to_dmc(i915);
- 	intel_wakeref_t wakeref;
--	struct intel_dmc *dmc;
- 	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
- 
- 	if (!HAS_DMC(i915))
- 		return -ENODEV;
- 
--	dmc = &i915->display.dmc;
-+	seq_printf(m, "DMC initialized: %s\n", str_yes_no(dmc));
-+	if (!dmc)
-+		return 0;
- 
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
  
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index 90910cecc2f6..b74635497aa7 100644
+index b74635497aa7..fd607afff2ef 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.h
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -25,6 +25,7 @@ enum intel_dmc_id {
- };
+@@ -6,44 +6,12 @@
+ #ifndef __INTEL_DMC_H__
+ #define __INTEL_DMC_H__
  
- struct intel_dmc {
-+	struct drm_i915_private *i915;
- 	struct work_struct work;
- 	const char *fw_path;
- 	u32 max_fw_size; /* bytes */
+-#include "i915_reg_defs.h"
+-#include "intel_wakeref.h"
+-#include <linux/workqueue.h>
++#include <linux/types.h>
+ 
+ struct drm_i915_error_state_buf;
+ struct drm_i915_private;
+-
+ enum pipe;
+ 
+-enum intel_dmc_id {
+-	DMC_FW_MAIN = 0,
+-	DMC_FW_PIPEA,
+-	DMC_FW_PIPEB,
+-	DMC_FW_PIPEC,
+-	DMC_FW_PIPED,
+-	DMC_FW_MAX
+-};
+-
+-struct intel_dmc {
+-	struct drm_i915_private *i915;
+-	struct work_struct work;
+-	const char *fw_path;
+-	u32 max_fw_size; /* bytes */
+-	u32 version;
+-	struct dmc_fw_info {
+-		u32 mmio_count;
+-		i915_reg_t mmioaddr[20];
+-		u32 mmiodata[20];
+-		u32 dmc_offset;
+-		u32 start_mmioaddr;
+-		u32 dmc_fw_size; /*dwords */
+-		u32 *payload;
+-		bool present;
+-	} dmc_info[DMC_FW_MAX];
+-
+-	intel_wakeref_t wakeref;
+-};
+-
+ void intel_dmc_init(struct drm_i915_private *i915);
+ void intel_dmc_load_program(struct drm_i915_private *i915);
+ void intel_dmc_disable_program(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 5359b9663a07..42bfd56fcbe4 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -22,6 +22,7 @@
+ #include "intel_display.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
++#include "intel_dmc.h"
+ #include "intel_modeset_setup.h"
+ #include "intel_pch_display.h"
+ #include "intel_pm.h"
 -- 
 2.34.1
 
