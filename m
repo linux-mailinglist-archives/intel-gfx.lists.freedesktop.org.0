@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44678699A26
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 17:35:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504906999FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 17:28:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4F9410EE13;
-	Thu, 16 Feb 2023 16:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51C1010EE02;
+	Thu, 16 Feb 2023 16:28:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4C110EE13
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 16:34:55 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD17A10EDF0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 16:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676565295; x=1708101295;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QRsV7SvevKw0rjXKC2lubV1842FMW89lC7UO/cusdE8=;
- b=gxrAGCsARLxw8JasYQP4iJCyKvGoYgcRmdE2Zqg7EB/wuZWydCYl+AhE
- ixvp+mDolBReFRBRca16zsZYxanIvmMN6tA5kvRMjXFgPtp1KG368ZayQ
- 0ez2VHfKYnx22GIPGSkiysCGAs8P9kLve/w4viVe+oPayy1TLNKiRMayc
- CJShmnPBWsY3Wy5++MV4T0d+SEVjRf5wUjPbBr4qE+gJIhdj33dsc708h
- Qf2kjv8X4Zsx7xV9ULBeXPPpx8H4Z4MIY9596UHmvLYSP7XJ0fP/Bp8BK
- 9cXVFV26CRXwVbKMgXRnK9G23JYu7MhZskYJDDyGIjhvuumkJ7iqRUxKL g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="333950379"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="333950379"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 08:17:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="700548988"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="700548988"
+ t=1676564880; x=1708100880;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6uq88C/rh4g6QZbu4ReuIWhS1F1OhGbO0+0nVzlJKTc=;
+ b=Nhxgq1FSIGIagp7rXV9Cp35ioVMil8cEWbHyek1DwmLndppOM+tGpj3A
+ A5ND/1x9XRo3orjVcGFpIDKxUVXsjb5+/OIDnBGh05ZSVr1w3qUisRUub
+ Nr82L4K/KZQFzryjnBqcl7zg7lPpMZ6m8xjsCBpBtZ9W/D8HIgmuJexqX
+ 1E24kPY1G7LRTqk0EMcT/Qz/hE5vZBhYf8PKBye7taPGw4moQmjQZvKdG
+ 9iykKMT9RAr7svayp6cRrtfsnvRYW9pelrtUNNS6jKLhoi0FS9FkFhDLy
+ 47dghHnp+CgPDQIBiD8ec5YY44GR0F3g0voCg51NnKH6P1aEgqJoCbTn+ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="312122533"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="312122533"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 08:27:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="758987945"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="758987945"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.155])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 08:17:55 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 18:17:39 +0200
-Message-Id: <20230216161739.668294-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230216161739.668294-1-jani.nikula@intel.com>
-References: <20230216161739.668294-1-jani.nikula@intel.com>
-MIME-Version: 1.0
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 08:27:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>
+In-Reply-To: <Y7cywxMBJPmR/Vfj@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/dmc: allocate dmc structure
- dynamically
+References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
+ <20230105131046.2173431-2-andrzej.hajda@intel.com>
+ <Y7cywxMBJPmR/Vfj@intel.com>
+Date: Thu, 16 Feb 2023 18:27:20 +0200
+Message-ID: <87v8k1zic7.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm/i915/display/power: use
+ intel_de_rmw if possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,229 +60,355 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-sizeof(struct intel_dmc) > 1024 bytes, allocated on all platforms as
-part of struct drm_i915_private, whether they have DMC or not.
+On Thu, 05 Jan 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Jan 05, 2023 at 02:10:39PM +0100, Andrzej Hajda wrote:
+>> The helper makes the code more compact and readable.
+>> 
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_display_power.c    | 49 ++++-------
+>>  .../i915/display/intel_display_power_well.c   | 82 ++++++-------------
+>>  2 files changed, 39 insertions(+), 92 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> index 1a23ecd4623a53..90d7a623d6e3cc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> @@ -1260,9 +1260,7 @@ static void hsw_disable_lcpll(struct drm_i915_private *dev_priv,
+>>  		drm_err(&dev_priv->drm, "D_COMP RCOMP still in progress\n");
+>>  
+>>  	if (allow_power_down) {
+>> -		val = intel_de_read(dev_priv, LCPLL_CTL);
+>> -		val |= LCPLL_POWER_DOWN_ALLOW;
+>> -		intel_de_write(dev_priv, LCPLL_CTL, val);
+>> +		intel_de_rmw(dev_priv, LCPLL_CTL, 0, LCPLL_POWER_DOWN_ALLOW);
+>>  		intel_de_posting_read(dev_priv, LCPLL_CTL);
+>>  	}
+>>  }
+>> @@ -1306,9 +1304,7 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+>>  		drm_err(&dev_priv->drm, "LCPLL not locked yet\n");
+>>  
+>>  	if (val & LCPLL_CD_SOURCE_FCLK) {
+>> -		val = intel_de_read(dev_priv, LCPLL_CTL);
+>> -		val &= ~LCPLL_CD_SOURCE_FCLK;
+>> -		intel_de_write(dev_priv, LCPLL_CTL, val);
+>> +		intel_de_rmw(dev_priv, LCPLL_CTL, LCPLL_CD_SOURCE_FCLK, 0);
+>>  
+>>  		if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
+>>  				 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+>> @@ -1347,15 +1343,11 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+>>   */
+>>  static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+>>  {
+>> -	u32 val;
+>> -
+>>  	drm_dbg_kms(&dev_priv->drm, "Enabling package C8+\n");
+>>  
+>> -	if (HAS_PCH_LPT_LP(dev_priv)) {
+>> -		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+>> -		val &= ~PCH_LP_PARTITION_LEVEL_DISABLE;
+>> -		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+>> -	}
+>> +	if (HAS_PCH_LPT_LP(dev_priv))
+>> +		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
+>> +			     PCH_LP_PARTITION_LEVEL_DISABLE, 0);
+>>  
+>>  	lpt_disable_clkout_dp(dev_priv);
+>>  	hsw_disable_lcpll(dev_priv, true, true);
+>> @@ -1363,25 +1355,21 @@ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+>>  
+>>  static void hsw_disable_pc8(struct drm_i915_private *dev_priv)
+>>  {
+>> -	u32 val;
+>> -
+>>  	drm_dbg_kms(&dev_priv->drm, "Disabling package C8+\n");
+>>  
+>>  	hsw_restore_lcpll(dev_priv);
+>>  	intel_init_pch_refclk(dev_priv);
+>>  
+>> -	if (HAS_PCH_LPT_LP(dev_priv)) {
+>> -		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+>> -		val |= PCH_LP_PARTITION_LEVEL_DISABLE;
+>> -		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+>> -	}
+>> +	if (HAS_PCH_LPT_LP(dev_priv))
+>> +		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
+>> +			     0, PCH_LP_PARTITION_LEVEL_DISABLE);
+>>  }
+>>  
+>>  static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+>>  				      bool enable)
+>>  {
+>>  	i915_reg_t reg;
+>> -	u32 reset_bits, val;
+>> +	u32 reset_bits;
+>>  
+>>  	if (IS_IVYBRIDGE(dev_priv)) {
+>>  		reg = GEN7_MSG_CTL;
+>> @@ -1394,14 +1382,7 @@ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+>>  	if (DISPLAY_VER(dev_priv) >= 14)
+>>  		reset_bits |= MTL_RESET_PICA_HANDSHAKE_EN;
+>>  
+>> -	val = intel_de_read(dev_priv, reg);
+>> -
+>> -	if (enable)
+>> -		val |= reset_bits;
+>> -	else
+>> -		val &= ~reset_bits;
+>> -
+>> -	intel_de_write(dev_priv, reg, val);
+>> +	intel_de_rmw(dev_priv, reg, reset_bits, enable ? reset_bits : 0);
+>
+> I believe we have a risk here since we were only cleaning if not enable.
+> But anyway this looks the right thing to do here...
+>
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Allocate struct intel_dmc dynamically, and hide all the dmc details
-behind an opaque pointer in intel_dmc.c.
+Pushed everything else in the series *except* this one, because there
+was a minor conflict. Please rebase and resend.
 
-Care must be taken to take into account all cases: DMC not supported on
-the platform, DMC supported but not initialized, and DMC initialized but
-not loaded. For the second case, we need to move the wakeref out of
-struct intel_dmc.
+Sorry for the delay, and thanks for the patches and review.
 
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  8 ++-
- drivers/gpu/drm/i915/display/intel_dmc.c      | 50 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_dmc.h      | 34 +------------
- .../drm/i915/display/intel_modeset_setup.c    |  1 +
- 4 files changed, 53 insertions(+), 40 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index b870f7f47f2b..ff51149c5fcb 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -19,7 +19,6 @@
- #include "intel_cdclk.h"
- #include "intel_display_limits.h"
- #include "intel_display_power.h"
--#include "intel_dmc.h"
- #include "intel_dpll_mgr.h"
- #include "intel_fbc.h"
- #include "intel_global_state.h"
-@@ -40,6 +39,7 @@ struct intel_cdclk_vals;
- struct intel_color_funcs;
- struct intel_crtc;
- struct intel_crtc_state;
-+struct intel_dmc;
- struct intel_dpll_funcs;
- struct intel_dpll_mgr;
- struct intel_fbdev;
-@@ -340,6 +340,11 @@ struct intel_display {
- 		spinlock_t phy_lock;
- 	} dkl;
- 
-+	struct {
-+		struct intel_dmc *dmc;
-+		intel_wakeref_t wakeref;
-+	} dmc;
-+
- 	struct {
- 		/* VLV/CHV/BXT/GLK DSI MMIO register base address */
- 		u32 mmio_base;
-@@ -467,7 +472,6 @@ struct intel_display {
- 
- 	/* Grouping using named structs. Keep sorted. */
- 	struct intel_audio audio;
--	struct intel_dmc dmc;
- 	struct intel_dpll dpll;
- 	struct intel_fbc *fbc[I915_MAX_FBCS];
- 	struct intel_frontbuffer_tracking fb_tracking;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 1d156ac2eb4c..8428d08e0c3d 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -38,9 +38,37 @@
-  * low-power state and comes back to normal.
-  */
- 
-+enum intel_dmc_id {
-+	DMC_FW_MAIN = 0,
-+	DMC_FW_PIPEA,
-+	DMC_FW_PIPEB,
-+	DMC_FW_PIPEC,
-+	DMC_FW_PIPED,
-+	DMC_FW_MAX
-+};
-+
-+struct intel_dmc {
-+	struct drm_i915_private *i915;
-+	struct work_struct work;
-+	const char *fw_path;
-+	u32 max_fw_size; /* bytes */
-+	u32 version;
-+	struct dmc_fw_info {
-+		u32 mmio_count;
-+		i915_reg_t mmioaddr[20];
-+		u32 mmiodata[20];
-+		u32 dmc_offset;
-+		u32 start_mmioaddr;
-+		u32 dmc_fw_size; /*dwords */
-+		u32 *payload;
-+		bool present;
-+	} dmc_info[DMC_FW_MAX];
-+};
-+
-+/* Note: This may be NULL. */
- static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
- {
--	return &i915->display.dmc;
-+	return i915->display.dmc.dmc;
- }
- 
- #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
-@@ -937,7 +965,10 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
- 	if (!HAS_DMC(dev_priv))
- 		return;
- 
--	dmc = i915_to_dmc(dev_priv);
-+	dmc = kzalloc(sizeof(*dmc), GFP_KERNEL);
-+	if (!dmc)
-+		return;
-+
- 	dmc->i915 = dev_priv;
- 
- 	INIT_WORK(&dmc->work, dmc_load_work_fn);
-@@ -991,10 +1022,9 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
- 
- 	if (dev_priv->params.dmc_firmware_path) {
- 		if (strlen(dev_priv->params.dmc_firmware_path) == 0) {
--			dmc->fw_path = NULL;
- 			drm_info(&dev_priv->drm,
- 				 "Disabling DMC firmware and runtime PM\n");
--			return;
-+			goto out;
- 		}
- 
- 		dmc->fw_path = dev_priv->params.dmc_firmware_path;
-@@ -1003,11 +1033,18 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
- 	if (!dmc->fw_path) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "No known DMC firmware for platform, disabling runtime PM\n");
--		return;
-+		goto out;
- 	}
- 
-+	dev_priv->display.dmc.dmc = dmc;
-+
- 	drm_dbg_kms(&dev_priv->drm, "Loading %s\n", dmc->fw_path);
- 	schedule_work(&dmc->work);
-+
-+	return;
-+
-+out:
-+	kfree(dmc);
- }
- 
- /**
-@@ -1074,6 +1111,9 @@ void intel_dmc_fini(struct drm_i915_private *dev_priv)
- 	if (dmc) {
- 		for_each_dmc_id(dmc_id)
- 			kfree(dmc->dmc_info[dmc_id].payload);
-+
-+		kfree(dmc);
-+		dev_priv->display.dmc.dmc = NULL;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index b74635497aa7..fd607afff2ef 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -6,44 +6,12 @@
- #ifndef __INTEL_DMC_H__
- #define __INTEL_DMC_H__
- 
--#include "i915_reg_defs.h"
--#include "intel_wakeref.h"
--#include <linux/workqueue.h>
-+#include <linux/types.h>
- 
- struct drm_i915_error_state_buf;
- struct drm_i915_private;
--
- enum pipe;
- 
--enum intel_dmc_id {
--	DMC_FW_MAIN = 0,
--	DMC_FW_PIPEA,
--	DMC_FW_PIPEB,
--	DMC_FW_PIPEC,
--	DMC_FW_PIPED,
--	DMC_FW_MAX
--};
--
--struct intel_dmc {
--	struct drm_i915_private *i915;
--	struct work_struct work;
--	const char *fw_path;
--	u32 max_fw_size; /* bytes */
--	u32 version;
--	struct dmc_fw_info {
--		u32 mmio_count;
--		i915_reg_t mmioaddr[20];
--		u32 mmiodata[20];
--		u32 dmc_offset;
--		u32 start_mmioaddr;
--		u32 dmc_fw_size; /*dwords */
--		u32 *payload;
--		bool present;
--	} dmc_info[DMC_FW_MAX];
--
--	intel_wakeref_t wakeref;
--};
--
- void intel_dmc_init(struct drm_i915_private *i915);
- void intel_dmc_load_program(struct drm_i915_private *i915);
- void intel_dmc_disable_program(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 5359b9663a07..42bfd56fcbe4 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -22,6 +22,7 @@
- #include "intel_display.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
-+#include "intel_dmc.h"
- #include "intel_modeset_setup.h"
- #include "intel_pch_display.h"
- #include "intel_pm.h"
+
+
+>
+>
+>>  }
+>>  
+>>  static void skl_display_core_init(struct drm_i915_private *dev_priv,
+>> @@ -1618,7 +1599,6 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+>>  {
+>>  	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+>>  	struct i915_power_well *well;
+>> -	u32 val;
+>>  
+>>  	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+>>  
+>> @@ -1670,11 +1650,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+>>  		intel_dmc_load_program(dev_priv);
+>>  
+>>  	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p */
+>> -	if (DISPLAY_VER(dev_priv) >= 12) {
+>> -		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+>> -		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
+>> -		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0, val);
+>> -	}
+>> +	if (DISPLAY_VER(dev_priv) >= 12)
+>> +		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
+>> +			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+>> +			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
+>>  
+>>  	/* Wa_14011503030:xelpd */
+>>  	if (DISPLAY_VER(dev_priv) >= 13)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> index 8710dd41ffd4c6..05b431f968cb49 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> @@ -333,7 +333,6 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+>>  {
+>>  	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+>>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+>> -	u32 val;
+>>  
+>>  	if (power_well->desc->has_fuses) {
+>>  		enum skl_power_gate pg;
+>> @@ -356,9 +355,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+>>  			gen9_wait_for_power_well_fuses(dev_priv, SKL_PG0);
+>>  	}
+>>  
+>> -	val = intel_de_read(dev_priv, regs->driver);
+>> -	intel_de_write(dev_priv, regs->driver,
+>> -		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
+>> +	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+>>  
+>>  	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+>>  
+>> @@ -380,14 +377,11 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
+>>  {
+>>  	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+>>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+>> -	u32 val;
+>>  
+>>  	hsw_power_well_pre_disable(dev_priv,
+>>  				   power_well->desc->irq_pipe_mask);
+>>  
+>> -	val = intel_de_read(dev_priv, regs->driver);
+>> -	intel_de_write(dev_priv, regs->driver,
+>> -		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
+>> +	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+>>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>>  }
+>>  
+>> @@ -398,29 +392,22 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>>  	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+>>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+>>  	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>> -	u32 val;
+>>  
+>>  	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+>>  
+>> -	val = intel_de_read(dev_priv, regs->driver);
+>> -	intel_de_write(dev_priv, regs->driver,
+>> -		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
+>> +	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+>>  
+>> -	if (DISPLAY_VER(dev_priv) < 12) {
+>> -		val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+>> -		intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+>> -			       val | ICL_LANE_ENABLE_AUX);
+>> -	}
+>> +	if (DISPLAY_VER(dev_priv) < 12)
+>> +		intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy),
+>> +			     0, ICL_LANE_ENABLE_AUX);
+>>  
+>>  	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+>>  
+>>  	/* Display WA #1178: icl */
+>>  	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
+>> -	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
+>> -		val = intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
+>> -		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
+>> -		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
+>> -	}
+>> +	    !intel_bios_is_port_edp(dev_priv, (enum port)phy))
+>> +		intel_de_rmw(dev_priv, ICL_AUX_ANAOVRD1(pw_idx),
+>> +			     0, ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS);
+>>  }
+>>  
+>>  static void
+>> @@ -430,17 +417,12 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>>  	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+>>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+>>  	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>> -	u32 val;
+>>  
+>>  	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+>>  
+>> -	val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+>> -	intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+>> -		       val & ~ICL_LANE_ENABLE_AUX);
+>> +	intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy), ICL_LANE_ENABLE_AUX, 0);
+>>  
+>> -	val = intel_de_read(dev_priv, regs->driver);
+>> -	intel_de_write(dev_priv, regs->driver,
+>> -		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
+>> +	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+>>  
+>>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>>  }
+>> @@ -502,19 +484,15 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>>  	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+>>  	bool is_tbt = power_well->desc->is_tc_tbt;
+>>  	bool timeout_expected;
+>> -	u32 val;
+>>  
+>>  	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+>>  
+>> -	val = intel_de_read(dev_priv, DP_AUX_CH_CTL(aux_ch));
+>> -	val &= ~DP_AUX_CH_CTL_TBT_IO;
+>> -	if (is_tbt)
+>> -		val |= DP_AUX_CH_CTL_TBT_IO;
+>> -	intel_de_write(dev_priv, DP_AUX_CH_CTL(aux_ch), val);
+>> +	intel_de_rmw(dev_priv, DP_AUX_CH_CTL(aux_ch),
+>> +		     DP_AUX_CH_CTL_TBT_IO, is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
+>>  
+>> -	val = intel_de_read(dev_priv, regs->driver);
+>> -	intel_de_write(dev_priv, regs->driver,
+>> -		       val | HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
+>> +	intel_de_rmw(dev_priv, regs->driver,
+>> +		     0,
+>> +		     HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
+>>  
+>>  	/*
+>>  	 * An AUX timeout is expected if the TBT DP tunnel is down,
+>> @@ -776,12 +754,8 @@ static void tgl_enable_dc3co(struct drm_i915_private *dev_priv)
+>>  
+>>  static void tgl_disable_dc3co(struct drm_i915_private *dev_priv)
+>>  {
+>> -	u32 val;
+>> -
+>>  	drm_dbg_kms(&dev_priv->drm, "Disabling DC3CO\n");
+>> -	val = intel_de_read(dev_priv, DC_STATE_EN);
+>> -	val &= ~DC_STATE_DC3CO_STATUS;
+>> -	intel_de_write(dev_priv, DC_STATE_EN, val);
+>> +	intel_de_rmw(dev_priv, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
+>>  	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+>>  	/*
+>>  	 * Delay of 200us DC3CO Exit time B.Spec 49196
+>> @@ -820,8 +794,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
+>>  
+>>  	/* Wa Display #1183: skl,kbl,cfl */
+>>  	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+>> -		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+>> -			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
+>> +		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
+>> +			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+>>  
+>>  	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
+>>  }
+>> @@ -847,8 +821,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
+>>  
+>>  	/* Wa Display #1183: skl,kbl,cfl */
+>>  	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+>> -		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+>> -			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
+>> +		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
+>> +			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+>>  
+>>  	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
+>>  }
+>> @@ -1149,18 +1123,14 @@ static bool vlv_power_well_enabled(struct drm_i915_private *dev_priv,
+>>  
+>>  static void vlv_init_display_clock_gating(struct drm_i915_private *dev_priv)
+>>  {
+>> -	u32 val;
+>> -
+>>  	/*
+>>  	 * On driver load, a pipe may be active and driving a DSI display.
+>>  	 * Preserve DPOUNIT_CLOCK_GATE_DISABLE to avoid the pipe getting stuck
+>>  	 * (and never recovering) in this case. intel_dsi_post_disable() will
+>>  	 * clear it when we turn off the display.
+>>  	 */
+>> -	val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
+>> -	val &= DPOUNIT_CLOCK_GATE_DISABLE;
+>> -	val |= VRHUNIT_CLOCK_GATE_DISABLE;
+>> -	intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
+>> +	intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
+>> +		     ~DPOUNIT_CLOCK_GATE_DISABLE, VRHUNIT_CLOCK_GATE_DISABLE);
+>>  
+>>  	/*
+>>  	 * Disable trickle feed and enable pnd deadline calculation
+>> @@ -1276,8 +1246,7 @@ static void vlv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+>>  	 * both PLLs disabled, or we risk losing DPIO and PLL
+>>  	 * synchronization.
+>>  	 */
+>> -	intel_de_write(dev_priv, DPIO_CTL,
+>> -		       intel_de_read(dev_priv, DPIO_CTL) | DPIO_CMNRST);
+>> +	intel_de_rmw(dev_priv, DPIO_CTL, 0, DPIO_CMNRST);
+>>  }
+>>  
+>>  static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+>> @@ -1289,8 +1258,7 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+>>  		assert_pll_disabled(dev_priv, pipe);
+>>  
+>>  	/* Assert common reset */
+>> -	intel_de_write(dev_priv, DPIO_CTL,
+>> -		       intel_de_read(dev_priv, DPIO_CTL) & ~DPIO_CMNRST);
+>> +	intel_de_rmw(dev_priv, DPIO_CTL, DPIO_CMNRST, 0);
+>>  
+>>  	vlv_set_power_well(dev_priv, power_well, false);
+>>  }
+>> -- 
+>> 2.34.1
+>> 
+
 -- 
-2.34.1
-
+Jani Nikula, Intel Open Source Graphics Center
