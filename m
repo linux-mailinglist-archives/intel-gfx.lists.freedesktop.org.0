@@ -2,55 +2,131 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA99A69969C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 15:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F4469970F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 15:19:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6A6D10ED7E;
-	Thu, 16 Feb 2023 14:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50D2410ED7E;
+	Thu, 16 Feb 2023 14:19:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7833410E30E;
- Thu, 16 Feb 2023 14:06:23 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3670122365;
- Thu, 16 Feb 2023 14:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1676556382; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=hS7qvXtpo1Ba5h/0QjOYVZ9usgy4SFdpWrd3thmWU3k=;
- b=KshOud0Skj64WdBjDXfEMuJMKWxD7vsQCDmy5ZGfPoHNepAk6MR3RXeggbMmi/e8/PGno2
- 2iIIz3JyMT1juA8s3xIyRFqMSM+RkFmRzn0lQ5kw8/6N9A6rndGx0UajUrfcwy+8Mn+Vhh
- 4i50+MCwWPbLXDxWJ1GimsUaZQsIMOM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1676556382;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=hS7qvXtpo1Ba5h/0QjOYVZ9usgy4SFdpWrd3thmWU3k=;
- b=Fy7nhs8Ft4rIvOcjGQgTOq/TIU5lZU+9eeaNgXWZURSuEj/Qjr6j5kvtJiTk46lqgYiFou
- ZJ27DUX6IXXW73DQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E4C51131FD;
- Thu, 16 Feb 2023 14:06:21 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 1aEYN1047mMGbQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 16 Feb 2023 14:06:21 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: javierm@redhat.com, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org
-Date: Thu, 16 Feb 2023 15:06:20 +0100
-Message-Id: <20230216140620.17699-1-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.39.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2683610ED73;
+ Thu, 16 Feb 2023 14:19:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676557188; x=1708093188;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=cjNx7CfLydnXZfaW//Q7IX829ZlEDo7ukiGXeX/EBQ8=;
+ b=cpzebRr64ySdLGbJa6JOjY8ilcd6sxhDsf5gQn86UjJ7fwN8+OY1ALFP
+ u3tScU7znxcFmmM9+2sKL50mVBV2k9roHI334zf3KDBEeIewML29Rv+Gn
+ dYqdccm1km6xcQGvrnvh+a9aEGairiuD3D5PxxsU3egDHyqqidnEFi/vy
+ kefzzZn86wQ/gFYUMJjfoCN/sevRiXHznPVsmmCwqSkkDObgqc4JL3KUY
+ hXzoBd/YEdI+k2VFhDdlQH0gbCEMgexTo05CUCwM8TCLvuCZbTfgyOI8x
+ Y/MVUgb8BUV4wmzICYDNFM3SYlBb69AXoR5a3pF1E5wAXLjZqVzb/gcg8 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="417945997"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="417945997"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 06:19:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="915675625"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="915675625"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga006.fm.intel.com with ESMTP; 16 Feb 2023 06:19:47 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 16 Feb 2023 06:19:47 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 16 Feb 2023 06:19:47 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 16 Feb 2023 06:19:46 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=er8pcEVFONU93UaWPOjwKXBV7vdUCv163sFQ9XFQuFH5SGuwYnUkYbJ+XSJAhQymiad+JAgRX39hUz+glsD0HQdo+fO6hUMuYtKB3JYdchqc2T+a/qpc1iuKIKp2AgjT8R9X6S82lpk6S5ctTGtuolWmrNpTX7GfLkFHh41zt5SLvmtoEbYxv90bkikrmxf1GYXox9XgcHfEOO/gCGxXZzwUB6UosXvVWGdkG+5JCBroXgBZzNi+vEmya8OUIibmKZKpyWuw2FBe5HUoPZ1WN/fMogWOcogTlAiPr0MYvgOz7IQqLYQ1k6YrLdS++VPQ1vo7+3FMjIG96F1RLohOIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GmFlqUyCaBbJDbxapV3+Q8L14QDcg1AmE/4m4y1ZXrg=;
+ b=mJlk1upYlVrG+fjp1aadoFdkT6Es0U4GpND0lsqOYl45VlxfXSoZs4RG6oEHDgvtgbGZenomQ/Mb1617Q1rgiR5hUGEQow3EhaZKF3ZDQ5ByrmUC0kUp7fSNbxWE7QMuly5fYmhw06msLXVnheZaJLWyCHD4q8ZoYzXDvJububTlPUArO23CxiOk3s1fmN6yEA6OoVwBdDmq73o3V0Nqnrm2ZUE1HH4iU7kG00nF7vYMY6DKcnzuh2LDRxSvlms73/hCgQ2lhZxpdqTy1J3RR5WvquUMsOqhXeQoaRQthTibj79BcwRvmci0teVymSKMaIdLnS3M7SasiCCLXdCa+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by CY8PR11MB7169.namprd11.prod.outlook.com (2603:10b6:930:90::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Thu, 16 Feb
+ 2023 14:19:44 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6086.024; Thu, 16 Feb 2023
+ 14:19:44 +0000
+Date: Thu, 16 Feb 2023 09:19:37 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y+47eUvwbafER35/@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+X-ClientProxiedBy: SJ0PR03CA0213.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::8) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/fb-helper: Remove drm_fb_helper_unprepare()
- from drm_fb_helper_fini()
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB7169:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8bee4f46-3a75-4d53-bebe-08db1028d950
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q3xih7Tfr+IeMW96SonUm9eMX6lAcaWh1qu+uJRLzhDaAxBKWmsGq6mey1MfbD+2PkM6zw3Yt/DURoM56JUlyD389pa8mk8jxlujEhpRJIseBZWIWfhRQILXY0d+MxTGF4PVN3VGPo6FO2frklmICwdOWVsZpEmAdfMcEce6Fi3R9x9j5haSnZCowdFkwLyqJ43oL2agx8F7FgcYEraSbIPDedA7TW8blLui0QVmInwqdS8ZeywpsE7Nw9/pPuABhbLzYZq/9mjsFfXL69xcUQ7sCIZk/zNLnBuuGHHM0km/02OA92VrQfmHwv/wMeGa84l/1t1Cb+aa9m+CjmzY5bOp48OnTZsUbTOQ6PYePJz2cEpCxNsjzAdxwcPcO98gaPWNyqxOgyfk3LKOE++vqfo+nABGYReSkZj4J4FUxrxIUVmnJdc3ZauOQrrspiHpwGJCu1KwRdFHuOTWKKocRJmXcQlvBOrgIyDKEJw08hlir8qTUdhHbXLwKdtJKsz4Qx1UkzNK05uGWqjeR8aqXBX5ZPplr2moSQhCruIuQAxonIfjbwMWQdFHgNu7GEO0+cuWmk5uFGti9ZEVQclz3dbPSdQ7NLjG5zamrEEM1w9Thq24rHuWziL/drXhdAJYa8YlL/E+BLMYvsh5w0nKkA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(396003)(136003)(346002)(39860400002)(376002)(366004)(451199018)(6512007)(2906002)(2616005)(83380400001)(4744005)(44832011)(186003)(26005)(478600001)(8676002)(82960400001)(6506007)(4326008)(6486002)(41300700001)(6666004)(66556008)(38100700002)(8936002)(66946007)(66476007)(54906003)(7416002)(316002)(5660300002)(36756003)(86362001)(110136005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FkmfH29lBWGMT/sahcYqA6aedPKmQXaGqJNY74DvpBofZuuPAdCfMBEixVrA?=
+ =?us-ascii?Q?skiD5+kgS/NM9c9ibZYr8i/SxnXReTR2ElUTlQmaGa6ADJK/CQgFCgkdZ5mI?=
+ =?us-ascii?Q?3/GlIjyxbPISmwRL0Q0YkRgzqPli0WjA3IRBM90o4Yn9wSWrHE/rjWOD/7PS?=
+ =?us-ascii?Q?dXlHS/nlNG0JcEWtT8UwUOnDvteWFUiRcROdrAeQuNdg++M3Qy4+xDSSPwfT?=
+ =?us-ascii?Q?2bG1ZZ30+YjaMjSOydSPuBIW13r3Ekq1/UxvOktZ5HgxWNG6mmKTMF5ZLjEe?=
+ =?us-ascii?Q?JkyvaYJUuhLFC/K4aqs6mtqKK3shKWur+Kp/nOUvPy8Q+dtyPOol8iex9jw4?=
+ =?us-ascii?Q?EDro8TyqB4iWX9PmAEBswPEToCQC9/0xbCa/WYPcovnCSD+iSNSReDmMdmsr?=
+ =?us-ascii?Q?3mPzHJDatp1jOxKUtqdKM9WiZiIDU1lm8i4PoGUsDrn69lsm4vMRviqYIQjK?=
+ =?us-ascii?Q?VBg2mYx7Kxo+p/0yXrKBH4sphXSppD2/umWuGz5o5hA/Wfws8kigFB1uPQOo?=
+ =?us-ascii?Q?StKyhmsnc13juFWPF1sz75RT8Qf3DELC9H4ALiF0HayrDjNPCJ4u92qFef/y?=
+ =?us-ascii?Q?2dlalPQ05DtovWMKQm6CBd+qXsIIzsf2Z4pgz7oOgoCKw0wM3I+SrtGaJXtd?=
+ =?us-ascii?Q?wcpv9YpfP6ijdib3iH2o/OwyITCVcVrnaanM5dpgSqRTxI/sO1CvccW2nFUb?=
+ =?us-ascii?Q?UcChVqAi/CR9wzxyhKJ3x5JTY3O9GrEq1b8NC2nuT7nsAxKv+CTHGymj1WgT?=
+ =?us-ascii?Q?O/qq1ekEc6S7t5tx/85UKFeQIlwk784SKCE261vgO3RK5tfiCaTgUU/+lhQ4?=
+ =?us-ascii?Q?TtjkG1ZR6M+OhO5HDaQG17p5CHSmaDyOUhes+xPNqPZ129iyGFa23ys8ws3q?=
+ =?us-ascii?Q?ijQuam8seU71eL3sNALYXTNn86V5Hz6sVrjojkrTh37tPBTK9XK/uCMBq20r?=
+ =?us-ascii?Q?KiMghN1Aye9zLewSr8yOlMNT8RaJJ1MCLFtiwcXwUeZ6fhShLUXIi0AFBps6?=
+ =?us-ascii?Q?Fa6CknIvl5pwBIPnBG3I9AVa08Itfu7SYBPtumQ6O6grfJPkVDPNlsWbq0Wk?=
+ =?us-ascii?Q?JtCdh1n1m20grO/l8yd8BbxtjJLeQNKrmPzcAjfnZARwdD0RTVAuvA438IXa?=
+ =?us-ascii?Q?7BiAJfdTDc+YwP6kbVN5GEaEJOGYaz3EXIZJp3Jo3i6YOHb6W5tPqAOJUVO0?=
+ =?us-ascii?Q?kUP9W4iykJi72D+GoVEf/AIbvXgmx9JOvAJsYA7qcByKn9KV5A8rVYPqPPbg?=
+ =?us-ascii?Q?db3leBIMfHRhMUkQLoyO5wZg2nsR9Gt/1oghdiDWnFffccMP8oRC6Cp42FrX?=
+ =?us-ascii?Q?dMM7ff9dMtrYuViFkwtWIHxxnsSKOYKmIRctIIiwXaGSIm3sjcBaOHCCBgg3?=
+ =?us-ascii?Q?IS0l2Ks8KmevhQP5ZPirguvSSpnHLz7idb94HlXsWsJFXnH4UQvxPTfp69FX?=
+ =?us-ascii?Q?K9kEx39LDRp4Zmh02kbNfKh/dmFjkawzKKhsSBmSKHaM3KudPDVrKX8CyKkr?=
+ =?us-ascii?Q?t6FTSuKveOR2E3BsVXphdat2qnbHKC2tqpy3CmtpqdROkvaFyiCe4qZr+OUx?=
+ =?us-ascii?Q?4LFoyiIAn5pxowJMgwVmbGqu7Sl7s3CL5sJeFP47xGYIQhjWdOHPEiGWe7cF?=
+ =?us-ascii?Q?gg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8bee4f46-3a75-4d53-bebe-08db1028d950
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2023 14:19:43.6708 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: shE2VKQA47JRtJVmoJekhmyg9DgbHPA+WajSzdhv7RrZIQl7U2WrzQ88U+3viTBSVAz6+C/RU1FZdANl9VqQOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7169
+X-OriginatorOrg: intel.com
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,230 +139,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move drm_fb_helper_unprepare() from drm_fb_helper_fini() into the
-calling fbdev implementation. Avoids a possible stale mutex with
-generic fbdev code.
+Hi Dave and Daniel,
 
-As indicated by its name, drm_fb_helper_prepare() prepares struct
-drm_fb_helper before setting up the fbdev support with a call to
-drm_fb_helper_init(). In legacy fbdev emulation, this happens next
-to each other. If successful, drm_fb_helper_fini() later tear down
-the fbdev device and also unprepare via drm_fb_helper_unprepare().
+Only 1 gen11 workaround fix.
 
-Generic fbdev emulation prepares struct drm_fb_helper immediately
-after allocating the instance. It only calls drm_fb_helper_init()
-as part of processing a hotplug event. If the hotplug-handling fails,
-it runs drm_fb_helper_fini(). This unprepares the fb-helper instance
-and the next hotplug event runs on stale data.
+Here goes drm-intel-fixes-2023-02-16:
+- Moving gen11 hw wa to the right place. (Matt)
 
-Solve this by moving drm_fb_helper_unprepare() from drm_fb_helper_fini()
-into the fbdev implementations. Call it right before freeing the
-fb-helper instance.
+Thanks,
+Rodrigo.
 
-Fixes: 4825797c36da ("drm/fb-helper: Introduce drm_fb_helper_unprepare()")
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
+The following changes since commit ceaa837f96adb69c0df0397937cd74991d5d821a:
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/armada/armada_fbdev.c      | 3 +++
- drivers/gpu/drm/drm_fb_helper.c            | 2 --
- drivers/gpu/drm/drm_fbdev_generic.c        | 2 ++
- drivers/gpu/drm/exynos/exynos_drm_fbdev.c  | 3 ++-
- drivers/gpu/drm/gma500/framebuffer.c       | 2 ++
- drivers/gpu/drm/i915/display/intel_fbdev.c | 1 +
- drivers/gpu/drm/msm/msm_fbdev.c            | 2 ++
- drivers/gpu/drm/omapdrm/omap_fbdev.c       | 2 ++
- drivers/gpu/drm/radeon/radeon_fb.c         | 2 ++
- drivers/gpu/drm/tegra/fb.c                 | 1 +
- 10 files changed, 17 insertions(+), 3 deletions(-)
+  Linux 6.2-rc8 (2023-02-12 14:10:17 -0800)
 
-diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-index 07e410c62b7a..0e44f53e9fa4 100644
---- a/drivers/gpu/drm/armada/armada_fbdev.c
-+++ b/drivers/gpu/drm/armada/armada_fbdev.c
-@@ -147,6 +147,7 @@ int armada_fbdev_init(struct drm_device *dev)
-  err_fb_setup:
- 	drm_fb_helper_fini(fbh);
-  err_fb_helper:
-+	drm_fb_helper_unprepare(fbh);
- 	priv->fbdev = NULL;
- 	return ret;
- }
-@@ -164,6 +165,8 @@ void armada_fbdev_fini(struct drm_device *dev)
- 		if (fbh->fb)
- 			fbh->fb->funcs->destroy(fbh->fb);
- 
-+		drm_fb_helper_unprepare(fbh);
-+
- 		priv->fbdev = NULL;
- 	}
- }
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 28c428e9c530..a39998047f8a 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -590,8 +590,6 @@ void drm_fb_helper_fini(struct drm_fb_helper *fb_helper)
- 	}
- 	mutex_unlock(&kernel_fb_helper_lock);
- 
--	drm_fb_helper_unprepare(fb_helper);
--
- 	if (!fb_helper->client.funcs)
- 		drm_client_release(&fb_helper->client);
- }
-diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
-index 365f80717fa1..4d6325e91565 100644
---- a/drivers/gpu/drm/drm_fbdev_generic.c
-+++ b/drivers/gpu/drm/drm_fbdev_generic.c
-@@ -65,6 +65,8 @@ static void drm_fbdev_fb_destroy(struct fb_info *info)
- 
- 	drm_client_framebuffer_delete(fb_helper->buffer);
- 	drm_client_release(&fb_helper->client);
-+
-+	drm_fb_helper_unprepare(fb_helper);
- 	kfree(fb_helper);
- }
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-index b89e33af8da8..4929ffe5a09a 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-@@ -183,8 +183,8 @@ int exynos_drm_fbdev_init(struct drm_device *dev)
- 
- err_setup:
- 	drm_fb_helper_fini(helper);
--
- err_init:
-+	drm_fb_helper_unprepare(helper);
- 	private->fb_helper = NULL;
- 	kfree(fbdev);
- 
-@@ -219,6 +219,7 @@ void exynos_drm_fbdev_fini(struct drm_device *dev)
- 	fbdev = to_exynos_fbdev(private->fb_helper);
- 
- 	exynos_drm_fbdev_destroy(dev, private->fb_helper);
-+	drm_fb_helper_unprepare(private->fb_helper);
- 	kfree(fbdev);
- 	private->fb_helper = NULL;
- }
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index 1f04c07ee180..f471e0cb7298 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -427,6 +427,7 @@ int psb_fbdev_init(struct drm_device *dev)
- fini:
- 	drm_fb_helper_fini(fb_helper);
- free:
-+	drm_fb_helper_unprepare(fb_helper);
- 	kfree(fb_helper);
- 	return ret;
- }
-@@ -439,6 +440,7 @@ static void psb_fbdev_fini(struct drm_device *dev)
- 		return;
- 
- 	psb_fbdev_destroy(dev, dev_priv->fb_helper);
-+	drm_fb_helper_unprepare(dev_priv->fb_helper);
- 	kfree(dev_priv->fb_helper);
- 	dev_priv->fb_helper = NULL;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 6113d7627d45..98029059f701 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -352,6 +352,7 @@ static void intel_fbdev_destroy(struct intel_fbdev *ifbdev)
- 	if (ifbdev->fb)
- 		drm_framebuffer_remove(&ifbdev->fb->base);
- 
-+	drm_fb_helper_unprepare(&ifbdev->helper);
- 	kfree(ifbdev);
- }
- 
-diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
-index 915b213f3a5c..c804e5ba682a 100644
---- a/drivers/gpu/drm/msm/msm_fbdev.c
-+++ b/drivers/gpu/drm/msm/msm_fbdev.c
-@@ -170,6 +170,7 @@ struct drm_fb_helper *msm_fbdev_init(struct drm_device *dev)
- fini:
- 	drm_fb_helper_fini(helper);
- fail:
-+	drm_fb_helper_unprepare(helper);
- 	kfree(fbdev);
- 	return NULL;
- }
-@@ -196,6 +197,7 @@ void msm_fbdev_free(struct drm_device *dev)
- 		drm_framebuffer_remove(fbdev->fb);
- 	}
- 
-+	drm_fb_helper_unprepare(helper);
- 	kfree(fbdev);
- 
- 	priv->fbdev = NULL;
-diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-index fc5f52d567c6..84429728347f 100644
---- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
-+++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-@@ -256,6 +256,7 @@ void omap_fbdev_init(struct drm_device *dev)
- fini:
- 	drm_fb_helper_fini(helper);
- fail:
-+	drm_fb_helper_unprepare(helper);
- 	kfree(fbdev);
- 
- 	dev_warn(dev->dev, "omap_fbdev_init failed\n");
-@@ -286,6 +287,7 @@ void omap_fbdev_fini(struct drm_device *dev)
- 	if (fbdev->fb)
- 		drm_framebuffer_remove(fbdev->fb);
- 
-+	drm_fb_helper_unprepare(helper);
- 	kfree(fbdev);
- 
- 	priv->fbdev = NULL;
-diff --git a/drivers/gpu/drm/radeon/radeon_fb.c b/drivers/gpu/drm/radeon/radeon_fb.c
-index 6e5eed0e157c..c4807f0c43bc 100644
---- a/drivers/gpu/drm/radeon/radeon_fb.c
-+++ b/drivers/gpu/drm/radeon/radeon_fb.c
-@@ -367,6 +367,7 @@ int radeon_fbdev_init(struct radeon_device *rdev)
- fini:
- 	drm_fb_helper_fini(&rfbdev->helper);
- free:
-+	drm_fb_helper_unprepare(&rfbdev->helper);
- 	kfree(rfbdev);
- 	return ret;
- }
-@@ -377,6 +378,7 @@ void radeon_fbdev_fini(struct radeon_device *rdev)
- 		return;
- 
- 	radeon_fbdev_destroy(rdev->ddev, rdev->mode_info.rfbdev);
-+	drm_fb_helper_unprepare(&rdev->mode_info.rfbdev->helper);
- 	kfree(rdev->mode_info.rfbdev);
- 	rdev->mode_info.rfbdev = NULL;
- }
-diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
-index 153c39c32c71..bfebe2786d61 100644
---- a/drivers/gpu/drm/tegra/fb.c
-+++ b/drivers/gpu/drm/tegra/fb.c
-@@ -315,6 +315,7 @@ static struct tegra_fbdev *tegra_fbdev_create(struct drm_device *drm)
- 
- static void tegra_fbdev_free(struct tegra_fbdev *fbdev)
- {
-+	drm_fb_helper_unprepare(&fbdev->base);
- 	kfree(fbdev);
- }
- 
--- 
-2.39.1
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-02-16
+
+for you to fetch changes up to d5a1224aa68c8b124a4c5c390186e571815ed390:
+
+  drm/i915/gen11: Wa_1408615072/Wa_1407596294 should be on GT list (2023-02-14 16:08:48 -0500)
+
+----------------------------------------------------------------
+- Moving gen11 hw wa to the right place. (Matt)
+
+----------------------------------------------------------------
+Matt Roper (1):
+      drm/i915/gen11: Wa_1408615072/Wa_1407596294 should be on GT list
+
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
