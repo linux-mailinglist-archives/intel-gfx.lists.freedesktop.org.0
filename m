@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81099698BE8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 06:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D77698C4E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 06:47:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 049F810E317;
-	Thu, 16 Feb 2023 05:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01DEA10E12A;
+	Thu, 16 Feb 2023 05:47:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D796C10E317
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 05:26:45 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36CC810E12A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 05:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676525205; x=1708061205;
+ t=1676526420; x=1708062420;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=rE1m2Cyeca+UCiZOAqIGeVAgaOplgb4fmI4jaSFekLQ=;
- b=TYh6QvagG5gWEVLeASAcRCQCDF1Pu4/EBsSZzruxcY59oREMHynlUR/9
- 5HQbgtJ5LBwyM9JmE+GvWhiOVhYTRs7GU4VqJFcOAcVH1k3LkxbH9rgYE
- HBzd+YcmPzLEv5bHmEhrYCh9gKVqVw1YSxYQZ6CrnME2Q89pNJQER2x74
- 1OA+oK93CQxkD70WyGDJv0oPv0Jl/PcVJeZ5oRfirQTReIh05mejMC2J8
- 2j6b2eUi9iPV+wE1ZXnwSk2as7EJtZq4aina/utlodFnqYveXIB78iOxN
- 44pBpbK3ROdvYXZKvPLuYz5Y8+kWqs0aYHP/Fv3lDD47jpNQk7Lfop0h8 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="417851515"
-X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="417851515"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 21:26:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="998885578"
-X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="998885578"
+ bh=NjDMF+81QlFotEi8S4GH9qPz3hgEZd/IcE+MuNQb4i0=;
+ b=HUN+/CkvH6lmNP8wPB7kC36CeEfr9pcb5z8pODFT/3/RpvFE9S3wX/RW
+ bZA09L01imfszI1bhpJ2HMXpdCOOVUsZoxYNKuQMz0eYgGM5b7gH6ENpR
+ Dqygq0q1T9zkJng0hL8t3HledCT132VQJt0XTgqN8nBjn00nb3MknLN3e
+ SHjBbedjZh6f8Llo7Y53k1P518HkSjclxtmVkbPAaYC58Bogr9ANBEBtb
+ ZZWUnd6u+OvCaKv+zBrqOwjsQ4PZETxzxIxGx6qEwrv75oIH/e+uG3ps5
+ Smtj32atVM3C53mtlhG++YD5NviLVHEEOfNkVik4IanJi6U+XSCQSkfUI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="359059858"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="359059858"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 21:46:59 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="738715646"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="738715646"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.251.28.186])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 21:26:45 -0800
-Date: Wed, 15 Feb 2023 21:08:43 -0800
-Message-ID: <87zg9emc2s.wl-ashutosh.dixit@intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 21:46:59 -0800
+Date: Wed, 15 Feb 2023 21:36:50 -0800
+Message-ID: <87y1oymarx.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20230215005419.2100887-4-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <87zg9emc2s.wl-ashutosh.dixit@intel.com>
 References: <20230215005419.2100887-1-umesh.nerlige.ramappa@intel.com>
  <20230215005419.2100887-4-umesh.nerlige.ramappa@intel.com>
+ <87zg9emc2s.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -66,83 +67,17 @@ Cc: Lionel G Landwerlin <lionel.g.landwerlin@linux.intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Feb 2023 16:54:13 -0800, Umesh Nerlige Ramappa wrote:
+On Wed, 15 Feb 2023 21:08:43 -0800, Dixit, Ashutosh wrote:
 >
-> Validate the OA sseu config after all params are parsed.
-
-Commit messages for all patches need to answer the "why" or the reason for
-the patch. In this case maybe an overkill but probably something like:
-
-Validate the OA sseu config after all params are parsed since the engine
-can be passed in as part of perf properties.
-
+> On Tue, 14 Feb 2023 16:54:13 -0800, Umesh Nerlige Ramappa wrote:
+> >
+> > Validate the OA sseu config after all params are parsed.
 >
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 22 ++++++++++++----------
->  1 file changed, 12 insertions(+), 10 deletions(-)
+> Commit messages for all patches need to answer the "why" or the reason for
+> the patch. In this case maybe an overkill but probably something like:
 >
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index a879ae4bf8d7..0b2097ad000e 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -3956,6 +3956,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
->	u64 __user *uprop = uprops;
->	u32 i;
->	int ret;
-> +	bool config_sseu = false;
-> +	struct drm_i915_gem_context_param_sseu user_sseu;
+> Validate the OA sseu config after all params are parsed since the engine
+> can be passed in as part of perf properties.
 
-nit: longer lines above shorter lines
-
->
->	memset(props, 0, sizeof(struct perf_open_properties));
->	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
-> @@ -4082,8 +4084,6 @@ static int read_properties_unlocked(struct i915_perf *perf,
->			props->hold_preemption = !!value;
->			break;
->		case DRM_I915_PERF_PROP_GLOBAL_SSEU: {
-> -			struct drm_i915_gem_context_param_sseu user_sseu;
-> -
->			if (GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 50)) {
->				drm_dbg(&perf->i915->drm,
->					"SSEU config not supported on gfx %x\n",
-> @@ -4098,14 +4098,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
->					"Unable to copy global sseu parameter\n");
->				return -EFAULT;
->			}
-> -
-> -			ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
-> -			if (ret) {
-> -				drm_dbg(&perf->i915->drm,
-> -					"Invalid SSEU configuration\n");
-> -				return ret;
-> -			}
-> -			props->has_sseu = true;
-> +			config_sseu = true;
->			break;
->		}
->		case DRM_I915_PERF_PROP_POLL_OA_PERIOD:
-> @@ -4125,6 +4118,15 @@ static int read_properties_unlocked(struct i915_perf *perf,
->		uprop += 2;
->	}
->
-> +	if (config_sseu) {
-> +		ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
-> +		if (ret) {
-> +			DRM_DEBUG("Invalid SSEU configuration\n");
-
-drm_dbg? DRM_DEBUG is deprecated?
-
-> +			return ret;
-> +		}
-> +		props->has_sseu = true;
-> +	}
-> +
->	return 0;
->  }
-
-
-After addressing the above comments:
-
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Also, if we do this the patch should probably be later in the series after
+the patch which introduces engine class/instance in the perf properties.
