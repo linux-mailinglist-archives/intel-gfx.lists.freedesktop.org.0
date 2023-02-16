@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5BB69894F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 01:34:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA5B698990
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 01:58:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C75C210E004;
-	Thu, 16 Feb 2023 00:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B96210E004;
+	Thu, 16 Feb 2023 00:58:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CCB3810E004;
- Thu, 16 Feb 2023 00:34:37 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B672F10E004;
+ Thu, 16 Feb 2023 00:58:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C25A8AADD8;
- Thu, 16 Feb 2023 00:34:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AF6B8AADDC;
+ Thu, 16 Feb 2023 00:58:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 16 Feb 2023 00:34:37 -0000
-Message-ID: <167650767776.17990.3516011579570318320@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Thu, 16 Feb 2023 00:58:11 -0000
+Message-ID: <167650909169.17990.13988667157848256331@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv2=2C1/3=5D_drm/i915=3A_Use_encoder?=
- =?utf-8?q?-=3Edevdata_more_=28rev2=29?=
+References: <20230216002248.1851966-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20230216002248.1851966-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
+ =?utf-8?q?on=27t_use_stolen_memory_or_BAR_mappings_for_ring_buffers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,25 +47,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,1/3] drm/i915: Use encoder->devdata more (rev2)
-URL   : https://patchwork.freedesktop.org/series/114029/
-State : warning
+Series: Don't use stolen memory or BAR mappings for ring buffers
+URL   : https://patchwork.freedesktop.org/series/114074/
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-6d862c28ab08 drm/i915: Use encoder->devdata more
-c197ab2941f5 drm/i915: Sanitize child devices later
-f80b5f236011 drm/i915: Try to initialize DDI ports for every VBT child device
--:29: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#29: FILE: drivers/gpu/drm/i915/display/intel_bios.c:2614:
-+intel_bios_for_each_child(struct drm_i915_private *i915,
-+			  enum port port,
-+			  bool (*func)(struct drm_i915_private *i915,
-+				       struct intel_bios_encoder_data *devdata,
-+				       enum port port))
-+{
-
-total: 1 errors, 0 warnings, 0 checks, 197 lines checked
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  CC [M]  drivers/gpu/drm/i915/gt/intel_ring.o
+drivers/gpu/drm/i915/gt/intel_ring.c: In function ‘intel_ring_unpin’:
+drivers/gpu/drm/i915/gt/intel_ring.c:103:2: error: expected ‘}’ before ‘else’
+  103 |  else
+      |  ^~~~
+make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/gt/intel_ring.o] Error 1
+make[4]: *** [scripts/Makefile.build:504: drivers/gpu/drm/i915] Error 2
+make[3]: *** [scripts/Makefile.build:504: drivers/gpu/drm] Error 2
+make[2]: *** [scripts/Makefile.build:504: drivers/gpu] Error 2
+make[1]: *** [scripts/Makefile.build:504: drivers] Error 2
+make: *** [Makefile:2021: .] Error 2
 
 
