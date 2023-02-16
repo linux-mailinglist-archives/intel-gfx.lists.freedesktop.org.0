@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804C86988D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 00:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39272698906
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 01:04:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 968B610EC7B;
-	Wed, 15 Feb 2023 23:40:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71A0E10E134;
+	Thu, 16 Feb 2023 00:04:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C97A110EC7B;
- Wed, 15 Feb 2023 23:40:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8BF6AADD4;
- Wed, 15 Feb 2023 23:40:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6366864621798273601=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175F310E134
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 00:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676505869; x=1708041869;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=2fMjhiAkhg2SUzGyTYthXuBv5IQaLl660HLlrcRW0lQ=;
+ b=DEqF6qU6KVSgiK4YTmD8MAE1hG4qfrB1oZr3/AleEMzM4KpEplWhZDuh
+ fHOsVGlMTNFQ/yyd40aUwWd8sR20w7iuu5/U65zY65+R06GRX1ySq8aQR
+ heYKXmY462avtXITrrG4lMD3ZdvHQbuhv4+f4q4e3hpVVEStAWAqLXBk6
+ avYhg+Emp5t7QfwWffcz5ol8wLXBGtzgOTmjbfz6b/FLyrJi5OZ6I486m
+ iEZY3wBQyBhh+IPZN51wyKGRtRrfZzmTxg9MOleFU9R0qlTBE582foCD/
+ 6UFGxbcRc9RyVNbMn311f808x9kBMm4nx88WM6iQbwf8ios8A8F9db/m0 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="393990500"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="393990500"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2023 16:04:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="647453365"
+X-IronPort-AV: E=Sophos;i="5.97,301,1669104000"; d="scan'208";a="647453365"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga006.jf.intel.com with SMTP; 15 Feb 2023 16:04:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 Feb 2023 02:04:25 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Feb 2023 02:04:25 +0200
+Message-Id: <20230216000425.32216-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
+References: <20230214231925.26535-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 15 Feb 2023 23:40:25 -0000
-Message-ID: <167650442572.30602.12679702905772366319@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230215222426.26085-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230215222426.26085-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Don=27t_leak_the_DPT_if?=
- =?utf-8?q?_drm=5Fframebuffer=5Finit=28=29_fails?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Use encoder->devdata more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,335 +59,298 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6366864621798273601==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Switch a lot of the intel_bios_foo() stuff to just accept the
+devdata (VBT child device info) directly, instead of taking
+detours via vbt.ports[].
 
-Series: series starting with [1/2] drm/i915: Don't leak the DPT if drm_framebuffer_init() fails
-URL   : https://patchwork.freedesktop.org/series/114069/
-State : success
+Also unify the function naming scheme.
 
-== Summary ==
+v2: Drop the redundant "encoder" from the dp/hdmi specific functions
 
-CI Bug Log - changes from CI_DRM_12745 -> Patchwork_114069v1
-====================================================
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 62 +++++------------------
+ drivers/gpu/drm/i915/display/intel_bios.h | 15 +++---
+ drivers/gpu/drm/i915/display/intel_ddi.c  | 10 ++--
+ drivers/gpu/drm/i915/display/intel_dp.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c |  4 +-
+ 5 files changed, 31 insertions(+), 64 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 229f9782e226..8cf2392a5670 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2520,7 +2520,7 @@ static int parse_bdb_216_dp_max_link_rate(const int vbt_max_link_rate)
+ 	}
+ }
+ 
+-static int _intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *devdata)
++int intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 216)
+ 		return 0;
+@@ -2531,7 +2531,7 @@ static int _intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *de
+ 		return parse_bdb_216_dp_max_link_rate(devdata->child.dp_max_link_rate);
+ }
+ 
+-static int _intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
++int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 244)
+ 		return 0;
+@@ -2604,7 +2604,8 @@ intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata)
+ 	return devdata && HAS_LSPCON(devdata->i915) && devdata->child.lspcon;
+ }
+ 
+-static int _intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata)
++/* This is an index in the HDMI/DVI DDI buffer translation table, or -1 */
++int intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 158)
+ 		return -1;
+@@ -2612,7 +2613,7 @@ static int _intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *de
+ 	return devdata->child.hdmi_level_shifter_value;
+ }
+ 
+-static int _intel_bios_max_tmds_clock(const struct intel_bios_encoder_data *devdata)
++int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 204)
+ 		return 0;
+@@ -2674,33 +2675,33 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
+ 		    supports_typec_usb, supports_tbt,
+ 		    devdata->dsc != NULL);
+ 
+-	hdmi_level_shift = _intel_bios_hdmi_level_shift(devdata);
++	hdmi_level_shift = intel_bios_hdmi_level_shift(devdata);
+ 	if (hdmi_level_shift >= 0) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Port %c VBT HDMI level shift: %d\n",
+ 			    port_name(port), hdmi_level_shift);
+ 	}
+ 
+-	max_tmds_clock = _intel_bios_max_tmds_clock(devdata);
++	max_tmds_clock = intel_bios_hdmi_max_tmds_clock(devdata);
+ 	if (max_tmds_clock)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Port %c VBT HDMI max TMDS clock: %d kHz\n",
+ 			    port_name(port), max_tmds_clock);
+ 
+ 	/* I_boost config for SKL and above */
+-	dp_boost_level = intel_bios_encoder_dp_boost_level(devdata);
++	dp_boost_level = intel_bios_dp_boost_level(devdata);
+ 	if (dp_boost_level)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Port %c VBT (e)DP boost level: %d\n",
+ 			    port_name(port), dp_boost_level);
+ 
+-	hdmi_boost_level = intel_bios_encoder_hdmi_boost_level(devdata);
++	hdmi_boost_level = intel_bios_hdmi_boost_level(devdata);
+ 	if (hdmi_boost_level)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Port %c VBT HDMI boost level: %d\n",
+ 			    port_name(port), hdmi_boost_level);
+ 
+-	dp_max_link_rate = _intel_bios_dp_max_link_rate(devdata);
++	dp_max_link_rate = intel_bios_dp_max_link_rate(devdata);
+ 	if (dp_max_link_rate)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Port %c VBT DP max link rate: %d\n",
+@@ -3665,24 +3666,8 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+ 	return aux_ch;
+ }
+ 
+-int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
+-{
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	const struct intel_bios_encoder_data *devdata = i915->display.vbt.ports[encoder->port];
+ 
+-	return _intel_bios_max_tmds_clock(devdata);
+-}
+-
+-/* This is an index in the HDMI/DVI DDI buffer translation table, or -1 */
+-int intel_bios_hdmi_level_shift(struct intel_encoder *encoder)
+-{
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	const struct intel_bios_encoder_data *devdata = i915->display.vbt.ports[encoder->port];
+-
+-	return _intel_bios_hdmi_level_shift(devdata);
+-}
+-
+-int intel_bios_encoder_dp_boost_level(const struct intel_bios_encoder_data *devdata)
++int intel_bios_dp_boost_level(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 196 || !devdata->child.iboost)
+ 		return 0;
+@@ -3690,7 +3675,7 @@ int intel_bios_encoder_dp_boost_level(const struct intel_bios_encoder_data *devd
+ 	return translate_iboost(devdata->child.dp_iboost_level);
+ }
+ 
+-int intel_bios_encoder_hdmi_boost_level(const struct intel_bios_encoder_data *devdata)
++int intel_bios_hdmi_boost_level(const struct intel_bios_encoder_data *devdata)
+ {
+ 	if (!devdata || devdata->i915->display.vbt.version < 196 || !devdata->child.iboost)
+ 		return 0;
+@@ -3698,31 +3683,12 @@ int intel_bios_encoder_hdmi_boost_level(const struct intel_bios_encoder_data *de
+ 	return translate_iboost(devdata->child.hdmi_iboost_level);
+ }
+ 
+-int intel_bios_dp_max_link_rate(struct intel_encoder *encoder)
++int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	const struct intel_bios_encoder_data *devdata = i915->display.vbt.ports[encoder->port];
+-
+-	return _intel_bios_dp_max_link_rate(devdata);
+-}
+-
+-int intel_bios_dp_max_lane_count(struct intel_encoder *encoder)
+-{
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	const struct intel_bios_encoder_data *devdata = i915->display.vbt.ports[encoder->port];
+-
+-	return _intel_bios_dp_max_lane_count(devdata);
+-}
+-
+-int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder)
+-{
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	const struct intel_bios_encoder_data *devdata = i915->display.vbt.ports[encoder->port];
+-
+ 	if (!devdata || !devdata->child.ddc_pin)
+ 		return 0;
+ 
+-	return map_ddc_pin(i915, devdata->child.ddc_pin);
++	return map_ddc_pin(devdata->i915, devdata->child.ddc_pin);
+ }
+ 
+ bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 1a6ae38bd4f6..53123468331a 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -254,11 +254,6 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+ 			       int dsc_max_bpc);
+-int intel_bios_max_tmds_clock(struct intel_encoder *encoder);
+-int intel_bios_hdmi_level_shift(struct intel_encoder *encoder);
+-int intel_bios_dp_max_link_rate(struct intel_encoder *encoder);
+-int intel_bios_dp_max_lane_count(struct intel_encoder *encoder);
+-int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder);
+ bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, enum port port);
+ bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum port port);
+ 
+@@ -272,9 +267,15 @@ bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devda
+ bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
+-int intel_bios_encoder_dp_boost_level(const struct intel_bios_encoder_data *devdata);
+-int intel_bios_encoder_hdmi_boost_level(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata);
+ bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata);
++int intel_bios_dp_boost_level(const struct intel_bios_encoder_data *devdata);
++int intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *devdata);
++int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata);
++int intel_bios_hdmi_boost_level(const struct intel_bios_encoder_data *devdata);
++int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata);
++int intel_bios_hdmi_boost_level(const struct intel_bios_encoder_data *devdata);
++int intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata);
++int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata);
+ 
+ #endif /* _INTEL_BIOS_H_ */
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index bfd1e30a27b4..6010ba977adb 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -89,7 +89,7 @@ static int intel_ddi_hdmi_level(struct intel_encoder *encoder,
+ {
+ 	int level;
+ 
+-	level = intel_bios_hdmi_level_shift(encoder);
++	level = intel_bios_hdmi_level_shift(encoder->devdata);
+ 	if (level < 0)
+ 		level = trans->hdmi_default_entry;
+ 
+@@ -126,7 +126,7 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+ 
+ 	/* If we're boosting the current, set bit 31 of trans1 */
+ 	if (has_iboost(dev_priv) &&
+-	    intel_bios_encoder_dp_boost_level(encoder->devdata))
++	    intel_bios_dp_boost_level(encoder->devdata))
+ 		iboost_bit = DDI_BUF_BALANCE_LEG_ENABLE;
+ 
+ 	for (i = 0; i < n_entries; i++) {
+@@ -158,7 +158,7 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
+ 
+ 	/* If we're boosting the current, set bit 31 of trans1 */
+ 	if (has_iboost(dev_priv) &&
+-	    intel_bios_encoder_hdmi_boost_level(encoder->devdata))
++	    intel_bios_hdmi_boost_level(encoder->devdata))
+ 		iboost_bit = DDI_BUF_BALANCE_LEG_ENABLE;
+ 
+ 	/* Entry 9 is for HDMI: */
+@@ -1009,9 +1009,9 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
+ 	u8 iboost;
+ 
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+-		iboost = intel_bios_encoder_hdmi_boost_level(encoder->devdata);
++		iboost = intel_bios_hdmi_boost_level(encoder->devdata);
+ 	else
+-		iboost = intel_bios_encoder_dp_boost_level(encoder->devdata);
++		iboost = intel_bios_dp_boost_level(encoder->devdata);
+ 
+ 	if (iboost == 0) {
+ 		const struct intel_ddi_buf_trans *trans;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b92e0b0f5369..86fdf9d74b93 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -288,7 +288,7 @@ static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
+ 
+ static int intel_dp_max_source_lane_count(struct intel_digital_port *dig_port)
+ {
+-	int vbt_max_lanes = intel_bios_dp_max_lane_count(&dig_port->base);
++	int vbt_max_lanes = intel_bios_dp_max_lane_count(dig_port->base.devdata);
+ 	int max_lanes = dig_port->max_lanes;
+ 
+ 	if (vbt_max_lanes)
+@@ -425,7 +425,7 @@ static int vbt_max_link_rate(struct intel_dp *intel_dp)
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	int max_rate;
+ 
+-	max_rate = intel_bios_dp_max_link_rate(encoder);
++	max_rate = intel_bios_dp_max_link_rate(encoder->devdata);
+ 
+ 	if (intel_dp_is_edp(intel_dp)) {
+ 		struct intel_connector *connector = intel_dp->attached_connector;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 619865b45eca..74e2bc0ef8ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1795,7 +1795,7 @@ static int intel_hdmi_source_max_tmds_clock(struct intel_encoder *encoder)
+ 	else
+ 		max_tmds_clock = 165000;
+ 
+-	vbt_max_tmds_clock = intel_bios_max_tmds_clock(encoder);
++	vbt_max_tmds_clock = intel_bios_hdmi_max_tmds_clock(encoder->devdata);
+ 	if (vbt_max_tmds_clock)
+ 		max_tmds_clock = min(max_tmds_clock, vbt_max_tmds_clock);
+ 
+@@ -2871,7 +2871,7 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+ 	enum port port = encoder->port;
+ 	u8 ddc_pin;
+ 
+-	ddc_pin = intel_bios_alternate_ddc_pin(encoder);
++	ddc_pin = intel_bios_hdmi_ddc_pin(encoder->devdata);
+ 	if (ddc_pin) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Using DDC pin 0x%x for port %c (VBT)\n",
+-- 
+2.39.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/index.html
-
-Participating hosts (36 -> 37)
-------------------------------
-
-  Additional (2): bat-rpls-2 fi-tgl-1115g4 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_114069v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([i915#7456])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][2] -> [FAIL][3] ([i915#7229])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#7561])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][7] ([i915#7443])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_edid@dp-edid-read:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#7828]) +7 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#4103])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-n3050:       [PASS][10] -> [FAIL][11] ([i915#6298])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([fdo#109285])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1:
-    - fi-rkl-11600:       [PASS][13] -> [FAIL][14] ([fdo#103375])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([fdo#110189]) +3 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][16] ([i915#3555])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][17] ([fdo#109295] / [i915#3301])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - {bat-dg2-11}:       [INCOMPLETE][18] -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-skl-guc:         [DMESG-WARN][20] ([i915#8073]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
-  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12745 -> Patchwork_114069v1
-
-  CI-20190529: 20190529
-  CI_DRM_12745: 6af7796eeff6af8ef490ab41a14dedcdf5a7abe0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114069v1: 6af7796eeff6af8ef490ab41a14dedcdf5a7abe0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-515ac70067f0 drm/i915: Add a few more debugs for failed framebuffer creation
-cf5e64abea1b drm/i915: Don't leak the DPT if drm_framebuffer_init() fails
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/index.html
-
---===============6366864621798273601==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Don&#39;t leak the DPT if drm_framebuffer_init() fails</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114069/">https://patchwork.freedesktop.org/series/114069/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12745 -&gt; Patchwork_114069v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 37)</h2>
-<p>Additional (2): bat-rpls-2 fi-tgl-1115g4 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114069v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-read:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12745/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114069v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12745 -&gt; Patchwork_114069v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12745: 6af7796eeff6af8ef490ab41a14dedcdf5a7abe0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7160: 45da871dd2684227e93a2fc002b87dfc58bd5fd9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114069v1: 6af7796eeff6af8ef490ab41a14dedcdf5a7abe0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>515ac70067f0 drm/i915: Add a few more debugs for failed framebuffer creation<br />
-cf5e64abea1b drm/i915: Don't leak the DPT if drm_framebuffer_init() fails</p>
-
-</body>
-</html>
-
---===============6366864621798273601==--
