@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B72569923E
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:52:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC2269927A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:59:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8071910ED19;
-	Thu, 16 Feb 2023 10:52:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCBE510ED19
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 10:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC6E10ED2A;
+	Thu, 16 Feb 2023 10:59:31 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC0C10E2BE;
+ Thu, 16 Feb 2023 10:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676544759; x=1708080759;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rVmjU2kKhQmgyqWGXq+JVQpMGi6yz1rT+EQskxpvfPY=;
- b=mxxjyL8QiXePtNtV62cqPQeEzzt41g9BrRz3Sn4oaPqhXV6KXGFAyqie
- TGGLkNec5H8XmTyUvc7QY4El56qC70dX1VPLOQnOHO/zOiXo3C46ML/Wg
- 2enCEolVDrUTUC+aheuqQPVtWwGmVn1TyCies12rlApUpicQj2IrGTKPo
- 6iHlFSZW1juOXOa9KqNYdK7/ix3GwoLHk6k3JJFNnx245lRBgkzXIIqce
- s3bQf7dot0lYJl6EAWDbbyqBVwem2qI57DcCpxpjQdgbZj0dcey3C7ygq
- jElWk1VmxQlh2MduO/9dDMgAx2NryV0C3OwChtCDzkVBN2EOrh705pQVb A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="315365010"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="315365010"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 02:52:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="702513721"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="702513721"
-Received: from aaronov-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.37.86])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 02:52:36 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
-Date: Thu, 16 Feb 2023 12:52:33 +0200
-Message-ID: <87ilg1287i.fsf@intel.com>
+ t=1676545169; x=1708081169;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4Pkn9PSYJ5E+ITtnoLCo59F8QKqtW+QZqBQ0zPJSloY=;
+ b=g+6QLqUuisFoxZGn1fDIFG3SkQS0Q3zbHgpaHmDYoKiSnRuLS3r4bXXI
+ /TSQ7RD1vOoA/ndHVnxFmjZXdBGI8evYQoOfgIK1jISLwSwlAOIwApaWj
+ 5M2VLP5ThA5JKHPuzFbywNSFs4n6DPAcLxdC8X+WnrkYOkhjrZwV/upVA
+ CrWDR9VmSXY7HRCBXw2+vB+E2900xV2NA418xV+N8hAECYb+1g0L8xrj8
+ j+JITdPb9ZXA3ezBR/SuEd6nk2OPPuylo5oLm4E/cjvVtQZroRlMwXcUG
+ VD7BJzRpGOa/nk/q37jpwag5mqz2NL8x5bXhr21wwui4igPl5Et8x9/9a Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="311317593"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="311317593"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 02:59:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="812917903"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="812917903"
+Received: from murrayal-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.229.164])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 02:59:27 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 16 Feb 2023 10:59:12 +0000
+Message-Id: <20230216105921.624960-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC 0/2] Add new CDCLK step for RPL-U
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC v3 0/9] Waitboost drm syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,43 +56,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Jan 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> A new step of 480MHz has been added on SKUs that have an RPL-U
-> device id. This particular step is to support 120Hz panels
-> more efficiently.
->
-> This patchset adds a new table to include this new CDCLK
-> step. Details can be found in BSpec entry 55409.
->
-> Create a new sub-platform to identify RPL-U which will enable
-> us to make the differentiation during CDCLK initialization.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Thanks, pushed the series to drm-intel-next.
+In i915 we have this concept of "wait boosting" where we give a priority boost
+for instance to fences which are actively waited upon from userspace. This has
+it's pros and cons and can certainly be discussed at lenght. However fact is
+some workloads really like it.
 
-BR,
-Jani.
+Problem is that with the arrival of drm syncobj and a new userspace waiting
+entry point it added, the waitboost mechanism was bypassed. AFAIU this mostly
+happens with all Vulkan based userspaces. Hence I cooked up this mini series to
+see if discussion about restoring the waitboost can be had.
 
->
-> Furthermore, we need to make a distinction between ES (Engineering
-> Sample) and QS (Quality Sample) parts as this change comes only
-> to QS parts. This version of the patch does not include this change
-> as we are yet to make a decision if this particular part needs
-> to be upstreamed.(see comments on revision 2)
->
-> Chaitanya Kumar Borah (2):
->   drm/i915: Add RPL-U sub platform
->   drm/i915/display: Add 480 MHz CDCLK steps for RPL-U
->
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 26 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_drv.h            |  2 ++
->  drivers/gpu/drm/i915/intel_device_info.c   |  7 ++++++
->  drivers/gpu/drm/i915/intel_device_info.h   |  1 +
->  include/drm/i915_pciids.h                  | 12 ++++++----
->  5 files changed, 44 insertions(+), 4 deletions(-)
+The series adds a concept of "wait count" to dma fence which is intended to
+represent explicit userspace waits. It is therefore incremented for every
+explicit dma_fence_enable_sw_signaling and dma_fence_add_wait_callback (like
+dma_fence_add_callback but from explicit/userspace wait paths). Individual
+drivers can then inspect this via dma_fence_wait_count() and decide to wait
+boost the waits on such fences.
+
+Patch has been slightly tested for performance impact by Google using some clvk
+workloads and shows a good improvement (frame time improved from 16ms to 13ms).
+
+It is also important to mention that benefits of waitboosting are not only about
+workloads related to frame presentation time, but also for serialized
+computations which constantly move between the CPU and GPU.
+
+*)
+https://gitlab.freedesktop.org/drm/intel/-/issues/8014
+
+v2:
+ * Small fixups based on CI feedback:
+    * Handle decrement correctly for already signalled case while adding callback.
+    * Remove i915 assert which was making sure struct i915_request does not grow.
+ * Split out the i915 patch into three separate functional changes.
+
+v3:
+ * Handle drivers which open-code callback additions.
+
+Tvrtko Ursulin (9):
+  dma-fence: Move i915 helpers into common
+  dma-fence: Add callback initialization helper
+  drm/i915: Use fence callback initialization helper
+  drm/vmwgfx: Use fence callback initialization helper
+  dma-fence: Track explicit waiters
+  drm/syncobj: Mark syncobj waits as external waiters
+  drm/i915: Waitboost external waits
+  drm/i915: Mark waits as explicit
+  drm/i915: Wait boost requests waited upon by others
+
+ drivers/dma-buf/dma-fence.c                 | 137 ++++++++++++++------
+ drivers/gpu/drm/drm_syncobj.c               |   6 +-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c |  22 ----
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c   |   1 -
+ drivers/gpu/drm/i915/i915_active.c          |   2 +-
+ drivers/gpu/drm/i915/i915_active.h          |   2 +-
+ drivers/gpu/drm/i915/i915_request.c         |  13 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c       |   2 +-
+ include/linux/dma-fence.h                   |  26 ++++
+ 9 files changed, 141 insertions(+), 70 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
