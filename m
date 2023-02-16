@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E602699154
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:33:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5A46991C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 11:39:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D70410ED1A;
-	Thu, 16 Feb 2023 10:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB3E10ED1C;
+	Thu, 16 Feb 2023 10:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4DBE10ED17;
- Thu, 16 Feb 2023 10:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676543594; x=1708079594;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=xewz+sS+QiFWv/ST2WtJNHlJXrBcta3cxPe5gr9V6N8=;
- b=kZsEVocMHEt1J5gwyX0cMTl7KHbOH3SwJfAKu2q+E23LnzfM9zCIveAt
- 4frljS4SycF2e4WWSzGEp/MNWxRWfnrQg9WxsjJsJOfFTZrjxOS8fNGf3
- U0GjMhqALh58d9rL52PT6iNZvYcgQIFQNbTka6bsF2FOSlE2wkHSWNTw9
- EdyGQRp/xSER87tk5+bXhNCNI0891WP/erV0if1udX6S/r99+y6pf9eg6
- 6n8EjS8wtqd8iVMrNMdBSvfPfjVs757bgTQeksVYkm1/DDsUf79n3s5AV
- IRxPJDWI/UHSCnueyIZsfhq4Ph5vkMahu6xpyyb/IiBlqwHsfIHjWQL8i Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="417906724"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="417906724"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 02:33:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="702505653"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="702505653"
-Received: from aaronov-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.37.86])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 02:33:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20230216-kobj_type-i915-v1-1-ca65c9b93518@weissschuh.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230216-kobj_type-i915-v1-1-ca65c9b93518@weissschuh.net>
-Date: Thu, 16 Feb 2023 12:33:07 +0200
-Message-ID: <87sff5293w.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05E1F10ED1C;
+ Thu, 16 Feb 2023 10:39:32 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 50E202231E;
+ Thu, 16 Feb 2023 10:39:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1676543970; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=cOJbDqyVM4UkjpAdBQqHri1wUhQAVEtatgbpQX2k24o=;
+ b=j0/J/doFQigMYkFcuxrqq4WxVq0MTlFDosIOgEkNtSsUa/s1gWhV8gtNgDW2eYhPkHI0vU
+ wA3YKmdUoEOyVQ7XpFMONjjUx2yDjaN8csGioBUq0i2q5K/Eu+6obcslP/eceDSIhJvxlx
+ fZXcxrhD6FZjEkRWx4M0AuFHh3SNnW8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1676543970;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=cOJbDqyVM4UkjpAdBQqHri1wUhQAVEtatgbpQX2k24o=;
+ b=KxdPV9o5cUyK/06KXlJ+yjknJWWKi2GJAxpTOwzR5uaXvGrNxJnLpXYIaWCy8rlYnyqbef
+ fiyhVCn4gbPj9SCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 196E3139B5;
+ Thu, 16 Feb 2023 10:39:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id V5RJBeIH7mPhSAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 16 Feb 2023 10:39:30 +0000
+Date: Thu, 16 Feb 2023 11:39:28 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y+4H4C4E6cZcM9+J@linux-uq9g>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make kobj_type structures constant
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,62 +64,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Feb 2023, Thomas Wei=C3=9Fschuh <linux@weissschuh.net> wrote:
-> Since commit ee6d3dd4ed48 ("driver core: make kobj_type constant.")
-> the driver core allows the usage of const struct kobj_type.
->
-> Take advantage of this to constify the structure definitions to prevent
-> modification at runtime.
->
-> Signed-off-by: Thomas Wei=C3=9Fschuh <linux@weissschuh.net>
+Hi Dave and Daniel,
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+here's the PR for drm-misc-next-fixes for this week.
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs.c | 2 +-
->  drivers/gpu/drm/i915/gt/sysfs_engines.c  | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c b/drivers/gpu/drm/i=
-915/gt/intel_gt_sysfs.c
-> index 9486dd3bed99..df15b17caf89 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
-> @@ -71,7 +71,7 @@ static void kobj_gt_release(struct kobject *kobj)
->  {
->  }
->=20=20
-> -static struct kobj_type kobj_gt_type =3D {
-> +static const struct kobj_type kobj_gt_type =3D {
->  	.release =3D kobj_gt_release,
->  	.sysfs_ops =3D &kobj_sysfs_ops,
->  	.default_groups =3D id_groups,
-> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i9=
-15/gt/sysfs_engines.c
-> index f2d9858d827c..b5e0fe5dbf6c 100644
-> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> @@ -421,7 +421,7 @@ static void kobj_engine_release(struct kobject *kobj)
->  	kfree(kobj);
->  }
->=20=20
-> -static struct kobj_type kobj_engine_type =3D {
-> +static const struct kobj_type kobj_engine_type =3D {
->  	.release =3D kobj_engine_release,
->  	.sysfs_ops =3D &kobj_sysfs_ops
->  };
->
-> ---
-> base-commit: 033c40a89f55525139fd5b6342281b09b97d05bf
-> change-id: 20230216-kobj_type-i915-886bebc36129
->
-> Best regards,
+Best regards
+Thomas
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+drm-misc-next-fixes-2023-02-16:
+Short summary of fixes pull:
+
+Contains fixes for DP MST and the panel orientation on an Lenovo
+IdeaPad model.
+The following changes since commit 467fbc77f673ecc9dcf4e58ffc1fa426a22df7fd:
+
+  dt-bindings: display: panel: visionox,vtdr6130: add missing reg property (2023-02-09 09:28:31 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-02-16
+
+for you to fetch changes up to 38b2d8efd03d2e56431b611e3523f0158306451d:
+
+  drm: panel-orientation-quirks: Add quirk for Lenovo IdeaPad Duet 3 10IGL5 (2023-02-15 10:46:05 +0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+Contains fixes for DP MST and the panel orientation on an Lenovo
+IdeaPad model.
+
+----------------------------------------------------------------
+Darrell Kavanagh (1):
+      drm: panel-orientation-quirks: Add quirk for Lenovo IdeaPad Duet 3 10IGL5
+
+Imre Deak (4):
+      drm/i915/dp_mst: Add the MST topology state for modesetted CRTCs
+      drm/display/dp_mst: Handle old/new payload states in drm_dp_remove_payload()
+      drm/display/dp_mst: Add drm_atomic_get_old_mst_topology_state()
+      drm/i915/dp_mst: Fix payload removal during output disabling
+
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  |  2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c      | 59 ++++++++++++-----
+ drivers/gpu/drm/drm_panel_orientation_quirks.c     |  6 ++
+ drivers/gpu/drm/i915/display/intel_display.c       |  4 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        | 75 ++++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.h        |  4 ++
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  2 +-
+ include/drm/display/drm_dp_mst_helper.h            |  6 +-
+ 8 files changed, 135 insertions(+), 23 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
