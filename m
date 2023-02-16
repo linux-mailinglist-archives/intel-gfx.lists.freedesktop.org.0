@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70810699D40
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 20:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 904BB699D67
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Feb 2023 21:12:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D453B10E367;
-	Thu, 16 Feb 2023 19:58:50 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
- [IPv6:2001:4860:4864:20::2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F49310E365;
- Thu, 16 Feb 2023 19:58:48 +0000 (UTC)
-Received: by mail-oa1-x2e.google.com with SMTP id
- 586e51a60fabf-15ff0a1f735so3891058fac.5; 
- Thu, 16 Feb 2023 11:58:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=+wLIvE6xm4u8oTRQH7O+F8I+EpLaV56nlo87TiXnIqw=;
- b=Md6+X8rFjnPd28cBlnklBwLD9NeO40zA/zrhv2IAXBP6ALdRifEV0A0Dh5I4NQ97GY
- 3q3DafPEngiUcuSezZpag3rFUo36iDdQaPUWvTB0B+vOSWltZczqoy0s2vTxNIgAHsa5
- Y8hCZmDX6h7K/IcGaMLcsYqTMEURlT1G75SwGqtRy/ZIVGDWo4pjFYIdKWC7Z70qk3kb
- TzCcUjFxjxLQOPvMZmH7b7GWgUCY5HOoI9fWTHJc7jprNw8pUgb8e9lm9tCXZUGoU9F1
- orY8J8w3zV1+jVS0RZEKMUGVomKwUg6wB+9+TMTOBfcOwIWGq0bXoh49RO8bN7xeM758
- B7KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+wLIvE6xm4u8oTRQH7O+F8I+EpLaV56nlo87TiXnIqw=;
- b=lwkdbuoV8vX50R0gq1xEDOTWOmGvz3mlJ1H7bojp4FLzx0CORgNr01JeD+YU19AOwd
- oFy9QRPqNgVGfOhcKb+8tdFKfNWaLld8hmyhPDrJaDOj/LQheyHEAz0DrZq+gaC3Efqi
- fmThIR4ih982wRq56j5wFR0y3LDz9zgZq8QnMXwjQnl++ZdJAfTuTfzwtbJXi+ljw77G
- zlzHL+SZcBPI6btcWMTrSAY2Bb0a5bwW0rBWSy+1AoRkEdXtBUJeD7OaNPzxfCV5kOJz
- 0oXOhbgcDABwMyOSp5LfoVdGQBjra5UUBdYKNPFZFQg6AUSJ5zMUvdvcIXfgC6vpOw1b
- t3ig==
-X-Gm-Message-State: AO0yUKXJgqMdqECe+fH6dHtROQ7vAbIeXp1+M8tkiY/eIgafBVXQYusM
- SqFgxuISrwZJQm8KRv5+UPSCsIhTgyoUVhKpHsH9EfCr
-X-Google-Smtp-Source: AK7set/qywOXHswoWWwrW4GqMhZ4fpoEok9oOw3WUrSIP3iqyykSTe7qb7pFhC2pZy4/WppongpQ7Yik0f9KSNm11Gs=
-X-Received: by 2002:a05:6870:808d:b0:16e:8a56:d0d2 with SMTP id
- q13-20020a056870808d00b0016e8a56d0d2mr88302oab.38.1676577527683; Thu, 16 Feb
- 2023 11:58:47 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0536410E377;
+	Thu, 16 Feb 2023 20:12:01 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F18510E377
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 20:11:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676578319; x=1708114319;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=hN+6s+eAJRDalVcf8M8aYbSS23fs3pVU72ieO84xDHQ=;
+ b=TmqdVHC2Mq/QOc6miEayA8R8AnWb1ChPpNrDKOPTfwzsQHM9xETvQS+Y
+ RH/z2tpI5qg6ZTfLS6yV6KdOYLItB47Lsu9l4zxRBzYg8Iqp+wB1OgQl+
+ d90AVJuSLCexYRfBaU0OstBx7y/q9TJ0U6nemji9cR9ryEosXmr8Z30lq
+ hUsTn1XvWIoQpVZ7QxHZ/k2+lR/2tiZ589dJ0qc2ehhkBYSihbafqEPZ+
+ A9VbD0T08g5ouLKKOn40Xd/WGyFLnimqkFaAuXFNGPfp7EFrjI31Ib/lO
+ BpCG6XGqAPnJCxtyHFlStKD0W1RqcPC3hYNqldk19BuLx/VVvuLM4d02H w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="331826995"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="331826995"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 12:11:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="702723698"
+X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; d="scan'208";a="702723698"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 12:11:56 -0800
+Date: Thu, 16 Feb 2023 22:11:52 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y+6OCCJ4tzIIdSIV@ideak-desk.fi.intel.com>
+References: <20230216161739.668294-1-jani.nikula@intel.com>
+ <20230216161739.668294-3-jani.nikula@intel.com>
 MIME-Version: 1.0
-References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
- <Y+5zyeSncSbsXHWG@intel.com>
-In-Reply-To: <Y+5zyeSncSbsXHWG@intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 16 Feb 2023 11:59:07 -0800
-Message-ID: <CAF6AEGs5s2NFoLFJVpsrcGLZUuZxX=H4FAeCzKFzOSdzWzDkAQ@mail.gmail.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230216161739.668294-3-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/dmc: allocate dmc structure
+ dynamically
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,96 +58,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Intel-gfx@lists.freedesktop.org,
- Rob Clark <robdclark@chromium.org>, dri-devel@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 16, 2023 at 10:20 AM Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->
-> On Tue, Feb 14, 2023 at 11:14:00AM -0800, Rob Clark wrote:
-> > On Fri, Feb 10, 2023 at 5:07 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> > >
-> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > >
-> > > In i915 we have this concept of "wait boosting" where we give a priority boost
-> > > for instance to fences which are actively waited upon from userspace. This has
-> > > it's pros and cons and can certainly be discussed at lenght. However fact is
-> > > some workloads really like it.
-> > >
-> > > Problem is that with the arrival of drm syncobj and a new userspace waiting
-> > > entry point it added, the waitboost mechanism was bypassed. Hence I cooked up
-> > > this mini series really (really) quickly to see if some discussion can be had.
-> > >
-> > > It adds a concept of "wait count" to dma fence, which is incremented for every
-> > > explicit dma_fence_enable_sw_signaling and dma_fence_add_wait_callback (like
-> > > dma_fence_add_callback but from explicit/userspace wait paths).
-> >
-> > I was thinking about a similar thing, but in the context of dma_fence
-> > (or rather sync_file) fd poll()ing.  How does the kernel differentiate
-> > between "housekeeping" poll()ers that don't want to trigger boost but
-> > simply know when to do cleanup, and waiters who are waiting with some
-> > urgency.  I think we could use EPOLLPRI for this purpose.
-> >
-> > Not sure how that translates to waits via the syncobj.  But I think we
-> > want to let userspace give some hint about urgent vs housekeeping
-> > waits.
->
-> Should the hint be on the waits, or should the hints be on the executed
-> context?
+On Thu, Feb 16, 2023 at 06:17:39PM +0200, Jani Nikula wrote:
+> sizeof(struct intel_dmc) > 1024 bytes, allocated on all platforms as
+> part of struct drm_i915_private, whether they have DMC or not.
+> 
+> Allocate struct intel_dmc dynamically, and hide all the dmc details
+> behind an opaque pointer in intel_dmc.c.
+> 
+> Care must be taken to take into account all cases: DMC not supported on
+> the platform, DMC supported but not initialized, and DMC initialized but
+> not loaded. For the second case, we need to move the wakeref out of
+> struct intel_dmc.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_core.h |  8 ++-
+>  drivers/gpu/drm/i915/display/intel_dmc.c      | 50 +++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_dmc.h      | 34 +------------
+>  .../drm/i915/display/intel_modeset_setup.c    |  1 +
+>  4 files changed, 53 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index b870f7f47f2b..ff51149c5fcb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -19,7 +19,6 @@
+>  #include "intel_cdclk.h"
+>  #include "intel_display_limits.h"
+>  #include "intel_display_power.h"
+> -#include "intel_dmc.h"
+>  #include "intel_dpll_mgr.h"
+>  #include "intel_fbc.h"
+>  #include "intel_global_state.h"
+> @@ -40,6 +39,7 @@ struct intel_cdclk_vals;
+>  struct intel_color_funcs;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+> +struct intel_dmc;
+>  struct intel_dpll_funcs;
+>  struct intel_dpll_mgr;
+>  struct intel_fbdev;
+> @@ -340,6 +340,11 @@ struct intel_display {
+>  		spinlock_t phy_lock;
+>  	} dkl;
+>  
+> +	struct {
+> +		struct intel_dmc *dmc;
+> +		intel_wakeref_t wakeref;
+> +	} dmc;
+> +
+>  	struct {
+>  		/* VLV/CHV/BXT/GLK DSI MMIO register base address */
+>  		u32 mmio_base;
+> @@ -467,7 +472,6 @@ struct intel_display {
+>  
+>  	/* Grouping using named structs. Keep sorted. */
+>  	struct intel_audio audio;
+> -	struct intel_dmc dmc;
+>  	struct intel_dpll dpll;
+>  	struct intel_fbc *fbc[I915_MAX_FBCS];
+>  	struct intel_frontbuffer_tracking fb_tracking;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index 1d156ac2eb4c..8428d08e0c3d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -38,9 +38,37 @@
+>   * low-power state and comes back to normal.
+>   */
+>  
+> +enum intel_dmc_id {
+> +	DMC_FW_MAIN = 0,
+> +	DMC_FW_PIPEA,
+> +	DMC_FW_PIPEB,
+> +	DMC_FW_PIPEC,
+> +	DMC_FW_PIPED,
+> +	DMC_FW_MAX
+> +};
+> +
+> +struct intel_dmc {
+> +	struct drm_i915_private *i915;
+> +	struct work_struct work;
+> +	const char *fw_path;
+> +	u32 max_fw_size; /* bytes */
+> +	u32 version;
+> +	struct dmc_fw_info {
+> +		u32 mmio_count;
+> +		i915_reg_t mmioaddr[20];
+> +		u32 mmiodata[20];
+> +		u32 dmc_offset;
+> +		u32 start_mmioaddr;
+> +		u32 dmc_fw_size; /*dwords */
+> +		u32 *payload;
+> +		bool present;
+> +	} dmc_info[DMC_FW_MAX];
+> +};
+> +
+> +/* Note: This may be NULL. */
+>  static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
+>  {
+> -	return &i915->display.dmc;
+> +	return i915->display.dmc.dmc;
+>  }
+>  
+>  #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
+> @@ -937,7 +965,10 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+>  	if (!HAS_DMC(dev_priv))
+>  		return;
+>  
+> -	dmc = i915_to_dmc(dev_priv);
+> +	dmc = kzalloc(sizeof(*dmc), GFP_KERNEL);
+> +	if (!dmc)
+> +		return;
 
-I think it should be on the wait, because different waits may be for
-different purposes.  Ideally this could be exposed at the app API
-level, but I guess first step is to expose it to userspace.
+Couldn't driver loading fail in this case instead (simplifying the
+dmc==NULL checks elsewhere)?
 
-BR,
--R
-
-> In the end we need some way to quickly ramp-up the frequency to avoid
-> the execution bubbles.
->
-> waitboost is trying to guess that, but in some cases it guess wrong
-> and waste power.
->
-> btw, this is something that other drivers might need:
->
-> https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
-> Cc: Alex Deucher <alexander.deucher@amd.com>
->
-> >
-> > Also, on a related topic: https://lwn.net/Articles/868468/
-> >
-> > BR,
-> > -R
-> >
-> > > Individual drivers can then inspect this via dma_fence_wait_count() and decide
-> > > to wait boost the waits on such fences.
-> > >
-> > > Again, quickly put together and smoke tested only - no guarantees whatsoever and
-> > > I will rely on interested parties to test and report if it even works or how
-> > > well.
-> > >
-> > > v2:
-> > >  * Small fixups based on CI feedback:
-> > >     * Handle decrement correctly for already signalled case while adding callback.
-> > >     * Remove i915 assert which was making sure struct i915_request does not grow.
-> > >  * Split out the i915 patch into three separate functional changes.
-> > >
-> > > Tvrtko Ursulin (5):
-> > >   dma-fence: Track explicit waiters
-> > >   drm/syncobj: Mark syncobj waits as external waiters
-> > >   drm/i915: Waitboost external waits
-> > >   drm/i915: Mark waits as explicit
-> > >   drm/i915: Wait boost requests waited upon by others
-> > >
-> > >  drivers/dma-buf/dma-fence.c               | 102 ++++++++++++++++------
-> > >  drivers/gpu/drm/drm_syncobj.c             |   6 +-
-> > >  drivers/gpu/drm/i915/gt/intel_engine_pm.c |   1 -
-> > >  drivers/gpu/drm/i915/i915_request.c       |  13 ++-
-> > >  include/linux/dma-fence.h                 |  14 +++
-> > >  5 files changed, 101 insertions(+), 35 deletions(-)
-> > >
-> > > --
-> > > 2.34.1
-> > >
+> +
+>  	dmc->i915 = dev_priv;
+>  
+>  	INIT_WORK(&dmc->work, dmc_load_work_fn);
+> @@ -991,10 +1022,9 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+>  
+>  	if (dev_priv->params.dmc_firmware_path) {
+>  		if (strlen(dev_priv->params.dmc_firmware_path) == 0) {
+> -			dmc->fw_path = NULL;
+>  			drm_info(&dev_priv->drm,
+>  				 "Disabling DMC firmware and runtime PM\n");
+> -			return;
+> +			goto out;
+>  		}
+>  
+>  		dmc->fw_path = dev_priv->params.dmc_firmware_path;
+> @@ -1003,11 +1033,18 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+>  	if (!dmc->fw_path) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "No known DMC firmware for platform, disabling runtime PM\n");
+> -		return;
+> +		goto out;
+>  	}
+>  
+> +	dev_priv->display.dmc.dmc = dmc;
+> +
+>  	drm_dbg_kms(&dev_priv->drm, "Loading %s\n", dmc->fw_path);
+>  	schedule_work(&dmc->work);
+> +
+> +	return;
+> +
+> +out:
+> +	kfree(dmc);
+>  }
+>  
+>  /**
+> @@ -1074,6 +1111,9 @@ void intel_dmc_fini(struct drm_i915_private *dev_priv)
+>  	if (dmc) {
+>  		for_each_dmc_id(dmc_id)
+>  			kfree(dmc->dmc_info[dmc_id].payload);
+> +
+> +		kfree(dmc);
+> +		dev_priv->display.dmc.dmc = NULL;
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+> index b74635497aa7..fd607afff2ef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+> @@ -6,44 +6,12 @@
+>  #ifndef __INTEL_DMC_H__
+>  #define __INTEL_DMC_H__
+>  
+> -#include "i915_reg_defs.h"
+> -#include "intel_wakeref.h"
+> -#include <linux/workqueue.h>
+> +#include <linux/types.h>
+>  
+>  struct drm_i915_error_state_buf;
+>  struct drm_i915_private;
+> -
+>  enum pipe;
+>  
+> -enum intel_dmc_id {
+> -	DMC_FW_MAIN = 0,
+> -	DMC_FW_PIPEA,
+> -	DMC_FW_PIPEB,
+> -	DMC_FW_PIPEC,
+> -	DMC_FW_PIPED,
+> -	DMC_FW_MAX
+> -};
+> -
+> -struct intel_dmc {
+> -	struct drm_i915_private *i915;
+> -	struct work_struct work;
+> -	const char *fw_path;
+> -	u32 max_fw_size; /* bytes */
+> -	u32 version;
+> -	struct dmc_fw_info {
+> -		u32 mmio_count;
+> -		i915_reg_t mmioaddr[20];
+> -		u32 mmiodata[20];
+> -		u32 dmc_offset;
+> -		u32 start_mmioaddr;
+> -		u32 dmc_fw_size; /*dwords */
+> -		u32 *payload;
+> -		bool present;
+> -	} dmc_info[DMC_FW_MAX];
+> -
+> -	intel_wakeref_t wakeref;
+> -};
+> -
+>  void intel_dmc_init(struct drm_i915_private *i915);
+>  void intel_dmc_load_program(struct drm_i915_private *i915);
+>  void intel_dmc_disable_program(struct drm_i915_private *i915);
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index 5359b9663a07..42bfd56fcbe4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -22,6 +22,7 @@
+>  #include "intel_display.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dmc.h"
+>  #include "intel_modeset_setup.h"
+>  #include "intel_pch_display.h"
+>  #include "intel_pm.h"
+> -- 
+> 2.34.1
+> 
