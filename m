@@ -2,46 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4715F69B5A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 23:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD6C69B67A
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Feb 2023 00:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC0910E46B;
-	Fri, 17 Feb 2023 22:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D696C10E46F;
+	Fri, 17 Feb 2023 23:37:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEDB810E46B
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 22:38:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F16210E46F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 23:37:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676673500; x=1708209500;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BsF9ZRrc2c7vNsjLzkPWViVCbfEFNfYEMfA8G6Di0a8=;
- b=AuamV7oRIXoOH6D2TxwDVRQpdmD/G2TlfLdc/lV1FPilu4dJ8eZh81rw
- +rsjSoOwTxKpOB2XbOmhHwuH+Wl8yuw7aHCwYO6oWNoAOHOjFgsayRPue
- aCkYAx9Xp+W+lm/kqmAh2AjhSW6FSksJ8vSqZEjEug4QWkvxyOqAKFczn
- pOYhTJWlLtcCiC98nqY81K+Yt/GzCEaw/OUZWY4Fv2Zqm6xaLnWNgLtvw
- 3pho8wYNckfdEykxSWcp6jtKbumEIqNQmreKUvNZR1jsyw48QaE37vfnx
- cv1NuGGZE3BYcDW5+AYE50uN1C1LnZlkCSS/LdCQzNrzPSetpjVQjrN8m Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="312473215"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="312473215"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1676677055; x=1708213055;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=H4RsNY2SNpNEtpI5fJJFcvppOC8oe19wf0cYrnQTBJY=;
+ b=Y05/LqwygKr1DVZbJfP0IkVsrb7kpnASJ+HpbLwflLKAyTd2wZFe8pSc
+ 3sZrMPSiQLuSDYG6/oBYIZhXm6/Ag9U0o7g10ZLXIpmnCw+7cNK6yTfTS
+ 3HtOnNlYZqJQcXBrOZe3iSFsCJgJ7+PVud8Nxx8jKfKYBd4oQAdRH5N2W
+ fpEhbMujF4W27bT5MNf5+gFQ6WFkpotP8xwLjrzOxPxMV9oKLerYN/Ywq
+ UvS5WOMDuxMuiaffvv2kv1bWRhATYbYBlZO4VAGP1jGKJsr8eKNuDqKkp
+ iWiI5SmwtLIkGWlxK5mm0cKWhBHoBb3ioQ/WGbVe640AoVwwhlviyomX6 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="312485043"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="312485043"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 14:38:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="794554789"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="794554789"
-Received: from dut-internal-9dd7.jf.intel.com ([10.24.14.53])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 14:38:19 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Feb 2023 14:33:50 -0800
-Message-Id: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
+ 17 Feb 2023 15:37:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="703102874"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="703102874"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 17 Feb 2023 15:37:34 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 17 Feb 2023 15:37:34 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 17 Feb 2023 15:37:33 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 15:37:33 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Fri, 17 Feb 2023 15:37:33 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CLQh/BDWM3dJZuzjSXl25DoPIlyUANBJ7EkcJXwdTf6r+7rN9tv8SSXIqXNrJ6SZCAf4n9a9JcOQFsmNV5/9w5M0azM1HLKPvYvaPgICu21qo85WnHLEdN6qpG2wPo5F9G27He4tvjOPoz97sHI5u9eM0/NJgxJgT9lcJopH8FOwFjYxSenFEADiRrhUCrqSTSbq6DsLxvFwYJ27cmsROtJf9DtJ+9YjyZelc0prNXLXW5q0LoAgyVV0eCGM+SFJbZd2aY79CjOhdAYoR6ztKZz13EDNNdETrW8WPfzT52/AShP1mxkU/Pl2YvKDVStXtAVZngOCNiTiPyheJPoqsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EgpGFhOmgRMBYdaAEvD0S3q+njP3kqYdxSe8zrzNIuE=;
+ b=CZsrsZkDAbwxCD9MbAT5mWHDnpmAGjbBTxJrZI/t3zCWwmxHxI8oE4BwnfHWCS8JdWKKPiwEg3Nljw8XdzslBrSqHrgiRpD4olsJ4FAJPVZLATNZ8Irc/4Ly+zbL2pKqFKRsRutpxli8RxuZeyiOhDWv+WcVQa/gs7LxY8TA7e/L8AJC5Wyc1LIIvBr2M0jSwi4KOGYxZBsoyC+HrY92L2fJDjXWRbYW/4StBgMC0RYj6obHALKDNwPUPEQYurVTFXVA/1ltLoaWwK/mUxvEBBZU+mxy/muzgmY1JORtq302QlqAfbNJOWPT95ECOBBP5tWPAUaFkjYlZpIvYSVEDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ CO1PR11MB4820.namprd11.prod.outlook.com (2603:10b6:303:6f::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6111.17; Fri, 17 Feb 2023 23:37:32 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9bf9:4252:3ddc:7ac2]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9bf9:4252:3ddc:7ac2%6]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
+ 23:37:32 +0000
+Date: Fri, 17 Feb 2023 15:37:30 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Message-ID: <Y/APulis85zXl8Uv@orsosgc001.jf.intel.com>
+References: <20230217005850.2511422-1-umesh.nerlige.ramappa@intel.com>
+ <20230217005850.2511422-9-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230217005850.2511422-9-umesh.nerlige.ramappa@intel.com>
+X-ClientProxiedBy: BY5PR03CA0005.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::15) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|CO1PR11MB4820:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3956b015-8005-466c-5d65-08db113ff080
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pma6showlH06fmzX6a65a+fn0ZLnnIGipks86Qo38dMlp4vGpiOB/yebRhwmhUrGziIO46NicP2ya1nsmGsoTAt6I+hxHkuUFShyE7XzuHwXgnDyIoGzKY8zvZSqA7kE5nCrhv08IkTJpOHRFQa8O6WhAe5Ae/aoC2SA/1Zkt7lYBSDjMuJ4SeI5aHDy6md/DNhkm9HwGuqpk4W/RZzZGAqn4G2uxQd0x2QVla3Oem04JeO0WWwH2ZoUL9WpGKF5ge8y1rCA1IeS26nxeyt7SvAcgt38ytk4maU1FhTh3yjdauwsF3auK7NYkb+esE2JANyNCqSsCshRdV6oSYgXXrE+vR8VI7VY2B/X2qzaVvV5cxIz1t5O3oK2BpZuC9P7beoOObMTYACaSpHw4cv0wXmBoKzdAlBG4zdyWeHYNX6jnin3XkLuXl52UcR6sLm0JglMvCnZfrdgK5cHm2T3G8dtjq9aa6OuNoY4D/OtSfyQp6HIR9nLGQ/RHIBq3K4NFwC+PmmmjvQU6QcdsjYSF7zbDdRb0fLBgEqC8Y0UTj0IwhVILfaaUjnoLQRR8NKqjTXI2kgJ9lZDmKuQz5sFbyY6ETZN+wAq+RgVFM50IIKPjWqqLPGzd5/UgOYqIlEd
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(396003)(346002)(136003)(366004)(39860400002)(376002)(451199018)(2906002)(86362001)(82960400001)(38100700002)(6486002)(966005)(6506007)(6512007)(26005)(186003)(478600001)(8676002)(6916009)(66946007)(83380400001)(66476007)(66556008)(316002)(41300700001)(8936002)(5660300002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnJXSzRxbkxUbWN1TkwvVzN5eG9HYXFIOFlZWW9IQlRGMnRLbmUvOEF4OE5o?=
+ =?utf-8?B?eWJMVklkRDJMSFQ1QUxoYVZhMDBWLyt6K1FoSnlVQ0hBcmY4c0g5cmd2dXdR?=
+ =?utf-8?B?cWl3ZktvSC9abWNmZkNaVWwyci85VHZLN1JUZXl2QUV1Ui9Zc3F6bWx1NHlF?=
+ =?utf-8?B?NVo4S0ovR09DZkF3MFBIVkhra0E3VEpGM0hHem1GZVVYaThZS1lhQm9yZkQr?=
+ =?utf-8?B?YUpjMlFNL2ROVjFLMHpSY3Aza1kzZ0JNWFFOTkhyMml4NDQ4OFJTRkkvaXVH?=
+ =?utf-8?B?M3BvbytaR2krbTgvbzVyczdpc2RuOE9zSHRaeHRqQkMxNm01TUlxWWhIbVdD?=
+ =?utf-8?B?RU1tK2ZGSFpFTmNDY0RMeEUzR0Zub2ViTXRRUzlJc3pNT2lSbmVJTEd2V2Mr?=
+ =?utf-8?B?VHgzbll5WTdOdExmaStta1NOR2s2ZFpTQ2swbmlNWitGemFNNHZnNlNWMkdu?=
+ =?utf-8?B?YlFsWnlLY0VxbG5rejRWZW9rTGN5eGo5NFozTmI4a1dWbjVLYmg3dFlnQzE3?=
+ =?utf-8?B?dWlOMHBlRFAxTWV6OC9hN0tSUXdMc2xGRG1MR09hMWtvc0JUZG1SbUp5Ymww?=
+ =?utf-8?B?VHVxWjU0NlByM2d1T21OcG4xYWxaT3hvOVNOQ1h0eFRIdFhVS3k1a0VRSUFN?=
+ =?utf-8?B?c2JZM09tbWRNY2xOYktITldjOXp4Sk9YeUs4RTdFZzdMR0l5RU85cGg3NGJP?=
+ =?utf-8?B?dmQ0WGh5d0tnaEZSVHlQZmVOb2dub0V0T2pWVXVxNnlxY2czb0h2NloweGdq?=
+ =?utf-8?B?b2VaWVNRZmhVZ0c0MW5scXZIYUdScXROQXVPWmx1dlhLS0VmRnBqTFNKamtZ?=
+ =?utf-8?B?VzBSeXlISk5ONXpxMW1LbWtCTmViZTlCWHRQOFBoQXQ4NXEzRlA1cnlpMHQ3?=
+ =?utf-8?B?Z2MxcXV5MldQWUpnVTEwN2g3SkJ5M2NTUmR3bCtxODNOWmVYcVZyZEhORmZI?=
+ =?utf-8?B?SHRmL3BVeTdRTGFWTk9BNWxOWmV3dExkOHl0eU9DdnlSNUlFb0FXME9OTmtr?=
+ =?utf-8?B?WUlCejgvUTVvcXE3QVRYU24yN2ZzUEFDOU9ERGRYT2x0NkZEVUJnbWo4YVQ1?=
+ =?utf-8?B?Vk9tVTRUeGhTSlJvNmRsUnpnd3RKNUpuZnBjUHF4S0hKWlFZb3JxcTQ4QUFp?=
+ =?utf-8?B?bUNWWVhQRDdmeE90MDltRkU2dk14dFBOSFl0OHVJVk1WbkFidk9GT1prbXRl?=
+ =?utf-8?B?blJLN1FINjN5OEMyRWNhRmtUK2pyV1ByWjZ2SDNQaFdmcTVDM3o4TStUUWpB?=
+ =?utf-8?B?a1hLYlU3YkxZR0oxTEZTbXJ3My9wd2NlVXpURnQwZm9DcjFHQ0hSTVBKd3J4?=
+ =?utf-8?B?SmhobFI3aGdZTEZmN0Y2K1J0SHpEdHQ2SXpJR2FxU0k1NVRmTWkybDNqTkNp?=
+ =?utf-8?B?bWhiaWczbnVIZldJV2ZPdU1Henp3WFdwOXBwQW5MZ0dIWXlBMnA2ZTVDMmZL?=
+ =?utf-8?B?OUs5S3JMRmZYNlNldXJpN0RTam8zVDcyOCtHbFZsYmpEU3VRSU1qUWlsS25o?=
+ =?utf-8?B?ZG03TjlISitFeGtLMkxuOHNGM0VrZ2JRclF0UzRESWNMeTdSU0VIVHIwckw5?=
+ =?utf-8?B?a3ROWUtzZXM4YjB3ZmRmQ0RnMFFrY2tsc2UxVlhpeHhZcDA3aWdZQkcrTDNV?=
+ =?utf-8?B?amhwY0QwUlBSM29yY1dwdDVxckZubEtIUUZPM1k2QVlxbFBoNi9FS3ZCcFEy?=
+ =?utf-8?B?aks2RGxUZW43REozejYyS2VSdldIQWw1cEpBQkl5TmxMa1JxWktJcGRHSHp1?=
+ =?utf-8?B?NzZOVXh6M0FqVUhzWlNMQWVnTlVwU1dXWXBWdVVFZUlDVEcvN0lVa25DTjVi?=
+ =?utf-8?B?NnMvelhUMVpCYjQyZHdUY3JtWHI5VTFmejAyV2FKblBzNHQzK0ZxbHlKMHRH?=
+ =?utf-8?B?ZlNIb0Y4R243bDNFVSthdlk3d3FlSFBmeUVnRWxGc2pZelRZZGFKTlVhRzlB?=
+ =?utf-8?B?S1FoeTVBWUFnYlBPYkZsUVZveDN3d0dPeXJzTWFWbnp0Qm9IbjNkNGttWm9n?=
+ =?utf-8?B?Y0Nsei9IQ0FVbHducDhLeHloVWh0cFdrTWpKQmh4SlJRQXEyeHFCL3lORis4?=
+ =?utf-8?B?TCs4L3ZlSlI2LzBrbDBBQ2Q3TUJtQmV6UDg4cVcwZWJqRDZvSEJUbnByYnp4?=
+ =?utf-8?B?ZlZGSGhlR0h1dW15RE5oeW9FZ2w0UHNTUmFhUis3cTZxOTIvOHJNZjBpTTQ4?=
+ =?utf-8?Q?5Y8udxy4RND6M87Ihtb5GHA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3956b015-8005-466c-5d65-08db113ff080
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 23:37:32.0331 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1RW8noy+lTgYEZkTRDth7uMG3zVbgdICaczUuKbPCuiL09qTDB6XppydsTMIMPECcu3VpVRudHq50UykjFrZU61sNACPJBYSJdSxbnfovUU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4820
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 8/9] drm/i915/perf: Add engine class
+ instance parameters to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,400 +156,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- jonathan.cavitt@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
- chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The gt_tlb live selftest has the same code coverage as the
-igt_cs_tlb subtest of gtt, except it is better at detecting
-TLB bugs.  Furthermore, while igt_cs_tlb is hitting some
-unforeseen issues, these issues are either false positives
-due to the test being poorly formatted, or are true
-positives that can be more easily diagnosed with smaller
-tests.  As such, igt_cs_tlb is superceded by and obsoleted
-by gt_tlb, meaning it can be removed.
+On Thu, Feb 16, 2023 at 04:58:49PM -0800, Umesh Nerlige Ramappa wrote:
+>Current implementation of perf defaults to render and configures the
+>default OAG unit. Since there are more OA units on newer hardware, allow
+>user to pass engine class and instance to program specific OA units.
+>
+>UMD specific changes for GPUvis support:
+>https://patchwork.freedesktop.org/patch/522827/?series=114023
+>https://patchwork.freedesktop.org/patch/522822/?series=114023
+>https://patchwork.freedesktop.org/patch/522826/?series=114023
+>https://patchwork.freedesktop.org/patch/522828/?series=114023
+>https://patchwork.freedesktop.org/patch/522816/?series=114023
+>https://patchwork.freedesktop.org/patch/522825/?series=114023
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 356 ------------------
- 1 file changed, 356 deletions(-)
+GPUvis PR is here - https://github.com/mikesart/gpuvis/pull/81
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-index 01e75160a84a..5361ce70d3f2 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -1940,361 +1940,6 @@ int i915_gem_gtt_mock_selftests(void)
- 	return err;
- }
- 
--static int context_sync(struct intel_context *ce)
--{
--	struct i915_request *rq;
--	long timeout;
--
--	rq = intel_context_create_request(ce);
--	if (IS_ERR(rq))
--		return PTR_ERR(rq);
--
--	i915_request_get(rq);
--	i915_request_add(rq);
--
--	timeout = i915_request_wait(rq, 0, HZ / 5);
--	i915_request_put(rq);
--
--	return timeout < 0 ? -EIO : 0;
--}
--
--static struct i915_request *
--submit_batch(struct intel_context *ce, u64 addr)
--{
--	struct i915_request *rq;
--	int err;
--
--	rq = intel_context_create_request(ce);
--	if (IS_ERR(rq))
--		return rq;
--
--	err = 0;
--	if (rq->engine->emit_init_breadcrumb) /* detect a hang */
--		err = rq->engine->emit_init_breadcrumb(rq);
--	if (err == 0)
--		err = rq->engine->emit_bb_start(rq, addr, 0, 0);
--
--	if (err == 0)
--		i915_request_get(rq);
--	i915_request_add(rq);
--
--	return err ? ERR_PTR(err) : rq;
--}
--
--static u32 *spinner(u32 *batch, int i)
--{
--	return batch + i * 64 / sizeof(*batch) + 4;
--}
--
--static void end_spin(u32 *batch, int i)
--{
--	*spinner(batch, i) = MI_BATCH_BUFFER_END;
--	wmb();
--}
--
--static int igt_cs_tlb(void *arg)
--{
--	const unsigned int count = PAGE_SIZE / 64;
--	const unsigned int chunk_size = count * PAGE_SIZE;
--	struct drm_i915_private *i915 = arg;
--	struct drm_i915_gem_object *bbe, *act, *out;
--	struct i915_gem_engines_iter it;
--	struct i915_address_space *vm;
--	struct i915_gem_context *ctx;
--	struct intel_context *ce;
--	struct i915_vma *vma;
--	I915_RND_STATE(prng);
--	struct file *file;
--	unsigned int i;
--	u32 *result;
--	u32 *batch;
--	int err = 0;
--
--	/*
--	 * Our mission here is to fool the hardware to execute something
--	 * from scratch as it has not seen the batch move (due to missing
--	 * the TLB invalidate).
--	 */
--
--	file = mock_file(i915);
--	if (IS_ERR(file))
--		return PTR_ERR(file);
--
--	ctx = live_context(i915, file);
--	if (IS_ERR(ctx)) {
--		err = PTR_ERR(ctx);
--		goto out_unlock;
--	}
--
--	vm = i915_gem_context_get_eb_vm(ctx);
--	if (i915_is_ggtt(vm))
--		goto out_vm;
--
--	/* Create two pages; dummy we prefill the TLB, and intended */
--	bbe = i915_gem_object_create_internal(i915, PAGE_SIZE);
--	if (IS_ERR(bbe)) {
--		err = PTR_ERR(bbe);
--		goto out_vm;
--	}
--
--	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
--	if (IS_ERR(batch)) {
--		err = PTR_ERR(batch);
--		goto out_put_bbe;
--	}
--	memset32(batch, MI_BATCH_BUFFER_END, PAGE_SIZE / sizeof(u32));
--	i915_gem_object_flush_map(bbe);
--	i915_gem_object_unpin_map(bbe);
--
--	act = i915_gem_object_create_internal(i915, PAGE_SIZE);
--	if (IS_ERR(act)) {
--		err = PTR_ERR(act);
--		goto out_put_bbe;
--	}
--
--	/* Track the execution of each request by writing into different slot */
--	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
--	if (IS_ERR(batch)) {
--		err = PTR_ERR(batch);
--		goto out_put_act;
--	}
--	for (i = 0; i < count; i++) {
--		u32 *cs = batch + i * 64 / sizeof(*cs);
--		u64 addr = (vm->total - PAGE_SIZE) + i * sizeof(u32);
--
--		GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
--		cs[0] = MI_STORE_DWORD_IMM_GEN4;
--		if (GRAPHICS_VER(i915) >= 8) {
--			cs[1] = lower_32_bits(addr);
--			cs[2] = upper_32_bits(addr);
--			cs[3] = i;
--			cs[4] = MI_NOOP;
--			cs[5] = MI_BATCH_BUFFER_START_GEN8;
--		} else {
--			cs[1] = 0;
--			cs[2] = lower_32_bits(addr);
--			cs[3] = i;
--			cs[4] = MI_NOOP;
--			cs[5] = MI_BATCH_BUFFER_START;
--		}
--	}
--
--	out = i915_gem_object_create_internal(i915, PAGE_SIZE);
--	if (IS_ERR(out)) {
--		err = PTR_ERR(out);
--		goto out_put_batch;
--	}
--	i915_gem_object_set_cache_coherency(out, I915_CACHING_CACHED);
--
--	vma = i915_vma_instance(out, vm, NULL);
--	if (IS_ERR(vma)) {
--		err = PTR_ERR(vma);
--		goto out_put_out;
--	}
--
--	err = i915_vma_pin(vma, 0, 0,
--			   PIN_USER |
--			   PIN_OFFSET_FIXED |
--			   (vm->total - PAGE_SIZE));
--	if (err)
--		goto out_put_out;
--	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
--
--	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
--	if (IS_ERR(result)) {
--		err = PTR_ERR(result);
--		goto out_put_out;
--	}
--
--	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
--		IGT_TIMEOUT(end_time);
--		unsigned long pass = 0;
--
--		if (!intel_engine_can_store_dword(ce->engine))
--			continue;
--
--		while (!__igt_timeout(end_time, NULL)) {
--			struct i915_vm_pt_stash stash = {};
--			struct i915_request *rq;
--			struct i915_gem_ww_ctx ww;
--			struct i915_vma_resource *vma_res;
--			u64 offset;
--
--			offset = igt_random_offset(&prng,
--						   0, vm->total - PAGE_SIZE,
--						   chunk_size, PAGE_SIZE);
--
--			memset32(result, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
--
--			vma = i915_vma_instance(bbe, vm, NULL);
--			if (IS_ERR(vma)) {
--				err = PTR_ERR(vma);
--				goto end;
--			}
--
--			i915_gem_object_lock(bbe, NULL);
--			err = i915_vma_get_pages(vma);
--			i915_gem_object_unlock(bbe);
--			if (err)
--				goto end;
--
--			vma_res = i915_vma_resource_alloc();
--			if (IS_ERR(vma_res)) {
--				i915_vma_put_pages(vma);
--				err = PTR_ERR(vma_res);
--				goto end;
--			}
--
--			i915_gem_ww_ctx_init(&ww, false);
--retry:
--			err = i915_vm_lock_objects(vm, &ww);
--			if (err)
--				goto end_ww;
--
--			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
--			if (err)
--				goto end_ww;
--
--			err = i915_vm_map_pt_stash(vm, &stash);
--			if (!err)
--				vm->allocate_va_range(vm, &stash, offset, chunk_size);
--			i915_vm_free_pt_stash(vm, &stash);
--end_ww:
--			if (err == -EDEADLK) {
--				err = i915_gem_ww_ctx_backoff(&ww);
--				if (!err)
--					goto retry;
--			}
--			i915_gem_ww_ctx_fini(&ww);
--			if (err) {
--				kfree(vma_res);
--				goto end;
--			}
--
--			i915_vma_resource_init_from_vma(vma_res, vma);
--			/* Prime the TLB with the dummy pages */
--			for (i = 0; i < count; i++) {
--				vma_res->start = offset + i * PAGE_SIZE;
--				vm->insert_entries(vm, vma_res, I915_CACHE_NONE,
--						   0);
--
--				rq = submit_batch(ce, vma_res->start);
--				if (IS_ERR(rq)) {
--					err = PTR_ERR(rq);
--					i915_vma_resource_fini(vma_res);
--					kfree(vma_res);
--					goto end;
--				}
--				i915_request_put(rq);
--			}
--			i915_vma_resource_fini(vma_res);
--			i915_vma_put_pages(vma);
--
--			err = context_sync(ce);
--			if (err) {
--				pr_err("%s: dummy setup timed out\n",
--				       ce->engine->name);
--				kfree(vma_res);
--				goto end;
--			}
--
--			vma = i915_vma_instance(act, vm, NULL);
--			if (IS_ERR(vma)) {
--				kfree(vma_res);
--				err = PTR_ERR(vma);
--				goto end;
--			}
--
--			i915_gem_object_lock(act, NULL);
--			err = i915_vma_get_pages(vma);
--			i915_gem_object_unlock(act);
--			if (err) {
--				kfree(vma_res);
--				goto end;
--			}
--
--			i915_vma_resource_init_from_vma(vma_res, vma);
--			/* Replace the TLB with target batches */
--			for (i = 0; i < count; i++) {
--				struct i915_request *rq;
--				u32 *cs = batch + i * 64 / sizeof(*cs);
--				u64 addr;
--
--				vma_res->start = offset + i * PAGE_SIZE;
--				vm->insert_entries(vm, vma_res, I915_CACHE_NONE, 0);
--
--				addr = vma_res->start + i * 64;
--				cs[4] = MI_NOOP;
--				cs[6] = lower_32_bits(addr);
--				cs[7] = upper_32_bits(addr);
--				wmb();
--
--				rq = submit_batch(ce, addr);
--				if (IS_ERR(rq)) {
--					err = PTR_ERR(rq);
--					i915_vma_resource_fini(vma_res);
--					kfree(vma_res);
--					goto end;
--				}
--
--				/* Wait until the context chain has started */
--				if (i == 0) {
--					while (READ_ONCE(result[i]) &&
--					       !i915_request_completed(rq))
--						cond_resched();
--				} else {
--					end_spin(batch, i - 1);
--				}
--
--				i915_request_put(rq);
--			}
--			end_spin(batch, count - 1);
--
--			i915_vma_resource_fini(vma_res);
--			kfree(vma_res);
--			i915_vma_put_pages(vma);
--
--			err = context_sync(ce);
--			if (err) {
--				pr_err("%s: writes timed out\n",
--				       ce->engine->name);
--				goto end;
--			}
--
--			for (i = 0; i < count; i++) {
--				if (result[i] != i) {
--					pr_err("%s: Write lost on pass %lu, at offset %llx, index %d, found %x, expected %x\n",
--					       ce->engine->name, pass,
--					       offset, i, result[i], i);
--					err = -EINVAL;
--					goto end;
--				}
--			}
--
--			vm->clear_range(vm, offset, chunk_size);
--			pass++;
--		}
--	}
--end:
--	if (igt_flush_test(i915))
--		err = -EIO;
--	i915_gem_context_unlock_engines(ctx);
--	i915_gem_object_unpin_map(out);
--out_put_out:
--	i915_gem_object_put(out);
--out_put_batch:
--	i915_gem_object_unpin_map(act);
--out_put_act:
--	i915_gem_object_put(act);
--out_put_bbe:
--	i915_gem_object_put(bbe);
--out_vm:
--	i915_vm_put(vm);
--out_unlock:
--	fput(file);
--	return err;
--}
--
- int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-@@ -2314,7 +1959,6 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_ggtt_fill),
- 		SUBTEST(igt_ggtt_page),
- 		SUBTEST(igt_ggtt_misaligned_pin),
--		SUBTEST(igt_cs_tlb),
- 	};
- 
- 	GEM_BUG_ON(offset_in_page(to_gt(i915)->ggtt->vm.total));
--- 
-2.25.1
+Regards,
+Umesh
 
+>
+>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>---
+> drivers/gpu/drm/i915/i915_perf.c | 49 +++++++++++++++++++-------------
+> include/uapi/drm/i915_drm.h      | 20 +++++++++++++
+> 2 files changed, 49 insertions(+), 20 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>index d3a1892c93be..f028df812067 100644
+>--- a/drivers/gpu/drm/i915/i915_perf.c
+>+++ b/drivers/gpu/drm/i915/i915_perf.c
+>@@ -4035,40 +4035,29 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> 	struct drm_i915_gem_context_param_sseu user_sseu;
+> 	u64 __user *uprop = uprops;
+> 	bool config_sseu = false;
+>+	u8 class, instance;
+> 	u32 i;
+> 	int ret;
+>
+> 	memset(props, 0, sizeof(struct perf_open_properties));
+> 	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
+>
+>-	if (!n_props) {
+>-		drm_dbg(&perf->i915->drm,
+>-			"No i915 perf properties given\n");
+>-		return -EINVAL;
+>-	}
+>-
+>-	/* At the moment we only support using i915-perf on the RCS. */
+>-	props->engine = intel_engine_lookup_user(perf->i915,
+>-						 I915_ENGINE_CLASS_RENDER,
+>-						 0);
+>-	if (!props->engine) {
+>-		drm_dbg(&perf->i915->drm,
+>-			"No RENDER-capable engines\n");
+>-		return -EINVAL;
+>-	}
+>-
+> 	/* Considering that ID = 0 is reserved and assuming that we don't
+> 	 * (currently) expect any configurations to ever specify duplicate
+> 	 * values for a particular property ID then the last _PROP_MAX value is
+> 	 * one greater than the maximum number of properties we expect to get
+> 	 * from userspace.
+> 	 */
+>-	if (n_props >= DRM_I915_PERF_PROP_MAX) {
+>+	if (!n_props || n_props >= DRM_I915_PERF_PROP_MAX) {
+> 		drm_dbg(&perf->i915->drm,
+>-			"More i915 perf properties specified than exist\n");
+>+			"Invalid no. of i915 perf properties given\n");
+> 		return -EINVAL;
+> 	}
+>
+>+	/* Defaults when class:instance is not passed */
+>+	class = I915_ENGINE_CLASS_RENDER;
+>+	instance = 0;
+>+
+> 	for (i = 0; i < n_props; i++) {
+> 		u64 oa_period, oa_freq_hz;
+> 		u64 id, value;
+>@@ -4189,7 +4178,13 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> 			}
+> 			props->poll_oa_period = value;
+> 			break;
+>-		case DRM_I915_PERF_PROP_MAX:
+>+		case DRM_I915_PERF_PROP_OA_ENGINE_CLASS:
+>+			class = (u8)value;
+>+			break;
+>+		case DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE:
+>+			instance = (u8)value;
+>+			break;
+>+		default:
+> 			MISSING_CASE(id);
+> 			return -EINVAL;
+> 		}
+>@@ -4197,6 +4192,17 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> 		uprop += 2;
+> 	}
+>
+>+	props->engine = intel_engine_lookup_user(perf->i915, class, instance);
+>+	if (!props->engine) {
+>+		drm_dbg(&perf->i915->drm,
+>+			"OA engine class and instance invalid %d:%d\n",
+>+			class, instance);
+>+		return -EINVAL;
+>+	}
+>+
+>+	if (!engine_supports_oa(props->engine))
+>+		return -EINVAL;
+>+
+> 	if (config_sseu) {
+> 		ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
+> 		if (ret) {
+>@@ -5208,8 +5214,11 @@ int i915_perf_ioctl_version(void)
+> 	 *
+> 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
+> 	 *    interval for the hrtimer used to check for OA data.
+>+	 *
+>+	 * 6: Add DRM_I915_PERF_PROP_OA_ENGINE_CLASS and
+>+	 *    DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE
+> 	 */
+>-	return 5;
+>+	return 6;
+> }
+>
+> #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>index 8df261c5ab9b..b6922b52d85c 100644
+>--- a/include/uapi/drm/i915_drm.h
+>+++ b/include/uapi/drm/i915_drm.h
+>@@ -2758,6 +2758,26 @@ enum drm_i915_perf_property_id {
+> 	 */
+> 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
+>
+>+	/**
+>+	 * In platforms with multiple OA buffers, the engine class instance must
+>+	 * be passed to open a stream to a OA unit corresponding to the engine.
+>+	 * Multiple engines may be mapped to the same OA unit.
+>+	 *
+>+	 * In addition to the class:instance, if a gem context is also passed, then
+>+	 * 1) the report headers of OA reports from other engines are squashed.
+>+	 * 2) OAR is enabled for the class:instance
+>+	 *
+>+	 * This property is available in perf revision 6.
+>+	 */
+>+	DRM_I915_PERF_PROP_OA_ENGINE_CLASS,
+>+
+>+	/**
+>+	 * This parameter specifies the engine instance.
+>+	 *
+>+	 * This property is available in perf revision 6.
+>+	 */
+>+	DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE,
+>+
+> 	DRM_I915_PERF_PROP_MAX /* non-ABI */
+> };
+>
+>-- 
+>2.36.1
+>
