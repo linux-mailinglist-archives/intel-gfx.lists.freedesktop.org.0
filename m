@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B58F69B559
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 23:15:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1178269B58E
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 23:34:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89BC910E1F8;
-	Fri, 17 Feb 2023 22:15:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7936210E1F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 22:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38B7510E477;
+	Fri, 17 Feb 2023 22:33:52 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C69B10E1F8;
+ Fri, 17 Feb 2023 22:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676672146; x=1708208146;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=up4EWvZA64RKVdfXFomeLJsTsW39SwJTmY9eEQY/Omo=;
- b=Endw+UkWcU/Oxhb4knNEBqUK9l8smwSBVsZi/OdnGGRk8ioe1CEPnz5A
- h+dKEOmCVXK9Ni4HfGs2XMXOpo5HEss5BBQa3gvbTVnjOu2FPGWn8zS2d
- sjymiIbWTIlXBiIFHS1YcbzIUj8ecl64nSeZGfG052q3aaki9OpHM5wDV
- JLAJVSxX0hxm4L264qkpyzhqQpbDZ1HOFmvRTyUZagWBoKFn0Zkh971dy
- EMJR6PRYYYl0xPu1JM8s0FZPa4zqkw6b1twatjGVuLErlZ9ECWiZgs3Ml
- KLOxCL9VEgOlzeF5/wyESXdD5bM2pOsjOqZCNtuoNpQJAHyCd39t2UtWk g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="312469555"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="312469555"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 14:15:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="734456986"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="734456986"
-Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.8])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 14:15:43 -0800
-Content-Type: text/plain; charset="utf-8"
+ t=1676673230; x=1708209230;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=K7MPuktbkzDtxrr6A8JAj7dnpbLaS56EUg+4GKhQ6rs=;
+ b=YFp9Erdx6mXA+v/R5SpGiI1qmD/t4twi2B46Y2bDGVfHByTyscJNnIpD
+ hmMJzAqA8OEaGY6McElfysPpynNXMeD0Q3lKmD9BDGfvkYwzlvphwqNUQ
+ CSMZTgf0+5VJEutzYDbplyNc+3LZIuqQMCekhGikM+mZVfOvcf4VZ56ps
+ 58vfy2fFRCfwuJ3gioeu9t7ErGA942AoaUEHT24bs2xRxcEqer8Ks63J9
+ 3w8l2DqZp44gF7PnCiRne6b+I46aB6r82pyNMCpG56O37rof4wcCAxBak
+ VOvB5a2zmVkODVX27pTDlML1vv+OzoKXkxODjQ7WWdqjUZS3L62Dssxdd w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="320211570"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="320211570"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 14:33:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="664021156"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="664021156"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orsmga007.jf.intel.com with ESMTP; 17 Feb 2023 14:33:49 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Fri, 17 Feb 2023 14:33:06 -0800
+Message-Id: <20230217223308.3449737-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230217172019.1101331-1-jonathan.cavitt@intel.com>
-References: <20230217172019.1101331-1-jonathan.cavitt@intel.com>
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Feb 2023 22:15:40 +0000
-Message-ID: <167667214059.1881502.1875323565049457552@build.alporthouse.com>
-User-Agent: alot/0.10
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/2] Clean up some GuC related failure paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +56,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- jonathan.cavitt@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jonathan Cavitt (2023-02-17 17:20:19)
-> The gt_tlb live selftest has the same code coverage as the
-> igt_cs_tlb subtest of gtt.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-True, the intent of the code is the same, but gt_tlb has had a much high
-success rate at hitting TLB bugs, so is my preferred test.
+Improve failure code handling during GuC intialisation.
 
-> However, igt_cs_tlb is hitting
-> an issue in that we are updating PTE in gt0->vm but
-> executing on the media tile without updating gt1->vm.
+v2: Fix function naming and improve on/off balancing (review feedback
+from Daniele)
 
-I'm no longer convinced this a good explanation of the issue, as unlike
-the i915_requests selftest this is using a GEM context and not the local
-kernel contexts. The GEM context->vm should work equally on the mtl
-render and media tiles, afaict.
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-The failure is very early in running on media tile (after running on the
-render tile) so I think it should be easy enough to reproduce in a
-simpler test to narrow down the cause.
 
-> This issue is corrected in gt_tlb, and thus igt_cs_tlb
-> is obsolete and should be removed.
+John Harrison (2):
+  drm/i915/guc: Improve clean up of busyness stats worker
+  drm/i915/guc: Fix missing return code checks in submission init
 
-gt_tlb supersedes igt_cs_tlb, that I can agree on,
-Acked-by: Chris Wilson <chris.p.wilson@linux.intel.com>
--Chris
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 133 +++++++++++++-----
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.h |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   7 +-
+ 3 files changed, 102 insertions(+), 40 deletions(-)
+
+-- 
+2.39.1
+
