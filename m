@@ -2,55 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE57069A91E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 11:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A302069A945
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 11:46:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E467A10EF52;
-	Fri, 17 Feb 2023 10:33:38 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D04D610EF52;
- Fri, 17 Feb 2023 10:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1372010EF60;
+	Fri, 17 Feb 2023 10:46:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF90910EF53;
+ Fri, 17 Feb 2023 10:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676630016; x=1708166016;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ngp/R/xo4RrSqAQSsUw9XesJnozJaQOqjD3HrKvwvyc=;
- b=SHKrhs+x9huggUMLJDSIRAvYja/ckDRKPemZmgV1j8s/2r/sjANG1gQg
- hx5R7VosGD6oRfE5iKIlrBkGpvhYSQYplPuNC9qtYy3eAqK8U6VFTw25B
- rsyKXCtQDLW2cFIpHxX7qBkv2336g2KLsri2fvqA4Dg9g3ES9+8WbPaNZ
- I8dGzUOmpjtWZ5NQgpZCiUbQHJv6HGECyiRIDXyyiOeon4ud0RYourXuz
- uvY49xRXfbU/8fioiWWXARpJy7+1xqpRHAZamJqWsYlzpVLRe/u9ugjFx
- V+4v38Hh/KMno+7Zkm87PcQcCX9CebF8elDvJtPKsndo7+EkufiVKmZG6 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="396633928"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="396633928"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 02:33:36 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="794366649"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="794366649"
-Received: from scurtin-mobl.ger.corp.intel.com (HELO [10.213.210.155])
- ([10.213.210.155])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 02:33:34 -0800
-Message-ID: <baf3d615-c764-6e9b-a910-70b3f0fdcabc@linux.intel.com>
-Date: Fri, 17 Feb 2023 10:33:32 +0000
+ t=1676630799; x=1708166799;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6gedM47B1VpdMC6HjcDfKK/3wme0b2lLN15fkB8wl7g=;
+ b=TD7Jx1mtB9nacyk8n3bwcE/iiYDb/j4ULNUSSPNDMNHTD3PMNom3tRKj
+ CZ49pBUVoLnfirPYT7DuTao2cLKlSp9IcLw7Io7QEUWQb9XuUv1a/qvvE
+ wQGTm3F7ssWMzk3rKKK9sGW0FDNazGo3Rl9oD42JKjuQQR1UuafeVb3zt
+ Q0/PxVkh4jMvx/3ilYTpztFHhf69Kdlo0yLRSbNWjGlDhHgndFMXrTnBg
+ Uwy1JU+2ZTfEbCZ85C5VSn00tqFA7OKA1G5Q60ggNlhgnf7HQ/mEMtQ99
+ koZXcs2sXfDwy9MzJ+ypCqd2n2q/H16mLC+K3H6WY3mnw9FxEH9g628YI A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="394437659"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="394437659"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 02:46:38 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="759314650"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="759314650"
+Received: from akocherg-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.53.1])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 02:46:36 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 17 Feb 2023 12:46:27 +0200
+Message-Id: <20230217104627.1360015-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1676580180.git.jani.nikula@intel.com>
+References: <cover.1676580180.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20230216092123.159085-1-tvrtko.ursulin@linux.intel.com>
- <Y+5OpUckkJlqaRjh@mdroper-desk1.amr.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <Y+5OpUckkJlqaRjh@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Consolidate TLB invalidation
- flow
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 5/4] drm/edid: parse Tiled Display Topology Data
+ Block for DisplayID 2.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +60,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Iaroslav Boliukin <iam@lach.pw>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Currently we only parse the Tiled Display Topology Data Block for
+DisplayID structure version 1.2, but not 2.0. The contents seem to be
+the same for both, so expand the parsing to structure version 2.0.
 
-On 16/02/2023 15:41, Matt Roper wrote:
-> On Thu, Feb 16, 2023 at 09:21:23AM +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> As the logic for selecting the register and corresponsing values grew, the
->> code become a bit unsightly. Consolidate by storing the required values at
->> engine init time in the engine itself, and by doing so minimise the amount
->> of invariant platform and engine checks during each and every TLB
->> invalidation.
->>
->> v2:
->>   * Fail engine probe if TLB invlidations registers are unknown.
->>
->> v3:
->>   * Rebase.
->>
->> v4:
->>   * Fix handling of GEN8_M2TCR. (Andrzej)
->>
->> v5:
->>   * Tidy checkpatch warnings.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
->> Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v3
-> 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> 
-> for this version as well.
+Note that DisplayID spec version is not the same as DisplayID structure
+version; DisplayID 1.3 uses structure version 1.2, and DisplayID 2.0-2.1
+use structure version 2.0. Lovely.
 
-Thanks Matt, pushed.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_edid.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Regards,
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 03ad53a1ba82..ebab862b8b1a 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -7267,6 +7267,15 @@ static void drm_parse_tiled_block(struct drm_connector *connector,
+ 	}
+ }
+ 
++static bool displayid_is_tiled_block(const struct displayid_iter *iter,
++				     const struct displayid_block *block)
++{
++	return (displayid_version(iter) == DISPLAY_ID_STRUCTURE_VER_12 &&
++		block->tag == DATA_BLOCK_TILED_DISPLAY) ||
++		(displayid_version(iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
++		 block->tag == DATA_BLOCK_2_TILED_DISPLAY_TOPOLOGY);
++}
++
+ static void _drm_update_tile_info(struct drm_connector *connector,
+ 				  const struct drm_edid *drm_edid)
+ {
+@@ -7277,7 +7286,7 @@ static void _drm_update_tile_info(struct drm_connector *connector,
+ 
+ 	displayid_iter_edid_begin(drm_edid, &iter);
+ 	displayid_iter_for_each(block, &iter) {
+-		if (block->tag == DATA_BLOCK_TILED_DISPLAY)
++		if (displayid_is_tiled_block(&iter, block))
+ 			drm_parse_tiled_block(connector, block);
+ 	}
+ 	displayid_iter_end(&iter);
+-- 
+2.34.1
 
-Tvrtko
