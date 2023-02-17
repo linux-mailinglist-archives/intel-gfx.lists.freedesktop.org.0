@@ -1,150 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3181569AC19
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 14:06:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842AC69AC18
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 14:06:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 907A110EFC0;
-	Fri, 17 Feb 2023 13:06:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE2810EFD0;
+	Fri, 17 Feb 2023 13:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B7F10EFC0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 13:06:09 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6148910EFC6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 13:06:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676639169; x=1708175169;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Q29jsDlAO0pE1bpmHW9qhI81lTIX3uANXVuGO7pYAiU=;
- b=k0D9e8lTk6Mj+aiFeI/4pThUmyiJ5EAr9uGrLqgAH3xVIac1iaplNdJL
- jk/olsCedpnavWAXoDD0Mp25OIty5BotzTMw4J0gg8CkgB6RfHwRqyIuk
- WBBr+m+5a7FxSVznlW7C7S3VKTVQaTFGPAdffwzh2KFRPVaCLVZYdSDbQ
- gSfHssTLUDBR2bSeporkQ4Cpl/bm49oAvL3uZA5OTwprMPUETxPylB8nM
- ZskadBWcLiDcgQeg716oUqb552DHNFgQfNacrvtqVXIcEr2vMVBAkA4jR
- GY7wCMyWBBy98Q75wgRjHw0izWnYYrgKk2Y8vuGZrmin+mlW3REzzQqDs A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="315697774"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="315697774"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 05:06:08 -0800
+ t=1676639163; x=1708175163;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1XufdX/9Wc4UVQhXxTY4kYIiPtT10w/sGv2xpnRa8r4=;
+ b=iTkuWqUDv2uD/w+ErQkmFJdz9LEhJgEX8o4m0+xedxK3dVxECIhf968B
+ i1pE2EXXBnzU+4BV2CuIFkPAXmo7CE2BN7Jkn6+enX9/GhapXWSAfwWrC
+ iXeI7JGwVst8PyKDxa4c/WkKE9r0xbzwd8FjGFoVGZqorSQgO4L+wI+IN
+ aMl6lKe5QfDrV+AXqkCkRcxktiX8uFLcsWZPLCwHQtpwu0ZB0sA7xTCDg
+ 0YR7aqYn/bLZkw/P5EmGt+krO7HPkiEGSiaS7I3/7JpcXQbHenbprR+iR
+ DcbXyy9a6EDci/z9GQJTRg/h7JlGan7vL43S2mXCYifZL/vW5ltE1J4C6 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="320087880"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="320087880"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 05:06:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="813366596"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="813366596"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga001.fm.intel.com with ESMTP; 17 Feb 2023 05:06:08 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 05:06:08 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 05:06:08 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 17 Feb 2023 05:06:07 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eTuljFkTLeDFYVYrbc3Z97ck0ubm953NTRpJ5vrf49BKBxHFvw+UFJbDnbhcFlZRXHweDfsnuPZ6uEu7F8KsmOYCqnZW7JkZM23OF/s9U8fiEAAYMYLWRcvVmuWJtcoLHa/q7o4s5GkJ6Zx8+98Fh6soD89xM5J5aTGVWhaezQKnMl+cMf5z0P+I9MhbUD02YfDVEdeNc+iMP2JW3iq6Bvk1pc0ISUemPRGxJ9dxcGVhrEgCgVtfKvaZUrAdrL7Zqlrbr0vJlJO6+CCCCtj741f0IxqgzMrAO6Gy/kHPjWBdultWWlqD1eZ4DY08h3qN0FOEH8uH/N3eJxm6UWcNGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uXBfLu+w1UlXrcQXY6sXUOM67/pBHMA+gECgtPAWIDw=;
- b=VJWoU93VF4AoNOlk2aYDW6Mk8/1xipcSPxEbnOEYbKf7EUC6SUY5VZG8+N8ZYWzVOzqugPcm5vF9mMsRc63eP8+dpWDlb0w3rXrPWTg+FjoWN4qyGDvkAQ5gneuCmIJgd9PS55jcq7lxUKVdcQU7wlbzcy2v5zUx08eyvo/pl8eY/oPn5Pnr3n0rxmpxlhHKvYlhkdrjdYsqtdf8/A0KtCIQ7fDif7IBxx18QbI0os74UUOJHRYKEM8Kvk+pnD9vo23svtoz/g5bCHLO9SVowivbIM+88yD3vDmpYJyY+G1tneErOy3NK/HFAyraQ7vqZ5320ex8JYO0Zh5yhNpXdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by BL1PR11MB5333.namprd11.prod.outlook.com (2603:10b6:208:309::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.15; Fri, 17 Feb
- 2023 13:06:06 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::a4d:71cf:e6bb:6942]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::a4d:71cf:e6bb:6942%7]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
- 13:06:06 +0000
-Message-ID: <5fc93ec8-a51f-c28b-848d-825bed4d0b94@intel.com>
-Date: Fri, 17 Feb 2023 18:35:51 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="670532215"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="670532215"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga002.jf.intel.com with SMTP; 17 Feb 2023 05:06:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Feb 2023 15:05:59 +0200
+Date: Fri, 17 Feb 2023 15:05:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y+97t4ENJ4RINtan@intel.com>
 References: <20230216231312.32664-1-ville.syrjala@linux.intel.com>
- <20230216231312.32664-3-ville.syrjala@linux.intel.com>
- <02f8d9ad-81bf-b176-4565-015dec53442e@intel.com> <Y+9s8+EuHTk5ZI0e@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <Y+9s8+EuHTk5ZI0e@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0189.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:be::11) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ <87o7psxxyh.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL1PR11MB5333:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40a9f075-6e5e-4bce-1189-08db10e7baa8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GKtKWbCYH2SU9fzQAMnTPcD3I33EMO1LN9e8nV7lwPFKTuOJjEewrVBPUi+ju+nIxaNRzEUy6O02wPm5p6Iwv1i5d/3VGCTbBOONaP0RPlvcMYuV3pplxx3TVAYGbkEh5U4YHw5hrbn+sjyPcS+87u6mJOYB0E//pjD0B+eqh1kq8N3gNjzNnh9SxQ7ilB+i0g5UKtmTpr6/qyi6qefDCSo5ruhenIYZK/IZHigHdGzXZIKetRPeEQgxma0ic1u0b0Ap781Ke3HFZ9Wp/u/qbIYBarStRm7zgBiEyxQyJco3k83td35bd1EbuG08cw0Pfopa8fN+GG+uXNjZ38h+0Z0rEZnfUhVtlGEGLn7mVUHyvoQAbfdOCxF+DIjdwYkp0grxWQTwdEkESzMfC8GLpAfmlBn4BlFYqHWfeCJIYlfI4i5IrmcYHDbCbWOqhIw8zndZNPaf3xD4QFWHk8+StVdqGto3j6cvLpQSj/WrhCy4q6woVU0DCJbsg1XhrMjwP6yhHEXJ+fOJo0VeRX30aDZFzOGz6xhAC76okiljYVAsjyhGeHDAottYVtp6xxpqyqWjSERGaoG4ylxe3YYjvKXrso1+ZPRZ7nST/IaAtXvton5SWpwm2/lmo0reM4QOrWB+/rueMRbKDBOt1uj78GR48X8I07d8PcS8zO5U+EazdFUpg3C6ZgdeZ27+syTUUJh2biAc6tOdKiuZvlVNaohuvS3Ehtj0GziqlD32VaU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(39860400002)(346002)(376002)(396003)(366004)(451199018)(86362001)(31696002)(82960400001)(38100700002)(36756003)(5660300002)(8676002)(2906002)(4326008)(6916009)(66476007)(66946007)(66556008)(8936002)(41300700001)(26005)(186003)(2616005)(53546011)(55236004)(6512007)(83380400001)(66574015)(316002)(6506007)(6666004)(478600001)(6486002)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1RpRnlSNVQrSVUwWjQvUHorOW1lcUNVR0ZIRlJNcUxhVnZOUHNQMCswWUYz?=
- =?utf-8?B?TDJMSXJFWndjdVZFZ0xsSTJya1BaZ2Q3N1d4TDBlZkFIQ2tsYXRDbFJOZk1X?=
- =?utf-8?B?YWdpQXByVjZmemFsY1ZvalBjMnFTZjJWNm5WS3VzVE15R1d4NGNOSUkvRk1h?=
- =?utf-8?B?bnpyaUlqOFRFZlRNWmJpaVhGSFpScExCTDg0dHY4L0J1cnVKcmxnYmptcXFi?=
- =?utf-8?B?c1Z5M3R2aWJERWtoNGhQVWZ2VjVSTFIyK1RwUjhObDJuZVdGTTBUNTRNdUFL?=
- =?utf-8?B?dnVjamtSakExc2hkdEllTzNEaHhkQm8reWEycGRaeGFLUUFLSjBvUExqT2Vl?=
- =?utf-8?B?SDVwblFvODBWbXp5VmhncXNkeU1Bb2lmSDViZm5oeVB3M3JlYXcvUXA4d1VD?=
- =?utf-8?B?Zm5vTHltVEF2dlkxNUU5RlVrMW9NNzlyVUhFOW5oTXpTeldDNnBHMGkxY051?=
- =?utf-8?B?bWh2czE1K3pGbFBWVnRPazhQc3RiOFBtMDFWc2xzK1pUNHFnN1NVQ0Z0TTZt?=
- =?utf-8?B?NXlFc1dIdW9oVk5RRFZpU01RVkEzb1FSdXNnUkpYSW9WWlhxcmY5Vk1ld1Vh?=
- =?utf-8?B?d05XNDhMdHA5SXh5S0lLRTl6NnIzSkhIVk04VUNSQjdUSTlWY1FmTGtzVVoy?=
- =?utf-8?B?Q1pGeSt3VnVoRThjUFlpZUJXOHhML0RNdmE3OXR6SVh2WnBDNFY2YzVPY1hU?=
- =?utf-8?B?ZU0rTlMwbXI5eDZpWXZZNzhEc2pkYUszR0p0WHVjSzVidkIyVm1BTnFORXlM?=
- =?utf-8?B?dW0rQ3RBWDBXeHdCaGRheXMvdVVHaFk3bmUvZkkzc3duSnRSZFFVTlpRYS9D?=
- =?utf-8?B?OGNqUUI2K2hNQWdWK2tsRDZjUmhoUlQxamdMY1dJRG5xVlMwSnkzam5teTFY?=
- =?utf-8?B?MWdDK3lMaVlmTzUrS2FkZXVubWxaNnMxdzdSUWF6eFlNbXRweUI0S0VHdEpp?=
- =?utf-8?B?Y3VVWFc5ODh4bU5iUHFkMkxYdVFJK0doMVlpYk9JKzd4UUVyb0F4M1o2YWQv?=
- =?utf-8?B?NXhURmFPdTNCQXFlazVIYjdvSnJMMW1HRWkvME9NSWx2QkNDdkE1OGlUOWJT?=
- =?utf-8?B?RzYwQUpOQ2d0bXR6S3J2ZDlSNUI2bFVoR0ZaTGRkUis2MFFYajNDMHhMQXF5?=
- =?utf-8?B?VTJCVkEzZVVKZ0ZNK3YwUHBxS3k5cFVCdHQwTU9UcWFIaWNNLzRYZFYwZWNU?=
- =?utf-8?B?YTVReVM3NWVmQ21mV2I1UFAyT2gzRzIrZmw3dHd5Y3Z0bTZJM0lvSW5FK0tT?=
- =?utf-8?B?QVlvK3BjLzF6cDJFa1poK2NGNU9vQWlIV3VrdnBKZGNnRGlid2VoTmU5aGFI?=
- =?utf-8?B?Y1A4N3RtRUdPOS9HUGxuZTRWRmxLOWZJTVRPclRaNFpaTElubTFSUFg5RzZH?=
- =?utf-8?B?Tnp1Tzl3NHcvZ2FKdHhnaXF1U29uNFBPTVBadDhQOGhrUWFGVXBmV0FGK2FE?=
- =?utf-8?B?ZzI2T0N4N0ZuYzI5UXpUR2dnOXVoYWtYeC9EWXN0OFBqZmZhN21mZ2xtYUVh?=
- =?utf-8?B?RUxvRTVvdGpKOHVsSVEzSkoyY3VqdFgxaHcyNnlyc05CVWVPVitXekt1VzFG?=
- =?utf-8?B?SU5adVdLbEJHdzlWRGR1a25tdjJ4ZDhlK001L2ZBMmE1Z0YxSkNxeGVRM3ha?=
- =?utf-8?B?cE9pNWNjUnlQV2dwaUlqMUppeW8yVjZ3L2ZZTjlOMk9hSzBxS24zdUNTaC9K?=
- =?utf-8?B?cW5uZW9FZmtYOHU4R1E5L0xPK08vNDhvN0wzUTdEcTJJU3lzWjZWelpkUFFU?=
- =?utf-8?B?Ui9YaGN6WWFuVDFFUjBrM2RVdTNLVnR6WEZnV1RLU21BOUdVOGMvc29vd2ox?=
- =?utf-8?B?Z3E0TDNFSldsSlFPMkd5UktQdVV3V09ONFBBL1prQnlBby9wcGkyOVhHSzZr?=
- =?utf-8?B?cDEwVVNVZlU2czQzRlFMNVpvSUpWVEpSQjlWNG0xbzRDKzBwQUJLNHRQVWlr?=
- =?utf-8?B?UElKT1hWWVRyNTJtUDFlZkIxdGR1YkQvcXVUdUN4L21pdmMxM2REYXI4ZHB5?=
- =?utf-8?B?bjVoNkl3Tkt1V0pxaFZOMWFseHNIcTVuNTdobTVRaSsvVTRzV1hHTmZybVJ6?=
- =?utf-8?B?bkFYV0d6cXl6TVZoa1plNzFyeGZQZXlTOEJjUm9YbUovOGc4dTRsekJXNVBn?=
- =?utf-8?B?cUo1dW92SHJiQVhpcktVVm9sbXN3V0JRUGc4TlBTdVFKMmc4eVZzV1oyU2kr?=
- =?utf-8?B?ZVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40a9f075-6e5e-4bce-1189-08db10e7baa8
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 13:06:06.3122 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G1sDAvZj4pIIjQh7Yam+Qb4YqnmyUkGLSG+FXMgIHSl0j/aSz0YDe2L7tjkN8XazaRRSSY4v6WGE2D76It0zyFVuG3DlMy6jDpaNtv1zNrg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5333
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Fix platform default aux ch
- for skl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87o7psxxyh.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Restructure
+ intel_bios_port_aux_ch()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,87 +66,296 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Feb 17, 2023 at 02:45:10PM +0200, Jani Nikula wrote:
+> On Fri, 17 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> >
+> > Restructure intel_bios_port_aux_ch() to resemble the ddc_pin
+> > counterpart, where the intel_bios.c stuff only deals with the
+> > child device definition, and the platform default will come from
+> > elsewhere.
+> >
+> > This requires the introduction if AUX_CH_NONE as the value 0
+> > is already taken to mean AUX_CH_A.
+> 
+> Related to the series, I wrote [1] a few weeks back but wasn't
+> completely happy. Maybe intel_dp_aux_name() should be in intel_dp_aux.c?
+> Maybe intel_dp_aux_init() should initialize the name, not the caller of
+> it?
+> 
+> The aux ch naming and the current single-char auc_ch_name() are a bit
+> misleading in many cases?
 
-On 2/17/2023 5:32 PM, Ville Syrj√§l√§ wrote:
-> On Fri, Feb 17, 2023 at 03:15:59PM +0530, Nautiyal, Ankit K wrote:
->> On 2/17/2023 4:43 AM, Ville Syrjala wrote:
->>> From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
->>>
->>> SKL/derivatives have DDI E but no AUX E, so we need to pick
->>> another aux ch as the platform default. DDI E is more or less
->>> the other half of DDI A, so we pick AUX A.
->>>
->>> In all other cases we should have a corresponding aux ch for
->>> each DDI.
->>>
->>> Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 ++++++++++++--
->>>    1 file changed, 12 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>> index 57eb3ff187fa..96967e21c94c 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>> @@ -739,10 +739,20 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
->>>    	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
->>>    }
->>>    
->>> +static enum aux_ch default_aux_ch(struct intel_encoder *encoder)
->>> +{
->>> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->>> +
->>> +	/* SKL has DDI E but no AUX E */
->>> +	if (DISPLAY_VER(i915) == 9 && encoder->port == PORT_E)
->>> +		return AUX_CH_A;
->>> +
->> I guess we might need to fix intel_dp_aux_init also. Wont we have
->> dig_port->aux_ch and intel_dp->aux_ch pointing to different things?
-> There is no intel_dp->aux_ch.
->
->> For example for SKL and DDI E, intel_dp->aux.name will be derived from
->> dig_port->aux_ch i.e. AUX_CH_A but intel_dp->aux_ctl/data reg will still
->> point to DP_AUX_CH_CTL/DATA_E.
->>
->> Am I missing something?
-> Everything is based on dig_port->aux_ch.
+Yeah, it's not great. For the aux init what you have seems ok,
+but here we are getting called before the aux init. So the
+extra memory allocation at least would be a bit annoying, though
+if it's just this one place we could probably live with it.
+Haven't checked how many other places use aux_ch_name() without
+having the intel_dp->aux around.
 
-Yeah my bad. I think I misread and got confused. We indeed are using 
-dig_port->aux_ch, for getting aux_ctl/data reg.
+port_name() really has the same issue, and in that case the
+encoder->name printf formatting is even part of the 
+drm_encoder_init() call, so harder to extract even.
 
-I couldnt get the exact bspec mention for SKL not having AUX E, but SKL 
-Display connection Bspec:4217 throws some light, if I am not fully off.
+Hmm, I wonder how terrible it would be if we just replicated
+the apporach you used in commit 5b04aab6d495 ("drm/dp: add
+drm_dp_phy_name() for getting DP PHY name")?
 
-Is this applicable to Canonlake too¬† (Bspec:14004) from Display 
-connection it does seem to have DDI E but no DP_AUX E?
+The other optiom would be to change the enums to not match
+the hw register instances anymore. For which there was some kind
+of patch, but I've not had any time to think through how terrible
+it would be elsewhere. Although the fact that we want more than
+a single character anyway means we still have the problem with
+allocating the storage for the temp string.
 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://paste.debian.net/1271086/
+> 
+> 
+> 
+> >
+> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/g4x_dp.c        |  3 ++-
+> >  drivers/gpu/drm/i915/display/g4x_hdmi.c      |  3 ++-
+> >  drivers/gpu/drm/i915/display/intel_bios.c    | 27 ++++++++------------
+> >  drivers/gpu/drm/i915/display/intel_bios.h    |  5 ++--
+> >  drivers/gpu/drm/i915/display/intel_ddi.c     |  3 ++-
+> >  drivers/gpu/drm/i915/display/intel_display.h |  2 ++
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c  | 23 +++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.h  |  4 +++
+> >  8 files changed, 47 insertions(+), 23 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > index 6ccbc2280ff9..a50ad0fff57c 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > @@ -17,6 +17,7 @@
+> >  #include "intel_display_power.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> > +#include "intel_dp_aux.h"
+> >  #include "intel_dp_link_training.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_fifo_underrun.h"
+> > @@ -1397,7 +1398,7 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+> >  	if (port != PORT_A)
+> >  		intel_infoframe_init(dig_port);
+> >  
+> > -	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, devdata, port);
+> > +	dig_port->aux_ch = intel_dp_aux_ch(intel_encoder);
+> >  	if (!intel_dp_init_connector(dig_port, intel_connector))
+> >  		goto err_init_connector;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > index e965c5513c74..34f56d8d7cb3 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > @@ -8,6 +8,7 @@
+> >  #include "g4x_hdmi.h"
+> >  #include "i915_reg.h"
+> >  #include "intel_audio.h"
+> > +#include "intel_dp_aux.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_crtc.h"
+> >  #include "intel_de.h"
+> > @@ -639,6 +640,6 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+> >  
+> >  	intel_infoframe_init(dig_port);
+> >  
+> > -	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, devdata, port);
+> > +	dig_port->aux_ch = intel_dp_aux_ch(intel_encoder);
+> >  	intel_hdmi_init_connector(dig_port, intel_connector);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> > index 8cf2392a5670..f35ef3675d39 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > @@ -3572,21 +3572,10 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+> >  	return false;
+> >  }
+> >  
+> > -enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+> > -				   const struct intel_bios_encoder_data *devdata,
+> > -				   enum port port)
+> > +static enum aux_ch map_aux_ch(struct drm_i915_private *i915, u8 aux_channel)
+> >  {
+> >  	enum aux_ch aux_ch;
+> >  
+> > -	if (!devdata || !devdata->child.aux_channel) {
+> > -		aux_ch = (enum aux_ch)port;
+> > -
+> > -		drm_dbg_kms(&i915->drm,
+> > -			    "using AUX %c for port %c (platform default)\n",
+> > -			    aux_ch_name(aux_ch), port_name(port));
+> > -		return aux_ch;
+> > -	}
+> > -
+> >  	/*
+> >  	 * RKL/DG1 VBT uses PHY based mapping. Combo PHYs A,B,C,D
+> >  	 * map to DDI A,B,TC1,TC2 respectively.
+> > @@ -3594,7 +3583,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+> >  	 * ADL-S VBT uses PHY based mapping. Combo PHYs A,B,C,D,E
+> >  	 * map to DDI A,TC1,TC2,TC3,TC4 respectively.
+> >  	 */
+> > -	switch (devdata->child.aux_channel) {
+> > +	switch (aux_channel) {
+> >  	case DP_AUX_A:
+> >  		aux_ch = AUX_CH_A;
+> >  		break;
+> > @@ -3655,17 +3644,21 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+> >  			aux_ch = AUX_CH_I;
+> >  		break;
+> >  	default:
+> > -		MISSING_CASE(devdata->child.aux_channel);
+> > +		MISSING_CASE(aux_channel);
+> >  		aux_ch = AUX_CH_A;
+> >  		break;
+> >  	}
+> >  
+> > -	drm_dbg_kms(&i915->drm, "using AUX %c for port %c (VBT)\n",
+> > -		    aux_ch_name(aux_ch), port_name(port));
+> > -
+> >  	return aux_ch;
+> >  }
+> >  
+> > +enum aux_ch intel_bios_dp_aux_ch(const struct intel_bios_encoder_data *devdata)
+> > +{
+> > +	if (!devdata || !devdata->child.aux_channel)
+> > +		return AUX_CH_NONE;
+> > +
+> > +	return map_aux_ch(devdata->i915, devdata->child.aux_channel);
+> > +}
+> >  
+> >  int intel_bios_dp_boost_level(const struct intel_bios_encoder_data *devdata)
+> >  {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+> > index 49a9e8d40e88..8a0730c9b48c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> > @@ -38,6 +38,7 @@ struct intel_bios_encoder_data;
+> >  struct intel_crtc_state;
+> >  struct intel_encoder;
+> >  struct intel_panel;
+> > +enum aux_ch;
+> >  enum port;
+> >  
+> >  enum intel_backlight_type {
+> > @@ -248,9 +249,6 @@ bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port por
+> >  bool intel_bios_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
+> >  bool intel_bios_is_port_dp_dual_mode(struct drm_i915_private *dev_priv, enum port port);
+> >  bool intel_bios_is_dsi_present(struct drm_i915_private *dev_priv, enum port *port);
+> > -enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *i915,
+> > -				   const struct intel_bios_encoder_data *devdata,
+> > -				   enum port port);
+> >  bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+> >  			       struct intel_crtc_state *crtc_state,
+> >  			       int dsc_max_bpc);
+> > @@ -269,6 +267,7 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
+> >  bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
+> >  bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata);
+> >  bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata);
+> > +enum aux_ch intel_bios_dp_aux_ch(const struct intel_bios_encoder_data *devdata);
+> >  int intel_bios_dp_boost_level(const struct intel_bios_encoder_data *devdata);
+> >  int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata);
+> >  int intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *devdata);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index e917d91ea9f9..3f5a81e08040 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -47,6 +47,7 @@
+> >  #include "intel_dkl_phy.h"
+> >  #include "intel_dkl_phy_regs.h"
+> >  #include "intel_dp.h"
+> > +#include "intel_dp_aux.h"
+> >  #include "intel_dp_link_training.h"
+> >  #include "intel_dp_mst.h"
+> >  #include "intel_dpio_phy.h"
+> > @@ -4486,7 +4487,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> >  
+> >  	dig_port->dp.output_reg = INVALID_MMIO_REG;
+> >  	dig_port->max_lanes = intel_ddi_max_lanes(dig_port);
+> > -	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, devdata, port);
+> > +	dig_port->aux_ch = intel_dp_aux_ch(encoder);
+> >  
+> >  	if (intel_phy_is_tc(dev_priv, phy)) {
+> >  		bool is_legacy =
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> > index ed852f62721d..50285fb4fcf5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -172,6 +172,8 @@ enum tc_port_mode {
+> >  };
+> >  
+> >  enum aux_ch {
+> > +	AUX_CH_NONE = -1,
+> > +
+> >  	AUX_CH_A,
+> >  	AUX_CH_B,
+> >  	AUX_CH_C,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > index 5a176bfb10a2..c4e72c17e06a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > @@ -6,6 +6,7 @@
+> >  #include "i915_drv.h"
+> >  #include "i915_reg.h"
+> >  #include "i915_trace.h"
+> > +#include "intel_bios.h"
+> >  #include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp_aux.h"
+> > @@ -737,3 +738,25 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+> >  	intel_dp->aux.transfer = intel_dp_aux_transfer;
+> >  	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
+> >  }
+> > +
+> > +enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > +	enum port port = encoder->port;
+> > +	enum aux_ch aux_ch;
+> > +
+> > +	aux_ch = intel_bios_dp_aux_ch(encoder->devdata);
+> > +	if (aux_ch != AUX_CH_NONE) {
+> > +		drm_dbg_kms(&i915->drm, "using AUX %c for port %c (VBT)\n",
+> > +			    aux_ch_name(aux_ch), port_name(port));
+> > +		return aux_ch;
+> > +	}
+> > +
+> > +	aux_ch = (enum aux_ch)port;
+> > +
+> > +	drm_dbg_kms(&i915->drm,
+> > +		    "using AUX %c for port %c (platform default)\n",
+> > +		    aux_ch_name(aux_ch), port_name(port));
+> > +
+> > +	return aux_ch;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+> > index 738577537bc7..138e340f94ee 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+> > @@ -6,9 +6,13 @@
+> >  #ifndef __INTEL_DP_AUX_H__
+> >  #define __INTEL_DP_AUX_H__
+> >  
+> > +enum aux_ch;
+> >  struct intel_dp;
+> > +struct intel_encoder;
+> >  
+> >  void intel_dp_aux_fini(struct intel_dp *intel_dp);
+> >  void intel_dp_aux_init(struct intel_dp *intel_dp);
+> >  
+> > +enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder);
+> > +
+> >  #endif /* __INTEL_DP_AUX_H__ */
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-Regards,
-
-Ankit
-
->
->> Regards,
->>
->> Ankit
->>
->>
->>> +	return (enum aux_ch)encoder->port;
->>> +}
->>> +
->>>    enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
->>>    {
->>>    	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->>> -	enum port port = encoder->port;
->>>    	enum aux_ch aux_ch;
->>>    
->>>    	aux_ch = intel_bios_dp_aux_ch(encoder->devdata);
->>> @@ -753,7 +763,7 @@ enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
->>>    		return aux_ch;
->>>    	}
->>>    
->>> -	aux_ch = (enum aux_ch)port;
->>> +	aux_ch = default_aux_ch(encoder);
->>>    
->>>    	drm_dbg_kms(&i915->drm,
->>>    		    "[ENCODER:%d:%s] using AUX %c (platform default)\n",
+-- 
+Ville Syrj‰l‰
+Intel
