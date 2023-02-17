@@ -2,55 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5113669AAF6
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 13:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC3369AB47
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 13:22:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCC510EF8E;
-	Fri, 17 Feb 2023 12:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9B0D10EF91;
+	Fri, 17 Feb 2023 12:22:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C713D10EF8E
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 12:03:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676635382; x=1708171382;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4eGAdprrsPzhUd/uOGa1EMJelfkNQEvHv9q/HGi6PnQ=;
- b=IQvljfZdOPx+hefGF2bUAVeNBlCCWQmQqiPB6KysAAXc6j0KH54rYXz3
- Am0tSCA6kyhc1J4YtRLGCPYPHPWTGmp/35a449v6ONOT3ywdzZgVJ+tRq
- WTrJtY6Z9JykoRdVyoUGhsIWFIOjPHrSbsatoRbSLLv+GGvbgvlSdBlln
- V+GiXN42vLsWHdkFYbVNsdxk37y3+WNRqC3G1BlELYQg0RNqHQftk8sUw
- L+M10g7vfd3JlvL2eF9KXMJiiKFSOrvwiG/rNYZFOaHJbLTvU/Wz8Z84X
- NSB+IYPK/OtseNVcGLZ+onS5jATUYlFx/FLRDzIscxii3J6jVYlyoISgY g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="320078190"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="320078190"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 04:03:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="670521860"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="670521860"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 17 Feb 2023 04:03:00 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Feb 2023 14:02:59 +0200
-Date: Fri, 17 Feb 2023 14:02:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <Y+9s8+EuHTk5ZI0e@intel.com>
-References: <20230216231312.32664-1-ville.syrjala@linux.intel.com>
- <20230216231312.32664-3-ville.syrjala@linux.intel.com>
- <02f8d9ad-81bf-b176-4565-015dec53442e@intel.com>
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9B7D10EF8F;
+ Fri, 17 Feb 2023 12:22:27 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id l11so4064101edb.11;
+ Fri, 17 Feb 2023 04:22:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=pQQFrBizUdFKPezAzjnBMsO4C0aui2hfp5xwGSsDpiM=;
+ b=bwgEsbEctxvnItO7adzhlvFbTOMAEBmtSB4X3BC/XGqLr/UJq2bpB7YXYzrqioP4jY
+ deVwq0mPWhzSYX9UHwzh+VNgracVkLlgBUpV5y4uHh4zY6OMCj0LKQ+Bt/vzlX+jqmIv
+ ZPwEqZrNsKGJhn/1UpePh2kqNjwo2X+8qowUZ0ZetRX/hL2OjaI0kSWxy6NTO0iTLoxl
+ UTQ3SSucHGi7PCxaQre4+7lgnry35zO3INfWFDW07YnoVj4dshrIA43IbsTemVPWuN67
+ wng8E3BKUidyV+FTO7Bn1ptRHYu+N5hlW5RXKJPzYj9th88vjg/r/4qKqJZEVdzj2Ea/
+ GHLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=pQQFrBizUdFKPezAzjnBMsO4C0aui2hfp5xwGSsDpiM=;
+ b=ixOjQkpjgPLa741F8DGP+Z9eMYmmh6KhgiVPeJBAr1HUzeG7ksQfrqAClKRdcvPnq3
+ bb0JAagPV1KyIjxioHj5gSZem6BhG6jMPQAU2r/hFR+N7mf4N01UOcHiMcN7sa4JzMLf
+ whk95jeya1L4Sr+0pyr3sMKwYV1pNrbZGCLxMkLtrwtvovDLdYfXBrjZ3Oc6ZfEgeUjW
+ GIyOd9WSp+hUYs/jgQKeEZ/XLGHjmOhRyTPvwm1a4HIxVi9+AtOG8XV78NQl22FT+7OU
+ enRtKVSCbHLQc1RC28bLdZ+IcdHlqK7tqswcUcl3dXcpKeA8SJMJeFsvqHhijzWdxAye
+ cXcg==
+X-Gm-Message-State: AO0yUKWlhEh9C0xw/M+SJiOn1+QFIoBNj47QetLWLVFLjXqUeyk9+cAL
+ hAHPd6aufKB37hN22Y+WFpQBZP7LKHI=
+X-Google-Smtp-Source: AK7set+Cfrs/A2TiM08dBwxOxoRzTQxuOlxGdil1NeNpSwuk0wjr7IUEi93pHwJUk8UtaNU+j+Rs6Q==
+X-Received: by 2002:a17:907:1701:b0:8aa:c038:974c with SMTP id
+ le1-20020a170907170100b008aac038974cmr10538834ejc.54.1676636546227; 
+ Fri, 17 Feb 2023 04:22:26 -0800 (PST)
+Received: from able.fritz.box (p5b0ea2e7.dip0.t-ipconnect.de. [91.14.162.231])
+ by smtp.gmail.com with ESMTPSA id
+ h10-20020a50c38a000000b004ad75c5c0fdsm1373472edf.18.2023.02.17.04.22.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Feb 2023 04:22:25 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Fri, 17 Feb 2023 13:22:18 +0100
+Message-Id: <20230217122224.29243-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <02f8d9ad-81bf-b176-4565-015dec53442e@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Fix platform default aux ch
- for skl
+Subject: [Intel-gfx] [PATCH 1/7] drm/amdgpu: use amdgpu_res_cursor in more
+ places v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,84 +72,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 17, 2023 at 03:15:59PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 2/17/2023 4:43 AM, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > SKL/derivatives have DDI E but no AUX E, so we need to pick
-> > another aux ch as the platform default. DDI E is more or less
-> > the other half of DDI A, so we pick AUX A.
-> >
-> > In all other cases we should have a corresponding aux ch for
-> > each DDI.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 ++++++++++++--
-> >   1 file changed, 12 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > index 57eb3ff187fa..96967e21c94c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > @@ -739,10 +739,20 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
-> >   	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
-> >   }
-> >   
-> > +static enum aux_ch default_aux_ch(struct intel_encoder *encoder)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > +
-> > +	/* SKL has DDI E but no AUX E */
-> > +	if (DISPLAY_VER(i915) == 9 && encoder->port == PORT_E)
-> > +		return AUX_CH_A;
-> > +
-> 
-> I guess we might need to fix intel_dp_aux_init also. Wont we have 
-> dig_port->aux_ch and intel_dp->aux_ch pointing to different things?
+Instead of resource->start use the cursor to get this.
 
-There is no intel_dp->aux_ch.
+v2 (chk): remove changes to amdgpu_bo_gpu_offset_no_check(), that
+	  won't work with the AGP aperture otherwise.
 
-> 
-> For example for SKL and DDI E, intel_dp->aux.name will be derived from 
-> dig_port->aux_ch i.e. AUX_CH_A but intel_dp->aux_ctl/data reg will still 
-> point to DP_AUX_CH_CTL/DATA_E.
-> 
-> Am I missing something?
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Reviewed-by: Christian KÃ¶nig <christian.koenig@amd.com>
+Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c               | 8 ++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 6 +++++-
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
-Everything is based on dig_port->aux_ch.
-
-> 
-> Regards,
-> 
-> Ankit
-> 
-> 
-> > +	return (enum aux_ch)encoder->port;
-> > +}
-> > +
-> >   enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
-> >   {
-> >   	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > -	enum port port = encoder->port;
-> >   	enum aux_ch aux_ch;
-> >   
-> >   	aux_ch = intel_bios_dp_aux_ch(encoder->devdata);
-> > @@ -753,7 +763,7 @@ enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
-> >   		return aux_ch;
-> >   	}
-> >   
-> > -	aux_ch = (enum aux_ch)port;
-> > +	aux_ch = default_aux_ch(encoder);
-> >   
-> >   	drm_dbg_kms(&i915->drm,
-> >   		    "[ENCODER:%d:%s] using AUX %c (platform default)\n",
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 2cd081cbf706..f62e5398e620 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -845,6 +845,7 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
+ {
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
+ 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
++	struct amdgpu_res_cursor cursor;
+ 	uint64_t flags;
+ 	int r;
+ 
+@@ -892,7 +893,8 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
+ 	flags = amdgpu_ttm_tt_pte_flags(adev, ttm, bo_mem);
+ 
+ 	/* bind pages into GART page tables */
+-	gtt->offset = (u64)bo_mem->start << PAGE_SHIFT;
++	amdgpu_res_first(bo_mem, 0, bo_mem->size, &cursor);
++	gtt->offset = cursor.start;
+ 	amdgpu_gart_bind(adev, gtt->offset, ttm->num_pages,
+ 			 gtt->ttm.dma_address, flags);
+ 	gtt->bound = true;
+@@ -912,6 +914,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct ttm_operation_ctx ctx = { false, false };
+ 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(bo->ttm);
++	struct amdgpu_res_cursor cursor;
+ 	struct ttm_placement placement;
+ 	struct ttm_place placements;
+ 	struct ttm_resource *tmp;
+@@ -945,7 +948,8 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
+ 	flags = amdgpu_ttm_tt_pte_flags(adev, bo->ttm, tmp);
+ 
+ 	/* Bind pages */
+-	gtt->offset = (u64)tmp->start << PAGE_SHIFT;
++	amdgpu_res_first(tmp, 0, tmp->size, &cursor);
++	gtt->offset = cursor.start;
+ 	amdgpu_ttm_gart_bind(adev, bo, flags);
+ 	amdgpu_gart_invalidate_tlb(adev);
+ 	ttm_resource_free(bo, &bo->resource);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index c06ada0844ba..9114393d2ee6 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -200,8 +200,12 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
+ 	queue_input.wptr_addr = (uint64_t)q->properties.write_ptr;
+ 
+ 	if (q->wptr_bo) {
++		struct amdgpu_res_cursor cursor;
++
+ 		wptr_addr_off = (uint64_t)q->properties.write_ptr & (PAGE_SIZE - 1);
+-		queue_input.wptr_mc_addr = ((uint64_t)q->wptr_bo->tbo.resource->start << PAGE_SHIFT) + wptr_addr_off;
++		amdgpu_res_first(q->wptr_bo->tbo.resource, 0,
++				 q->wptr_bo->tbo.resource->size, &cursor);
++		queue_input.wptr_mc_addr = cursor.start + wptr_addr_off;
+ 	}
+ 
+ 	queue_input.is_kfd_process = 1;
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
