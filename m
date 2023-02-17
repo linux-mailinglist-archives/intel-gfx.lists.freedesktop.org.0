@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A0669A3DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 03:25:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1365069A417
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 04:02:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E052C10E3C2;
-	Fri, 17 Feb 2023 02:25:09 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 922E910E1A3;
- Fri, 17 Feb 2023 02:25:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676600704; x=1708136704;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PCzGL8HyoQjOxs2uE0Tn4vpdvjpxrJIyAJdOPd2gJAo=;
- b=Vl0UpMmZC9Wl/au4ltYrCF+yNr6NA4OviHy4YCb7B7dosB3NDS7YX8td
- b57a7OhI+sGY5gDEfRuew21Zu1ufTwak27GGJ40CJNmfGbqitdOUFp4nN
- u1G9j6HuP0R8qTYT9LtNA574SJxd3hBQSiJgKyFGBx/mYPzn+r4UBtvcQ
- XisDYhAdM+0OayqgXo4Et4dTPT5ygH3S9BEWgH8l4mYx+za9cW32OqAqH
- b7tNRE3EPKCqqRBp1NdVmDMVEGJ/oW+gL12rKn4SZTLEys9NwW+FUstY9
- +gYWjnyW+xY9y3Wf+46c1vzCpdErm/i6vz99JWrNMLmQewEOZV9x4/oh/ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="334093367"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="334093367"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 18:25:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="670389092"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="670389092"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orsmga002.jf.intel.com with ESMTP; 16 Feb 2023 18:25:02 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu, 16 Feb 2023 18:24:20 -0800
-Message-Id: <20230217022420.2664116-4-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230217022420.2664116-1-John.C.Harrison@Intel.com>
-References: <20230217022420.2664116-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5932A10E12C;
+	Fri, 17 Feb 2023 03:02:18 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F060910E12C;
+ Fri, 17 Feb 2023 03:02:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E8CBEA0099;
+ Fri, 17 Feb 2023 03:02:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: Include timeline seqno in
- error capture
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Fri, 17 Feb 2023 03:02:15 -0000
+Message-ID: <167660293590.7013.17092552559178699332@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230217022420.2664116-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20230217022420.2664116-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_More_error_capture_improvements_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-The seqno value actually written out to memory is no longer in the
-regular HWSP. Instead, it is now in its own private timeline buffer.
-Thus, it is no longer visible in an error capture. So, explicitly read
-the value and include that in the capture.
+Series: More error capture improvements (rev2)
+URL   : https://patchwork.freedesktop.org/series/113628/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 3 +++
- drivers/gpu/drm/i915/i915_gpu_error.h | 1 +
- 2 files changed, 4 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 904f21e1380cd..036a65c9cbf67 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -505,6 +505,7 @@ static void error_print_context(struct drm_i915_error_state_buf *m,
- 		   header, ctx->comm, ctx->pid, ctx->sched_attr.priority,
- 		   ctx->guilty, ctx->active,
- 		   ctx->total_runtime, ctx->avg_runtime);
-+	err_printf(m, "  context timeline seqno %d\n", ctx->hwsp_seqno);
- }
- 
- static struct i915_vma_coredump *
-@@ -1395,6 +1396,8 @@ static bool record_context(struct i915_gem_context_coredump *e,
- 	e->sched_attr = ctx->sched;
- 	e->guilty = atomic_read(&ctx->guilty_count);
- 	e->active = atomic_read(&ctx->active_count);
-+	e->hwsp_seqno = (ce->timeline && ce->timeline->hwsp_seqno) ?
-+				*ce->timeline->hwsp_seqno : ~0U;
- 
- 	e->total_runtime = intel_context_get_total_runtime_ns(ce);
- 	e->avg_runtime = intel_context_get_avg_runtime_ns(ce);
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 56027ffbce51f..a91932cc65317 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -107,6 +107,7 @@ struct intel_engine_coredump {
- 		int active;
- 		int guilty;
- 		struct i915_sched_attr sched_attr;
-+		u32 hwsp_seqno;
- 	} context;
- 
- 	struct i915_vma_coredump *vma;
--- 
-2.39.1
+Error: dim checkpatch failed
+ee9d337e5e7f drm/i915/guc: Fix missing ecodes
+-:15: WARNING:REPEATED_WORD: Possible repeated word: 'if'
+#15: 
+v2: if else if instead of if if (Alan)
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+fa6abadc061c drm/i915/guc: Clean up of register capture search
+f2ef1d45f6b2 drm/i915: Include timeline seqno in error capture
+
 
