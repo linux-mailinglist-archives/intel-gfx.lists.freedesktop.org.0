@@ -1,52 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1451869B58F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 23:34:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4715F69B5A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 23:38:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C7A10E473;
-	Fri, 17 Feb 2023 22:33:52 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCE310E1F8;
- Fri, 17 Feb 2023 22:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC0910E46B;
+	Fri, 17 Feb 2023 22:38:22 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEDB810E46B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 22:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676673230; x=1708209230;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Y3/awSCXCIPvZ/aWzentz9gV3n3Hy1NPG5pgRp41mv8=;
- b=KuMFARDvXRKW9toNsQBsLebsfrvbWGGQ/ahsrzRJZthSxIjUBytAXdJb
- YpeOcImaTfUco3OTugbCj96vDR3WW4ebdMkRnaH4S64om6ndaTv5+U1Kh
- ueVhLQHQUBy4nZb3uOwY6VZmPE9a9cbnC2RtdrMW6OFcsuCniKdU10wim
- +D9qxhmzmw1ckdTtFgWLWaEPlA/XP71SMTcaSuZVpCDbk0j4UrkygGcXb
- YjVg65TwgTNVMMVhzHo4EjfH0inSpgGC2xAf9rClK3zlDSDmIry8mrVE3
- 4tMzJ7+TkJGhtQ1GPVcN8WRLlEjbG06OTLw75K9e+E6a9W37zISdBbjRP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="320211572"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="320211572"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 14:33:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="664021162"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="664021162"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orsmga007.jf.intel.com with ESMTP; 17 Feb 2023 14:33:49 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Fri, 17 Feb 2023 14:33:08 -0800
-Message-Id: <20230217223308.3449737-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230217223308.3449737-1-John.C.Harrison@Intel.com>
-References: <20230217223308.3449737-1-John.C.Harrison@Intel.com>
+ t=1676673500; x=1708209500;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BsF9ZRrc2c7vNsjLzkPWViVCbfEFNfYEMfA8G6Di0a8=;
+ b=AuamV7oRIXoOH6D2TxwDVRQpdmD/G2TlfLdc/lV1FPilu4dJ8eZh81rw
+ +rsjSoOwTxKpOB2XbOmhHwuH+Wl8yuw7aHCwYO6oWNoAOHOjFgsayRPue
+ aCkYAx9Xp+W+lm/kqmAh2AjhSW6FSksJ8vSqZEjEug4QWkvxyOqAKFczn
+ pOYhTJWlLtcCiC98nqY81K+Yt/GzCEaw/OUZWY4Fv2Zqm6xaLnWNgLtvw
+ 3pho8wYNckfdEykxSWcp6jtKbumEIqNQmreKUvNZR1jsyw48QaE37vfnx
+ cv1NuGGZE3BYcDW5+AYE50uN1C1LnZlkCSS/LdCQzNrzPSetpjVQjrN8m Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="312473215"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="312473215"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 14:38:20 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="794554789"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="794554789"
+Received: from dut-internal-9dd7.jf.intel.com ([10.24.14.53])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 14:38:19 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Feb 2023 14:33:50 -0800
+Message-Id: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/guc: Fix missing return code
- checks in submission init
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,234 +54,400 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ jonathan.cavitt@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
+ chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+The gt_tlb live selftest has the same code coverage as the
+igt_cs_tlb subtest of gtt, except it is better at detecting
+TLB bugs.  Furthermore, while igt_cs_tlb is hitting some
+unforeseen issues, these issues are either false positives
+due to the test being poorly formatted, or are true
+positives that can be more easily diagnosed with smaller
+tests.  As such, igt_cs_tlb is superceded by and obsoleted
+by gt_tlb, meaning it can be removed.
 
-The CI results for the 'fast request' patch set (enables error return
-codes for fire-and-forget H2G messages) hit an issue with the KMD
-sending context submission requests on an invalid context. That was
-caused by a fault injection probe failing the context creation of a
-kernel context. However, there was no return code checking on any of
-the kernel context registration paths. So the driver kept going and
-tried to use the kernel context for the record defaults process.
-
-This would not cause any actual problems. The invalid requests would
-be rejected by GuC and ultimately the start up sequence would
-correctly wedge due to the context creation failure. But fixing the
-issue correctly rather ignoring it means we won't get CI complaining
-when the fast request patch lands and enables the extra error checking.
-
-So fix it by checking for errors and aborting as appropriate when
-creating kernel contexts. While at it, clean up some other submission
-init related failure cleanup paths. Also, rename guc_init_lrc_mapping
-to guc_init_submission as the former name hasn't been valid in a long
-time.
-
-v2: Add another wrapper to keep the flow balanced (Daniele)
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 97 ++++++++++++++-----
- .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  7 +-
- 3 files changed, 80 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 356 ------------------
+ 1 file changed, 356 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index a04d7049a2c2f..88e881b100cf0 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1441,7 +1441,7 @@ static int guc_action_enable_usage_stats(struct intel_guc *guc)
- 	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index 01e75160a84a..5361ce70d3f2 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -1940,361 +1940,6 @@ int i915_gem_gtt_mock_selftests(void)
+ 	return err;
  }
  
--static void guc_init_engine_stats(struct intel_guc *guc)
-+static int guc_init_engine_stats(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	intel_wakeref_t wakeref;
-@@ -1454,6 +1454,13 @@ static void guc_init_engine_stats(struct intel_guc *guc)
- 		guc_err(guc, "Failed to enable usage stats: %pe\n", ERR_PTR(ret));
- 	else
- 		guc_enable_busyness_worker(guc);
-+
-+	return ret;
-+}
-+
-+static void guc_fini_engine_stats(struct intel_guc *guc)
-+{
-+	guc_cancel_busyness_worker(guc);
- }
- 
- void intel_guc_busyness_park(struct intel_gt *gt)
-@@ -4109,9 +4116,11 @@ static void guc_set_default_submission(struct intel_engine_cs *engine)
- 	engine->submit_request = guc_submit_request;
- }
- 
--static inline void guc_kernel_context_pin(struct intel_guc *guc,
--					  struct intel_context *ce)
-+static inline int guc_kernel_context_pin(struct intel_guc *guc,
-+					 struct intel_context *ce)
- {
-+	int ret;
-+
- 	/*
- 	 * Note: we purposefully do not check the returns below because
- 	 * the registration can only fail if a reset is just starting.
-@@ -4119,16 +4128,24 @@ static inline void guc_kernel_context_pin(struct intel_guc *guc,
- 	 * isn't happening and even it did this code would be run again.
- 	 */
- 
--	if (context_guc_id_invalid(ce))
--		pin_guc_id(guc, ce);
-+	if (context_guc_id_invalid(ce)) {
-+		ret = pin_guc_id(guc, ce);
-+
-+		if (ret < 0)
-+			return ret;
-+	}
- 
- 	if (!test_bit(CONTEXT_GUC_INIT, &ce->flags))
- 		guc_context_init(ce);
- 
--	try_context_registration(ce, true);
-+	ret = try_context_registration(ce, true);
-+	if (ret)
-+		unpin_guc_id(guc, ce);
-+
-+	return ret;
- }
- 
--static inline void guc_init_lrc_mapping(struct intel_guc *guc)
-+static inline int guc_init_submission(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	struct intel_engine_cs *engine;
-@@ -4155,9 +4172,17 @@ static inline void guc_init_lrc_mapping(struct intel_guc *guc)
- 		struct intel_context *ce;
- 
- 		list_for_each_entry(ce, &engine->pinned_contexts_list,
--				    pinned_contexts_link)
--			guc_kernel_context_pin(guc, ce);
-+				    pinned_contexts_link) {
-+			int ret = guc_kernel_context_pin(guc, ce);
-+
-+			if (ret) {
-+				/* No point in trying to clean up as i915 will wedge on failure */
-+				return ret;
-+			}
-+		}
- 	}
-+
-+	return 0;
- }
- 
- static void guc_release(struct intel_engine_cs *engine)
-@@ -4400,31 +4425,57 @@ static int guc_init_global_schedule_policy(struct intel_guc *guc)
- 	return ret;
- }
- 
--void intel_guc_submission_enable(struct intel_guc *guc)
-+static void guc_route_semaphores(struct intel_guc *guc, bool to_guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
-+	u32 val;
- 
--	/* Enable and route to GuC */
--	if (GRAPHICS_VER(gt->i915) >= 12)
--		intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES,
--				   GUC_SEM_INTR_ROUTE_TO_GUC |
--				   GUC_SEM_INTR_ENABLE_ALL);
-+	if (GRAPHICS_VER(gt->i915) < 12)
-+		return;
-+
-+	if (to_guc)
-+		val = GUC_SEM_INTR_ROUTE_TO_GUC | GUC_SEM_INTR_ENABLE_ALL;
-+	else
-+		val = 0;
-+
-+	intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES, val);
-+}
-+
-+int intel_guc_submission_enable(struct intel_guc *guc)
-+{
-+	int ret;
-+
-+	/* Semaphore interrupt enable and route to GuC */
-+	guc_route_semaphores(guc, true);
-+
-+	ret = guc_init_submission(guc);
-+	if (ret)
-+		goto fail_sem;
-+
-+	ret = guc_init_engine_stats(guc);
-+	if (ret)
-+		goto fail_sem;
-+
-+	ret = guc_init_global_schedule_policy(guc);
-+	if (ret)
-+		goto fail_stats;
- 
--	guc_init_lrc_mapping(guc);
--	guc_init_engine_stats(guc);
--	guc_init_global_schedule_policy(guc);
-+	return 0;
-+
-+fail_stats:
-+	guc_fini_engine_stats(guc);
-+fail_sem:
-+	guc_route_semaphores(guc, false);
-+	return ret;
- }
- 
- /* Note: By the time we're here, GuC may have already been reset */
- void intel_guc_submission_disable(struct intel_guc *guc)
- {
--	struct intel_gt *gt = guc_to_gt(guc);
+-static int context_sync(struct intel_context *ce)
+-{
+-	struct i915_request *rq;
+-	long timeout;
 -
- 	guc_cancel_busyness_worker(guc);
+-	rq = intel_context_create_request(ce);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	i915_request_get(rq);
+-	i915_request_add(rq);
+-
+-	timeout = i915_request_wait(rq, 0, HZ / 5);
+-	i915_request_put(rq);
+-
+-	return timeout < 0 ? -EIO : 0;
+-}
+-
+-static struct i915_request *
+-submit_batch(struct intel_context *ce, u64 addr)
+-{
+-	struct i915_request *rq;
+-	int err;
+-
+-	rq = intel_context_create_request(ce);
+-	if (IS_ERR(rq))
+-		return rq;
+-
+-	err = 0;
+-	if (rq->engine->emit_init_breadcrumb) /* detect a hang */
+-		err = rq->engine->emit_init_breadcrumb(rq);
+-	if (err == 0)
+-		err = rq->engine->emit_bb_start(rq, addr, 0, 0);
+-
+-	if (err == 0)
+-		i915_request_get(rq);
+-	i915_request_add(rq);
+-
+-	return err ? ERR_PTR(err) : rq;
+-}
+-
+-static u32 *spinner(u32 *batch, int i)
+-{
+-	return batch + i * 64 / sizeof(*batch) + 4;
+-}
+-
+-static void end_spin(u32 *batch, int i)
+-{
+-	*spinner(batch, i) = MI_BATCH_BUFFER_END;
+-	wmb();
+-}
+-
+-static int igt_cs_tlb(void *arg)
+-{
+-	const unsigned int count = PAGE_SIZE / 64;
+-	const unsigned int chunk_size = count * PAGE_SIZE;
+-	struct drm_i915_private *i915 = arg;
+-	struct drm_i915_gem_object *bbe, *act, *out;
+-	struct i915_gem_engines_iter it;
+-	struct i915_address_space *vm;
+-	struct i915_gem_context *ctx;
+-	struct intel_context *ce;
+-	struct i915_vma *vma;
+-	I915_RND_STATE(prng);
+-	struct file *file;
+-	unsigned int i;
+-	u32 *result;
+-	u32 *batch;
+-	int err = 0;
+-
+-	/*
+-	 * Our mission here is to fool the hardware to execute something
+-	 * from scratch as it has not seen the batch move (due to missing
+-	 * the TLB invalidate).
+-	 */
+-
+-	file = mock_file(i915);
+-	if (IS_ERR(file))
+-		return PTR_ERR(file);
+-
+-	ctx = live_context(i915, file);
+-	if (IS_ERR(ctx)) {
+-		err = PTR_ERR(ctx);
+-		goto out_unlock;
+-	}
+-
+-	vm = i915_gem_context_get_eb_vm(ctx);
+-	if (i915_is_ggtt(vm))
+-		goto out_vm;
+-
+-	/* Create two pages; dummy we prefill the TLB, and intended */
+-	bbe = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(bbe)) {
+-		err = PTR_ERR(bbe);
+-		goto out_vm;
+-	}
+-
+-	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
+-	if (IS_ERR(batch)) {
+-		err = PTR_ERR(batch);
+-		goto out_put_bbe;
+-	}
+-	memset32(batch, MI_BATCH_BUFFER_END, PAGE_SIZE / sizeof(u32));
+-	i915_gem_object_flush_map(bbe);
+-	i915_gem_object_unpin_map(bbe);
+-
+-	act = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(act)) {
+-		err = PTR_ERR(act);
+-		goto out_put_bbe;
+-	}
+-
+-	/* Track the execution of each request by writing into different slot */
+-	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
+-	if (IS_ERR(batch)) {
+-		err = PTR_ERR(batch);
+-		goto out_put_act;
+-	}
+-	for (i = 0; i < count; i++) {
+-		u32 *cs = batch + i * 64 / sizeof(*cs);
+-		u64 addr = (vm->total - PAGE_SIZE) + i * sizeof(u32);
+-
+-		GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
+-		cs[0] = MI_STORE_DWORD_IMM_GEN4;
+-		if (GRAPHICS_VER(i915) >= 8) {
+-			cs[1] = lower_32_bits(addr);
+-			cs[2] = upper_32_bits(addr);
+-			cs[3] = i;
+-			cs[4] = MI_NOOP;
+-			cs[5] = MI_BATCH_BUFFER_START_GEN8;
+-		} else {
+-			cs[1] = 0;
+-			cs[2] = lower_32_bits(addr);
+-			cs[3] = i;
+-			cs[4] = MI_NOOP;
+-			cs[5] = MI_BATCH_BUFFER_START;
+-		}
+-	}
+-
+-	out = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(out)) {
+-		err = PTR_ERR(out);
+-		goto out_put_batch;
+-	}
+-	i915_gem_object_set_cache_coherency(out, I915_CACHING_CACHED);
+-
+-	vma = i915_vma_instance(out, vm, NULL);
+-	if (IS_ERR(vma)) {
+-		err = PTR_ERR(vma);
+-		goto out_put_out;
+-	}
+-
+-	err = i915_vma_pin(vma, 0, 0,
+-			   PIN_USER |
+-			   PIN_OFFSET_FIXED |
+-			   (vm->total - PAGE_SIZE));
+-	if (err)
+-		goto out_put_out;
+-	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
+-
+-	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
+-	if (IS_ERR(result)) {
+-		err = PTR_ERR(result);
+-		goto out_put_out;
+-	}
+-
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+-		IGT_TIMEOUT(end_time);
+-		unsigned long pass = 0;
+-
+-		if (!intel_engine_can_store_dword(ce->engine))
+-			continue;
+-
+-		while (!__igt_timeout(end_time, NULL)) {
+-			struct i915_vm_pt_stash stash = {};
+-			struct i915_request *rq;
+-			struct i915_gem_ww_ctx ww;
+-			struct i915_vma_resource *vma_res;
+-			u64 offset;
+-
+-			offset = igt_random_offset(&prng,
+-						   0, vm->total - PAGE_SIZE,
+-						   chunk_size, PAGE_SIZE);
+-
+-			memset32(result, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
+-
+-			vma = i915_vma_instance(bbe, vm, NULL);
+-			if (IS_ERR(vma)) {
+-				err = PTR_ERR(vma);
+-				goto end;
+-			}
+-
+-			i915_gem_object_lock(bbe, NULL);
+-			err = i915_vma_get_pages(vma);
+-			i915_gem_object_unlock(bbe);
+-			if (err)
+-				goto end;
+-
+-			vma_res = i915_vma_resource_alloc();
+-			if (IS_ERR(vma_res)) {
+-				i915_vma_put_pages(vma);
+-				err = PTR_ERR(vma_res);
+-				goto end;
+-			}
+-
+-			i915_gem_ww_ctx_init(&ww, false);
+-retry:
+-			err = i915_vm_lock_objects(vm, &ww);
+-			if (err)
+-				goto end_ww;
+-
+-			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
+-			if (err)
+-				goto end_ww;
+-
+-			err = i915_vm_map_pt_stash(vm, &stash);
+-			if (!err)
+-				vm->allocate_va_range(vm, &stash, offset, chunk_size);
+-			i915_vm_free_pt_stash(vm, &stash);
+-end_ww:
+-			if (err == -EDEADLK) {
+-				err = i915_gem_ww_ctx_backoff(&ww);
+-				if (!err)
+-					goto retry;
+-			}
+-			i915_gem_ww_ctx_fini(&ww);
+-			if (err) {
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			i915_vma_resource_init_from_vma(vma_res, vma);
+-			/* Prime the TLB with the dummy pages */
+-			for (i = 0; i < count; i++) {
+-				vma_res->start = offset + i * PAGE_SIZE;
+-				vm->insert_entries(vm, vma_res, I915_CACHE_NONE,
+-						   0);
+-
+-				rq = submit_batch(ce, vma_res->start);
+-				if (IS_ERR(rq)) {
+-					err = PTR_ERR(rq);
+-					i915_vma_resource_fini(vma_res);
+-					kfree(vma_res);
+-					goto end;
+-				}
+-				i915_request_put(rq);
+-			}
+-			i915_vma_resource_fini(vma_res);
+-			i915_vma_put_pages(vma);
+-
+-			err = context_sync(ce);
+-			if (err) {
+-				pr_err("%s: dummy setup timed out\n",
+-				       ce->engine->name);
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			vma = i915_vma_instance(act, vm, NULL);
+-			if (IS_ERR(vma)) {
+-				kfree(vma_res);
+-				err = PTR_ERR(vma);
+-				goto end;
+-			}
+-
+-			i915_gem_object_lock(act, NULL);
+-			err = i915_vma_get_pages(vma);
+-			i915_gem_object_unlock(act);
+-			if (err) {
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			i915_vma_resource_init_from_vma(vma_res, vma);
+-			/* Replace the TLB with target batches */
+-			for (i = 0; i < count; i++) {
+-				struct i915_request *rq;
+-				u32 *cs = batch + i * 64 / sizeof(*cs);
+-				u64 addr;
+-
+-				vma_res->start = offset + i * PAGE_SIZE;
+-				vm->insert_entries(vm, vma_res, I915_CACHE_NONE, 0);
+-
+-				addr = vma_res->start + i * 64;
+-				cs[4] = MI_NOOP;
+-				cs[6] = lower_32_bits(addr);
+-				cs[7] = upper_32_bits(addr);
+-				wmb();
+-
+-				rq = submit_batch(ce, addr);
+-				if (IS_ERR(rq)) {
+-					err = PTR_ERR(rq);
+-					i915_vma_resource_fini(vma_res);
+-					kfree(vma_res);
+-					goto end;
+-				}
+-
+-				/* Wait until the context chain has started */
+-				if (i == 0) {
+-					while (READ_ONCE(result[i]) &&
+-					       !i915_request_completed(rq))
+-						cond_resched();
+-				} else {
+-					end_spin(batch, i - 1);
+-				}
+-
+-				i915_request_put(rq);
+-			}
+-			end_spin(batch, count - 1);
+-
+-			i915_vma_resource_fini(vma_res);
+-			kfree(vma_res);
+-			i915_vma_put_pages(vma);
+-
+-			err = context_sync(ce);
+-			if (err) {
+-				pr_err("%s: writes timed out\n",
+-				       ce->engine->name);
+-				goto end;
+-			}
+-
+-			for (i = 0; i < count; i++) {
+-				if (result[i] != i) {
+-					pr_err("%s: Write lost on pass %lu, at offset %llx, index %d, found %x, expected %x\n",
+-					       ce->engine->name, pass,
+-					       offset, i, result[i], i);
+-					err = -EINVAL;
+-					goto end;
+-				}
+-			}
+-
+-			vm->clear_range(vm, offset, chunk_size);
+-			pass++;
+-		}
+-	}
+-end:
+-	if (igt_flush_test(i915))
+-		err = -EIO;
+-	i915_gem_context_unlock_engines(ctx);
+-	i915_gem_object_unpin_map(out);
+-out_put_out:
+-	i915_gem_object_put(out);
+-out_put_batch:
+-	i915_gem_object_unpin_map(act);
+-out_put_act:
+-	i915_gem_object_put(act);
+-out_put_bbe:
+-	i915_gem_object_put(bbe);
+-out_vm:
+-	i915_vm_put(vm);
+-out_unlock:
+-	fput(file);
+-	return err;
+-}
+-
+ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+@@ -2314,7 +1959,6 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_ggtt_fill),
+ 		SUBTEST(igt_ggtt_page),
+ 		SUBTEST(igt_ggtt_misaligned_pin),
+-		SUBTEST(igt_cs_tlb),
+ 	};
  
--	/* Disable and route to host */
--	if (GRAPHICS_VER(gt->i915) >= 12)
--		intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES, 0x0);
-+	/* Semaphore interrupt disable and route to host */
-+	guc_route_semaphores(guc, false);
- }
- 
- static bool __guc_submission_supported(struct intel_guc *guc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-index 5a95a9f0a8e31..c57b29cdb1a64 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-@@ -15,7 +15,7 @@ struct intel_engine_cs;
- 
- void intel_guc_submission_init_early(struct intel_guc *guc);
- int intel_guc_submission_init(struct intel_guc *guc);
--void intel_guc_submission_enable(struct intel_guc *guc);
-+int intel_guc_submission_enable(struct intel_guc *guc);
- void intel_guc_submission_disable(struct intel_guc *guc);
- void intel_guc_submission_fini(struct intel_guc *guc);
- int intel_guc_preempt_work_create(struct intel_guc *guc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 6648691bd6450..d42671dde53b3 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -531,8 +531,11 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	else
- 		intel_huc_auth(huc);
- 
--	if (intel_uc_uses_guc_submission(uc))
--		intel_guc_submission_enable(guc);
-+	if (intel_uc_uses_guc_submission(uc)) {
-+		ret = intel_guc_submission_enable(guc);
-+		if (ret)
-+			goto err_log_capture;
-+	}
- 
- 	if (intel_uc_uses_guc_slpc(uc)) {
- 		ret = intel_guc_slpc_enable(&guc->slpc);
+ 	GEM_BUG_ON(offset_in_page(to_gt(i915)->ggtt->vm.total));
 -- 
-2.39.1
+2.25.1
 
