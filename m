@@ -2,146 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C94469A976
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 11:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E0069AA2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 12:19:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E48310EF62;
-	Fri, 17 Feb 2023 10:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A3410EF6B;
+	Fri, 17 Feb 2023 11:18:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF18F10EF62;
- Fri, 17 Feb 2023 10:55:14 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72C1810EF6B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 11:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676631314; x=1708167314;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=SGTybMZtDR/AS0X3Sa6vTTdD9iechdHTYAV3jcyA9Ic=;
- b=IwmsBtufRMX2yAYyEZKnN7M2zx5UlFMEwo9FQNbU9NIBKzqBInVh41GF
- 9hDldu/J1gVO8U1pjnDSeoHfV35dzlJqhEThRWdEunJjaTdUalMvsdG14
- 4vueAghNf7nD26uZsLrqUDpabKepx3hcQm38LJ0pwnwn6xHSH4h+YkPeY
- E8EDpsHOMI18MnKC/8/e0vlOsAn3VAXQwDaaNF6WnySn5xMTroBGfQ3UW
- KxcE9OoHNTLYWQNT8hcEvgk3CLUUmwVfNexO5SEZqkmwh/jvx1oHA52pB
- rziyyivygBbKh/DvQJowCIOwnPLSNcj/qutdshyUVBui6OQudIaEreste A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="359409730"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="359409730"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 02:55:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="759317252"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="759317252"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Feb 2023 02:55:13 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 02:55:13 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 02:55:13 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 02:55:12 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 17 Feb 2023 02:55:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UmXVDAB/uHvrVYae9TFqZHs5jlfpM/ntRl1ag+2tHLLoI+ibnTF4aZtI1Q6JowNTvn1Lg6YQZDoOD5WyGR9nLI3wjnC/3Tucb1EokBdwD4VZTubTYbwllBx8nGBZHaaou+i3p+CHfUF3W9GFUYpuJV6FTAbODBSnsNyjnUk1fhpcHfeGhf8YilTpgqToWwXEkwpQCMSx+lX2ucMKWpj4r0GKSnyYZ7/LeTrSqQe/gYL4Uy6N9afuMdAWiwdtUvijuspQR/2oqjtNfCT0MkiCBO/DgsY3VXyt9yLKXY0M0vobjeNH1LnivcnTnui1dHI8hXsg9UH9ZqZeo78AoqL1ZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VR/DJnJgKtDHJnStJh6Dk8T3027aBa3uTM/0cs+9Wpg=;
- b=c0cZFZDp9DhkOn83NPvpKo0cOn6PIZ585++3gL5n4S/y4eaSYP8pjweX/m2BKofAvWhB0iX0J0CTj2zX828dm/z1tg41nLukLSRSxfLagAm8BRcRR/ghltTEva3zMSmuBVTs0I31OQyVsFpFP5aB+0NkglWu58QJZeqoG/aJ4A53kRrfgM/tMrfwN8ILhnYOqnN2E2sKxDgAbBSvfkRJFOaSqdFRMTevOK5vULmaLuR58np+1GDn2h2Am90b26/aolSiPeP+0pFuLSIHSED+2AXVmpJGCDZXL+14Y3cOtjnil5E5IOlDW2ST+JuhFe3RdDnQuua9RsaxIGGEF5pd6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SA1PR11MB6615.namprd11.prod.outlook.com (2603:10b6:806:256::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13; Fri, 17 Feb
- 2023 10:55:09 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::e1fa:abbe:2009:b0a3]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::e1fa:abbe:2009:b0a3%4]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
- 10:55:08 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- "alex.williamson@redhat.com" <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v3 03/15] vfio: Accept vfio device file in the driver
- facing kAPI
-Thread-Index: AQHZP73OQ1XOEaarRU+iobEkUB6WaK7NioEAgAAlR2CAAFaKgIAE9K9Q
-Date: Fri, 17 Feb 2023 10:55:08 +0000
-Message-ID: <DS0PR11MB75293D6F394CA6F255D05159C3A19@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230213151348.56451-1-yi.l.liu@intel.com>
- <20230213151348.56451-4-yi.l.liu@intel.com> <Y+rLKvCMivND0izd@nvidia.com>
- <DS0PR11MB7529B43C7D357D8A0C2438C7C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <DS0PR11MB7529028251B2DFF28A3CCD00C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
-In-Reply-To: <DS0PR11MB7529028251B2DFF28A3CCD00C3A29@DS0PR11MB7529.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SA1PR11MB6615:EE_
-x-ms-office365-filtering-correlation-id: 0f975c3e-8a21-4a91-97c6-08db10d56f69
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: emx84CV7Dec0IHsJMAghLyDv+oj1DRIU26RZeCvMMR8OcX68mJPjhO26rmHUxN1RBphz4807mEYLQkaizv+KOmsaYc2WuhJnWk/4IztZUivupPv79KjjlJenicVHzA4kRcos96jRjGx1s9DxKL9Iakw+7l8nnd/UXRKkf/ss7zRb1TTqVGkmuPeoEEgHeNRDe+RrbF3zrs3oFX8gaukoAocNN2hafZlYwOc4XHtr1URE8featTu2bpSVCwxjz1TZIHrADnlGouAPxj0t615WpYnXpO8yMP3+OjUOas25wyZaZA5uJqOcBZWByJJIgdxTMDivNKitADtPt65RcemNHq0rsUnl6b6Djl5f53m9/xHWW9HZ4JNIUGJ7mTamPB/ZKbaCBxCZ6RU+4WZeNM2uj5s+EFkCL+/HuQJ81x5oLfQLh9FY8plm4pfIdsRiVaBZM6JbnMecVwPOfn8+iZmM/+Wylg8lR92nVk5kl6CMsghb/N7lxc4KZtoON6WncxY5MKi4uUAXeEktY/x5TXayHDVDEP0xEiK4/LNqsSHWl7XPGI96pNPAGBSJnljmY8dhQhAGyutXkWBj9q9RljFoUxS0fU3xtNcLnLKZGkTGpcB1dK61V8Dhcd0qqjYdPRXJLqq4HqPocnR/2hMYxKTx7rpB4+Hx8oMGN5oTO88+n0oCeOiiNQQuM2jM13H1/D6wPnY/LUmsrI5i2zxaBdBD2Q==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(396003)(376002)(366004)(136003)(346002)(451199018)(8936002)(41300700001)(7416002)(71200400001)(52536014)(5660300002)(110136005)(7696005)(478600001)(66476007)(66446008)(66556008)(8676002)(66946007)(76116006)(64756008)(54906003)(316002)(4326008)(2906002)(55016003)(83380400001)(33656002)(122000001)(38100700002)(38070700005)(82960400001)(186003)(9686003)(6506007)(26005)(86362001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?DaXTZ9e/Z2SG/xxTxoACACDttVddxS99eZ0NigvpDhBVK/Ubnf62aXYr16Cv?=
- =?us-ascii?Q?jKnTXQAQxHTREPL+ju2f4OY4YV3xP5HejtZ8EE4bxtsijfxwknD0IbIUD772?=
- =?us-ascii?Q?Bgb5sOlgqG9SOuyPFwtnP691Dx4sQJTyEJVWsjb2Qhniyt/QjXbwWRUqqaXQ?=
- =?us-ascii?Q?47ei2Y5R0+E0FMcxanql2Jr1seh4K0vtvLTLs/REmpWiSpqZvaBhhYwYWkNf?=
- =?us-ascii?Q?apiwQwpnoQ2cfxN/K4LBNryny92K3+agSkcPjBW+QMJBhtjj+mWDP/LiXQSY?=
- =?us-ascii?Q?hxE2XtTy3fERBbmQRTyDCyrGo1KWFopGCPfM8TW8xtql8/blHYcO6XrZkoA5?=
- =?us-ascii?Q?Gl+WQmz/Yd8bbhMHoaQMhSSpLO3AN+56ChCGvZgf5unJVxsRoaTfAgebSRZu?=
- =?us-ascii?Q?jJ5uIs5qRpWgsgRVZWs7rABf4qrgLHOaOpuXujS87Hasf89Vz+zK1PyDKz0W?=
- =?us-ascii?Q?TjOG+Hjz5hAg175jtHBBniJQhRSVnwFwxgSKvd+MVWLRN3oAFkGM10CMaNr4?=
- =?us-ascii?Q?BgZKsNKT97s2fM/y+41n4bQvKXfDwcSHEkK6nktv8Jfiva3Kd6vn2jaWZzo4?=
- =?us-ascii?Q?YdmeaCDr6mbq0YNz+BLOg3nfLYY9MbQaAXObCZeI4esRstUUVOqmYCEYfRl7?=
- =?us-ascii?Q?izQTSnRKR8JUxIXVgtsMODj61SoTeK6WYmictUlROKFKTbz+3yjy3LhE1y/D?=
- =?us-ascii?Q?yy2CPnJPNRoVNmSOHIQGODp1oDzwSUSU5Tb+Ry2vjqwB+MJr+oGbOg4esblD?=
- =?us-ascii?Q?mJ9ihyZXPc44/xfw1JViWhgSpmgdpS7vf/CUJdTysW5H1QafVA8J3L8jtRq/?=
- =?us-ascii?Q?I3kUz8w4uuOf4T5ZWi4Jkdmk/ij4B1Dcw8dty3N6CgDNMQ0fs0K+nMlwgHkA?=
- =?us-ascii?Q?RSkIpM1rMPYhb7FH/3lYYHD7r64oaCbAN3YWQ31RwTXbsdGklETbLum+TyQR?=
- =?us-ascii?Q?oApdxqa50GgubW50j4XK38ci/5XWbiVlr50o2d2zFG0uu5RK6RmN8ztYy6Zn?=
- =?us-ascii?Q?faZCgpUKCQeXcdYAqz3GHMuWLsswxpkGArVTmIhL2MSwxhIEV0kg0V4nXXe3?=
- =?us-ascii?Q?HbQm31NX0mkew9fSF9DLalbLZgjRZibnoRr03ZAWAaBeNl5CnFTHGLraYzVO?=
- =?us-ascii?Q?bcwAo/K14xdxtGWDfpkhEr/XxYPbH7nySV9eKpokrtfwfGmgJfU1A/vsRyQO?=
- =?us-ascii?Q?zB4uYmICgamvM9Mro7AXF175//PcEWwQgr9DO1jQAxc5vrkKXADWJnzciqbz?=
- =?us-ascii?Q?opWJymclW8DGugzRttt2URlDttt5/2qHnbDnSTVuqCRUKmNKMVJKeUMs3EUo?=
- =?us-ascii?Q?5FnuuTo+/jqN6dTkMO1xHOsBMYVnduO759TYd0VJbTYcyMHjpaa11yW5S7H2?=
- =?us-ascii?Q?7jaxzKL6E3hGnNCSWIOfgbgoTRy+TJZufIgpuZQaaEbzRFeZOyIQJApUA0CZ?=
- =?us-ascii?Q?ZP1K1Y44ebU2TNotYYgChFHg3uaYHgaYF4/VwGQuO9/hzr7ubXg6Nep5T+eW?=
- =?us-ascii?Q?pcsDfSQOKiTFRC7Kpl+GsOakJjurF1jX0kCBBmu3EwXIVrMnK5d/X52ZsUdz?=
- =?us-ascii?Q?dt/Rs/x77EGrBoAUYN4vJT7DXhj1dVHFTNCtwmis?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1676632735; x=1708168735;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BpqGm87HbQwVer06MNoZcbZEp/dzQUoIMlnFVMSzfsI=;
+ b=gbnN5013JTSRSnex6OFJPGWyvk7P5hSIh7UJaJ4Nipzt9/w0ErLG2HNB
+ lvU6jTj4ZvPp18bHJh8RtL0bgDixtRjba6XCUdcfMtO0yFuWZ/C8YX+Eb
+ k/hcytEtRdkPXNtdk4z1fMYzFfVn4pDTLZtacnUWl0INg2AoYEqUdN8Mp
+ U1zgm+c0+fvRWVuXy7sM5APgRzVow4A9Ax6VoIKoiGWGlRsO9rpxUyGDY
+ rRpABn38H1pEEBZ/+ydiJD5EiX4PPiSeedTOrsxcgZneRccDwDKYFiL+D
+ HnktahIvAdCVuy3PoslNT3ox44hw5qLmOo0kxb1xEIHP2vpVanczFmoee Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="333325102"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="333325102"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 03:18:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="844539407"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="844539407"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 03:18:51 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Feb 2023 12:18:36 +0100
+Message-Id: <20230217111836.864959-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f975c3e-8a21-4a91-97c6-08db10d56f69
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2023 10:55:08.5856 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DyMOaeYIyenW7P+XtPAvA7BjTV++deoSXBd55hXZ6YpqeWBkw2s3trPGpv6EdlerH33eW1HkJ4TcwIffprwqHw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6615
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 03/15] vfio: Accept vfio device file in
- the driver facing kAPI
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/display/power: use intel_de_rmw if
+ possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,92 +57,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "peterx@redhat.com" <peterx@redhat.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alex, Jason,
+The helper makes the code more compact and readable.
 
-> From: Liu, Yi L <yi.l.liu@intel.com>
-> Sent: Tuesday, February 14, 2023 3:19 PM
->=20
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Tuesday, February 14, 2023 10:03 AM
-> >
-> > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > Sent: Tuesday, February 14, 2023 7:44 AM
-> > >
-> > > On Mon, Feb 13, 2023 at 07:13:36AM -0800, Yi Liu wrote:
-> > > > +static struct vfio_device *vfio_device_from_file(struct file *file=
-)
-> > > > +{
-> > > > +	struct vfio_device_file *df =3D file->private_data;
-> > > > +
-> > > > +	if (file->f_op !=3D &vfio_device_fops)
-> > > > +		return NULL;
-> > > > +	return df->device;
-> > > > +}
-> > > > +
-> > > >  /**
-> > > >   * vfio_file_is_valid - True if the file is usable with VFIO APIS
-> > > >   * @file: VFIO group file or VFIO device file
-> > > >   */
-> > > >  bool vfio_file_is_valid(struct file *file)
-> > > >  {
-> > > > -	return vfio_group_from_file(file);
-> > > > +	return vfio_group_from_file(file) ||
-> > > > +	       vfio_device_from_file(file);
-> > > >  }
-> > > >  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
-> > >
-> > > This can only succeed on a device cdev that has been fully opened.
-> >
-> > Actually, we cannot. This is used in the kvm-vfio code to see if the
-> > user-provided fd is vfio fds in the SET_KVM path. And we don't
-> > have the device cdev fully opened until BIND_IOMMUFD. But we do
-> > need to invoke SET_KVM before issuing BIND_IOMMUFD as the device
-> > open needs kvm pointer. So if we cannot apply fully opened limit to thi=
-s
-> > interface. Maybe an updated function comment is needed.
-> >
-> > " vfio_file_is_valid - True if the file is vfio files (group or device)=
-"
->=20
-> I guess your point is this is also called in the pci hot reset path. And
-> in the reset path, the device referred by the device fd should be fully
-> opened. vfio_file_is_valid() only checks f_ops, which is not enough to
-> show the device is fully-opened for cdev fd. However, view the high-level
-> flow, for cdev fd, the device access (neither VFIO_DEVICE_PCI_HOT_RESET
-> nor VFIO_DEVICE_GET_PCI_HOT_RESET_INFO) is not allowed until the
-> device is fully-opened (done in the bind_iommufd). So if the
-> VFIO_DEVICE_PCI_HOT_RESET path goes such far to call vfio_file_is_valid()=
-,
-> the device should have been fully-opened.
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+v3:
+    - just rebased
+---
+ .../drm/i915/display/intel_display_power.c    | 49 ++++-------
+ .../i915/display/intel_display_power_well.c   | 82 ++++++-------------
+ 2 files changed, 39 insertions(+), 92 deletions(-)
 
-One more thinking on this. For a single device, my above reply is true.
-The device should have been fully-opened when its GET_PCI_HOT_RESET_INFO
-and HOT_RESET path have been unblocked. However, when there are
-multiple devices that have been affected by the hotreset. User may only
-have one device that is fully opened while others are not yet. In such case=
-,
-existing vfio_file_is_valid() is not enough. Shall we have another API for
-this purpose? E.g. if it's cdev fd, then the new API return true only when
-the device is fully opened. Any suggestion here?
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7222502a760ccb..743b919bb2cfd7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1260,9 +1260,7 @@ static void hsw_disable_lcpll(struct drm_i915_private *dev_priv,
+ 		drm_err(&dev_priv->drm, "D_COMP RCOMP still in progress\n");
+ 
+ 	if (allow_power_down) {
+-		val = intel_de_read(dev_priv, LCPLL_CTL);
+-		val |= LCPLL_POWER_DOWN_ALLOW;
+-		intel_de_write(dev_priv, LCPLL_CTL, val);
++		intel_de_rmw(dev_priv, LCPLL_CTL, 0, LCPLL_POWER_DOWN_ALLOW);
+ 		intel_de_posting_read(dev_priv, LCPLL_CTL);
+ 	}
+ }
+@@ -1306,9 +1304,7 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+ 		drm_err(&dev_priv->drm, "LCPLL not locked yet\n");
+ 
+ 	if (val & LCPLL_CD_SOURCE_FCLK) {
+-		val = intel_de_read(dev_priv, LCPLL_CTL);
+-		val &= ~LCPLL_CD_SOURCE_FCLK;
+-		intel_de_write(dev_priv, LCPLL_CTL, val);
++		intel_de_rmw(dev_priv, LCPLL_CTL, LCPLL_CD_SOURCE_FCLK, 0);
+ 
+ 		if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
+ 				 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+@@ -1347,15 +1343,11 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+  */
+ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Enabling package C8+\n");
+ 
+-	if (HAS_PCH_LPT_LP(dev_priv)) {
+-		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+-		val &= ~PCH_LP_PARTITION_LEVEL_DISABLE;
+-		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+-	}
++	if (HAS_PCH_LPT_LP(dev_priv))
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     PCH_LP_PARTITION_LEVEL_DISABLE, 0);
+ 
+ 	lpt_disable_clkout_dp(dev_priv);
+ 	hsw_disable_lcpll(dev_priv, true, true);
+@@ -1363,25 +1355,21 @@ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+ 
+ static void hsw_disable_pc8(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Disabling package C8+\n");
+ 
+ 	hsw_restore_lcpll(dev_priv);
+ 	intel_init_pch_refclk(dev_priv);
+ 
+-	if (HAS_PCH_LPT_LP(dev_priv)) {
+-		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+-		val |= PCH_LP_PARTITION_LEVEL_DISABLE;
+-		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+-	}
++	if (HAS_PCH_LPT_LP(dev_priv))
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     0, PCH_LP_PARTITION_LEVEL_DISABLE);
+ }
+ 
+ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+ 				      bool enable)
+ {
+ 	i915_reg_t reg;
+-	u32 reset_bits, val;
++	u32 reset_bits;
+ 
+ 	if (IS_IVYBRIDGE(dev_priv)) {
+ 		reg = GEN7_MSG_CTL;
+@@ -1394,14 +1382,7 @@ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) >= 14)
+ 		reset_bits |= MTL_RESET_PICA_HANDSHAKE_EN;
+ 
+-	val = intel_de_read(dev_priv, reg);
+-
+-	if (enable)
+-		val |= reset_bits;
+-	else
+-		val &= ~reset_bits;
+-
+-	intel_de_write(dev_priv, reg, val);
++	intel_de_rmw(dev_priv, reg, reset_bits, enable ? reset_bits : 0);
+ }
+ 
+ static void skl_display_core_init(struct drm_i915_private *dev_priv,
+@@ -1616,7 +1597,6 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ {
+ 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+ 	struct i915_power_well *well;
+-	u32 val;
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+ 
+@@ -1668,11 +1648,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 		intel_dmc_load_program(dev_priv);
+ 
+ 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p */
+-	if (DISPLAY_VER(dev_priv) >= 12) {
+-		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+-		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
+-		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0, val);
+-	}
++	if (DISPLAY_VER(dev_priv) >= 12)
++		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
++			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
++			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
+ 
+ 	/* Wa_14011503030:xelpd */
+ 	if (DISPLAY_VER(dev_priv) >= 13)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 56a20bf5825b4a..6d1d3284eddd3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -333,7 +333,6 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+-	u32 val;
+ 
+ 	if (power_well->desc->has_fuses) {
+ 		enum skl_power_gate pg;
+@@ -356,9 +355,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+ 			gen9_wait_for_power_well_fuses(dev_priv, SKL_PG0);
+ 	}
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+ 
+ 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ 
+@@ -380,14 +377,11 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+-	u32 val;
+ 
+ 	hsw_power_well_pre_disable(dev_priv,
+ 				   power_well->desc->irq_pipe_mask);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+ 	hsw_wait_for_power_well_disable(dev_priv, power_well);
+ }
+ 
+@@ -411,29 +405,22 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+ 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+-	u32 val;
+ 
+ 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+ 
+-	if (DISPLAY_VER(dev_priv) < 12) {
+-		val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+-		intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+-			       val | ICL_LANE_ENABLE_AUX);
+-	}
++	if (DISPLAY_VER(dev_priv) < 12)
++		intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy),
++			     0, ICL_LANE_ENABLE_AUX);
+ 
+ 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ 
+ 	/* Display WA #1178: icl */
+ 	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
+-	    !intel_port_is_edp(dev_priv, (enum port)phy)) {
+-		val = intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
+-		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
+-		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
+-	}
++	    !intel_port_is_edp(dev_priv, (enum port)phy))
++		intel_de_rmw(dev_priv, ICL_AUX_ANAOVRD1(pw_idx),
++			     0, ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS);
+ }
+ 
+ static void
+@@ -443,17 +430,12 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+ 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+-	u32 val;
+ 
+ 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+ 
+-	val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+-	intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+-		       val & ~ICL_LANE_ENABLE_AUX);
++	intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy), ICL_LANE_ENABLE_AUX, 0);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+ 
+ 	hsw_wait_for_power_well_disable(dev_priv, power_well);
+ }
+@@ -515,19 +497,15 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	bool is_tbt = power_well->desc->is_tc_tbt;
+ 	bool timeout_expected;
+-	u32 val;
+ 
+ 	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+ 
+-	val = intel_de_read(dev_priv, DP_AUX_CH_CTL(aux_ch));
+-	val &= ~DP_AUX_CH_CTL_TBT_IO;
+-	if (is_tbt)
+-		val |= DP_AUX_CH_CTL_TBT_IO;
+-	intel_de_write(dev_priv, DP_AUX_CH_CTL(aux_ch), val);
++	intel_de_rmw(dev_priv, DP_AUX_CH_CTL(aux_ch),
++		     DP_AUX_CH_CTL_TBT_IO, is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
++	intel_de_rmw(dev_priv, regs->driver,
++		     0,
++		     HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
+ 
+ 	/*
+ 	 * An AUX timeout is expected if the TBT DP tunnel is down,
+@@ -789,12 +767,8 @@ static void tgl_enable_dc3co(struct drm_i915_private *dev_priv)
+ 
+ static void tgl_disable_dc3co(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Disabling DC3CO\n");
+-	val = intel_de_read(dev_priv, DC_STATE_EN);
+-	val &= ~DC_STATE_DC3CO_STATUS;
+-	intel_de_write(dev_priv, DC_STATE_EN, val);
++	intel_de_rmw(dev_priv, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
+ 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+ 	/*
+ 	 * Delay of 200us DC3CO Exit time B.Spec 49196
+@@ -833,8 +807,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+-		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+-			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
++		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
++			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
+ }
+@@ -860,8 +834,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+-		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+-			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
++		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
++			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
+ }
+@@ -1162,18 +1136,14 @@ static bool vlv_power_well_enabled(struct drm_i915_private *dev_priv,
+ 
+ static void vlv_init_display_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	/*
+ 	 * On driver load, a pipe may be active and driving a DSI display.
+ 	 * Preserve DPOUNIT_CLOCK_GATE_DISABLE to avoid the pipe getting stuck
+ 	 * (and never recovering) in this case. intel_dsi_post_disable() will
+ 	 * clear it when we turn off the display.
+ 	 */
+-	val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
+-	val &= DPOUNIT_CLOCK_GATE_DISABLE;
+-	val |= VRHUNIT_CLOCK_GATE_DISABLE;
+-	intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
++	intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
++		     ~DPOUNIT_CLOCK_GATE_DISABLE, VRHUNIT_CLOCK_GATE_DISABLE);
+ 
+ 	/*
+ 	 * Disable trickle feed and enable pnd deadline calculation
+@@ -1289,8 +1259,7 @@ static void vlv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+ 	 * both PLLs disabled, or we risk losing DPIO and PLL
+ 	 * synchronization.
+ 	 */
+-	intel_de_write(dev_priv, DPIO_CTL,
+-		       intel_de_read(dev_priv, DPIO_CTL) | DPIO_CMNRST);
++	intel_de_rmw(dev_priv, DPIO_CTL, 0, DPIO_CMNRST);
+ }
+ 
+ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+@@ -1302,8 +1271,7 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+ 		assert_pll_disabled(dev_priv, pipe);
+ 
+ 	/* Assert common reset */
+-	intel_de_write(dev_priv, DPIO_CTL,
+-		       intel_de_read(dev_priv, DPIO_CTL) & ~DPIO_CMNRST);
++	intel_de_rmw(dev_priv, DPIO_CTL, DPIO_CMNRST, 0);
+ 
+ 	vlv_set_power_well(dev_priv, power_well, false);
+ }
+-- 
+2.34.1
 
-Regards,
-Yi Liu
