@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249A569ABD2
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 13:47:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5425169ABF8
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 13:56:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 746C510EFBE;
-	Fri, 17 Feb 2023 12:47:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D96D10EFB8;
- Fri, 17 Feb 2023 12:47:35 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0B1A7B82BEF;
- Fri, 17 Feb 2023 12:47:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0D2C433D2;
- Fri, 17 Feb 2023 12:47:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1676638052;
- bh=muiZ7Zdm8EKyUHP3hRfEoY7iYZimVLoMBdNf7RauiNY=;
- h=From:To:Cc:Subject:Date:From;
- b=OuNl7GNRtP2kWrnIjrnP10xasJEDvv64vRhawteuaOE56Jh4EX0+Ggq/cMuWlm6eU
- LuErd1jchq6pg/1ggVYA2ZA1H8WqElsFRi/gUrG270CFgNYZC5EeZvT5xMfflTX9ge
- TqHo2EtIhXyPP1Nvd7LbnXlzIkgQtg4gU4nymqZroYwyorcFAGN81OTqYttKoSCcT3
- utcIdaw2fdb+m37CI4+bZW6sgQchu0cGHMThfTUkJNLpgZ9z7Vc+oHRet+Ol9H68p7
- HwJBLll+/WZjGeq2nq8x0FRbRUmj948uCTdU0aENN70RLVwbR340B5fNcRrnCWAlEe
- 3+hl+zgARyDKw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Date: Fri, 17 Feb 2023 13:46:50 +0100
-Message-Id: <20230217124724.1324126-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC4210E136;
+	Fri, 17 Feb 2023 12:56:31 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F36D10E136;
+ Fri, 17 Feb 2023 12:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676638588; x=1708174588;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=m/Qp9QVwQABTQrYMyYWFpJ+RLpmJMXQGWovIrekF1nA=;
+ b=fGLgV83JJgC2ZPwo4BriwDIscDfmRXSS2htla77Jjw/U7kr7/xNT9NvR
+ XWHSUMI5jn2YtTHN3QPPz7LCrAVmW9Ofza3DZCYAZH0Dfm/GqEHClHVYq
+ XGdoSEjvn9Y8LJZO/yIZ9H5D1MACtWX2N5U/ogdB2FxWJ9KuSfKm1ZYBP
+ dOQQzTw8NwozGZEQw4s9MVw2BCy1AX4l7cSRglXb6j2YNJR4G4UIrTZS7
+ 5mqka3Gh2n2phq4t+Fr8NMJifUONlHM5G8AScf63RSeSJdeC+pOPdi7Zb
+ Ch/2jl1zj09EsHsJmW9LX21wNNdPEd3Z3KowPmQfZaLZsF3otPTqEkSzH A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="315695646"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="315695646"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 04:56:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="813364110"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="813364110"
+Received: from scurtin-mobl.ger.corp.intel.com (HELO [10.213.210.155])
+ ([10.213.210.155])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 04:56:26 -0800
+Message-ID: <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
+Date: Fri, 17 Feb 2023 12:56:24 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: avoid FIELD_PREP warning
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Rob Clark <robdclark@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
+ <Y+5zyeSncSbsXHWG@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <Y+5zyeSncSbsXHWG@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,52 +64,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Cc: Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
 
-With gcc-7 and earlier, there are lots of warnings like
+On 16/02/2023 18:19, Rodrigo Vivi wrote:
+> On Tue, Feb 14, 2023 at 11:14:00AM -0800, Rob Clark wrote:
+>> On Fri, Feb 10, 2023 at 5:07 AM Tvrtko Ursulin
+>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> In i915 we have this concept of "wait boosting" where we give a priority boost
+>>> for instance to fences which are actively waited upon from userspace. This has
+>>> it's pros and cons and can certainly be discussed at lenght. However fact is
+>>> some workloads really like it.
+>>>
+>>> Problem is that with the arrival of drm syncobj and a new userspace waiting
+>>> entry point it added, the waitboost mechanism was bypassed. Hence I cooked up
+>>> this mini series really (really) quickly to see if some discussion can be had.
+>>>
+>>> It adds a concept of "wait count" to dma fence, which is incremented for every
+>>> explicit dma_fence_enable_sw_signaling and dma_fence_add_wait_callback (like
+>>> dma_fence_add_callback but from explicit/userspace wait paths).
+>>
+>> I was thinking about a similar thing, but in the context of dma_fence
+>> (or rather sync_file) fd poll()ing.  How does the kernel differentiate
+>> between "housekeeping" poll()ers that don't want to trigger boost but
+>> simply know when to do cleanup, and waiters who are waiting with some
+>> urgency.  I think we could use EPOLLPRI for this purpose.
+>>
+>> Not sure how that translates to waits via the syncobj.  But I think we
+>> want to let userspace give some hint about urgent vs housekeeping
+>> waits.
+> 
+> Should the hint be on the waits, or should the hints be on the executed
+> context?
+> 
+> In the end we need some way to quickly ramp-up the frequency to avoid
+> the execution bubbles.
+> 
+> waitboost is trying to guess that, but in some cases it guess wrong
+> and waste power.
 
-In file included from <command-line>:0:0:
-In function '__guc_context_policy_add_priority.isra.66',
-    inlined from '__guc_context_set_prio.isra.67' at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3292:3,
-    inlined from 'guc_context_set_prio' at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3320:2:
-include/linux/compiler_types.h:399:38: error: call to '__compiletime_assert_631' declared with attribute error: FIELD_PREP: mask is not constant
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-                                      ^
-...
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2422:3: note: in expansion of macro 'FIELD_PREP'
-   FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
-   ^~~~~~~~~~
+Do we have a list of workloads which shows who benefits and who loses 
+from the current implementation of waitboost?
+> btw, this is something that other drivers might need:
+> 
+> https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
+> Cc: Alex Deucher <alexander.deucher@amd.com>
 
-Make sure that GUC_KLV_0_KEY is an unsigned value to avoid the warning.
+I have several issues with the context hint if it would directly 
+influence frequency selection in the "more power" direction.
 
-Fixes: 77b6f79df66e ("drm/i915/guc: Update to GuC version 69.0.3")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+First of all, assume a context hint would replace the waitboost. Which 
+applications would need to set it to restore the lost performance and 
+how would they set it?
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-index 58012edd4eb0..4f4f53c42a9c 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-@@ -29,9 +29,9 @@
-  */
- 
- #define GUC_KLV_LEN_MIN				1u
--#define GUC_KLV_0_KEY				(0xffff << 16)
--#define GUC_KLV_0_LEN				(0xffff << 0)
--#define GUC_KLV_n_VALUE				(0xffffffff << 0)
-+#define GUC_KLV_0_KEY				(0xffffu << 16)
-+#define GUC_KLV_0_LEN				(0xffffu << 0)
-+#define GUC_KLV_n_VALUE				(0xffffffffu << 0)
- 
- /**
-  * DOC: GuC Self Config KLVs
--- 
-2.39.1
+Then I don't even think userspace necessarily knows. Think of a layer 
+like OpenCL. It doesn't really know in advance the profile of 
+submissions vs waits. It depends on the CPU vs GPU speed, so hardware 
+generation, and the actual size of the workload which can be influenced 
+by the application (or user) and not the library.
 
+The approach also lends itself well for the "arms race" where every 
+application can say "Me me me, I am the most important workload there is!".
+
+The last concern is for me shared with the proposal to expose deadlines 
+or high priority waits as explicit uapi knobs. Both come under the "what 
+application told us it will do" category vs what it actually does. So I 
+think it is slightly weaker than basing decisions of waits.
+
+The current waitboost is a bit detached from that problem because when 
+we waitboost for flips we _know_ it is an actual framebuffer in the flip 
+chain. When we waitboost for waits we also know someone is waiting. We 
+are not trusting userspace telling us this will be a buffer in the flip 
+chain or that this is a context which will have a certain duty-cycle.
+
+But yes, even if the input is truthful, latter is still only a 
+heuristics because nothing says all waits are important. AFAIU it just 
+happened to work well in the past.
+
+I do understand I am effectively arguing for more heuristics, which may 
+sound a bit against the common wisdom. This is because in general I 
+think the logic to do the right thing, be it in the driver or in the 
+firmware, can work best if it has a holistic view. Simply put it needs 
+to have more inputs to the decisions it is making.
+
+That is what my series is proposing - adding a common signal of "someone 
+in userspace is waiting". What happens with that signal needs not be 
+defined (promised) in the uapi contract.
+
+Say you route it to SLPC logic. It doesn't need to do with it what 
+legacy i915 is doing today. It just needs to do something which works 
+best for majority of workloads. It can even ignore it if that works for it.
+
+Finally, back to the immediate problem is when people replace the OpenCL 
+NEO driver with clvk that performance tanks. Because former does waits 
+using i915 specific ioctls and so triggers waitboost, latter waits on 
+syncobj so no waitboost and performance is bad. What short term solution 
+can we come up with? Or we say to not use clvk? I also wonder if other 
+Vulkan based stuff is perhaps missing those easy performance gains..
+
+Perhaps strictly speaking Rob's and mine proposal are not mutually 
+exclusive. Yes I could piggy back on his with an "immediate deadline for 
+waits" idea, but they could also be separate concepts if we concluded 
+"someone is waiting" signal is useful to have. Or it takes to long to 
+upstream the full deadline idea.
+
+Regards,
+
+Tvrtko
+
+>>
+>> Also, on a related topic: https://lwn.net/Articles/868468/
+>>
+>> BR,
+>> -R
+>>
+>>> Individual drivers can then inspect this via dma_fence_wait_count() and decide
+>>> to wait boost the waits on such fences.
+>>>
+>>> Again, quickly put together and smoke tested only - no guarantees whatsoever and
+>>> I will rely on interested parties to test and report if it even works or how
+>>> well.
+>>>
+>>> v2:
+>>>   * Small fixups based on CI feedback:
+>>>      * Handle decrement correctly for already signalled case while adding callback.
+>>>      * Remove i915 assert which was making sure struct i915_request does not grow.
+>>>   * Split out the i915 patch into three separate functional changes.
+>>>
+>>> Tvrtko Ursulin (5):
+>>>    dma-fence: Track explicit waiters
+>>>    drm/syncobj: Mark syncobj waits as external waiters
+>>>    drm/i915: Waitboost external waits
+>>>    drm/i915: Mark waits as explicit
+>>>    drm/i915: Wait boost requests waited upon by others
+>>>
+>>>   drivers/dma-buf/dma-fence.c               | 102 ++++++++++++++++------
+>>>   drivers/gpu/drm/drm_syncobj.c             |   6 +-
+>>>   drivers/gpu/drm/i915/gt/intel_engine_pm.c |   1 -
+>>>   drivers/gpu/drm/i915/i915_request.c       |  13 ++-
+>>>   include/linux/dma-fence.h                 |  14 +++
+>>>   5 files changed, 101 insertions(+), 35 deletions(-)
+>>>
+>>> --
+>>> 2.34.1
+>>>
