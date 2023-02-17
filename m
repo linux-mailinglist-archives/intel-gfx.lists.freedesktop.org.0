@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FF169B2AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 19:54:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C5669B2FF
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 20:22:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63ED910E3E0;
-	Fri, 17 Feb 2023 18:54:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E2E10E21D;
+	Fri, 17 Feb 2023 19:22:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5866210E3E0;
- Fri, 17 Feb 2023 18:54:49 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B22610E21D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Feb 2023 19:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676660089; x=1708196089;
+ t=1676661764; x=1708197764;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ueIi6GmB2j6g4ZCvzua4zNkqADw0/gfzmFHTVPoKCo4=;
- b=fvz77Avs7QIk3T+CxP6QPFe0Nx/ydrfz7RAQ6ln/VTj8ARNJ0TOD/ans
- i/nNyhZoYlPJcjUqkIlUKiI8sdKbozcMPOuopsiYsY1KapBAX8yTrzHzm
- dlZwyRrezHUkij4LWh1Pi3OqdBZYsafkYZLn1HOtPhNtvjOXMVTQq0d2L
- uNWy0kgQAStY3h3Uf2y8T1kdbT0XOB9exCc+XxS0EJzUGK/WTNN3Pko2I
- NeIT9Sjs/vO2ayF/J/7RbiE45JrcfQvZ1P3/oH3vz6JU1O7N4QfGdqIh2
- 4zThSfpevpAsQFkvdfWRHO7bBGZodPqjn6ATT8zlboToeEr/2XSn0PBv2 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="315776202"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="315776202"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 10:54:48 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="703033019"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="703033019"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 10:54:48 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+ bh=JhjCOdx+ky2XZjaS61VFS+bN/CP9mrFyjK9FUbjk8ys=;
+ b=E32+Pa0ckGqsfHeJpzrQl5R90hUBzoZiDD2j97eQMLmZJTLaZg/5Gt0k
+ fEZevyw9SgmXdPBFVFAhHvx/8n2syLHiURp6OzhfSO55pfPAvX4ceUQy/
+ 8KpNY+1M+qYlN25Nwiq8HncBN8ADY8cCHRds5JXjSnnnU7iT5keqjGEk3
+ 4dt0CVqZAaCDKk3UIPdztz6pg26nFpMg56akHOoNY6FQvgylpXCkiFGOm
+ r16wnwlhELtTYGwCfbVY1BRUOFcjpe2vxhsufQS9R2yUz33LF2iIQtW4o
+ a3cRkiecZjQ5IMt8yIDj2wb9RLSECXd8jmoCg/xQ36tYC55l3u3wSKKNR A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="394548691"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="394548691"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 11:22:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="916186628"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="916186628"
+Received: from dut-internal-9dd7.jf.intel.com ([10.24.14.53])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 11:22:42 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Feb 2023 10:54:33 -0800
-Message-Id: <20230217185433.2418370-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.1
+Date: Fri, 17 Feb 2023 11:18:13 -0800
+Message-Id: <20230217191813.1104342-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Add engine TLB invalidation
+Subject: [Intel-gfx] [PATCH] gen8_ppgtt: Use correct huge page manager for
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,126 +55,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: jonathan.cavitt@intel.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL's primary GT can continue to use the same engine TLB invalidation
-programming as past Xe_HP-based platforms.  However the media GT needs
-some special handling:
- * Invalidation registers on the media GT are singleton registers
-   (unlike the primary GT where they are still MCR).
- * Since the GSC is now exposed as an engine, there's a new register to
-   use for TLB invalidation.  The offset is identical to the compute
-   engine offset, but this is expected --- compute engines only exist on
-   the primary GT while the GSC only exists on the media GT.
- * Although there's only a single GSC engine instance, it inexplicably
-   uses bit 1 to request invalidations rather than bit 0.
+MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
+MTL reports as not supporting 64K pages, or more accurately, the system that reports
+whether a platform has 64K pages reports false for MTL.  This is only half correct,
+as the 64K page support reporting system only cares about 64K page support for LMEM,
+which MTL doesn't have.
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
+using that manager doesn't resolve the issue because MTL is expecting the virtual
+address space for the page table to be flushed after initialization, so we must also
+add a flush statement there.
+
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 52 ++++++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_gt_regs.h   |  1 +
- 2 files changed, 38 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index f3a91e7f85f7..af8e158fbd84 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1166,6 +1166,11 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
- 		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
- 		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
- 	};
-+	static const union intel_engine_tlb_inv_reg xelpmp_regs[] = {
-+		[VIDEO_DECODE_CLASS].reg	  = GEN12_VD_TLB_INV_CR,
-+		[VIDEO_ENHANCEMENT_CLASS].reg     = GEN12_VE_TLB_INV_CR,
-+		[OTHER_CLASS].reg		  = XELPMP_GSC_TLB_INV_CR,
-+	};
- 	struct drm_i915_private *i915 = engine->i915;
- 	const unsigned int instance = engine->instance;
- 	const unsigned int class = engine->class;
-@@ -1185,19 +1190,28 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
- 	 * 12.00 -> 12.50 transition multi cast handling is required too.
- 	 */
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 4daaa6f55668..9c571185395f 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
+ 			}
+ 		} while (rem >= page_size && index < max);
  
--	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
--	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
--		regs = xehp_regs;
--		num = ARRAY_SIZE(xehp_regs);
--	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
--		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
--		regs = gen12_regs;
--		num = ARRAY_SIZE(gen12_regs);
--	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
--		regs = gen8_regs;
--		num = ARRAY_SIZE(gen8_regs);
--	} else if (GRAPHICS_VER(i915) < 8) {
--		return 0;
-+	if (engine->gt->type == GT_MEDIA) {
-+		if (MEDIA_VER_FULL(i915) == IP_VER(13, 0)) {
-+			regs = xelpmp_regs;
-+			num = ARRAY_SIZE(xelpmp_regs);
-+		}
-+	} else {
-+		if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 71) ||
-+		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 70) ||
-+		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
-+		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
-+			regs = xehp_regs;
-+			num = ARRAY_SIZE(xehp_regs);
-+		} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-+			   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
-+			regs = gen12_regs;
-+			num = ARRAY_SIZE(gen12_regs);
-+		} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
-+			regs = gen8_regs;
-+			num = ARRAY_SIZE(gen8_regs);
-+		} else if (GRAPHICS_VER(i915) < 8) {
-+			return 0;
-+		}
- 	}
++		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+ 		vma_res->page_sizes_gtt |= page_size;
+ 	} while (iter->sg && sg_dma_len(iter->sg));
+ }
+@@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ 	struct sgt_dma iter = sgt_dma(vma_res);
  
- 	if (gt_WARN_ONCE(engine->gt, !num,
-@@ -1212,7 +1226,14 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
- 
- 	reg = regs[class];
- 
--	if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
-+	if (class == OTHER_CLASS) {
-+		/*
-+		 * There's only a single GSC instance, but it uses register bit
-+		 * 1 instead of either 0 or OTHER_GSC_INSTANCE.
-+		 */
-+		GEM_WARN_ON(instance != OTHER_GSC_INSTANCE);
-+		val = 1;
-+	} else if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
- 		reg.reg = GEN8_M2TCR;
- 		val = 0;
- 	} else {
-@@ -1228,7 +1249,8 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
- 	if (GRAPHICS_VER(i915) >= 12 &&
- 	    (engine->class == VIDEO_DECODE_CLASS ||
- 	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
--	     engine->class == COMPUTE_CLASS))
-+	     engine->class == COMPUTE_CLASS ||
-+	     engine->class == OTHER_CLASS))
- 		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
- 	else
- 		engine->tlb_inv.request = val;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 416976d396ba..423e3e9c564b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1090,6 +1090,7 @@
- #define XEHP_BLT_TLB_INV_CR			MCR_REG(0xcee4)
- #define GEN12_COMPCTX_TLB_INV_CR		_MMIO(0xcf04)
- #define XEHP_COMPCTX_TLB_INV_CR			MCR_REG(0xcf04)
-+#define XELPMP_GSC_TLB_INV_CR			_MMIO(0xcf04)   /* media GT only */
- 
- #define XEHP_MERT_MOD_CTRL			MCR_REG(0xcf28)
- #define RENDER_MOD_CTRL				MCR_REG(0xcf2c)
+ 	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
+-		if (HAS_64K_PAGES(vm->i915))
++		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
+ 			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+ 		else
+ 			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
 -- 
-2.39.1
+2.25.1
 
