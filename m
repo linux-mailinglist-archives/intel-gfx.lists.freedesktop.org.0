@@ -1,151 +1,151 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3528D69B38F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 21:13:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F3E669B411
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Feb 2023 21:41:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2845E10F0C0;
-	Fri, 17 Feb 2023 20:13:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC4010F0D1;
+	Fri, 17 Feb 2023 20:40:59 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2425D10F0BE;
- Fri, 17 Feb 2023 20:13:18 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26F0910E45F;
+ Fri, 17 Feb 2023 20:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676664798; x=1708200798;
+ t=1676666458; x=1708202458;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=S8FDzUbax0PWvRjxqc5FOwCncKflLW5k8OwD0ChIJrs=;
- b=KTXN1PBY+zRtQG6CaLXEX5MihP+DBntEml3PTenhshwKCL8Dp1jqTb1U
- ntzfelhS2l0J6eNRu0cNzNTI4nUDGagbov3OyPFWUU4xb5ce+OfvarnEv
- ouo0nPQ5ffQwHYtk3JZuLkJaa8i9hHsNk2F1R/IplSENPp1/4p9pL+sR7
- t5iQ0UwqKQ/T9MwgfQBG0KMVhEviq3Z14KJMH3izeaJIJ1kmHV5GneivY
- 9kyfP4i0q+otftl9Vy3bWANDzdweWaqxY8tX6aDRZU8LQxvqMRbSJySpW
- tcidUwF9KpwV4zZSUm+rTusK7uiBcfUo0kGQDvpyGOV4Rm4EP0x5EN867 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="312445669"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="312445669"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 12:13:17 -0800
+ bh=obH/udBpjLlvH1vssJrjp0ky+N3+Ty/tYr0LqBaqWb8=;
+ b=Nr1v8TwpC2jJLFy+skN0ny/hi7VD8G/JV27PZnM1BGj+lOXCrW1VLHLb
+ rYpr1lGTWFYCwI2qRuMA52vxApobliildMcOFGxGl7+DbvqY7MtPQgB0g
+ 2O6+zVT/e1/7SyZcDeNPrKIL4huHEH64yDp039aMuNrAK4bJ0NyNyi/ls
+ ZPwCvHMt0Avu/tcLVNzolxh03vnpLtLVyaBEgOsgENwDk1Sthuvfxu17H
+ kwFWw0ZNjBF+tS3nu+EYCxmNS50TlrU88nAXZPm++YjODWut+/oJvi7fI
+ lrOdcUn6HjhDj99X5yJRuxdIhkoAz5rmI3vj6xgJSeDNVjQpTW7FlgeO6 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="330749573"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="330749573"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 12:40:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="648192218"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="648192218"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP; 17 Feb 2023 12:13:17 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="844696722"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="844696722"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga005.jf.intel.com with ESMTP; 17 Feb 2023 12:40:57 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 12:13:16 -0800
+ 15.1.2507.16; Fri, 17 Feb 2023 12:40:56 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 12:13:16 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 12:40:56 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 17 Feb 2023 12:13:16 -0800
+ 15.1.2507.16; Fri, 17 Feb 2023 12:40:56 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g9o5BZmsWhwNmTJn73wXTHHBmkxHW+z0gTiYl5kBx95poNSnk8ZEGx7Y62WGb4oJLOIiU3xGI3b1CXaZ6ok71ikD/yWSyksJpBotRysGRgPPIYm8JGK+PIZKEKM+jOGNxdwSCWhZ1+jewk+cQGMlu7sE5hXEMCS7o6r64j5UtcIHkBjHuo7y7VDVT5iTswfZkBY9uEPU9KkDiZFFdSuRGXe3NqdZEeVoSIMPhnNI7iPO7oC2NghBXAKxwDpaodj+Q0cGuf15QTzn+McEWQCbCoSU8F0/YxHVxYWOFe0fOI0hSndPA1CjL18PscdBTppWJUZexiLha4Fa7K05cef2gA==
+ b=S4S1qitl2IrfThnCNzfv6pJUacC/E4ufN+sdnTVE3Mc2EVtm9ljfsLaNSXyzN7caEs6bf0A0P7k8brABAm0pwUeMNOAoCCUryDOjCrJxcOc9NzlQmd7PXwKGNcpJ1LIE6WPl1jcwOX9y+by68PvE7p5aEfatms2ThdyvRwVfi/+QJxy5U5lkqWaZsDH8ZG/yBr32L1PDOMX4koSJ9su/zgXP9iXHC1+tl1qL7egRPGMhQFIPVaSFwhZZeuROOkGQZj/EHb4FU9iseCVOVmOUvuChvZWevyAtK0CV2d2V6z4j+IvXbX8Go22KpHf9skHxHKzpsWFJpNsynvgfnl215A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Srwu/E8TVizrDh2KVxzeyAMt8znaToGNW+BLI3ZDNOs=;
- b=Ou3pZXzlzAw1d9udB01Rwit77W0yYA1VCJzltgui/vqc+5Yvo/xkNl8tgex8i7A21oO6tAgvP9oSLqQmYqJjXvNmdzI/zzLps94wFelDAkYkuhlLndjQPF/BLVsybAkHeqIHTmo2bfMqneqI+fOZq3VQ7heJGQQhpnDKeLv9k3LNT9ukUwI0WjUEvPYcYGDE/QVzwIYg76AiRqsMQiop9jlAmFwRo8nnhC0oNg8I/8R4yGAYu5T+TKsR8m8mOuehsdyBiM1oIb3CCR/xO/XWi+eGojYfPt2+vpsFfNoS8UERlDpydzNSgFPXTc8yjgZbDqZ0xZwEkdeqjtQxwpaJyA==
+ bh=GW3NELfcLZhpvyKR9EVeaiUZclBrCuZ2/MnDZH9acV0=;
+ b=Db2VWb3+nk5aG6gVC/shk3x4SGK2iSk+WOwE1TbnviXekI3/Co5RiyeK0zOozhBV3P+UmJd0EFnF/GODlfv94pLW52/OgfDePYGmOLqp3ixaMd52/L2RRM8ft9ZAQOYppKTSQLa+Tdu42WAzM3DHUm9OHJYV2FMsxQkl89aF6xY7LRLt6/oSBQ6c6etEn9HC9FmUtcI3yAIxsRxTilFeEp6IkdOqe4wLTiMwNcv547r2rnOZ840+i2AyNkAfVgh2/hxpZy12HJzKDiq+RiIhjVNZzb1zFnVtuV7enkZ2NBXhYcyc0V1NeRqKhmTSl1PMeUzrytY0ZCPpPG3V4xabmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by MW4PR11MB6957.namprd11.prod.outlook.com (2603:10b6:303:22a::5)
+ by PH0PR11MB5628.namprd11.prod.outlook.com (2603:10b6:510:d4::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.21; Fri, 17 Feb
- 2023 20:13:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13; Fri, 17 Feb
+ 2023 20:40:55 +0000
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::5399:6c34:d8f5:9fab]) by BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::5399:6c34:d8f5:9fab%6]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
- 20:13:14 +0000
-Message-ID: <e2629520-3738-38b5-c1e9-53dc035ee1c6@intel.com>
-Date: Fri, 17 Feb 2023 12:13:12 -0800
+ 20:40:55 +0000
+Message-ID: <bc45f128-bb22-7b35-d931-22e13a7902c0@intel.com>
+Date: Fri, 17 Feb 2023 12:40:52 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.7.2
 Content-Language: en-GB
 To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  <Intel-GFX@Lists.FreeDesktop.Org>
 References: <20230112015447.2430224-1-John.C.Harrison@Intel.com>
- <20230112015447.2430224-2-John.C.Harrison@Intel.com>
- <44ddb672-5265-7a1b-47d5-758b0e456043@intel.com>
+ <20230112015447.2430224-3-John.C.Harrison@Intel.com>
+ <00d0e2c1-3187-7025-c8eb-821bee0d0f45@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <44ddb672-5265-7a1b-47d5-758b0e456043@intel.com>
+In-Reply-To: <00d0e2c1-3187-7025-c8eb-821bee0d0f45@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY5PR16CA0020.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::33) To BY5PR11MB3911.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR05CA0033.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::46) To BY5PR11MB3911.namprd11.prod.outlook.com
  (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|MW4PR11MB6957:EE_
-X-MS-Office365-Filtering-Correlation-Id: 63870343-e324-4aa7-fbcb-08db11236673
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|PH0PR11MB5628:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54c8e602-4ac0-48a9-8ab3-08db11274403
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WSwVyGhtB1VgljioQkdpDc//nn7W5qsupI45io6i54KnLnLLsF6nQgEyR/HbgYISL0Iyt7TzhRalLCPFs4PAsNtMjMb/+hRn89G/YX6GmXInnCBynwS25rAbyoOy58i9y21y961EQ9ljK7tCpi9qdnN93GQr2WDPLykgBxjtbjVgdGfZN84AuZoUePDPpuBz70Mg1KKyBs+tKxZ4dk0qn6VPpgNTRNc4r8Rr3y84GamyZeoF4o4K8f1OGRym5Dj00cj3eKbbNwmuS0trIIimHQU0FQrH6rQ7C2asdQ4CNVgH37HoPbsCy2Q4Rs+uyNsv0Ex9eahVyp/qRB3mDleWwBlJKseHGQQ5ParWeoWg4rEUeQkVYo4K/tb4pre0/OxYCRwgeru7TDg45V2pEUz90cFvLCzurBE9tPAxZoAvSXMquSdhxNqNjzR4szeozannr+jUyz6NE0R1QEVlOPsMbr55u15jHpz1KK43BRjKRNvjX5oQmpkkRxQLs+VdH1npHrmW4h6XNGh1jydk6LR+gqyhmIgUhyJGS9jSv8jNMvOcS/JOVTFnXrLxRrfy6cHUUcPvEDoUepxFA3SpGHO9rjKfc1qSb2/r4EnFDhmgEPyWaEF6JxnMAYYovzSNOvobNIFdebmhfLnGTtZqMiUYyX11Yg7DS6WLySxGJjstlmLOVSu8Ocgo1bmvkN9ptobYJNNhx6S3259A5g38bUcU4U90t3AD030SMQaOGztIWIE=
+X-Microsoft-Antispam-Message-Info: 5NMX7jSUiXIJX44B+L3aAluwHW1A0bfSBbQbE4qGWwMitYEhjFvcdjW9comkQsa3Gu/+9YWm0A2CMIlW6Wjh544higNTb0K2t39aVjoAYprjjIiwSE7qX/HTaDaUru669eDXuzN5JbQvuS5yy3NIaGFFzjmypD1wTFQLn/4fTKFzuudLvS9UiE7h3sNYdtIhRxDFkv7tWixi/hylKZRzurwlbmWWkvx6MeGRPR6uLRMJz2CJ+vwMuFlosWgpyE1b+2cO9o48s/IctczLJKmBuv05aswPtr1NYcYCiYkooBG+xalQXQk3viXe1YkPQSgtayCg/H688NlpQMrh+AtWb0FDPGekn8ghnSDuy9Nrw8E/hNKbah8L6I8GWF57ESh9USNOpmH6gWcp7M1XghjLLdx1fPyBsK+vFr2JyOxYDKp6TBawNueN9SVa2mTGo9DBOT8BlrG0yUEpwIsf0JBWXx4YWlcMw+U60Z9Rr18io9PyRKUl2lSKoxEjl1HtP7RHQOeFGVetwS8d4df57Gd5718AYnjrk8wu4kMYGSrVIubfp0Emd5rYcz/yu+teSkeyNOOrWuZnKo3u+E/pzCV20mGvalidINJTDnDbT7Xs49PdBaG8towXMSF/LmhkCmzFpejBgk0w6j2EqLkQC+Xw4LFdwEPVlc1UYro7UkcgM535WHsaCjbRTk2VD3PmI0Z2YAWE/IvihuVr/JrbmEP+axfbWT0MI2deQ2RuSCeoFoI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(396003)(136003)(376002)(346002)(366004)(451199018)(36756003)(31696002)(86362001)(8936002)(450100002)(82960400001)(316002)(4326008)(6486002)(66476007)(66556008)(8676002)(41300700001)(5660300002)(66946007)(2906002)(38100700002)(83380400001)(6512007)(478600001)(53546011)(6506007)(2616005)(26005)(186003)(31686004)(43740500002)(45980500001);
+ SFS:(13230025)(39860400002)(136003)(346002)(396003)(366004)(376002)(451199018)(83380400001)(38100700002)(82960400001)(36756003)(86362001)(31696002)(2906002)(8936002)(5660300002)(41300700001)(6512007)(478600001)(6506007)(186003)(53546011)(26005)(6666004)(316002)(2616005)(450100002)(66946007)(66556008)(8676002)(4326008)(66476007)(6486002)(31686004)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWdrb3FsVDBablFKR0FlQzRpTG1JN2lYcXhUNC9sSXBhV1Q4YjlNSEIwUElx?=
- =?utf-8?B?cGRTdE54QlA5WmJ4WlpBQjU2SUE4SWtJTUVYdU5YRnlQRjQwc0YvakZ0MzRo?=
- =?utf-8?B?MHlINk9DdVI1ZHhZSlQ1L0kwV3B4eXM5T21zRFlERTN6RjhGNjZLeUFBZlRT?=
- =?utf-8?B?dTUybXZqd29IYWZQTmNtYUlqZ0puWW03SmgzSHZ5c1MrUGZkRW16QUxyNWh0?=
- =?utf-8?B?RkdQY0xrbUhOSGlUYVN0OTdxK1FGaEdpMk5YVUI1cGZ3NzFqL1ZuYkFiUjEv?=
- =?utf-8?B?WkpxMUt5Q1NWS3FsM2VVZ2xxSUF2QnEwVjZMRUh3TWRiRklOY3pXd2lVbCsz?=
- =?utf-8?B?c1V5QjMyWUpZS2lxbElpblpYR1BUZlFiQ3ZGYXE2b1E5dVhja0pjNlorQ0dJ?=
- =?utf-8?B?ZTVIZ0xFYzNDelZDR0tOYlV3OVZoMkVnWllSNGg2YlY3Y0ZEWVZBaWg5eWpH?=
- =?utf-8?B?TkVocCtGVFRGWDdZZC9reld2Q0J1QmVSelRGYUdsd3VmRkZ6SHR2RjJwYWlF?=
- =?utf-8?B?cXpMU3FrMlI0V1NGRnpGL2xTdjFEMUlzNUFDOXU0b0RMYkZSMVFEQUIrU1NZ?=
- =?utf-8?B?bVJmd01hVUJ3NFcvNEhCMzNWR21LV29uVEJZN2pXcDZPaHhqaTdRdUZOMDVF?=
- =?utf-8?B?cDAzZXVxYzZ6MGFlMEpKdnZQTFI2U3VnbEtGdy9lQVRwUUQwblJQZEdMaG9X?=
- =?utf-8?B?TmVMUkdWdjJaUFIxUlplZkU2Vzd2M2poejhMMU9QQXVpcnZvSFdqMzVZOGdl?=
- =?utf-8?B?L3NOdnZrcE51aVo5VWdvSU9OeXF5OHlteGtDZmYxcHdWM1kvdGxDaURMYVVt?=
- =?utf-8?B?Snh4c2tycFdJbTZIQisyMEREeGYxdkRtR09ob2ZzSGJKUi9GQ2pLeDd2M2Zh?=
- =?utf-8?B?V2IrcnE3L0Q5T1BlY1VNOHRSMld5QkxsR2g5TGYxYmVpNk1CVjl0TFJXYWw4?=
- =?utf-8?B?NTJWRENyV1FrQ2ZuRVp3ZmEyc0Z1eGFRdWNsT3pqUlI1UVRvOGtRQVZQL1BR?=
- =?utf-8?B?TUh4V01RajB2MmNMbyt0ZURuZXlKNUsxNEQ2Rmx4cXlnR2grc2FwU09BWjA2?=
- =?utf-8?B?MGtKUFZuTlkzTDRGNjY0UDZrQ01aWnBuc1JzN21MbkY0WUowUlYvb2IwV1Vr?=
- =?utf-8?B?c0lRcTRuMGhxa2JFcmtXdW9FOVgyNnVmMXZsZXQrY1d6aE9sRWZidzQydVl0?=
- =?utf-8?B?TWdKckVTaXdXYWo4TGxjMFYrMmRQdXZzVVFEZkZFU3I2Q3FSQkI5MGY2bHFJ?=
- =?utf-8?B?UzNIbUFMdEk5STVKWXRmVVVDSTZNbTJpaFBBOWFiYUV2YjBTR1BtSEtaenFI?=
- =?utf-8?B?Z0l4QUY4ZVZnTks0T1J6YUZQK09Cd3ExR2dleml2K0hWRVJ4NTREamJxejBR?=
- =?utf-8?B?c29GbXQvRkh5RWJQTkJibG14SVZuQnJlZlJSZDZVeU01UUMvbXRBRWNSNEJq?=
- =?utf-8?B?eFgrNCtRUTU0OUlmR1N0aSs0ekxXdHpGL0pPQzg5NjFvUExYMitERjJqVlZC?=
- =?utf-8?B?WlRRaTBONFAyN0ZpN1ZkbVBpMENJaEhBZ2ZLQVR3ZllLUU5RYlR6Vm1TY3hG?=
- =?utf-8?B?TjdYdmMwV3Q4WGc1ZWpsSDBNNVhuSjJvbkZ6WGg5SzBOd1J1SVl2cGtMemsr?=
- =?utf-8?B?RzJCMEsxcitBcXFPaXJOeDR6VU51VFFnTU1lQnVNVEN2M0wwRlJQRWxBbWxO?=
- =?utf-8?B?VFJvRkxsVXBPZFUxY20zV0lBaWZpbEsxUHVsamtsUk5DNGpTWlNjS3JYUmdH?=
- =?utf-8?B?NWE3Yi9SSUpUUzMzNHloNlVjeE5rNGRaYmhmL2ZjMWQrczFLTCtvL0l0OWFE?=
- =?utf-8?B?a0FkZmNyUlhIcEFPWHdxMHhFSWl6OXBGVExKZ1ZEUEt4ODlQbUQ4YWk5Zk9a?=
- =?utf-8?B?d2Z1U1lLdDMyS01KeDhDUmx1U2k4cjhYMFlPdjFiZDlsaCsrSENSQU5oSWR4?=
- =?utf-8?B?LzdrUnM4WjltLy9mSUVtTUJmb1U5MXZudDdXQnZ4STRmSkJxRTAvTFFpUFhZ?=
- =?utf-8?B?L0pPSmZaQTlwNEdlMDN3ZHlJWlJuSzAvQlUzcUlEbThuelNVRkZpUGJtVEI1?=
- =?utf-8?B?bWJ1dHFkemVOUGxFSGdCWHNWQ0l6aXB4M0liQkZoQjhjaFg4YnNlMkZtZzE1?=
- =?utf-8?B?Yy9zdlZxcTVKbS83S1M0ZWx0QzNqdldEeExFVkxDMHVmQlFjMFdVUk9ZVXdp?=
- =?utf-8?B?TkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63870343-e324-4aa7-fbcb-08db11236673
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3hSMGY5OUluNmovVnpsRkxkMzBna2h4SkJ0UkpqMzB5Y0o4T3diaUxxSW5G?=
+ =?utf-8?B?Uk5RRTZjYzF6bzVWdTRVak0zN051Q29IZmg1d0lNYWNpVS9GK21mQSsxVWJH?=
+ =?utf-8?B?ZlRaRDZheDVTcGN6N3hQeStGMm1TRytvSTU1cDJ1c0dwdG5heGhNZzYrQ1ZY?=
+ =?utf-8?B?M0sxTDRVbjdnU2sraGxnVTdlb1oxb1lHTHRrVUtSUmJxbjdDYmZSUjY4YmNJ?=
+ =?utf-8?B?T2NKVVF2Nzg5bjloaFRPcEFTaDZ1UE8zcUdJQlNjQUovSzFXaGRoL0NqK0tJ?=
+ =?utf-8?B?UXdtUXBqMmhadjh1TnVRZFU3Y2ZHQW1XSlROV2ttK3NMRlIxR1NNVWdDS0kw?=
+ =?utf-8?B?WlREbVFteldpbUVKbk5yMGxxTGJWUkQvbDlwS0w5SW1sZGMwRmdFYUE4cmo1?=
+ =?utf-8?B?SFV2a2MyTWsxWDNQbXpoRi85NXFVRkZZR0dtS29xU3Q0YVhXUm9zM0hVOE1R?=
+ =?utf-8?B?eFE1TkdBZWRtUzZpbEpFbkVZTUFjRTloR21yaUFkN2V6dnVsNWVwa3luWXhM?=
+ =?utf-8?B?L0lNajBjUCs2VVNWYmgydXZLTDF1ZVc5NktPU3F5Yk91TUFISnFST1F5WVBi?=
+ =?utf-8?B?SVY3clQ2aTFwem5SQThZdG9qdDdqWWdtS0NsVXJ3S0l5R3FMTmtQaGEvd0JO?=
+ =?utf-8?B?WGlIYXFrQU13T2VoSHU3WWZZckQvcnhhVlFQZWxxb3pIQTJrYXQ5M1RKblk1?=
+ =?utf-8?B?b3E5QkxjSElsdGtkbDZrQmIwalhJWDFJanVBN0NXQUxQSllYTzNpMkNvSy8v?=
+ =?utf-8?B?OWdGanU2UkFWWk10V1o2ZVhXZ3hQMkNoSFNieEdEaGt1aDF2d3YzekJWZis1?=
+ =?utf-8?B?V0ZkSDE1OU5wb0JBQW9XMTF4NkFVZjdNTWJ4Szcvb1YrR0ljN0ZrNmE2Vjgw?=
+ =?utf-8?B?SmY4Tk9hdUlFRDNKb0RTT0pFY1JCb2szMUwreEhBRmhMUUdjQi9LTTB3Z21p?=
+ =?utf-8?B?d29zaFpsNXQyZmhhVWlPVmVVdi82SnJrMEtKWkNtY0kwMmVrUGxXbmt6L0Y2?=
+ =?utf-8?B?eFYzRk1ZRkZpTW9ONWhsbVFESVRiMU1MWFNuUE94OHhBT21pcHNFS3RmSEFo?=
+ =?utf-8?B?WDdkbjl5MXRsbzhwNmJDckRFZlhyTkxNUTV5bmtQZDNieWkyTFdLOEt3c0J6?=
+ =?utf-8?B?emxuZ0pNTDcvcHp2ZllpZ05vcGJjRnhHU1B4WXVGTVVDTXI5SFE5U2hhcDRN?=
+ =?utf-8?B?ZGZhTWlWVjl0YjkwRU43YXZBamh0WEwvek5BY2VpVEJoTWRqL2VLb2RlQzR5?=
+ =?utf-8?B?ZVpQTis3WDI0eFN5WXpFbkZiVmViejgvMm1tOUtRL3NsRnRZWmlhWG43L0RR?=
+ =?utf-8?B?QndVWmNuOEpGQTJjWWZZQllIOGNXK2h3VndHNFFwQ2NiNUdvWEZOY3M1dlhh?=
+ =?utf-8?B?SXFqWVVwckZRVTlGVGI3M1JrUkI1aTlhOTdrNlZsUDA0OSt1dU85THljZTRB?=
+ =?utf-8?B?bG9jNzM1ZUpveiswRks0UnUybmlnSTdVYktqUUM5K1hqQUJMSU0rVU9nY0RY?=
+ =?utf-8?B?T3p4Q0tkSlRFMzlFdVZDVnVBMDBiUzd2VjBMdG42VjQ1WUkrcnIwZ2hvRWYr?=
+ =?utf-8?B?QkRONWZvT0pNRkdiQ1p5WHNTdzVHOUtBK3VOYjVmMVJKL1E5TFlSeTIrbUo4?=
+ =?utf-8?B?U2trMG5CQ1VJU1ZPbThqNm00dlAxVXpEYmk1RWdOQzVZMHZpSStQUDk4cFpw?=
+ =?utf-8?B?a0UxLzBIa05xNTNBeUh1RWw5bFZReFhsQWFKVzNuNTZLTHlrcXgzc2JCeG1B?=
+ =?utf-8?B?WThKTTI1OUtYSTdVejVOU2duKzlwUjlBdzVFNnRhV2huWjZTZ3VMMkdLUVVM?=
+ =?utf-8?B?dGJ6M3o2aCtqdk9HV1ZEdENLQ2VXSlZ2Z3cwWXhTckpUUllic094R2U3TFdy?=
+ =?utf-8?B?Z3FEYUU4aWdEdGdtekV5M2dFKzlsaUxVL3BwRVZwYTEvWi9pcll4WHhsS2JQ?=
+ =?utf-8?B?TzBtblRhVE1xZG1WcjJuWXVrUk5CaVUyWU9zZnlCdE1rZEFic0lyTzBjK3d4?=
+ =?utf-8?B?R05tNi9sZ3JoL2l2emIxM2N2aFFtUDV6VHBHUkFqQ3labTB6TGF3U2QrOHRm?=
+ =?utf-8?B?MVNVcFF4TkdiT2ZGOEdWeUlEMnZXV1d5aWFLYnQwdEhDOUU0WjFqNjgwZm5r?=
+ =?utf-8?B?eDJ2NzZPSnBCRy9UWGkyV043b0NHRlVBTFhyenVVMmxaS0tVNjZCa244R09p?=
+ =?utf-8?B?OUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54c8e602-4ac0-48a9-8ab3-08db11274403
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 20:13:14.5336 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 20:40:54.8036 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HBqGseFOQ+RBP4ffyHb2orpnvpA3881/Agr7g+n1fjktyjiTSn9TMjjv4Se3Qw5reAcHctkiblM9bKkNWHQinVPIep0ryBqY9Cbx6em8M40=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6957
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0r6UYSQYmqpjXnHuArrKnNINQMreJWmNn7Ryy5xEq39/p9miYthloPrk5TJIzDP4/tQvf/c50L16gKRwjslv9uIQNJid/A1lrUs9OfPS4R0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5628
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/guc: Improve clean up of
- busyness stats worker
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Fix missing return code
+ checks in submission init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,102 +162,246 @@ Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/24/2023 16:55, Ceraolo Spurio, Daniele wrote:
+On 1/24/2023 17:01, Ceraolo Spurio, Daniele wrote:
 > On 1/11/2023 5:54 PM, John.C.Harrison@Intel.com wrote:
 >> From: John Harrison <John.C.Harrison@Intel.com>
 >>
->> The stats worker thread management was mis-matched between
->> enable/disable call sites. Fix those up. Also, abstract the cancel
->> code into a helper function rather than replicating in multiple places.
+>> The CI results for the 'fast request' patch set (enables error return
+>> codes for fire-and-forget H2G messages) hit an issue with the KMD
+>> sending context submission requests on an invalid context. That was
+>> caused by a fault injection probe failing the context creation of a
+>> kernel context. However, there was no return code checking on any of
+>> the kernel context registration paths. So the driver kept going and
+>> tried to use the kernel context for the record defaults process.
+>>
+>> This would not cause any actual problems. The invalid requests would
+>> be rejected by GuC and ultimately the start up sequence would
+>> correctly wedge due to the context creation failure. But fixing the
+>> issue correctly rather ignoring it means we won't get CI complaining
+>> when the fast request patch lands and enables the extra error checking.
+>>
+>> So fix it by checking for errors and aborting as appropriate when
+>> creating kernel contexts. While at it, clean up some other submission
+>> init related failure cleanup paths. Also, rename guc_init_lrc_mapping
+>> to guc_init_submission as the former name hasn't been valid in a long
+>> time.
 >>
 >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >> ---
->>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 22 ++++++++++++-------
->>   1 file changed, 14 insertions(+), 8 deletions(-)
+>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 91 ++++++++++++++-----
+>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  2 +-
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  7 +-
+>>   3 files changed, 75 insertions(+), 25 deletions(-)
 >>
 >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
 >> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index b436dd7f12e42..982364777d0c6 100644
+>> index 982364777d0c6..dd856fd92945b 100644
 >> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -1435,19 +1435,25 @@ static void guc_init_engine_stats(struct 
+>> @@ -1431,7 +1431,7 @@ static int guc_action_enable_usage_stats(struct 
 >> intel_guc *guc)
+>>       return intel_guc_send(guc, action, ARRAY_SIZE(action));
+>>   }
+>>   -static void guc_init_engine_stats(struct intel_guc *guc)
+>> +static int guc_init_engine_stats(struct intel_guc *guc)
 >>   {
 >>       struct intel_gt *gt = guc_to_gt(guc);
 >>       intel_wakeref_t wakeref;
->> +    int ret;
->>         mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
->>                guc->timestamp.ping_delay);
->>   -    with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref) {
->> -        int ret = guc_action_enable_usage_stats(guc);
->> +    with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
->> +        ret = guc_action_enable_usage_stats(guc);
->>   -        if (ret)
->> -            drm_err(&gt->i915->drm,
->> -                "Failed to enable usage stats: %d!\n", ret);
->> +    if (ret) {
->> +        cancel_delayed_work_sync(&guc->timestamp.work);
->
-> Wouldn't it be easier to just call mod_delayed_work after the H2G if 
-> ret==0, instead of having it before and cancelling if we get a failure?
->
->> +        drm_err(&gt->i915->drm, "Failed to enable usage stats: 
+>> @@ -1447,6 +1447,8 @@ static void guc_init_engine_stats(struct 
+>> intel_guc *guc)
+>>           cancel_delayed_work_sync(&guc->timestamp.work);
+>>           drm_err(&gt->i915->drm, "Failed to enable usage stats: 
 >> %d!\n", ret);
 >>       }
+>> +
+>> +    return ret;
 >>   }
->>   +static void guc_park_engine_stats(struct intel_guc *guc)
->> +{
->> +    cancel_delayed_work_sync(&guc->timestamp.work);
+>>     static void guc_park_engine_stats(struct intel_guc *guc)
+>> @@ -4108,9 +4110,11 @@ static void guc_set_default_submission(struct 
+>> intel_engine_cs *engine)
+>>       engine->submit_request = guc_submit_request;
+>>   }
+>>   -static inline void guc_kernel_context_pin(struct intel_guc *guc,
+>> -                      struct intel_context *ce)
+>> +static inline int guc_kernel_context_pin(struct intel_guc *guc,
+>> +                     struct intel_context *ce)
+>>   {
+>> +    int ret;
+>> +
+>>       /*
+>>        * Note: we purposefully do not check the returns below because
+>>        * the registration can only fail if a reset is just starting.
+>> @@ -4118,16 +4122,24 @@ static inline void 
+>> guc_kernel_context_pin(struct intel_guc *guc,
+>>        * isn't happening and even it did this code would be run again.
+>>        */
+>>   -    if (context_guc_id_invalid(ce))
+>> -        pin_guc_id(guc, ce);
+>> +    if (context_guc_id_invalid(ce)) {
+>> +        int ret = pin_guc_id(guc, ce);
+>
+> Why do you need a local ret variable inside this if statement, when 
+> you already have a function-level one? or is it just a cut & paste error?
+Yeah, copy/paste thing.
+
+>
+>> +
+>> +        if (ret < 0)
+>> +            return ret;
+>> +    }
+>>         if (!test_bit(CONTEXT_GUC_INIT, &ce->flags))
+>>           guc_context_init(ce);
+>>   -    try_context_registration(ce, true);
+>> +    ret = try_context_registration(ce, true);
+>> +    if (ret)
+>> +        unpin_guc_id(guc, ce);
+>> +
+>> +    return ret;
+>>   }
+>>   -static inline void guc_init_lrc_mapping(struct intel_guc *guc)
+>> +static inline int guc_init_submission(struct intel_guc *guc)
+>>   {
+>>       struct intel_gt *gt = guc_to_gt(guc);
+>>       struct intel_engine_cs *engine;
+>> @@ -4154,9 +4166,17 @@ static inline void guc_init_lrc_mapping(struct 
+>> intel_guc *guc)
+>>           struct intel_context *ce;
+>>             list_for_each_entry(ce, &engine->pinned_contexts_list,
+>> -                    pinned_contexts_link)
+>> -            guc_kernel_context_pin(guc, ce);
+>> +                    pinned_contexts_link) {
+>> +            int ret = guc_kernel_context_pin(guc, ce);
+>> +
+>> +            if (ret) {
+>> +                /* No point in trying to clean up as i915 will wedge 
+>> on failure */
+>> +                return ret;
+>> +            }
+>> +        }
+>>       }
+>> +
+>> +    return 0;
+>>   }
+>>     static void guc_release(struct intel_engine_cs *engine)
+>> @@ -4400,30 +4420,57 @@ static int 
+>> guc_init_global_schedule_policy(struct intel_guc *guc)
+>>       return ret;
+>>   }
+>>   -void intel_guc_submission_enable(struct intel_guc *guc)
+>> +static void guc_route_semaphores(struct intel_guc *guc, bool to_guc)
+>>   {
+>>       struct intel_gt *gt = guc_to_gt(guc);
+>> +    u32 val;
+>>   -    /* Enable and route to GuC */
+>> -    if (GRAPHICS_VER(gt->i915) >= 12)
+>> -        intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES,
+>> -                   GUC_SEM_INTR_ROUTE_TO_GUC |
+>> -                   GUC_SEM_INTR_ENABLE_ALL);
+>> +    if (GRAPHICS_VER(gt->i915) < 12)
+>> +        return;
+>>   -    guc_init_lrc_mapping(guc);
+>> -    guc_init_engine_stats(guc);
+>> -    guc_init_global_schedule_policy(guc);
+>> +    if (to_guc)
+>> +        val = GUC_SEM_INTR_ROUTE_TO_GUC | GUC_SEM_INTR_ENABLE_ALL;
+>> +    else
+>> +        val = 0;
+>> +
+>> +    intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES, val);
 >> +}
 >> +
+>> +int intel_guc_submission_enable(struct intel_guc *guc)
+>> +{
+>> +    int ret;
+>> +
+>> +    /* Semaphore interrupt enable and route to GuC */
+>> +    guc_route_semaphores(guc, true);
+>> +
+>> +    ret = guc_init_submission(guc);
+>> +    if (ret)
+>> +        goto fail_sem;
+>> +
+>> +    ret = guc_init_engine_stats(guc);
+>> +    if (ret)
+>> +        goto fail_sem;
+>> +
+>> +    ret = guc_init_global_schedule_policy(guc);
+>> +    if (ret)
+>> +        goto fail_stats;
+>> +
+>> +    return 0;
+>> +
+>> +fail_stats:
+>> +    guc_park_engine_stats(guc);
 >
-> Now you're asymmetric with the park/unpark, because on the park side 
-> you have this wrapper, while on the unpark side you directly call 
-> mod_delayed_work.
-The point is that submission disable needs to also cancel the worker. 
-But calling the actual busyness park function seems excessive - no need 
-to do all the updating if we are about to reset the GuC or unload the 
-driver.
+> personal preference: I'd prefer an extra guc_fini_engine_stats wrapper 
+> just so that we're balanced with the naming, but not a blocker.
+As per comment on previous patch, I'm thinking I'll rename 
+guc_park_engine_stats() to guc_cancel_busyness_worker() (and add a 
+matching enable). And I agree on the naming here. But adding yet another 
+wrapper would mean having this:
+     guc_fini_engine_stats() {
+         guc_cancel_busyness_worker() {
+             cancel_delayed_work_sync();
+         }
+     }
 
-Thinking about it more, calling this park_engine_stats is actually wrong 
-given that engine stats and busyness are the same thing, so basically we 
-would have two functions with the same name where one is a subset of the 
-other. Is it simpler (and safe?) to just call the full busyness unpark 
-from submission_disable? Or is it better to have a 
-cancel/enable_busyness_worker() pair for all instances of turning the 
-worker on or off?
+Which seems excessive. A wrapper around a wrapper around a one line 
+piece of code. I guess the compiler will optimise it all out and it 
+leaves room for future expansion if other things need to happen in the 
+middle layers in the future.
 
 John.
-
 
 >
 > Daniele
 >
->>   void intel_guc_busyness_park(struct intel_gt *gt)
->>   {
->>       struct intel_guc *guc = &gt->uc.guc;
->> @@ -1460,7 +1466,7 @@ void intel_guc_busyness_park(struct intel_gt *gt)
->>        * and causes an unclaimed register access warning. Cancel the 
->> worker
->>        * synchronously here.
->>        */
->> -    cancel_delayed_work_sync(&guc->timestamp.work);
->> +    guc_park_engine_stats(guc);
->>         /*
->>        * Before parking, we should sample engine busyness stats if we 
->> need to.
->> @@ -4409,11 +4415,11 @@ void intel_guc_submission_enable(struct 
->> intel_guc *guc)
->>       guc_init_global_schedule_policy(guc);
+>> +fail_sem:
+>> +    guc_route_semaphores(guc, false);
+>> +    return ret;
 >>   }
->>   +/* Note: By the time we're here, GuC may have already been reset */
+>>     /* Note: By the time we're here, GuC may have already been reset */
 >>   void intel_guc_submission_disable(struct intel_guc *guc)
 >>   {
->>       struct intel_gt *gt = guc_to_gt(guc);
->> -
->> -    /* Note: By the time we're here, GuC may have already been reset */
->> +    guc_park_engine_stats(guc);
->>         /* Disable and route to host */
->>       if (GRAPHICS_VER(gt->i915) >= 12)
+>> -    struct intel_gt *gt = guc_to_gt(guc);
+>>       guc_park_engine_stats(guc);
+>>   -    /* Disable and route to host */
+>> -    if (GRAPHICS_VER(gt->i915) >= 12)
+>> -        intel_uncore_write(gt->uncore, GEN12_GUC_SEM_INTR_ENABLES, 
+>> 0x0);
+>> +    /* Semaphore interrupt disable and route to host */
+>> +    guc_route_semaphores(guc, false);
+>>   }
+>>     static bool __guc_submission_supported(struct intel_guc *guc)
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+>> index 5a95a9f0a8e31..c57b29cdb1a64 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+>> @@ -15,7 +15,7 @@ struct intel_engine_cs;
+>>     void intel_guc_submission_init_early(struct intel_guc *guc);
+>>   int intel_guc_submission_init(struct intel_guc *guc);
+>> -void intel_guc_submission_enable(struct intel_guc *guc);
+>> +int intel_guc_submission_enable(struct intel_guc *guc);
+>>   void intel_guc_submission_disable(struct intel_guc *guc);
+>>   void intel_guc_submission_fini(struct intel_guc *guc);
+>>   int intel_guc_preempt_work_create(struct intel_guc *guc);
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> index 9a8a1abf71d7f..8e338b3321a93 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> @@ -537,8 +537,11 @@ static int __uc_init_hw(struct intel_uc *uc)
+>>       else
+>>           intel_huc_auth(huc);
+>>   -    if (intel_uc_uses_guc_submission(uc))
+>> -        intel_guc_submission_enable(guc);
+>> +    if (intel_uc_uses_guc_submission(uc)) {
+>> +        ret = intel_guc_submission_enable(guc);
+>> +        if (ret)
+>> +            goto err_log_capture;
+>> +    }
+>>         if (intel_uc_uses_guc_slpc(uc)) {
+>>           ret = intel_guc_slpc_enable(&guc->slpc);
 >
 
