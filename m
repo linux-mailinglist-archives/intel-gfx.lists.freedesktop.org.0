@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE92969BC14
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Feb 2023 22:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A72869BC46
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Feb 2023 22:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F9A210E033;
-	Sat, 18 Feb 2023 21:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A703810E562;
+	Sat, 18 Feb 2023 21:16:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
- [IPv6:2607:f8b0:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF8D10E009;
- Sat, 18 Feb 2023 21:15:48 +0000 (UTC)
-Received: by mail-pl1-x62b.google.com with SMTP id m8so430251plg.3;
- Sat, 18 Feb 2023 13:15:48 -0800 (PST)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
+ [IPv6:2607:f8b0:4864:20::632])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCAE10E562;
+ Sat, 18 Feb 2023 21:16:19 +0000 (UTC)
+Received: by mail-pl1-x632.google.com with SMTP id e6so1637139plt.4;
+ Sat, 18 Feb 2023 13:16:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Ly4gQbq9/GnWUeWA60KPz/G+dzGxkcXgw5HCdzXbiDM=;
- b=TqzurTwkIi7vl6x42AjsrYN5etY5UrhYSRhuhRA0DcAed3BQ7kd+EShu6ZYUuzSWS6
- f2ShdvpTlDiEddzw1Pngzl0gliC9vI89r49p462MNjyf7n2fk9K5rG40sbyi9YeAuXKx
- 2IlQ6wVLZDk4ujSNogI1BVXRPnZyG9XodQul+Gt/IjgeqRh2hZMfbddpy2FwGlj/orZk
- nSpYnyQj/uh7kMZhl+cXvFJ9VgfGaRbtRluybITkUr1SLZHCZANTXG1WLO5m6DiwYoul
- TaCi+7mlADXeBpnG/jw9xXwtKwm9Focdx2Pr+MJUZva3Y7KD/ZaKPJ7prjd0RN12Eg1h
- 3+EQ==
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LJRWjyogOQnJ+5yTXZeR/CA8uKgjfGlQ9M7/4cay494=;
+ b=HlVIEobOB1fK4orz/vfjScfvfTmsM2Ff4tRZMVa4xdM5sCf4zF5X+pa/NEvV0jRFap
+ d96y+vkl2FVlKyaS9S7zCK5ePnuhaaEY0SmBx5WF6VNh/A+Ddw4lzPwCsRykF7v5tW+G
+ j6OTAh+IKDR2F+7ntwLsA2YAPfoL15U9CCJgJRqqpH77DSuZ6QgB7jeDf4EuDi1zovoz
+ WqdVKpv8e/55Xn9GYpUy3oewxQ91CfDFS/Ljoeg0C7AuiGQkPCu8IGY7ptZcCfOFyu0F
+ 3XanlgorSS20WKL00Ktx8XMMNFwITyfSWzjmfWs+jSzPH1rSFkjSLEdZ6yYHveznktpt
+ eclw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ly4gQbq9/GnWUeWA60KPz/G+dzGxkcXgw5HCdzXbiDM=;
- b=4iYZeNiSCEf6HuaKN4UImbVDNTd4hszfMgfG5mxnsWs/zy7w6OM2K+8bHqz/3aFOa4
- Wt31kYQMrG1fIc9W17iPKr1dGo7b2z19fOLWh+OvfQDkhysLdJuRSKMoDEd7YxRILxK9
- djnFq2rSQ3xL1pjBUtMNjRQaZc6Tn68xHPfyg1j8cFEYFIwYN0JsmOY80d0yB0woVEBJ
- NZ0sRptjiTH5FUMZ4l0Imo0C9TbLh+nPY5NH0cv86i+jCfJ0+HSDYJo6Z/eOcjEaO+Dx
- Uio/f2gB7VbfPW2Cpx2oKIvbFMHcgLbVcG1kg3HDDRLQ1Fv4/2oREw6gwK+eBB3u71lZ
- tAog==
-X-Gm-Message-State: AO0yUKXHClaYWM5Epus+SZQc3XQApIIAG1HltMtPEsLTZNxWyNCFWpDJ
- Lzt+utprJiP+n4lnScPYqg6Sq+vzjtQ=
-X-Google-Smtp-Source: AK7set8ereILC0V3ZBU5NrGgoh8oJHY1jqZ0fuA0KAdXBnGUn7hGdkEc1QzSShEe+BIohVgIIE6grw==
-X-Received: by 2002:a17:90a:31c:b0:234:2627:d9b0 with SMTP id
- 28-20020a17090a031c00b002342627d9b0mr1042232pje.32.1676754948302; 
- Sat, 18 Feb 2023 13:15:48 -0800 (PST)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=LJRWjyogOQnJ+5yTXZeR/CA8uKgjfGlQ9M7/4cay494=;
+ b=1YyXN3afO+HCJ1OBAIGMbIjkw81PAgNkAI+a4A/EYR1Pgb0lmMeA+UetIa4DTQOe9F
+ jBuhk4M+3J7E73ZZvi/oZ7VLRGpfta/kAFJqQApIf+kubAOd7JOd2ILz1E/Ijp3MKkYj
+ fbCNWEAcV+1Nf50S32iV0aFqhgZAzOPTCMLi3ys8CflksIeBKbRpm/hQvoq24Q++bmzH
+ DGSfBASDIb74RtbPeBI3dOE6u+LlkszOLz/ylk6dVy1gdcxLCpGscert2taO3B1pNeqx
+ FQlAih8XxaIoaARI2AvZRPHh7vUzMjrZMKuQUGDKvVXCZbWZYEnGnqLtAO+YCOOOBNM3
+ 0oRA==
+X-Gm-Message-State: AO0yUKXtn9aK8RqQlBFTbfFMj5PI85PdTsL3t8xzhSavvD0CPt7TVp6i
+ Q6S9CwWwY6d3ucQoBcAlTxL55485HIE=
+X-Google-Smtp-Source: AK7set/0yqp/q3/jslTp6QxBhdRo+Dy4M24xdmTIftytbmsLtB5hmbelVCK/TX7kEgjPGP3InbTQCA==
+X-Received: by 2002:a17:903:2447:b0:194:5c63:364c with SMTP id
+ l7-20020a170903244700b001945c63364cmr1849203pls.62.1676754978760; 
+ Sat, 18 Feb 2023 13:16:18 -0800 (PST)
 Received: from localhost (c-73-67-135-195.hsd1.or.comcast.net. [73.67.135.195])
  by smtp.gmail.com with ESMTPSA id
- gl19-20020a17090b121300b00230da56ddecsm1292126pjb.27.2023.02.18.13.15.47
+ ji11-20020a170903324b00b0019afb7a02a1sm4785944plb.218.2023.02.18.13.16.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Feb 2023 13:15:47 -0800 (PST)
+ Sat, 18 Feb 2023 13:16:18 -0800 (PST)
 From: Rob Clark <robdclark@gmail.com>
 To: dri-devel@lists.freedesktop.org
-Date: Sat, 18 Feb 2023 13:15:43 -0800
-Message-Id: <20230218211608.1630586-1-robdclark@gmail.com>
+Date: Sat, 18 Feb 2023 13:15:57 -0800
+Message-Id: <20230218211608.1630586-15-robdclark@gmail.com>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230218211608.1630586-1-robdclark@gmail.com>
+References: <20230218211608.1630586-1-robdclark@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 00/14] dma-fence: Deadline awareness
+Subject: [Intel-gfx] [PATCH v4 14/14] drm/i915: Add deadline based boost
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +72,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Gustavo Padovan <gustavo@padovan.org>,
- Simon Ser <contact@emersion.fr>,
+Cc: Rob Clark <robdclark@chromium.org>, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
  =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
  open list <linux-kernel@vger.kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
  Pekka Paalanen <ppaalanen@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ freedreno@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
  "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Rob Clark <robdclark@chromium.org>
 
-This series adds deadline awareness to fences, so realtime deadlines
-such as vblank can be communicated to the fence signaller for power/
-frequency management decisions.
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+---
 
-This is partially inspired by a trick i915 does, but implemented
-via dma-fence for a couple of reasons:
+This should probably be re-written by someone who knows the i915
+request/timeline stuff better, to deal with non-immediate deadlines.
+But as-is I think this should be enough to handle the case where
+we want syncobj waits to trigger boost.
 
-1) To continue to be able to use the atomic helpers
-2) To support cases where display and gpu are different drivers
+ drivers/gpu/drm/i915/i915_driver.c  |  2 +-
+ drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++++
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-This iteration adds a dma-fence ioctl to set a deadline (both to
-support igt-tests, and compositors which delay decisions about which
-client buffer to display), and a sw_sync ioctl to read back the
-deadline.  IGT tests utilizing these can be found at:
-
-  https://gitlab.freedesktop.org/robclark/igt-gpu-tools/-/commits/fence-deadline
-
-
-v1: https://patchwork.freedesktop.org/series/93035/
-v2: Move filtering out of later deadlines to fence implementation
-    to avoid increasing the size of dma_fence
-v3: Add support in fence-array and fence-chain; Add some uabi to
-    support igt tests and userspace compositors.
-v4: Rebase, address various comments, and add syncobj deadline
-    support, and sync_file EPOLLPRI based on experience with perf/
-    freq issues with clvk compute workloads on i915 (anv)
-
-Rob Clark (14):
-  dma-buf/dma-fence: Add deadline awareness
-  dma-buf/fence-array: Add fence deadline support
-  dma-buf/fence-chain: Add fence deadline support
-  dma-buf/dma-resv: Add a way to set fence deadline
-  dma-buf/sync_file: Add SET_DEADLINE ioctl
-  dma-buf/sync_file: Support (E)POLLPRI
-  dma-buf/sw_sync: Add fence deadline support
-  drm/scheduler: Add fence deadline support
-  drm/syncobj: Add deadline support for syncobj waits
-  drm/vblank: Add helper to get next vblank time
-  drm/atomic-helper: Set fence deadline for vblank
-  drm/msm: Add deadline based boost support
-  drm/msm: Add wait-boost support
-  drm/i915: Add deadline based boost support
-
- drivers/dma-buf/dma-fence-array.c       | 11 ++++
- drivers/dma-buf/dma-fence-chain.c       | 13 +++++
- drivers/dma-buf/dma-fence.c             | 20 +++++++
- drivers/dma-buf/dma-resv.c              | 19 +++++++
- drivers/dma-buf/sw_sync.c               | 58 +++++++++++++++++++
- drivers/dma-buf/sync_debug.h            |  2 +
- drivers/dma-buf/sync_file.c             | 27 +++++++++
- drivers/gpu/drm/drm_atomic_helper.c     | 36 ++++++++++++
- drivers/gpu/drm/drm_ioctl.c             |  3 +
- drivers/gpu/drm/drm_syncobj.c           | 59 ++++++++++++++++----
- drivers/gpu/drm/drm_vblank.c            | 32 +++++++++++
- drivers/gpu/drm/i915/i915_driver.c      |  2 +-
- drivers/gpu/drm/i915/i915_request.c     | 20 +++++++
- drivers/gpu/drm/msm/msm_drv.c           | 16 ++++--
- drivers/gpu/drm/msm/msm_fence.c         | 74 +++++++++++++++++++++++++
- drivers/gpu/drm/msm/msm_fence.h         | 20 +++++++
- drivers/gpu/drm/msm/msm_gem.c           |  5 ++
- drivers/gpu/drm/scheduler/sched_fence.c | 46 +++++++++++++++
- drivers/gpu/drm/scheduler/sched_main.c  |  2 +-
- include/drm/drm_drv.h                   |  6 ++
- include/drm/drm_vblank.h                |  1 +
- include/drm/gpu_scheduler.h             |  8 +++
- include/linux/dma-fence.h               | 20 +++++++
- include/linux/dma-resv.h                |  2 +
- include/uapi/drm/drm.h                  | 16 +++++-
- include/uapi/drm/msm_drm.h              | 14 ++++-
- include/uapi/linux/sync_file.h          | 22 ++++++++
- 27 files changed, 532 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index cf1c0970ecb4..bd40b7bcb38a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1781,7 +1781,7 @@ static const struct drm_driver i915_drm_driver = {
+ 	.driver_features =
+ 	    DRIVER_GEM |
+ 	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ |
+-	    DRIVER_SYNCOBJ_TIMELINE,
++	    DRIVER_SYNCOBJ_TIMELINE | DRIVER_SYNCOBJ_DEADLINE,
+ 	.release = i915_driver_release,
+ 	.open = i915_driver_open,
+ 	.lastclose = i915_driver_lastclose,
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 7503dcb9043b..44491e7e214c 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -97,6 +97,25 @@ static bool i915_fence_enable_signaling(struct dma_fence *fence)
+ 	return i915_request_enable_breadcrumb(to_request(fence));
+ }
+ 
++static void i915_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
++{
++	struct i915_request *rq = to_request(fence);
++
++	if (i915_request_completed(rq))
++		return;
++
++	if (i915_request_started(rq))
++		return;
++
++	/*
++	 * TODO something more clever for deadlines that are in the
++	 * future.  I think probably track the nearest deadline in
++	 * rq->timeline and set timer to trigger boost accordingly?
++	 */
++
++	intel_rps_boost(rq);
++}
++
+ static signed long i915_fence_wait(struct dma_fence *fence,
+ 				   bool interruptible,
+ 				   signed long timeout)
+@@ -182,6 +201,7 @@ const struct dma_fence_ops i915_fence_ops = {
+ 	.signaled = i915_fence_signaled,
+ 	.wait = i915_fence_wait,
+ 	.release = i915_fence_release,
++	.set_deadline = i915_fence_set_deadline,
+ };
+ 
+ static void irq_execute_cb(struct irq_work *wrk)
 -- 
 2.39.1
 
