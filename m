@@ -1,65 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A72869BC46
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Feb 2023 22:16:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDBF69C039
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Feb 2023 13:55:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A703810E562;
-	Sat, 18 Feb 2023 21:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC22310E156;
+	Sun, 19 Feb 2023 12:54:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCAE10E562;
- Sat, 18 Feb 2023 21:16:19 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id e6so1637139plt.4;
- Sat, 18 Feb 2023 13:16:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LJRWjyogOQnJ+5yTXZeR/CA8uKgjfGlQ9M7/4cay494=;
- b=HlVIEobOB1fK4orz/vfjScfvfTmsM2Ff4tRZMVa4xdM5sCf4zF5X+pa/NEvV0jRFap
- d96y+vkl2FVlKyaS9S7zCK5ePnuhaaEY0SmBx5WF6VNh/A+Ddw4lzPwCsRykF7v5tW+G
- j6OTAh+IKDR2F+7ntwLsA2YAPfoL15U9CCJgJRqqpH77DSuZ6QgB7jeDf4EuDi1zovoz
- WqdVKpv8e/55Xn9GYpUy3oewxQ91CfDFS/Ljoeg0C7AuiGQkPCu8IGY7ptZcCfOFyu0F
- 3XanlgorSS20WKL00Ktx8XMMNFwITyfSWzjmfWs+jSzPH1rSFkjSLEdZ6yYHveznktpt
- eclw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=LJRWjyogOQnJ+5yTXZeR/CA8uKgjfGlQ9M7/4cay494=;
- b=1YyXN3afO+HCJ1OBAIGMbIjkw81PAgNkAI+a4A/EYR1Pgb0lmMeA+UetIa4DTQOe9F
- jBuhk4M+3J7E73ZZvi/oZ7VLRGpfta/kAFJqQApIf+kubAOd7JOd2ILz1E/Ijp3MKkYj
- fbCNWEAcV+1Nf50S32iV0aFqhgZAzOPTCMLi3ys8CflksIeBKbRpm/hQvoq24Q++bmzH
- DGSfBASDIb74RtbPeBI3dOE6u+LlkszOLz/ylk6dVy1gdcxLCpGscert2taO3B1pNeqx
- FQlAih8XxaIoaARI2AvZRPHh7vUzMjrZMKuQUGDKvVXCZbWZYEnGnqLtAO+YCOOOBNM3
- 0oRA==
-X-Gm-Message-State: AO0yUKXtn9aK8RqQlBFTbfFMj5PI85PdTsL3t8xzhSavvD0CPt7TVp6i
- Q6S9CwWwY6d3ucQoBcAlTxL55485HIE=
-X-Google-Smtp-Source: AK7set/0yqp/q3/jslTp6QxBhdRo+Dy4M24xdmTIftytbmsLtB5hmbelVCK/TX7kEgjPGP3InbTQCA==
-X-Received: by 2002:a17:903:2447:b0:194:5c63:364c with SMTP id
- l7-20020a170903244700b001945c63364cmr1849203pls.62.1676754978760; 
- Sat, 18 Feb 2023 13:16:18 -0800 (PST)
-Received: from localhost (c-73-67-135-195.hsd1.or.comcast.net. [73.67.135.195])
- by smtp.gmail.com with ESMTPSA id
- ji11-20020a170903324b00b0019afb7a02a1sm4785944plb.218.2023.02.18.13.16.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Feb 2023 13:16:18 -0800 (PST)
-From: Rob Clark <robdclark@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Sat, 18 Feb 2023 13:15:57 -0800
-Message-Id: <20230218211608.1630586-15-robdclark@gmail.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230218211608.1630586-1-robdclark@gmail.com>
-References: <20230218211608.1630586-1-robdclark@gmail.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21E210E156;
+ Sun, 19 Feb 2023 12:54:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676811297; x=1708347297;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=NNDwZfUMtL5OJSQoDDPSDAV3GwPyQ1sNDZyWlm4WfnU=;
+ b=UaKwyfcjsDDopjkhs101O2jrb9j945Hw0qL1mujIRwxIE1FL2if31fkY
+ kKpgabJBIqvi4/+LZa4MPAs7lvgDPv2UsdwF5w9+ISNTNzMImUI4OL/lb
+ yFC3NKWYM17xpFCK+0rvUlHNbs+5zyf6Twtv0I/Cg1rc9l9sHbPlbRR3L
+ 4TBtNRz/vyX6mxElNz4py8r6wi4qUsW4FjuM/CHqD8FSrRRjKdH/8aDvR
+ vXeSGRbD9anf6b/TAbVUJ11CsUI/mZ5oY/DYlm7Iy2+b4YIT8tpDi595I
+ OsU9Sz0GU27KtySC5kPZ+0cEhPp/RUa2uTZiGq4EpRpxulBCthfExmTVO A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10625"; a="329961554"
+X-IronPort-AV: E=Sophos;i="5.97,310,1669104000"; 
+ d="asc'?scan'208";a="329961554"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2023 04:54:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10625"; a="794912770"
+X-IronPort-AV: E=Sophos;i="5.97,310,1669104000"; 
+ d="asc'?scan'208";a="794912770"
+Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.159.40])
+ by orsmga004.jf.intel.com with ESMTP; 19 Feb 2023 04:54:54 -0800
+Date: Sun, 19 Feb 2023 20:52:57 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <Y/IbqTv0yOcPl3yP@debian-scheme>
+References: <20230215044533.4847-1-rdunlap@infradead.org>
+ <Y+7d7xKjjzRnV9eI@debian-scheme>
+ <bd1597ba-21c9-e1a8-8851-4e7c95b28b65@infradead.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 14/14] drm/i915: Add deadline based boost
- support
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="bCCMBWSwmp2FPuGZ"
+Content-Disposition: inline
+In-Reply-To: <bd1597ba-21c9-e1a8-8851-4e7c95b28b65@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: move a Kconfig symbol to unbreak
+ the menu presentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,86 +62,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
- open list <linux-kernel@vger.kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Pekka Paalanen <ppaalanen@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- freedreno@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
+--bCCMBWSwmp2FPuGZ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This should probably be re-written by someone who knows the i915
-request/timeline stuff better, to deal with non-immediate deadlines.
-But as-is I think this should be enough to handle the case where
-we want syncobj waits to trigger boost.
+On 2023.02.16 22:32:33 -0800, Randy Dunlap wrote:
+> Hi,
+>=20
+> On 2/16/23 17:52, Zhenyu Wang wrote:
+> > On 2023.02.14 20:45:33 -0800, Randy Dunlap wrote:
+> >> Inserting a Kconfig symbol that does not have a dependency (DRM_I915_G=
+VT)
+> >> into a list of other symbols that do have a dependency (on DRM_I915)
+> >> breaks the driver menu presentation in 'make *config'.
+> >>
+> >=20
+> > I'm not sure what's the actual failure in presentation, I'm not quite f=
+amiliar
+> > with Kconfig, could you help to elaborate?
+> >=20
+> > thanks!
+>=20
+> For menuconfig and nconfig, it's a subtle difference. The following menu
+> items are indented more after the patch (i.e., they are not indented enou=
+gh
+> before the patch):
+>=20
+>  =E2=94=82 <M>   Enable KVM host support Intel GVT-g graphics virtualizat=
+ion          =E2=94=82
+>  =E2=94=82 [*]   Enable Intel PXP support                                =
+             =E2=94=82
+>  =E2=94=82       drm/i915 Debugging  --->                                =
+             =E2=94=82
+>  =E2=94=82       drm/i915 Profile Guided Optimisation  --->
+>=20
+> Same menu items for gconfig: they should all be subordinate (so indented)
+> to the main
+> <M> Intel 8xx/9xx/G3x/G4x/HD Graphics
+> menu.
+>=20
+> For xconfig, it's worse. "drm/i915 Debugging" and "drm/i915 Profile Guide=
+d Optimisation"
+> are shown on the left side window, while are of the other i915 options ar=
+e shown in the
+> right side window (before the patch).
+> After the patch, all subordinate options are listed in the right side win=
+dow under the
+> main "Intel 8xx/9xx/G3x/G4x/HD Graphics" menu item.
+>=20
+> See attached photos for comparisons.
+>=20
 
- drivers/gpu/drm/i915/i915_driver.c  |  2 +-
- drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
+I wasn't awared of the wrong indentation. Thanks a lot, Randy!
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index cf1c0970ecb4..bd40b7bcb38a 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1781,7 +1781,7 @@ static const struct drm_driver i915_drm_driver = {
- 	.driver_features =
- 	    DRIVER_GEM |
- 	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ |
--	    DRIVER_SYNCOBJ_TIMELINE,
-+	    DRIVER_SYNCOBJ_TIMELINE | DRIVER_SYNCOBJ_DEADLINE,
- 	.release = i915_driver_release,
- 	.open = i915_driver_open,
- 	.lastclose = i915_driver_lastclose,
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 7503dcb9043b..44491e7e214c 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -97,6 +97,25 @@ static bool i915_fence_enable_signaling(struct dma_fence *fence)
- 	return i915_request_enable_breadcrumb(to_request(fence));
- }
- 
-+static void i915_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
-+{
-+	struct i915_request *rq = to_request(fence);
-+
-+	if (i915_request_completed(rq))
-+		return;
-+
-+	if (i915_request_started(rq))
-+		return;
-+
-+	/*
-+	 * TODO something more clever for deadlines that are in the
-+	 * future.  I think probably track the nearest deadline in
-+	 * rq->timeline and set timer to trigger boost accordingly?
-+	 */
-+
-+	intel_rps_boost(rq);
-+}
-+
- static signed long i915_fence_wait(struct dma_fence *fence,
- 				   bool interruptible,
- 				   signed long timeout)
-@@ -182,6 +201,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
- 	.release = i915_fence_release,
-+	.set_deadline = i915_fence_set_deadline,
- };
- 
- static void irq_execute_cb(struct irq_work *wrk)
--- 
-2.39.1
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
+--bCCMBWSwmp2FPuGZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY/IbpQAKCRCxBBozTXgY
+J7KqAJ9ai4/UyyDGoRUOJQD34MJmFdFyvQCfYnyyPgV1EKMhMrDKUnh9nVBfBeY=
+=nrt2
+-----END PGP SIGNATURE-----
+
+--bCCMBWSwmp2FPuGZ--
