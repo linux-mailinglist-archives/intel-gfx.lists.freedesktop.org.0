@@ -2,56 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F241469CBE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 14:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A0F69CC08
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 14:25:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0651F10E11E;
-	Mon, 20 Feb 2023 13:19:57 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F6110E11E;
- Mon, 20 Feb 2023 13:19:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9479010E684;
+	Mon, 20 Feb 2023 13:25:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89BBF10E0A6;
+ Mon, 20 Feb 2023 13:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676899195; x=1708435195;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=I/Vd4dD37QqaRtJ/x9db0yXW7xgYyKiXle+ciMwTt54=;
- b=LI+12xbX/LOyfmRVfoL8NKTnL9+RepePeYSUNRO2WNxs3aBv8+xRqD1T
- MZ/oFf1vADxXO1UTYNnBiVeaq8z9KQF04UH0sAKFNOoP9PHE7CpmXydVf
- 6z4twzu8Ix70CoKLrmmi2VpsoQwv4A11youBiTB3qYj9EeNjIE45jZ4ER
- rB+szZDSpX1V5m7vEd6dSDNldBfPa/a95AstVXCPZgaPMQv39TroW28Tz
- mPqjGDAci+WkUIimlRxrtIIW3vxXJhWI2dT6YyU/VNs5DnNiOfBhxFPuC
- 4AvG3umT0T4uPeCutcsS4ZOqmKC7+zlvokt3E6U5VjrnH89WFFBooTfXN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="330112163"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="330112163"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 05:19:43 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="703701988"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="703701988"
-Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
- ([10.213.211.126])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 05:19:42 -0800
-Message-ID: <d5914234-4f9d-4495-46b8-29322e758122@linux.intel.com>
-Date: Mon, 20 Feb 2023 13:19:40 +0000
+ t=1676899529; x=1708435529;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aIveYM7iOans68MaVh1HkwZNceLWEymtvS0UFWDMDsA=;
+ b=JCuvRw5dx+++CQy4lqyAHe8/I6iG/orttTJoabhNw5tYZ8U1164T5AIX
+ PtJhhZbE0X0SL0NPSrh6qWXBei6cLoLzfqET9PyCdx36lxuo4BC2N2X9S
+ RibQjvGDjtF3yhqhqMPhwWVWwlCDaYI/wr4z2M23N0OBIOrfMLcsON++g
+ OdSpjsOWtQ4qQZYP1eC+i0XOypghV3o9Ml/iiaAQuPu98PRSKX+Ju/1QH
+ hZrfzrRy8fzHitRl2tyvSDMQUQY+nXU/8d2MQWRKEkB/9J1GWToYzg2VF
+ SPIZQEb4PzECbjFEPP8FShwmy2w8B0NAXLDJj9Yf7BC8jlnRlGdJBWXbH w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="320524035"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="320524035"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 05:25:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="1000266971"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="1000266971"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.24.158])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 05:25:26 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 20 Feb 2023 14:24:45 +0100
+Message-Id: <20230220132445.32129-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20230216105921.624960-1-tvrtko.ursulin@linux.intel.com>
- <20230216105921.624960-7-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGuXNCXL5cNy4nS8sd6iVj7E62C93o+HZLVkeqpOcWGdKw@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGuXNCXL5cNy4nS8sd6iVj7E62C93o+HZLVkeqpOcWGdKw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 6/9] drm/syncobj: Mark syncobj waits as
- external waiters
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t] tests/gem_barrier_race: Extend support
+ over compute engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,46 +55,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This test can work not only on render engines, as its current code
+suggests, but also on compute class engines.  Add them to the set of
+engine classes supported by the test, in case a future platform has only
+those and no RCS available.
 
-On 18/02/2023 19:56, Rob Clark wrote:
-> On Thu, Feb 16, 2023 at 2:59 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Use the previously added dma-fence tracking of explicit waiters.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   drivers/gpu/drm/drm_syncobj.c | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
->> index 0c2be8360525..776b90774a64 100644
->> --- a/drivers/gpu/drm/drm_syncobj.c
->> +++ b/drivers/gpu/drm/drm_syncobj.c
->> @@ -1065,9 +1065,9 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
->>                          if ((flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE) ||
->>                              dma_fence_is_signaled(fence) ||
->>                              (!entries[i].fence_cb.func &&
->> -                            dma_fence_add_callback(fence,
->> -                                                   &entries[i].fence_cb,
->> -                                                   syncobj_wait_fence_func))) {
->> +                            dma_fence_add_wait_callback(fence,
->> +                                                        &entries[i].fence_cb,
->> +                                                        syncobj_wait_fence_func))) {
-> 
-> I think this isn't really what you want if count > 1, because you
-> wouldn't be notifying the fence signaler of fence n+1 until the wait
-> on fence n completed
+Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/i915/gem_barrier_race.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Are you sure? After some staring all I can see is that all callbacks are 
-added before the first sleep.
+diff --git a/tests/i915/gem_barrier_race.c b/tests/i915/gem_barrier_race.c
+index 484fef85ac..053fa2069e 100644
+--- a/tests/i915/gem_barrier_race.c
++++ b/tests/i915/gem_barrier_race.c
+@@ -142,7 +142,8 @@ igt_main
+ 		struct intel_execution_engine2 *e;
+ 
+ 		for_each_physical_engine(fd, e) {
+-			if (e->class != I915_ENGINE_CLASS_RENDER)
++			if (e->class != I915_ENGINE_CLASS_RENDER &&
++			    e->class != I915_ENGINE_CLASS_COMPUTE)
+ 				continue;
+ 
+ 			igt_dynamic(e->name)
+-- 
+2.25.1
 
-Regards,
-
-Tvrtko
