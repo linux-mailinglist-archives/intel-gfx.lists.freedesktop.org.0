@@ -2,61 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10B669D0A7
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FCC69D0D3
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:45:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C56CF10E223;
-	Mon, 20 Feb 2023 15:31:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
- [IPv6:2001:4860:4864:20::32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5612410E223;
- Mon, 20 Feb 2023 15:31:57 +0000 (UTC)
-Received: by mail-oa1-x32.google.com with SMTP id
- 586e51a60fabf-1720433ba75so2000977fac.5; 
- Mon, 20 Feb 2023 07:31:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=EnqvKbjcXR+shgyFqAn4kLOdtmvRNWegMnSy5waDRGg=;
- b=UoFmKZzcmBX+MDVNTTEYkbv8JaCbBojVOgJhy4HB9tIUcyUIHFpju4oXzuy+3GaTIT
- zm6n5GJPaAUsUnpqPEYz2nrvuKBMoR+aYPFdfdbyxQadGjW8IK70RwzGnlDVqww6nQN1
- K47TKQSb/gCIGnfb7WulWM04aKdeo28mpEbeRz+/YAfw390WYZ7t8ZopReSpncn2qSC1
- Lg9Qg+KpEgTiA1U8LjVtbvbnMDmRKCKhVu7YOAzQd6DH1Bd6YEX4QLKN3n/JWj2cNSRI
- L60Dg1JVA2B5puf9W/lNqZBCuk+Fw0ymeZplAyuXe7+N4JY8sk7t/NFn0pC2WArk5bIi
- 3hjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=EnqvKbjcXR+shgyFqAn4kLOdtmvRNWegMnSy5waDRGg=;
- b=enMlve15BGi32whKrmO3SQiJ+9JVtPgnDc82GdWo/lWUTb7ue0j/+tuDdkmflXgdli
- ApG2MnKF2vkqHj8vFqa5cIT8u0kNw2TbTe7epbIOfc56GDzbFnb3hQE42Ce7VFuoBuEV
- RI607LbBIvT+XuaVMcCTDQmTKNbFa/uq1uDFuf1gt23Udl40qBII4qafiYCdo1S5x2gm
- hnCpgiptlNWUzIUG12Qw9QNLdhVLQ72rkSQ1K6pebt5AMEYRR9SAqB3cI7zYyO9tOBKT
- Vmyg4iEJkLQpvBGcDDqYO+h32994+JM+GFimG0KfjB2rZt9xrrc6CLshS5tnNQ209Inn
- or4A==
-X-Gm-Message-State: AO0yUKUlQ5BvIpEpxXpNtVbN3jo13//dYyPuOjn8bh4DJXNvNK8/Io6m
- ZOUrmRlOi6praSDJ9lZrR3NYqhW/azMr6bfRb18=
-X-Google-Smtp-Source: AK7set+7FnMD2t07MuqDGy/KTxF9WiYX/rSVCcOrL9sKyQtn1QeIDHJ1RcRQxtfrjpj6ga9vEBrqF6S7WEvxyr5Oasc=
-X-Received: by 2002:a05:6870:32d4:b0:16e:5e5a:49da with SMTP id
- r20-20020a05687032d400b0016e5e5a49damr1175495oac.58.1676907116217; Mon, 20
- Feb 2023 07:31:56 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A1E10E67C;
+	Mon, 20 Feb 2023 15:45:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C6010E67C;
+ Mon, 20 Feb 2023 15:44:58 +0000 (UTC)
+Received: from [192.168.2.109] (unknown [109.252.117.89])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id DE08166003B0;
+ Mon, 20 Feb 2023 15:44:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1676907897;
+ bh=WH5zmFFnDlSMHcOXxsPAi+ww+j41Tch8A852/cXUQsM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=AKGxB/hWqY1r61NlpxWv7i16uzhYMY7CO3xD6J7PoI+S0JskVucTWLiud0nvwW7VH
+ ZJKWrmbURLhHySSjnBJnDcxHZ1sg94SGGrgGX/IAjnd1q0iqFzEunyOfftWX4d5kl7
+ SKRrL1mOmrqXTOZYt0MuI6hwtGzCBtFLjAnC+Tpzjy3gLZx1j8JMxRUEEXq89+Dwbo
+ nHGPF8xBVTWCVkJtRshTtQ+4Z9rL5cTNguVsAJ+3gmJ1JiNrEcBjYPmT4ck8icdpu7
+ wiqTdZW3aDKAG+7Zx0hFu72iMdEQaPhwdj4PcGAfvjEfx/eM3Z2FqcIxt6bf60s8Jm
+ 3+ueQRTwQtXVA==
+Message-ID: <ed745bf1-eeca-6431-b828-e0f51b8bad30@collabora.com>
+Date: Mon, 20 Feb 2023 18:44:53 +0300
 MIME-Version: 1.0
-References: <20230216105921.624960-1-tvrtko.ursulin@linux.intel.com>
- <20230216105921.624960-7-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGuXNCXL5cNy4nS8sd6iVj7E62C93o+HZLVkeqpOcWGdKw@mail.gmail.com>
- <d5914234-4f9d-4495-46b8-29322e758122@linux.intel.com>
-In-Reply-To: <d5914234-4f9d-4495-46b8-29322e758122@linux.intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 20 Feb 2023 07:31:45 -0800
-Message-ID: <CAF6AEGsNLFoO1ZGE5gTFUi52kg4WXkZEi8GciSe=pqDSALOzvg@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [RFC 6/9] drm/syncobj: Mark syncobj waits as
- external waiters
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+References: <cover.1676580180.git.jani.nikula@intel.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <cover.1676580180.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/displayid: use primary use case to
+ figure out non-desktop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,50 +55,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Iaroslav Boliukin <iam@lach.pw>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 5:19 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 18/02/2023 19:56, Rob Clark wrote:
-> > On Thu, Feb 16, 2023 at 2:59 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> >>
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> Use the previously added dma-fence tracking of explicit waiters.
-> >>
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/drm_syncobj.c | 6 +++---
-> >>   1 file changed, 3 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-> >> index 0c2be8360525..776b90774a64 100644
-> >> --- a/drivers/gpu/drm/drm_syncobj.c
-> >> +++ b/drivers/gpu/drm/drm_syncobj.c
-> >> @@ -1065,9 +1065,9 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
-> >>                          if ((flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE) ||
-> >>                              dma_fence_is_signaled(fence) ||
-> >>                              (!entries[i].fence_cb.func &&
-> >> -                            dma_fence_add_callback(fence,
-> >> -                                                   &entries[i].fence_cb,
-> >> -                                                   syncobj_wait_fence_func))) {
-> >> +                            dma_fence_add_wait_callback(fence,
-> >> +                                                        &entries[i].fence_cb,
-> >> +                                                        syncobj_wait_fence_func))) {
-> >
-> > I think this isn't really what you want if count > 1, because you
-> > wouldn't be notifying the fence signaler of fence n+1 until the wait
-> > on fence n completed
->
-> Are you sure? After some staring all I can see is that all callbacks are
-> added before the first sleep.
+On 2/16/23 23:44, Jani Nikula wrote:
+> Mostly this is prep work and plumbing for easier use of displayid
+> structure version and primary use case for parsing the displayid blocks,
+> but it can be nicely used for figuring out non-desktop too.
+> 
+> Completely untested. :)
+> 
+> BR,
+> Jani.
+> 
+> Cc: Iaroslav Boliukin <iam@lach.pw>
+> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> 
+> Jani Nikula (4):
+>   drm/displayid: add displayid_get_header() and check bounds better
+>   drm/displayid: return struct displayid_header from
+>     validate_displayid()
+>   drm/displayid: provide access to DisplayID version and primary use
+>     case
+>   drm/edid: update non-desktop use also from DisplayID
+> 
+>  drivers/gpu/drm/drm_displayid.c | 62 ++++++++++++++++++++++++++++-----
+>  drivers/gpu/drm/drm_edid.c      | 25 +++++++++++++
+>  include/drm/drm_displayid.h     | 12 ++++++-
+>  3 files changed, 89 insertions(+), 10 deletions(-)
+> 
 
-Ahh, yes, you are right
+It works now without the EDID quirk, thanks!
 
-BR,
--R
+Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+
+-- 
+Best regards,
+Dmitry
+
