@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD52F69D12D
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:15:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A940269D130
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:16:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D12110E6E3;
-	Mon, 20 Feb 2023 16:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA6EF10E288;
+	Mon, 20 Feb 2023 16:16:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8121010E6E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 16:15:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676909709; x=1708445709;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KMfZwyTA9YArLt8VmFiEE9COzsvQZnhDtKi3TI3gi+M=;
- b=gtzpQ6QYXsGoOWmOQlo8DiwAKrMcz1jA4g44ME8Gwd89Iz+3MBJvqz5e
- bdFiglYCnBXNKdZ+j6vrlfLNPgMP+eHnR7rMCpauK6azNRis/KucEDC5P
- eIWkw72cKwg2J/TMv5qt1Zh5C+MpNxdG5M6Dih3sReWl/31Rkg/tCPrqa
- DI13191eqQ1elK6iXcYNGdBMdjOVlYN2e2h9TipcIuWDJz+BEmHcEN+hB
- /7YCh7VW9w5tvDvi4S6zaLZNwWOmkH/JgYDE3XAjjFsvFGaVL0UZm6Wkt
- Bt4GBfrTTbrjvflXK1cXi+K8YSOQej7Ps5Lrf/CODuL99vdVAAZG5rXOR w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="331101084"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="331101084"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 08:15:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="664688988"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="664688988"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga007.jf.intel.com with SMTP; 20 Feb 2023 08:14:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Feb 2023 18:14:58 +0200
-Date: Mon, 20 Feb 2023 18:14:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <Y/Ocgp7y8ZxfaqLw@intel.com>
-References: <20230214100132.24208-1-stanislav.lisovskiy@intel.com>
- <Y+uU1X84eAD+x4c3@intel.com> <Y/OVqQ9KgD6mbBB/@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A303D10E288;
+ Mon, 20 Feb 2023 16:16:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 97C7AAADDA;
+ Mon, 20 Feb 2023 16:16:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1585625601084181867=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y/OVqQ9KgD6mbBB/@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
- configuration to pcode
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Mon, 20 Feb 2023 16:16:31 -0000
+Message-ID: <167690979161.31315.3446747783031824546@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_audio_ELD_handling_?=
+ =?utf-8?q?for_DP_MST?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,300 +41,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 05:45:45PM +0200, Lisovskiy, Stanislav wrote:
-> On Tue, Feb 14, 2023 at 04:04:05PM +0200, Ville Syrjälä wrote:
-> > On Tue, Feb 14, 2023 at 12:01:32PM +0200, Stanislav Lisovskiy wrote:
-> > > From: Jigar Bhatt <jigar.bhatt@intel.com>
-> > > 
-> > > Display to communicate "display configuration" to Pcode for more accurate
-> > > power accounting for DG2. Existing sequence is only sending the voltage
-> > > value to the Pcode. Adding new sequence with current cdclk associate
-> > > with voltage value masking. Adding pcode request when any power well
-> > > will disable or enable.
-> > > 
-> > > v2: - Fixed identation(Stanislav Lisovskiy)
-> > >     - Made conditions more specific(in the commit we declare that
-> > >       we do this for DG2 only, however that commit changes >= to
-> > >       == for many other platforms.(Stanislav Lisovskiy)
-> > > 
-> > > v3: - Refactored code for proper identation and smaller conditions
-> > >       (Andi Shyti)
-> > >     - Switched to proper function naming, removed platform specific
-> > >       code from intel_atomic_commit_tail(Jani Nikula)
-> > >     - Moved intel_cdclk_power_usage_to_pcode_pre/post_notification
-> > >       to proper places, before and after setting CDCLK(Stanislav Lisovskiy)
-> > > 
-> > > Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 97 ++++++++++++++++++++--
-> > >  drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +
-> > >  drivers/gpu/drm/i915/i915_reg.h            |  4 +
-> > >  3 files changed, 94 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > index 82da76b586ed..4f8bcc0b51e8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > @@ -1908,10 +1908,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> > >  		 * NOOP - No Pcode communication needed for
-> > >  		 * Display versions 14 and beyond
-> > >  		 */;
-> > > -	else if (DISPLAY_VER(dev_priv) >= 11)
-> > > +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
-> > >  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-> > >  				      cdclk_config->voltage_level);
-> > > -	else
-> > > +	if (DISPLAY_VER(dev_priv) < 11) {
-> > >  		/*
-> > >  		 * The timeout isn't specified, the 2ms used here is based on
-> > >  		 * experiment.
-> > > @@ -1922,7 +1922,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> > >  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
-> > >  					      cdclk_config->voltage_level,
-> > >  					      150, 2);
-> > > -
-> > > +	}
-> > >  	if (ret) {
-> > >  		drm_err(&dev_priv->drm,
-> > >  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-> > > @@ -2218,6 +2218,29 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
-> > >  		    cdclk_config->voltage_level);
-> > >  }
-> > >  
-> > > +static void intel_pcode_notify(struct drm_i915_private *i915,
-> > > +			       unsigned int cdclk, u8 voltage_level,
-> > > +			       u8 active_pipes)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	if (DISPLAY_VER(i915) < 12)
-> > > +		return;
-> > > +
-> > > +	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
-> > > +				SKL_CDCLK_PREPARE_FOR_CHANGE |
-> > 
-> > Isn't that something we're supposed to set only *before*
-> > the change? Here it looks like we're setting also for the
-> > post call.
-> 
-> According to BSpec, we are supposed to send notifications both
-> before and after setting CDCLK:
-> 
-> 1) Before the change we need to set voltage bits to the max(bits 1:0 set to 3)
+--===============1585625601084181867==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You are doing that for both pre and post now.
+== Series Details ==
 
-> 2) If CDCLK is increasing set to increased value or leave the same
-> 3) If enabling pipe write upcoming pipe count
-> 
-> After the change 
-> 
-> 1) we set required voltage level
-> 2) write CDCLK bits if CDCLK is disabled
-> 3) If pipe is disabled write the current pipe count
-> 
-> I agree, current code in fact doesn't do it exactly as described.
-> 
-> > 
-> > > +				DISPLAY_TO_PCODE_MASK
-> > > +				(cdclk, active_pipes, voltage_level),
-> > > +				SKL_CDCLK_READY_FOR_CHANGE,
-> > > +				SKL_CDCLK_READY_FOR_CHANGE, 3);
-> > > +	if (ret) {
-> > > +		drm_err(&i915->drm,
-> > > +				"Failed to inform PCU about display config (err %d)\n",
-> > > +				ret);
-> > > +		return;
-> > > +	}
-> > > +}
-> > > +
-> > >  /**
-> > >   * intel_set_cdclk - Push the CDCLK configuration to the hardware
-> > >   * @dev_priv: i915 device
-> > > @@ -2287,6 +2310,56 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
-> > >  	}
-> > >  }
-> > >  
-> > > +/**
-> > > + * intel_cdclk_power_usage_to_pcode_pre_notification: display to pcode notification
-> > > + * before the enabling power wells.
-> > > + * send notification with cdclk, number of pipes, voltage_level.
-> > > + * @state: intel atomic state
-> > > + */
-> > > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> > > +	const struct intel_cdclk_state *old_cdclk_state =
-> > > +		intel_atomic_get_old_cdclk_state(state);
-> > > +	const struct intel_cdclk_state *new_cdclk_state =
-> > > +		intel_atomic_get_new_cdclk_state(state);
-> > > +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> > > +				 &new_cdclk_state->actual) &&
-> > > +				 (new_cdclk_state->active_pipes ==
-> > > +				 old_cdclk_state->active_pipes))
-> > > +		return;
-> > > +	else if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk)
-> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> > > +				   new_cdclk_state->actual.voltage_level,
-> > > +				   new_cdclk_state->active_pipes);
-> > > +	else if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk)
-> > > +		intel_pcode_notify(dev_priv, old_cdclk_state->actual.cdclk,
-> > > +				   old_cdclk_state->actual.voltage_level,
-> > > +				   old_cdclk_state->active_pipes);
-> > > +	else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes)
-> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> > > +				   new_cdclk_state->actual.voltage_level,
-> > > +				   new_cdclk_state->active_pipes);
-> > > +
-> > > +	intel_pcode_notify(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
-> > > +			   new_cdclk_state->actual.voltage_level,
-> > > +			   new_cdclk_state->active_pipes);
-> > 
-> > I don't understand what is going on here. Are we trying to
-> > say something like
-> > 
-> > intel_pcode_notify(...,
-> > 		   max(old_cdclk, new_cdclk),
-> > 		   max(old_voltage_level, new_voltage_level),
-> > 		   old_active_pipes | new_active_pipes);
-> 
-> Regarding CDCLK yes, for voltage level, just read out from BSpec 
-> that we are supposed to set voltage level to to max(3) always before
-> the change. Dunno why this was implemented that way initially(BSpec got updated?)
+Series: series starting with [1/2] drm/i915: Fix audio ELD handling for DP MST
+URL   : https://patchwork.freedesktop.org/series/114194/
+State : success
 
-Pretty sure it's always been like that for all platforms. Dunno why.
+== Summary ==
 
-> 
-> 
-> > ?
-> > 
-> > Also the inclusion of the pipes here would imply that
-> > we need to think about serialize vs. lock.
-> 
-> Should we already had locked/serialized global state in intel_modeset_calc_cdclk,
-> if active_pipes/cdclk had changed?
+CI Bug Log - changes from CI_DRM_12762 -> Patchwork_114194v1
+====================================================
 
-For active_pipes in particular, locked yes, serialized no since no other
-platform needs us to poke the hardware state on active_pipes changes.
-The lock is what protects the software state, serialize is what
-guarantees the hardware state updates happen in the correct order.
+Summary
+-------
 
-> 
-> Stan
-> 
-> > 
-> > > +}
-> > > +
-> > > +/* intel_cdclk_power_usage_to_pcode_post_notification: after frequency change sending
-> > > + * voltage_level, active pipes, current CDCLK frequency.
-> > > + * @state: intel atomic state
-> > > + */
-> > > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> > > +	const struct intel_cdclk_state *new_cdclk_state =
-> > > +		intel_atomic_get_new_cdclk_state(state);
-> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
-> > > +				   new_cdclk_state->actual.voltage_level,
-> > > +				   new_cdclk_state->active_pipes);
-> > > +}
-> > > +
-> > >  /**
-> > >   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
-> > >   * @state: intel atomic state
-> > > @@ -2297,7 +2370,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
-> > >  void
-> > >  intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
-> > >  {
-> > > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> > >  	const struct intel_cdclk_state *old_cdclk_state =
-> > >  		intel_atomic_get_old_cdclk_state(state);
-> > >  	const struct intel_cdclk_state *new_cdclk_state =
-> > > @@ -2308,11 +2381,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
-> > >  				 &new_cdclk_state->actual))
-> > >  		return;
-> > >  
-> > > +	if (DISPLAY_VER(i915) >= 12)
-> > > +		intel_cdclk_power_usage_to_pcode_pre_notification(state);
-> > > +
-> > >  	if (pipe == INVALID_PIPE ||
-> > >  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-> > > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> > > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-> > >  
-> > > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> > > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
-> > >  	}
-> > >  }
-> > >  
-> > > @@ -2326,7 +2402,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
-> > >  void
-> > >  intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
-> > >  {
-> > > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> > >  	const struct intel_cdclk_state *old_cdclk_state =
-> > >  		intel_atomic_get_old_cdclk_state(state);
-> > >  	const struct intel_cdclk_state *new_cdclk_state =
-> > > @@ -2337,11 +2413,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
-> > >  				 &new_cdclk_state->actual))
-> > >  		return;
-> > >  
-> > > +	if (DISPLAY_VER(i915) >= 12)
-> > > +		intel_cdclk_power_usage_to_pcode_post_notification(state);
-> > > +
-> > >  	if (pipe != INVALID_PIPE &&
-> > >  	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
-> > > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> > > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-> > >  
-> > > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> > > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
-> > >  	}
-> > >  }
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> > > index 51e2f6a11ce4..fa356adc61d9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> > > @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
-> > >  			       const struct intel_cdclk_config *b);
-> > >  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
-> > >  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-> > > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state);
-> > > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state);
-> > >  void intel_cdclk_dump_config(struct drm_i915_private *i915,
-> > >  			     const struct intel_cdclk_config *cdclk_config,
-> > >  			     const char *context);
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > > index 596efc940ee7..b90c31862083 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -6498,6 +6498,10 @@
-> > >  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
-> > >  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
-> > >  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-> > > +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-> > > +#define   DISPLAY_TO_PCODE_MASK(cdclk, num_pipes, voltage_level) \
-> > > +		((1 << 31) | (num_pipes << 28) | \
-> > > +		(cdclk << 16) | (1 << 27) | voltage_level)
-> > >  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
-> > >  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
-> > >  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
-> > > -- 
-> > > 2.37.3
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
+  **SUCCESS**
 
--- 
-Ville Syrjälä
-Intel
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114194v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@guc:
+    - bat-rpls-2:         [PASS][1] -> [DMESG-WARN][2] ([i915#7852])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@guc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@guc.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-adlm-1:         [PASS][5] -> [DMESG-WARN][6] ([i915#2867])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-2:         [DMESG-FAIL][7] ([i915#6367] / [i915#6997]) -> [DMESG-FAIL][8] ([i915#6367])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
+
+  
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12762 -> Patchwork_114194v1
+
+  CI-20190529: 20190529
+  CI_DRM_12762: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7166: 73a66b9f4418cd14b0c0d20d50cdd4d41053f78c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114194v1: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+dc43a4fb3206 drm/i915: Drop useless intel_dp_has_audio() argument
+27fad932d621 drm/i915: Fix audio ELD handling for DP MST
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html
+
+--===============1585625601084181867==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix audio ELD handling for DP MST</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114194/">https://patchwork.freedesktop.org/series/114194/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12762 -&gt; Patchwork_114194v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114194v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@guc:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12762 -&gt; Patchwork_114194v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12762: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7166: 73a66b9f4418cd14b0c0d20d50cdd4d41053f78c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114194v1: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>dc43a4fb3206 drm/i915: Drop useless intel_dp_has_audio() argument<br />
+27fad932d621 drm/i915: Fix audio ELD handling for DP MST</p>
+
+</body>
+</html>
+
+--===============1585625601084181867==--
