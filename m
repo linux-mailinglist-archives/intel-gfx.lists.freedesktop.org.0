@@ -1,65 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4ABC69D4CF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 21:20:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1AFB69D50C
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 21:36:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23AEF10E799;
-	Mon, 20 Feb 2023 20:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5BFB10E29B;
+	Mon, 20 Feb 2023 20:35:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com
- [IPv6:2607:f8b0:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4032910E78F;
- Mon, 20 Feb 2023 20:20:03 +0000 (UTC)
-Received: by mail-pg1-x529.google.com with SMTP id 132so1155448pgh.13;
- Mon, 20 Feb 2023 12:20:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9VcsUu3unD+maL4g/jB1gMbq//XnoqiDQvEiNIyt7mI=;
- b=eFd6WKVkDjMERL0NUJwdZTkwaDz0OjPOGjnuwSqBIjiEyMvPenvK4sKtmZyxPWgSI5
- WzMJ7uiuRFqsr+eNs7HnTFRMZMbN/YDiqBuD4ndq4yNYXEZLdGcxi3k805YFDaRTM49H
- btsQGnmcp+Jjet2+wIFLHC8jDiihHqY6cv/dPw9x9644Qa2EUek2cYNr9GJNbS8dgyFQ
- P4BpZWBP0fPeYBPaJP/C+GnuHA8Ghph1mcX47CION2s+/ZlxKblgjj9wQSBLyzCt5Nee
- 8vZ4iojT33oWnJ5z8yuQWQAsIzfLIZESfCxDG4TaE7N2JPqd9DRSZuJmNBVAKuuF7rDe
- FzFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9VcsUu3unD+maL4g/jB1gMbq//XnoqiDQvEiNIyt7mI=;
- b=b2D3GNfW3NpIQlnQe//o3kk64uVJoen59xzLskqNQh5FbogFFtAwGYGkCSYP2RzKSQ
- A0HkrojbDk3dmfWni/CD0UfdGshLl2JAhJO29AJqQI2ETmPJQQJc7hblLOrML5JzrkJr
- zKTZHeV8MkohToShUovi8XyVx90gi1cJqiAxUMfAT8pM+oR2y06dZ58g6M8JUOGKEOXW
- d/DfOp0hUDAk/63P5gwhJGlwMK6j65uaCEeadGIgtjZDlIHbOyN22Kx9/voNh8RjnX6j
- 2XvDmcY4sZFgXQvi1SV41irgFPCRElesyYz991C8tFEvDHa7jjNjh7o7XljuyOMNpLgn
- EfkA==
-X-Gm-Message-State: AO0yUKXjNLod0BQC1zvgjC9YBbeP1AYtPx89dvd/OhHwjH+Q7eKDuVt/
- fTXfsO/U1anNooEIbnvQA3rpNnqNcGM=
-X-Google-Smtp-Source: AK7set/lZ+AFzfPQmwQQNW8iN+Fzdh2s6fnv3atcgztBFxVgeLYdWwu6bkkmpStlqHcJMRsJSfDpoA==
-X-Received: by 2002:a62:184d:0:b0:5a9:fcb0:e8a2 with SMTP id
- 74-20020a62184d000000b005a9fcb0e8a2mr1540546pfy.11.1676924402380; 
- Mon, 20 Feb 2023 12:20:02 -0800 (PST)
-Received: from localhost (c-73-67-135-195.hsd1.or.comcast.net. [73.67.135.195])
- by smtp.gmail.com with ESMTPSA id
- e22-20020a62ee16000000b005a84e660713sm1934218pfi.195.2023.02.20.12.20.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Feb 2023 12:20:02 -0800 (PST)
-From: Rob Clark <robdclark@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon, 20 Feb 2023 12:19:01 -0800
-Message-Id: <20230220201916.1822214-15-robdclark@gmail.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230220201916.1822214-1-robdclark@gmail.com>
-References: <20230220201916.1822214-1-robdclark@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4055F10E29B;
+ Mon, 20 Feb 2023 20:35:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36E92A7DFF;
+ Mon, 20 Feb 2023 20:35:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 14/14] drm/i915: Add deadline based boost
- support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Mon, 20 Feb 2023 20:35:55 -0000
+Message-ID: <167692535518.31317.15655847648055847816@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230220174448.7611-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230220174448.7611-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Init_DDI_ports_in_VBT_order?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,68 +40,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
- open list <linux-kernel@vger.kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Pekka Paalanen <ppaalanen@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- freedreno@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
+== Series Details ==
 
-v2: rebase
+Series: drm/i915: Init DDI ports in VBT order
+URL   : https://patchwork.freedesktop.org/series/114200/
+State : warning
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 7503dcb9043b..44491e7e214c 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -97,6 +97,25 @@ static bool i915_fence_enable_signaling(struct dma_fence *fence)
- 	return i915_request_enable_breadcrumb(to_request(fence));
- }
- 
-+static void i915_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
+Error: dim checkpatch failed
+782a06c663af drm/i915: Populate dig_port->connected() before connector init
+-:59: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#59: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4538:
++	 * case we have some really bad VBTs... */
+
+total: 0 errors, 1 warnings, 0 checks, 46 lines checked
+948c7ff341e9 drm/i915: Get rid of the gm45 HPD live state nonsense
+baed564d362e drm/i915: Introduce <platoform>_hotplug_mask()
+09b3eea3a52c drm/i915: Introduce intel_hpd_detection()
+32fb2eef5ab4 drm/i915: Check HPD live state during eDP probe
+-:51: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 41e35ffb380b ("drm/i915: Favor last VBT child device with conflicting AUX ch/DDC pin")'
+#51: 
+  Also the systems (Asrock B250M-HDV at least) fixed by commit
+
+total: 1 errors, 0 warnings, 0 checks, 46 lines checked
+746e0b0b5c42 drm/i915: Sanitize child devices later
+639fab668b6c drm/i915: Split map_aux_ch() into per-platform arrays
+8205eee1779d drm/i915: Flip VBT DDC pin maps around
+7bb73ce45b0f drm/i915: Nuke intel_bios_is_port_dp_dual_mode()
+71c495397bf2 drm/i915: Remove bogus DDI-F from hsw/bdw output init
+4a2e1cf807aa drm/i915: Introduce device info port_mask
+-:101: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
+#101: FILE: drivers/gpu/drm/i915/i915_pci.c:398:
++	.__runtime.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */ \
+
+-:109: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
+#109: FILE: drivers/gpu/drm/i915/i915_pci.c:430:
++	.__runtime.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */ \
+
+-:117: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
+#117: FILE: drivers/gpu/drm/i915/i915_pci.c:484:
++	.__runtime.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */ \
+
+-:133: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/i915/i915_pci.c:575:
++	.__runtime.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E), \
+
+-:182: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#182: FILE: drivers/gpu/drm/i915/i915_pci.c:919:
++		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4) | BIT(PORT_TC5) | BIT(PORT_TC5),
+
+total: 0 errors, 5 warnings, 0 checks, 213 lines checked
+eb6b79faec3c drm/i915: Assert that device info bitmasks have enough bits
+e044a16d9a0d drm/i915: Assert that the port being initialized is valid
+cc5ccfb164ac drm/i915: Beef up SDVO/HDMI port checks
+09b82754731e drm/i915: Init DDI outputs based on port_mask on skl+
+cc3e68d8a608 drm/i915: Try to initialize DDI/ICL+ DSI ports for every VBT child device
+-:174: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#174: FILE: drivers/gpu/drm/i915/display/intel_bios.c:3726:
++void intel_bios_for_each_encoder(struct drm_i915_private *i915,
++				 void (*func)(struct drm_i915_private *i915,
++					      struct intel_bios_encoder_data *devdata,
++					      enum port port))
 +{
-+	struct i915_request *rq = to_request(fence);
-+
-+	if (i915_request_completed(rq))
-+		return;
-+
-+	if (i915_request_started(rq))
-+		return;
-+
-+	/*
-+	 * TODO something more clever for deadlines that are in the
-+	 * future.  I think probably track the nearest deadline in
-+	 * rq->timeline and set timer to trigger boost accordingly?
-+	 */
-+
-+	intel_rps_boost(rq);
-+}
-+
- static signed long i915_fence_wait(struct dma_fence *fence,
- 				   bool interruptible,
- 				   signed long timeout)
-@@ -182,6 +201,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
- 	.release = i915_fence_release,
-+	.set_deadline = i915_fence_set_deadline,
- };
- 
- static void irq_execute_cb(struct irq_work *wrk)
--- 
-2.39.1
+
+total: 1 errors, 0 warnings, 0 checks, 326 lines checked
+6f4e30e6bcc4 drm/i915: Convert HSW/BDW to use VBT driven DDI probe
+
 
