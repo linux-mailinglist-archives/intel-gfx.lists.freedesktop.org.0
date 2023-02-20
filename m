@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF2469C6DF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 09:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3C869C97A
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 12:15:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEEBF10E60B;
-	Mon, 20 Feb 2023 08:39:19 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738B610E602;
- Mon, 20 Feb 2023 08:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D212B10E678;
+	Mon, 20 Feb 2023 11:15:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3891710E677
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 11:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676882357; x=1708418357;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9IXP+XFabQzHOD20B+FIU39rW4y7pK+ccbQg35ljD2Y=;
- b=DLiqXb4eMjVcQ8N8Q64wjSXameOUBxcn+cJvA4Nekmu0B+9EBB+K5pXP
- jEWBO3F125tZL0hFYpZ0crqTT6fFveDwpJJznoj+4oBYFHFuKa91vs/eI
- IaGD0f37FOuKsNMumMufcGUyT4X21ThZQ1gLUCishJMPEp1Hz0yGha1uB
- NBfZUgOw+/FOfpk1bMeC6h15195PMXTKXL73AmzZrKvUtEU5ltcHvDr03
- 5Sh828jIdAZJqZzT4LV3v8iNB/28CRvOyqN3dDo9a9c3RKlrpDjQZBas/
- ImjWZiO7JSFoUn5ITKexq008/Hc05Rtl8O5/gUauf2MDGwWa1NAz4HKji A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="332356485"
-X-IronPort-AV: E=Sophos;i="5.97,311,1669104000"; d="scan'208";a="332356485"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 00:39:11 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="760085739"
-X-IronPort-AV: E=Sophos;i="5.97,311,1669104000"; d="scan'208";a="760085739"
-Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
- ([10.213.211.126])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 00:39:02 -0800
-Message-ID: <05e66d0e-3af1-83c9-f52a-5b5be722e573@linux.intel.com>
-Date: Mon, 20 Feb 2023 08:39:00 +0000
+ t=1676891719; x=1708427719;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rH0lHWe3Yv+uDKlyap8iPe0JZa4Fk9UVcQZXaQtaU4M=;
+ b=JKZvh/Xdm9772AWpzfqYfrYYa+ooafUp1s6U++3VPtUItuzo6cEVjnw5
+ WPGVAxIyUp4QxmWa81xpmC8FByrkWe6ZoOW/Oad4KUp1An18Naouy86eW
+ jv6Ff+i//y1Y4G6hbcHfCKW60P72VB2DJTCeSxiIlhYGNQcxu2O0DhBF6
+ nZm4iEQ/gd4F0h0hqXSByQBQOeEnIWLT0ZOJNh08gSMGXuHEi+y0IcAfx
+ 5a7llY5/S6RaQtIUvCfTp/t9SSRFO5ZGtZRrczoenAkl9MOUZ9dG/lnFo
+ JMq9gcVdQkqfwABIAlZ/2Gi+hRDcYPgNTl469vEAQBtB8wMwRaqtVS9/t w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="397061744"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="397061744"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 03:15:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="740013001"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="740013001"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 03:15:15 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Feb 2023 16:42:18 +0530
+Message-Id: <20230220111232.3383820-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20230216011101.1909009-1-John.C.Harrison@Intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230216011101.1909009-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 0/2] Don't use stolen memory or BAR
- mappings for ring buffers
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/14] Handle BPC for HDMI2.1 PCON without
+ DSC1.2 sink and other fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +56,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This series fixes issues faced when an HDMI2.1 sink that does not
+support DSC is connected via HDMI2.1PCON. It also includes other minor
+HDMI2.1 PCON fixes/refactoring.
 
-On 16/02/2023 01:10, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Instruction from hardware arch is that stolen memory and BAR mappings
-> are unsafe for use as ring buffers. There can be issues with cache
-> aliasing due to the CPU access going to memory via the BAR. So, don't
-> do it.
-> 
-> v2: Dont use BAR mappings either.
-> Make conditional on LLC so as not to change platforms that don't need
-> to change (Daniele).
-> Add 'Fixes' tags (Tvrtko).
-> v3: Fix dumb typo.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> 
-> 
-> John Harrison (2):
->    drm/i915: Don't use stolen memory for ring buffers with LLC
->    drm/i915: Don't use BAR mappings for ring buffers with LLC
-> 
->   drivers/gpu/drm/i915/gt/intel_ring.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+Patch 1-2 Have minor fixes/cleanups.
+Patch 3-6 Pull the decision making to use DFP conversion capabilities
+for every mode during compute config, instead of having that decision
+during DP initializing phase.
+Patch 7-8 Calculate the max BPC that can be sufficient with either
+RGB or YCbcr420 format for the maximum FRL rate supported.
 
-It is doing what it laid out as the problem statement so series looks 
-good to me.
+Rev2: Split the refactoring of DFP RG->YCBCR conversion into smaller
+patches, as suggested by Jani N.
+Also dropped the unnecessary helper for DSC1.2 support for HDMI2.1 DFP.
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Rev3: As suggested by Ville, added new member sink_format to store the
+final format that the sink will be using, which might be different
+than the output format, and thus might need color/format conversion
+performed by the PCON.
 
-Regards,
+Rev4: Fix typo in switch case as, reported by kernel test bot.
 
-Tvrtko
+Rev5: Corrected order of setting sink_format and output_format. (Ville)
+Avoided the flag ycbcr420_output and used the sink_format to facilitate
+4:2:2 support at a later stage. (Ville)
 
+Rev6: Added missing changes for sdvo. (Ville)
+Added check for scaler and DSC constraints with YCbCr420.
+
+Rev7: Split change to add scaler constraint in separate patch, and rebased.
+
+Rev8: Rebased. Fixed check for mode rate with dsc in modevalid.
+Fixed scaler constraint as per display version.
+
+Rev9: Rebased.
+
+Ankit Nautiyal (14):
+  drm/i915/display: Add new member to configure PCON color conversion
+  drm/i915/display: Add new member in intel_dp to store ycbcr420
+    passthrough cap
+  drm/i915/dp: Add Scaler constraint for YCbCr420 output
+  drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state
+    sink_format
+  drm/i915/dp: Compute output format with/without DSC
+  drm/i915/display: Use sink_format instead of ycbcr420_output flag
+  drm/i915/dp: Rearrange check for illegal mode and comments in
+    mode_valid
+  drm/i915/dp: Consider output_format while computing dsc bpp for
+    mode_valid
+  drm/i915/dp: Check if mode can be supported with dsc compressed bpp
+  drm/i915/display: Add helper function to check if sink_format is 420
+  drm/i915/dp: Avoid DSC with output_format YCBCR420
+  drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
+  drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
+ drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +
+ .../drm/i915/display/intel_display_types.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 535 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp.h       |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  74 +--
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   5 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_tv.c       |   1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
+ 15 files changed, 475 insertions(+), 181 deletions(-)
+
+-- 
+2.25.1
 
