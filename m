@@ -2,33 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A940269D130
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 892CE69D19F
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:44:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA6EF10E288;
-	Mon, 20 Feb 2023 16:16:33 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A303D10E288;
- Mon, 20 Feb 2023 16:16:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 97C7AAADDA;
- Mon, 20 Feb 2023 16:16:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1585625601084181867=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4AA610E1D1;
+	Mon, 20 Feb 2023 16:44:39 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEC3610E1D1;
+ Mon, 20 Feb 2023 16:44:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676911477; x=1708447477;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2BybXlDR1oIhD9VuvYO2SppC/3FQoWU11/cV5tnhm0g=;
+ b=NdUXrkbeG2T1PikKkXcQ8FPs/CMy87N14TcRAGDlT4NJdx6ZRNeYSqYm
+ YsEmNjKxkxIZmYuqMtZMm/xuHPRikwIOM5VKkV65YAajU11WFy49Nucwj
+ 91kUB2Jadvwge3H73kFI4U6YQVef6rDb1J47w7RiMjGmfRrshgoICoMc1
+ R17Y208WZsODcKyb8cnCoHuK++opydF7myzGQ6OvvR8gAtVLVU2wCfGnz
+ VkATtMOXX0wZiiBuCNmnziFOO311SgvVSGeUkdt41hkuRQtyN2H5kkbyF
+ 6XNCM4xncmPuvScsRJdpp+bW9EnTWVcrscmyHRmci3McLAkNVhcW2V0xO Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="316160236"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="316160236"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 08:44:36 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="740108231"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="740108231"
+Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
+ ([10.213.211.126])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 08:44:34 -0800
+Message-ID: <43aff648-df2d-4fa2-356c-b74f5e3a92e7@linux.intel.com>
+Date: Mon, 20 Feb 2023 16:44:32 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Mon, 20 Feb 2023 16:16:31 -0000
-Message-ID: <167690979161.31315.3446747783031824546@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_audio_ELD_handling_?=
- =?utf-8?q?for_DP_MST?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>
+References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
+ <Y+5zyeSncSbsXHWG@intel.com>
+ <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
+ <CAF6AEGuN2dv+Lsk3R43oPRA9c8ZoMjzCCKR+L41wNT8Sc3TgsQ@mail.gmail.com>
+ <c0663648-5567-2d7a-43b1-dfa043109051@linux.intel.com>
+ <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
+ <Y+/ndNIu/kYGiVh5@intel.com>
+ <6832ba1a-c6b0-4631-3b4e-bfcd31d8b59c@linux.intel.com>
+ <CAF6AEGsEq7Pyc6PMenPjufLDzw5VFtLPjZwOXim71DN5J5TcJw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <CAF6AEGsEq7Pyc6PMenPjufLDzw5VFtLPjZwOXim71DN5J5TcJw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,181 +70,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1585625601084181867==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 20/02/2023 15:52, Rob Clark wrote:
+> On Mon, Feb 20, 2023 at 3:33 AM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>>
+>> On 17/02/2023 20:45, Rodrigo Vivi wrote:
 
-Series: series starting with [1/2] drm/i915: Fix audio ELD handling for DP MST
-URL   : https://patchwork.freedesktop.org/series/114194/
-State : success
+[snip]
 
-== Summary ==
+>> Yeah I agree. And as not all media use cases are the same, as are not
+>> all compute contexts someone somewhere will need to run a series of
+>> workloads for power and performance numbers. Ideally that someone would
+>> be the entity for which it makes sense to look at all use cases, from
+>> server room to client, 3d, media and compute for both. If we could get
+>> the capability to run this in some automated fashion, akin to CI, we
+>> would even have a chance to keep making good decisions in the future.
+>>
+>> Or we do some one off testing for this instance, but we still need a
+>> range of workloads and parts to do it properly..
+>>
+>>>> I also think the "arms race" scenario isn't really as much of a
+>>>> problem as you think.  There aren't _that_ many things using the GPU
+>>>> at the same time (compared to # of things using CPU).   And a lot of
+>>>> mobile games throttle framerate to avoid draining your battery too
+>>>> quickly (after all, if your battery is dead you can't keep buying loot
+>>>> boxes or whatever).
+>>>
+>>> Very good point.
+>>
+>> On this one I still disagree from the point of view that it does not
+>> make it good uapi if we allow everyone to select themselves for priority
+>> handling (one flavour or the other).
+> 
+> There is plenty of precedent for userspace giving hints to the kernel
+> about scheduling and freq mgmt.  Like schedutil uclamp stuff.
+> Although I think that is all based on cgroups.
 
-CI Bug Log - changes from CI_DRM_12762 -> Patchwork_114194v1
-====================================================
+I knew about SCHED_DEADLINE and that it requires CAP_SYS_NICE, but I did 
+not know about uclamp. Quick experiment with uclampset suggests it 
+indeed does not require elevated privilege. If that is indeed so, it is 
+good enough for me as a precedent.
 
-Summary
--------
+It appears to work using sched_setscheduler so maybe could define 
+something similar in i915/xe, per context or per client, not sure.
 
-  **SUCCESS**
+Maybe it would start as a primitive implementation but the uapi would 
+not preclude making it smart(er) afterwards. Or passing along to GuC to 
+do it's thing with it.
 
-  No regressions found.
+> In the fence/syncobj case, I think we need per-wait hints.. because
+> for a single process the driver will be doing both housekeeping waits
+> and potentially urgent waits.  There may also be some room for some
+> cgroup or similar knobs to control things like what max priority an
+> app can ask for, and whether or how aggressively the kernel responds
+> to the "deadline" hints.  So as far as "arms race", I don't think I'd
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html
+Per wait hints are okay I guess even with "I am important" in their name 
+if sched_setscheduler allows raising uclamp.min just like that. In which 
+case cgroup limits to mimick cpu uclamp also make sense.
 
-Participating hosts (40 -> 38)
-------------------------------
+> change anything about my "fence deadline" proposal.. but that it might
+> just be one piece of the overall puzzle.
 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+That SCHED_DEADLINE requires CAP_SYS_NICE does not worry you?
 
-Known issues
-------------
+Regards,
 
-  Here are the changes found in Patchwork_114194v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@guc:
-    - bat-rpls-2:         [PASS][1] -> [DMESG-WARN][2] ([i915#7852])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@guc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@guc.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-adlm-1:         [PASS][5] -> [DMESG-WARN][6] ([i915#2867])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][7] ([i915#6367] / [i915#6997]) -> [DMESG-FAIL][8] ([i915#6367])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12762 -> Patchwork_114194v1
-
-  CI-20190529: 20190529
-  CI_DRM_12762: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7166: 73a66b9f4418cd14b0c0d20d50cdd4d41053f78c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114194v1: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-dc43a4fb3206 drm/i915: Drop useless intel_dp_has_audio() argument
-27fad932d621 drm/i915: Fix audio ELD handling for DP MST
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html
-
---===============1585625601084181867==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix audio ELD handling for DP MST</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114194/">https://patchwork.freedesktop.org/series/114194/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12762 -&gt; Patchwork_114194v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114194v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12762/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114194v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12762 -&gt; Patchwork_114194v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12762: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7166: 73a66b9f4418cd14b0c0d20d50cdd4d41053f78c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114194v1: 7db509313c2f676ff22df731c0e8b1acb4a3d2ba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>dc43a4fb3206 drm/i915: Drop useless intel_dp_has_audio() argument<br />
-27fad932d621 drm/i915: Fix audio ELD handling for DP MST</p>
-
-</body>
-</html>
-
---===============1585625601084181867==--
+Tvrtko
