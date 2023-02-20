@@ -1,68 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957F569D1F8
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 18:14:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D9F69D219
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 18:25:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB6C10E276;
-	Mon, 20 Feb 2023 17:14:39 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6914110E269;
- Mon, 20 Feb 2023 17:14:37 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id bq17so1957028oib.8;
- Mon, 20 Feb 2023 09:14:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=cLzVwAEjokWdmIFhw9weWJSdyvEOd3i/Dj9HmQ0145k=;
- b=aFdBO1af/5ZismMesXlA9FcRBRD3ucS0ZB3hca/lC7qRMM7JMKPut7gdokl5FNCcLR
- JF5oPPhUsxwQOi/mZhOHzE6X41ew0Aq7W9dGEJAy6WpNXKPvmxiplOKU8RpfqAzLNdaK
- bgHjaBfoilqyyE5TYayIrBklc7x35OJvXCe51TShkPOMoKfemCPeqU1QwcqxU7AaBvr2
- YO5DspMF7EdUSohByaeG085kqqnKIQsOQYbd1KcrRjsrXeAO7+LiGBcv65UaZ3TjKjdK
- QlMu0ozMSokG52bfifLuN6Mdcgd23nN7fzz1vKkBwUguuH8ThbrW0ABQnj4H0hsxojZN
- txmw==
+	by gabe.freedesktop.org (Postfix) with ESMTP id E050E10E580;
+	Mon, 20 Feb 2023 17:25:50 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 399 seconds by postgrey-1.36 at gabe;
+ Mon, 20 Feb 2023 17:25:49 UTC
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5429210E269
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 17:25:49 +0000 (UTC)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 347683F586
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 17:19:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1676913547;
+ bh=KsFWVKyUTisvLWEBfJHuAqZZOIzRC+wakmOYPwQrXVU=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+ b=Oxa+2PAct1ksydDmbfXK2WZwHB5f09hZU+1SDQJ/AuMlybtzIffNxU5rTB2DtogVR
+ /bByN+OjP10R1coxUayNzg5q9nZiHt4tZCmxbJviYq5smtU3bjlG5DjBdqLg98dkre
+ tDoZqZJXtNOQnQDJ895Fl97ccj1plqPF8c0jtQQUFe5ZsB5NkBT+ligdcClcaY/pnb
+ 0zmvR3N4YWFjpTlRCrNZ2yRJovrih6+BITw+yVglauUa58i0lh8MjD1xN8h/9vgYxz
+ 0kUYrBg74Ad/MNFuc8A08gvAuCCCManjvGoQCNsRdDeU+ZU0KDicJAmTXC1iVKC6TK
+ If7TUb8pSFvAg==
+Received: by mail-ed1-f72.google.com with SMTP id
+ g24-20020a056402321800b004ace77022ebso2559395eda.8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 09:19:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=cLzVwAEjokWdmIFhw9weWJSdyvEOd3i/Dj9HmQ0145k=;
- b=BgB6PtuA4dd2mmwr7HsRumHH0k0Mc3UcGE7lZKQZmRpO085lqaySy+oyjcXHCfpZ/H
- h0MaapdWfwTS1jrJRZwxecRSgymf0PBeWyGo98K5mpVFygax6wmVT3BNe36bEMYTn7rX
- wElHyeLySUWKc5+qiJcA1c2LWj9mErRsyIInBuEEL3XtjDTZj/nkOsXI6+OAHgLTMAY3
- wwJ+GStmb4orDQfGjNpE2VPuKyrxv3SmBRyzRl5tQKvYtZJeCRHg8bI875f3+A95ge7O
- RoUcxQUEYQU3CJkDCRQ9gOFq8A4SPiw+7nr9cWk3BeTHJgbj/PXoGAIQ63iOj2YIXGJE
- KgcQ==
-X-Gm-Message-State: AO0yUKV0I+HyXnFqaZ/v50hxtxRdY964hQIQou4T2xprOJb4GGabul80
- Wz+n16rDQWRrw0OUFTM6C4XWCE3L4iaWzLQH0r17y4Mn
-X-Google-Smtp-Source: AK7set+DdhPgGTijbryHc48WL440EVq6tWuDqE1uPGv4cMt8F0RZWwyzGwRN8t6tchycctGvkk2GE0rKkc19Nh67TFk=
-X-Received: by 2002:a05:6808:ec7:b0:364:c0a5:1fcf with SMTP id
- q7-20020a0568080ec700b00364c0a51fcfmr1118511oiv.58.1676913276623; Mon, 20 Feb
- 2023 09:14:36 -0800 (PST)
+ bh=KsFWVKyUTisvLWEBfJHuAqZZOIzRC+wakmOYPwQrXVU=;
+ b=J9w+9wy9XO7fwNJ+gGaWKGt7l1XHQG9ooLhmi30uvs4YVE+gtkxVBbXY9dglLgOaFn
+ xQLoUvzkAHYF3plofthVZmSgrG90AhC1PN/E7jemWZNnpOqMor2hfiRleLRqIkKWHF1q
+ SERpvXldSjzKeZ/7pfxsw2c5jgTA7wWjzIuJPIJy3CtQBC+YSCu1V9n8XQVBORt0hfIU
+ iyXrGx1xzEPI563eo2If5MAf7d1gbJXWptRezYbRqQvxb+8ASz7gZKuXOBvHIO6QxTcn
+ z6p5AAWpdtoNoI+AfJQ3Dcy5Cwu8zJvYOcc8e1A4zgnaO0Bmt8kCazU89HxW+I0Z05qG
+ uLyA==
+X-Gm-Message-State: AO0yUKXfSTEAX6Std3WSa8+9xYQDFLJF6OEED0k24FjIeosgH31Jswmp
+ bBX9qs3owKXTCfzoFoLrYkA6Qx01Az9gE5gig3uwVXy0p5xo5W1w0maswNKaduuLnvn+orQRu+D
+ pqnxguBngy13bfnbcpguISOaGetDsnO6BE7Ry5IhTYhuIjQ==
+X-Received: by 2002:a05:6402:1151:b0:4ac:beba:dc87 with SMTP id
+ g17-20020a056402115100b004acbebadc87mr1075441edw.0.1676913546122; 
+ Mon, 20 Feb 2023 09:19:06 -0800 (PST)
+X-Google-Smtp-Source: AK7set8Oj7a1xx8jk5ISCHq4+eehJqR5ZQt/ZuPqDE6BQzrZixfjYgaHw5I/qT7NHOl5lv7OxFJ56Q==
+X-Received: by 2002:a05:6402:1151:b0:4ac:beba:dc87 with SMTP id
+ g17-20020a056402115100b004acbebadc87mr1075416edw.0.1676913545790; 
+ Mon, 20 Feb 2023 09:19:05 -0800 (PST)
+Received: from localhost.localdomain
+ (host-79-44-179-55.retail.telecomitalia.it. [79.44.179.55])
+ by smtp.gmail.com with ESMTPSA id
+ ee51-20020a056402293300b004aef6454d6dsm1984489edb.37.2023.02.20.09.19.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Feb 2023 09:19:05 -0800 (PST)
+From: Andrea Righi <andrea.righi@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 20 Feb 2023 18:18:58 +0100
+Message-Id: <20230220171858.131416-1-andrea.righi@canonical.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
- <Y+5zyeSncSbsXHWG@intel.com>
- <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
- <CAF6AEGuN2dv+Lsk3R43oPRA9c8ZoMjzCCKR+L41wNT8Sc3TgsQ@mail.gmail.com>
- <c0663648-5567-2d7a-43b1-dfa043109051@linux.intel.com>
- <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
- <Y+/ndNIu/kYGiVh5@intel.com>
- <6832ba1a-c6b0-4631-3b4e-bfcd31d8b59c@linux.intel.com>
- <CAF6AEGsEq7Pyc6PMenPjufLDzw5VFtLPjZwOXim71DN5J5TcJw@mail.gmail.com>
- <43aff648-df2d-4fa2-356c-b74f5e3a92e7@linux.intel.com>
- <f20cbde9-1c81-e52f-4509-3e771fe4a7fa@linux.intel.com>
-In-Reply-To: <f20cbde9-1c81-e52f-4509-3e771fe4a7fa@linux.intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 20 Feb 2023 09:14:26 -0800
-Message-ID: <CAF6AEGv6ezoHSuA=T73h9eF0JbWJqZErc2eCA0wu8TepzCye+w@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/sseu: fix max_subslices
+ array-index-out-of-bounds access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,109 +88,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 8:51 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 20/02/2023 16:44, Tvrtko Ursulin wrote:
-> >
-> > On 20/02/2023 15:52, Rob Clark wrote:
-> >> On Mon, Feb 20, 2023 at 3:33 AM Tvrtko Ursulin
-> >> <tvrtko.ursulin@linux.intel.com> wrote:
-> >>>
-> >>>
-> >>> On 17/02/2023 20:45, Rodrigo Vivi wrote:
-> >
-> > [snip]
-> >
-> >>> Yeah I agree. And as not all media use cases are the same, as are not
-> >>> all compute contexts someone somewhere will need to run a series of
-> >>> workloads for power and performance numbers. Ideally that someone would
-> >>> be the entity for which it makes sense to look at all use cases, from
-> >>> server room to client, 3d, media and compute for both. If we could get
-> >>> the capability to run this in some automated fashion, akin to CI, we
-> >>> would even have a chance to keep making good decisions in the future.
-> >>>
-> >>> Or we do some one off testing for this instance, but we still need a
-> >>> range of workloads and parts to do it properly..
-> >>>
-> >>>>> I also think the "arms race" scenario isn't really as much of a
-> >>>>> problem as you think.  There aren't _that_ many things using the GPU
-> >>>>> at the same time (compared to # of things using CPU).   And a lot of
-> >>>>> mobile games throttle framerate to avoid draining your battery too
-> >>>>> quickly (after all, if your battery is dead you can't keep buying loot
-> >>>>> boxes or whatever).
-> >>>>
-> >>>> Very good point.
-> >>>
-> >>> On this one I still disagree from the point of view that it does not
-> >>> make it good uapi if we allow everyone to select themselves for priority
-> >>> handling (one flavour or the other).
-> >>
-> >> There is plenty of precedent for userspace giving hints to the kernel
-> >> about scheduling and freq mgmt.  Like schedutil uclamp stuff.
-> >> Although I think that is all based on cgroups.
-> >
-> > I knew about SCHED_DEADLINE and that it requires CAP_SYS_NICE, but I did
-> > not know about uclamp. Quick experiment with uclampset suggests it
-> > indeed does not require elevated privilege. If that is indeed so, it is
-> > good enough for me as a precedent.
-> >
-> > It appears to work using sched_setscheduler so maybe could define
-> > something similar in i915/xe, per context or per client, not sure.
-> >
-> > Maybe it would start as a primitive implementation but the uapi would
-> > not preclude making it smart(er) afterwards. Or passing along to GuC to
-> > do it's thing with it.
->
-> Hmmm having said that, how would we fix clvk performance using that? We
-> would either need the library to do a new step when creating contexts,
-> or allow external control so outside entity can do it. And then the
-> question is based on what it decides to do it? Is it possible to know
-> which, for instance, Chrome tab will be (or is) using clvk so that tab
-> management code does it?
+It seems that commit bc3c5e0809ae ("drm/i915/sseu: Don't try to store EU
+mask internally in UAPI format") exposed a potential out-of-bounds
+access, reported by UBSAN as following on a laptop with a gen 11 i915
+card:
 
-I am not sure.. the clvk usage is, I think, not actually in chrome
-itself, but something camera related?
+  UBSAN: array-index-out-of-bounds in drivers/gpu/drm/i915/gt/intel_sseu.c:65:27
+  index 6 is out of range for type 'u16 [6]'
+  CPU: 2 PID: 165 Comm: systemd-udevd Not tainted 6.2.0-9-generic #9-Ubuntu
+  Hardware name: Dell Inc. XPS 13 9300/077Y9N, BIOS 1.11.0 03/22/2022
+  Call Trace:
+   <TASK>
+   show_stack+0x4e/0x61
+   dump_stack_lvl+0x4a/0x6f
+   dump_stack+0x10/0x18
+   ubsan_epilogue+0x9/0x3a
+   __ubsan_handle_out_of_bounds.cold+0x42/0x47
+   gen11_compute_sseu_info+0x121/0x130 [i915]
+   intel_sseu_info_init+0x15d/0x2b0 [i915]
+   intel_gt_init_mmio+0x23/0x40 [i915]
+   i915_driver_mmio_probe+0x129/0x400 [i915]
+   ? intel_gt_probe_all+0x91/0x2e0 [i915]
+   i915_driver_probe+0xe1/0x3f0 [i915]
+   ? drm_privacy_screen_get+0x16d/0x190 [drm]
+   ? acpi_dev_found+0x64/0x80
+   i915_pci_probe+0xac/0x1b0 [i915]
+   ...
 
-Presumably we could build some cgroup knobs to control how the driver
-reacts to the "deadline" hints (ie. ignore them completely, or impose
-some upper limit on how much freq boost will be applied, etc).  I
-think this sort of control of how the driver responds to hints
-probably fits best with cgroups, as that is how we are already
-implementing similar tuning for cpufreq/sched.  (Ie. foreground app or
-tab gets moved to a different cgroup.)  But admittedly I haven't
-looked too closely at how cgroups work on the kernel side.
+According to the definition of sseu_dev_info, eu_mask->hsw is limited to
+a maximum of GEN_MAX_SS_PER_HSW_SLICE (6) sub-slices, but
+gen11_sseu_info_init() can potentially set 8 sub-slices, in the
+!IS_JSL_EHL(gt->i915) case.
 
-BR,
--R
+Fix this by reserving up to 8 slots for max_subslices in the eu_mask
+struct.
 
-> Regards,
->
-> Tvrtko
->
-> >> In the fence/syncobj case, I think we need per-wait hints.. because
-> >> for a single process the driver will be doing both housekeeping waits
-> >> and potentially urgent waits.  There may also be some room for some
-> >> cgroup or similar knobs to control things like what max priority an
-> >> app can ask for, and whether or how aggressively the kernel responds
-> >> to the "deadline" hints.  So as far as "arms race", I don't think I'd
-> >
-> > Per wait hints are okay I guess even with "I am important" in their name
-> > if sched_setscheduler allows raising uclamp.min just like that. In which
-> > case cgroup limits to mimick cpu uclamp also make sense.
-> >
-> >> change anything about my "fence deadline" proposal.. but that it might
-> >> just be one piece of the overall puzzle.
-> >
-> > That SCHED_DEADLINE requires CAP_SYS_NICE does not worry you?
-> >
-> > Regards,
-> >
-> > Tvrtko
+Reported-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Signed-off-by: Andrea Righi <andrea.righi@canonical.com>
+---
+ drivers/gpu/drm/i915/gt/intel_sseu.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
+index aa87d3832d60..d7e8c374f153 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.h
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
+@@ -27,7 +27,7 @@ struct drm_printer;
+  * is only relevant to pre-Xe_HP platforms (Xe_HP and beyond use the
+  * I915_MAX_SS_FUSE_BITS value below).
+  */
+-#define GEN_MAX_SS_PER_HSW_SLICE	6
++#define GEN_MAX_SS_PER_HSW_SLICE	8
+ 
+ /*
+  * Maximum number of 32-bit registers used by hardware to express the
+-- 
+2.38.1
+
