@@ -1,53 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D496469D06F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:17:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10B669D0A7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:32:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B66DD10E27B;
-	Mon, 20 Feb 2023 15:17:41 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6191A10E27B
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 15:17:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676906259; x=1708442259;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=jVBugVXBj66J/CflYt3S6bgWPNBUilTakFbKpvUBzQk=;
- b=CybbJBjVHEfFgNIun1vwSl+0on97plsxz/GGdPM8/K6x9kqFlIH2qUBa
- z46UrE4Ia0ZIuvEOIp/34nTjyp1YzV01eJYmj20ajbcL2XHuf2mekqVvc
- gbdkAXLcZPSYh4CYqEvjS0B/UwSI0wNSSHux+Phgj0uNKp927Aa+o+CpY
- aUV5sFEY6a05wk8nyGVxgCdYCdzOWLWnA0kw6lH93OkLdxkWcIZUnxVZq
- rcq/du1yYOGx52gxzOSBJpYfXiave9sA08y2XVcVHKV+5xOqTheuQHoCG
- Ys7zdJn2TRIuWt6l8iGmy/Fwopfm0yr+nzQMBQWxZa5b8ystH0MOyrxJi w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="418642985"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="418642985"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 07:17:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="703730721"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="703730721"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 20 Feb 2023 07:17:35 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Feb 2023 17:17:34 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Feb 2023 17:17:31 +0200
-Message-Id: <20230220151731.6852-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
-References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C56CF10E223;
+	Mon, 20 Feb 2023 15:31:58 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
+ [IPv6:2001:4860:4864:20::32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5612410E223;
+ Mon, 20 Feb 2023 15:31:57 +0000 (UTC)
+Received: by mail-oa1-x32.google.com with SMTP id
+ 586e51a60fabf-1720433ba75so2000977fac.5; 
+ Mon, 20 Feb 2023 07:31:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=EnqvKbjcXR+shgyFqAn4kLOdtmvRNWegMnSy5waDRGg=;
+ b=UoFmKZzcmBX+MDVNTTEYkbv8JaCbBojVOgJhy4HB9tIUcyUIHFpju4oXzuy+3GaTIT
+ zm6n5GJPaAUsUnpqPEYz2nrvuKBMoR+aYPFdfdbyxQadGjW8IK70RwzGnlDVqww6nQN1
+ K47TKQSb/gCIGnfb7WulWM04aKdeo28mpEbeRz+/YAfw390WYZ7t8ZopReSpncn2qSC1
+ Lg9Qg+KpEgTiA1U8LjVtbvbnMDmRKCKhVu7YOAzQd6DH1Bd6YEX4QLKN3n/JWj2cNSRI
+ L60Dg1JVA2B5puf9W/lNqZBCuk+Fw0ymeZplAyuXe7+N4JY8sk7t/NFn0pC2WArk5bIi
+ 3hjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=EnqvKbjcXR+shgyFqAn4kLOdtmvRNWegMnSy5waDRGg=;
+ b=enMlve15BGi32whKrmO3SQiJ+9JVtPgnDc82GdWo/lWUTb7ue0j/+tuDdkmflXgdli
+ ApG2MnKF2vkqHj8vFqa5cIT8u0kNw2TbTe7epbIOfc56GDzbFnb3hQE42Ce7VFuoBuEV
+ RI607LbBIvT+XuaVMcCTDQmTKNbFa/uq1uDFuf1gt23Udl40qBII4qafiYCdo1S5x2gm
+ hnCpgiptlNWUzIUG12Qw9QNLdhVLQ72rkSQ1K6pebt5AMEYRR9SAqB3cI7zYyO9tOBKT
+ Vmyg4iEJkLQpvBGcDDqYO+h32994+JM+GFimG0KfjB2rZt9xrrc6CLshS5tnNQ209Inn
+ or4A==
+X-Gm-Message-State: AO0yUKUlQ5BvIpEpxXpNtVbN3jo13//dYyPuOjn8bh4DJXNvNK8/Io6m
+ ZOUrmRlOi6praSDJ9lZrR3NYqhW/azMr6bfRb18=
+X-Google-Smtp-Source: AK7set+7FnMD2t07MuqDGy/KTxF9WiYX/rSVCcOrL9sKyQtn1QeIDHJ1RcRQxtfrjpj6ga9vEBrqF6S7WEvxyr5Oasc=
+X-Received: by 2002:a05:6870:32d4:b0:16e:5e5a:49da with SMTP id
+ r20-20020a05687032d400b0016e5e5a49damr1175495oac.58.1676907116217; Mon, 20
+ Feb 2023 07:31:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Drop useless intel_dp_has_audio()
- argument
+References: <20230216105921.624960-1-tvrtko.ursulin@linux.intel.com>
+ <20230216105921.624960-7-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGuXNCXL5cNy4nS8sd6iVj7E62C93o+HZLVkeqpOcWGdKw@mail.gmail.com>
+ <d5914234-4f9d-4495-46b8-29322e758122@linux.intel.com>
+In-Reply-To: <d5914234-4f9d-4495-46b8-29322e758122@linux.intel.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Mon, 20 Feb 2023 07:31:45 -0800
+Message-ID: <CAF6AEGsNLFoO1ZGE5gTFUi52kg4WXkZEi8GciSe=pqDSALOzvg@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [RFC 6/9] drm/syncobj: Mark syncobj waits as
+ external waiters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +69,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Feb 20, 2023 at 5:19 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 18/02/2023 19:56, Rob Clark wrote:
+> > On Thu, Feb 16, 2023 at 2:59 AM Tvrtko Ursulin
+> > <tvrtko.ursulin@linux.intel.com> wrote:
+> >>
+> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>
+> >> Use the previously added dma-fence tracking of explicit waiters.
+> >>
+> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/drm_syncobj.c | 6 +++---
+> >>   1 file changed, 3 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
+> >> index 0c2be8360525..776b90774a64 100644
+> >> --- a/drivers/gpu/drm/drm_syncobj.c
+> >> +++ b/drivers/gpu/drm/drm_syncobj.c
+> >> @@ -1065,9 +1065,9 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
+> >>                          if ((flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE) ||
+> >>                              dma_fence_is_signaled(fence) ||
+> >>                              (!entries[i].fence_cb.func &&
+> >> -                            dma_fence_add_callback(fence,
+> >> -                                                   &entries[i].fence_cb,
+> >> -                                                   syncobj_wait_fence_func))) {
+> >> +                            dma_fence_add_wait_callback(fence,
+> >> +                                                        &entries[i].fence_cb,
+> >> +                                                        syncobj_wait_fence_func))) {
+> >
+> > I think this isn't really what you want if count > 1, because you
+> > wouldn't be notifying the fence signaler of fence n+1 until the wait
+> > on fence n completed
+>
+> Are you sure? After some staring all I can see is that all callbacks are
+> added before the first sleep.
 
-intel_dp_has_audio() has no need for the crtc_state, so don't
-pass it in.
+Ahh, yes, you are right
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b77bd4565864..d25a93258f8b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2003,7 +2003,6 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- }
- 
- static bool intel_dp_has_audio(struct intel_encoder *encoder,
--			       const struct intel_crtc_state *crtc_state,
- 			       const struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-@@ -2069,7 +2068,7 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 	struct drm_connector *connector = conn_state->connector;
- 
- 	pipe_config->sdp_split_enable =
--		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
-+		intel_dp_has_audio(encoder, conn_state) &&
- 		intel_dp_is_uhbr(pipe_config);
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
-@@ -2093,7 +2092,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->has_pch_encoder = true;
- 
- 	pipe_config->has_audio =
--		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
-+		intel_dp_has_audio(encoder, conn_state) &&
- 		intel_audio_compute_config(encoder, pipe_config, conn_state);
- 
- 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
--- 
-2.39.2
-
+BR,
+-R
