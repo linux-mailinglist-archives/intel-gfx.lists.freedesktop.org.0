@@ -1,50 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0B269D1A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:47:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73FD569D1B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A89010E28E;
-	Mon, 20 Feb 2023 16:47:23 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC1AC10E6FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 16:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EAD710E19F;
+	Mon, 20 Feb 2023 16:51:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D507810E153;
+ Mon, 20 Feb 2023 16:51:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676911641; x=1708447641;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Gx2YPnQmRkza64VzzBhvJR8HHmurR20EFBp/F/TTqvU=;
- b=jaWbMBW4XYBIB+WJPpDd43uC6X5CS1B5gVxhDK5u+piD8loR5Jpk15N0
- dQ7tD97beC01bdEH4ICzu3v/Iy6eU4VjZCYlk9RaBLmiDwzrnQ55MiPfI
- Drd+UlHl4w9e0GBTKBT180tig6aUe5v6U4LjTQ6PeLDwZAk68tgcvh+Ta
- AqHNJFg96TIMjle7c+ie+RcFyyGlu2OJmJvU/KjYX4fCO3El2eNJgrhE3
- AYEOCPVXZwuvePOENw3kfxSvSwjjJ+9MhtfZfCdHXrwkiPInfCFqsLC5X
- r/gUcYzaXqP/8MdC04XWqbKrtiiz8E9qPf3VXxUrT8qi9d/xExGp1VyIv g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="332446845"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="332446845"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 08:47:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="735183626"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="735183626"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga008.fm.intel.com with SMTP; 20 Feb 2023 08:47:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Feb 2023 18:47:18 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Feb 2023 18:47:18 +0200
-Message-Id: <20230220164718.23117-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+ t=1676911906; x=1708447906;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=K7Pn1omNeLpydk+dmmAEc42pEyc9iZcJzBYelGVHnEU=;
+ b=dfDXf31C9wmD/qnj1uE6ZLAJImRMGZ1zXc+TYnse0XtKQWeyC8aU/Jmp
+ SC3mySSxbY7L0nprJ1ZReu9En31Q1GD8Y/11dextwHpMXPmUdMydBEN+C
+ KnfrvY1pRII2zMm3bMf2BUzPEzIIkRibfCmLuTZmB/VNlydbnyNQtpbqq
+ 42c2MISk6uRUbmaxhQMylyDaschUNRVhdowba1TomfovsZQ5TJKKTAKmO
+ g2EWqB5dpjXBLXnG8qaMsO6H4i7iuA8M9JPkxqNizChDa4KEAHC+s6oP/
+ Pp0WYRuqkUK5hG8GIg3Ocl2jYFHKvnvJD4gw74J6kFRjtwpBXj7uxWv9c Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="312813588"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="312813588"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 08:51:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="621209827"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="621209827"
+Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
+ ([10.213.211.126])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 08:51:44 -0800
+Message-ID: <f20cbde9-1c81-e52f-4509-3e771fe4a7fa@linux.intel.com>
+Date: Mon, 20 Feb 2023 16:51:42 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Rob Clark <robdclark@gmail.com>
+References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
+ <Y+5zyeSncSbsXHWG@intel.com>
+ <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
+ <CAF6AEGuN2dv+Lsk3R43oPRA9c8ZoMjzCCKR+L41wNT8Sc3TgsQ@mail.gmail.com>
+ <c0663648-5567-2d7a-43b1-dfa043109051@linux.intel.com>
+ <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
+ <Y+/ndNIu/kYGiVh5@intel.com>
+ <6832ba1a-c6b0-4631-3b4e-bfcd31d8b59c@linux.intel.com>
+ <CAF6AEGsEq7Pyc6PMenPjufLDzw5VFtLPjZwOXim71DN5J5TcJw@mail.gmail.com>
+ <43aff648-df2d-4fa2-356c-b74f5e3a92e7@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <43aff648-df2d-4fa2-356c-b74f5e3a92e7@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Get HDR DPCD refresh timeout from VBT
+Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,95 +71,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Grab the HDR DPCD refresh timeout (time we need to wait after
-writing the sourc OUI before the HDR DPCD registers are ready)
-from the VBT.
+On 20/02/2023 16:44, Tvrtko Ursulin wrote:
+> 
+> On 20/02/2023 15:52, Rob Clark wrote:
+>> On Mon, Feb 20, 2023 at 3:33 AM Tvrtko Ursulin
+>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>
+>>>
+>>> On 17/02/2023 20:45, Rodrigo Vivi wrote:
+> 
+> [snip]
+> 
+>>> Yeah I agree. And as not all media use cases are the same, as are not
+>>> all compute contexts someone somewhere will need to run a series of
+>>> workloads for power and performance numbers. Ideally that someone would
+>>> be the entity for which it makes sense to look at all use cases, from
+>>> server room to client, 3d, media and compute for both. If we could get
+>>> the capability to run this in some automated fashion, akin to CI, we
+>>> would even have a chance to keep making good decisions in the future.
+>>>
+>>> Or we do some one off testing for this instance, but we still need a
+>>> range of workloads and parts to do it properly..
+>>>
+>>>>> I also think the "arms race" scenario isn't really as much of a
+>>>>> problem as you think.  There aren't _that_ many things using the GPU
+>>>>> at the same time (compared to # of things using CPU).   And a lot of
+>>>>> mobile games throttle framerate to avoid draining your battery too
+>>>>> quickly (after all, if your battery is dead you can't keep buying loot
+>>>>> boxes or whatever).
+>>>>
+>>>> Very good point.
+>>>
+>>> On this one I still disagree from the point of view that it does not
+>>> make it good uapi if we allow everyone to select themselves for priority
+>>> handling (one flavour or the other).
+>>
+>> There is plenty of precedent for userspace giving hints to the kernel
+>> about scheduling and freq mgmt.  Like schedutil uclamp stuff.
+>> Although I think that is all based on cgroups.
+> 
+> I knew about SCHED_DEADLINE and that it requires CAP_SYS_NICE, but I did 
+> not know about uclamp. Quick experiment with uclampset suggests it 
+> indeed does not require elevated privilege. If that is indeed so, it is 
+> good enough for me as a precedent.
+> 
+> It appears to work using sched_setscheduler so maybe could define 
+> something similar in i915/xe, per context or per client, not sure.
+> 
+> Maybe it would start as a primitive implementation but the uapi would 
+> not preclude making it smart(er) afterwards. Or passing along to GuC to 
+> do it's thing with it.
 
-Windows doesn't even seem to have any default value for this,
-which is perhaps a bit weird since the VBT value is documented
-as TGL+ and I thought the HDR backlight stuff might already be
-used on earlier platforms. To play it safe I left the old
-hardcoded 30ms default in place. Digging through some internal
-stuff that seems to have been a number given by the vendor for
-one particularly slow TCON. Although I did see 50ms mentioned
-somewhere as well.
+Hmmm having said that, how would we fix clvk performance using that? We 
+would either need the library to do a new step when creating contexts, 
+or allow external control so outside entity can do it. And then the 
+question is based on what it decides to do it? Is it possible to know 
+which, for instance, Chrome tab will be (or is) using clvk so that tab 
+management code does it?
 
-Let's also include the value in the debug print to ease
-debugging, and toss in the customary connector id+name as well.
+Regards,
 
-The TGL Thinkpad T14 I have sets this to 0 btw. So the delay
-is now gone on this machine:
- [CONNECTOR:308:eDP-1] Detected Intel HDR backlight interface version 1
- [CONNECTOR:308:eDP-1] Using Intel proprietary eDP backlight controls
- [CONNECTOR:308:eDP-1] SDR backlight is controlled through PWM
- [CONNECTOR:308:eDP-1] Using native PCH PWM for backlight control (controller=0)
- [CONNECTOR:308:eDP-1] Using AUX HDR interface for backlight control (range 0..496)
- [CONNECTOR:308:eDP-1] Performing OUI wait (0 ms)
+Tvrtko
 
-Cc: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c          | 6 ++++++
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 9 +++++++--
- 3 files changed, 14 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index f35ef3675d39..f16887aed56d 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1084,6 +1084,12 @@ parse_lfp_backlight(struct drm_i915_private *i915,
- 		panel->vbt.backlight.min_brightness = entry->min_brightness;
- 	}
- 
-+	if (i915->display.vbt.version >= 239)
-+		panel->vbt.backlight.hdr_dpcd_refresh_timeout =
-+			DIV_ROUND_UP(backlight_data->hdr_dpcd_refresh_timeout[panel_type], 100);
-+	else
-+		panel->vbt.backlight.hdr_dpcd_refresh_timeout = 30;
-+
- 	drm_dbg_kms(&i915->drm,
- 		    "VBT backlight PWM modulation frequency %u Hz, "
- 		    "active %s, min brightness %u, level %u, controller %u\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 748b0cd411fa..76f47ba3be45 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -326,6 +326,7 @@ struct intel_vbt_panel_data {
- 	struct {
- 		u16 pwm_freq_hz;
- 		u16 brightness_precision_bits;
-+		u16 hdr_dpcd_refresh_timeout;
- 		bool present;
- 		bool active_low_pwm;
- 		u8 min_brightness;	/* min_brightness/255 of max */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b77bd4565864..3734e7567230 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2293,10 +2293,15 @@ intel_edp_init_source_oui(struct intel_dp *intel_dp, bool careful)
- 
- void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
- {
-+	struct intel_connector *connector = intel_dp->attached_connector;
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
--	drm_dbg_kms(&i915->drm, "Performing OUI wait\n");
--	wait_remaining_ms_from_jiffies(intel_dp->last_oui_write, 30);
-+	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Performing OUI wait (%u ms)\n",
-+		    connector->base.base.id, connector->base.name,
-+		    connector->panel.vbt.backlight.hdr_dpcd_refresh_timeout);
-+
-+	wait_remaining_ms_from_jiffies(intel_dp->last_oui_write,
-+				       connector->panel.vbt.backlight.hdr_dpcd_refresh_timeout);
- }
- 
- /* If the device supports it, try to set the power state appropriately */
--- 
-2.39.2
-
+>> In the fence/syncobj case, I think we need per-wait hints.. because
+>> for a single process the driver will be doing both housekeeping waits
+>> and potentially urgent waits.  There may also be some room for some
+>> cgroup or similar knobs to control things like what max priority an
+>> app can ask for, and whether or how aggressively the kernel responds
+>> to the "deadline" hints.  So as far as "arms race", I don't think I'd
+> 
+> Per wait hints are okay I guess even with "I am important" in their name 
+> if sched_setscheduler allows raising uclamp.min just like that. In which 
+> case cgroup limits to mimick cpu uclamp also make sense.
+> 
+>> change anything about my "fence deadline" proposal.. but that it might
+>> just be one piece of the overall puzzle.
+> 
+> That SCHED_DEADLINE requires CAP_SYS_NICE does not worry you?
+> 
+> Regards,
+> 
+> Tvrtko
