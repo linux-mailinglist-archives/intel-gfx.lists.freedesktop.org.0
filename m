@@ -1,55 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC04069D425
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 20:38:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48AEA69D4A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 21:19:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D71510E2A0;
-	Mon, 20 Feb 2023 19:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC8210E78D;
+	Mon, 20 Feb 2023 20:19:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC5DF10E2A0
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 19:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676921879; x=1708457879;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=63rPAxVm+xytg/m97WBHtwyuJWy6wSEAPFWe5gNVDdg=;
- b=aOwY0Tq3CaE50xYxWmRDDuBdJResnX4iwuhuVRx2fEkPFKvn7mAYjb9O
- Y//Ig4TvtrQCRobbhdiSXnNIDwnJywthTZFJcYQ02pr7Adt4SyU/alAFd
- d2liPJCH4rtceeSFo99/pDqDYxJaoY46IIsw1WpVdF1xAC0tlD89kvXEZ
- oCJNQ3ios8SyPECrbf3hXTYDZCSaV+8kbSHE2Qp2xg8wGP0FVbdi+2Ncp
- FjdJQwa4Mb3VrGyDmvYLER38Wb3H16crx70w5VY/bw5OCDgQvEVJoFah3
- Qg8PgaO9PaF8r5PUV6euoB5RZail23/oIpkczqDoMmnEpqblDoTGjW3vb A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="331140959"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="331140959"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 11:37:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="673449073"
-X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="673449073"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga007.fm.intel.com with SMTP; 20 Feb 2023 11:37:56 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Feb 2023 21:37:55 +0200
-Date: Mon, 20 Feb 2023 21:37:55 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <Y/PMEw17pIR+WSXM@intel.com>
-References: <20230220122401.3495507-1-ankit.k.nautiyal@intel.com>
- <20230220122401.3495507-2-ankit.k.nautiyal@intel.com>
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
+ [IPv6:2607:f8b0:4864:20::102e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7821E10E78A;
+ Mon, 20 Feb 2023 20:19:20 +0000 (UTC)
+Received: by mail-pj1-x102e.google.com with SMTP id
+ na9-20020a17090b4c0900b0023058bbd7b2so2483318pjb.0; 
+ Mon, 20 Feb 2023 12:19:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=c3iZVIEmRSqrThUkMgFnNzdxbCW0+gwLuKMdSEBTZdk=;
+ b=XudzNzCm0FKe2lIo1qRVr5sLuN77pLHRaJAkpk5nN+kAMt5yxOrww7exfQ1KGHBxvw
+ Qfq44H7k2ZhIY4RKNIWr1Ig2n9JnpB/KLPeADSuGGggoSD99Kp/QDnvcqkJPleFaVd3t
+ V5GQuD1elokWuQM+NpoVHXi17Jc5JatN7pvdSJmtv2906bbPCITMy01jb/RVSAhrH1s2
+ WYEGJpXDRWTfffqIQb7PFW5bDjSIhaozxo5JpWKIJfrha99mGl0ggB4dyMk8L3V1Lt2n
+ csH0zYdlwff/KHZIEDaTvd0GdzhjJRBcfCQ8rbqF0wRmYRf0o3kXSpsmxnUkZqkJo9iR
+ 5PGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=c3iZVIEmRSqrThUkMgFnNzdxbCW0+gwLuKMdSEBTZdk=;
+ b=QItr/6pCseGStBESenytFlQ7uX66M24Ydq7y+O1c9bfC1V71faKYmgx0+vZRrnAfsi
+ UI6akgWAf1W49+P7ty0a0uSC21iMVbeqNSxCgTbM9vf1qX6z3L6umBZ+UXJ1Pr2Xae0B
+ 67m6wEMKOpZyGBsivdLxkFPD9THB+tw48FoZTKpIyaNn4EdT28CQshQpuw2IgCV9eE6k
+ 5WBgvjMXwkV5ECXykAxeG9/gAb+uPBjy8qkkio3GCvTJlV1Ez6E1oI3e00RyHiRiIMGk
+ XcOTaoFGHx6E4EKLLy98NHUubsRvMZ7lzS4Arssr93KbcYDw4PNkj/GZg4jO5lULW/Sz
+ +WjA==
+X-Gm-Message-State: AO0yUKX38tRsXRHwtUeccisGH/wCjis6um8V8s3WtMXXfGTmfSAFk5L5
+ 65j71ag1o6J1+AH0sD6gH8sGf/1VPTA=
+X-Google-Smtp-Source: AK7set98IO8l+gABanedVbXmDYUvdtim10BgWM5gyRskazHJbLVCeykOeOFx9FaeUCzP6cQ+Vn5YOQ==
+X-Received: by 2002:a17:90b:4a43:b0:234:10c:a0d0 with SMTP id
+ lb3-20020a17090b4a4300b00234010ca0d0mr2998947pjb.6.1676924359710; 
+ Mon, 20 Feb 2023 12:19:19 -0800 (PST)
+Received: from localhost (c-73-67-135-195.hsd1.or.comcast.net. [73.67.135.195])
+ by smtp.gmail.com with ESMTPSA id
+ o14-20020a17090ad24e00b0023087e8adf8sm1839664pjw.21.2023.02.20.12.19.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Feb 2023 12:19:19 -0800 (PST)
+From: Rob Clark <robdclark@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 20 Feb 2023 12:18:47 -0800
+Message-Id: <20230220201916.1822214-1-robdclark@gmail.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230220122401.3495507-2-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v9 01/14] drm/i915/display: Add new member
- to configure PCON color conversion
+Subject: [Intel-gfx] [PATCH v5 00/14] dma-fence: Deadline awareness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,355 +70,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rob Clark <robdclark@chromium.org>, Gustavo Padovan <gustavo@padovan.org>,
+ Simon Ser <contact@emersion.fr>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
+ open list <linux-kernel@vger.kernel.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 05:53:48PM +0530, Ankit Nautiyal wrote:
-> The decision to use DFP output format conversion capabilities should be
-> during compute_config phase.
-> 
-> This patch adds new member to crtc_state to represent the final
-> output_format to the sink. In case of a DFP this can be different than
-> the output_format, as per the format conversion done via the PCON.
-> 
-> This will help to store only the format conversion capabilities of the
-> DP device in intel_dp->dfp, and use crtc_state to compute and store the
-> configuration for color/format conversion for a given mode.
-> 
-> v2: modified the new member to crtc_state to represent the final
-> output_format that eaches the sink, after possible conversion by
-> PCON kind of devices. (Ville)
-> 
-> v3: Addressed comments from Ville:
-> -Added comments to clarify difference between sink_format and
-> output_format.
-> -Corrected the order of setting sink_format and output_format.
-> -Added readout for sink_format in get_pipe_config hooks.
-> 
-> v4: Set sink_format for intel_sdvo too. (Ville)
-> 
-> v5: Rebased.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> (v3)
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
->  drivers/gpu/drm/i915/display/intel_crt.c      |  1 +
->  .../drm/i915/display/intel_crtc_state_dump.c  |  5 +--
->  drivers/gpu/drm/i915/display/intel_display.c  |  5 +++
->  .../drm/i915/display/intel_display_types.h    | 11 +++++-
->  drivers/gpu/drm/i915/display/intel_dp.c       | 34 +++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  1 +
->  drivers/gpu/drm/i915/display/intel_dvo.c      |  1 +
->  drivers/gpu/drm/i915/display/intel_hdmi.c     | 24 +++++++------
->  drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  1 +
->  drivers/gpu/drm/i915/display/intel_tv.c       |  1 +
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |  1 +
->  13 files changed, 62 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index def3aff4d717..2d17b2a7e1d5 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1575,6 +1575,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
->  		&pipe_config->hw.adjusted_mode;
->  	int ret;
->  
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> index 8f2ebead0826..e925e21d87fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -393,6 +393,7 @@ static int intel_crt_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> index 766633566fd6..185cd1971aa5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> @@ -178,10 +178,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
->  
->  	snprintf_output_types(buf, sizeof(buf), pipe_config->output_types);
->  	drm_dbg_kms(&i915->drm,
-> -		    "active: %s, output_types: %s (0x%x), output format: %s\n",
-> +		    "active: %s, output_types: %s (0x%x), output format: %s, sink format: %s\n",
->  		    str_yes_no(pipe_config->hw.active),
->  		    buf, pipe_config->output_types,
-> -		    output_formats(pipe_config->output_format));
-> +		    output_formats(pipe_config->output_format),
-> +		    output_formats(pipe_config->sink_format));
->  
->  	drm_dbg_kms(&i915->drm,
->  		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 0bb429d3e8d7..cc44f0629f2c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3103,6 +3103,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
->  		return false;
->  
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> +	pipe_config->sink_format = pipe_config->output_format;
->  	pipe_config->cpu_transcoder = (enum transcoder) crtc->pipe;
->  	pipe_config->shared_dpll = NULL;
->  
-> @@ -3562,6 +3563,8 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
->  		break;
->  	}
->  
-> +	pipe_config->sink_format = pipe_config->output_format;
-> +
->  	pipe_config->gamma_mode = REG_FIELD_GET(TRANSCONF_GAMMA_MODE_MASK_ILK, tmp);
->  
->  	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
-> @@ -3960,6 +3963,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->  			bdw_get_pipemisc_output_format(crtc);
->  	}
->  
-> +	pipe_config->sink_format = pipe_config->output_format;
-> +
->  	pipe_config->gamma_mode = intel_de_read(dev_priv,
->  						GAMMA_MODE(crtc->pipe));
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 748b0cd411fa..c28835d9db6f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1273,9 +1273,18 @@ struct intel_crtc_state {
->  	/* HDMI High TMDS char rate ratio */
->  	bool hdmi_high_tmds_clock_ratio;
->  
-> -	/* Output format RGB/YCBCR etc */
-> +	/*
-> +	 * Output format RGB/YCBCR etc., that is coming out
-> +	 * at the end of the pipe.
-> +	 */
->  	enum intel_output_format output_format;
->  
-> +	/*
-> +	 * Sink output format RGB/YCBCR etc., that is going
-> +	 * into the sink.
-> +	 */
-> +	enum intel_output_format sink_format;
-> +
->  	/* enable pipe gamma? */
->  	bool gamma_enable;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index b77bd4565864..81fbef30c469 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -806,11 +806,12 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
->  
->  static enum intel_output_format
->  intel_dp_output_format(struct intel_connector *connector,
-> -		       bool ycbcr_420_output)
-> +		       enum intel_output_format sink_format)
->  {
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->  
-> -	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
-> +	if (!connector->base.ycbcr_420_allowed ||
-> +	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
->  		return INTEL_OUTPUT_FORMAT_RGB;
->  
->  	if (intel_dp->dfp.rgb_to_ycbcr &&
-> @@ -849,8 +850,14 @@ intel_dp_mode_min_output_bpp(struct intel_connector *connector,
->  			     const struct drm_display_mode *mode)
->  {
->  	const struct drm_display_info *info = &connector->base.display_info;
-> -	enum intel_output_format output_format =
-> -		intel_dp_output_format(connector, drm_mode_is_420_only(info, mode));
-> +	enum intel_output_format output_format, sink_format;
-> +
-> +	if (drm_mode_is_420_only(info, mode))
-> +		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> +	else
-> +		sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> +
-> +	output_format = intel_dp_output_format(connector, sink_format);
->  
->  	return intel_dp_output_bpp(output_format, intel_dp_min_bpp(output_format));
->  }
-> @@ -2036,23 +2043,28 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
->  
->  	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
->  
-> -	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
-> -
-> -	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
-> +	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
->  		drm_dbg_kms(&i915->drm,
->  			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
-> -		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> +	} else if (ycbcr_420_only) {
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> +	} else {
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	}
->  
-> +	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
-> +
->  	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->  					   respect_downstream_limits);
->  	if (ret) {
-> -		if (intel_dp_is_ycbcr420(intel_dp, crtc_state) ||
-> -		    !connector->base.ycbcr_420_allowed ||
-> +		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
->  		    !drm_mode_is_420_also(info, adjusted_mode))
+From: Rob Clark <robdclark@chromium.org>
 
-still looks broken to me.
+This series adds a deadline hint to fences, so realtime deadlines
+such as vblank can be communicated to the fence signaller for power/
+frequency management decisions.
 
->  			return ret;
->  
-> -		crtc_state->output_format = intel_dp_output_format(connector, true);
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> +		crtc_state->output_format = intel_dp_output_format(connector,
-> +								   crtc_state->sink_format);
->  		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->  						   respect_downstream_limits);
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index de856f4375fb..054b179d0b6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -284,6 +284,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->has_pch_encoder = false;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-> index eb2dcd866cc8..9884678743b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -271,6 +271,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index c7e9e1fbed37..c0ae618360c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2171,13 +2171,13 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
->  
->  static enum intel_output_format
->  intel_hdmi_output_format(const struct intel_crtc_state *crtc_state,
-> -			 struct intel_connector *connector,
-> -			 bool ycbcr_420_output)
-> +			 struct intel_connector *connector)
->  {
->  	if (!crtc_state->has_hdmi_sink)
->  		return INTEL_OUTPUT_FORMAT_RGB;
->  
-> -	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
-> +	if (connector->base.ycbcr_420_allowed &&
-> +	    crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
->  		return INTEL_OUTPUT_FORMAT_YCBCR420;
->  	else
->  		return INTEL_OUTPUT_FORMAT_RGB;
-> @@ -2195,23 +2195,25 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
->  	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
->  	int ret;
->  
-> -	crtc_state->output_format =
-> -		intel_hdmi_output_format(crtc_state, connector, ycbcr_420_only);
-> -
-> -	if (ycbcr_420_only && !intel_hdmi_is_ycbcr420(crtc_state)) {
-> +	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
->  		drm_dbg_kms(&i915->drm,
->  			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
-> -		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> +	} else if (ycbcr_420_only) {
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> +	} else {
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	}
->  
-> +	crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector);
->  	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
->  	if (ret) {
-> -		if (intel_hdmi_is_ycbcr420(crtc_state) ||
-> -		    !connector->base.ycbcr_420_allowed ||
-> +		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
->  		    !drm_mode_is_420_also(info, adjusted_mode))
->  			return ret;
->  
-> -		crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector, true);
-> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> +		crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector);
->  		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index a504b3a7fbd5..a7783da37dfd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -436,6 +436,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
->  		crtc_state->pipe_bpp = lvds_bpp;
->  	}
->  
-> +	crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index e12ba458636c..34ee9dd82a78 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1351,6 +1351,7 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
->  
->  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
->  	pipe_config->pipe_bpp = 8*3;
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
-> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-> index 3b5ff84dc615..6f7ac225293e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tv.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
-> @@ -1204,6 +1204,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	drm_dbg_kms(&dev_priv->drm, "forcing bpc to 8 for TV\n");
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index 8d2e6e151ba0..82c30feb7a91 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -280,6 +280,7 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
->  	int ret;
->  
->  	drm_dbg_kms(&dev_priv->drm, "\n");
-> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> -- 
-> 2.25.1
+This is partially inspired by a trick i915 does, but implemented
+via dma-fence for a couple of reasons:
+
+1) To continue to be able to use the atomic helpers
+2) To support cases where display and gpu are different drivers
+
+This iteration adds a dma-fence ioctl to set a deadline (both to
+support igt-tests, and compositors which delay decisions about which
+client buffer to display), and a sw_sync ioctl to read back the
+deadline.  IGT tests utilizing these can be found at:
+
+  https://gitlab.freedesktop.org/robclark/igt-gpu-tools/-/commits/fence-deadline
+
+
+v1: https://patchwork.freedesktop.org/series/93035/
+v2: Move filtering out of later deadlines to fence implementation
+    to avoid increasing the size of dma_fence
+v3: Add support in fence-array and fence-chain; Add some uabi to
+    support igt tests and userspace compositors.
+v4: Rebase, address various comments, and add syncobj deadline
+    support, and sync_file EPOLLPRI based on experience with perf/
+    freq issues with clvk compute workloads on i915 (anv)
+v5: Clarify that this is a hint as opposed to a more hard deadline
+    guarantee, switch to using u64 ns values in UABI (still absolute
+    CLOCK_MONOTONIC values), drop syncobj related cap and driver
+    feature flag in favor of allowing count_handles==0 for probing
+    kernel support.
+
+Rob Clark (14):
+  dma-buf/dma-fence: Add deadline awareness
+  dma-buf/fence-array: Add fence deadline support
+  dma-buf/fence-chain: Add fence deadline support
+  dma-buf/dma-resv: Add a way to set fence deadline
+  dma-buf/sync_file: Add SET_DEADLINE ioctl
+  dma-buf/sync_file: Support (E)POLLPRI
+  dma-buf/sw_sync: Add fence deadline support
+  drm/scheduler: Add fence deadline support
+  drm/syncobj: Add deadline support for syncobj waits
+  drm/vblank: Add helper to get next vblank time
+  drm/atomic-helper: Set fence deadline for vblank
+  drm/msm: Add deadline based boost support
+  drm/msm: Add wait-boost support
+  drm/i915: Add deadline based boost support
+
+ drivers/dma-buf/dma-fence-array.c       | 11 ++++
+ drivers/dma-buf/dma-fence-chain.c       | 13 +++++
+ drivers/dma-buf/dma-fence.c             | 21 +++++++
+ drivers/dma-buf/dma-resv.c              | 22 ++++++++
+ drivers/dma-buf/sw_sync.c               | 58 +++++++++++++++++++
+ drivers/dma-buf/sync_debug.h            |  2 +
+ drivers/dma-buf/sync_file.c             | 27 +++++++++
+ drivers/gpu/drm/drm_atomic_helper.c     | 36 ++++++++++++
+ drivers/gpu/drm/drm_syncobj.c           | 59 +++++++++++++++-----
+ drivers/gpu/drm/drm_vblank.c            | 32 +++++++++++
+ drivers/gpu/drm/i915/i915_request.c     | 20 +++++++
+ drivers/gpu/drm/msm/msm_drv.c           | 12 ++--
+ drivers/gpu/drm/msm/msm_fence.c         | 74 +++++++++++++++++++++++++
+ drivers/gpu/drm/msm/msm_fence.h         | 20 +++++++
+ drivers/gpu/drm/msm/msm_gem.c           |  5 ++
+ drivers/gpu/drm/scheduler/sched_fence.c | 46 +++++++++++++++
+ drivers/gpu/drm/scheduler/sched_main.c  |  2 +-
+ include/drm/drm_vblank.h                |  1 +
+ include/drm/gpu_scheduler.h             |  8 +++
+ include/linux/dma-fence.h               | 20 +++++++
+ include/linux/dma-resv.h                |  2 +
+ include/uapi/drm/drm.h                  |  5 ++
+ include/uapi/drm/msm_drm.h              | 14 ++++-
+ include/uapi/linux/sync_file.h          | 23 ++++++++
+ 24 files changed, 513 insertions(+), 20 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.39.1
+
