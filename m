@@ -1,60 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A57A69CABE
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 13:22:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E4C69CAE2
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 13:26:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA8BF10E115;
-	Mon, 20 Feb 2023 12:22:14 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 583C810E0E1;
- Mon, 20 Feb 2023 12:22:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E233810E14A;
+	Mon, 20 Feb 2023 12:26:42 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E74510E14A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 12:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676895733; x=1708431733;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=E6sDOcX1qXRt0QrbN/D4rkV/vYCpY8ybq78T+WYxVUI=;
- b=RS8doES8FjKgnSWJA9kJ1ZRZgE3trRSj7CZogy57Gto0VdICCnM/1+RR
- H7Gdtnm4hqW//fBDdeQ2CG9YKKBeLuM4YXv4/janqDAcNpLBikmEBER1n
- ETb5U8KeTzLBDLKzhmRDvZ0WYP5M/Yzh6Ty1dJtBfz9u0Ut0xSXP/QOfl
- JtSE2SsHTwvoFN28KSsBX9Y6bRDtnRSPN1/nnxiuJCvFhZNkrm+JZLVu+
- PidOfcPZQJsRmbdUvUCjjNCwRGeBIasOsLmcSsCyax/C1NV8s3jQzqfh5
- RjOvhLcNdlUreUbW0VYYipLwNGd7zak2/WxhzIOLMlMCYI9Y/L4Olnhnl Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="359856005"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="359856005"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 04:22:12 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="701652083"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="701652083"
-Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
- ([10.213.211.126])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 04:22:10 -0800
-Message-ID: <9fa6b49f-376b-f9e2-bce7-e58b04628822@linux.intel.com>
-Date: Mon, 20 Feb 2023 12:22:08 +0000
+ t=1676896001; x=1708432001;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rH0lHWe3Yv+uDKlyap8iPe0JZa4Fk9UVcQZXaQtaU4M=;
+ b=UnCQuKjVoBhMYtLjYe7W6m17aCzP9En9ecXyKzuOoZ2d9BfWcfYGzIba
+ Ffb0jwYnqLP3UDzAiqVK72YASGlXJ9aorS1B0y3hXTJ4aVVvA5YYWFpRw
+ vEuwh3ZaXGjURLpvv26q/PkwbI7e3h7J/8XyCdQcDJZ7BF6NpLVOa00bg
+ yr/rjm/ChLcwKreV8uAdNphL4+DKNV7JyLxrfyiU6m/gj5u2WYdm4DT8H
+ vcQQdZPSaA/Ww1tcDoYwLbJGtxDS7lNx/COj9MMbQhgyvwwRBPY2pxU0L
+ rfcIUHzIRi9E/7sXhoL65jeXOplRpCRE7hL3fDq10gfQjutUv6PaLynpg w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="397073402"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="397073402"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 04:26:41 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10626"; a="621142069"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="621142069"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 04:26:39 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Feb 2023 17:53:47 +0530
+Message-Id: <20230220122401.3495507-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
- <Y+5zyeSncSbsXHWG@intel.com>
- <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
- <CAF6AEGuN2dv+Lsk3R43oPRA9c8ZoMjzCCKR+L41wNT8Sc3TgsQ@mail.gmail.com>
- <c0663648-5567-2d7a-43b1-dfa043109051@linux.intel.com>
- <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v9 00/14] Handle BPC for HDMI2.1 PCON without
+ DSC1.2 sink and other fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +56,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This series fixes issues faced when an HDMI2.1 sink that does not
+support DSC is connected via HDMI2.1PCON. It also includes other minor
+HDMI2.1 PCON fixes/refactoring.
 
-On 17/02/2023 17:00, Rob Clark wrote:
-> On Fri, Feb 17, 2023 at 8:03 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
+Patch 1-2 Have minor fixes/cleanups.
+Patch 3-6 Pull the decision making to use DFP conversion capabilities
+for every mode during compute config, instead of having that decision
+during DP initializing phase.
+Patch 7-8 Calculate the max BPC that can be sufficient with either
+RGB or YCbcr420 format for the maximum FRL rate supported.
 
-[snip]
+Rev2: Split the refactoring of DFP RG->YCBCR conversion into smaller
+patches, as suggested by Jani N.
+Also dropped the unnecessary helper for DSC1.2 support for HDMI2.1 DFP.
 
->>> adapted from your patches..  I think the basic idea of deadlines
->>> (which includes "I want it NOW" ;-)) isn't controversial, but the
->>> original idea got caught up in some bikeshed (what about compositors
->>> that wait on fences in userspace to decide which surfaces to update in
->>> the next frame), plus me getting busy and generally not having a good
->>> plan for how to leverage this from VM guests (which is becoming
->>> increasingly important for CrOS).  I think I can build on some ongoing
->>> virtgpu fencing improvement work to solve the latter.  But now that we
->>> have a 2nd use-case for this, it makes sense to respin.
->>
->> Sure, I was looking at the old version already. It is interesting. But
->> also IMO needs quite a bit more work to approach achieving what is
->> implied from the name of the feature. It would need proper deadline
->> based sched job picking, and even then drm sched is mostly just a
->> frontend. So once past runnable status and jobs handed over to backend,
->> without further driver work it probably wouldn't be very effective past
->> very lightly loaded systems.
-> 
-> Yes, but all of that is not part of dma_fence ;-)
+Rev3: As suggested by Ville, added new member sink_format to store the
+final format that the sink will be using, which might be different
+than the output format, and thus might need color/format conversion
+performed by the PCON.
 
-:) Okay.
+Rev4: Fix typo in switch case as, reported by kernel test bot.
 
-Having said that, do we need a step back to think about whether adding 
-deadline to dma-fences is not making them something too much different 
-to what they were? Going from purely synchronisation primitive more 
-towards scheduling paradigms. Just to brainstorm if there will not be 
-any unintended consequences. I should mention this in your RFC thread 
-actually.
+Rev5: Corrected order of setting sink_format and output_format. (Ville)
+Avoided the flag ycbcr420_output and used the sink_format to facilitate
+4:2:2 support at a later stage. (Ville)
 
-> A pretty common challenging usecase is still the single fullscreen
-> game, where scheduling isn't the problem, but landing at an
-> appropriate GPU freq absolutely is.  (UI workloads are perhaps more
-> interesting from a scheduler standpoint, but they generally aren't
-> challenging from a load/freq standpoint.)
+Rev6: Added missing changes for sdvo. (Ville)
+Added check for scaler and DSC constraints with YCbCr420.
 
-Challenging as in picking the right operating point? Might be latency 
-impacted (and so user perceived UI smoothness) due missing waitboost for 
-anything syncobj related. I don't know if anything to measure that 
-exists currently though. Assuming it is measurable then the question 
-would be is it perceivable.
-> Fwiw, the original motivation of the series was to implement something
-> akin to i915 pageflip boosting without having to abandon the atomic
-> helpers.  (And, I guess it would also let i915 preserve that feature
-> if it switched to atomic helpers.. I'm unsure if there are still other
-> things blocking i915's migration.)
+Rev7: Split change to add scaler constraint in separate patch, and rebased.
 
-Question for display folks I guess.
+Rev8: Rebased. Fixed check for mode rate with dsc in modevalid.
+Fixed scaler constraint as per display version.
 
->> Then if we fast forward to a world where schedulers perhaps become fully
->> deadline aware (we even had this for i915 few years back) then the
->> question will be does equating waits with immediate deadlines still
->> works. Maybe not too well because we wouldn't have the ability to
->> distinguish between the "someone is waiting" signal from the otherwise
->> propagated deadlines.
-> 
-> Is there any other way to handle a wait boost than expressing it as an
-> ASAP deadline?
+Rev9: Rebased.
 
-A leading question or just a question? Nothing springs to my mind at the 
-moment.
+Ankit Nautiyal (14):
+  drm/i915/display: Add new member to configure PCON color conversion
+  drm/i915/display: Add new member in intel_dp to store ycbcr420
+    passthrough cap
+  drm/i915/dp: Add Scaler constraint for YCbCr420 output
+  drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state
+    sink_format
+  drm/i915/dp: Compute output format with/without DSC
+  drm/i915/display: Use sink_format instead of ycbcr420_output flag
+  drm/i915/dp: Rearrange check for illegal mode and comments in
+    mode_valid
+  drm/i915/dp: Consider output_format while computing dsc bpp for
+    mode_valid
+  drm/i915/dp: Check if mode can be supported with dsc compressed bpp
+  drm/i915/display: Add helper function to check if sink_format is 420
+  drm/i915/dp: Avoid DSC with output_format YCBCR420
+  drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
+  drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
 
-Regards,
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
+ drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +
+ .../drm/i915/display/intel_display_types.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 535 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp.h       |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  74 +--
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   5 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_tv.c       |   1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
+ 15 files changed, 475 insertions(+), 181 deletions(-)
 
-Tvrtko
+-- 
+2.25.1
+
