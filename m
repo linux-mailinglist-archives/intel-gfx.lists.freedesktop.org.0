@@ -2,55 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F7769CC1B
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 14:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3144669D06E
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:17:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E2C10E0B9;
-	Mon, 20 Feb 2023 13:32:01 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E797A10E0A6;
- Mon, 20 Feb 2023 13:31:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8308010E251;
+	Mon, 20 Feb 2023 15:17:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C89A10E251
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 15:17:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676899920; x=1708435920;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=RkIqKa7lGqKZJgA1CJGMrugUNsG2Lk7ayxv30KTlMxc=;
- b=jiVPlR6o+pimbTAu3p7q0zkkVM4rAReVhcrzUup0NAoje5M5y+3zXOqO
- 1TBlm1ojyUdV1j1K8MMZI6c0+HneW+HuiR4Vaj1flqLJ9Srbs4DAy1WEo
- PzFubQCPyv2wAP3bXQupgTHD7EHDRO0P09331PIR+BFVeCYJJkir+0hCx
- ksRykEm53qCsRd//siYo1tfpThayKAhlGF7AQzPgmqiW0q3z9g+ID2vlH
- ky/tx86uDSWAQf0DWrtaan4vYyAdS9TKiCIRgx/SuAKRz0vJQMimk4W5O
- jAR6/RcTYbWM/m/BVCrEp6SR+jWozMOmiJ14gqNn35dOKwo9r7z7b3njh g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="333761658"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="333761658"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 05:31:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="671311071"
-X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="671311071"
-Received: from mochoamo-mobl.ger.corp.intel.com (HELO [10.213.211.126])
- ([10.213.211.126])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2023 05:31:44 -0800
-Message-ID: <5e3bc68c-efb3-c4b1-386c-36694592c52a@linux.intel.com>
-Date: Mon, 20 Feb 2023 13:31:42 +0000
+ t=1676906259; x=1708442259;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rq6fRIOgX4VoTESKoXlnwOwzeqfMzVqKTFdHCeibgpA=;
+ b=Ws+B44iO/mYhzbfyQ2J52dRaysOKbHHZLNWnm10Xrr1G3Ogh6cd+zvHP
+ 88E8OzaYsVlG3bTuUrKSYgsimYhMh/+F/76OnjDah3A7FSr0xy5eOLSRu
+ bwQtVVctoX0C5Gr66bVgAZJwUq6bTcF1dPWMWDswiwky3DJ8fSlSpTd+S
+ M02qpap6ZA95Q8Yt9WkzGlZvfgVkKdn2eUANqOWpFtxPxbT15NolBGtRS
+ AcfO8jXQ6PZPlkVWrtmJfxdulku1TKhOEwlzZpu7C8kcTiCcA5ZRWLDdC
+ h1hBHYRCPs120GI4XjaJvVD89+QmTyzgW9ZiIF1JBQUTozS2irOUc/nju A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="418642974"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="418642974"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 07:17:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="703730711"
+X-IronPort-AV: E=Sophos;i="5.97,312,1669104000"; d="scan'208";a="703730711"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga001.jf.intel.com with SMTP; 20 Feb 2023 07:17:32 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Feb 2023 17:17:31 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Feb 2023 17:17:30 +0200
+Message-Id: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20230216105921.624960-1-tvrtko.ursulin@linux.intel.com>
- <20230216105921.624960-6-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGsOTOeMMdmpeObGqoB0t89JaVJz0OPGaw5r0-wqQp3_Bw@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGsOTOeMMdmpeObGqoB0t89JaVJz0OPGaw5r0-wqQp3_Bw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 5/9] dma-fence: Track explicit waiters
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling for DP MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,297 +57,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 18/02/2023 19:54, Rob Clark wrote:
-> On Thu, Feb 16, 2023 at 3:00 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Track how many callers are explicity waiting on a fence to signal and
->> allow querying that via new dma_fence_wait_count() API.
->>
->> This provides infrastructure on top of which generic "waitboost" concepts
->> can be implemented by individual drivers. Wait-boosting is any reactive
->> activity, such as raising the GPU clocks, which happens while there are
->> active external waiters.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   drivers/dma-buf/dma-fence.c               | 98 +++++++++++++++++------
->>   drivers/gpu/drm/i915/gt/intel_engine_pm.c |  1 -
->>   include/linux/dma-fence.h                 | 15 ++++
->>   3 files changed, 87 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
->> index ea4a1f82c9bf..bdba5a8e21b1 100644
->> --- a/drivers/dma-buf/dma-fence.c
->> +++ b/drivers/dma-buf/dma-fence.c
->> @@ -344,6 +344,25 @@ void __dma_fence_might_wait(void)
->>   }
->>   #endif
->>
->> +static void incr_wait_count(struct dma_fence *fence, struct dma_fence_cb *cb)
->> +{
->> +       lockdep_assert_held(fence->lock);
->> +
->> +       __set_bit(DMA_FENCE_CB_FLAG_WAITCOUNT_BIT, &cb->flags);
->> +       fence->waitcount++;
->> +       WARN_ON_ONCE(!fence->waitcount);
->> +}
->> +
->> +static void decr_wait_count(struct dma_fence *fence, struct dma_fence_cb *cb)
->> +{
->> +       lockdep_assert_held(fence->lock);
->> +
->> +       if (__test_and_clear_bit(DMA_FENCE_CB_FLAG_WAITCOUNT_BIT, &cb->flags)) {
->> +               WARN_ON_ONCE(!fence->waitcount);
->> +               fence->waitcount--;
->> +       }
->> +}
->> +
->>   void __dma_fence_signal__timestamp(struct dma_fence *fence, ktime_t timestamp)
->>   {
->>          lockdep_assert_held(fence->lock);
->> @@ -363,6 +382,7 @@ __dma_fence_signal__notify(struct dma_fence *fence,
->>          lockdep_assert_held(fence->lock);
->>
->>          list_for_each_entry_safe(cur, tmp, list, node) {
->> +               decr_wait_count(fence, cur);
->>                  INIT_LIST_HEAD(&cur->node);
->>                  cur->func(fence, cur);
->>          }
->> @@ -629,11 +649,44 @@ void dma_fence_enable_sw_signaling(struct dma_fence *fence)
->>          unsigned long flags;
->>
->>          spin_lock_irqsave(fence->lock, flags);
->> +       fence->waitcount++;
->> +       WARN_ON_ONCE(!fence->waitcount);
->>          __dma_fence_enable_signaling(fence);
->>          spin_unlock_irqrestore(fence->lock, flags);
->>   }
->>   EXPORT_SYMBOL(dma_fence_enable_sw_signaling);
->>
->> +static int add_callback(struct dma_fence *fence, struct dma_fence_cb *cb,
->> +                       dma_fence_func_t func, bool wait)
->> +{
->> +       unsigned long flags;
->> +       int ret = 0;
->> +
->> +       __dma_fence_cb_init(cb, func);
->> +
->> +       if (WARN_ON(!fence || !func))
->> +               return -EINVAL;
->> +
->> +       if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->> +               return -ENOENT;
->> +
->> +       spin_lock_irqsave(fence->lock, flags);
->> +
->> +       if (wait)
->> +               incr_wait_count(fence, cb);
->> +
->> +       if (__dma_fence_enable_signaling(fence)) {
->> +               list_add_tail(&cb->node, &fence->cb_list);
->> +       } else {
->> +               decr_wait_count(fence, cb);
->> +               ret = -ENOENT;
->> +       }
->> +
->> +       spin_unlock_irqrestore(fence->lock, flags);
->> +
->> +       return ret;
->> +}
->> +
->>   /**
->>    * dma_fence_add_callback - add a callback to be called when the fence
->>    * is signaled
->> @@ -659,31 +712,18 @@ EXPORT_SYMBOL(dma_fence_enable_sw_signaling);
->>   int dma_fence_add_callback(struct dma_fence *fence, struct dma_fence_cb *cb,
->>                             dma_fence_func_t func)
->>   {
->> -       unsigned long flags;
->> -       int ret = 0;
->> -
->> -       __dma_fence_cb_init(cb, func);
->> -
->> -       if (WARN_ON(!fence || !func))
->> -               return -EINVAL;
->> -
->> -       if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->> -               return -ENOENT;
->> -
->> -       spin_lock_irqsave(fence->lock, flags);
->> -
->> -       if (__dma_fence_enable_signaling(fence)) {
->> -               list_add_tail(&cb->node, &fence->cb_list);
->> -       } else {
->> -               ret = -ENOENT;
->> -       }
->> -
->> -       spin_unlock_irqrestore(fence->lock, flags);
->> -
->> -       return ret;
->> +       return add_callback(fence, cb, func, false);
->>   }
->>   EXPORT_SYMBOL(dma_fence_add_callback);
->>
->> +int dma_fence_add_wait_callback(struct dma_fence *fence,
->> +                               struct dma_fence_cb *cb,
->> +                               dma_fence_func_t func)
->> +{
->> +       return add_callback(fence, cb, func, true);
->> +}
->> +EXPORT_SYMBOL(dma_fence_add_wait_callback);
->> +
->>   /**
->>    * dma_fence_get_status - returns the status upon completion
->>    * @fence: the dma_fence to query
->> @@ -736,8 +776,10 @@ dma_fence_remove_callback(struct dma_fence *fence, struct dma_fence_cb *cb)
->>          spin_lock_irqsave(fence->lock, flags);
->>
->>          ret = !list_empty(&cb->node);
->> -       if (ret)
->> +       if (ret) {
->> +               decr_wait_count(fence, cb);
->>                  list_del_init(&cb->node);
->> +       }
->>
->>          spin_unlock_irqrestore(fence->lock, flags);
->>
->> @@ -795,6 +837,7 @@ dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
->>
->>          __dma_fence_cb_init(&cb.base, dma_fence_default_wait_cb);
->>          cb.task = current;
->> +       incr_wait_count(fence, &cb.base);
->>          list_add(&cb.base.node, &fence->cb_list);
->>
->>          while (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) && ret > 0) {
->> @@ -811,8 +854,10 @@ dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
->>                          ret = -ERESTARTSYS;
->>          }
->>
->> -       if (!list_empty(&cb.base.node))
->> +       if (!list_empty(&cb.base.node)) {
->> +               decr_wait_count(fence, &cb.base);
->>                  list_del(&cb.base.node);
->> +       }
->>          __set_current_state(TASK_RUNNING);
->>
->>   out:
->> @@ -890,8 +935,8 @@ dma_fence_wait_any_timeout(struct dma_fence **fences, uint32_t count,
->>                  struct dma_fence *fence = fences[i];
->>
->>                  cb[i].task = current;
->> -               if (dma_fence_add_callback(fence, &cb[i].base,
->> -                                          dma_fence_default_wait_cb)) {
->> +               if (dma_fence_add_wait_callback(fence, &cb[i].base,
->> +                                               dma_fence_default_wait_cb)) {
->>                          /* This fence is already signaled */
->>                          if (idx)
->>                                  *idx = i;
->> @@ -972,6 +1017,7 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>          fence->context = context;
->>          fence->seqno = seqno;
->>          fence->flags = 0UL;
->> +       fence->waitcount = 0;
->>          fence->error = 0;
->>
->>          trace_dma_fence_init(fence);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->> index e971b153fda9..2693a0151a6b 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->> @@ -218,7 +218,6 @@ static bool switch_to_kernel_context(struct intel_engine_cs *engine)
->>                   * until the background request retirement running every
->>                   * second or two).
->>                   */
->> -               BUILD_BUG_ON(sizeof(rq->duration) > sizeof(rq->submitq));
->>                  dma_fence_add_callback(&rq->fence, &rq->duration.cb, duration);
->>                  rq->duration.emitted = ktime_get();
->>          }
->> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
->> index 35933e0ae62c..2b696f9de276 100644
->> --- a/include/linux/dma-fence.h
->> +++ b/include/linux/dma-fence.h
->> @@ -92,6 +92,7 @@ struct dma_fence {
->>          u64 seqno;
->>          unsigned long flags;
->>          struct kref refcount;
->> +       unsigned int waitcount;
->>          int error;
->>   };
->>
->> @@ -116,6 +117,11 @@ typedef void (*dma_fence_func_t)(struct dma_fence *fence,
->>   struct dma_fence_cb {
->>          struct list_head node;
->>          dma_fence_func_t func;
->> +       unsigned long flags;
->> +};
->> +
->> +enum dma_fence_cb_flag_bits {
->> +       DMA_FENCE_CB_FLAG_WAITCOUNT_BIT,
->>   };
->>
->>   /**
->> @@ -381,6 +387,9 @@ signed long dma_fence_default_wait(struct dma_fence *fence,
->>   int dma_fence_add_callback(struct dma_fence *fence,
->>                             struct dma_fence_cb *cb,
->>                             dma_fence_func_t func);
->> +int dma_fence_add_wait_callback(struct dma_fence *fence,
->> +                               struct dma_fence_cb *cb,
->> +                               dma_fence_func_t func);
->>   bool dma_fence_remove_callback(struct dma_fence *fence,
->>                                 struct dma_fence_cb *cb);
->>   void dma_fence_enable_sw_signaling(struct dma_fence *fence);
->> @@ -532,6 +541,11 @@ static inline int dma_fence_get_status_locked(struct dma_fence *fence)
->>
->>   int dma_fence_get_status(struct dma_fence *fence);
->>
->> +static inline unsigned int dma_fence_wait_count(struct dma_fence *fence)
->> +{
->> +       return fence->waitcount;
->> +}
-> 
-> One thing I noticed while reviving my fence-deadline series is that
-> this approach is not propagating through array and chain fences
+I forgot to call intel_audio_compute_config() on DP MST, which
+means ELD doesn't get populated and passed to the audio driver.
 
-True, thanks.
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/8097
+Fixes: 5d986635e296 ("drm/i915/audio: Precompute the ELD")
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 25 +++++++++++++--------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
-So I'd need a way to "inherit" the waitcount (and so complete the 
-semi-OO) in both enable_signaling callbacks. Not sure if it would be a 
-problem for the dma_fence_chain_enable_signaling since it currently 
-appears to be only enabling signalling on the last of the chain. Maybe 
-walking all and enabling sw signalling on all but last (which has the 
-callback) might work.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index de856f4375fb..a860cbc5dbea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -265,6 +265,19 @@ static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+ 	return 0;
+ }
+ 
++static bool intel_dp_mst_has_audio(const struct drm_connector_state *conn_state)
++{
++	const struct intel_digital_connector_state *intel_conn_state =
++		to_intel_digital_connector_state(conn_state);
++	struct intel_connector *connector =
++		to_intel_connector(conn_state->connector);
++
++	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
++		return connector->port->has_audio;
++	else
++		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
++}
++
+ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 				       struct intel_crtc_state *pipe_config,
+ 				       struct drm_connector_state *conn_state)
+@@ -272,10 +285,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+ 	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+-	struct intel_connector *connector =
+-		to_intel_connector(conn_state->connector);
+-	struct intel_digital_connector_state *intel_conn_state =
+-		to_intel_digital_connector_state(conn_state);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
+ 	struct link_config_limits limits;
+@@ -287,11 +296,9 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->has_pch_encoder = false;
+ 
+-	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
+-		pipe_config->has_audio = connector->port->has_audio;
+-	else
+-		pipe_config->has_audio =
+-			intel_conn_state->force_audio == HDMI_AUDIO_ON;
++	pipe_config->has_audio =
++		intel_dp_mst_has_audio(conn_state) &&
++		intel_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	/*
+ 	 * for MST we always configure max link bw - the spec doesn't
+-- 
+2.39.2
 
-But anyway, I'll hold off re-spinning for this until the fate of the 
-series is clear.
-
-Regards,
-
-Tvrtko
-
-> 
-> BR,
-> -R
-> 
->> +
->>   /**
->>    * dma_fence_set_error - flag an error condition on the fence
->>    * @fence: the dma_fence
->> @@ -634,6 +648,7 @@ static inline void __dma_fence_cb_init(struct dma_fence_cb *cb,
->>   {
->>          INIT_LIST_HEAD(&cb->node);
->>          cb->func = func;
->> +       cb->flags = 0;
->>   }
->>
->>   #endif /* __LINUX_DMA_FENCE_H */
->> --
->> 2.34.1
->>
