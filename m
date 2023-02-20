@@ -2,33 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2648569D104
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:57:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD52F69D12D
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 17:15:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F1FE10E6CA;
-	Mon, 20 Feb 2023 15:57:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D12110E6E3;
+	Mon, 20 Feb 2023 16:15:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84D4E10E6CA;
- Mon, 20 Feb 2023 15:57:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7CBC7A77A5;
- Mon, 20 Feb 2023 15:57:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8121010E6E3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 16:15:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676909709; x=1708445709;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KMfZwyTA9YArLt8VmFiEE9COzsvQZnhDtKi3TI3gi+M=;
+ b=gtzpQ6QYXsGoOWmOQlo8DiwAKrMcz1jA4g44ME8Gwd89Iz+3MBJvqz5e
+ bdFiglYCnBXNKdZ+j6vrlfLNPgMP+eHnR7rMCpauK6azNRis/KucEDC5P
+ eIWkw72cKwg2J/TMv5qt1Zh5C+MpNxdG5M6Dih3sReWl/31Rkg/tCPrqa
+ DI13191eqQ1elK6iXcYNGdBMdjOVlYN2e2h9TipcIuWDJz+BEmHcEN+hB
+ /7YCh7VW9w5tvDvi4S6zaLZNwWOmkH/JgYDE3XAjjFsvFGaVL0UZm6Wkt
+ Bt4GBfrTTbrjvflXK1cXi+K8YSOQej7Ps5Lrf/CODuL99vdVAAZG5rXOR w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="331101084"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="331101084"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 08:15:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="664688988"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="664688988"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga007.jf.intel.com with SMTP; 20 Feb 2023 08:14:59 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Feb 2023 18:14:58 +0200
+Date: Mon, 20 Feb 2023 18:14:58 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <Y/Ocgp7y8ZxfaqLw@intel.com>
+References: <20230214100132.24208-1-stanislav.lisovskiy@intel.com>
+ <Y+uU1X84eAD+x4c3@intel.com> <Y/OVqQ9KgD6mbBB/@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 20 Feb 2023 15:57:13 -0000
-Message-ID: <167690863350.31317.8783915751651509158@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_Fix_audio_ELD_handli?=
- =?utf-8?q?ng_for_DP_MST?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y/OVqQ9KgD6mbBB/@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
+ configuration to pcode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,106 +62,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Feb 20, 2023 at 05:45:45PM +0200, Lisovskiy, Stanislav wrote:
+> On Tue, Feb 14, 2023 at 04:04:05PM +0200, Ville Syrjälä wrote:
+> > On Tue, Feb 14, 2023 at 12:01:32PM +0200, Stanislav Lisovskiy wrote:
+> > > From: Jigar Bhatt <jigar.bhatt@intel.com>
+> > > 
+> > > Display to communicate "display configuration" to Pcode for more accurate
+> > > power accounting for DG2. Existing sequence is only sending the voltage
+> > > value to the Pcode. Adding new sequence with current cdclk associate
+> > > with voltage value masking. Adding pcode request when any power well
+> > > will disable or enable.
+> > > 
+> > > v2: - Fixed identation(Stanislav Lisovskiy)
+> > >     - Made conditions more specific(in the commit we declare that
+> > >       we do this for DG2 only, however that commit changes >= to
+> > >       == for many other platforms.(Stanislav Lisovskiy)
+> > > 
+> > > v3: - Refactored code for proper identation and smaller conditions
+> > >       (Andi Shyti)
+> > >     - Switched to proper function naming, removed platform specific
+> > >       code from intel_atomic_commit_tail(Jani Nikula)
+> > >     - Moved intel_cdclk_power_usage_to_pcode_pre/post_notification
+> > >       to proper places, before and after setting CDCLK(Stanislav Lisovskiy)
+> > > 
+> > > Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 97 ++++++++++++++++++++--
+> > >  drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +
+> > >  drivers/gpu/drm/i915/i915_reg.h            |  4 +
+> > >  3 files changed, 94 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > index 82da76b586ed..4f8bcc0b51e8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > @@ -1908,10 +1908,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> > >  		 * NOOP - No Pcode communication needed for
+> > >  		 * Display versions 14 and beyond
+> > >  		 */;
+> > > -	else if (DISPLAY_VER(dev_priv) >= 11)
+> > > +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
+> > >  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> > >  				      cdclk_config->voltage_level);
+> > > -	else
+> > > +	if (DISPLAY_VER(dev_priv) < 11) {
+> > >  		/*
+> > >  		 * The timeout isn't specified, the 2ms used here is based on
+> > >  		 * experiment.
+> > > @@ -1922,7 +1922,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> > >  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> > >  					      cdclk_config->voltage_level,
+> > >  					      150, 2);
+> > > -
+> > > +	}
+> > >  	if (ret) {
+> > >  		drm_err(&dev_priv->drm,
+> > >  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
+> > > @@ -2218,6 +2218,29 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
+> > >  		    cdclk_config->voltage_level);
+> > >  }
+> > >  
+> > > +static void intel_pcode_notify(struct drm_i915_private *i915,
+> > > +			       unsigned int cdclk, u8 voltage_level,
+> > > +			       u8 active_pipes)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	if (DISPLAY_VER(i915) < 12)
+> > > +		return;
+> > > +
+> > > +	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
+> > > +				SKL_CDCLK_PREPARE_FOR_CHANGE |
+> > 
+> > Isn't that something we're supposed to set only *before*
+> > the change? Here it looks like we're setting also for the
+> > post call.
+> 
+> According to BSpec, we are supposed to send notifications both
+> before and after setting CDCLK:
+> 
+> 1) Before the change we need to set voltage bits to the max(bits 1:0 set to 3)
 
-Series: series starting with [1/2] drm/i915: Fix audio ELD handling for DP MST
-URL   : https://patchwork.freedesktop.org/series/114194/
-State : warning
+You are doing that for both pre and post now.
 
-== Summary ==
+> 2) If CDCLK is increasing set to increased value or leave the same
+> 3) If enabling pipe write upcoming pipe count
+> 
+> After the change 
+> 
+> 1) we set required voltage level
+> 2) write CDCLK bits if CDCLK is disabled
+> 3) If pipe is disabled write the current pipe count
+> 
+> I agree, current code in fact doesn't do it exactly as described.
+> 
+> > 
+> > > +				DISPLAY_TO_PCODE_MASK
+> > > +				(cdclk, active_pipes, voltage_level),
+> > > +				SKL_CDCLK_READY_FOR_CHANGE,
+> > > +				SKL_CDCLK_READY_FOR_CHANGE, 3);
+> > > +	if (ret) {
+> > > +		drm_err(&i915->drm,
+> > > +				"Failed to inform PCU about display config (err %d)\n",
+> > > +				ret);
+> > > +		return;
+> > > +	}
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_set_cdclk - Push the CDCLK configuration to the hardware
+> > >   * @dev_priv: i915 device
+> > > @@ -2287,6 +2310,56 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+> > >  	}
+> > >  }
+> > >  
+> > > +/**
+> > > + * intel_cdclk_power_usage_to_pcode_pre_notification: display to pcode notification
+> > > + * before the enabling power wells.
+> > > + * send notification with cdclk, number of pipes, voltage_level.
+> > > + * @state: intel atomic state
+> > > + */
+> > > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state)
+> > > +{
+> > > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > +	const struct intel_cdclk_state *old_cdclk_state =
+> > > +		intel_atomic_get_old_cdclk_state(state);
+> > > +	const struct intel_cdclk_state *new_cdclk_state =
+> > > +		intel_atomic_get_new_cdclk_state(state);
+> > > +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+> > > +				 &new_cdclk_state->actual) &&
+> > > +				 (new_cdclk_state->active_pipes ==
+> > > +				 old_cdclk_state->active_pipes))
+> > > +		return;
+> > > +	else if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk)
+> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > > +				   new_cdclk_state->actual.voltage_level,
+> > > +				   new_cdclk_state->active_pipes);
+> > > +	else if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk)
+> > > +		intel_pcode_notify(dev_priv, old_cdclk_state->actual.cdclk,
+> > > +				   old_cdclk_state->actual.voltage_level,
+> > > +				   old_cdclk_state->active_pipes);
+> > > +	else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes)
+> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > > +				   new_cdclk_state->actual.voltage_level,
+> > > +				   new_cdclk_state->active_pipes);
+> > > +
+> > > +	intel_pcode_notify(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
+> > > +			   new_cdclk_state->actual.voltage_level,
+> > > +			   new_cdclk_state->active_pipes);
+> > 
+> > I don't understand what is going on here. Are we trying to
+> > say something like
+> > 
+> > intel_pcode_notify(...,
+> > 		   max(old_cdclk, new_cdclk),
+> > 		   max(old_voltage_level, new_voltage_level),
+> > 		   old_active_pipes | new_active_pipes);
+> 
+> Regarding CDCLK yes, for voltage level, just read out from BSpec 
+> that we are supposed to set voltage level to to max(3) always before
+> the change. Dunno why this was implemented that way initially(BSpec got updated?)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./arch/x86/include/asm/bitops.h:117:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:148:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:150:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:154:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:156:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:156:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:174:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:176:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:180:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:182:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:182:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:186:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:188:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:192:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:195:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:195:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:237:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:239:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
+Pretty sure it's always been like that for all platforms. Dunno why.
 
+> 
+> 
+> > ?
+> > 
+> > Also the inclusion of the pipes here would imply that
+> > we need to think about serialize vs. lock.
+> 
+> Should we already had locked/serialized global state in intel_modeset_calc_cdclk,
+> if active_pipes/cdclk had changed?
 
+For active_pipes in particular, locked yes, serialized no since no other
+platform needs us to poke the hardware state on active_pipes changes.
+The lock is what protects the software state, serialize is what
+guarantees the hardware state updates happen in the correct order.
+
+> 
+> Stan
+> 
+> > 
+> > > +}
+> > > +
+> > > +/* intel_cdclk_power_usage_to_pcode_post_notification: after frequency change sending
+> > > + * voltage_level, active pipes, current CDCLK frequency.
+> > > + * @state: intel atomic state
+> > > + */
+> > > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state)
+> > > +{
+> > > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > +	const struct intel_cdclk_state *new_cdclk_state =
+> > > +		intel_atomic_get_new_cdclk_state(state);
+> > > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > > +				   new_cdclk_state->actual.voltage_level,
+> > > +				   new_cdclk_state->active_pipes);
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
+> > >   * @state: intel atomic state
+> > > @@ -2297,7 +2370,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+> > >  void
+> > >  intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> > >  {
+> > > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > >  	const struct intel_cdclk_state *old_cdclk_state =
+> > >  		intel_atomic_get_old_cdclk_state(state);
+> > >  	const struct intel_cdclk_state *new_cdclk_state =
+> > > @@ -2308,11 +2381,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> > >  				 &new_cdclk_state->actual))
+> > >  		return;
+> > >  
+> > > +	if (DISPLAY_VER(i915) >= 12)
+> > > +		intel_cdclk_power_usage_to_pcode_pre_notification(state);
+> > > +
+> > >  	if (pipe == INVALID_PIPE ||
+> > >  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+> > > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
+> > > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+> > >  
+> > > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
+> > > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+> > >  	}
+> > >  }
+> > >  
+> > > @@ -2326,7 +2402,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> > >  void
+> > >  intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+> > >  {
+> > > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > >  	const struct intel_cdclk_state *old_cdclk_state =
+> > >  		intel_atomic_get_old_cdclk_state(state);
+> > >  	const struct intel_cdclk_state *new_cdclk_state =
+> > > @@ -2337,11 +2413,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+> > >  				 &new_cdclk_state->actual))
+> > >  		return;
+> > >  
+> > > +	if (DISPLAY_VER(i915) >= 12)
+> > > +		intel_cdclk_power_usage_to_pcode_post_notification(state);
+> > > +
+> > >  	if (pipe != INVALID_PIPE &&
+> > >  	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
+> > > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
+> > > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+> > >  
+> > > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
+> > > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+> > >  	}
+> > >  }
+> > >  
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > > index 51e2f6a11ce4..fa356adc61d9 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > > @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> > >  			       const struct intel_cdclk_config *b);
+> > >  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
+> > >  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
+> > > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state);
+> > > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state);
+> > >  void intel_cdclk_dump_config(struct drm_i915_private *i915,
+> > >  			     const struct intel_cdclk_config *cdclk_config,
+> > >  			     const char *context);
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > > index 596efc940ee7..b90c31862083 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -6498,6 +6498,10 @@
+> > >  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
+> > >  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
+> > >  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
+> > > +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
+> > > +#define   DISPLAY_TO_PCODE_MASK(cdclk, num_pipes, voltage_level) \
+> > > +		((1 << 31) | (num_pipes << 28) | \
+> > > +		(cdclk << 16) | (1 << 27) | voltage_level)
+> > >  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
+> > >  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
+> > >  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
+> > > -- 
+> > > 2.37.3
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
+
+-- 
+Ville Syrjälä
+Intel
