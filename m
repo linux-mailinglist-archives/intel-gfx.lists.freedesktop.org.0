@@ -1,65 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56F569D0D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:45:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1BC69D0D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Feb 2023 16:46:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0AA510E6AF;
-	Mon, 20 Feb 2023 15:45:33 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
- [IPv6:2001:4860:4864:20::33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE3A10E6AD;
- Mon, 20 Feb 2023 15:45:32 +0000 (UTC)
-Received: by mail-oa1-x33.google.com with SMTP id
- 586e51a60fabf-172129e9cf1so1328231fac.8; 
- Mon, 20 Feb 2023 07:45:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=GDeq8+3pi7zSRUzBPnFsH8rY6ubyIE3E17O6ljSvyeU=;
- b=cuyau3DdJDuIX2Rh9eDfHmP1mU1uHUJSB9af/V2w3mHQpBd/PcjN9Lpg3sbdWbAPan
- gJHeoJZTj037WkG0xRURygB/HmBy8fnX4Nu5iDYzLhKt/3/nh45NrG8/e/mm2VxyqTVY
- XK/whpLmccPUWcfPdawMMLEE3oumqsT3lkAZe5R5zOBiAXlArbpsHxUAkMPezhWqRD/D
- TQ+mIhklPhEQKA2luQz99wPThf2+ZxxvSpY8La8C8yes5URok/SZXeAZ+YmbQzOYkma+
- D8UQ5nslhTkoMjMsmhO0eh9vbJcqeJLm0R4AtuYnR7LGZUj26+KHg1MIxrbYO6vbjlEN
- dWdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=GDeq8+3pi7zSRUzBPnFsH8rY6ubyIE3E17O6ljSvyeU=;
- b=MXWE/80/Y3/0lU2zOYrMHFGpqvE122vYB8EsXx10nJnVXEb6uIyU0UP9gnE18GFBTB
- rM/Kn8lxgEavZvc7zyojStr3O9KUW4HZAzmoreAfkDYikmYHzRdRFj/5cdEHLigfyZ4t
- gDpF6mMDm8G9stzUjBGjLeximcp/yTEHE0DNhfGMYE/nM+BeCy9NCGifEkfodheCUH+i
- sajtFuSuD2xfNnmGimSYom5M0qvppf2nuApzbHoADdKJ9hwhRR5R0+FznpfhvFIHbOMT
- uqlq9oJGuH8GYEzwLJOW4TQ2+aFiTROpCz0bOnrERGC2AgB91EkpFJ3Z3gwFT7pqLQd6
- 7pIw==
-X-Gm-Message-State: AO0yUKWF0DHAokiYBWfr8gPjN03uqXa8JRr1uea/bar2VYercc6oTdiN
- BHsj+++Zp+OqSaAxHZPZGA/VMpwFiU4U0ZNH62CMNT4h
-X-Google-Smtp-Source: AK7set8RZp2CTa9P1jHfSmuYyNEIiuwWnxwoyuPiZQkjJDZ9j3/oQSb8qeEf5mbIpjARFHklLd0HElanMALNCbFsdeQ=
-X-Received: by 2002:a05:6870:32d4:b0:16e:5e5a:49da with SMTP id
- r20-20020a05687032d400b0016e5e5a49damr1178453oac.58.1676907931266; Mon, 20
- Feb 2023 07:45:31 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDF3B10E68F;
+	Mon, 20 Feb 2023 15:45:58 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D013D10E68F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Feb 2023 15:45:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676907955; x=1708443955;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tdyg6Lq2Yoh43AAtfRv+W1DOXl6wBdhJodSGu7gBw/o=;
+ b=f9ZM7hdArFCYhDmza6sN+KeNVaaMtQBT2G60cLNLnQ1meMdRD14kOrQz
+ 7WTd41LCa8sPEDfnqDXlzK5tIiBxCGfIrd9KWMLBmYg+NVoAXP6amC2LW
+ fY5QjP/ESQzXw8x4bvjsO8f1NLCmX5mqOpLR92CgEjrt91Sx9Q2PyaUh7
+ 4IKtNy2+aT5m4AnZltW7ijXgtboQ3AOye5cGcqHS89FGU2tiBQtRxAJQ2
+ a+DQPWZtoZEJWb8KiHNPivJjWtfgKiI+n381g7/MstObs+2KlW1PFamuq
+ azPscKF6O8ZgAmVJyDVOjYihLtXIiIWhRlQysI2kXru/76Vv6067zNh5W w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="418649801"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="418649801"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 07:45:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="703740005"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; d="scan'208";a="703740005"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2023 07:45:52 -0800
+Date: Mon, 20 Feb 2023 17:45:45 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <Y/OVqQ9KgD6mbBB/@intel.com>
+References: <20230214100132.24208-1-stanislav.lisovskiy@intel.com>
+ <Y+uU1X84eAD+x4c3@intel.com>
 MIME-Version: 1.0
-References: <20230210130647.580135-1-tvrtko.ursulin@linux.intel.com>
- <CAF6AEGto9VMNLJnAs+n5H6MNoVASNasYEu3WhYYkhn5sERg4Fw@mail.gmail.com>
- <Y+5zyeSncSbsXHWG@intel.com>
- <7e059e8c-41c3-b56c-26c8-c0e2230616b1@linux.intel.com>
- <CAF6AEGuN2dv+Lsk3R43oPRA9c8ZoMjzCCKR+L41wNT8Sc3TgsQ@mail.gmail.com>
- <c0663648-5567-2d7a-43b1-dfa043109051@linux.intel.com>
- <CAF6AEGsGqjbL_tA8x_xwygBccKMP2DTbSy-B5_dEakpQVep8vg@mail.gmail.com>
- <9fa6b49f-376b-f9e2-bce7-e58b04628822@linux.intel.com>
-In-Reply-To: <9fa6b49f-376b-f9e2-bce7-e58b04628822@linux.intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 20 Feb 2023 07:45:21 -0800
-Message-ID: <CAF6AEGvudvuQE1Uze8od-Wmgz+i02=EVEbeaa-9Muc1bXp+duw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [RFC v2 0/5] Waitboost drm syncobj waits
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y+uU1X84eAD+x4c3@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display
+ configuration to pcode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,107 +59,283 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 4:22 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 17/02/2023 17:00, Rob Clark wrote:
-> > On Fri, Feb 17, 2023 at 8:03 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
->
-> [snip]
->
-> >>> adapted from your patches..  I think the basic idea of deadlines
-> >>> (which includes "I want it NOW" ;-)) isn't controversial, but the
-> >>> original idea got caught up in some bikeshed (what about compositors
-> >>> that wait on fences in userspace to decide which surfaces to update in
-> >>> the next frame), plus me getting busy and generally not having a good
-> >>> plan for how to leverage this from VM guests (which is becoming
-> >>> increasingly important for CrOS).  I think I can build on some ongoing
-> >>> virtgpu fencing improvement work to solve the latter.  But now that we
-> >>> have a 2nd use-case for this, it makes sense to respin.
-> >>
-> >> Sure, I was looking at the old version already. It is interesting. But
-> >> also IMO needs quite a bit more work to approach achieving what is
-> >> implied from the name of the feature. It would need proper deadline
-> >> based sched job picking, and even then drm sched is mostly just a
-> >> frontend. So once past runnable status and jobs handed over to backend,
-> >> without further driver work it probably wouldn't be very effective past
-> >> very lightly loaded systems.
-> >
-> > Yes, but all of that is not part of dma_fence ;-)
->
-> :) Okay.
->
-> Having said that, do we need a step back to think about whether adding
-> deadline to dma-fences is not making them something too much different
-> to what they were? Going from purely synchronisation primitive more
-> towards scheduling paradigms. Just to brainstorm if there will not be
-> any unintended consequences. I should mention this in your RFC thread
-> actually.
+On Tue, Feb 14, 2023 at 04:04:05PM +0200, Ville Syrjälä wrote:
+> On Tue, Feb 14, 2023 at 12:01:32PM +0200, Stanislav Lisovskiy wrote:
+> > From: Jigar Bhatt <jigar.bhatt@intel.com>
+> > 
+> > Display to communicate "display configuration" to Pcode for more accurate
+> > power accounting for DG2. Existing sequence is only sending the voltage
+> > value to the Pcode. Adding new sequence with current cdclk associate
+> > with voltage value masking. Adding pcode request when any power well
+> > will disable or enable.
+> > 
+> > v2: - Fixed identation(Stanislav Lisovskiy)
+> >     - Made conditions more specific(in the commit we declare that
+> >       we do this for DG2 only, however that commit changes >= to
+> >       == for many other platforms.(Stanislav Lisovskiy)
+> > 
+> > v3: - Refactored code for proper identation and smaller conditions
+> >       (Andi Shyti)
+> >     - Switched to proper function naming, removed platform specific
+> >       code from intel_atomic_commit_tail(Jani Nikula)
+> >     - Moved intel_cdclk_power_usage_to_pcode_pre/post_notification
+> >       to proper places, before and after setting CDCLK(Stanislav Lisovskiy)
+> > 
+> > Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 97 ++++++++++++++++++++--
+> >  drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +
+> >  drivers/gpu/drm/i915/i915_reg.h            |  4 +
+> >  3 files changed, 94 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 82da76b586ed..4f8bcc0b51e8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -1908,10 +1908,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> >  		 * NOOP - No Pcode communication needed for
+> >  		 * Display versions 14 and beyond
+> >  		 */;
+> > -	else if (DISPLAY_VER(dev_priv) >= 11)
+> > +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
+> >  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> >  				      cdclk_config->voltage_level);
+> > -	else
+> > +	if (DISPLAY_VER(dev_priv) < 11) {
+> >  		/*
+> >  		 * The timeout isn't specified, the 2ms used here is based on
+> >  		 * experiment.
+> > @@ -1922,7 +1922,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> >  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> >  					      cdclk_config->voltage_level,
+> >  					      150, 2);
+> > -
+> > +	}
+> >  	if (ret) {
+> >  		drm_err(&dev_priv->drm,
+> >  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
+> > @@ -2218,6 +2218,29 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
+> >  		    cdclk_config->voltage_level);
+> >  }
+> >  
+> > +static void intel_pcode_notify(struct drm_i915_private *i915,
+> > +			       unsigned int cdclk, u8 voltage_level,
+> > +			       u8 active_pipes)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (DISPLAY_VER(i915) < 12)
+> > +		return;
+> > +
+> > +	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
+> > +				SKL_CDCLK_PREPARE_FOR_CHANGE |
+> 
+> Isn't that something we're supposed to set only *before*
+> the change? Here it looks like we're setting also for the
+> post call.
 
-Perhaps "deadline" isn't quite the right name, but I haven't thought
-of anything better.  It is really a hint to the fence signaller about
-how soon it is interested in a result so the driver can factor that
-into freq scaling decisions.  Maybe "goal" or some other term would be
-better?
+According to BSpec, we are supposed to send notifications both
+before and after setting CDCLK:
 
-I guess that can factor into scheduling decisions as well.. but we
-already have priority for that.  My main interest is freq mgmt.
+1) Before the change we need to set voltage bits to the max(bits 1:0 set to 3)
+2) If CDCLK is increasing set to increased value or leave the same
+3) If enabling pipe write upcoming pipe count
 
-(Thankfully we don't have performance and efficiency cores to worry
-about, like CPUs ;-))
+After the change 
 
-> > A pretty common challenging usecase is still the single fullscreen
-> > game, where scheduling isn't the problem, but landing at an
-> > appropriate GPU freq absolutely is.  (UI workloads are perhaps more
-> > interesting from a scheduler standpoint, but they generally aren't
-> > challenging from a load/freq standpoint.)
->
-> Challenging as in picking the right operating point? Might be latency
-> impacted (and so user perceived UI smoothness) due missing waitboost for
-> anything syncobj related. I don't know if anything to measure that
-> exists currently though. Assuming it is measurable then the question
-> would be is it perceivable.
-> > Fwiw, the original motivation of the series was to implement something
-> > akin to i915 pageflip boosting without having to abandon the atomic
-> > helpers.  (And, I guess it would also let i915 preserve that feature
-> > if it switched to atomic helpers.. I'm unsure if there are still other
-> > things blocking i915's migration.)
->
-> Question for display folks I guess.
->
-> >> Then if we fast forward to a world where schedulers perhaps become fully
-> >> deadline aware (we even had this for i915 few years back) then the
-> >> question will be does equating waits with immediate deadlines still
-> >> works. Maybe not too well because we wouldn't have the ability to
-> >> distinguish between the "someone is waiting" signal from the otherwise
-> >> propagated deadlines.
-> >
-> > Is there any other way to handle a wait boost than expressing it as an
-> > ASAP deadline?
->
-> A leading question or just a question? Nothing springs to my mind at the
-> moment.
+1) we set required voltage level
+2) write CDCLK bits if CDCLK is disabled
+3) If pipe is disabled write the current pipe count
 
-Just a question.  The immediate deadline is the only thing that makes
-sense to me, but that could be because I'm looking at it from the
-perspective of also trying to handle the case where missing vblank
-reduces utilization and provides the wrong signal to gpufreq.. i915
-already has a way to handle this internally, but it involves bypassing
-the atomic helpers, which isn't a thing I want to encourage other
-drivers to do.  And completely doesn't work for situations where the
-gpu and display are separate devices.
+I agree, current code in fact doesn't do it exactly as described.
 
-BR,
--R
+> 
+> > +				DISPLAY_TO_PCODE_MASK
+> > +				(cdclk, active_pipes, voltage_level),
+> > +				SKL_CDCLK_READY_FOR_CHANGE,
+> > +				SKL_CDCLK_READY_FOR_CHANGE, 3);
+> > +	if (ret) {
+> > +		drm_err(&i915->drm,
+> > +				"Failed to inform PCU about display config (err %d)\n",
+> > +				ret);
+> > +		return;
+> > +	}
+> > +}
+> > +
+> >  /**
+> >   * intel_set_cdclk - Push the CDCLK configuration to the hardware
+> >   * @dev_priv: i915 device
+> > @@ -2287,6 +2310,56 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+> >  	}
+> >  }
+> >  
+> > +/**
+> > + * intel_cdclk_power_usage_to_pcode_pre_notification: display to pcode notification
+> > + * before the enabling power wells.
+> > + * send notification with cdclk, number of pipes, voltage_level.
+> > + * @state: intel atomic state
+> > + */
+> > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	const struct intel_cdclk_state *old_cdclk_state =
+> > +		intel_atomic_get_old_cdclk_state(state);
+> > +	const struct intel_cdclk_state *new_cdclk_state =
+> > +		intel_atomic_get_new_cdclk_state(state);
+> > +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+> > +				 &new_cdclk_state->actual) &&
+> > +				 (new_cdclk_state->active_pipes ==
+> > +				 old_cdclk_state->active_pipes))
+> > +		return;
+> > +	else if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk)
+> > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > +				   new_cdclk_state->actual.voltage_level,
+> > +				   new_cdclk_state->active_pipes);
+> > +	else if (old_cdclk_state->actual.cdclk >= new_cdclk_state->actual.cdclk)
+> > +		intel_pcode_notify(dev_priv, old_cdclk_state->actual.cdclk,
+> > +				   old_cdclk_state->actual.voltage_level,
+> > +				   old_cdclk_state->active_pipes);
+> > +	else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes)
+> > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > +				   new_cdclk_state->actual.voltage_level,
+> > +				   new_cdclk_state->active_pipes);
+> > +
+> > +	intel_pcode_notify(dev_priv, DISPLAY_TO_PCODE_CDCLK_MAX,
+> > +			   new_cdclk_state->actual.voltage_level,
+> > +			   new_cdclk_state->active_pipes);
+> 
+> I don't understand what is going on here. Are we trying to
+> say something like
+> 
+> intel_pcode_notify(...,
+> 		   max(old_cdclk, new_cdclk),
+> 		   max(old_voltage_level, new_voltage_level),
+> 		   old_active_pipes | new_active_pipes);
 
-> Regards,
->
-> Tvrtko
+Regarding CDCLK yes, for voltage level, just read out from BSpec 
+that we are supposed to set voltage level to to max(3) always before
+the change. Dunno why this was implemented that way initially(BSpec got updated?)
+
+
+> ?
+> 
+> Also the inclusion of the pipes here would imply that
+> we need to think about serialize vs. lock.
+
+Should we already had locked/serialized global state in intel_modeset_calc_cdclk,
+if active_pipes/cdclk had changed?
+
+Stan
+
+> 
+> > +}
+> > +
+> > +/* intel_cdclk_power_usage_to_pcode_post_notification: after frequency change sending
+> > + * voltage_level, active pipes, current CDCLK frequency.
+> > + * @state: intel atomic state
+> > + */
+> > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	const struct intel_cdclk_state *new_cdclk_state =
+> > +		intel_atomic_get_new_cdclk_state(state);
+> > +		intel_pcode_notify(dev_priv, new_cdclk_state->actual.cdclk,
+> > +				   new_cdclk_state->actual.voltage_level,
+> > +				   new_cdclk_state->active_pipes);
+> > +}
+> > +
+> >  /**
+> >   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
+> >   * @state: intel atomic state
+> > @@ -2297,7 +2370,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+> >  void
+> >  intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	const struct intel_cdclk_state *old_cdclk_state =
+> >  		intel_atomic_get_old_cdclk_state(state);
+> >  	const struct intel_cdclk_state *new_cdclk_state =
+> > @@ -2308,11 +2381,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> >  				 &new_cdclk_state->actual))
+> >  		return;
+> >  
+> > +	if (DISPLAY_VER(i915) >= 12)
+> > +		intel_cdclk_power_usage_to_pcode_pre_notification(state);
+> > +
+> >  	if (pipe == INVALID_PIPE ||
+> >  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+> > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
+> > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+> >  
+> > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
+> > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+> >  	}
+> >  }
+> >  
+> > @@ -2326,7 +2402,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+> >  void
+> >  intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	const struct intel_cdclk_state *old_cdclk_state =
+> >  		intel_atomic_get_old_cdclk_state(state);
+> >  	const struct intel_cdclk_state *new_cdclk_state =
+> > @@ -2337,11 +2413,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+> >  				 &new_cdclk_state->actual))
+> >  		return;
+> >  
+> > +	if (DISPLAY_VER(i915) >= 12)
+> > +		intel_cdclk_power_usage_to_pcode_post_notification(state);
+> > +
+> >  	if (pipe != INVALID_PIPE &&
+> >  	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
+> > -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
+> > +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+> >  
+> > -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
+> > +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+> >  	}
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > index 51e2f6a11ce4..fa356adc61d9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> > @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> >  			       const struct intel_cdclk_config *b);
+> >  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
+> >  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
+> > +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state);
+> > +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state);
+> >  void intel_cdclk_dump_config(struct drm_i915_private *i915,
+> >  			     const struct intel_cdclk_config *cdclk_config,
+> >  			     const char *context);
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 596efc940ee7..b90c31862083 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -6498,6 +6498,10 @@
+> >  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
+> >  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
+> >  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
+> > +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
+> > +#define   DISPLAY_TO_PCODE_MASK(cdclk, num_pipes, voltage_level) \
+> > +		((1 << 31) | (num_pipes << 28) | \
+> > +		(cdclk << 16) | (1 << 27) | voltage_level)
+> >  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
+> >  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
+> >  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
+> > -- 
+> > 2.37.3
+> 
+> -- 
+> Ville Syrjälä
+> Intel
