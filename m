@@ -2,50 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DA0B69DC6F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Feb 2023 09:56:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4163869DC7A
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Feb 2023 10:01:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C7910E3A3;
-	Tue, 21 Feb 2023 08:56:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0EAF10E3CF;
+	Tue, 21 Feb 2023 09:01:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B783510E3A3
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Feb 2023 08:56:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F06710E3B3;
+ Tue, 21 Feb 2023 09:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676969762; x=1708505762;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DxoaUifT+CK4Hb7yObhNpa8YDbSJ3A5xm2NdKM39Dqw=;
- b=ZWOSyv+qWihP4iqtecPDMZnCdfP/8TQsvhbylu+BItV3BNTXObvAos1E
- bM5vclwpqc7bRvmnRxKQZG1TIT5U63BGP2NSHkp8jc9pxB4k2M7Id/3+S
- RZdolrK4hfqgLAbc6nMx0yfV62D+YZCqYHvvXVFsX4235/MHTZ/BG9GqH
- sFblEIUU+kRGZkjBFP9SP7MA2yrHCnVjAG6omfR8qNl5oIK5S0Xjaao75
- /eWGBflqvXKAG1aUqPBsB/uSCap9GnKODVNsAkqci7GMyZ6yX3eTiP2mg
- wIujpwjkKxEY18BjJFtDqXqfpvR8fSvPSHk/aJDEJwibuKMTLUZtFA5ui Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="330303304"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="330303304"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 00:56:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="649090113"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="649090113"
-Received: from etrunovx-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.251.214.204])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 00:56:00 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Feb 2023 10:53:04 +0200
-Message-Id: <20230221085304.3382297-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1676970092; x=1708506092;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dsRybd/64P4CVAO5ROi9YaEUYOfOwpiLG3nNgVfeZEk=;
+ b=aAP67ySkdfUxx/XUjb5JfKwbRu0efG0SuZsELkBpQWKB3ExawfKO077D
+ B6C4Vb3yuLSAHbP6qlQ/vT37tUP6nyEkqNr4PvfXNOdPMPvu0zK29NjHU
+ yM2xu2cf8B+5KpnDrDBpBmvgOL4WSF9HPTtZWzClkoOIpjoCojN+k9GKZ
+ Bd2ddyKInngQi3BV0Lg2SHogQsCKLDIC7EB9vmUQ032Kt1mpn1gCI0Zpe
+ KVhFq5AyiUl2aL/ObwbptvMpVtls5PNS1gPfGTe+gmOyw/CGy2haqYCCp
+ k6sij2YA72wdIDgs5HEzj2rOHIPVPZpr9m9oZUWhm/VgMR3cGy2g1sikT A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="395062797"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="395062797"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 01:01:30 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="703957679"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="703957679"
+Received: from bpop-mobl.ger.corp.intel.com (HELO [10.213.229.230])
+ ([10.213.229.230])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 01:01:27 -0800
+Message-ID: <c5edd07d-1535-9b25-9a48-3d71e5e22b07@linux.intel.com>
+Date: Tue, 21 Feb 2023 09:01:24 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/psr: Use calculated io and fast wake
- lines
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Andrea Righi <andrea.righi@canonical.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+References: <20230220171858.131416-1-andrea.righi@canonical.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230220171858.131416-1-andrea.righi@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/sseu: fix max_subslices
+ array-index-out-of-bounds access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,162 +68,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we are using hardcoded 7 for io and fast wake lines.
 
-According to Bspec io and fast wake times are both 42us for
-DISPLAY_VER >= 12 and 50us and 32us for older platforms.
 
-Calculate line counts for these and configure them into PSR2_CTL
-accordingly
+On 20/02/2023 17:18, Andrea Righi wrote:
+> It seems that commit bc3c5e0809ae ("drm/i915/sseu: Don't try to store EU
+> mask internally in UAPI format") exposed a potential out-of-bounds
+> access, reported by UBSAN as following on a laptop with a gen 11 i915
+> card:
+> 
+>    UBSAN: array-index-out-of-bounds in drivers/gpu/drm/i915/gt/intel_sseu.c:65:27
+>    index 6 is out of range for type 'u16 [6]'
+>    CPU: 2 PID: 165 Comm: systemd-udevd Not tainted 6.2.0-9-generic #9-Ubuntu
+>    Hardware name: Dell Inc. XPS 13 9300/077Y9N, BIOS 1.11.0 03/22/2022
+>    Call Trace:
+>     <TASK>
+>     show_stack+0x4e/0x61
+>     dump_stack_lvl+0x4a/0x6f
+>     dump_stack+0x10/0x18
+>     ubsan_epilogue+0x9/0x3a
+>     __ubsan_handle_out_of_bounds.cold+0x42/0x47
+>     gen11_compute_sseu_info+0x121/0x130 [i915]
+>     intel_sseu_info_init+0x15d/0x2b0 [i915]
+>     intel_gt_init_mmio+0x23/0x40 [i915]
+>     i915_driver_mmio_probe+0x129/0x400 [i915]
+>     ? intel_gt_probe_all+0x91/0x2e0 [i915]
+>     i915_driver_probe+0xe1/0x3f0 [i915]
+>     ? drm_privacy_screen_get+0x16d/0x190 [drm]
+>     ? acpi_dev_found+0x64/0x80
+>     i915_pci_probe+0xac/0x1b0 [i915]
+>     ...
+> 
+> According to the definition of sseu_dev_info, eu_mask->hsw is limited to
+> a maximum of GEN_MAX_SS_PER_HSW_SLICE (6) sub-slices, but
+> gen11_sseu_info_init() can potentially set 8 sub-slices, in the
+> !IS_JSL_EHL(gt->i915) case.
+> 
+> Fix this by reserving up to 8 slots for max_subslices in the eu_mask
+> struct.
+> 
+> Reported-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Signed-off-by: Andrea Righi <andrea.righi@canonical.com>
 
-Use 45 us for the fast wake calculation as 42 seems to be too
-tight based on testing.
+Looks like bug was probably introduced in:
 
-Bspec: 49274, 4289
+Fixes: bc3c5e0809ae ("drm/i915/sseu: Don't try to store EU mask internally in UAPI format")
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: <stable@vger.kernel.org> # v6.0+
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7725
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 78 +++++++++++++++----
- 2 files changed, 63 insertions(+), 17 deletions(-)
+Adding Matt to cross-check.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 9ccae7a46020..fc15f4e5d49f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1634,6 +1634,8 @@ struct intel_psr {
- 	bool psr2_sel_fetch_cff_enabled;
- 	bool req_psr2_sdp_prior_scanline;
- 	u8 sink_sync_latency;
-+	u8 io_wake_lines;
-+	u8 fast_wake_lines;
- 	ktime_t last_entry_attempt;
- 	ktime_t last_exit;
- 	bool sink_not_reliable;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2954759e9d12..059e220144ce 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -542,6 +542,14 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 	val |= EDP_PSR2_FRAME_BEFORE_SU(max_t(u8, intel_dp->psr.sink_sync_latency + 1, 2));
- 	val |= intel_psr2_get_tp_time(intel_dp);
- 
-+	if (DISPLAY_VER(dev_priv) >= 12) {
-+		if (intel_dp->psr.io_wake_lines < 9 &&
-+		    intel_dp->psr.fast_wake_lines < 9)
-+			val |= TGL_EDP_PSR2_BLOCK_COUNT_NUM_2;
-+		else
-+			val |= TGL_EDP_PSR2_BLOCK_COUNT_NUM_3;
-+	}
-+
- 	/* Wa_22012278275:adl-p */
- 	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_E0)) {
- 		static const u8 map[] = {
-@@ -558,31 +566,21 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 		 * Still using the default IO_BUFFER_WAKE and FAST_WAKE, see
- 		 * comments bellow for more information
- 		 */
--		u32 tmp, lines = 7;
--
--		val |= TGL_EDP_PSR2_BLOCK_COUNT_NUM_2;
-+		u32 tmp;
- 
--		tmp = map[lines - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
-+		tmp = map[intel_dp->psr.io_wake_lines - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
- 		tmp = tmp << TGL_EDP_PSR2_IO_BUFFER_WAKE_SHIFT;
- 		val |= tmp;
- 
--		tmp = map[lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
-+		tmp = map[intel_dp->psr.fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
- 		tmp = tmp << TGL_EDP_PSR2_FAST_WAKE_MIN_SHIFT;
- 		val |= tmp;
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
--		/*
--		 * TODO: 7 lines of IO_BUFFER_WAKE and FAST_WAKE are default
--		 * values from BSpec. In order to setting an optimal power
--		 * consumption, lower than 4k resolution mode needs to decrease
--		 * IO_BUFFER_WAKE and FAST_WAKE. And higher than 4K resolution
--		 * mode needs to increase IO_BUFFER_WAKE and FAST_WAKE.
--		 */
--		val |= TGL_EDP_PSR2_BLOCK_COUNT_NUM_2;
--		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(7);
--		val |= TGL_EDP_PSR2_FAST_WAKE(7);
-+		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
-+		val |= TGL_EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
- 	} else if (DISPLAY_VER(dev_priv) >= 9) {
--		val |= EDP_PSR2_IO_BUFFER_WAKE(7);
--		val |= EDP_PSR2_FAST_WAKE(7);
-+		val |= EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
-+		val |= EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
- 	}
- 
- 	if (intel_dp->psr.req_psr2_sdp_prior_scanline)
-@@ -829,6 +827,46 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_d
- 	return true;
- }
- 
-+static bool _compute_psr2_wake_times(struct intel_dp *intel_dp,
-+				     struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-+	u8 max_wake_lines;
-+
-+	if (DISPLAY_VER(i915) >= 12) {
-+		io_wake_time = 42;
-+		/*
-+		 * According to Bspec it's 42us, but based on testing
-+		 * it is not enough -> use 45 us.
-+		 */
-+		fast_wake_time = 45;
-+		max_wake_lines = 12;
-+	} else {
-+		io_wake_time = 50;
-+		fast_wake_time = 32;
-+		max_wake_lines = 8;
-+	}
-+
-+	io_wake_lines = intel_usecs_to_scanlines(
-+		&crtc_state->uapi.adjusted_mode, io_wake_time);
-+	fast_wake_lines = intel_usecs_to_scanlines(
-+		&crtc_state->uapi.adjusted_mode, fast_wake_time);
-+
-+	if (io_wake_lines > max_wake_lines ||
-+	    fast_wake_lines > max_wake_lines)
-+		return false;
-+
-+	if (i915->params.psr_safest_params)
-+		io_wake_lines = fast_wake_lines = max_wake_lines;
-+
-+	/* According to Bspec lower limit should be set as 7 lines. */
-+	intel_dp->psr.io_wake_lines = max(io_wake_lines, 7);
-+	intel_dp->psr.fast_wake_lines = max(fast_wake_lines, 7);
-+
-+	return true;
-+}
-+
- static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 				    struct intel_crtc_state *crtc_state)
- {
-@@ -923,6 +961,12 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
-+	if (!_compute_psr2_wake_times(intel_dp, crtc_state)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "PSR2 not enabled, Unable to use long enough wake times\n");
-+		return false;
-+	}
-+
- 	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
- 		if (!intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
- 		    !HAS_PSR_HW_TRACKING(dev_priv)) {
--- 
-2.34.1
+Regards,
 
+Tvrtko
+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_sseu.h | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
+> index aa87d3832d60..d7e8c374f153 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
+> @@ -27,7 +27,7 @@ struct drm_printer;
+>    * is only relevant to pre-Xe_HP platforms (Xe_HP and beyond use the
+>    * I915_MAX_SS_FUSE_BITS value below).
+>    */
+> -#define GEN_MAX_SS_PER_HSW_SLICE	6
+> +#define GEN_MAX_SS_PER_HSW_SLICE	8
+>   
+>   /*
+>    * Maximum number of 32-bit registers used by hardware to express the
