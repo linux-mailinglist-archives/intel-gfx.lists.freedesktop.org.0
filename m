@@ -2,48 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB8869E4A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Feb 2023 17:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E6F69E4B2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Feb 2023 17:33:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 557A110E881;
-	Tue, 21 Feb 2023 16:29:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B4510E33B;
+	Tue, 21 Feb 2023 16:33:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0D0110E87C;
- Tue, 21 Feb 2023 16:29:24 +0000 (UTC)
-Received: from [192.168.2.6] (109-252-117-89.nat.spd-mgts.ru [109.252.117.89])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 434CC66021C8;
- Tue, 21 Feb 2023 16:29:23 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1676996963;
- bh=MVP/HL4CS56Ero1ZvMtd3xZZr01ZSrTJIpzkdr9pGKQ=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=EyqRnfn+oCempTNQnS2c99HtMco/8rIpJxxibelepuKylqhrW/WIg/KPsWnqTu4/+
- 3DkbgY+ospi61HXh+y/KItE9BPVunlvWd5bI6se0GXS3/G2jOjqip7Qtr/se6B5yi7
- XeiOH1rJeX19QrsDNwNU+RklNKk6jyAmuzKJNrZQ5BdxtxJtygaRH6GSbXB9vSTVt0
- NN5rcr/A8sJBTJdxw7GvmJGJEqRJ/KqH7RbhBn2FoljlhsuwGfBQmnh7GBk3Vkl+1w
- Qspk+WnZG8M1vzPVwlLqffZ6d/O0rrbuqrkwLNyxiXKE5+aorRkRkI5X37ZqsVdYcL
- WItFklde0Y//w==
-Message-ID: <992eefe3-1ab8-b8ba-02d4-9bb9f9755688@collabora.com>
-Date: Tue, 21 Feb 2023 19:29:20 +0300
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFC0310E33B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Feb 2023 16:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1676997178; x=1708533178;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vZSRnegWB62AUYyU7IaXtHtO/9lHuMwbE02aarrrZg8=;
+ b=ZE/43e5qDPu9ZtKvpLG5cqDkmO3lIrJk76OvcWl0xovJccMfNy3asxBF
+ fkx2AKcQREltUJkE+t0wKHk+CW0kkm9kv3R+EuBeh5BYnytHKwaQFKLDy
+ JTKu9WesPajN/n8lLmxpspr7ZFitXLiNqZXBSDbLFCOMWagvkrSmJCbOK
+ QvycX5USXh3vndY28yEmIedSFHGKzrgCMjaaYNCgWxEcNzZXo6sc0HUwJ
+ E1Kwe8h6S7KCxh0N03I4rrMDXZNG3jjAQEWQyT+QpCnOr7eSbumS0hIDz
+ edkLnK8NGkjQIgy6UXGaAPedBJzYOEAwVbmrnrsR+cT7Ajv7gD/Covu5R w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="320817230"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="320817230"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 08:32:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="649241867"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="649241867"
+Received: from tcollin2-mobl.ger.corp.intel.com (HELO [10.252.18.163])
+ ([10.252.18.163])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 08:32:56 -0800
+Message-ID: <b371944c-779d-cd9e-e9ba-6c7b8a6bc0bb@intel.com>
+Date: Tue, 21 Feb 2023 16:32:54 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-References: <cover.1676580180.git.jani.nikula@intel.com>
- <ed745bf1-eeca-6431-b828-e0f51b8bad30@collabora.com>
-In-Reply-To: <ed745bf1-eeca-6431-b828-e0f51b8bad30@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+ Firefox/102.0 Thunderbird/102.7.1
+Content-Language: en-GB
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+References: <20230217191813.1104342-1-jonathan.cavitt@intel.com>
+ <0f4df8e9-1cb9-b1a4-284d-67fc75b74c2e@intel.com>
+ <CH0PR11MB5444727E7C9F280059073C1EE5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <CH0PR11MB5444727E7C9F280059073C1EE5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/displayid: use primary use case to
- figure out non-desktop
+Subject: Re: [Intel-gfx] [PATCH] gen8_ppgtt: Use correct huge page manager
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,47 +63,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Iaroslav Boliukin <iam@lach.pw>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/20/23 18:44, Dmitry Osipenko wrote:
-> On 2/16/23 23:44, Jani Nikula wrote:
->> Mostly this is prep work and plumbing for easier use of displayid
->> structure version and primary use case for parsing the displayid blocks,
->> but it can be nicely used for figuring out non-desktop too.
+On 21/02/2023 16:28, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Auld, Matthew <matthew.auld@intel.com>
+> Sent: Tuesday, February 21, 2023 8:06 AM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: Dutt, Sudeep <sudeep.dutt@intel.com>; Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> Subject: Re: [PATCH] gen8_ppgtt: Use correct huge page manager for MTL
 >>
->> Completely untested. :)
+>> On 17/02/2023 19:18, Jonathan Cavitt wrote:
+>>> MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
+>>> MTL reports as not supporting 64K pages, or more accurately, the system that reports
+>>> whether a platform has 64K pages reports false for MTL.  This is only half correct,
+>>> as the 64K page support reporting system only cares about 64K page support for LMEM,
+>>> which MTL doesn't have.
+>>>
+>>> MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
+>>> using that manager doesn't resolve the issue because MTL is expecting the virtual
+>>> address space for the page table to be flushed after initialization, so we must also
+>>> add a flush statement there.
+>>>
+>>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 >>
->> BR,
->> Jani.
->>
->> Cc: Iaroslav Boliukin <iam@lach.pw>
->> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>
->> Jani Nikula (4):
->>   drm/displayid: add displayid_get_header() and check bounds better
->>   drm/displayid: return struct displayid_header from
->>     validate_displayid()
->>   drm/displayid: provide access to DisplayID version and primary use
->>     case
->>   drm/edid: update non-desktop use also from DisplayID
->>
->>  drivers/gpu/drm/drm_displayid.c | 62 ++++++++++++++++++++++++++++-----
->>  drivers/gpu/drm/drm_edid.c      | 25 +++++++++++++
->>  include/drm/drm_displayid.h     | 12 ++++++-
->>  3 files changed, 89 insertions(+), 10 deletions(-)
->>
+>> Although it looks like the hugepage mock tests are failing with this. I
+>> assume the mock device just uses some "max" gen version or so, which now
+>> triggers this path. Any ideas for that?
 > 
-> It works now without the EDID quirk, thanks!
+> With this patch applied, multiple calls to the hugepages live selftest result in a kernel panic.
+> If the mock tests are run immediately after the live ones, that would explain this behavior.
+> I was informed when this was initially debugged that the error was a known IOMMU issue
+> rather than some novel regression, though it's hard to tell if that was just hopeful optimism
+> or not at this point.
+
+In the test results we now get:
+
+6> [183.420316] i915: Running 
+i915_gem_huge_page_mock_selftests/igt_mock_exhaust_device_supported_pages
+<6> [183.436978] i915: Running 
+i915_gem_huge_page_mock_selftests/igt_mock_memory_region_huge_pages
+<6> [183.445777] i915: Running 
+i915_gem_huge_page_mock_selftests/igt_mock_ppgtt_misaligned_dma
+<6> [183.904531] i915: Running 
+i915_gem_huge_page_mock_selftests/igt_mock_ppgtt_huge_fill
+<3> [183.912658] gtt=69632, expected=4096, size=69632, single=yes
+<3> [183.912784] i915/i915_gem_huge_page_mock_selftests: 
+igt_mock_ppgtt_huge_fill failed with error -22
+
+I didn't look any deeper than that though. Note that this a just a 
+mock/fake device. I don't think its IOMMU related.
+
+> -Jonathan Cavitt
 > 
-> Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> 
-
-I'm going to apply this to misc-next later this week if there won't be
-any objections.
-
--- 
-Best regards,
-Dmitry
-
+>>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
+>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>> index 4daaa6f55668..9c571185395f 100644
+>>> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>> @@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
+>>>    			}
+>>>    		} while (rem >= page_size && index < max);
+>>>    
+>>> +		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+>>>    		vma_res->page_sizes_gtt |= page_size;
+>>>    	} while (iter->sg && sg_dma_len(iter->sg));
+>>>    }
+>>> @@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+>>>    	struct sgt_dma iter = sgt_dma(vma_res);
+>>>    
+>>>    	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
+>>> -		if (HAS_64K_PAGES(vm->i915))
+>>> +		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
+>>>    			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+>>>    		else
+>>>    			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+>>
