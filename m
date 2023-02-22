@@ -1,56 +1,110 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3439A69F3F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 13:05:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6357169F503
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 14:00:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E76410E947;
-	Wed, 22 Feb 2023 12:05:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAEA10E1D0;
+	Wed, 22 Feb 2023 13:00:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE0F10E947
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 12:05:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677067521; x=1708603521;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=aZOxAF1FrHRbYGWmJ7PR2Rmr5fKBumBJOj7RcpmSxJQ=;
- b=HxKtHb3tklOvqfLiY08ZAj/te9uuuo8XOViFqsw5DxpN4Ks1cBT98df7
- B9E9a57pLayBndTh6LGNxiN0gwcD1BUfFLrg6qDmJ3ptd8PWen4v0HDv1
- DmLNCZBQs4wygZGBYfk0F2xG4+jVvUuL164x/H+uiSAD8KgIvZlPHKFIV
- s65ff5Z+QtuaG7ue+gDM3QixqjBLqQJW+XY6ww6WMq8zZLS93W0ZacH5t
- gH8yLa4ZNQ4XzfICnKKdqVJ+h9MYKz/8tHeyfuedMumIWM5ybDGBR7niQ
- msYIZ+pANGHdhEsgbwB4/OCaWXysokYONek69/cpyY6jKuoLEM96ZFwkN A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="335105666"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="335105666"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 04:05:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="814912049"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="814912049"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.51])
- ([10.213.26.51])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 04:05:18 -0800
-Message-ID: <cc097be1-5b7b-7702-c9f5-873ffebc8b34@intel.com>
-Date: Wed, 22 Feb 2023 13:05:16 +0100
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on20600.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eae::600])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54DFC10E1D0;
+ Wed, 22 Feb 2023 12:59:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RnKjAAxrPUJby7ZmS2m53v8RH+FesPX3GXQEaovUGpakuf0Git//ge+kxEZnKcpWJ/7mZCOwZD37MvvAgGq4yoSXOKhdbhjodjNP2IVDVwefqtgdZ2+YemtXkDMjHU/+YkRRu8zvWZgu8LdoRwq2tfZ/uzF3k23pECABhzC4V4vFr9o+nZqnbBjBF+SB4r1vkjNWiC45C4Ovq0gGciHFgh3F3TcqkyNoXHDwLBKqK/QUmSjhE/fZwpQhWCPmmwrVDfANvJfSd8tKcN4k6zXDcnN/1gAuKrQt7QjdUZN/Lvv2gIvAc0gDfJ+IfIvyoQs7C8kTL56b3I3UqbFaEB22sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QGOrDpNdVJ0TQTv9bvuqo5HLqqrIZo4p2CzuyxqgnQ0=;
+ b=cQ1r+K/G37OWzDEqwS38Nsmdu/LyGk0JGwxxBMxr9hVjlxBeQKSMq/qyEL5OhmCQI13vSlSBGpvAeYTQlMChab3y8+146zpEnjUMFpZFVfA5hVCNrwwX0NrQZ+ihCHAVEnGAP6Pq0qnA5cGOoGv8QVjMb6gJNr4pqfJxo27uDl1NVt66sswXLbd+FY8FG2RmDqi7u7oB+IMdKj1+wCEIlJWFlYEtSHUOF5ova+BDAkUwbDfluRlq4Gqgy37/O2Cl4zwGPlwME7lgKI9IOaEqtMF1KX2L7NTm06mIVo1s3C697pRxWTrMbYfsmCBfODdnx2pCr5AGS3L2+pAod5hjHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QGOrDpNdVJ0TQTv9bvuqo5HLqqrIZo4p2CzuyxqgnQ0=;
+ b=ExAsA7Z/05OYX2CKoHHpafSYmrfhpSWhTX4PwLwGuFYeqvD8v85CmUYpruoJ0TKGbRpiUw1/9JgDWhmH4RfW6DreKBJpS6Ay0nGgFUnde/94WJGltooE+bupH8F2dHRj6Eyu2SMTixbbfgQTQGFkKidwU5erzkPcac470MJDqgomufWYTsTbkly3ypnRXrU/4h1n1TnBf90nd5CjM3VKM5tOOXppDIIkExeOtbfauyVmFEjWBQImPAfH80vh/pohB/5x5iQRpOnF3Wx30EzMmua+cqiX/w7RUHbKZCTtMovB+2OKMwEaR+U6XGm22dxXE2K8mjke9IP6iPNO5ZwZhg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MN2PR12MB4566.namprd12.prod.outlook.com (2603:10b6:208:26a::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
+ 2023 12:59:53 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6111.021; Wed, 22 Feb 2023
+ 12:59:53 +0000
+Date: Wed, 22 Feb 2023 08:59:51 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <Y/YRx7jLuyEoLxZg@nvidia.com>
+References: <20230221034812.138051-1-yi.l.liu@intel.com>
+ <20230221034812.138051-17-yi.l.liu@intel.com>
+ <BL1PR11MB5271AB3735F7A783C2871DB88CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
+ <DS0PR11MB7529D04D2EB9B5C69C306C16C3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB7529D04D2EB9B5C69C306C16C3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BLAPR03CA0066.namprd03.prod.outlook.com
+ (2603:10b6:208:329::11) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org
-References: <20230208105130.3233420-1-andrzej.hajda@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230208105130.3233420-1-andrzej.hajda@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: add guard page to
- ggtt->error_capture
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MN2PR12MB4566:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11b44785-7fe1-4b35-5edd-08db14d4b05e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Qxqf6rf5nCwpunUGHKHonpnEzBTyBuwjU8VucjcLETV4qvdYPAVG/PWbXwAIYkpXqtS/pIW9WBn5hhGG28y7FeAVlTO41QEfulEbGZt3GXQWWw2ZxFEPcJ+Q+CDoDC3Ah05PFv92zFFLmitt5Kwgn+1IRO+aan0W3rKpTDHd1xp+bKbwcFJAuRhtKajar5ARRWixBOhG0o/+FnBULdEL6+U3koPqAJjAhzU3563cYqFDXDH3ZS6AhJSLQewy2qsfLN//+MIykb6sk0dRWOf+8qs4OkanQamv4/SVnA5dH7vwx6QHyhkcy+mVMk3dI5bdvoCxEO2CnON1bCMkWFMUUY4+05n1SzR9Esnv+rNcYhciFrrTWGFoGwBHYi2MAv9kPrdTtEflT+XsKJEoLZpfAOcc65Hg28DrYqzV+FER88RZ29PeLjA+Dy6fYb+z3pQ6J71CEFJVTKxzQR0eT0n2K3+Qln7PV2PTRYVmvk7q+QWu2USsdNf+JBkx1YrcFXD9HXBY0Bc3beqjU/xSgwvTs//i2cuaoyVVYX3qzKFN+VoGcKnahNiRdn17M3UKN4RXGUfem9NuWMfOIwkTNwkh2gVL1nPlPQ2JJhyxLBI9NMVp36s/QB95+e1hQfcRiCHJTxL4HCXLXVLcho3Kj00Owg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(39860400002)(396003)(376002)(366004)(136003)(451199018)(66946007)(6916009)(8676002)(66476007)(4326008)(66556008)(83380400001)(86362001)(2616005)(38100700002)(6512007)(54906003)(36756003)(316002)(26005)(186003)(6506007)(478600001)(6486002)(5660300002)(7416002)(4744005)(2906002)(41300700001)(8936002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7T6HMW//BNEqmgqqazfCd1xXLilcq1ZxJIItEvk3i3ibqYzztHUW/v8ig/jT?=
+ =?us-ascii?Q?4najaq8D0PMfTTW8fdrVrSMaajOqr8cz1xb1iCh420uVy0taizwzIlYQkq6U?=
+ =?us-ascii?Q?6oVq3eK5gukrk6+B5wo65WyUrqUpX4cogbzMbYWYKvLAyhQmt4MMMHiW37/U?=
+ =?us-ascii?Q?Io1zm74ZLt/qNeesyS77/SGp6d/+yeFXVeAjwFLXidRzfRvF5oOkgFx7e+EJ?=
+ =?us-ascii?Q?XKJ4dTxCbll3ee8+nb9tuUHJJs8VP6BsPuKdipVKSxczWoAKsr/jpJrOnZgo?=
+ =?us-ascii?Q?qfIwLSKFOGACVa5lqgDcn2M9UqKSIIg8+6yFynK3VEzBdr0d1e6CL2nRkKxg?=
+ =?us-ascii?Q?XneYUQNJjkCV9RvMpJm2y9LFwuzUMH/L+zTTBGuiLvsE1QeoMCVITfA+pwZE?=
+ =?us-ascii?Q?AoaB4vTFI0yfNgMdSb9Nm4rfZ26d1ZTeerHCAMAsYzYpYbb0v+jU+vsiX1Lx?=
+ =?us-ascii?Q?mrCmS1yBM9qDDHMh+osubgXPVPuoBpmTu8pQDoqKeZ6B6sns1PxFpNRNsVHP?=
+ =?us-ascii?Q?cveADoNJoTI0/Ihx/iIcxsGHoSYCixrNH6Dwk4vSRX7NDKwKWwL1zRDYc3R4?=
+ =?us-ascii?Q?P52w5T/cmMbNuIaFhxhuTrPsfGOJonxYUXhp9gztcgHfnQ2Uz+6dxcsvq2sO?=
+ =?us-ascii?Q?gFc99RiCcB3t+31P1XdwDGWBb3eg0avDbTLB8z5DTwtsdTsuKKt5ZWVWBHVV?=
+ =?us-ascii?Q?0gH8cC5bYnjIw1vl9epd6tCqsZkED9OkTQzUraLPgNvVeYWlJDWpjIMeTlJb?=
+ =?us-ascii?Q?xDRfY9saek6XaKs9cCyG/2m5gx3HZ8k7lAQy5d9Ie/x5dQzom6vTUpBmcgRj?=
+ =?us-ascii?Q?OBCeW0BUhVfB+VVesMoZtTwcRt+4OdCnRRZC+uhlaBPgwyZlfJonuTrA4f0q?=
+ =?us-ascii?Q?Qi6JtCccECtGOKcMmUT98qMFe0Tjm6Cc2XgLJLqGL5ZOs3w0aRrQzTBDhDAA?=
+ =?us-ascii?Q?xxxJSSGRRmTexIiZOx9D6Qy+OzW59la5Rfe68hUE4Iam7ZSieXUZyYQ5rvH7?=
+ =?us-ascii?Q?Gssp2H6vt4UkNaja2cvuhRCeF/HaYDslQWtoBRNKLYrVF7g7WCkjuAluTaz/?=
+ =?us-ascii?Q?oNC/LxFiY2Cy73soSmqOpu2+40lxHojRHJ3/rO433OnF4hzfK99VX2KneBIn?=
+ =?us-ascii?Q?NMsy7Onlbc/FVvTGpdYYYBLW82JyDEgOEVbLh2ShgBuWoRmGjv1bgaR8vuuJ?=
+ =?us-ascii?Q?q4jh+pI9jkgQYuhqpSLuDmbfrr39gXPHM5G69NtSYIPiHzBHjpYlTB7J5uq6?=
+ =?us-ascii?Q?wJ3V+ufvKIOlHmXmKN1ZHT/eA1OMzQiyb93h5duuv624RbqjJq4eg6FC5mWF?=
+ =?us-ascii?Q?PyBQxrqs8mjAqYXyVdsfWuBOXBdgfQ9v5QOhF8dEbm34Ws4BQ1BIz42OdeJo?=
+ =?us-ascii?Q?/WbgnzTW+mkjhQBn73f64ye/dwfCwGXSEqz6ElGpzfbZ98zXHRQJqZVy62vS?=
+ =?us-ascii?Q?h0szdYzqKxKrSWmirPZC4pnHorm0NNvdRN1/Zyho4AgDVNApCI3gcJV9adFl?=
+ =?us-ascii?Q?UB5yYXBDY1rNk4NQeHwMCIL94B/Na5SX+LvVW2dUwc8wBZo5e+MBzWsACT+2?=
+ =?us-ascii?Q?3Tcv2k0rgAFHKqx6nDqHDjK274r5tDpmPSpF1H4U?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11b44785-7fe1-4b35-5edd-08db14d4b05e
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2023 12:59:52.8903 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: icH6lJDEwD7jD7EWce6Fqbt9MeN7o6Sp7x/oaYKMKvZpGjMfYNX6xcEsFvX57rxC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4566
+Subject: Re: [Intel-gfx] [PATCH v4 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,131 +117,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- chris.p.wilson@linux.intel.com, "Das, Nirmoy" <nirmoy.das@intel.com>
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "jasowang@redhat.com" <jasowang@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+On Wed, Feb 22, 2023 at 07:44:12AM +0000, Liu, Yi L wrote:
+> > From: Tian, Kevin <kevin.tian@intel.com>
+> > Sent: Wednesday, February 22, 2023 3:40 PM
+> > 
+> > > From: Liu, Yi L <yi.l.liu@intel.com>
+> > > Sent: Tuesday, February 21, 2023 11:48 AM
+> > >
+> > > +
+> > > +void vfio_device_cdev_close(struct vfio_device_file *df)
+> > > +{
+> > > +	struct vfio_device *device = df->device;
+> > > +
+> > > +	mutex_lock(&device->dev_set->lock);
+> > > +	if (!smp_load_acquire(&df->access_granted)) {
+> > 
+> > there is no contention with another one changing this flag at this
+> > point so directly accessing it is fine.
+> 
+> make sense. 
 
-Gently ping on the patch. CI pollution is quite high:
-$ grep 'PTE Read access' CI/drm-tip/CI_DRM_12768/*/dmesg* | wc -l
-308
+Have to use READ_ONCE though
 
-Regards
-Andrzej
-
-On 08.02.2023 11:51, Andrzej Hajda wrote:
-> Write-combining memory allows speculative reads by CPU.
-> ggtt->error_capture is WC mapped to CPU, so CPU/MMU can try
-> to prefetch memory beyond the error_capture, ie it tries
-> to read memory pointed by next PTE in GGTT.
-> If this PTE points to invalid address DMAR errors will occur.
-> This behaviour was observed on ADL, RPL, DG2 platforms.
-> To avoid it, guard scratch page should be added after error_capture.
-> The patch fixes the most annoying issue with error capture but
-> since WC reads are used also in other places there is a risk similar
-> problem can affect them as well.
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
-> This patch tries to diminish plague of DMAR read errors present
-> in CI for ADL*, RPL*, DG2 platforms, see for example [1] (grep DMAR).
-> CI is usually tolerant for these errors, so the scale of the problem
-> is not really visible.
-> To show it I have counted lines containing DMAR read errors in dmesgs
-> produced by CI for all three versions of the patch, but in contrast to v2
-> I have grepped only for lines containing "PTE Read access".
-> Below stats for kernel w/o patch vs patched one.
-> v1: 210 vs 0
-> v2: 201 vs 0
-> v3: 214 vs 0
-> Apparently the patch fixes all common PTE read errors.
-> 
-> In previous version there were different numbers due to less exact grepping,
-> "grep DMAR" catched write errors and "DMAR: DRHD: handling fault status reg"
-> lines, anyway the actual number of errors is much bigger - DMAR errors
-> are rate-limited.
-> 
-> [1]: http://gfx-ci.igk.intel.com/tree/drm-tip/CI_DRM_12678/bat-adln-1/dmesg0.txt
-> 
-> Changelog:
-> v2:
->      - modified commit message (I hope the diagnosis is correct),
->      - added bug checks to ensure scratch is initialized on gen3 platforms.
->        CI produces strange stacktrace for it suggesting scratch[0] is NULL,
->        to be removed after resolving the issue with gen3 platforms.
-> v3:
->      - removed bug checks, replaced with gen check.
-> v4:
->      - change code for scratch page insertion to support all platforms,
->      - add info in commit message there could be more similar issues
-> 
-> Regards
-> Andrzej
-> ---
->   drivers/gpu/drm/i915/gt/intel_ggtt.c | 31 ++++++++++++++++++++++++----
->   1 file changed, 27 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 842e69c7b21e49..6566d2066f1f8b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -503,6 +503,21 @@ static void cleanup_init_ggtt(struct i915_ggtt *ggtt)
->   	mutex_destroy(&ggtt->error_mutex);
->   }
->   
-> +static void
-> +ggtt_insert_scratch_pages(struct i915_ggtt *ggtt, u64 offset, u64 length)
-> +{
-> +	struct i915_address_space *vm = &ggtt->vm;
-> +
-> +	if (GRAPHICS_VER(ggtt->vm.i915) < 8)
-> +		return vm->clear_range(vm, offset, length);
-> +	/* clear_range since gen8 is nop */
-> +	while (length > 0) {
-> +		vm->insert_page(vm, px_dma(vm->scratch[0]), offset, I915_CACHE_NONE, 0);
-> +		offset += I915_GTT_PAGE_SIZE;
-> +		length -= I915_GTT_PAGE_SIZE;
-> +	}
-> +}
-> +
->   static int init_ggtt(struct i915_ggtt *ggtt)
->   {
->   	/*
-> @@ -551,8 +566,12 @@ static int init_ggtt(struct i915_ggtt *ggtt)
->   		 * paths, and we trust that 0 will remain reserved. However,
->   		 * the only likely reason for failure to insert is a driver
->   		 * bug, which we expect to cause other failures...
-> +		 *
-> +		 * Since CPU can perform speculative reads on error capture
-> +		 * (write-combining allows it) add scratch page after error
-> +		 * capture to avoid DMAR errors.
->   		 */
-> -		ggtt->error_capture.size = I915_GTT_PAGE_SIZE;
-> +		ggtt->error_capture.size = 2 * I915_GTT_PAGE_SIZE;
->   		ggtt->error_capture.color = I915_COLOR_UNEVICTABLE;
->   		if (drm_mm_reserve_node(&ggtt->vm.mm, &ggtt->error_capture))
->   			drm_mm_insert_node_in_range(&ggtt->vm.mm,
-> @@ -562,11 +581,15 @@ static int init_ggtt(struct i915_ggtt *ggtt)
->   						    0, ggtt->mappable_end,
->   						    DRM_MM_INSERT_LOW);
->   	}
-> -	if (drm_mm_node_allocated(&ggtt->error_capture))
-> +	if (drm_mm_node_allocated(&ggtt->error_capture)) {
-> +		u64 start = ggtt->error_capture.start;
-> +		u64 size = ggtt->error_capture.size;
-> +
-> +		ggtt_insert_scratch_pages(ggtt, start, size);
->   		drm_dbg(&ggtt->vm.i915->drm,
->   			"Reserved GGTT:[%llx, %llx] for use by error capture\n",
-> -			ggtt->error_capture.start,
-> -			ggtt->error_capture.start + ggtt->error_capture.size);
-> +			start, start + size);
-> +	}
->   
->   	/*
->   	 * The upper portion of the GuC address space has a sizeable hole
-
+Jason
