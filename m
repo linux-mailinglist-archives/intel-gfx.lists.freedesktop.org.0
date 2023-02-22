@@ -2,136 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D26369F006
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 09:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D4369EFBC
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 08:59:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9DD510E42D;
-	Wed, 22 Feb 2023 08:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92F0510E425;
+	Wed, 22 Feb 2023 07:59:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3104610E427;
- Wed, 22 Feb 2023 08:19:35 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7AC10E425
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 07:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677053975; x=1708589975;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=TGkVBNbjG5YFA7Y24aWGH+/0Cpn5JiZtdDRgqvH6eYo=;
- b=KasK0hkj/CzopBTqZUHr2SERh9+mRTGI0DKb9mulqY7BXuxsUCULkwud
- iPOliVY0//uLx6a3YyGkEpIGqJNTTZHGJQFYkihwrJAEkVp1bau3Yesfu
- mleACh8pBtL4hGWfSiRFZGNWTTkrLv1K0jQVf3E+20LRFVPmXAZX8MINE
- VOIm4MQ7LfjoqdwbsoYhb5PjFC7hwiaF+C510vp8IAnk8Xxvw52IjHAUj
- tLUWrLHTSSvmn/zcmzquPKikHqahvXtaFBHCqbg4Nuh4F5bgUIhDTRGGh
- 1JDB+ho5uqf5FssEsBbSFgst+djtcMPYX1hSQ3JhgITW2nJzyN6rQzzJL g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="330591890"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="330591890"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 00:19:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="846035332"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="846035332"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP; 22 Feb 2023 00:19:33 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 22 Feb 2023 00:19:33 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 22 Feb 2023 00:19:33 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 22 Feb 2023 00:19:32 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C//2eTwyYLTaGnK5KN+gLPrVfNoZ9xPPX02DhOpb/Esu6oLLg7LQTrOoDggfHhLOpG3tiG6LPbDeJ1S7xcijGgGfqLvz7gg7teFGuJ3YceeuoxQDOr61mVw5GeYNbwE9OkX3FMmEDG/aahGfpwK+u2ducVbQuuqrCzF0EgIXe2dQZpS7C+jK9p17klvmLfTqn/xkwNHWKo19gvRmGZBWCTi5A5Srs+P2VtBh+gwbpdDNCtVKnt7OxG6cu0VaKUCOVJViOjujID52dUQ36+IEhJxaKDQb+J4UA+lfMcWRSGmjRK1eA3O6fd0X2A13aZSUoN/ixbeYod4IllPCxgIOpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XRzXhnKbQp9iVrwn7Aq5gyxrTL9X+gySedgMk+zmoW0=;
- b=K9eRUFBnXXXrAdL7OlA8fMgREF9vJRiLobPZEXFoWBS0E5mwHv1tWSsobJjLNFYzL9BUXz1s2P4bpwKj4cpkkVa4shrFD4qfj2yL6LgYWzAlsU31NzDQzIx8YNGTTejJT8Hr2HgS2A8hVyk87lVhIj65SC2b4q8ElD3nEfVxJDzduw37hxK836cSYITC06E9y2AEnK2179K/y/ZmseVK0bbDs3V21mLSa5FVx/o58b3e88zoJbSyguJFagPFK6j2I/g6Eos2eisfrltbJ14b8Y7GZnl+7FnbpH6GeC9Bsqu3m3smVF0NkZtdTW4uG/4i0gcdhGh9IUgFdy47+CUHeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- DS7PR11MB6038.namprd11.prod.outlook.com (2603:10b6:8:75::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6111.19; Wed, 22 Feb 2023 08:19:30 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::82d2:d341:4138:17ef]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::82d2:d341:4138:17ef%6]) with mapi id 15.20.6111.019; Wed, 22 Feb 2023
- 08:19:30 +0000
-Date: Wed, 22 Feb 2023 15:55:45 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <Y/XKgUSaa9Ld1e8/@yzhao56-desk.sh.intel.com>
-References: <20230221034812.138051-1-yi.l.liu@intel.com>
- <20230221034812.138051-8-yi.l.liu@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230221034812.138051-8-yi.l.liu@intel.com>
-X-ClientProxiedBy: SG2PR06CA0208.apcprd06.prod.outlook.com
- (2603:1096:4:68::16) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+ t=1677052742; x=1708588742;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=w7f79xOB5YOwAJBx3cAzIXPVs4k72/EjIYIM/+URmts=;
+ b=KhDi9R8u07ETXtwzdItumgKDTcGbXcl93y1hR4RMJBHGXRc8wnCQdH3Y
+ qDQjBbiO4mcvGqonJDKo7Xmj+xnqenx3KCJCz/7Y3YGN2+9dm430/aH+J
+ rGlCfhxi/XqjceUHgPopmAdCuNmd4WKPnngtRc17Lm3xWImJnrPjTRyzW
+ MnCJ+GnGrdIbUSrl9tB5IJvdyLkNcRbkII9yLwZdqFqTVAghtEAcbEhDU
+ LS5L9CXmWDubBdvzK/5GnKjLl7/g+KsPHCsl2V5sLIO6UxgENluV+D2E/
+ rOKmGiPW0J5F5gQS/v0KLczlZnWuL2UkHmCIoLzLT6vmqPTIdnoFkdIcy g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="313235335"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="313235335"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 23:58:49 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="621811224"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="621811224"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.51])
+ ([10.213.26.51])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 23:58:48 -0800
+Message-ID: <3b9670a5-9aa7-fe72-8572-8619cea8b16e@intel.com>
+Date: Wed, 22 Feb 2023 08:58:45 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|DS7PR11MB6038:EE_
-X-MS-Office365-Filtering-Correlation-Id: 00a05458-3108-4903-6ba7-08db14ad854a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cMEKqGblpnth+ouD2HFMIqVZ9l1EpfWPV0mhxYwI7HJwgk8RTDRgrCx87tQxUpaMFDTdAMPueUqOucY8AFZ3B547/rGAed9qtiWJntQFg2pzDKXw9Lb0JKhnjppfTF5kHxF0hZ3+nOh3AuMSrIASHvWb4QmdsjrxVBTGnaYzTxyuyWZZQIuYN7smTooC7tubYvlrvzjDjCmzH4hEzxdzB2G7Ho2UbM40vX3AKfneibZUSaw6ewPnwB35biBJecr9o1Qnqxpd0tIi8jxepC1UKg1nGi0H3b3G0bUpitTaPlKFqoiqOIeivnb/yxXe2exPL+tp4NlILivZ9ahP3M3CJER8r69SfsnkzlZ2XVs2iDPMDRfvzOS0qV2r0wgJ30e6liY0/pr8gr9V3PngWbHeQ7XOkALeHM9sjrwOQseUMYFCV1LNp9SxRxJBovCfvR7/QqeWSpNjP4ynxxmggRQhm+lEjqS8jpUL0aJtNEDKLUXhJAmcmHCTmxhzCNL3Vz8Hqu4urZQ7+UQYwpfs9xQX4VOpW8uSOGr2JkTHxkRBDA9eeJ7sbIDXeq1IK7c/xw2lzQi4+pIEI0g2f+KRf53HHM2bGfO0wlrNBhjUZHnk7e28k2d/SU8zVpXu3a6DJfm559zZTmChYuJtC13mxiGfPw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(396003)(136003)(376002)(39860400002)(366004)(451199018)(66476007)(8676002)(66556008)(4326008)(6486002)(66946007)(7416002)(54906003)(316002)(6636002)(8936002)(41300700001)(86362001)(478600001)(6666004)(6506007)(38100700002)(186003)(6512007)(26005)(2906002)(3450700001)(5660300002)(82960400001)(6862004)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NifagzKAJvU/p+QdFtddbWHGFziHeyG8NlouquwYh/P5RZ1sGzfIfXHrbsCq?=
- =?us-ascii?Q?qs/HVJV+2Fb0q1Oqc6JIxNiN4tDNxT9ZNbxBp5wei7WDeXzgOPFFiKToUW12?=
- =?us-ascii?Q?1qDKHxDVVNf16hs1Uhll+8HzF7xBaCfowGKmSrATeNTNa32it4S9a2NzDnxJ?=
- =?us-ascii?Q?RqwcqO6Dn1fS9QeH3Vm+wlVA/5eimQnbkboaQuV2HK+JmHhv8UYjUlBobRHH?=
- =?us-ascii?Q?sGiXPGxXTcF5woGmSULJOF0UeCdLpcKzYyUa3xbc1a92PpphAOH1UsrqHCZt?=
- =?us-ascii?Q?/b32dAwnb/vDWDBQSgL11Uzjqn8AvlPfsW56SudS6QtSGJSMGgRRTCUDT+X2?=
- =?us-ascii?Q?UxFzIYBasaowpsdBYfpp8ziC4Mm5L7v6omyDDTYvkzZznMU2rTbQlSFbssRD?=
- =?us-ascii?Q?zYDvqW5R/n7DMjFAMHIARMtPNb/PWHmPrepz9lX9sdP+JWMuMGLToQcY2muC?=
- =?us-ascii?Q?JFuNKd3l2kQr/ncvv/S3ChZNpHeXQyO0yRjLliO8nX4s/GnUCuneFGWT87UF?=
- =?us-ascii?Q?K/0++juM19ndjcn4qsDvkFel3MLp1GaxvSqMFegtopHKDdvd7JPDJjGthsr/?=
- =?us-ascii?Q?ElMqEjxB+E+COoUZeYBrUq0hqBAdR9e+VCNeSJqwPjSrlZdyznqaAMN4z+Ww?=
- =?us-ascii?Q?CmW/PPK/D5FkqjrBCzzbLJVFHTdVQXqjtQ80+hWRW9uQPBHLZVcovZp9Ls0/?=
- =?us-ascii?Q?6uMAsH4U8vYCHchb0hKFAcYjuu7O3rFDpu4rwjRRZGExH+l452QOnyCSutKY?=
- =?us-ascii?Q?G2g8BqkSEYJayZay42St4mABmRtBJj+w2bUc10NrYX5tzu/w20jqENTVcWC6?=
- =?us-ascii?Q?aMqR1Cf2wabnSciXW44eJZy+kszpjZ9TuErkJBVWQuSevq8N/DId0BolS9n/?=
- =?us-ascii?Q?hO591z2/adIgFF/of7qwRWTwdq/civynjgpkWy//r1C58lCzqDNaUP/uzz7l?=
- =?us-ascii?Q?f2sFfuvVb2/RfbKga6XdLMJYGhTJ52LHtecCBy0prkFFlZp7c9UeJ8y1BE/Z?=
- =?us-ascii?Q?zdo+4IzAjNkZzPGxjpo06r5cs0Ayew9oPS1z9l6UlpeytU6YSXMAPjN8+VSm?=
- =?us-ascii?Q?1j9u4fXGnfl5TNj07seXKZGYj+AqKhJyXcqhj69iljEVXoi9cNTFe8IPe1++?=
- =?us-ascii?Q?3sGzlDrNoZjglyTgSySZwjp4iAUVomxCKbak6Rp+J6n6S0BBno8WQs9XDoq3?=
- =?us-ascii?Q?xbmOsSZCXez5v7k8OcJzQP5Knus3iAGAGRlVmzN4RILXQyQag0xd+bsrkFNI?=
- =?us-ascii?Q?e9w81F4UepCogMnhItsdqG0KpdRMzucjODDgnCXDDjerh97NbCaL6JCh9k/g?=
- =?us-ascii?Q?OCjv9p+A+j3HbnrCtnYThvG0+n6o7M9PKcE2/42REKyd/l0Qc60BPjzcOGwu?=
- =?us-ascii?Q?tEkii1qQ0NiSaN8v/htm+qNhDHSfu+78nnTY3MTCXb3qGrxoIUOFjQFSBGtE?=
- =?us-ascii?Q?/MbKUVDwOredXJsPeDq97uwBMF0cXk3BMNW/hfFRdJj82fUepdalgeiDdGd2?=
- =?us-ascii?Q?s0SX+R6Zsn6CK4sI1FQCnaGX3JOM1qfKfB2OhGElWVDorxT8/x3OCcLbR617?=
- =?us-ascii?Q?PWOWAwjZw3SrsQlesgHawV/OeUM6t2sLeecVmUPxZjc6YHsLR5WJVGuoNFo4?=
- =?us-ascii?Q?yw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00a05458-3108-4903-6ba7-08db14ad854a
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2023 08:19:30.3702 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tgaQGHD70AnNRFseW8vmpB7AZQi1mavJW044a3Q9aQKDWowQNQSG/OxtpFy9zymxyNWDy+2Cg1vJSAz8QL6U+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6038
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 07/19] vfio: Block device access via
- device fd until device is opened
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+Content-Language: en-US
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230208114300.3123934-1-imre.deak@intel.com>
+ <20230208114300.3123934-2-imre.deak@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230208114300.3123934-2-imre.deak@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915: Fix system suspend without
+ fbdev being initialized
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,128 +64,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com,
- mjrosato@linux.ibm.com, kvm@vger.kernel.org, joro@8bytes.org,
- cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
- suravee.suthikulpanit@amd.com, eric.auger@redhat.com, terrence.xu@intel.com,
- nicolinc@nvidia.com, shameerali.kolothum.thodi@huawei.com, jgg@nvidia.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, jasowang@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 20, 2023 at 07:48:00PM -0800, Yi Liu wrote:
-> Allow the vfio_device file to be in a state where the device FD is
-> opened but the device cannot be used by userspace (i.e. its .open_device()
-> hasn't been called). This inbetween state is not used when the device
-> FD is spawned from the group FD, however when we create the device FD
-> directly by opening a cdev it will be opened in the blocked state.
+On 08.02.2023 12:42, Imre Deak wrote:
+> If fbdev is not initialized for some reason - in practice on platforms
+> without display - suspending fbdev should be skipped during system
+> suspend, fix this up. While at it add an assert that suspending fbdev
+> only happens with the display present.
 > 
-> The reason for the inbetween state is that userspace only gets a FD but
-> doesn't gain access permission until binding the FD to an iommufd. So in
-> the blocked state, only the bind operation is allowed. Completing bind
-> will allow user to further access the device.
+> This fixes the following:
 > 
-> This is implemented by adding a flag in struct vfio_device_file to mark
-> the blocked state and using a simple smp_load_acquire() to obtain the
-> flag value and serialize all the device setup with the thread accessing
-> this device.
+> [   91.227923] PM: suspend entry (s2idle)
+> [   91.254598] Filesystems sync: 0.025 seconds
+> [   91.270518] Freezing user space processes
+> [   91.272266] Freezing user space processes completed (elapsed 0.001 seconds)
+> [   91.272686] OOM killer disabled.
+> [   91.272872] Freezing remaining freezable tasks
+> [   91.274295] Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
+> [   91.659622] BUG: kernel NULL pointer dereference, address: 00000000000001c8
+> [   91.659981] #PF: supervisor write access in kernel mode
+> [   91.660252] #PF: error_code(0x0002) - not-present page
+> [   91.660511] PGD 0 P4D 0
+> [   91.660647] Oops: 0002 [#1] PREEMPT SMP NOPTI
+> [   91.660875] CPU: 4 PID: 917 Comm: bash Not tainted 6.2.0-rc7+ #54
+> [   91.661185] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS edk2-20221117gitfff6d81270b5-9.fc37 unknown
+> [   91.661680] RIP: 0010:mutex_lock+0x19/0x30
+> [   91.661914] Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 53 48 89 fb e8 62 d3 ff ff 31 c0 65 48 8b 14 25 00 15 03 00 <f0> 48 0f b1 13 75 06 5b c3 cc cc cc cc 48 89 df 5b eb b4 0f 1f 40
+> [   91.662840] RSP: 0018:ffffa1e8011ffc08 EFLAGS: 00010246
+> [   91.663087] RAX: 0000000000000000 RBX: 00000000000001c8 RCX: 0000000000000000
+> [   91.663440] RDX: ffff8be455eb0000 RSI: 0000000000000001 RDI: 00000000000001c8
+> [   91.663802] RBP: ffff8be459440000 R08: ffff8be459441f08 R09: ffffffff8e1432c0
+> [   91.664167] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+> [   91.664532] R13: 00000000000001c8 R14: 0000000000000000 R15: ffff8be442f4fb20
+> [   91.664905] FS:  00007f28ffc16740(0000) GS:ffff8be4bb900000(0000) knlGS:0000000000000000
+> [   91.665334] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   91.665626] CR2: 00000000000001c8 CR3: 0000000114926006 CR4: 0000000000770ee0
+> [   91.665988] PKRU: 55555554
+> [   91.666131] Call Trace:
+> [   91.666265]  <TASK>
+> [   91.666381]  intel_fbdev_set_suspend+0x97/0x1b0 [i915]
+> [   91.666738]  i915_drm_suspend+0xb9/0x100 [i915]
+> [   91.667029]  pci_pm_suspend+0x78/0x170
+> [   91.667234]  ? __pfx_pci_pm_suspend+0x10/0x10
+> [   91.667461]  dpm_run_callback+0x47/0x150
+> [   91.667673]  __device_suspend+0x10a/0x4e0
+> [   91.667880]  dpm_suspend+0x134/0x270
+> [   91.668069]  dpm_suspend_start+0x79/0x80
+> [   91.668272]  suspend_devices_and_enter+0x11b/0x890
+> [   91.668526]  pm_suspend.cold+0x270/0x2fc
+> [   91.668737]  state_store+0x46/0x90
+> [   91.668916]  kernfs_fop_write_iter+0x11b/0x200
+> [   91.669153]  vfs_write+0x1e1/0x3a0
+> [   91.669336]  ksys_write+0x53/0xd0
+> [   91.669510]  do_syscall_64+0x58/0xc0
+> [   91.669699]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
+> [   91.669980]  ? syscall_exit_to_user_mode_prepare+0x18e/0x1c0
+> [   91.670278]  ? syscall_exit_to_user_mode+0x17/0x40
+> [   91.670524]  ? do_syscall_64+0x67/0xc0
+> [   91.670717]  ? __irq_exit_rcu+0x3d/0x140
+> [   91.670931]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+> [   91.671202] RIP: 0033:0x7f28ffd14284
 > 
-> Following this lockless scheme, it can safely handle the device FD
-> unbound->bound but it cannot handle bound->unbound. To allow this we'd
-> need to add a lock on all the vfio ioctls which seems costly. So once
-> device FD is bound, it remains bound until the FD is closed.
-> 
-> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Fixes: f8cc091e0530 ("drm/i915/fbdev: suspend HPD before fbdev unregistration")
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8015
+> Tested-by: iczero <iczero@hellomouse.net>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: iczero <iczero@hellomouse.net>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+
 > ---
->  drivers/vfio/group.c     |  6 ++++++
->  drivers/vfio/vfio.h      |  1 +
->  drivers/vfio/vfio_main.c | 16 ++++++++++++++++
->  3 files changed, 23 insertions(+)
+>   drivers/gpu/drm/i915/display/intel_fbdev.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-> index 2abf55c69281..14e29525e354 100644
-> --- a/drivers/vfio/group.c
-> +++ b/drivers/vfio/group.c
-> @@ -197,6 +197,12 @@ static int vfio_device_group_open(struct vfio_device_file *df)
->  	if (device->open_count == 0)
->  		vfio_device_put_kvm(device);
->  
-> +	/*
-> +	 * Paired with smp_load_acquire() in vfio_device_fops::ioctl/
-> +	 * read/write/mmap
-> +	 */
-> +	smp_store_release(&df->access_granted, true);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 81b41148e592b..e719202d831f0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -632,7 +632,13 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
+>   	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+>   	struct fb_info *info;
+>   
+> -	if (!ifbdev || !ifbdev->vma)
+> +	if (!ifbdev)
+> +		return;
 > +
->  	mutex_unlock(&device->dev_set->lock);
->  
->  out_unlock:
-> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> index 11e56fe079a1..d56cdb114024 100644
-> --- a/drivers/vfio/vfio.h
-> +++ b/drivers/vfio/vfio.h
-> @@ -18,6 +18,7 @@ struct vfio_container;
->  
->  struct vfio_device_file {
->  	struct vfio_device *device;
-> +	bool access_granted;
->  	spinlock_t kvm_ref_lock; /* protect kvm field */
->  	struct kvm *kvm;
->  	struct iommufd_ctx *iommufd; /* protected by struct vfio_device_set::lock */
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index ea507a61e3b7..91c8f25393db 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -1106,6 +1106,10 @@ static long vfio_device_fops_unl_ioctl(struct file *filep,
->  	struct vfio_device *device = df->device;
->  	int ret;
->  
-> +	/* Paired with smp_store_release() in vfio_device_open() */
+> +	if (drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)))
+> +		return;
+> +
+> +	if (!ifbdev->vma)
+>   		goto set_suspend;
+>   
+>   	info = ifbdev->helper.info;
 
-Nit pick: not vfio_device_open() now :)
-
-> +	if (!smp_load_acquire(&df->access_granted))
-> +		return -EINVAL;
-> +
->  	ret = vfio_device_pm_runtime_get(device);
->  	if (ret)
->  		return ret;
-> @@ -1133,6 +1137,10 @@ static ssize_t vfio_device_fops_read(struct file *filep, char __user *buf,
->  	struct vfio_device_file *df = filep->private_data;
->  	struct vfio_device *device = df->device;
->  
-> +	/* Paired with smp_store_release() in vfio_device_open() */
-> +	if (!smp_load_acquire(&df->access_granted))
-> +		return -EINVAL;
-> +
->  	if (unlikely(!device->ops->read))
->  		return -EINVAL;
->  
-> @@ -1146,6 +1154,10 @@ static ssize_t vfio_device_fops_write(struct file *filep,
->  	struct vfio_device_file *df = filep->private_data;
->  	struct vfio_device *device = df->device;
->  
-> +	/* Paired with smp_store_release() in vfio_device_open() */
-> +	if (!smp_load_acquire(&df->access_granted))
-> +		return -EINVAL;
-> +
->  	if (unlikely(!device->ops->write))
->  		return -EINVAL;
->  
-> @@ -1157,6 +1169,10 @@ static int vfio_device_fops_mmap(struct file *filep, struct vm_area_struct *vma)
->  	struct vfio_device_file *df = filep->private_data;
->  	struct vfio_device *device = df->device;
->  
-> +	/* Paired with smp_store_release() in vfio_device_open() */
-> +	if (!smp_load_acquire(&df->access_granted))
-> +		return -EINVAL;
-> +
->  	if (unlikely(!device->ops->mmap))
->  		return -EINVAL;
->  
-> -- 
-> 2.34.1
-> 
