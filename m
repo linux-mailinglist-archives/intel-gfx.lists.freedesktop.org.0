@@ -1,62 +1,156 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E0369FF63
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 00:21:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4399D69FFB0
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 00:41:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A91610E461;
-	Wed, 22 Feb 2023 23:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7033510E416;
+	Wed, 22 Feb 2023 23:41:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
- [IPv6:2001:4860:4864:20::2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB1410E1F8;
- Wed, 22 Feb 2023 23:21:22 +0000 (UTC)
-Received: by mail-oa1-x2f.google.com with SMTP id
- 586e51a60fabf-1722c48a773so8881133fac.2; 
- Wed, 22 Feb 2023 15:21:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TBQjWreD5YceHGAm3SljA5uXbeQChUwHxJ9vgJBly4g=;
- b=BIUqtXs6ZC4lcSzsCiRtjlqqmnfD+oVi3pNQXD/lrRwGLfGpnxlsteLZZitjNAAdl/
- HB1/0mXen40LmBLk9zgl/OodDsXk2aepm2SNgbffvKVyOYnw8ODgLOiBSnILYzTVxehK
- 57EUW2FPNM/mk7MelBxTuQsLquaSAgnCIVLnE6pkmuWMEB+cIFmyJOzWnNVbYUbS8sCR
- TiFhjNXik8wyPtw0Y4QJtJTbIr0cv15HxWv1F0X6hZoU3sGHpSJS1Z+FluHhOjd5la+o
- Stl7c+jLcl5RKLurfpXTDx5SFG7GvXchENKKfTeMps+YkjGGPDQnT5HIu3RKhdW94hfC
- l2SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TBQjWreD5YceHGAm3SljA5uXbeQChUwHxJ9vgJBly4g=;
- b=QrNuCh5P6SAdf/ZbF/vWc/MhB8fS+rSUbXfO4lTtwdQyx4VffbqdRxDPRz8ObiHxRu
- gLUFvoyfGPh+jESsolhyviA8X/pRIgu//A+guOH9hqwXWVT3wpfLofYTj6L8LSLA0TO8
- +uDV60NZvLGyeHz/LavGHjqlqJ88dvyc0112yPwTxXi33lzGCcbsGuXBrCpEjOogFN6H
- hrfEOHkwf4zNcvUuGPaV2AOOKZKsJoFsldk1L077CaSlkGqcSWSaOpz3x2Bx0oQ1Rf7c
- U3RleRNmiHG93ymlnhnWum9Sk2luQQyF15NlxTrzb9Lr+P330BkIrsZSsl/LC2Ck/OL6
- y2vg==
-X-Gm-Message-State: AO0yUKWXus+UQVBwiUznvDFYAv3wWtHvJw1URnBqbyc74CF83ouaMvMm
- /oYqThtnFxp8QqoG99zJ2jyD19/ka0fA6M14IcI=
-X-Google-Smtp-Source: AK7set8Vn9OcME7Hn72aIHIFRq64owG0Eqv9emogmG1BJgmD5Zi85rMaudzShrlI/k0Eg3hVMrCA5DH9pi6YtaX7lhg=
-X-Received: by 2002:a05:6870:808d:b0:16e:8a56:d0d2 with SMTP id
- q13-20020a056870808d00b0016e8a56d0d2mr1458724oab.38.1677108081698; Wed, 22
- Feb 2023 15:21:21 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB3F210E416;
+ Wed, 22 Feb 2023 23:41:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677109301; x=1708645301;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=PJ3VJoi3nRTGcRh7EBz9TPj9aCmKRPlFH5CU+Yp2lsk=;
+ b=CyhZ8KCH4x9F/dlNKHb1vv67J6rTmWOTkY3+PED5oKPUQqGzKUENOqlk
+ nJzy5FOkU4sAvl4a1V/DGH/mdGd8MPxPKHukOmzzhbZoFShFgAuzaCFOS
+ rclT6NA46PpQ1ck8BovLpyYDswe5xHka010TuyqtSv1AT4pRK14qs24t2
+ SkZzJj3ARc5KY3BvghZ+LZFNFb1ifjYQreBsSgkScMqkCYxSJMjjiV7jn
+ DyfrldC4R//tSrO8qj2iU1Thnif5RDjkEUuhCwyE3dbYqaWFwbqj7a/6y
+ p9ppbNObVIZNlHcbiWSqr+Nns8vraTuJXEG917wtxrwYLAb/K3G63dTsw A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="419293505"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="419293505"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 15:41:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="741044815"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="741044815"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga004.fm.intel.com with ESMTP; 22 Feb 2023 15:41:41 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 22 Feb 2023 15:41:40 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 22 Feb 2023 15:41:40 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 22 Feb 2023 15:41:40 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 22 Feb 2023 15:41:40 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oG8NYP+d7vTRD3abyguOvDs48PslHofHbNDRbFqtqdHRFOr3LcOV/bjTB2NOp8X6yx2ccvvLCFN5xuaLROQYhffef2bCv1UigtRcFginrCzUobTTb8reIx7z77xBz7v//eIoaK4FxQqkahHsEpQQKCJHPQ2TnZgEMk2Z0hlE8vywGPCBcny+Q3RjAeYnUfstvP88zJHgesey/TsShSomywUGry2pHvzbEQRul+qaW5VcmRm3R2SkKYZYu5RWGHBT3hR+iOh7d9Wxgbmkkr58Snfgc8+hqkKtr8GO+/RtLW45ybSMMBJrfNLQn5HCWz1p2iJEp5nCebLupj6o1rbqgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PJ3VJoi3nRTGcRh7EBz9TPj9aCmKRPlFH5CU+Yp2lsk=;
+ b=cO4WJMVAWMSltbRXvBA8D/kVtOy5htIGUEUQFhwBsY7Fgv2pSxDM94OTqEt/f4J6Wme+B7BR+64LxHuqz7u7s06/8Oe9dTxM8QjaR0nSmKV8o++PKGCw8UOQgSLZEqz0rdfYsg4F9ebbWnX37kVBGArpMUrg46BXm7rXGLz0Zh+UChmb3yki96MLpNrdq4t53OUD8tUrfLX0zlyNgZQl1NPThBC3EKZgj23o7D4e9OE0vgsPnLlVJL6vFgajqYcRLfgfXE8CpwAi07IOiyV7FOCcfBwrfQlHPH9fa0XBsZ81ppY38Qpy5Htf34CMNiX9o0TPncI46jN62z7127vEXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ PH7PR11MB7003.namprd11.prod.outlook.com (2603:10b6:510:20a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
+ 2023 23:41:38 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::4cdb:78a7:917e:88e5]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::4cdb:78a7:917e:88e5%9]) with mapi id 15.20.6134.019; Wed, 22 Feb 2023
+ 23:41:38 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v5 3/8] drm/i915/pxp: Add MTL helpers to submit
+ Heci-Cmd-Packet to GSC
+Thread-Index: AQHZQLy8kRPROlCwoUOV2NgZvyf9La7brO0A
+Date: Wed, 22 Feb 2023 23:41:38 +0000
+Message-ID: <7121c77d434c0495ac23e0d8b0c3fb7d2130a906.camel@intel.com>
+References: <20230214213844.2890382-1-alan.previn.teres.alexis@intel.com>
+ <20230214213844.2890382-4-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230214213844.2890382-4-alan.previn.teres.alexis@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.1-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|PH7PR11MB7003:EE_
+x-ms-office365-filtering-correlation-id: 4e538749-6a3e-4849-fc40-08db152e575e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1/9mFTBWYmDLgfAo+COqn+eBCXVSOPeXfSk0KSGzaWBQ4Qb636Hi46BYxALGVC9AjwvN9SsjQ4S5gfGhgISCrCkC31H/u7bY8nNXCWqulYROcAzfp3kxhLDGAewDerN2t/tXr4Y7Hqn1Wh+3Xu8dbHIK2StFdqPOwSKfpQjRSpzNOktSor0I2Lcl57gZfhUfuSqbFIFyoPfU8GRqsQZ2pshX1CU2RyDp+EcozmMO1FH8lJU4kdupsn7r4aYTlHvEkQGpZAyEFxyGlyKLuTfDbvilp0MpAUSChAsJMvNigx+wQTHhqdVs+FRMnr4wNcWwFbToYgbWizINqa+rSkmFUo4aPeytt1kx4ZJF9iOJD266ljeOI1OUuWAZdIvbi2Wr6KKR8k8QTi2CfAcSE4CF7t8secQDyZtW1h2yuhbJ7waxF0zOrFZGR+uWEy+QdNTkspomljcG/gQ8EzLrRQO/L+Bm2y8C0VpwXCKBdjoMcqqik3MINC11vunmNMUczs9f9tdeb4/0dplh6RQ8p3b9m0YdpT3Y049GzvlSF8IP+QClAFhuN1B5YvUGOhBcnOcmfBA351XpEeVtiE/zCS92s1XxleGwV4/smS869poLWJQd4xuyd6d7hMkD3bEqRSlsLGEmgV3t0+JOlLF/k4jmxQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(346002)(376002)(39860400002)(396003)(366004)(451199018)(966005)(83380400001)(2906002)(5660300002)(36756003)(6486002)(107886003)(86362001)(6512007)(478600001)(8936002)(54906003)(41300700001)(6506007)(71200400001)(2616005)(122000001)(38100700002)(38070700005)(26005)(186003)(66446008)(66556008)(64756008)(8676002)(316002)(6916009)(66476007)(66946007)(91956017)(4326008)(76116006)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TU9Lc3ozY0F1Y3JKTExHN09uSldCdVBoOVRndi94R1FSU2dyN25ldHNIRFdj?=
+ =?utf-8?B?OVJiQ0lwckNMMXYyUVMxeE55cGtIa0xsbWYvODZQMk1RbE0yVnRWN0h0Z1px?=
+ =?utf-8?B?K2hKSXh3NEozeWRTL3lkU0JHRk5UNThOMVpyeXErNE85WVdLNjZOVEZBR0t4?=
+ =?utf-8?B?THVTQUVYNW50RUtHbGVDS0JXVmdLZmdDclRIU25ZYVlMQ3pCTGM3SHBXbWdl?=
+ =?utf-8?B?WVVURW9MYndQZkxqVEpGV0E3MFo2NkdFT3VOd3pma3VNMWRiTW11TjE4SFU3?=
+ =?utf-8?B?RmZabzQ3dEdvZEVIM1oyNk01UmUrdHlvdE5CZHk5UEY2Z2lvaThOdUhVcjlI?=
+ =?utf-8?B?Mjg2MjFlR013NWJBaGFjTFNUSFFtUmRxc3VlQkxxSk1rYk5IZ1RDSkZPOFVx?=
+ =?utf-8?B?bE92MjN2U0VnMlFGaXN6cWtrRStxS2U3MUlnUVYxbkRtM2d0c25xamRvemZn?=
+ =?utf-8?B?bWFTVjZyN3YydUJsQnR1NUFqMGRPZWNtUkRFQ0I5MWpHMnR3a0kwb0dPNytn?=
+ =?utf-8?B?dDQwbDdreW02V0xlY1pIbldFcTViTkI1VnlFT0hhSjNndTJQczRRRy9QRzBN?=
+ =?utf-8?B?QkhqbXRRbnNSRUw1Tm1nQm5GbmphT1E4RjJPT0cxUjNaOHlIVzg4aGJEZWFL?=
+ =?utf-8?B?ZWF4SmdMTTFRYlh2WS9oQzJIQ283N0NKNlR1cUVGRDZsaFB5b2pYVnl0Qm9P?=
+ =?utf-8?B?MHNZZ2JmT1ZOTXgwVlExTzUyRGtXOFhza2xDbXhvRjU2Z0VwbUZjYVJRcUhM?=
+ =?utf-8?B?NW41L0RsOXVCTSs3TDZBTTh6MldlbEF2RUNYVktVTnJOdFRDYUNjbGlkcVJr?=
+ =?utf-8?B?bXU5ODI2dU80clRQTEwzOEhIUWdMdjhCQ3RzMnNlemtuNUFOZ0FJVUdyOXFO?=
+ =?utf-8?B?NkNlelpqQ3ZaMjNTSzNjaUVjcExLSXJsN0dobUJmQWZMNU1oZlpBVVV6Q2FQ?=
+ =?utf-8?B?djhYNXFPQlJiQzN5d2xobDd2VzYzN2RzS3JwR0pmbUV3VFpCajhPcVJrakdR?=
+ =?utf-8?B?UzFRQTlRRTNpRjBqVVZiZCt0aWxRT2RWUWNvaVh1aFhIdFU0dWN2TzF4WG44?=
+ =?utf-8?B?dEFCRTN5VG03eUs2TCtxcjVlS3Z6b2E3RTFGOTdjQVF3dzEwd2FZd1puKytY?=
+ =?utf-8?B?M0YwL2xyL0Q5YnNpNHdtdnVDaGZ2QlBNVnRISjFGTVpIRzNaODdFQzRDUWFY?=
+ =?utf-8?B?V0VyZmJKc0pZL1k2NUJ0eVU4OTUzMEs4bDYwaVkvOVI2L1UyQW1LU016NlVu?=
+ =?utf-8?B?WFAvT21hQkYzeTVrNVM2aXBNNXQzYjF0Z0FZUnEvdlp5THBWYUYyL2hoM2N2?=
+ =?utf-8?B?V2hXbGQxTDRpQlpxSE9rc2hSWlVnUWRWRGZVS1ZKTENuMDBneDhQUENVQXRJ?=
+ =?utf-8?B?QlluSHJjR3dLRWIvK3RlS0xjS1JKUHhyOWtpVEhyYVhGYXdXQ0hIUCtrVWRJ?=
+ =?utf-8?B?SjRvV3g3ZEYySGxEbldiU2NFMklzVXB5ZnB2aFQzWVNYeFNaNjE3WElmODBL?=
+ =?utf-8?B?a1E4WUFLUC92Y2haTFR2VCs5cnNZNC8vemIwRUYrMy9ZUEtxOW1JZFdZSURY?=
+ =?utf-8?B?amJUcWtNOHVYaU9BRUVyelJvTW5vcmtEcXl4c1lVL0VOOXdTQ0pRU0VueStn?=
+ =?utf-8?B?K1JMSDJRT2RDRkZ5RHhXeE44NHJQcEFDQUxkK2xxTDAwMWZGbDk1R3pjc2Vk?=
+ =?utf-8?B?S3ErU1dJWks2QktNUnV5OFJyM3Fza0xDWHd3c0Ewd2NRUjV0TkpNcWg2TmZ3?=
+ =?utf-8?B?ak1sQ0RFMTFpQU9sWmZsK01qdnhEYnNXVzdJQUZzQkdSQ2YrQjZrdGtmeUNl?=
+ =?utf-8?B?OU00c2hVbzMrZUpEaEJ5TDJyVDA3K0pHMkJtV0NnWk00cU0rT1krbmZJdDRr?=
+ =?utf-8?B?UnVHMXlGdk5LTVJ3dkFlNjhDTnJIakdOM0pCQm9iSXRwUTh1ZWtuS0RiS2lL?=
+ =?utf-8?B?Um1yOUpxMTFkVm9RZEY4Vi9ibUZSMGk5Nk9wUG5TMmIvU2JrUXcyV29BQUps?=
+ =?utf-8?B?Tjd0WVlOV3d5LzlzNjY0bmlzY3RVUG4vdmFuTG40VVJMSmF5WTdtUmhGejJP?=
+ =?utf-8?B?UVBLUmdsSzIvc3kyNHJINE9DaUxKSlNJZmxYQlpBRTA3UVFhQ2FOYkgveFhU?=
+ =?utf-8?B?eHdBcmw2VFBNbDlmczRBNzVVbjFERWdyQXhXR2h5UjQvUEhyWGR4OEtGWU1N?=
+ =?utf-8?Q?BR8P2JPsdoKYNOwmTQJzWPYvXWw4gfRj4cc4dge9X/GI?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <88DF46DBA7184244B3E1DE2DACC51E00@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
- <CAF6AEGvFN-9_cr2EyGxuW5NVgk8CA99rVuv_Y80M+gvMviPcuA@mail.gmail.com>
-In-Reply-To: <CAF6AEGvFN-9_cr2EyGxuW5NVgk8CA99rVuv_Y80M+gvMviPcuA@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 22 Feb 2023 15:21:10 -0800
-Message-ID: <CAF6AEGs63gz_ja8gV_CYwG1jd912BrgKXz+kJH++Vc8oLYWOPA@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helpers: remove
- legacy_cursor_update hacks
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e538749-6a3e-4849-fc40-08db152e575e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2023 23:41:38.0953 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dO55tZUu23T/C/iLuzK3yTrPRYOTir2hS/6/AJRNjFZqc1OPRuzckYj2SOlzYQynGK2x0QOGXUNVyXuVNXbe9ems/WEO6HfORhOxzEPomvInT1Mbx2tZhKWPUBgo3KAM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7003
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 3/8] drm/i915/pxp: Add MTL helpers to
+ submit Heci-Cmd-Packet to GSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,296 +163,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Rob Clark <robdclark@chromium.org>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>, linux-arm-msm@vger.kernel.org,
- harry.wentland@amd.com, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-mediatek@lists.infradead.org,
- Maxime Ripard <maxime@cerno.tech>, Matthias Brugger <matthias.bgg@gmail.com>,
- mikita.lipski@amd.com, linux-arm-kernel@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- freedreno@lists.freedesktop.org, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 22, 2023 at 3:14 PM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Thu, Feb 16, 2023 at 3:12 AM Daniel Vetter <daniel.vetter@ffwll.ch> wr=
-ote:
-> >
-> > The stuff never really worked, and leads to lots of fun because it
-> > out-of-order frees atomic states. Which upsets KASAN, among other
-> > things.
-> >
-> > For async updates we now have a more solid solution with the
-> > ->atomic_async_check and ->atomic_async_commit hooks. Support for that
-> > for msm and vc4 landed. nouveau and i915 have their own commit
-> > routines, doing something similar.
-> >
-> > For everyone else it's probably better to remove the use-after-free
-> > bug, and encourage folks to use the async support instead. The
-> > affected drivers which register a legacy cursor plane and don't either
-> > use the new async stuff or their own commit routine are: amdgpu,
-> > atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx.
-> >
-> > Inspired by an amdgpu bug report.
-> >
-> > v2: Drop RFC, I think with amdgpu converted over to use
-> > atomic_async_check/commit done in
-> >
-> > commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
-> > Author: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> > Date:   Wed Dec 5 14:59:07 2018 -0500
-> >
-> >     drm/amd/display: Add fast path for cursor plane updates
-> >
-> > we don't have any driver anymore where we have userspace expecting
-> > solid legacy cursor support _and_ they are using the atomic helpers in
-> > their fully glory. So we can retire this.
-> >
-> > v3: Paper over msm and i915 regression. The complete_all is the only
-> > thing missing afaict.
-> >
-> > v4: Fixup i915 fixup ...
-> >
-> > v5: Unallocate the crtc->event in msm to avoid hitting a WARN_ON in
-> > dpu_crtc_atomic_flush(). This is a bit a hack, but simplest way to
-> > untangle this all. Thanks to Abhinav Kumar for the debug help.
->
-> Hmm, are you sure about that double-put?
->
-> [  +0.501263] ------------[ cut here ]------------
-> [  +0.000032] refcount_t: underflow; use-after-free.
-> [  +0.000033] WARNING: CPU: 6 PID: 1854 at lib/refcount.c:28
-> refcount_warn_saturate+0xf8/0x134
-> [  +0.000043] Modules linked in: uinput rfcomm algif_hash
-> algif_skcipher af_alg veth venus_dec venus_enc xt_cgroup xt_MASQUERADE
-> qcom_spmi_temp_alarm qcom_spmi_adc_tm5 qcom_spmi_adc5 qcom_vadc_common
-> cros_ec_typec typec 8021q hci_uart btqca qcom_stats venus_core
-> coresight_etm4x coresight_tmc snd_soc_lpass_sc7180
-> coresight_replicator coresight_funnel coresight snd_soc_sc7180
-> ip6table_nat fuse ath10k_snoc ath10k_core ath mac80211 iio_trig_sysfs
-> bluetooth cros_ec_sensors cfg80211 cros_ec_sensors_core
-> industrialio_triggered_buffer kfifo_buf ecdh_generic ecc
-> cros_ec_sensorhub lzo_rle lzo_compress r8153_ecm cdc_ether usbnet
-> r8152 mii zram hid_vivaldi hid_google_hammer hid_vivaldi_common joydev
-> [  +0.000189] CPU: 6 PID: 1854 Comm: DrmThread Not tainted
-> 5.15.93-16271-g5ecce40dbcd4 #46
-> cf9752a1c9e5b13fd13216094f52d77fa5a5f8f3
-> [  +0.000016] Hardware name: Google Wormdingler rev1+ INX panel board (DT=
-)
-> [  +0.000008] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=
-=3D--)
-> [  +0.000013] pc : refcount_warn_saturate+0xf8/0x134
-> [  +0.000011] lr : refcount_warn_saturate+0xf8/0x134
-> [  +0.000011] sp : ffffffc012e43930
-> [  +0.000008] x29: ffffffc012e43930 x28: ffffff80d31aa300 x27: 0000000000=
-00024e
-> [  +0.000017] x26: 00000000000003bd x25: 0000000000000040 x24: 0000000000=
-000040
-> [  +0.000014] x23: ffffff8083eb1000 x22: 0000000000000002 x21: ffffff8084=
-5bc800
-> [  +0.000013] x20: 0000000000000040 x19: ffffff80d0cecb00 x18: 0000000060=
-014024
-> [  +0.000012] x17: 0000000000000000 x16: 000000000000003c x15: ffffffd97e=
-21a1c0
-> [  +0.000012] x14: 0000000000000003 x13: 0000000000000004 x12: 0000000000=
-000001
-> [  +0.000014] x11: c0000000ffffdfff x10: ffffffd97f560f50 x9 : 5749cdb403=
-550d00
-> [  +0.000014] x8 : 5749cdb403550d00 x7 : 0000000000000000 x6 : 372e313320=
-20205b
-> [  +0.000012] x5 : ffffffd97f7b8b24 x4 : 0000000000000000 x3 : ffffffc012=
-e43588
-> [  +0.000013] x2 : ffffffc012e43590 x1 : 00000000ffffdfff x0 : 0000000000=
-000026
-> [  +0.000014] Call trace:
-> [  +0.000008]  refcount_warn_saturate+0xf8/0x134
-> [  +0.000013]  drm_crtc_commit_put+0x54/0x74
-> [  +0.000013]  __drm_atomic_helper_plane_destroy_state+0x64/0x68
-> [  +0.000013]  dpu_plane_destroy_state+0x24/0x3c
-> [  +0.000017]  drm_atomic_state_default_clear+0x13c/0x2d8
-> [  +0.000015]  __drm_atomic_state_free+0x88/0xa0
-> [  +0.000015]  drm_atomic_helper_update_plane+0x158/0x188
-> [  +0.000014]  __setplane_atomic+0xf4/0x138
-> [  +0.000012]  drm_mode_cursor_common+0x2e8/0x40c
-> [  +0.000009]  drm_mode_cursor_ioctl+0x48/0x70
-> [  +0.000008]  drm_ioctl_kernel+0xe0/0x158
-> [  +0.000014]  drm_ioctl+0x214/0x480
-> [  +0.000012]  __arm64_sys_ioctl+0x94/0xd4
-> [  +0.000010]  invoke_syscall+0x4c/0x100
-> [  +0.000013]  do_el0_svc+0xa4/0x168
-> [  +0.000012]  el0_svc+0x20/0x50
-> [  +0.000009]  el0t_64_sync_handler+0x20/0x110
-> [  +0.000008]  el0t_64_sync+0x1a4/0x1a8
-> [  +0.000010] ---[ end trace 35bb2d245a684c9a ]---
->
-
-without the double-put it "works" (as in doesn't immediately crash)
-but we are queuing up a _lot_ of updates (ie. cursor is lagging
-somewhat behind)
-
-BR,
--R
-
->
-> BR,
-> -R
->
->
->
-> > Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Maxime Ripard <maxime@cerno.tech>
-> > References: https://bugzilla.kernel.org/show_bug.cgi?id=3D199425
-> > References: https://lore.kernel.org/all/20220221134155.125447-9-maxime@=
-cerno.tech/
-> > References: https://bugzilla.kernel.org/show_bug.cgi?id=3D199425
-> > Cc: Maxime Ripard <maxime@cerno.tech>
-> > Tested-by: Maxime Ripard <maxime@cerno.tech>
-> > Cc: mikita.lipski@amd.com
-> > Cc: Michel D=C3=A4nzer <michel@daenzer.net>
-> > Cc: harry.wentland@amd.com
-> > Cc: Rob Clark <robdclark@gmail.com>
-> > Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-> > Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Cc: Sean Paul <sean@poorly.run>
-> > Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com=
->
-> > Cc: "Ville Syrj=C3=A4l=C3=A4" <ville.syrjala@linux.intel.com>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > Cc: linux-arm-msm@vger.kernel.org
-> > Cc: freedreno@lists.freedesktop.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-mediatek@lists.infradead.org
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_atomic_helper.c          | 13 -------------
-> >  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
-> >  drivers/gpu/drm/msm/msm_atomic.c             | 15 +++++++++++++++
-> >  3 files changed, 29 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_=
-atomic_helper.c
-> > index d579fd8f7cb8..f6b4c3a00684 100644
-> > --- a/drivers/gpu/drm/drm_atomic_helper.c
-> > +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> > @@ -1587,13 +1587,6 @@ drm_atomic_helper_wait_for_vblanks(struct drm_de=
-vice *dev,
-> >         int i, ret;
-> >         unsigned int crtc_mask =3D 0;
-> >
-> > -        /*
-> > -         * Legacy cursor ioctls are completely unsynced, and userspace
-> > -         * relies on that (by doing tons of cursor updates).
-> > -         */
-> > -       if (old_state->legacy_cursor_update)
-> > -               return;
-> > -
-> >         for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state, =
-new_crtc_state, i) {
-> >                 if (!new_crtc_state->active)
-> >                         continue;
-> > @@ -2244,12 +2237,6 @@ int drm_atomic_helper_setup_commit(struct drm_at=
-omic_state *state,
-> >                         continue;
-> >                 }
-> >
-> > -               /* Legacy cursor updates are fully unsynced. */
-> > -               if (state->legacy_cursor_update) {
-> > -                       complete_all(&commit->flip_done);
-> > -                       continue;
-> > -               }
-> > -
-> >                 if (!new_crtc_state->event) {
-> >                         commit->event =3D kzalloc(sizeof(*commit->event=
-),
-> >                                                 GFP_KERNEL);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 3479125fbda6..2454451fcf95 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -7651,6 +7651,20 @@ static int intel_atomic_commit(struct drm_device=
- *dev,
-> >                 intel_runtime_pm_put(&dev_priv->runtime_pm, state->wake=
-ref);
-> >                 return ret;
-> >         }
-> > +
-> > +       /*
-> > +        * FIXME: Cut over to (async) commit helpers instead of hand-ro=
-lling
-> > +        * everything.
-> > +        */
-> > +       if (state->base.legacy_cursor_update) {
-> > +               struct intel_crtc_state *new_crtc_state;
-> > +               struct intel_crtc *crtc;
-> > +               int i;
-> > +
-> > +               for_each_new_intel_crtc_in_state(state, crtc, new_crtc_=
-state, i)
-> > +                       complete_all(&new_crtc_state->uapi.commit->flip=
-_done);
-> > +       }
-> > +
-> >         intel_shared_dpll_swap_state(state);
-> >         intel_atomic_track_fbs(state);
-> >
-> > diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm=
-_atomic.c
-> > index 1686fbb611fd..b7151767b567 100644
-> > --- a/drivers/gpu/drm/msm/msm_atomic.c
-> > +++ b/drivers/gpu/drm/msm/msm_atomic.c
-> > @@ -189,6 +189,19 @@ void msm_atomic_commit_tail(struct drm_atomic_stat=
-e *state)
-> >         bool async =3D kms->funcs->vsync_time &&
-> >                         can_do_async(state, &async_crtc);
-> >
-> > +       /*
-> > +        * FIXME: Convert to async plane helpers and remove the various=
- hacks to
-> > +        * keep the old legacy_cursor_way of doing async commits workin=
-g for the
-> > +        * dpu code, like the expectation that these don't have a crtc-=
->event.
-> > +        */
-> > +       if (async) {
-> > +               /* both ->event itself and the pointer hold a reference=
-! */
-> > +               drm_crtc_commit_put(async_crtc->state->commit);
-> > +               drm_crtc_commit_put(async_crtc->state->commit);
-> > +               kfree(async_crtc->state->event);
-> > +               async_crtc->state->event =3D NULL;
-> > +       }
-> > +
-> >         trace_msm_atomic_commit_tail_start(async, crtc_mask);
-> >
-> >         kms->funcs->enable_commit(kms);
-> > @@ -222,6 +235,8 @@ void msm_atomic_commit_tail(struct drm_atomic_state=
- *state)
-> >                 /* async updates are limited to single-crtc updates: */
-> >                 WARN_ON(crtc_mask !=3D drm_crtc_mask(async_crtc));
-> >
-> > +               complete_all(&async_crtc->state->commit->flip_done);
-> > +
-> >                 /*
-> >                  * Start timer if we don't already have an update pendi=
-ng
-> >                  * on this crtc:
-> > --
-> > 2.39.0
-> >
+T24gVHVlLCAyMDIzLTAyLTE0IGF0IDEzOjM4IC0wODAwLCBUZXJlcyBBbGV4aXMsIEFsYW4gUHJl
+dmluIHdyb3RlOg0KPiBBZGQgaGVscGVyIGZ1bmN0aW9ucyBpbnRvIGEgbmV3IGZpbGUgZm9yIGhl
+Y2ktcGFja2V0LXN1Ym1pc3Npb24uDQo+IFRoZSBoZWxwZXJzIHdpbGwgaGFuZGxlIGdlbmVyYXRp
+bmcgdGhlIE1UTCBHU0MtQ1MgTWVtb3J5LUhlYWRlcg0KPiBhbmQgc3VibWlzc2lvbiBvZiB0aGUg
+SGVjaS1DbWQtUGFja2V0IGluc3RydWN0aW9ucyB0byB0aGUgZW5naW5lLg0KPiANCj4gTk9URTE6
+IFRoZXNlIGNvbW1vbiBmdW5jdGlvbnMgZm9yIGhlY2ktcGFja2V0LXN1Ym1pc3Npb24gd2lsbCBi
+ZSB1c2VkDQo+IGJ5IGRpZmZlcmVudCBpOTE1IGNhbGxlcnM6DQo+ICAgICAgMS0gR1NDLVNXLVBy
+b3h5OiBUaGlzIGlzIHBlbmRpbmcgdXBzdHJlYW0gcHVibGljYXRpb24gYXdhaXRpbmcNCj4gICAg
+ICAgICBhIGZldyByZW1haW5pbmcgb3BlbnMNCj4gICAgICAyLSBNVEwtSERDUDogQW4gZXF1aXZh
+bGVudCBwYXRjaCBoYXMgYWxzbyBiZWVuIHB1Ymxpc2hlZCBhdDoNCj4gICAgICAgICBodHRwczov
+L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzExMTg3Ni8uIChQYXRjaCAxKQ0KPiAg
+ICAgIDMtIFBYUDogVGhpcyBzZXJpZXMuDQo+IA0KPiBOT1RFMjogQSBkaWZmZXJlbmNlIGluIHRo
+aXMgcGF0Y2ggdnMgd2hhdCBpcyBhcHBlYXJpbmcgaXMgaW4gYnVsbGV0IDINCj4gYWJvdmUgaXMg
+dGhhdCBIRENQIChhbmQgU1ctUHJveHkpIHdpbGwgYmUgdXNpbmcgcHJpdmVsZWdlZCBzdWJtaXNz
+aW9uDQo+IChHR1RUIGFuZCBjb21tb24gZ3NjLXVjLWNvbnRleHQpIHdoaWxlIFBYUCB3aWxsIGJl
+IHVzaW5nIG5vbi1wcml2ZWxlZ2VkDQo+IFBQR1RULCBjb250ZXh0IGFuZCBiYXRjaCBidWZmZXIu
+IFRoZXJlZm9yZSB0aGlzIHBhdGNoIHdpbGwgb25seSBzbGlnaHRseQ0KPiBvdmVybGFwIHdpdGgg
+dGhlIE1UTC1IRENQIHBhdGNoZXMgZGVzcGl0ZSBoYXZlIHZlcnkgc2ltaWxhciBmdW5jdGlvbg0K
+PiBuYW1lcyAoZW1pdF9mb28gdnMgZW1pdF9ub25wcml2X2ZvbykuIFRoaXMgaXMgYmVjYXVzZSBI
+RUNJX0NNRF9QS1QNCj4gaW5zdHJ1Y3Rpb25zIHJlcXVpcmUgZGlmZmVyZW50IGZsb3dzIGFuZCBo
+dy1zcGVjaWZpYyBjb2RlIHdoZW4gZG9uZQ0KPiB2aWEgUFBHVFQgYmFzZWQgc3VibWlzc2lvbiAo
+bm90IGRpZmZlcmVudCBmcm9tIG90aGVyIGVuZ2luZXMpLiBNVEwtSERDUA0KPiBjb250YWlucyB0
+aGUgc2FtZSBpbnRlbF9nc2NfbXRsX2hlYWRlcl90IHN0cnVjdHVyZXMgYXMgdGhpcyBidXQgdGhl
+DQo+IGhlbHBlcnMgdGhlcmUgYXJlIGRpZmZlcmVudC4gQm90aCBhZGQgdGhlIHNhbWUgbmV3IGZp
+bGUgbmFtZXMuDQo+IA0KDQphbGFuOiBzbmlwDQoNCj4gK2ludA0KPiAraW50ZWxfZ3NjX3VjX2hl
+Y2lfY21kX3N1Ym1pdF9ub25wcml2KHN0cnVjdCBpbnRlbF9nc2NfdWMgKmdzYywNCj4gKwkJCQkg
+ICAgIHN0cnVjdCBpbnRlbF9jb250ZXh0ICpjZSwNCj4gKwkJCQkgICAgIHN0cnVjdCBpbnRlbF9n
+c2NfaGVjaV9ub25fcHJpdl9wa3QgKnBrdCwNCj4gKwkJCQkgICAgIHUzMiAqY21kLCBpbnQgdGlt
+ZW91dF9tcykNCj4gK3sNCj4gKwlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmc7DQo+ICsJc3Ry
+dWN0IGk5MTVfcmVxdWVzdCAqcnE7DQo+ICsJaW50IGVycjsNCj4gKw0KPiArCXJxID0gaW50ZWxf
+Y29udGV4dF9jcmVhdGVfcmVxdWVzdChjZSk7DQoNCmFsYW46IGkgbmVlZCB0byDCoHRoaXMgdG8g
+YmVsb3cgdGhlIHZtYS1sb2NrLXVubG9jayBwYWlycyBiZWxvdyB0byBhdm9pZCBhbnkga2luZCBv
+ZiBsb2NrZGVwIHdhcm5pbmcgYmVjYXVzZSBvZiBleHBlY3RlZCBwcmltZWQgb3JkZXJpbmcgb2Yg
+Y2FsbHMgYWNyb3NzIGRyaXZlcg0KDQo+ICsJaWYgKElTX0VSUihycSkpDQo+ICsJCXJldHVybiBQ
+VFJfRVJSKHJxKTsNCj4gKw0KPiArCWVtaXRfZ3NjX2hlY2lfcGt0X25vbnByaXYoY21kLCBwa3Qp
+Ow0KPiArDQo+ICsJaTkxNV92bWFfbG9jayhwa3QtPmJiX3ZtYSk7DQo+ICsJZXJyID0gaTkxNV92
+bWFfbW92ZV90b19hY3RpdmUocGt0LT5iYl92bWEsIHJxLCBFWEVDX09CSkVDVF9XUklURSk7DQo+
+ICsJaTkxNV92bWFfdW5sb2NrKHBrdC0+YmJfdm1hKTsNCj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1
+cm4gZXJyOw0KPiArDQo+ICsJaTkxNV92bWFfbG9jayhwa3QtPmhlY2lfcGt0X3ZtYSk7DQo+ICsJ
+ZXJyID0gaTkxNV92bWFfbW92ZV90b19hY3RpdmUocGt0LT5oZWNpX3BrdF92bWEsIHJxLCBFWEVD
+X09CSkVDVF9XUklURSk7DQo+ICsJaTkxNV92bWFfdW5sb2NrKHBrdC0+aGVjaV9wa3Rfdm1hKTsN
+Cj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1cm4gZXJyOw0KPiArDQo+ICsJZW5nID0gcnEtPmNvbnRl
+eHQtPmVuZ2luZTsNCj4gKwlpZiAoZW5nLT5lbWl0X2luaXRfYnJlYWRjcnVtYikgew0KPiArCQll
+cnIgPSBlbmctPmVtaXRfaW5pdF9icmVhZGNydW1iKHJxKTsNCj4gKwkJaWYgKGVycikNCj4gKwkJ
+CWdvdG8gb3V0X3JxOw0KPiArCX0NCg0KYWxhbjogc25pcA0K
