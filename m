@@ -1,50 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E0469F77F
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 16:15:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C0C69F789
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 16:18:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2471C10E9FB;
-	Wed, 22 Feb 2023 15:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 414CE10E9F6;
+	Wed, 22 Feb 2023 15:18:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2D9E10E9FB
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 15:14:58 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A945E10E9F6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 15:18:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677078898; x=1708614898;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AwQ399/KRWjeiHzVMyQWXpAVdhp8DQM2H4gkBFHh8RU=;
- b=cRjfygvtIXE/ekM2Opcp+dCO1Yii9FQrkUcysNx+Oas2gHoDPGNFQrZq
- XUqXBUKBIG9VCb1sdTTQnWcV14jerA6Y6qRASnDG052mqjL7X8WhFdIDZ
- lQ7xYzpoha2SYUH2C/tdLnHJUPkepf2zzmVLCpf8lD4ow7u2qUVi9viyb
- GBuzVUQeYyNejxndgPIP9839WA1lfxIY17Xb5aMQgX24TGMKcO4ky3hAK
- OYl0OB6GD+LAEGbh6TKlaxcjLpXaFe0Nlq0KecvGyLjfgafXc1lfo3GYE
- l1XRoPHDqzPlog74WRCD7otfMi53r+q7KLHlx/vCuWFgi+e+6CRPDngNv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="312574586"
-X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="312574586"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 07:14:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="917596780"
-X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="917596780"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga006.fm.intel.com with SMTP; 22 Feb 2023 07:14:55 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Feb 2023 17:14:54 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Feb 2023 17:14:54 +0200
-Message-Id: <20230222151454.24888-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+ t=1677079102; x=1708615102;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=YZ/dxoIPIoRNBpMaPMpS5wECuSDBYdB1e8dIpJPvmaM=;
+ b=OnJZk0aWmHnwhEyl5oAx9OIAufjYSlF5XwIeixFWUDpwEAQPRT2N/DZu
+ gPgMALodN2b54IfDpb5w/8TGM7uLFShjFy4gexA80/wjEayW7TjGDyiZh
+ sJkOFFr8K9ubaYwZPfBw/r+4/iForvUm9oAFk+uoSjN8eYW84pIjpg9qc
+ 7meVViDlTyp8khmZehjWPV+5aKemH4zB00vnOp1UPGbqnL//2+HutfaYM
+ zQ+agaNByJQ7OX6KN6I/pZizj6byUsRDLRNTMLThH+32ylZ08TTHP20yO
+ O9OrqD0eT7lyxq+9z2zBdMzeMi6Ke9xvDVt3mgqDCc8RSlr7ZH6WP8iEI w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="316673221"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="316673221"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 07:18:22 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="621939510"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="621939510"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.51])
+ ([10.213.26.51])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 07:18:20 -0800
+Message-ID: <8be1d271-09a2-cb73-069c-bfe50a19968e@intel.com>
+Date: Wed, 22 Feb 2023 16:18:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/audio: Track audio state per-transcoder
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+Content-Language: en-US
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,349 +63,404 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: thomas.hellstrom@linux.intel.com, chris.p.wilson@linux.intel.com,
+ lucas.demarchi@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 17.02.2023 23:33, Jonathan Cavitt wrote:
+> The gt_tlb live selftest has the same code coverage as the
+> igt_cs_tlb subtest of gtt, except it is better at detecting
+> TLB bugs.  Furthermore, while igt_cs_tlb is hitting some
+> unforeseen issues, these issues are either false positives
+> due to the test being poorly formatted, or are true
+> positives that can be more easily diagnosed with smaller
+> tests.  As such, igt_cs_tlb is superceded by and obsoleted
+> by gt_tlb, meaning it can be removed.
+> 
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-The audio logic lives in the transcoder rather than the pipe,
-so start tracking it like that.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-This is only really important for bigjoiner cases where tracking
-by pipe doesn't work at all since intel_audio_codec_{enable,disable}()
-won't even be called for the slave pipe. This means the state
-checker won't find the ELD for the slave pipe and gets upset.
-The PD->has_audio readout does currently work since that gets
-read out from the same transcoder for both pipes.
+Regards
+Andrzej
 
-For other cases this doesn't actually matter since it's only
-the normal pipe transcoders that are audio capable, whereas
-the more special transcoders (EDP/DSI) are not.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c    | 86 +++++++++----------
- .../gpu/drm/i915/display/intel_display_core.h |  2 +-
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  6 +-
- .../gpu/drm/i915/display/intel_lpe_audio.h    |  4 +-
- 4 files changed, 48 insertions(+), 50 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index a9335c856644..65151f5dcb15 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -581,8 +581,7 @@ static void enable_audio_dsc_wa(struct intel_encoder *encoder,
- 				const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	enum pipe pipe = crtc->pipe;
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	unsigned int hblank_early_prog, samples_room;
- 	unsigned int val;
- 
-@@ -592,32 +591,32 @@ static void enable_audio_dsc_wa(struct intel_encoder *encoder,
- 	val = intel_de_read(i915, AUD_CONFIG_BE);
- 
- 	if (DISPLAY_VER(i915) == 11)
--		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
-+		val |= HBLANK_EARLY_ENABLE_ICL(cpu_transcoder);
- 	else if (DISPLAY_VER(i915) >= 12)
--		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
-+		val |= HBLANK_EARLY_ENABLE_TGL(cpu_transcoder);
- 
- 	if (crtc_state->dsc.compression_enable &&
- 	    crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
- 	    crtc_state->hw.adjusted_mode.vdisplay >= 2160) {
- 		/* Get hblank early enable value required */
--		val &= ~HBLANK_START_COUNT_MASK(pipe);
-+		val &= ~HBLANK_START_COUNT_MASK(cpu_transcoder);
- 		hblank_early_prog = calc_hblank_early_prog(encoder, crtc_state);
- 		if (hblank_early_prog < 32)
--			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_32);
-+			val |= HBLANK_START_COUNT(cpu_transcoder, HBLANK_START_COUNT_32);
- 		else if (hblank_early_prog < 64)
--			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_64);
-+			val |= HBLANK_START_COUNT(cpu_transcoder, HBLANK_START_COUNT_64);
- 		else if (hblank_early_prog < 96)
--			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_96);
-+			val |= HBLANK_START_COUNT(cpu_transcoder, HBLANK_START_COUNT_96);
- 		else
--			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_128);
-+			val |= HBLANK_START_COUNT(cpu_transcoder, HBLANK_START_COUNT_128);
- 
- 		/* Get samples room value required */
--		val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
-+		val &= ~NUMBER_SAMPLES_PER_LINE_MASK(cpu_transcoder);
- 		samples_room = calc_samples_room(crtc_state);
- 		if (samples_room < 3)
--			val |= NUMBER_SAMPLES_PER_LINE(pipe, samples_room);
-+			val |= NUMBER_SAMPLES_PER_LINE(cpu_transcoder, samples_room);
- 		else /* Program 0 i.e "All Samples available in buffer" */
--			val |= NUMBER_SAMPLES_PER_LINE(pipe, 0x0);
-+			val |= NUMBER_SAMPLES_PER_LINE(cpu_transcoder, 0x0);
- 	}
- 
- 	intel_de_write(i915, AUD_CONFIG_BE, val);
-@@ -812,9 +811,9 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
- 	struct i915_audio_component *acomp = i915->display.audio.component;
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	struct intel_audio_state *audio_state;
- 	enum port port = encoder->port;
--	enum pipe pipe = crtc->pipe;
- 
- 	if (!crtc_state->has_audio)
- 		return;
-@@ -832,7 +831,7 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
- 
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	audio_state = &i915->display.audio.state[pipe];
-+	audio_state = &i915->display.audio.state[cpu_transcoder];
- 
- 	audio_state->encoder = encoder;
- 	BUILD_BUG_ON(sizeof(audio_state->eld) != sizeof(crtc_state->eld));
-@@ -842,14 +841,14 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
- 
- 	if (acomp && acomp->base.audio_ops &&
- 	    acomp->base.audio_ops->pin_eld_notify) {
--		/* audio drivers expect pipe = -1 to indicate Non-MST cases */
-+		/* audio drivers expect cpu_transcoder = -1 to indicate Non-MST cases */
- 		if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
--			pipe = -1;
-+			cpu_transcoder = -1;
- 		acomp->base.audio_ops->pin_eld_notify(acomp->base.audio_ops->audio_ptr,
--						      (int)port, (int)pipe);
-+						      (int)port, (int)cpu_transcoder);
- 	}
- 
--	intel_lpe_audio_notify(i915, pipe, port, crtc_state->eld,
-+	intel_lpe_audio_notify(i915, cpu_transcoder, port, crtc_state->eld,
- 			       crtc_state->port_clock,
- 			       intel_crtc_has_dp_encoder(crtc_state));
- }
-@@ -871,9 +870,9 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 	struct i915_audio_component *acomp = i915->display.audio.component;
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
- 	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
-+	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 	struct intel_audio_state *audio_state;
- 	enum port port = encoder->port;
--	enum pipe pipe = crtc->pipe;
- 
- 	if (!old_crtc_state->has_audio)
- 		return;
-@@ -890,7 +889,7 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	audio_state = &i915->display.audio.state[pipe];
-+	audio_state = &i915->display.audio.state[cpu_transcoder];
- 
- 	audio_state->encoder = NULL;
- 	memset(audio_state->eld, 0, sizeof(audio_state->eld));
-@@ -899,27 +898,26 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 
- 	if (acomp && acomp->base.audio_ops &&
- 	    acomp->base.audio_ops->pin_eld_notify) {
--		/* audio drivers expect pipe = -1 to indicate Non-MST cases */
-+		/* audio drivers expect cpu_transcoder = -1 to indicate Non-MST cases */
- 		if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST))
--			pipe = -1;
-+			cpu_transcoder = -1;
- 		acomp->base.audio_ops->pin_eld_notify(acomp->base.audio_ops->audio_ptr,
--						      (int)port, (int)pipe);
-+						      (int)port, (int)cpu_transcoder);
- 	}
- 
--	intel_lpe_audio_notify(i915, pipe, port, NULL, 0, false);
-+	intel_lpe_audio_notify(i915, cpu_transcoder, port, NULL, 0, false);
- }
- 
- static void intel_acomp_get_config(struct intel_encoder *encoder,
- 				   struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	struct intel_audio_state *audio_state;
--	enum pipe pipe = crtc->pipe;
- 
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	audio_state = &i915->display.audio.state[pipe];
-+	audio_state = &i915->display.audio.state[cpu_transcoder];
- 
- 	if (audio_state->encoder)
- 		memcpy(crtc_state->eld, audio_state->eld, sizeof(audio_state->eld));
-@@ -1147,27 +1145,27 @@ static int i915_audio_component_get_cdclk_freq(struct device *kdev)
- }
- 
- /*
-- * get the intel audio state according to the parameter port and pipe
-- * MST & (pipe >= 0): return the audio.state[pipe].encoder],
-+ * get the intel audio state according to the parameter port and cpu_transcoder
-+ * MST & (cpu_transcoder >= 0): return the audio.state[cpu_transcoder].encoder],
-  *   when port is matched
-- * MST & (pipe < 0): this is invalid
-- * Non-MST & (pipe >= 0): only pipe = 0 (the first device entry)
-+ * MST & (cpu_transcoder < 0): this is invalid
-+ * Non-MST & (cpu_transcoder >= 0): only cpu_transcoder = 0 (the first device entry)
-  *   will get the right intel_encoder with port matched
-- * Non-MST & (pipe < 0): get the right intel_encoder with port matched
-+ * Non-MST & (cpu_transcoder < 0): get the right intel_encoder with port matched
-  */
- static struct intel_audio_state *find_audio_state(struct drm_i915_private *i915,
--						  int port, int pipe)
-+						  int port, int cpu_transcoder)
- {
- 	/* MST */
--	if (pipe >= 0) {
-+	if (cpu_transcoder >= 0) {
- 		struct intel_audio_state *audio_state;
- 		struct intel_encoder *encoder;
- 
- 		if (drm_WARN_ON(&i915->drm,
--				pipe >= ARRAY_SIZE(i915->display.audio.state)))
-+				cpu_transcoder >= ARRAY_SIZE(i915->display.audio.state)))
- 			return NULL;
- 
--		audio_state = &i915->display.audio.state[pipe];
-+		audio_state = &i915->display.audio.state[cpu_transcoder];
- 		encoder = audio_state->encoder;
- 
- 		if (encoder && encoder->port == port &&
-@@ -1176,14 +1174,14 @@ static struct intel_audio_state *find_audio_state(struct drm_i915_private *i915,
- 	}
- 
- 	/* Non-MST */
--	if (pipe > 0)
-+	if (cpu_transcoder > 0)
- 		return NULL;
- 
--	for_each_pipe(i915, pipe) {
-+	for_each_cpu_transcoder(i915, cpu_transcoder) {
- 		struct intel_audio_state *audio_state;
- 		struct intel_encoder *encoder;
- 
--		audio_state = &i915->display.audio.state[pipe];
-+		audio_state = &i915->display.audio.state[cpu_transcoder];
- 		encoder = audio_state->encoder;
- 
- 		if (encoder && encoder->port == port &&
-@@ -1195,7 +1193,7 @@ static struct intel_audio_state *find_audio_state(struct drm_i915_private *i915,
- }
- 
- static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
--						int pipe, int rate)
-+						int cpu_transcoder, int rate)
- {
- 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
- 	struct i915_audio_component *acomp = i915->display.audio.component;
-@@ -1211,7 +1209,7 @@ static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
- 	cookie = i915_audio_component_get_power(kdev);
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	audio_state = find_audio_state(i915, port, pipe);
-+	audio_state = find_audio_state(i915, port, cpu_transcoder);
- 	if (!audio_state) {
- 		drm_dbg_kms(&i915->drm, "Not valid for port %c\n", port_name(port));
- 		err = -ENODEV;
-@@ -1223,7 +1221,7 @@ static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
- 	/* FIXME stop using the legacy crtc pointer */
- 	crtc = to_intel_crtc(encoder->base.crtc);
- 
--	/* port must be valid now, otherwise the pipe will be invalid */
-+	/* port must be valid now, otherwise the cpu_transcoder will be invalid */
- 	acomp->aud_sample_rate[port] = rate;
- 
- 	/* FIXME get rid of the crtc->config stuff */
-@@ -1236,7 +1234,7 @@ static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
- }
- 
- static int i915_audio_component_get_eld(struct device *kdev, int port,
--					int pipe, bool *enabled,
-+					int cpu_transcoder, bool *enabled,
- 					unsigned char *buf, int max_bytes)
- {
- 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
-@@ -1245,7 +1243,7 @@ static int i915_audio_component_get_eld(struct device *kdev, int port,
- 
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	audio_state = find_audio_state(i915, port, pipe);
-+	audio_state = find_audio_state(i915, port, cpu_transcoder);
- 	if (!audio_state) {
- 		drm_dbg_kms(&i915->drm, "Not valid for port %c\n", port_name(port));
- 		mutex_unlock(&i915->display.audio.mutex);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index b870f7f47f2b..631a7b17899e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -103,7 +103,7 @@ struct intel_audio {
- 	u32 freq_cntrl;
- 
- 	/* current audio state for the audio component hooks */
--	struct intel_audio_state state[I915_MAX_PIPES];
-+	struct intel_audio_state state[I915_MAX_TRANSCODERS];
- 
- 	/* necessary resource sharing with HDMI LPE audio driver. */
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 8aaaef4d7856..20c8581f4868 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -315,7 +315,7 @@ void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
-  * intel_lpe_audio_notify() - notify lpe audio event
-  * audio driver and i915
-  * @dev_priv: the i915 drm device private data
-- * @pipe: pipe
-+ * @cpt_transocer: CPU transcoder
-  * @port: port
-  * @eld : ELD data
-  * @ls_clock: Link symbol clock in kHz
-@@ -324,7 +324,7 @@ void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
-  * Notify lpe audio driver of eld change.
-  */
- void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
--			    enum pipe pipe, enum port port,
-+			    enum transcoder cpu_transcoder, enum port port,
- 			    const void *eld, int ls_clock, bool dp_output)
- {
- 	unsigned long irqflags;
-@@ -344,7 +344,7 @@ void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
- 
- 	if (eld != NULL) {
- 		memcpy(ppdata->eld, eld, HDMI_MAX_ELD_BYTES);
--		ppdata->pipe = pipe;
-+		ppdata->pipe = cpu_transcoder;
- 		ppdata->ls_clock = ls_clock;
- 		ppdata->dp_output = dp_output;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.h b/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-index f848c5038714..0beecac267ae 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.h
-@@ -8,15 +8,15 @@
- 
- #include <linux/types.h>
- 
--enum pipe;
- enum port;
-+enum transcoder;
- struct drm_i915_private;
- 
- int  intel_lpe_audio_init(struct drm_i915_private *dev_priv);
- void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv);
- void intel_lpe_audio_irq_handler(struct drm_i915_private *dev_priv);
- void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
--			    enum pipe pipe, enum port port,
-+			    enum transcoder cpu_transcoder, enum port port,
- 			    const void *eld, int ls_clock, bool dp_output);
- 
- #endif /* __INTEL_LPE_AUDIO_H__ */
--- 
-2.39.2
+> ---
+>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 356 ------------------
+>   1 file changed, 356 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> index 01e75160a84a..5361ce70d3f2 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> @@ -1940,361 +1940,6 @@ int i915_gem_gtt_mock_selftests(void)
+>   	return err;
+>   }
+>   
+> -static int context_sync(struct intel_context *ce)
+> -{
+> -	struct i915_request *rq;
+> -	long timeout;
+> -
+> -	rq = intel_context_create_request(ce);
+> -	if (IS_ERR(rq))
+> -		return PTR_ERR(rq);
+> -
+> -	i915_request_get(rq);
+> -	i915_request_add(rq);
+> -
+> -	timeout = i915_request_wait(rq, 0, HZ / 5);
+> -	i915_request_put(rq);
+> -
+> -	return timeout < 0 ? -EIO : 0;
+> -}
+> -
+> -static struct i915_request *
+> -submit_batch(struct intel_context *ce, u64 addr)
+> -{
+> -	struct i915_request *rq;
+> -	int err;
+> -
+> -	rq = intel_context_create_request(ce);
+> -	if (IS_ERR(rq))
+> -		return rq;
+> -
+> -	err = 0;
+> -	if (rq->engine->emit_init_breadcrumb) /* detect a hang */
+> -		err = rq->engine->emit_init_breadcrumb(rq);
+> -	if (err == 0)
+> -		err = rq->engine->emit_bb_start(rq, addr, 0, 0);
+> -
+> -	if (err == 0)
+> -		i915_request_get(rq);
+> -	i915_request_add(rq);
+> -
+> -	return err ? ERR_PTR(err) : rq;
+> -}
+> -
+> -static u32 *spinner(u32 *batch, int i)
+> -{
+> -	return batch + i * 64 / sizeof(*batch) + 4;
+> -}
+> -
+> -static void end_spin(u32 *batch, int i)
+> -{
+> -	*spinner(batch, i) = MI_BATCH_BUFFER_END;
+> -	wmb();
+> -}
+> -
+> -static int igt_cs_tlb(void *arg)
+> -{
+> -	const unsigned int count = PAGE_SIZE / 64;
+> -	const unsigned int chunk_size = count * PAGE_SIZE;
+> -	struct drm_i915_private *i915 = arg;
+> -	struct drm_i915_gem_object *bbe, *act, *out;
+> -	struct i915_gem_engines_iter it;
+> -	struct i915_address_space *vm;
+> -	struct i915_gem_context *ctx;
+> -	struct intel_context *ce;
+> -	struct i915_vma *vma;
+> -	I915_RND_STATE(prng);
+> -	struct file *file;
+> -	unsigned int i;
+> -	u32 *result;
+> -	u32 *batch;
+> -	int err = 0;
+> -
+> -	/*
+> -	 * Our mission here is to fool the hardware to execute something
+> -	 * from scratch as it has not seen the batch move (due to missing
+> -	 * the TLB invalidate).
+> -	 */
+> -
+> -	file = mock_file(i915);
+> -	if (IS_ERR(file))
+> -		return PTR_ERR(file);
+> -
+> -	ctx = live_context(i915, file);
+> -	if (IS_ERR(ctx)) {
+> -		err = PTR_ERR(ctx);
+> -		goto out_unlock;
+> -	}
+> -
+> -	vm = i915_gem_context_get_eb_vm(ctx);
+> -	if (i915_is_ggtt(vm))
+> -		goto out_vm;
+> -
+> -	/* Create two pages; dummy we prefill the TLB, and intended */
+> -	bbe = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(bbe)) {
+> -		err = PTR_ERR(bbe);
+> -		goto out_vm;
+> -	}
+> -
+> -	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
+> -	if (IS_ERR(batch)) {
+> -		err = PTR_ERR(batch);
+> -		goto out_put_bbe;
+> -	}
+> -	memset32(batch, MI_BATCH_BUFFER_END, PAGE_SIZE / sizeof(u32));
+> -	i915_gem_object_flush_map(bbe);
+> -	i915_gem_object_unpin_map(bbe);
+> -
+> -	act = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(act)) {
+> -		err = PTR_ERR(act);
+> -		goto out_put_bbe;
+> -	}
+> -
+> -	/* Track the execution of each request by writing into different slot */
+> -	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
+> -	if (IS_ERR(batch)) {
+> -		err = PTR_ERR(batch);
+> -		goto out_put_act;
+> -	}
+> -	for (i = 0; i < count; i++) {
+> -		u32 *cs = batch + i * 64 / sizeof(*cs);
+> -		u64 addr = (vm->total - PAGE_SIZE) + i * sizeof(u32);
+> -
+> -		GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
+> -		cs[0] = MI_STORE_DWORD_IMM_GEN4;
+> -		if (GRAPHICS_VER(i915) >= 8) {
+> -			cs[1] = lower_32_bits(addr);
+> -			cs[2] = upper_32_bits(addr);
+> -			cs[3] = i;
+> -			cs[4] = MI_NOOP;
+> -			cs[5] = MI_BATCH_BUFFER_START_GEN8;
+> -		} else {
+> -			cs[1] = 0;
+> -			cs[2] = lower_32_bits(addr);
+> -			cs[3] = i;
+> -			cs[4] = MI_NOOP;
+> -			cs[5] = MI_BATCH_BUFFER_START;
+> -		}
+> -	}
+> -
+> -	out = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(out)) {
+> -		err = PTR_ERR(out);
+> -		goto out_put_batch;
+> -	}
+> -	i915_gem_object_set_cache_coherency(out, I915_CACHING_CACHED);
+> -
+> -	vma = i915_vma_instance(out, vm, NULL);
+> -	if (IS_ERR(vma)) {
+> -		err = PTR_ERR(vma);
+> -		goto out_put_out;
+> -	}
+> -
+> -	err = i915_vma_pin(vma, 0, 0,
+> -			   PIN_USER |
+> -			   PIN_OFFSET_FIXED |
+> -			   (vm->total - PAGE_SIZE));
+> -	if (err)
+> -		goto out_put_out;
+> -	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
+> -
+> -	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
+> -	if (IS_ERR(result)) {
+> -		err = PTR_ERR(result);
+> -		goto out_put_out;
+> -	}
+> -
+> -	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+> -		IGT_TIMEOUT(end_time);
+> -		unsigned long pass = 0;
+> -
+> -		if (!intel_engine_can_store_dword(ce->engine))
+> -			continue;
+> -
+> -		while (!__igt_timeout(end_time, NULL)) {
+> -			struct i915_vm_pt_stash stash = {};
+> -			struct i915_request *rq;
+> -			struct i915_gem_ww_ctx ww;
+> -			struct i915_vma_resource *vma_res;
+> -			u64 offset;
+> -
+> -			offset = igt_random_offset(&prng,
+> -						   0, vm->total - PAGE_SIZE,
+> -						   chunk_size, PAGE_SIZE);
+> -
+> -			memset32(result, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
+> -
+> -			vma = i915_vma_instance(bbe, vm, NULL);
+> -			if (IS_ERR(vma)) {
+> -				err = PTR_ERR(vma);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_object_lock(bbe, NULL);
+> -			err = i915_vma_get_pages(vma);
+> -			i915_gem_object_unlock(bbe);
+> -			if (err)
+> -				goto end;
+> -
+> -			vma_res = i915_vma_resource_alloc();
+> -			if (IS_ERR(vma_res)) {
+> -				i915_vma_put_pages(vma);
+> -				err = PTR_ERR(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_ww_ctx_init(&ww, false);
+> -retry:
+> -			err = i915_vm_lock_objects(vm, &ww);
+> -			if (err)
+> -				goto end_ww;
+> -
+> -			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
+> -			if (err)
+> -				goto end_ww;
+> -
+> -			err = i915_vm_map_pt_stash(vm, &stash);
+> -			if (!err)
+> -				vm->allocate_va_range(vm, &stash, offset, chunk_size);
+> -			i915_vm_free_pt_stash(vm, &stash);
+> -end_ww:
+> -			if (err == -EDEADLK) {
+> -				err = i915_gem_ww_ctx_backoff(&ww);
+> -				if (!err)
+> -					goto retry;
+> -			}
+> -			i915_gem_ww_ctx_fini(&ww);
+> -			if (err) {
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_vma_resource_init_from_vma(vma_res, vma);
+> -			/* Prime the TLB with the dummy pages */
+> -			for (i = 0; i < count; i++) {
+> -				vma_res->start = offset + i * PAGE_SIZE;
+> -				vm->insert_entries(vm, vma_res, I915_CACHE_NONE,
+> -						   0);
+> -
+> -				rq = submit_batch(ce, vma_res->start);
+> -				if (IS_ERR(rq)) {
+> -					err = PTR_ERR(rq);
+> -					i915_vma_resource_fini(vma_res);
+> -					kfree(vma_res);
+> -					goto end;
+> -				}
+> -				i915_request_put(rq);
+> -			}
+> -			i915_vma_resource_fini(vma_res);
+> -			i915_vma_put_pages(vma);
+> -
+> -			err = context_sync(ce);
+> -			if (err) {
+> -				pr_err("%s: dummy setup timed out\n",
+> -				       ce->engine->name);
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			vma = i915_vma_instance(act, vm, NULL);
+> -			if (IS_ERR(vma)) {
+> -				kfree(vma_res);
+> -				err = PTR_ERR(vma);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_object_lock(act, NULL);
+> -			err = i915_vma_get_pages(vma);
+> -			i915_gem_object_unlock(act);
+> -			if (err) {
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_vma_resource_init_from_vma(vma_res, vma);
+> -			/* Replace the TLB with target batches */
+> -			for (i = 0; i < count; i++) {
+> -				struct i915_request *rq;
+> -				u32 *cs = batch + i * 64 / sizeof(*cs);
+> -				u64 addr;
+> -
+> -				vma_res->start = offset + i * PAGE_SIZE;
+> -				vm->insert_entries(vm, vma_res, I915_CACHE_NONE, 0);
+> -
+> -				addr = vma_res->start + i * 64;
+> -				cs[4] = MI_NOOP;
+> -				cs[6] = lower_32_bits(addr);
+> -				cs[7] = upper_32_bits(addr);
+> -				wmb();
+> -
+> -				rq = submit_batch(ce, addr);
+> -				if (IS_ERR(rq)) {
+> -					err = PTR_ERR(rq);
+> -					i915_vma_resource_fini(vma_res);
+> -					kfree(vma_res);
+> -					goto end;
+> -				}
+> -
+> -				/* Wait until the context chain has started */
+> -				if (i == 0) {
+> -					while (READ_ONCE(result[i]) &&
+> -					       !i915_request_completed(rq))
+> -						cond_resched();
+> -				} else {
+> -					end_spin(batch, i - 1);
+> -				}
+> -
+> -				i915_request_put(rq);
+> -			}
+> -			end_spin(batch, count - 1);
+> -
+> -			i915_vma_resource_fini(vma_res);
+> -			kfree(vma_res);
+> -			i915_vma_put_pages(vma);
+> -
+> -			err = context_sync(ce);
+> -			if (err) {
+> -				pr_err("%s: writes timed out\n",
+> -				       ce->engine->name);
+> -				goto end;
+> -			}
+> -
+> -			for (i = 0; i < count; i++) {
+> -				if (result[i] != i) {
+> -					pr_err("%s: Write lost on pass %lu, at offset %llx, index %d, found %x, expected %x\n",
+> -					       ce->engine->name, pass,
+> -					       offset, i, result[i], i);
+> -					err = -EINVAL;
+> -					goto end;
+> -				}
+> -			}
+> -
+> -			vm->clear_range(vm, offset, chunk_size);
+> -			pass++;
+> -		}
+> -	}
+> -end:
+> -	if (igt_flush_test(i915))
+> -		err = -EIO;
+> -	i915_gem_context_unlock_engines(ctx);
+> -	i915_gem_object_unpin_map(out);
+> -out_put_out:
+> -	i915_gem_object_put(out);
+> -out_put_batch:
+> -	i915_gem_object_unpin_map(act);
+> -out_put_act:
+> -	i915_gem_object_put(act);
+> -out_put_bbe:
+> -	i915_gem_object_put(bbe);
+> -out_vm:
+> -	i915_vm_put(vm);
+> -out_unlock:
+> -	fput(file);
+> -	return err;
+> -}
+> -
+>   int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+>   {
+>   	static const struct i915_subtest tests[] = {
+> @@ -2314,7 +1959,6 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+>   		SUBTEST(igt_ggtt_fill),
+>   		SUBTEST(igt_ggtt_page),
+>   		SUBTEST(igt_ggtt_misaligned_pin),
+> -		SUBTEST(igt_cs_tlb),
+>   	};
+>   
+>   	GEM_BUG_ON(offset_in_page(to_gt(i915)->ggtt->vm.total));
 
