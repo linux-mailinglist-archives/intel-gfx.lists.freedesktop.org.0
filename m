@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AF569F855
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 16:51:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C5469F86E
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 16:56:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE85B10EA1A;
-	Wed, 22 Feb 2023 15:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19E810EA36;
+	Wed, 22 Feb 2023 15:56:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66E210EA3C
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 15:51:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A83A610EA36
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 15:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677081062; x=1708617062;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=INqrIQNZRVy3Y/IuyxjVNBo+2DRdrcbE7r5EgwR7pqE=;
- b=Dz/62/waez2SYVrsBkOR6omg8wyvX99lS4IQEyRYrC0MQ8T2wBJ1tVm1
- iAmvInEkMLGMjllFOfdeQlaGzleJsNoU9llKoPlCA1bGTdLIMTBypqfBU
- 17QXSKExF3X9xTBRbqOueBnX/Fejs97nMgSGTJfaaS10BjLhlSP1Fl+43
- jewNQaStJW3t8+DDZyye7iI69jVSuLYcaAeZNxyLJFNK7qOOSswEDh8MW
- PkICOxJ74sshoDmnhVjpyrzYDoovAoQJgkdT9kldyfeIc1L203n/kKqOG
- wUp3Z/Pd/sfO1KqFRyrjDBgGL3LQXq0otoDOIEI5EiLMclYEmWI9rp8be g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="360440626"
-X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="360440626"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 07:51:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="846183943"
-X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="846183943"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga005.jf.intel.com with SMTP; 22 Feb 2023 07:51:00 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Feb 2023 17:50:59 +0200
-Date: Wed, 22 Feb 2023 17:50:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <Y/Y545FNb6FlL8Ta@intel.com>
-References: <20230221230227.6244-1-ville.syrjala@linux.intel.com>
+ t=1677081388; x=1708617388;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=XDiUnX2k9f5h/9q+BmYq7OjFagxS4U4ARM+TYfa/HqQ=;
+ b=bbQEmDX+AfkNQbh/VkfrVD58ojQW3EVFx1nf1BxL/YKTf75qlGd0tWgo
+ nTGMWdFV054qsDMaPwNcJHhT/iZUv/ki95LQxngHg4D1CzZLW1fbGJZFl
+ hvot0W/fVfTc35qgu3kVEtu+79SW1FJ35MU21o7MZd+ivnK5xCLh4H/sl
+ H/zYn6ECO7oCwntapPigsL3lknQyQ7+93qDveACyQQJIzLLBpKRSc2oe9
+ cI5LvMq2XKwyJufbzNYGIhV2tXVeRqmfTSHs+Ux/FwcEg3rFTePCKk1sX
+ LEvZI9n/WGvXBcOGdbH+4Wd9i/mOf46c62m1THX8uVJkm4R17y8c/fjmE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="395440266"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="395440266"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 07:56:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="704502565"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; d="scan'208";a="704502565"
+Received: from fmkearin-mobl.ger.corp.intel.com (HELO [10.252.9.26])
+ ([10.252.9.26])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 07:56:25 -0800
+Message-ID: <76d0d9cd-5672-2e57-ca56-5dafdce1c2c6@intel.com>
+Date: Wed, 22 Feb 2023 15:56:23 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230221230227.6244-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 00/22] drm/i915: Init DDI ports in VBT
- order
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.7.1
+Content-Language: en-GB
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230222152641.1491307-1-jonathan.cavitt@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20230222152641.1491307-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use correct huge page manager for
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +62,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ daniel.vetter@intel.com, chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 22, 2023 at 01:02:05AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 22/02/2023 15:26, Jonathan Cavitt wrote:
+> MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
+> MTL reports as not supporting 64K pages, or more accurately, the system that reports
+> whether a platform has 64K pages reports false for MTL.  This is only half correct,
+> as the 64K page support reporting system only cares about 64K page support for LMEM,
+> which MTL doesn't have.
 > 
-> I just wanted to init DDI ports in VBT child device order
-> without any up front assumptions about which conflicting
-> child device defition is valid. That is pretty much what
-> we need to do for the ADL laptops with the phantom eDP vs.
-> native HDMI on DDI B.
+> MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
+> using that manager doesn't resolve the issue because MTL is expecting the virtual
+> address space for the page table to be flushed after initialization, so we must also
+> add a flush statement there.
 > 
-> However that approach doesn't work for some of the weird
-> SKL boards that have a phantom eDP on DDI A+AUX A and
-> and a real DP->VGA converter on DDI E+AUX A. For those
-> I had to introduce HPD live status check during eDP init.
+> The changes made to the huge page manager selection indirectly impacted some of the
+> mock hugepage selftests.  Due to the use of pte level hints, rather than pde level
+> hints, we now expect 64K page sizes to be properly reported by the GTT, so we should
+> remove the check that asserts otherwise.
 > 
-> One of the remaining concerns I still have is what happens
-> when we encounter VBTs with more AUX CH/DDC pin conflicts?
-> I think what we might want to do eventually is ignore the
-> conflicts as much as possible, and just init everything
-> based on VBT, trusting HPD to take care of things in the
-> end. That of course does have certain issues wrt. connector
-> forcing, but dunno if we can avoid those at all.
-> 
-> Also I think we need to nuke all the platform default AUX
-> CH/DDC pin stuff, or at least only try to utilize those
-> only once we've consumed the VBT fully.
-> 
-> v2: Fix SKL DDI A HPD live state
-> v3: Replace AUX CH/DDC pin sanitation with availability checks
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-OK, it looks like this is finally doing something
-sane on pretty much all machines.
+Hopefully CI will be happy now,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-The only slight concern left is on bat-rplp-1:
- [drm:intel_dp_aux_ch [i915]] [ENCODER:257:DDI TC2/PHY TC2] Using AUX CH E (platform default)
- [drm:intel_power_well_enable [i915]] enabling AUX_USBC2
- [drm:intel_power_well_disable [i915]] disabling AUX_USBC2
- [drm:intel_power_well_enable [i915]] enabling AUX_USBC2
- [drm:intel_tc_port_init_mode [i915]] Port E/TC#2: init mode (legacy)
- [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:257:DDI TC2/PHY TC2]
- [drm:intel_hdmi_init_connector [i915]] [ENCODER:257:DDI TC2/PHY TC2] Using DDC pin 0xa (VBT)
-
-So we're still having to use the platform default AUX CH
-for this HDMI TC legacy port. But I guess that should be
-relatively risk free as cross-wiring the TC ports in any
-way doesn't seem like something that should happen. Might
-not even be possible since a lot of the stuff for these
-is internal to the chip.
-
--- 
-Ville Syrjälä
-Intel
+> ---
+>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 3 ---
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c            | 3 ++-
+>   2 files changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index defece0bcb81..1659ada4ce33 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -784,9 +784,6 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+>   		GEM_BUG_ON(!expected_gtt);
+>   		GEM_BUG_ON(size);
+>   
+> -		if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
+> -			expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
+> -
+>   		i915_vma_unpin(vma);
+>   
+>   		if (vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index 4daaa6f55668..9c571185395f 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
+>   			}
+>   		} while (rem >= page_size && index < max);
+>   
+> +		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+>   		vma_res->page_sizes_gtt |= page_size;
+>   	} while (iter->sg && sg_dma_len(iter->sg));
+>   }
+> @@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+>   	struct sgt_dma iter = sgt_dma(vma_res);
+>   
+>   	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
+> -		if (HAS_64K_PAGES(vm->i915))
+> +		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
+>   			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+>   		else
+>   			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
