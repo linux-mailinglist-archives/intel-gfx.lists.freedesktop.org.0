@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DC269F1D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 10:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CCC69F2C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 11:36:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E701610E434;
-	Wed, 22 Feb 2023 09:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3A1810E1C0;
+	Wed, 22 Feb 2023 10:36:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9C510E434
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 09:36:00 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61A810E1C0;
+ Wed, 22 Feb 2023 10:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677058560; x=1708594560;
+ t=1677062185; x=1708598185;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=kZkQHFYb5WP0AkIqhfK6YhV0ZTfLzZIYOkY6Qnq1Ft8=;
- b=LOuExEFGtBiv4oj8cCMXAePK4CI/UFFg3ensqlKm7H8oRsQmQxVcH5g7
- eqHZEG3bSFHa5xz3pAd5agmE63zTiPXahIZU4lAXWYgCkjJZrQ1lURcYy
- WkwJ7VzgEhMhQ9UIim1gw43Iv9MhCp/Vdsd5xSronQ2uIQ/m13P+qV/+9
- 9OnQcExoM70XTWmNZxjtc7SzJvk8+ka/9YtANLvwLATFoKAKPn5Q+FWzl
- JGPEFxucyxiEciGooiJPj0VONlDjxPugsBZRPP5/5GzXrikA8WCnUnUKk
- ujZmtkAPyd3UUr9J1a4po2bxaLdDl2kSgD6bmRuRa/thJI+OrBjhFfxvj Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="331547727"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="331547727"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 01:35:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="704390450"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="704390450"
-Received: from sineadmc-mobl2.ger.corp.intel.com (HELO [10.252.9.91])
- ([10.252.9.91])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 01:35:58 -0800
-Message-ID: <5b3a6d1d-06cb-4de2-951a-80a88c2f3f5e@intel.com>
-Date: Wed, 22 Feb 2023 09:35:55 +0000
+ bh=ofUmRpvhNVTg3+A6hyPOFASnnH8za9ygTzj8N8YfXSk=;
+ b=D/jJH3b5mxjsbESOrhJADbGdNryNkN5ht6TZOmPghGueyhBQ3yHW6jzZ
+ mvwy9VQxQRotTqmD1xui3nJFhKuthdB35AN0ItIqt2iwZq71+dEyEFire
+ 21wyeBK5nOZMw7n7OHSIzvNjWZbIScLczJOGSjKo9fapzh946QPYzLLap
+ 3wF4j8RhRlvAsHQqoURxxl4TWcIUKUmVhJBJU8BN1TA5W2GwqPFWHABhL
+ mnEz7xFLY6qQoBWvNNY3+AcBzJaM5GfvbaZMMSR4XrkdM8rzUAuPTvKRf
+ 7cvC+7b/DTH9mhYSMQALdPpTwKnWa88ZkKchLv4ANZZgtnATOQHcIiKoS Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="321031746"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="321031746"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 02:36:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="781379853"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="781379853"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.51])
+ ([10.213.26.51])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 02:36:19 -0800
+Message-ID: <50c1806b-f153-da48-ddf4-53923fa90334@intel.com>
+Date: Wed, 22 Feb 2023 11:36:17 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.7.1
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-References: <20230217191813.1104342-1-jonathan.cavitt@intel.com>
- <0f4df8e9-1cb9-b1a4-284d-67fc75b74c2e@intel.com>
- <CH0PR11MB5444727E7C9F280059073C1EE5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
- <b371944c-779d-cd9e-e9ba-6c7b8a6bc0bb@intel.com>
- <CH0PR11MB544409A98B8A5F6E8E087DF4E5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
- <548e3921-8488-afc1-aeae-6ff526e16e51@intel.com>
- <CH0PR11MB5444566E57C1FBA29F57DB5AE5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <CH0PR11MB5444566E57C1FBA29F57DB5AE5A59@CH0PR11MB5444.namprd11.prod.outlook.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+Content-Language: en-US
+To: linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-hexagon@vger.kernel.org, linux-ia64@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-mips@vger.kernel.org, openrisc@lists.librecores.org,
+ linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-xtensa@linux-xtensa.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20230118153529.57695-1-andrzej.hajda@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230118153529.57695-1-andrzej.hajda@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] gen8_ppgtt: Use correct huge page manager
- for MTL
+Subject: Re: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,141 +71,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/02/2023 18:34, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Auld, Matthew <matthew.auld@intel.com>
-> Sent: Tuesday, February 21, 2023 9:46 AM
-> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
-> Cc: Dutt, Sudeep <sudeep.dutt@intel.com>; Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>; intel-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH] gen8_ppgtt: Use correct huge page manager for MTL
->>
->> On 21/02/2023 17:14, Cavitt, Jonathan wrote:
->>> -----Original Message-----
->>> From: Auld, Matthew <matthew.auld@intel.com>
->>> Sent: Tuesday, February 21, 2023 8:33 AM
->>> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
->>> Cc: Dutt, Sudeep <sudeep.dutt@intel.com>; Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>; intel-gfx@lists.freedesktop.org
->>> Subject: Re: [PATCH] gen8_ppgtt: Use correct huge page manager for MTL
->>>>
->>>> On 21/02/2023 16:28, Cavitt, Jonathan wrote:
->>>>> -----Original Message-----
->>>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>>> Sent: Tuesday, February 21, 2023 8:06 AM
->>>>> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
->>>>> Cc: Dutt, Sudeep <sudeep.dutt@intel.com>; Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
->>>>> Subject: Re: [PATCH] gen8_ppgtt: Use correct huge page manager for MTL
->>>>>>
->>>>>> On 17/02/2023 19:18, Jonathan Cavitt wrote:
->>>>>>> MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
->>>>>>> MTL reports as not supporting 64K pages, or more accurately, the system that reports
->>>>>>> whether a platform has 64K pages reports false for MTL.  This is only half correct,
->>>>>>> as the 64K page support reporting system only cares about 64K page support for LMEM,
->>>>>>> which MTL doesn't have.
->>>>>>>
->>>>>>> MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
->>>>>>> using that manager doesn't resolve the issue because MTL is expecting the virtual
->>>>>>> address space for the page table to be flushed after initialization, so we must also
->>>>>>> add a flush statement there.
->>>>>>>
->>>>>>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>>>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>>>>>
->>>>>> Although it looks like the hugepage mock tests are failing with this. I
->>>>>> assume the mock device just uses some "max" gen version or so, which now
->>>>>> triggers this path. Any ideas for that?
->>>>>
->>>>> With this patch applied, multiple calls to the hugepages live selftest result in a kernel panic.
->>>>> If the mock tests are run immediately after the live ones, that would explain this behavior.
->>>>> I was informed when this was initially debugged that the error was a known IOMMU issue
->>>>> rather than some novel regression, though it's hard to tell if that was just hopeful optimism
->>>>> or not at this point.
->>>>
->>>> In the test results we now get:
->>>>
->>>> 6> [183.420316] i915: Running
->>>> i915_gem_huge_page_mock_selftests/igt_mock_exhaust_device_supported_pages
->>>> <6> [183.436978] i915: Running
->>>> i915_gem_huge_page_mock_selftests/igt_mock_memory_region_huge_pages
->>>> <6> [183.445777] i915: Running
->>>> i915_gem_huge_page_mock_selftests/igt_mock_ppgtt_misaligned_dma
->>>> <6> [183.904531] i915: Running
->>>> i915_gem_huge_page_mock_selftests/igt_mock_ppgtt_huge_fill
->>>> <3> [183.912658] gtt=69632, expected=4096, size=69632, single=yes
->>>> <3> [183.912784] i915/i915_gem_huge_page_mock_selftests:
->>>> igt_mock_ppgtt_huge_fill failed with error -22
->>>
->>>                   if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
->>>                           expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
->>>
->>> I don't know why we're doing that to expected_gtt, but that seems to be the cause of the
->>> problem in this case.
->>
->> I think it's due to the older huge page model, where 64K requires the
->> entire page-table to all use 64K pages underneath (pde level hint), so
->> if we see 4K in there somewhere then we don't expect to get back 64K
->> GTT. But on newer HW we now have have pte level hint, so I think the
->> above can just be removed with this patch, since that's what the mock
->> device now uses.
-> 
-> Seems right.  I guess that would be... what?  Is it:
-> A. Platform specific?  I.E. we need s generation check in the selftest to proceed, such as the following:
-> 
->                   if (expected_gtt & I915_GTT_PAGE_SIZE_4K && GRAPHICS_VER(i915) >= 12)
-> 
-> B. Systems specific?  I.E. we have a special check for this functionality such as:
-> 
->                   if (expected_gtt & I915_GTT_PAGE_SIZE_4K && has_pte_level_hint(i915))
-> 
-> C. The new norm.  I.E. we can just remove this line from the test and everything will work out fine.
+Hi,
 
-The mock device will always use the max graphics version:
+Ping on the series.
+Arnd, Andrew is there anything more I can do to push the process forward?
 
-RUNTIME_INFO(i915)->graphics.ip.ver = -1;
+Regards
+Andrzej
 
-So I think option C.
 
+On 18.01.2023 16:35, Andrzej Hajda wrote:
+> Hi all,
 > 
-> -Jonathan Cavitt
+> The helper is tiny and there are advices we can live without it, so
+> I want to present few arguments why it would be good to have it:
 > 
->>
->>> -Jonathan Cavitt
->>>
->>>>
->>>> I didn't look any deeper than that though. Note that this a just a
->>>> mock/fake device. I don't think its IOMMU related.
->>>>
->>>>> -Jonathan Cavitt
->>>>>
->>>>>>
->>>>>>> ---
->>>>>>>      drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
->>>>>>>      1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>>>>>> index 4daaa6f55668..9c571185395f 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>>>>>> @@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
->>>>>>>      			}
->>>>>>>      		} while (rem >= page_size && index < max);
->>>>>>>      
->>>>>>> +		drm_clflush_virt_range(vaddr, PAGE_SIZE);
->>>>>>>      		vma_res->page_sizes_gtt |= page_size;
->>>>>>>      	} while (iter->sg && sg_dma_len(iter->sg));
->>>>>>>      }
->>>>>>> @@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
->>>>>>>      	struct sgt_dma iter = sgt_dma(vma_res);
->>>>>>>      
->>>>>>>      	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
->>>>>>> -		if (HAS_64K_PAGES(vm->i915))
->>>>>>> +		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
->>>>>>>      			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
->>>>>>>      		else
->>>>>>>      			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
->>>>>>
->>>>
->>
+> 1. Code readability/simplification/number of lines:
+>    - decreases number of lines,
+>    - it often eliminates local variables,
+>    - for real examples see patches 3+.
+> 
+> 2. Presence of similar helpers in other somehow related languages/libs:
+> 
+> a) Rust[1]: 'replace' from std::mem module, there is also 'take'
+>      helper (__xchg(&x, 0)), which is the same as private helper in
+>      i915 - fetch_and_zero, see latest patch.
+> b) C++ [2]: 'exchange' from utility header.
+> 
+> If the idea is OK there are still 2 questions to answer:
+> 
+> 1. Name of the helper, __xchg follows kernel conventions,
+>      but for me Rust names are also OK.
+> 2. Where to put the helper:
+> a) as in this patchset include/linux/non-atomic/xchg.h,
+>      proposed by Andy Shevchenko,
+> b) include/linux/utils.h ? any better name? Some kind
+>      of container for simple helpers.
+> 
+> All __xchg conversions were performed using cocci script,
+> then manually adjusted if necessary.
+> 
+> There is lot of places it can be used in, I have just chosen
+> some of them. I can provide cocci script to detect others (not all),
+> if necessary.
+> 
+> Changes:
+> v2: squashed all __xchg -> __arch_xchg t one patch (Arnd)
+> v3: fixed alpha/xchg_local (lkp@intel.com)
+> v4: adjusted indentation (Heiko)
+> v5: added more __xchg conversions - patches 3-6, added tags
+> 
+> [1]: https://doc.rust-lang.org/std/mem/index.html
+> [2]: https://en.cppreference.com/w/cpp/header/utility
+> 
+> Regards
+> Andrzej
+> 
+> Andrzej Hajda (7):
+>    arch: rename all internal names __xchg to __arch_xchg
+>    linux/include: add non-atomic version of xchg
+>    arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
+>    llist: simplify __llist_del_all
+>    io_uring: use __xchg if possible
+>    qed: use __xchg if possible
+>    drm/i915/gt: use __xchg instead of internal helper
+> 
+>   arch/alpha/include/asm/cmpxchg.h              | 10 +++++-----
+>   arch/arc/include/asm/cmpxchg.h                |  4 ++--
+>   arch/arm/include/asm/cmpxchg.h                |  7 ++++---
+>   arch/arm/probes/uprobes/core.c                |  8 ++------
+>   arch/arm64/include/asm/cmpxchg.h              |  7 +++----
+>   arch/arm64/kernel/probes/uprobes.c            |  9 ++-------
+>   arch/csky/kernel/probes/uprobes.c             |  9 ++-------
+>   arch/hexagon/include/asm/cmpxchg.h            | 10 +++++-----
+>   arch/ia64/include/asm/cmpxchg.h               |  2 +-
+>   arch/ia64/include/uapi/asm/cmpxchg.h          |  4 ++--
+>   arch/loongarch/include/asm/cmpxchg.h          |  4 ++--
+>   arch/m68k/include/asm/cmpxchg.h               |  6 +++---
+>   arch/mips/include/asm/cmpxchg.h               |  4 ++--
+>   arch/mips/kernel/uprobes.c                    | 10 ++--------
+>   arch/openrisc/include/asm/cmpxchg.h           | 10 +++++-----
+>   arch/parisc/include/asm/cmpxchg.h             |  4 ++--
+>   arch/powerpc/include/asm/cmpxchg.h            |  4 ++--
+>   arch/powerpc/kernel/uprobes.c                 | 10 ++--------
+>   arch/riscv/include/asm/atomic.h               |  2 +-
+>   arch/riscv/include/asm/cmpxchg.h              |  4 ++--
+>   arch/riscv/kernel/probes/uprobes.c            |  9 ++-------
+>   arch/s390/include/asm/cmpxchg.h               |  8 ++++----
+>   arch/s390/kernel/uprobes.c                    |  7 ++-----
+>   arch/sh/include/asm/cmpxchg.h                 |  4 ++--
+>   arch/sparc/include/asm/cmpxchg_32.h           |  4 ++--
+>   arch/sparc/include/asm/cmpxchg_64.h           |  6 +++---
+>   arch/sparc/kernel/uprobes.c                   |  7 ++-----
+>   arch/xtensa/include/asm/cmpxchg.h             |  4 ++--
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+>   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  4 ++--
+>   .../drm/i915/gt/intel_execlists_submission.c  |  4 ++--
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
+>   drivers/gpu/drm/i915/gt/intel_gsc.c           |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_gt.c            |  4 ++--
+>   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_lrc.c           |  6 +++---
+>   drivers/gpu/drm/i915/gt/intel_migrate.c       |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
+>   drivers/gpu/drm/i915/gt/selftest_context.c    |  2 +-
+>   .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
+>   drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     |  2 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  2 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  2 +-
+>   drivers/gpu/drm/i915/i915_utils.h             |  1 +
+>   include/linux/llist.h                         |  6 ++----
+>   include/linux/non-atomic/xchg.h               | 19 +++++++++++++++++++
+>   include/linux/qed/qed_chain.h                 | 19 +++++++------------
+>   io_uring/io_uring.c                           |  7 ++-----
+>   io_uring/slist.h                              |  6 ++----
+>   51 files changed, 126 insertions(+), 155 deletions(-)
+>   create mode 100644 include/linux/non-atomic/xchg.h
+> 
+
