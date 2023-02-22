@@ -2,109 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6357169F503
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 14:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB4B69F5AF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 14:34:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAEA10E1D0;
-	Wed, 22 Feb 2023 13:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 742BC10E9A4;
+	Wed, 22 Feb 2023 13:34:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54DFC10E1D0;
- Wed, 22 Feb 2023 12:59:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RnKjAAxrPUJby7ZmS2m53v8RH+FesPX3GXQEaovUGpakuf0Git//ge+kxEZnKcpWJ/7mZCOwZD37MvvAgGq4yoSXOKhdbhjodjNP2IVDVwefqtgdZ2+YemtXkDMjHU/+YkRRu8zvWZgu8LdoRwq2tfZ/uzF3k23pECABhzC4V4vFr9o+nZqnbBjBF+SB4r1vkjNWiC45C4Ovq0gGciHFgh3F3TcqkyNoXHDwLBKqK/QUmSjhE/fZwpQhWCPmmwrVDfANvJfSd8tKcN4k6zXDcnN/1gAuKrQt7QjdUZN/Lvv2gIvAc0gDfJ+IfIvyoQs7C8kTL56b3I3UqbFaEB22sg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QGOrDpNdVJ0TQTv9bvuqo5HLqqrIZo4p2CzuyxqgnQ0=;
- b=cQ1r+K/G37OWzDEqwS38Nsmdu/LyGk0JGwxxBMxr9hVjlxBeQKSMq/qyEL5OhmCQI13vSlSBGpvAeYTQlMChab3y8+146zpEnjUMFpZFVfA5hVCNrwwX0NrQZ+ihCHAVEnGAP6Pq0qnA5cGOoGv8QVjMb6gJNr4pqfJxo27uDl1NVt66sswXLbd+FY8FG2RmDqi7u7oB+IMdKj1+wCEIlJWFlYEtSHUOF5ova+BDAkUwbDfluRlq4Gqgy37/O2Cl4zwGPlwME7lgKI9IOaEqtMF1KX2L7NTm06mIVo1s3C697pRxWTrMbYfsmCBfODdnx2pCr5AGS3L2+pAod5hjHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QGOrDpNdVJ0TQTv9bvuqo5HLqqrIZo4p2CzuyxqgnQ0=;
- b=ExAsA7Z/05OYX2CKoHHpafSYmrfhpSWhTX4PwLwGuFYeqvD8v85CmUYpruoJ0TKGbRpiUw1/9JgDWhmH4RfW6DreKBJpS6Ay0nGgFUnde/94WJGltooE+bupH8F2dHRj6Eyu2SMTixbbfgQTQGFkKidwU5erzkPcac470MJDqgomufWYTsTbkly3ypnRXrU/4h1n1TnBf90nd5CjM3VKM5tOOXppDIIkExeOtbfauyVmFEjWBQImPAfH80vh/pohB/5x5iQRpOnF3Wx30EzMmua+cqiX/w7RUHbKZCTtMovB+2OKMwEaR+U6XGm22dxXE2K8mjke9IP6iPNO5ZwZhg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MN2PR12MB4566.namprd12.prod.outlook.com (2603:10b6:208:26a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
- 2023 12:59:53 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6111.021; Wed, 22 Feb 2023
- 12:59:53 +0000
-Date: Wed, 22 Feb 2023 08:59:51 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <Y/YRx7jLuyEoLxZg@nvidia.com>
-References: <20230221034812.138051-1-yi.l.liu@intel.com>
- <20230221034812.138051-17-yi.l.liu@intel.com>
- <BL1PR11MB5271AB3735F7A783C2871DB88CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
- <DS0PR11MB7529D04D2EB9B5C69C306C16C3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529D04D2EB9B5C69C306C16C3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BLAPR03CA0066.namprd03.prod.outlook.com
- (2603:10b6:208:329::11) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3480D10E9A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 13:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677072882; x=1708608882;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=fVbc1wsCUZnmzk15DTFsmfUsT39hObT3C7YA/0zIzPQ=;
+ b=Xyv+o6wlZbxJBaD+7OgK7Atb1coXP388cSX+kcxlbdVBPFGK5Kho//wk
+ HurNPyFNKMpVq1RDBGHwR3hfVBxfCGayNn1f0z5Vm9IvMvSzpozkR10ba
+ RgY6sNnJ7kMAc7WNcry46IVyCH3fNlNeefEjQaAT4rBjuK9xg5UltHaLy
+ BBSt257nWoISCxZYHL82Z8pATh6Ys/J9dGiESYodIVdr9qcul83s1eljW
+ bfktuEv0+0afX/VS0O49Z2lYhBdW43B5dSnF96SuMGOQv9xFtpbR50EUM
+ 9hIOiIdn/Ys68S0raxHInWHjoOj9PNSQvKxzwBgCyEL0VcNJngSlZGF8+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="321062763"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="321062763"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 05:34:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="665349411"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="665349411"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga007.jf.intel.com with SMTP; 22 Feb 2023 05:34:39 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 Feb 2023 15:34:38 +0200
+Date: Wed, 22 Feb 2023 15:34:38 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <Y/YZ7tKbWBFJZSRW@intel.com>
+References: <20230127173044.24108-1-ville.syrjala@linux.intel.com>
+ <20230127173044.24108-4-ville.syrjala@linux.intel.com>
+ <139c6f3e968277b1ca83aa4e2aaf3eb80f11c215.camel@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MN2PR12MB4566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11b44785-7fe1-4b35-5edd-08db14d4b05e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Qxqf6rf5nCwpunUGHKHonpnEzBTyBuwjU8VucjcLETV4qvdYPAVG/PWbXwAIYkpXqtS/pIW9WBn5hhGG28y7FeAVlTO41QEfulEbGZt3GXQWWw2ZxFEPcJ+Q+CDoDC3Ah05PFv92zFFLmitt5Kwgn+1IRO+aan0W3rKpTDHd1xp+bKbwcFJAuRhtKajar5ARRWixBOhG0o/+FnBULdEL6+U3koPqAJjAhzU3563cYqFDXDH3ZS6AhJSLQewy2qsfLN//+MIykb6sk0dRWOf+8qs4OkanQamv4/SVnA5dH7vwx6QHyhkcy+mVMk3dI5bdvoCxEO2CnON1bCMkWFMUUY4+05n1SzR9Esnv+rNcYhciFrrTWGFoGwBHYi2MAv9kPrdTtEflT+XsKJEoLZpfAOcc65Hg28DrYqzV+FER88RZ29PeLjA+Dy6fYb+z3pQ6J71CEFJVTKxzQR0eT0n2K3+Qln7PV2PTRYVmvk7q+QWu2USsdNf+JBkx1YrcFXD9HXBY0Bc3beqjU/xSgwvTs//i2cuaoyVVYX3qzKFN+VoGcKnahNiRdn17M3UKN4RXGUfem9NuWMfOIwkTNwkh2gVL1nPlPQ2JJhyxLBI9NMVp36s/QB95+e1hQfcRiCHJTxL4HCXLXVLcho3Kj00Owg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(346002)(39860400002)(396003)(376002)(366004)(136003)(451199018)(66946007)(6916009)(8676002)(66476007)(4326008)(66556008)(83380400001)(86362001)(2616005)(38100700002)(6512007)(54906003)(36756003)(316002)(26005)(186003)(6506007)(478600001)(6486002)(5660300002)(7416002)(4744005)(2906002)(41300700001)(8936002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7T6HMW//BNEqmgqqazfCd1xXLilcq1ZxJIItEvk3i3ibqYzztHUW/v8ig/jT?=
- =?us-ascii?Q?4najaq8D0PMfTTW8fdrVrSMaajOqr8cz1xb1iCh420uVy0taizwzIlYQkq6U?=
- =?us-ascii?Q?6oVq3eK5gukrk6+B5wo65WyUrqUpX4cogbzMbYWYKvLAyhQmt4MMMHiW37/U?=
- =?us-ascii?Q?Io1zm74ZLt/qNeesyS77/SGp6d/+yeFXVeAjwFLXidRzfRvF5oOkgFx7e+EJ?=
- =?us-ascii?Q?XKJ4dTxCbll3ee8+nb9tuUHJJs8VP6BsPuKdipVKSxczWoAKsr/jpJrOnZgo?=
- =?us-ascii?Q?qfIwLSKFOGACVa5lqgDcn2M9UqKSIIg8+6yFynK3VEzBdr0d1e6CL2nRkKxg?=
- =?us-ascii?Q?XneYUQNJjkCV9RvMpJm2y9LFwuzUMH/L+zTTBGuiLvsE1QeoMCVITfA+pwZE?=
- =?us-ascii?Q?AoaB4vTFI0yfNgMdSb9Nm4rfZ26d1ZTeerHCAMAsYzYpYbb0v+jU+vsiX1Lx?=
- =?us-ascii?Q?mrCmS1yBM9qDDHMh+osubgXPVPuoBpmTu8pQDoqKeZ6B6sns1PxFpNRNsVHP?=
- =?us-ascii?Q?cveADoNJoTI0/Ihx/iIcxsGHoSYCixrNH6Dwk4vSRX7NDKwKWwL1zRDYc3R4?=
- =?us-ascii?Q?P52w5T/cmMbNuIaFhxhuTrPsfGOJonxYUXhp9gztcgHfnQ2Uz+6dxcsvq2sO?=
- =?us-ascii?Q?gFc99RiCcB3t+31P1XdwDGWBb3eg0avDbTLB8z5DTwtsdTsuKKt5ZWVWBHVV?=
- =?us-ascii?Q?0gH8cC5bYnjIw1vl9epd6tCqsZkED9OkTQzUraLPgNvVeYWlJDWpjIMeTlJb?=
- =?us-ascii?Q?xDRfY9saek6XaKs9cCyG/2m5gx3HZ8k7lAQy5d9Ie/x5dQzom6vTUpBmcgRj?=
- =?us-ascii?Q?OBCeW0BUhVfB+VVesMoZtTwcRt+4OdCnRRZC+uhlaBPgwyZlfJonuTrA4f0q?=
- =?us-ascii?Q?Qi6JtCccECtGOKcMmUT98qMFe0Tjm6Cc2XgLJLqGL5ZOs3w0aRrQzTBDhDAA?=
- =?us-ascii?Q?xxxJSSGRRmTexIiZOx9D6Qy+OzW59la5Rfe68hUE4Iam7ZSieXUZyYQ5rvH7?=
- =?us-ascii?Q?Gssp2H6vt4UkNaja2cvuhRCeF/HaYDslQWtoBRNKLYrVF7g7WCkjuAluTaz/?=
- =?us-ascii?Q?oNC/LxFiY2Cy73soSmqOpu2+40lxHojRHJ3/rO433OnF4hzfK99VX2KneBIn?=
- =?us-ascii?Q?NMsy7Onlbc/FVvTGpdYYYBLW82JyDEgOEVbLh2ShgBuWoRmGjv1bgaR8vuuJ?=
- =?us-ascii?Q?q4jh+pI9jkgQYuhqpSLuDmbfrr39gXPHM5G69NtSYIPiHzBHjpYlTB7J5uq6?=
- =?us-ascii?Q?wJ3V+ufvKIOlHmXmKN1ZHT/eA1OMzQiyb93h5duuv624RbqjJq4eg6FC5mWF?=
- =?us-ascii?Q?PyBQxrqs8mjAqYXyVdsfWuBOXBdgfQ9v5QOhF8dEbm34Ws4BQ1BIz42OdeJo?=
- =?us-ascii?Q?/WbgnzTW+mkjhQBn73f64ye/dwfCwGXSEqz6ElGpzfbZ98zXHRQJqZVy62vS?=
- =?us-ascii?Q?h0szdYzqKxKrSWmirPZC4pnHorm0NNvdRN1/Zyho4AgDVNApCI3gcJV9adFl?=
- =?us-ascii?Q?UB5yYXBDY1rNk4NQeHwMCIL94B/Na5SX+LvVW2dUwc8wBZo5e+MBzWsACT+2?=
- =?us-ascii?Q?3Tcv2k0rgAFHKqx6nDqHDjK274r5tDpmPSpF1H4U?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11b44785-7fe1-4b35-5edd-08db14d4b05e
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2023 12:59:52.8903 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: icH6lJDEwD7jD7EWce6Fqbt9MeN7o6Sp7x/oaYKMKvZpGjMfYNX6xcEsFvX57rxC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4566
-Subject: Re: [Intel-gfx] [PATCH v4 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <139c6f3e968277b1ca83aa4e2aaf3eb80f11c215.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 3/4] drm/i915: Extract skl_wm_latency()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,45 +62,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 22, 2023 at 07:44:12AM +0000, Liu, Yi L wrote:
-> > From: Tian, Kevin <kevin.tian@intel.com>
-> > Sent: Wednesday, February 22, 2023 3:40 PM
+On Wed, Feb 22, 2023 at 09:25:56AM +0000, Hogander, Jouni wrote:
+> On Fri, 2023-01-27 at 19:30 +0200, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > 
-> > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > Sent: Tuesday, February 21, 2023 11:48 AM
-> > >
-> > > +
-> > > +void vfio_device_cdev_close(struct vfio_device_file *df)
-> > > +{
-> > > +	struct vfio_device *device = df->device;
-> > > +
-> > > +	mutex_lock(&device->dev_set->lock);
-> > > +	if (!smp_load_acquire(&df->access_granted)) {
+> > Extract the skl+ wm latency determination into a small helper
+> > so that everyone has the same idea what the latency should be.
 > > 
-> > there is no contention with another one changing this flag at this
-> > point so directly accessing it is fine.
+> > This introduces a slight functional change in that
+> > skl_cursor_allocation() will now start to account for the
+> > extra 4 usec that the kbk/cfl/cml IPC w/a adds.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/skl_watermark.c | 40 +++++++++++++-----
+> > --
+> >  1 file changed, 26 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > index ae4e9e680c2e..65c746d018b5 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -704,6 +704,28 @@ static void skl_compute_plane_wm(const struct
+> > intel_crtc_state *crtc_state,
+> >                                  const struct skl_wm_level
+> > *result_prev,
+> >                                  struct skl_wm_level *result /* out
+> > */);
+> >  
+> > +static unsigned int skl_wm_latency(struct drm_i915_private *i915,
+> > int level,
+> > +                                  const struct skl_wm_params *wp)
+> > +{
+> > +       unsigned int latency = i915->display.wm.skl_latency[level];
+> > +
+> > +       if (latency == 0)
+> > +               return 0;
 > 
-> make sense. 
+> What does it mean if latency is 0 here? Why it is ok to skip checks for
+> ipc_enabled and memory bandwidth workaround?
 
-Have to use READ_ONCE though
+Zero latency means this watermark level is disabled.
 
-Jason
+> > +
+> > +       /*
+> > +        * WaIncreaseLatencyIPCEnabled: kbl,cfl
+> > +        * Display WA #1141: kbl,cfl
+> > +        */
+> > +       if ((IS_KABYLAKE(i915) || IS_COFFEELAKE(i915) ||
+> > IS_COMETLAKE(i915)) &&
+> > +           skl_watermark_ipc_enabled(i915))
+> > +               latency += 4;
+> > +
+> > +       if (skl_needs_memory_bw_wa(i915) && wp->x_tiled)
+> > +               latency += 15;
+> > +
+> > +       return latency;
+> > +}
+> > +
+> >  static unsigned int
+> >  skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+> >                       int num_active)
+> > @@ -723,7 +745,7 @@ skl_cursor_allocation(const struct
+> > intel_crtc_state *crtc_state,
+> >         drm_WARN_ON(&i915->drm, ret);
+> >  
+> >         for (level = 0; level <= max_level; level++) {
+> > -               unsigned int latency = i915-
+> > >display.wm.skl_latency[level];
+> > +               unsigned int latency = skl_wm_latency(i915, level,
+> > &wp);
+> >  
+> >                 skl_compute_plane_wm(crtc_state, plane, level,
+> > latency, &wp, &wm, &wm);
+> >                 if (wm.min_ddb_alloc == U16_MAX)
+> > @@ -1834,17 +1856,6 @@ static void skl_compute_plane_wm(const struct
+> > intel_crtc_state *crtc_state,
+> >                 return;
+> >         }
+> >  
+> > -       /*
+> > -        * WaIncreaseLatencyIPCEnabled: kbl,cfl
+> > -        * Display WA #1141: kbl,cfl
+> > -        */
+> > -       if ((IS_KABYLAKE(i915) || IS_COFFEELAKE(i915) ||
+> > IS_COMETLAKE(i915)) &&
+> > -           skl_watermark_ipc_enabled(i915))
+> > -               latency += 4;
+> > -
+> > -       if (skl_needs_memory_bw_wa(i915) && wp->x_tiled)
+> > -               latency += 15;
+> > -
+> >         method1 = skl_wm_method1(i915, wp->plane_pixel_rate,
+> >                                  wp->cpp, latency, wp-
+> > >dbuf_block_size);
+> >         method2 = skl_wm_method2(wp->plane_pixel_rate,
+> > @@ -1971,7 +1982,7 @@ skl_compute_wm_levels(const struct
+> > intel_crtc_state *crtc_state,
+> >  
+> >         for (level = 0; level <= max_level; level++) {
+> >                 struct skl_wm_level *result = &levels[level];
+> > -               unsigned int latency = i915-
+> > >display.wm.skl_latency[level];
+> > +               unsigned int latency = skl_wm_latency(i915, level,
+> > wm_params);
+> >  
+> >                 skl_compute_plane_wm(crtc_state, plane, level,
+> > latency,
+> >                                      wm_params, result_prev, result);
+> > @@ -1991,7 +2002,8 @@ static void tgl_compute_sagv_wm(const struct
+> > intel_crtc_state *crtc_state,
+> >         unsigned int latency = 0;
+> >  
+> >         if (i915->display.sagv.block_time_us)
+> > -               latency = i915->display.sagv.block_time_us + i915-
+> > >display.wm.skl_latency[0];
+> > +               latency = i915->display.sagv.block_time_us +
+> > +                       skl_wm_latency(i915, 0, wm_params);
+> >  
+> >         skl_compute_plane_wm(crtc_state, plane, 0, latency,
+> >                              wm_params, &levels[0],
+> 
+
+-- 
+Ville Syrjälä
+Intel
