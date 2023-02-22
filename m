@@ -1,64 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6CCC69F2C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 11:36:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8377D69F37B
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 12:36:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3A1810E1C0;
-	Wed, 22 Feb 2023 10:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C4610E1C0;
+	Wed, 22 Feb 2023 11:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61A810E1C0;
- Wed, 22 Feb 2023 10:36:25 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD8810E3CE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 11:36:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677062185; x=1708598185;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ofUmRpvhNVTg3+A6hyPOFASnnH8za9ygTzj8N8YfXSk=;
- b=D/jJH3b5mxjsbESOrhJADbGdNryNkN5ht6TZOmPghGueyhBQ3yHW6jzZ
- mvwy9VQxQRotTqmD1xui3nJFhKuthdB35AN0ItIqt2iwZq71+dEyEFire
- 21wyeBK5nOZMw7n7OHSIzvNjWZbIScLczJOGSjKo9fapzh946QPYzLLap
- 3wF4j8RhRlvAsHQqoURxxl4TWcIUKUmVhJBJU8BN1TA5W2GwqPFWHABhL
- mnEz7xFLY6qQoBWvNNY3+AcBzJaM5GfvbaZMMSR4XrkdM8rzUAuPTvKRf
- 7cvC+7b/DTH9mhYSMQALdPpTwKnWa88ZkKchLv4ANZZgtnATOQHcIiKoS Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="321031746"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="321031746"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 02:36:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="781379853"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="781379853"
+ t=1677065760; x=1708601760;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Io0uJPNt+uiMm+/zI3/7UwI+UHriH0EMnLuvbtod1vI=;
+ b=mgcOsQBHkY4hiEyHYCoWJXNWPAPgYDtWfR6sk6aJ+z2S50Xb8EdxUh0H
+ 7aWNLFc+VMykiI8cVejDI0F7jAzcghvRDL/yIVkmOT74WX40Z4/c9/UFi
+ r5tG375iO/4KbR5o6bgrCCs/eMnpn3wwTe92ejjHbVVBA2xpFz7xst/mr
+ 51KfRDF0wIr8mUKHhqPV41K9n/p7FVbQ4XC3Hwb7QZTB94G1lucFhUSEt
+ juR3L+QzeSzFriP/SPo1x+0Nn75RlPIjyRjPCb22N9oLq4VnhNpZbaEzq
+ tQDsQLx3mm76SZIZtx/WTNgzOsOLAxvQ17hg2XiIs0rEPC8nRmWC2jRmv g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="316625195"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="316625195"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 03:35:59 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="735882309"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="735882309"
 Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.51])
  ([10.213.26.51])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 02:36:19 -0800
-Message-ID: <50c1806b-f153-da48-ddf4-53923fa90334@intel.com>
-Date: Wed, 22 Feb 2023 11:36:17 +0100
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 03:35:58 -0800
+Message-ID: <6691f292-3c52-db9a-935a-ff9c2537a5c7@intel.com>
+Date: Wed, 22 Feb 2023 12:35:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.8.0
 Content-Language: en-US
-To: linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-hexagon@vger.kernel.org, linux-ia64@vger.kernel.org,
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
- linux-mips@vger.kernel.org, openrisc@lists.librecores.org,
- linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-xtensa@linux-xtensa.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20230118153529.57695-1-andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Patchwork <patchwork@emeril.freedesktop.org>
+References: <20230208105130.3233420-1-andrzej.hajda@intel.com>
+ <167588597898.387.7579478051492707285@emeril.freedesktop.org>
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
  Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230118153529.57695-1-andrzej.hajda@intel.com>
+In-Reply-To: <167588597898.387.7579478051492707285@emeril.freedesktop.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_add_guard_page_to_ggtt-=3Eerror=5Fcapture_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,131 +66,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
- Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On 08.02.2023 20:52, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm/i915: add guard page to ggtt->error_capture (rev6)
+> *URL:*	https://patchwork.freedesktop.org/series/113560/ 
+> <https://patchwork.freedesktop.org/series/113560/>
+> *State:*	success
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/index.html 
+> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/index.html>
+> 
+> 
+>   CI Bug Log - changes from CI_DRM_12715 -> Patchwork_113560v6
+> 
+> 
+>     Summary
+> 
+> *SUCCESS*
+> 
+> No regressions found.
+> 
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/index.html
+> 
+> 
+>     Participating hosts (36 -> 35)
+> 
+> Missing (1): fi-snb-2520m
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_113560v6:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Suppressed
+> 
+> The following results come from untrusted machines, tests, or statuses.
+> They do not affect the overall result.
+> 
+>   * igt@i915_selftest@live@reset:
+>       o {bat-rpls-2}: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12715/bat-rpls-2/igt@i915_selftest@live@reset.html> -> ABORT <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/bat-rpls-2/igt@i915_selftest@live@reset.html>
 
-Ping on the series.
-Arnd, Andrew is there anything more I can do to push the process forward?
+This 'issue' and below 'possible fixes' are due to know issue with 
+"timed out waiting for forcewake ack request", not related.
 
 Regards
 Andrzej
 
-
-On 18.01.2023 16:35, Andrzej Hajda wrote:
-> Hi all,
 > 
-> The helper is tiny and there are advices we can live without it, so
-> I want to present few arguments why it would be good to have it:
 > 
-> 1. Code readability/simplification/number of lines:
->    - decreases number of lines,
->    - it often eliminates local variables,
->    - for real examples see patches 3+.
+>     Known issues
 > 
-> 2. Presence of similar helpers in other somehow related languages/libs:
+> Here are the changes found in Patchwork_113560v6 that come from known 
+> issues:
 > 
-> a) Rust[1]: 'replace' from std::mem module, there is also 'take'
->      helper (__xchg(&x, 0)), which is the same as private helper in
->      i915 - fetch_and_zero, see latest patch.
-> b) C++ [2]: 'exchange' from utility header.
 > 
-> If the idea is OK there are still 2 questions to answer:
+>       IGT changes
 > 
-> 1. Name of the helper, __xchg follows kernel conventions,
->      but for me Rust names are also OK.
-> 2. Where to put the helper:
-> a) as in this patchset include/linux/non-atomic/xchg.h,
->      proposed by Andy Shevchenko,
-> b) include/linux/utils.h ? any better name? Some kind
->      of container for simple helpers.
 > 
-> All __xchg conversions were performed using cocci script,
-> then manually adjusted if necessary.
+>         Possible fixes
 > 
-> There is lot of places it can be used in, I have just chosen
-> some of them. I can provide cocci script to detect others (not all),
-> if necessary.
+>   *
 > 
-> Changes:
-> v2: squashed all __xchg -> __arch_xchg t one patch (Arnd)
-> v3: fixed alpha/xchg_local (lkp@intel.com)
-> v4: adjusted indentation (Heiko)
-> v5: added more __xchg conversions - patches 3-6, added tags
+>     igt@i915_selftest@live@gt_pm:
 > 
-> [1]: https://doc.rust-lang.org/std/mem/index.html
-> [2]: https://en.cppreference.com/w/cpp/header/utility
+>       o {bat-rpls-2}: DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12715/bat-rpls-2/igt@i915_selftest@live@gt_pm.html> (i915#4258 <https://gitlab.freedesktop.org/drm/intel/issues/4258>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/bat-rpls-2/igt@i915_selftest@live@gt_pm.html>
+>   *
 > 
-> Regards
-> Andrzej
+>     igt@i915_selftest@live@reset:
 > 
-> Andrzej Hajda (7):
->    arch: rename all internal names __xchg to __arch_xchg
->    linux/include: add non-atomic version of xchg
->    arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
->    llist: simplify __llist_del_all
->    io_uring: use __xchg if possible
->    qed: use __xchg if possible
->    drm/i915/gt: use __xchg instead of internal helper
+>       o {bat-rpls-1}: ABORT
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12715/bat-rpls-1/igt@i915_selftest@live@reset.html> (i915#4983 <https://gitlab.freedesktop.org/drm/intel/issues/4983>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113560v6/bat-rpls-1/igt@i915_selftest@live@reset.html>
 > 
->   arch/alpha/include/asm/cmpxchg.h              | 10 +++++-----
->   arch/arc/include/asm/cmpxchg.h                |  4 ++--
->   arch/arm/include/asm/cmpxchg.h                |  7 ++++---
->   arch/arm/probes/uprobes/core.c                |  8 ++------
->   arch/arm64/include/asm/cmpxchg.h              |  7 +++----
->   arch/arm64/kernel/probes/uprobes.c            |  9 ++-------
->   arch/csky/kernel/probes/uprobes.c             |  9 ++-------
->   arch/hexagon/include/asm/cmpxchg.h            | 10 +++++-----
->   arch/ia64/include/asm/cmpxchg.h               |  2 +-
->   arch/ia64/include/uapi/asm/cmpxchg.h          |  4 ++--
->   arch/loongarch/include/asm/cmpxchg.h          |  4 ++--
->   arch/m68k/include/asm/cmpxchg.h               |  6 +++---
->   arch/mips/include/asm/cmpxchg.h               |  4 ++--
->   arch/mips/kernel/uprobes.c                    | 10 ++--------
->   arch/openrisc/include/asm/cmpxchg.h           | 10 +++++-----
->   arch/parisc/include/asm/cmpxchg.h             |  4 ++--
->   arch/powerpc/include/asm/cmpxchg.h            |  4 ++--
->   arch/powerpc/kernel/uprobes.c                 | 10 ++--------
->   arch/riscv/include/asm/atomic.h               |  2 +-
->   arch/riscv/include/asm/cmpxchg.h              |  4 ++--
->   arch/riscv/kernel/probes/uprobes.c            |  9 ++-------
->   arch/s390/include/asm/cmpxchg.h               |  8 ++++----
->   arch/s390/kernel/uprobes.c                    |  7 ++-----
->   arch/sh/include/asm/cmpxchg.h                 |  4 ++--
->   arch/sparc/include/asm/cmpxchg_32.h           |  4 ++--
->   arch/sparc/include/asm/cmpxchg_64.h           |  6 +++---
->   arch/sparc/kernel/uprobes.c                   |  7 ++-----
->   arch/xtensa/include/asm/cmpxchg.h             |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
->   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  4 ++--
->   .../drm/i915/gt/intel_execlists_submission.c  |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_gsc.c           |  2 +-
->   drivers/gpu/drm/i915/gt/intel_gt.c            |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
->   drivers/gpu/drm/i915/gt/intel_lrc.c           |  6 +++---
->   drivers/gpu/drm/i915/gt/intel_migrate.c       |  2 +-
->   drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
->   drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
->   drivers/gpu/drm/i915/gt/selftest_context.c    |  2 +-
->   .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
->   drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     |  2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  2 +-
->   drivers/gpu/drm/i915/i915_utils.h             |  1 +
->   include/linux/llist.h                         |  6 ++----
->   include/linux/non-atomic/xchg.h               | 19 +++++++++++++++++++
->   include/linux/qed/qed_chain.h                 | 19 +++++++------------
->   io_uring/io_uring.c                           |  7 ++-----
->   io_uring/slist.h                              |  6 ++----
->   51 files changed, 126 insertions(+), 155 deletions(-)
->   create mode 100644 include/linux/non-atomic/xchg.h
+> {name}: This element is suppressed. This means it is ignored when computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+> 
+>     Build changes
+> 
+>   * Linux: CI_DRM_12715 -> Patchwork_113560v6
+> 
+> CI-20190529: 20190529
+> CI_DRM_12715: 07d1c54bcdf3fddd723f31d605b4e8c49328affa @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_7153: f47f859f13376958a2bd199423b1f0ff53dddbe0 @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> Patchwork_113560v6: 07d1c54bcdf3fddd723f31d605b4e8c49328affa @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+>       Linux commits
+> 
+> 3b4ea4d26bfb drm/i915: add guard page to ggtt->error_capture
 > 
 
