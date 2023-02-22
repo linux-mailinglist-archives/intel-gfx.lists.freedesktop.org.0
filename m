@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C69369EB80
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 00:54:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C99A869EBBF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Feb 2023 01:11:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F101B10E38E;
-	Tue, 21 Feb 2023 23:54:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBF210E19E;
+	Wed, 22 Feb 2023 00:11:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EBE610E38E
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Feb 2023 23:54:01 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8145310E19E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Feb 2023 00:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677023641; x=1708559641;
+ t=1677024686; x=1708560686;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=ebQLOZY3pesIPwE767y2Lzuc8+3zkiw6CikRy7ZEGis=;
- b=WLSpfNJsek8VkscQRfhHWVU2fUlZyyBy8+8xZbe3/N/VAmc0zuNVrfF3
- 8nZDNYdWWK5PSM95Ibc7g4NtV5ReAq9QJyF+RgP/ErVRgFAoF1Hsq/9gt
- ivfjdZC4PmpZOpYkexCf8FV4nkd5SW5EBJAHqRCd1QgCB9NlcxLlbUtUW
- MAwtTLebl7nT3KYtXa4oOdkZDvUbXnqw/0z9voS1Fn64/GX4P2AIup3wf
- veNQpXsEsgslk2NWEyx9ZPBbDztyDpOuIcaOmGdy+S55t5WFgXLC1OPC8
- d05S0njzdQFgPPW1yghw+JDf68rE9pU5Vj2tSXWXdYyNGicagOX8twkRe g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="419010847"
-X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="419010847"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 15:53:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="760745679"
-X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="760745679"
+ bh=SrT9yOrUP3lvG+a/Ct/VB62k9eJK63rddfJ+rH8eEFg=;
+ b=IPyQOn85r+kzzgTA86p8VeN9L8sTGzqVi8rm7vdXS7jsbGgKXLJJAB25
+ ZXMzeRXb2tvFAmYfMzhelBLQMMGXQyzb4PGAu5+jtcKAH3ym7LJcSf79l
+ +1cfk4feK7woQ+lOMYIuTuz0suEGIQ+eFHrBmZwKTbMk9FJyHtsCM5EoT
+ +JZztAIejvHvAHGQduT1tueQmZ05B5NzguitiQZKAOzBdAF8pQSsUAscf
+ suFFvkrqBz+DIFI5FyIBSrgXBByj2ruy4AefKil//WxucKMigJN5y7Xqh
+ xwga2rpNciwHjcPo2oYPF9wUHZBjhkv83RfzKUocWd5DRYTv2E3Ump8Q8 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="320931719"
+X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="320931719"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 16:10:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="795691841"
+X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="795691841"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.49.150])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 15:53:58 -0800
-Date: Tue, 21 Feb 2023 15:53:57 -0800
-Message-ID: <87a616bmne.wl-ashutosh.dixit@intel.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 16:10:17 -0800
+Date: Tue, 21 Feb 2023 16:10:17 -0800
+Message-ID: <878rgqblw6.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20230217005850.2511422-9-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <87a616bmne.wl-ashutosh.dixit@intel.com>
 References: <20230217005850.2511422-1-umesh.nerlige.ramappa@intel.com>
  <20230217005850.2511422-9-umesh.nerlige.ramappa@intel.com>
+ <87a616bmne.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,189 +66,21 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Feb 2023 16:58:49 -0800, Umesh Nerlige Ramappa wrote:
+On Tue, 21 Feb 2023 15:53:57 -0800, Dixit, Ashutosh wrote:
 >
-
-Hi Umesh,
-
-Patch is mostly ok but a few questions below:
-
-> Current implementation of perf defaults to render and configures the
-> default OAG unit. Since there are more OA units on newer hardware, allow
-> user to pass engine class and instance to program specific OA units.
-
-I think we should more clearly say here that the OA unit is identified by
-means of one of the engines (class/instance of that engine) associated with
-that OA unit. The engine -> OA unit mapping is a static mapping depending
-on the particular platform. Something like that.
-
+> > +	/**
+> > +	 * In platforms with multiple OA buffers, the engine class instance must
+> > +	 * be passed to open a stream to a OA unit corresponding to the engine.
+> > +	 * Multiple engines may be mapped to the same OA unit.
+> > +	 *
+> > +	 * In addition to the class:instance, if a gem context is also passed, then
+> > +	 * 1) the report headers of OA reports from other engines are squashed.
 >
-> UMD specific changes for GPUvis support:
-> https://patchwork.freedesktop.org/patch/522827/?series=114023
-> https://patchwork.freedesktop.org/patch/522822/?series=114023
-> https://patchwork.freedesktop.org/patch/522826/?series=114023
-> https://patchwork.freedesktop.org/patch/522828/?series=114023
-> https://patchwork.freedesktop.org/patch/522816/?series=114023
-> https://patchwork.freedesktop.org/patch/522825/?series=114023
+> Other engines or you mean other contexts?
 >
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 49 +++++++++++++++++++-------------
->  include/uapi/drm/i915_drm.h      | 20 +++++++++++++
->  2 files changed, 49 insertions(+), 20 deletions(-)
+> > +	 * 2) OAR is enabled for the class:instance
 >
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index d3a1892c93be..f028df812067 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4035,40 +4035,29 @@ static int read_properties_unlocked(struct i915_perf *perf,
->	struct drm_i915_gem_context_param_sseu user_sseu;
->	u64 __user *uprop = uprops;
->	bool config_sseu = false;
-> +	u8 class, instance;
->	u32 i;
->	int ret;
->
->	memset(props, 0, sizeof(struct perf_open_properties));
->	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
->
-> -	if (!n_props) {
-> -		drm_dbg(&perf->i915->drm,
-> -			"No i915 perf properties given\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* At the moment we only support using i915-perf on the RCS. */
-> -	props->engine = intel_engine_lookup_user(perf->i915,
-> -						 I915_ENGINE_CLASS_RENDER,
-> -						 0);
-> -	if (!props->engine) {
-> -		drm_dbg(&perf->i915->drm,
-> -			"No RENDER-capable engines\n");
-> -		return -EINVAL;
-> -	}
-> -
->	/* Considering that ID = 0 is reserved and assuming that we don't
->	 * (currently) expect any configurations to ever specify duplicate
->	 * values for a particular property ID then the last _PROP_MAX value is
->	 * one greater than the maximum number of properties we expect to get
->	 * from userspace.
->	 */
-> -	if (n_props >= DRM_I915_PERF_PROP_MAX) {
-> +	if (!n_props || n_props >= DRM_I915_PERF_PROP_MAX) {
->		drm_dbg(&perf->i915->drm,
-> -			"More i915 perf properties specified than exist\n");
-> +			"Invalid no. of i915 perf properties given\n");
+> For render engine?
 
-Invalid number
-
->		return -EINVAL;
->	}
->
-> +	/* Defaults when class:instance is not passed */
-> +	class = I915_ENGINE_CLASS_RENDER;
-> +	instance = 0;
-> +
->	for (i = 0; i < n_props; i++) {
->		u64 oa_period, oa_freq_hz;
->		u64 id, value;
-> @@ -4189,7 +4178,13 @@ static int read_properties_unlocked(struct i915_perf *perf,
->			}
->			props->poll_oa_period = value;
->			break;
-> -		case DRM_I915_PERF_PROP_MAX:
-> +		case DRM_I915_PERF_PROP_OA_ENGINE_CLASS:
-> +			class = (u8)value;
-> +			break;
-> +		case DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE:
-> +			instance = (u8)value;
-> +			break;
-> +		default:
->			MISSING_CASE(id);
->			return -EINVAL;
->		}
-> @@ -4197,6 +4192,17 @@ static int read_properties_unlocked(struct i915_perf *perf,
->		uprop += 2;
->	}
->
-> +	props->engine = intel_engine_lookup_user(perf->i915, class, instance);
-> +	if (!props->engine) {
-> +		drm_dbg(&perf->i915->drm,
-> +			"OA engine class and instance invalid %d:%d\n",
-> +			class, instance);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!engine_supports_oa(props->engine))
-> +		return -EINVAL;
-
-Need drm_dbg here too?
-
-> +
->	if (config_sseu) {
->		ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
->		if (ret) {
-> @@ -5208,8 +5214,11 @@ int i915_perf_ioctl_version(void)
->	 *
->	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
->	 *    interval for the hrtimer used to check for OA data.
-> +	 *
-> +	 * 6: Add DRM_I915_PERF_PROP_OA_ENGINE_CLASS and
-> +	 *    DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE
->	 */
-> -	return 5;
-> +	return 6;
-
-Do we need a separate revision for this? Maybe club it with OAM support
-since that is where this is getting introduced?
-
->  }
->
->  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 8df261c5ab9b..b6922b52d85c 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2758,6 +2758,26 @@ enum drm_i915_perf_property_id {
->	 */
->	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
->
-> +	/**
-> +	 * In platforms with multiple OA buffers, the engine class instance must
-> +	 * be passed to open a stream to a OA unit corresponding to the engine.
-> +	 * Multiple engines may be mapped to the same OA unit.
-> +	 *
-> +	 * In addition to the class:instance, if a gem context is also passed, then
-> +	 * 1) the report headers of OA reports from other engines are squashed.
-
-Other engines or you mean other contexts?
-
-> +	 * 2) OAR is enabled for the class:instance
-
-For render engine?
-
-Maybe the above comments need to be more crisp since they are in i915_drm.h
-or is it only I who is confused :)
-
-> +	 *
-> +	 * This property is available in perf revision 6.
-> +	 */
-> +	DRM_I915_PERF_PROP_OA_ENGINE_CLASS,
-> +
-> +	/**
-> +	 * This parameter specifies the engine instance.
-> +	 *
-> +	 * This property is available in perf revision 6.
-> +	 */
-> +	DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE,
-> +
->	DRM_I915_PERF_PROP_MAX /* non-ABI */
->  };
->
-> --
-> 2.36.1
->
-
-Thanks.
---
-Ashutosh
+I think this means the engine will support MI_REPORT_PERF_COUNT but not
+sure how this (or if anything) is done.
