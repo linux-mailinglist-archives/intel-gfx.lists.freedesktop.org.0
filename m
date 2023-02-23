@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834196A0869
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 13:17:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B056A0862
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 13:16:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F13AA10E0AD;
-	Thu, 23 Feb 2023 12:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BC6D10E0AD;
+	Thu, 23 Feb 2023 12:16:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D8B10EB3F
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 12:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677154638; x=1708690638;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CUDIWse4V66vu5hIdVGCvDTLXPRPYrcIs6CIG17J9JY=;
- b=UTBNQghan/o/Gn0YJfFDyz1iikGwmiy4elsl0qAV0OIt4GJF8wAHFKZe
- 9FIvnNkFJiFeEJKSfCR64M+49o71PMEFjqrITuRsesOsIgeEnh2d+HNmj
- x6e8B1YLiL194NQpvLSpc4Vd8vVwYkwUhMrTKxm8V4AJSUwmYh6IvHSib
- nPXFWEcnjnEWcPM5vh32PK3Qawe1UXYW7LMTsROoQ9NlTYRx0LPm36S6s
- xzKjiuEQXC/UFckcXUR9HOAjZ/Nxn3oK8nOCBSpJsd29Cbl5fzVuCwpzJ
- aiLF8w/TpRGlu5EKHEZWGegG2VT8yJVmFDPQQClZJ7w+BzB88YCJQFzvV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="330922959"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="330922959"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 04:13:29 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="672460850"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="672460850"
-Received: from pvallee-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.43.94])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 04:13:26 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Nautiyal, Ankit K"
- <ankit.k.nautiyal@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM4PR11MB63601AE85E8ACE5DBD2B1570F4AB9@DM4PR11MB6360.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230223043619.3941382-1-ankit.k.nautiyal@intel.com>
- <DM4PR11MB63601AE85E8ACE5DBD2B1570F4AB9@DM4PR11MB6360.namprd11.prod.outlook.com>
-Date: Thu, 23 Feb 2023 14:13:23 +0200
-Message-ID: <87sfew37h8.fsf@intel.com>
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C34D10E0AD;
+ Thu, 23 Feb 2023 12:16:22 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 65698C8008D;
+ Thu, 23 Feb 2023 13:16:20 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id L8LRnpStdvmA; Thu, 23 Feb 2023 13:16:20 +0100 (CET)
+Received: from [192.168.176.165] (host-88-217-226-44.customer.m-online.net
+ [88.217.226.44])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id BEE2EC8008A;
+ Thu, 23 Feb 2023 13:16:18 +0100 (CET)
+Message-ID: <aac0ea4e-ce96-f487-9567-83ad9913b306@tuxedocomputers.com>
+Date: Thu, 23 Feb 2023 13:16:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add HDMI pixel clock
- frequencies 267.30 and 319.89 MHz
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+References: <20230222141755.1060162-1-wse@tuxedocomputers.com>
+ <20230222141755.1060162-3-wse@tuxedocomputers.com>
+ <Y/Z3ZJjYQIKb2LQ0@intel.com>
+ <d254b88a99e0a979efb07d9298afdeb7016f0e0f.camel@intel.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <d254b88a99e0a979efb07d9298afdeb7016f0e0f.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] Apply quirk to disable PSR 2 on
+ Tongfang PHxTxX1 and PHxTQx1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,132 +57,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Cc: "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Santa Cruz,
+ Diego" <Diego.SantaCruz@spinetix.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 Feb 2023, "Shankar, Uma" <uma.shankar@intel.com> wrote:
->> -----Original Message-----
->> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
->> Sent: Thursday, February 23, 2023 10:06 AM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>; Sharma, Swati2 <swati2.sharma@intel.com>
->> Subject: [PATCH] drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89
->> MHz
->> 
->> Add snps phy table values for HDMI pixel clocks 267.30 MHz and
->> 319.89 MHz. Values are based on the Bspec algorithm for PLL programming for
->> HDMI.
+
+Am 23.02.23 um 07:27 schrieb Hogander, Jouni:
+> On Wed, 2023-02-22 at 15:13 -0500, Rodrigo Vivi wrote:
+>> On Wed, Feb 22, 2023 at 03:17:55PM +0100, Werner Sembach wrote:
+>>> On these Barebones PSR 2 is recognized as supported but is very
+>>> buggy:
+>>> - Upper third of screen does sometimes not updated, resulting in
+>>> disappearing cursors or ghosts of already closed Windows saying
+>>> behind.
+>>> - Approximately 40 px from the bottom edge a 3 pixel wide strip of
+>>> randomly
+>>> colored pixels is flickering.
+>>>
+>>> PSR 1 is working fine however.
+>> I wonder if this is really about the panel's PSR2 or about the
+>> userspace
+>> there not marking the dirtyfb? I know I know... it is not userspace
+>> fault...
+>>
+>> But I wonder if the case you got here highlights the fact that we
+>> have
+>> a substantial bug in the i915 itself in regards to PSR2 API.
+>>
+>> Jose, Jouni, ideas on how to check what could be happening here?
+> There is already fix for this (Thanks to Werner Sembach for testing the
+> patch):
 >
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> https://patchwork.freedesktop.org/series/114217/
 
-Needs Cc: stable for some kernels back, when force probe was removed
-from DG2. Please check and add while applying.
+Yes, thanks for creating that patch ^^
 
-BR,
-Jani.
+I posted this quirk patch just as an possible alternative for stable if that 
+other patch is considered not suitable for it (lets wait and see).
+
+And to get some feedback if something like this could be a viable workaround if 
+similar bugs appear in the future.
 
 >
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8008
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 62 +++++++++++++++++++
->>  1 file changed, 62 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> index c65c771f5c46..1cfb94b5cedb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->> @@ -1419,6 +1419,36 @@ static const struct intel_mpllb_state dg2_hdmi_262750 =
->> {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),  };
->> 
->> +static const struct intel_mpllb_state dg2_hdmi_267300 = {
->> +	.clock = 267300,
->> +	.ref_control =
->> +		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
->> +	.mpllb_cp =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 7) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 14) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 64) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 124),
->> +	.mpllb_div =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
->> +	.mpllb_div2 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 74) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_HDMI_DIV, 1),
->> +	.mpllb_fracn1 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 65535),
->> +	.mpllb_fracn2 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 30146) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 36699),
->> +	.mpllb_sscen =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1), };
->> +
->>  static const struct intel_mpllb_state dg2_hdmi_268500 = {
->>  	.clock = 268500,
->>  	.ref_control =
->> @@ -1509,6 +1539,36 @@ static const struct intel_mpllb_state dg2_hdmi_241500 =
->> {
->>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),  };
->> 
->> +static const struct intel_mpllb_state dg2_hdmi_319890 = {
->> +	.clock = 319890,
->> +	.ref_control =
->> +		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
->> +	.mpllb_cp =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 14) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 64) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 124),
->> +	.mpllb_div =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 2),
->> +	.mpllb_div2 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 94) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_HDMI_DIV, 1),
->> +	.mpllb_fracn1 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 65535),
->> +	.mpllb_fracn2 =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 64094) |
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 13631),
->> +	.mpllb_sscen =
->> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1), };
->> +
->>  static const struct intel_mpllb_state dg2_hdmi_497750 = {
->>  	.clock = 497750,
->>  	.ref_control =
->> @@ -1696,8 +1756,10 @@ static const struct intel_mpllb_state * const
->> dg2_hdmi_tables[] = {
->>  	&dg2_hdmi_209800,
->>  	&dg2_hdmi_241500,
->>  	&dg2_hdmi_262750,
->> +	&dg2_hdmi_267300,
->>  	&dg2_hdmi_268500,
->>  	&dg2_hdmi_296703,
->> +	&dg2_hdmi_319890,
->>  	&dg2_hdmi_497750,
->>  	&dg2_hdmi_592000,
->>  	&dg2_hdmi_593407,
->> --
->> 2.25.1
+>> oh, btw, Werner, do we have an  open gilab issue for this?
+> https://gitlab.freedesktop.org/drm/intel/-/issues/7347
 >
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>> Thanks,
+>> Rodrigo.
+>>
+>>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>>> Cc: <stable@vger.kernel.org>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_quirks.c | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c
+>>> b/drivers/gpu/drm/i915/display/intel_quirks.c
+>>> index ce6d0fe6448f5..eeb32d3189f5c 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+>>> @@ -65,6 +65,10 @@ static void
+>>> quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+>>>          drm_info(&i915->drm, "Applying no pps backlight power
+>>> quirk\n");
+>>>   }
+>>>   
+>>> +/*
+>>> + * Tongfang PHxTxX1 and PHxTQx1 devices have support for PSR 2 but
+>>> it is broken
+>>> + * on Linux. PSR 1 however works just fine.
+>>> + */
+>>>   static void quirk_no_psr2(struct drm_i915_private *i915)
+>>>   {
+>>>          intel_set_quirk(i915, QUIRK_NO_PSR2);
+>>> @@ -205,6 +209,10 @@ static struct intel_quirk intel_quirks[] = {
+>>>          /* ECS Liva Q2 */
+>>>          { 0x3185, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time
+>>> },
+>>>          { 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time
+>>> },
+>>> +
+>>> +       /* Tongfang PHxTxX1 and PHxTQx1/TUXEDO InfinityBook 14 Gen6
+>>> */
+>>> +       { 0x9a49, 0x1d05, 0x1105, quirk_no_psr2 },
+>>> +       { 0x9a49, 0x1d05, 0x114c, quirk_no_psr2 },
+>>>   };
+>>>   
+>>>   void intel_init_quirks(struct drm_i915_private *i915)
+>>> -- 
+>>> 2.34.1
+>>>
