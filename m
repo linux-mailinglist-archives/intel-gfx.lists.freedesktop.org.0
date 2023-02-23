@@ -1,112 +1,140 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BEDC6A1D78
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 15:31:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165566A1F30
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 17:00:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCD810EAE4;
-	Fri, 24 Feb 2023 14:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7190B10EC6D;
+	Fri, 24 Feb 2023 16:00:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2061d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e83::61d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C23F10EA78;
- Fri, 24 Feb 2023 14:31:40 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2719C10EC6D;
+ Fri, 24 Feb 2023 16:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677254443; x=1708790443;
+ h=resent-from:resent-date:resent-message-id:resent-to:date:
+ from:to:cc:subject:message-id:references:in-reply-to:
+ mime-version; bh=fXduKKwC4aaelFSr6VqNLfYogVXC6PZ3tiu3HTkgWus=;
+ b=Ady+f3Y/u0DAu4DGx1vA/rQ39VLPkW6lkLy6L54tNftl4SIpRJ2kKPFw
+ p8G3K8f9esMEPua34C4ZarnjjnH9vCUqDCIcbqIE2tt7MEfyXZTAIFys7
+ t4aW4rbScHeJk0FnvUqgORrjtrI1mDJpqNCEINaB+NTbXM23lBBP/iV0r
+ CSFKtl2vmbbeJVSErpUwWvZnuZ6m2brGvk8LJUJ+yWZtrdMxXCiS8nRJ5
+ gEN6ejG6v8KgJfNzeKuSUSQwg+vcx/8lC9k6wEKbdnYSrcPlbXCdEKw3F
+ EKRXEkcjalbTrzhJAqjcQrOgn4bduvrDccg7tCdyYE+XPBnZCmx2yU235 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="331238262"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; d="scan'208";a="331238262"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2023 08:00:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="846985390"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; d="scan'208";a="846985390"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga005.jf.intel.com with ESMTP; 24 Feb 2023 08:00:40 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 24 Feb 2023 08:00:40 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 24 Feb 2023 08:00:40 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Fri, 24 Feb 2023 08:00:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aRP+cE3sKQZtIsGipo2XljNheUdUBVqkcLHLqtGu2BlbuvOvP1mHt+xcKqfWYFwa8wtrCZifS4YkrIWW5T2rWrYnVrhmS0IPqPTP9vLPRNzyClFROB/7yEyTcqgT8NNBw5ThCyhf3wOp0nkh/5b1kM2GOm26qNnoUF6SjvGtx376r3LDvb+f17gWs6UtUqYJFcX9FqAYLUKAFyv0Kk10SBnT/OhPlw7o//tH1CxKyXD8GUZwbaHt9w3DJwswDLlP/oh55j7gg4dNuEFfuD6P41XYYacsnnGkbY2eOevFfiqMraVaOoWzX1Am0UwhneGJFJlloRwu9wfHR4GAR8l8JA==
+ b=I3uLkufAgXuc24ypCD2FHwkhe/DvqpMKmzN5eUBk3Hm3h033jNPgSHObmlwSF+N5sSV5dUMsF6rm3SKjOyxDuhb6IQrf8JWNIbuM744QaMYsPusgHQqva9Ov1uFW84zoJJty3KgT9lwYpqPMDe/GM+6jAwrW/h4eNJrZh/z3XRk1Wu1SlUsdJndl4armktTPBROQNggeNQGbKZybdCuxOsttbeDC26kH49eLqLfXHcg8fsJF3iObTIR0nx/f+nv7ns9TBZ36dxIOCgNjvbt3DQhd87s+0QkwvLAz4iGF9s4iQT77/36udJGyagLPjIZqc51axjtjA8LcQXHtSzj/5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e0DzuYR3QIHOWDfmQ5YKh6tZWR1VXDAFecOt4nBDc38=;
- b=B/5ATkAtCZncY5U5H0+4ZC1myfra44cTedaM5TQssWT4df5uYkrCT0N9XLbP8NuNyvUo4U+pWS3vkeF+ggWDzXgvz4UHcqMSehV+BnjcmsbxrqHw62+6zSVz5/Sc5VBgeUZOOwBBS+YXjmVH65xU+6+TnCeqDkcUojNQX2ZM85jZ7dfYocqKc+ZG4pNE0vpCTWnxXzbhscZaAbCBEE+F0QP+7rkiGk2eZdMP29ZvRIkw1hb4wFS4P/e7uXmImM4KwJ8IspJ1KX0fEVypW8fIDrM4eDtKQTPijP3Fc5RWp2DIYtk3cT96swnvCcAj/5R5yTunWiexgTJlKUSrT4JPxQ==
+ bh=gzVmitJTFRQjgIoMiR9TINKkVKxprASQ96GgNDQ9D78=;
+ b=P46RtGpJb4zFyr57knhyEG9tSfTteKdl/C4Tpwm0yuyq2fw/WGyMt4KuRqmPn3SGZHizPxzDrgF13MI9sXe40Oy9w5ZAuYcoktxezlIbe8DlSp7V8H8NI9yoq+37QSuEDRju9XpERv4CmUShURrAIcCRbZsVCyCxmDxHrp8UzzZboZQMir6YSETjWaTkt014RyNY69ToKATYiWoHkrYD7fyEVThOq2j7K/wDKKxiq5NJ7RslWoRbIhJOGw6btp7BesT1cj/hbU9QshKV+DFWr0tiOwG57Jndn5kB+3doqeXaO4bK2VwulBKk9t4Gi3VjgrZ0LTHDEAvpgZKQjaobZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e0DzuYR3QIHOWDfmQ5YKh6tZWR1VXDAFecOt4nBDc38=;
- b=oz2FyYIwNahKuOBo8itMe+fhEnVTrJNwA26gIHd2LQZcBJOWKgbnotZuw9DAAw1gKARbbygoI0BdTJLymuUKetshU7KwfCGTPFDir7WZVvwY8A5qlzbUNZ7a5VrY8v4AoMw8g0ZnomRflw8QNhlUHCgrH516r2b2yvVNEO+DKIPrwHQBrOJX96tCRw5UzIlBz1TWjTeMQb8Y+wjc19vKKAU8pmkOt9wS9l1o9Zc5f2pKU64aIUKuUoscH3Zp6xQdx94tGb31QXiltWmUnMGxn5pfKw9If59i8Hc+bsD/kFpUL0EhaTE0A+2CgBHHZ0G5LAZS15CzUayECFKNhf3HDg==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by PH0PR12MB7983.namprd12.prod.outlook.com (2603:10b6:510:28e::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Fri, 24 Feb
- 2023 14:31:38 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6134.021; Fri, 24 Feb 2023
- 14:31:38 +0000
-Date: Fri, 24 Feb 2023 10:31:35 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yan Zhao <yan.y.zhao@intel.com>
-Message-ID: <Y/jKR/+x6ASp0LUL@nvidia.com>
-References: <20230221034812.138051-1-yi.l.liu@intel.com>
- <20230221034812.138051-17-yi.l.liu@intel.com>
- <BL1PR11MB5271AB3735F7A783C2871DB88CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
- <DS0PR11MB7529D04D2EB9B5C69C306C16C3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <Y/YRx7jLuyEoLxZg@nvidia.com>
- <Y/hD7sRCLaD+/QlP@yzhao56-desk.sh.intel.com>
-Content-Type: text/plain; charset=us-ascii
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ SJ0PR11MB4975.namprd11.prod.outlook.com (2603:10b6:a03:2d0::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.24; Fri, 24 Feb
+ 2023 16:00:36 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::7333:f4b:7dbb:36b]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::7333:f4b:7dbb:36b%7]) with mapi id 15.20.6134.024; Fri, 24 Feb 2023
+ 16:00:36 +0000
+Resent-From: Matt Roper <matthew.d.roper@intel.com>
+Resent-Date: Fri, 24 Feb 2023 08:00:34 -0800
+Resent-Message-ID: <Y/jfInAv8ksL1j+f@mdroper-desk1.amr.corp.intel.com>
+Resent-To: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Date: Thu, 23 Feb 2023 09:03:34 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <Y/ecZlT6wd+YC3V7@mdroper-desk1.amr.corp.intel.com>
+References: <20230217185433.2418370-1-matthew.d.roper@intel.com>
+ <dee15378-e102-3f9b-16f1-bb43f0bb179a@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Y/hD7sRCLaD+/QlP@yzhao56-desk.sh.intel.com>
-X-ClientProxiedBy: YQBPR01CA0153.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:7e::15) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+In-Reply-To: <dee15378-e102-3f9b-16f1-bb43f0bb179a@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0023.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::28) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|PH0PR12MB7983:EE_
-X-MS-Office365-Filtering-Correlation-Id: a2ff9fdb-4047-4b59-40d8-08db1673d662
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ0PR11MB4975:EE_
+X-MS-Office365-Filtering-Correlation-Id: af7edc16-e36e-4420-1547-08db1680448e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qLr0Ijp5jdxMNIhGp+h3BE2bVoA8D27qNneSrqp7bZTVeYHbPGaSTrIVf3u7UqBAeuLoAY0XWOea/XzzggmHBOoc+FIWJSnU4yhzPGfzGb4u1dQLypbS+k9RgaJgG/OfpeCEoSe1Vg9FoHLJi6Ma1GIWmiZGm2pmD4JsE7BhkKrIwBRB0CnFXeTasTDE6EpMeTMC+0iX3np9rR5VTtyklEMLC/jVCHy6SXZN6hvScNTrogbBqBDlQYTzHfh8fS83yQVHmirql6pBTPuKEWQrjOOrOXhWuCMcCsVhFko6PzYMmYlTymqXF3WZbKZChp1Rb9OWvM2dpvmluJkEeG123IM7PkmAmf7Iqv95kEdd3AKNlWUi7Hz+50OZVFr46VMPORxvanYvFputXTh3KK0BvP6zL3As9OvmCdzziU4LmzzqIF4LL5f+0XCxc2oheqHFf3B3dTTyd4gcBuQ3jQ7M+t14iiieItKBayCfgEIzQuF+QyaWJJX0av5Mwy9ouAJohk0d4Tfk7g0c+NjhgQBzH+TnPJCcRmcIA/Ex4bD0NJiK8565IsFR6pDSobsV/E6AvHJqcTMEBQIasID0RNgiz560HiK1OY9i3ZVyf2PNcPOZNKMbp8tPUoAEGSim+T9JEhlEHZkcMGdnnzfZ1F/vnQ==
+X-Microsoft-Antispam-Message-Info: eea5mDrw3AZfOhV+RjaHTSE22Y7XMWPUfuhXyMHf4nvIuzuODrHkQy7V7I6iM/Tzm7LFeP4p5J8lQmhPXMsLoswVt82mlp78GD49Q8m8w5xApea52Nh27daiXOITo5pr7zsG00aNFDf3RMzkP5dEpD671fjBEq6MjQE+RYfWJBjsJyLU+u4lpRvRVYi8cAjHV2yVcaH5QdoAJdCUgxW2dMZO1Cr0BCw9U1TQQ1ACF5OlyOs1T+/WWi9UG4ODFElXNgl1OjpMF5p+3sINGFbvB6fBTynpxK80kpP6G5q/yIlKPH6J8hFYfaQcaai0UiNKIQ+yfysEcqJ3rgoQfJQ+n2Ef5qkxjsqwQh6tiE59oYoAVTC8iQxeUWDdNrBKHDciEsCErltH+zZgrb8mN89rj8KDTiQm4SsUNIlQvBmLFicdLBDwHHpT/FuNXHR8mnjX55eDsGt8EKjZkeDIAl/qtwmRGxp02wXLpgPDzoxPJdLtP7u4LXIczXwhpOkjBLdKGSOo6NqS+EwZ5asgRTig3jwskf1Ukiucb0fDEfDRoAq1j5k9T5Iv/ybjOjoD1Yftdi6bwjfbbVUqD8lFAJmFlx/HjfJBkdpKRHC5N55URFRcodATgDQmlhjv1VgPygcksA6YvtUhM2neY+gDj/Mr4w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(366004)(346002)(39860400002)(396003)(136003)(451199018)(66946007)(2906002)(5660300002)(7416002)(86362001)(8936002)(38100700002)(41300700001)(8676002)(4326008)(66476007)(6916009)(66556008)(2616005)(83380400001)(316002)(36756003)(6512007)(186003)(6666004)(6506007)(6486002)(54906003)(478600001)(26005);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(396003)(136003)(346002)(366004)(376002)(451199018)(186003)(26005)(82960400001)(5660300002)(4326008)(83380400001)(38100700002)(450100002)(8936002)(6862004)(41300700001)(8676002)(66946007)(2906002)(66476007)(6512007)(66556008)(478600001)(53546011)(6506007)(316002)(6636002)(86362001)(6486002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L/wggUyUERsYr1EE+cbyMTSt1TrKKjSOgSga5W3Uasis1AkLGnQvbIW9KbLc?=
- =?us-ascii?Q?i+HCLEfY9IQigW8IqtuXHztVeGSqsGjfbfTp/UJxhRAuCjuIu8cXTeLblH6h?=
- =?us-ascii?Q?bItJzfohZ5XQ0aput12WM1i/6ObgDe4dSdK/ECV72/7SzcPwcCnlY96KiZhr?=
- =?us-ascii?Q?AN38KVQa7sS1ftSsOGXCg0fKonh2/mLlmcZzkfQdn/6x68i2yq9sLu+HjNxE?=
- =?us-ascii?Q?vl0zdeis9VMYLbF1CKaReVr4GJ+DpdsnbafXogTUZG5EtLt89Bx+44IWmDJw?=
- =?us-ascii?Q?7UaeFLAX28AB/IWiO54obB8wqLILdrOs514NSix8VQnlH3Ov8hxBP+TZpqfB?=
- =?us-ascii?Q?34IIFLFPZH1aLheHXVgsoi540QDbISakyiWzwHGhTJsTaYXRYsqRM8vwE+vQ?=
- =?us-ascii?Q?+Ue9B8CLaHleZGcrzPJqJYQpx+rGVf9uu4iJWc7Lj786WkM/Hc/18t6C5pJc?=
- =?us-ascii?Q?ZkQE2fBTjcUcEV5VTupickeUwYM1RxOAuB51Ibu9sC1hZEWXparolOzwgokM?=
- =?us-ascii?Q?pbCT284GUvF0otFoP9eG5fIXom7yVYI7BuZlchCC3z5LU2yjpE6I1No7DDsL?=
- =?us-ascii?Q?dBAOSR1CjM1CPDnLeVu9vHhVJPXR3+d04mLajXaHs+bTqTaI9a2FFC5l+Mpk?=
- =?us-ascii?Q?RzZzU8IUavWw2364PyIvbcx/oSHQxaGviTY3azrtBAvSUm01OD68IqLP2748?=
- =?us-ascii?Q?empR4Ed+wNZN4cCN4NIHfySk08qZVi6q0jnt94lEqzhdJYQQOGSMpLbf5gXX?=
- =?us-ascii?Q?UchMQpt/5O6mK+LC9xIPoJNzP6k9e5BI6s7iSc8t1p4fL/qrpZ3ijpGhtMbJ?=
- =?us-ascii?Q?2Ljf2WZ+9ZanbQXZUi3XoethGIqfp4dNS+9bx6SylG7MN1zlL3iDulPQGzpn?=
- =?us-ascii?Q?qlXjdOC1qAH02S4gG1gfLWeGN1q827vjG0+4kUtiSXXqzdQNLgHsKi2JoHDj?=
- =?us-ascii?Q?0vU0cLF9aG7xPMJv3LremsjVMs98LlqgWvHI1fDakEW6gSdtjChdLrvq3bEh?=
- =?us-ascii?Q?+3aGwHVca8dKlLA2lxtNPRbiMPC+JKPavnIWhSG9GN4AtOD07DqgU42LIa5C?=
- =?us-ascii?Q?tnaVYTKGwGC40EU8JO2nXbW8aSvJ8peubQONG+ZifGnpX44NrO3OEOl2h39K?=
- =?us-ascii?Q?f3dl/xX2HSTTcu/IRij1HqRgNQBUJj9WWMpTDTz1wPytAan3pQAex0sAFaRP?=
- =?us-ascii?Q?zuzvUi2qPuVl6rsTUwc67gorhHbLqfjolz+1zPvFOFaFdBSyy+d33rRCc9CT?=
- =?us-ascii?Q?QgAzravO03qCGnDre+eimhwe66hPb/dJsDvd/jCWHQ6iHJE2D/x/uOF1r2KV?=
- =?us-ascii?Q?94BMa5/ezj4X+QREOZPd0/3WwnBRCty9yHftMYxhFuvXTRfbQ/eyn5MB/5vH?=
- =?us-ascii?Q?ofg9ZSgxioseUsbCwAwN0tF85DrEVukJwxdJqxGeNcy6gkCIq9hZvRuVphrU?=
- =?us-ascii?Q?V7ntfQDam6gDXjSWj5SI39vHhKeIdlfXKGcSZaG9zEcUoJ5HTSjfrKxaGSOA?=
- =?us-ascii?Q?5rzkeU21mDtwmmxm8M9ODaEoc7+Ngejxd7eQilrQYnUaAxqKVcDK63wd5sAV?=
- =?us-ascii?Q?g5um1hYHmVDvMq8jsq0k6k37rYi0fimrNRNjC1zE?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2ff9fdb-4047-4b59-40d8-08db1673d662
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nqgHP19aRPXmuUoK94YH7I4akl+z+e9f/3NKFylEgpzf1BiK67N/o2EY1GEG?=
+ =?us-ascii?Q?saUL50LARVso6cF8JqfeMeLdU5DVSk6UzAtp2K1iPenzqVAIq4jUo9gPDke7?=
+ =?us-ascii?Q?7bepIH2J5QN3FaxqdfU/IEHXzRGvK0xi8/hvannPmhnVDvCK893xzgrMK94C?=
+ =?us-ascii?Q?Qwt5V+qS8Xok4T6o/rxsBORaLTXc0RpBDEtYgBkitebc4vVD1CLyrU8samMU?=
+ =?us-ascii?Q?LFK8XL3fQG+o909Wwn7i9UeuOMfbzcdjC4nuGSodBjLTMwR4m0/yEX9Yap+g?=
+ =?us-ascii?Q?W8Pb9pKcmveLrIhh45EX27WcGqhWrx4QIDHcszzeTjOJt5oLNLDIYCLxOY7f?=
+ =?us-ascii?Q?gTSsS/4ksEnV7fSTTq01iSTnbm5wMZWo3QzGwpZUGTP5r/g5HH/ifw30qR+H?=
+ =?us-ascii?Q?AhTcXpuYS+QehVX77PvJ3BZGv7rsiDs9mdsVvDcV8i+Yh4FmDN/PTp6ptkFP?=
+ =?us-ascii?Q?3BZ8u+DrVTe1R/3kKCft0Mdyk3zuCSVEOGMz4DRfZ60vIMk5aAyyazQp5Fbi?=
+ =?us-ascii?Q?yDiNWlhL4Ay4ebbRR/XAZXz/Xyl1Wm/22w48HCx1s+aAwHAhCf97xcC9xjCH?=
+ =?us-ascii?Q?KMb55CrSCkqONEYZMNLmkZ8V066pU2uZh1nod12mee5pGT2dedj8vU7Te/Ya?=
+ =?us-ascii?Q?3b6B4v/sbBGyl+zQmrCj4jhaqq6UW++O/2qXlEX2wPqAWro2AaovbzEqPs1Z?=
+ =?us-ascii?Q?SZGoxGG6f1/SYf+remnGcWKFj1wbekRntFN7yYhpj08lLzK1SnvUF2KbGk6Y?=
+ =?us-ascii?Q?7UDFxB86njj/5JQyoSSwS+xvleihNzrkP3t8y2fBmkT79hDdckJmZvUd7F8m?=
+ =?us-ascii?Q?IZko9tKInTUZahBtZgwj2F8zKtjgmQZcPPjFdN/KsCyRM7G90ozsYJ8S28yY?=
+ =?us-ascii?Q?ou0mSbZaWMlclgwN7vzrB06AhICjnjTjgSOb/fI4AXjuVhRqZ5AMVgMSWFfP?=
+ =?us-ascii?Q?dtnII9vm09Wb85U6e506t+DlUfFJDOz94yVUhXqKboD0UuZqqyDXClpRwozd?=
+ =?us-ascii?Q?WRS5T8SkErc1TxA8hrQm8hqIX2F1GH8+4Jji7iFGOrw7nqrn0U/XReNrSmSv?=
+ =?us-ascii?Q?//7wzjG5s4dHOOQAWSP+SI4uQ2eYCCcj2KLfz/mL8CzsxG/D/Vm+UdPbBlMO?=
+ =?us-ascii?Q?O5KElUmwCNIJOEAYzLcySrvs21orXJTR9D/LoKtBPPBUvXYX3NElriDy64Mu?=
+ =?us-ascii?Q?yB8KSsxFedtB3duV8KNWioO98JTApCOZ1sxnc6JTR3uoXgCYDbDROdEn8uOJ?=
+ =?us-ascii?Q?09zhKMr+Vxrs//u4haZocXtc1rz6J4i37snrqCo5ZQDMdMP4exXrUkV667x1?=
+ =?us-ascii?Q?sBAr8Pq81I2Z5C2xPeyDf4hU+HJjrKxAafdfHgwO+diDsgKN8wVASml4D12C?=
+ =?us-ascii?Q?yW+ETw6ax3TlGfv5qY3kL7sxoyau82krJIUdAcep5w4+w4ksR8skv8V/GvEZ?=
+ =?us-ascii?Q?04AQpND/dT/K1LKnawfnfijI7pCPE89A1357HAj32kiqvuQe9/O+6XXbZRf5?=
+ =?us-ascii?Q?HQOwrbfY8Yo/jk5LCEcsr7Sfwv2n9WNrxhrB+JrkquXoIgFK0p8tBrxc3Ooo?=
+ =?us-ascii?Q?KelSFtKj6668SV/gl/LQftOKX989cCm2AhhdyoPUK6nJgoNMTX9hslHBRUFR?=
+ =?us-ascii?Q?Kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: af7edc16-e36e-4420-1547-08db1680448e
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2023 14:31:37.9838 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2023 16:00:36.6574 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pwusn+EEj/GUfyziAh7rXsDOXUrlJsLcx71CIr6DnIu/Gxuez6lWo12oIpT1OH5v
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7983
-Subject: Re: [Intel-gfx] [PATCH v4 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+X-MS-Exchange-CrossTenant-UserPrincipalName: THIWwIgPDFBhEelXSsOvrkKKR7vxuLfYJWLgTO/qbj6W1HgwlPeQuygLEkm+EznAKmiyTQAprpX8XANYmABlPUQA//MTTME3ezPXREof9M0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4975
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add engine TLB invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,55 +147,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 24, 2023 at 12:58:22PM +0800, Yan Zhao wrote:
-> On Wed, Feb 22, 2023 at 08:59:51AM -0400, Jason Gunthorpe wrote:
-> > On Wed, Feb 22, 2023 at 07:44:12AM +0000, Liu, Yi L wrote:
-> > > > From: Tian, Kevin <kevin.tian@intel.com>
-> > > > Sent: Wednesday, February 22, 2023 3:40 PM
-> > > > 
-> > > > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > > > Sent: Tuesday, February 21, 2023 11:48 AM
-> > > > >
-> > > > > +
-> > > > > +void vfio_device_cdev_close(struct vfio_device_file *df)
-> > > > > +{
-> > > > > +	struct vfio_device *device = df->device;
-> > > > > +
-> > > > > +	mutex_lock(&device->dev_set->lock);
-> > > > > +	if (!smp_load_acquire(&df->access_granted)) {
-> > > > 
-> > > > there is no contention with another one changing this flag at this
-> > > > point so directly accessing it is fine.
-> > > 
-> > > make sense. 
+On Thu, Feb 23, 2023 at 10:08:51AM +0100, Andrzej Hajda wrote:
+> On 17.02.2023 19:54, Matt Roper wrote:
+> > MTL's primary GT can continue to use the same engine TLB invalidation
+> > programming as past Xe_HP-based platforms.  However the media GT needs
+> > some special handling:
+> >   * Invalidation registers on the media GT are singleton registers
+> >     (unlike the primary GT where they are still MCR).
+> >   * Since the GSC is now exposed as an engine, there's a new register to
+> >     use for TLB invalidation.  The offset is identical to the compute
+> >     engine offset, but this is expected --- compute engines only exist on
+> >     the primary GT while the GSC only exists on the media GT.
+> >   * Although there's only a single GSC engine instance, it inexplicably
+> >     uses bit 1 to request invalidations rather than bit 0.
 > > 
-> > Have to use READ_ONCE though
-> >
-> Just a curious question:
-> given df->access_granted is now written with device->dev_set->lock held and
-> also read with this lock held in vfio_device_cdev_close(), is READ_ONCE
-> still required? And what about df->iommufd ?
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 52 ++++++++++++++++-------
+> >   drivers/gpu/drm/i915/gt/intel_gt_regs.h   |  1 +
+> >   2 files changed, 38 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index f3a91e7f85f7..af8e158fbd84 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -1166,6 +1166,11 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+> >   		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
+> >   		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
+> >   	};
+> > +	static const union intel_engine_tlb_inv_reg xelpmp_regs[] = {
+> > +		[VIDEO_DECODE_CLASS].reg	  = GEN12_VD_TLB_INV_CR,
+> > +		[VIDEO_ENHANCEMENT_CLASS].reg     = GEN12_VE_TLB_INV_CR,
+> > +		[OTHER_CLASS].reg		  = XELPMP_GSC_TLB_INV_CR,
+> > +	};
+> >   	struct drm_i915_private *i915 = engine->i915;
+> >   	const unsigned int instance = engine->instance;
+> >   	const unsigned int class = engine->class;
+> > @@ -1185,19 +1190,28 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+> >   	 * 12.00 -> 12.50 transition multi cast handling is required too.
+> >   	 */
+> > -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> > -	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> > -		regs = xehp_regs;
+> > -		num = ARRAY_SIZE(xehp_regs);
+> > -	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> > -		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> > -		regs = gen12_regs;
+> > -		num = ARRAY_SIZE(gen12_regs);
+> > -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> > -		regs = gen8_regs;
+> > -		num = ARRAY_SIZE(gen8_regs);
+> > -	} else if (GRAPHICS_VER(i915) < 8) {
+> > -		return 0;
+> > +	if (engine->gt->type == GT_MEDIA) {
+> > +		if (MEDIA_VER_FULL(i915) == IP_VER(13, 0)) {
+> > +			regs = xelpmp_regs;
+> > +			num = ARRAY_SIZE(xelpmp_regs);
+> > +		}
+> 
+> As I understand currently only GEN13 of media can have GT_MEDIA, so fallback
+> to gt_WARN_ONCE below is expected behavior.
 
-No, if the writer is under a lock held by the reader then it is always
-OK to use naked read. Best to document it with a comment
+"Gen" terminology isn't used anymore, but yes, standalone media is a new
+feature starting from media version 13.
 
-Jason
+> 
+> > +	} else {
+> > +		if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 71) ||
+> 
+> 12.71 is not yet present in i915_pci.c, maybe they should be added together,
+> up to you.
+
+No, i915_pci.c isn't the source of IP versions anymore.  Starting with
+MTL (and continuing with future platforms), the graphics, media, and
+display IP versions are read out directly from the hardware itself (the
+GMD_ID registers); they no longer get derived from PCI devid matching.
+The vestigial 12.70 value in i915_pci.c shouldn't get used anywhere
+except as a very basic sanity check that the GMD_ID registers are
+correctly reporting a high enough version.
+
+
+Matt
+
+> 
+> > +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 70)  > +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> > +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> > +			regs = xehp_regs;
+> > +			num = ARRAY_SIZE(xehp_regs);
+> > +		} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> > +			   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> > +			regs = gen12_regs;
+> > +			num = ARRAY_SIZE(gen12_regs);
+> > +		} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> > +			regs = gen8_regs;
+> > +			num = ARRAY_SIZE(gen8_regs);
+> > +		} else if (GRAPHICS_VER(i915) < 8) {
+> > +			return 0;
+> > +		}
+> >   	}
+> >   	if (gt_WARN_ONCE(engine->gt, !num,
+> > @@ -1212,7 +1226,14 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+> >   	reg = regs[class];
+> > -	if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
+> > +	if (class == OTHER_CLASS) {
+> 
+> Maybe it would be safer:
+> 	if (regs == xelpmp_regs && class == OTHER_CLASS)
+> 
+> 
+> > +		/*
+> > +		 * There's only a single GSC instance, but it uses register bit
+> > +		 * 1 instead of either 0 or OTHER_GSC_INSTANCE.
+> > +		 */
+> > +		GEM_WARN_ON(instance != OTHER_GSC_INSTANCE);
+> > +		val = 1;
+> > +	} else if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
+> >   		reg.reg = GEN8_M2TCR;
+> >   		val = 0;
+> >   	} else {
+> > @@ -1228,7 +1249,8 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+> >   	if (GRAPHICS_VER(i915) >= 12 &&
+> >   	    (engine->class == VIDEO_DECODE_CLASS ||
+> >   	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
+> > -	     engine->class == COMPUTE_CLASS))
+> > +	     engine->class == COMPUTE_CLASS ||
+> > +	     engine->class == OTHER_CLASS))
+> This is little surprise, I would expect non-masked reg for single instance,
+> but it follows bspec, so OK.
+> 
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> 
+> Regards
+> Andrzej
+> 
+> >   		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
+> >   	else
+> >   		engine->tlb_inv.request = val;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > index 416976d396ba..423e3e9c564b 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > @@ -1090,6 +1090,7 @@
+> >   #define XEHP_BLT_TLB_INV_CR			MCR_REG(0xcee4)
+> >   #define GEN12_COMPCTX_TLB_INV_CR		_MMIO(0xcf04)
+> >   #define XEHP_COMPCTX_TLB_INV_CR			MCR_REG(0xcf04)
+> > +#define XELPMP_GSC_TLB_INV_CR			_MMIO(0xcf04)   /* media GT only */
+> >   #define XEHP_MERT_MOD_CTRL			MCR_REG(0xcf28)
+> >   #define RENDER_MOD_CTRL				MCR_REG(0xcf2c)
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
