@@ -2,47 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6516A07DA
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 12:57:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08E16A0854
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 13:13:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92D4E10E4AB;
-	Thu, 23 Feb 2023 11:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2F9110E2F0;
+	Thu, 23 Feb 2023 12:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7A210E4AB
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 11:57:48 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C482F10E0AD;
+ Thu, 23 Feb 2023 12:13:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677153468; x=1708689468;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VNNitTKey0U0qsbhE+D/ZGmNoAfZINnmdAEY9ptyyNs=;
- b=nJFMmSShsqiavG7UiBHPnvOx1e0aCa7Q08UIRPm0InwVKCpVVvgwjxkh
- ojzox+3padJihuwNNNFAxRc6e3mrgmq9TtgVd75wH+HCmuS0gzJLhrQ8c
- JxcutvUq4NmjaEOvx1DKjiB2ktO5E9tDBG8KXsj1qldWrwi0HejJILXEf
- UFDmav34rugqma363zyc7pZIbn5b6YjCQ3xnkZOj/W/lD7ZQSHfOZZv1a
- YKvcllFRrLtE4CgXHCdL7tLAEkd91RHqF17cjzRYtzkzvZBBCV6E6UQnT
- b0yyhIZEHiFdLyn4H7r3kw5tphiNF4fj5QTB8d9+bm9imr0zQ5AiS6kQ9 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="419419544"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="419419544"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 03:57:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="736336560"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="736336560"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 03:57:46 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 17:25:09 +0530
-Message-Id: <20230223115509.3980226-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1677154386; x=1708690386;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=KOHWnfjOpFtCcCE4RMyXmFdAz56CpeWbvgC72YXJAC0=;
+ b=jBnw//SGr4RDIavV9G9eLTynTAv0XBWVxI5VmZLcu5Ukrr3XXT2mco3Q
+ PX3Gc1L2ftSxDFjnw6LkjxoPzLW/9Jk6Fru8f0KSVhkATf35+nAt2+mzJ
+ JI/FEhiPSRm+FeJAe8RFfxBA2LEmQBPr+Veo85r+kliCCy5N7F6zugF3H
+ BdewqatoXiXfkNPoi1khlD5p/4rKJrNn8P26m1by8kYaO54PaehKLB1EH
+ S4OFetV9E3c5WBntuOMhPX/g0y7kdsFmyrojhJ96YqJ9hIRKU5r4Vrm8+
+ XNMuvyiBKbQrMlLasm+XhWoORV1pLtbiO/HjfUQJm6V+3PeXe6D6yimzk g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="321343507"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="321343507"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 04:11:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="665737902"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="665737902"
+Received: from pvallee-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.94])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 04:11:32 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <Y/co4cy10KM1/2uX@debian-scheme>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <Y/co4cy10KM1/2uX@debian-scheme>
+Date: Thu, 23 Feb 2023 14:11:28 +0200
+Message-ID: <87v8js37kf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: Don't roundup max bpp,
- while computing compressed bpp
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,45 +60,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
+ Zhiyuan" <zhiyuan.lv@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While computing compressed bpp, maximum value of bits_per_pixel is
-calculated that can be supported with the given link configuration
-for a given mode. Avoid rounding up of this max bits_per_pixel.
-Also improve documentation for computing max bits_per_pixel.
+On Thu, 23 Feb 2023, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
+>
+> This is what are on gvt tree now for next kernel, including fixes for
+> gvt debugfs, one kconfig symbol fix for menu presentation and misc
+> typo fixes. Please check details below. This is generated against current
+> drm-intel-next-fixes.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+Thanks, pulled to drm-intel-next-fixes, and pushed out.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b77bd4565864..51e9d0b2d8b3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -716,9 +716,19 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	 * (LinkSymbolClock)* 8 * (TimeSlots / 64)
- 	 * for SST -> TimeSlots is 64(i.e all TimeSlots that are available)
- 	 * for MST -> TimeSlots has to be calculated, based on mode requirements
-+	 *
-+	 * Due to FEC overhead, the available bw is reduced to 97.2261%.
-+	 * To support the given mode:
-+	 * Bandwidth required should be <= Available link Bandwidth * FEC Overhead
-+	 * =>ModeClock * bits_per_pixel <= Available Link Bandwidth * FEC Overhead
-+	 * =>bits_per_pixel <= Available link Bandwidth * FEC Overhead / ModeClock
-+	 * =>bits_per_pixel <= (NumberOfLanes * LinkSymbolClock) * 8 (TimeSlots / 64) /
-+	 *		       (ModeClock / FEC Overhead)
-+	 * =>bits_per_pixel <= (NumberOfLanes * LinkSymbolClock * TimeSlots) /
-+	 *		       (ModeClock / FEC Overhead * 8)
- 	 */
--	bits_per_pixel = DIV_ROUND_UP((link_clock * lane_count) * timeslots,
--				      intel_dp_mode_to_fec_clock(mode_clock) * 8);
-+	bits_per_pixel = ((link_clock * lane_count) * timeslots) /
-+			 (intel_dp_mode_to_fec_clock(mode_clock) * 8);
- 
- 	drm_dbg_kms(&i915->drm, "Max link bpp is %u for %u timeslots "
- 				"total bw %u pixel clock %u\n",
+BR,
+Jani.
+
+
+>
+> Thanks!
+> --
+> The following changes since commit 8038510b1fe443ffbc0e356db5f47cbb8678a594:
+>
+>   drm/i915: Fix system suspend without fbdev being initialized (2023-02-15 17:33:07 +0200)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2023-02-23
+>
+> for you to fetch changes up to 0b93efca3659f6d55ed31cff6722dca5f6e4d6e2:
+>
+>   drm/i915: move a Kconfig symbol to unbreak the menu presentation (2023-02-23 13:46:39 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-next-fixes-2023-02-23
+>
+> - use debugfs attribute for gvt debugfs entries (Deepak R Varma)
+> - fix memory leak in vgpu destroy for debugfs_lookup() then remove (Greg KH)
+> - fix DRM_I915_GVT kconfig symbol to unbreak menu presentation (Randy Dunlap)
+> - fix typos (Deepak R Varma, Colin Ian King)
+>
+> ----------------------------------------------------------------
+> Colin Ian King (1):
+>       i915/gvt: Fix spelling mistake "vender" -> "vendor"
+>
+> Deepak R Varma (2):
+>       drm/i915/gvt: Avoid full proxy f_ops for debugfs attributes
+>       drm/i915/gvt: Remove extra semicolon
+>
+> Greg Kroah-Hartman (1):
+>       i915: fix memory leak with using debugfs_lookup()
+>
+> Randy Dunlap (1):
+>       drm/i915: move a Kconfig symbol to unbreak the menu presentation
+>
+>  drivers/gpu/drm/i915/Kconfig        |  6 +++---
+>  drivers/gpu/drm/i915/gvt/debugfs.c  | 16 ++++++++--------
+>  drivers/gpu/drm/i915/gvt/firmware.c |  2 +-
+>  drivers/gpu/drm/i915/gvt/kvmgt.c    |  2 +-
+>  drivers/gpu/drm/i915/gvt/vgpu.c     |  2 +-
+>  5 files changed, 14 insertions(+), 14 deletions(-)
+
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
