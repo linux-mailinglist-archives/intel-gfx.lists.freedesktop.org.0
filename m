@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9356A043A
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 09:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B616A047F
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 10:09:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE0E510EAEA;
-	Thu, 23 Feb 2023 08:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0F610EAF7;
+	Thu, 23 Feb 2023 09:08:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7347910EAEA;
- Thu, 23 Feb 2023 08:52:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E59110E48E;
+ Thu, 23 Feb 2023 09:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677142351; x=1708678351;
- h=date:from:to:cc:subject:message-id:reply-to:mime-version;
- bh=yW0yLxeZVYr6+aQ49WULYQr9rDlcD/FL04bqo/2SA5k=;
- b=Z8mALhw8kCeH1v5bDQG/9exOYt+88Q1fbGviL26jUGQDbvnAkTCnhxaT
- OTMBkJmyverMGONUwfHlaAoC2QB+SLb0hVEvXD/Rf9fIHnmxJ8SYlyG2G
- Qa8OG4KcnVg6iR2otWXFv1daNOI1lQ1rnCIPetK7M0FPSUfXbvukpActm
- PP+cGAazKzkcs4vbguidzW5YZ9tbw05q5yJwXgwGyTlCqnjILOQsqMnB3
- eQ4hCettMtjCUDg7dM6vR8mk+gVsMsUmp3AT1Y+M3Ym7WkE48pD8cXDUE
- UkjwaP0yMcCKB7bcPguSNHSSaYrvbVH50Jn7XL1V7wyx2cF5fmkbZDJhs A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="395637650"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
- d="asc'?scan'208";a="395637650"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ t=1677143335; x=1708679335;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vi38R69HWUfRY/mfenkVhelSONr9jMelyUuHjfU4TZY=;
+ b=EsaWALlIMCFrhJMPNDjJ7vYcO0EpMoNeQjtg3P3OTsE8xvghBmwJIO5K
+ H1HtKWRxlpBq0VZpAMA119+ukCwt47+kX2KocWb7OPOaRoLK7lg187DUo
+ qUT7uZjZ2Hk+FELn/s3magf9/rfIQ1Ah3GdxOlqVoWJcpTR9D3JcFOpgn
+ lXa8mZ/E8KrtaUI7eMoSIyhHmendQjiw6I/jg7V+SSgX3QuWjLOBZ+4/r
+ OnJQjXW3WzgPAVWYhcN8yCQwtRdKAsPJck/8XhX9J8FI6xbiPhL2Q51II
+ 3acRkJyR8xiMZfINrb87YRMBh2/hCO/Zf7mwMpHOhhTYha703CQcVZVc5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="395640621"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="395640621"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 00:52:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="704772017"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
- d="asc'?scan'208";a="704772017"
-Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.159.40])
- by orsmga001.jf.intel.com with ESMTP; 23 Feb 2023 00:52:28 -0800
-Date: Thu, 23 Feb 2023 16:50:41 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Y/co4cy10KM1/2uX@debian-scheme>
+ 23 Feb 2023 01:08:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="736280901"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="736280901"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.25.22])
+ ([10.213.25.22])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 01:08:53 -0800
+Message-ID: <dee15378-e102-3f9b-16f1-bb43f0bb179a@intel.com>
+Date: Thu, 23 Feb 2023 10:08:51 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="+pXwTzjdKstQlErV"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] gvt-next-fixes
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230217185433.2418370-1-matthew.d.roper@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230217185433.2418370-1-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add engine TLB invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +62,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 17.02.2023 19:54, Matt Roper wrote:
+> MTL's primary GT can continue to use the same engine TLB invalidation
+> programming as past Xe_HP-based platforms.  However the media GT needs
+> some special handling:
+>   * Invalidation registers on the media GT are singleton registers
+>     (unlike the primary GT where they are still MCR).
+>   * Since the GSC is now exposed as an engine, there's a new register to
+>     use for TLB invalidation.  The offset is identical to the compute
+>     engine offset, but this is expected --- compute engines only exist on
+>     the primary GT while the GSC only exists on the media GT.
+>   * Although there's only a single GSC engine instance, it inexplicably
+>     uses bit 1 to request invalidations rather than bit 0.
+> 
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 52 ++++++++++++++++-------
+>   drivers/gpu/drm/i915/gt/intel_gt_regs.h   |  1 +
+>   2 files changed, 38 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index f3a91e7f85f7..af8e158fbd84 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1166,6 +1166,11 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+>   		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
+>   		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
+>   	};
+> +	static const union intel_engine_tlb_inv_reg xelpmp_regs[] = {
+> +		[VIDEO_DECODE_CLASS].reg	  = GEN12_VD_TLB_INV_CR,
+> +		[VIDEO_ENHANCEMENT_CLASS].reg     = GEN12_VE_TLB_INV_CR,
+> +		[OTHER_CLASS].reg		  = XELPMP_GSC_TLB_INV_CR,
+> +	};
+>   	struct drm_i915_private *i915 = engine->i915;
+>   	const unsigned int instance = engine->instance;
+>   	const unsigned int class = engine->class;
+> @@ -1185,19 +1190,28 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+>   	 * 12.00 -> 12.50 transition multi cast handling is required too.
+>   	 */
+>   
+> -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> -	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> -		regs = xehp_regs;
+> -		num = ARRAY_SIZE(xehp_regs);
+> -	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> -		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> -		regs = gen12_regs;
+> -		num = ARRAY_SIZE(gen12_regs);
+> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> -		regs = gen8_regs;
+> -		num = ARRAY_SIZE(gen8_regs);
+> -	} else if (GRAPHICS_VER(i915) < 8) {
+> -		return 0;
+> +	if (engine->gt->type == GT_MEDIA) {
+> +		if (MEDIA_VER_FULL(i915) == IP_VER(13, 0)) {
+> +			regs = xelpmp_regs;
+> +			num = ARRAY_SIZE(xelpmp_regs);
+> +		}
 
---+pXwTzjdKstQlErV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+As I understand currently only GEN13 of media can have GT_MEDIA, so 
+fallback to gt_WARN_ONCE below is expected behavior.
+
+> +	} else {
+> +		if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 71) ||
+
+12.71 is not yet present in i915_pci.c, maybe they should be added 
+together, up to you.
+
+> +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 70)  > +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> +		    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> +			regs = xehp_regs;
+> +			num = ARRAY_SIZE(xehp_regs);
+> +		} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> +			   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> +			regs = gen12_regs;
+> +			num = ARRAY_SIZE(gen12_regs);
+> +		} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> +			regs = gen8_regs;
+> +			num = ARRAY_SIZE(gen8_regs);
+> +		} else if (GRAPHICS_VER(i915) < 8) {
+> +			return 0;
+> +		}
+>   	}
+>   
+>   	if (gt_WARN_ONCE(engine->gt, !num,
+> @@ -1212,7 +1226,14 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+>   
+>   	reg = regs[class];
+>   
+> -	if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
+> +	if (class == OTHER_CLASS) {
+
+Maybe it would be safer:
+	if (regs == xelpmp_regs && class == OTHER_CLASS)
 
 
-Hi,
+> +		/*
+> +		 * There's only a single GSC instance, but it uses register bit
+> +		 * 1 instead of either 0 or OTHER_GSC_INSTANCE.
+> +		 */
+> +		GEM_WARN_ON(instance != OTHER_GSC_INSTANCE);
+> +		val = 1;
+> +	} else if (regs == gen8_regs && class == VIDEO_DECODE_CLASS && instance == 1) {
+>   		reg.reg = GEN8_M2TCR;
+>   		val = 0;
+>   	} else {
+> @@ -1228,7 +1249,8 @@ static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+>   	if (GRAPHICS_VER(i915) >= 12 &&
+>   	    (engine->class == VIDEO_DECODE_CLASS ||
+>   	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
+> -	     engine->class == COMPUTE_CLASS))
+> +	     engine->class == COMPUTE_CLASS ||
+> +	     engine->class == OTHER_CLASS))
+This is little surprise, I would expect non-masked reg for single 
+instance, but it follows bspec, so OK.
 
-This is what are on gvt tree now for next kernel, including fixes for
-gvt debugfs, one kconfig symbol fix for menu presentation and misc
-typo fixes. Please check details below. This is generated against current
-drm-intel-next-fixes.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Thanks!
---
-The following changes since commit 8038510b1fe443ffbc0e356db5f47cbb8678a594:
+Regards
+Andrzej
 
-  drm/i915: Fix system suspend without fbdev being initialized (2023-02-15 17:33:07 +0200)
+>   		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
+>   	else
+>   		engine->tlb_inv.request = val;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 416976d396ba..423e3e9c564b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1090,6 +1090,7 @@
+>   #define XEHP_BLT_TLB_INV_CR			MCR_REG(0xcee4)
+>   #define GEN12_COMPCTX_TLB_INV_CR		_MMIO(0xcf04)
+>   #define XEHP_COMPCTX_TLB_INV_CR			MCR_REG(0xcf04)
+> +#define XELPMP_GSC_TLB_INV_CR			_MMIO(0xcf04)   /* media GT only */
+>   
+>   #define XEHP_MERT_MOD_CTRL			MCR_REG(0xcf28)
+>   #define RENDER_MOD_CTRL				MCR_REG(0xcf2c)
 
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2023-02-23
-
-for you to fetch changes up to 0b93efca3659f6d55ed31cff6722dca5f6e4d6e2:
-
-  drm/i915: move a Kconfig symbol to unbreak the menu presentation (2023-02-23 13:46:39 +0800)
-
-----------------------------------------------------------------
-gvt-next-fixes-2023-02-23
-
-- use debugfs attribute for gvt debugfs entries (Deepak R Varma)
-- fix memory leak in vgpu destroy for debugfs_lookup() then remove (Greg KH)
-- fix DRM_I915_GVT kconfig symbol to unbreak menu presentation (Randy Dunlap)
-- fix typos (Deepak R Varma, Colin Ian King)
-
-----------------------------------------------------------------
-Colin Ian King (1):
-      i915/gvt: Fix spelling mistake "vender" -> "vendor"
-
-Deepak R Varma (2):
-      drm/i915/gvt: Avoid full proxy f_ops for debugfs attributes
-      drm/i915/gvt: Remove extra semicolon
-
-Greg Kroah-Hartman (1):
-      i915: fix memory leak with using debugfs_lookup()
-
-Randy Dunlap (1):
-      drm/i915: move a Kconfig symbol to unbreak the menu presentation
-
- drivers/gpu/drm/i915/Kconfig        |  6 +++---
- drivers/gpu/drm/i915/gvt/debugfs.c  | 16 ++++++++--------
- drivers/gpu/drm/i915/gvt/firmware.c |  2 +-
- drivers/gpu/drm/i915/gvt/kvmgt.c    |  2 +-
- drivers/gpu/drm/i915/gvt/vgpu.c     |  2 +-
- 5 files changed, 14 insertions(+), 14 deletions(-)
-
---+pXwTzjdKstQlErV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY/co3AAKCRCxBBozTXgY
-J+dnAJ9rKVLInJO2/5zS+J7SIy51gzwSZwCdEst2z0eUWY4Zi7V1eXzxPFAKKNM=
-=JtZG
------END PGP SIGNATURE-----
-
---+pXwTzjdKstQlErV--
