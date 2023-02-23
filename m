@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5056A0E7B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 18:14:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1446A0F0F
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 19:05:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 438AF10E523;
-	Thu, 23 Feb 2023 17:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F6610E049;
+	Thu, 23 Feb 2023 18:05:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B29310E523;
- Thu, 23 Feb 2023 17:14:20 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7CC10E049
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 18:05:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677172460; x=1708708460;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2mIqsHD3qishNy2OwCveFwpc43zBbLxjqp6+mO0E4xM=;
- b=dmCgLUpHtUtt/Vf2zHaij1gIJVkHtTTNh0SN9IsnOziL03N8yksyncBL
- sFYBwyEjOyxlGI6RXCMBKbnr+lB89KAX2i2Ustp85Ibtydc7mf80Dv0Vc
- V9eR7HSW+lNbMCbEJ4OR3R9atSgcZVyGEAZZ67fHCCTGqeHpgbPhGcSG0
- i71PTq8dD7N6aRhnxZlU2ytROjs7ctlyxCUAqsrlRGXN7yytiSZCUI/By
- IyaWOqz4wcjw3K3PYq8q8Anlyrare3F9nhBg41kRoewpDIvjLGO4Hbrw0
- dFuNkgVj0+Y+uGjsc4tX8BtNPXH6VPnho7YDa+hyO/+8pYYdYTLKLZQJN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="331944937"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="331944937"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 09:14:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="1001489610"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="1001489610"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 09:14:20 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 09:21:20 -0800
-Message-Id: <20230223172120.3304293-3-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230223172120.3304293-1-daniele.ceraolospurio@intel.com>
-References: <20230223172120.3304293-1-daniele.ceraolospurio@intel.com>
+ t=1677175539; x=1708711539;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=orSBv9lRyBn/BznwcsVAlR6C06ZXq/Y3Db2QG/bjnao=;
+ b=Tt3rAreuWCGbXyBSpvdgYxJWpRGRVj+NT1ekgxfEoXvIz7TGL498Zlv6
+ ypbD4YQDWfGpyQ0XKr+KT5bgaHYng+WXOXMWyT0ghF/Zt/YTXMUhBOeL1
+ pCg1MK2IIICCcsC2K2pbeqKW99Y3dYBF8KrQ1M58ogVfUYTgg0jVY+6Ni
+ q+cXvJkKvN5Aft8u6ItayOXuwBMCmzpx/sKlp8wKqCJhUPufUKn3TyUIP
+ rCkWP4p4ilgmhNvM9Gbd0yjjLANzHAMkqNl10nkmKfyVQaiWuJzMsVecN
+ 6P8V/DvQYUaz+uUxa+xmcEBD17g4U5QkjAyYd7pKuyZrqwxnNChSJKZmo A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="331015956"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="331015956"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 10:04:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="702879203"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="702879203"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga008.jf.intel.com with SMTP; 23 Feb 2023 10:04:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Feb 2023 20:04:33 +0200
+Date: Thu, 23 Feb 2023 20:04:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <Y/eqsW7f5EGGNX5c@intel.com>
+References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+ <DM4PR11MB636060CF5C30347EF0EBE755F4AA9@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <Y/eBIshF4EiSS4rT@intel.com>
+ <DM4PR11MB6360910F45E5832C8DDAAA47F4AB9@DM4PR11MB6360.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gsc: Fix race between HW init and
- GSC FW load
+In-Reply-To: <DM4PR11MB6360910F45E5832C8DDAAA47F4AB9@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling for DP
+ MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,104 +64,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The GSC FW load is a slow process (up to 250 ms), so we defer it to a
-dedicated worker to avoid stalling the init flow for that long. However,
-we currently start this worker before the HW init is complete, so there
-is a chance that the GSC loading code submits to the HW before the
-engine initialization has completed. We can easily fix this by starting
-the thread later in the gt_resume flow.
-From this later spot, the GSC code can still race with the default
-submission code; we functionally don't care who wins the race (the GSC
-load doesn't need any state), but since the whole point of the separate
-worker is to make the main thread faster, we prefer the default
-submission code to run first. Therefore, make an exception for driver
-probe and only and start the gsc load from uc_init_late.
+On Thu, Feb 23, 2023 at 05:01:11PM +0000, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Thursday, February 23, 2023 8:37 PM
+> > To: Shankar, Uma <uma.shankar@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling for DP MST
+> > 
+> > On Wed, Feb 22, 2023 at 05:59:45PM +0000, Shankar, Uma wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+> > > > Of Ville Syrjala
+> > > > Sent: Monday, February 20, 2023 8:48 PM
+> > > > To: intel-gfx@lists.freedesktop.org
+> > > > Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling
+> > > > for DP MST
+> > >
+> > > Nit: May be append "display" to drm/i915.
+> > 
+> > Don't think I've ever used that one. Seems a bit too generic to provide any real
+> > additional information to the table that wouldn't usually be obvious from the subject
+> > anyway.
+> > Do other people find /display useful?
+> > 
+> > I guess I could have used a more specific /mst in this case, but then again I already
+> > mention MST in the subject anyway so seems a bit redundant.
+> 
+> I think there are mixed declarations in our tree, no clear rule as such.
+> Will leave it you, maybe a general guideline would be good to make it
+> all consistent.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c | 19 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c     |  5 +++--
- 3 files changed, 23 insertions(+), 2 deletions(-)
+Yeah, some general guidelines might be good to figure out.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
-index 92e1571fdc46..2d5b70b3384c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
-@@ -124,6 +124,25 @@ void intel_gsc_uc_flush_work(struct intel_gsc_uc *gsc)
- 	flush_work(&gsc->work);
- }
- 
-+void intel_gsc_uc_resume(struct intel_gsc_uc *gsc)
-+{
-+	if (!intel_uc_fw_is_loadable(&gsc->fw))
-+		return;
-+
-+	/*
-+	 * we only want to start the GSC worker from here in the actual resume
-+	 * flow and not during driver load. This is because GSC load is slow and
-+	 * therefore we want to make sure that the default state init completes
-+	 * first to not slow down the init thread. A separate call to
-+	 * intel_gsc_uc_load_start will ensure that the GSC is loaded during
-+	 * driver load.
-+	 */
-+	if (!gsc_uc_to_gt(gsc)->engine[GSC0]->default_state)
-+		return;
-+
-+	intel_gsc_uc_load_start(gsc);
-+}
-+
- void intel_gsc_uc_load_start(struct intel_gsc_uc *gsc)
- {
- 	if (!intel_uc_fw_is_loadable(&gsc->fw))
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
-index c8b025343ea6..5f50fa1ff8b9 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
-@@ -26,6 +26,7 @@ void intel_gsc_uc_init_early(struct intel_gsc_uc *gsc);
- int intel_gsc_uc_init(struct intel_gsc_uc *gsc);
- void intel_gsc_uc_fini(struct intel_gsc_uc *gsc);
- void intel_gsc_uc_suspend(struct intel_gsc_uc *gsc);
-+void intel_gsc_uc_resume(struct intel_gsc_uc *gsc);
- void intel_gsc_uc_flush_work(struct intel_gsc_uc *gsc);
- void intel_gsc_uc_load_start(struct intel_gsc_uc *gsc);
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 5fa5c0999212..1b7ecd384a79 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -139,6 +139,7 @@ void intel_uc_init_early(struct intel_uc *uc)
- void intel_uc_init_late(struct intel_uc *uc)
- {
- 	intel_guc_init_late(&uc->guc);
-+	intel_gsc_uc_load_start(&uc->gsc);
- }
- 
- void intel_uc_driver_late_release(struct intel_uc *uc)
-@@ -543,8 +544,6 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
- 	}
- 
--	intel_gsc_uc_load_start(&uc->gsc);
--
- 	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
- 	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
- 
-@@ -714,6 +713,8 @@ static int __uc_resume(struct intel_uc *uc, bool enable_communication)
- 		return err;
- 	}
- 
-+	intel_gsc_uc_resume(&uc->gsc);
-+
- 	return 0;
- }
- 
+In the meantime I've pushed these patches as is for now.
+Thanks for the review.
+
 -- 
-2.37.3
-
+Ville Syrjälä
+Intel
