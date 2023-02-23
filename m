@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFB36A0CBD
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 16:20:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8183D6A0E2D
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 17:45:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D3DE10E057;
-	Thu, 23 Feb 2023 15:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8B510E4E3;
+	Thu, 23 Feb 2023 16:44:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E72310E057
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 15:20:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677165652; x=1708701652;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=C7J9mfPQ99h+PpWIb0r1Q/aPVGAydtpIwJaOLnrMRdo=;
- b=RHolDa+Ciwj6vWi7OYcI9UbLjcGOAn4Lg0xtXSPeY4mMtc3lNpfIFEp0
- TPFHT8Mt8skxbAqg6LKbH8uGlAFDK1V4yZ6IAGSNn0FsHzz4RkJCwM0VB
- h+nia3B2s+sH0D/2/V3fxisy4EDDloviAklPAJiXtkiqrWnotCgtkD2X9
- 5a0EszJRQKQJXqF9LcgG+Voh4wNLH4/Y+BH9cI8wjCQS45GBk282RW82l
- nmmK2txTZfyElbIkrlJhuxLH2j4t80DiilJBqEGrhyCfO11vuma/s1GYe
- DwNfXTd6qdOOpGvd6LREJPEGy6SXyuswv3Kb2Drv6+dA3QMa+fYpXTWZH Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="360729627"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="360729627"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 07:20:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="674563911"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="674563911"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga007.fm.intel.com with SMTP; 23 Feb 2023 07:20:49 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Feb 2023 17:20:48 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 17:20:48 +0200
-Message-Id: <20230223152048.20878-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C6A6F10E4E3;
+ Thu, 23 Feb 2023 16:44:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C2A58AADD8;
+ Thu, 23 Feb 2023 16:44:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Preserve crtc_state->inherited during
- state clearing
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 23 Feb 2023 16:44:55 -0000
+Message-ID: <167717069579.15875.17197013683339267111@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/helpers=3A_Make_the_suballocation_manager_drm_generic?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-intel_crtc_prepare_cleared_state() is unintentionally losing
-the "inherited" flag. This will happen if intel_initial_commit()
-is forced to go through the full modeset calculations for
-whatever reason.
+Series: drm/helpers: Make the suballocation manager drm generic
+URL   : https://patchwork.freedesktop.org/series/114299/
+State : warning
 
-Afterwards the first real commit from userspace will not get
-forced to the full modeset path, and thus eg. audio state may
-not get recomputed properly. So if the monitor was already
-enabled during boot audio will not work until userspace itself
-does an explicit full modeset.
+== Summary ==
 
-Cc: stable@vger.kernel.org
-Tested-by: Lee Shawn C <shawn.c.lee@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 +
- 1 file changed, 1 insertion(+)
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a1fbdf32bd21..ed95c0acfaae 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5078,6 +5078,7 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
- 	 * only fields that are know to not cause problems are preserved. */
- 
- 	saved_state->uapi = crtc_state->uapi;
-+	saved_state->inherited = crtc_state->inherited;
- 	saved_state->scaler_state = crtc_state->scaler_state;
- 	saved_state->shared_dpll = crtc_state->shared_dpll;
- 	saved_state->dpll_hw_state = crtc_state->dpll_hw_state;
--- 
-2.39.2
 
