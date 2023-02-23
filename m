@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069E66A0215
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 05:39:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C77016A0263
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 06:34:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B23010E002;
-	Thu, 23 Feb 2023 04:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2621710E4C6;
+	Thu, 23 Feb 2023 05:34:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE4610E002
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 04:39:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677127141; x=1708663141;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iMIQK7cdhRtXzV9PnHEC9MA8CqjE5ykwBqmPI2Cb1HM=;
- b=bY5+aEBFKPzLnWuVvQk8Rd0JevBwjsogtXPAe5L9FAUEbUunxk/AXLVs
- TKggxTMpr4VnYjTruVfLwreNqCZQ2SSG21aDhtFQFD2IlzuZNkekew8E4
- 01cGoO4OHTDsedqC8NJG7nhA5/hJwVQibPbV6kskQOoouFb0JQKKSeuKA
- WTMklHuwzfUpMB5spGJyTO2asBH1GVv0izlsI5hEvwMJ1TQylKQNfdFNp
- CWn4M+ZTFvS7oDZriYx9W2Q9Qss1IxEXaM5qpk2BhIg54CbtpHnTb/idS
- bYxYNY/G4/0HjLp8lSPZxED1DljCeCzYMPuQUEBd0mi6hP3oYRpKbRbQn Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="313484222"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="313484222"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 20:39:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="622186551"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="622186551"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 20:38:55 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 10:06:19 +0530
-Message-Id: <20230223043619.3941382-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C402210E49D;
+ Thu, 23 Feb 2023 05:34:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BB815AADE6;
+ Thu, 23 Feb 2023 05:34:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0875825587225779931=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Add HDMI pixel clock frequencies
- 267.30 and 319.89 MHz
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Thu, 23 Feb 2023 05:34:24 -0000
+Message-ID: <167713046473.15874.8569085436481001006@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230223043619.3941382-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20230223043619.3941382-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dg2=3A_Add_HDMI_pixel_clock_frequencies_267=2E30_and_319?=
+ =?utf-8?q?=2E89_MHz?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,109 +41,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add snps phy table values for HDMI pixel clocks 267.30 MHz and
-319.89 MHz. Values are based on the Bspec algorithm for
-PLL programming for HDMI.
+--===============0875825587225779931==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8008
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index c65c771f5c46..1cfb94b5cedb 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -1419,6 +1419,36 @@ static const struct intel_mpllb_state dg2_hdmi_262750 = {
- 		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
- };
- 
-+static const struct intel_mpllb_state dg2_hdmi_267300 = {
-+	.clock = 267300,
-+	.ref_control =
-+		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
-+	.mpllb_cp =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 7) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 14) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 64) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 124),
-+	.mpllb_div =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
-+	.mpllb_div2 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 74) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_HDMI_DIV, 1),
-+	.mpllb_fracn1 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 65535),
-+	.mpllb_fracn2 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 30146) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 36699),
-+	.mpllb_sscen =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
-+};
-+
- static const struct intel_mpllb_state dg2_hdmi_268500 = {
- 	.clock = 268500,
- 	.ref_control =
-@@ -1509,6 +1539,36 @@ static const struct intel_mpllb_state dg2_hdmi_241500 = {
- 		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
- };
- 
-+static const struct intel_mpllb_state dg2_hdmi_319890 = {
-+	.clock = 319890,
-+	.ref_control =
-+		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
-+	.mpllb_cp =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 14) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 64) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 124),
-+	.mpllb_div =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 2),
-+	.mpllb_div2 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 94) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_HDMI_DIV, 1),
-+	.mpllb_fracn1 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 65535),
-+	.mpllb_fracn2 =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 64094) |
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 13631),
-+	.mpllb_sscen =
-+		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
-+};
-+
- static const struct intel_mpllb_state dg2_hdmi_497750 = {
- 	.clock = 497750,
- 	.ref_control =
-@@ -1696,8 +1756,10 @@ static const struct intel_mpllb_state * const dg2_hdmi_tables[] = {
- 	&dg2_hdmi_209800,
- 	&dg2_hdmi_241500,
- 	&dg2_hdmi_262750,
-+	&dg2_hdmi_267300,
- 	&dg2_hdmi_268500,
- 	&dg2_hdmi_296703,
-+	&dg2_hdmi_319890,
- 	&dg2_hdmi_497750,
- 	&dg2_hdmi_592000,
- 	&dg2_hdmi_593407,
--- 
-2.25.1
+Series: drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89 MHz
+URL   : https://patchwork.freedesktop.org/series/114278/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12770 -> Patchwork_114278v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/index.html
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (3): fi-bsw-n3050 bat-dg1-6 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114278v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - bat-adlp-6:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-rplp-1:         [PASS][4] -> [INCOMPLETE][5] ([i915#4983] / [i915#7609] / [i915#7913])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-rplp-1/igt@i915_selftest@live@gt_lrc.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-rplp-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][6] ([i915#1886])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][7] ([i915#7913])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][8] -> [ABORT][9] ([i915#4983])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271]) +15 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-adlp-6:         NOTRUN -> [SKIP][11] ([i915#7828])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - bat-adlp-6:         [ABORT][12] ([i915#8220]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-adlp-6/igt@i915_module_load@reload.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@i915_module_load@reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8220]: https://gitlab.freedesktop.org/drm/intel/issues/8220
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12770 -> Patchwork_114278v1
+
+  CI-20190529: 20190529
+  CI_DRM_12770: 734cd918122f6ec06e4c9366fb3283b29b1c7ea5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7168: 165df656261863684067cd53f95c3a301e67fa24 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114278v1: 734cd918122f6ec06e4c9366fb3283b29b1c7ea5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b9966a3a53a9 drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89 MHz
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/index.html
+
+--===============0875825587225779931==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89 MHz</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114278/">https://patchwork.freedesktop.org/series/114278/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12770 -&gt; Patchwork_114278v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (3): fi-bsw-n3050 bat-dg1-6 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114278v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-rplp-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-rplp-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12770/bat-adlp-6/igt@i915_module_load@reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8220">i915#8220</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114278v1/bat-adlp-6/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12770 -&gt; Patchwork_114278v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12770: 734cd918122f6ec06e4c9366fb3283b29b1c7ea5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7168: 165df656261863684067cd53f95c3a301e67fa24 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114278v1: 734cd918122f6ec06e4c9366fb3283b29b1c7ea5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b9966a3a53a9 drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89 MHz</p>
+
+</body>
+</html>
+
+--===============0875825587225779931==--
