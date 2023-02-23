@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8046A0C6F
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 16:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7E76A0C90
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 16:07:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43E1F10EBC5;
-	Thu, 23 Feb 2023 15:03:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64EE010E4D0;
+	Thu, 23 Feb 2023 15:07:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 117E710E4D0;
- Thu, 23 Feb 2023 15:03:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6022510E4D0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Feb 2023 15:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677164597; x=1708700597;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=IzuNdPYAVd3+39vyxhYs5eAdwzuC2CS8j1lSuOR6ErM=;
- b=ZawOOFa9aTbmzlDp45qoIrhtCWeznaMM15jiZ2m1xTM6hXQb08IL1l47
- HXiq2hVtfwbGLQxWLynFbH2rD8ODLP3reKh5ZJK1u2yOrrKNU7ouvnRhy
- IdSs2nFujSu+UVCy4UAZvAtQFYkaCmCUXz6UCAy8TwkE/4iFUtnJL4iXK
- wkcoWsbAgGeKY6JC6/gUJx7eg/89m4iJ6neKC1cYQO3+2HhiR0VSqevs2
- qY1Gx0TvZxuLwIY0dZAlM0Qpm8rxwHpH1b030ukPMWRHgBWtL2wy8EL+A
- q7UzXudq9WH0tgT6R0ZdGuY3LAVENUNbaUVga7mSm15po4+M1VB7B5PIe Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="316973119"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="316973119"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:38:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="918010962"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="918010962"
-Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.84])
- ([10.249.254.84])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:38:21 -0800
-Message-ID: <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
-Date: Thu, 23 Feb 2023 15:38:19 +0100
+ t=1677164871; x=1708700871;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ZKOk4kVlvilbwgFC3m7Qkbk6fLr1LYT7xa/0p+Q9pLQ=;
+ b=Xq+9U9/5nFvZKvt5J30IwU2bx04eQIhYcly6JEXdQ+owc8PIh6vxVQNe
+ 2fHN61vE37nFH3+mjPbbE3HMgj7Lr1LqLL4O7jScjiKAqL7kD34sNOOJz
+ G8TIKGeQkvCtKR6D6rnrMSqFaTVOA8WOfIU+KuSBtInc8jRRmEpXMtDj6
+ FwHstCXp7is50adFufFvxlPMB827a530rSJFGrglOjsqrrnI3TAkWNeCM
+ Qaeaepn1j9tFlEK6duTFTpf3M/gGgzFzTtQyTI9yAEdSLD/pztnxY7H9D
+ t8WnbvyCpEmJQo3Q96VGfsBRG9UwZ/nfIH5xpEJJnDuTkjQEsMa60WUWS A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="360725510"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="360725510"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 07:07:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="674557274"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="674557274"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga007.fm.intel.com with SMTP; 23 Feb 2023 07:07:15 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Feb 2023 17:07:14 +0200
+Date: Thu, 23 Feb 2023 17:07:14 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <Y/eBIshF4EiSS4rT@intel.com>
+References: <20230220151731.6852-1-ville.syrjala@linux.intel.com>
+ <DM4PR11MB636060CF5C30347EF0EBE755F4AA9@DM4PR11MB6360.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20230216162729.219979-1-thomas.hellstrom@linux.intel.com>
- <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 0/1] drm: Add a gpu page-table walker
+In-Reply-To: <DM4PR11MB636060CF5C30347EF0EBE755F4AA9@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling for DP
+ MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,81 +62,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Daniel,
+On Wed, Feb 22, 2023 at 05:59:45PM +0000, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville Syrjala
+> > Sent: Monday, February 20, 2023 8:48 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Fix audio ELD handling for DP MST
+> 
+> Nit: May be append "display" to drm/i915.
 
-On 2/16/23 21:18, Daniel Vetter wrote:
-> On Thu, Feb 16, 2023 at 05:27:28PM +0100, Thomas HellstrÃ¶m wrote:
->> A slightly unusual cover letter for a single patch.
->>
->> The page table walker is currently used by the xe driver only,
->> but the code is generic so we can be good citizens and add it to drm
->> as a helper, for possible use by other drivers,
->> If so we can merge the commit when we merge the xe driver.
->>
->> The question raised here is
->> *) Should it be a generic drm helper or xe-specific with changed
->>     prefixes?
-> I think if there's some other drivers interested in using this, then this
-> sounds like a good idea. Maybe more useful if it's also integrated into
-> the vm/vma helpers that are being discussed as an optional part?
->
-> Maybe some good old sales pitching here to convince people would be good.
->
-> Maybe one of the new accel drivers is interested in this too?
+Don't think I've ever used that one. Seems a bit too generic
+to provide any real additional information to the table that
+wouldn't usually be obvious from the subject anyway.
+Do other people find /display useful?
 
-Thanks for your thoughts on this. Yeah, I think it's a bit awkward to 
-push for having code generic when there is only one user, and the 
-prospect of having other drivers rewrite their page-table building code 
-based on this helper in the near future is probably small. Perhaps more 
-of interest to new drivers. I think what will happen otherwise is that 
-during some future cleanup this will be pushed down to xe claiming it's 
-the only user.
+I guess I could have used a more specific /mst in this case,
+but then again I already mention MST in the subject anyway
+so seems a bit redundant.
 
-I wonder whether it might be an idea to maintain a small document where 
-driver writers can list suggestions for code that could be lifted to 
-core drm and be reused by others. That way both reviewers and writers of 
-other drivers can keep an eye on that document and use it to avoid 
-duplicating code. The procedure would then be to lift it to core drm and 
-fix up prefixes as soon as we have two or more users.
+> 
+> Change looks good to me.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > I forgot to call intel_audio_compute_config() on DP MST, which means ELD doesn't
+> > get populated and passed to the audio driver.
+> > 
+> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/8097
+> > Fixes: 5d986635e296 ("drm/i915/audio: Precompute the ELD")
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 25 +++++++++++++--------
+> >  1 file changed, 16 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index de856f4375fb..a860cbc5dbea 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -265,6 +265,19 @@ static int intel_dp_mst_update_slots(struct intel_encoder
+> > *encoder,
+> >  	return 0;
+> >  }
+> > 
+> > +static bool intel_dp_mst_has_audio(const struct drm_connector_state
+> > +*conn_state) {
+> > +	const struct intel_digital_connector_state *intel_conn_state =
+> > +		to_intel_digital_connector_state(conn_state);
+> > +	struct intel_connector *connector =
+> > +		to_intel_connector(conn_state->connector);
+> > +
+> > +	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
+> > +		return connector->port->has_audio;
+> > +	else
+> > +		return intel_conn_state->force_audio == HDMI_AUDIO_ON; }
+> > +
+> >  static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+> >  				       struct intel_crtc_state *pipe_config,
+> >  				       struct drm_connector_state *conn_state) @@ -
+> > 272,10 +285,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder
+> > *encoder,
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+> >  	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+> > -	struct intel_connector *connector =
+> > -		to_intel_connector(conn_state->connector);
+> > -	struct intel_digital_connector_state *intel_conn_state =
+> > -		to_intel_digital_connector_state(conn_state);
+> >  	const struct drm_display_mode *adjusted_mode =
+> >  		&pipe_config->hw.adjusted_mode;
+> >  	struct link_config_limits limits;
+> > @@ -287,11 +296,9 @@ static int intel_dp_mst_compute_config(struct
+> > intel_encoder *encoder,
+> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  	pipe_config->has_pch_encoder = false;
+> > 
+> > -	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
+> > -		pipe_config->has_audio = connector->port->has_audio;
+> > -	else
+> > -		pipe_config->has_audio =
+> > -			intel_conn_state->force_audio == HDMI_AUDIO_ON;
+> > +	pipe_config->has_audio =
+> > +		intel_dp_mst_has_audio(conn_state) &&
+> > +		intel_audio_compute_config(encoder, pipe_config, conn_state);
+> > 
+> >  	/*
+> >  	 * for MST we always configure max link bw - the spec doesn't
+> > --
+> > 2.39.2
+> 
 
-Thoughts?
-
-Thomas
-
-
->
->> *) If a drm helper, should we use a config option?
-> I am no fan of Kconfig things tbh. Maybe just include it in the vma
-> helpers, or perhaps we want to do a drm-accel-helpers with gem helpers,
-> drm/sched, this one here, vm/vma helpers or whatever they will be and so
-> on? Kinda like we have modeset helpers.
->
-> I'd definitely not go for a Kconfig per individual file, that's just
-> excessive.
-> -Daniel
->
->> For usage examples, see xe_pt.c
->> https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_pt.c
->>
->> Thanks,
->> Thomas
->>
->> Thomas HellstrÃ¶m (1):
->>    drm: Add a gpu page-table walker helper
->>
->>   drivers/gpu/drm/Makefile      |   1 +
->>   drivers/gpu/drm/drm_pt_walk.c | 159 +++++++++++++++++++++++++++++++++
->>   include/drm/drm_pt_walk.h     | 161 ++++++++++++++++++++++++++++++++++
->>   3 files changed, 321 insertions(+)
->>   create mode 100644 drivers/gpu/drm/drm_pt_walk.c
->>   create mode 100644 include/drm/drm_pt_walk.h
->>
->> -- 
->> 2.34.1
->>
+-- 
+Ville Syrjälä
+Intel
