@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4776A0C4E
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 15:55:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D206A0BE4
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Feb 2023 15:31:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DABF010EBC3;
-	Thu, 23 Feb 2023 14:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2439B10E4D9;
+	Thu, 23 Feb 2023 14:31:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CCC10EBC6;
- Thu, 23 Feb 2023 14:55:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677164108; x=1708700108;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=URU63DDasHf0t/PKY2y8blCdIsylkVZDXsFFXviShro=;
- b=MVhq0CCROacmxQ2Bs9hHmeTVlpHYztasf37hGvS1ipA4curBw+iF7xfj
- ktyTbc6Xd/STQKPrhOD2DCG7i7jB8ZXS+vmZcqecuRjgLJdrkarWPvdRv
- 9WbsZ5jXzfpPR/J6swy350l5U95ale0PFr8RPq8KNbP5APnimQtpnZH/R
- YbomWYpvwnjaf+nHFDD8g2oUqtnRIjntirSEHeaHP62KAfiVQRbPgG4LC
- zW9JLXmEmj/9TNElvz7yDtm7TsSv9IS6/aYovJyAFi9yOT68r98F36CUs
- N1xX388/ZPFHDbQECE+VAGZUsRVom1K3DA3aaEaE6o3Bzyfssc3yA+pRP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="321392873"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="321392873"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:26:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="622349657"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="622349657"
-Received: from skallurr-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.84])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:26:14 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 15:25:31 +0100
-Message-Id: <20230223142531.8446-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
-References: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 337A110E1FE;
+ Thu, 23 Feb 2023 14:31:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2C25DA0BCB;
+ Thu, 23 Feb 2023 14:31:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4486196064897939108=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 3/3] drm/radeon: Use the drm suballocation
- manager implementation.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Date: Thu, 23 Feb 2023 14:31:18 -0000
+Message-ID: <167716267814.15876.11277530757959988042@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230223134021.2236889-1-mika.kahola@intel.com>
+In-Reply-To: <20230223134021.2236889-1-mika.kahola@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Add_C10_and_C20_phy_support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,625 +40,614 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+--===============4486196064897939108==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Use the generic suballocation helper for radeon.
+== Series Details ==
 
-v3:
-- Select the suballoc helper in Kconfig (Thomas).
+Series: drm/i915/mtl: Add C10 and C20 phy support (rev5)
+URL   : https://patchwork.freedesktop.org/series/109714/
+State : failure
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Co-developed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/radeon/Kconfig            |   1 +
- drivers/gpu/drm/radeon/radeon.h           |  55 +---
- drivers/gpu/drm/radeon/radeon_ib.c        |  12 +-
- drivers/gpu/drm/radeon/radeon_object.h    |  25 +-
- drivers/gpu/drm/radeon/radeon_sa.c        | 316 ++--------------------
- drivers/gpu/drm/radeon/radeon_semaphore.c |   4 +-
- 6 files changed, 57 insertions(+), 356 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
-index 62a596d3a891..e19d77d58810 100644
---- a/drivers/gpu/drm/radeon/Kconfig
-+++ b/drivers/gpu/drm/radeon/Kconfig
-@@ -8,6 +8,7 @@ config DRM_RADEON
- 	select DRM_DISPLAY_DP_HELPER
- 	select DRM_DISPLAY_HELPER
-         select DRM_KMS_HELPER
-+	select DRM_SUBALLOC_HELPER
-         select DRM_TTM
- 	select DRM_TTM_HELPER
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 57e20780a458..d19a4b1c1a8f 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -79,6 +79,7 @@
- 
- #include <drm/drm_gem.h>
- #include <drm/drm_audio_component.h>
-+#include <drm/drm_suballoc.h>
- 
- #include "radeon_family.h"
- #include "radeon_mode.h"
-@@ -511,52 +512,12 @@ struct radeon_bo {
- };
- #define gem_to_radeon_bo(gobj) container_of((gobj), struct radeon_bo, tbo.base)
- 
--/* sub-allocation manager, it has to be protected by another lock.
-- * By conception this is an helper for other part of the driver
-- * like the indirect buffer or semaphore, which both have their
-- * locking.
-- *
-- * Principe is simple, we keep a list of sub allocation in offset
-- * order (first entry has offset == 0, last entry has the highest
-- * offset).
-- *
-- * When allocating new object we first check if there is room at
-- * the end total_size - (last_object_offset + last_object_size) >=
-- * alloc_size. If so we allocate new object there.
-- *
-- * When there is not enough room at the end, we start waiting for
-- * each sub object until we reach object_offset+object_size >=
-- * alloc_size, this object then become the sub object we return.
-- *
-- * Alignment can't be bigger than page size.
-- *
-- * Hole are not considered for allocation to keep things simple.
-- * Assumption is that there won't be hole (all object on same
-- * alignment).
-- */
- struct radeon_sa_manager {
--	wait_queue_head_t	wq;
--	struct radeon_bo	*bo;
--	struct list_head	*hole;
--	struct list_head	flist[RADEON_NUM_RINGS];
--	struct list_head	olist;
--	unsigned		size;
--	uint64_t		gpu_addr;
--	void			*cpu_ptr;
--	uint32_t		domain;
--	uint32_t		align;
--};
--
--struct radeon_sa_bo;
--
--/* sub-allocation buffer */
--struct radeon_sa_bo {
--	struct list_head		olist;
--	struct list_head		flist;
--	struct radeon_sa_manager	*manager;
--	unsigned			soffset;
--	unsigned			eoffset;
--	struct radeon_fence		*fence;
-+	struct drm_suballoc_manager	base;
-+	struct radeon_bo		*bo;
-+	uint64_t			gpu_addr;
-+	void				*cpu_ptr;
-+	u32 domain;
- };
- 
- /*
-@@ -587,7 +548,7 @@ int radeon_mode_dumb_mmap(struct drm_file *filp,
-  * Semaphores.
-  */
- struct radeon_semaphore {
--	struct radeon_sa_bo	*sa_bo;
-+	struct drm_suballoc	*sa_bo;
- 	signed			waiters;
- 	uint64_t		gpu_addr;
- };
-@@ -816,7 +777,7 @@ void radeon_irq_kms_disable_hpd(struct radeon_device *rdev, unsigned hpd_mask);
-  */
- 
- struct radeon_ib {
--	struct radeon_sa_bo		*sa_bo;
-+	struct drm_suballoc		*sa_bo;
- 	uint32_t			length_dw;
- 	uint64_t			gpu_addr;
- 	uint32_t			*ptr;
-diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
-index 62b116727b4f..6a45a72488f9 100644
---- a/drivers/gpu/drm/radeon/radeon_ib.c
-+++ b/drivers/gpu/drm/radeon/radeon_ib.c
-@@ -61,7 +61,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- {
- 	int r;
- 
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo, &ib->sa_bo, size, 256);
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo, &ib->sa_bo, size, 256);
- 	if (r) {
- 		dev_err(rdev->dev, "failed to get a new IB (%d)\n", r);
- 		return r;
-@@ -77,7 +77,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- 		/* ib pool is bound at RADEON_VA_IB_OFFSET in virtual address
- 		 * space and soffset is the offset inside the pool bo
- 		 */
--		ib->gpu_addr = ib->sa_bo->soffset + RADEON_VA_IB_OFFSET;
-+		ib->gpu_addr = drm_suballoc_soffset(ib->sa_bo) + RADEON_VA_IB_OFFSET;
- 	} else {
- 		ib->gpu_addr = radeon_sa_bo_gpu_addr(ib->sa_bo);
- 	}
-@@ -97,7 +97,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- void radeon_ib_free(struct radeon_device *rdev, struct radeon_ib *ib)
- {
- 	radeon_sync_free(rdev, &ib->sync, ib->fence);
--	radeon_sa_bo_free(rdev, &ib->sa_bo, ib->fence);
-+	radeon_sa_bo_free(&ib->sa_bo, ib->fence);
- 	radeon_fence_unref(&ib->fence);
- }
- 
-@@ -201,8 +201,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 
- 	if (rdev->family >= CHIP_BONAIRE) {
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT,
- 					      RADEON_GEM_GTT_WC);
- 	} else {
-@@ -210,8 +209,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 		 * to the command stream checking
- 		 */
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT, 0);
- 	}
- 	if (r) {
-diff --git a/drivers/gpu/drm/radeon/radeon_object.h b/drivers/gpu/drm/radeon/radeon_object.h
-index 0a6ef49e990a..39cc87a59a9a 100644
---- a/drivers/gpu/drm/radeon/radeon_object.h
-+++ b/drivers/gpu/drm/radeon/radeon_object.h
-@@ -169,15 +169,22 @@ extern void radeon_bo_fence(struct radeon_bo *bo, struct radeon_fence *fence,
- /*
-  * sub allocation
-  */
-+static inline struct radeon_sa_manager *
-+to_radeon_sa_manager(struct drm_suballoc_manager *manager)
-+{
-+	return container_of(manager, struct radeon_sa_manager, base);
-+}
- 
--static inline uint64_t radeon_sa_bo_gpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline uint64_t radeon_sa_bo_gpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->gpu_addr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->gpu_addr +
-+		drm_suballoc_soffset(sa_bo);
- }
- 
--static inline void * radeon_sa_bo_cpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline void *radeon_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->cpu_ptr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->cpu_ptr +
-+		drm_suballoc_soffset(sa_bo);
- }
- 
- extern int radeon_sa_bo_manager_init(struct radeon_device *rdev,
-@@ -190,12 +197,10 @@ extern int radeon_sa_bo_manager_start(struct radeon_device *rdev,
- 				      struct radeon_sa_manager *sa_manager);
- extern int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 					struct radeon_sa_manager *sa_manager);
--extern int radeon_sa_bo_new(struct radeon_device *rdev,
--			    struct radeon_sa_manager *sa_manager,
--			    struct radeon_sa_bo **sa_bo,
--			    unsigned size, unsigned align);
--extern void radeon_sa_bo_free(struct radeon_device *rdev,
--			      struct radeon_sa_bo **sa_bo,
-+extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+			    struct drm_suballoc **sa_bo,
-+			    unsigned int size, unsigned int align);
-+extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 			      struct radeon_fence *fence);
- #if defined(CONFIG_DEBUG_FS)
- extern void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
-diff --git a/drivers/gpu/drm/radeon/radeon_sa.c b/drivers/gpu/drm/radeon/radeon_sa.c
-index 0981948bd9ed..c87a57c9c592 100644
---- a/drivers/gpu/drm/radeon/radeon_sa.c
-+++ b/drivers/gpu/drm/radeon/radeon_sa.c
-@@ -44,53 +44,32 @@
- 
- #include "radeon.h"
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo);
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager);
--
- int radeon_sa_bo_manager_init(struct radeon_device *rdev,
- 			      struct radeon_sa_manager *sa_manager,
--			      unsigned size, u32 align, u32 domain, u32 flags)
-+			      unsigned int size, u32 sa_align, u32 domain,
-+			      u32 flags)
- {
--	int i, r;
--
--	init_waitqueue_head(&sa_manager->wq);
--	sa_manager->bo = NULL;
--	sa_manager->size = size;
--	sa_manager->domain = domain;
--	sa_manager->align = align;
--	sa_manager->hole = &sa_manager->olist;
--	INIT_LIST_HEAD(&sa_manager->olist);
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		INIT_LIST_HEAD(&sa_manager->flist[i]);
--	}
-+	int r;
- 
--	r = radeon_bo_create(rdev, size, align, true,
-+	r = radeon_bo_create(rdev, size, RADEON_GPU_PAGE_SIZE, true,
- 			     domain, flags, NULL, NULL, &sa_manager->bo);
- 	if (r) {
- 		dev_err(rdev->dev, "(%d) failed to allocate bo for manager\n", r);
- 		return r;
- 	}
- 
-+	sa_manager->domain = domain;
-+
-+	drm_suballoc_manager_init(&sa_manager->base, size, sa_align);
-+
- 	return r;
- }
- 
- void radeon_sa_bo_manager_fini(struct radeon_device *rdev,
- 			       struct radeon_sa_manager *sa_manager)
- {
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (!list_empty(&sa_manager->olist)) {
--		sa_manager->hole = &sa_manager->olist,
--		radeon_sa_bo_try_free(sa_manager);
--		if (!list_empty(&sa_manager->olist)) {
--			dev_err(rdev->dev, "sa_manager is not empty, clearing anyway\n");
--		}
--	}
--	list_for_each_entry_safe(sa_bo, tmp, &sa_manager->olist, olist) {
--		radeon_sa_bo_remove_locked(sa_bo);
--	}
-+	drm_suballoc_manager_fini(&sa_manager->base);
- 	radeon_bo_unref(&sa_manager->bo);
--	sa_manager->size = 0;
- }
- 
- int radeon_sa_bo_manager_start(struct radeon_device *rdev,
-@@ -139,260 +118,34 @@ int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 	return r;
- }
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo)
-+int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+		     struct drm_suballoc **sa_bo,
-+		     unsigned int size, unsigned int align)
- {
--	struct radeon_sa_manager *sa_manager = sa_bo->manager;
--	if (sa_manager->hole == &sa_bo->olist) {
--		sa_manager->hole = sa_bo->olist.prev;
--	}
--	list_del_init(&sa_bo->olist);
--	list_del_init(&sa_bo->flist);
--	radeon_fence_unref(&sa_bo->fence);
--	kfree(sa_bo);
--}
--
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager)
--{
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (sa_manager->hole->next == &sa_manager->olist)
--		return;
-+	struct drm_suballoc *sa = drm_suballoc_new(&sa_manager->base, size,
-+						   GFP_KERNEL, true, align);
- 
--	sa_bo = list_entry(sa_manager->hole->next, struct radeon_sa_bo, olist);
--	list_for_each_entry_safe_from(sa_bo, tmp, &sa_manager->olist, olist) {
--		if (sa_bo->fence == NULL || !radeon_fence_signaled(sa_bo->fence)) {
--			return;
--		}
--		radeon_sa_bo_remove_locked(sa_bo);
-+	if (IS_ERR(sa)) {
-+		*sa_bo = NULL;
-+		return PTR_ERR(sa);
- 	}
--}
- 
--static inline unsigned radeon_sa_bo_hole_soffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole != &sa_manager->olist) {
--		return list_entry(hole, struct radeon_sa_bo, olist)->eoffset;
--	}
-+	*sa_bo = sa;
- 	return 0;
- }
- 
--static inline unsigned radeon_sa_bo_hole_eoffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole->next != &sa_manager->olist) {
--		return list_entry(hole->next, struct radeon_sa_bo, olist)->soffset;
--	}
--	return sa_manager->size;
--}
--
--static bool radeon_sa_bo_try_alloc(struct radeon_sa_manager *sa_manager,
--				   struct radeon_sa_bo *sa_bo,
--				   unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		soffset += wasted;
--
--		sa_bo->manager = sa_manager;
--		sa_bo->soffset = soffset;
--		sa_bo->eoffset = soffset + size;
--		list_add(&sa_bo->olist, sa_manager->hole);
--		INIT_LIST_HEAD(&sa_bo->flist);
--		sa_manager->hole = &sa_bo->olist;
--		return true;
--	}
--	return false;
--}
--
--/**
-- * radeon_sa_event - Check if we can stop waiting
-- *
-- * @sa_manager: pointer to the sa_manager
-- * @size: number of bytes we want to allocate
-- * @align: alignment we need to match
-- *
-- * Check if either there is a fence we can wait for or
-- * enough free memory to satisfy the allocation directly
-- */
--static bool radeon_sa_event(struct radeon_sa_manager *sa_manager,
--			    unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--	int i;
--
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		if (!list_empty(&sa_manager->flist[i])) {
--			return true;
--		}
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		return true;
--	}
--
--	return false;
--}
--
--static bool radeon_sa_bo_next_hole(struct radeon_sa_manager *sa_manager,
--				   struct radeon_fence **fences,
--				   unsigned *tries)
--{
--	struct radeon_sa_bo *best_bo = NULL;
--	unsigned i, soffset, best, tmp;
--
--	/* if hole points to the end of the buffer */
--	if (sa_manager->hole->next == &sa_manager->olist) {
--		/* try again with its beginning */
--		sa_manager->hole = &sa_manager->olist;
--		return true;
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	/* to handle wrap around we add sa_manager->size */
--	best = sa_manager->size * 2;
--	/* go over all fence list and try to find the closest sa_bo
--	 * of the current last
--	 */
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		struct radeon_sa_bo *sa_bo;
--
--		fences[i] = NULL;
--
--		if (list_empty(&sa_manager->flist[i])) {
--			continue;
--		}
--
--		sa_bo = list_first_entry(&sa_manager->flist[i],
--					 struct radeon_sa_bo, flist);
--
--		if (!radeon_fence_signaled(sa_bo->fence)) {
--			fences[i] = sa_bo->fence;
--			continue;
--		}
--
--		/* limit the number of tries each ring gets */
--		if (tries[i] > 2) {
--			continue;
--		}
--
--		tmp = sa_bo->soffset;
--		if (tmp < soffset) {
--			/* wrap around, pretend it's after */
--			tmp += sa_manager->size;
--		}
--		tmp -= soffset;
--		if (tmp < best) {
--			/* this sa bo is the closest one */
--			best = tmp;
--			best_bo = sa_bo;
--		}
--	}
--
--	if (best_bo) {
--		++tries[best_bo->fence->ring];
--		sa_manager->hole = best_bo->olist.prev;
--
--		/* we knew that this one is signaled,
--		   so it's save to remote it */
--		radeon_sa_bo_remove_locked(best_bo);
--		return true;
--	}
--	return false;
--}
--
--int radeon_sa_bo_new(struct radeon_device *rdev,
--		     struct radeon_sa_manager *sa_manager,
--		     struct radeon_sa_bo **sa_bo,
--		     unsigned size, unsigned align)
--{
--	struct radeon_fence *fences[RADEON_NUM_RINGS];
--	unsigned tries[RADEON_NUM_RINGS];
--	int i, r;
--
--	BUG_ON(align > sa_manager->align);
--	BUG_ON(size > sa_manager->size);
--
--	*sa_bo = kmalloc(sizeof(struct radeon_sa_bo), GFP_KERNEL);
--	if ((*sa_bo) == NULL) {
--		return -ENOMEM;
--	}
--	(*sa_bo)->manager = sa_manager;
--	(*sa_bo)->fence = NULL;
--	INIT_LIST_HEAD(&(*sa_bo)->olist);
--	INIT_LIST_HEAD(&(*sa_bo)->flist);
--
--	spin_lock(&sa_manager->wq.lock);
--	do {
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			tries[i] = 0;
--
--		do {
--			radeon_sa_bo_try_free(sa_manager);
--
--			if (radeon_sa_bo_try_alloc(sa_manager, *sa_bo,
--						   size, align)) {
--				spin_unlock(&sa_manager->wq.lock);
--				return 0;
--			}
--
--			/* see if we can skip over some allocations */
--		} while (radeon_sa_bo_next_hole(sa_manager, fences, tries));
--
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_ref(fences[i]);
--
--		spin_unlock(&sa_manager->wq.lock);
--		r = radeon_fence_wait_any(rdev, fences, false);
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_unref(&fences[i]);
--		spin_lock(&sa_manager->wq.lock);
--		/* if we have nothing to wait for block */
--		if (r == -ENOENT) {
--			r = wait_event_interruptible_locked(
--				sa_manager->wq, 
--				radeon_sa_event(sa_manager, size, align)
--			);
--		}
--
--	} while (!r);
--
--	spin_unlock(&sa_manager->wq.lock);
--	kfree(*sa_bo);
--	*sa_bo = NULL;
--	return r;
--}
--
--void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
-+void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 		       struct radeon_fence *fence)
- {
--	struct radeon_sa_manager *sa_manager;
--
- 	if (sa_bo == NULL || *sa_bo == NULL) {
- 		return;
- 	}
- 
--	sa_manager = (*sa_bo)->manager;
--	spin_lock(&sa_manager->wq.lock);
--	if (fence && !radeon_fence_signaled(fence)) {
--		(*sa_bo)->fence = radeon_fence_ref(fence);
--		list_add_tail(&(*sa_bo)->flist,
--			      &sa_manager->flist[fence->ring]);
--	} else {
--		radeon_sa_bo_remove_locked(*sa_bo);
--	}
--	wake_up_all_locked(&sa_manager->wq);
--	spin_unlock(&sa_manager->wq.lock);
-+	if (fence)
-+		drm_suballoc_free(*sa_bo, &fence->base);
-+	else
-+		drm_suballoc_free(*sa_bo, NULL);
-+
- 	*sa_bo = NULL;
- }
- 
-@@ -400,25 +153,8 @@ void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
- void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
- 				  struct seq_file *m)
- {
--	struct radeon_sa_bo *i;
-+	struct drm_printer p = drm_seq_file_printer(m);
- 
--	spin_lock(&sa_manager->wq.lock);
--	list_for_each_entry(i, &sa_manager->olist, olist) {
--		uint64_t soffset = i->soffset + sa_manager->gpu_addr;
--		uint64_t eoffset = i->eoffset + sa_manager->gpu_addr;
--		if (&i->olist == sa_manager->hole) {
--			seq_printf(m, ">");
--		} else {
--			seq_printf(m, " ");
--		}
--		seq_printf(m, "[0x%010llx 0x%010llx] size %8lld",
--			   soffset, eoffset, eoffset - soffset);
--		if (i->fence) {
--			seq_printf(m, " protected by 0x%016llx on ring %d",
--				   i->fence->seq, i->fence->ring);
--		}
--		seq_printf(m, "\n");
--	}
--	spin_unlock(&sa_manager->wq.lock);
-+	drm_suballoc_dump_debug_info(&sa_manager->base, &p, sa_manager->gpu_addr);
- }
- #endif
-diff --git a/drivers/gpu/drm/radeon/radeon_semaphore.c b/drivers/gpu/drm/radeon/radeon_semaphore.c
-index 221e59476f64..1f0a9a4ff5ae 100644
---- a/drivers/gpu/drm/radeon/radeon_semaphore.c
-+++ b/drivers/gpu/drm/radeon/radeon_semaphore.c
-@@ -40,7 +40,7 @@ int radeon_semaphore_create(struct radeon_device *rdev,
- 	if (*semaphore == NULL) {
- 		return -ENOMEM;
- 	}
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo,
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo,
- 			     &(*semaphore)->sa_bo, 8, 8);
- 	if (r) {
- 		kfree(*semaphore);
-@@ -100,7 +100,7 @@ void radeon_semaphore_free(struct radeon_device *rdev,
- 		dev_err(rdev->dev, "semaphore %p has more waiters than signalers,"
- 			" hardware lockup imminent!\n", *semaphore);
- 	}
--	radeon_sa_bo_free(rdev, &(*semaphore)->sa_bo, fence);
-+	radeon_sa_bo_free(&(*semaphore)->sa_bo, fence);
- 	kfree(*semaphore);
- 	*semaphore = NULL;
- }
--- 
-2.34.1
+CI Bug Log - changes from CI_DRM_12772 -> Patchwork_109714v5
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_109714v5 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_109714v5, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/index.html
+
+Participating hosts (38 -> 39)
+------------------------------
+
+  Additional (2): bat-atsm-1 fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109714v5:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - fi-ilk-650:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-ilk-650/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-ilk-650/igt@i915_module_load@load.html
+    - bat-jsl-1:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-jsl-1/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-jsl-1/igt@i915_module_load@load.html
+    - fi-blb-e6850:       [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-blb-e6850/igt@i915_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-blb-e6850/igt@i915_module_load@load.html
+    - fi-bsw-n3050:       [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-bsw-n3050/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-bsw-n3050/igt@i915_module_load@load.html
+    - bat-rpls-1:         [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rpls-1/igt@i915_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rpls-1/igt@i915_module_load@load.html
+    - bat-adlp-6:         [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlp-6/igt@i915_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlp-6/igt@i915_module_load@load.html
+    - fi-rkl-11600:       [PASS][13] -> [ABORT][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-rkl-11600/igt@i915_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-rkl-11600/igt@i915_module_load@load.html
+    - fi-skl-6600u:       [PASS][15] -> [ABORT][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-skl-6600u/igt@i915_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-skl-6600u/igt@i915_module_load@load.html
+    - bat-adls-5:         [PASS][17] -> [ABORT][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adls-5/igt@i915_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adls-5/igt@i915_module_load@load.html
+    - fi-apl-guc:         [PASS][19] -> [ABORT][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-apl-guc/igt@i915_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-apl-guc/igt@i915_module_load@load.html
+    - bat-dg1-5:          [PASS][21] -> [ABORT][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-5/igt@i915_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-5/igt@i915_module_load@load.html
+    - fi-pnv-d510:        NOTRUN -> [ABORT][23]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-pnv-d510/igt@i915_module_load@load.html
+    - bat-dg1-7:          [PASS][24] -> [ABORT][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-7/igt@i915_module_load@load.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-7/igt@i915_module_load@load.html
+    - bat-jsl-3:          [PASS][26] -> [ABORT][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-jsl-3/igt@i915_module_load@load.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-jsl-3/igt@i915_module_load@load.html
+    - fi-glk-j4005:       [PASS][28] -> [ABORT][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-glk-j4005/igt@i915_module_load@load.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-glk-j4005/igt@i915_module_load@load.html
+    - bat-adlp-9:         [PASS][30] -> [ABORT][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlp-9/igt@i915_module_load@load.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlp-9/igt@i915_module_load@load.html
+    - fi-skl-guc:         [PASS][32] -> [ABORT][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-skl-guc/igt@i915_module_load@load.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-skl-guc/igt@i915_module_load@load.html
+    - bat-dg2-11:         [PASS][34] -> [ABORT][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-11/igt@i915_module_load@load.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-11/igt@i915_module_load@load.html
+    - fi-kbl-soraka:      [PASS][36] -> [ABORT][37]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-soraka/igt@i915_module_load@load.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-soraka/igt@i915_module_load@load.html
+    - bat-dg1-6:          [PASS][38] -> [ABORT][39]
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-6/igt@i915_module_load@load.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-6/igt@i915_module_load@load.html
+    - fi-kbl-7567u:       [PASS][40] -> [ABORT][41]
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-7567u/igt@i915_module_load@load.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-7567u/igt@i915_module_load@load.html
+    - bat-adln-1:         [PASS][42] -> [ABORT][43]
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adln-1/igt@i915_module_load@load.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adln-1/igt@i915_module_load@load.html
+    - fi-cfl-8700k:       [PASS][44] -> [ABORT][45]
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-8700k/igt@i915_module_load@load.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-8700k/igt@i915_module_load@load.html
+    - fi-elk-e7500:       [PASS][46] -> [ABORT][47]
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-elk-e7500/igt@i915_module_load@load.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-elk-e7500/igt@i915_module_load@load.html
+    - fi-bsw-nick:        [PASS][48] -> [ABORT][49]
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-bsw-nick/igt@i915_module_load@load.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-bsw-nick/igt@i915_module_load@load.html
+    - bat-adlm-1:         [PASS][50] -> [ABORT][51]
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlm-1/igt@i915_module_load@load.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlm-1/igt@i915_module_load@load.html
+    - bat-rplp-1:         [PASS][52] -> [ABORT][53]
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rplp-1/igt@i915_module_load@load.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rplp-1/igt@i915_module_load@load.html
+    - fi-tgl-1115g4:      [PASS][54] -> [ABORT][55]
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-tgl-1115g4/igt@i915_module_load@load.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-tgl-1115g4/igt@i915_module_load@load.html
+    - bat-dg2-9:          [PASS][56] -> [ABORT][57]
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-9/igt@i915_module_load@load.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-9/igt@i915_module_load@load.html
+    - fi-kbl-x1275:       [PASS][58] -> [ABORT][59]
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-x1275/igt@i915_module_load@load.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-x1275/igt@i915_module_load@load.html
+    - fi-hsw-4770:        [PASS][60] -> [ABORT][61]
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-hsw-4770/igt@i915_module_load@load.html
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-hsw-4770/igt@i915_module_load@load.html
+    - fi-cfl-8109u:       [PASS][62] -> [ABORT][63]
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-8109u/igt@i915_module_load@load.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-8109u/igt@i915_module_load@load.html
+    - bat-rpls-2:         [PASS][64] -> [ABORT][65]
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rpls-2/igt@i915_module_load@load.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rpls-2/igt@i915_module_load@load.html
+    - fi-ivb-3770:        [PASS][66] -> [ABORT][67]
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-ivb-3770/igt@i915_module_load@load.html
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-ivb-3770/igt@i915_module_load@load.html
+    - bat-dg2-8:          [PASS][68] -> [ABORT][69]
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-8/igt@i915_module_load@load.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-8/igt@i915_module_load@load.html
+    - fi-kbl-guc:         [PASS][70] -> [ABORT][71]
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-guc/igt@i915_module_load@load.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-guc/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109714v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-atsm-1:         NOTRUN -> [SKIP][72] ([i915#2582]) +4 similar issues
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@fbdev@eof.html
+
+  * igt@gem_mmap@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][73] ([i915#4083])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_mmap@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][74] ([i915#4077]) +2 similar issues
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][75] ([i915#4079]) +1 similar issue
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_module_load@load:
+    - fi-cfl-guc:         [PASS][76] -> [ABORT][77] ([i915#8141])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-guc/igt@i915_module_load@load.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-guc/igt@i915_module_load@load.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-atsm-1:         NOTRUN -> [SKIP][78] ([i915#6621])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-atsm-1:         NOTRUN -> [SKIP][79] ([i915#6645])
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_addfb_basic@size-max:
+    - bat-atsm-1:         NOTRUN -> [SKIP][80] ([i915#6077]) +36 similar issues
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_addfb_basic@size-max.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][81] ([i915#6078]) +19 similar issues
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_flip@basic-plain-flip:
+    - bat-atsm-1:         NOTRUN -> [SKIP][82] ([i915#6166]) +3 similar issues
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_flip@basic-plain-flip.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-atsm-1:         NOTRUN -> [SKIP][83] ([i915#6093]) +3 similar issues
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][84] ([i915#1836]) +6 similar issues
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][85] ([i915#7357])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-atsm-1:         NOTRUN -> [SKIP][86] ([i915#1072]) +3 similar issues
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][87] ([i915#6094])
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-atsm-1:         NOTRUN -> [SKIP][88] ([fdo#109295] / [i915#6078])
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-atsm-1:         NOTRUN -> [SKIP][89] ([fdo#109295] / [i915#4077]) +1 similar issue
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-atsm-1:         NOTRUN -> [SKIP][90] ([fdo#109295]) +3 similar issues
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-write.html
+
+  
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#8141]: https://gitlab.freedesktop.org/drm/intel/issues/8141
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12772 -> Patchwork_109714v5
+
+  CI-20190529: 20190529
+  CI_DRM_12772: 3314558074e70436f4a70b30064cf526d52297cc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7170: e6d15f2d2f299ce70206a40609bebf661f7fdc65 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109714v5: 3314558074e70436f4a70b30064cf526d52297cc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ebeaa1176a10 drm/i915/mtl: Pin assignment for TypeC
+d645c5272da0 drm/i915/mtl: TypeC HPD live status query
+05cf34218df5 drm/i915/mtl: Power up TCSS
+2b99d2ee01f9 drm/i915/mtl: Define mask for DDI AUX interrupts
+9d7ecf304585 drm/i915/mtl: MTL PICA hotplug detection
+244364820212 drm/i915/mtl: Enable TC ports
+cf863e26f7bf drm/i915/mtl: Readout Thunderbolt HW state
+7ab027e621fb drm/i915/mtl: Enabling/disabling sequence Thunderbolt pll
+f81beb4e6371 drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA
+347bb5fa790e drm/i915/mtl: Add voltage swing sequence for C20
+4332be862020 drm/i915/mtl: C20 HDMI state calculations
+ec5219433add drm/i915/mtl: C20 port clock calculation
+48c3b8ccfe00 drm/i915/mtl: Dump C20 pll hw state
+c7edaa513e60 drm/i915/mtl: C20 HW readout
+734ea438cc30 drm/i915/mtl: C20 PLL programming
+4a9abc672c13 drm/i915/mtl: Add support for PM DEMAND
+13b27e31a38b drm/i915/mtl: Add vswing programming for C10 phys
+dd3f3fde5af6 drm/i915/mtl: Add C10 phy programming for HDMI
+75867b941f40 drm/i915/mtl: Add Support for C10 PHY message bus and pll programming
+714912c6d117 drm/i915/mtl: Create separate reg file for PICA registers
+1ed9e0fdf606 drm/i915/mtl: Add DP rates
+23e563ee2c90 drm/i915/mtl: Initial DDI port setup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/index.html
+
+--===============4486196064897939108==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: Add C10 and C20 phy support (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109714/">https://patchwork.freedesktop.org/series/109714/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12772 -&gt; Patchwork_109714v5</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_109714v5 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_109714v5, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/index.html</p>
+<h2>Participating hosts (38 -&gt; 39)</h2>
+<p>Additional (2): bat-atsm-1 fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109714v5:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-ilk-650/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-ilk-650/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-jsl-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-jsl-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-blb-e6850/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-blb-e6850/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-bsw-n3050/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-bsw-n3050/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rpls-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rpls-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlp-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlp-6/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-rkl-11600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-rkl-11600/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-skl-6600u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-skl-6600u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-adls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adls-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adls-5/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-apl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-apl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-5/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-pnv-d510/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-7/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-7/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-jsl-3/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-jsl-3/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-glk-j4005/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-glk-j4005/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlp-9/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-skl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-skl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-11/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-11/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-soraka/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-soraka/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg1-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg1-6/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-7567u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adln-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adln-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-8700k/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-elk-e7500/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-elk-e7500/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-bsw-nick/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-bsw-nick/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-adlm-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-adlm-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rplp-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rplp-1/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-tgl-1115g4/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-tgl-1115g4/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-9/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-x1275/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-x1275/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-hsw-4770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-hsw-4770/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-8109u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-8109u/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-rpls-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-rpls-2/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-ivb-3770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-ivb-3770/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/bat-dg2-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-dg2-8/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-kbl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-kbl-guc/igt@i915_module_load@load.html">ABORT</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109714v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12772/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/fi-cfl-guc/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8141">i915#8141</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@size-max:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) +36 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>) +19 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_flip@basic-plain-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6166">i915#6166</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6093">i915#6093</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7357">i915#7357</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6094">i915#6094</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109714v5/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12772 -&gt; Patchwork_109714v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12772: 3314558074e70436f4a70b30064cf526d52297cc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7170: e6d15f2d2f299ce70206a40609bebf661f7fdc65 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109714v5: 3314558074e70436f4a70b30064cf526d52297cc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ebeaa1176a10 drm/i915/mtl: Pin assignment for TypeC<br />
+d645c5272da0 drm/i915/mtl: TypeC HPD live status query<br />
+05cf34218df5 drm/i915/mtl: Power up TCSS<br />
+2b99d2ee01f9 drm/i915/mtl: Define mask for DDI AUX interrupts<br />
+9d7ecf304585 drm/i915/mtl: MTL PICA hotplug detection<br />
+244364820212 drm/i915/mtl: Enable TC ports<br />
+cf863e26f7bf drm/i915/mtl: Readout Thunderbolt HW state<br />
+7ab027e621fb drm/i915/mtl: Enabling/disabling sequence Thunderbolt pll<br />
+f81beb4e6371 drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA<br />
+347bb5fa790e drm/i915/mtl: Add voltage swing sequence for C20<br />
+4332be862020 drm/i915/mtl: C20 HDMI state calculations<br />
+ec5219433add drm/i915/mtl: C20 port clock calculation<br />
+48c3b8ccfe00 drm/i915/mtl: Dump C20 pll hw state<br />
+c7edaa513e60 drm/i915/mtl: C20 HW readout<br />
+734ea438cc30 drm/i915/mtl: C20 PLL programming<br />
+4a9abc672c13 drm/i915/mtl: Add support for PM DEMAND<br />
+13b27e31a38b drm/i915/mtl: Add vswing programming for C10 phys<br />
+dd3f3fde5af6 drm/i915/mtl: Add C10 phy programming for HDMI<br />
+75867b941f40 drm/i915/mtl: Add Support for C10 PHY message bus and pll programming<br />
+714912c6d117 drm/i915/mtl: Create separate reg file for PICA registers<br />
+1ed9e0fdf606 drm/i915/mtl: Add DP rates<br />
+23e563ee2c90 drm/i915/mtl: Initial DDI port setup</p>
+
+</body>
+</html>
+
+--===============4486196064897939108==--
