@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CD56A143D
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 01:18:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 646956A1444
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 01:23:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FEC510E383;
-	Fri, 24 Feb 2023 00:18:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C8010E383;
+	Fri, 24 Feb 2023 00:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE8A710E354;
- Fri, 24 Feb 2023 00:17:59 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E8610E371
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Feb 2023 00:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677197879; x=1708733879;
+ t=1677198204; x=1708734204;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=FULYhg+1KF9ulco4OzwlD5L2XkTnU1ez1BDObstspok=;
- b=WlI0T8d8z/wYrwYm2Ci9jdk5Me70BRCLrApKN3rAkohcdy03UiH9XD+5
- olOfLHEHJTEWP6y3a7OGUnkQSn/n1EO3pWBFBCH3A27TQMtK913Zyalen
- A+9oY9HpWxeWSUGB5SHn+UzzWPas4pJddgrSC6WsUMNRIkv190nD/vyEL
- ZHVBbEtyrKIp3hr6upG7W9qyOdkmVPOdL6JMhbcy837/qV3SL1XSOzhr8
- k0CMWwdEGojpHqZqGeXyusYdZ/n1343qeRvVtn21JIZl6DsNNIRFYfdm4
- iD6RWh5r3f6yzN57M8rmLIz6zoRChibBFBxLZIc7v0S25r2fDW+mEb+Nz g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="313748701"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="313748701"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 16:17:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="674726305"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="674726305"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga007.fm.intel.com with ESMTP; 23 Feb 2023 16:17:59 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
+ bh=kAJvAfPdL1iGnoUIopHc0fChEf/F+DtbX6G4i7iA5zU=;
+ b=aSqOG+2wLoHwNEL/CRfh4cGLlrN5wHv52oN/4p+SqMoxd55UZKmsM50P
+ L5C8jGI5klz6aJwVwBGgyfelTGzohYqQ7+bYj+w532m467ni4CN1UQGF7
+ O0UIe9HEfiDgzrLPLeAhPLmUrPr9tI2JV9K/fVQi58sn9SJ5l/7PI7fg9
+ 0a0JunvLmyunKl8mb7TR2FVOUZoLOFKeN2CA0fckf9u6D4scPQNzudl5u
+ F8+gQ6bRMq76u+g++5c+ZkCGEamScHnVKapvAAO8jtCY15ssrus4mAyvm
+ S7ogGGYTD8OTltLFf0NNXKR6fQWMkRw3eNOVzCxyrCkzT5dOHh3wML/OL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="333366874"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="333366874"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 16:23:10 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="815547945"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="815547945"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 16:23:10 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 16:17:58 -0800
-Message-Id: <20230224001758.544817-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
+Date: Thu, 23 Feb 2023 16:22:59 -0800
+Message-Id: <20230224002300.3578985-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gsc: Fix the Driver-FLR completion
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Whitelist COMMON_SLICE_CHICKEN3
+ for UMD access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,69 +55,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
-	Vivi@freedesktop.org, dri-devel@lists.freedesktop.org,
-	Gupta@freedesktop.org, Rodrigo <rodrigo.vivi@intel.com>
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Driver-FLR flow may inadvertently exit early before the full
-completion of the re-init of the internal HW state if we only poll
-GU_DEBUG Bit31 (polling for it to toggle from 0 -> 1). Instead
-we need a two-step completion wait-for-completion flow that also
-involves GU_CNTL. See the patch and new code comments for detail.
-This is new direction from HW architecture folks.
+A recommended tuning setting for both gen12 and Xe_HP platforms requires
+that we grant userspace r/w access to the COMMON_SLICE_CHICKEN3
+register.
 
-   v2: - Add error message for the teardown timeout (Anshuman)
-       - Don't duplicate code in comments (Jani)
-   v3: - Add get/put runtime-pm for this function. Though
-         not functionally required during unload, its so the uncore
-	 doesn't complain.
-   v4: - Remove the get/put runtime-pm - that was for a prior
-         version of this patch (not needed for drm-managed callback).
-       - Remove the fixes tag since this is only for MTL and MTL
-         still needs force probe (Daniele).
-       - Bit 31 of GU_CNTL should be DRIVERFLR instead of
-         DRIVERFLR_STATUS (Daniele).
-
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Tested-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Bspec: 73993, 73994, 31870, 68331
+Cc: Dongwon Kim <dongwon.kim@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/intel_uncore.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+The bspec update to add COMMON_SLICE_CHICKEN3 to the tuning guide pages
+is still pending at the moment, but should be finalized shortly.
 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index f018da7ebaac..7b8fd3b7ff82 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2749,14 +2749,25 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
- 	/* Trigger the actual Driver-FLR */
- 	intel_uncore_rmw_fw(uncore, GU_CNTL, 0, DRIVERFLR);
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 25 ++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 1ef9c9fa2eff..0444c715998a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2194,6 +2194,10 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
  
-+	/* Wait for hardware teardown to complete */
-+	ret = intel_wait_for_register_fw(uncore, GU_CNTL,
-+					 DRIVERFLR, 0,
-+					 flr_timeout_ms);
-+	if (ret) {
-+		drm_err(&i915->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
-+		return;
-+	}
+ 		/* Wa_1806527549:tgl */
+ 		whitelist_reg(w, HIZ_CHICKEN);
 +
-+	/* Wait for hardware/firmware re-init to complete */
- 	ret = intel_wait_for_register_fw(uncore, GU_DEBUG,
- 					 DRIVERFLR_STATUS, DRIVERFLR_STATUS,
- 					 flr_timeout_ms);
- 	if (ret) {
--		drm_err(&i915->drm, "wait for Driver-FLR completion failed! %d\n", ret);
-+		drm_err(&i915->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
- 		return;
- 	}
++		/* Required by recommended tuning setting (not a workaround) */
++		whitelist_reg(w, GEN11_COMMON_SLICE_CHICKEN3);
++
+ 		break;
+ 	default:
+ 		break;
+@@ -2227,6 +2231,9 @@ static void dg2_whitelist_build(struct intel_engine_cs *engine)
+ 					  RING_FORCE_TO_NONPRIV_ACCESS_RD |
+ 					  RING_FORCE_TO_NONPRIV_RANGE_4);
  
-+	/* Clear sticky completion status */
- 	intel_uncore_write_fw(uncore, GU_DEBUG, DRIVERFLR_STATUS);
++		/* Required by recommended tuning setting (not a workaround) */
++		whitelist_mcr_reg(w, XEHP_COMMON_SLICE_CHICKEN3);
++
+ 		break;
+ 	case COMPUTE_CLASS:
+ 		/* Wa_16011157294:dg2_g10 */
+@@ -2264,6 +2271,22 @@ static void pvc_whitelist_build(struct intel_engine_cs *engine)
+ 	blacklist_trtt(engine);
  }
  
++static void mtl_whitelist_build(struct intel_engine_cs *engine)
++{
++	struct i915_wa_list *w = &engine->whitelist;
++
++	switch (engine->class) {
++	case RENDER_CLASS:
++		/* Required by recommended tuning setting (not a workaround) */
++		whitelist_mcr_reg(w, XEHP_COMMON_SLICE_CHICKEN3);
++
++		break;
++	default:
++		break;
++	}
++
++}
++
+ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_private *i915 = engine->i915;
+@@ -2272,7 +2295,7 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
+ 	wa_init_start(w, engine->gt, "whitelist", engine->name);
+ 
+ 	if (IS_METEORLAKE(i915))
+-		; /* noop; none at this time */
++		mtl_whitelist_build(engine);
+ 	else if (IS_PONTEVECCHIO(i915))
+ 		pvc_whitelist_build(engine);
+ 	else if (IS_DG2(i915))
 -- 
-2.39.0
+2.39.1
 
