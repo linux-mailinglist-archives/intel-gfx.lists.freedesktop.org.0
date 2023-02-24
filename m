@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2666A19E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 11:20:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 344716A1A16
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 11:23:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A8910E8B3;
-	Fri, 24 Feb 2023 10:20:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FB6710E878;
+	Fri, 24 Feb 2023 10:23:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8B610E8AD
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Feb 2023 10:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677233993; x=1708769993;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IwPYV4oAA8CfG3FNxbtEZqr0ogXh0Y3BWHYn/P8yJcI=;
- b=j4Fn0lZ4uxy0SZcv+uQuMZtbT5TSZ+1wNJ6E68qP/y65rHmZssmGxEes
- e0niBQBDOdBloVlEYvh3KTBH+TV8sJ5n/2HkBPICmqHM1K7Dcs99xq7qq
- EXid7J3Xjh9KKw68rkut3ZtIzVRd1KMxpgYBKiTi2vMEpkZPCL1t00bnA
- 7AYkhnzRaqEJnG/j0x6obzIuS44ourLFvitF/kTrasaJ3gV+xMVZO7TGs
- b5IGsFTtVdP5mxE19hAyxmh+xBK218YB2UrQimJQy3rij0JWkWdM+T6aG
- Cr8bohbQLp0E9j4r97QrWa5+ohLDftSOec/GVYZZ9+pNwl8a0Ly395l/Z w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="332129932"
-X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; d="scan'208";a="332129932"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2023 02:19:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="672846670"
-X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; d="scan'208";a="672846670"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga002.jf.intel.com with ESMTP; 24 Feb 2023 02:19:42 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Feb 2023 12:13:56 +0200
-Message-Id: <20230224101356.2390838-23-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230224101356.2390838-1-mika.kahola@intel.com>
-References: <20230224101356.2390838-1-mika.kahola@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F15EC10E878;
+ Fri, 24 Feb 2023 10:23:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E8C50A0BCB;
+ Fri, 24 Feb 2023 10:23:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 22/22] drm/i915/mtl: Pin assignment for TypeC
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 24 Feb 2023 10:23:51 -0000
+Message-ID: <167723423192.4565.11431432261582258157@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/helpers=3A_Make_the_suballocation_manager_drm_generic_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,82 +41,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+== Series Details ==
 
-Unlike previous platforms that used PORT_TX_DFLEXDPSP
-for max_lane calculation, MTL uses only PORT_TX_DFLEXPA1
-from which the max_lanes has to be calculated.
+Series: drm/helpers: Make the suballocation manager drm generic (rev2)
+URL   : https://patchwork.freedesktop.org/series/114299/
+State : warning
 
-Bspec: 50235, 65380
+== Summary ==
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Jose Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_tc.c | 30 +++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Error: dim checkpatch failed
+9a396adf2225 drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:66: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#66: 
+new file mode 100644
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 5756daac91d9..694d74088980 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -15,6 +15,10 @@
- #include "intel_mg_phy_regs.h"
- #include "intel_tc.h"
- 
-+#define DP_PIN_ASSIGNMENT_C	0x3
-+#define DP_PIN_ASSIGNMENT_D	0x4
-+#define DP_PIN_ASSIGNMENT_E	0x5
-+
- static const char *tc_port_mode_name(enum tc_port_mode mode)
- {
- 	static const char * const names[] = {
-@@ -147,6 +151,29 @@ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
- 	       DP_PIN_ASSIGNMENT_SHIFT(dig_port->tc_phy_fia_idx);
- }
- 
-+static int mtl_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	intel_wakeref_t wakeref;
-+	u32 pin_mask;
-+
-+	assert_tc_cold_blocked(dig_port);
-+
-+	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
-+		pin_mask = intel_tc_port_get_pin_assignment_mask(dig_port);
-+
-+	switch(pin_mask) {
-+	default:
-+		MISSING_CASE(pin_mask);
-+		fallthrough;
-+	case DP_PIN_ASSIGNMENT_D:
-+		return 2;
-+	case DP_PIN_ASSIGNMENT_C:
-+	case DP_PIN_ASSIGNMENT_E:
-+		return 4;
-+	}
-+}
-+
- int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
- {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-@@ -156,6 +183,9 @@ int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
- 	if (dig_port->tc_mode != TC_PORT_DP_ALT)
- 		return 4;
- 
-+	if (DISPLAY_VER(i915) >= 14)
-+		return mtl_tc_port_get_pin_assignment_mask(dig_port);
-+
- 	assert_tc_cold_blocked(dig_port);
- 
- 	lane_mask = 0;
--- 
-2.34.1
+total: 0 errors, 1 warnings, 0 checks, 584 lines checked
+32ed88e340b0 drm/amd: Convert amdgpu to use suballocation helper.
+-:62: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#62: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu.h:430:
++	uint64_t			gpu_addr;
+
+total: 0 errors, 0 warnings, 1 checks, 487 lines checked
+c71372f410ef drm/radeon: Use the drm suballocation manager implementation.
+-:95: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#95: FILE: drivers/gpu/drm/radeon/radeon.h:518:
++	uint64_t			gpu_addr;
+
+-:156: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#156: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
+
+-:156: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#156: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
+
+-:166: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#166: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
+
+-:166: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#166: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
+
+-:211: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#211: FILE: drivers/gpu/drm/radeon/radeon_object.h:200:
++extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
+
+-:214: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#214: FILE: drivers/gpu/drm/radeon/radeon_object.h:203:
++extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
+
+total: 0 errors, 0 warnings, 7 checks, 551 lines checked
+
 
