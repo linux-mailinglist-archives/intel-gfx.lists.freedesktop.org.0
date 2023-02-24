@@ -2,65 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E317E6A22EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 21:03:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26EF26A2342
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Feb 2023 21:48:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BB4610ECFA;
-	Fri, 24 Feb 2023 20:03:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 592C110E26F;
+	Fri, 24 Feb 2023 20:48:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
- [IPv6:2607:f8b0:4864:20::1033])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A9C10ED21;
- Fri, 24 Feb 2023 20:03:13 +0000 (UTC)
-Received: by mail-pj1-x1033.google.com with SMTP id
- cp7-20020a17090afb8700b0023756229427so4014536pjb.1; 
- Fri, 24 Feb 2023 12:03:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9VcsUu3unD+maL4g/jB1gMbq//XnoqiDQvEiNIyt7mI=;
- b=MmJRRhMlaxk2Tg561LzgJumOupNCmYxSqE7V/Ec4vvD7vgC4kK8CHIMXMadg+Xn7fz
- WRhZENogAOymwJlIY3/ReOiPI0zxW8vspbonbRb93B5Q8kxBWWoBRTQ0MKyVDoVKIJwa
- ufThHyWP8vkdS6gWl7RjDPFM9yNrIjO5d4yS0b+RG146pN6q8ZO96+XVjSdhRWaZ26+J
- HHOUr2cqCDB4qy3+aT5idFgJyBcp3zw21dthn2udYd881vQ2HwePLZbEh383xwwMTPEh
- pKfuNef1SIGCQ65/2/Qh1OPqT+MpiDaAFbfHeeY6gPX9MQA+4ExkN//uxnS462CbtA/O
- B1Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9VcsUu3unD+maL4g/jB1gMbq//XnoqiDQvEiNIyt7mI=;
- b=AsU/qBuFAEiTtw+5OTPS6tN9ifKh0sogy2wDF5KSaV4HCg3FQHkIOmhnRcwu4Lv2ul
- BJeOIbSNkMXvwLPGd2S/tQd4clK99FY2F523jHCy5LVvBNoVboqw2MlTx117eI/iB/px
- Rq9bupxKc6BvE2YDVdXcdGixqUYvg04vpNOFTBlUJ+5VQWxT3fEKwU32ug8uGsHTh7g4
- Y05kznj6tn642TGms/4vibdIJjK29MU9Yyqpe71Vh57Wq7pX//oV8cLZ5fRnK72WT7ou
- 7nbFR+YJB41kLdGEMY/5lC7x9ddHOwsIHDjylRzviYVtDIYlYQ/cXLiFlZYbwBJjw3/w
- yOHQ==
-X-Gm-Message-State: AO0yUKUbckw3o4DCvhCBSsGCSpXqivLfNYrQopLM4GA877S3fhiDwyGx
- inVMop99/oOX6Rnr7tw7NyhCyf7MAkQ=
-X-Google-Smtp-Source: AK7set95tBC99k0jthHkFEIkO7gTyH442ymUGtLpwciZhI446KatM88hJ0Xu7olLG076L8fTPf5nTg==
-X-Received: by 2002:a17:902:fa88:b0:19a:a516:ba46 with SMTP id
- lc8-20020a170902fa8800b0019aa516ba46mr16886185plb.41.1677268992534; 
- Fri, 24 Feb 2023 12:03:12 -0800 (PST)
-Received: from localhost ([2a00:79e1:abd:4a00:61b:48ed:72ab:435b])
- by smtp.gmail.com with ESMTPSA id
- t13-20020a1709028c8d00b0019a96a6543esm8237986plo.184.2023.02.24.12.03.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Feb 2023 12:03:12 -0800 (PST)
-From: Rob Clark <robdclark@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri, 24 Feb 2023 12:01:43 -0800
-Message-Id: <20230224200155.2510320-16-robdclark@gmail.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230224200155.2510320-1-robdclark@gmail.com>
-References: <20230224200155.2510320-1-robdclark@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 15/15] drm/i915: Add deadline based boost
- support
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 883CF10E26F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Feb 2023 20:48:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677271702; x=1708807702;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=/9U6qMOyHqtoOpz7ZaNgCyLRM8Sk8rjvdZsozHTPw4A=;
+ b=aWTOEtLSWTZxYTDOUD1GPp/z+Tp1UmAWL8C/oVm0SCjlBp6I9BDg4Ao/
+ XLuQJOHAwRfxTxTwk5RHdyShpEPW0pUfRg7XVgknkhuOAaM9vUOJPo24i
+ YanrcEKWHDI3WDb1Zq5LDjY070UwFfeexaOIZ+LEebZvqo91IJkPXAM2F
+ HQp0carDPihSsXTtEw4bA8b4DGBSX9cdiyWdCt2BTerR0+/dnZ7LJdVQ3
+ RTQ0vchlLWK0oPSnz/F5TAceLgf0Ln/m27ml6xob47tMswSpL+pGPbTAf
+ LWeSOWIYL8lyIcblKnrNGv3Rv6bmX5ZP4cZg/jY8C84BDnYPqngaTjFNB g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="419809607"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; d="scan'208";a="419809607"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2023 12:48:22 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="666279818"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; d="scan'208";a="666279818"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.193.78])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2023 12:48:21 -0800
+Date: Fri, 24 Feb 2023 12:48:09 -0800
+Message-ID: <87v8jqaiye.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <Y/kR3aB0vG89p4dL@orsosgc001.jf.intel.com>
+References: <20230217005850.2511422-1-umesh.nerlige.ramappa@intel.com>
+ <20230217005850.2511422-9-umesh.nerlige.ramappa@intel.com>
+ <87a616bmne.wl-ashutosh.dixit@intel.com>
+ <Y/kR3aB0vG89p4dL@orsosgc001.jf.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH v2 8/9] drm/i915/perf: Add engine class
+ instance parameters to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,68 +63,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
- open list <linux-kernel@vger.kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Pekka Paalanen <ppaalanen@gmail.com>, Luben Tuikov <luben.tuikov@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- freedreno@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
+On Fri, 24 Feb 2023 11:37:01 -0800, Umesh Nerlige Ramappa wrote:
+>
+> On Tue, Feb 21, 2023 at 03:53:57PM -0800, Dixit, Ashutosh wrote:
+> > On Thu, 16 Feb 2023 16:58:49 -0800, Umesh Nerlige Ramappa wrote:
+> >>
+> >
+> > Hi Umesh,
+> >
+> > Patch is mostly ok but a few questions below:
+> >
+> >> Current implementation of perf defaults to render and configures the
+> >> default OAG unit. Since there are more OA units on newer hardware, allow
+> >> user to pass engine class and instance to program specific OA units.
+> >
+> > I think we should more clearly say here that the OA unit is identified by
+> > means of one of the engines (class/instance of that engine) associated with
+> > that OA unit. The engine -> OA unit mapping is a static mapping depending
+> > on the particular platform. Something like that.
+> >
+> >>
+> >> UMD specific changes for GPUvis support:
+> >> https://patchwork.freedesktop.org/patch/522827/?series=114023
+> >> https://patchwork.freedesktop.org/patch/522822/?series=114023
+> >> https://patchwork.freedesktop.org/patch/522826/?series=114023
+> >> https://patchwork.freedesktop.org/patch/522828/?series=114023
+> >> https://patchwork.freedesktop.org/patch/522816/?series=114023
+> >> https://patchwork.freedesktop.org/patch/522825/?series=114023
+> >>
+> >> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/i915_perf.c | 49 +++++++++++++++++++-------------
+> >>  include/uapi/drm/i915_drm.h      | 20 +++++++++++++
+> >>  2 files changed, 49 insertions(+), 20 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> >> index d3a1892c93be..f028df812067 100644
+> >> --- a/drivers/gpu/drm/i915/i915_perf.c
+> >> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> >> @@ -4035,40 +4035,29 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> >>	struct drm_i915_gem_context_param_sseu user_sseu;
+> >>	u64 __user *uprop = uprops;
+> >>	bool config_sseu = false;
+> >> +	u8 class, instance;
+> >>	u32 i;
+> >>	int ret;
+> >>
+> >>	memset(props, 0, sizeof(struct perf_open_properties));
+> >>	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
+> >>
+> >> -	if (!n_props) {
+> >> -		drm_dbg(&perf->i915->drm,
+> >> -			"No i915 perf properties given\n");
+> >> -		return -EINVAL;
+> >> -	}
+> >> -
+> >> -	/* At the moment we only support using i915-perf on the RCS. */
+> >> -	props->engine = intel_engine_lookup_user(perf->i915,
+> >> -						 I915_ENGINE_CLASS_RENDER,
+> >> -						 0);
+> >> -	if (!props->engine) {
+> >> -		drm_dbg(&perf->i915->drm,
+> >> -			"No RENDER-capable engines\n");
+> >> -		return -EINVAL;
+> >> -	}
+> >> -
+> >>	/* Considering that ID = 0 is reserved and assuming that we don't
+> >>	 * (currently) expect any configurations to ever specify duplicate
+> >>	 * values for a particular property ID then the last _PROP_MAX value is
+> >>	 * one greater than the maximum number of properties we expect to get
+> >>	 * from userspace.
+> >>	 */
+> >> -	if (n_props >= DRM_I915_PERF_PROP_MAX) {
+> >> +	if (!n_props || n_props >= DRM_I915_PERF_PROP_MAX) {
+> >>		drm_dbg(&perf->i915->drm,
+> >> -			"More i915 perf properties specified than exist\n");
+> >> +			"Invalid no. of i915 perf properties given\n");
+> >
+> > Invalid number
+> >
+> >>		return -EINVAL;
+> >>	}
+> >>
+> >> +	/* Defaults when class:instance is not passed */
+> >> +	class = I915_ENGINE_CLASS_RENDER;
+> >> +	instance = 0;
+> >> +
+> >>	for (i = 0; i < n_props; i++) {
+> >>		u64 oa_period, oa_freq_hz;
+> >>		u64 id, value;
+> >> @@ -4189,7 +4178,13 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> >>			}
+> >>			props->poll_oa_period = value;
+> >>			break;
+> >> -		case DRM_I915_PERF_PROP_MAX:
+> >> +		case DRM_I915_PERF_PROP_OA_ENGINE_CLASS:
+> >> +			class = (u8)value;
+> >> +			break;
+> >> +		case DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE:
+> >> +			instance = (u8)value;
+> >> +			break;
+> >> +		default:
+> >>			MISSING_CASE(id);
+> >>			return -EINVAL;
+> >>		}
+> >> @@ -4197,6 +4192,17 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> >>		uprop += 2;
+> >>	}
+> >>
+> >> +	props->engine = intel_engine_lookup_user(perf->i915, class, instance);
+> >> +	if (!props->engine) {
+> >> +		drm_dbg(&perf->i915->drm,
+> >> +			"OA engine class and instance invalid %d:%d\n",
+> >> +			class, instance);
+> >> +		return -EINVAL;
+> >> +	}
+> >> +
+> >> +	if (!engine_supports_oa(props->engine))
+> >> +		return -EINVAL;
+> >
+> > Need drm_dbg here too?
+> >
+> >> +
+> >>	if (config_sseu) {
+> >>		ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
+> >>		if (ret) {
+> >> @@ -5208,8 +5214,11 @@ int i915_perf_ioctl_version(void)
+> >>	 *
+> >>	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
+> >>	 *    interval for the hrtimer used to check for OA data.
+> >> +	 *
+> >> +	 * 6: Add DRM_I915_PERF_PROP_OA_ENGINE_CLASS and
+> >> +	 *    DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE
+> >>	 */
+> >> -	return 5;
+> >> +	return 6;
+> >
+> > Do we need a separate revision for this? Maybe club it with OAM support
+> > since that is where this is getting introduced?
+>
+> It's a separate revision to identify support for multiple GTs, even without
+> OAM.
 
-v2: rebase
+I was thinking that first there are no such products (xehpsdv was, but is
+now dead I believe) and even if it there were the series will be merged
+into a single kernel version so a single version would suffice.
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Maybe you mean that each patch which touches the uapi should up the OA
+version?
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 7503dcb9043b..44491e7e214c 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -97,6 +97,25 @@ static bool i915_fence_enable_signaling(struct dma_fence *fence)
- 	return i915_request_enable_breadcrumb(to_request(fence));
- }
- 
-+static void i915_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
-+{
-+	struct i915_request *rq = to_request(fence);
-+
-+	if (i915_request_completed(rq))
-+		return;
-+
-+	if (i915_request_started(rq))
-+		return;
-+
-+	/*
-+	 * TODO something more clever for deadlines that are in the
-+	 * future.  I think probably track the nearest deadline in
-+	 * rq->timeline and set timer to trigger boost accordingly?
-+	 */
-+
-+	intel_rps_boost(rq);
-+}
-+
- static signed long i915_fence_wait(struct dma_fence *fence,
- 				   bool interruptible,
- 				   signed long timeout)
-@@ -182,6 +201,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
- 	.release = i915_fence_release,
-+	.set_deadline = i915_fence_set_deadline,
- };
- 
- static void irq_execute_cb(struct irq_work *wrk)
--- 
-2.39.1
+In any case, since it is just a version number, no issues, either way is ok
+with me.
 
+Thanks.
+--
+Ashutosh
+
+> >
+> >>  }
+> >>
+> >>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> >> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> >> index 8df261c5ab9b..b6922b52d85c 100644
+> >> --- a/include/uapi/drm/i915_drm.h
+> >> +++ b/include/uapi/drm/i915_drm.h
+> >> @@ -2758,6 +2758,26 @@ enum drm_i915_perf_property_id {
+> >>	 */
+> >>	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
+> >>
+> >> +	/**
+> >> +	 * In platforms with multiple OA buffers, the engine class instance must
+> >> +	 * be passed to open a stream to a OA unit corresponding to the engine.
+> >> +	 * Multiple engines may be mapped to the same OA unit.
+> >> +	 *
+> >> +	 * In addition to the class:instance, if a gem context is also passed, then
+> >> +	 * 1) the report headers of OA reports from other engines are squashed.
+> >
+> > Other engines or you mean other contexts?
+> >
+> >> +	 * 2) OAR is enabled for the class:instance
+> >
+> > For render engine?
+> >
+> > Maybe the above comments need to be more crisp since they are in i915_drm.h
+> > or is it only I who is confused :)
+> >
+> >> +	 *
+> >> +	 * This property is available in perf revision 6.
+> >> +	 */
+> >> +	DRM_I915_PERF_PROP_OA_ENGINE_CLASS,
+> >> +
+> >> +	/**
+> >> +	 * This parameter specifies the engine instance.
+> >> +	 *
+> >> +	 * This property is available in perf revision 6.
+> >> +	 */
+> >> +	DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE,
+> >> +
+> >>	DRM_I915_PERF_PROP_MAX /* non-ABI */
+> >>  };
+> >>
+> >> --
+> >> 2.36.1
+> >>
+> >
+> > Thanks.
+> > --
+> > Ashutosh
