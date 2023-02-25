@@ -1,80 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6656A2A76
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Feb 2023 16:24:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA536A2B08
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Feb 2023 18:11:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEE4F10E0F7;
-	Sat, 25 Feb 2023 15:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C897F10E153;
+	Sat, 25 Feb 2023 17:11:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
- [IPv6:2a00:1450:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 813BB10E0F7
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Feb 2023 15:23:55 +0000 (UTC)
-Received: by mail-lj1-x236.google.com with SMTP id e9so2017628ljn.9
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Feb 2023 07:23:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=7tQ1ST2oRQj+11XFxhKGSWtAX7uC5DKCH9y9cgns8vg=;
- b=t50/VunBH/Ra4WnvtmJ5BjZx1pYG5qm0vKuzJRTZtBCfIM+RiMiCUtTd+K97t/qZoS
- 0sfIHUljNLRtYEpPJWu5BO/uyEHwqY7dV7HpjWuTHgYkfbXSUZxlJambVrhehzuaqUd0
- ArA2C9J33cEq3mKqzwlmHDm3ibysD9AChS411b7LAx/uLNOjFVocV/zDNmY/lLFIesJC
- PI3Cd3lf/EtAlciAPVpEFf3acypQcGJJ57Qq2YGb3zYnJoO0kZ80belAxrzbLDx9Di5N
- Ei8tpfW9hJjadp8VVCRrTXg7/1+Vt9Cw8Fy4XWR+O2E7kej4duaAqgEFp9f7/0WBg8xW
- LZnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7tQ1ST2oRQj+11XFxhKGSWtAX7uC5DKCH9y9cgns8vg=;
- b=AaIzfHDQipMLm44pgAd9BwRljzP840ClMCySfHDxyworpBP2LvjiN0eMvLk2bEdBSy
- XPTffQSC5/vD1PvjT4Djg4JQ2s32seoF9GP9TGjjhpOTvY4MtkcSEe3GlVPCIF6vZF9O
- TFnqIMbCthzsigkKIt0lTGfSrC3ueov8pkGYiyz66yugUh5PxExolQlCAuoZj9rFPAS9
- 9JFY5ZwqFfVYurdRlHucPkHetRJmG9nAIXGF92I2/zvLLUn85Nr1FBOAOTI3SJ1ZzsdJ
- PzcU83ECcb9oRveJLoCtq6mirizVS1NIKH7LnqeFO8Sv8Zli3QB94bEqoiu/Ajko1543
- SDiA==
-X-Gm-Message-State: AO0yUKXGyvaFGK8H/zW3XQLBHQLMrUGcBeRndqyvyxkv4P2REILj8rXL
- pVLGAengXVKcF910v2cKn2ePvQ==
-X-Google-Smtp-Source: AK7set+vqVOIMydnD+NIg0kxPNEU7GXuRbP/fWtnY0guYsa/xFbw3l5VYnw+VfxBn5ZkBNwG4TMlYw==
-X-Received: by 2002:a2e:a593:0:b0:290:5190:4ef7 with SMTP id
- m19-20020a2ea593000000b0029051904ef7mr9375286ljp.40.1677338633707; 
- Sat, 25 Feb 2023 07:23:53 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
- (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
- by smtp.gmail.com with ESMTPSA id
- z9-20020a2e4c09000000b00295a35f30e1sm196363lja.115.2023.02.25.07.23.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 25 Feb 2023 07:23:52 -0800 (PST)
-Message-ID: <f1a6ee82-9502-7ea5-fe48-f296fc7df497@linaro.org>
-Date: Sat, 25 Feb 2023 17:23:52 +0200
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB9910E14D;
+ Sat, 25 Feb 2023 17:11:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677345102; x=1708881102;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/wmzhNxDeMcFcsLck+WoGXoesP55t1mLA577Oo+iWV8=;
+ b=Zqi74QDS720c77fRW5MRilYBviP9dNeN7+dfD9QSVgvYcpe+TMBj2DmO
+ 2G0ZNMQldVj981zyneHEwmbd/Y1mah3hHUAZ8kMbLrtuiqrLgl3NWqEGU
+ sXLlsp7/x/Q8dTCGj5wQ8M7SIvHaC7sP/q5ecyYO/lCn2RCWjJeQUnLTm
+ lhP+xsGztWi8iAKTetB1kU+16q86eQV+LPk/OkRYw+DdqVQB5QQUixrDo
+ abWbP7H7tgl3eT3Zpi+vr9XmFNk+AVyRcJWZzd1emYTL84g6/cC/vwT1s
+ ZnfduqCUswBSAhj0bUFG4KFC/CVYDFuUYYChcAlPbrTX9K6ihgnd/q+kG g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="332369631"
+X-IronPort-AV: E=Sophos;i="5.97,328,1669104000"; d="scan'208";a="332369631"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2023 09:11:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="673233092"
+X-IronPort-AV: E=Sophos;i="5.97,328,1669104000"; d="scan'208";a="673233092"
+Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
+ by orsmga002.jf.intel.com with ESMTP; 25 Feb 2023 09:11:39 -0800
+Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pVy5C-0003KB-0e;
+ Sat, 25 Feb 2023 17:11:38 +0000
+Date: Sun, 26 Feb 2023 01:10:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <63fa411f.ZvVOisJt5OlLzGYF%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Content-Language: en-GB
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <1677267647-28672-1-git-send-email-quic_khsieh@quicinc.com>
- <1677267647-28672-2-git-send-email-quic_khsieh@quicinc.com>
- <42b3c193-8897-cfe9-1cae-2f9a66f7983a@linaro.org>
- <741be2a3-0208-2f40-eedf-d439c4e6795b@quicinc.com>
- <F8A4FC18-C64E-4011-BC08-18EB3B95A357@linaro.org>
- <d5ee8233-66c8-9b88-417c-6cf9cc5c84fe@quicinc.com>
- <CAA8EJpro5Q-2ZpnDJt40UhFX7Zp9oBhrto=FDOERzCDR2BDPvQ@mail.gmail.com>
- <f0dfba42-4674-3748-bf5d-39f6e1745f67@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f0dfba42-4674-3748-bf5d-39f6e1745f67@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/msm/dpu: add dsc helper
- functions
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 8232539f864ca60474e38eb42d451f5c26415856
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,181 +59,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: vkoul@kernel.org, quic_sbillaka@quicinc.com, airlied@gmail.com,
- andersson@kernel.org, freedreno@lists.freedesktop.org, dianders@chromium.org,
- dri-devel@lists.freedesktop.org, swboyd@chromium.org, agross@kernel.org,
- daniel@ffwll.ch, linux-arm-msm@vger.kernel.org, marijn.suijten@somainline.org,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- linux-kernel@vger.kernel.org
+Cc: linux-arch@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>, io-uring@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25/02/2023 02:36, Abhinav Kumar wrote:
-> 
-> 
-> On 2/24/2023 3:53 PM, Dmitry Baryshkov wrote:
->> On Sat, 25 Feb 2023 at 00:26, Abhinav Kumar 
->> <quic_abhinavk@quicinc.com> wrote:
->>> On 2/24/2023 1:36 PM, Dmitry Baryshkov wrote:
->>>> 24 февраля 2023 г. 23:23:03 GMT+02:00, Abhinav Kumar 
->>>> <quic_abhinavk@quicinc.com> пишет:
->>>>> On 2/24/2023 1:13 PM, Dmitry Baryshkov wrote:
->>>>>> On 24/02/2023 21:40, Kuogee Hsieh wrote:
->>>>>>> Add DSC helper functions based on DSC configuration profiles to 
->>>>>>> produce
->>>>>>> DSC related runtime parameters through both table look up and 
->>>>>>> runtime
->>>>>>> calculation to support DSC on DPU.
->>>>>>>
->>>>>>> There are 6 different DSC configuration profiles are supported 
->>>>>>> currently.
->>>>>>> DSC configuration profiles are differiented by 5 keys, DSC 
->>>>>>> version (V1.1),
->>>>>>> chroma (444/422/420), colorspace (RGB/YUV), bpc(8/10),
->>>>>>> bpp (6/7/7.5/8/9/10/12/15) and SCR (0/1).
->>>>>>>
->>>>>>> Only DSC version V1.1 added and V1.2 will be added later.
->>>>>>
->>>>>> These helpers should go to drivers/gpu/drm/display/drm_dsc_helper.c
->>>>>> Also please check that they can be used for i915 or for amdgpu 
->>>>>> (ideally for both of them).
->>>>>>
->>>>>
->>>>> No, it cannot. So each DSC encoder parameter is calculated based on 
->>>>> the HW core which is being used.
->>>>>
->>>>> They all get packed to the same DSC structure which is the struct 
->>>>> drm_dsc_config but the way the parameters are computed is specific 
->>>>> to the HW.
->>>>>
->>>>> This DPU file helper still uses the drm_dsc_helper's 
->>>>> drm_dsc_compute_rc_parameters() like all other vendors do but the 
->>>>> parameters themselves are very HW specific and belong to each 
->>>>> vendor's dir.
->>>>>
->>>>> This is not unique to MSM.
->>>>>
->>>>> Lets take a few other examples:
->>>>>
->>>>> AMD: 
->>>>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c#L165
->>>>>
->>>>> i915: 
->>>>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/i915/display/intel_vdsc.c#L379
->>>>
->>>> I checked several values here. Intel driver defines more bpc/bpp 
->>>> combinations, but the ones which are defined in intel_vdsc and in 
->>>> this patch seem to match. If there are major differences there, 
->>>> please point me to the exact case.
->>>>
->>>> I remember that AMD driver might have different values.
->>>>
->>>
->>> Some values in the rc_params table do match. But the rc_buf_thresh[] 
->>> doesnt.
->>
->> Because later they do:
->>
->> vdsc_cfg->rc_buf_thresh[i] = rc_buf_thresh[i] >> 6;
->>
->>>
->>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/i915/display/intel_vdsc.c#L40
->>>
->>> Vs
->>>
->>> +static u16 dpu_dsc_rc_buf_thresh[DSC_NUM_BUF_RANGES - 1] = {
->>> +               0x0e, 0x1c, 0x2a, 0x38, 0x46, 0x54,
->>> +               0x62, 0x69, 0x70, 0x77, 0x79, 0x7b, 0x7d, 0x7e
->>> +};
->>
->> I'd prefer to have 896, 1792, etc. here, as those values come from the
->> standard. As it's done in the Intel driver.
->>
-> 
-> Got it, thanks
-> 
->>> I dont know the AMD calculation very well to say that moving this to the
->>> helper is going to help.
->>
->> Those calculations correspond (more or less) at the first glance to
->> what intel does for their newer generations. I think that's not our
->> problem for now.
->>
-> 
-> Well, we have to figure out if each value matches and if each of them 
-> come from the spec for us and i915 and from which section. So it is 
-> unfortunately our problem.
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 8232539f864ca60474e38eb42d451f5c26415856  Add linux-next specific files for 20230225
 
-Otherwise it will have to be handled by Marijn, me or anybody else 
-wanting to hack up the DSC code. Or by anybody adding DSC support to the 
-next platform and having to figure out the difference between i915, msm 
-and their platform.
+Error/Warning reports:
 
-> 
->>>
->>> Also, i think its too risky to change other drivers to use whatever math
->>> we put in the drm_dsc_helper to compute thr RC params because their code
->>> might be computing and using this tables differently.
->>>
->>> Its too much ownership for MSM developers to move this to drm_dsc_helper
->>> and own that as it might cause breakage of basic DSC even if some values
->>> are repeated.
->>
->> It's time to stop thinking about ownership and start thinking about
->> shared code. We already have two instances of DSC tables. I don't
->> think having a third instance, which is a subset of an existing
->> dataset, would be beneficial to anybody.
->> AMD has complicated code which supports half-bit bpp and calculates
->> some of the parameters. But sharing data with the i915 driver is
->> straightforward.
->>
-> 
-> Sorry, but I would like to get an ack from i915 folks if this is going
-> to be useful to them if we move this to helper because we have to look 
-> at every table. Not just one.
+https://lore.kernel.org/oe-kbuild-all/202302040652.zkUBTjyo-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302111601.jtY4lKrA-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302112104.g75cGHZd-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302210350.lynWcL4t-lkp@intel.com
 
-Added i915 maintainers to the CC list for them to be able to answer.
+Error/Warning: (recently discovered and may have been fixed)
 
-> 
-> Also, this is just 1.1, we will add more tables for 1.2. So we will have 
-> to end up changing both 1.1 and 1.2 tables as they are different for QC.
+FAILED: load BTF from vmlinux: No data available
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.c:294:6: warning: no previous prototype for 'optc3_wait_drr_doublebuffer_pending_clear' [-Wmissing-prototypes]
+drivers/pcmcia/pxa2xx_sharpsl.c:206:5: warning: no previous prototype for function 'pcmcia_collie_init' [-Wmissing-prototypes]
+include/asm-generic/div64.h:238:36: error: passing argument 1 of '__div64_32' from incompatible pointer type [-Werror=incompatible-pointer-types]
 
-I haven't heard back from Kuogee about the possible causes of using 
-rc/qp values from 1.2 even for 1.1 panels. Maybe you can comment on 
-that? In other words, can we always stick to the values from 1.2 
-standard? What will be the drawback?
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-Otherwise, we'd have to have two different sets of values, like you do 
-in your vendor driver.
+drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
+io_uring/rsrc.c:1262 io_sqe_buffer_register() error: uninitialized symbol 'folio'.
+mm/page_alloc.c:257:1: sparse: sparse: symbol 'check_pages_enabled' was not declared. Should it be static?
+net/bluetooth/hci_sync.c:2403 hci_pause_addr_resolution() warn: missing error code? 'err'
 
-> So if you look at the DSC spec from where these tables have come it says
-> 
-> "Common Recommended Rate Control-Related Parameter Values"
-> 
-> Its Recommended but its NOT mandated by the spec to follow every value 
-> to the dot. I have confirmed this point with more folks.
-> 
-> So, if someone from i915 this is useful and safe to move their code to 
-> the tables, we can try it.
-> 
->>> I would prefer to keep it in the msm code but in a top level directory
->>> so that we dont have to make DSI dependent on DPU.
->>
->> I haven't changed my opinion. Please move relevant i915's code to
->> helpers, verify data against standards and reuse it.
->>
-> 
-> 
-> 
->>>>> All vendors compute the values differently and eventually call 
->>>>> drm_dsc_compute_rc_parameters()
->>>>>
->>>>>> I didn't check the tables against the standard (or against the 
->>>>>> current source code), will do that later.
->>
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-randconfig-s041-20230222
+|   `-- mm-page_alloc.c:sparse:sparse:symbol-check_pages_enabled-was-not-declared.-Should-it-be-static
+|-- arc-allyesconfig
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arm-allmodconfig
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arm-allyesconfig
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arm-randconfig-s051-20230222
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- arm64-allyesconfig
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|-- i386-allyesconfig
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|-- i386-randconfig-s001
+|   |-- drivers-gpu-drm-i915-gem-i915_gem_ttm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-restricted-vm_fault_t-assigned-usertype-ret-got-int
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- i386-randconfig-s002
+|   `-- drivers-gpu-drm-i915-gem-i915_gem_ttm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-restricted-vm_fault_t-assigned-usertype-ret-got-int
+|-- i386-randconfig-s003
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- loongarch-randconfig-m041-20230225
+|   `-- io_uring-rsrc.c-io_sqe_buffer_register()-error:uninitialized-symbol-folio-.
+|-- openrisc-randconfig-r014-20230225
+|   `-- FAILED:load-BTF-from-vmlinux:No-data-available
+|-- openrisc-randconfig-s052-20230222
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- parisc-randconfig-m031-20230223
+|   `-- net-bluetooth-hci_sync.c-hci_pause_addr_resolution()-warn:missing-error-code-err
+|-- powerpc-allmodconfig
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- x86_64-allnoconfig
+|   `-- Warning:Documentation-devicetree-bindings-usb-rockchip-dwc3.yaml-references-a-file-that-doesn-t-exist:Documentation-devicetree-bindings-phy-phy-rockchip-inno-usb2.yaml
+|-- x86_64-allyesconfig
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|-- x86_64-randconfig-m001
+|   `-- io_uring-rsrc.c-io_sqe_buffer_register()-error:uninitialized-symbol-folio-.
+`-- x86_64-randconfig-s021
+    `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+clang_recent_errors
+`-- arm-collie_defconfig
+    `-- drivers-pcmcia-pxa2xx_sharpsl.c:warning:no-previous-prototype-for-function-pcmcia_collie_init
+
+elapsed time: 730m
+
+configs tested: 46
+configs skipped: 5
+
+tested configs:
+alpha                               defconfig   gcc  
+arc                          axs103_defconfig   gcc  
+arc                                 defconfig   gcc  
+arm                          collie_defconfig   clang
+arm                                 defconfig   gcc  
+arm                      jornada720_defconfig   gcc  
+arm64                               defconfig   gcc  
+csky                                defconfig   gcc  
+i386                                defconfig   gcc  
+ia64                                defconfig   gcc  
+loongarch                           defconfig   gcc  
+m68k                         amcore_defconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                        bcm47xx_defconfig   gcc  
+mips                       lemote2f_defconfig   clang
+mips                     loongson1c_defconfig   clang
+mips                     loongson2k_defconfig   clang
+mips                           mtx1_defconfig   clang
+mips                      pic32mzda_defconfig   clang
+mips                        qi_lb60_defconfig   clang
+mips                          rm200_defconfig   clang
+nios2                               defconfig   gcc  
+parisc                              defconfig   gcc  
+parisc64                            defconfig   gcc  
+powerpc                    klondike_defconfig   gcc  
+powerpc                  mpc885_ads_defconfig   clang
+powerpc                      pasemi_defconfig   gcc  
+powerpc                     skiroot_defconfig   clang
+riscv                               defconfig   gcc  
+riscv                          rv32_defconfig   gcc  
+s390                                defconfig   gcc  
+sh                         apsh4a3a_defconfig   gcc  
+sh                        dreamcast_defconfig   gcc  
+sh                          landisk_defconfig   gcc  
+sh                          polaris_defconfig   gcc  
+sh                           se7343_defconfig   gcc  
+sparc                            alldefconfig   gcc  
+sparc                               defconfig   gcc  
+um                                  defconfig   gcc  
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   gcc  
+x86_64                              defconfig   gcc  
+xtensa                  cadence_csp_defconfig   gcc  
+xtensa                       common_defconfig   gcc  
+xtensa                generic_kc705_defconfig   gcc  
 
 -- 
-With best wishes
-Dmitry
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
