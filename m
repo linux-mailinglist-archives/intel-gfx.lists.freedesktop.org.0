@@ -1,58 +1,116 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9886A3386
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Feb 2023 19:57:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B967B6A35A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 00:40:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F09E10E00B;
-	Sun, 26 Feb 2023 18:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2480C10E159;
+	Sun, 26 Feb 2023 23:40:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2888D10E00B;
- Sun, 26 Feb 2023 18:57:26 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E067C60B46;
- Sun, 26 Feb 2023 18:57:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44C25C4339E;
- Sun, 26 Feb 2023 18:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1677437843;
- bh=VrM/iUWrSUVsEBLjOk5R2KtxW7pSXQzOM1d9MIHKhLw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=E9Rv5D2GuI/uIhmQm7yWu5vBGjUdq6v3mb5pYHwKqwt8gRdTRNCrN2zend0KBFtXp
- 1dgQVU6zbcnd6PKq8b+qQvwyGYF92NUFl7XeamPuR2015PQDNX46WqaE6Am565lBpa
- D6mDNjMLSyetfZkc+/ofsToEOZUYo8EZG52pdkmOEA4CRW9ILZKxBRuD6C+HmvW2Aq
- 7qH/muroS/OUeyEUd7DrkmtnOh2/LjnF+kpMBX67/Vgh+mfXB9AnK1GGkCPYmYQyl5
- uxiDwtB1UPCq0kym2hkkCdbHFIkH08x8gqRigTEm6oEF1FY7UMEA2KLhH+6W6I1d7E
- pgYf+uHEIAZtQ==
-Received: by mail-yw1-f179.google.com with SMTP id
- 00721157ae682-536cb25982eso119180757b3.13; 
- Sun, 26 Feb 2023 10:57:23 -0800 (PST)
-X-Gm-Message-State: AO0yUKU6KGq6JMDCkPblxLAcQF2++wBfIuvNFlukkznPlcfYDT8DtlOd
- yPACsmPnZ3Jfoc4xpn6WR5xBiO5uYJf8SAL6bOM=
-X-Google-Smtp-Source: AK7set/7Ym4hYJ+ZWVCt8v/agr4SwOIVp84Xp8FoLfBFL/Mb1rf/L/2l99rg5eVLV9NdbBqq2x8qVHbM9U/XLxXESSQ=
-X-Received: by 2002:a05:6902:145:b0:a17:c06d:60d2 with SMTP id
- p5-20020a056902014500b00a17c06d60d2mr7155585ybh.1.1677437842304; Sun, 26 Feb
- 2023 10:57:22 -0800 (PST)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2070.outbound.protection.outlook.com [40.107.92.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC80610E159;
+ Sun, 26 Feb 2023 23:40:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nnAg3L8AhgwjWEKXfrLNNU9ZWdpA/cCT56xdHoS0S6ORwz+WdNONJytOxNhRD9g0XIHjLW3Kc7SpKPzz3woU7N01psrS3WjTzpEamg8201FNMacKZsdZLMabSwNtahBMP0WVUy9abHOxJQTxn3/GupxW0UpmRPyF5DowJ0XmqbUgFZvQsiCKmh+4vWpB7hdKBSRz1aJUoAHrM0ovY0vN0+HyseYxAeVLbcX62DaWgfRfXN2VuvYpOZ3jEW1Hf0almIJ2grOyZi6o0STJbtZxTGdyn7bUZIHSwln3PT2d/E9LoI8I3qQdcU9Gce8B/nowwoHukA6JY5Sp8W1Lp0mKOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lhDqupnyi7a1kJwzqPeSPIOA6uGPrifgqaFWJ8rslXw=;
+ b=Jm/nV4mUaLOD+hkX5Cax18lDGWPqdDBP5eyoh029AMYIWkq6jvJ6l4wRafyoRJhP5H7AR3SJ6C+9wcjqYOFQizzRWnWO6rXu9PhSnpX/Vrv1ldyqf/y0NwmE8s3GJ7EX8xZ7v4AjDinDGDUUvLssuBaBzssN3//hRZ7CEcwb96l2mbPYQH+750LqECNCsSDtP5fPiHKG60n8wBndxZoPbkfRby7GtyO2texgwA6tbZPqrmUg+vNsGS1I5z/SmZ7H1JqwCnHspQAY2x5r4HRD1YkpA2C+aM87uoN1TNsUbl0MHZxtObkNydHTfQ/sFcQ55RD9/cQ8k5DcssiIfxhKdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lhDqupnyi7a1kJwzqPeSPIOA6uGPrifgqaFWJ8rslXw=;
+ b=V88ljB+xIsDTYExkESd2YA78HDb5QidVQ50TqsAQGb51yg7ug7YxMDKKZET0wrX6L9ZilvOeg9tNWJvzKT3bY0GqBLm/IGpuQFR8kCAcQ4rKA1C54D3PBY8ayEz3xkFABiP+jGDjJvffLKFW/j0boqT0ANQXSeCu1rdNRr5tKQX+r0rHB9MlAVkE0cn9Ljc+V0n7k3nfxnCj1Z12ctjQGGXHsqgMc82z0AeZxe96xwcDgjpMraz26/R8EYlr0G4IO95tgCHViEUvFkU/3nzjKELtspTghe0dmrGc2sGaYrg/KPS8NhAfHEsQyPnimkPRGqm9CxogE3XJpASOLEenKA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by SJ2PR12MB8737.namprd12.prod.outlook.com (2603:10b6:a03:545::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.28; Sun, 26 Feb
+ 2023 23:40:21 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%5]) with mapi id 15.20.6134.025; Sun, 26 Feb 2023
+ 23:40:21 +0000
+Date: Sun, 26 Feb 2023 19:40:19 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <Y/vt4yjNhXUlFwlL@nvidia.com>
+References: <20230221034812.138051-1-yi.l.liu@intel.com>
+ <20230221034812.138051-10-yi.l.liu@intel.com>
+ <BL1PR11MB5271D122329B6908BDE1F8328CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B33D098225CFAAA7D63FC3AA9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <Y/ZOOClu8nXy2toX@nvidia.com>
+ <BN9PR11MB52767915B9A5E509BC90E0888CAB9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <Y/dobS6gdSkxnPH7@nvidia.com>
+ <BN9PR11MB5276C959AA31F8515002B6B48CA89@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <Y/gilafqe4Xm45jY@nvidia.com>
+ <DS0PR11MB75292B46BE9CAC31EF4AF833C3AE9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB75292B46BE9CAC31EF4AF833C3AE9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BLAP220CA0002.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:208:32c::7) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-References: <20230216162729.219979-1-thomas.hellstrom@linux.intel.com>
- <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
- <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
- <CADnq5_Mfp4pCnVcsWn_vMO-hWcMhH_yb8MHccyp_jEL=XxgZNg@mail.gmail.com>
-In-Reply-To: <CADnq5_Mfp4pCnVcsWn_vMO-hWcMhH_yb8MHccyp_jEL=XxgZNg@mail.gmail.com>
-From: Oded Gabbay <ogabbay@kernel.org>
-Date: Sun, 26 Feb 2023 20:56:55 +0200
-X-Gmail-Original-Message-ID: <CAFCwf12vw56v64Pa=5VhAiVBf=Km9_sOWxOczSFNvLi0eL_VeQ@mail.gmail.com>
-Message-ID: <CAFCwf12vw56v64Pa=5VhAiVBf=Km9_sOWxOczSFNvLi0eL_VeQ@mail.gmail.com>
-To: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 0/1] drm: Add a gpu page-table walker
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SJ2PR12MB8737:EE_
+X-MS-Office365-Filtering-Correlation-Id: b87d794c-99bc-48b7-6eff-08db1852d317
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vu8H6YTa+8dMeNz/+GHr82QpNFewZ60h67EiradvxItlVi+hBm7nhntwezQZ5XbfUQSj2vHwlN33urYNT2otEY7eBhdlhYbeEYElkTQDxs6S+CQpbVGeuWbncwjHTIFIeSqAmPypia/TszPiTsUWsTBz1mXE3YGzGO3no5tYljyS8nW8lVY17kN8gMcpytlD15j2ftOiiE99KSRh5ZRCacHsKJ8YWtJcmJiY80pUwVU1MXr3kO2SNuHFAaDdjdPBf97ftAvfOTZyzpq8n0FuuAjB/uVtnuhrCrp9j/xaEuUUGijgznEkjVyv5MaU/Sd1E4zbXcZ/kFPbb8OQdfwYIdeLbXQy2Yn2hwuRZEWP8vCR+KEdsSRYfRlgpAQqL1sotlu8wz/UBDp6Ia9xMQwVFL7lvxBtFowNRnJFyuiY/3nvKeBeVszVcpC2Ys7csqj/X9hEKNSYLdnEv0Ka/UmDYWG6lGNId+AZV9RFMsJbn+4g4r39buXP/ybspO78OJUYvR4RmyNBRlcEVgFsmznBIH4qbwcwkNIFmL0uCgNfzxf+z9lVxRTTWBb8pwxRtorm8IQJOK2HznQ7MSBu1aPd0sotOQgizR5745STuoofHbfVWFFD5jyOvxTqQ2pTOARiOr1TF189yMPvoClc8DGCYw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(366004)(136003)(396003)(346002)(376002)(451199018)(186003)(38100700002)(83380400001)(8936002)(6916009)(66946007)(66556008)(66476007)(4326008)(41300700001)(8676002)(2906002)(5660300002)(7416002)(478600001)(6512007)(6506007)(26005)(6486002)(2616005)(316002)(36756003)(86362001)(54906003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KKJ4rZxLyxruW88dEdjLgSaExhV9WrjXDnN0MBuHbSt5PYHx0Ig1Ewgvxe7P?=
+ =?us-ascii?Q?yE0q7jGDOZSa0pyapiSYneZXn+Ey4ep6Pv9N1PjIRliVcZkVlmJ9im4TTaWd?=
+ =?us-ascii?Q?o0mEVOhl5X+akgniBY32gEgZ0qrNH+NYj5xyl10DH5Ts1U8oXu2UBre6swt/?=
+ =?us-ascii?Q?uQ3LQJHCeChaxVMX24r60q7UqYwAshA9NqU/Hkkk+k0PVpLlxwbD8OEHjUWp?=
+ =?us-ascii?Q?KK/HxmiTvOZaTRV/GnIMP8+iBcp3WNE4l2c85uhMeTqLS2gTsvxtpu3gMvoZ?=
+ =?us-ascii?Q?Cwnk5SKyuonFECr5I+EQKhDQMlab/3uSviCph+68vIS56ScSOKZxwQtMRhgo?=
+ =?us-ascii?Q?p1G9WyNqDo4Yi+uDwVSAlxvxH/9vEohzcGebqo0vp0iOa0zZeq3097Jx9FA1?=
+ =?us-ascii?Q?WmSjHkRvzFYCw2acXV+fvfknyjsGUZZ5ID5DrXicDqw1lDYFd9o1hUS7hZdC?=
+ =?us-ascii?Q?7sXxesIBoesNeCPazZtWpPlIOG5Co4zBR2Wp57Zh8X1tHhttLnDfd8Qua6EH?=
+ =?us-ascii?Q?fg7UWMXAzcgnlj47ESqTs44rrhdBUbp818NYskvYdltNjCF6hDL1cdRiqcFf?=
+ =?us-ascii?Q?TzWGkt7yiRvGT5OoS7TLGOyJsvl0l6cduCPa/PfpDq1qsSXnYeqDOKgXPkd1?=
+ =?us-ascii?Q?6B9CcHs5ciD8iyh5HjKpphBiSqbj62Jpk+gknzHWkSfFPgilAPvkmqwRF7g0?=
+ =?us-ascii?Q?Q91a/i2MiLp8onLUJiKlGOBENcLu74IlRhvVtFAW2mzMr5AZ/lkdzHUEecEJ?=
+ =?us-ascii?Q?cWVTglRroyOqFV/F63y/zwrrZ0HXuM1LISl8bqvdb3Vi2sE+6cgH8jbxwV1s?=
+ =?us-ascii?Q?N20/KY+uzBvSEmc7Aa70ZNOEhSFIzdIKWudX2Di3zJfNgZfsaR700QDimQ+k?=
+ =?us-ascii?Q?z4KBuJS8V61znGKAhicKCZX6WBisFj0Q+pJ3p1qjDdb4TWbJLbqkAke1lNhC?=
+ =?us-ascii?Q?3Moqh4UlluktLcqNN8PtQHiZgOoWlgCvMVBxeyta/Ll6sJsIPP/e4XJABYMx?=
+ =?us-ascii?Q?Ao04HsS3eD6waVmStDi1AQqmAxXA1Fii/gKG9AK7OpDj/9sQtPjxzB+zU5rC?=
+ =?us-ascii?Q?jXfVOEVqO+nHhGzuftYqRdL30rzIqu0HQn4BJkCdHZxEW8tfXabgDrt1kTYa?=
+ =?us-ascii?Q?jdRtORgx9MeanS/1h8KPnlsB7rxwj0+4f6ktSiA9OpjxofSfA/+Fb+b6m/yk?=
+ =?us-ascii?Q?jLiRWKvFuQVUPCak2PExkaaUt2oMysxIQgrxOcwjmNTxYVL5uORiIq85KrF5?=
+ =?us-ascii?Q?4s8nHmI8tDe2NwQ/bBSL1jF8uDcN5LXg80K52lgGWjGg+VqQEiTHbFcIV3iM?=
+ =?us-ascii?Q?71uFv05S+wP7auz1c2QCjLPhviRKEKvzyK+5KzHJGeLPkm6Slu+fsCPrl7Bf?=
+ =?us-ascii?Q?KxcWzMUfeQxvUZwHcwZrhqBE04zYRaMJKTuj7Cx+HbPcB/qC4FN8OR6EvHgr?=
+ =?us-ascii?Q?sEsmlAI+SzrwG07jVZtCIx+jBqx8Pq2w5oDXPyJZLi0r8787jSw+ZcK1Gjf6?=
+ =?us-ascii?Q?ZGhcRDClhWoQqch1j+JOxdQYyidhx+N6rkLbHtcP4JuZWUjkViF5lL5e3JYl?=
+ =?us-ascii?Q?mQZJhs0ru7odHwzGhCNv/kQq6hogFs991QgSmLmn?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b87d794c-99bc-48b7-6eff-08db1852d317
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2023 23:40:21.3135 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XMXsYEUE4so9QuZcrTQCnT2g0NJeeStuPn3/nzTA8Y6jdIt8hXmLNavDKYjiw0Ec
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8737
+Subject: Re: [Intel-gfx] [PATCH v4 09/19] vfio/pci: Accept device fd for hot
+ reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,128 +123,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
- Dave Airlie <airlied@redhat.com>, intel-xe@lists.freedesktop.org
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "jasowang@redhat.com" <jasowang@redhat.com>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>, "lulu@redhat.com" <lulu@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 23, 2023 at 8:50=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
->
-> On Thu, Feb 23, 2023 at 10:03 AM Thomas Hellstr=C3=B6m
-> <thomas.hellstrom@linux.intel.com> wrote:
-> >
-> > Hi, Daniel,
-> >
-> > On 2/16/23 21:18, Daniel Vetter wrote:
-> > > On Thu, Feb 16, 2023 at 05:27:28PM +0100, Thomas Hellstr=C3=B6m wrote=
-:
-> > >> A slightly unusual cover letter for a single patch.
-> > >>
-> > >> The page table walker is currently used by the xe driver only,
-> > >> but the code is generic so we can be good citizens and add it to drm
-> > >> as a helper, for possible use by other drivers,
-> > >> If so we can merge the commit when we merge the xe driver.
-> > >>
-> > >> The question raised here is
-> > >> *) Should it be a generic drm helper or xe-specific with changed
-> > >>     prefixes?
-> > > I think if there's some other drivers interested in using this, then =
-this
-> > > sounds like a good idea. Maybe more useful if it's also integrated in=
-to
-> > > the vm/vma helpers that are being discussed as an optional part?
-> > >
-> > > Maybe some good old sales pitching here to convince people would be g=
-ood.
-> > >
-> > > Maybe one of the new accel drivers is interested in this too?
-Hi,
-As the habanalabs driver is not really a new driver, I currently don't
-see the benefit of moving
-to this code. Our pgt code is quite mature and was tested extensively
-in deployment in the
-past couple of years.
+On Sun, Feb 26, 2023 at 08:59:01AM +0000, Liu, Yi L wrote:
+> > From: Jason Gunthorpe <jgg@nvidia.com>
+> > Sent: Friday, February 24, 2023 10:36 AM
+> > 
+> > On Fri, Feb 24, 2023 at 02:21:33AM +0000, Tian, Kevin wrote:
+> > 
+> > > Yi, while you are incorporating this change please also update the
+> > > uapi header. Rename 'group_fds[]' to 'fds[]' and add comment to
+> > > explain that it could be an array of group fds or a single iommufd.
+> > 
+> > Upon reflection we can probably make it even simpler and just have a 0
+> > length fd array mean to use the iommufd the vfio_device is already
+> > associated with
+> > 
+> > And the check for correctness can be simplified to simply see if each
+> > vfio_device in the dev_set is attached to the same iommufd ctx
+> > pointer instead of searching the xarray.
+> 
+> Sorry, it appears to me the below concern is not solved as above logic
+> still requires userspace to open and bind devices to the same iommufd.
+> 
+> "
+>   > Say a scenario where group happens to overlap with devset. Let's say
+>   > two devices in the group/devset.
+>   > 
+>   > An existing deployment assigns only dev1 to Qemu. In this case dev1
+>   > is resettable via group fd given dev2 cannot be opened by another
+>   > user.
+> "
 
-Nevertheless, I'll try to offer this code for any new/future driver
-that will want to join accel.
+You solve this by checking for a 0 open count as already discussed.
 
-Stanislaw, I'm adding you here in case you missed this. Might be of an
-interest to you.
-
-Thanks,
-Oded
-
-- Oded
-
-
-
-> >
-> > Thanks for your thoughts on this. Yeah, I think it's a bit awkward to
-> > push for having code generic when there is only one user, and the
-> > prospect of having other drivers rewrite their page-table building code
-> > based on this helper in the near future is probably small. Perhaps more
-> > of interest to new drivers. I think what will happen otherwise is that
-> > during some future cleanup this will be pushed down to xe claiming it's
-> > the only user.
-> >
-> > I wonder whether it might be an idea to maintain a small document where
-> > driver writers can list suggestions for code that could be lifted to
-> > core drm and be reused by others. That way both reviewers and writers o=
-f
-> > other drivers can keep an eye on that document and use it to avoid
-> > duplicating code. The procedure would then be to lift it to core drm an=
-d
-> > fix up prefixes as soon as we have two or more users.
-> >
-> > Thoughts?
->
-> FWIW, when we originally wrote the GPU scheduler it was part of
-> amdgpu, but we consciously kept any AMD-isms out of it so it could be
-> lifted up to a core component when another user came along.  Maybe
-> some comments in the top of those files to that effect to maintain the
-> separation.
->
-> Alex
->
->
-> >
-> > Thomas
-> >
-> >
-> > >
-> > >> *) If a drm helper, should we use a config option?
-> > > I am no fan of Kconfig things tbh. Maybe just include it in the vma
-> > > helpers, or perhaps we want to do a drm-accel-helpers with gem helper=
-s,
-> > > drm/sched, this one here, vm/vma helpers or whatever they will be and=
- so
-> > > on? Kinda like we have modeset helpers.
-> > >
-> > > I'd definitely not go for a Kconfig per individual file, that's just
-> > > excessive.
-> > > -Daniel
-> > >
-> > >> For usage examples, see xe_pt.c
-> > >> https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/driv=
-ers/gpu/drm/xe/xe_pt.c
-> > >>
-> > >> Thanks,
-> > >> Thomas
-> > >>
-> > >> Thomas Hellstr=C3=B6m (1):
-> > >>    drm: Add a gpu page-table walker helper
-> > >>
-> > >>   drivers/gpu/drm/Makefile      |   1 +
-> > >>   drivers/gpu/drm/drm_pt_walk.c | 159 ++++++++++++++++++++++++++++++=
-+++
-> > >>   include/drm/drm_pt_walk.h     | 161 ++++++++++++++++++++++++++++++=
-++++
-> > >>   3 files changed, 321 insertions(+)
-> > >>   create mode 100644 drivers/gpu/drm/drm_pt_walk.c
-> > >>   create mode 100644 include/drm/drm_pt_walk.h
-> > >>
-> > >> --
-> > >> 2.34.1
-> > >>
+Jason
