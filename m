@@ -1,142 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50D06A2F66
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Feb 2023 13:20:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BAA56A2FBD
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Feb 2023 14:10:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEBDF892E0;
-	Sun, 26 Feb 2023 12:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D323810E0E6;
+	Sun, 26 Feb 2023 13:09:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8706F10E05D;
- Sun, 26 Feb 2023 12:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677414049; x=1708950049;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=DBz7Ir9Z4Fc9WkE5oDt5zOwNaZ2EyqyS3CPl2PSxp9E=;
- b=PA4XVk2pZXvnBiBTGy1dl1XUQFSIZdYrpXsl3VVU/Wtu75IzMNOQ0+9Z
- qrJm8mIBF+HWqE2CIdJZpaydjuhXUsDXevMODSmtNzM2LYq7RvhQkbN5M
- bMYDMcdsxLG/zsavo7G56n7qeMQGGdCQTgehl5S8Yjg/XlxSEMZl54E/z
- N3W8ZQbTOhUi49ovGTdd3U5ReZ0xyGS+dOmOhX6zqw48SENNo7qmlrtpU
- QN5g4Fv0rTOJRNDOB+RCgBGeCdtJFTE+vksmMYkUFHgpgDFAVdpErX48z
- iY9yCq6iakCtUxZ3q3wOvTFo6Ae2iNih8PF2iBFx+BNCiCv5y8zy0m/gz w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10632"; a="317508139"
-X-IronPort-AV: E=Sophos;i="5.97,329,1669104000"; d="scan'208";a="317508139"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2023 04:20:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10632"; a="737332298"
-X-IronPort-AV: E=Sophos;i="5.97,329,1669104000"; d="scan'208";a="737332298"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga008.fm.intel.com with ESMTP; 26 Feb 2023 04:20:48 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Sun, 26 Feb 2023 04:20:47 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Sun, 26 Feb 2023 04:20:47 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Sun, 26 Feb 2023 04:20:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TX+mbxMChfgZDunjqBsTa4syLkoCLoMjf1kJy1jOTK9uVzdODN4+fl5fHLs7Wgqt3Eu9QynxrEEX7O3MSsD7XYOfIWYf0mCp6FDldnZlXCWQ7FO2wLEo0Q2q6IeAF7zzdXjxJv5DZKZLBxRc9wh+9Vocd3p6mrDeI2KUUlrCcoXix+3MckUkOWeB+3u5kunZZCNzfZZe0psK0qdr+qAPAe9q0Gwetb3+e5yrrTYjM0ZNSBWpXohLMmakA1zB9m1y7UBXLWr9A3w3v+DW/+/8DV6ORjt49g0z2RA76FzcTgiDRKnTKg+FJ3ttwN1GFppEwLZ7sV/iuVpcr9MXobwSVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tqhxuR0l7IgkTyZyAC4ZsOiaiS/osCr7zV2RZJh3ADs=;
- b=hdE2ec/fuBWcObc7br4O8IaSQt4bvtLhSI46vCy/7+LJY5uzICkC6X5SKedqFqWHxb9ubCY6ChDkmtan/vJMbvDUklXYVsNasQz2wxKasVMMeRsA0nCCXvXeSdf8qvK6a+tJ4DQNucoI0E3lSPMcbSeGRePJiSP/H5hjXqCV4weITcbz6vXCLqbS/WNZL9WJan9eaPw2Id8KAecfK7IcsD6et+JadIFggzjFiOrpCGZfibUe7b82BXnqWp+ixJPf447Ju4X7209yJCQNKc6IS4lDFPtmmzUUksMSlHVEIWHegZN9FWxD7yxpgS5wMEDy4PV8RW1cGzIb2D525g0bJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by IA1PR11MB6217.namprd11.prod.outlook.com (2603:10b6:208:3eb::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.25; Sun, 26 Feb
- 2023 12:20:45 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f%9]) with mapi id 15.20.6134.025; Sun, 26 Feb 2023
- 12:20:45 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>
-Thread-Topic: [PATCH v4 03/19] vfio: Accept vfio device file in the driver
- facing kAPI
-Thread-Index: AQHZRadeKhL9Vt84SE2fPL2W6D6IC67aj6SAgAaed5A=
-Date: Sun, 26 Feb 2023 12:20:44 +0000
-Message-ID: <DS0PR11MB75293AD7BFC94181CC9EF2B9C3AE9@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230221034812.138051-1-yi.l.liu@intel.com>
- <20230221034812.138051-4-yi.l.liu@intel.com>
- <BL1PR11MB52717F02174B24EFE1674B238CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
-In-Reply-To: <BL1PR11MB52717F02174B24EFE1674B238CAA9@BL1PR11MB5271.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|IA1PR11MB6217:EE_
-x-ms-office365-filtering-correlation-id: 8737d54a-9639-4e50-7a1e-08db17f3e294
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GfOpJvSaWadZ0ijYyYzAv91HV3tK3MnsvWqrhFo3b6cxixTWpKaPjv4yP2n7+OZqntl8b/putHz2OvcoaHaPtdR8h0f+YaU48KVntwT2/x5A6FzzO8YNVGb9JKfYRgFc4zUuRw+n2D0OzbS2GbwkbCeNGPZR9ranmP8TRtaZD1GlIaaez2oPEUVU7kYbyxkrkkCldGhyZ61zVmRAhMpS1eW5pYg/a26J207Q+NZoY3RpLctOBmGn48f+Vxl2xdEs4Pvf3NogLd6GCsqgMz+Ws1n4M12UKVc+KJgcjQzQXyl6xXsy6Jxu8ZE1sM74TnX2JTe18neFiAXx4FGYiGwQ6rSxWks2yTDDbRzotnabaPDjVGDTZHP5rtgK0Wn5e7SKeCYXssLoHlEYHKxR/EDKrKet5gcjO5LFKXSP+kv94JytVb9rGIPSn+AKzqSfJV59a/IEttfSlkVsHQPkbeJKXK5XYN2DJZmig5uK834ci1S0FlsdrBEt5EZUDerg+8T5IV4bR+bkoK7piZ/jdBnI92T6uNjyVi3BJDrC9k6ZVHChDEnnnkgevPEDZRuD1oefCaTTmHsECZIA+M3On0ACWJfdCqfoh4dYkr6YxR3s2pDGRZCo8BsPSXexThN3v/lHcAsVVpov0lV2ICYoQXzQdeHEuty2EZGQLAjBb2V4R+XV4KDrHuR5irqhiQqsbzxwv5Zhu2RcGj88i84mU8isU11Dn6I0cUI8MvPOmgk4mMY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(366004)(136003)(396003)(376002)(346002)(451199018)(9686003)(38100700002)(82960400001)(38070700005)(122000001)(52536014)(66946007)(41300700001)(76116006)(66446008)(66556008)(8936002)(8676002)(7416002)(6506007)(66476007)(4326008)(2906002)(5660300002)(4744005)(71200400001)(7696005)(55016003)(478600001)(64756008)(186003)(26005)(316002)(33656002)(86362001)(54906003)(110136005)(13296009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?SV/N7PZ6A9NrvZgBiLfVxKS9jLiluo4GuwMGgrTsi7fKyFcFSDr23SmacPTV?=
- =?us-ascii?Q?w5rCSzU799wccMymPqyqHWDG3PznOEFcqKvrN1SA72zpbixXh99osCoNKzVW?=
- =?us-ascii?Q?GfrlY1OhlKkrXopE1nek9Z9n36LyaiQ+hDEVdMwWDqTNrkjh+j/ulZz0lHaD?=
- =?us-ascii?Q?/zBz63SnNYNzf79fMVsjo/7LKxrrkqpKkGM+/GW9dC7hRO4GUzk8SWJyG7jZ?=
- =?us-ascii?Q?uA1tERBVyy/F31jMDe6eP0xBi8GgXYZ5tSOZdxoS3PJuj45RNRJAd1aNkv7j?=
- =?us-ascii?Q?0gnkwqi/uf99AWvSSQo9b3liEDkJXjYATeFrm7BG4wVil0qBmSDos3GMXOtN?=
- =?us-ascii?Q?Eg5vtQez7uMULU+6R1Gn/g9yOd/ugLKyVKyqR8CFUw6YaCc/bNfGVAPWVuG6?=
- =?us-ascii?Q?ANdbu6njB/Hh7mdhbDnp6Muf02EGf4EVThsGjgMwQpHndoJnC7yZkC54bT24?=
- =?us-ascii?Q?l3A3/2mWt/FeIDFozuK6x4SAIFjImEnTcNFNnwFN72gmyHR6+OdsCVQNvmNc?=
- =?us-ascii?Q?m1VaP99LByJEyWetDBNSSERrxbeoIDj6duxWVmncZSIVkK7c+1tTq6x0BNcO?=
- =?us-ascii?Q?cRs+ykjdKdreW/rnwGkcp5Vr2qo9E1ok4XhLLmQZDREEeNFu0exy3QCCUk6W?=
- =?us-ascii?Q?dTcZqgOk+hv4lj0OeS/+8MNs686Y6a999eDGr+Ct1uP4uFrGaExI/6XJnRmE?=
- =?us-ascii?Q?c4+YZs1gJblMw0wxPVPbVB1CpPOJsNoHNm5ATdbf3z75nzGD5pmlyVgzYP91?=
- =?us-ascii?Q?JUcVeO5Fl3HkCAhy2qMxfjKuAMMF3NhT3oU2J9q30mk5r0Q96xoKyXcxncxs?=
- =?us-ascii?Q?ezViXvWp0H07w9f4vNiaGQw/3oWMLOaZPsZ/LbfCfjt/8V2S5CGbp1D5ZPgu?=
- =?us-ascii?Q?qfAvMbJZd3Lxx7SWOAl4UYm0pidt6GGdAHUX56gkY7GibC659jZrYYsp/qep?=
- =?us-ascii?Q?GogY8i/LE652c+V0NDBe5WzsHtlHHatEmZlCKRSea1Cb2rMwdVaCyHw4f2eQ?=
- =?us-ascii?Q?s6kzjtuTogdeVhDW1oVftr1GTWzbDYcMkt3s2FkrjeH+nDErycj4DFexZlaJ?=
- =?us-ascii?Q?/scN3Dzccs2FgI75WZskWMaYZHAzx7JHm1QT6rwINfg2qZD9CyXxdz7d4PFG?=
- =?us-ascii?Q?r70Sjs0vFVllrHxDI7u/hIQb+H1L9lC8lT0/kl3+uUhEuIksmTVcDQAoIFzm?=
- =?us-ascii?Q?Yed/zcNUT6ECmwZfdJxlHi/v0oe3bBAv1NYHXClF86SBucx+PXQIycWkaeF/?=
- =?us-ascii?Q?zRR7P8vRVEHCQDsRKifu9oWUnbQ44pLc3BZu65RheDtRfKe8e0/TbzGBLCiz?=
- =?us-ascii?Q?ub8eNibavdnRSh7jCoW3jEckryuRb/3YsS9uo7UvEjW/NDsImDVK01MR5xnd?=
- =?us-ascii?Q?UVGmG07xZ9b9PM4F+DYP7DHLNkiOeupYWZzM80lYgdeF+R3YrEhyGzUITGMi?=
- =?us-ascii?Q?YwhNwkg8GaD82P7GeonTSiW5GTLBd5hKB0jR9ea7XFavGsLtRpECgbogMiy5?=
- =?us-ascii?Q?zKirQVy+7y9/PWdZJ1pj52eWuIX2IEaQVeogluvAnVTDLUkLWQSskEkMPx85?=
- =?us-ascii?Q?RPJtURyU9dsw+7M+Rhqnsh9kFUzd0Dz9UGAwJ1h0?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
+ [IPv6:2a00:1450:4864:20::136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C98E710E0E6
+ for <intel-gfx@lists.freedesktop.org>; Sun, 26 Feb 2023 13:09:54 +0000 (UTC)
+Received: by mail-lf1-x136.google.com with SMTP id t11so5161526lfr.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 26 Feb 2023 05:09:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=YnjF1sEV5Slpav8CN8W9wle1FqVe/LUBAIS6618cS64=;
+ b=xMUS3PIsVLoJmEzlubNdZAIZ/PiGdEN57jv6aV6vVmvmLoxP8BF0SweDPw8bmjwP9a
+ SnIzGfiQm9PCNVJIkl4E06B7p1L0wKlazERHaLElDwJvrPKNyp10TVyjUN1WUQLklmWZ
+ fAeFKhRo6z/NYKT1V12rS2p7UBzRTjvXz68lcwAjiFhSL/d41lrgyJvfYPgsW5P8Osl2
+ TrtZsUPpdpQbNxzjZjzTlk5PB6IYw2wd4WH7V+WBm+VROa3ocmiMRoGG1zxtWPPEHxPJ
+ pwuZZW38WSEGX/At4lS0H+zYQ5sjtwAbRos2/Ubem3tlLj8A3xi/BvF2XEMLv9qWlaz3
+ uhcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=YnjF1sEV5Slpav8CN8W9wle1FqVe/LUBAIS6618cS64=;
+ b=Iu+dcyaXAvw77qzMP56lqMBoY+rpXEXzuuBGL8Fd7SH4oZItfDqILdtJrHPZdCU6wG
+ PMCGVnIMSXRsZsBhoXV3uOIhx1iUxtNH2DczT0afuJezFq1cJLOAYjg1VwXSzcqe34dn
+ vZSVLA/71hA1X8t9auK4NsE4EEeVi+eTRHOT/LrzFByj2Nf6+/FEVd2RZxSwXxNKJ24e
+ 4Kb/vQde15Sg1hliSp1hEvmJHtWibDzH+WTRaeTpFEC35byxcMSUOtWKH+DidVj0b3VK
+ Co7WaRDo6pI987GhXyVTtzCnPdourD6r1r9p9ITnr6CnnQi+VXXqycuL9tCy6Gk9rp+m
+ NJ5g==
+X-Gm-Message-State: AO0yUKWVrvUh0vdQpEaWBhn1r7SVbyH7XmofM82xpYGe3eBqQU5TgJf5
+ 2hKwN4VNm3dQzTIFV+aLcg3SEQ==
+X-Google-Smtp-Source: AK7set/le4LmGOWaS7f3NvN7MniMRSRHgIY7TP+eWhLs8+POZ8+GqLWBfmn8IKvpWAsFn6IlvicZhg==
+X-Received: by 2002:ac2:5961:0:b0:4dc:823c:8127 with SMTP id
+ h1-20020ac25961000000b004dc823c8127mr6458141lfp.57.1677416992898; 
+ Sun, 26 Feb 2023 05:09:52 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ r26-20020ac25a5a000000b004dda87e7de7sm553762lfn.81.2023.02.26.05.09.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 26 Feb 2023 05:09:52 -0800 (PST)
+Message-ID: <113a10b6-6097-c80e-c29c-6f61b2b2896a@linaro.org>
+Date: Sun, 26 Feb 2023 15:09:51 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8737d54a-9639-4e50-7a1e-08db17f3e294
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2023 12:20:44.8461 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /qp6fA/8McExyoSH7DNSXLlkTWAcOonb0hLG+nDc8WGnnrNhMAy/KUhbU13E8q4/fDu6DOOGR3PX0oNjuUxdIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6217
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 03/19] vfio: Accept vfio device file in
- the driver facing kAPI
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Content-Language: en-GB
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <1677267647-28672-1-git-send-email-quic_khsieh@quicinc.com>
+ <1677267647-28672-2-git-send-email-quic_khsieh@quicinc.com>
+ <42b3c193-8897-cfe9-1cae-2f9a66f7983a@linaro.org>
+ <741be2a3-0208-2f40-eedf-d439c4e6795b@quicinc.com>
+ <F8A4FC18-C64E-4011-BC08-18EB3B95A357@linaro.org>
+ <d5ee8233-66c8-9b88-417c-6cf9cc5c84fe@quicinc.com>
+ <CAA8EJpro5Q-2ZpnDJt40UhFX7Zp9oBhrto=FDOERzCDR2BDPvQ@mail.gmail.com>
+ <f0dfba42-4674-3748-bf5d-39f6e1745f67@quicinc.com>
+ <f1a6ee82-9502-7ea5-fe48-f296fc7df497@linaro.org>
+ <3e114c0f-a042-6801-69bf-67436cb2a448@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <3e114c0f-a042-6801-69bf-67436cb2a448@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/msm/dpu: add dsc helper
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,46 +89,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: vkoul@kernel.org, quic_sbillaka@quicinc.com, airlied@gmail.com,
+ andersson@kernel.org, freedreno@lists.freedesktop.org, dianders@chromium.org,
+ dri-devel@lists.freedesktop.org, swboyd@chromium.org, agross@kernel.org,
+ daniel@ffwll.ch, linux-arm-msm@vger.kernel.org, marijn.suijten@somainline.org,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Tian, Kevin <kevin.tian@intel.com>
-> Sent: Wednesday, February 22, 2023 3:16 PM
->=20
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Tuesday, February 21, 2023 11:48 AM
-> >
-> >  /**
-> >   * vfio_file_is_valid - True if the file is valid vfio file
-> >   * @file: VFIO group file or VFIO device file
-> >   */
-> >  bool vfio_file_is_valid(struct file *file)
-> >  {
-> > -	return vfio_group_from_file(file);
-> > +	return vfio_group_from_file(file) ||
-> > +	       vfio_device_from_file(file);
-> >  }
-> >  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
->=20
-> Following previous Alex's comment I'd leave pci hot reset path
-> to continue calling vfio_file_is_group() at this point so the uAPI
-> semantics is not changed here before patch 9 comes to properly
-> handle device fd in that path.
+On 26/02/2023 02:47, Abhinav Kumar wrote:
+> Hi Dmitry
+> 
+> On 2/25/2023 7:23 AM, Dmitry Baryshkov wrote:
+>> On 25/02/2023 02:36, Abhinav Kumar wrote:
+>>>
+>>>
+>>> On 2/24/2023 3:53 PM, Dmitry Baryshkov wrote:
+>>>> On Sat, 25 Feb 2023 at 00:26, Abhinav Kumar 
+>>>> <quic_abhinavk@quicinc.com> wrote:
+>>>>> On 2/24/2023 1:36 PM, Dmitry Baryshkov wrote:
+>>>>>> 24 февраля 2023 г. 23:23:03 GMT+02:00, Abhinav Kumar 
+>>>>>> <quic_abhinavk@quicinc.com> пишет:
+>>>>>>> On 2/24/2023 1:13 PM, Dmitry Baryshkov wrote:
+>>>>>>>> On 24/02/2023 21:40, Kuogee Hsieh wrote:
+>>>>>>>>> Add DSC helper functions based on DSC configuration profiles to 
+>>>>>>>>> produce
+>>>>>>>>> DSC related runtime parameters through both table look up and 
+>>>>>>>>> runtime
+>>>>>>>>> calculation to support DSC on DPU.
+>>>>>>>>>
+>>>>>>>>> There are 6 different DSC configuration profiles are supported 
+>>>>>>>>> currently.
+>>>>>>>>> DSC configuration profiles are differiented by 5 keys, DSC 
+>>>>>>>>> version (V1.1),
+>>>>>>>>> chroma (444/422/420), colorspace (RGB/YUV), bpc(8/10),
+>>>>>>>>> bpp (6/7/7.5/8/9/10/12/15) and SCR (0/1).
+>>>>>>>>>
+>>>>>>>>> Only DSC version V1.1 added and V1.2 will be added later.
+>>>>>>>>
+>>>>>>>> These helpers should go to drivers/gpu/drm/display/drm_dsc_helper.c
+>>>>>>>> Also please check that they can be used for i915 or for amdgpu 
+>>>>>>>> (ideally for both of them).
+>>>>>>>>
+>>>>>>>
+>>>>>>> No, it cannot. So each DSC encoder parameter is calculated based 
+>>>>>>> on the HW core which is being used.
+>>>>>>>
+>>>>>>> They all get packed to the same DSC structure which is the struct 
+>>>>>>> drm_dsc_config but the way the parameters are computed is 
+>>>>>>> specific to the HW.
+>>>>>>>
+>>>>>>> This DPU file helper still uses the drm_dsc_helper's 
+>>>>>>> drm_dsc_compute_rc_parameters() like all other vendors do but the 
+>>>>>>> parameters themselves are very HW specific and belong to each 
+>>>>>>> vendor's dir.
+>>>>>>>
+>>>>>>> This is not unique to MSM.
+>>>>>>>
+>>>>>>> Lets take a few other examples:
+>>>>>>>
+>>>>>>> AMD: 
+>>>>>>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c#L165
+>>>>>>>
+>>>>>>> i915: 
+>>>>>>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/i915/display/intel_vdsc.c#L379
+>>>>>>
+>>>>>> I checked several values here. Intel driver defines more bpc/bpp 
+>>>>>> combinations, but the ones which are defined in intel_vdsc and in 
+>>>>>> this patch seem to match. If there are major differences there, 
+>>>>>> please point me to the exact case.
+>>>>>>
+>>>>>> I remember that AMD driver might have different values.
+>>>>>>
+>>>>>
+>>>>> Some values in the rc_params table do match. But the 
+>>>>> rc_buf_thresh[] doesnt.
+>>>>
+>>>> Because later they do:
+>>>>
+>>>> vdsc_cfg->rc_buf_thresh[i] = rc_buf_thresh[i] >> 6;
+>>>>
+>>>>>
+>>>>> https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/i915/display/intel_vdsc.c#L40
+>>>>>
+>>>>> Vs
+>>>>>
+>>>>> +static u16 dpu_dsc_rc_buf_thresh[DSC_NUM_BUF_RANGES - 1] = {
+>>>>> +               0x0e, 0x1c, 0x2a, 0x38, 0x46, 0x54,
+>>>>> +               0x62, 0x69, 0x70, 0x77, 0x79, 0x7b, 0x7d, 0x7e
+>>>>> +};
+>>>>
+>>>> I'd prefer to have 896, 1792, etc. here, as those values come from the
+>>>> standard. As it's done in the Intel driver.
+>>>>
+>>>
+>>> Got it, thanks
+>>>
+>>>>> I dont know the AMD calculation very well to say that moving this 
+>>>>> to the
+>>>>> helper is going to help.
+>>>>
+>>>> Those calculations correspond (more or less) at the first glance to
+>>>> what intel does for their newer generations. I think that's not our
+>>>> problem for now.
+>>>>
+>>>
+>>> Well, we have to figure out if each value matches and if each of them 
+>>> come from the spec for us and i915 and from which section. So it is 
+>>> unfortunately our problem.
+>>
+>> Otherwise it will have to be handled by Marijn, me or anybody else 
+>> wanting to hack up the DSC code. Or by anybody adding DSC support to 
+>> the next platform and having to figure out the difference between 
+>> i915, msm and their platform.
+>>
+> 
+> Yes, I wonder why the same doubt didn't arise when the other vendors 
+> added their support both from other maintainers and others.
+> 
+> Which makes me think that like I wrote in my previous response, these 
+> are "recommended" values in the spec but its not mandatory.
 
-Done.
+I think, it is because there were no other drivers to compare. In other 
+words, for a first driver it is pretty logical to have everything 
+handled on its own. As soon as we start getting other implementations of 
+a feature, it becomes logical to think if the code can be generalized. 
+This is what we see we with the HDCP series or with the code being moved 
+to DP helpers.
+
+> 
+> Moving this to the drm_dsc_helper is generalizing the tables and not 
+> giving room for the vendors to customize even if they want to (which the 
+> spec does allow).
+
+That depends on the API you select. For example, in 
+intel_dsc_compute_params() I see customization being applied to 
+rc_buf_thresh in 6bpp case. I'd leave that to the i915 driver.
+
+In case the driver needs to perform customization of the params, nothing 
+stops it drop applying after filling all the RC params in the 
+drm_dsc_config struct via the generic helper.
+
+
+> So if this has any merit and if you or Marijn would like to take it up, 
+> go for it. We would do the same thing as either of you would have to in 
+> terms of figuring out the difference between msm and the i915 code.
+> 
+> This is not a generic API we are trying to put in a helper, these are 
+> hard-coded tables so there is a difference between looking at these Vs 
+> looking at some common code which can move to the core.
+> 
+>>>
+>>>>>
+>>>>> Also, i think its too risky to change other drivers to use whatever 
+>>>>> math
+>>>>> we put in the drm_dsc_helper to compute thr RC params because their 
+>>>>> code
+>>>>> might be computing and using this tables differently.
+>>>>>
+>>>>> Its too much ownership for MSM developers to move this to 
+>>>>> drm_dsc_helper
+>>>>> and own that as it might cause breakage of basic DSC even if some 
+>>>>> values
+>>>>> are repeated.
+>>>>
+>>>> It's time to stop thinking about ownership and start thinking about
+>>>> shared code. We already have two instances of DSC tables. I don't
+>>>> think having a third instance, which is a subset of an existing
+>>>> dataset, would be beneficial to anybody.
+>>>> AMD has complicated code which supports half-bit bpp and calculates
+>>>> some of the parameters. But sharing data with the i915 driver is
+>>>> straightforward.
+>>>>
+>>>
+>>> Sorry, but I would like to get an ack from i915 folks if this is going
+>>> to be useful to them if we move this to helper because we have to 
+>>> look at every table. Not just one.
+>>
+>> Added i915 maintainers to the CC list for them to be able to answer.
+>>
+> 
+> Thanks, lets wait to hear from them about where finally these tables 
+> should go but thats can be taken up as a separate effort too.
+> 
+>>>
+>>> Also, this is just 1.1, we will add more tables for 1.2. So we will 
+>>> have to end up changing both 1.1 and 1.2 tables as they are different 
+>>> for QC.
+>>
+>> I haven't heard back from Kuogee about the possible causes of using 
+>> rc/qp values from 1.2 even for 1.1 panels. Maybe you can comment on 
+>> that? In other words, can we always stick to the values from 1.2 
+>> standard? What will be the drawback?
+>>
+>> Otherwise, we'd have to have two different sets of values, like you do 
+>> in your vendor driver.
+>>
+> 
+> I have responded to this in the other email.
+> 
+> All this being said, even if the rc tables move the drm_dsc_helper 
+> either now or later on, we will still need MSM specific calculations for 
+> many of the other encoder parameters (which are again either hard-coded 
+> or calculated). Please refer to the sde_dsc_populate_dsc_config() 
+> downstream. And yes, you will not find those in the DP spec directly.
+> 
+> So we will still need a dsc helper for MSM calculations to be common for 
+> DSI / DP irrespective of where the tables go.
+> 
+> So, lets finalize that first.
+
+I went on and trimmed sde_dsc_populate_dsc_config() to remove 
+duplication with the drm_dsc_compute_rc_parameters() (which we already 
+use for the MSM DSI DSC).
+
+Not much is left:
+
+dsc->first_line_bpg_offset set via the switch
+
+dsc->line_buf_depth = bpc + 1;
+dsc->mux_word_size = bpc > 10 ? DSC_MUX_WORD_SIZE_12_BPC:
+         DSC_MUX_WORD_SIZE_8_10_BPC;
+
+if ((dsc->dsc_version_minor == 0x2) && (dsc->native_420))
+     dsc->nsl_bpg_offset = (2048 *
+              (DIV_ROUND_UP(dsc->second_line_bpg_offset,
+                                 (dsc->slice_height - 1))));
+
+dsc->initial_scale_value = 8 * dsc->rc_model_size /
+                         (dsc->rc_model_size - dsc->initial_offset);
+
+
+mux_word_size comes from the standard (must)
+initial_scale_value calculation is recommended, but not required
+nsl_bpg_offset follows the standard (must), also see below (*).
+
+first_line_bpg_offset calculation differs between three drivers. The 
+standard also provides a recommended formulas. I think we can leave it 
+as is for now.
+
+I think, that mux_word_size and nsl_bpg_offset calculation should be 
+moved to drm_dsc_compute_rc_parameters(), while leaving 
+initial_scale_value in place (in the driver code).
+
+* I think nsl_bpg_offset is slightly incorrectly calculated. Standard 
+demands that it is set to 'second_line_bpg_offset / (slice_height - 1), 
+rounded up to 16 fraction bits', while SDE driver code sets it to the 
+value rounded up to the next integer (having 16 fraction bits 
+representation).
+
+In my opinion correct calculation should be:
+dsc->nsl_bpg_offset = DIV_ROUND_UP(2048 * dsc->second_line_bpg_offset,
+                                 (dsc->slice_height - 1));
+
+Could you please check, which one is correct according to the standard?
+
+
+-- 
+With best wishes
+Dmitry
+
