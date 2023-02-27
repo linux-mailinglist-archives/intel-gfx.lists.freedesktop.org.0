@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9146A3EFA
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 10:59:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DEC6A3F45
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 11:14:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBCA610E3A2;
-	Mon, 27 Feb 2023 09:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B257310E3AD;
+	Mon, 27 Feb 2023 10:14:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17F8010E3A2;
- Mon, 27 Feb 2023 09:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677491956; x=1709027956;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=jR91B98qom+5gzYhQGkhIgN06B7vIdWxDnI3INGZGCs=;
- b=BsxIg7k0v3M1jV4470HDihWCqyLv1+MNESts87+xvkfr5e2cRoeHJCwe
- MRNQ2I8pB/1FTBFfhDUgcJEhsEkz/zrJKMmuDl/IgSxoq+GdftovZmJz5
- n8ZJ+L17wsawWJ0mTcKyMo9uLN4H0PkByBsTGCJL8feKkxYQFAVprxndW
- i4l3l759AA6UAPnOR99Q2S1Z4+/tTTDf3pdcrA1QXA26ORvF9LqTL0kuY
- SEowQ41opWvZ0vgamVTMUFLDTeomyRdeIqlKvYXrMBzCHENl9M11SiyOI
- LL3gnISY3ohq4bt4NZHeaMZgzTLXNYTxqKEzk7GIkSVH6Mp+A0OYMo3VN Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="335304384"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="335304384"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 01:59:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="737604557"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="737604557"
-Received: from jrissane-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.249.41.42])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 01:59:08 -0800
-Date: Mon, 27 Feb 2023 10:59:04 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Y/x+6KutaJKGv+Zz@ashyti-mobl2.lan>
-References: <20230118153529.57695-1-andrzej.hajda@intel.com>
- <20230118154450.73842-1-andrzej.hajda@intel.com>
- <20230118154450.73842-5-andrzej.hajda@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B9D9410E3AD;
+ Mon, 27 Feb 2023 10:14:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AFF1EA03D2;
+ Mon, 27 Feb 2023 10:14:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118154450.73842-5-andrzej.hajda@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] io_uring: use __xchg if possible
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 27 Feb 2023 10:14:18 -0000
+Message-ID: <167749285871.26338.16422090304606916668@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230227095253.22415-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230227095253.22415-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/display=3A_Communicate_display_power_demands_to_pcode_m?=
+ =?utf-8?q?ore_accurately?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
- linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, Boqun Feng <boqun.feng@gmail.com>,
- linux-xtensa@linux-xtensa.org, Arnd Bergmann <arnd@arndb.de>,
- intel-gfx@lists.freedesktop.org, linux-m68k@lists.linux-m68k.org,
- openrisc@lists.librecores.org, loongarch@lists.linux.dev,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej,
+== Series Details ==
 
-On Wed, Jan 18, 2023 at 04:44:48PM +0100, Andrzej Hajda wrote:
-> Recently introduced helper simplifies the code.
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Series: drm/i915/display: Communicate display power demands to pcode more accurately
+URL   : https://patchwork.freedesktop.org/series/114401/
+State : failure
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Thanks,
-Andi
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  CC [M]  drivers/gpu/drm/i915/display/intel_cdclk.o
+drivers/gpu/drm/i915/display/intel_cdclk.c:3006:6: error: no previous prototype for ‘intel_cdclk_need_serialize’ [-Werror=missing-prototypes]
+ 3006 | bool intel_cdclk_need_serialize(struct drm_i915_private *i915,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_cdclk.o] Error 1
+make[4]: *** [scripts/Makefile.build:504: drivers/gpu/drm/i915] Error 2
+make[3]: *** [scripts/Makefile.build:504: drivers/gpu/drm] Error 2
+make[2]: *** [scripts/Makefile.build:504: drivers/gpu] Error 2
+make[1]: *** [scripts/Makefile.build:504: drivers] Error 2
+make: *** [Makefile:2021: .] Error 2
+
+
