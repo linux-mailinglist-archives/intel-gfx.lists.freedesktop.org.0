@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE0E6A4050
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 12:12:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00396A407A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 12:20:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E9210E3DF;
-	Mon, 27 Feb 2023 11:12:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEE5410E3B3;
+	Mon, 27 Feb 2023 11:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 475BB10E3B5;
- Mon, 27 Feb 2023 11:11:52 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67E5710E3B3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 11:20:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677496312; x=1709032312;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WzdcB2DOWjkO/bgXtRVSfvFyGXI/EgssHW3GLOnum7o=;
- b=eKeyKDzWY+t7UZ49P/gVo9+1W85m5bmkvr3VI4SNKTTgp5d0LreEUUFs
- mwqHtuhgaXKxXio9zikGNWD95jXyvVr/zcjKQDe28qtAYY4LqVB63jga0
- B0UFswFqDR1jxGKjN3f6ypSzMds6pKSKlOGxQVN4t4koMbbM+UNgEvypF
- 0E60R4ZBt1lVS+RmgathTiR0qZ+g6YlJ+pfr5eCZZ5lkKjKgOikXQXLaz
- z1JcSqkEtUi8sUqvdbNGYe9/DSmN6HhmMDeomMMH/hjez3SCo+8Uy2ZOJ
- Q+Gn4K8WdkaH8wf1HEmaSPxZwO8hEOlQNE0CrzlLzXeYRXAdZ0pw4cXfn g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="420097804"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="420097804"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 03:11:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="651189644"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="651189644"
-Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
- by orsmga006.jf.intel.com with ESMTP; 27 Feb 2023 03:11:51 -0800
-From: Yi Liu <yi.l.liu@intel.com>
-To: alex.williamson@redhat.com,
-	jgg@nvidia.com,
-	kevin.tian@intel.com
-Date: Mon, 27 Feb 2023 03:11:35 -0800
-Message-Id: <20230227111135.61728-20-yi.l.liu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230227111135.61728-1-yi.l.liu@intel.com>
-References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ t=1677496828; x=1709032828;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=h6qOw4EZmAr/NoYU09F9GuyPssUpMwvlKnQXaOTO5zg=;
+ b=nQtg8WC/GEovtsbqWLMnQVTbLmsYu3PLF6B4xZ5AMUatOkY7kwGVhXfG
+ i8vnbVFZbPMxDNxJqbjkcnB6O1Wz4VNxNSZmQLw/QZFNpCYISgVKhMEoK
+ wBTKEAw6RfjUJEk4T35IhiHxsQKYRxc6Bj+yUcL2tbr6Jn+YsJUXx3ae+
+ vX4fqP+BEgAullGleHCm4VQ5hG9SxhwoFMh/5i7TDxg4qIO+rzFC7HXCL
+ tA/Y7NmQumJNgIL9n5vKFFbLjtYrktcsvEWvjV/22QXpUm+nmIkIdONdo
+ 1LApRnY2rxBr1KDvwgh9lutd17Q6nya2OnEUOlXmI1gwIFFNXG/PhIqV5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="396389067"
+X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="396389067"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 03:20:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="797595794"
+X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="797595794"
+Received: from srampras-mobl3.ger.corp.intel.com (HELO [10.252.9.115])
+ ([10.252.9.115])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 03:20:24 -0800
+Message-ID: <2f0b0fa0-d1d9-465b-a0ec-10a7f04b1765@intel.com>
+Date: Mon, 27 Feb 2023 11:20:22 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 19/19] docs: vfio: Add vfio device cdev
- description
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230224174016.2081135-1-jonathan.cavitt@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20230224174016.2081135-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use correct huge page manager for
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,164 +62,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, yi.l.liu@intel.com, yi.y.sun@linux.intel.com,
- mjrosato@linux.ibm.com, kvm@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
- xudong.hao@intel.com, peterx@redhat.com, yan.y.zhao@intel.com,
- eric.auger@redhat.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ daniel.vetter@intel.com, chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This gives notes for userspace applications on device cdev usage.
+On 24/02/2023 17:40, Jonathan Cavitt wrote:
+> MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
+> MTL reports as not supporting 64K pages, or more accurately, the system that reports
+> whether a platform has 64K pages reports false for MTL.  This is only half correct,
+> as the 64K page support reporting system only cares about 64K page support for LMEM,
+> which MTL doesn't have.
+> 
+> MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
+> using that manager doesn't resolve the issue because MTL is expecting the virtual
+> address space for the page table to be flushed after initialization, so we must also
+> add a flush statement there.
+> 
+> The changes made to the huge page manager selection indirectly impacted some of the
+> mock hugepage selftests.  Due to the use of pte level hints, rather than pde level
+> hints, we now expect 64K page sizes to be properly reported by the GTT, so we should
+> correct the expected test results to reflect this change.
 
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
----
- Documentation/driver-api/vfio.rst | 125 ++++++++++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+For future submissions, please add the version number for each new 
+submission of the same patch, and also please include the changelog.
 
-diff --git a/Documentation/driver-api/vfio.rst b/Documentation/driver-api/vfio.rst
-index 44527420f20d..5d290ceb2bbf 100644
---- a/Documentation/driver-api/vfio.rst
-+++ b/Documentation/driver-api/vfio.rst
-@@ -239,6 +239,123 @@ group and can access them as follows::
- 	/* Gratuitous device reset and go... */
- 	ioctl(device, VFIO_DEVICE_RESET);
- 
-+IOMMUFD and vfio_iommu_type1
-+----------------------------
-+
-+IOMMUFD is the new user API to manage I/O page tables from userspace.
-+It intends to be the portal of delivering advanced userspace DMA
-+features (nested translation [5], PASID [6], etc.) and backward
-+compatible with the vfio_iommu_type1 driver. Eventually vfio_iommu_type1
-+will be deprecated.
-+
-+With the backward compatibility, no change is required for legacy VFIO
-+drivers or applications to connect a VFIO device to IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=n, VFIO container still provides
-+	/dev/vfio/vfio which connects to vfio_iommu_type1. To disable VFIO
-+	container and vfio_iommu_type1, the administrator could symbol link
-+	/dev/vfio/vfio to /dev/iommu to enable VFIO container emulation
-+	in IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=y, IOMMUFD directly provides
-+	/dev/vfio/vfio while the VFIO container and vfio_iommu_type1 are
-+	explicitly disabled.
-+
-+VFIO Device cdev
-+----------------
-+
-+Traditionally user acquires a device fd via VFIO_GROUP_GET_DEVICE_FD
-+in a VFIO group.
-+
-+With CONFIG_VFIO_DEVICE_CDEV=y the user can now acquire a device fd
-+by directly opening a character device /dev/vfio/devices/vfioX where
-+"X" is the number allocated uniquely by VFIO for registered devices.
-+
-+The cdev only works with IOMMUFD. Both VFIO drivers and applications
-+must adapt to the new cdev security model which requires using
-+VFIO_DEVICE_BIND_IOMMUFD to claim DMA ownership before starting to
-+actually use the device. Once bind succeeds then a VFIO device can
-+be fully accessed by the user.
-+
-+VFIO device cdev doesn't rely on VFIO group/container/iommu drivers.
-+Hence those modules can be fully compiled out in an environment
-+where no legacy VFIO application exists.
-+
-+So far SPAPR does not support IOMMUFD yet. So it cannot support device
-+cdev either.
-+
-+Device cdev Example
-+-------------------
-+
-+Assume user wants to access PCI device 0000:6a:01.0::
-+
-+	$ ls /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/
-+	vfio0
-+
-+This device is therefore represented as vfio0. The user can verify
-+its existence::
-+
-+	$ ls -l /dev/vfio/devices/vfio0
-+	crw------- 1 root root 511, 0 Feb 16 01:22 /dev/vfio/devices/vfio0
-+	$ cat /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/vfio0/dev
-+	511:0
-+	$ ls -l /dev/char/511\:0
-+	lrwxrwxrwx 1 root root 21 Feb 16 01:22 /dev/char/511:0 -> ../vfio/devices/vfio0
-+
-+Then provide the user with access to the device if unprivileged
-+operation is desired::
-+
-+	$ chown user:user /dev/vfio/devices/vfio0
-+
-+Finally the user could get cdev fd by::
-+
-+	cdev_fd = open("/dev/vfio/devices/vfio0", O_RDWR);
-+
-+An opened cdev_fd doesn't give the user any permission of accessing
-+the device except binding the cdev_fd to an iommufd. After that point
-+then the device is fully accessible including attaching it to an
-+IOMMUFD IOAS/HWPT to enable userspace DMA::
-+
-+	struct vfio_device_bind_iommufd bind = {
-+		.argsz = sizeof(bind),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_alloc alloc_data  = {
-+		.size = sizeof(alloc_data),
-+		.flags = 0,
-+	};
-+	struct vfio_device_attach_iommufd_pt attach_data = {
-+		.argsz = sizeof(attach_data),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_map map = {
-+		.size = sizeof(map),
-+		.flags = IOMMU_IOAS_MAP_READABLE |
-+			 IOMMU_IOAS_MAP_WRITEABLE |
-+			 IOMMU_IOAS_MAP_FIXED_IOVA,
-+		.__reserved = 0,
-+	};
-+
-+	iommufd = open("/dev/iommu", O_RDWR);
-+
-+	bind.iommufd = iommufd;
-+	ioctl(cdev_fd, VFIO_DEVICE_BIND_IOMMUFD, &bind);
-+
-+	ioctl(iommufd, IOMMU_IOAS_ALLOC, &alloc_data);
-+	attach_data.pt_id = alloc_data.out_ioas_id;
-+	ioctl(cdev_fd, VFIO_DEVICE_ATTACH_IOMMUFD_PT, &attach_data);
-+
-+	/* Allocate some space and setup a DMA mapping */
-+	map.user_va = (int64_t)mmap(0, 1024 * 1024, PROT_READ | PROT_WRITE,
-+				    MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
-+	map.iova = 0; /* 1MB starting at 0x0 from device view */
-+	map.length = 1024 * 1024;
-+	map.ioas_id = alloc_data.out_ioas_id;;
-+
-+	ioctl(iommufd, IOMMU_IOAS_MAP, &map);
-+
-+	/* Other device operations as stated in "VFIO Usage Example" */
-+
- VFIO User API
- -------------------------------------------------------------------------------
- 
-@@ -566,3 +683,11 @@ This implementation has some specifics:
- 				\-0d.1
- 
- 	00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev 90)
-+
-+.. [5] Nested translation is an IOMMU feature which supports two stage
-+   address translations. This improves the address translation efficiency
-+   in IOMMU virtualization.
-+
-+.. [6] PASID stands for Process Address Space ID, introduced by PCI
-+   Express. It is a prerequisite for Shared Virtual Addressing (SVA)
-+   and Scalable I/O Virtualization (Scalable IOV).
--- 
-2.34.1
+> 
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 11 ++++-------
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c            |  3 ++-
+>   2 files changed, 6 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index defece0bcb81..06554717495f 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -784,9 +784,6 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+>   		GEM_BUG_ON(!expected_gtt);
+>   		GEM_BUG_ON(size);
+>   
+> -		if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
+> -			expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
+> -
+>   		i915_vma_unpin(vma);
+>   
+>   		if (vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
+> @@ -849,7 +846,7 @@ static int igt_mock_ppgtt_64K(void *arg)
+>   		},
+>   		{
+>   			.size = SZ_64K + SZ_4K,
+> -			.gtt = I915_GTT_PAGE_SIZE_4K,
+> +			.gtt = I915_GTT_PAGE_SIZE_64K | I915_GTT_PAGE_SIZE_4K,
+>   			.offset = 0,
+>   		},
+>   		{
+> @@ -864,7 +861,7 @@ static int igt_mock_ppgtt_64K(void *arg)
+>   		},
+>   		{
+>   			.size = SZ_2M - SZ_4K,
+> -			.gtt = I915_GTT_PAGE_SIZE_4K,
+> +			.gtt = I915_GTT_PAGE_SIZE_64K | I915_GTT_PAGE_SIZE_4K,
+>   			.offset = 0,
+>   		},
+>   		{
+> @@ -886,12 +883,12 @@ static int igt_mock_ppgtt_64K(void *arg)
+>   		{
+>   			.size = SZ_64K,
+>   			.offset = SZ_2M,
+> -			.gtt = I915_GTT_PAGE_SIZE_4K,
+> +			.gtt = I915_GTT_PAGE_SIZE_64K,
+>   		},
+>   		{
+>   			.size = SZ_128K,
+>   			.offset = SZ_2M - SZ_64K,
+> -			.gtt = I915_GTT_PAGE_SIZE_4K,
+> +			.gtt = I915_GTT_PAGE_SIZE_64K,
+>   		},
 
+Did you consider the suggestion with possibly making this a live test 
+instead?
+
+The first comment in igt_mock_ppgtt_64K() describing the test is:
+
+/*
+  * Sanity check some of the trickiness with 64K pages -- either we can
+  * safely mark the whole page-table(2M block) as 64K, or we have to
+  * always fallback to 4K.
+  */
+
+That doesn't really apply to the new 64K GTT model it seems (which is 
+why it now fails), so trying to adjust the test just because the mock 
+device underneath is now using the newer model doesn't seem correct to 
+me. If we instead make it a live test and only run it on devices with 
+the old 64K GTT model, then we still retain the same test coverage. 
+Alternatively, we could potentially run on both HW models with slightly 
+different test expectations. IMO the test is too HW specific for a mock 
+test.
+
+>   	};
+>   	struct i915_vma *vma;
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index 4daaa6f55668..9c571185395f 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
+>   			}
+>   		} while (rem >= page_size && index < max);
+>   
+> +		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+>   		vma_res->page_sizes_gtt |= page_size;
+>   	} while (iter->sg && sg_dma_len(iter->sg));
+>   }
+> @@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+>   	struct sgt_dma iter = sgt_dma(vma_res);
+>   
+>   	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
+> -		if (HAS_64K_PAGES(vm->i915))
+> +		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
+>   			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+>   		else
+>   			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
