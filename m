@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669506A39F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 05:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 788B86A39F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 05:06:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4186E10E162;
-	Mon, 27 Feb 2023 04:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C020110E15A;
+	Mon, 27 Feb 2023 04:06:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5111010E15A
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 04:06:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 180CE10E0DA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 04:06:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677470765; x=1709006765;
+ t=1677470767; x=1709006767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xp8GUUIYelW2XYT/dx5B8IqgXayVQukhnl1DxUpjdFk=;
- b=Rww+WtPPdzCwJfxUSEP5sISfWvvK/VR7r2MMqmsMb0QDvJFZJGVGd3Mb
- muJwmoAXlkoCch8z7OJwqFuRT9V8RRAG6HbVmGNIG4636ER56smfokSHL
- I1ggORBRAW+kAiqACg9FrhGK5J73VG00LjPCysZ34uEsPWIkM7ALp3Rsz
- N1/+DzpSA+JgOD9kiaDUNObbiVSFp/cWPE4b4uhqPft/bD46RLFThD0/r
- f9EOJj8dfS0w9wYDwLivBeo7vZTIeVoqTegk/f2bvYe5Za+6z+3i+nP0V
- POKRkqGv/S4rUugjBIvhVC8vhH9WcHUnOXd6ezbp53f7efbr0QT/N1Xks w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="335251375"
-X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="335251375"
+ bh=kgeN1tL5KaYZtZl8j5A4AK41ACihKUptUuVF1TEHbKs=;
+ b=Q5fRiHahYjjk+M6hJynU1pB0lq7Pm6zv8nTKZ8PleDPXLcgUMy626N3H
+ sFZnBulnSsSUj+LhQajrACpBY7axKcvm0VIEPG+Z4gqGS6p8gLd23W18C
+ i/8kULPZ7YSU7zJGdvIzQAm30iv5F8Vm9opCGvE+nQQ2xEq2NZgXMjvwT
+ O2jGbwlkUO8BINqvAG15wzn0tS9EdlgBTb8AG0/cJDd5v6gVaKg1azTkc
+ q76UeIt6kfbHaGRX6esuvXQHOAFmEhJaRhtZe5fykQQn32qRHn8RQcwC1
+ FRj6SYLMWGL8U0JBIJHCWf3mMnW+284t/CeOTjZWCCEYvO0wmGJWN3UHD Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="335251378"
+X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="335251378"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2023 20:06:05 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="783146997"
-X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="783146997"
+ 26 Feb 2023 20:06:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="783147002"
+X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="783147002"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2023 20:06:03 -0800
+ 26 Feb 2023 20:06:05 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Feb 2023 09:33:15 +0530
-Message-Id: <20230227040324.130811-5-ankit.k.nautiyal@intel.com>
+Date: Mon, 27 Feb 2023 09:33:16 +0530
+Message-Id: <20230227040324.130811-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230227040324.130811-1-ankit.k.nautiyal@intel.com>
 References: <20230227040324.130811-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 04/13] drm/i915/dp: Replace intel_dp.dfp
- members with the new crtc_state sink_format
+Subject: [Intel-gfx] [PATCH v10 05/13] drm/i915/dp: Compute output format
+ with/without DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,291 +60,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The decision to use DFP output format conversion capabilities should be
-during compute_config phase.
+Currently we compute the output format first and later try DSC if the
+bandwidth without compression is not sufficient for that output format.
+Since we do not support DSC with YCbCr420 format, this creates problem
+for YCbCr420 only modes, that can be still be set if DFP has color
+conversion and DSC capabilities.
 
-This patch uses the members of intel_dp->dfp to only store the
-format conversion capabilities of the DP device and uses the crtc_state
-sink_format member, to program the protocol-converter for
-colorspace/format conversion.
+So compute output format, first without DSC and inturn compute the link
+config without DSC. If cannot be supported without DSC, compute the
+output format with DSC and continue.
+With this apporach, check can be added for YCbCr420 output, which cannot
+be supported with DSC.
 
-v2: Use sink_format to determine the color conversion config for the
-pcon (Ville).
-
-v3: Fix typo: missing 'break' in switch case (lkp kernel test robot).
-
-v4: Add helper to check if DP supports YCBCR420.
-
-v5: Simplify logic for computing output_format, based on the given
-sink_format. (Ville).
-Added scaler constraint for YCbCr420 output.
-
-v6: Split the patch for Scaler constraint for Ycbcr420.
+v2: Rebased
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 192 +++++++++++++++++-------
- 1 file changed, 135 insertions(+), 57 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 84 ++++++++++++++++++-------
+ 1 file changed, 61 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e95fc0f0d13a..1314d02778d5 100644
+index 1314d02778d5..4455f3ae1830 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -804,6 +804,67 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
- 	return 0;
+@@ -888,20 +888,37 @@ ycbcr420_scaler_constraints(struct drm_i915_private *i915,
+ 	return mode->hdisplay > max_src_w || mode->vdisplay > max_src_h;
  }
  
-+static bool source_can_output(struct intel_dp *intel_dp,
-+			      enum intel_output_format format)
++static bool
++ycbcr420_constraints(struct drm_i915_private *i915,
++		     const struct drm_display_mode *mode,
++		     bool with_dsc)
 +{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	bool is_branch = drm_dp_is_branch(intel_dp->dpcd);
-+
-+	if (format == INTEL_OUTPUT_FORMAT_RGB)
-+		return true;
-+
 +	/*
-+	 * No YCbCr output support on gmch platforms.
-+	 * Also, ILK doesn't seem capable of DP YCbCr output.
-+	 * The displayed image is severly corrupted. SNB+ is fine.
++	 * DSC with YCbCr420 is a constraint as currently we do not support compression
++	 * with 420 format.
 +	 */
-+	if (HAS_GMCH(i915) || IS_IRONLAKE(i915))
-+		return false;
-+
-+	if (format == INTEL_OUTPUT_FORMAT_YCBCR444)
++	if (with_dsc)
 +		return true;
 +
-+	/* Platform < Gen 11 cannot output YCbCr420 format */
-+	if (DISPLAY_VER(i915) < 11)
-+		return false;
-+
-+	/* If branch device then PCONs should support YCbCr420 Passthrough */
-+	if (format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return !is_branch || intel_dp->dfp.ycbcr420_passthrough;
-+
-+	return false;
++	return ycbcr420_scaler_constraints(i915, mode);
 +}
 +
-+static bool
-+dfp_can_convert_from_rgb(struct intel_dp *intel_dp,
-+			 enum intel_output_format sink_format)
-+{
-+	if (!drm_dp_is_branch(intel_dp->dpcd))
-+		return false;
-+
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR444)
-+		return intel_dp->dfp.rgb_to_ycbcr;
-+
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return intel_dp->dfp.rgb_to_ycbcr &&
-+			intel_dp->dfp.ycbcr_444_to_420;
-+
-+	return false;
-+}
-+
-+static bool
-+dfp_can_convert_from_ycbcr444(struct intel_dp *intel_dp,
-+			      enum intel_output_format sink_format)
-+{
-+	if (!drm_dp_is_branch(intel_dp->dpcd))
-+		return false;
-+
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return intel_dp->dfp.ycbcr_444_to_420;
-+
-+	return false;
-+}
-+
- static bool
- ycbcr420_scaler_constraints(struct drm_i915_private *i915,
- 			    const struct drm_display_mode *mode)
-@@ -835,24 +896,23 @@ intel_dp_output_format(struct intel_connector *connector,
+ static enum intel_output_format
+ intel_dp_output_format(struct intel_connector *connector,
+ 		       const struct drm_display_mode *mode,
+-		       enum intel_output_format sink_format)
++		       enum intel_output_format sink_format,
++		       bool with_dsc)
+ {
  	struct intel_dp *intel_dp = intel_attached_dp(connector);
  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
  
--	if (!connector->base.ycbcr_420_allowed ||
--	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
--		return INTEL_OUTPUT_FORMAT_RGB;
-+	/*
-+	 * For YCbCr420 output, scaler is required for downsampling.
-+	 * So go for native YCbCr420 only if there are no scaler constraints.
-+	 */
-+	if ((sink_format != INTEL_OUTPUT_FORMAT_YCBCR420 ||
-+	     !ycbcr420_scaler_constraints(i915, mode)) &&
-+	    source_can_output(intel_dp, sink_format))
-+		return sink_format;
- 
--	if (intel_dp->dfp.rgb_to_ycbcr &&
--	    intel_dp->dfp.ycbcr_444_to_420)
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_RGB) &&
-+	    dfp_can_convert_from_rgb(intel_dp, sink_format))
- 		return INTEL_OUTPUT_FORMAT_RGB;
- 
--	if (intel_dp->dfp.ycbcr_444_to_420)
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444) &&
-+	    dfp_can_convert_from_ycbcr444(intel_dp, sink_format))
- 		return INTEL_OUTPUT_FORMAT_YCBCR444;
- 
--	/*
--	 * For YCbCr420 output, scaler is required for downsampling
+ 	/*
+ 	 * For YCbCr420 output, scaler is required for downsampling.
 -	 * So go for native YCbCr420 only if there are no scaler constraints.
--	 */
--	if (!ycbcr420_scaler_constraints(i915, mode))
--		return INTEL_OUTPUT_FORMAT_YCBCR420;
--
- 	return INTEL_OUTPUT_FORMAT_RGB;
++	 * DSC1.1 supports compression only with 444 formats.
++	 * So go for native YCbCr420 only if there are no scaler and dsc constraints.
+ 	 */
+ 	if ((sink_format != INTEL_OUTPUT_FORMAT_YCBCR420 ||
+-	     !ycbcr420_scaler_constraints(i915, mode)) &&
++	     !ycbcr420_constraints(i915, mode, with_dsc)) &&
+ 	    source_can_output(intel_dp, sink_format))
+ 		return sink_format;
+ 
+@@ -949,7 +966,7 @@ intel_dp_mode_min_output_bpp(struct intel_connector *connector,
+ 	else
+ 		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+-	output_format = intel_dp_output_format(connector, mode, sink_format);
++	output_format = intel_dp_output_format(connector, mode, sink_format, false);
+ 
+ 	return intel_dp_output_bpp(output_format, intel_dp_min_bpp(output_format));
  }
- 
-@@ -2774,6 +2834,8 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 					   const struct intel_crtc_state *crtc_state)
+@@ -1731,7 +1748,8 @@ static int
+ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 			     struct intel_crtc_state *pipe_config,
+ 			     struct drm_connector_state *conn_state,
+-			     bool respect_downstream_limits)
++			     bool respect_downstream_limits,
++			     bool with_dsc)
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	bool ycbcr444_to_420 = false;
-+	bool rgb_to_ycbcr = false;
- 	u8 tmp;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+@@ -1742,6 +1760,20 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 	bool joiner_needs_dsc = false;
+ 	int ret;
  
- 	if (intel_dp->dpcd[DP_DPCD_REV] < 0x13)
-@@ -2790,8 +2852,35 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
- 			    str_enable_disable(intel_dp->has_hdmi_sink));
++	if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdisplay,
++				    adjusted_mode->crtc_clock))
++		pipe_config->bigjoiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
++
++	/*
++	 * Pipe joiner needs compression up to display 12 due to bandwidth
++	 * limitation. DG2 onwards pipe joiner can be enabled without
++	 * compression.
++	 */
++	joiner_needs_dsc = DISPLAY_VER(i915) < 13 && pipe_config->bigjoiner_pipes;
++
++	if (joiner_needs_dsc && !with_dsc)
++		return -EINVAL;
++
+ 	limits.min_rate = intel_dp_common_rate(intel_dp, 0);
+ 	limits.max_rate = intel_dp_max_link_rate(intel_dp);
  
--	tmp = crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
--		intel_dp->dfp.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
-+	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+		switch (crtc_state->output_format) {
-+		case INTEL_OUTPUT_FORMAT_YCBCR420:
-+			/*
-+			 * sink_format is YCbCr420, output_format is also YCbCr420:
-+			 * Passthrough.
-+			 */
-+			break;
-+		case INTEL_OUTPUT_FORMAT_YCBCR444:
-+			/*
-+			 * sink_format is YCbCr420, output_format is YCbCr444:
-+			 * Downsample.
-+			 */
-+			ycbcr444_to_420 = true;
-+			break;
-+		case INTEL_OUTPUT_FORMAT_RGB:
-+			/*
-+			 * sink_format is YCbCr420, output_format is RGB:
-+			 * Convert to YCbCr444 and Downsample.
-+			 */
-+			rgb_to_ycbcr = true;
-+			ycbcr444_to_420 = true;
-+			break;
-+		default:
-+			break;
-+		}
+@@ -1771,23 +1803,15 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 		    limits.max_lane_count, limits.max_rate,
+ 		    limits.max_bpp, adjusted_mode->crtc_clock);
+ 
+-	if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdisplay,
+-				    adjusted_mode->crtc_clock))
+-		pipe_config->bigjoiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
+-
+-	/*
+-	 * Pipe joiner needs compression up to display 12 due to bandwidth
+-	 * limitation. DG2 onwards pipe joiner can be enabled without
+-	 * compression.
+-	 */
+-	joiner_needs_dsc = DISPLAY_VER(i915) < 13 && pipe_config->bigjoiner_pipes;
+-
+ 	/*
+ 	 * Optimize for slow and wide for everything, because there are some
+ 	 * eDP 1.3 and 1.4 panels don't work well with fast and narrow.
+ 	 */
+ 	ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config, conn_state, &limits);
+ 
++	if (ret && !with_dsc)
++		return -EINVAL;
++
+ 	if (ret || joiner_needs_dsc || intel_dp->force_dsc_en) {
+ 		drm_dbg_kms(&i915->drm, "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+@@ -2122,7 +2146,8 @@ static int
+ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+ 			       struct drm_connector_state *conn_state,
+-			       bool respect_downstream_limits)
++			       bool respect_downstream_limits,
++			       bool with_dsc)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+@@ -2145,10 +2170,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 	}
+ 
+ 	crtc_state->output_format = intel_dp_output_format(connector, adjusted_mode,
+-							   crtc_state->sink_format);
++							   crtc_state->sink_format, with_dsc);
+ 
+ 	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+-					   respect_downstream_limits);
++					   respect_downstream_limits, with_dsc);
+ 	if (ret) {
+ 		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+ 		    !connector->base.ycbcr_420_allowed ||
+@@ -2157,9 +2182,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 
+ 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+ 		crtc_state->output_format = intel_dp_output_format(connector, adjusted_mode,
+-								   crtc_state->sink_format);
++								   crtc_state->sink_format,
++								   with_dsc);
+ 		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+-						   respect_downstream_limits);
++						   respect_downstream_limits, with_dsc);
+ 	}
+ 
+ 	return ret;
+@@ -2225,9 +2251,21 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	 * Try to respect downstream TMDS clock limits first, if
+ 	 * that fails assume the user might know something we don't.
+ 	 */
+-	ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, true);
++	ret = intel_dp_compute_output_format(encoder, pipe_config,
++					     conn_state, true, false);
+ 	if (ret)
+-		ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, false);
++		ret = intel_dp_compute_output_format(encoder, pipe_config,
++						     conn_state, false, false);
++
++	/* Try with DSC */
++	if (ret) {
++		ret = intel_dp_compute_output_format(encoder, pipe_config,
++						     conn_state, true, true);
++		if (ret)
++			ret = intel_dp_compute_output_format(encoder, pipe_config,
++							     conn_state, false, true);
 +	}
 +
-+	tmp = ycbcr444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
+ 	if (ret)
+ 		return ret;
  
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux,
- 			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
-@@ -2799,13 +2888,12 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
- 			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
- 
--	tmp = intel_dp->dfp.rgb_to_ycbcr ?
--		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
-+	tmp = rgb_to_ycbcr ? DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
- 
- 	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
- 		drm_dbg_kms(&i915->drm,
--			   "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
--			   str_enable_disable(tmp));
-+			    "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
-+			    str_enable_disable(tmp));
- }
- 
- bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-@@ -4595,57 +4683,47 @@ intel_dp_update_dfp(struct intel_dp *intel_dp,
- 	intel_dp_get_pcon_dsc_cap(intel_dp);
- }
- 
-+static bool
-+intel_dp_can_ycbcr420(struct intel_dp *intel_dp)
-+{
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return true;
-+	/*
-+	 * If source cannot support YCbCr420, and PCON has color conv. support:
-+	 * Source sends YCbCr444, PCON converts YCbCr444->420 Or
-+	 * Source sends RGB444, PCON converts RGB->YCbCr444 + YCbCr444->YCbCr420)
-+	 */
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_RGB) &&
-+	    dfp_can_convert_from_rgb(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return true;
-+
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444) &&
-+	    dfp_can_convert_from_ycbcr444(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return INTEL_OUTPUT_FORMAT_YCBCR444;
-+
-+	return false;
-+}
-+
- static void
- intel_dp_update_420(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
--	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
--
--	/* No YCbCr output support on gmch platforms */
--	if (HAS_GMCH(i915))
--		return;
--
--	/*
--	 * ILK doesn't seem capable of DP YCbCr output. The
--	 * displayed image is severly corrupted. SNB+ is fine.
--	 */
--	if (IS_IRONLAKE(i915))
--		return;
- 
--	is_branch = drm_dp_is_branch(intel_dp->dpcd);
--	ycbcr_420_passthrough =
-+	intel_dp->dfp.ycbcr420_passthrough =
- 		drm_dp_downstream_420_passthrough(intel_dp->dpcd,
- 						  intel_dp->downstream_ports);
- 	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
--	ycbcr_444_to_420 =
-+	intel_dp->dfp.ycbcr_444_to_420 =
- 		dp_to_dig_port(intel_dp)->lspcon.active ||
- 		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
- 							intel_dp->downstream_ports);
--	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
--								 intel_dp->downstream_ports,
--								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
--
--	if (DISPLAY_VER(i915) >= 11) {
--		/* Let PCON convert from RGB->YCbCr if possible */
--		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
--			intel_dp->dfp.rgb_to_ycbcr = true;
--			intel_dp->dfp.ycbcr_444_to_420 = true;
--			connector->base.ycbcr_420_allowed = true;
--		} else {
--		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
--			intel_dp->dfp.ycbcr_444_to_420 =
--				ycbcr_444_to_420 && !ycbcr_420_passthrough;
-+	intel_dp->dfp.rgb_to_ycbcr =
-+		drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-+							  intel_dp->downstream_ports,
-+							  DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
- 
--			connector->base.ycbcr_420_allowed =
--				!is_branch || ycbcr_444_to_420 || ycbcr_420_passthrough;
--		}
--	} else {
--		/* 4:4:4->4:2:0 conversion is the only way */
--		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420;
--
--		connector->base.ycbcr_420_allowed = ycbcr_444_to_420;
--	}
-+	connector->base.ycbcr_420_allowed = intel_dp_can_ycbcr420(intel_dp);
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
 -- 
 2.25.1
 
