@@ -1,34 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5566A4330
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 14:46:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7824C6A4341
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 14:50:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2C6F10E20D;
-	Mon, 27 Feb 2023 13:46:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF91A10E2E8;
+	Mon, 27 Feb 2023 13:50:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FCDF10E20D;
- Mon, 27 Feb 2023 13:46:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 292C0AADD6;
- Mon, 27 Feb 2023 13:46:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16A610E291;
+ Mon, 27 Feb 2023 13:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=EhR9H533iLJtMrWDRv6QbWK1xC5aZF5Krew4cuVbhkY=; b=pjNHlWPfx/mT2hbu+ptXuX0Bfl
+ 6zxwF35vF7M+uOcH6tkINiOev6YsMPaubnFo73g9CYU3Ll3T9vll1nI0RNIz3WNlOYgiQa0tIVuKA
+ B74bpcIknADwNfdW3qiqy/LodWENLcXyHOE5GDwPy8SDC2sGnAK8XRozKiqv3/orCAw1mdFzv6HIi
+ 4Fd5+VtHusrJQM9si0oyzylM6PKjlqGcBBcB0+w8I4L93cScTcRI07ARzhig2+xcpAnwonlHY3QlK
+ 3t2CJ+UJ429TvOFTkQzXQL9J1jWkm2YGGPGX0C52K8tzDWANXamImjRh/q37GBZi3LXqJmVgYbqO9
+ qyPvOYaw==;
+Received: from j130084.upc-j.chello.nl ([24.132.130.84]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1pWdt1-00093q-0o; Mon, 27 Feb 2023 13:49:51 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 7835530030B;
+ Mon, 27 Feb 2023 14:49:49 +0100 (CET)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 56A33200AAFE3; Mon, 27 Feb 2023 14:49:49 +0100 (CET)
+Date: Mon, 27 Feb 2023 14:49:49 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <Y/y0/VoPAVCXGKp3@hirez.programming.kicks-ass.net>
+References: <20230118153529.57695-1-andrzej.hajda@intel.com>
+ <Y/ZLH5F8LA3H10aL@hirez.programming.kicks-ass.net>
+ <17f40b7c-f98d-789d-fa19-12ec077b756a@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 27 Feb 2023 13:46:49 -0000
-Message-ID: <167750560914.26339.1464801199137564626@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230227132607.15496-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230227132607.15496-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Communicate_display_power_demands_to_pc?=
- =?utf-8?q?ode_more_accurately_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <17f40b7c-f98d-789d-fa19-12ec077b756a@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,49 +60,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
+ linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, linux-xtensa@linux-xtensa.org,
+ Arnd Bergmann <arnd@arndb.de>, Boqun Feng <boqun.feng@gmail.com>,
+ linux-m68k@lists.linux-m68k.org, openrisc@lists.librecores.org,
+ loongarch@lists.linux.dev, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-alpha@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Feb 23, 2023 at 10:24:19PM +0100, Andrzej Hajda wrote:
+> On 22.02.2023 18:04, Peter Zijlstra wrote:
+> > On Wed, Jan 18, 2023 at 04:35:22PM +0100, Andrzej Hajda wrote:
+> > 
+> > > Andrzej Hajda (7):
+> > >    arch: rename all internal names __xchg to __arch_xchg
+> > >    linux/include: add non-atomic version of xchg
+> > >    arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
+> > >    llist: simplify __llist_del_all
+> > >    io_uring: use __xchg if possible
+> > >    qed: use __xchg if possible
+> > >    drm/i915/gt: use __xchg instead of internal helper
+> > 
+> > Nothing crazy in here I suppose, I somewhat wonder why you went through
+> > the trouble, but meh.
+> 
+> If you are asking why I have proposed this patchset, then the answer is
+> simple, 1st I've tried to find a way to move internal i915 helper to core
+> (see patch 7).
+> Then I was looking for possible other users of this helper. And apparently
+> there are many of them, patches 3-7 shows some.
+> 
+> 
+> > 
+> > You want me to take this through te locking tree (for the next cycle,
+> > not this one) where I normally take atomic things or does someone else
+> > want this?
+> 
+> If you could take it I will be happy.
 
-Series: drm/i915/display: Communicate display power demands to pcode more accurately (rev2)
-URL   : https://patchwork.freedesktop.org/series/114401/
-State : warning
-
-== Summary ==
-
-Error: dim checkpatch failed
-5390f300e150 drm/i915/display: Communicate display power demands to pcode more accurately
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Adding new sequence with current cdclk associate with voltage value masking.
-
--:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#75: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2273:
-+		drm_err(&i915->drm,
-+				"Failed to inform PCU about display config (err %d)\n",
-
--:104: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'new_cdclk_state->active_pipes ==
- 				 old_cdclk_state->active_pipes'
-#104: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2364:
-+	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-+				 &new_cdclk_state->actual) &&
-+				 (new_cdclk_state->active_pipes ==
-+				 old_cdclk_state->active_pipes))
-
--:309: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#309: FILE: drivers/gpu/drm/i915/i915_reg.h:6537:
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
-
--:311: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#311: FILE: drivers/gpu/drm/i915/i915_reg.h:6539:
-+#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
-+		(DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
-+		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
-+		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level))
-
-total: 1 errors, 2 warnings, 2 checks, 276 lines checked
-
-
+OK, I'll go queue it in tip/locking/core after -rc1. Thanks!
