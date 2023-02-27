@@ -2,33 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D40D56A498B
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 19:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AE66A498D
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 19:22:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E5610E1D8;
-	Mon, 27 Feb 2023 18:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4D6210E1E4;
+	Mon, 27 Feb 2023 18:22:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B1CB710E1C7;
- Mon, 27 Feb 2023 18:22:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96779A7DFF;
- Mon, 27 Feb 2023 18:22:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8632471972679913985=="
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C92710E2D4;
+ Mon, 27 Feb 2023 18:22:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X0IK/m7ghCVQhUJPFKC2Zv5oV/25+/yeRS/lXIgMClLbYwkoaSuti9G242PHPHZR7wY79K1kkJ+N4fnSUm/KRWdFivpYUsDSmprmx05+f+upaiHTYSypjrRuX6MBIQZl9t0hb083KqrAucFYD9oRMLJMk4bp/1PyotnQ5Iblk3Zk3qNZeFvh0ZK9JmcVDbXDzPayECn549ALtDRCRInwcTN1qbM1k6fXskUa1KzKz1r94lCaJVaS9ohQ3lnvasEOfMy38VC5GNugi7EOVGZAvm5N2FusMzrcJDilF3utxDOLYIm4B/5z97U6mfiHG9BZZ96ywamNCncJnfnNGfkKrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T56BQAGs6xWwEmDnpHBVlEdeQ2wnuoUaNVdAffRlQGY=;
+ b=eV1uM9BofiUS69MOiHwz6668a/tdq3pptui0lny0A+FPPtqZfHSEECHLAaHfnu92VTa6YvR9ONNNfQvt/q1zRgj1LN4DrWuj8dWG7PxCk6GFMJXS4PytfXhsWzZAupGi0Bhi1aSrwdm+KopvgusKLhmVSAPXeFl0Q3YE8FWiEpWhVCJxffGsMrRlnnWhcwZhsGRQORAS6ZYcyTvN0XpyvAVF5ufG9LY/j3W2ny5rlsTWcIkR/2tEP/AM+U3rQb9vlO+lPcCZbjtHJCqVa1sFl1nHqOWDc8x5KDElOQosfQJCckbL9W2BdjlGkwcsqzMyoG1yLBy8K+O0nwRZofjuLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T56BQAGs6xWwEmDnpHBVlEdeQ2wnuoUaNVdAffRlQGY=;
+ b=JYODY/+O4jPzpWKH6KISz5/k0Ukiw0fZaXjZFNFaaFhctcl6eKf/idWTgb6dqWRE6Oi4wcWlgc3vgRSmxIoA6NC4cfuM6JCPwIo7vdmed2ZjxY2w9Ah76ZNd1w3uKsHkkasS0Pqr7mbKEJCxiUi2870uQo1St2kcdaXIhxeOemPNFnJsq2qqKstRdUODdaYaMIykIflsWAP0QvZGpD/LszKXas/fNfdCLti/Vx1rFU47mrjDz/TQT77dlZU3V1jiSsIC8cXUlAY2uWpPzpxArg22BnLEbnO091GSkWdG2LHMhf6GrGc6MT4ikVnSIwTepD+rA4X9x6tCKyW2E8T0oA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by CH2PR12MB4118.namprd12.prod.outlook.com (2603:10b6:610:a4::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Mon, 27 Feb
+ 2023 18:22:47 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6134.029; Mon, 27 Feb 2023
+ 18:22:47 +0000
+Date: Mon, 27 Feb 2023 14:22:45 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <Y/z09fQAW7Rs0uIc@nvidia.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-10-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230227111135.61728-10-yi.l.liu@intel.com>
+X-ClientProxiedBy: BL1PR13CA0120.namprd13.prod.outlook.com
+ (2603:10b6:208:2b9::35) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Mon, 27 Feb 2023 18:22:27 -0000
-Message-ID: <167752214757.26338.17109029625534607471@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv5=2C1/2=5D_drm/i915=3A_Migrate_platform-d?=
- =?utf-8?q?ependent_mock_hugepage_selftests_to_live?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH2PR12MB4118:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6811c882-d244-4ab9-5aa0-08db18efa061
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KafOiOoigqPANGcgDRHyExRuX6omgKfu49KfUVVmgjc+LoFIF3WYbKl4uMxZVL6DCNCjWfE9Fb8HSw+Em3FzCVMMnnHBicMyxUcCs5I3WOqvy37l7l7f0i78AV/YYKO5VbRcbEG+TnP3FaqbVJFQlvv4g0Sz/GSzgITb+Tb/QypdXSJ2TGbRzZ51G9HttZMJNyo2mpZQVRQKrMdd0uP6qAdOuBklxI6j/LiE6fvXh7MqOqdbnp1pmJVyvyPhIwpRf9o3ovXd4LAtDwzSt9zkOme9CsqW/m1Xhb70K/EnyakO1z9HuARBVtyEUug9S8GK5i0HUDlSI6ncVMBb2u6oFyUTWUWQkIJ+h/Mh9vpQjnF9oVm3piW5R9qU7r80y7xhGM8WNMIxyihpT4T2L9MHSYa91sKIZFr2RGGcQkyCf4XPTf2lbWVzVQdSdM3r1Hpgd8bWSM4mK0t6stYECbFZYqo8vGGlp8OiEYPYiCAue/RlHxAIutzGt93voEh8LvXjeSaso4TKfOzFKwGPihE+t8+Wqz+lbVMT20mFTmqMHGZGyMJ5nZ/yMhjakBNSg/BgtPGSgCI3G7XePAQn4Kl0zG5RH5kzt+JVwnNG8ixo+NgGjVIgG2wxdykc6z2fUr/xJ1hbfTStghT+9VuQbBjVCQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(451199018)(66476007)(6506007)(66946007)(66556008)(8676002)(4326008)(316002)(6916009)(6486002)(478600001)(7416002)(36756003)(5660300002)(86362001)(2906002)(38100700002)(8936002)(83380400001)(2616005)(26005)(41300700001)(186003)(6512007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cCa+Z6rI3rSq9+A1PfPRH6sMtJGu404Ba2js6HLQboJN8rvY8mOYkEFaGVm0?=
+ =?us-ascii?Q?ufcwptrSFTZqY06r9aXn5l43D48GGAxRMFLvO/EgaFfqAExFt+EGX2llCcLd?=
+ =?us-ascii?Q?7+DW7quJXJFsqM92U56C3EIEqgMdSTFK6YrY3dLlUTeWpyTUmJGLtrr0HHdC?=
+ =?us-ascii?Q?WKO0Rq9KKgkn9yboxH2eVxqujnKOwgJZtOhe+dpi381KB6rBzYwEISUmjucp?=
+ =?us-ascii?Q?o7Ch8JPbSNDFw4fjZbj6VBzp14fVYP3ctrUcnDUsPn2ytqpHY/08QeNucseN?=
+ =?us-ascii?Q?sqqqISlGfBi4abHlM7CBE2EQFWEeyRQ3DZJk0Fva8sYKG6T358DzSHMYbj47?=
+ =?us-ascii?Q?sdcp2DNtVktnOIXpcxY4HIlemxdcllTnkwxnB2eDa0fsbgKFhVfwk0/dnfXB?=
+ =?us-ascii?Q?D+OgWXpXDwpqmwKH+ufO649H5TSz7qdm7bF3aV30iE5AO0rey9xa5g+bh/NS?=
+ =?us-ascii?Q?yXa5VNwmDJdR4SjJzOVbMqtkpG/5zc06IhMTxcMFm3o2kZJrAe/k3i3mmnnh?=
+ =?us-ascii?Q?0lvuqyccpVPzCazv0rri59E/ED4h+HZjvdsY47aU44y5nqHck004tFt0Sga9?=
+ =?us-ascii?Q?GumL90Zoq1wiIhN/Qb5Y/o9WtAvTPy7l2v2HuKr7jSmTHgGexMDAiGEyrdgr?=
+ =?us-ascii?Q?4xxEu9JWqQ58soQ3fkpGY9cN11apVl95ye2kxJsPMjcmrLAFV99nqXdMQS1s?=
+ =?us-ascii?Q?AxPzMjW5qUdjUM20630uCvTj0RyzFQnehzLwHadnGa3oR4j9v8MRtmoDdOBP?=
+ =?us-ascii?Q?HUFlm6Jir7Q8PzDmORqE8C8TFAMN43/wgfJ4gZSKqDJpQGbHt5GVe9EQbCjG?=
+ =?us-ascii?Q?uJ6gLX2mpl1MEohNwEx9RGBu6SwWxIChV9Y7AwupVtFjR0Yi6FTUSqXsoTvD?=
+ =?us-ascii?Q?HSd4XOzGcNMGwlgazbgd3dyHcxF21716ZxX3RZGV9u1UXKGDjvmcAwUH0Ufs?=
+ =?us-ascii?Q?1rzp3XyGDBzCMQePw+798jbUqx8XLNfu/JefokTKNfN/2yZC7l2qaFvjQmcV?=
+ =?us-ascii?Q?yRTXTN2ish7o7nRxs3zmrfxwZuzrLBUyec45uIazgQIbnQFQoPv1OpqtmRNC?=
+ =?us-ascii?Q?AS98NEX9nra1c4SBzzPGL2fWVgdQWOiX+iTbXlmNKckY0lw8sf1iKuPepb5y?=
+ =?us-ascii?Q?ypd0RWKKNiVz+QP/+QQwCo3K2zfIRtAwVZU0mSrw9MmArlIPnK4PoYNns+By?=
+ =?us-ascii?Q?E5/+pXJQWJ2bukMkK01XhdtRREFmW2zj8YWVgDpXirBeQtwgFC5l/ZsGVdQU?=
+ =?us-ascii?Q?br4tiiVIhhLgV9aL479zNQCFoEP1fWAeiA7pxg9FC/LenAKSVkWDC//ayozb?=
+ =?us-ascii?Q?3OFiEyrR0W3gLJTNT1CQso8hBWQsjJnLE6+Z4BQc6kfDsSFgSNZToAmDVagf?=
+ =?us-ascii?Q?uqRCM05glO9QqcspCsLeccEr1Qbe7BZGlkHz7NXsnqSpEEiIvEbwehLhM5Ef?=
+ =?us-ascii?Q?aSlzEFjpX/EKgeoDW3677hsRVdWFckRuv9UPPwKtL+AEKUw+V3wt1k+v7LCO?=
+ =?us-ascii?Q?bfK6AvcO+Rx57FlSAOCVlVNFNZ2vSq96Z/xkZly/bDXG3EEcTg2I2949v68F?=
+ =?us-ascii?Q?bhqnXoyhHfAdgdWcS1FQ12IshYIq0V4CBJRMJOQd?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6811c882-d244-4ab9-5aa0-08db18efa061
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2023 18:22:47.1916 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yhEQ3om7LIYCJy5KBfowTUQy/Pn93TaP7Zucsb6b/+jsMhgcPxUM3eonBToCb6ye
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4118
+Subject: Re: [Intel-gfx] [PATCH v5 09/19] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,171 +115,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ joro@8bytes.org, nicolinc@nvidia.com, yan.y.zhao@intel.com,
+ intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8632471972679913985==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 27, 2023 at 03:11:25AM -0800, Yi Liu wrote:
+> to indicate kernel to use the device's bound iommufd_ctx for the device
+> ownership check. Kernel should loop all the opened devices in the dev_set,
+> and check if they are bound to the same iommufd_ctx. For the devices that
+> has not been opened yet but affected, they can be reset by the current
+> users as they cannot be opened by any other user. This applies to the
+> existing group/container path as well.
+> 
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_core.c | 111 +++++++++++++++++++++++--------
+>  drivers/vfio/vfio.h              |  11 +++
+>  include/uapi/linux/vfio.h        |  16 +++++
+>  3 files changed, 109 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 1bf54beeaef2..e0ebe55b4df0 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -27,11 +27,13 @@
+>  #include <linux/vgaarb.h>
+>  #include <linux/nospec.h>
+>  #include <linux/sched/mm.h>
+> +#include <linux/iommufd.h>
 
-== Series Details ==
+Is this needed anymore?
 
-Series: series starting with [v5,1/2] drm/i915: Migrate platform-dependent mock hugepage selftests to live
-URL   : https://patchwork.freedesktop.org/series/114432/
-State : success
+>  #if IS_ENABLED(CONFIG_EEH)
+>  #include <asm/eeh.h>
+>  #endif
+>  
+>  #include "vfio_pci_priv.h"
+> +#include "../vfio.h"
 
-== Summary ==
+Don't do this, put vfio_device_iommufd() in the normal public header
 
-CI Bug Log - changes from CI_DRM_12787 -> Patchwork_114432v1
-====================================================
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 0552e8dcf0cb..4bf11ee8de53 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -673,6 +673,22 @@ struct vfio_pci_hot_reset_info {
+>   * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE + 13,
+>   *				    struct vfio_pci_hot_reset)
+>   *
+> + * Userspace requests hot reset for the devices it uses.  Due to the
+> + * underlying topology, multiple devices may be affected in the reset.
+> + * The affected devices may have been opened by the user or by other
+> + * users or not opened yet.  Only when all the affected devices are
+> + * either opened by the current user or not opened by any user, should
+> + * the reset request be allowed.  Otherwise, this request is expected
+> + * to return error.
+> + *
+> + * If the user uses group and container interface, it should pass down
+> + * a set of group fds for ownership check.  If the user uses iommufd, it
+> + * should pass down a zero-length group_fds array to indicate the kernel
+> + * to use the bound iommufd for the ownership check.  User that uses the
+> + * vfio iommufd compatible mode can also pass down a zero-length group_fds
+> + * array as this mode uses iommufd in kernel, and there is no reason to
+> + * forbide it.
 
-Summary
--------
+'forbid'
 
-  **WARNING**
+Rest looks good
 
-  Minor unknown changes coming with Patchwork_114432v1 need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_114432v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/index.html
-
-Participating hosts (39 -> 38)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_114432v1:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@gem_exec_fence@basic-busy@vecs0:
-    - fi-kbl-x1275:       [DMESG-WARN][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12787/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vecs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vecs0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_114432v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-busy@vcs0:
-    - fi-kbl-x1275:       [ABORT][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12787/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vcs0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vcs0.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12787 -> Patchwork_114432v1
-
-  CI-20190529: 20190529
-  CI_DRM_12787: 70da1d04c2abaaaef514174168a7e5595dbae6f3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7173: deab4e0bdf5a9366b67d0a44f478f3da3c9a943b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114432v1: 70da1d04c2abaaaef514174168a7e5595dbae6f3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-50d9bb55694e drm/i915: Use correct huge page manager for MTL
-236427dd6e66 drm/i915: Migrate platform-dependent mock hugepage selftests to live
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/index.html
-
---===============8632471972679913985==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v5,1/2] drm/i915: Migrate platform-dependent mock hugepage selftests to live</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114432/">https://patchwork.freedesktop.org/series/114432/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12787 -&gt; Patchwork_114432v1</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with Patchwork_114432v1 need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_114432v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_114432v1:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@gem_exec_fence@basic-busy@vecs0:<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12787/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vecs0.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vecs0.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114432v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_fence@basic-busy@vcs0:<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12787/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vcs0.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114432v1/fi-kbl-x1275/igt@gem_exec_fence@basic-busy@vcs0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12787 -&gt; Patchwork_114432v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12787: 70da1d04c2abaaaef514174168a7e5595dbae6f3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7173: deab4e0bdf5a9366b67d0a44f478f3da3c9a943b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114432v1: 70da1d04c2abaaaef514174168a7e5595dbae6f3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>50d9bb55694e drm/i915: Use correct huge page manager for MTL<br />
-236427dd6e66 drm/i915: Migrate platform-dependent mock hugepage selftests to live</p>
-
-</body>
-</html>
-
---===============8632471972679913985==--
+Thanks,
+Jason
