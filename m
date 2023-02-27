@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9466A39FE
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 05:06:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38B66A39FD
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 05:06:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F55C10E353;
-	Mon, 27 Feb 2023 04:06:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C9910E348;
+	Mon, 27 Feb 2023 04:06:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C7E610E195
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 04:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DED9810E195
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 04:06:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677470779; x=1709006779;
+ t=1677470780; x=1709006780;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MeVbIzLepY6Y65CgT7D6eMzP7DQE8ky69OefQUr+RLA=;
- b=jlh6SQluIJKwMkkFKux2Zu5Sn5hbFEkVShhYKgaINQhjJj1RIhmzsaJ3
- YjMKLTSPNCUXuR5oboUDiq2xvOV5WU3/VrilbT7DQOBtzNawECsU5crPz
- uqG7Eyqz8bb0sszdOgQzj2cGLzFBAKq414CxKqGEGPXMVB9k3o/Pr6LFR
- toXy+yfsAAjPmT7n77mGSPBSmlgVu+pTiv0qplAHf/Vwj7pywKAlpajVx
- fKzEJqaMryIsnbFO/AbkwbX5xn/CpKqBAp+uQVpMvT8D3LNDN67GzqMxe
- TWzlHtZ2oZv+m9ZtE1Uz+qeWWeYanc7geyhWK2jJZPmpoc9cFbEAdSzB1 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="335251409"
-X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="335251409"
+ bh=fcUtewYO+O8T/I5VSxsTtWMjxcThujhRlKpBvR4fvzI=;
+ b=WWn3NQ0bxyR1cnS6KB1Dhlmj4yNMPn0Bs3pORZzCFDZ1jRh3yzmn4WR9
+ IU0UvMgI3ircXaF/9Psy9QvktBciGZTICh7p1ndstEli6JzMSfURz0XRT
+ 9KoIY6HWoc0W+V8o2LRNShc/DZ2h+ScjGt6dKZqN4lhPe8uDr/J20Qqh1
+ U60dkl+ilc/K55ctr4GsSoF326a4GawzlntU7qP+lk3D9vJJXWGtHAyzE
+ zKOb9C1yYAUV9R+jKOk4fpUOl36rTS/vJqBqssF5xQ/UONcW1LZluJwSw
+ 2hUdQtACAHWOvo3lQ2fB+A9/jIaMFxOUL+L2JijabYMlssk9Z8XrQTGv3 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="335251414"
+X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="335251414"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2023 20:06:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="783147035"
-X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="783147035"
+ 26 Feb 2023 20:06:20 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="783147040"
+X-IronPort-AV: E=Sophos;i="5.97,330,1669104000"; d="scan'208";a="783147040"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2023 20:06:17 -0800
+ 26 Feb 2023 20:06:19 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Feb 2023 09:33:23 +0530
-Message-Id: <20230227040324.130811-13-ankit.k.nautiyal@intel.com>
+Date: Mon, 27 Feb 2023 09:33:24 +0530
+Message-Id: <20230227040324.130811-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230227040324.130811-1-ankit.k.nautiyal@intel.com>
 References: <20230227040324.130811-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 12/13] drm/i915/dp: Fix FRL BW check for
- HDMI2.1 DFP
+Subject: [Intel-gfx] [PATCH v10 13/13] drm/i915/dp: Add a wrapper to check
+ frl/tmds downstream constraints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,121 +60,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During FRL bandwidth  check for downstream HDMI2.1 sink,
-the min BPC supported is incorrectly taken for DP, and the check does
-not consider ybcr420 only modes.
-This patch fixes the bandwidth calculation similar to the TMDS case, by
-taking min 8Bpc and considering Ycbcr420 only modes.
-
-v2: Rebase
+Add a wrapper function to check dp_downstream clock/bandwidth
+constraints. Based on whether the sink supports FRL/TMDS the wrapper
+calls the appropriate FRL/TMDS functions.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 64 +++++++++++++++++--------
- 1 file changed, 45 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 51 +++++++++++--------------
+ 1 file changed, 23 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6f2f3e02c35f..18a0a258f49f 100644
+index 18a0a258f49f..50e7371cc196 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -118,6 +118,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- 
- static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp);
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
-+static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
- 
- /* Is link rate UHBR and thus 128b/132b? */
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-@@ -1029,6 +1030,32 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
+@@ -1056,6 +1056,18 @@ intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
  	return MODE_OK;
  }
  
 +static enum drm_mode_status
-+intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
-+		      int bpc, enum intel_output_format sink_format)
++intel_dp_hdmi_bw_check(struct intel_dp *intel_dp,
++		       int target_clock, int bpc,
++		       enum intel_output_format sink_format,
++		       bool is_frl)
 +{
-+	int target_bw;
-+	int max_frl_bw;
-+	int bpp = bpc * 3;
++	if (is_frl)
++		return intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
 +
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		target_clock /= 2;
-+
-+	target_bw = bpp * target_clock;
-+
-+	/* check for MAX FRL BW for both PCON and HDMI2.1 sink */
-+	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
-+			 intel_dp_hdmi_sink_max_frl(intel_dp));
-+
-+	/* converting bw from Gbps to Kbps*/
-+	max_frl_bw = max_frl_bw * 1000000;
-+
-+	if (target_bw > max_frl_bw)
-+		return MODE_CLOCK_HIGH;
-+
-+	return MODE_OK;
++	return intel_dp_tmds_clock_valid(intel_dp, target_clock, 8, sink_format, true);
 +}
 +
  static enum drm_mode_status
  intel_dp_mode_valid_downstream(struct intel_connector *connector,
  			       const struct drm_display_mode *mode,
-@@ -1037,24 +1064,30 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+@@ -1065,48 +1077,31 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
  	const struct drm_display_info *info = &connector->base.display_info;
  	enum drm_mode_status status;
--	bool ycbcr_420_only;
-+	bool ycbcr_420_only = drm_mode_is_420_only(info, mode);
+ 	bool ycbcr_420_only = drm_mode_is_420_only(info, mode);
++	bool is_frl;
  	enum intel_output_format sink_format;
++	int bpc = 8; /* Assume 8bpc for the DP++/HDMI/DVI TMDS/FRL bw heck */
  
-+	ycbcr_420_only = drm_mode_is_420_only(info, mode);
-+
+-	ycbcr_420_only = drm_mode_is_420_only(info, mode);
++	if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
++		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
++	else
++		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
  	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
- 	if (intel_dp->dfp.pcon_max_frl_bw) {
--		int target_bw;
--		int max_frl_bw;
--		int bpp = intel_dp_mode_min_output_bpp(connector, mode);
+-	if (intel_dp->dfp.pcon_max_frl_bw) {
 -
--		target_bw = bpp * target_clock;
- 
--		max_frl_bw = intel_dp->dfp.pcon_max_frl_bw;
+-		if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
+-			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+-		else
+-			sink_format = INTEL_OUTPUT_FORMAT_RGB;
 -
--		/* converting bw from Gbps to Kbps*/
--		max_frl_bw = max_frl_bw * 1000000;
-+		if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
-+			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-+		else
-+			sink_format = INTEL_OUTPUT_FORMAT_RGB;
+-		/* Assume 8bpc for the HDMI2.1 FRL BW check */
+-		status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
+-		if (status != MODE_OK) {
+-			if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+-			    !drm_mode_is_420_also(info, mode))
+-				return status;
+-			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+-			status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
+-			if (status != MODE_OK)
+-				return status;
+-		}
++	is_frl = intel_dp->dfp.pcon_max_frl_bw ? true : false;
  
--		if (target_bw > max_frl_bw)
--			return MODE_CLOCK_HIGH;
-+		/* Assume 8bpc for the HDMI2.1 FRL BW check */
-+		status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
-+		if (status != MODE_OK) {
-+			if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-+			    !drm_mode_is_420_also(info, mode))
-+				return status;
-+			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-+			status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
-+			if (status != MODE_OK)
-+				return status;
-+		}
- 
- 		return MODE_OK;
- 	}
-@@ -1063,13 +1096,6 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+-		return MODE_OK;
+-	}
+-
+-	if (intel_dp->dfp.max_dotclock &&
++	if (!is_frl && intel_dp->dfp.max_dotclock &&
  	    target_clock > intel_dp->dfp.max_dotclock)
  		return MODE_CLOCK_HIGH;
  
--	ycbcr_420_only = drm_mode_is_420_only(info, mode);
--
--	if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
--		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--	else
--		sink_format = INTEL_OUTPUT_FORMAT_RGB;
--
- 	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
- 	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
- 					   8, sink_format, true);
+-	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+-	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+-					   8, sink_format, true);
++	status = intel_dp_hdmi_bw_check(intel_dp, target_clock, bpc, sink_format, is_frl);
+ 
+ 	if (status != MODE_OK) {
+ 		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+ 		    !drm_mode_is_420_also(info, mode))
+ 			return status;
+ 		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+-		status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+-						   8, sink_format, true);
++		status = intel_dp_hdmi_bw_check(intel_dp, target_clock, bpc, sink_format, is_frl);
++	} else {
+ 		if (status != MODE_OK)
+ 			return status;
+ 	}
 -- 
 2.25.1
 
