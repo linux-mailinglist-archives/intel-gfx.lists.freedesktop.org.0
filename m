@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E9A76A4427
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 15:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DE26A449E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Feb 2023 15:36:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024EF10E410;
-	Mon, 27 Feb 2023 14:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B29110E41B;
+	Mon, 27 Feb 2023 14:36:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A59810E410;
- Mon, 27 Feb 2023 14:19:47 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D55510E038;
+ Mon, 27 Feb 2023 14:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677507587; x=1709043587;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=snzB4bkoNKqD7Lik1ptpnELkEKhxK5QY0yDRo6Xp0b4=;
- b=bBCRxruA/KHI/cdRn++nxMg/ypKVNVbx7vu11UToENFC1wTrnZyFtQNC
- bJjaQ/mmRIngy+muVBn/wxywm8d1RNV7kTPMUEtTR/h2cussi0lKq7t5r
- 7Ls2pEp9E4sYoaDeEZg+qoR2TKVUj4y6khvm9i3BlpRFH+a4fJws3fmQ8
- fdvNRv5kCLJwqIlweYubKCdqwjXC9M7nUMwvsb8AJGG0zF90MQPgwQIEt
- ZMnaOhY/vC/uxnXfbLFE2euzxk4j259vPQxYEvowspJjt8EvusAaSCuEN
- jDBobIXaF1ANN1NT39sXebrnxfFLwIy6iV1lDCA8V2ZxG14wGRwUxf3sw g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="335346860"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="335346860"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 06:19:46 -0800
+ t=1677508611; x=1709044611;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xZKdK72TcTIThEssnf2juzQ6SrDR7CsZQzc763XRXPk=;
+ b=KfUgvpniNn2Z6uIpm2FpNCUzqhvArmuCDEZoUpNSFbumow9X9VhSrknL
+ xina8xX9UNapk5C3gRYZ88lNBJF3OlRTpyJSHylCSupCU8QN9/uqg8sC7
+ 71UNYq/AB/WOICTM0x2IvzXlXftfcBHoHpbjoPyVyZ3uWxyy5KrG0tdjU
+ 41vU8iB47QUdsclZbVKeedHYfZ7t71Q5+vjMOTZKGaSvuvU3HYHyp/aYI
+ +Y/KFuxwlCknIBCUbE+VKkWeN9kjDyYFlIGQLhcgcMK4zy518ar1CnQN9
+ zjY52iiEhP159mFLYP3TlyziosCh+wlUyawtUU8wKoQmLlI0tMhDw2u5I w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="336149658"
+X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; d="scan'208";a="336149658"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 06:36:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="919372153"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="919372153"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 27 Feb 2023 06:19:44 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pWeLw-0004UJ-0s;
- Mon, 27 Feb 2023 14:19:44 +0000
-Date: Mon, 27 Feb 2023 22:18:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.sourceforge.net
-Message-ID: <202302272259.dbMIwSUR-lkp@intel.com>
-References: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="816685967"
+X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="816685967"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga001.fm.intel.com with SMTP; 27 Feb 2023 06:36:49 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 27 Feb 2023 16:36:48 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 27 Feb 2023 16:36:48 +0200
+Message-Id: <20230227143648.7776-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/tests: Suballocator test
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/edid: Fix csync detailed mode parsing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +57,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- Christian Koenig <christian.koenig@amd.com>, oe-kbuild-all@lists.linux.dev,
- intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Thank you for the patch! Yet something to improve:
+Remove the bogus csync check and replace it with something that:
+- triggers for all forms of csync, not just the basic analog variant
+- actually populates the mode csync flags so that drivers can
+  decide what to do with the mode
 
-[auto build test ERROR on drm-tip/drm-tip]
+Originally the code tried to outright reject csync, but that
+apparently broke some bogus LCD monitor that claimed to have
+a detailed mode that uses analog csync, despite also claiming
+the monitor only support separate sync:
+https://bugzilla.redhat.com/show_bug.cgi?id=540024
+Potentially that monitor should just be quirked or something.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230227103853.12666-1-thomas.hellstrom%40linux.intel.com
-patch subject: [Intel-gfx] [PATCH] drm/tests: Suballocator test
-config: x86_64-randconfig-a006-20230227 (https://download.01.org/0day-ci/archive/20230227/202302272259.dbMIwSUR-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/bf605f8a4492ba34499541f58ad29cf56bd9d852
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
-        git checkout bf605f8a4492ba34499541f58ad29cf56bd9d852
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/tests/
+Anyways, what we are dealing with now is some kind of funny i915
+JSL machine with eDP where the panel claims to support a sensible
+60Hz separate sync mode, and a 50Hz mode with bipolar analog
+csync. The 50Hz mode does not work so we want to not use it.
+Easiest way is to just correctly flag it as csync and the driver
+will reject it.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302272259.dbMIwSUR-lkp@intel.com/
+TODO: or should we just reject any form of csync (or at least
+the analog variants) for digital display interfaces?
 
-All errors (new ones prefixed by >>):
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8146
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_edid.c | 23 +++++++++++++++--------
+ include/drm/drm_edid.h     | 12 +++++++++---
+ 2 files changed, 24 insertions(+), 11 deletions(-)
 
->> drivers/gpu/drm/tests/drm_suballoc_test.c:16:10: fatal error: 'drm/drm_suballoc.h' file not found
-   #include <drm/drm_suballoc.h>
-            ^~~~~~~~~~~~~~~~~~~~
-   1 error generated.
-
-
-vim +16 drivers/gpu/drm/tests/drm_suballoc_test.c
-
-     8	
-     9	#include <linux/dma-fence.h>
-    10	#include <linux/ktime.h>
-    11	#include <linux/hrtimer.h>
-    12	#include <linux/sizes.h>
-    13	#include <linux/slab.h>
-    14	#include <linux/spinlock.h>
-    15	#include <linux/delay.h>
-  > 16	#include <drm/drm_suballoc.h>
-    17	
-
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index ebab862b8b1a..fa20b1107ce3 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -3424,10 +3424,6 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+ 			    connector->base.id, connector->name);
+ 		return NULL;
+ 	}
+-	if (!(pt->misc & DRM_EDID_PT_SEPARATE_SYNC)) {
+-		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Composite sync not supported\n",
+-			    connector->base.id, connector->name);
+-	}
+ 
+ 	/* it is incorrect if hsync/vsync width is zero */
+ 	if (!hsync_pulse_width || !vsync_pulse_width) {
+@@ -3474,10 +3470,21 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+ 	if (info->quirks & EDID_QUIRK_DETAILED_SYNC_PP) {
+ 		mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
+ 	} else {
+-		mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+-			DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+-		mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+-			DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
++		switch (pt->misc & DRM_EDID_PT_SYNC_MASK) {
++		case DRM_EDID_PT_ANALOG_CSYNC:
++		case DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC:
++		case DRM_EDID_PT_DIGITAL_CSYNC:
++			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Composite sync!\n",
++				    connector->base.id, connector->name);
++			mode->flags |= DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_NCSYNC;
++			break;
++		case DRM_EDID_PT_DIGITAL_SEPARATE_SYNC:
++			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
++				DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
++			mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
++				DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
++			break;
++		}
+ 	}
+ 
+ set_size:
+diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+index 70ae6c290bdc..49ee10272603 100644
+--- a/include/drm/drm_edid.h
++++ b/include/drm/drm_edid.h
+@@ -61,9 +61,15 @@ struct std_timing {
+ 	u8 vfreq_aspect;
+ } __attribute__((packed));
+ 
+-#define DRM_EDID_PT_HSYNC_POSITIVE (1 << 1)
+-#define DRM_EDID_PT_VSYNC_POSITIVE (1 << 2)
+-#define DRM_EDID_PT_SEPARATE_SYNC  (3 << 3)
++#define DRM_EDID_PT_SYNC_MASK              (3 << 3)
++# define DRM_EDID_PT_ANALOG_CSYNC          (0 << 3)
++# define DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC  (1 << 3)
++# define DRM_EDID_PT_DIGITAL_CSYNC         (2 << 3)
++#  define DRM_EDID_PT_CSYNC_ON_RGB         (1 << 1) /* analog csync only */
++#  define DRM_EDID_PT_CSYNC_SERRATE        (1 << 2)
++# define DRM_EDID_PT_DIGITAL_SEPARATE_SYNC (3 << 3)
++#  define DRM_EDID_PT_HSYNC_POSITIVE       (1 << 1)
++#  define DRM_EDID_PT_VSYNC_POSITIVE       (1 << 2)
+ #define DRM_EDID_PT_STEREO         (1 << 5)
+ #define DRM_EDID_PT_INTERLACED     (1 << 7)
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.39.2
+
