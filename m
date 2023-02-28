@@ -2,136 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8286A5235
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 05:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72ACF6A525C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 05:39:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4560C10E1FD;
-	Tue, 28 Feb 2023 04:08:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2D710E1FD;
- Tue, 28 Feb 2023 04:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0CE10E207;
+	Tue, 28 Feb 2023 04:39:38 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E45010E1FD
+ for <Intel-GFX@lists.freedesktop.org>; Tue, 28 Feb 2023 04:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677557336; x=1709093336;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1s21TObzUG3yidIS//u2JtYz/nfhPoJYn5xBhi2cxQI=;
- b=lkTWp+Kretct+MgA/06FAcQWchLE+40NoWHglwVehc6+/aRnesLjuEjt
- faE6Gi0f1/oe3aHEq1AlC3rsnjUEDPCPX+29mMhsnX/3Xmx9c+HRlM+gF
- hrc3i5HkiBJQHerjwI2ORTlmTrsol3LGsiO7gIDdgX/cNvGwwNaOBEsii
- JMB2B93uI6jScTiW0tariek2mXcNftHRVFIfABE9FDKhqLg+nlCuRS26l
- nXsrr3ydEZie0DqBg0wU4oTIV3e/f3Vah6LnYUh1EBv3EMa2vW1p05mc6
- pdu0gfSsx1P6pYuTih63QvYYLlThMPfwXqIjhQOQ/TN5iUVviPFU3jBp4 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="317842866"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="317842866"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 20:08:56 -0800
+ t=1677559176; x=1709095176;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XsmiPBvDGJD7XWh7ihTUMdp+76SDdsb1+XW4TxwEAcQ=;
+ b=T6SjF2l3+O71BBQ8vn3HYSTlqMBHkRsiE6d+oqOU3QQM767RniK7o5H4
+ csXBqBwvVPclH+dtJVZJoNgwWkgs2vLP0tZkRoS1cIAnr7BqQl473Mf3O
+ qgsF4PPB1yRcD+Su6LokaebOlVDAWtYHvxiP4UGh00VtlaDSR1wMvgBxC
+ us5XRLGInSqpLi6yj/6uVdsNyv7y8kqgUlm796nUMyI9M4cq8oqA0IAqT
+ aH8zDdO1okt/BALnw4VWOo2CovYdPKNtytYA5H+u6+RF5th1l/3vPqPkZ
+ Y/Er+CqFAm5fsoWy9RQmMRwtPiQUIbdVYSUy6czBuJ8vQJwRvkYa4tY+M w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="331522520"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="331522520"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 20:39:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="848114698"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="848114698"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga005.jf.intel.com with ESMTP; 27 Feb 2023 20:08:55 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 27 Feb 2023 20:08:54 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 27 Feb 2023 20:08:54 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 27 Feb 2023 20:08:54 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oThSTERiG2kxai9bDM4QNREJnSAUW+IkKxLCftIJzpnMdFEfsK30FNqKDw02xpzxq+AgptXknMyokQV3sDFecPg2NyUAvERvIYg3ZjZb2yzgRk73aTjUA3eeIdD5Jo3exQhnAl2jSo17M8vsbyF7k6K5u3RVyinstP9XTeKq7iN4tuJt3DMa1/IVQ36As8hut9+XOcdzB8sSGvPCvDyuPazRBKA2bs1lDu76+YUDPXtxdXD+CtGpeJJd/dHgzgKYmqe/rkALcr44ebVDInkkPuMT1TLXtkVJBJ4lCny4F//22CAzYiQQq00flOAswXLv/H6s0jwGJrSOZq3YnnlIbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bTh3hHJQJs7oLpoJA1cZMbGxga5jFUzWwus0cNQTbIA=;
- b=Iek/zi3rxts0aWsODRPNphWY/HHyoHRGIEMnY/2L4HtyEqWmEKhgmtL1+Z10CcGreDC4peoVqEzX9gMAUh41UN2At+t1edEmmPLRDCNtN5qceBtscsgprBuH87mh6xz5oWuZ9fp0bVLY3udxlsSK0Pbw/U2DYtcsV0lwP5XXexnlwqVv4hKCjUePFCIG1UDPrHzO3g78KU87N5N7un2isOGdjPxUwcFQeoaE36EioYnZ4ZVw+anepEyNj7c004yfcTJc5suFUTGABs5p11QJl9OCIcLrrblfcFLSkOmSeyMJ7iZnLLCoRGNChwdYSqWfXWZ4vil3Ae3rtaj6q6+oIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by DM4PR11MB6503.namprd11.prod.outlook.com (2603:10b6:8:8c::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6134.28; Tue, 28 Feb 2023 04:08:53 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f%9]) with mapi id 15.20.6134.029; Tue, 28 Feb 2023
- 04:08:53 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Thread-Topic: [PATCH v5 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
-Thread-Index: AQHZSpxP1elsXPP8bE2Y+PYEE7Tlg67jK7SAgACRZJA=
-Date: Tue, 28 Feb 2023 04:08:52 +0000
-Message-ID: <DS0PR11MB752997C0012647B1E9699A2CC3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230227111135.61728-1-yi.l.liu@intel.com>
- <20230227111135.61728-17-yi.l.liu@intel.com> <Y/0CV1K0YNHA+olf@nvidia.com>
-In-Reply-To: <Y/0CV1K0YNHA+olf@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DM4PR11MB6503:EE_
-x-ms-office365-filtering-correlation-id: a4a3d76b-c7a8-4d23-6817-08db194180e3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YwJiKmqwSwBOxkUORTMjA+9KoB63hDz8w7hsn46/EodKowngPs5u1cMYqd+yjP/eQf3rAO5CJBbTaKw7UoS0VB6PVzhUNlUgD+s4SXXXWnt1ae6uGfGuRRdvPtM6AvmtNtYVqEW9anCFYCiGa1Of35kfHhXorQsBCuHQvtrmohAiHMVXyAPzDdzStNTZx54dLFLOG16wfjmgIFyO2EW6Ayv904v5mydKpDi8MK5aoegpLeTJgK0vfBrKrZIxU+Qh8sq2i0Ys0dWvfigpJ3ikajxLhi07UhqDyp7O0axPvi3wYKWXBfglbLXlFHnXphyfLkFMx/H99Qo/keoUurbOvMhYXwDEoEPEDZD9g9S+0/qJqfeN/Xp50wrIVHAFxGzNI7JzkW9m4J+1F6PXiqpRK3p+Iao34L6g8doE7kaMEYjcAfNhp+Ycw3RSq8JRDyzXhKxGLpeUwQNNCcKavNFwbA15UBMim5GQGwkKftKa7aGEam/K1W0YnbrD6NdmCi8G5uG5MisWu3T1VuJZwl5y+Hp/pd4222j5uRuL0fDm0KxSFRrlrgTRlKNuwv4qmxDqroXgWvch0XP8A14Y0cPPHNLR/6HiahfhVD10XA/u2FCIXuShYH5numqgMYviNz6JBAZ6AXaZKMDx5u0hIDLxCiX3bdP6RgLqmoC3wYepukI0U6mwjwq3MsAEKY0ZW0JQkpvZJFiEqjK3IIRGRvoJug==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(396003)(366004)(136003)(346002)(39860400002)(451199018)(316002)(9686003)(33656002)(54906003)(86362001)(7416002)(38100700002)(26005)(122000001)(66946007)(82960400001)(83380400001)(6506007)(38070700005)(186003)(7696005)(2906002)(8936002)(52536014)(71200400001)(5660300002)(55016003)(478600001)(4326008)(41300700001)(6916009)(8676002)(66446008)(76116006)(66556008)(64756008)(66476007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7/lE7Luue+RMvH6opmtMfOE7ha/qxBF8PWM0+9GQD7iOlV1C4Ynl9kv4XAPd?=
- =?us-ascii?Q?sjnfC5G4ipuIc14cgSFkPeqcwfWKftG/QcMv5rEKgDPxrF4ZV9NIWl514Ffn?=
- =?us-ascii?Q?r2BLT/xOG/JzIGzgNwxNLhDNaIpQraFzum5aob1z5KSUDTqbNir9f5BTB4gz?=
- =?us-ascii?Q?tpPIDIRSr30FXyncfZGWC5wHw69ij3py67EtVcdHVXiX0X1Nc3WheZaeFurO?=
- =?us-ascii?Q?j/s9nXqFY30ou+IkdjnEqqxsx8G5WwEMxUdhOGQu6Z/yF4espPpC6lNuvzW3?=
- =?us-ascii?Q?mKeWwJb1/QkmxSyFb2bPFxZ6FJORszlJG3fynXboX4Jgh7X974MjoD62zmyZ?=
- =?us-ascii?Q?HQ0D0Mns8MHL2V+IjqvGKLcaDxGmpPqQA9LJcJa8r+sGL0QY2tt/R581KqTD?=
- =?us-ascii?Q?Pah1wShK5Qi2SH1FE5/FDIzwNnMx2zB9peeZXaPXCeqJBQeHrpLPY77fW4mf?=
- =?us-ascii?Q?vxUUxB2X7wf6u6neoKiVcDlOoTt3GDg+ZFgue5MOscYKx0bzhImjgdZ3cIhr?=
- =?us-ascii?Q?MshTwolsZZfRiq+ptCq4WW8iSaSK/wQCaRzvrq58Ha9Omx8OHaAOJ2X+o4zv?=
- =?us-ascii?Q?QNswK9n21/8Wqwd3RQgMKnQytTIYLuDr2Zd/OSBv7MhxmJarNNnPL+2XW8Xd?=
- =?us-ascii?Q?+3z0bnRD/SJtol1Wsy4oDC4g6Q3qduA+yawIzC4IDDzjYPXTX/2GNIJqmCAL?=
- =?us-ascii?Q?kxgztq+XAR5H0mBxGz8y1VPLE33jvScRdZmJjx1acMOhIsibYjzcIHK1Lp7z?=
- =?us-ascii?Q?y3QJ1Zes0+GupPg8lRGfcHs7Rj618V2YLnn7qX0ogNM7rTmpysSUiWXIxYa0?=
- =?us-ascii?Q?2iwHeNtaUHj/V7ReGBP06BK/q1SxGPIJTpMCrZ+GaNjnCzAV7cwilru3bW2f?=
- =?us-ascii?Q?VWpH5vFKUXjWVlQDSvVP5J/xORXR/h+TD7VTyVoNVuOIUZiupUoWWGn7osRJ?=
- =?us-ascii?Q?IP5wGGgGEZDDv/2sKpo8UhkDxqqc6kicgRveUWAECFdj99HZ6UyfH0xJ/cSW?=
- =?us-ascii?Q?waYAyFx8m52146WXSwu0K1M5NelLnPnHMZ8rG9BM8JhtZDr0WFNG6w1bGF/c?=
- =?us-ascii?Q?/rbfw9XX0YkRTwTtGDMQnpinlTT1hpKFvsgC1kguOey/VI7CbbzJ/R90qI5A?=
- =?us-ascii?Q?Ec/r45o0llpOVrEPtXW4OiggPUV5B1SzbhFct+gyfeNP4a5/1rS/RTvr/ihI?=
- =?us-ascii?Q?QqV38mP9Drj6wC4hcdXcV0zvWr5V6PnwiNjKwZFHpwD7gb1S/wocFd+nPub/?=
- =?us-ascii?Q?TEemxRVT1L5OVUTrNyPD5Rc1qav6MnfarO4h7J471UvC14sTG9WDBacdzefJ?=
- =?us-ascii?Q?L2EIbH9OqIxs+RTrtd//PGNOh1pfP8ryCKXSt4QqiuBlrbaFv0keriO7pK5I?=
- =?us-ascii?Q?n2p5p3+8HxIlp013A/GIv4pX99dunBoOh/Dbm6KaZlQ9CDgo+LyK6OZPY6yI?=
- =?us-ascii?Q?h+DsaIsEeEEE1Q1pojeeL6rtxl3j/rAN6fwN3XK41p42guv+P+mhk2yHIBdn?=
- =?us-ascii?Q?qCc5yRRL+7UsydZMTfi6ht3W0PsaFR7ANiLxpiGrWldQIsoVwNVoyDefSOcx?=
- =?us-ascii?Q?Q0U0UUaH9FBQoWJsPnuxRv0oTD7L7oSjq10O8YYg?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="738008174"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="738008174"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Feb 2023 20:39:33 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Tue, 28 Feb 2023 10:13:07 +0530
+Message-Id: <20230228044307.191639-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4a3d76b-c7a8-4d23-6817-08db194180e3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2023 04:08:52.8700 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: e9QrAfZeWustmVew15/xyMyipvPZto8W+IJpdSI2GReOxnToGHAe+zuQed+NRhik0ARmsjG0pyASCnXT1qzupQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6503
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [Intel-gfx V2] drm/i915/selftests: Fix live_requests
+ for all engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,209 +55,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Tuesday, February 28, 2023 3:20 AM
->=20
-> On Mon, Feb 27, 2023 at 03:11:32AM -0800, Yi Liu wrote:
-> > This adds ioctl for userspace to bind device cdev fd to iommufd.
-> >
-> >     VFIO_DEVICE_BIND_IOMMUFD: bind device to an iommufd, hence gain
-> DMA
-> > 			      control provided by the iommufd. open_device
-> > 			      op is called after bind_iommufd op.
-> > 			      VFIO no iommu mode is indicated by passing
-> > 			      a negative iommufd value.
-> >
-> > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > ---
-> >  drivers/vfio/device_cdev.c | 146
-> +++++++++++++++++++++++++++++++++++++
-> >  drivers/vfio/vfio.h        |  17 ++++-
-> >  drivers/vfio/vfio_main.c   |  54 ++++++++++++--
-> >  include/linux/iommufd.h    |   6 ++
-> >  include/uapi/linux/vfio.h  |  34 +++++++++
-> >  5 files changed, 248 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/vfio/device_cdev.c b/drivers/vfio/device_cdev.c
-> > index 9e2c1ecaaf4f..37f80e368551 100644
-> > --- a/drivers/vfio/device_cdev.c
-> > +++ b/drivers/vfio/device_cdev.c
-> > @@ -3,6 +3,7 @@
-> >   * Copyright (c) 2023 Intel Corporation.
-> >   */
-> >  #include <linux/vfio.h>
-> > +#include <linux/iommufd.h>
-> >
-> >  #include "vfio.h"
-> >
-> > @@ -45,6 +46,151 @@ int vfio_device_fops_cdev_open(struct inode
-> *inode, struct file *filep)
-> >  	return ret;
-> >  }
-> >
-> > +static void vfio_device_get_kvm_safe(struct vfio_device_file *df)
-> > +{
-> > +	spin_lock(&df->kvm_ref_lock);
-> > +	if (!df->kvm)
-> > +		goto unlock;
-> > +
-> > +	_vfio_device_get_kvm_safe(df->device, df->kvm);
-> > +
-> > +unlock:
->=20
-> Just
->=20
-> if (df->kvm)
->    _vfio_device_get_kvm_safe(df->device, df->kvm);
->=20
-> Without the goto
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Got it.
+After the abandonment of i915->kernel_context and since we have started to
+create per-gt engine->kernel_context, these tests need to be updated to
+instantiate the batch buffer VMA in the correct PPGTT for the context used
+to execute each spinner.
 
-> > +	spin_unlock(&df->kvm_ref_lock);
-> > +}
-> > +
-> > +void vfio_device_cdev_close(struct vfio_device_file *df)
-> > +{
-> > +	struct vfio_device *device =3D df->device;
-> > +
-> > +	mutex_lock(&device->dev_set->lock);
-> > +	/*
-> > +	 * As df->access_granted writer is under dev_set->lock as well,
-> > +	 * so this read no need to use smp_load_acquire() to pair with
-> > +	 * smp_store_release() in the caller of vfio_device_open().
-> > +	 */
->=20
-> This is a bit misleading, we are about to free df in the caller, so at
-> this moment df has no current access. We don't even need to have the
-> mutex to test it.
+v2(Tejas):
+  - Clean commit message - Matt
+  - Add BUG_ON to match vm
+v3(Tejas):
+  - Fix dim checkpatch warnings
 
-Ok. so I can test it outside the lock and make the comment
-more clear? How about below? Or simply no need to have
-a comment here?
+Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_request.c | 133 ++++++++++--------
+ 1 file changed, 77 insertions(+), 56 deletions(-)
 
-/*
-  * caller of vfio_device_cdev_close() is going to free df, so there
-  * is no need to use smp_load_acquire() to pair with
-  * smp_store_release() in the writer path of df->access_granted.
-  */
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 6fe22b096bdd..7a27aba3da8a 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -957,18 +957,18 @@ static int live_cancel_request(void *arg)
+ 	return 0;
+ }
+ 
+-static struct i915_vma *empty_batch(struct drm_i915_private *i915)
++static struct i915_vma *empty_batch(struct intel_gt *gt)
+ {
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
+ 	u32 *cmd;
+ 	int err;
+ 
+-	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
++	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
+ 
+-	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
++	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
+ 	if (IS_ERR(cmd)) {
+ 		err = PTR_ERR(cmd);
+ 		goto err;
+@@ -979,15 +979,15 @@ static struct i915_vma *empty_batch(struct drm_i915_private *i915)
+ 	__i915_gem_object_flush_map(obj, 0, 64);
+ 	i915_gem_object_unpin_map(obj);
+ 
+-	intel_gt_chipset_flush(to_gt(i915));
++	intel_gt_chipset_flush(gt);
+ 
+-	vma = i915_vma_instance(obj, &to_gt(i915)->ggtt->vm, NULL);
++	vma = i915_vma_instance(obj, gt->vm, NULL);
+ 	if (IS_ERR(vma)) {
+ 		err = PTR_ERR(vma);
+ 		goto err;
+ 	}
+ 
+-	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_GLOBAL);
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
+ 	if (err)
+ 		goto err;
+ 
+@@ -1005,6 +1005,14 @@ static struct i915_vma *empty_batch(struct drm_i915_private *i915)
+ 	return ERR_PTR(err);
+ }
+ 
++static int emit_bb_start(struct i915_request *rq, struct i915_vma *batch)
++{
++	return rq->engine->emit_bb_start(rq,
++					 i915_vma_offset(batch),
++					 i915_vma_size(batch),
++					 0);
++}
++
+ static struct i915_request *
+ empty_request(struct intel_engine_cs *engine,
+ 	      struct i915_vma *batch)
+@@ -1016,10 +1024,7 @@ empty_request(struct intel_engine_cs *engine,
+ 	if (IS_ERR(request))
+ 		return request;
+ 
+-	err = engine->emit_bb_start(request,
+-				    i915_vma_offset(batch),
+-				    i915_vma_size(batch),
+-				    I915_DISPATCH_SECURE);
++	err = emit_bb_start(request, batch);
+ 	if (err)
+ 		goto out_request;
+ 
+@@ -1034,8 +1039,7 @@ static int live_empty_request(void *arg)
+ 	struct drm_i915_private *i915 = arg;
+ 	struct intel_engine_cs *engine;
+ 	struct igt_live_test t;
+-	struct i915_vma *batch;
+-	int err = 0;
++	int err;
+ 
+ 	/*
+ 	 * Submit various sized batches of empty requests, to each engine
+@@ -1043,16 +1047,17 @@ static int live_empty_request(void *arg)
+ 	 * the overhead of submitting requests to the hardware.
+ 	 */
+ 
+-	batch = empty_batch(i915);
+-	if (IS_ERR(batch))
+-		return PTR_ERR(batch);
+-
+ 	for_each_uabi_engine(engine, i915) {
+ 		IGT_TIMEOUT(end_time);
+ 		struct i915_request *request;
++		struct i915_vma *batch;
+ 		unsigned long n, prime;
+ 		ktime_t times[2] = {};
+ 
++		batch = empty_batch(engine->gt);
++		if (IS_ERR(batch))
++			return PTR_ERR(batch);
++
+ 		err = igt_live_test_begin(&t, i915, __func__, engine->name);
+ 		if (err)
+ 			goto out_batch;
+@@ -1100,27 +1105,30 @@ static int live_empty_request(void *arg)
+ 			engine->name,
+ 			ktime_to_ns(times[0]),
+ 			prime, div64_u64(ktime_to_ns(times[1]), prime));
++out_batch:
++		i915_vma_unpin(batch);
++		i915_vma_put(batch);
++		if (err)
++			break;
+ 	}
+ 
+-out_batch:
+-	i915_vma_unpin(batch);
+-	i915_vma_put(batch);
+ 	return err;
+ }
+ 
+-static struct i915_vma *recursive_batch(struct drm_i915_private *i915)
++static struct i915_vma *recursive_batch(struct intel_gt *gt)
+ {
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct drm_i915_gem_object *obj;
+ 	const int ver = GRAPHICS_VER(i915);
+ 	struct i915_vma *vma;
+ 	u32 *cmd;
+ 	int err;
+ 
+-	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
++	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
+ 
+-	vma = i915_vma_instance(obj, to_gt(i915)->vm, NULL);
++	vma = i915_vma_instance(obj, gt->vm, NULL);
+ 	if (IS_ERR(vma)) {
+ 		err = PTR_ERR(vma);
+ 		goto err;
+@@ -1152,7 +1160,7 @@ static struct i915_vma *recursive_batch(struct drm_i915_private *i915)
+ 	__i915_gem_object_flush_map(obj, 0, 64);
+ 	i915_gem_object_unpin_map(obj);
+ 
+-	intel_gt_chipset_flush(to_gt(i915));
++	intel_gt_chipset_flush(gt);
+ 
+ 	return vma;
+ 
+@@ -1186,7 +1194,6 @@ static int live_all_engines(void *arg)
+ 	struct intel_engine_cs *engine;
+ 	struct i915_request **request;
+ 	struct igt_live_test t;
+-	struct i915_vma *batch;
+ 	unsigned int idx;
+ 	int err;
+ 
+@@ -1204,42 +1211,44 @@ static int live_all_engines(void *arg)
+ 	if (err)
+ 		goto out_free;
+ 
+-	batch = recursive_batch(i915);
+-	if (IS_ERR(batch)) {
+-		err = PTR_ERR(batch);
+-		pr_err("%s: Unable to create batch, err=%d\n", __func__, err);
+-		goto out_free;
+-	}
+-
+-	i915_vma_lock(batch);
+-
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
++		struct i915_vma *batch;
++
++		batch = recursive_batch(engine->gt);
++		if (IS_ERR(batch)) {
++			err = PTR_ERR(batch);
++			pr_err("%s: Unable to create batch, err=%d\n",
++			       __func__, err);
++			goto out_free;
++		}
++
++		i915_vma_lock(batch);
+ 		request[idx] = intel_engine_create_kernel_request(engine);
+ 		if (IS_ERR(request[idx])) {
+ 			err = PTR_ERR(request[idx]);
+ 			pr_err("%s: Request allocation failed with err=%d\n",
+ 			       __func__, err);
+-			goto out_request;
++			goto out_unlock;
+ 		}
++		GEM_BUG_ON(request[idx]->context->vm != batch->vm);
+ 
+ 		err = i915_vma_move_to_active(batch, request[idx], 0);
+ 		GEM_BUG_ON(err);
+ 
+-		err = engine->emit_bb_start(request[idx],
+-					    i915_vma_offset(batch),
+-					    i915_vma_size(batch),
+-					    0);
++		err = emit_bb_start(request[idx], batch);
+ 		GEM_BUG_ON(err);
+ 		request[idx]->batch = batch;
+ 
+ 		i915_request_get(request[idx]);
+ 		i915_request_add(request[idx]);
+ 		idx++;
++out_unlock:
++		i915_vma_unlock(batch);
++		if (err)
++			goto out_request;
+ 	}
+ 
+-	i915_vma_unlock(batch);
+-
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
+ 		if (i915_request_completed(request[idx])) {
+@@ -1251,17 +1260,23 @@ static int live_all_engines(void *arg)
+ 		idx++;
+ 	}
+ 
+-	err = recursive_batch_resolve(batch);
+-	if (err) {
+-		pr_err("%s: failed to resolve batch, err=%d\n", __func__, err);
+-		goto out_request;
++	idx = 0;
++	for_each_uabi_engine(engine, i915) {
++		err = recursive_batch_resolve(request[idx]->batch);
++		if (err) {
++			pr_err("%s: failed to resolve batch, err=%d\n",
++			       __func__, err);
++			goto out_request;
++		}
++		idx++;
+ 	}
+ 
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
++		struct i915_request *rq = request[idx];
+ 		long timeout;
+ 
+-		timeout = i915_request_wait(request[idx], 0,
++		timeout = i915_request_wait(rq, 0,
+ 					    MAX_SCHEDULE_TIMEOUT);
+ 		if (timeout < 0) {
+ 			err = timeout;
+@@ -1270,8 +1285,10 @@ static int live_all_engines(void *arg)
+ 			goto out_request;
+ 		}
+ 
+-		GEM_BUG_ON(!i915_request_completed(request[idx]));
+-		i915_request_put(request[idx]);
++		GEM_BUG_ON(!i915_request_completed(rq));
++		i915_vma_unpin(rq->batch);
++		i915_vma_put(rq->batch);
++		i915_request_put(rq);
+ 		request[idx] = NULL;
+ 		idx++;
+ 	}
+@@ -1281,12 +1298,18 @@ static int live_all_engines(void *arg)
+ out_request:
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
+-		if (request[idx])
+-			i915_request_put(request[idx]);
++		struct i915_request *rq = request[idx];
++
++		if (!rq)
++			continue;
++
++		if (rq->batch) {
++			i915_vma_unpin(rq->batch);
++			i915_vma_put(rq->batch);
++		}
++		i915_request_put(rq);
+ 		idx++;
+ 	}
+-	i915_vma_unpin(batch);
+-	i915_vma_put(batch);
+ out_free:
+ 	kfree(request);
+ 	return err;
+@@ -1322,7 +1345,7 @@ static int live_sequential_engines(void *arg)
+ 	for_each_uabi_engine(engine, i915) {
+ 		struct i915_vma *batch;
+ 
+-		batch = recursive_batch(i915);
++		batch = recursive_batch(engine->gt);
+ 		if (IS_ERR(batch)) {
+ 			err = PTR_ERR(batch);
+ 			pr_err("%s: Unable to create batch for %s, err=%d\n",
+@@ -1338,6 +1361,7 @@ static int live_sequential_engines(void *arg)
+ 			       __func__, engine->name, err);
+ 			goto out_unlock;
+ 		}
++		GEM_BUG_ON(request[idx]->context->vm != batch->vm);
+ 
+ 		if (prev) {
+ 			err = i915_request_await_dma_fence(request[idx],
+@@ -1353,10 +1377,7 @@ static int live_sequential_engines(void *arg)
+ 		err = i915_vma_move_to_active(batch, request[idx], 0);
+ 		GEM_BUG_ON(err);
+ 
+-		err = engine->emit_bb_start(request[idx],
+-					    i915_vma_offset(batch),
+-					    i915_vma_size(batch),
+-					    0);
++		err = emit_bb_start(request[idx], batch);
+ 		GEM_BUG_ON(err);
+ 		request[idx]->batch = batch;
+ 
+-- 
+2.25.1
 
-> > +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
-> > +				    unsigned long arg)
->=20
-> struct device __user *arg and remove all the casts.
->=20
-> > +{
-> > +	struct vfio_device *device =3D df->device;
-> > +	struct vfio_device_bind_iommufd bind;
-> > +	struct iommufd_ctx *iommufd =3D NULL;
-> > +	unsigned long minsz;
-> > +	int ret;
-> > +
-> > +	minsz =3D offsetofend(struct vfio_device_bind_iommufd, out_devid);
-> > +
-> > +	if (copy_from_user(&bind, (void __user *)arg, minsz))
-> > +		return -EFAULT;
-> > +
-> > +	if (bind.argsz < minsz || bind.flags)
-> > +		return -EINVAL;
-> > +
-> > +	if (!device->ops->bind_iommufd)
-> > +		return -ENODEV;
-> > +
-> > +	ret =3D vfio_device_block_group(device);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	mutex_lock(&device->dev_set->lock);
-> > +	/*
-> > +	 * If already been bound to an iommufd, or already set noiommu
-> > +	 * then fail it.
-> > +	 */
-> > +	if (df->iommufd || df->noiommu) {
-> > +		ret =3D -EINVAL;
-> > +		goto out_unlock;
-> > +	}
-> > +
-> > +	/* iommufd < 0 means noiommu mode */
-> > +	if (bind.iommufd < 0) {
-> > +		if (!capable(CAP_SYS_RAWIO)) {
-> > +			ret =3D -EPERM;
-> > +			goto out_unlock;
-> > +		}
-> > +		df->noiommu =3D true;
-> > +	} else {
-> > +		iommufd =3D vfio_get_iommufd_from_fd(bind.iommufd);
-> > +		if (IS_ERR(iommufd)) {
-> > +			ret =3D PTR_ERR(iommufd);
-> > +			goto out_unlock;
-> > +		}
-> > +	}
-> > +
-> > +	/*
-> > +	 * Before the device open, get the KVM pointer currently
-> > +	 * associated with the device file (if there is) and obtain
-> > +	 * a reference.  This reference is held until device closed.
-> > +	 * Save the pointer in the device for use by drivers.
-> > +	 */
-> > +	vfio_device_get_kvm_safe(df);
-> > +
-> > +	df->iommufd =3D iommufd;
-> > +	ret =3D vfio_device_open(df, &bind.out_devid, NULL);
-> > +	if (ret)
-> > +		goto out_put_kvm;
-> > +
-> > +	ret =3D copy_to_user((void __user *)arg +
-> > +			   offsetofend(struct vfio_device_bind_iommufd,
-> iommufd),
->=20
-> ??
->=20
-> &arg->out_dev_id
->
-> static_assert(__same_type...)
-
-Yes, all the above comments are similar with other two patches. Will
-refine accordingly.
-
-> > diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-> > index 650d45629647..9672cf839687 100644
-> > --- a/include/linux/iommufd.h
-> > +++ b/include/linux/iommufd.h
-> > @@ -17,6 +17,12 @@ struct iommufd_ctx;
-> >  struct iommufd_access;
-> >  struct file;
-> >
-> > +/*
-> > + * iommufd core init xarray with flags=3D=3DXA_FLAGS_ALLOC1, so valid
-> > + * ID starts from 1.
-> > + */
-> > +#define IOMMUFD_INVALID_ID 0
->=20
-> Why? vfio doesn't need to check this just to generate EINVAL.
-
-Hmmm, you are right. Not needed any more.
-
-Regards,
-Yi Liu
