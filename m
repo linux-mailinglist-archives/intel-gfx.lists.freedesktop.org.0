@@ -1,144 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5420A6A51AB
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 04:11:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 471AA6A51AF
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 04:12:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2427410E471;
-	Tue, 28 Feb 2023 03:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C3910E471;
+	Tue, 28 Feb 2023 03:12:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38CEB10E471;
- Tue, 28 Feb 2023 03:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677553899; x=1709089899;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=gMrLxFa7OIkkmxmYpF4H7a7wcb/yW0rhoQLrALlzqBc=;
- b=i9nT7UjccaeanodGRN5R5PPnBsc3FAX61nJ5sqn62TX+pn0JhCX7SUFS
- 55ht5qrZgg5uitWNJPIODsF9BkIpmkj/60QbBe4QKgGNcToK1glhUaN9v
- UL46Oi82vWlSRfY+5dz6AIq6qR20vtlq5D5x3fcJ2XFizO08RlQOKKE9Y
- oQ0RU6gljwB7vSmiVL9UZjRo+GqPyFrL7IgF4s3oOX21/6cWgyxCE13G+
- 751iEvzZ9T0ETDgWqEZJ9GaKVFkG4tHAc1j7bmciUdgPLclDh7ciam5HR
- wuD1Hz95VXIXOQH3xmts7gYh0ByagTgT47lHM5VZvSSYrjFqxvbu162GH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="331510409"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="331510409"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 19:11:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="1003071741"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="1003071741"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga005.fm.intel.com with ESMTP; 27 Feb 2023 19:11:37 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 27 Feb 2023 19:11:37 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 27 Feb 2023 19:11:37 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 27 Feb 2023 19:11:37 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 27 Feb 2023 19:11:36 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nzclE0EsON8Ynxi2pvHdZrBzf0X8grxwiLe7WN45J+pG6xLZWP6aOnxVcXiamXXw3DB8QlFouoB9NiyLAYnGb1H9rZFEXyBd26rRBePeAlCqxVwHJbu3a0X/Ea1aV7Y/mzs2T1kowStRskiUAo9PFtL0+cjYFfG7NVY3SW8+nSSZEE62gESlRkjS4uDU7rBXZqEACVrau3Sg/pSTxiZwjKsxRQYeLuWVh1RxrINvP4wqDBulaIs1vkfenajFgI9ZKCgVyIzaM9hYTeX2s2CaRUpG8jAJvJpPmBjl/erv0yCK7x/iKdPGAzsG3KWQU0jXiQq8/TwajPANRfo7aRo4lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AGidM3auVEHqZ7biEOBJOk6wpmyLnMWOQ8GtNE/E5oc=;
- b=PCVd20pwMIW9lMhhkIHWMRH0XR+LJ8NzAKra5Rv8WE0HzHdmZTdq5IwMhkg+X+qB3L936u/hcPuvCebt6AfJPC/scRBzowp024D7yGONcC5+pNyZ8gUHBX4xV1p6bJTIp3urrylS0BrOn2p55KczlxuhAwCeJq9ewGo1ml+9Yo/5R5S/s4ZHQbRGjzfkmUvU0mPzpJeKXYOamI3bSUZbyLkg+Mr3Z9u+xsIPy2XdZoY2iiMWau1gjzP8kBylCnfayGFruwH6cBfPDm6VlFHma/rK6J/ebD5g6hc9aamCyAbJuexCjihKTiMBwUzwQFei0R5QawoAxQWDnx2ieJTZIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by IA1PR11MB6322.namprd11.prod.outlook.com (2603:10b6:208:38a::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.27; Tue, 28 Feb
- 2023 03:11:35 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f%9]) with mapi id 15.20.6134.029; Tue, 28 Feb 2023
- 03:11:35 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Thread-Topic: [PATCH v5 14/19] vfio: Make vfio_device_open() single open for
- device cdev path
-Thread-Index: AQHZSpxLzIf6/b1XXkagijJzcXNiyK7jI/gAgACJkpA=
-Date: Tue, 28 Feb 2023 03:11:34 +0000
-Message-ID: <DS0PR11MB7529F1D9FE0F751E45363606C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230227111135.61728-1-yi.l.liu@intel.com>
- <20230227111135.61728-15-yi.l.liu@intel.com> <Y/z72jEID0QHgaLl@nvidia.com>
-In-Reply-To: <Y/z72jEID0QHgaLl@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|IA1PR11MB6322:EE_
-x-ms-office365-filtering-correlation-id: 57fa05e2-2b80-4fa6-272b-08db19397f6f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ax0lWQeaO0AxE5iAPssfmJ9dMum8PgTdO2AhM8esVK5WQMaPGFMqPFFZ3EW9Dc2aJk99RzJu615sKeINCW7Fw3Agvzsy93OHhmJs5OJNMgW7EXuRptfgY93mt7qm700ZoSj4ailXFtzgmzyA5EyLD+bUAdt3HZzyEnAUb/tx4NPHSlV1NUNoSyWWMW4JelhgEvkkGrZu1NocIi+OqvzNB6DV4WlTfvVFXm4jjSMuWp4BXYgPPQQISyB7Oed4O6tPJkabnuMyHwGTRluB9mNNE6WaPFy9Xuskpufv/Aj16Xg0jSRa67mMYwZAiP+emowv7V+eHX0gXZ70d+AC/ugxYbaJ9C77lkVLeaI/LDgoS8MWQ6opZhZBNVwBMoqyn1q1Upo18RqfzOKrEvuIw6fr05azz9qN+mDotpIeOCbFOYNQYda/5CDqvx1/LHns/JPL17aNKLfiiA6s7x5YUrgOkdTAQsN9toT/+Vu+2wIg8znP6EG/KUZ6J3Ps32oIJ/T0pco/6vH77HeYrFcf7e9hVoS+4BvF/+KYSB6VY9H8m9DphE6LmQompJNjFFhqbA+H0GOz8rdjz7tLYSbIAiOgge/2QhZgst/FpbyEG8r/uo9q3jZupqSfqUcscBhNZ/K/Ia8W5duw4fsjEEt8VXHwkEizLyoYGd5AcjjWU5buLdSVhSLhndxe+5Q9E+lkjhf3jJAjADhnPZ3e8AlgOPOFFg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(366004)(39860400002)(396003)(346002)(376002)(451199018)(6916009)(8936002)(5660300002)(4744005)(52536014)(7416002)(2906002)(66476007)(4326008)(64756008)(8676002)(76116006)(66946007)(66556008)(66446008)(71200400001)(478600001)(54906003)(316002)(7696005)(41300700001)(6506007)(9686003)(26005)(186003)(33656002)(82960400001)(38100700002)(38070700005)(83380400001)(86362001)(55016003)(122000001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gEvfjkFp1xwaCv+5uYdOVl9heUSbvh40O6svfiY/YEpi5kpRtcFP73ZOAOd5?=
- =?us-ascii?Q?aLvgdtf4MJ725w2pgTBYadKonJEdfCr1VBYERvxW/g+JKK3D7ZAYfPmlIbmt?=
- =?us-ascii?Q?/RK0EdKxIduLFvmbAQzDZ4YgaZSNKnrUftjFMP87ONbcx3UYjQueu+o9W7Qp?=
- =?us-ascii?Q?8E1Gt30JLjOBviJkObeBpwxhfOtiJBdBL6DkibmhMncgi60EHjd4IaFsu2hR?=
- =?us-ascii?Q?rUwsn2kskcuHu0xxvIqnFOsTVyQT8Aa3yLw9l2bnDxDRzBNQUewGymj85/IW?=
- =?us-ascii?Q?TNtymjR9czIlPWMOOPsxnqopxck3ST6HToNM+PIFDzDYxTqbyXVUPuYW+rau?=
- =?us-ascii?Q?Pj41Fw/tG/y99tUz5+YfI0l2x/sPMypx6tPV1RL7eCGXaHEnZbqPFVRzt1nE?=
- =?us-ascii?Q?Ziw8BVTMXqhz5i0cwFmOxnwP+2JdJhHwBTT1bxiQkgAxLCQ4l+Kpks+cZnu4?=
- =?us-ascii?Q?EXEF57mtkUmPDbVm/1lm/hI23uPX2Mp2bjk4OEf6T8H2VrKXcDkC1MxbPmka?=
- =?us-ascii?Q?SzjdYRXcNCVhIrOqBVUG2d9S55uFKAo4ATAHWHYdCta0wj9UZlRe6myQblA0?=
- =?us-ascii?Q?E+Dn3lyo+6FBpSWpaZC3VeVkRLd2ml2mpS+AyemcGoUCiseRc4t2GlqqgZSx?=
- =?us-ascii?Q?6sqWdHP2bQPzlrUhLXmq6nMCn47UlwtCZciYUbrls8MXADoEWk0pRDlRvNqv?=
- =?us-ascii?Q?yuEoaARi0ohaDMUKy2WRNDF4nTqbq+KEc6xK6UZdUodTgbJUKtZ546QCR6i1?=
- =?us-ascii?Q?Wy5pLIO4hXXYrvopfkTLGnMqtvn/OC1G2ESqCAkggRHPmBCGOL5Vy9q1igNJ?=
- =?us-ascii?Q?Qs39ooYLlij4aV/R8L+uM4Bi7VXCRsxm+b3aWMFzTIwWepsySFBpIlcnM9K6?=
- =?us-ascii?Q?S3xQH8w2yj49JM6NV9bsFvLinlMMQOJyVwSzt2VdA7rtQtRmIgMjwaZvxqjX?=
- =?us-ascii?Q?CAGMSNhuc8Q7x7uYV09qPaLWvlZFILfWyTdQJ84Sblt9nhlczUwUUIbh+JZf?=
- =?us-ascii?Q?7HSCPMA4PMvO9EccsEd/VVplrt8l7ZN3ezR7tQpulRK5GiN35w57ofFQwXfu?=
- =?us-ascii?Q?+evXL14FFfmp0/Jr8oOUXKY3VxzxOZRLH/lIBctvx0uUH7b9kS8fRR1iiFzD?=
- =?us-ascii?Q?YYI421iesveAFVxud+2MvvxKhVkuhIeC3Dytb1Z/MIi0wZduSzqSZLvjQhKh?=
- =?us-ascii?Q?52UIdIv5ZhsYiWwDr1Azkl8b0H79+6xpYAc/Xv60+7I1mVm2t0kpEXWO+rAH?=
- =?us-ascii?Q?jzG3YbHVIjW3jP/5513NOpBeC4TtjSThzkHT9ub8fGKH2TE+2nmMm8GegFuM?=
- =?us-ascii?Q?9x7OsTNKh7nowpPLn3bFMOfuLhZ0SyYaX8HaB4d3Z9PfI+uF03Uh5DTTWXmw?=
- =?us-ascii?Q?fv+9+j4wdjAVtzvX1w0l+9eAukDtcBDHhBRgMqm1JLfc5P9HV4lmkqN/CjCA?=
- =?us-ascii?Q?s0Yu/g5gPYGgp9Xh7DNerJTq24Zgs4TNHl7F3MsD+HebEXf6DvddaYIbk+YS?=
- =?us-ascii?Q?1AhVZpmybqBn1gj0UmAPtZie29sVm94Awsp20jX09Ll7kltqAk5mkhuFM4Hu?=
- =?us-ascii?Q?tTrdDhegFy6X1APo7XXsrVboh0kR1AHxbnPJhzVi?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 87E4810E471;
+ Tue, 28 Feb 2023 03:12:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7059FA03D2;
+ Tue, 28 Feb 2023 03:12:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2653461433387044017=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57fa05e2-2b80-4fa6-272b-08db19397f6f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2023 03:11:34.4565 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6A7+gloZcNThU6s8oqTpbyOkGdsyahsLm/X+EGt8NFi9grmYoeQLaluS5ILRv/aEynWNi4zCPouOJYShJNEw+Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6322
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 14/19] vfio: Make vfio_device_open()
- single open for device cdev path
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Tue, 28 Feb 2023 03:12:51 -0000
+Message-ID: <167755397145.15136.734145540088380670@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pxp=3A_Add_MTL_PXP_Support_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,45 +40,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Tuesday, February 28, 2023 2:52 AM
->=20
-> On Mon, Feb 27, 2023 at 03:11:30AM -0800, Yi Liu wrote:
-> > @@ -535,7 +542,8 @@ static int vfio_device_fops_release(struct inode
-> *inode, struct file *filep)
-> >  	struct vfio_device_file *df =3D filep->private_data;
-> >  	struct vfio_device *device =3D df->device;
-> >
-> > -	vfio_device_group_close(df);
-> > +	if (!df->is_cdev_device)
-> > +		vfio_device_group_close(df);
->=20
-> This hunk should go in another patch
+--===============2653461433387044017==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Patch 15 or 16? Which one is your preference? To me, I guess patch
-15 is better since the user may open cdev fds after it. But its release
-op should not call vfio_device_group_close();
+== Series Details ==
 
-Regards,
-Yi Liu
+Series: drm/i915/pxp: Add MTL PXP Support (rev6)
+URL   : https://patchwork.freedesktop.org/series/112647/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12789 -> Patchwork_112647v6
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112647v6/index.html
+
+Participating hosts (38 -> 37)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12789 -> Patchwork_112647v6
+
+  CI-20190529: 20190529
+  CI_DRM_12789: 8589fd9227ca62484e8599cbd62216230c2c9a64 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7174: 55642b7805d6fc5b987b396c2bbfa46db654db4f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112647v6: 8589fd9227ca62484e8599cbd62216230c2c9a64 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f564e0d0d0cf drm/i915/pxp: Enable PXP with MTL-GSC-CS
+c97e82a4a5e8 drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component
+bf542f18a9a8 drm/i915/pxp: MTL-KCR interrupt ctrl's are in GT-0
+731dbaef9cdf drm/i915/pxp: Add ARB session creation and cleanup
+eb13058b2943 drm/i915/pxp: Add GSC-CS backend to send GSC fw messages
+36550cd9936b drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC
+d052146d347c drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation
+a7356c3fad2c drm/i915/pxp: Add GSC-CS back-end resource init and cleanup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112647v6/index.html
+
+--===============2653461433387044017==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pxp: Add MTL PXP Support (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112647/">https://patchwork.freedesktop.org/series/112647/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112647v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112647v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12789 -&gt; Patchwork_112647v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112647v6/index.html</p>
+<h2>Participating hosts (38 -&gt; 37)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12789 -&gt; Patchwork_112647v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12789: 8589fd9227ca62484e8599cbd62216230c2c9a64 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7174: 55642b7805d6fc5b987b396c2bbfa46db654db4f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112647v6: 8589fd9227ca62484e8599cbd62216230c2c9a64 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f564e0d0d0cf drm/i915/pxp: Enable PXP with MTL-GSC-CS<br />
+c97e82a4a5e8 drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component<br />
+bf542f18a9a8 drm/i915/pxp: MTL-KCR interrupt ctrl's are in GT-0<br />
+731dbaef9cdf drm/i915/pxp: Add ARB session creation and cleanup<br />
+eb13058b2943 drm/i915/pxp: Add GSC-CS backend to send GSC fw messages<br />
+36550cd9936b drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC<br />
+d052146d347c drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation<br />
+a7356c3fad2c drm/i915/pxp: Add GSC-CS back-end resource init and cleanup</p>
+
+</body>
+</html>
+
+--===============2653461433387044017==--
