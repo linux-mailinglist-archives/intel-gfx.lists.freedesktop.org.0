@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B616A5262
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 05:43:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3176A5274
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 05:54:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D64AA10E498;
-	Tue, 28 Feb 2023 04:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A381010E499;
+	Tue, 28 Feb 2023 04:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE9F10E498;
- Tue, 28 Feb 2023 04:43:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677559421; x=1709095421;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=baEJcjJ9+Z6mhR8/FHD0SvNtVFxCBiSdnZoPBDGgWWU=;
- b=CqBLpEghARoP85VkV4Z32Vl+Izx1nib+sqx22vfncbUs3BC2OBPxEGRK
- i6VbvVyG8B5Z3/U8aQjiv1oe9BneDB4hEh4KUIXMWyJaH9gFzgI97KKdb
- 5GLwHe5e05RHous1r/b/dbAIKxBVp4ipfZWlHTjhe2yWzYHTXOOZ8EQ4C
- tbpAHClolv9DvyHFASQC6fQoN60wrh3OCOIToKYyPANjV/H5FCTa0guYL
- cpQS/dQJtni1U8voRamjkCdGVamxUiP05Euwgo4W5gXW4+SI8rKJnHLBN
- +F6yW6JLPchPAYYOi41u1u3ySZs+OQr3NzocK1/476e3iuAKhGNZYIDX0 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="332771695"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="332771695"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 20:43:40 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="667314293"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="667314293"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 20:43:39 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 27 Feb 2023 20:43:34 -0800
-Message-Id: <20230228044334.3630391-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 178DA10E499;
+ Tue, 28 Feb 2023 04:54:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F21A5AADEB;
+ Tue, 28 Feb 2023 04:54:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Accept writes of value 0 to
- power1_max_interval
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Tue, 28 Feb 2023 04:54:31 -0000
+Message-ID: <167756007195.15130.16132517106580999217@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230228044307.191639-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20230228044307.191639-1-tejas.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/selftests=3A_Fix_live=5Frequests_for_all_engines_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,51 +41,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The value shown by power1_max_interval in millisec is essentially:
-	((1.x * power(2,y)) * 1000) >> 10
-Where x and y are read from a HW register. On ATSM, x and y are 0 on
-power-up so the value shown is 0.
+== Series Details ==
 
-Writes of 0 to power1_max_interval had previously been disallowed to avoid
-computing ilog2(0) but this resulted in the corner-case bug
-below. Therefore allow writes of 0 now but special case that write to
-x = y = 0.
+Series: drm/i915/selftests: Fix live_requests for all engines (rev2)
+URL   : https://patchwork.freedesktop.org/series/114393/
+State : warning
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7754
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 7c20a6f47b92e..596dd2c070106 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -218,11 +218,15 @@ hwm_power1_max_interval_store(struct device *dev,
- 	/* val in hw units */
- 	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
- 	/* Convert to 1.x * power(2,y) */
--	if (!val)
--		return -EINVAL;
--	y = ilog2(val);
--	/* x = (val - (1 << y)) >> (y - 2); */
--	x = (val - (1ul << y)) << x_w >> y;
-+	if (!val) {
-+		/* Avoid ilog2(0) */
-+		y = 0;
-+		x = 0;
-+	} else {
-+		y = ilog2(val);
-+		/* x = (val - (1 << y)) >> (y - 2); */
-+		x = (val - (1ul << y)) << x_w >> y;
-+	}
- 
- 	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
- 
--- 
-2.38.0
+Error: dim checkpatch failed
+3342b504f81b drm/i915/selftests: Fix live_requests for all engines
+-:213: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#213: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1234:
++		GEM_BUG_ON(request[idx]->context->vm != batch->vm);
+
+-:275: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#275: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1288:
++		GEM_BUG_ON(!i915_request_completed(rq));
+
+-:318: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#318: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1364:
++		GEM_BUG_ON(request[idx]->context->vm != batch->vm);
+
+total: 0 errors, 3 warnings, 0 checks, 293 lines checked
+
 
