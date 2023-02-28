@@ -2,53 +2,140 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C426A5934
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BD76A5938
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:42:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F02810E4CA;
-	Tue, 28 Feb 2023 12:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B28110E410;
+	Tue, 28 Feb 2023 12:42:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF93F10E4CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Feb 2023 12:40:30 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C98A210E410;
+ Tue, 28 Feb 2023 12:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677588030; x=1709124030;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=yfagCkSyhWo4tS4vtLVtLRGI0SuQKHL/90Qlt+5yZWo=;
- b=aoqvVWdsJ8HwliglzoZIjUBeLMNadsrRG7Xm3rEikzdqzsQQKiWlFy7F
- wAGWuU7yk4zwUcTvhSTOwwX1s/hTjktcMv6d2aMLvR/WlGy0csBFKAHQH
- DML/+pPKRMzdIfN5+DpCfKZkbEVh+f4KWwFxxLZ/oc4vv2cZ2lP7G4hte
- BYgEaeRm6v8fohJqqDkG9QBOFLMAXqCgWJk5SxLicIrKjLV8s6MSOBvRO
- kH3IV6FvQMMA8QqGKzaPkcWdAxSyE1aM0pRvUIeH70+W2GcinK3A0Ss/L
- b/gqlnbyuS5KT6P10KqNcU5kvF+C1OqwM31jvmdjbknhlb3CmjZ1P3e4W A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="331605079"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="331605079"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 04:40:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="667448455"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="667448455"
-Received: from barumuga-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.26])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 04:40:23 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230221230227.6244-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230221230227.6244-1-ville.syrjala@linux.intel.com>
- <20230221230227.6244-6-ville.syrjala@linux.intel.com>
-Date: Tue, 28 Feb 2023 14:40:20 +0200
-Message-ID: <87k002ynd7.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ t=1677588155; x=1709124155;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=JSUmXmZWJB0IpzNo99k3nYXbXpxaDys3UYHpjLLwESI=;
+ b=bCLVXEn37mNOE6TXp68ODP5CSDK++cMw2o2D+XDQqqwLa5jd1R1otDuw
+ 2mGcyCM6fewPL0JygXEvE3uQBGOJEA7t7x/V5whcboDjFxWarjykRbHmu
+ lnvFyc1PM0HOgCrqCAyYwKbMIoBXksjdUXoDi+ktFJ+GZLQGjN7VfLBOE
+ zIA8qtDGnpsw4kU5UDvRZAI49UPmAV0tLC4UiIYUBNg57g4GXKFXOSL7z
+ 0g07fiR6QIgcAhn2jcE8VfejK17EjJ/123CFEG1Cj0VKeuQBoZDAGKOFP
+ nK0ULg8p/v6velYAl9v/zKQBCD0TTaa0qNNnrjfAsOY6hdqIRMfQvqrNp g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="322377464"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="322377464"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 04:42:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="798058557"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="798058557"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP; 28 Feb 2023 04:42:34 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 28 Feb 2023 04:42:34 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 28 Feb 2023 04:42:34 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 28 Feb 2023 04:42:33 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RkpWvi9PGBPnL+q0jSHYTOrb//HbgprHZvSTvffzIarvDVFArDXDjQLmaH2re6T8nCVoJCWwbLa8ZkUtcfQ72ggISfwWJRCE+TfZ+6+tNZ1gH5zunekspH7xi2w5Ae3u5OFPigIy9M+G34ekDbZ5VRoroLPN0/KbUISSLmLSMKHlWJQDaOE//pcVyKDauQT5ZITo7z1tVglzcZKy1D1xjmKJAPUisPfn8Vxrppx7ThPIcOj54zBPmujFP0WC2V5eR2kUqK8zbRh6jxTzpmXMZqtmDa46A47lNUMuBUZ19mAxy6zZq1HyIb5t5JvzG1IiV/hwBiYQO3gGK99WNU03yQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zgvV6kxe46WlMEUusfhG5FmD3a1dXcMM4zPgnc3itsU=;
+ b=IK0+uBuniQ32o3WQPfZIHs0KDCygKrBRnOqvtEzfrhivzzLg1r2+vSUigPGxNeq/NjmeVRsT8/lNTt2y0DGemhJdxQsdcxMoyMWb7ODeQlAOQUlHEetJ1GxOJ/h/iXjgtHDwumPtq3Q2bPjWRlihYk9730Nb80Gd2lUd99qPHkt8P9PuiOCnGISVBU+6Ir8IzwWkGG3KAUlaCR+gJD0OoywlBHV0B7DuThg2PWePFcj9D0/2tIbJOed8JfxB1B27UpwS2rZbRGY3+6vySzaZWX7j1nIhNOSa9u6uoAWo9oUVrkKxKhlrC+QcZB/sUJgSw5u68byvp9fgTnujWU7O/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.30; Tue, 28 Feb
+ 2023 12:42:32 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6134.030; Tue, 28 Feb 2023
+ 12:42:31 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v5 17/19] vfio: Add VFIO_DEVICE_AT[DE]TACH_IOMMUFD_PT
+Thread-Index: AQHZSpxNXWm9KiWJ2Ee0gC65QSF3Ja7jIF2AgACHHYCAAKSqAIAAATZA
+Date: Tue, 28 Feb 2023 12:42:31 +0000
+Message-ID: <DS0PR11MB752931AD2B92DE9A1A574375C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-18-yi.l.liu@intel.com> <Y/z400uzn7Nk0CXe@nvidia.com>
+ <DS0PR11MB75293EF02CB0F0A54A22D943C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <Y/30TEk3t7q/D0Ho@nvidia.com>
+In-Reply-To: <Y/30TEk3t7q/D0Ho@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DM4PR11MB6360:EE_
+x-ms-office365-filtering-correlation-id: 2f69c38a-8f79-46aa-41a1-08db1989421f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Za95Phkj/bhV1r2Ncc5xq0nIN7nvMRLAXPnNKVFzEkzcEkADUOKiDeeHeJaYy9/s3FD21tiCHBQKpxRi6jXwr9gEx5nHw6SXWMP5qwt55GucOkqlql6sVCGLoyTWsF6Ty1eWyM6YsLegUA0OYfNoRtFWXTDQukD0ESVwKOFbAGhVmt2ms1gSyWewNbVE+pGr+syxisBJ1PmcE81OaEq0MWMOKytksr6KxXoAC/yC/9aixB4aiNc2i44KmaEmUotWpAcx6jebsv5XyvRV7ioCERB9V01MAuqDtVDbeUnnZrAqLGKiDIIEX3NiciciTR9BrxHLSBB+XV59n21qH7+n/c5fEZMMpAQEIx2WhMBymKGl05dkmvZAsjYA7CzvQKLjiHHjc3s0bf8hl+ThxCjKdikf1TcMWQQtyuiPyGE6MHcIFLtjyNnJkGfBPSR1hwM52ZYEheoCAVlWu85BMpvdUh95I0m4Rv60yU5QFre20xc1cYnifRUHt9MZmhs93jG8lY5TOXTlzzVMrc86t6RjqmGtR9GRYSzIds01qDqtgT59EjVsbZyM1f/+6iGPL+TCYBXpaAi4NAcfYZ0pofg3l4/pmWKfKBq7MZJAwf8FZeR6kdAOs5RLHiKFeBY9Pf1KJCDMsNo+k9++Z3OjiiYq/n9EkiCP6wobG9M06YU3/v5+ZD6kv0TcjBDA3ibUPw+CUQKRfsilaKcT8xpgEYBvkA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(366004)(346002)(396003)(39860400002)(376002)(451199018)(82960400001)(38070700005)(71200400001)(9686003)(26005)(186003)(55016003)(6506007)(122000001)(38100700002)(86362001)(33656002)(2906002)(8936002)(7416002)(41300700001)(316002)(4326008)(6916009)(7696005)(66446008)(66476007)(64756008)(76116006)(5660300002)(52536014)(8676002)(66946007)(66556008)(54906003)(478600001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fX84hWVi66sLyaWRnUbZkdtIRlaWLasdeTueMq2wxg/rGlzkgD+W/7nqKRFg?=
+ =?us-ascii?Q?+/pPlHkLartPCD7URkfGk7ok+w4QgJ5FeDTGC6DHUMnXY18GLsNsy6tZEDQE?=
+ =?us-ascii?Q?ipVwR2XtaG6boDpC9Aty6Yl9z0tE6cnwmzUDArt0EzBcbBM4i6umP+mwFKU7?=
+ =?us-ascii?Q?FoDRRCkqim6LrgP5gWKne5iS5YzoGtJvYFYKwp7G8MwzyjGwvLTPwNC8izpe?=
+ =?us-ascii?Q?zh8QUelsfyka1Z+wfjgdPiWmfDUQ5WsOxxzXZTZAK7acDbO91IGX6BpG3vkP?=
+ =?us-ascii?Q?wmFqzDpj0vz3Njou//Rmj8UJ4ZHL/PdEr9VcJus0uXzyqFNLvmowDCNC8K4Q?=
+ =?us-ascii?Q?TXvWHIVubGXVFpt0eneTBT1rZfxPrXnvw6cutw5v9H1zBSdQJgisksYlstjp?=
+ =?us-ascii?Q?IYhdpZCG8BqfbzI8R7Dzo5n7Akyy+3UW6fKyfSRx+wzrO7u3bl5KZKJUWVdh?=
+ =?us-ascii?Q?ycFJfQppYSBuVwbpKw8H1IWbYPu5JFXhkgIVGbVsQDZCSYA9aeBnY2BGESsV?=
+ =?us-ascii?Q?zDWDf6o1+7luViz0YGgENsQTzq4iCUjNVlnYOHMuoGszpo4UmcIMuA3TLzc2?=
+ =?us-ascii?Q?S5YSFbqdcdQUTLSAh8thqq6bAsuq3PrTPJxby2mP7M8GVbTvSWd99SrQtZQc?=
+ =?us-ascii?Q?PN6nhu0KgrbZeY4nogVb5Qo4Bppw0ydMQbjSAx9d+4UHwtB/lI8vTyzGJXjQ?=
+ =?us-ascii?Q?HNT6U07q3rMX0/w4Iq8JF2KU5qMDdqic4o1TA5XafIkaPbaX/7Wv4zhfccjf?=
+ =?us-ascii?Q?wqualR2FT9CstNGGajXtZS6v+v3yyxKCOagUT1KQq0giBDqk704u8ZSiotPD?=
+ =?us-ascii?Q?Fvgs/MA9yJ+MBFx/6CHXwnNJ9QmQJH+35MaBsr16KJSolr/OSZ0bNA9hS8u8?=
+ =?us-ascii?Q?itKytPCqEBp13CMILpydaQ8r7YfmwvHfJH7KReaAkPmmwsssLxVFzY3l1TUP?=
+ =?us-ascii?Q?RaIYeDJx1dDTtQSeaLNVtErzVBWOzeAgOfpWoL2vQaiJDCEm8C0K4t46lAJY?=
+ =?us-ascii?Q?TUDgNhnBfQ7yEnhDrLfcUbZPMqLN8v1k3EfgnYtBPBqUJupcAscKSie6lmgQ?=
+ =?us-ascii?Q?jT+tkMckHVeT0e38U1nGQiDFISceHGntWl6BIo7hn0EwTI9gG0vErQAt1OBC?=
+ =?us-ascii?Q?Pb9ZRg2/aVWfktQG7Vvt8WL+UODwcbLuS/74HBX29O+HHhE8VxZqKzeeTIKC?=
+ =?us-ascii?Q?qhkvS4eiBRAfXpo6dUM5HpvGYc2uiUgAgT32R5IXwsi7xF3D8fuKwN+1HW18?=
+ =?us-ascii?Q?rc0Og0nPH+32QPkA1HeViOzOPim0pJtGpiIRNaIcY3dgtGyeiUPRf+u1t4Ww?=
+ =?us-ascii?Q?pj6A7gafZhKssn4XPRVZGK1Tw+nbIl0cBEv79eZpIvh2pjdru+0GipHLYgF7?=
+ =?us-ascii?Q?HDJ+KDUlqv3wUUsHo4KPMQ5GBf+Uzk9zOmEMCItJgFRZ68Iwa225ir+0/ydZ?=
+ =?us-ascii?Q?7xZ1QyHd+Mh11CTAptHIcYN552V9qT3OolhftYxWZgVW9UaRYkzWp4NwLqSv?=
+ =?us-ascii?Q?klBklywJvg1JXq31voLApmKfnYtGQcDfVouoyNkhJ+zVLa29Qj0bGzDrTcr+?=
+ =?us-ascii?Q?O5/n6AT81T1zx8o/Ua7vIo2WRKKMiH8R/kf0ETNo?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 05/22] drm/i915: Introduce
- intel_hpd_detection()
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f69c38a-8f79-46aa-41a1-08db1989421f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2023 12:42:31.3458 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: F3im/YMlwbM9y+ADG8Iptcghl+P5OfMu/qjZspXZl99HiHi16dcY/E/EJXjlj/CUUbIlDNSNSw6XlMl16Kxcpg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6360
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 17/19] vfio: Add
+ VFIO_DEVICE_AT[DE]TACH_IOMMUFD_PT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,341 +148,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Add a mechanism by which we can toggle the HPD sense for
-> individual encoders.
->
-> This will be used during eDP probing to figure out if
-> anything is actually connected. The normal intel_hpd_irq_setup()
-> thing doesn't work since we only do that after probing the
-> outputs, and we only enable HPD sense for encoders that were
-> successfully probed.
->
-> The other idea that crossed my minds was to just turn on
-> HPD sense for all pins before output probing and let hpd_irq_setup()
-> clean it up afterwards. But that doesn't work for BXT/GLK where
-> the HPD invert information comes from the VBT child device.
-> So looks like this really needs to be per-encoder.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 132 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_irq.h |   2 +
->  2 files changed, 134 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index ecfa6dad145a..c5058d834f99 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2893,8 +2893,17 @@ static void ibx_hpd_detection_setup(struct drm_i91=
-5_private *dev_priv)
->  			 ibx_hotplug_mask(dev_priv, HPD_PORT_D),
->  			 intel_hpd_hotplug_enables(dev_priv, ibx_hotplug_enables));
->  }
->=20=20
-> +static void ibx_hpd_detection(struct intel_encoder *encoder, bool enable)
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, February 28, 2023 8:32 PM
+>=20
+> On Tue, Feb 28, 2023 at 02:51:28AM +0000, Liu, Yi L wrote:
+> > > This seems strange. no iommu mode should have a NULL dev-
+> >iommufctx.
+> > > Why do we have a df->noiommu at all?
+> >
+> > This is due to the vfio_device_first_open(). Detail as below comment (p=
+art
+> of
+> > patch 0016).
+> >
+> > +	/*
+> > +	 * For group/container path, iommufd pointer is NULL when comes
+> > +	 * into this helper. Its noiommu support is handled by
+> > +	 * vfio_device_group_use_iommu()
+> > +	 *
+> > +	 * For iommufd compat mode, iommufd pointer here is a valid value.
+> > +	 * Its noiommu support is in vfio_iommufd_bind().
+> > +	 *
+> > +	 * For device cdev path, iommufd pointer here is a valid value for
+> > +	 * normal cases, but it is NULL if it's noiommu. Check df->noiommu
+> > +	 * to differentiate cdev noiommu from the group/container path
+> which
+> > +	 * also passes NULL iommufd pointer in. If set then do nothing.
+> > +	 */
+>=20
+> If the group is in iommufd mode then it should set this pointer too.
 
-Just quickly skimming through the series...
+Yes, but the key point is that both the group in legacy mode and the
+cdev path sets iommufd=3D=3DNULL. And the handling for the two should
+be different. So needs this extra info to differentiate them in
+vfio_device_first_open().
 
-...and nitpicking, *_detection() should really be a verb.
-
-It isn't obvious to me what intel_hpd_detection() does without looking
-at the implementation.
-
-BR,
-Jani.
-
-
-
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> +			 ibx_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? ibx_hotplug_enables(encoder) : 0);
-> +}
-> +
->  static void ibx_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -2963,8 +2972,17 @@ static void icp_ddi_hpd_detection_setup(struct drm=
-_i915_private *dev_priv)
->  			 icp_ddi_hotplug_mask(dev_priv, HPD_PORT_D),
->  			 intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables));
->  }
->=20=20
-> +static void icp_ddi_hpd_detection(struct intel_encoder *encoder, bool en=
-able)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, SHOTPLUG_CTL_DDI,
-> +			 icp_ddi_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? icp_ddi_hotplug_enables(encoder) : 0);
-> +}
-> +
->  static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
->  {
->  	intel_uncore_rmw(&dev_priv->uncore, SHOTPLUG_CTL_TC,
->  			 icp_tc_hotplug_mask(dev_priv, HPD_PORT_TC1) |
-> @@ -2975,8 +2993,23 @@ static void icp_tc_hpd_detection_setup(struct drm_=
-i915_private *dev_priv)
->  			 icp_tc_hotplug_mask(dev_priv, HPD_PORT_TC6),
->  			 intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables));
->  }
->=20=20
-> +static void icp_tc_hpd_detection(struct intel_encoder *encoder, bool ena=
-ble)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, SHOTPLUG_CTL_TC,
-> +			 icp_tc_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? icp_tc_hotplug_enables(encoder) : 0);
-> +}
-> +
-> +static void icp_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	icp_ddi_hpd_detection(encoder, enable);
-> +	icp_tc_hpd_detection(encoder, enable);
-> +}
-> +
->  static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -3025,8 +3058,16 @@ static void dg1_hpd_invert(struct drm_i915_private=
- *i915)
->  		   INVERT_DDID_HPD);
->  	intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN1, 0, val);
->  }
->=20=20
-> +static void dg1_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	dg1_hpd_invert(i915);
-> +	icp_hpd_detection(encoder, enable);
-> +}
-> +
->  static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	dg1_hpd_invert(dev_priv);
->  	icp_hpd_irq_setup(dev_priv);
-> @@ -3043,8 +3084,17 @@ static void gen11_tc_hpd_detection_setup(struct dr=
-m_i915_private *dev_priv)
->  			 gen11_hotplug_mask(dev_priv, HPD_PORT_TC6),
->  			 intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
->  }
->=20=20
-> +static void gen11_tc_hpd_detection(struct intel_encoder *encoder, bool e=
-nable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, GEN11_TC_HOTPLUG_CTL,
-> +			 gen11_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? gen11_hotplug_enables(encoder) : 0);
-> +}
-> +
->  static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_p=
-riv)
->  {
->  	intel_uncore_rmw(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL,
->  			 gen11_hotplug_mask(dev_priv, HPD_PORT_TC1) |
-> @@ -3055,8 +3105,28 @@ static void gen11_tbt_hpd_detection_setup(struct d=
-rm_i915_private *dev_priv)
->  			 gen11_hotplug_mask(dev_priv, HPD_PORT_TC6),
->  			 intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
->  }
->=20=20
-> +static void gen11_tbt_hpd_detection(struct intel_encoder *encoder, bool =
-enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, GEN11_TBT_HOTPLUG_CTL,
-> +			 gen11_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? gen11_hotplug_enables(encoder) : 0);
-> +}
-> +
-> +static void gen11_hpd_detection(struct intel_encoder *encoder, bool enab=
-le)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	gen11_tc_hpd_detection(encoder, enable);
-> +	gen11_tbt_hpd_detection(encoder, enable);
-> +
-> +	if (INTEL_PCH_TYPE(i915) >=3D PCH_ICP)
-> +		icp_hpd_detection(encoder, enable);
-> +}
-> +
->  static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -3140,8 +3210,28 @@ static void spt_hpd_detection_setup(struct drm_i91=
-5_private *dev_priv)
->  			 spt_hotplug2_mask(dev_priv, HPD_PORT_E),
->  			 intel_hpd_hotplug_enables(dev_priv, spt_hotplug2_enables));
->  }
->=20=20
-> +static void spt_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	/* Display WA #1179 WaHardHangonHotPlug: cnp */
-> +	if (HAS_PCH_CNP(i915)) {
-> +		intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN1,
-> +				 CHASSIS_CLK_REQ_DURATION_MASK,
-> +				 CHASSIS_CLK_REQ_DURATION(0xf));
-> +	}
-> +
-> +	intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> +			 spt_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? spt_hotplug_enables(encoder) : 0);
-> +
-> +	intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG2,
-> +			 spt_hotplug2_mask(i915, encoder->hpd_pin),
-> +			 enable ? spt_hotplug2_enables(encoder) : 0);
-> +}
-> +
->  static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -3189,8 +3279,19 @@ static void ilk_hpd_detection_setup(struct drm_i91=
-5_private *dev_priv)
->  			 ilk_hotplug_mask(dev_priv, HPD_PORT_A),
->  			 intel_hpd_hotplug_enables(dev_priv, ilk_hotplug_enables));
->  }
->=20=20
-> +static void ilk_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, DIGITAL_PORT_HOTPLUG_CNTRL,
-> +			 ilk_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? ilk_hotplug_enables(encoder) : 0);
-> +
-> +	ibx_hpd_detection(encoder, enable);
-> +}
-> +
->  static void ilk_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -3254,8 +3355,17 @@ static void bxt_hpd_detection_setup(struct drm_i91=
-5_private *dev_priv)
->  			 bxt_hotplug_mask(dev_priv, HPD_PORT_C),
->  			 intel_hpd_hotplug_enables(dev_priv, bxt_hotplug_enables));
->  }
->=20=20
-> +static void bxt_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> +			 bxt_hotplug_mask(i915, encoder->hpd_pin),
-> +			 enable ? bxt_hotplug_enables(encoder) : 0);
-> +}
-> +
->  static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->=20=20
-> @@ -3885,8 +3995,18 @@ static void i965_irq_postinstall(struct drm_i915_p=
-rivate *dev_priv)
->=20=20
->  	i915_enable_asle_pipestat(dev_priv);
->  }
->=20=20
-> +static void i915_hpd_detection(struct intel_encoder *encoder, bool enabl=
-e)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +	u32 hotplug_en =3D hpd_mask_i915[encoder->hpd_pin];
-> +
-> +	/* HPD sense and interrupt enable are one and the same */
-> +	i915_hotplug_interrupt_update(i915, hotplug_en,
-> +				      enable ? hotplug_en : 0);
-> +}
-> +
->  static void i915_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug_en;
->=20=20
-> @@ -3970,14 +4090,18 @@ static irqreturn_t i965_irq_handler(int irq, void=
- *arg)
->  	return ret;
->  }
->=20=20
->  struct intel_hotplug_funcs {
-> +	/* Enable HPD sense and interrupts for all present encoders */
->  	void (*hpd_irq_setup)(struct drm_i915_private *i915);
-> +	/* Enable/disable HPD sense for a single encoder */
-> +	void (*hpd_detection)(struct intel_encoder *encoder, bool enable);
->  };
->=20=20
->  #define HPD_FUNCS(platform)					 \
->  static const struct intel_hotplug_funcs platform##_hpd_funcs =3D { \
->  	.hpd_irq_setup =3D platform##_hpd_irq_setup,		 \
-> +	.hpd_detection =3D platform##_hpd_detection,		 \
->  }
->=20=20
->  HPD_FUNCS(i915);
->  HPD_FUNCS(dg1);
-> @@ -3987,8 +4111,16 @@ HPD_FUNCS(icp);
->  HPD_FUNCS(spt);
->  HPD_FUNCS(ilk);
->  #undef HPD_FUNCS
->=20=20
-> +void intel_hpd_detection(struct intel_encoder *encoder, bool enable)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	if (i915->display.funcs.hotplug)
-> +		i915->display.funcs.hotplug->hpd_detection(encoder, enable);
-> +}
-> +
->  void intel_hpd_irq_setup(struct drm_i915_private *i915)
->  {
->  	if (i915->display_irqs_enabled && i915->display.funcs.hotplug)
->  		i915->display.funcs.hotplug->hpd_irq_setup(i915);
-> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_=
-irq.h
-> index 03ee4c8b1ed3..a5eb85ed7537 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.h
-> +++ b/drivers/gpu/drm/i915/i915_irq.h
-> @@ -16,8 +16,9 @@ struct drm_crtc;
->  struct drm_device;
->  struct drm_display_mode;
->  struct drm_i915_private;
->  struct intel_crtc;
-> +struct intel_encoder;
->  struct intel_uncore;
->=20=20
->  void intel_irq_init(struct drm_i915_private *dev_priv);
->  void intel_irq_fini(struct drm_i915_private *dev_priv);
-> @@ -36,8 +37,9 @@ i915_disable_pipestat(struct drm_i915_private *dev_priv=
-, enum pipe pipe,
->=20=20
->  void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv);
->  void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv);
->=20=20
-> +void intel_hpd_detection(struct intel_encoder *encoder, bool enable);
->  void intel_hpd_irq_setup(struct drm_i915_private *i915);
->  void i915_hotplug_interrupt_update(struct drm_i915_private *dev_priv,
->  				   u32 mask,
->  				   u32 bits);
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Regards,
+Yi Liu
