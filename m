@@ -2,51 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8876A50F8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 03:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 388226A510E
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 03:22:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 825D310E488;
-	Tue, 28 Feb 2023 02:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C1C010E495;
+	Tue, 28 Feb 2023 02:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 964BE10E480;
- Tue, 28 Feb 2023 02:12:14 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C97D10E47F;
+ Tue, 28 Feb 2023 02:21:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677550334; x=1709086334;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=u18ddDQOwan1fLFqHOnOS3Odna9gVESGyCeFrwXiY6M=;
- b=fCh6y/BObvrj6IwaI8WG5GbE9aIC5bYMybH0KbsT4p3wWuOaRVd+sUP6
- QJGRGRcRwXOUSesOGAH6tjf8PqMV4NDR4Xv3R+seXR44YBjQ2co0g5g+P
- JYBkgetoSBoVgRVxnAzMd2wO6khZ7Xak0vzBI2ADpgzzWHtL2PNUz+FJg
- z4/tt+3ozj2T27rh2KOqvH6n9R8MxlqkQ8GTfaab7fZjQOEHhY4UHEsZs
- +DmNs0ZhP9XyLlXJLIuPKriadEkQh29gkprinVCQQZejIk0jdJn5mVd5n
- CLZyvmSj+gMhwL9C8zRQucBaKpyi9nF8lFbulSa2ho2l7ddlPOubN8n5z g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="396590571"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="396590571"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 18:12:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="742804739"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="742804739"
-Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.249.41.82])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 18:12:09 -0800
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Date: Tue, 28 Feb 2023 03:11:42 +0100
-Message-Id: <20230228021142.1905349-3-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230228021142.1905349-1-andi.shyti@linux.intel.com>
-References: <20230228021142.1905349-1-andi.shyti@linux.intel.com>
+ t=1677550912; x=1709086912;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=coidPbNyh4kKl/gNL/XBc8Yx1IDRtEureySGm88LhVM=;
+ b=cefKtVPaTWB8TdOsFX0R+HLdAOA3BlkDlQpZr6wHNNbcFvrBC29Or91t
+ fr43eWsNYZZ79hRpdZ4EOL8I9wcmkHErrpjIZenfzHyUf5owxU5io5cmC
+ X26QGAf+qX6kqD4FSQpQHFRd0u4ExFnG4aVkzcJoDKpuWWxujxc9pfikI
+ wuPtPiRhqD56ElQugAfs9NRHqp5w3jo/UsnPmEprXimD0Iu0sBNd6G+zL
+ 9nypcja5/soztkDSZ9GgSdKC/roUrW4LQqHFVx4QegIa1uYZ5r3QmcmRo
+ m9ykZxr/Miyb1+qtqyVDeAMcxYwoW1QPByCt3kz8OIEMDd4MNqT+l3txZ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="334070722"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="334070722"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 18:21:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="919601716"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; d="scan'208";a="919601716"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga006.fm.intel.com with ESMTP; 27 Feb 2023 18:21:51 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Feb 2023 18:21:42 -0800
+Message-Id: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/gt: Make sure that errors are
- propagated through request chains
+Subject: [Intel-gfx] [PATCH v6 0/8] drm/i915/pxp: Add MTL PXP Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,138 +54,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, when we perform operations such as clearing or copying
-large blocks of memory, we generate multiple requests that are
-executed in a chain.
+This series enables PXP on MTL. On ADL/TGL platforms, we rely on
+the mei driver via the i915-mei PXP component interface to establish
+a connection to the security firmware via the HECI device interface.
+That interface is used to create and teardown the PXP ARB session.
+PXP ARB session is created when protected contexts are created.
 
-However, if one of these requests fails, we may not realize it
-unless it happens to be the last request in the chain. This is
-because errors are not properly propagated.
+In this series, the front end behaviors and interfaces (uapi) remain
+the same. We add backend support for MTL but with MTL we directly use
+the GSC-CS engine on the MTL GPU device to send messages to the PXP
+(a.k.a. GSC a.k.a graphics-security) firmware. With MTL, the format
+of the message is slightly different with a 2-layer packetization
+that is explained in detail in Patch #3. Also, the second layer
+which is the actual PXP firmware packet is now rev'd to version 4.3
+for MTL that is defined in Patch #5.
 
-For this we need to keep propagating the chain of fence
-notification in order to always reach the final fence associated
-to the final request.
+Take note that Patch #4 adds the buffer allocation and gsccs-send-
+message without actually being called by the arb-creation code
+which gets added in Patch #5. Additionally, a seperate series being
+reviewed is introducing a change for session teardown (in pxp front-
+end layer that will need backend support by both legacy and gsccs).
+If we squash all of these together (buffer-alloc, send-message,
+arb-creation and, in future, session-termination), the single patch
+will be rather large. That said, we are keeping Patch #4 and #5
+separate for now, but at merge time, we can squash them together
+if maintainer requires it.
 
-To address this issue, we need to ensure that the chain of fence
-notifications is always propagated so that we can reach the final
-fence associated with the last request. By doing so, we will be
-able to detect any memory operation  failures and determine
-whether the memory is still invalid.
+Changes from prior revs:
+   v1 : - fixed when building with CONFIG_PXP disabled.
+        - more alignment with gsc_mtl_header structure from the HDCP
+   v2 : - (all following changes as per reviews from Daniele)
+        - squashed Patch #1 from v1 into the next one.
+        - replaced unnecessary "uses_gsccs" boolean in the pxp
+          with "HAS_ENGINE(pxp->ctrl_gt, GSC0)".
+        - moved the stashing of gsccs resources from a dynamically
+          allocated opaque handle to an explicit sub-struct in
+          'struct intel_pxp'.
+        - moved the buffer object allocations from Patch #1 of this
+          series to Patch #5 (but keep the context allocation in
+          Patch #1).
+        - used the kernel default ppgtt for the gsccs context.
+        - optimized the buffer allocation and deallocation code
+          and drop the need to stash the drm_i915_gem_object.
+        - use a macro with the right mmio reg base (depending
+          on root-tile vs media-tile) along with common relative
+          offset to access all KCR registers thus minimizing
+          changes to the KCR register access codes.
+        - fixed bugs in the heci packet request submission code
+          in Patch #3 (of this series)
+        - add comments in the mtl-gsc-heci-header regarding the
+          host-session-handle.
+        - re-use tee-mutex instead of introducing a gsccs specific
+          cmd mutex.
+        - minor cosmetic improvements in Patch #5.
+	- before creating arb session, ensure intel_pxp_start
+          first ensures the GSC FW is up and running.
+        - use 2 second timeout for the pending-bit scenario when
+          sending command to GSC-FW as per specs.
+        - simplify intel_pxp_get_irq_gt with addition comments
+        - redo Patch #7 to minimize the changes without introducing
+          a common  abstraction helper for suspend/resume/init/fini
+          codes that have to change the kcr power state.
+   v3 : - rebase onto latest drm-tip with the updated firmware
+          session invalidation flow
+        - on Patch#1: move 'mutex_init(&pxp->tee_mutex)' to a common
+          init place in intel_pxp_init since its needed everywhere
+          (Daniele)
+        - on Patch#1: remove unneccasary "ce->vm = i915_vm_get(vm);"
+          (Daniele)
+        - on Patch#2: move the introduction of host_session_handle to
+          Patch#4 where it starts getting used.
+        - on Patch#4: move host-session-handle initialization to the
+          allocate-resources during gsccs-init (away from Patch#5)
+          and add the required call to PXP-firmware to cleanup the
+          host-session-handle in destroy-resources during gsccs-fini
+        - on Patch#5: add dispatching of arb session termination
+          firmware cmd during session teardown (as per latest
+          upstream flows)
+   v4 : - Added proper initialization and cleanup of host-session-handle
+          that the gsc firmware expects.
+        - Fix the stream-session-key invalidation instruction for MTL.
+   v5 : - In Patch #4, move the tee_mutex locking to after we check for
+          valid vma allocations.
+        - In Patch #5, wait for intel_huc_is_authenticated instead of
+          intel_uc_fw_is_running(gsc-fw) before starting ARB session.
+        - In Patch #5, increase the necessary timeouts at the top-level
+          (PXP arb session creation / termination) to accomodate SLA of
+          GSC firmware when busy with pending-bit responses.
+        - In Patch #5, remove redundant host_session_handle init as
+          we need a single handle that is already initialized during
+          execution_resource init in Patch #4.
+        - In Patch #8, increase the wait timeout for termination to
+          align with the same SLA.
 
-On copy and clear migration signal fences upon completion.
+Alan Previn (8):
+  drm/i915/pxp: Add GSC-CS back-end resource init and cleanup
+  drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation
+  drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC
+  drm/i915/pxp: Add GSC-CS backend to send GSC fw messages
+  drm/i915/pxp: Add ARB session creation and cleanup
+  drm/i915/pxp: MTL-KCR interrupt ctrl's are in GT-0
+  drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component
+  drm/i915/pxp: Enable PXP with MTL-GSC-CS
 
-On copy and clear migration, signal fences upon request
-completion to ensure that we have a reliable perpetuation of the
-operation outcome.
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   3 +-
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 108 ++++++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  76 ++++
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          |  96 ++++-
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  25 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |  11 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c    | 358 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    |  37 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      |  24 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |   8 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |   3 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_regs.h     |  27 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  25 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      |   2 -
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  20 +
+ 18 files changed, 787 insertions(+), 41 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_regs.h
 
-Fixes: cf586021642d80 ("drm/i915/gt: Pipelined page migration")
-Reported-by: Matthew Auld <matthew.auld@intel.com>
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: stable@vger.kernel.org
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 39 ++++++++++++++++++-------
- 1 file changed, 29 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 3f638f1987968..6b497640d3a0a 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -742,13 +742,19 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			dst_offset = 2 * CHUNK_SZ;
- 	}
- 
-+	/*
-+	 * While building the chain of requests, we need to ensure
-+	 * that no one can sneak into the timeline unnoticed.
-+	 */
-+	mutex_lock(&ce->timeline->mutex);
-+
- 	do {
- 		int len;
- 
- 		rq = i915_request_create(ce);
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
--			goto out_ce;
-+			break;
- 		}
- 
- 		if (deps) {
-@@ -878,10 +884,14 @@ intel_context_migrate_copy(struct intel_context *ce,
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--		if (*out)
--			i915_request_put(*out);
--		*out = i915_request_get(rq);
-+		i915_sw_fence_await(&rq->submit);
-+		i915_request_get(rq);
- 		i915_request_add(rq);
-+		if (*out) {
-+			i915_sw_fence_complete(&(*out)->submit);
-+			i915_request_put(*out);
-+		}
-+		*out = rq;
- 
- 		if (err)
- 			break;
-@@ -905,7 +915,10 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		cond_resched();
- 	} while (1);
- 
--out_ce:
-+	mutex_unlock(&ce->timeline->mutex);
-+
-+	if (*out)
-+		i915_sw_fence_complete(&(*out)->submit);
- 	return err;
- }
- 
-@@ -1005,7 +1018,7 @@ intel_context_migrate_clear(struct intel_context *ce,
- 		rq = i915_request_create(ce);
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
--			goto out_ce;
-+			break;
- 		}
- 
- 		if (deps) {
-@@ -1056,17 +1069,23 @@ intel_context_migrate_clear(struct intel_context *ce,
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--		if (*out)
--			i915_request_put(*out);
--		*out = i915_request_get(rq);
-+		i915_sw_fence_await(&rq->submit);
-+		i915_request_get(rq);
- 		i915_request_add(rq);
-+		if (*out) {
-+			i915_sw_fence_complete(&(*out)->submit);
-+			i915_request_put(*out);
-+		}
-+		*out = rq;
-+
- 		if (err || !it.sg || !sg_dma_len(it.sg))
- 			break;
- 
- 		cond_resched();
- 	} while (1);
- 
--out_ce:
-+	if (*out)
-+		i915_sw_fence_complete(&(*out)->submit);
- 	return err;
- }
- 
 -- 
-2.39.1
+2.39.0
 
