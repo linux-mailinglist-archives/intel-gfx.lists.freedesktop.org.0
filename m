@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D966A5BE5
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 16:28:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66836A5C33
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 16:45:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A894510E4D9;
-	Tue, 28 Feb 2023 15:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD9310E4CE;
+	Tue, 28 Feb 2023 15:45:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D15B810E4D9;
- Tue, 28 Feb 2023 15:28:19 +0000 (UTC)
-Received: from [192.168.2.206] (109-252-117-89.nat.spd-mgts.ru
- [109.252.117.89])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id F33E7660217A;
- Tue, 28 Feb 2023 15:28:17 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1677598098;
- bh=ZcQtHQ8M1pG4xQmzUXs4WmURPGqO/fS5L8Oyw9xYqmA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=VhT1hHGwlt9EPVzmEOHVZnxHEhVLTYm4WPp3g5kdoF+lV2VawEdbxUMCzyY4ZTPcX
- l0wHCf2U0EO6uCCcvFVExG6r//eesP5sNaktaEQNnoxpa1bWF1Dq/0uNne0Q7FMjzj
- bMPqYai7mnTqmD1/dd4nQjVMTr9BUjy0RDCC8xLoz021r0YiqzxyEFF9qf8V0ohwWb
- 6vi1VfRiHXZxS+STkWx8FFOGaFFJ2u3Eqls9OLxwnvcsS2GmDVBYD+5y1IonGTUwV1
- WVSyq9ZP2O7aZfhjF7wSG+eKLnpaRQIUgDf53GsypG5QGXDGewTjW5pGD+TYmDbUYh
- cf4Xh4wb1MQhw==
-Message-ID: <d48476f0-3c00-047d-c3cc-511b95fede5d@collabora.com>
-Date: Tue, 28 Feb 2023 18:28:15 +0300
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
+ [IPv6:2607:f8b0:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85ADA10E4CE;
+ Tue, 28 Feb 2023 15:45:07 +0000 (UTC)
+Received: by mail-ot1-x32c.google.com with SMTP id
+ q11-20020a056830440b00b00693c1a62101so5848205otv.0; 
+ Tue, 28 Feb 2023 07:45:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=47Io8bjBgTfpx9irLzQIk7kc2k6GPp2PZ97i5J/VsnU=;
+ b=cmBSfjVhL11B7Tk2kzeIA9iNdYDewp+Lj2BTbbj6UDcbnNNnGRKEG9iCWQZ+Zn3g9m
+ +0Zx+GlqRizxRKPwVVA4/JaFtaKfoHx9z08Qt2aL2jYElbluHU/qNXZSmld3edT7vPer
+ mqK5c2oWjXhedR1BJv6EXjMqwSeGb6qxBliUPUwERul1AYJ+81hovh17DHIbCSD5cK5w
+ 9gwm8dkKVD7UCQUidLDzlT+m/No89gMZlEDYYGUWzhhwiazV+8nn9uut0WCqrLE6UV/g
+ tafJgCdHGRGVm9NWQqu21rdJz8b0ivr1k0uKj14YYV/O5qMTtismWvnVbWfVfSc1EyjJ
+ t6OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=47Io8bjBgTfpx9irLzQIk7kc2k6GPp2PZ97i5J/VsnU=;
+ b=t+v9pgG4OS0si8LmkPgk+lGwMVN8TF4n2m1nJbqb0urhaZ9qoW7OhT9KkyCif9JUKR
+ IeUSt5gtXTOj6HeYp+qqsHzBXVm15U1bOfEJAIpm1prcXKx25359HlF3hu/2jnJ9nGSb
+ WQ9J/AlNSASwdp/2j1fhgt0GLobwa8BgcFsnFc1JNyGJRoB1x6MSt/vJxB5Fm1fygVuE
+ T1QscxJbE+2fg3Oy7bHfoaVFCnkMSMhCan0x4rey5LHWK4GUevP1ON7a0FebpZ1uBnhH
+ clj33MkHivjtLQEphW8LcMigr4XeMNhI02OCBLy0kPyG5kXwIe6s5dp/lPNs4BTjyRb8
+ WF7w==
+X-Gm-Message-State: AO0yUKWR1pEDIi6nuBx3msY7EUoSo4iKVbcijcWB+liDEziJvtwmo4MT
+ RYtY1/XwTFz+UUvfgmi/KbYIqrThcasu3rYe+Ss=
+X-Google-Smtp-Source: AK7set84ZiKu/x5bhuHzdqKQUv7sjdjnKY8F7kTvWRv1lYoh5z8jZHyiBzPqCGMtJV4jXTtlMVk45nk6MjMvbYL6vxQ=
+X-Received: by 2002:a9d:128e:0:b0:688:cf52:6e18 with SMTP id
+ g14-20020a9d128e000000b00688cf526e18mr1074144otg.4.1677599106749; Tue, 28 Feb
+ 2023 07:45:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, airlied@gmail.com, daniel@ffwll.ch,
- jani.nikula@intel.com
-References: <20230228152612.19971-1-tzimmermann@suse.de>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20230228152612.19971-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/shmem-helper: Switch to
- reservation lock"
+References: <20230227193535.2822389-1-robdclark@gmail.com>
+ <Y/320d96QmbLe1J8@debian.me>
+In-Reply-To: <Y/320d96QmbLe1J8@debian.me>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 28 Feb 2023 07:44:55 -0800
+Message-ID: <CAF6AEGuqHDDQS22qcp8sk+5bj16XFiBarCLvpX=qNc2r2euMUw@mail.gmail.com>
+To: Bagas Sanjaya <bagasdotme@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v7 00/15] dma-fence: Deadline awareness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,26 +66,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+ Gustavo Padovan <gustavo@padovan.org>, dri-devel@lists.freedesktop.org,
+ Douglas Anderson <dianders@chromium.org>, Liu Shixin <liushixin2@huawei.com>,
+ Rob Clark <robdclark@chromium.org>, Vinod Polimera <quic_vpolimer@quicinc.com>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
+ intel-gfx@lists.freedesktop.org,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Pekka Paalanen <ppaalanen@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simon Ser <contact@emersion.fr>,
+ open list <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/28/23 18:26, Thomas Zimmermann wrote:
-> This reverts commit 67b7836d4458790f1261e31fe0ce3250989784f0.
-> 
-> The locking appears incomplete. A caller of SHMEM helper's pin
-> function never acquires the dma-buf reservation lock. So we get
-> 
->   WARNING: CPU: 3 PID: 967 at drivers/gpu/drm/drm_gem_shmem_helper.c:243 drm_gem_shmem_pin+0x42/0x90 [drm_shmem_helper]
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+On Tue, Feb 28, 2023 at 4:43 AM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
+>
+> On Mon, Feb 27, 2023 at 11:35:06AM -0800, Rob Clark wrote:
+> > From: Rob Clark <robdclark@chromium.org>
+> >
+> > This series adds a deadline hint to fences, so realtime deadlines
+> > such as vblank can be communicated to the fence signaller for power/
+> > frequency management decisions.
+> >
+> > This is partially inspired by a trick i915 does, but implemented
+> > via dma-fence for a couple of reasons:
+> >
+> > 1) To continue to be able to use the atomic helpers
+> > 2) To support cases where display and gpu are different drivers
+> >
+> > This iteration adds a dma-fence ioctl to set a deadline (both to
+> > support igt-tests, and compositors which delay decisions about which
+> > client buffer to display), and a sw_sync ioctl to read back the
+> > deadline.  IGT tests utilizing these can be found at:
+> >
+> >   https://gitlab.freedesktop.org/robclark/igt-gpu-tools/-/commits/fence-deadline
+> >
+> >
+> > v1: https://patchwork.freedesktop.org/series/93035/
+> > v2: Move filtering out of later deadlines to fence implementation
+> >     to avoid increasing the size of dma_fence
+> > v3: Add support in fence-array and fence-chain; Add some uabi to
+> >     support igt tests and userspace compositors.
+> > v4: Rebase, address various comments, and add syncobj deadline
+> >     support, and sync_file EPOLLPRI based on experience with perf/
+> >     freq issues with clvk compute workloads on i915 (anv)
+> > v5: Clarify that this is a hint as opposed to a more hard deadline
+> >     guarantee, switch to using u64 ns values in UABI (still absolute
+> >     CLOCK_MONOTONIC values), drop syncobj related cap and driver
+> >     feature flag in favor of allowing count_handles==0 for probing
+> >     kernel support.
+> > v6: Re-work vblank helper to calculate time of _start_ of vblank,
+> >     and work correctly if the last vblank event was more than a
+> >     frame ago.  Add (mostly unrelated) drm/msm patch which also
+> >     uses the vblank helper.  Use dma_fence_chain_contained().  More
+> >     verbose syncobj UABI comments.  Drop DMA_FENCE_FLAG_HAS_DEADLINE_BIT.
+> > v7: Fix kbuild complaints about vblank helper.  Add more docs.
+> >
+>
+> I want to apply this series for testing, but it can't be applied cleanly
+> on current drm-misc tree. On what tree (and commit) is this series based
+> on?
 
-Thanks Thomas,
+You can find my branch here:
 
-Acked-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+https://gitlab.freedesktop.org/robclark/msm/-/commits/dma-fence/deadline
 
--- 
-Best regards,
-Dmitry
-
+BR,
+-R
