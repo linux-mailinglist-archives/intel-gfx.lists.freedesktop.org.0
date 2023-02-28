@@ -1,57 +1,120 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6666A58F9
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:25:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1706A5906
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:30:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03E2610E69A;
-	Tue, 28 Feb 2023 12:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C9010E1F9;
+	Tue, 28 Feb 2023 12:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 596C810E695;
- Tue, 28 Feb 2023 12:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677587107; x=1709123107;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UcW9L9D8QR0mMBNIpMxNQ+qVeLDD7cewz3A/ZJ0bFAA=;
- b=DfgAnUrd74Lu2LKrW/5R3CvDuIOm0/1myXEBfsE5+s5NvNf9ZNBfWrFR
- PsqpFy5s5GyIXwKd1RN4ZqDaFXhwkKyiW4y4soN3lgPZSbHavrJbhBqTI
- Ko77hBnzzfzT19q0b5ICwPoTC6BgkHVbW/ezKrm8nKAUguXSBN01F3Cej
- 4i1JJAUn1E12DnlfPl85LGgPwyHJd1RHRthj5z7EiUeSPGjIAphLZ9FhN
- JDhiwJKHVvwdQ5sfNBgJMbSnQ1uzHFr9/lXMtknlNDgpVnZH2hitpkGW3
- fD2x8WMb9QIDK9sIj+NIhwPxFOzY9QlyCl+NjBlr9fkfj28pAcfR+Y+EM Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="317921575"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="317921575"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 04:25:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="1003221191"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="1003221191"
-Received: from barumuga-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.26])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 04:25:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Rob Clark
- <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean
- Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
-In-Reply-To: <20230228113342.2051425-3-dmitry.baryshkov@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230228113342.2051425-1-dmitry.baryshkov@linaro.org>
- <20230228113342.2051425-3-dmitry.baryshkov@linaro.org>
-Date: Tue, 28 Feb 2023 14:24:59 +0200
-Message-ID: <87mt4yyo2s.fsf@intel.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2050.outbound.protection.outlook.com [40.107.220.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB2F10E1F9;
+ Tue, 28 Feb 2023 12:29:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZClnyIBG0EV9WspDJ3I0gN2qj7U6Hn6gOMFL9fLfGcDWF5xMWoR9QJTdnx3c9WHfNWYnNkXvIiPVLPraYcut+c+Srk1aztrpxE5y8U8X2GhA5oQKyPbkBp3vG3s/8SDOLnxI5RtUAXoKgwG0KxpE8t2SVQxa7AYsb5hxvM7ckcLUfW92FrnvHKx/IlfIcuzOMeQNt+tbOuJYGQk70GlYogTsTN7kNbLk83bMUyRXO8ah9jR6rJbfWgK1gYd3Rpu4ErUL0Wj/VNkcAZlimFlJ72AsbQvdUb67Gqi11WkYZyD8oYPX6j7Xjr5luSotGcq2AtcQ7WR0Yd0WDRtC9VeXOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+8CKzdDTqqnraGdM9e8SHQSmk2H8M4q2DDA20K2hZ5o=;
+ b=agsm7vCljp9SU3V1s+/wHjEutJLXp4HqIeZUzcKmGh74Zov0PaJ4hkHE4gqUmGybdSpCeTZLqxy7AwWZWSAg5gSPg3+RKwI3TPUMIFsR7+Qaw6LBmQjolVWArpj82SPRATlWRFHxEEwutGiaZXVIlUW/PIk4CZ6iL8WzZrDgaYvCkcvH+4XaH9PZNlaumtuiQy9OPXxlZGamsM7475rj/2eiSY3NkAnmIkM8bOFsWpeaHkUgyq9Bo0TnWOLLFVLGrZwMR8ih1MqskPgw/Iwrl+AHakTzvXjXIsEuQgmMPK/Ay9ulZogJRGj0xfNFsrvOtlVkm94m4xewnBkW5u7bwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+8CKzdDTqqnraGdM9e8SHQSmk2H8M4q2DDA20K2hZ5o=;
+ b=uex4rFkoHVpICAbe5x3zj86Ks/67Oa2mz12LvmOViVbz/zIcmcBbTFRoiQv1Z5DuEprPFaPqUcYJTdfiIM6Y/TUjlB270upjQRqrB+s5Rg6sAeQdB7zTLXuhLEDqUHuzIc4K5yZvcpmbcdFh33vQu/k5Pklckml185V3ndqeLQ4NOmr7MK841OI4HlzQ/uwuXIsE51ycjkgLjRLJHzQd5DpUnvMnUL8pBkgBDRsZFEJyblzI31PByn4+uWcHezWxwNoBYTg4wnD3LpDkUvazg3g9Y54IHOrRAre6Lu3Zn6rFxM98fFedpL9Oi+2il3pMKXFfF/NK9tWzpY4EZdOOkw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MN0PR12MB6223.namprd12.prod.outlook.com (2603:10b6:208:3c1::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Tue, 28 Feb
+ 2023 12:29:56 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6134.029; Tue, 28 Feb 2023
+ 12:29:56 +0000
+Date: Tue, 28 Feb 2023 08:29:55 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <Y/3zw/F0AN74CYs0@nvidia.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-11-yi.l.liu@intel.com>
+ <Y/z2mY97uPsCs6Ix@nvidia.com>
+ <DS0PR11MB75292E7DCC6FFEBF5B5DF66AC3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DS0PR11MB75292E7DCC6FFEBF5B5DF66AC3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BL1PR13CA0137.namprd13.prod.outlook.com
+ (2603:10b6:208:2bb::22) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915/dsc: move rc_buf_thresh
- values to common helper
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MN0PR12MB6223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 098db22f-08f4-4b01-696a-08db19877fdf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xLUOe/bl3P37wV2ECeN/h/1dMsN6gvYDXARTT8gYwHsDUThHLBAz3vmxISmnW79cBxu0u7LiFSXttnIGfk6PBSMNMAbc03F3USp86ZyQCEB7ifs5mjFkCxwcCGYDHurra3l6lLSO2/oYXDfEivqdqWAjfwoSA5icsupphBXPGz9egEyByXgq425Kc2PdH9tEZ4CEdRnLNXq7aP7QtMGwa96Q51ezMN6o0S+KkArnU7DXmbMAJIyPTrMFAMi+I6nyZ7RJoW+/iyUL43PulPZE7Djej4FQbYgxp+KcoijjKvT7gd5qsmgvDtj+KNNvEP+8iYL2BGU3rKmxB683wkM93DfV+gM7u5X2653ZB7FidNPSW9amTbhLJacR2P9/XGH42BDkI3jPH4dJWqcQCqL/l/uYn7A4/9TZ/bEkSlUIKheAsos7lL7Xa15CFRvJF2MjS3hgRDuxJFtIHb2W6VLH14y+6Y7AmBMITojM7fghLxoxppbIsUKpgVUyuri1xrp1UkEnQ0LSl9SUyRX/e2kcURVm0N+hAwm2r/XjTzeJGLVjDt3Z/+r7TEPVI9JL+WuMDyqSOWYYyHhxf8DKxUJjzbIkwMojAxcvsPt6eiygY5KincEPu7oDBzNmYyUxWg9vbmBjVeRMcS5eMv+BOSjnqw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(396003)(346002)(39860400002)(366004)(136003)(376002)(451199018)(66946007)(2616005)(66556008)(86362001)(66476007)(6486002)(54906003)(478600001)(36756003)(41300700001)(316002)(26005)(6512007)(6506007)(8676002)(186003)(6916009)(4326008)(2906002)(38100700002)(8936002)(4744005)(7416002)(5660300002)(83380400001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFZPVHpsQVJ5eVBvTGp1QkE2aHBheUVHbGdGcHRyTnBOcU9PejhoN0wzdEZs?=
+ =?utf-8?B?a1NsejhaS2FLZ1FzTHNIa2pkeG40RytJaGZxRFJMd2Q2RmRMVTU3RFpyMml2?=
+ =?utf-8?B?bjcreHhhblJ0c29WU213UHJZaWhkZ0k3cGJYb0tvRjlnbDZIUVBGT1BRZ2Fi?=
+ =?utf-8?B?RjZiR1VNcVNWanUxcTFScDkrVjUzU2dDWElpeFI3RFJkbWNrT0wyS3FBODhJ?=
+ =?utf-8?B?YS9pS0RodnJmd251aU1TY1g2QTNpQkJkV1VwQTN0enJpZzA0MFF2RUdRbmlW?=
+ =?utf-8?B?Z2tMNjVCY1RjK0tmcis3dTBZUmUveUM5WkhxWVIxUmllQmZ0VlowU3oxcEJS?=
+ =?utf-8?B?QXpTYkNQajlSNStPRVowQVgwbGdnMTFoOXU0dXdhWmlXWHpibk1xVFpCbDND?=
+ =?utf-8?B?TXlDaVcxbkxXSTRiWXkveHpMZ2JTZ0d1V3hiRHFVdjVHUkpnMXowK3JGUldL?=
+ =?utf-8?B?eGcyMDlxRFNWS3lUZWIzR0ovRmZtTHR1MEFFWUViVHNsaEwxZzJKeExkQkNB?=
+ =?utf-8?B?T0lBSi8rVUpaZDVSUERIcmZ4VTVCSVBNa3FwYjdjSXU4NEk0RzB4aklLWCtV?=
+ =?utf-8?B?QXlMOStzS2k0U05ySE93cnJlM2F0azA4OTFxb1VwYnphVDJpdmhkUHp4bkcr?=
+ =?utf-8?B?OFlUTHBHZFRpR3hib0QvQWZRbHpDdGZycVlydzlPbmlBNEltdmNjRWhITDdX?=
+ =?utf-8?B?OUw1S2g2WTgwM004N1U4eTRVNkRhVVByNm1Od3ZYWjJ4UGxZTjk3dERWd1pK?=
+ =?utf-8?B?QUFwek11NlZJVW5adUJtYlBlMnNUbnU5RGNSK3kwbkpnYjg2Z0hlbDBmZ3pI?=
+ =?utf-8?B?MHk4YUtrL1Z4YWNSRURncmMwd09CTGYzdXZ0Uk11eUhrT2JiaVFOOVRXVzhk?=
+ =?utf-8?B?OEpHZ1gzTnN2VHRTclRIWEJWTStYdUVycWxkeWpJcHdkSEVBUDJZeDF1MDA2?=
+ =?utf-8?B?U2poSnovYkR0bENmdXJFOUlrQWpPa3VKZFI4dHpDZzk3NmI2dnFVVk11cmYw?=
+ =?utf-8?B?VElmd0RqUzVLTFJkNzd5NUJrekJscUpIZkNTbVI5b1VTTjRZQ25rSU15bmVT?=
+ =?utf-8?B?bmQ4UFNtQmVUYStVeWVlYnRaUkxaZlVTdHlrdlRsWVg1NFYxY3hZTmJsZ3NE?=
+ =?utf-8?B?RDVhNEdBRXdjaWl6S2Voa0FiT3JkSkFQanF5aEFKYWx3L04rdW5aYTZGYk9u?=
+ =?utf-8?B?bDA1OE9qYkh3Tkk2V1REUmFxVzE5WldhTWlwZWpERU4rd2JzMDNWQjFLVGRn?=
+ =?utf-8?B?WnFRMTZNeGJ1SzE1bkhUT0RiU0M0RUdEZzhBdUxrTnZVQnM4V29TbXJHeldy?=
+ =?utf-8?B?Y0g4QVliZHFKMlY2WUJ4SkwyQ3ZmZFAzcTlKQi9nbnNFa2xWK1pRNmxlWjdU?=
+ =?utf-8?B?dC9KbUkzTDl5OGZ6eWZOakpGd21oK3pFcFRlYlhMRFVOYmVaZEdHaDJpWEU2?=
+ =?utf-8?B?a3liWnBjOE1JTjc4NHZXaWRVZE5OMWVkVlJiRmpEdGR4UUVCS2lzd3pGc1Yy?=
+ =?utf-8?B?TjhBd2FndzdMaUtSMUpucDdrYmF1MnRIQ3AvV0hwUkxxQ3JkWWErbzd6azVF?=
+ =?utf-8?B?RGlhQmpIRU9VMXFGbFc1TUtoNDBsdnkzd3h0T2pQaTlnRkl4cEZYT1RPbW55?=
+ =?utf-8?B?V1dKL05nTmZQNVlwT3ExR01HRVoxTnU5V0w0UVE0SFR4TngvQVhLbEtXMGw4?=
+ =?utf-8?B?ZkVuUzI1UVZETU5xK2VyYnBlZndlMXh5ZTByRyswRURxellRUjNwazE0Mks4?=
+ =?utf-8?B?R1hUeXpMai9vRjdlK3JydGdoSjZQbzdJcDJBbGFUTjAwRVlkNDhXUXg4L0dX?=
+ =?utf-8?B?SDdFa2J6RkIzMFFHcWlEWjdCQjdYTEtDVEo4RHNhWDZLR2N4aldqUGJ4TFhT?=
+ =?utf-8?B?TFExZmZIblBaZUpqMXArNXN2TG8vS3VNN3ZaQndFZERoZFhYY0RyVzl6Uytn?=
+ =?utf-8?B?bVoxeGxyc1U1NGJDYXNEemwxemdMZXpsUnlLRjVjUXNONS93aUFUblhSRXVp?=
+ =?utf-8?B?WVhCMFBRVWRXWUdxcVB4ejlpTWQvVWM1SER6amxwL21Jc1UwMktYZXpYY3J4?=
+ =?utf-8?B?ajhzRWlmTUcrMUI1bHlVZjZpWkhodmtBWVF2dzZzNUwvY093UDhzMWFyZU0r?=
+ =?utf-8?Q?WqQO08OkDt3AOA0sRD1gKi2BJ?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 098db22f-08f4-4b01-696a-08db19877fdf
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2023 12:29:56.2027 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HGCe8qxase80R4VQegCMRbYw3HBnZPdufxypoK1/2aJnMZqGqeFAY5hcLYxP1f+/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6223
+Subject: Re: [Intel-gfx] [PATCH v5 10/19] vfio: Add infrastructure for
+ bind_iommufd from userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,135 +127,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Feb 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> The rc_buf_thresh values are common to all DSC implementations. Move
-> them to the common helper together with the code to propagage them to
-> the drm_dsc_config.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/display/drm_dsc_helper.c  | 37 +++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 24 +--------------
->  include/drm/display/drm_dsc_helper.h      |  1 +
->  3 files changed, 39 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/gpu/drm/display/drm_dsc_helper.c b/drivers/gpu/drm/display/drm_dsc_helper.c
-> index c869c6e51e2b..ab8679c158b5 100644
-> --- a/drivers/gpu/drm/display/drm_dsc_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dsc_helper.c
-> @@ -270,6 +270,43 @@ void drm_dsc_pps_payload_pack(struct drm_dsc_picture_parameter_set *pps_payload,
->  }
->  EXPORT_SYMBOL(drm_dsc_pps_payload_pack);
->  
-> +/* From DSC_v1.11 spec, rc_parameter_Set syntax element typically constant */
-> +const u16 drm_dsc_rc_buf_thresh[] = {
-> +	896, 1792, 2688, 3584, 4480, 5376, 6272, 6720, 7168, 7616,
-> +	7744, 7872, 8000, 8064
-> +};
-> +EXPORT_SYMBOL(drm_dsc_rc_buf_thresh);
+On Tue, Feb 28, 2023 at 02:35:25AM +0000, Liu, Yi L wrote:
 
-This needs to be static, without exports.
+> > And the commit message is sort of out of sync with the patch, more like:
+> > 
+> > vfio: Pass the pt_id as an argument to vfio_iommufd_bind()
+> > 
+> > To support binding the cdev the pt_id must come from userspace instead
+> > of being forced to the compat_ioas_id.
+> > 
+> 
+> Got it. not only pt_id, also dev_id. 😊
 
-> +
-> +/**
-> + * drm_dsc_set_rc_buf_thresh() - Set thresholds for the RC model
-> + * in accordance with the DSC 1.2 specification.
-> + *
-> + * @vdsc_cfg: DSC Configuration data partially filled by driver
-> + */
-> +void drm_dsc_set_rc_buf_thresh(struct drm_dsc_config *vdsc_cfg)
-> +{
-> +	int i = 0;
+Maybe dev_id should be read back from the iommufd_device pointer in
+the vfio_device. It is trivially stored in that memory already
 
-Unnecessary initialization.
-
-> +
-> +	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
-
-Please use ARRAY_SIZE(). Maybe add BUILD_BUG_ON() for DSC_NUM_BUF_RANGES
-vs. ARRAY_SIZE(). (Yes, we should've used ARRAY_SIZE() in i915.)
-
-> +		/*
-> +		 * six 0s are appended to the lsb of each threshold value
-> +		 * internally in h/w.
-> +		 * Only 8 bits are allowed for programming RcBufThreshold
-> +		 */
-> +		vdsc_cfg->rc_buf_thresh[i] = drm_dsc_rc_buf_thresh[i] >> 6;
-> +	}
-> +
-> +	/*
-> +	 * For 6bpp, RC Buffer threshold 12 and 13 need a different value
-> +	 * as per C Model
-> +	 */
-> +	if (vdsc_cfg->bits_per_pixel == 6 << 4) {
-> +		vdsc_cfg->rc_buf_thresh[12] = 7936 >> 6;
-> +		vdsc_cfg->rc_buf_thresh[13] = 8000 >> 6;
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_dsc_set_rc_buf_thresh);
-> +
->  /**
->   * drm_dsc_compute_rc_parameters() - Write rate control
->   * parameters to the dsc configuration defined in
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index d080741fd0b3..b4faab4c8fb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -36,12 +36,6 @@ enum COLUMN_INDEX_BPC {
->  	MAX_COLUMN_INDEX
->  };
->  
-> -/* From DSC_v1.11 spec, rc_parameter_Set syntax element typically constant */
-> -static const u16 rc_buf_thresh[] = {
-> -	896, 1792, 2688, 3584, 4480, 5376, 6272, 6720, 7168, 7616,
-> -	7744, 7872, 8000, 8064
-> -};
-> -
->  struct rc_parameters {
->  	u16 initial_xmit_delay;
->  	u8 first_line_bpg_offset;
-> @@ -474,23 +468,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
->  	vdsc_cfg->bits_per_pixel = compressed_bpp << 4;
->  	vdsc_cfg->bits_per_component = pipe_config->pipe_bpp / 3;
->  
-> -	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
-> -		/*
-> -		 * six 0s are appended to the lsb of each threshold value
-> -		 * internally in h/w.
-> -		 * Only 8 bits are allowed for programming RcBufThreshold
-> -		 */
-> -		vdsc_cfg->rc_buf_thresh[i] = rc_buf_thresh[i] >> 6;
-> -	}
-> -
-> -	/*
-> -	 * For 6bpp, RC Buffer threshold 12 and 13 need a different value
-> -	 * as per C Model
-> -	 */
-> -	if (compressed_bpp == 6) {
-> -		vdsc_cfg->rc_buf_thresh[12] = 0x7C;
-> -		vdsc_cfg->rc_buf_thresh[13] = 0x7D;
-> -	}
-> +	drm_dsc_set_rc_buf_thresh(vdsc_cfg);
->  
->  	/*
->  	 * From XE_LPD onwards we supports compression bpps in steps of 1
-> diff --git a/include/drm/display/drm_dsc_helper.h b/include/drm/display/drm_dsc_helper.h
-> index 8b41edbbabab..706ba1d34742 100644
-> --- a/include/drm/display/drm_dsc_helper.h
-> +++ b/include/drm/display/drm_dsc_helper.h
-> @@ -14,6 +14,7 @@ void drm_dsc_dp_pps_header_init(struct dp_sdp_header *pps_header);
->  int drm_dsc_dp_rc_buffer_size(u8 rc_buffer_block_size, u8 rc_buffer_size);
->  void drm_dsc_pps_payload_pack(struct drm_dsc_picture_parameter_set *pps_sdp,
->  			      const struct drm_dsc_config *dsc_cfg);
-> +void drm_dsc_set_rc_buf_thresh(struct drm_dsc_config *vdsc_cfg);
->  int drm_dsc_compute_rc_parameters(struct drm_dsc_config *vdsc_cfg);
->  
->  #endif /* _DRM_DSC_HELPER_H_ */
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Jason
