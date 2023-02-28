@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215986A5EA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 19:18:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6016A5EA7
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 19:19:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A299F10E4EF;
-	Tue, 28 Feb 2023 18:18:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C90310E4EF;
+	Tue, 28 Feb 2023 18:19:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46E2A10E4EF
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Feb 2023 18:18:43 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBDD10E4EF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Feb 2023 18:19:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677608324; x=1709144324;
+ t=1677608377; x=1709144377;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=Pcrp4vVUp/KPA8QV8+JFCyUIuKk19y7hq4E0UJdvmv8=;
- b=FXBmLdrkLtuctFKUWP9LrMi1NY7FSCYTWO10gjGKPooqE96HJiuDdugJ
- mBjKus5Sq4go8osJSE5R9NfHsSMWj7RD/3pvqm+WHB9B8+MDjmJG78fs9
- zBYzyILynn0PmJIrM0qjLB1YYRuSRFdwRT8t9yasuVB5XCu20eogm/Z+X
- QQTZUq+l7loBUzApBit3q7YEtP+eTWYZfHVxrb/nPzuGM2oPVBlOrow1x
- SOwdJVE9tgJJSss8pPiznIrqIAVEFDLONJJqg7C55hSoeqF06/vfLSnEE
- QNqW2CNWGaKWP6Eg7EEFjTvuwumr3cOTowW/pfD8RdWw0HAHG/DAyZYeq w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="318009893"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="318009893"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 10:18:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="798135767"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="798135767"
+ bh=Fxex/LMp0wC3XWjhe5C7nHWKPwTjJ9uPJfSvAwqRke8=;
+ b=hEQQZAFIU1aMSWs0GrLIDzjUPABB7Pp9qW4uyHvfC/aNlsiZN04zIEaR
+ Hgq/KMiVOofCvQ4FE0IZGz91oe1/NPld/T8NBaiUGausDSVkTrAPSrI4O
+ StU1frE/Bnvosina567zdW7xsc4to2QzwI+vdZegrAzrHSkz8Qs1hSVQb
+ fG5KlYb2MnnIIlcos9y7rBB16VVquLxbtjlJkgjz6etI2RUWVFpFRQy0+
+ Zp1gtNsG6KVh1ZDmlS8VCBShkPcWamRxODXYLy+bdFgJX7XGfk1K0Rj3p
+ qhwdf+pXL4qPD8ms5Et1kbUH6mUouTEIPDJZWd7ehnm6TPmZ0GkgMHrrY Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="361779741"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="361779741"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 10:19:36 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="919866482"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="919866482"
 Received: from barumuga-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.26])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 10:18:36 -0800
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 10:19:35 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230221230227.6244-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230221230227.6244-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230221230227.6244-1-ville.syrjala@linux.intel.com>
- <20230221230227.6244-3-ville.syrjala@linux.intel.com>
-Date: Tue, 28 Feb 2023 20:18:33 +0200
-Message-ID: <878rghy7pi.fsf@intel.com>
+ <20230221230227.6244-4-ville.syrjala@linux.intel.com>
+Date: Tue, 28 Feb 2023 20:19:33 +0200
+Message-ID: <875ybly7nu.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 02/22] drm/i915: Fix SKL DDI A digital
- port .connected()
+Subject: Re: [Intel-gfx] [PATCH v3 03/22] drm/i915: Get rid of the gm45 HPD
+ live state nonsense
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,72 +67,142 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 22 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> SKL doesn't have any north DE hotplug stuff. Currently we're
-> trying to read DDI A live state from the BDW north DE bit,
-> instead of the approproate south DE bit. Fix it.
+> The idea that ctg uses different HPD live state bits is
+> total nonsense, at least on my machine (Dell Latitude
+> E5400).
 >
-> And for good measure clear the pointer to the north hpd
-> pin array, so that we'll actually notice if some other
-> place is also using the wrong thing.
+> The only reason DP-B even works on my ctg is that DP-D
+> live state is stuck high, even though there is no physical
+> DP-D port. So when the detect checks DP-B live state it
+> sees the stuck live state of DP-D instead. If I hack
+> the driver to not register DP-D at all, and thus we never
+> enabe DP-D HPD, DP-B stops working as well.
+>
+> Just to put some conclusive evidence into this mess,
+> here are the actual hotplug register values for each port:
+>  Everything disconnected:
+>                     PORT_HOTPLUG_EN (0x00061110): 0x00000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x08000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x08000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x10000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x20000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>  Only port B connected:
+>                     PORT_HOTPLUG_EN (0x00061110): 0x00000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x08000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x08000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x10000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x20000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x20000000
+>  Only port C connected:
+>                     PORT_HOTPLUG_EN (0x00061110): 0x00000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x08000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x08000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x10000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x10000000
+>                     PORT_HOTPLUG_EN (0x00061110): 0x20000000
+>                   PORT_HOTPLUG_STAT (0x00061114): 0x00000000
+>
+> So the enable bit and live state bit always match 1:1.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Finally found the clue in bspec for skl+, "This field is unused in
-projects that have a PCH."
+I'll take your word for it.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
 
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++----
->  drivers/gpu/drm/i915/i915_irq.c          |  2 ++
->  2 files changed, 9 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/g4x_dp.c | 28 +--------------------------
+>  drivers/gpu/drm/i915/i915_reg.h       | 13 +------------
+>  2 files changed, 2 insertions(+), 39 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 40b5c93f9223..1a042f3658eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4508,15 +4508,18 @@ void intel_ddi_init(struct drm_i915_private *dev_=
-priv, enum port port)
->  		if (intel_phy_is_tc(dev_priv, phy))
->  			dig_port->connected =3D intel_tc_port_connected;
->  		else
->  			dig_port->connected =3D lpt_digital_port_connected;
-> -	} else if (DISPLAY_VER(dev_priv) >=3D 8) {
-> -		if (port =3D=3D PORT_A || IS_GEMINILAKE(dev_priv) ||
-> -		    IS_BROXTON(dev_priv))
-> +	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
-> +		dig_port->connected =3D bdw_digital_port_connected;
-> +	} else if (DISPLAY_VER(dev_priv) =3D=3D 9) {
-> +		dig_port->connected =3D lpt_digital_port_connected;
-> +	} else if (IS_BROADWELL(dev_priv)) {
-> +		if (port =3D=3D PORT_A)
->  			dig_port->connected =3D bdw_digital_port_connected;
->  		else
->  			dig_port->connected =3D lpt_digital_port_connected;
-> -	} else {
-> +	} else if (IS_HASWELL(dev_priv)) {
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
+/display/g4x_dp.c
+> index a50ad0fff57c..920d570f7594 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -1196,31 +1196,8 @@ static bool g4x_digital_port_connected(struct inte=
+l_encoder *encoder)
+>=20=20
+>  	return intel_de_read(dev_priv, PORT_HOTPLUG_STAT) & bit;
+>  }
+>=20=20
+> -static bool gm45_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -	u32 bit;
+> -
+> -	switch (encoder->hpd_pin) {
+> -	case HPD_PORT_B:
+> -		bit =3D PORTB_HOTPLUG_LIVE_STATUS_GM45;
+> -		break;
+> -	case HPD_PORT_C:
+> -		bit =3D PORTC_HOTPLUG_LIVE_STATUS_GM45;
+> -		break;
+> -	case HPD_PORT_D:
+> -		bit =3D PORTD_HOTPLUG_LIVE_STATUS_GM45;
+> -		break;
+> -	default:
+> -		MISSING_CASE(encoder->hpd_pin);
+> -		return false;
+> -	}
+> -
+> -	return intel_de_read(dev_priv, PORT_HOTPLUG_STAT) & bit;
+> -}
+> -
+>  static bool ilk_digital_port_connected(struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u32 bit =3D dev_priv->display.hotplug.hpd[encoder->hpd_pin];
+> @@ -1383,12 +1360,9 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+>=20=20
+>  	dig_port->hpd_pulse =3D intel_dp_hpd_pulse;
+>=20=20
+>  	if (HAS_GMCH(dev_priv)) {
+> -		if (IS_GM45(dev_priv))
+> -			dig_port->connected =3D gm45_digital_port_connected;
+> -		else
+> -			dig_port->connected =3D g4x_digital_port_connected;
+> +		dig_port->connected =3D g4x_digital_port_connected;
+>  	} else {
 >  		if (port =3D=3D PORT_A)
->  			dig_port->connected =3D hsw_digital_port_connected;
+>  			dig_port->connected =3D ilk_digital_port_connected;
 >  		else
->  			dig_port->connected =3D lpt_digital_port_connected;
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index b024a3a7ca19..13ada0916c2a 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -197,8 +197,10 @@ static void intel_hpd_init_pins(struct drm_i915_priv=
-ate *dev_priv)
->  	if (DISPLAY_VER(dev_priv) >=3D 11)
->  		hpd->hpd =3D hpd_gen11;
->  	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
->  		hpd->hpd =3D hpd_bxt;
-> +	else if (DISPLAY_VER(dev_priv) =3D=3D 9)
-> +		hpd->hpd =3D NULL; /* no north HPD on SKL */
->  	else if (DISPLAY_VER(dev_priv) >=3D 8)
->  		hpd->hpd =3D hpd_bdw;
->  	else if (DISPLAY_VER(dev_priv) >=3D 7)
->  		hpd->hpd =3D hpd_ivb;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index c1efa655fb68..de58695ad1c0 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2482,20 +2482,9 @@
+>  #define CRT_HOTPLUG_DETECT_VOLTAGE_325MV	(0 << 2)
+>  #define CRT_HOTPLUG_DETECT_VOLTAGE_475MV	(1 << 2)
+>=20=20
+>  #define PORT_HOTPLUG_STAT	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61114)
+> -/*
+> - * HDMI/DP bits are g4x+
+> - *
+> - * WARNING: Bspec for hpd status bits on gen4 seems to be completely con=
+fused.
+> - * Please check the detailed lore in the commit message for for experime=
+ntal
+> - * evidence.
+> - */
+> -/* Bspec says GM45 should match G4X/VLV/CHV, but reality disagrees */
+> -#define   PORTD_HOTPLUG_LIVE_STATUS_GM45	(1 << 29)
+> -#define   PORTC_HOTPLUG_LIVE_STATUS_GM45	(1 << 28)
+> -#define   PORTB_HOTPLUG_LIVE_STATUS_GM45	(1 << 27)
+> -/* G4X/VLV/CHV DP/HDMI bits again match Bspec */
+> +/* HDMI/DP bits are g4x+ */
+>  #define   PORTD_HOTPLUG_LIVE_STATUS_G4X		(1 << 27)
+>  #define   PORTC_HOTPLUG_LIVE_STATUS_G4X		(1 << 28)
+>  #define   PORTB_HOTPLUG_LIVE_STATUS_G4X		(1 << 29)
+>  #define   PORTD_HOTPLUG_INT_STATUS		(3 << 21)
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
