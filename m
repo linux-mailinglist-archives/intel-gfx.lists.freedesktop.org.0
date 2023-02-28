@@ -2,67 +2,141 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7BB6A5940
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE1F6A594A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 13:43:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ACE410E69B;
-	Tue, 28 Feb 2023 12:43:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F307F10E6A0;
+	Tue, 28 Feb 2023 12:43:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048B110E6A0;
- Tue, 28 Feb 2023 12:43:03 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id
- q31-20020a17090a17a200b0023750b69614so9423751pja.5; 
- Tue, 28 Feb 2023 04:43:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1677588182;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=GNoSdXiAy4Hnpx4GSmf9v1s/TnoJ2Easnzikmce7RFo=;
- b=Df7zrRz22eg8YZi+bpqjSJPlYpN8eIwr9o77wJ4OIQ+4kuTEVXpnUz/mPubCGdCkzm
- wB0GhDQXs3xOQYDpZ9TG3khGJT4x7Ps3f8Vj0npRhk0C4oSB96tMQoW50c51EZ3lfU6+
- vFMlcXzfaK3nk76iyyHVvUt22CWre9Kuihg8DdAXM83Q0NBTYhnQ9e1mcv7ZaGj3nj6C
- DWIlEvKfO56rW78AV5SO5ICvqhDgv2GTFKuLLPU+zrXAXmgq0Z3G0wNqW6+IdX6MRcKc
- JC/a+Zbq22en8EaGBqwiunzxOiXmQHaNTUI4tKBNSby2zUAc3XWf8SlBzOOJfcD8IlKJ
- SM5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1677588182;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GNoSdXiAy4Hnpx4GSmf9v1s/TnoJ2Easnzikmce7RFo=;
- b=i0WolIOQycqcS09txPLhdzNCPZj/PTmw2mohwq1avEFuDxVYGZ056jaWP+D32o2AtY
- jZ/CWCQcO2sGyFgIUpqWJgfPdJLHUymo8YMSaBuwCvV6nU0EYSkI5Bfr/DCqPsXY0cUG
- 9xrAQYlgjLhX9mUon6Kztcp26My3TgJJD9iqiMCGY+eHqODXqSp0cSgISaI83hRWccF7
- 96myGlAAGtZ3Zpvx4lOLKp9y9G/IBLv9bMR6L2wyoitALMEXeyQsGwM2xr6lxYY1UMly
- v2zLvAs+/MhJbCtVsTa2UXXgcGHbQTa2BhhCV48Hfa7kweWkRiZuRvuBVpAA5gBz8qaj
- zehg==
-X-Gm-Message-State: AO0yUKWMzeW+1DysM/xz6JSc4tQyE5CpDemnSDfg91XDuMHYtjasLcd4
- 0/rmCYNbI4e2nwEZw765y1w=
-X-Google-Smtp-Source: AK7set9OdAQjCkCpgdCiYZHKKMRQTrLw3bEzWK8cbf3O+nNoqA5K32bwW9Ij9MRpVcAkVdH7hRxAQg==
-X-Received: by 2002:a05:6a20:47d7:b0:cc:68a1:5033 with SMTP id
- ey23-20020a056a2047d700b000cc68a15033mr3052844pzb.16.1677588182510; 
- Tue, 28 Feb 2023 04:43:02 -0800 (PST)
-Received: from debian.me (subs02-180-214-232-83.three.co.id. [180.214.232.83])
- by smtp.gmail.com with ESMTPSA id
- y18-20020aa78052000000b005a909290425sm6172405pfm.172.2023.02.28.04.43.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Feb 2023 04:43:01 -0800 (PST)
-Received: by debian.me (Postfix, from userid 1000)
- id 24D0210105C; Tue, 28 Feb 2023 19:42:57 +0700 (WIB)
-Date: Tue, 28 Feb 2023 19:42:57 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
-Message-ID: <Y/320d96QmbLe1J8@debian.me>
-References: <20230227193535.2822389-1-robdclark@gmail.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F58510E410;
+ Tue, 28 Feb 2023 12:43:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677588213; x=1709124213;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=CMn/fzGudvSDLCwXORlt0ealPzW6Vj4iJ5VfVsJJ+TQ=;
+ b=FdBPUgC8uwZysJc2jNZ7K1HRRmkkRsY4GliTrbiUFPn8sYzRxohX2yFV
+ 5BqfNpS7dEow8rGbLbRCUApxkHNqkImamNsKfx+OrSqg/6QFNRPLud3i+
+ PvtvHZSp6GeYj3u4/9tjecv9Thg+keAEN4kklFj5S/xCtFTK7Ensgy+DM
+ 3oZGELTLbCxWjlzA30oL7MAsQJwpCGrbXd1C9Z/5PaB5vt0r8TFy/xRZp
+ Lez+wj+3QpufE2ZxsXHaHa1xbXznZMBBLF2zkMD6TWfh0kXSaz/7rNGKL
+ 84GTYj2mJpfD3E5GKuWhE43XOgeZqpJMTA0Df5OoYPOtIeaauXKNy9lMJ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="322377649"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="322377649"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 04:43:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="651602294"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="651602294"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP; 28 Feb 2023 04:43:32 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 28 Feb 2023 04:43:31 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 28 Feb 2023 04:43:31 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.108)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 28 Feb 2023 04:43:31 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q+2WF2npJA+wWAAKpDMxEX0JaKo+qJLLBd+PWXv5XkbaqmLhn5MqNXAQeFw/aq6hF3P3zzjSrWu5EzyG9vl8y8/J7y3/oqDvZwjztnMCA3OLfDtAQzxLa5YumAMVaVBzz1d3RusZeSLHnxxAktzF+bhFDRNPv0VYRpKqNdJOx8+b9wwJltQ74MQskL6N+641AByWc0jK20p5cMwtf6U4lQyvQBem594fYqikvV6pVTvt5mcfrFJ2PXHi0j+hsxqIHLKDH5Bi85K3pgtpvk/1/sRg2054ATe2ylolpm7RF7vG9E/pgo0Y/ZUJzzdCbWOS3L2Y0WwicUanrtm9oKglwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rxh+Y4EwroZoQRvHkatILITDWxqxxofU/VYDXVtShZU=;
+ b=Dt3V6pWkFa8sw3CgASQyXbzp0IfReITZb9z3iPNx70J58v8ANnbcvQdbLoiH695bKtSRGXtEIUz8fK5cTXezzgjrCQcjTUBj2mrNXdX8+2O6EvKz6NEtq5r23w0xJ9qPrkR/3cMaAWNdBuqD95SNEppgsdoox3rTsbq+cCy6lNzbdUde2d+CxVPLS869BCi6nQOfvvGl9FCgdKf5EVJcMh7LbTJUobWNwUYwdNLWj/LZZ2B9u5f+gckFLqG/Gtsn0vHD8CGS1W7Eoa0QTxdgufIlBGbBeZudvcHb9IokcxBsGz7RFUpD2cVHm9gw5FJ0bHN08xufIUm893b1O5dGfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.30; Tue, 28 Feb
+ 2023 12:43:29 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6134.030; Tue, 28 Feb 2023
+ 12:43:29 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v5 11/19] vfio-iommufd: Add detach_ioas support for
+ physical VFIO devices
+Thread-Index: AQHZSpxLjytyosfJo0anYKoP/iDXH67jIeSAgACICkCAAKJvAIAAAEuQ
+Date: Tue, 28 Feb 2023 12:43:29 +0000
+Message-ID: <DS0PR11MB7529D08BFF137C7023032F51C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-12-yi.l.liu@intel.com> <Y/z6GwZPfh2nFjpn@nvidia.com>
+ <DS0PR11MB7529DC05F80083E426CC6443C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <Y/30fBnUA/PBJ1DR@nvidia.com>
+In-Reply-To: <Y/30fBnUA/PBJ1DR@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DM4PR11MB6360:EE_
+x-ms-office365-filtering-correlation-id: 66281173-d4fa-4675-f125-08db198964d0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: MP292+jlRSdhg6jqCTqst4ohMy8JL+LfgZBY/UfL1s5muWF74WQ2NsrMStPOLjyMw6ZlABUGwlfrV1rvPEvubcQj6qvfMOyxs1t1Z2/CIof6FlZwOMRIlM8ffT/eVF12Jx6ZI9s2uwMCc5zaNNGaNc7/tmIVQDMSGzaQaF8vrc4yl+ICVAizMqiFyhtajCTdyKn7+gIvQoc8dFqf5vyXRmuE7fGtomA2+xq7pbsiKPO56r7XCmcRSukNFREjWups0R8nr4eI4YEJEy7/qDSWfX0Rd5kNlDx1bey7CKluYTLaAisq1Lu8OPKS9jHkmkssm0XilUyIGnhcGl55zLFFSwD+vovl1ajzALL1Jb3P5XaqxGRD07neLUhjrP6cTlOB5TwzXpd4Dm5l8XnMVtJ+TMTPRN4hUyf6GRgRrNRUGRLqXa5ZXR/ZvS6fbo/gbJNaaVA63qFTd8wadUfwWX7C8F+JGnhBlZ4qCIyVwtDCdny4/3cbt3vN2tweHbvg7tCuunndEyhbA76THhslexn3SdLfheYwVI+j31p0+HvBzpLB9IRUbPUu8y2vcL/pXKBdYG4a80TmsbBhOj8zOfqdzAPsNESWovzcxXPsRmLnmvB7W95qHrX+OvaG68ckSMOns4kqYVFjMN0l0iIZmtxXBQTnui1KebqRMMCIYq061fcM5anmcWH9iRAb9X7TRj+EftmN0GvhlCKAwGqactScbg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(366004)(346002)(396003)(39860400002)(376002)(451199018)(82960400001)(38070700005)(71200400001)(9686003)(26005)(186003)(55016003)(6506007)(122000001)(38100700002)(83380400001)(86362001)(33656002)(2906002)(8936002)(7416002)(41300700001)(316002)(4326008)(6916009)(7696005)(66446008)(66476007)(64756008)(76116006)(5660300002)(52536014)(8676002)(66946007)(66556008)(54906003)(478600001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4dE5vzGazIhRNqBYS75kPFH1F+4xaxJwB4DNcj7JIsCwMCtbSsGZ1Zw8CXPG?=
+ =?us-ascii?Q?lBpLmQQsrxTBFlWEiWvbjWl+Ggd/r6T+en+apEaNLdwF8CJ48jcJHB8PXcct?=
+ =?us-ascii?Q?m7KijHBv8/HtAIG3xfqNC5rny5eBqND9GT8OHNzey8UdIWS0ogNvVtnaMyeE?=
+ =?us-ascii?Q?iqNbmGBph4ZO1nwG2W6dhc7GOsY6mB5rbV3YzgCJI1LJq4e6cxJVSlt21zx8?=
+ =?us-ascii?Q?SMhvzdHIFAiJNC56jcD4phLViTYWDl0LqvwlmLmg9k/DC5DMOm6KMZ3duwIy?=
+ =?us-ascii?Q?gZynmQ9Jb6hO6yHyBxsgh1dyXvl2X3Ay/z4uGnpkDCBSKnsCrOoO+zVEf9PT?=
+ =?us-ascii?Q?XNssSSN3gwjZ3yn2t/AaUH9d7Md6aJpVUzdkxJPQtjJ0U7TWbx+h9n1+dQ3y?=
+ =?us-ascii?Q?RTqOTx+RAb0ynEMjNiKLVw+bRV9c+h0mJVNCOo+Cq7zhNbd4aNT0QiwLfafL?=
+ =?us-ascii?Q?w0VVU7pazvzfYaRAEws5LH/yffb5Qtic8XM9VPF+yA4GNhImoSdHCC0FW7F9?=
+ =?us-ascii?Q?yC2JJHtanlAxTKBxpLANjvwTm7mOODHbcFRw9z77aHuTMp1srQiOXa9M1MMZ?=
+ =?us-ascii?Q?8vUHUGty4FwtlyrytUBIbyHWGMaADmiCK4/pNtM4ZLFX8s7+ET7crJTsAEwZ?=
+ =?us-ascii?Q?GKXROyeuGFmsQb43aHrq0Y3T1tvGyLuwKCwcmHU14sMZLUBpzjoeOu1u4kO1?=
+ =?us-ascii?Q?AF2ogau1TGoZnP9KdBbVXQMzxNIJoDkN+UK1StKwmXtdvVFB3720/tkI+t7I?=
+ =?us-ascii?Q?AaPl6aHmRQYlcX6KAH9P5R8pg/5aTL7bc8YyrRprEZZefU8fFrDszCB0TiWG?=
+ =?us-ascii?Q?Y337eQ/ThRNdMP7Z4BxFBw7A5osCaMD5SnGtZVf4tGHloksdqxTYvHhM6ZsK?=
+ =?us-ascii?Q?qIkNESMoHA3wqfa8+1iM/J+r0AGkmibY7vkrmq7z2DHkk1/36ltYPtFUKbhm?=
+ =?us-ascii?Q?XXvd+G07w64H0T/3/1os4OOZqtYTLjnsix4E9J0F+E6e3wh14Kqhn8nNBumf?=
+ =?us-ascii?Q?fSM45lYIJwQk54GPO/lovxsoU0ABhl4lPvId0ZspGSMhdUQIRCGwLxRod8Xh?=
+ =?us-ascii?Q?r8XuOeF+81nPW1ytyJtWKPuJjtftUQPfxohGtasuSlYxGO5KLXPIQvagh4wL?=
+ =?us-ascii?Q?Tw293/jOrpzOeiSnu5qcE7G8uvBa6F5U683DhwIdMLCEhVlVTH5kHGVohZfp?=
+ =?us-ascii?Q?t3xsMcUWXCinXiMstzMDkHioeGMQlasiC/289i0BD4G20yOOUZ3coqZIvHRb?=
+ =?us-ascii?Q?cEvsUPWo0pwCkIALTUjavLCvTBg2kT68VbpZ2iJMe66DjqeSBfRKEiKfu/Fk?=
+ =?us-ascii?Q?9mC4eb7kNyqLuwz0pkkMNZKJg4WImdJWldueGO8w9f8E8r84Ma7etaKZrO4x?=
+ =?us-ascii?Q?TMwoA+9W61OrmTQzlOMugMbeenr4ZCEMIWDGlg9Gx7D7BMmBGH+tSUm0uPcr?=
+ =?us-ascii?Q?Lu/7Dsb/EyeLZ/LUg8eS82tTKJAHoPFQOU4niQ5jRTwWOzXOq3zhUtf+yrpv?=
+ =?us-ascii?Q?fvYPt02PWmyrGbFnMknzZLrmkK9rgOgKxuB9ZZEQ9YYAyyazsKAfA+pQMPRX?=
+ =?us-ascii?Q?BOujzjBEW55oVNTc8tDGV6AZLqI1WQU/RFssyZOB?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="wAv6Jr7MZqhKVbDV"
-Content-Disposition: inline
-In-Reply-To: <20230227193535.2822389-1-robdclark@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v7 00/15] dma-fence: Deadline awareness
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66281173-d4fa-4675-f125-08db198964d0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2023 12:43:29.5530 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GIvvAdLPOlfm89U94iaBjZtErbAxuiJjuimLquLqJZrXkxJHzRcBsBFML5dxGyiqN02CBtY5g7uiyuvb4ZO1Ow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6360
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 11/19] vfio-iommufd: Add detach_ioas
+ support for physical VFIO devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,91 +149,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Douglas Anderson <dianders@chromium.org>, Liu Shixin <liushixin2@huawei.com>,
- Rob Clark <robdclark@chromium.org>, Vinod Polimera <quic_vpolimer@quicinc.com>,
- Luben Tuikov <luben.tuikov@amd.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
- intel-gfx@lists.freedesktop.org,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Christian =?utf-8?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>,
- Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>, Pekka Paalanen <ppaalanen@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simon Ser <contact@emersion.fr>,
- open list <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- freedreno@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---wAv6Jr7MZqhKVbDV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Feb 27, 2023 at 11:35:06AM -0800, Rob Clark wrote:
-> From: Rob Clark <robdclark@chromium.org>
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, February 28, 2023 8:33 PM
+>
+> On Tue, Feb 28, 2023 at 02:57:42AM +0000, Liu, Yi L wrote:
+> > > From: Jason Gunthorpe <jgg@nvidia.com>
+> > > Sent: Tuesday, February 28, 2023 2:45 AM
+> > >
+> > > On Mon, Feb 27, 2023 at 03:11:27AM -0800, Yi Liu wrote:
+> > > > diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-
+> > > mc/vfio_fsl_mc.c
+> > > > index c89a047a4cd8..d540cf683d93 100644
+> > > > --- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
+> > > > +++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
+> > > > @@ -594,6 +594,7 @@ static const struct vfio_device_ops
+> > > vfio_fsl_mc_ops =3D {
+> > > >  	.bind_iommufd	=3D vfio_iommufd_physical_bind,
+> > > >  	.unbind_iommufd	=3D vfio_iommufd_physical_unbind,
+> > > >  	.attach_ioas	=3D vfio_iommufd_physical_attach_ioas,
+> > > > +	.detach_ioas	=3D vfio_iommufd_physical_detach_ioas,
+> > > >  };
+> > > >
+> > > >  static struct fsl_mc_driver vfio_fsl_mc_driver =3D {
+> > > > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> > > > index beef6ca21107..bfaa9876499b 100644
+> > > > --- a/drivers/vfio/iommufd.c
+> > > > +++ b/drivers/vfio/iommufd.c
+> > > > @@ -88,6 +88,14 @@ int vfio_iommufd_physical_attach_ioas(struct
+> > > vfio_device *vdev, u32 *pt_id)
+> > > >  {
+> > > >  	int rc;
+> > > >
+> > > > +	lockdep_assert_held(&vdev->dev_set->lock);
+> > > > +
+> > > > +	if (!vdev->iommufd_device)
+> > > > +		return -EINVAL;
+> > >
+> > > This should be a WARN_ON. The vdev->iommufd_ctx should be NULL if it
+> > > hasn't been bound, and it can't be bound unless the
+> > > iommufd_device/attach was created.
+> >
+> > sure. But it is a user-triggerable warn. If userspace triggers it on
+> > purpose, will it be a bad thing for kernel? Maybe use
+> > dev_warn_ratelimited()?
 >=20
-> This series adds a deadline hint to fences, so realtime deadlines
-> such as vblank can be communicated to the fence signaller for power/
-> frequency management decisions.
->=20
-> This is partially inspired by a trick i915 does, but implemented
-> via dma-fence for a couple of reasons:
->=20
-> 1) To continue to be able to use the atomic helpers
-> 2) To support cases where display and gpu are different drivers
->=20
-> This iteration adds a dma-fence ioctl to set a deadline (both to
-> support igt-tests, and compositors which delay decisions about which
-> client buffer to display), and a sw_sync ioctl to read back the
-> deadline.  IGT tests utilizing these can be found at:
->=20
->   https://gitlab.freedesktop.org/robclark/igt-gpu-tools/-/commits/fence-d=
-eadline
->=20
->=20
-> v1: https://patchwork.freedesktop.org/series/93035/
-> v2: Move filtering out of later deadlines to fence implementation
->     to avoid increasing the size of dma_fence
-> v3: Add support in fence-array and fence-chain; Add some uabi to
->     support igt tests and userspace compositors.
-> v4: Rebase, address various comments, and add syncobj deadline
->     support, and sync_file EPOLLPRI based on experience with perf/
->     freq issues with clvk compute workloads on i915 (anv)
-> v5: Clarify that this is a hint as opposed to a more hard deadline
->     guarantee, switch to using u64 ns values in UABI (still absolute
->     CLOCK_MONOTONIC values), drop syncobj related cap and driver
->     feature flag in favor of allowing count_handles=3D=3D0 for probing
->     kernel support.
-> v6: Re-work vblank helper to calculate time of _start_ of vblank,
->     and work correctly if the last vblank event was more than a
->     frame ago.  Add (mostly unrelated) drm/msm patch which also
->     uses the vblank helper.  Use dma_fence_chain_contained().  More
->     verbose syncobj UABI comments.  Drop DMA_FENCE_FLAG_HAS_DEADLINE_BIT.
-> v7: Fix kbuild complaints about vblank helper.  Add more docs.
->=20
+> How can it be user triggerable? You shouldn't be able to reach this
+> function until the device is bound because the ioctl should be after
+> the is it bound check
 
-I want to apply this series for testing, but it can't be applied cleanly
-on current drm-misc tree. On what tree (and commit) is this series based
-on?
+Oh, yes. it is! ioctls are blocked until bound to iommufd.
 
---=20
-An old man doll... just what I always wanted! - Clara
+Regards,
+Yi Liu
 
---wAv6Jr7MZqhKVbDV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY/32zQAKCRD2uYlJVVFO
-o1TBAQCAHLKqy5NdumoKS+DbOAOm+KfhLK93EKYDC8UmiebsRAEA+JAK75T6QTDt
-aHxaJFTZKkVfK7+Eq1MfYn2ZeBgJXgU=
-=jpg1
------END PGP SIGNATURE-----
-
---wAv6Jr7MZqhKVbDV--
