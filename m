@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D101D6A5A94
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 15:08:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBC06A5A99
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Feb 2023 15:08:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0DD110E201;
-	Tue, 28 Feb 2023 14:08:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E66610E200;
+	Tue, 28 Feb 2023 14:08:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63EB210E1FC;
- Tue, 28 Feb 2023 14:08:27 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBCD10E200
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Feb 2023 14:08:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677593307; x=1709129307;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tOQmms2GUz82HWTfshF6FjkJB4k4O9vsHa9VO6BVGt4=;
- b=UwnFYgYSHg4RRSXx8VaXJSgjyqJ0uTjJ/B5BttungKlZDOcf2wkKw6tu
- 08qWl06jYTvNIfMvjhGZiCwTkz7aKjYNaKRY1xvVQFUsp5BJ4W6oBFJgk
- ESxSMjLv6aGz4PlEqhZj3VJirlfwJLu7NRqJk1SvkEcP/8hql1jimfdSP
- W3wm8pBLcBL9jTHTje/jcIAMxZjxwrFdeqYWMLq8Q4caH6AVHYf3OBPGL
- M0se4Qmgj6nhPhyZRuzOHOTQl0ne5bdNzh2DzBV6swE4ERNwqRNjwiBBj
- RyGnzUpmRCJsdqRyYA5WDtZTAzi5adScxA5d1z156wylCXAO6tfSvnkA0 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="335627076"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="335627076"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 06:08:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="624038160"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="624038160"
-Received: from barumuga-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.26])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 06:08:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, Dmitry Osipenko
- <dmitry.osipenko@collabora.com>
-In-Reply-To: <Y/4AMJ/+3BhTa+FF@ashyti-mobl2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230228125054.1952657-1-andi.shyti@linux.intel.com>
- <71dee5cf-3c12-8d5f-5d2a-be0a39647d8c@collabora.com>
- <Y/4AMJ/+3BhTa+FF@ashyti-mobl2.lan>
-Date: Tue, 28 Feb 2023 16:08:18 +0200
-Message-ID: <87bkldzxv1.fsf@intel.com>
+ t=1677593333; x=1709129333;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hDW5fM7kPcYrMpWbLIxJw/aYCPTiJH/zRN7/g033tDE=;
+ b=YIEZtjLbktUDcZ5d7ox7vYTMR/zrUut3bm5AfV7JVzqWUMC3cwJJDABz
+ qeOcNKJiVcDMAsNe07//6E8O/AvxloK6RZuug2GKL9c99zCwSrNZLywxh
+ ZZhv+8X/f5rfKiQb/rRsRrMkyOJoOot27vr69b/VoGKhNRT6gyGweo7Hy
+ r8HeYPnQFAeVXRjj8o0DvwkWKBemdhXrxkTEye34VRKe0pZswfw1vUk+z
+ e+bASxhMItJ1UeiI2/bqUNUIFFOoT6Q8QvS3J/4xBIarQDrcYBLek+JpV
+ JEEzhJqGmO5uVIwJX6nN6sUBe52/ZnvNxc7kz8tpQgsiPfMjO1D8bsa3U g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="317940394"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="317940394"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 06:08:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="738174878"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="738174878"
+Received: from mistoan-mobl.ger.corp.intel.com (HELO [10.252.9.93])
+ ([10.252.9.93])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2023 06:08:50 -0800
+Message-ID: <6b08d006-11e2-6797-6d39-06bd0d8a8630@intel.com>
+Date: Tue, 28 Feb 2023 14:08:48 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/shmem-helper: Fix compile error
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/i915: Migrate platform-dependent
+ mock hugepage selftests to live
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,78 +62,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Asahi Lina <lina@asahilina.net>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ daniel.vetter@intel.com, chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Feb 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> Hi Dmitry,
->
-> On Tue, Feb 28, 2023 at 04:15:28PM +0300, Dmitry Osipenko wrote:
->> Hi,
->> 
->> On 2/28/23 15:50, Andi Shyti wrote:
->> > Commit 67b7836d4458 ("drm/shmem-helper: Switch to reservation
->> > lock") removes the drm_gem_shmem_get_pages_locked() and
->> > drm_gem_shmem_put_pages_locked().
->> > 
->> > But then commit ddddedaa0db9 ("drm/shmem-helper: Fix locking for
->> > drm_gem_shmem_get_pages_sgt()") reintroduces it.
->> > 
->> > Somehow these two commits got mixed up and produce the following
->> > compile error:
->> 
->> The 67b7836d4458 goes after ddddedaa0db9 in misc-next. It was a bad
->> merge conflict resolution in drm-tip that was fixed yesterday, there is
->> no problem in misc-next. Where do you see this error?
->
-> yes, indeed! I was indeed surprised to see this mismatch.
->
-> I see it in the Intel's drm-tip branch[*]
+On 27/02/2023 17:19, Jonathan Cavitt wrote:
+> Convert the igt_mock_ppgtt_huge_fill and igt_mock_ppgtt_64K mock selftests into
+> live selftests as their requirements have recently become platform-dependent.
+> Additionally, apply necessary platform dependency checks to these tests.
+> 
+> v2: Reorder
+> 
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-To set the record straight, drm-tip isn't Intel's, it's an integration
-branch shared by the drm community.
-
-Looks like the same bad merge resolution has resurrected itself somehow,
-maybe Thomas'
-
-commit 418ce969b4c8533c7c76cc0b7adeb432ccdc137e
-Author: Thomas Zimmermann <tzimmermann@suse.de>
-Date:   Tue Feb 28 10:03:24 2023 +0100
-
-    2023y-02m-28d-09h-02m-44s UTC: drm-tip rerere cache update
-    
-    git version 2.39.2
-
-in drm-rerere brought it back.
-
-And the build is indeed currently broken.
-
-Moreover, when the build was fine for a while, apparently the changes in
-shmem broke a bunch of machines in Intel CI. And due to this, we aren't
-getting any CI results for incoming patches right now.
+r-b still stands for the series. Note that CI is busted atm though, so 
+we can't merge this yet. Likely need to re-trigger testing for the 
+series once CI/drm-tip is working again.
 
 
-
-BR,
-Jani.
-
-
-
-
-
->
-> Cc'ing the Intel's mailing list and maintainers, as well.
->
-> Tnanks,
-> Andi
->
-> [*] git.freedesktop.org/git/drm-tip
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> ---
+>   .../gpu/drm/i915/gem/selftests/huge_pages.c   | 22 ++++++++++++++-----
+>   1 file changed, 17 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index defece0bcb81..375f119ab261 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -710,7 +710,7 @@ static void close_object_list(struct list_head *objects,
+>   	}
+>   }
+>   
+> -static int igt_mock_ppgtt_huge_fill(void *arg)
+> +static int igt_ppgtt_huge_fill(void *arg)
+>   {
+>   	struct i915_ppgtt *ppgtt = arg;
+>   	struct drm_i915_private *i915 = ppgtt->vm.i915;
+> @@ -784,7 +784,8 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+>   		GEM_BUG_ON(!expected_gtt);
+>   		GEM_BUG_ON(size);
+>   
+> -		if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
+> +		if (expected_gtt & I915_GTT_PAGE_SIZE_4K &&
+> +		    GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+>   			expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
+>   
+>   		i915_vma_unpin(vma);
+> @@ -831,7 +832,7 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+>   	return err;
+>   }
+>   
+> -static int igt_mock_ppgtt_64K(void *arg)
+> +static int igt_ppgtt_64K(void *arg)
+>   {
+>   	struct i915_ppgtt *ppgtt = arg;
+>   	struct drm_i915_private *i915 = ppgtt->vm.i915;
+> @@ -913,6 +914,17 @@ static int igt_mock_ppgtt_64K(void *arg)
+>   		unsigned int offset = objects[i].offset;
+>   		unsigned int flags = PIN_USER;
+>   
+> +		/*
+> +		 * For modern GTT models, the requirements for marking a page-table
+> +		 * as 64K have been relaxed.  Account for this.
+> +		 */
+> +
+> +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+> +			expected_gtt = 0;
+> +			expected_gtt |= size & (SZ_64K | SZ_2M) ? I915_GTT_PAGE_SIZE_64K : 0;
+> +			expected_gtt |= size & SZ_4K ? I915_GTT_PAGE_SIZE_4K : 0;
+> +		}
+> +
+>   		for (single = 0; single <= 1; single++) {
+>   			obj = fake_huge_pages_object(i915, size, !!single);
+>   			if (IS_ERR(obj))
+> @@ -1910,8 +1922,6 @@ int i915_gem_huge_page_mock_selftests(void)
+>   		SUBTEST(igt_mock_exhaust_device_supported_pages),
+>   		SUBTEST(igt_mock_memory_region_huge_pages),
+>   		SUBTEST(igt_mock_ppgtt_misaligned_dma),
+> -		SUBTEST(igt_mock_ppgtt_huge_fill),
+> -		SUBTEST(igt_mock_ppgtt_64K),
+>   	};
+>   	struct drm_i915_private *dev_priv;
+>   	struct i915_ppgtt *ppgtt;
+> @@ -1962,6 +1972,8 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+>   		SUBTEST(igt_ppgtt_sanity_check),
+>   		SUBTEST(igt_ppgtt_compact),
+>   		SUBTEST(igt_ppgtt_mixed),
+> +		SUBTEST(igt_ppgtt_huge_fill),
+> +		SUBTEST(igt_ppgtt_64K),
+>   	};
+>   
+>   	if (!HAS_PPGTT(i915)) {
