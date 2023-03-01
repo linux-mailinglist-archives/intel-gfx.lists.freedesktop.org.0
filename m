@@ -2,50 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F5E6A697E
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 10:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8994E6A69A6
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 10:19:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A02F10E21E;
-	Wed,  1 Mar 2023 09:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D746F10E220;
+	Wed,  1 Mar 2023 09:19:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549A210E219
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 09:10:40 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D82B10E219;
+ Wed,  1 Mar 2023 09:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677661840; x=1709197840;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p0GdiuUHF6WwarF0q0kM4CQoJQfF//C0PagkBR1XGUE=;
- b=D+1s4p1N6a4uREiAe/xBoFnEqUroX8g0Qej67Lc3Hkydrq+TbvbXawqk
- 40E0P2p7wAeAjL+rTUfzMbAr4OusifKjJS19gEBrWPFRpnTXdEssRdxUj
- mO/22C3xXpRFydMw7z9pgPYyrr/cun1tr6bl6bVoegQGoU97QrL7wkzXl
- Dmg2oRWbM+wr2IGcg+8k8q8VjS+Ufer9/3DgsxLiCl+kQxp5+mFWnQSgH
- bdDDkw/8G3yekieozYNFPeHBB3WNQwitfqCsbnyytjy4WHRrUwktXRN6a
- 0qI4+YgYQIa+7prkOIfvDAU9/C13L3jOGK6P0z4y0Lf7iong2/esnXF7e A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="334396344"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="334396344"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 01:10:40 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="784262113"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="784262113"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com (HELO
- jkrzyszt-mobl1.intranet) ([10.213.8.127])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 01:10:39 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 10:10:17 +0100
-Message-Id: <20230301091017.31725-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230301091017.31725-1-janusz.krzysztofik@linux.intel.com>
-References: <20230301091017.31725-1-janusz.krzysztofik@linux.intel.com>
+ t=1677662365; x=1709198365;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ZnVvM853yLuvL67va4zjiLoXxEbUtIBdhgkBFTfrG5E=;
+ b=CKDefglHvnH8SadBXs3dJpnP5x2xElWlCIzUHrL8X0y49+x/nxfqmmZM
+ txnsYcLkipzg0xs0r36prI1FRU3ANdMwBmgpQaeHah5YmIBKZkx3f6pP0
+ zMbZlm/MhYmTUFL4JxKLECmeldcZRpUogfPILAgHUQmGuj1ANiEJoSK83
+ r//KbWKPUdh8rv5DmbcnLVmJVOWWFWJ5SMK3UXNLBtAkuUUFo7KE6uMdl
+ OEl4WxUGqYKwjQvVo1duj80wGdBV48xfuOiNmJlIRwK04D5LCn3VapRMG
+ pg5x9RSdB5MeA5bz5EOBhTC7mEj+u7P4tzpcJDhZ9n0c+MT9yWaeAkwzy A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="361940340"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="361940340"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 01:19:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="674485752"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="674485752"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga002.jf.intel.com with ESMTP; 01 Mar 2023 01:19:16 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 1 Mar 2023 01:19:16 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 1 Mar 2023 01:19:15 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 1 Mar 2023 01:19:15 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 1 Mar 2023 01:19:15 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QdjdpZ05A4V2QpEuaDLZ6hPJNa3XZFYDm/UifBITzcLCEw1A9inChHLFwHoVgTMr8mh3nqqlYqLh/Syu4qkYaf3AOSSQjvo2QXXdw/yni66HLCNad7LbF4B013QfPquRr2rqGScopUsu8LypbkmBfBDtEkwkV5TbGLF6R+L9Q0w3SvaNVKO3kEwRZl7oO0SMcu6gDoJpGifwJW5kLyDLJwkBaA4GqeKx7o158SXQ4HcF1LKMpBdSbiA9zmYU32dWFJ6z14JzDbjTwts2wBnKFbNwfIbiq7n/NDqqBuqQvi4cLJB/0gidBQxD7R/1srPv6dt///HubrNiUgeK/7UI1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fwEnqp1pBcHVM5YAxfk03PLRBgun14DnPXaDEodNF20=;
+ b=NJoAuUP4sWY8qj4Ia4j/hwgKqAZcVRjRILyvYQb8sp4H1/onENJ3ZxgQHLL35CiK+aAAyRZN3tPZ5Hxi4BfT8IXhu52XASHdSwZQURJpv4bOXvXlmj8Fj690kJY/GeqTiBlwMC06Upwj6Pz0MtxXYz/MVcostheg0G59Kel8uhhtFio7qlqgvn0SN8VPyDTGuLTlPWcQrn3CEjju+2KRl9/zt9ZAxquf3a/LdVaxMElkcEwcEpcMC6hTqfEOse69hsnYPAsTqmtJQ2bgPIN7+j8pESsJB9KteCXFdK4eE00DwLx4uxk4tcaCT5q/KTTZ4WgGO8myB1qSnk2GLjE5zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by DS0PR11MB7311.namprd11.prod.outlook.com (2603:10b6:8:11e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Wed, 1 Mar
+ 2023 09:19:08 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6134.030; Wed, 1 Mar 2023
+ 09:19:08 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>, "Tian, Kevin" <kevin.tian@intel.com>
+Thread-Topic: [PATCH v5 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+Thread-Index: AQHZSpxP1elsXPP8bE2Y+PYEE7Tlg67ln1gw
+Date: Wed, 1 Mar 2023 09:19:07 +0000
+Message-ID: <DS0PR11MB752959193D5CBA2A677B1F18C3AD9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-17-yi.l.liu@intel.com>
+In-Reply-To: <20230227111135.61728-17-yi.l.liu@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DS0PR11MB7311:EE_
+x-ms-office365-filtering-correlation-id: bb479986-d4bb-40e6-8c21-08db1a3602c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: XHjG+0EQ2FhR5g/J3NLjvrf6djNtIKWrTWJLG3cL+4l8ywMqs9sopa/NzGkxHtjtPlveOlyFTAKh61rhLfKkGYsrFnIM9A8eMzXdM802r/Faz+HGix3TezuDeEbeEXsVmBwCBQAO0j2rEKrPky7KqjJQMOyT1NsmLyVGGkUW8kURCsPsVOMFsiwgL+hgGCpnVt/n/m0QZg2c7mcBVZVa+tKDNik2zFZRM8CNo11fFU21sK+xN1x+KESnlxbUkFcoqob0brQTCX2bm4YYjQXgFRT2zp8qYmmdsf+zoKBZdcmCYKNY1xWd3UcsjwJD04tYFJAuwyh7XKs2A6RsdC1QleBWhYM9pYUpbrWh20rIJKpDHac3EtJmXOzgx4n9H2z76TDaXH6UOjz3P7sd2XOzF5Cumo6PpXFaSyZRrcQIIUeQOpPidUxhz0qpaRWUDdFLr9cf3Hn72QQvxJEKfulRsg9JA0UiH1z15NaZZ1I0JiU7cobNM1t6SkCjvLIdVVq/5MAQNDvhD+ou9mwf2Uui9x7t0rSz+nqul7D79ztEGvJXraqMtC+FnxW97JtYjDb2wt5FE9Mp/UcSMdIuTnP/W4888rTDWC1+UjVlt2ovUtYOsHG3mc37CVBWbDLMvVdDWjc5KlfcOo7ZM9hP19lsXudb6/0A0Q7aXfQCNEvOdsbW6lxAMNYzcpWn9ROh90Ooz4+roiCaur2aWQte6fMBZg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(396003)(366004)(346002)(376002)(136003)(39860400002)(451199018)(122000001)(83380400001)(316002)(110136005)(54906003)(6636002)(33656002)(82960400001)(64756008)(8676002)(4326008)(38100700002)(66446008)(55016003)(66476007)(478600001)(26005)(9686003)(6506007)(71200400001)(7696005)(7416002)(66946007)(41300700001)(2906002)(76116006)(5660300002)(66556008)(86362001)(186003)(52536014)(8936002)(38070700005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Yk6BVcdxwJnPaW0jPAfAqDfdoaEcc5LO4IoCl49YVjBXelY05LaKSU1YoeI7?=
+ =?us-ascii?Q?CUm2/HodzLk53XgKa5QzRSKg+7MIpXcFSzK4c+zzxYdt4XnOYvisF1aE4t+b?=
+ =?us-ascii?Q?rkZoVB8ROuXW4GLhZD6oFn171+NaFKirkFB0oZG2BQKBSIyXZ5o1gUwGUMR5?=
+ =?us-ascii?Q?teT+7toe+MLrb1BoDimEyxQ/ed/x58VEKV4BKb11T/4DbSQFg7F+UB/ghAL3?=
+ =?us-ascii?Q?B/D5uHYu6i02vo0mGkVuAzwlSSSb8dN1nyftu0HcWrfVWmrHBjCwB9uuTnJT?=
+ =?us-ascii?Q?H1FR9vWTZfj2NROTYhh4xGfMqDKkzoBB5b4U2iQFoMrlCNCySZ54ETL0Qinj?=
+ =?us-ascii?Q?TfjNY9S81yJwOXkQAuGCNxQHPWZM8pX9xih26PwgryI1owoJ7Cr4k+8RUU2V?=
+ =?us-ascii?Q?ILZ+VXUiKxklcYot2ui97E7umSbFkG7qqdkJliPwb4/gcstSMTYi4rWMaH4R?=
+ =?us-ascii?Q?EFP8lFyM+kCbDENrqRcOd3L5lAITRiEE/iWclNFpx+9NtfYBUyi3HUrPNoPY?=
+ =?us-ascii?Q?rR7gqvnRmNo96zJ3f/Pe6ZDwcGm1TztV/8OwVV45pYzudvL3Z2baboXINOH0?=
+ =?us-ascii?Q?YX8ml+8RYYGXtjm0HW0K0OVw5fS3yPpMxNm6NA3ULtBtbOOvR9WNqImzM0Rv?=
+ =?us-ascii?Q?hQigzWizxzBsVMgCNq8cL1rfDyfjya13685MDV455zfjkBR7j6ZZOsw4DYg5?=
+ =?us-ascii?Q?CFxfZtRIhfiFGaMnq9kbJqv9T6KagUS6K2bjv9nng5rEWK0wP8rmVewpxXmV?=
+ =?us-ascii?Q?IXuRGPdOuMGSfs63hzV4LIjPLWrmEV8T9T3Rs7rx4FC3bHdFiLlicNHw1Dw8?=
+ =?us-ascii?Q?Z+CiKxHs/x7/ugsKLIWQ10efRyIoL3qq8eQTIRwz3KKFkaCArKFKJUKm4nFA?=
+ =?us-ascii?Q?aTGq1tYjf5vb3GqTEYYoddNTNR6i0Ls4HKYsQxT/8n7Y7vYhcArHgwHrliFH?=
+ =?us-ascii?Q?gy5DeZC1se60SWsywiqIuVr4e4hl5y5yKArqiVe8Rc6m9TFWdEoLvS88C1o5?=
+ =?us-ascii?Q?MxH/Vqa3CSKZFYGDNqxO1znaOTUeAeIal/2DgwI43xR8p/ICEnpJdciB876e?=
+ =?us-ascii?Q?eD8oIcyWp7LQNdhs0D1tbgwlDT/ydxGB4EKn+C3NY7vBn4E9nbq6mSU65oyG?=
+ =?us-ascii?Q?aVHojROCNEyePxUFVZlrCpGo0rP/rXjfxKKyvpYykBahf+eThXyjIhL7Rout?=
+ =?us-ascii?Q?+bcx+a+LH68zUBx3Xtvv3wiDRwBo2wDH2NB61aMVXthu2wqssnK3eoBlfKdC?=
+ =?us-ascii?Q?SsTWK45TjPsw3AgRD/a6AbyB1PeMryVu5gSLpguDBAa8AsEskbXWNlcvfRMH?=
+ =?us-ascii?Q?BdHQTfeOEtDobm8fhOLL1hcwqNTPeq2z8t901FMxqdv2BBdjXCievLHxxPSC?=
+ =?us-ascii?Q?kOzNfp4vhDjAJY5W9ScvOPisekSYuiUHRj452NNRAcyLkRaTbYvc8A0134In?=
+ =?us-ascii?Q?QN77F3UslijgonsPNg8WWqtDw1b2kCmYJhrvayHxU1pdBTukTCxfWEiQlO4x?=
+ =?us-ascii?Q?9pfmfcnqN1tuiXYtIzxg/4kidP2jPPP6VXAMSjWrMnfVQ7QTdels/zLlE/WI?=
+ =?us-ascii?Q?/QrSlZZjHREQAyIF58xw2XStzTon3/HHcZ9tE6fU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI v2 1/1] drm/i915/active: Fix misuse of non-idle
- barriers as fence trackers
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb479986-d4bb-40e6-8c21-08db1a3602c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2023 09:19:08.0023 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RR1kfOi0DowcH2OivTaLQ+Zu+HfYTxrRGaTpOeBW+69NXv7Gz/MBz40NhI+h2EZ5kZF2yZLG0WsGQXNqlC2r+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7311
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 16/19] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,113 +150,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Users reported oopses on list corruptions when using i915 perf with a
-number of concurrently running graphics applications.  Root cause analysis
-pointed at an issue in barrier processing code -- a race among perf open /
-close replacing active barriers with perf requests on kernel context and
-concurrent barrier preallocate / acquire operations performed during user
-context first pin / last unpin.
+> From: Liu, Yi L <yi.l.liu@intel.com>
+> Sent: Monday, February 27, 2023 7:12 PM
+[...]
+> +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+> +				    unsigned long arg)
+> +{
+> +	struct vfio_device *device =3D df->device;
+> +	struct vfio_device_bind_iommufd bind;
+> +	struct iommufd_ctx *iommufd =3D NULL;
+> +	unsigned long minsz;
+> +	int ret;
+> +
+> +	minsz =3D offsetofend(struct vfio_device_bind_iommufd, out_devid);
+> +
+> +	if (copy_from_user(&bind, (void __user *)arg, minsz))
+> +		return -EFAULT;
+> +
+> +	if (bind.argsz < minsz || bind.flags)
+> +		return -EINVAL;
+> +
+> +	if (!device->ops->bind_iommufd)
+> +		return -ENODEV;
 
-When adding a request to a composite tracker, we try to reuse an existing
-fence tracker, already allocated and registered with that composite.  The
-tracker we obtain may already track another fence, may be an idle barrier,
-or an active barrier.
+Hi Jason,
 
-If the tracker we get occurs a non-idle barrier then we try to delete that
-barrier from a list of barrier tasks it belongs to.  However, while doing
-that we don't respect return value from a function that performs the
-barrier deletion.  Should the deletion ever failed, we would end up
-reusing the tracker still registered as a barrier task.  Since the same
-structure field is reused with both fence callback lists and barrier
-tasks list, list corruptions would likely occur.
+Per the comment in vfio_iommufd_bind(), such device driver
+won't provide .bind_iommufd(). So shall we allow this ioctl
+to go longer to call .open_device() instead of failing it here?
+I think we need to allow it to go further. E.g. leave the check
+to be in vfio_iommufd_bind(). Otherwise, user may not able
+to use such devices. Is it?
 
-Barriers are now deleted from a barrier tasks list by temporarily removing
-the list content, traversing that content with skip over the node to be
-deleted, then populating the list back with the modified content.  Should
-that intentionally racy concurrent deletion attempts be not serialized,
-one or more of those may fail because of the list being temporary empty.
+> +
+> +	ret =3D vfio_device_block_group(device);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_lock(&device->dev_set->lock);
+> +	/*
+> +	 * If already been bound to an iommufd, or already set noiommu
+> +	 * then fail it.
+> +	 */
+> +	if (df->iommufd || df->noiommu) {
+> +		ret =3D -EINVAL;
+> +		goto out_unlock;
+> +	}
+> +
+> +	/* iommufd < 0 means noiommu mode */
+> +	if (bind.iommufd < 0) {
+> +		if (!capable(CAP_SYS_RAWIO)) {
+> +			ret =3D -EPERM;
+> +			goto out_unlock;
+> +		}
+> +		df->noiommu =3D true;
+> +	} else {
+> +		iommufd =3D vfio_get_iommufd_from_fd(bind.iommufd);
+> +		if (IS_ERR(iommufd)) {
+> +			ret =3D PTR_ERR(iommufd);
+> +			goto out_unlock;
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * Before the device open, get the KVM pointer currently
+> +	 * associated with the device file (if there is) and obtain
+> +	 * a reference.  This reference is held until device closed.
+> +	 * Save the pointer in the device for use by drivers.
+> +	 */
+> +	vfio_device_get_kvm_safe(df);
+> +
+> +	df->iommufd =3D iommufd;
+> +	ret =3D vfio_device_open(df, &bind.out_devid, NULL);
+> +	if (ret)
+> +		goto out_put_kvm;
+[...]
+>=20
+>  /* --------------- IOCTLs for DEVICE file descriptors --------------- */
+>=20
+> +/*
+> + * VFIO_DEVICE_BIND_IOMMUFD - _IOR(VFIO_TYPE, VFIO_BASE + 19,
+> + *				   struct vfio_device_bind_iommufd)
+> + *
+> + * Bind a vfio_device to the specified iommufd.
+> + *
+> + * The user should provide a device cookie when calling this ioctl. The
+> + * cookie is carried only in event e.g. I/O fault reported to userspace
+> + * via iommufd. The user should use devid returned by this ioctl to mark
+> + * the target device in other ioctls (e.g. capability query via iommufd)=
+.
+> + *
+> + * User is not allowed to access the device before the binding operation
+> + * is completed.
+> + *
+> + * Unbind is automatically conducted when device fd is closed.
+> + *
+> + * @argsz:	 user filled size of this data.
+> + * @flags:	 reserved for future extension.
+> + * @dev_cookie:	 a per device cookie provided by userspace.
+> + * @iommufd:	 iommufd to bind. a negative value means noiommu.
+> + * @out_devid:	 the device id generated by this bind.
+> + *
+> + * Return: 0 on success, -errno on failure.
+> + */
+> +struct vfio_device_bind_iommufd {
+> +	__u32		argsz;
+> +	__u32		flags;
+> +	__aligned_u64	dev_cookie;
+> +	__s32		iommufd;
+> +	__u32		out_devid;
 
-Related code that ignores the results of barrier deletion was initially
-introduced in v5.4 by commit d8af05ff38ae ("drm/i915: Allow sharing the
-idle-barrier from other kernel requests").  However, all users of the
-barrier deletion routine were apparently serialized at that time, then the
-issue didn't exhibit itself.  Results of git bisect with help of a newly
-developed igt@gem_barrier_race@remote-request IGT test indicate that list
-corruptions might start to appear after commit 311770173fac ("drm/i915/gt:
-Schedule request retirement when timeline idles"), introduced in v5.5.
+As above, for the devices that do not do DMA, there is no .bind_iommufd
+op, hence no iommufd_device generated. This means no good value
+can be filled in this out_devid field. So this field is optional. Only
+for the devices which do DMA, should this out_devid field return a
+valid ID otherwise an invalid ID would be filled (e.g. value #0 is an
+invalid value in the iommufd object id pool). Userspace needs to
+check if the out_devid is valid or not before use. This ID can be further
+used in iommufd uAPIs like IOMMU_HWPT_ALLOC, IOMMU_DEVICE_GET_INFO
+and etc.
 
-Respect results of barrier deletion attempts -- mark the barrier as idle
-only if successfully deleted from the list.  Then, before proceeding with
-setting our fence as the one currently tracked, make sure that the tracker
-we've got is not a non-idle barrier.  If that check fails then don't use
-that tracker but go back and try to acquire a new, usable one.
+> +};
+> +
+> +#define VFIO_DEVICE_BIND_IOMMUFD	_IO(VFIO_TYPE, VFIO_BASE
+> + 19)
+> +
+>  /**
+>   * VFIO_DEVICE_GET_INFO - _IOR(VFIO_TYPE, VFIO_BASE + 7,
+>   *						struct vfio_device_info)
+> --
+> 2.34.1
 
-v2: no code changes,
-  - blame commit 311770173fac ("drm/i915/gt: Schedule request retirement
-    when timeline idles"), v5.5, not commit d8af05ff38ae ("drm/i915: Allow
-    sharing the idle-barrier from other kernel requests"), v5.4,
-  - reword commit description.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
-Fixes: 311770173fac ("drm/i915/gt: Schedule request retirement when timeline idles")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: stable@vger.kernel.org # v5.5
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_active.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 7412abf166a8c..f9282b8c87c1c 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -422,12 +422,12 @@ replace_barrier(struct i915_active *ref, struct i915_active_fence *active)
- 	 * we can use it to substitute for the pending idle-barrer
- 	 * request that we want to emit on the kernel_context.
- 	 */
--	__active_del_barrier(ref, node_from_active(active));
--	return true;
-+	return __active_del_barrier(ref, node_from_active(active));
- }
- 
- int i915_active_add_request(struct i915_active *ref, struct i915_request *rq)
- {
-+	u64 idx = i915_request_timeline(rq)->fence_context;
- 	struct dma_fence *fence = &rq->fence;
- 	struct i915_active_fence *active;
- 	int err;
-@@ -437,16 +437,19 @@ int i915_active_add_request(struct i915_active *ref, struct i915_request *rq)
- 	if (err)
- 		return err;
- 
--	active = active_instance(ref, i915_request_timeline(rq)->fence_context);
--	if (!active) {
--		err = -ENOMEM;
--		goto out;
--	}
-+	do {
-+		active = active_instance(ref, idx);
-+		if (!active) {
-+			err = -ENOMEM;
-+			goto out;
-+		}
-+
-+		if (replace_barrier(ref, active)) {
-+			RCU_INIT_POINTER(active->fence, NULL);
-+			atomic_dec(&ref->count);
-+		}
-+	} while (is_barrier(active));
- 
--	if (replace_barrier(ref, active)) {
--		RCU_INIT_POINTER(active->fence, NULL);
--		atomic_dec(&ref->count);
--	}
- 	if (!__i915_active_fence_set(active, fence))
- 		__i915_active_acquire(ref);
- 
--- 
-2.25.1
-
+Regards,
+Yi Liu
