@@ -1,51 +1,146 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B946A6D86
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 14:54:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A0D6A6D9F
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 14:58:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8376E10E280;
-	Wed,  1 Mar 2023 13:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2310110E26A;
+	Wed,  1 Mar 2023 13:58:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE46D10E270
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 13:54:50 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 873A210E269;
+ Wed,  1 Mar 2023 13:58:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677678890; x=1709214890;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KILxaRIF6VNlaZk4EY7VEzgMM/REZSKcQKA0ReupL/U=;
- b=ICIGlnmIIj1n3X4lEFs3Jy2kgqcJpe/MZp4YYbGlfQRqrjNFlstIHq7X
- NZ7Z/c7Ao7WCDVwSYs6WjxlYItMuY2KPkkFuH+fwIQuXPyqM7TVxCGLgH
- kxfD5QQcxw+k4kTnPF0XMzTojRLj47EHcUUr5qahdPg2hmf15MUzcoQ4L
- 9ZhHINV+/1Oc30ItWbJJOIJ8HckS073V1rWZQVeKbjd/2XDECLyInaDaN
- 2VcVBD1eANPCFpFRI4g04pgF0i/S5+l3m2nK0BRSl4WxGdH97UJ/qmGUM
- L55kfz4kymufAHFHMNMuf5GtR9yo3o7uMs88dZnJKCKXaXlf3rs238eET A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="335905024"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="335905024"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 05:54:50 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="706987648"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="706987648"
-Received: from dsvarnas-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.46.249])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 05:54:48 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 15:54:20 +0200
-Message-Id: <4c5574b7577d463eb4294c2d8af442a3c4bbe52f.1677678803.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <cover.1677678803.git.jani.nikula@intel.com>
-References: <cover.1677678803.git.jani.nikula@intel.com>
+ t=1677679129; x=1709215129;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=a21POoD++ZUfjLV5td6CSwZ5jf6LialyxwgnOuqf3wk=;
+ b=BilJJvOqH1w86R9u+wRzPegHo0zyeSlRX6DkSqgHrdIaMm/Jxi/OzA1/
+ HCqgfB1AZ3Qg8hIcMdr5wYAR5kZseOsD30u3GVDFPlMZRoHDBeepbfbZ3
+ B3uL55YbbVW9ZAhX/toTZ1/SZTW6JQMX/7PmZBXcm6cdb4v3rDohtkv9y
+ xsVAVXLui4OfjMZBb549xMrQyWfit3yGt8Xb9I2Hox7N0T9PPJOJqCEjZ
+ LoxxnIC3a0G4fFDIFezT18mqybACyED3ffnEfU7CkNy7Q3S5Ho8U5PbwA
+ W+aWIjRi84TmoEHseRqL8JTc6R5ME192F/6MHzGzcJ9Cgce4Ma5EgqNY4 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="333140406"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="333140406"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 05:58:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="920245336"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="920245336"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga006.fm.intel.com with ESMTP; 01 Mar 2023 05:58:48 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 1 Mar 2023 05:58:48 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 1 Mar 2023 05:58:47 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 1 Mar 2023 05:58:47 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 1 Mar 2023 05:58:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EZ8fDoZQb4NzI/gH3RLSSYG/vrJ1dIRlApc8EYXqb88dqzgJhxZsIx5P+eArQx3dIMQQttpvStudVR3Ii1ErDkMTrXJkxF2b5Dz6PIBBgaMNmW44+FzLv2zYU1S1p9td6EwXox7EScCUD4vMcwSCK6pzV2/hHcBHpXZ1ny8OlnQQ+ChF5Iq+1rkTa/jgrOr/bRCjnW6kkcr7xy/zlYz5meU//l3zXyHvNkPjbVCSXilStNClNJs1wXaj8tBJ2JPRGvRgqD3Fymx/UgJ9rq/9XLUtwp4sd3vlaBoW+68b4KDYTXF08gBhFBwNOjYv76xAK50Yhr9sG7a2rIlAhrrjGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vKj0vKJv0TGtsvFj7naTDymruc+P9nhrLZ/ahi2xokg=;
+ b=b4l34KJ/8+Kt0vReIrtDCiMcc7Q/tGWqLHCYzX/IU2oTT2XCFvjQbsmPR/v8V21yWlgGfE3riII39G8t2k1IIomd80/HGN+gIhuDf+NFS/6u7JQkNmm4qiV1+pTs5wsvTfMXoaXQVPqu3kNJ29jmRP1NG3nGF6MN6qm5caJdrd5ucbrEGzphFsuioFB1S18m1EwImXI/vRap1vm6ngBvS2A5KKKizF2bvnsBp72cDwuLe+JUGH+WD/JsYAsR0bWzp9nvUdwufYalwniQSWmbk68U5b4TFxA7UP/iPEFZWD/BZLQWOwyu4X9gTCumT1UX4in6J4J/t+RIeh7/LWTxqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by BN0PR11MB5696.namprd11.prod.outlook.com (2603:10b6:408:14b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Wed, 1 Mar
+ 2023 13:58:45 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6134.030; Wed, 1 Mar 2023
+ 13:58:45 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v5 14/19] vfio: Make vfio_device_open() single open for
+ device cdev path
+Thread-Index: AQHZSpxLzIf6/b1XXkagijJzcXNiyK7jI/gAgACJkpCAAJ8KAIABqdHQ
+Date: Wed, 1 Mar 2023 13:58:45 +0000
+Message-ID: <DS0PR11MB752978D65EB98E45EC00D69EC3AD9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <20230227111135.61728-15-yi.l.liu@intel.com> <Y/z72jEID0QHgaLl@nvidia.com>
+ <DS0PR11MB7529F1D9FE0F751E45363606C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <Y/30qnOdKLeBjpGv@nvidia.com>
+In-Reply-To: <Y/30qnOdKLeBjpGv@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|BN0PR11MB5696:EE_
+x-ms-office365-filtering-correlation-id: b5b3de79-cba0-4b13-ee26-08db1a5d12bf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WtsLRV0asOPLsCcNbcvvXcFqJG+FLqbLuG5PXf+cGnV2QyUpdewTWSi8eiV6GGBxdX1fNDyDFK06Cr6tHHatbUwkvayYDMRXk3tDO4R+2Vo2mmxjtUe7XcJlaHWzxqKaohqDe83a4HniumAm291LhbwxyaEymw8ADvnFz9Ek6hGULTuHWSmSZwQjEnHJaaGHhLGmkRnLfv+yE6/Bwaty19hUalos/cF+/JcZqUWqFhQb+E1Tb6w4jlXaGtp2gwDUVRB6J9V2+KkUqWOhZjwXB0tcGNzyV8dmuu2jtg5E6lK3pdz9zx1F6cGDGCWR45HatY3RE2GIUsLp7konIs4tlgoTiy9s9ESVuirLGtSF1ahwWoiUd5cnM0rKtBjtWCItDQLVsAYQQAaIMsXMDXbohWJL+z0Xpn1cBfaK3HQoRQvUX2InRDbJwPkJqCyknqpFBwSLSOVC0i/Dcb47XoTqnBGM3itEhVX9kndaPNrbiArPCnbq1KlCb4rGHnNed48KW4h6DxeHOTblRUsoV21nxS1A/1etpkB8fLR1Ser9+kEEcuiymGvOd9ocm/ypCRHaDaN+LI9BmMu3BzHPqo1RH1omMxZRS8fJEJy6YPuqY+t4dnL+BVnl39pshnvFLx7Ga5b4gF8KF1qy0NnFlp/gla5JHlxyYs8GI8gwKjB1heBlaz4Jw2+aqN3+XfrFlkryz4S0uIuBNo+NG/73IvSyYQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(366004)(346002)(396003)(136003)(376002)(39860400002)(451199018)(7416002)(5660300002)(33656002)(478600001)(83380400001)(6506007)(7696005)(26005)(186003)(71200400001)(9686003)(4326008)(66946007)(76116006)(66446008)(66556008)(8676002)(64756008)(41300700001)(86362001)(52536014)(66476007)(55016003)(6916009)(122000001)(38100700002)(54906003)(8936002)(38070700005)(2906002)(316002)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FJYASw70zvQo2IFYJVu1iTakuVw5crO5Ld2ZPyMGgICMVOirVUPSfTQ/luCb?=
+ =?us-ascii?Q?0A591jBbgGTJvqZAwkl3NJc/Z0j8ISt8xN4foFbtM5ZGxJj/CpAmeRN+YKur?=
+ =?us-ascii?Q?dolMBNiqAm0YTAi3vuofOcAXlzV0+nC0IY2DvzzuYQ4IMH8kGrzPaIdJJXxN?=
+ =?us-ascii?Q?NDgBt/rTSc+s4bQN8DqcuS6Cn4+yFIYK+zS02FpKsrl4g27tFd3Z+Xmuyoup?=
+ =?us-ascii?Q?+0NKgiaM470TYzXjFeFcbnvTRUWnmBCHEOiv93A17JqXJ73OmZ4yoGileqv0?=
+ =?us-ascii?Q?mR7sArdqNYrtxi7xCYNtM6D1SS3x1WwY5/fHqHpAylo4pKignT49qVTCQW4t?=
+ =?us-ascii?Q?u5A5SHOqzQ6sug0N5H33QcsLOE7ZsJnBxKL1/2+e3FaFajyla72fT27wjihG?=
+ =?us-ascii?Q?LfvK1ehv8xIouWcqCYMIHJ1AH+dSZ9Bl4SeVZ95sNFsfVqgnoIEcOaLc1PUn?=
+ =?us-ascii?Q?lY3TAKiUJ+iSiEYGjPp35hcK9pA7WKpzYEcGsmJA/ov/rRJCNc2P3si0yd+h?=
+ =?us-ascii?Q?USgW65uqgP8HY0rXzN3JRxjvyNkIF6cGA9u7KP/LOo4EltsIUivX+Y95F8pW?=
+ =?us-ascii?Q?QJNZC4zFwFfpgbUsM3PtC/9xAWgtE8zSnuWx5alN33RaOBV7A8lA8tUrbBqX?=
+ =?us-ascii?Q?aNYOOm2qkbIuPmRLvrQi3IUutvmcY9/jso/DBVfKi/ApAo1gFkot2dcKHev7?=
+ =?us-ascii?Q?YoLV+kKh26yGBC9pcT9wvc9tk/LfBtuTJBiJNPHqGYwGP9YGt0Cs6g1PLhEk?=
+ =?us-ascii?Q?dQtv5CweWaQip1X6RlyB3W1RFfO7Zl2WYpGTdfyRK4em21ai6SD55WiAzekS?=
+ =?us-ascii?Q?C9ux9tMzQVUqMZBFe+icOZ8qiiq0+kp/2rQTkCBDb5VoDAE4mYsxL9IUS5nF?=
+ =?us-ascii?Q?sd6UqR/Yc0OR3mkygazmpbnp1fsu53Bh/5SbOjpWm+nm+Scc7BFBC5EgHU51?=
+ =?us-ascii?Q?sE33VJkDBP1tWUZ1oxwu5LqguNts9L29BXdFUH5C+NCKTRybpZ+8qfFaAhgI?=
+ =?us-ascii?Q?5jOjQegKIeBDPxc4KPL4wVIyvMSjsPez70wJWGRT3Cb9nxbA7HhoV6n9qr1B?=
+ =?us-ascii?Q?RnhdDD4lybVpynrM87WgttrENH2VgZEuiV1AIeVU6QKj8Wir7B0F1igCaOVb?=
+ =?us-ascii?Q?pwTr81wJpI2D5u/0BnO7OvZnameAyg7zDJ3q+EBHam7cNRd/hNrHhmwpqFQB?=
+ =?us-ascii?Q?wdKPht3/FynpHIMEfS2A2wBNVYXiAFxqH+CN54Zj9C8hUMx9tkaPTCHajgHV?=
+ =?us-ascii?Q?1Q0djByPZw/1OfAM9y6084GjF6xcbWIqA+wNBUVn2VcoBaTq0QaZUfGfQLeK?=
+ =?us-ascii?Q?4QsV3qbgjovbZWzSaK35v/7MJjbjlWymMMcVFkD4eIWYzs5fq2aiFipvzC7t?=
+ =?us-ascii?Q?1Fw29ReTazd7dQN+68imrF2irbfeiTfeONwwlPLHKrTRb5f9vDAjGc+30G4e?=
+ =?us-ascii?Q?gP2BEhGtqgXMTGBMYjrQS9MtVMNstsmc/pksV4Fk3JWyAh4NK/YphG3Y1PmO?=
+ =?us-ascii?Q?NlQ5zYe/TX5lfsVw/MRkFe+77Dw6NiR0jhEF8bW4TatmkdEc7miWncEPG9D/?=
+ =?us-ascii?Q?VOKrNl8oRDjLOvrCVbTxE3UGzmPvX78b751GgaG1?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/clock: mass rename dev_priv to i915
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5b3de79-cba0-4b13-ee26-08db1a5d12bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2023 13:58:45.1436 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lHqduHsNjTWw8O9KhYhBvjEB0G1Mh1cntI/DzipOcigipaOAK1Z4GH2UpMiT1gjKidF5Z++6L30CuWoM8iM8Qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR11MB5696
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 14/19] vfio: Make vfio_device_open()
+ single open for device cdev path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,1096 +153,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the contemporary naming style. Include some indentation fixes
-while at it on the affected statements.
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, February 28, 2023 8:34 PM
+>=20
+> On Tue, Feb 28, 2023 at 03:11:34AM +0000, Liu, Yi L wrote:
+> > > From: Jason Gunthorpe <jgg@nvidia.com>
+> > > Sent: Tuesday, February 28, 2023 2:52 AM
+> > >
+> > > On Mon, Feb 27, 2023 at 03:11:30AM -0800, Yi Liu wrote:
+> > > > @@ -535,7 +542,8 @@ static int vfio_device_fops_release(struct
+> inode
+> > > *inode, struct file *filep)
+> > > >  	struct vfio_device_file *df =3D filep->private_data;
+> > > >  	struct vfio_device *device =3D df->device;
+> > > >
+> > > > -	vfio_device_group_close(df);
+> > > > +	if (!df->is_cdev_device)
+> > > > +		vfio_device_group_close(df);
+> > >
+> > > This hunk should go in another patch
+> >
+> > Patch 15 or 16? Which one is your preference? To me, I guess patch
+> > 15 is better since the user may open cdev fds after it. But its release
+> > op should not call vfio_device_group_close();
+>=20
+> It should go with the patch that allows creating the struct file
+> withotu calling vfio_device_group_open()
 
-One function needs to keep using dev_priv due to implicit dev_priv usage
-in a macro.
+Sure. I moved it to the patch which adds cdev as this patch starts to
+have df->is_cdev_device =3D=3D 1.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/intel_clock_gating.c | 589 +++++++++++-----------
- 1 file changed, 296 insertions(+), 293 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 8cfc19b48760..2c5302bcba19 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -44,9 +44,9 @@ struct drm_i915_clock_gating_funcs {
- 	void (*init_clock_gating)(struct drm_i915_private *i915);
- };
- 
--static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void gen9_init_clock_gating(struct drm_i915_private *i915)
- {
--	if (HAS_LLC(dev_priv)) {
-+	if (HAS_LLC(i915)) {
- 		/*
- 		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
- 		 * Display WA #0390: skl,kbl
-@@ -54,41 +54,42 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
- 		 * Must match Sampler, Pixel Back End, and Media. See
- 		 * WaCompressedResourceSamplerPbeMediaNewHashMode.
- 		 */
--		intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
-+		intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
- 	}
- 
- 	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
--	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
-+	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
- 
- 	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
-+	intel_uncore_rmw(&i915->uncore, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
- 
- 	/*
- 	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
- 	 * Display WA #0859: skl,bxt,kbl,glk,cfl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
-+	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
- }
- 
--static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void bxt_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(dev_priv);
-+	gen9_init_clock_gating(i915);
- 
- 	/* WaDisableSDEUnitClockGating:bxt */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * FIXME:
- 	 * GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ applies on 3x6 GT SKUs only.
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
-+	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
- 
- 	/*
- 	 * Wa: Backlight PWM may stop in the asserted state, causing backlight
- 	 * to stay fully on.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
--		   PWM1_GATING_DIS | PWM2_GATING_DIS);
-+	intel_uncore_write(&i915->uncore, GEN9_CLKGATE_DIS_0,
-+			   intel_uncore_read(&i915->uncore, GEN9_CLKGATE_DIS_0) |
-+			   PWM1_GATING_DIS | PWM2_GATING_DIS);
- 
- 	/*
- 	 * Lower the display internal timeout.
-@@ -96,42 +97,43 @@ static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * is off and a MMIO access is attempted by any privilege
- 	 * application, using batch buffers or any other means.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, RM_TIMEOUT, MMIO_TIMEOUT_US(950));
-+	intel_uncore_write(&i915->uncore, RM_TIMEOUT, MMIO_TIMEOUT_US(950));
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:bxt
- 	 * Display WA #0562: bxt
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-+	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcHighMemBwCorruptionAvoidance:bxt
- 	 * Display WA #0883: bxt
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
-+	intel_uncore_rmw(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
- }
- 
--static void glk_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void glk_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(dev_priv);
-+	gen9_init_clock_gating(i915);
- 
- 	/*
- 	 * WaDisablePWMClockGating:glk
- 	 * Backlight PWM may stop in the asserted state, causing backlight
- 	 * to stay fully on.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
--		   PWM1_GATING_DIS | PWM2_GATING_DIS);
-+	intel_uncore_write(&i915->uncore, GEN9_CLKGATE_DIS_0,
-+			   intel_uncore_read(&i915->uncore, GEN9_CLKGATE_DIS_0) |
-+			   PWM1_GATING_DIS | PWM2_GATING_DIS);
- }
- 
--static void ibx_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void ibx_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/*
- 	 * On Ibex Peak and Cougar Point, we need to disable clock
- 	 * gating for the panel power sequencer or it will fail to
- 	 * start up when no ports are active.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
- }
- 
- static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
-@@ -146,7 +148,7 @@ static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
- 	}
- }
- 
--static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void ilk_init_clock_gating(struct drm_i915_private *i915)
- {
- 	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
- 
-@@ -158,11 +160,11 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
- 		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
- 
--	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS0,
--		   MARIUNIT_CLOCK_GATE_DISABLE |
--		   SVSMUNIT_CLOCK_GATE_DISABLE);
--	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS1,
--		   VFMUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
-+			   MARIUNIT_CLOCK_GATE_DISABLE |
-+			   SVSMUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
-+			   VFMUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * According to the spec the following bits should be set in
-@@ -171,13 +173,13 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * The bit 5 of 0x42020
- 	 * The bit 15 of 0x45000
- 	 */
--	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
--		   (intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
--		    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
-+	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-+			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-+			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
- 	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
--	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL,
--		   (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
--		    DISP_FBC_WM_DIS));
-+	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
-+			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
-+			    DISP_FBC_WM_DIS));
- 
- 	/*
- 	 * Based on the document from hardware guys the following bits
-@@ -186,22 +188,22 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * The bit 22 of 0x42004
- 	 * The bit 7,8,9 of 0x42020.
- 	 */
--	if (IS_IRONLAKE_M(dev_priv)) {
-+	if (IS_IRONLAKE_M(i915)) {
- 		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
--		intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
--		intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-+		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-+		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
- 	}
- 
--	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-+	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
- 
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-+	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
- 
--	g4x_disable_trickle_feed(dev_priv);
-+	g4x_disable_trickle_feed(i915);
- 
--	ibx_init_clock_gating(dev_priv);
-+	ibx_init_clock_gating(i915);
- }
- 
--static void cpt_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void cpt_init_clock_gating(struct drm_i915_private *i915)
- {
- 	enum pipe pipe;
- 	u32 val;
-@@ -211,53 +213,53 @@ static void cpt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * gating for the panel power sequencer or it will fail to
- 	 * start up when no ports are active.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
--		   PCH_DPLUNIT_CLOCK_GATE_DISABLE |
--		   PCH_CPUNIT_CLOCK_GATE_DISABLE);
--	intel_uncore_rmw(&dev_priv->uncore, SOUTH_CHICKEN2, 0, DPLS_EDP_PPS_FIX_DIS);
-+	intel_uncore_write(&i915->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
-+			   PCH_DPLUNIT_CLOCK_GATE_DISABLE |
-+			   PCH_CPUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN2, 0, DPLS_EDP_PPS_FIX_DIS);
- 	/* The below fixes the weird display corruption, a few pixels shifted
- 	 * downward, on (only) LVDS of some HP laptops with IVY.
- 	 */
--	for_each_pipe(dev_priv, pipe) {
--		val = intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN2(pipe));
-+	for_each_pipe(i915, pipe) {
-+		val = intel_uncore_read(&i915->uncore, TRANS_CHICKEN2(pipe));
- 		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
- 		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
--		if (dev_priv->display.vbt.fdi_rx_polarity_inverted)
-+		if (i915->display.vbt.fdi_rx_polarity_inverted)
- 			val |= TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
- 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER;
- 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH;
--		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN2(pipe), val);
-+		intel_uncore_write(&i915->uncore, TRANS_CHICKEN2(pipe), val);
- 	}
- 	/* WADP0ClockGatingDisable */
--	for_each_pipe(dev_priv, pipe) {
--		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(pipe),
--			   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
-+	for_each_pipe(i915, pipe) {
-+		intel_uncore_write(&i915->uncore, TRANS_CHICKEN1(pipe),
-+				   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
- 	}
- }
- 
--static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
-+static void gen6_check_mch_setup(struct drm_i915_private *i915)
- {
- 	u32 tmp;
- 
--	tmp = intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
-+	tmp = intel_uncore_read(&i915->uncore, MCH_SSKPD);
- 	if (REG_FIELD_GET(SSKPD_WM0_MASK_SNB, tmp) != 12)
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(&i915->drm,
- 			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
- 			    tmp);
- }
- 
--static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void gen6_init_clock_gating(struct drm_i915_private *i915)
- {
- 	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
- 
--	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-+	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
- 
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-+	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
- 
--	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
--		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
--		   GEN6_BLBUNIT_CLOCK_GATE_DISABLE |
--		   GEN6_CSUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
-+			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
-+			   GEN6_BLBUNIT_CLOCK_GATE_DISABLE |
-+			   GEN6_CSUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* According to the BSpec vol1g, bit 12 (RCPBUNIT) clock
- 	 * gating disable must be set.  Failure to set it results in
-@@ -272,9 +274,9 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * WaDisableRCCUnitClockGating:snb
- 	 * WaDisableRCPBUnitClockGating:snb
- 	 */
--	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
--		   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
--		   GEN6_RCCUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, GEN6_UCGCTL2,
-+			   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
-+			   GEN6_RCCUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * According to the spec the following bits should be
-@@ -287,40 +289,40 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 *
- 	 * WaFbcAsynchFlipDisableFbcQueue:snb
- 	 */
--	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
--		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
--		   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
--	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
--		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
--		   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
--	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D,
--		   intel_uncore_read(&dev_priv->uncore, ILK_DSPCLK_GATE_D) |
--		   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
--		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-+	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
-+			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
-+			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-+	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-+			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-+			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-+	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
-+			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
-+			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
-+			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
- 
--	g4x_disable_trickle_feed(dev_priv);
-+	g4x_disable_trickle_feed(i915);
- 
--	cpt_init_clock_gating(dev_priv);
-+	cpt_init_clock_gating(i915);
- 
--	gen6_check_mch_setup(dev_priv);
-+	gen6_check_mch_setup(i915);
- }
- 
--static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void lpt_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/*
- 	 * TODO: this bit should only be enabled when really needed, then
- 	 * disabled when not needed anymore in order to save power.
- 	 */
--	if (HAS_PCH_LPT_LP(dev_priv))
--		intel_uncore_rmw(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
-+	if (HAS_PCH_LPT_LP(i915))
-+		intel_uncore_rmw(&i915->uncore, SOUTH_DSPCLK_GATE_D,
- 				 0, PCH_LP_PARTITION_LEVEL_DISABLE);
- 
- 	/* WADPOClockGatingDisable:hsw */
--	intel_uncore_rmw(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
-+	intel_uncore_rmw(&i915->uncore, TRANS_CHICKEN1(PIPE_A),
- 			 0, TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
- }
- 
--static void gen8_set_l3sqc_credits(struct drm_i915_private *dev_priv,
-+static void gen8_set_l3sqc_credits(struct drm_i915_private *i915,
- 				   int general_prio_credits,
- 				   int high_prio_credits)
- {
-@@ -328,64 +330,64 @@ static void gen8_set_l3sqc_credits(struct drm_i915_private *dev_priv,
- 	u32 val;
- 
- 	/* WaTempDisableDOPClkGating:bdw */
--	misccpctl = intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL,
-+	misccpctl = intel_uncore_rmw(&i915->uncore, GEN7_MISCCPCTL,
- 				     GEN7_DOP_CLOCK_GATE_ENABLE, 0);
- 
--	val = intel_gt_mcr_read_any(to_gt(dev_priv), GEN8_L3SQCREG1);
-+	val = intel_gt_mcr_read_any(to_gt(i915), GEN8_L3SQCREG1);
- 	val &= ~L3_PRIO_CREDITS_MASK;
- 	val |= L3_GENERAL_PRIO_CREDITS(general_prio_credits);
- 	val |= L3_HIGH_PRIO_CREDITS(high_prio_credits);
--	intel_gt_mcr_multicast_write(to_gt(dev_priv), GEN8_L3SQCREG1, val);
-+	intel_gt_mcr_multicast_write(to_gt(i915), GEN8_L3SQCREG1, val);
- 
- 	/*
- 	 * Wait at least 100 clocks before re-enabling clock gating.
- 	 * See the definition of L3SQCREG1 in BSpec.
- 	 */
--	intel_gt_mcr_read_any(to_gt(dev_priv), GEN8_L3SQCREG1);
-+	intel_gt_mcr_read_any(to_gt(i915), GEN8_L3SQCREG1);
- 	udelay(1);
--	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl);
-+	intel_uncore_write(&i915->uncore, GEN7_MISCCPCTL, misccpctl);
- }
- 
--static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void icl_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* Wa_1409120013:icl,ehl */
--	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-+	intel_uncore_write(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
- 			   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
- 
- 	/*Wa_14010594013:icl, ehl */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-+	intel_uncore_rmw(&i915->uncore, GEN8_CHICKEN_DCPR_1,
- 			 0, ICL_DELAY_PMRSP);
- }
- 
--static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void gen12lp_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* Wa_1409120013 */
--	if (DISPLAY_VER(dev_priv) == 12)
--		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-+	if (DISPLAY_VER(i915) == 12)
-+		intel_uncore_write(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
- 				   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
- 
- 	/* Wa_14013723622:tgl,rkl,dg1,adl-s */
--	if (DISPLAY_VER(dev_priv) == 12)
--		intel_uncore_rmw(&dev_priv->uncore, CLKREQ_POLICY,
-+	if (DISPLAY_VER(i915) == 12)
-+		intel_uncore_rmw(&i915->uncore, CLKREQ_POLICY,
- 				 CLKREQ_POLICY_MEM_UP_OVRD, 0);
- }
- 
--static void adlp_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void adlp_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen12lp_init_clock_gating(dev_priv);
-+	gen12lp_init_clock_gating(i915);
- 
- 	/* Wa_22011091694:adlp */
--	intel_de_rmw(dev_priv, GEN9_CLKGATE_DIS_5, 0, DPCE_GATING_DIS);
-+	intel_de_rmw(i915, GEN9_CLKGATE_DIS_5, 0, DPCE_GATING_DIS);
- 
- 	/* Bspec/49189 Initialize Sequence */
--	intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, DDI_CLOCK_REG_ACCESS, 0);
-+	intel_de_rmw(i915, GEN8_CHICKEN_DCPR_1, DDI_CLOCK_REG_ACCESS, 0);
- }
- 
--static void xehpsdv_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void xehpsdv_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* Wa_22010146351:xehpsdv */
--	if (IS_XEHPSDV_GRAPHICS_STEP(dev_priv, STEP_A0, STEP_B0))
--		intel_uncore_rmw(&dev_priv->uncore, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
-+	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
-+		intel_uncore_rmw(&i915->uncore, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
- }
- 
- static void dg2_init_clock_gating(struct drm_i915_private *i915)
-@@ -403,303 +405,303 @@ static void dg2_init_clock_gating(struct drm_i915_private *i915)
- 				 SGR_DIS | SGGI_DIS);
- }
- 
--static void pvc_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void pvc_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* Wa_14012385139:pvc */
--	if (IS_PVC_BD_STEP(dev_priv, STEP_A0, STEP_B0))
--		intel_uncore_rmw(&dev_priv->uncore, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
-+	if (IS_PVC_BD_STEP(i915, STEP_A0, STEP_B0))
-+		intel_uncore_rmw(&i915->uncore, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
- 
- 	/* Wa_22010954014:pvc */
--	if (IS_PVC_BD_STEP(dev_priv, STEP_A0, STEP_B0))
--		intel_uncore_rmw(&dev_priv->uncore, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
-+	if (IS_PVC_BD_STEP(i915, STEP_A0, STEP_B0))
-+		intel_uncore_rmw(&i915->uncore, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
- }
- 
--static void cnp_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void cnp_init_clock_gating(struct drm_i915_private *i915)
- {
--	if (!HAS_PCH_CNP(dev_priv))
-+	if (!HAS_PCH_CNP(i915))
- 		return;
- 
- 	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
--	intel_uncore_rmw(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, 0, CNP_PWM_CGE_GATING_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, SOUTH_DSPCLK_GATE_D, 0, CNP_PWM_CGE_GATING_DISABLE);
- }
- 
--static void cfl_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void cfl_init_clock_gating(struct drm_i915_private *i915)
- {
--	cnp_init_clock_gating(dev_priv);
--	gen9_init_clock_gating(dev_priv);
-+	cnp_init_clock_gating(i915);
-+	gen9_init_clock_gating(i915);
- 
- 	/* WAC6entrylatency:cfl */
--	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
-+	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:cfl
- 	 * Display WA #0562: cfl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-+	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:cfl
- 	 * Display WA #0873: cfl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-+	intel_uncore_rmw(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
- 			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
- }
- 
--static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void kbl_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(dev_priv);
-+	gen9_init_clock_gating(i915);
- 
- 	/* WAC6entrylatency:kbl */
--	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
-+	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
- 
- 	/* WaDisableSDEUnitClockGating:kbl */
--	if (IS_KBL_GRAPHICS_STEP(dev_priv, 0, STEP_C0))
--		intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6,
-+	if (IS_KBL_GRAPHICS_STEP(i915, 0, STEP_C0))
-+		intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6,
- 				 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaDisableGamClockGating:kbl */
--	if (IS_KBL_GRAPHICS_STEP(dev_priv, 0, STEP_C0))
--		intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1,
-+	if (IS_KBL_GRAPHICS_STEP(i915, 0, STEP_C0))
-+		intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1,
- 				 0, GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:kbl
- 	 * Display WA #0562: kbl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-+	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:kbl
- 	 * Display WA #0873: kbl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-+	intel_uncore_rmw(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
- 			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
- }
- 
--static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void skl_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(dev_priv);
-+	gen9_init_clock_gating(i915);
- 
- 	/* WaDisableDopClockGating:skl */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL,
-+	intel_uncore_rmw(&i915->uncore, GEN7_MISCCPCTL,
- 			 GEN7_DOP_CLOCK_GATE_ENABLE, 0);
- 
- 	/* WAC6entrylatency:skl */
--	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
-+	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:skl
- 	 * Display WA #0562: skl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-+	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:skl
- 	 * Display WA #0873: skl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-+	intel_uncore_rmw(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
- 			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
- 
- 	/*
- 	 * WaFbcHighMemBwCorruptionAvoidance:skl
- 	 * Display WA #0883: skl
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
-+	intel_uncore_rmw(&i915->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
- }
- 
--static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void bdw_init_clock_gating(struct drm_i915_private *i915)
- {
- 	enum pipe pipe;
- 
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
--	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-+	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
- 
- 	/* WaSwitchSolVfFArbitrationPriority:bdw */
--	intel_uncore_rmw(&dev_priv->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
-+	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
- 
- 	/* WaPsrDPAMaskVBlankInSRD:bdw */
--	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, DPA_MASK_VBLANK_SRD);
-+	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, DPA_MASK_VBLANK_SRD);
- 
--	for_each_pipe(dev_priv, pipe) {
-+	for_each_pipe(i915, pipe) {
- 		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
--		intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
-+		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
- 				 0, BDW_DPRS_MASK_VBLANK_SRD);
- 	}
- 
- 	/* WaVSRefCountFullforceMissDisable:bdw */
- 	/* WaDSRefCountFullforceMissDisable:bdw */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+	intel_uncore_rmw(&i915->uncore, GEN7_FF_THREAD_MODE,
- 			 GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME, 0);
- 
--	intel_uncore_write(&dev_priv->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
--		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
-+	intel_uncore_write(&i915->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
-+			   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
- 
- 	/* WaDisableSDEUnitClockGating:bdw */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaProgramL3SqcReg1Default:bdw */
--	gen8_set_l3sqc_credits(dev_priv, 30, 2);
-+	gen8_set_l3sqc_credits(i915, 30, 2);
- 
- 	/* WaKVMNotificationOnConfigChange:bdw */
--	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR2_1,
-+	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR2_1,
- 			 0, KVM_CONFIG_CHANGE_NOTIFICATION_SELECT);
- 
--	lpt_init_clock_gating(dev_priv);
-+	lpt_init_clock_gating(i915);
- 
- 	/* WaDisableDopClockGating:bdw
- 	 *
- 	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
- 	 * clock gating.
- 	 */
--	intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
- }
- 
--static void hsw_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void hsw_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
--	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-+	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
- 
- 	/* This is required by WaCatErrorRejectionIssue:hsw */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
- 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
- 
- 	/* WaSwitchSolVfFArbitrationPriority:hsw */
--	intel_uncore_rmw(&dev_priv->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
-+	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
- 
--	lpt_init_clock_gating(dev_priv);
-+	lpt_init_clock_gating(i915);
- }
- 
--static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void ivb_init_clock_gating(struct drm_i915_private *i915)
- {
--	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
--	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-+	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
- 
- 	/* WaDisableBackToBackFlipFix:ivb */
--	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
--		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
--		   CHICKEN3_DGMG_DONE_FIX_DISABLE);
-+	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-+			   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
-+			   CHICKEN3_DGMG_DONE_FIX_DISABLE);
- 
--	if (IS_IVB_GT1(dev_priv))
--		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
--			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-+	if (IS_IVB_GT1(i915))
-+		intel_uncore_write(&i915->uncore, GEN7_ROW_CHICKEN2,
-+				   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
- 	else {
- 		/* must write both registers */
--		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
--			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
--		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2_GT2,
--			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-+		intel_uncore_write(&i915->uncore, GEN7_ROW_CHICKEN2,
-+				   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-+		intel_uncore_write(&i915->uncore, GEN7_ROW_CHICKEN2_GT2,
-+				   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
- 	}
- 
- 	/*
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
- 	 * This implements the WaDisableRCZUnitClockGating:ivb workaround.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
--		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, GEN6_UCGCTL2,
-+			   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* This is required by WaCatErrorRejectionIssue:ivb */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
- 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
- 
--	g4x_disable_trickle_feed(dev_priv);
-+	g4x_disable_trickle_feed(i915);
- 
--	intel_uncore_rmw(&dev_priv->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
-+	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
- 			 GEN6_MBC_SNPCR_MED);
- 
--	if (!HAS_PCH_NOP(dev_priv))
--		cpt_init_clock_gating(dev_priv);
-+	if (!HAS_PCH_NOP(i915))
-+		cpt_init_clock_gating(i915);
- 
--	gen6_check_mch_setup(dev_priv);
-+	gen6_check_mch_setup(i915);
- }
- 
--static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void vlv_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* WaDisableBackToBackFlipFix:vlv */
--	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
--		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
--		   CHICKEN3_DGMG_DONE_FIX_DISABLE);
-+	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-+			   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
-+			   CHICKEN3_DGMG_DONE_FIX_DISABLE);
- 
- 	/* WaDisableDopClockGating:vlv */
--	intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
--		   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-+	intel_uncore_write(&i915->uncore, GEN7_ROW_CHICKEN2,
-+			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
- 
- 	/* This is required by WaCatErrorRejectionIssue:vlv */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
- 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
- 
- 	/*
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
- 	 * This implements the WaDisableRCZUnitClockGating:vlv workaround.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
--		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, GEN6_UCGCTL2,
-+			   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaDisableL3Bank2xClockGate:vlv
- 	 * Disabling L3 clock gating- MMIO 940c[25] = 1
- 	 * Set bit 25, to disable L3_BANK_2x_CLK_GATING */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_UCGCTL4, 0, GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN7_UCGCTL4, 0, GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * WaDisableVLVClockGating_VBIIssue:vlv
- 	 * Disable clock gating on th GCFG unit to prevent a delay
- 	 * in the reporting of vblank events.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, VLV_GUNIT_CLOCK_GATE, GCFG_DIS);
-+	intel_uncore_write(&i915->uncore, VLV_GUNIT_CLOCK_GATE, GCFG_DIS);
- }
- 
--static void chv_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void chv_init_clock_gating(struct drm_i915_private *i915)
- {
- 	/* WaVSRefCountFullforceMissDisable:chv */
- 	/* WaDSRefCountFullforceMissDisable:chv */
--	intel_uncore_rmw(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+	intel_uncore_rmw(&i915->uncore, GEN7_FF_THREAD_MODE,
- 			 GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME, 0);
- 
- 	/* WaDisableSemaphoreAndSyncFlipWait:chv */
--	intel_uncore_write(&dev_priv->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
--		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
-+	intel_uncore_write(&i915->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
-+			   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
- 
- 	/* WaDisableCSUnitClockGating:chv */
--	intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1, 0, GEN6_CSUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1, 0, GEN6_CSUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaDisableSDEUnitClockGating:chv */
--	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * WaProgramL3SqcReg1Default:chv
- 	 * See gfxspecs/Related Documents/Performance Guide/
- 	 * LSQC Setting Recommendations.
- 	 */
--	gen8_set_l3sqc_credits(dev_priv, 38, 2);
-+	gen8_set_l3sqc_credits(i915, 38, 2);
- }
- 
--static void g4x_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void g4x_init_clock_gating(struct drm_i915_private *i915)
- {
- 	u32 dspclk_gate;
- 
--	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, 0);
--	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
--		   GS_UNIT_CLOCK_GATE_DISABLE |
--		   CL_UNIT_CLOCK_GATE_DISABLE);
--	intel_uncore_write(&dev_priv->uncore, RAMCLK_GATE_D, 0);
-+	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
-+	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
-+			   GS_UNIT_CLOCK_GATE_DISABLE |
-+			   CL_UNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
- 	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
- 		OVRUNIT_CLOCK_GATE_DISABLE |
- 		OVCUNIT_CLOCK_GATE_DISABLE;
--	if (IS_GM45(dev_priv))
-+	if (IS_GM45(i915))
- 		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
--	intel_uncore_write(&dev_priv->uncore, DSPCLK_GATE_D(dev_priv), dspclk_gate);
-+	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D(i915), dspclk_gate);
- 
--	g4x_disable_trickle_feed(dev_priv);
-+	g4x_disable_trickle_feed(i915);
- }
- 
--static void i965gm_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void i965gm_init_clock_gating(struct drm_i915_private *i915)
- {
--	struct intel_uncore *uncore = &dev_priv->uncore;
-+	struct intel_uncore *uncore = &i915->uncore;
- 
- 	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
- 	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
--	intel_uncore_write(uncore, DSPCLK_GATE_D(dev_priv), 0);
-+	intel_uncore_write(uncore, DSPCLK_GATE_D(i915), 0);
- 	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
- 	intel_uncore_write16(uncore, DEUC, 0);
- 	intel_uncore_write(uncore,
-@@ -707,54 +709,55 @@ static void i965gm_init_clock_gating(struct drm_i915_private *dev_priv)
- 			   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
- }
- 
--static void i965g_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void i965g_init_clock_gating(struct drm_i915_private *i915)
- {
--	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, I965_RCZ_CLOCK_GATE_DISABLE |
--		   I965_RCC_CLOCK_GATE_DISABLE |
--		   I965_RCPB_CLOCK_GATE_DISABLE |
--		   I965_ISC_CLOCK_GATE_DISABLE |
--		   I965_FBC_CLOCK_GATE_DISABLE);
--	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D2, 0);
--	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
--		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-+	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, I965_RCZ_CLOCK_GATE_DISABLE |
-+			   I965_RCC_CLOCK_GATE_DISABLE |
-+			   I965_RCPB_CLOCK_GATE_DISABLE |
-+			   I965_ISC_CLOCK_GATE_DISABLE |
-+			   I965_FBC_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, 0);
-+	intel_uncore_write(&i915->uncore, MI_ARB_STATE,
-+			   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
- }
- 
--static void gen3_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void gen3_init_clock_gating(struct drm_i915_private *i915)
- {
--	u32 dstate = intel_uncore_read(&dev_priv->uncore, D_STATE);
-+	u32 dstate = intel_uncore_read(&i915->uncore, D_STATE);
- 
- 	dstate |= DSTATE_PLL_D3_OFF | DSTATE_GFX_CLOCK_GATING |
- 		DSTATE_DOT_CLOCK_GATING;
--	intel_uncore_write(&dev_priv->uncore, D_STATE, dstate);
-+	intel_uncore_write(&i915->uncore, D_STATE, dstate);
- 
--	if (IS_PINEVIEW(dev_priv))
--		intel_uncore_write(&dev_priv->uncore, ECOSKPD(RENDER_RING_BASE),
-+	if (IS_PINEVIEW(i915))
-+		intel_uncore_write(&i915->uncore, ECOSKPD(RENDER_RING_BASE),
- 				   _MASKED_BIT_ENABLE(ECO_GATING_CX_ONLY));
- 
- 	/* IIR "flip pending" means done if this bit is set */
--	intel_uncore_write(&dev_priv->uncore, ECOSKPD(RENDER_RING_BASE),
-+	intel_uncore_write(&i915->uncore, ECOSKPD(RENDER_RING_BASE),
- 			   _MASKED_BIT_DISABLE(ECO_FLIP_DONE));
- 
- 	/* interrupts should cause a wake up from C3 */
--	intel_uncore_write(&dev_priv->uncore, INSTPM, _MASKED_BIT_ENABLE(INSTPM_AGPBUSY_INT_EN));
-+	intel_uncore_write(&i915->uncore, INSTPM, _MASKED_BIT_ENABLE(INSTPM_AGPBUSY_INT_EN));
- 
- 	/* On GEN3 we really need to make sure the ARB C3 LP bit is set */
--	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE, _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
-+	intel_uncore_write(&i915->uncore, MI_ARB_STATE,
-+			   _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
- 
--	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
--		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-+	intel_uncore_write(&i915->uncore, MI_ARB_STATE,
-+			   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
- }
- 
--static void i85x_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void i85x_init_clock_gating(struct drm_i915_private *i915)
- {
--	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, SV_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, SV_CLOCK_GATE_DISABLE);
- 
- 	/* interrupts should cause a wake up from C3 */
--	intel_uncore_write(&dev_priv->uncore, MI_STATE, _MASKED_BIT_ENABLE(MI_AGPBUSY_INT_EN) |
--		   _MASKED_BIT_DISABLE(MI_AGPBUSY_830_MODE));
-+	intel_uncore_write(&i915->uncore, MI_STATE, _MASKED_BIT_ENABLE(MI_AGPBUSY_INT_EN) |
-+			   _MASKED_BIT_DISABLE(MI_AGPBUSY_830_MODE));
- 
--	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
--		   _MASKED_BIT_ENABLE(MEM_DISPLAY_TRICKLE_FEED_DISABLE));
-+	intel_uncore_write(&i915->uncore, MEM_MODE,
-+			   _MASKED_BIT_ENABLE(MEM_DISPLAY_TRICKLE_FEED_DISABLE));
- 
- 	/*
- 	 * Have FBC ignore 3D activity since we use software
-@@ -763,25 +766,25 @@ static void i85x_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * abosultely nothing) would not allow FBC to recompress
- 	 * until a 2D blit occurs.
- 	 */
--	intel_uncore_write(&dev_priv->uncore, SCPD0,
--		   _MASKED_BIT_ENABLE(SCPD_FBC_IGNORE_3D));
-+	intel_uncore_write(&i915->uncore, SCPD0,
-+			   _MASKED_BIT_ENABLE(SCPD_FBC_IGNORE_3D));
- }
- 
--static void i830_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void i830_init_clock_gating(struct drm_i915_private *i915)
- {
--	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
--		   _MASKED_BIT_ENABLE(MEM_DISPLAY_A_TRICKLE_FEED_DISABLE) |
--		   _MASKED_BIT_ENABLE(MEM_DISPLAY_B_TRICKLE_FEED_DISABLE));
-+	intel_uncore_write(&i915->uncore, MEM_MODE,
-+			   _MASKED_BIT_ENABLE(MEM_DISPLAY_A_TRICKLE_FEED_DISABLE) |
-+			   _MASKED_BIT_ENABLE(MEM_DISPLAY_B_TRICKLE_FEED_DISABLE));
- }
- 
--void intel_clock_gating_init(struct drm_i915_private *dev_priv)
-+void intel_clock_gating_init(struct drm_i915_private *i915)
- {
--	dev_priv->clock_gating_funcs->init_clock_gating(dev_priv);
-+	i915->clock_gating_funcs->init_clock_gating(i915);
- }
- 
--static void nop_init_clock_gating(struct drm_i915_private *dev_priv)
-+static void nop_init_clock_gating(struct drm_i915_private *i915)
- {
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(&i915->drm,
- 		    "No clock gating settings or workarounds applied.\n");
- }
- 
-@@ -819,67 +822,67 @@ CG_FUNCS(nop);
- 
- /**
-  * intel_clock_gating_hooks_init - setup the clock gating hooks
-- * @dev_priv: device private
-+ * @i915: device private
-  *
-  * Setup the hooks that configure which clocks of a given platform can be
-  * gated and also apply various GT and display specific workarounds for these
-  * platforms. Note that some GT specific workarounds are applied separately
-  * when GPU contexts or batchbuffers start their execution.
-  */
--void intel_clock_gating_hooks_init(struct drm_i915_private *dev_priv)
--{
--	if (IS_METEORLAKE(dev_priv))
--		dev_priv->clock_gating_funcs = &nop_clock_gating_funcs;
--	else if (IS_PONTEVECCHIO(dev_priv))
--		dev_priv->clock_gating_funcs = &pvc_clock_gating_funcs;
--	else if (IS_DG2(dev_priv))
--		dev_priv->clock_gating_funcs = &dg2_clock_gating_funcs;
--	else if (IS_XEHPSDV(dev_priv))
--		dev_priv->clock_gating_funcs = &xehpsdv_clock_gating_funcs;
--	else if (IS_ALDERLAKE_P(dev_priv))
--		dev_priv->clock_gating_funcs = &adlp_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 12)
--		dev_priv->clock_gating_funcs = &gen12lp_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 11)
--		dev_priv->clock_gating_funcs = &icl_clock_gating_funcs;
--	else if (IS_COFFEELAKE(dev_priv) || IS_COMETLAKE(dev_priv))
--		dev_priv->clock_gating_funcs = &cfl_clock_gating_funcs;
--	else if (IS_SKYLAKE(dev_priv))
--		dev_priv->clock_gating_funcs = &skl_clock_gating_funcs;
--	else if (IS_KABYLAKE(dev_priv))
--		dev_priv->clock_gating_funcs = &kbl_clock_gating_funcs;
--	else if (IS_BROXTON(dev_priv))
--		dev_priv->clock_gating_funcs = &bxt_clock_gating_funcs;
--	else if (IS_GEMINILAKE(dev_priv))
--		dev_priv->clock_gating_funcs = &glk_clock_gating_funcs;
--	else if (IS_BROADWELL(dev_priv))
--		dev_priv->clock_gating_funcs = &bdw_clock_gating_funcs;
--	else if (IS_CHERRYVIEW(dev_priv))
--		dev_priv->clock_gating_funcs = &chv_clock_gating_funcs;
--	else if (IS_HASWELL(dev_priv))
--		dev_priv->clock_gating_funcs = &hsw_clock_gating_funcs;
--	else if (IS_IVYBRIDGE(dev_priv))
--		dev_priv->clock_gating_funcs = &ivb_clock_gating_funcs;
--	else if (IS_VALLEYVIEW(dev_priv))
--		dev_priv->clock_gating_funcs = &vlv_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 6)
--		dev_priv->clock_gating_funcs = &gen6_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 5)
--		dev_priv->clock_gating_funcs = &ilk_clock_gating_funcs;
--	else if (IS_G4X(dev_priv))
--		dev_priv->clock_gating_funcs = &g4x_clock_gating_funcs;
--	else if (IS_I965GM(dev_priv))
--		dev_priv->clock_gating_funcs = &i965gm_clock_gating_funcs;
--	else if (IS_I965G(dev_priv))
--		dev_priv->clock_gating_funcs = &i965g_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 3)
--		dev_priv->clock_gating_funcs = &gen3_clock_gating_funcs;
--	else if (IS_I85X(dev_priv) || IS_I865G(dev_priv))
--		dev_priv->clock_gating_funcs = &i85x_clock_gating_funcs;
--	else if (GRAPHICS_VER(dev_priv) == 2)
--		dev_priv->clock_gating_funcs = &i830_clock_gating_funcs;
-+void intel_clock_gating_hooks_init(struct drm_i915_private *i915)
-+{
-+	if (IS_METEORLAKE(i915))
-+		i915->clock_gating_funcs = &nop_clock_gating_funcs;
-+	else if (IS_PONTEVECCHIO(i915))
-+		i915->clock_gating_funcs = &pvc_clock_gating_funcs;
-+	else if (IS_DG2(i915))
-+		i915->clock_gating_funcs = &dg2_clock_gating_funcs;
-+	else if (IS_XEHPSDV(i915))
-+		i915->clock_gating_funcs = &xehpsdv_clock_gating_funcs;
-+	else if (IS_ALDERLAKE_P(i915))
-+		i915->clock_gating_funcs = &adlp_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 12)
-+		i915->clock_gating_funcs = &gen12lp_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 11)
-+		i915->clock_gating_funcs = &icl_clock_gating_funcs;
-+	else if (IS_COFFEELAKE(i915) || IS_COMETLAKE(i915))
-+		i915->clock_gating_funcs = &cfl_clock_gating_funcs;
-+	else if (IS_SKYLAKE(i915))
-+		i915->clock_gating_funcs = &skl_clock_gating_funcs;
-+	else if (IS_KABYLAKE(i915))
-+		i915->clock_gating_funcs = &kbl_clock_gating_funcs;
-+	else if (IS_BROXTON(i915))
-+		i915->clock_gating_funcs = &bxt_clock_gating_funcs;
-+	else if (IS_GEMINILAKE(i915))
-+		i915->clock_gating_funcs = &glk_clock_gating_funcs;
-+	else if (IS_BROADWELL(i915))
-+		i915->clock_gating_funcs = &bdw_clock_gating_funcs;
-+	else if (IS_CHERRYVIEW(i915))
-+		i915->clock_gating_funcs = &chv_clock_gating_funcs;
-+	else if (IS_HASWELL(i915))
-+		i915->clock_gating_funcs = &hsw_clock_gating_funcs;
-+	else if (IS_IVYBRIDGE(i915))
-+		i915->clock_gating_funcs = &ivb_clock_gating_funcs;
-+	else if (IS_VALLEYVIEW(i915))
-+		i915->clock_gating_funcs = &vlv_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 6)
-+		i915->clock_gating_funcs = &gen6_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 5)
-+		i915->clock_gating_funcs = &ilk_clock_gating_funcs;
-+	else if (IS_G4X(i915))
-+		i915->clock_gating_funcs = &g4x_clock_gating_funcs;
-+	else if (IS_I965GM(i915))
-+		i915->clock_gating_funcs = &i965gm_clock_gating_funcs;
-+	else if (IS_I965G(i915))
-+		i915->clock_gating_funcs = &i965g_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 3)
-+		i915->clock_gating_funcs = &gen3_clock_gating_funcs;
-+	else if (IS_I85X(i915) || IS_I865G(i915))
-+		i915->clock_gating_funcs = &i85x_clock_gating_funcs;
-+	else if (GRAPHICS_VER(i915) == 2)
-+		i915->clock_gating_funcs = &i830_clock_gating_funcs;
- 	else {
--		MISSING_CASE(INTEL_DEVID(dev_priv));
--		dev_priv->clock_gating_funcs = &nop_clock_gating_funcs;
-+		MISSING_CASE(INTEL_DEVID(i915));
-+		i915->clock_gating_funcs = &nop_clock_gating_funcs;
- 	}
- }
--- 
-2.39.1
-
+Regards,
+Yi Liu
