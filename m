@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340D26A6EFB
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 16:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 777216A6F13
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 16:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59B5B10E18B;
-	Wed,  1 Mar 2023 15:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABAA110E0DD;
+	Wed,  1 Mar 2023 15:14:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB8F10E18B;
- Wed,  1 Mar 2023 15:05:17 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1D710E0DD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 15:14:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677683117; x=1709219117;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=IoEvMpf6ZokrlCInLJGa/aRUKS94Xe6pqKLssh4Alwo=;
- b=Hr2jyDnUOwslRKiXnYcI1xkR107R2D7D55Ox3rRdMXw/3wF5ohUbdD5m
- fHGzU+3mkf2LU3k+oZ2pwt0MKHY81we5yG2WNlq7b9DEHYesoUOOWOVgw
- SZbrwwqyYi9RVrHM7/U02gye0E1oCUiPpbv94aLiSq9EthJ1vXT9bI1Tc
- /XTmVXihKXeAwUEhDa7Ji63sOSb/UornXf1uoEwinFv4yJ0Rv6jIbJj7c
- FJdTLAdx2mFUuCqVnEiRwndc5Iiu+DmE7MUSs1aNgDNv5oxq73JxPNlxk
- xbE1xBWjh6O4jH/wFY04A6HmJGb/3d4AfflcpC6O8Mjd429S+p6OsyeDS w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="318228844"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="318228844"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 07:05:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="674588072"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="674588072"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 01 Mar 2023 07:05:13 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Mar 2023 17:05:13 +0200
-Date: Wed, 1 Mar 2023 17:05:13 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y/9pqYAWvT9nMMTY@intel.com>
-References: <20230227143648.7776-1-ville.syrjala@linux.intel.com>
- <20230228213610.26283-1-ville.syrjala@linux.intel.com>
- <87pm9sx3e1.fsf@intel.com>
+ t=1677683655; x=1709219655;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RMsuM/E0ZFT20d+Q8Vr08nWtqRiw+MY2/XACP7cFDEA=;
+ b=gB07fsYSYrfqxs8cm696/FYzkwzQAkT2IEZxp16NzVaNaIKbe5/6HBwW
+ BIF63926VISYlf5L0jbh/NaNslI6tNgSxaCJCMkKYCV4jjHhKR19Arkby
+ Wl8A95E3rvloqM7MWNBEMSaVz0xtww0DgpDtD4fyzwVS3aB1pG9opjQ8Q
+ +heAyM/kNKiVwcCDgjhPqYv4pFQsc3mjWThefEgOrTXIduCMyfhtmmj9u
+ iBz6K026CGaZsa/Y3rCPbWaTftbIYjiQHEMEyahbUvhbH+q2jGxVTn824
+ OsDBDWQ4+VQ7ukaOPyR2aeWvFydMtMQWhg61HtfPCNZAI8HBZ+3Q4ye8L g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="335923190"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="335923190"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 07:14:14 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="704873034"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="704873034"
+Received: from dsvarnas-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.249])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 07:14:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Mar 2023 17:14:09 +0200
+Message-Id: <20230301151409.1581574-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87pm9sx3e1.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/edid: Fix csync detailed mode parsing
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: fix DSS CTL register offsets for
+ TGL+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,46 +57,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 01, 2023 at 10:49:26AM +0200, Jani Nikula wrote:
-> On Tue, 28 Feb 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Remove the bogus csync check and replace it with something that:
-> > - triggers for all forms of csync, not just the basic analog variant
-> > - actually populates the mode csync flags so that drivers can
-> >   decide what to do with the mode
-> >
-> > Originally the code tried to outright reject csync, but that
-> > apparently broke some bogus LCD monitor that claimed to have
-> > a detailed mode that uses analog csync, despite also claiming
-> > the monitor only support separate sync:
-> > https://bugzilla.redhat.com/show_bug.cgi?id=540024
-> > Potentially that monitor should just be quirked or something.
-> >
-> > Anyways, what we are dealing with now is some kind of funny i915
-> > JSL machine with eDP where the panel claims to support a sensible
-> > 60Hz separate sync mode, and a 50Hz mode with bipolar analog
-> > csync. The 50Hz mode does not work so we want to not use it.
-> > Easiest way is to just correctly flag it as csync and the driver
-> > will reject it.
-> >
-> > TODO: or should we just reject any form of csync (or at least
-> > the analog variants) for digital display interfaces?
-> >
-> > v2: Grab digital csync polarity from hsync polarity bit (Jani)
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8146
-> > Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
-> 
-> Yup. Fingers crossed.
+On TGL+ the DSS control registers are at different offsets, and there's
+one per pipe. Fix the offsets to fix dual link DSI for TGL+.
 
-Thought it best to give this plenty of time to soak, so pushed
-to drm-misc-next. Thanks for the review.
+There would be helpers for this in the DSC code, but just do the quick
+fix now for DSI. Long term, we should probably move all the DSS handling
+into intel_vdsc.c, so exporting the helpers seems counter-productive.
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8232
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index b5316715bb3b..5a17ab3f0d1a 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -277,9 +277,21 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+ 	u32 dss_ctl1;
+ 
+-	dss_ctl1 = intel_de_read(dev_priv, DSS_CTL1);
++	/* FIXME: Move all DSS handling to intel_vdsc.c */
++	if (DISPLAY_VER(dev_priv) >= 12) {
++		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
++
++		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
++		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
++	} else {
++		dss_ctl1_reg = DSS_CTL1;
++		dss_ctl2_reg = DSS_CTL2;
++	}
++
++	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg);
+ 	dss_ctl1 |= SPLITTER_ENABLE;
+ 	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+ 	dss_ctl1 |= OVERLAP_PIXELS(intel_dsi->pixel_overlap);
+@@ -299,14 +311,14 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+ 
+ 		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+ 		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+-		intel_de_rmw(dev_priv, DSS_CTL2, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
++		intel_de_rmw(dev_priv, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+ 			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+ 	} else {
+ 		/* Interleave */
+ 		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+ 	}
+ 
+-	intel_de_write(dev_priv, DSS_CTL1, dss_ctl1);
++	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1);
+ }
+ 
+ /* aka DSI 8X clock */
 -- 
-Ville Syrjälä
-Intel
+2.39.1
+
