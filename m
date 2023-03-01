@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2703F6A74D0
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 21:11:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 849D46A74CF
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 21:11:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0247D10E252;
-	Wed,  1 Mar 2023 20:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD2910E24D;
+	Wed,  1 Mar 2023 20:11:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04BFF10E241
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 20:11:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12E7510E24B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 20:11:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1677701508; x=1709237508;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VHn3ezUP4HIvkoPTlcuCHpjcJtDFKgQqgZPT278CkqQ=;
- b=HcFVus31lIDzyhKg6tNlP+FTlmplft+7yHQ/NUygRu8fVAFEovX4YJLi
- XwA9VnbSzobRl4PBufwq0/gzUiAWPFLfL2lO52JWI2K53j4WEHxaiH2u+
- sJlj+Md2RPXUV1TJ2m4F59RGzDQodWnl5orbGw0uJMp8QxKy08n8KJO+w
- wE1v0Lr8yL/ZwiuBGStOYt1aNVeH+BJCA9dw6bBUudL2DbPevEKUpSAlG
- Pd44hPZWDryRU26Os70rQjiZeEoydSDYui5vw9UkvDJPx6RD+6MmkD46r
- pe+I4ABCKr5mSElyYhbY7XMaVFpWZl6rU0TFf6mrt0J4W5T/IUm3q9B5g Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="314933486"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="314933486"
+ bh=Gn6zGOnEfxlc6H1QFJNZZ1b/nc79QxLXeNUqRpagSzA=;
+ b=ETxzxo1D5KdbvYXNtgg6+1BdSXwL+PwzptTIZqfrt2F/QhWI43wfLclK
+ ee7m4VgGTy4GSIk901M/BlDBlZMn3KMrbGOpobjChaIhWXyUkSp7itR+g
+ ncaVT67nX7Tg2PG2iGB0W9X4EvwhFtAxoMXx+RJ8GuiW4mJrCzSsTSx3H
+ EW2HsoKqATEz9dOV7oOZN0IlkkLQ5xtN/iHiKCOiEKycjRf9DFwoV0YyT
+ 6iMbC4MsBBLW+TZf/UftjvQm1dOKeXry9uHUSxyIYeRsvGdWvwGQ6G7me
+ 6c8ZipNwT0tK/Ay19srMJJkjL5ZzFjIQbHNBaeBGwxV8jPaAYQGJYtTUl g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="314933487"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="314933487"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 12:11:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="674691943"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="674691943"
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="674691946"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="674691946"
 Received: from invictus.jf.intel.com ([10.165.21.134])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 12:11:45 -0800
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 12:10:52 -0800
-Message-Id: <20230301201053.928709-5-radhakrishna.sripada@intel.com>
+Date: Wed,  1 Mar 2023 12:10:53 -0800
+Message-Id: <20230301201053.928709-6-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230301201053.928709-1-radhakrishna.sripada@intel.com>
 References: <20230301201053.928709-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/5] drm/i915/fbdev: lock the fbdev obj
- before vma pin
+Subject: [Intel-gfx] [PATCH v3 5/5] drm/i915/display/mtl: Program latch to
+ phy reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,73 +58,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+From: José Roberto de Souza <jose.souza@intel.com>
 
-lock the fbdev obj before calling into
-i915_vma_pin_iomap(). This helps to solve below :
+Latch reset of phys during DC9 and when driver is unloaded to avoid
+phy reset.
 
-<7>[   93.563308] i915 0000:00:02.0: [drm:intelfb_create [i915]] no BIOS fb, allocating a new one
-<4>[   93.581844] ------------[ cut here ]------------
-<4>[   93.581855] WARNING: CPU: 12 PID: 625 at drivers/gpu/drm/i915/gem/i915_gem_pages.c:424 i915_gem_object_pin_map+0x152/0x1c0 [i915]
+Specification ask us to program it closer to the step that enables
+DC9 in DC_STATE_EN but doing this way allow us to sanitize the phy
+latch during driver load.
 
-Fixes: f0b6b01b3efe ("drm/i915: Add ww context to intel_dpt_pin, v2.")
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+BSpec: 49197
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 24 ++++++++++++++++------
- 1 file changed, 18 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 3659350061a7..2766d7ef0128 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -210,6 +210,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	bool prealloc = false;
- 	void __iomem *vaddr;
- 	struct drm_i915_gem_object *obj;
-+	struct i915_gem_ww_ctx ww;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 743b919bb2cf..50098c77e3be 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1624,6 +1624,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 	intel_power_well_enable(dev_priv, well);
+ 	mutex_unlock(&power_domains->lock);
  
- 	mutex_lock(&ifbdev->hpd_lock);
-@@ -283,13 +284,24 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		info->fix.smem_len = vma->size;
- 	}
++	if (DISPLAY_VER(dev_priv) == 14)
++		intel_de_rmw(dev_priv, DC_STATE_EN,
++			     HOLD_PHY_PG1_LATCH | HOLD_PHY_CLKREQ_PG1_LATCH, 0);
++
+ 	/* 4. Enable CDCLK. */
+ 	intel_cdclk_init_hw(dev_priv);
  
--	vaddr = i915_vma_pin_iomap(vma);
--	if (IS_ERR(vaddr)) {
--		drm_err(&dev_priv->drm,
--			"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
--		ret = PTR_ERR(vaddr);
--		goto out_unpin;
-+	for_i915_gem_ww(&ww, ret, false) {
-+		ret = i915_gem_object_lock(vma->obj, &ww);
-+
-+		if (ret)
-+			continue;
-+
-+		vaddr = i915_vma_pin_iomap(vma);
-+		if (IS_ERR(vaddr)) {
-+			drm_err(&dev_priv->drm,
-+					"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
-+			ret = PTR_ERR(vaddr);
-+			continue;
-+		}
- 	}
-+
-+	if (ret)
-+		goto out_unpin;
-+
- 	info->screen_base = vaddr;
- 	info->screen_size = vma->size;
+@@ -1677,6 +1681,10 @@ static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
+ 	/* 3. Disable CD clock */
+ 	intel_cdclk_uninit_hw(dev_priv);
  
++	if (DISPLAY_VER(dev_priv) == 14)
++		intel_de_rmw(dev_priv, DC_STATE_EN, 0,
++			     HOLD_PHY_PG1_LATCH | HOLD_PHY_CLKREQ_PG1_LATCH);
++
+ 	/*
+ 	 * 4. Disable Power Well 1 (PG1).
+ 	 *    The AUX IO power wells are toggled on demand, so they are already
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 7c9ac5b43831..fa1905cc5a99 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7360,6 +7360,8 @@ enum skl_power_gate {
+ #define  DC_STATE_DISABLE		0
+ #define  DC_STATE_EN_DC3CO		REG_BIT(30)
+ #define  DC_STATE_DC3CO_STATUS		REG_BIT(29)
++#define  HOLD_PHY_CLKREQ_PG1_LATCH	REG_BIT(21)
++#define  HOLD_PHY_PG1_LATCH		REG_BIT(20)
+ #define  DC_STATE_EN_UPTO_DC5		(1 << 0)
+ #define  DC_STATE_EN_DC9		(1 << 3)
+ #define  DC_STATE_EN_UPTO_DC6		(2 << 0)
 -- 
 2.34.1
 
