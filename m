@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C6F6A6F37
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 16:20:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A30EC6A6F3B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 16:21:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A03D10E060;
-	Wed,  1 Mar 2023 15:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C67510E060;
+	Wed,  1 Mar 2023 15:21:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4490E89E1D
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 15:20:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9A610E060
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 15:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677684002; x=1709220002;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ROcFq8pyZmcLnVPSVNsSmYv8VRlgTPUMxsQkwSpc/PU=;
- b=hzVRN6S42vtRHCfRILkFRKGrRnWCzCr/j4+IZBoJPWKq5SyoUYNaks/J
- rs915vIPYiNx1Xk1ytzdTdNc2wLteaiTra6vGEOjp4f8+JU1arVtHSJln
- PN4qQP4Iccic8UQ91ZY7EvIq5QNd4gOSKvDeLcogER7jGG59r2yGxyJ7g
- rW7qX70Ka1gSN4zrDiBVgOTdyj3UO/SEvWSwHEsxf+PS2hEI0yLxSSmL0
- mKgNHqi9qJSH8gjscZWA17ptzycYPwked+gS3JS76vYU7Ur1o4YoykzbS
- rdvODt6od/ve6pGR0AgqNQCPojirlQN9tc7L7eXTmDSNyCbx2OVGx9Cm9 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="399220021"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="399220021"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 07:20:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="784394761"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="784394761"
+ t=1677684075; x=1709220075;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=ObkgyVFpjKyW7cpXAnptf8J7scBIUb+NDdvwCJrUh1M=;
+ b=CB8bgfk+bRfuwexRMsEl68GAWT//tbHaR+jvsZWR+FTMaiz4Py+iOscc
+ VOcqxOZYuEjGSqMXdF6cSb/YQrAE9RK/ANrIe4rfRhui5Zqw+DXh4MfLP
+ 1RPuPveeCgAl2KBXX+rCj1jhZHwp4BoX99fAleHtA7H6GAy+VPsjmzXO2
+ Bpgz+TyeYLJkj2WKmZXon4LdKkySBRonWrmuMkmAlX+On/umdYMB2n7x/
+ X8jyR97scs9elbw0UaPKLMx9a08lEiBdp90ISVNnEUSKS6lzrUYT8Hpdm
+ hwOo0py2CF0gEkUmA701EnV2cwkZtS5ScdojXjVKRsG89jayUHfW3prfI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="397003413"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="397003413"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 07:21:14 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="652049127"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="652049127"
 Received: from dsvarnas-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.46.249])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 07:19:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 17:19:49 +0200
-Message-Id: <20230301151949.1591501-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.1
-MIME-Version: 1.0
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 07:21:12 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <be14b11efdafb5ae249d81e318d5d81d1d403a8e.camel@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: split out DSC and DSS
- registers
+References: <20230220164718.23117-1-ville.syrjala@linux.intel.com>
+ <be14b11efdafb5ae249d81e318d5d81d1d403a8e.camel@intel.com>
+Date: Wed, 01 Mar 2023 17:21:10 +0200
+Message-ID: <878rggwl95.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Get HDR DPCD refresh timeout from
+ VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,1015 +62,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Relatively few places need the DSC and DSS register definitions. Move
-them to intel_vdsc_regs.h.
+On Wed, 01 Mar 2023, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Mon, 2023-02-20 at 18:47 +0200, Ville Syrjala wrote:
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>=20
+>> Grab the HDR DPCD refresh timeout (time we need to wait after
+>> writing the sourc OUI before the HDR DPCD registers are ready)
+>> from the VBT.
+>>=20
+>> Windows doesn't even seem to have any default value for this,
+>> which is perhaps a bit weird since the VBT value is documented
+>> as TGL+ and I thought the HDR backlight stuff might already be
+>> used on earlier platforms. To play it safe I left the old
+>> hardcoded 30ms default in place. Digging through some internal
+>> stuff that seems to have been a number given by the vendor for
+>> one particularly slow TCON. Although I did see 50ms mentioned
+>> somewhere as well.
+>>=20
+>> Let's also include the value in the debug print to ease
+>> debugging, and toss in the customary connector id+name as well.
+>>=20
+>> The TGL Thinkpad T14 I have sets this to 0 btw. So the delay
+>> is now gone on this machine:
+>> =C2=A0[CONNECTOR:308:eDP-1] Detected Intel HDR backlight interface versi=
+on
+>> 1
+>> =C2=A0[CONNECTOR:308:eDP-1] Using Intel proprietary eDP backlight contro=
+ls
+>> =C2=A0[CONNECTOR:308:eDP-1] SDR backlight is controlled through PWM
+>> =C2=A0[CONNECTOR:308:eDP-1] Using native PCH PWM for backlight control
+>> (controller=3D0)
+>> =C2=A0[CONNECTOR:308:eDP-1] Using AUX HDR interface for backlight control
+>> (range 0..496)
+>> =C2=A0[CONNECTOR:308:eDP-1] Performing OUI wait (0 ms)
+>
+> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   1 +
- drivers/gpu/drm/i915/display/intel_display.c  |   1 +
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   1 +
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 462 ++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h               | 450 -----------------
- 6 files changed, 466 insertions(+), 450 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+Cc: stable@vger.kernel.org
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index b5316715bb3b..9b83fdc89fa2 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -45,6 +45,7 @@
- #include "intel_dsi_vbt.h"
- #include "intel_panel.h"
- #include "intel_vdsc.h"
-+#include "intel_vdsc_regs.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index e5979427b38b..0c58f042cc7e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -68,6 +68,7 @@
- #include "intel_sprite.h"
- #include "intel_tc.h"
- #include "intel_vdsc.h"
-+#include "intel_vdsc_regs.h"
- #include "intel_vrr.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a1fbdf32bd21..edbcb1273ca2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -116,6 +116,7 @@
- #include "intel_tv.h"
- #include "intel_vblank.h"
- #include "intel_vdsc.h"
-+#include "intel_vdsc_regs.h"
- #include "intel_vga.h"
- #include "intel_vrr.h"
- #include "intel_wm.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 207b2a648d32..09b32ffdc552 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -17,6 +17,7 @@
- #include "intel_dsi.h"
- #include "intel_qp_tables.h"
- #include "intel_vdsc.h"
-+#include "intel_vdsc_regs.h"
- 
- enum ROW_INDEX_BPP {
- 	ROW_INDEX_6BPP = 0,
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-new file mode 100644
-index 000000000000..02cd89077eb6
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -0,0 +1,462 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_VDSC_REGS_H__
-+#define __INTEL_VDSC_REGS_H__
-+
-+#include "intel_display_reg_defs.h"
-+
-+/* Display Stream Splitter Control */
-+#define DSS_CTL1				_MMIO(0x67400)
-+#define  SPLITTER_ENABLE			(1 << 31)
-+#define  JOINER_ENABLE				(1 << 30)
-+#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
-+#define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
-+#define  OVERLAP_PIXELS_MASK			(0xf << 16)
-+#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
-+#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
-+#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
-+#define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
-+
-+#define DSS_CTL2				_MMIO(0x67404)
-+#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
-+#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
-+#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
-+#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
-+
-+#define _ICL_PIPE_DSS_CTL1_PB			0x78200
-+#define _ICL_PIPE_DSS_CTL1_PC			0x78400
-+#define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_PIPE_DSS_CTL1_PB, \
-+							   _ICL_PIPE_DSS_CTL1_PC)
-+#define  BIG_JOINER_ENABLE			(1 << 29)
-+#define  MASTER_BIG_JOINER_ENABLE		(1 << 28)
-+#define  VGA_CENTERING_ENABLE			(1 << 27)
-+#define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-+#define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-+#define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-+#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
-+#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
-+
-+#define _ICL_PIPE_DSS_CTL2_PB			0x78204
-+#define _ICL_PIPE_DSS_CTL2_PC			0x78404
-+#define ICL_PIPE_DSS_CTL2(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_PIPE_DSS_CTL2_PB, \
-+							   _ICL_PIPE_DSS_CTL2_PC)
-+
-+/* Icelake Display Stream Compression Registers */
-+#define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
-+#define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC	0x78570
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define  DSC_ALT_ICH_SEL		(1 << 20)
-+#define  DSC_VBR_ENABLE			(1 << 19)
-+#define  DSC_422_ENABLE			(1 << 18)
-+#define  DSC_COLOR_SPACE_CONVERSION	(1 << 17)
-+#define  DSC_BLOCK_PREDICTION		(1 << 16)
-+#define  DSC_LINE_BUF_DEPTH_SHIFT	12
-+#define  DSC_BPC_SHIFT			8
-+#define  DSC_VER_MIN_SHIFT		4
-+#define  DSC_VER_MAJ			(0x1 << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_1		_MMIO(0x6B204)
-+#define DSCC_PICTURE_PARAMETER_SET_1		_MMIO(0x6BA04)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_1_PB	0x78274
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_1_PB	0x78374
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_1_PC	0x78474
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_1_PC	0x78574
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_1_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_1_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_1_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_1_PC)
-+#define  DSC_BPP(bpp)				((bpp) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_2		_MMIO(0x6B208)
-+#define DSCC_PICTURE_PARAMETER_SET_2		_MMIO(0x6BA08)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_2_PB	0x78278
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_2_PB	0x78378
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_2_PC	0x78478
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_2_PC	0x78578
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_2_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_2_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PB, \
-+					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PC)
-+#define  DSC_PIC_WIDTH(pic_width)	((pic_width) << 16)
-+#define  DSC_PIC_HEIGHT(pic_height)	((pic_height) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_3		_MMIO(0x6B20C)
-+#define DSCC_PICTURE_PARAMETER_SET_3		_MMIO(0x6BA0C)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_3_PB	0x7827C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_3_PB	0x7837C
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_3_PC	0x7847C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_3_PC	0x7857C
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_3_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_3_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PC)
-+#define  DSC_SLICE_WIDTH(slice_width)   ((slice_width) << 16)
-+#define  DSC_SLICE_HEIGHT(slice_height) ((slice_height) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_4		_MMIO(0x6B210)
-+#define DSCC_PICTURE_PARAMETER_SET_4		_MMIO(0x6BA10)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_4_PB	0x78280
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_4_PB	0x78380
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_4_PC	0x78480
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_4_PC	0x78580
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_4_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_4_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PC)
-+#define  DSC_INITIAL_DEC_DELAY(dec_delay)       ((dec_delay) << 16)
-+#define  DSC_INITIAL_XMIT_DELAY(xmit_delay)     ((xmit_delay) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_5		_MMIO(0x6B214)
-+#define DSCC_PICTURE_PARAMETER_SET_5		_MMIO(0x6BA14)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_5_PB	0x78284
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_5_PB	0x78384
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_5_PC	0x78484
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_5_PC	0x78584
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_5_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_5_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PC)
-+#define  DSC_SCALE_DEC_INT(scale_dec)	((scale_dec) << 16)
-+#define  DSC_SCALE_INC_INT(scale_inc)		((scale_inc) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_6		_MMIO(0x6B218)
-+#define DSCC_PICTURE_PARAMETER_SET_6		_MMIO(0x6BA18)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_6_PB	0x78288
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_6_PB	0x78388
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_6_PC	0x78488
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_6_PC	0x78588
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_6_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_6_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PC)
-+#define  DSC_FLATNESS_MAX_QP(max_qp)		((max_qp) << 24)
-+#define  DSC_FLATNESS_MIN_QP(min_qp)		((min_qp) << 16)
-+#define  DSC_FIRST_LINE_BPG_OFFSET(offset)	((offset) << 8)
-+#define  DSC_INITIAL_SCALE_VALUE(value)		((value) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_7		_MMIO(0x6B21C)
-+#define DSCC_PICTURE_PARAMETER_SET_7		_MMIO(0x6BA1C)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_7_PB	0x7828C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_7_PB	0x7838C
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_7_PC	0x7848C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_7_PC	0x7858C
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							    _ICL_DSC0_PICTURE_PARAMETER_SET_7_PB, \
-+							    _ICL_DSC0_PICTURE_PARAMETER_SET_7_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PB, \
-+							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PC)
-+#define  DSC_NFL_BPG_OFFSET(bpg_offset)		((bpg_offset) << 16)
-+#define  DSC_SLICE_BPG_OFFSET(bpg_offset)	((bpg_offset) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_8		_MMIO(0x6B220)
-+#define DSCC_PICTURE_PARAMETER_SET_8		_MMIO(0x6BA20)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_8_PB	0x78290
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_8_PB	0x78390
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_8_PC	0x78490
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_8_PC	0x78590
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_8_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_8_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PC)
-+#define  DSC_INITIAL_OFFSET(initial_offset)		((initial_offset) << 16)
-+#define  DSC_FINAL_OFFSET(final_offset)			((final_offset) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_9		_MMIO(0x6B224)
-+#define DSCC_PICTURE_PARAMETER_SET_9		_MMIO(0x6BA24)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_9_PB	0x78294
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_9_PB	0x78394
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_9_PC	0x78494
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_9_PC	0x78594
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_9_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_9_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PC)
-+#define  DSC_RC_EDGE_FACTOR(rc_edge_fact)	((rc_edge_fact) << 16)
-+#define  DSC_RC_MODEL_SIZE(rc_model_size)	((rc_model_size) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_10		_MMIO(0x6B228)
-+#define DSCC_PICTURE_PARAMETER_SET_10		_MMIO(0x6BA28)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_10_PB	0x78298
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_10_PB	0x78398
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_10_PC	0x78498
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_10_PC	0x78598
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_10_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_10_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PC)
-+#define  DSC_RC_TARGET_OFF_LOW(rc_tgt_off_low)		((rc_tgt_off_low) << 20)
-+#define  DSC_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	((rc_tgt_off_high) << 16)
-+#define  DSC_RC_QUANT_INC_LIMIT1(lim)			((lim) << 8)
-+#define  DSC_RC_QUANT_INC_LIMIT0(lim)			((lim) << 0)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_11		_MMIO(0x6B22C)
-+#define DSCC_PICTURE_PARAMETER_SET_11		_MMIO(0x6BA2C)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_11_PB	0x7829C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_11_PB	0x7839C
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_11_PC	0x7849C
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_11_PC	0x7859C
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_11(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_11_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_11_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_11(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_11_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_11_PC)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_12		_MMIO(0x6B260)
-+#define DSCC_PICTURE_PARAMETER_SET_12		_MMIO(0x6BA60)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_12_PB	0x782A0
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_12_PB	0x783A0
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_12_PC	0x784A0
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_12_PC	0x785A0
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_12(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_12_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_12_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_12(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_12_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_12_PC)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_13		_MMIO(0x6B264)
-+#define DSCC_PICTURE_PARAMETER_SET_13		_MMIO(0x6BA64)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_13_PB	0x782A4
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_13_PB	0x783A4
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_13_PC	0x784A4
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_13_PC	0x785A4
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_13(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_13_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_13_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_13(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_13_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_13_PC)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_14		_MMIO(0x6B268)
-+#define DSCC_PICTURE_PARAMETER_SET_14		_MMIO(0x6BA68)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_14_PB	0x782A8
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_14_PB	0x783A8
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_14_PC	0x784A8
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_14_PC	0x785A8
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_14(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_14_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_14_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_14(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_14_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_14_PC)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_15		_MMIO(0x6B26C)
-+#define DSCC_PICTURE_PARAMETER_SET_15		_MMIO(0x6BA6C)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_15_PB	0x782AC
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_15_PB	0x783AC
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_15_PC	0x784AC
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_15_PC	0x785AC
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_15(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_15_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_15_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_15(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_15_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_15_PC)
-+
-+#define DSCA_PICTURE_PARAMETER_SET_16		_MMIO(0x6B270)
-+#define DSCC_PICTURE_PARAMETER_SET_16		_MMIO(0x6BA70)
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_16_PB	0x782B0
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_16_PB	0x783B0
-+#define _ICL_DSC0_PICTURE_PARAMETER_SET_16_PC	0x784B0
-+#define _ICL_DSC1_PICTURE_PARAMETER_SET_16_PC	0x785B0
-+#define ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_16_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_16_PC)
-+#define ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PC)
-+#define  DSC_SLICE_ROW_PER_FRAME(slice_row_per_frame)	((slice_row_per_frame) << 20)
-+#define  DSC_SLICE_PER_LINE(slice_per_line)		((slice_per_line) << 16)
-+#define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)		((slice_chunk_size) << 0)
-+
-+/* Icelake Rate Control Buffer Threshold Registers */
-+#define DSCA_RC_BUF_THRESH_0			_MMIO(0x6B230)
-+#define DSCA_RC_BUF_THRESH_0_UDW		_MMIO(0x6B230 + 4)
-+#define DSCC_RC_BUF_THRESH_0			_MMIO(0x6BA30)
-+#define DSCC_RC_BUF_THRESH_0_UDW		_MMIO(0x6BA30 + 4)
-+#define _ICL_DSC0_RC_BUF_THRESH_0_PB		(0x78254)
-+#define _ICL_DSC0_RC_BUF_THRESH_0_UDW_PB	(0x78254 + 4)
-+#define _ICL_DSC1_RC_BUF_THRESH_0_PB		(0x78354)
-+#define _ICL_DSC1_RC_BUF_THRESH_0_UDW_PB	(0x78354 + 4)
-+#define _ICL_DSC0_RC_BUF_THRESH_0_PC		(0x78454)
-+#define _ICL_DSC0_RC_BUF_THRESH_0_UDW_PC	(0x78454 + 4)
-+#define _ICL_DSC1_RC_BUF_THRESH_0_PC		(0x78554)
-+#define _ICL_DSC1_RC_BUF_THRESH_0_UDW_PC	(0x78554 + 4)
-+#define ICL_DSC0_RC_BUF_THRESH_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC0_RC_BUF_THRESH_0_PB, \
-+						_ICL_DSC0_RC_BUF_THRESH_0_PC)
-+#define ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC0_RC_BUF_THRESH_0_UDW_PB, \
-+						_ICL_DSC0_RC_BUF_THRESH_0_UDW_PC)
-+#define ICL_DSC1_RC_BUF_THRESH_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC1_RC_BUF_THRESH_0_PB, \
-+						_ICL_DSC1_RC_BUF_THRESH_0_PC)
-+#define ICL_DSC1_RC_BUF_THRESH_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC1_RC_BUF_THRESH_0_UDW_PB, \
-+						_ICL_DSC1_RC_BUF_THRESH_0_UDW_PC)
-+
-+#define DSCA_RC_BUF_THRESH_1			_MMIO(0x6B238)
-+#define DSCA_RC_BUF_THRESH_1_UDW		_MMIO(0x6B238 + 4)
-+#define DSCC_RC_BUF_THRESH_1			_MMIO(0x6BA38)
-+#define DSCC_RC_BUF_THRESH_1_UDW		_MMIO(0x6BA38 + 4)
-+#define _ICL_DSC0_RC_BUF_THRESH_1_PB		(0x7825C)
-+#define _ICL_DSC0_RC_BUF_THRESH_1_UDW_PB	(0x7825C + 4)
-+#define _ICL_DSC1_RC_BUF_THRESH_1_PB		(0x7835C)
-+#define _ICL_DSC1_RC_BUF_THRESH_1_UDW_PB	(0x7835C + 4)
-+#define _ICL_DSC0_RC_BUF_THRESH_1_PC		(0x7845C)
-+#define _ICL_DSC0_RC_BUF_THRESH_1_UDW_PC	(0x7845C + 4)
-+#define _ICL_DSC1_RC_BUF_THRESH_1_PC		(0x7855C)
-+#define _ICL_DSC1_RC_BUF_THRESH_1_UDW_PC	(0x7855C + 4)
-+#define ICL_DSC0_RC_BUF_THRESH_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC0_RC_BUF_THRESH_1_PB, \
-+						_ICL_DSC0_RC_BUF_THRESH_1_PC)
-+#define ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC0_RC_BUF_THRESH_1_UDW_PB, \
-+						_ICL_DSC0_RC_BUF_THRESH_1_UDW_PC)
-+#define ICL_DSC1_RC_BUF_THRESH_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC1_RC_BUF_THRESH_1_PB, \
-+						_ICL_DSC1_RC_BUF_THRESH_1_PC)
-+#define ICL_DSC1_RC_BUF_THRESH_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+						_ICL_DSC1_RC_BUF_THRESH_1_UDW_PB, \
-+						_ICL_DSC1_RC_BUF_THRESH_1_UDW_PC)
-+
-+/* Icelake DSC Rate Control Range Parameter Registers */
-+#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
-+#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
-+#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
-+#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
-+#define RC_BPG_OFFSET_SHIFT			10
-+#define RC_MAX_QP_SHIFT				5
-+#define RC_MIN_QP_SHIFT				0
-+
-+#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
-+#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
-+#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
-+#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
-+
-+#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
-+#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
-+#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
-+#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
-+
-+#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
-+#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
-+#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
-+#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
-+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
-+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
-+#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
-+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
-+#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
-+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
-+
-+
-+#endif /* __INTEL_VDSC_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c1efa655fb68..f2ce4bde6a68 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2298,110 +2298,6 @@
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
- 
--/* Icelake DSC Rate Control Range Parameter Registers */
--#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
--#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
--#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
--#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
--#define RC_BPG_OFFSET_SHIFT			10
--#define RC_MAX_QP_SHIFT				5
--#define RC_MIN_QP_SHIFT				0
--
--#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
--#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
--#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
--#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
--
--#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
--#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
--#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
--#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
--
--#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
--#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
--#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
--#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
--#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
--#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
--#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
--							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
--#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
--							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
--
- /* VGA port control */
- #define ADPA			_MMIO(0x61100)
- #define PCH_ADPA                _MMIO(0xe1100)
-@@ -7669,44 +7565,6 @@ enum skl_power_gate {
- #define PIPE_FRMTMSTMP(pipe)		\
- 			_MMIO_PIPE2(pipe, _PIPE_FRMTMSTMP_A)
- 
--/* Display Stream Splitter Control */
--#define DSS_CTL1				_MMIO(0x67400)
--#define  SPLITTER_ENABLE			(1 << 31)
--#define  JOINER_ENABLE				(1 << 30)
--#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
--#define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
--#define  OVERLAP_PIXELS_MASK			(0xf << 16)
--#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
--#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
--#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
--#define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
--
--#define DSS_CTL2				_MMIO(0x67404)
--#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
--#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
--#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
--#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
--
--#define _ICL_PIPE_DSS_CTL1_PB			0x78200
--#define _ICL_PIPE_DSS_CTL1_PC			0x78400
--#define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_PIPE_DSS_CTL1_PB, \
--							   _ICL_PIPE_DSS_CTL1_PC)
--#define  BIG_JOINER_ENABLE			(1 << 29)
--#define  MASTER_BIG_JOINER_ENABLE		(1 << 28)
--#define  VGA_CENTERING_ENABLE			(1 << 27)
--#define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
--#define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
--#define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
--#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
--#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
--
--#define _ICL_PIPE_DSS_CTL2_PB			0x78204
--#define _ICL_PIPE_DSS_CTL2_PC			0x78404
--#define ICL_PIPE_DSS_CTL2(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_PIPE_DSS_CTL2_PB, \
--							   _ICL_PIPE_DSS_CTL2_PC)
--
- #define GGC				_MMIO(0x108040)
- #define   GMS_MASK			REG_GENMASK(15, 8)
- #define   GGMS_MASK			REG_GENMASK(7, 6)
-@@ -7730,314 +7588,6 @@ enum skl_power_gate {
- #define  ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN	(1 << 23)
- #define  DG2_PHY_DP_TX_ACK_MASK			REG_GENMASK(23, 20)
- 
--/* Icelake Display Stream Compression Registers */
--#define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
--#define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC	0x78570
--#define ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
--#define  DSC_ALT_ICH_SEL		(1 << 20)
--#define  DSC_VBR_ENABLE			(1 << 19)
--#define  DSC_422_ENABLE			(1 << 18)
--#define  DSC_COLOR_SPACE_CONVERSION	(1 << 17)
--#define  DSC_BLOCK_PREDICTION		(1 << 16)
--#define  DSC_LINE_BUF_DEPTH_SHIFT	12
--#define  DSC_BPC_SHIFT			8
--#define  DSC_VER_MIN_SHIFT		4
--#define  DSC_VER_MAJ			(0x1 << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_1		_MMIO(0x6B204)
--#define DSCC_PICTURE_PARAMETER_SET_1		_MMIO(0x6BA04)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_1_PB	0x78274
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_1_PB	0x78374
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_1_PC	0x78474
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_1_PC	0x78574
--#define ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_1_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_1_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_1_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_1_PC)
--#define  DSC_BPP(bpp)				((bpp) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_2		_MMIO(0x6B208)
--#define DSCC_PICTURE_PARAMETER_SET_2		_MMIO(0x6BA08)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_2_PB	0x78278
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_2_PB	0x78378
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_2_PC	0x78478
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_2_PC	0x78578
--#define ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_2_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_2_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PB, \
--					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PC)
--#define  DSC_PIC_WIDTH(pic_width)	((pic_width) << 16)
--#define  DSC_PIC_HEIGHT(pic_height)	((pic_height) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_3		_MMIO(0x6B20C)
--#define DSCC_PICTURE_PARAMETER_SET_3		_MMIO(0x6BA0C)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_3_PB	0x7827C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_3_PB	0x7837C
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_3_PC	0x7847C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_3_PC	0x7857C
--#define ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_3_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_3_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PC)
--#define  DSC_SLICE_WIDTH(slice_width)   ((slice_width) << 16)
--#define  DSC_SLICE_HEIGHT(slice_height) ((slice_height) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_4		_MMIO(0x6B210)
--#define DSCC_PICTURE_PARAMETER_SET_4		_MMIO(0x6BA10)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_4_PB	0x78280
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_4_PB	0x78380
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_4_PC	0x78480
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_4_PC	0x78580
--#define ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_4_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_4_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PC)
--#define  DSC_INITIAL_DEC_DELAY(dec_delay)       ((dec_delay) << 16)
--#define  DSC_INITIAL_XMIT_DELAY(xmit_delay)     ((xmit_delay) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_5		_MMIO(0x6B214)
--#define DSCC_PICTURE_PARAMETER_SET_5		_MMIO(0x6BA14)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_5_PB	0x78284
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_5_PB	0x78384
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_5_PC	0x78484
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_5_PC	0x78584
--#define ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_5_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_5_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PC)
--#define  DSC_SCALE_DEC_INT(scale_dec)	((scale_dec) << 16)
--#define  DSC_SCALE_INC_INT(scale_inc)		((scale_inc) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_6		_MMIO(0x6B218)
--#define DSCC_PICTURE_PARAMETER_SET_6		_MMIO(0x6BA18)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_6_PB	0x78288
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_6_PB	0x78388
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_6_PC	0x78488
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_6_PC	0x78588
--#define ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_6_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_6_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PC)
--#define  DSC_FLATNESS_MAX_QP(max_qp)		((max_qp) << 24)
--#define  DSC_FLATNESS_MIN_QP(min_qp)		((min_qp) << 16)
--#define  DSC_FIRST_LINE_BPG_OFFSET(offset)	((offset) << 8)
--#define  DSC_INITIAL_SCALE_VALUE(value)		((value) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_7		_MMIO(0x6B21C)
--#define DSCC_PICTURE_PARAMETER_SET_7		_MMIO(0x6BA1C)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_7_PB	0x7828C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_7_PB	0x7838C
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_7_PC	0x7848C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_7_PC	0x7858C
--#define ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							    _ICL_DSC0_PICTURE_PARAMETER_SET_7_PB, \
--							    _ICL_DSC0_PICTURE_PARAMETER_SET_7_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PB, \
--							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PC)
--#define  DSC_NFL_BPG_OFFSET(bpg_offset)		((bpg_offset) << 16)
--#define  DSC_SLICE_BPG_OFFSET(bpg_offset)	((bpg_offset) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_8		_MMIO(0x6B220)
--#define DSCC_PICTURE_PARAMETER_SET_8		_MMIO(0x6BA20)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_8_PB	0x78290
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_8_PB	0x78390
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_8_PC	0x78490
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_8_PC	0x78590
--#define ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_8_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_8_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PC)
--#define  DSC_INITIAL_OFFSET(initial_offset)		((initial_offset) << 16)
--#define  DSC_FINAL_OFFSET(final_offset)			((final_offset) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_9		_MMIO(0x6B224)
--#define DSCC_PICTURE_PARAMETER_SET_9		_MMIO(0x6BA24)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_9_PB	0x78294
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_9_PB	0x78394
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_9_PC	0x78494
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_9_PC	0x78594
--#define ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_9_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_9_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PC)
--#define  DSC_RC_EDGE_FACTOR(rc_edge_fact)	((rc_edge_fact) << 16)
--#define  DSC_RC_MODEL_SIZE(rc_model_size)	((rc_model_size) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_10		_MMIO(0x6B228)
--#define DSCC_PICTURE_PARAMETER_SET_10		_MMIO(0x6BA28)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_10_PB	0x78298
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_10_PB	0x78398
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_10_PC	0x78498
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_10_PC	0x78598
--#define ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_10_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_10_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PC)
--#define  DSC_RC_TARGET_OFF_LOW(rc_tgt_off_low)		((rc_tgt_off_low) << 20)
--#define  DSC_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	((rc_tgt_off_high) << 16)
--#define  DSC_RC_QUANT_INC_LIMIT1(lim)			((lim) << 8)
--#define  DSC_RC_QUANT_INC_LIMIT0(lim)			((lim) << 0)
--
--#define DSCA_PICTURE_PARAMETER_SET_11		_MMIO(0x6B22C)
--#define DSCC_PICTURE_PARAMETER_SET_11		_MMIO(0x6BA2C)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_11_PB	0x7829C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_11_PB	0x7839C
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_11_PC	0x7849C
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_11_PC	0x7859C
--#define ICL_DSC0_PICTURE_PARAMETER_SET_11(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_11_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_11_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_11(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_11_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_11_PC)
--
--#define DSCA_PICTURE_PARAMETER_SET_12		_MMIO(0x6B260)
--#define DSCC_PICTURE_PARAMETER_SET_12		_MMIO(0x6BA60)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_12_PB	0x782A0
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_12_PB	0x783A0
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_12_PC	0x784A0
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_12_PC	0x785A0
--#define ICL_DSC0_PICTURE_PARAMETER_SET_12(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_12_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_12_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_12(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_12_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_12_PC)
--
--#define DSCA_PICTURE_PARAMETER_SET_13		_MMIO(0x6B264)
--#define DSCC_PICTURE_PARAMETER_SET_13		_MMIO(0x6BA64)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_13_PB	0x782A4
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_13_PB	0x783A4
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_13_PC	0x784A4
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_13_PC	0x785A4
--#define ICL_DSC0_PICTURE_PARAMETER_SET_13(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_13_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_13_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_13(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_13_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_13_PC)
--
--#define DSCA_PICTURE_PARAMETER_SET_14		_MMIO(0x6B268)
--#define DSCC_PICTURE_PARAMETER_SET_14		_MMIO(0x6BA68)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_14_PB	0x782A8
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_14_PB	0x783A8
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_14_PC	0x784A8
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_14_PC	0x785A8
--#define ICL_DSC0_PICTURE_PARAMETER_SET_14(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_14_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_14_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_14(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_14_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_14_PC)
--
--#define DSCA_PICTURE_PARAMETER_SET_15		_MMIO(0x6B26C)
--#define DSCC_PICTURE_PARAMETER_SET_15		_MMIO(0x6BA6C)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_15_PB	0x782AC
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_15_PB	0x783AC
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_15_PC	0x784AC
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_15_PC	0x785AC
--#define ICL_DSC0_PICTURE_PARAMETER_SET_15(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_15_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_15_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_15(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_15_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_15_PC)
--
--#define DSCA_PICTURE_PARAMETER_SET_16		_MMIO(0x6B270)
--#define DSCC_PICTURE_PARAMETER_SET_16		_MMIO(0x6BA70)
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_16_PB	0x782B0
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_16_PB	0x783B0
--#define _ICL_DSC0_PICTURE_PARAMETER_SET_16_PC	0x784B0
--#define _ICL_DSC1_PICTURE_PARAMETER_SET_16_PC	0x785B0
--#define ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_16_PB, \
--							   _ICL_DSC0_PICTURE_PARAMETER_SET_16_PC)
--#define ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PB, \
--							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PC)
--#define  DSC_SLICE_ROW_PER_FRAME(slice_row_per_frame)	((slice_row_per_frame) << 20)
--#define  DSC_SLICE_PER_LINE(slice_per_line)		((slice_per_line) << 16)
--#define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)		((slice_chunk_size) << 0)
--
--/* Icelake Rate Control Buffer Threshold Registers */
--#define DSCA_RC_BUF_THRESH_0			_MMIO(0x6B230)
--#define DSCA_RC_BUF_THRESH_0_UDW		_MMIO(0x6B230 + 4)
--#define DSCC_RC_BUF_THRESH_0			_MMIO(0x6BA30)
--#define DSCC_RC_BUF_THRESH_0_UDW		_MMIO(0x6BA30 + 4)
--#define _ICL_DSC0_RC_BUF_THRESH_0_PB		(0x78254)
--#define _ICL_DSC0_RC_BUF_THRESH_0_UDW_PB	(0x78254 + 4)
--#define _ICL_DSC1_RC_BUF_THRESH_0_PB		(0x78354)
--#define _ICL_DSC1_RC_BUF_THRESH_0_UDW_PB	(0x78354 + 4)
--#define _ICL_DSC0_RC_BUF_THRESH_0_PC		(0x78454)
--#define _ICL_DSC0_RC_BUF_THRESH_0_UDW_PC	(0x78454 + 4)
--#define _ICL_DSC1_RC_BUF_THRESH_0_PC		(0x78554)
--#define _ICL_DSC1_RC_BUF_THRESH_0_UDW_PC	(0x78554 + 4)
--#define ICL_DSC0_RC_BUF_THRESH_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC0_RC_BUF_THRESH_0_PB, \
--						_ICL_DSC0_RC_BUF_THRESH_0_PC)
--#define ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC0_RC_BUF_THRESH_0_UDW_PB, \
--						_ICL_DSC0_RC_BUF_THRESH_0_UDW_PC)
--#define ICL_DSC1_RC_BUF_THRESH_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC1_RC_BUF_THRESH_0_PB, \
--						_ICL_DSC1_RC_BUF_THRESH_0_PC)
--#define ICL_DSC1_RC_BUF_THRESH_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC1_RC_BUF_THRESH_0_UDW_PB, \
--						_ICL_DSC1_RC_BUF_THRESH_0_UDW_PC)
--
--#define DSCA_RC_BUF_THRESH_1			_MMIO(0x6B238)
--#define DSCA_RC_BUF_THRESH_1_UDW		_MMIO(0x6B238 + 4)
--#define DSCC_RC_BUF_THRESH_1			_MMIO(0x6BA38)
--#define DSCC_RC_BUF_THRESH_1_UDW		_MMIO(0x6BA38 + 4)
--#define _ICL_DSC0_RC_BUF_THRESH_1_PB		(0x7825C)
--#define _ICL_DSC0_RC_BUF_THRESH_1_UDW_PB	(0x7825C + 4)
--#define _ICL_DSC1_RC_BUF_THRESH_1_PB		(0x7835C)
--#define _ICL_DSC1_RC_BUF_THRESH_1_UDW_PB	(0x7835C + 4)
--#define _ICL_DSC0_RC_BUF_THRESH_1_PC		(0x7845C)
--#define _ICL_DSC0_RC_BUF_THRESH_1_UDW_PC	(0x7845C + 4)
--#define _ICL_DSC1_RC_BUF_THRESH_1_PC		(0x7855C)
--#define _ICL_DSC1_RC_BUF_THRESH_1_UDW_PC	(0x7855C + 4)
--#define ICL_DSC0_RC_BUF_THRESH_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC0_RC_BUF_THRESH_1_PB, \
--						_ICL_DSC0_RC_BUF_THRESH_1_PC)
--#define ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC0_RC_BUF_THRESH_1_UDW_PB, \
--						_ICL_DSC0_RC_BUF_THRESH_1_UDW_PC)
--#define ICL_DSC1_RC_BUF_THRESH_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC1_RC_BUF_THRESH_1_PB, \
--						_ICL_DSC1_RC_BUF_THRESH_1_PC)
--#define ICL_DSC1_RC_BUF_THRESH_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
--						_ICL_DSC1_RC_BUF_THRESH_1_UDW_PB, \
--						_ICL_DSC1_RC_BUF_THRESH_1_UDW_PC)
--
- #define PORT_TX_DFLEXDPSP(fia)			_MMIO_FIA((fia), 0x008A0)
- #define   MODULAR_FIA_MASK			(1 << 4)
- #define   TC_LIVE_STATE_TBT(idx)		(1 << ((idx) * 8 + 6))
--- 
-2.39.1
+?
 
+>
+>>=20
+>> Cc: Lyude Paul <lyude@redhat.com>
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> ---
+>> =C2=A0drivers/gpu/drm/i915/display/intel_bios.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 6 ++++++
+>> =C2=A0drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+>> =C2=A0drivers/gpu/drm/i915/display/intel_dp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 9 +++++++--
+>> =C2=A03 files changed, 14 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+>> b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index f35ef3675d39..f16887aed56d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -1084,6 +1084,12 @@ parse_lfp_backlight(struct drm_i915_private
+>> *i915,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0panel->vbt.backlight.min_brightness =3D entry-
+>> >min_brightness;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>> =C2=A0
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (i915->display.vbt.version=
+ >=3D 239)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->vbt.backlight.hdr_dpcd_refresh_timeout =3D
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DIV_RO=
+UND_UP(backlight_data-
+>> >hdr_dpcd_refresh_timeout[panel_type], 100);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->vbt.backlight.hdr_dpcd_refresh_timeout =3D 30;
+>> +
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "VBT backlight PWM modulation fr=
+equency %u Hz, "
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "active %s, min brightness %u, l=
+evel %u,
+>> controller %u\n",
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index 748b0cd411fa..76f47ba3be45 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -326,6 +326,7 @@ struct intel_vbt_panel_data {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0u16 pwm_freq_hz;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0u16 brightness_precision_bits;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0u16 hdr_dpcd_refresh_timeout;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0bool present;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0bool active_low_pwm;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0u8 min_brightness;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0/* min_brightness/255 of max
+>> */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index b77bd4565864..3734e7567230 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -2293,10 +2293,15 @@ intel_edp_init_source_oui(struct intel_dp
+>> *intel_dp, bool careful)
+>> =C2=A0
+>> =C2=A0void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
+>> =C2=A0{
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_connector *conne=
+ctor =3D intel_dp-
+>> >attached_connector;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private =
+*i915 =3D dp_to_i915(intel_dp);
+>> =C2=A0
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Perf=
+orming OUI wait\n");
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0wait_remaining_ms_from_jiffie=
+s(intel_dp->last_oui_write, 30);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "[CON=
+NECTOR:%d:%s] Performing OUI
+>> wait (%u ms)\n",
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 connector->base.base.id, connector-=
+>base.name,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 connector-
+>> >panel.vbt.backlight.hdr_dpcd_refresh_timeout);
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0wait_remaining_ms_from_jiffie=
+s(intel_dp->last_oui_write,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 connector-
+>> >panel.vbt.backlight.hdr_dpcd_refresh_timeout);
+>> =C2=A0}
+>> =C2=A0
+>> =C2=A0/* If the device supports it, try to set the power state
+>> appropriately */
+>
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
