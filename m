@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CEAF6A6973
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 10:05:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1726A697D
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Mar 2023 10:10:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC2B310E216;
-	Wed,  1 Mar 2023 09:05:04 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8091810E216
- for <Intel-GFX@lists.freedesktop.org>; Wed,  1 Mar 2023 09:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4DFE10E219;
+	Wed,  1 Mar 2023 09:10:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B4610E219
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Mar 2023 09:10:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677661502; x=1709197502;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=OkR9ThoByySFblLT2H5aT3IJSUU0GP/n9zMn20DSQUc=;
- b=PnGvmhd2HtcMS2zGjQoMwDf9JpqiKUg2Bu5d+A9vyjUns7ZvVDAOwc+4
- iqq/oCr4sDeTkSf7MhHwyveJSnfCMEHtz8zl+J5WuFcvsw/aqPqLNiw3Z
- h2TdaVb+ADG31zhQSdxMQNY5sI6SiHKEllhXJ2KeqW08Pqgm5bv5k/Ab5
- 42U2HCc05I9O50rMp2wZyfh2LpiFKRod+Cq5YD3z0WeZDEa59NVg6k2ap
- bjEuuiFghigIOhFSwob6f5rSfOQfhxF7QcAkfig2Q/jnx4Q/HobP5qN1R
- w+M2urKG2vecOfQZpjfQqGdOZdEWnJ8zjy+jteoiv2rwIzvjL0OEE7c4d w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="420617692"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="420617692"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 01:05:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="848571722"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="848571722"
-Received: from unknown (HELO intel.com) ([10.252.57.78])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 01:04:59 -0800
-Date: Wed, 1 Mar 2023 10:04:57 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Message-ID: <Y/8VOYM0b5ake8pT@ashyti-mobl2.lan>
-References: <20230228044307.191639-1-tejas.upadhyay@intel.com>
+ t=1677661839; x=1709197839;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Em+P88T+EKWMXn1q3nO2qS824HPJ9pmECb0c8n+8PBw=;
+ b=FIttsAV3DBeVOZLPVaVPw8RnU40QCaKzDM4kfSr3hPBbbcOQsvPWkGXz
+ kaAbdEEcm/CKgcL0nzI20OXbXwpfLFNSUxqmIU/IG93JY4B+H9JyYvU/A
+ Tx05ZS2VbG3aMLGtwPUaX/YxB0noSJQbL1dQb4nUJm29WkSq6Q4rWdSX/
+ kV68mFNDoYARLt2tvnWnPwD9uzrZ8EYkXaVqF0g1w55jZd/L4kq5twO7E
+ ATuF/EC6TRUWKeJz8giA1akDtdR5z0kYsGyDB5JaqvmAhidAvclfah/0+
+ Svbh1hzyy1kW4XyWHgRWo++hJ2Mq/xUbLpB8qnSjBe8Jb3liFMRdR1JDo w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="334396341"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="334396341"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 01:10:39 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="784262104"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="784262104"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com (HELO
+ jkrzyszt-mobl1.intranet) ([10.213.8.127])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2023 01:10:38 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Mar 2023 10:10:16 +0100
+Message-Id: <20230301091017.31725-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230228044307.191639-1-tejas.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [Intel-gfx V2] drm/i915/selftests: Fix
- live_requests for all engines
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI v2 0/1] drm/i915/active: Fix misuse of non-idle
+ barriers as fence trackers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,31 +56,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tejas,
+Dummy cover letter to prevent CI / patchwork from picking up a previous
+one with an outdated Test-with: clause.
 
-On Tue, Feb 28, 2023 at 10:13:07AM +0530, Tejas Upadhyay wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> After the abandonment of i915->kernel_context and since we have started to
-> create per-gt engine->kernel_context, these tests need to be updated to
-> instantiate the batch buffer VMA in the correct PPGTT for the context used
-> to execute each spinner.
-> 
-> v2(Tejas):
->   - Clean commit message - Matt
->   - Add BUG_ON to match vm
-> v3(Tejas):
->   - Fix dim checkpatch warnings
-> 
-> Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Janusz Krzysztofik (1):
+  drm/i915/active: Fix misuse of non-idle barriers as fence trackers
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+ drivers/gpu/drm/i915/i915_active.c | 25 ++++++++++++++-----------
+ 1 file changed, 14 insertions(+), 11 deletions(-)
 
-Thanks Tejas,
-Andi
+-- 
+2.25.1
+
