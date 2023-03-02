@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657FB6A814E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 12:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A98026A8122
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 12:35:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B24E10E111;
-	Thu,  2 Mar 2023 11:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5710310E111;
+	Thu,  2 Mar 2023 11:35:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39DA210E111;
- Thu,  2 Mar 2023 11:38:04 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68B5310E111
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Mar 2023 11:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677757084; x=1709293084;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Awp1RaRtdeBZetWNq0LOyFMzCvS4VCcLxIz3PkIbqig=;
- b=c0Ac5/rRHFEOJk9A9L9gTmX4b2KZEwppk0LvQ3mFuotNuaBhcGb69hyV
- BuLRYhQtKotKBKEvKCX2l575WMFjNaE2GaiISLL1N457M2vzRJ+6deEQn
- cMSWZ7tngdhTieNIxVROdtEPgXicCRK+ae3vgadkuoU0CD57kSP9+DLXD
- 2sAJVQR0en9aqudxwyrdC14HyMiLkDxVf8npRvEbOCEIKs77U6vH73Dfn
- zMEO6iUI3czQPpoeTrXtk//GBrdgqrhxOHt3TTskFP/7s7OQuc1EmQY6X
- tbAi/Hf9Z9LQBtTpLxV4sIex+Cvu1R4kiHHHorsVBOZ7sXzyPPSx0/Ajc Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="334723478"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="334723478"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 03:33:22 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="707380140"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="707380140"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.30.127])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 03:33:18 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Date: Thu, 02 Mar 2023 12:33:16 +0100
-Message-ID: <45361712.fMDQidcC6G@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <Y//w3T2BTr8rQt6z@ashyti-mobl2.lan>
-References: <20230225221218.134254-1-janusz.krzysztofik@linux.intel.com>
- <Y//w3T2BTr8rQt6z@ashyti-mobl2.lan>
+ t=1677756919; x=1709292919;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=YN+h5BBq9g0CbxK3tsgpp4B0z9mmQlAcqraUqFXXi0w=;
+ b=iQf7Ip4xxF3ihny8N9j0yHzeDd3Bpfoj6QgPu5/YXbIXafz3dg4T1bzW
+ YQw+4/Pvvr09yA5f2DPsmE7PhqNhdex6U5rFL6bokLZCl8zK9DE+84ypV
+ zaw0vWVLukM7q+oSrOnA7EpDLUATL2y2hZqg+F7WKfHDVg4+MoGBNhFY1
+ dr/saOlv9+N9DxtDmG9ymn78mg0+C6slogEJi9SAd0CJhgIPRIRIBTR7s
+ hxFhTENdD/2O1nEt1xHXmF4HhSfTaxsrEx2KTdKuOUdnSV7I8PAuq+HnW
+ zeQ+bJxDcnumA4s+7/CIu+6F16Xw3mS0VJohzTZ6Ia6vylFtt4FN0SPoC w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="336195185"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="336195185"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 03:35:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="668200836"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="668200836"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 03:35:17 -0800
+Date: Thu, 2 Mar 2023 13:35:15 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZACJ80onyvv9/HX0@ideak-desk.fi.intel.com>
+References: <20230301122944.1298929-1-jani.nikula@intel.com>
+ <20230301122944.1298929-5-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/active: Fix misuse of non-idle
- barriers as fence trackers
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230301122944.1298929-5-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 5/5] drm/i915/dmc: mass rename dev_priv
+ to i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,175 +58,426 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andy,
-
-Thanks for review.
-
-On Thursday, 2 March 2023 01:42:05 CET Andi Shyti wrote:
-> Hi Janusz,
+On Wed, Mar 01, 2023 at 02:29:44PM +0200, Jani Nikula wrote:
+> Follow the contemporary convention for struct drm_i915_private * naming.
 > 
-> On Sat, Feb 25, 2023 at 11:12:18PM +0100, Janusz Krzysztofik wrote:
-> > Users reported oopses on list corruptions when using i915 perf with a
-> > number of concurrently running graphics applications.  Root cause analysis
-> > pointed at an issue in barrier processing code -- a race among perf open /
-> > close replacing active barriers with perf requests on kernel context and
-> > concurrent barrier preallocate / acquire operations performed during user
-> > context first pin / last unpin.
-> > 
-> > When adding a request to a composite tracker, we try to reuse an existing
-> > fence tracker, already allocated and registered with that composite.  The
-> > tracker we obtain may already track another fence, may be an idle barrier,
-> > or an active barrier.
-> > 
-> > If the tracker we get occurs a non-idle barrier then we try to delete that
-> > barrier from a list of barrier tasks it belongs to.  However, while doing
-> > that we don't respect return value from a function that performs the
-> > barrier deletion.  Should the deletion ever failed, we would end up
-> > reusing the tracker still registered as a barrier task.  Since the same
-> > structure field is reused with both fence callback lists and barrier
-> > tasks list, list corruptions would likely occur.
-> > 
-> > Barriers are now deleted from a barrier tasks list by temporarily removing
-> > the list content, traversing that content with skip over the node to be
-> > deleted, then populating the list back with the modified content.  Should
-> > that intentionally racy concurrent deletion attempts be not serialized,
-> > one or more of those may fail because of the list being temporary empty.
-> > 
-> > Related code that ignores the results of barrier deletion was initially
-> > introduced in v5.4 by commit d8af05ff38ae ("drm/i915: Allow sharing the
-> > idle-barrier from other kernel requests").  However, all users of the
-> > barrier deletion routine were apparently serialized at that time, then the
-> > issue didn't exhibit itself.  Results of git bisect with help of a newly
-> > developed igt@gem_barrier_race@remote-request IGT test indicate that list
-> > corruptions might start to appear after commit 311770173fac ("drm/i915/gt:
-> > Schedule request retirement when timeline idles"), introduced in v5.5.
-> > 
-> > Respect results of barrier deletion attempts -- mark the barrier as idle
-> > only if successfully deleted from the list.  Then, before proceeding with
-> > setting our fence as the one currently tracked, make sure that the tracker
-> > we've got is not a non-idle barrier.  If that check fails then don't use
-> > that tracker but go back and try to acquire a new, usable one.
-> > 
-> > v2: no code changes,
-> >   - blame commit 311770173fac ("drm/i915/gt: Schedule request retirement
-> >     when timeline idles"), v5.5, not commit d8af05ff38ae ("drm/i915: Allow
-> >     sharing the idle-barrier from other kernel requests"), v5.4,
-> >   - reword commit description.
-> 
-> That's a very good explanation and very much needed for such a
-> catch. Thanks!
-> 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
-> > Fixes: 311770173fac ("drm/i915/gt: Schedule request retirement when 
-timeline idles")
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: stable@vger.kernel.org # v5.5
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_active.c | 25 ++++++++++++++-----------
-> >  1 file changed, 14 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/
-i915_active.c
-> > index 7412abf166a8c..f9282b8c87c1c 100644
-> > --- a/drivers/gpu/drm/i915/i915_active.c
-> > +++ b/drivers/gpu/drm/i915/i915_active.c
-> > @@ -422,12 +422,12 @@ replace_barrier(struct i915_active *ref, struct 
-i915_active_fence *active)
-> >  	 * we can use it to substitute for the pending idle-barrer
-> >  	 * request that we want to emit on the kernel_context.
-> >  	 */
-> > -	__active_del_barrier(ref, node_from_active(active));
-> > -	return true;
-> > +	return __active_del_barrier(ref, node_from_active(active));
-> 
-> In general, I support the idea of always checking the return
-> value, even if we expect a certain outcome. In these cases, the
-> likely/unlikely macros can be helpful. 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-OK.
+Looks ok to me, on the patchset:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-> Given this change, I
-> believe the patch deserves an ack.
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 166 +++++++++++------------
+>  1 file changed, 81 insertions(+), 85 deletions(-)
 > 
-> That being said, I was curious whether using an explicit lock
-> and a normal list of active barriers, rather than a lockless
-> list, could have solved the problem.  It seems like using a
-> lockless list and iterating over it could be overkill, unless
-> there are specific scenarios where the lockless properties are
-> necessary.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index 302a465ceb1f..6b162f77340e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -313,12 +313,12 @@ intel_get_stepping_info(struct drm_i915_private *i915,
+>  	return si;
+>  }
+>  
+> -static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+> +static void gen9_set_dc_state_debugmask(struct drm_i915_private *i915)
+>  {
+>  	/* The below bit doesn't need to be cleared ever afterwards */
+> -	intel_de_rmw(dev_priv, DC_STATE_DEBUG, 0,
+> +	intel_de_rmw(i915, DC_STATE_DEBUG, 0,
+>  		     DC_STATE_DEBUG_MASK_CORES | DC_STATE_DEBUG_MASK_MEMORY_UP);
+> -	intel_de_posting_read(dev_priv, DC_STATE_DEBUG);
+> +	intel_de_posting_read(i915, DC_STATE_DEBUG);
+>  }
+>  
+>  static void disable_event_handler(struct drm_i915_private *i915,
+> @@ -476,33 +476,33 @@ void intel_dmc_disable_pipe(struct drm_i915_private *i915, enum pipe pipe)
+>  
+>  /**
+>   * intel_dmc_load_program() - write the firmware from memory to register.
+> - * @dev_priv: i915 drm device.
+> + * @i915: i915 drm device.
+>   *
+>   * DMC firmware is read from a .bin file and kept in internal memory one time.
+>   * Everytime display comes back from low power state this function is called to
+>   * copy the firmware from internal memory to registers.
+>   */
+> -void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+> +void intel_dmc_load_program(struct drm_i915_private *i915)
+>  {
+> -	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+> -	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
+> +	struct i915_power_domains *power_domains = &i915->display.power.domains;
+> +	struct intel_dmc *dmc = i915_to_dmc(i915);
+>  	enum intel_dmc_id dmc_id;
+>  	u32 i;
+>  
+> -	if (!intel_dmc_has_payload(dev_priv))
+> +	if (!intel_dmc_has_payload(i915))
+>  		return;
+>  
+> -	pipedmc_clock_gating_wa(dev_priv, true);
+> +	pipedmc_clock_gating_wa(i915, true);
+>  
+> -	disable_all_event_handlers(dev_priv);
+> +	disable_all_event_handlers(i915);
+>  
+> -	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
+> +	assert_rpm_wakelock_held(&i915->runtime_pm);
+>  
+>  	preempt_disable();
+>  
+>  	for_each_dmc_id(dmc_id) {
+>  		for (i = 0; i < dmc->dmc_info[dmc_id].dmc_fw_size; i++) {
+> -			intel_de_write_fw(dev_priv,
+> +			intel_de_write_fw(i915,
+>  					  DMC_PROGRAM(dmc->dmc_info[dmc_id].start_mmioaddr, i),
+>  					  dmc->dmc_info[dmc_id].payload[i]);
+>  		}
+> @@ -512,23 +512,23 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+>  
+>  	for_each_dmc_id(dmc_id) {
+>  		for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
+> -			intel_de_write(dev_priv, dmc->dmc_info[dmc_id].mmioaddr[i],
+> +			intel_de_write(i915, dmc->dmc_info[dmc_id].mmioaddr[i],
+>  				       dmc->dmc_info[dmc_id].mmiodata[i]);
+>  		}
+>  	}
+>  
+>  	power_domains->dc_state = 0;
+>  
+> -	gen9_set_dc_state_debugmask(dev_priv);
+> +	gen9_set_dc_state_debugmask(i915);
+>  
+>  	/*
+>  	 * Flip queue events need to be disabled before enabling DC5/6.
+>  	 * i915 doesn't use the flip queue feature, so disable it already
+>  	 * here.
+>  	 */
+> -	disable_all_flip_queue_events(dev_priv);
+> +	disable_all_flip_queue_events(i915);
+>  
+> -	pipedmc_clock_gating_wa(dev_priv, false);
+> +	pipedmc_clock_gating_wa(i915, false);
+>  }
+>  
+>  /**
+> @@ -839,12 +839,12 @@ static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
+>  
+>  static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+>  {
+> -	struct drm_i915_private *dev_priv = dmc->i915;
+> +	struct drm_i915_private *i915 = dmc->i915;
+>  	struct intel_css_header *css_header;
+>  	struct intel_package_header *package_header;
+>  	struct intel_dmc_header_base *dmc_header;
+>  	struct stepping_info display_info = { '*', '*'};
+> -	const struct stepping_info *si = intel_get_stepping_info(dev_priv, &display_info);
+> +	const struct stepping_info *si = intel_get_stepping_info(i915, &display_info);
+>  	enum intel_dmc_id dmc_id;
+>  	u32 readcount = 0;
+>  	u32 r, offset;
+> @@ -874,7 +874,7 @@ static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+>  
+>  		offset = readcount + dmc->dmc_info[dmc_id].dmc_offset * 4;
+>  		if (offset > fw->size) {
+> -			drm_err(&dev_priv->drm, "Reading beyond the fw_size\n");
+> +			drm_err(&i915->drm, "Reading beyond the fw_size\n");
+>  			continue;
+>  		}
+>  
+> @@ -883,19 +883,18 @@ static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+>  	}
+>  }
+>  
+> -static void intel_dmc_runtime_pm_get(struct drm_i915_private *dev_priv)
+> +static void intel_dmc_runtime_pm_get(struct drm_i915_private *i915)
+>  {
+> -	drm_WARN_ON(&dev_priv->drm, dev_priv->display.dmc.wakeref);
+> -	dev_priv->display.dmc.wakeref =
+> -		intel_display_power_get(dev_priv, POWER_DOMAIN_INIT);
+> +	drm_WARN_ON(&i915->drm, i915->display.dmc.wakeref);
+> +	i915->display.dmc.wakeref = intel_display_power_get(i915, POWER_DOMAIN_INIT);
+>  }
+>  
+> -static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
+> +static void intel_dmc_runtime_pm_put(struct drm_i915_private *i915)
+>  {
+>  	intel_wakeref_t wakeref __maybe_unused =
+> -		fetch_and_zero(&dev_priv->display.dmc.wakeref);
+> +		fetch_and_zero(&i915->display.dmc.wakeref);
+>  
+> -	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+> +	intel_display_power_put(i915, POWER_DOMAIN_INIT, wakeref);
+>  }
+>  
+>  static const char *dmc_fallback_path(struct drm_i915_private *i915)
+> @@ -909,21 +908,19 @@ static const char *dmc_fallback_path(struct drm_i915_private *i915)
+>  static void dmc_load_work_fn(struct work_struct *work)
+>  {
+>  	struct intel_dmc *dmc = container_of(work, typeof(*dmc), work);
+> -	struct drm_i915_private *dev_priv = dmc->i915;
+> +	struct drm_i915_private *i915 = dmc->i915;
+>  	const struct firmware *fw = NULL;
+>  	const char *fallback_path;
+>  	int err;
+>  
+> -	err = request_firmware(&fw, dmc->fw_path, dev_priv->drm.dev);
+> +	err = request_firmware(&fw, dmc->fw_path, i915->drm.dev);
+>  
+> -	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
+> -		fallback_path = dmc_fallback_path(dev_priv);
+> +	if (err == -ENOENT && !i915->params.dmc_firmware_path) {
+> +		fallback_path = dmc_fallback_path(i915);
+>  		if (fallback_path) {
+> -			drm_dbg_kms(&dev_priv->drm,
+> -				    "%s not found, falling back to %s\n",
+> -				    dmc->fw_path,
+> -				    fallback_path);
+> -			err = request_firmware(&fw, fallback_path, dev_priv->drm.dev);
+> +			drm_dbg_kms(&i915->drm, "%s not found, falling back to %s\n",
+> +				    dmc->fw_path, fallback_path);
+> +			err = request_firmware(&fw, fallback_path, i915->drm.dev);
+>  			if (err == 0)
+>  				dmc->fw_path = fallback_path;
+>  		}
+> @@ -931,20 +928,19 @@ static void dmc_load_work_fn(struct work_struct *work)
+>  
+>  	parse_dmc_fw(dmc, fw);
+>  
+> -	if (intel_dmc_has_payload(dev_priv)) {
+> -		intel_dmc_load_program(dev_priv);
+> -		intel_dmc_runtime_pm_put(dev_priv);
+> +	if (intel_dmc_has_payload(i915)) {
+> +		intel_dmc_load_program(i915);
+> +		intel_dmc_runtime_pm_put(i915);
+>  
+> -		drm_info(&dev_priv->drm,
+> -			 "Finished loading DMC firmware %s (v%u.%u)\n",
+> +		drm_info(&i915->drm, "Finished loading DMC firmware %s (v%u.%u)\n",
+>  			 dmc->fw_path, DMC_VERSION_MAJOR(dmc->version),
+>  			 DMC_VERSION_MINOR(dmc->version));
+>  	} else {
+> -		drm_notice(&dev_priv->drm,
+> +		drm_notice(&i915->drm,
+>  			   "Failed to load DMC firmware %s."
+>  			   " Disabling runtime power management.\n",
+>  			   dmc->fw_path);
+> -		drm_notice(&dev_priv->drm, "DMC firmware homepage: %s",
+> +		drm_notice(&i915->drm, "DMC firmware homepage: %s",
+>  			   INTEL_UC_FIRMWARE_URL);
+>  	}
+>  
+> @@ -953,16 +949,16 @@ static void dmc_load_work_fn(struct work_struct *work)
+>  
+>  /**
+>   * intel_dmc_init() - initialize the firmware loading.
+> - * @dev_priv: i915 drm device.
+> + * @i915: i915 drm device.
+>   *
+>   * This function is called at the time of loading the display driver to read
+>   * firmware from a .bin file and copied into a internal memory.
+>   */
+> -void intel_dmc_init(struct drm_i915_private *dev_priv)
+> +void intel_dmc_init(struct drm_i915_private *i915)
+>  {
+>  	struct intel_dmc *dmc;
+>  
+> -	if (!HAS_DMC(dev_priv))
+> +	if (!HAS_DMC(i915))
+>  		return;
+>  
+>  	/*
+> @@ -973,72 +969,72 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+>  	 * suspend as runtime suspend *requires* a working DMC for whatever
+>  	 * reason.
+>  	 */
+> -	intel_dmc_runtime_pm_get(dev_priv);
+> +	intel_dmc_runtime_pm_get(i915);
+>  
+>  	dmc = kzalloc(sizeof(*dmc), GFP_KERNEL);
+>  	if (!dmc)
+>  		return;
+>  
+> -	dmc->i915 = dev_priv;
+> +	dmc->i915 = i915;
+>  
+>  	INIT_WORK(&dmc->work, dmc_load_work_fn);
+>  
+> -	if (IS_DG2(dev_priv)) {
+> +	if (IS_DG2(i915)) {
+>  		dmc->fw_path = DG2_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
+> -	} else if (IS_ALDERLAKE_P(dev_priv)) {
+> +	} else if (IS_ALDERLAKE_P(i915)) {
+>  		dmc->fw_path = ADLP_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
+> -	} else if (IS_ALDERLAKE_S(dev_priv)) {
+> +	} else if (IS_ALDERLAKE_S(i915)) {
+>  		dmc->fw_path = ADLS_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
+> -	} else if (IS_DG1(dev_priv)) {
+> +	} else if (IS_DG1(i915)) {
+>  		dmc->fw_path = DG1_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
+> -	} else if (IS_ROCKETLAKE(dev_priv)) {
+> +	} else if (IS_ROCKETLAKE(i915)) {
+>  		dmc->fw_path = RKL_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
+> -	} else if (IS_TIGERLAKE(dev_priv)) {
+> +	} else if (IS_TIGERLAKE(i915)) {
+>  		dmc->fw_path = TGL_DMC_PATH;
+>  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
+> -	} else if (DISPLAY_VER(dev_priv) == 11) {
+> +	} else if (DISPLAY_VER(i915) == 11) {
+>  		dmc->fw_path = ICL_DMC_PATH;
+>  		dmc->max_fw_size = ICL_DMC_MAX_FW_SIZE;
+> -	} else if (IS_GEMINILAKE(dev_priv)) {
+> +	} else if (IS_GEMINILAKE(i915)) {
+>  		dmc->fw_path = GLK_DMC_PATH;
+>  		dmc->max_fw_size = GLK_DMC_MAX_FW_SIZE;
+> -	} else if (IS_KABYLAKE(dev_priv) ||
+> -		   IS_COFFEELAKE(dev_priv) ||
+> -		   IS_COMETLAKE(dev_priv)) {
+> +	} else if (IS_KABYLAKE(i915) ||
+> +		   IS_COFFEELAKE(i915) ||
+> +		   IS_COMETLAKE(i915)) {
+>  		dmc->fw_path = KBL_DMC_PATH;
+>  		dmc->max_fw_size = KBL_DMC_MAX_FW_SIZE;
+> -	} else if (IS_SKYLAKE(dev_priv)) {
+> +	} else if (IS_SKYLAKE(i915)) {
+>  		dmc->fw_path = SKL_DMC_PATH;
+>  		dmc->max_fw_size = SKL_DMC_MAX_FW_SIZE;
+> -	} else if (IS_BROXTON(dev_priv)) {
+> +	} else if (IS_BROXTON(i915)) {
+>  		dmc->fw_path = BXT_DMC_PATH;
+>  		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
+>  	}
+>  
+> -	if (dev_priv->params.dmc_firmware_path) {
+> -		if (strlen(dev_priv->params.dmc_firmware_path) == 0) {
+> -			drm_info(&dev_priv->drm,
+> +	if (i915->params.dmc_firmware_path) {
+> +		if (strlen(i915->params.dmc_firmware_path) == 0) {
+> +			drm_info(&i915->drm,
+>  				 "Disabling DMC firmware and runtime PM\n");
+>  			goto out;
+>  		}
+>  
+> -		dmc->fw_path = dev_priv->params.dmc_firmware_path;
+> +		dmc->fw_path = i915->params.dmc_firmware_path;
+>  	}
+>  
+>  	if (!dmc->fw_path) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(&i915->drm,
+>  			    "No known DMC firmware for platform, disabling runtime PM\n");
+>  		goto out;
+>  	}
+>  
+> -	dev_priv->display.dmc.dmc = dmc;
+> +	i915->display.dmc.dmc = dmc;
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "Loading %s\n", dmc->fw_path);
+> +	drm_dbg_kms(&i915->drm, "Loading %s\n", dmc->fw_path);
+>  	schedule_work(&dmc->work);
+>  
+>  	return;
+> @@ -1049,71 +1045,71 @@ void intel_dmc_init(struct drm_i915_private *dev_priv)
+>  
+>  /**
+>   * intel_dmc_suspend() - prepare DMC firmware before system suspend
+> - * @dev_priv: i915 drm device
+> + * @i915: i915 drm device
+>   *
+>   * Prepare the DMC firmware before entering system suspend. This includes
+>   * flushing pending work items and releasing any resources acquired during
+>   * init.
+>   */
+> -void intel_dmc_suspend(struct drm_i915_private *dev_priv)
+> +void intel_dmc_suspend(struct drm_i915_private *i915)
+>  {
+> -	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
+> +	struct intel_dmc *dmc = i915_to_dmc(i915);
+>  
+> -	if (!HAS_DMC(dev_priv))
+> +	if (!HAS_DMC(i915))
+>  		return;
+>  
+>  	if (dmc)
+>  		flush_work(&dmc->work);
+>  
+>  	/* Drop the reference held in case DMC isn't loaded. */
+> -	if (!intel_dmc_has_payload(dev_priv))
+> -		intel_dmc_runtime_pm_put(dev_priv);
+> +	if (!intel_dmc_has_payload(i915))
+> +		intel_dmc_runtime_pm_put(i915);
+>  }
+>  
+>  /**
+>   * intel_dmc_resume() - init DMC firmware during system resume
+> - * @dev_priv: i915 drm device
+> + * @i915: i915 drm device
+>   *
+>   * Reinitialize the DMC firmware during system resume, reacquiring any
+>   * resources released in intel_dmc_suspend().
+>   */
+> -void intel_dmc_resume(struct drm_i915_private *dev_priv)
+> +void intel_dmc_resume(struct drm_i915_private *i915)
+>  {
+> -	if (!HAS_DMC(dev_priv))
+> +	if (!HAS_DMC(i915))
+>  		return;
+>  
+>  	/*
+>  	 * Reacquire the reference to keep RPM disabled in case DMC isn't
+>  	 * loaded.
+>  	 */
+> -	if (!intel_dmc_has_payload(dev_priv))
+> -		intel_dmc_runtime_pm_get(dev_priv);
+> +	if (!intel_dmc_has_payload(i915))
+> +		intel_dmc_runtime_pm_get(i915);
+>  }
+>  
+>  /**
+>   * intel_dmc_fini() - unload the DMC firmware.
+> - * @dev_priv: i915 drm device.
+> + * @i915: i915 drm device.
+>   *
+>   * Firmmware unloading includes freeing the internal memory and reset the
+>   * firmware loading status.
+>   */
+> -void intel_dmc_fini(struct drm_i915_private *dev_priv)
+> +void intel_dmc_fini(struct drm_i915_private *i915)
+>  {
+> -	struct intel_dmc *dmc = i915_to_dmc(dev_priv);
+> +	struct intel_dmc *dmc = i915_to_dmc(i915);
+>  	enum intel_dmc_id dmc_id;
+>  
+> -	if (!HAS_DMC(dev_priv))
+> +	if (!HAS_DMC(i915))
+>  		return;
+>  
+> -	intel_dmc_suspend(dev_priv);
+> -	drm_WARN_ON(&dev_priv->drm, dev_priv->display.dmc.wakeref);
+> +	intel_dmc_suspend(i915);
+> +	drm_WARN_ON(&i915->drm, i915->display.dmc.wakeref);
+>  
+>  	if (dmc) {
+>  		for_each_dmc_id(dmc_id)
+>  			kfree(dmc->dmc_info[dmc_id].payload);
+>  
+>  		kfree(dmc);
+> -		dev_priv->display.dmc.dmc = NULL;
+> +		i915->display.dmc.dmc = NULL;
+>  	}
+>  }
+>  
+> -- 
+> 2.39.1
 > 
-> Of course, this may be something to consider in a future cleanup,
-> as it may be outside the scope of this particular patch.
-
-Yes, I think so.
-
-> 
-> >  }
-> >  
-> >  int i915_active_add_request(struct i915_active *ref, struct i915_request 
-*rq)
-> >  {
-> > +	u64 idx = i915_request_timeline(rq)->fence_context;
-> >  	struct dma_fence *fence = &rq->fence;
-> >  	struct i915_active_fence *active;
-> >  	int err;
-> > @@ -437,16 +437,19 @@ int i915_active_add_request(struct i915_active *ref, 
-struct i915_request *rq)
-> >  	if (err)
-> >  		return err;
-> >  
-> > -	active = active_instance(ref, i915_request_timeline(rq)-
->fence_context);
-> > -	if (!active) {
-> > -		err = -ENOMEM;
-> > -		goto out;
-> > -	}
-> > +	do {
-> > +		active = active_instance(ref, idx);
-> > +		if (!active) {
-> > +			err = -ENOMEM;
-> > +			goto out;
-> > +		}
-> > +
-> > +		if (replace_barrier(ref, active)) {
-> > +			RCU_INIT_POINTER(active->fence, NULL);
-> > +			atomic_dec(&ref->count);
-> > +		}
-> > +	} while (is_barrier(active));
-> 
-> unlikely()?
-
-OK, please expect v3 with this added.
-
-Thanks,
-Janusz
-
-> 
-> It's worth noting that for each iteration, we are rebuilding the
-> list of barriers.  Therefore, I believe it may be necessary to
-> perform a cleanup within the replace_barrier() function.
-> 
-> Thanks,
-> Andi
-> 
-> >  
-> > -	if (replace_barrier(ref, active)) {
-> > -		RCU_INIT_POINTER(active->fence, NULL);
-> > -		atomic_dec(&ref->count);
-> > -	}
-> >  	if (!__i915_active_fence_set(active, fence))
-> >  		__i915_active_acquire(ref);
-> >  
-> 
-
-
-
-
