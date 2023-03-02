@@ -2,37 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AA96AC39E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 15:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 539396AC3A2
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 15:44:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF9810E2E2;
-	Mon,  6 Mar 2023 14:43:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F42710E369;
+	Mon,  6 Mar 2023 14:43:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 559 seconds by postgrey-1.36 at gabe;
- Mon, 27 Feb 2023 09:04:36 UTC
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93CED10E37D;
- Mon, 27 Feb 2023 09:04:36 +0000 (UTC)
-Message-ID: <6f0b5231-a9c2-e31e-f2d6-61f403d2f94d@lankhorst.se>
-Date: Mon, 27 Feb 2023 09:55:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>
-References: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
- <6cddb602-31dd-8854-25dc-11afe9b1a275@linux.intel.com>
+X-Greylist: delayed 1033 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Mar 2023 10:00:17 UTC
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
+ [185.176.79.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2271210E424;
+ Thu,  2 Mar 2023 10:00:17 +0000 (UTC)
+Received: from lhrpeml100002.china.huawei.com (unknown [172.18.147.207])
+ by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4PS5kJ48fpz689Rs;
+ Thu,  2 Mar 2023 17:42:48 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ lhrpeml100002.china.huawei.com (7.191.160.241) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 2 Mar 2023 09:43:00 +0000
+Received: from lhrpeml500005.china.huawei.com ([7.191.163.240]) by
+ lhrpeml500005.china.huawei.com ([7.191.163.240]) with mapi id 15.01.2507.021; 
+ Thu, 2 Mar 2023 09:43:00 +0000
+From: Shameerali Kolothum Thodi <shameerali.kolothum.thodi@huawei.com>
+To: Nicolin Chen <nicolinc@nvidia.com>, "Xu, Terrence" <terrence.xu@intel.com>
+Thread-Topic: [PATCH v5 00/19] Add vfio_device cdev for iommufd support
+Thread-Index: AQHZSpxHUh/YYv3qukeFp+lKFtoCf67jLB2AgACBDoCAAOlEAIAAn5IAgAIKi/A=
+Date: Thu, 2 Mar 2023 09:43:00 +0000
+Message-ID: <b7c1f9d5b4b647f0b0686c3b99f3d006@huawei.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <Y/0Cr/tcNCzzIAhi@nvidia.com>
+ <DS0PR11MB7529A422D4361B39CCA3D248C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <SA1PR11MB5873479F73CFBAA170717624F0AC9@SA1PR11MB5873.namprd11.prod.outlook.com>
+ <Y/64ejbhMiV77uUA@Asurada-Nvidia>
+In-Reply-To: <Y/64ejbhMiV77uUA@Asurada-Nvidia>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <6cddb602-31dd-8854-25dc-11afe9b1a275@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.202.227.178]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Mon, 06 Mar 2023 14:43:47 +0000
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v4 0/3] drm/helpers: Make the
- suballocation manager drm generic
+Subject: Re: [Intel-gfx] [PATCH v5 00/19] Add vfio_device cdev for iommufd
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,71 +61,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>, intel-xe@lists.freedesktop.org
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>, "Zhao, 
+ Yan Y" <yan.y.zhao@intel.com>, "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ Jason Gunthorpe <jgg@nvidia.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "lulu@redhat.com" <lulu@redhat.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
 
-I can push this to drm-misc-next, I don't think a drm maintainer ack is 
-needed, as long as we have the acks from the amd folk for merging 
-through drm-misc-next.
+> -----Original Message-----
+> From: Nicolin Chen [mailto:nicolinc@nvidia.com]
+> Sent: 01 March 2023 02:29
+> To: Xu, Terrence <terrence.xu@intel.com>
+> Cc: Liu, Yi L <yi.l.liu@intel.com>; Jason Gunthorpe <jgg@nvidia.com>;
+> alex.williamson@redhat.com; Tian, Kevin <kevin.tian@intel.com>;
+> joro@8bytes.org; robin.murphy@arm.com; cohuck@redhat.com;
+> eric.auger@redhat.com; kvm@vger.kernel.org; mjrosato@linux.ibm.com;
+> chao.p.peng@linux.intel.com; yi.y.sun@linux.intel.com; peterx@redhat.com;
+> jasowang@redhat.com; Shameerali Kolothum Thodi
+> <shameerali.kolothum.thodi@huawei.com>; lulu@redhat.com;
+> suravee.suthikulpanit@amd.com; intel-gvt-dev@lists.freedesktop.org;
+> intel-gfx@lists.freedesktop.org; linux-s390@vger.kernel.org; Hao, Xudong
+> <xudong.hao@intel.com>; Zhao, Yan Y <yan.y.zhao@intel.com>
+> Subject: Re: [PATCH v5 00/19] Add vfio_device cdev for iommufd support
+>=20
+> On Tue, Feb 28, 2023 at 04:58:06PM +0000, Xu, Terrence wrote:
+>=20
+> > Verified this series by "Intel GVT-g GPU device mediated passthrough" a=
+nd
+> "Intel GVT-d GPU device direct passthrough" technologies.
+> > Both passed VFIO legacy mode / compat mode / cdev mode, including
+> negative tests.
+> >
+> > Tested-by: Terrence Xu <terrence.xu@intel.com>
+>=20
+> Sanity-tested this series on ARM64 with my wip branch:
+> https://github.com/nicolinc/iommufd/commits/wip/iommufd-v6.2-nesting
+> (Covering new iommufd and vfio-compat)
 
-~Maarten
+Hi Nicolin,
 
-On 2023-02-27 09:11, Thomas Hellström wrote:
-> Daniel, Dave
->
-> Ack to merge this to drm through drm-misc-next?
->
-> /Thomas
->
->
-> On 2/24/23 10:51, Thomas Hellström wrote:
->> This series (or at least the suballocator helper) is a prerequisite
->> for the new Xe driver.
->>
->> There was an unresolved issue when the series was last up for review,
->> and that was the per allocation aligment. Last message was from
->> Maarten Lankhorst arguing that the larger per-driver alignment used
->> would only incur a small memory cost. This new variant resolves that.
->>
->> The generic suballocator has been tested with the Xe driver, and a
->> kunit test is under development.
->> The amd- and radeon adaptations are only compile-tested.
->>
->> v3:
->> - Remove stale author information (Christian König)
->> - Update Radeon Kconfig (Thomas Hellström)
->>
->> v4:
->> - Avoid 64-bit integer divisions (kernel test robot <lkp@intel.com>)
->> - Use size_t rather than u64 for the managed range. (Thomas)
->>
->>
->> Maarten Lankhorst (3):
->>    drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
->>    drm/amd: Convert amdgpu to use suballocation helper.
->>    drm/radeon: Use the drm suballocation manager implementation.
->>
->>   drivers/gpu/drm/Kconfig                    |   4 +
->>   drivers/gpu/drm/Makefile                   |   3 +
->>   drivers/gpu/drm/amd/amdgpu/Kconfig         |   1 +
->>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  26 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c     |   5 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  23 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   3 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c     | 324 +--------------
->>   drivers/gpu/drm/drm_suballoc.c             | 457 +++++++++++++++++++++
->>   drivers/gpu/drm/radeon/Kconfig             |   1 +
->>   drivers/gpu/drm/radeon/radeon.h            |  55 +--
->>   drivers/gpu/drm/radeon/radeon_ib.c         |  12 +-
->>   drivers/gpu/drm/radeon/radeon_object.h     |  25 +-
->>   drivers/gpu/drm/radeon/radeon_sa.c         | 316 ++------------
->>   drivers/gpu/drm/radeon/radeon_semaphore.c  |   4 +-
->>   include/drm/drm_suballoc.h                 | 108 +++++
->>   16 files changed, 674 insertions(+), 693 deletions(-)
->>   create mode 100644 drivers/gpu/drm/drm_suballoc.c
->>   create mode 100644 include/drm/drm_suballoc.h
->>
+Thanks for the latest ARM64 branch. Do you have a working Qemu branch corre=
+sponding to the
+above one?
+
+I tried the https://github.com/nicolinc/qemu/tree/wip/iommufd_rfcv3%2Bnesti=
+ng%2Bsmmuv3
+but for some reason not able to launch the Guest.
+
+Please let me know.
+
+Thanks,
+Shameer
