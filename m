@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500FB6A84CF
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 16:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24A66A84E3
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 16:06:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B14EA10E0C8;
-	Thu,  2 Mar 2023 15:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AC810E50E;
+	Thu,  2 Mar 2023 15:06:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C38DB10E0C8;
- Thu,  2 Mar 2023 15:03:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC7D1A00CC;
- Thu,  2 Mar 2023 15:03:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE8F10E50A;
+ Thu,  2 Mar 2023 15:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677769587; x=1709305587;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Ip4iWJ00oFE4gex3XpejmOUulebLBEinjK5ITQA4ByM=;
+ b=CaARN/vHafX613GtxnHe4zvr5bMcuZOWwnA+DpqF0DsN4q5fzr+d74Hl
+ QCnPPGqV7/r8P9+MPfrfDuBOdMDplVf7o3cSWRUVhUcvXWZVSyRsqmQdA
+ B0eB09a13n7b1Uq2BWoKcsCfVvg2vXxQijtYJSKwCczxvCywZHa4mO6MO
+ P5GhE4AwL7bhX/udGyvXiOHq3zmK4rhlensxz5t458b6jlWv2uhLIf74k
+ RH2JR1DXyjiewGjuhKBZMBBF0hItPPSaelPtJiq5wAb8uat3vmnaVQEJ0
+ IqS6WtXkmM8kBGYnNc4oEPbOkbmylO00ad7aRbANut9uZcJUiHpcgcSTm Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="318553776"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="318553776"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 06:43:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="818056878"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="818056878"
+Received: from abals-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.217.187])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 06:43:54 -0800
+Date: Thu, 2 Mar 2023 15:43:51 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <ZAC2JwX6TH2xo3xV@ashyti-mobl2.lan>
+References: <20230302120820.48740-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Date: Thu, 02 Mar 2023 15:03:00 -0000
-Message-ID: <167776938076.20549.2154042634487230352@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv5=2C1/2=5D_drm/i915=3A_Migrate_pla?=
- =?utf-8?q?tform-dependent_mock_hugepage_selftests_to_live_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230302120820.48740-1-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/active: Fix misuse of non-idle
+ barriers as fence trackers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,31 +59,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Janusz,
 
-Series: series starting with [v5,1/2] drm/i915: Migrate platform-dependent mock hugepage selftests to live (rev2)
-URL   : https://patchwork.freedesktop.org/series/114432/
-State : warning
+On Thu, Mar 02, 2023 at 01:08:20PM +0100, Janusz Krzysztofik wrote:
+> Users reported oopses on list corruptions when using i915 perf with a
+> number of concurrently running graphics applications.  Root cause analysis
+> pointed at an issue in barrier processing code -- a race among perf open /
+> close replacing active barriers with perf requests on kernel context and
+> concurrent barrier preallocate / acquire operations performed during user
+> context first pin / last unpin.
+> 
+> When adding a request to a composite tracker, we try to reuse an existing
+> fence tracker, already allocated and registered with that composite.  The
+> tracker we obtain may already track another fence, may be an idle barrier,
+> or an active barrier.
+> 
+> If the tracker we get occurs a non-idle barrier then we try to delete that
+> barrier from a list of barrier tasks it belongs to.  However, while doing
+> that we don't respect return value from a function that performs the
+> barrier deletion.  Should the deletion ever fail, we would end up reusing
+> the tracker still registered as a barrier task.  Since the same structure
+> field is reused with both fence callback lists and barrier tasks list,
+> list corruptions would likely occur.
+> 
+> Barriers are now deleted from a barrier tasks list by temporarily removing
+> the list content, traversing that content with skip over the node to be
+> deleted, then populating the list back with the modified content.  Should
+> that intentionally racy concurrent deletion attempts be not serialized,
+> one or more of those may fail because of the list being temporary empty.
+> 
+> Related code that ignores the results of barrier deletion was initially
+> introduced in v5.4 by commit d8af05ff38ae ("drm/i915: Allow sharing the
+> idle-barrier from other kernel requests").  However, all users of the
+> barrier deletion routine were apparently serialized at that time, then the
+> issue didn't exhibit itself.  Results of git bisect with help of a newly
+> developed igt@gem_barrier_race@remote-request IGT test indicate that list
+> corruptions might start to appear after commit 311770173fac ("drm/i915/gt:
+> Schedule request retirement when timeline idles"), introduced in v5.5.
+> 
+> Respect results of barrier deletion attempts -- mark the barrier as idle
+> only if successfully deleted from the list.  Then, before proceeding with
+> setting our fence as the one currently tracked, make sure that the tracker
+> we've got is not a non-idle barrier.  If that check fails then don't use
+> that tracker but go back and try to acquire a new, usable one.
+> 
+> v3: use unlikely() to document what outcome we expect (Andi),
+>   - fix bad grammar in commit description.
+> v2: no code changes,
+>   - blame commit 311770173fac ("drm/i915/gt: Schedule request retirement
+>     when timeline idles"), v5.5, not commit d8af05ff38ae ("drm/i915: Allow
+>     sharing the idle-barrier from other kernel requests"), v5.4,
+>   - reword commit description.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
+> Fixes: 311770173fac ("drm/i915/gt: Schedule request retirement when timeline idles")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: stable@vger.kernel.org # v5.5
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Error: dim checkpatch failed
-bf643697763a drm/i915: Migrate platform-dependent mock hugepage selftests to live
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-Convert the igt_mock_ppgtt_huge_fill and igt_mock_ppgtt_64K mock selftests into
+I hope to see some future cleanups here, as well. Let's tie a
+knot in our handkerchiefs to remind ourselves to revisit this in
+the future.
 
-total: 0 errors, 1 warnings, 0 checks, 58 lines checked
-37dbdbff3204 drm/i915: Use correct huge page manager for MTL
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
-
-total: 0 errors, 1 warnings, 0 checks, 15 lines checked
-
-
+Thanks,
+Andi
