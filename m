@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76C06A875C
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 17:49:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0966A8766
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 17:53:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 828BC10E27B;
-	Thu,  2 Mar 2023 16:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B39710E512;
+	Thu,  2 Mar 2023 16:53:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5721110E27B
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Mar 2023 16:49:49 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 438D410E27C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Mar 2023 16:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677775789; x=1709311789;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/dY4/GNEHuQEpudn1HCsS5BEPqjqHuHaq9lzqoJG1xY=;
- b=ZRg0cNZ/4ZXtOVVARa62oMnabkeL/ifVtk5M6depH2hJWqh9ZBjpM1l4
- KEa9loiSVgRBKpFjuykBlc8O5NLQ3iZ3LjJnuOVi2pxM8WPz9JF90+aoh
- owFBRl5Muxz29k0YtYCnsiF0Jn4kwuB7FKRtYPMzHBcRz22YK5q3/x8wk
- qsT/hM9+pbllAIg+vjQaGKJP0fdNEeosd1p7mAgNusL60dgVS6n4G4RAD
- x9JFuDfOW7YL+f59PwBPL2KJeaHuPvxUO+gpTSmciwpQFI+w49SS9RB9l
- Bb4vT1bsDw7Rew+W50udwKG01H99ZNOELGSIOtni1asrbsxYN7mVX2t62 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="323070823"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="323070823"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 08:49:48 -0800
+ t=1677775987; x=1709311987;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YRAakCyNffj+QBAj6sq8qacdm8sxO1DFDrfkEwEvfnk=;
+ b=iWTKP4PyjtrJbebsLJnvEDiuQ6sZ29rVQOsqmub8nAQm1/ZIICFh7T9w
+ lq86K84cDGDh6cj7BWLGt/Sde/+CkjB2XHn7ZAE77nFzrW5M1e1hfusgP
+ nhCjaGsDoNhzLkxYmYC46y9elk07TnBqaoYXgBhj//T7Sl6dOnn2wruRa
+ VP4n5v8Rip/I0dbm5muGltTow/v2A9A4bkK/WEsx17MGB5deMOB1hz2Zz
+ xCV6wflLVnNfQb10e5tSEDDk+BFDL/901Opu0mTdGF+IT3atqfe2nV79W
+ yive9JKlQxM03NSpnn0vp6ghze1TCRq/7EJyrN61w4yINIhKeLwOzRWTd g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="336296553"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="336296553"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 08:53:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="675019871"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="675019871"
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="1004182600"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="1004182600"
 Received: from martamon-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.57.129])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 08:49:39 -0800
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 08:53:03 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Mar 2023 18:49:36 +0200
-Message-Id: <20230302164936.3034161-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.1
-MIME-Version: 1.0
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <ZADS4xInFTFbNVWa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/rps: split out display rps parts to a
- separate file
+References: <20230302161617.2978821-1-jani.nikula@intel.com>
+ <ZADS4xInFTFbNVWa@intel.com>
+Date: Thu, 02 Mar 2023 18:53:01 +0200
+Message-ID: <87cz5rumc2.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: move IPS debugfs to
+ hsw_ips.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,273 +61,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split out the RPS parts so they can be conditionally compiled out later.
+On Thu, 02 Mar 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Mar 02, 2023 at 06:16:17PM +0200, Jani Nikula wrote:
+>> Follow the style of placing debugfs next to the implementation.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../gpu/drm/i915/display/intel_atomic_plane.c | 79 ++----------------
- .../gpu/drm/i915/display/intel_display_rps.c  | 81 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_display_rps.h  | 22 +++++
- 4 files changed, 111 insertions(+), 72 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
+Thanks!
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index b2f91a1f8268..8e46f57e4569 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -239,6 +239,7 @@ i915-y += \
- 	display/intel_display_power.o \
- 	display/intel_display_power_map.o \
- 	display/intel_display_power_well.o \
-+	display/intel_display_rps.o \
- 	display/intel_dmc.o \
- 	display/intel_dpio_phy.o \
- 	display/intel_dpll.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 3bd8f7eb75a6..719a60e278f3 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -34,11 +34,10 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_fourcc.h>
- 
--#include "gt/intel_rps.h"
--
- #include "i915_config.h"
- #include "intel_atomic_plane.h"
- #include "intel_cdclk.h"
-+#include "intel_display_rps.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
-@@ -941,64 +940,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 	return 0;
- }
- 
--struct wait_rps_boost {
--	struct wait_queue_entry wait;
--
--	struct drm_crtc *crtc;
--	struct i915_request *request;
--};
--
--static int do_rps_boost(struct wait_queue_entry *_wait,
--			unsigned mode, int sync, void *key)
--{
--	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
--	struct i915_request *rq = wait->request;
--
--	/*
--	 * If we missed the vblank, but the request is already running it
--	 * is reasonable to assume that it will complete before the next
--	 * vblank without our intervention, so leave RPS alone.
--	 */
--	if (!i915_request_started(rq))
--		intel_rps_boost(rq);
--	i915_request_put(rq);
--
--	drm_crtc_vblank_put(wait->crtc);
--
--	list_del(&wait->wait.entry);
--	kfree(wait);
--	return 1;
--}
--
--static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
--				       struct dma_fence *fence)
--{
--	struct wait_rps_boost *wait;
--
--	if (!dma_fence_is_i915(fence))
--		return;
--
--	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
--		return;
--
--	if (drm_crtc_vblank_get(crtc))
--		return;
--
--	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
--	if (!wait) {
--		drm_crtc_vblank_put(crtc);
--		return;
--	}
--
--	wait->request = to_request(dma_fence_get(fence));
--	wait->crtc = crtc;
--
--	wait->wait.func = do_rps_boost;
--	wait->wait.flags = 0;
--
--	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
--}
--
- /**
-  * intel_prepare_plane_fb - Prepare fb for usage on plane
-  * @_plane: drm plane to prepare for
-@@ -1089,13 +1030,13 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 		dma_resv_iter_begin(&cursor, obj->base.resv,
- 				    DMA_RESV_USAGE_WRITE);
- 		dma_resv_for_each_fence_unlocked(&cursor, fence) {
--			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
--						   fence);
-+			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
-+							     fence);
- 		}
- 		dma_resv_iter_end(&cursor);
- 	} else {
--		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
--					   new_plane_state->uapi.fence);
-+		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
-+						     new_plane_state->uapi.fence);
- 	}
- 
- 	/*
-@@ -1106,10 +1047,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	 * that are not quite steady state without resorting to forcing
- 	 * maximum clocks following a vblank miss (see do_rps_boost()).
- 	 */
--	if (!state->rps_interactive) {
--		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
--		state->rps_interactive = true;
--	}
-+	intel_display_rps_mark_interactive(dev_priv, state, true);
- 
- 	return 0;
- 
-@@ -1140,10 +1078,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
- 	if (!obj)
- 		return;
- 
--	if (state->rps_interactive) {
--		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
--		state->rps_interactive = false;
--	}
-+	intel_display_rps_mark_interactive(dev_priv, state, false);
- 
- 	/* Should only be called after a successful intel_prepare_plane_fb()! */
- 	intel_plane_unpin_fb(old_plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
-new file mode 100644
-index 000000000000..918d0327169a
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_crtc.h>
-+#include <drm/drm_vblank.h>
-+
-+#include "gt/intel_rps.h"
-+#include "i915_drv.h"
-+#include "intel_display_rps.h"
-+#include "intel_display_types.h"
-+
-+struct wait_rps_boost {
-+	struct wait_queue_entry wait;
-+
-+	struct drm_crtc *crtc;
-+	struct i915_request *request;
-+};
-+
-+static int do_rps_boost(struct wait_queue_entry *_wait,
-+			unsigned mode, int sync, void *key)
-+{
-+	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
-+	struct i915_request *rq = wait->request;
-+
-+	/*
-+	 * If we missed the vblank, but the request is already running it
-+	 * is reasonable to assume that it will complete before the next
-+	 * vblank without our intervention, so leave RPS alone.
-+	 */
-+	if (!i915_request_started(rq))
-+		intel_rps_boost(rq);
-+	i915_request_put(rq);
-+
-+	drm_crtc_vblank_put(wait->crtc);
-+
-+	list_del(&wait->wait.entry);
-+	kfree(wait);
-+	return 1;
-+}
-+
-+void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
-+					  struct dma_fence *fence)
-+{
-+	struct wait_rps_boost *wait;
-+
-+	if (!dma_fence_is_i915(fence))
-+		return;
-+
-+	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
-+		return;
-+
-+	if (drm_crtc_vblank_get(crtc))
-+		return;
-+
-+	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
-+	if (!wait) {
-+		drm_crtc_vblank_put(crtc);
-+		return;
-+	}
-+
-+	wait->request = to_request(dma_fence_get(fence));
-+	wait->crtc = crtc;
-+
-+	wait->wait.func = do_rps_boost;
-+	wait->wait.flags = 0;
-+
-+	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
-+}
-+
-+void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
-+					struct intel_atomic_state *state,
-+					bool interactive)
-+{
-+	if (state->rps_interactive == interactive)
-+		return;
-+
-+	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
-+	state->rps_interactive = interactive;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/drivers/gpu/drm/i915/display/intel_display_rps.h
-new file mode 100644
-index 000000000000..e19009c2371a
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_DISPLAY_RPS_H__
-+#define __INTEL_DISPLAY_RPS_H__
-+
-+#include <linux/types.h>
-+
-+struct dma_fence;
-+struct drm_crtc;
-+struct drm_i915_private;
-+struct intel_atomic_state;
-+
-+void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
-+					  struct dma_fence *fence);
-+void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
-+					struct intel_atomic_state *state,
-+					bool interactive);
-+
-+#endif /* __INTEL_DISPLAY_RPS_H__ */
--- 
-2.39.1
+> Some ideas for future enhancements:
+> - only register when IPS is actually supported
+> - make it per-crtc since IPS only exists on pipe A
+> - report the software state of IPS enable vs. disable
+> - there's a false color bit just like with fbc, could
+>   hook that up to help verify that it actually works
 
+Yeah, I considered that, but since
+
+#define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv))
+
+it's not really high up on the list of things to do... indeed I wanted
+to stow this away in hsw_ips.[ch] because of that.
+
+BR,
+Jani.
+
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/hsw_ips.c        | 37 +++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/hsw_ips.h        |  2 +
+>>  .../drm/i915/display/intel_display_debugfs.c  | 30 +--------------
+>>  3 files changed, 41 insertions(+), 28 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i9=
+15/display/hsw_ips.c
+>> index 83aa3800245f..2910f5d0f3e2 100644
+>> --- a/drivers/gpu/drm/i915/display/hsw_ips.c
+>> +++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+>> @@ -267,3 +267,40 @@ void hsw_ips_get_config(struct intel_crtc_state *cr=
+tc_state)
+>>  		crtc_state->ips_enabled =3D true;
+>>  	}
+>>  }
+>> +
+>> +static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
+>> +{
+>> +	struct drm_i915_private *i915 =3D m->private;
+>> +	intel_wakeref_t wakeref;
+>> +
+>> +	if (!HAS_IPS(i915))
+>> +		return -ENODEV;
+>> +
+>> +	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
+>> +
+>> +	seq_printf(m, "Enabled by kernel parameter: %s\n",
+>> +		   str_yes_no(i915->params.enable_ips));
+>> +
+>> +	if (DISPLAY_VER(i915) >=3D 8) {
+>> +		seq_puts(m, "Currently: unknown\n");
+>> +	} else {
+>> +		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
+>> +			seq_puts(m, "Currently: enabled\n");
+>> +		else
+>> +			seq_puts(m, "Currently: disabled\n");
+>> +	}
+>> +
+>> +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +DEFINE_SHOW_ATTRIBUTE(hsw_ips_debugfs_status);
+>> +
+>> +void hsw_ips_debugfs_register(struct drm_i915_private *i915)
+>> +{
+>> +	struct drm_minor *minor =3D i915->drm.primary;
+>> +
+>> +	debugfs_create_file("i915_ips_status", 0444, minor->debugfs_root,
+>> +			    i915, &hsw_ips_debugfs_status_fops);
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/hsw_ips.h b/drivers/gpu/drm/i9=
+15/display/hsw_ips.h
+>> index 4564dee497d7..7ed6061874f7 100644
+>> --- a/drivers/gpu/drm/i915/display/hsw_ips.h
+>> +++ b/drivers/gpu/drm/i915/display/hsw_ips.h
+>> @@ -8,6 +8,7 @@
+>>=20=20
+>>  #include <linux/types.h>
+>>=20=20
+>> +struct drm_i915_private;
+>>  struct intel_atomic_state;
+>>  struct intel_crtc;
+>>  struct intel_crtc_state;
+>> @@ -22,5 +23,6 @@ bool hsw_crtc_state_ips_capable(const struct intel_crt=
+c_state *crtc_state);
+>>  int hsw_ips_compute_config(struct intel_atomic_state *state,
+>>  			   struct intel_crtc *crtc);
+>>  void hsw_ips_get_config(struct intel_crtc_state *crtc_state);
+>> +void hsw_ips_debugfs_register(struct drm_i915_private *i915);
+>>=20=20
+>>  #endif /* __HSW_IPS_H__ */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/driv=
+ers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index 25013f303c82..8be606bfd2b4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -8,6 +8,7 @@
+>>  #include <drm/drm_debugfs.h>
+>>  #include <drm/drm_fourcc.h>
+>>=20=20
+>> +#include "hsw_ips.h"
+>>  #include "i915_debugfs.h"
+>>  #include "i915_irq.h"
+>>  #include "i915_reg.h"
+>> @@ -49,33 +50,6 @@ static int i915_frontbuffer_tracking(struct seq_file =
+*m, void *unused)
+>>  	return 0;
+>>  }
+>>=20=20
+>> -static int i915_ips_status(struct seq_file *m, void *unused)
+>> -{
+>> -	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+>> -	intel_wakeref_t wakeref;
+>> -
+>> -	if (!HAS_IPS(dev_priv))
+>> -		return -ENODEV;
+>> -
+>> -	wakeref =3D intel_runtime_pm_get(&dev_priv->runtime_pm);
+>> -
+>> -	seq_printf(m, "Enabled by kernel parameter: %s\n",
+>> -		   str_yes_no(dev_priv->params.enable_ips));
+>> -
+>> -	if (DISPLAY_VER(dev_priv) >=3D 8) {
+>> -		seq_puts(m, "Currently: unknown\n");
+>> -	} else {
+>> -		if (intel_de_read(dev_priv, IPS_CTL) & IPS_ENABLE)
+>> -			seq_puts(m, "Currently: enabled\n");
+>> -		else
+>> -			seq_puts(m, "Currently: disabled\n");
+>> -	}
+>> -
+>> -	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+>> -
+>> -	return 0;
+>> -}
+>> -
+>>  static int i915_sr_status(struct seq_file *m, void *unused)
+>>  {
+>>  	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+>> @@ -1343,7 +1317,6 @@ static const struct file_operations i915_fifo_unde=
+rrun_reset_ops =3D {
+>>=20=20
+>>  static const struct drm_info_list intel_display_debugfs_list[] =3D {
+>>  	{"i915_frontbuffer_tracking", i915_frontbuffer_tracking, 0},
+>> -	{"i915_ips_status", i915_ips_status, 0},
+>>  	{"i915_sr_status", i915_sr_status, 0},
+>>  	{"i915_opregion", i915_opregion, 0},
+>>  	{"i915_vbt", i915_vbt, 0},
+>> @@ -1385,6 +1358,7 @@ void intel_display_debugfs_register(struct drm_i91=
+5_private *i915)
+>>  				 ARRAY_SIZE(intel_display_debugfs_list),
+>>  				 minor->debugfs_root, minor);
+>>=20=20
+>> +	hsw_ips_debugfs_register(i915);
+>>  	intel_dmc_debugfs_register(i915);
+>>  	intel_fbc_debugfs_register(i915);
+>>  	intel_hpd_debugfs_register(i915);
+>> --=20
+>> 2.39.1
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
