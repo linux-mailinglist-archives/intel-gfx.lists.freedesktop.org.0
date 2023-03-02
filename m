@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601646A7C74
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 09:21:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B566A7CCA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Mar 2023 09:35:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 587F610E3F8;
-	Thu,  2 Mar 2023 08:21:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2B3110E3E3;
+	Thu,  2 Mar 2023 08:35:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9E510E3E3;
- Thu,  2 Mar 2023 08:20:58 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AFF010E3E3;
+ Thu,  2 Mar 2023 08:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677745258; x=1709281258;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Tzw/h8feKEG69Dql62f2HqSjZs3B07o57rYeIIF7tp4=;
- b=MUl5skQW6Fbm5tbC62YugpmM/NC0TSNQxdpB3jYfuInIPxRTZXQVHHOZ
- nCNEhxx/4lXyErfupJ3PpFtkiK/AR9b027yOhmiw1r3smPS7fbB+KDpfy
- Gm6KMqQNoRFRv5+UPq1NtZ0YYuFjxxoJM/afVd+n1yay1Tph2MW1oI1eJ
- LDX96pjO7r/fDsR2tMSZ7o3KnNfLUhPXVEso3tBe8gw3aFnqnUNRjP/0P
- 2Ztn6/l9Bod653+aqd6VEx2rHCmR3s4fvI7rL5Wz5iX820FoBlStd7rrN
- hUHifUhHS7YttoTGFx3FGC0jbhziboTkr/QtlA3pVKD1tZXLDQWsHE4iP A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="318455022"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="318455022"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 00:20:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="743757591"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="743757591"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmsmga004.fm.intel.com with ESMTP; 02 Mar 2023 00:20:56 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jani.nikula@intel.com
-Date: Thu,  2 Mar 2023 13:45:32 +0530
-Message-Id: <20230302081532.765821-3-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230302081532.765821-1-arun.r.murthy@intel.com>
-References: <20230302081532.765821-1-arun.r.murthy@intel.com>
+ t=1677746120; x=1709282120;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c9JShkbeXsGqI+FCQ5jJngwWgfMokdVgB7wEl3qk1Mw=;
+ b=BcjjsU9RqFG6pHirqbfH44ZpMM5MpFOExJ0E9XRSUcDlzbo8yDj9FJIO
+ sjNrwF4DDbWShdS9vrNeT9qbJpr7GIWH6phNpcAojX7UPqtTQzLNau4Pz
+ LkzntnN2ECNfOx5tnJskFqktMDOze0zoAbL55oNMn+WQ3tl3xRbfFFUcs
+ sMfRQ3P7Ts51Iei4y0hCK8Z4Oe3yjAk1VRStoXvCOh+Urvx3MZoorOeHG
+ whDgkdsmBIXfnMaRykEvtp8Li4wP2eB18CVRw4+DJ7FA6WJIENo/iO9kp
+ 7haYBSWF2vXcGyUC5cCjWkhczuTiW+g1m8P7vYUx2gLIYjMulSq4pHn8p w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="315079571"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="315079571"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 00:35:09 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="705177028"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="705177028"
+Received: from inechita-mobl2.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.136])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 00:35:06 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu,  2 Mar 2023 09:34:22 +0100
+Message-Id: <20230302083422.76608-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv4 2/2] i915/display/dp: SDP CRC16 for 128b132b
- link layer
+Subject: [Intel-gfx] [PATCH RESEND] drm/tests: Suballocator test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,82 +56,410 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Christian Koenig <christian.koenig@amd.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable SDP error detection configuration, this will set CRC16 in
-128b/132b link layer.
-For Display version 13 a hardware bit31 in register VIDEO_DIP_CTL is
-added to enable/disable SDP CRC applicable for DP2.0 only, but the
-default value of this bit will enable CRC16 in 128b/132b hence
-skipping this write.
-Corrective actions on SDP corruption is yet to be defined.
+Add a suballocator test to get some test coverage for the new drm
+suballocator, and perform some basic timing (elapsed time).
 
-v2: Moved the CRC enable to link training init(Jani N)
-v3: Moved crc enable to ddi pre enable <Jani N>
-v4: Separate function for SDP CRC16 (Jani N)
-
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      |  4 ++++
- .../drm/i915/display/intel_dp_link_training.c | 20 +++++++++++++++++++
- .../drm/i915/display/intel_dp_link_training.h |  2 ++
- 3 files changed, 26 insertions(+)
+ drivers/gpu/drm/Kconfig                   |   1 +
+ drivers/gpu/drm/tests/Makefile            |   3 +-
+ drivers/gpu/drm/tests/drm_suballoc_test.c | 356 ++++++++++++++++++++++
+ 3 files changed, 359 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/tests/drm_suballoc_test.c
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index e5979427b38b..127b3035f92d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2519,6 +2519,10 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 8fbe57407c60..dced53723721 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -78,6 +78,7 @@ config DRM_KUNIT_TEST
+ 	select DRM_LIB_RANDOM
+ 	select DRM_KMS_HELPER
+ 	select DRM_BUDDY
++	select DRM_SUBALLOC_HELPER
+ 	select DRM_EXPORT_FOR_TESTS if m
+ 	select DRM_KUNIT_TEST_HELPERS
+ 	default KUNIT_ALL_TESTS
+diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
+index bca726a8f483..c664944a48ab 100644
+--- a/drivers/gpu/drm/tests/Makefile
++++ b/drivers/gpu/drm/tests/Makefile
+@@ -17,6 +17,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) += \
+ 	drm_modes_test.o \
+ 	drm_plane_helper_test.o \
+ 	drm_probe_helper_test.o \
+-	drm_rect_test.o
++	drm_rect_test.o \
++	drm_suballoc_test.o
  
-+	if (HAS_DP20(dev_priv))
-+		intel_dp_128b132b_sdp_crc16(enc_to_intel_dp(encoder),
-+					    crtc_state);
+ CFLAGS_drm_mm_test.o := $(DISABLE_STRUCTLEAK_PLUGIN)
+diff --git a/drivers/gpu/drm/tests/drm_suballoc_test.c b/drivers/gpu/drm/tests/drm_suballoc_test.c
+new file mode 100644
+index 000000000000..e7303a5505a0
+--- /dev/null
++++ b/drivers/gpu/drm/tests/drm_suballoc_test.c
+@@ -0,0 +1,356 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Test case for the drm_suballoc suballocator manager
++ * Copyright 2023 Intel Corporation.
++ */
 +
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3d3efcf02011..35d31e4efab9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1454,3 +1454,23 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 	if (!passed)
- 		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
- }
++#include <kunit/test.h>
 +
-+void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
-+				 const struct intel_crtc_state *crtc_state)
++#include <linux/dma-fence.h>
++#include <linux/ktime.h>
++#include <linux/hrtimer.h>
++#include <linux/sizes.h>
++#include <linux/slab.h>
++#include <linux/spinlock.h>
++#include <linux/delay.h>
++#include <drm/drm_suballoc.h>
++
++#define SA_ITERATIONS 10000
++#define SA_SIZE SZ_1M
++#define SA_DEFAULT_ALIGN SZ_4K
++
++static bool intr = true;
++static bool from_reclaim;
++static bool pre_throttle;
++static unsigned int num_rings = 4;
++static unsigned int iterations = SA_ITERATIONS;
++
++static atomic64_t free_space;
++
++static atomic_t other_id;
++
++struct suballoc_fence;
++
++/**
++ * struct suballoc_ring - fake gpu engine.
++ * @list: List of fences to signal.
++ * @signal_time: Accumulated fence signal execution time.
++ * @lock: Protects the suballoc ring members. hardirq safe.
++ * @hrtimer: Fake execution time timer.
++ * @active: The currently active fence for which we have pending work or a
++ *          timer running.
++ * @seqno: Fence submissin seqno.
++ * @idx: Index for calculation of fake execution time.
++ * @work: Work struct used solely to move the timer start to a different
++ *        processor than that used for submission.
++ */
++struct suballoc_ring {
++	ktime_t signal_time;
++	struct list_head list;
++	/* Protect the ring processing. */
++	spinlock_t lock;
++	struct hrtimer hrtimer;
++	struct suballoc_fence *active;
++	atomic64_t seqno;
++	u32 idx;
++	struct work_struct work;
++};
++
++/**
++ * struct suballoc_fence - Hrtimer-driven fence.
++ * @fence: The base class fence struct.
++ * @link: Link for the ring's fence list.
++ * @size: The size of the suballocator range associated with this fence.
++ * @id: Cpu id likely used by the submission thread for suballoc allocation.
++ */
++struct suballoc_fence {
++	struct dma_fence fence;
++	struct list_head link;
++	size_t size;
++	unsigned int id;
++};
++
++/* A varying but repeatable fake execution time */
++static ktime_t ring_next_delay(struct suballoc_ring *ring)
 +{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+
-+	/*
-+	 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
-+	 * disable SDP CRC. This is applicable for Display version 13.
-+	 * Default value of bit 31 is '0' hence discarding the write
-+	 * TODO: Corrective actions on SDP corruption yet to be defined
-+	 */
-+	if (intel_dp_is_uhbr(crtc_state))
-+		/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
-+		drm_dp_dpcd_writeb(&intel_dp->aux,
-+				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
-+				   DP_SDP_CRC16_128B132B_EN);
-+
-+	drm_dbg_kms(&i915->drm, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
++	return ns_to_ktime((u64)(++ring->idx % 8) * 200 * NSEC_PER_USEC);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-index 7fa1c0833096..2c8f2775891b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-@@ -39,4 +39,6 @@ static inline u8 intel_dp_training_pattern_symbol(u8 pattern)
- 	return pattern & ~DP_LINK_SCRAMBLING_DISABLE;
- }
- 
-+void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
-+				 const struct intel_crtc_state *crtc_state);
- #endif /* __INTEL_DP_LINK_TRAINING_H__ */
++
++/*
++ * Launch from a work item to decrease the likelyhood of the timer expiry
++ * callback getting called from the allocating cpu.
++ * We want to trigger cache-line bouncing between allocating and signalling
++ * cpus.
++ */
++static void ring_launch_timer_work(struct work_struct *work)
++{
++	struct suballoc_ring *ring =
++		container_of(work, typeof(*ring), work);
++
++	spin_lock_irq(&ring->lock);
++	if (ring->active)
++		hrtimer_start_range_ns(&ring->hrtimer, ring_next_delay(ring),
++				       100ULL * NSEC_PER_USEC,
++				       HRTIMER_MODE_REL_PINNED);
++
++	spin_unlock_irq(&ring->lock);
++}
++
++/*
++ * Signal an active fence and pull the next off the list if any and make it
++ * active.
++ */
++static enum hrtimer_restart ring_hrtimer_expired(struct hrtimer *hrtimer)
++{
++	struct suballoc_ring *ring =
++		container_of(hrtimer, typeof(*ring), hrtimer);
++	struct suballoc_fence *sfence;
++	ktime_t now, then;
++	unsigned long irqflags;
++
++	spin_lock_irqsave(&ring->lock, irqflags);
++	sfence = ring->active;
++
++	if (sfence) {
++		struct dma_fence *fence = &sfence->fence;
++
++		if (sfence->id != get_cpu())
++			atomic_inc(&other_id);
++		put_cpu();
++
++		then = ktime_get();
++		dma_fence_signal(fence);
++		now = ktime_get();
++		dma_fence_put(fence);
++		ring->signal_time = ktime_add(ring->signal_time,
++					      ktime_sub(now, then));
++		ring->active = NULL;
++		atomic64_add(sfence->size, &free_space);
++	}
++
++	sfence = list_first_entry_or_null(&ring->list, typeof(*sfence), link);
++	if (sfence) {
++		list_del_init(&sfence->link);
++		ring->active = sfence;
++		spin_unlock_irqrestore(&ring->lock, irqflags);
++		hrtimer_forward_now(&ring->hrtimer, ring_next_delay(ring));
++		return HRTIMER_RESTART;
++	}
++	spin_unlock_irqrestore(&ring->lock, irqflags);
++
++	return HRTIMER_NORESTART;
++}
++
++/*
++ * Queue a fence on a ring and if it's the first fence, make it active.
++ */
++static void ring_add_fence(struct suballoc_ring *ring,
++			   struct suballoc_fence *sfence)
++{
++	spin_lock_irq(&ring->lock);
++	if (!ring->active) {
++		ring->active = sfence;
++		queue_work(system_unbound_wq, &ring->work);
++	} else {
++		list_add_tail(&sfence->link, &ring->list);
++	}
++	spin_unlock_irq(&ring->lock);
++}
++
++static void ring_init(struct suballoc_ring *ring)
++{
++	memset(ring, 0, sizeof(*ring));
++	INIT_LIST_HEAD(&ring->list);
++	spin_lock_init(&ring->lock);
++	hrtimer_init(&ring->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	ring->hrtimer.function = ring_hrtimer_expired;
++	INIT_WORK(&ring->work, ring_launch_timer_work);
++}
++
++static bool ring_idle(struct suballoc_ring *ring)
++{
++	bool tmp;
++
++	spin_lock_irq(&ring->lock);
++	tmp = !ring->active;
++	spin_unlock_irq(&ring->lock);
++
++	return tmp;
++}
++
++static const char *dma_fence_get_suballoc_name(struct dma_fence *fence)
++{
++	return "suballoc";
++}
++
++static const struct dma_fence_ops dma_fence_suballoc_ops = {
++	.get_driver_name = dma_fence_get_suballoc_name,
++	.get_timeline_name = dma_fence_get_suballoc_name,
++};
++
++static DEFINE_SPINLOCK(sa_fence_lock);
++static ktime_t alloctime, freetime;
++
++static void drm_test_suballoc(struct kunit *test)
++{
++	struct suballoc_ring *rings;
++	struct drm_suballoc_manager sa_manager;
++	struct drm_suballoc *sa;
++	struct suballoc_fence *sfence;
++	struct dma_fence *fence;
++	ktime_t then, now, signaltime;
++	int i, ring, iter_tot = 0;
++	size_t size;
++	unsigned int align;
++	unsigned long long soffset;
++	gfp_t gfp;
++
++	rings = kvmalloc_array(num_rings, sizeof(*rings), GFP_KERNEL);
++	if (!rings) {
++		KUNIT_FAIL(test, "Failed allocating %u rings.\n");
++		return;
++	}
++
++	for (i = 0; i < num_rings; ++i)
++		ring_init(rings + i);
++
++	atomic64_set(&free_space, SA_SIZE);
++	drm_suballoc_manager_init(&sa_manager, SA_SIZE, SA_DEFAULT_ALIGN);
++
++	if (from_reclaim)
++		gfp = GFP_NOWAIT | __GFP_NOWARN;
++	else
++		gfp = GFP_KERNEL;
++
++	for (i = 0; i < iterations; ++i) {
++		ring = i % num_rings;
++		size = (ring + 1) * SZ_4K;
++		align = 1 << (ring % const_ilog2(SA_DEFAULT_ALIGN));
++
++		if (pre_throttle)
++			while (atomic64_read(&free_space) < SA_SIZE / 2)
++				cpu_relax();
++
++		if (from_reclaim)
++			fs_reclaim_acquire(GFP_KERNEL);
++
++		then = ktime_get();
++		sa = drm_suballoc_new(&sa_manager, size, gfp, intr, align);
++		now = ktime_get();
++		if (from_reclaim)
++			fs_reclaim_release(GFP_KERNEL);
++
++		alloctime = ktime_add(alloctime, ktime_sub(now, then));
++
++		iter_tot++;
++		if (IS_ERR(sa)) {
++			if (from_reclaim) {
++				iter_tot--;
++				continue;
++			}
++
++			KUNIT_FAIL(test, "drm_suballoc_new() returned %pe\n",
++				   sa);
++			break;
++		}
++
++		atomic64_sub(size, &free_space);
++		soffset = drm_suballoc_soffset(sa);
++		if (!IS_ALIGNED(soffset, align)) {
++			drm_suballoc_free(sa, NULL);
++			KUNIT_FAIL(test, "Incorrect alignment: offset %llu align %u rem %llu\n",
++				   soffset, align, soffset & (align - 1));
++			break;
++		}
++
++		if (drm_suballoc_eoffset(sa) > SA_SIZE) {
++			drm_suballoc_free(sa, NULL);
++			KUNIT_FAIL(test, "Allocation beyond end.\n");
++			break;
++		}
++
++		if (drm_suballoc_size(sa) < size ||
++		    drm_suballoc_size(sa) >= size + align) {
++			drm_suballoc_free(sa, NULL);
++			KUNIT_FAIL(test, "Incorrect size.\n");
++			break;
++		}
++
++		sfence = kmalloc(sizeof(*sfence), GFP_KERNEL);
++		if (unlikely(!sfence)) {
++			drm_suballoc_free(sa, NULL);
++			KUNIT_FAIL(test, "Fence allocation failed.\n");
++			break;
++		}
++		fence = &sfence->fence;
++		dma_fence_init(fence, &dma_fence_suballoc_ops, &sa_fence_lock,
++			       ring + 1,
++			       atomic64_inc_return(&rings[ring].seqno));
++		sfence->size = size;
++		sfence->id = get_cpu();
++		put_cpu();
++
++		ring_add_fence(rings + ring, sfence);
++
++		then = ktime_get();
++		drm_suballoc_free(sa, fence);
++		now = ktime_get();
++		freetime = ktime_add(freetime, ktime_sub(now, then));
++	}
++
++	signaltime = ktime_set(0, 0);
++	for (i = 0; i < num_rings; ++i) {
++		struct suballoc_ring *sring = &rings[i];
++
++		flush_work(&sring->work);
++		while (!ring_idle(sring))
++			schedule();
++		signaltime = ktime_add(signaltime, sring->signal_time);
++	}
++
++	kvfree(rings);
++
++	kunit_info(test, "signals on different processor: %d of %d\n",
++		   atomic_read(&other_id), iter_tot);
++	drm_suballoc_manager_fini(&sa_manager);
++	kunit_info(test, "Alloc time was %llu ns.\n", (unsigned long long)
++		   ktime_to_ns(alloctime) / iter_tot);
++	kunit_info(test, "Free time was %llu ns.\n", (unsigned long long)
++		   ktime_to_ns(freetime) / iter_tot);
++	kunit_info(test, "Signal time was %llu ns.\n", (unsigned long long)
++		   ktime_to_ns(signaltime) / iter_tot);
++
++	if (atomic64_read(&free_space) != SA_SIZE) {
++		kunit_warn(test, "Test sanity check failed.\n");
++		kunit_warn(test, "Space left at exit is %lld of %d\n",
++			   (long long)atomic64_read(&free_space), SA_SIZE);
++	}
++}
++
++module_param(intr, bool, 0400);
++MODULE_PARM_DESC(intr, "Whether to wait interruptible for space.");
++module_param(from_reclaim, bool, 0400);
++MODULE_PARM_DESC(from_reclaim, "Whether to suballocate from reclaim context.");
++module_param(pre_throttle, bool, 0400);
++MODULE_PARM_DESC(pre_throttle, "Whether to have the test throttle for space "
++		 "before allocations.");
++module_param(num_rings, uint, 0400);
++MODULE_PARM_DESC(num_rings, "Number of rings signalling fences in order.\n");
++module_param(iterations, uint, 0400);
++MODULE_PARM_DESC(iterations, "Number of allocations to perform.\n");
++
++static struct kunit_case drm_suballoc_tests[] = {
++	KUNIT_CASE(drm_test_suballoc),
++	{}
++};
++
++static struct kunit_suite drm_suballoc_test_suite = {
++	.name = "drm_suballoc",
++	.test_cases = drm_suballoc_tests,
++};
++
++kunit_test_suite(drm_suballoc_test_suite);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_DESCRIPTION("DRM suballocator Kunit test");
++MODULE_LICENSE("Dual MIT/GPL");
 -- 
-2.25.1
+2.34.1
 
