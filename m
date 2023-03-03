@@ -2,45 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872986A9789
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Mar 2023 13:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D38A56A979D
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Mar 2023 13:54:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE70B10E5BB;
-	Fri,  3 Mar 2023 12:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7D710E045;
+	Fri,  3 Mar 2023 12:54:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7A8910E13C;
- Fri,  3 Mar 2023 12:49:45 +0000 (UTC)
-Received: from fsav312.sakura.ne.jp (fsav312.sakura.ne.jp [153.120.85.143])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 323CnauL011810;
- Fri, 3 Mar 2023 21:49:36 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav312.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav312.sakura.ne.jp);
- Fri, 03 Mar 2023 21:49:36 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav312.sakura.ne.jp)
-Received: from [192.168.1.6] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 323CnaOO011807
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Fri, 3 Mar 2023 21:49:36 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <32df5def-ad1a-e1aa-d2fe-f3c37cb01032@I-love.SAKURA.ne.jp>
-Date: Fri, 3 Mar 2023 21:49:36 +0900
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D8D10E045
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Mar 2023 12:54:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677848069; x=1709384069;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Sjuf2GeKCl59RU/3PPLqa6RH+rZVl9SaVo+thyRXsso=;
+ b=aM0/tkHVXhBs9wmN2BdvWNDpmj6LcI49pQW8DTJ4lWOB8sayEXYoEZyU
+ 35/lJy14XUm+YSSRYBckFlD3De6nnFhIY1eP/AZg5yPTB/UGvxt+5SNQv
+ sqLZlsira9JpVLNSwhSD+nZ6Yfh8c8O4hHH1dDgpFA0OyABKCLZpfbdxD
+ 1fKgIWjtZ1Zipoh2NdLeek5zgg8dpPAq1sEKcWvo5dY9fDaBEfbzOU8+z
+ BSIYBX7QF58ODGbmkRP7QBz36NETmh2xkimM68eJzjT+sN96ml7+SH+fn
+ YynsMkW28mIQPrP5hYrEJ45xIhHKbNnzliwi8AZJ/w3KxtUk0hHiXH0nE g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="336553449"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="336553449"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 04:54:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="764406646"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="764406646"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.248])
+ ([10.213.10.248])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 04:54:25 -0800
+Message-ID: <3fa8c35c-8902-3d37-fc32-0a7a3d12145f@intel.com>
+Date: Fri, 3 Mar 2023 13:54:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+ Firefox/102.0 Thunderbird/102.8.0
 Content-Language: en-US
-From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-To: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
-In-Reply-To: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: avoid flush_scheduled_work() usage
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230208105130.3233420-1-andrzej.hajda@intel.com>
+ <947b8217-7d3e-974f-8690-7cfdfcbeb516@linux.intel.com>
+ <3d44e317-1491-d610-109c-0b14dd252aba@intel.com>
+ <df40e23a-e61b-9ccf-07dd-e848f6838762@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <df40e23a-e61b-9ccf-07dd-e848f6838762@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: add guard page to
+ ggtt->error_capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,43 +68,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ chris.p.wilson@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023/03/03 19:11, Tetsuo Handa wrote:
-> @@ -79,6 +81,7 @@ static int __init i915_init(void)
->  {
->  	int err, i;
->  
-> +	i915_wq = alloc_workqueue("i915", 0, 0);
-
-Oops. I forgot to add
-
-	if (!i915_wq)
-		return -ENOMEM;
-
-here. But I'd like to wait for your response for a while before submitting v2 patch.
 
 
->  	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
->  		err = init_funcs[i].init();
->  		if (err < 0) {
-> @@ -86,6 +89,7 @@ static int __init i915_init(void)
->  				if (init_funcs[i].exit)
->  					init_funcs[i].exit();
->  			}
-> +			destroy_workqueue(i915_wq);
->  			return err;
->  		} else if (err > 0) {
->  			/*
-> @@ -113,6 +117,7 @@ static void __exit i915_exit(void)
->  		if (init_funcs[i].exit)
->  			init_funcs[i].exit();
->  	}
-> +	destroy_workqueue(i915_wq);
->  }
->  
->  module_init(i915_init);
+On 03.03.2023 13:01, Tvrtko Ursulin wrote:
+>
+> On 02/03/2023 11:00, Andrzej Hajda wrote:
+>> On 02.03.2023 11:43, Tvrtko Ursulin wrote:
+>>>
+>>> On 08/02/2023 10:51, Andrzej Hajda wrote:
+>>>> Write-combining memory allows speculative reads by CPU.
+>>>> ggtt->error_capture is WC mapped to CPU, so CPU/MMU can try
+>>>> to prefetch memory beyond the error_capture, ie it tries
+>>>> to read memory pointed by next PTE in GGTT.
+>>>> If this PTE points to invalid address DMAR errors will occur.
+>>>> This behaviour was observed on ADL, RPL, DG2 platforms.
+>>>> To avoid it, guard scratch page should be added after error_capture.
+>>>> The patch fixes the most annoying issue with error capture but
+>>>> since WC reads are used also in other places there is a risk similar
+>>>> problem can affect them as well.
+>>>>
+>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>>
+>>> Research tells the explanation is plausible so:
+>>>
+>>> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>
+>> Thanks for looking at it.
+>>
+>>> On patch details below.
+>>>
+>>> What about "simiar risk in other places" - are there any plans to 
+>>> asses the potential impact elsewhere?
+>>
+>> Yes, merging this patch is the 1st step, as error_capture is 
+>> responsible for most (maybe even all) regular
+>> DMAR read errors. After removing this noise it will be much easier to 
+>> spot other DMAR read errors.
+>> There are also multiple regular DMAR write errors (less frequent, but 
+>> still), which I hope to debug if time permits.
+>>
+>> Regards
+>> Andrzej
+>>
+>>>
+>>>> ---
+>>>> This patch tries to diminish plague of DMAR read errors present
+>>>> in CI for ADL*, RPL*, DG2 platforms, see for example [1] (grep DMAR).
+>>>> CI is usually tolerant for these errors, so the scale of the problem
+>>>> is not really visible.
+>>>> To show it I have counted lines containing DMAR read errors in dmesgs
+>>>> produced by CI for all three versions of the patch, but in contrast 
+>>>> to v2
+>>>> I have grepped only for lines containing "PTE Read access".
+>>>> Below stats for kernel w/o patch vs patched one.
+>>>> v1: 210 vs 0
+>>>> v2: 201 vs 0
+>>>> v3: 214 vs 0
+>>>> Apparently the patch fixes all common PTE read errors.
+>>>>
+>>>> In previous version there were different numbers due to less exact 
+>>>> grepping,
+>>>> "grep DMAR" catched write errors and "DMAR: DRHD: handling fault 
+>>>> status reg"
+>>>> lines, anyway the actual number of errors is much bigger - DMAR errors
+>>>> are rate-limited.
+>>>>
+>>>> [1]: 
+>>>> http://gfx-ci.igk.intel.com/tree/drm-tip/CI_DRM_12678/bat-adln-1/dmesg0.txt
+>>>>
+>>>> Changelog:
+>>>> v2:
+>>>>      - modified commit message (I hope the diagnosis is correct),
+>>>>      - added bug checks to ensure scratch is initialized on gen3 
+>>>> platforms.
+>>>>        CI produces strange stacktrace for it suggesting scratch[0] 
+>>>> is NULL,
+>>>>        to be removed after resolving the issue with gen3 platforms.
+>>>> v3:
+>>>>      - removed bug checks, replaced with gen check.
+>>>> v4:
+>>>>      - change code for scratch page insertion to support all 
+>>>> platforms,
+>>>>      - add info in commit message there could be more similar issues
+>>>>
+>>>> Regards
+>>>> Andrzej
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gt/intel_ggtt.c | 31 
+>>>> ++++++++++++++++++++++++----
+>>>>   1 file changed, 27 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c 
+>>>> b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>>> index 842e69c7b21e49..6566d2066f1f8b 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>>> @@ -503,6 +503,21 @@ static void cleanup_init_ggtt(struct i915_ggtt 
+>>>> *ggtt)
+>>>>       mutex_destroy(&ggtt->error_mutex);
+>>>>   }
+>>>>   +static void
+>>>> +ggtt_insert_scratch_pages(struct i915_ggtt *ggtt, u64 offset, u64 
+>>>> length)
+>>>> +{
+>>>> +    struct i915_address_space *vm = &ggtt->vm;
+>>>> +
+>>>> +    if (GRAPHICS_VER(ggtt->vm.i915) < 8)
+>>>> +        return vm->clear_range(vm, offset, length);
+>>>> +    /* clear_range since gen8 is nop */
+>>>
+>>> It would also work to simply drop the <gen8 case and just do the 
+>>> loop below, right? If so would that be clearer?
+>
+
+Apparently I have missed this comment, loop does not work for gen3, 
+vm->scratch[0] is not initialized, it uses some code from 
+drivers/char/agp/intel-gtt.c for clearing range.
+
+> Alternatively, if you want to keep the dual path here, perhaps it 
+> would be better to replace the gen check with "clear_range !=/== 
+> nop_clear_range". That way maybe more of the platform knowledge 
+> remains at a central location.
+
+There is vm->error_range in internal branch which does the same as 
+clear_range, which 'when upstreamed (?)' should simplify this code. On 
+the other side unstaticising nop_clear_range would allow to drop 
+mock_clear_range, dpt_clear_range.
+
+>
+> Another thing - are there any suspend-resume considerations 
+> (i915_ggtt_resume_vm)? Maybe this padding needs to be restored too.
+
+Didn't think about it, I will add code there too.
+
+Regards
+Andrzej
+
+>
+> Regards,
+>
+> Tvrtko
+>
+>>>
+>>>> +    while (length > 0) {
+>>>
+>>> Maybe add a GEM_BUG_ON if length is not aligned? Granted it may be a 
+>>> huge stretch of imagination..
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> +        vm->insert_page(vm, px_dma(vm->scratch[0]), offset, 
+>>>> I915_CACHE_NONE, 0);
+>>>> +        offset += I915_GTT_PAGE_SIZE;
+>>>> +        length -= I915_GTT_PAGE_SIZE;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>>   static int init_ggtt(struct i915_ggtt *ggtt)
+>>>>   {
+>>>>       /*
+>>>> @@ -551,8 +566,12 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+>>>>            * paths, and we trust that 0 will remain reserved. However,
+>>>>            * the only likely reason for failure to insert is a driver
+>>>>            * bug, which we expect to cause other failures...
+>>>> +         *
+>>>> +         * Since CPU can perform speculative reads on error capture
+>>>> +         * (write-combining allows it) add scratch page after error
+>>>> +         * capture to avoid DMAR errors.
+>>>>            */
+>>>> -        ggtt->error_capture.size = I915_GTT_PAGE_SIZE;
+>>>> +        ggtt->error_capture.size = 2 * I915_GTT_PAGE_SIZE;
+>>>>           ggtt->error_capture.color = I915_COLOR_UNEVICTABLE;
+>>>>           if (drm_mm_reserve_node(&ggtt->vm.mm, &ggtt->error_capture))
+>>>> drm_mm_insert_node_in_range(&ggtt->vm.mm,
+>>>> @@ -562,11 +581,15 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+>>>>                               0, ggtt->mappable_end,
+>>>>                               DRM_MM_INSERT_LOW);
+>>>>       }
+>>>> -    if (drm_mm_node_allocated(&ggtt->error_capture))
+>>>> +    if (drm_mm_node_allocated(&ggtt->error_capture)) {
+>>>> +        u64 start = ggtt->error_capture.start;
+>>>> +        u64 size = ggtt->error_capture.size;
+>>>> +
+>>>> +        ggtt_insert_scratch_pages(ggtt, start, size);
+>>>>           drm_dbg(&ggtt->vm.i915->drm,
+>>>>               "Reserved GGTT:[%llx, %llx] for use by error capture\n",
+>>>> -            ggtt->error_capture.start,
+>>>> -            ggtt->error_capture.start + ggtt->error_capture.size);
+>>>> +            start, start + size);
+>>>> +    }
+>>>>         /*
+>>>>        * The upper portion of the GuC address space has a sizeable 
+>>>> hole
+>>
 
