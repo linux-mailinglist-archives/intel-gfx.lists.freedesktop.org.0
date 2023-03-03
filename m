@@ -1,82 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF8C6A9C78
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Mar 2023 17:55:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6CE6A9C86
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Mar 2023 17:58:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A536610E70D;
-	Fri,  3 Mar 2023 16:55:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67AA610E708;
+	Fri,  3 Mar 2023 16:58:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1281F89289
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Mar 2023 16:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1677862550;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=K2FFa2yfYrCiaVu7okbqhPwZrwGrmF/P4YR4gLz07iw=;
- b=TXX/sKzThVf1W4W1PKGcdt6xliVMODudobS9ReoIT9bzFyjf7mqDrmRn3IhUm3rbVd8OfS
- c0D6wom9tvLt308JhzEBWaZWQWDpHe1oa1/KYqJTzV1+RnBK9bClsi/AgcPBRj82a2lgvq
- 0Biqm/ojqt1jCiDI6IP+DM24Ua3qnmY=
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-112-ie8j21yXONuzo3OP2r2HXQ-1; Fri, 03 Mar 2023 11:55:46 -0500
-X-MC-Unique: ie8j21yXONuzo3OP2r2HXQ-1
-Received: by mail-il1-f197.google.com with SMTP id
- z2-20020a926502000000b00317558bed21so1625711ilb.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Mar 2023 08:55:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:organization:references
- :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=wQaN2w6WPy4qe2LbDS5GqBL5o5ir0ZpFEJOy/c7VAXk=;
- b=ObqU2QluGHNlOeiez1hCQWqYaiaMejSEpKVmBb5KS4IEnViECFFtul4PH4Ov8FUyhK
- GAz3Pb8LtL5UnavPdXPeQ78+RDpInfX0n+2bNREPh8ttUdNxYjl0pbftlwpNolJmLs/p
- rR+e7TulIk81ZbKYSWymXGnRAUWmVzp5KcIiMmmwqne1qgX5UL8UjZuHsFHVNebXimEm
- 6ouOg7vP/Q87D/iRbJA2FP6pS+3FRl5/1F3tYfOu3O/+bo7sM/4LnoiHbLIA3XQCpHWB
- fDlZFZKJ5k7/7+mVBEWxNleW+yrANquolvKA4DRqqB0ERfS6/vKE29EuU6a2Ljyj+Ek2
- 68sA==
-X-Gm-Message-State: AO0yUKXPEL0oE6c8jzMw+uYOo2Zg4LQ6rTG+RNonhyKfPrcJ4XINqhwd
- BYQze14sns+VLLARC1896YuTbWhlVzVg0exzSaLDVQx/ldh6woROsJT96K9K95juGyTuADx1HIU
- RUz/kxyQTiepLFph9F7jXgCIZ9Z9R
-X-Received: by 2002:a05:6e02:1b0b:b0:314:e56:54fc with SMTP id
- i11-20020a056e021b0b00b003140e5654fcmr2317800ilv.1.1677862546151; 
- Fri, 03 Mar 2023 08:55:46 -0800 (PST)
-X-Google-Smtp-Source: AK7set+zTdgOdL+Cvm/GHdzHlk9qNHC8FUzt7q1k0ffumCIR03rPcZWQtCDbvcczq+7wSTu39R/sFQ==
-X-Received: by 2002:a05:6e02:1b0b:b0:314:e56:54fc with SMTP id
- i11-20020a056e021b0b00b003140e5654fcmr2317767ilv.1.1677862545900; 
- Fri, 03 Mar 2023 08:55:45 -0800 (PST)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- p5-20020a02b385000000b003de9d8de0edsm871392jan.88.2023.03.03.08.55.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Mar 2023 08:55:44 -0800 (PST)
-Date: Fri, 3 Mar 2023 09:55:42 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Message-ID: <20230303095542.2bfce5c2.alex.williamson@redhat.com>
-In-Reply-To: <BN9PR11MB5276B825071A4819479079A68CB39@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230227111135.61728-1-yi.l.liu@intel.com>
- <20230227111135.61728-10-yi.l.liu@intel.com>
- <DS0PR11MB75295B4B2578765C8B08AC7EC3B29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB527688810514A262471E4BB78CB29@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZACX+Np/IY7ygqL5@nvidia.com>
- <DS0PR11MB7529531834C0A9F1D294A5CCC3B29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB5276B825071A4819479079A68CB39@BN9PR11MB5276.namprd11.prod.outlook.com>
-Organization: Red Hat
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE4BA10E708
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Mar 2023 16:58:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677862696; x=1709398696;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=m3mt6jYPRyOfcoF+ZOWo5XqAfna3QamNF9SBny9Nw6U=;
+ b=P/GsH6Sl62s2OQ1cpJ0P7atXmEPnf3i1OF9//egLX6bUIIMSxIMiXzIQ
+ HGc4/m8+cHCR3VQXNtT3dDOdu19hns6wrEke5clTJrz4IhdJNdqSp9cUm
+ TalJgpi94MoOV2loqbyskSZ+LIQY3jXbsmojLmF4bhRIMK959YAJUA3hg
+ qBEeO1Yp8vl+MbsYdQVPO+Q3FYiL/8KH6nvRed2qgpRqOqk1yTQ2a9AcV
+ ZtcgBZYmV7ov2i2TMUNWv71QmgGZ9p5RW4QtuptxtWo5UiZiifOge3Rtt
+ jdyEeAkVlg5KNdlmvXdAaLnRtdfO+VmLw3dnesoUgzB7m3NUD2EGVv8Km Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="314748489"
+X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="314748489"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 08:58:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="739559664"
+X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="739559664"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga008.fm.intel.com with SMTP; 03 Mar 2023 08:58:14 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 03 Mar 2023 18:58:13 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Mar 2023 18:58:13 +0200
+Message-Id: <20230303165813.25538-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230302161013.29213-5-ville.syrjala@linux.intel.com>
+References: <20230302161013.29213-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 09/19] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 4/7] drm/i915: Introduce
+ <platform>_hotplug_mask()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,103 +60,359 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 3 Mar 2023 06:36:35 +0000
-"Tian, Kevin" <kevin.tian@intel.com> wrote:
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Thursday, March 2, 2023 10:20 PM
-> >  =20
-> > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > Sent: Thursday, March 2, 2023 8:35 PM
-> > >
-> > > On Thu, Mar 02, 2023 at 09:55:46AM +0000, Tian, Kevin wrote: =20
-> > > > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > > > Sent: Thursday, March 2, 2023 2:07 PM
-> > > > > =20
-> > > > > > -=09=09if (!vfio_dev_in_groups(cur_vma, groups)) {
-> > > > > > +=09=09if (cur_vma->vdev.open_count &&
-> > > > > > +=09=09    !vfio_dev_in_groups(cur_vma, groups) &&
-> > > > > > +=09=09    !vfio_dev_in_iommufd_ctx(cur_vma, =20
-> > iommufd_ctx)) { =20
-> > > > >
-> > > > > Hi Alex, Jason,
-> > > > >
-> > > > > There is one concern on this approach which is related to the
-> > > > > cdev noiommu mode. As patch 16 of this series, cdev path
-> > > > > supports noiommu mode by passing a negative iommufd to
-> > > > > kernel. In such case, the vfio_device is not bound to a valid
-> > > > > iommufd. Then the check in vfio_dev_in_iommufd_ctx() is
-> > > > > to be broken.
-> > > > >
-> > > > > An idea is to add a cdev_noiommu flag in vfio_device, when
-> > > > > checking the iommufd_ictx, also check this flag. If all the opene=
-d
-> > > > > devices in the dev_set have vfio_device->cdev_noiommu=3D=3Dtrue,
-> > > > > then the reset is considered to be doable. But there is a special
-> > > > > case. If devices in this dev_set are opened by two applications
-> > > > > that operates in cdev noiommu mode, then this logic is not able
-> > > > > to differentiate them. In that case, should we allow the reset?
-> > > > > It seems to ok to allow reset since noiommu mode itself means
-> > > > > no security between the applications that use it. thoughts?
-> > > > > =20
-> > > >
-> > > > Probably we need still pass in a valid iommufd (instead of using
-> > > > a negative value) in noiommu case to mark the ownership so the
-> > > > check in the reset path can correctly catch whether an opened
-> > > > device belongs to this user. =20
-> > >
-> > > There should be no iommufd at all in no-iommu mode
-> > >
-> > > Adding one just to deal with noiommu reset seems pretty sad :\
-> > >
-> > > no-iommu is only really used by dpdk, and it doesn't invoke
-> > > VFIO_DEVICE_PCI_HOT_RESET at all. =20
-> >=20
-> > Does it happen to be or by design, this ioctl is not needed by dpdk? =
-=20
+Pair each <platform>_hotplug_enables() function with
+a corresponding <platform>_hotplug_mask() function so that
+we can determine right bits to clear on a per hpd_pin basis.
+We'll need this for turning on HPD sense for a specific
+encoder rather than just all of them.
 
-I can't think of a reason DPDK couldn't use hot-reset.  If we want to
-make it a policy, it should be enforced by code, but creating that
-policy based on a difficulty in supporting that mode with iommufd isn't
-great.
-=20
-> use of noiommu should be discouraged.
->=20
-> if only known noiommu user doesn't use it then having certain
-> new restriction for noiommu in the hot reset path might be an
-> acceptable tradeoff.
->=20
-> but again needs Alex's input as he knows all the history about
-> noiommu. =F0=9F=98=8A
+v2: Drop the unused 'i915' param (Jani)
+v3: Drop the _foo_hotplug_enables() redirection too
 
-No-IOMMU mode was meant to be a minimally invasive code change to
-re-use the vfio device interface, or alternatively avoid extending
-uio-pci-generic to support MSI/X, with better logging/tainting to know
-when userspace is driving devices without IOMMU protection, and as a
-means to promote a transition to standard support of vfio.  AFAIK,
-there are still environments without v/IOMMU that make use of no-iommu
-mode.  Thanks,
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 205 +++++++++++++++++++++-----------
+ 1 file changed, 134 insertions(+), 71 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index cc3d016f76d1..22658b38454d 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2836,6 +2836,22 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
++static u32 ibx_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_A:
++		return PORTA_HOTPLUG_ENABLE;
++	case HPD_PORT_B:
++		return PORTB_HOTPLUG_ENABLE | PORTB_PULSE_DURATION_MASK;
++	case HPD_PORT_C:
++		return PORTC_HOTPLUG_ENABLE | PORTC_PULSE_DURATION_MASK;
++	case HPD_PORT_D:
++		return PORTD_HOTPLUG_ENABLE | PORTD_PULSE_DURATION_MASK;
++	default:
++		return 0;
++	}
++}
++
+ static u32 ibx_hotplug_enables(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+@@ -2870,13 +2886,10 @@ static void ibx_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 	 * The pulse duration bits are reserved on LPT+.
+ 	 */
+ 	intel_uncore_rmw(&dev_priv->uncore, PCH_PORT_HOTPLUG,
+-			 PORTA_HOTPLUG_ENABLE |
+-			 PORTB_HOTPLUG_ENABLE |
+-			 PORTC_HOTPLUG_ENABLE |
+-			 PORTD_HOTPLUG_ENABLE |
+-			 PORTB_PULSE_DURATION_MASK |
+-			 PORTC_PULSE_DURATION_MASK |
+-			 PORTD_PULSE_DURATION_MASK,
++			 ibx_hotplug_mask(HPD_PORT_A) |
++			 ibx_hotplug_mask(HPD_PORT_B) |
++			 ibx_hotplug_mask(HPD_PORT_C) |
++			 ibx_hotplug_mask(HPD_PORT_D),
+ 			 intel_hpd_hotplug_enables(dev_priv, ibx_hotplug_enables));
+ }
+ 
+@@ -2892,14 +2905,34 @@ static void ibx_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	ibx_hpd_detection_setup(dev_priv);
+ }
+ 
++static u32 icp_ddi_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_A:
++	case HPD_PORT_B:
++	case HPD_PORT_C:
++	case HPD_PORT_D:
++		return SHOTPLUG_CTL_DDI_HPD_ENABLE(hpd_pin);
++	default:
++		return 0;
++	}
++}
++
+ static u32 icp_ddi_hotplug_enables(struct intel_encoder *encoder)
+ {
+-	switch (encoder->hpd_pin) {
+-	case HPD_PORT_A:
+-	case HPD_PORT_B:
+-	case HPD_PORT_C:
+-	case HPD_PORT_D:
+-		return SHOTPLUG_CTL_DDI_HPD_ENABLE(encoder->hpd_pin);
++	return icp_ddi_hotplug_mask(encoder->hpd_pin);
++}
++
++static u32 icp_tc_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_TC1:
++	case HPD_PORT_TC2:
++	case HPD_PORT_TC3:
++	case HPD_PORT_TC4:
++	case HPD_PORT_TC5:
++	case HPD_PORT_TC6:
++		return ICP_TC_HPD_ENABLE(hpd_pin);
+ 	default:
+ 		return 0;
+ 	}
+@@ -2907,38 +2940,28 @@ static u32 icp_ddi_hotplug_enables(struct intel_encoder *encoder)
+ 
+ static u32 icp_tc_hotplug_enables(struct intel_encoder *encoder)
+ {
+-	switch (encoder->hpd_pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return ICP_TC_HPD_ENABLE(encoder->hpd_pin);
+-	default:
+-		return 0;
+-	}
++	return icp_tc_hotplug_mask(encoder->hpd_pin);
+ }
+ 
+ static void icp_ddi_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	intel_uncore_rmw(&dev_priv->uncore, SHOTPLUG_CTL_DDI,
+-			 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A) |
+-			 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) |
+-			 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C) |
+-			 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_D),
++			 icp_ddi_hotplug_mask(HPD_PORT_A) |
++			 icp_ddi_hotplug_mask(HPD_PORT_B) |
++			 icp_ddi_hotplug_mask(HPD_PORT_C) |
++			 icp_ddi_hotplug_mask(HPD_PORT_D),
+ 			 intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables));
+ }
+ 
+ static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	intel_uncore_rmw(&dev_priv->uncore, SHOTPLUG_CTL_TC,
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC1) |
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC2) |
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC3) |
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC4) |
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC5) |
+-			 ICP_TC_HPD_ENABLE(HPD_PORT_TC6),
++			 icp_tc_hotplug_mask(HPD_PORT_TC1) |
++			 icp_tc_hotplug_mask(HPD_PORT_TC2) |
++			 icp_tc_hotplug_mask(HPD_PORT_TC3) |
++			 icp_tc_hotplug_mask(HPD_PORT_TC4) |
++			 icp_tc_hotplug_mask(HPD_PORT_TC5) |
++			 icp_tc_hotplug_mask(HPD_PORT_TC6),
+ 			 intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables));
+ }
+ 
+@@ -2958,19 +2981,24 @@ static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	icp_tc_hpd_detection_setup(dev_priv);
+ }
+ 
++static u32 gen11_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_TC1:
++	case HPD_PORT_TC2:
++	case HPD_PORT_TC3:
++	case HPD_PORT_TC4:
++	case HPD_PORT_TC5:
++	case HPD_PORT_TC6:
++		return GEN11_HOTPLUG_CTL_ENABLE(hpd_pin);
++	default:
++		return 0;
++	}
++}
++
+ static u32 gen11_hotplug_enables(struct intel_encoder *encoder)
+ {
+-	switch (encoder->hpd_pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return GEN11_HOTPLUG_CTL_ENABLE(encoder->hpd_pin);
+-	default:
+-		return 0;
+-	}
++	return gen11_hotplug_mask(encoder->hpd_pin);
+ }
+ 
+ static void dg1_hpd_invert(struct drm_i915_private *i915)
+@@ -2991,24 +3019,24 @@ static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	intel_uncore_rmw(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL,
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6),
++			 gen11_hotplug_mask(HPD_PORT_TC1) |
++			 gen11_hotplug_mask(HPD_PORT_TC2) |
++			 gen11_hotplug_mask(HPD_PORT_TC3) |
++			 gen11_hotplug_mask(HPD_PORT_TC4) |
++			 gen11_hotplug_mask(HPD_PORT_TC5) |
++			 gen11_hotplug_mask(HPD_PORT_TC6),
+ 			 intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
+ }
+ 
+ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	intel_uncore_rmw(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL,
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+-			 GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6),
++			 gen11_hotplug_mask(HPD_PORT_TC1) |
++			 gen11_hotplug_mask(HPD_PORT_TC2) |
++			 gen11_hotplug_mask(HPD_PORT_TC3) |
++			 gen11_hotplug_mask(HPD_PORT_TC4) |
++			 gen11_hotplug_mask(HPD_PORT_TC5) |
++			 gen11_hotplug_mask(HPD_PORT_TC6),
+ 			 intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
+ }
+ 
+@@ -3030,9 +3058,9 @@ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 		icp_hpd_irq_setup(dev_priv);
+ }
+ 
+-static u32 spt_hotplug_enables(struct intel_encoder *encoder)
++static u32 spt_hotplug_mask(enum hpd_pin hpd_pin)
+ {
+-	switch (encoder->hpd_pin) {
++	switch (hpd_pin) {
+ 	case HPD_PORT_A:
+ 		return PORTA_HOTPLUG_ENABLE;
+ 	case HPD_PORT_B:
+@@ -3046,9 +3074,14 @@ static u32 spt_hotplug_enables(struct intel_encoder *encoder)
+ 	}
+ }
+ 
+-static u32 spt_hotplug2_enables(struct intel_encoder *encoder)
++static u32 spt_hotplug_enables(struct intel_encoder *encoder)
+ {
+-	switch (encoder->hpd_pin) {
++	return spt_hotplug_mask(encoder->hpd_pin);
++}
++
++static u32 spt_hotplug2_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
+ 	case HPD_PORT_E:
+ 		return PORTE_HOTPLUG_ENABLE;
+ 	default:
+@@ -3056,6 +3089,11 @@ static u32 spt_hotplug2_enables(struct intel_encoder *encoder)
+ 	}
+ }
+ 
++static u32 spt_hotplug2_enables(struct intel_encoder *encoder)
++{
++	return spt_hotplug2_mask(encoder->hpd_pin);
++}
++
+ static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	/* Display WA #1179 WaHardHangonHotPlug: cnp */
+@@ -3066,13 +3104,14 @@ static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 
+ 	/* Enable digital hotplug on the PCH */
+ 	intel_uncore_rmw(&dev_priv->uncore, PCH_PORT_HOTPLUG,
+-			 PORTA_HOTPLUG_ENABLE |
+-			 PORTB_HOTPLUG_ENABLE |
+-			 PORTC_HOTPLUG_ENABLE |
+-			 PORTD_HOTPLUG_ENABLE,
++			 spt_hotplug_mask(HPD_PORT_A) |
++			 spt_hotplug_mask(HPD_PORT_B) |
++			 spt_hotplug_mask(HPD_PORT_C) |
++			 spt_hotplug_mask(HPD_PORT_D),
+ 			 intel_hpd_hotplug_enables(dev_priv, spt_hotplug_enables));
+ 
+-	intel_uncore_rmw(&dev_priv->uncore, PCH_PORT_HOTPLUG2, PORTE_HOTPLUG_ENABLE,
++	intel_uncore_rmw(&dev_priv->uncore, PCH_PORT_HOTPLUG2,
++			 spt_hotplug2_mask(HPD_PORT_E),
+ 			 intel_hpd_hotplug_enables(dev_priv, spt_hotplug2_enables));
+ }
+ 
+@@ -3091,6 +3130,17 @@ static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	spt_hpd_detection_setup(dev_priv);
+ }
+ 
++static u32 ilk_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_A:
++		return DIGITAL_PORTA_HOTPLUG_ENABLE |
++			DIGITAL_PORTA_PULSE_DURATION_MASK;
++	default:
++		return 0;
++	}
++}
++
+ static u32 ilk_hotplug_enables(struct intel_encoder *encoder)
+ {
+ 	switch (encoder->hpd_pin) {
+@@ -3110,7 +3160,7 @@ static void ilk_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 	 * The pulse duration bits are reserved on HSW+.
+ 	 */
+ 	intel_uncore_rmw(&dev_priv->uncore, DIGITAL_PORT_HOTPLUG_CNTRL,
+-			 DIGITAL_PORTA_HOTPLUG_ENABLE | DIGITAL_PORTA_PULSE_DURATION_MASK,
++			 ilk_hotplug_mask(HPD_PORT_A),
+ 			 intel_hpd_hotplug_enables(dev_priv, ilk_hotplug_enables));
+ }
+ 
+@@ -3131,6 +3181,20 @@ static void ilk_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	ibx_hpd_irq_setup(dev_priv);
+ }
+ 
++static u32 bxt_hotplug_mask(enum hpd_pin hpd_pin)
++{
++	switch (hpd_pin) {
++	case HPD_PORT_A:
++		return PORTA_HOTPLUG_ENABLE | BXT_DDIA_HPD_INVERT;
++	case HPD_PORT_B:
++		return PORTB_HOTPLUG_ENABLE | BXT_DDIB_HPD_INVERT;
++	case HPD_PORT_C:
++		return PORTC_HOTPLUG_ENABLE | BXT_DDIC_HPD_INVERT;
++	default:
++		return 0;
++	}
++}
++
+ static u32 bxt_hotplug_enables(struct intel_encoder *encoder)
+ {
+ 	u32 hotplug;
+@@ -3159,10 +3223,9 @@ static u32 bxt_hotplug_enables(struct intel_encoder *encoder)
+ static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	intel_uncore_rmw(&dev_priv->uncore, PCH_PORT_HOTPLUG,
+-			 PORTA_HOTPLUG_ENABLE |
+-			 PORTB_HOTPLUG_ENABLE |
+-			 PORTC_HOTPLUG_ENABLE |
+-			 BXT_DDI_HPD_INVERT_MASK,
++			 bxt_hotplug_mask(HPD_PORT_A) |
++			 bxt_hotplug_mask(HPD_PORT_B) |
++			 bxt_hotplug_mask(HPD_PORT_C),
+ 			 intel_hpd_hotplug_enables(dev_priv, bxt_hotplug_enables));
+ }
+ 
+-- 
+2.39.2
 
