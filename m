@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C1F6AC14B
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 14:34:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247BC6AC190
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 14:40:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51ADA10E243;
-	Mon,  6 Mar 2023 13:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2DBE10E066;
+	Mon,  6 Mar 2023 13:40:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6AD510E243
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 13:34:36 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E26B10E066
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 13:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678109676; x=1709645676;
+ t=1678110022; x=1709646022;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=1l2mbU/00XlIlVgz8d7MAQEqIQe6Ab2U3aUTibppurU=;
- b=cXS513yIwka68DQ+DWy+09QWHtOuekpvHS1S/YKpfLnfI2nuiUYFrDiE
- tGoMxygjsHDSDySiThLqEA9Dt1qwpz/Y/t1LbW187kd7mk4X+8Ba49yBE
- r86oUyoqBhgSR5ujRSVMQ/oK/jr3LF3SOQvjSdMivc4EwzF9zLs7xl5b5
- kGNsHMmXzedMcrl2j1Adi0ddzJX0srvyI+28Xxo6r0Dgs0Fy31ktHf73C
- PPXLPxKqiViWO0vStYqu3Ydk5WWjOS+4OuCI2g33ov0ZGOAHWDNFEMmKo
- xi04yZxcABlxeBL+us0rvYaEzLM962BFc+z/IAoVJZkYNX7cEAvDRqtZa w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="421824410"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="421824410"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:34:36 -0800
+ bh=qn1WP8wHLCtvFRvl2YpBWLPyeITfCZ7TQRuv0Hilljw=;
+ b=BGY97Fw0JS9Ya6xH7KA6cN9YwUwvfU7isjxEKdDB70NRRgXAJFEbAaA/
+ wJ/8tjRop/ZNdLCHmYZGBXwRdMT8kEX3New630hemukKi8irH1g99Hkyi
+ IIgwGJ0HUob7oGeY7fpahJqSs7VqWqtVie1axOs4Jp9slUoUo94a6vOH0
+ qjxSJsR6oXNUL8U9/I+3OCFKG6AWljsk3MFmmpTWkkHGh2h/fKMfjel08
+ wFrNyuBN2BNxvKxf5jkX8/GVa5RMOeHM6tRGlYrCOLv0TxJ1whu3wnCPC
+ z1OF4pQkO6cQ/OCdDIHGBkFtTr7TMyhhJqAOmNg5bXA67W0YpIKsyt11R Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="315948647"
+X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="315948647"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 05:40:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="765215962"
-X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="765215962"
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="678480269"
+X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="678480269"
 Received: from bholthau-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.58.77])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:34:34 -0800
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 05:40:20 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230304161749.1420224-1-badal.nilawar@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230306080401.22552-1-stanislav.lisovskiy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230304161749.1420224-1-badal.nilawar@intel.com>
-Date: Mon, 06 Mar 2023 15:34:32 +0200
-Message-ID: <87o7p6t34n.fsf@intel.com>
+References: <20230306080401.22552-1-stanislav.lisovskiy@intel.com>
+Date: Mon, 06 Mar 2023 15:40:18 +0200
+Message-ID: <87lekat2v1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Extend Wa_14017073508 in
- suspend/resume flow
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Ensure DSC has enough BW and
+ stays within HW limits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,234 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 04 Mar 2023, Badal Nilawar <badal.nilawar@intel.com> wrote:
-> During suspend resume flow it was seen that lots forcewakes
-> are taken and released for media. So to avoid HANG due to MC6
-> entry/exit while accessing media applied Wa_14017073508 in
-> suspend/resume flow.
+On Mon, 06 Mar 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> We have currently the issue with some BPPs when using DSC.
+> According the HW team the reason is that single VDSC engine instance,
+> has some BW limitations which have to be accounted, so whenever
+> we approach around 90% of the CDCLK, second VDSC engine have to be
+> used. Also that always means using 2 slices, however in our current code
+> amount of slices is calculated for some reason independently of
+> whether we need to enable 2nd VDSC engine or not, thus leading to
+> some logical issues, when according to pixel clock needs we need to enable
+> 2nd VDSC engine, however as we calculated previously that we can use
+> only single slice, we can't do that and fail.
+> So we need to fix that, so that amount of VDSC engines enabled should depend
+> on amount of slices and amount of slices should also depend on BW requirements.
+> Lastly we didn't have BPP limitation for ADLP/MTL/DG2 implemented which says
+> that DSC output BPP's can only be chosen within range of 8 to 27(BSpec 49259).
+> This all applied together allows to fix existing FIFO underruns, which we
+> have in many DSC tests.
 >
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> BSpec: 49259
+> HSDES: 18027167222
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_pm.c   |  6 ++++-
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c    | 32 ++++++++++++++++--------
->  drivers/gpu/drm/i915/gt/intel_gt_pm.h    |  3 +++
->  drivers/gpu/drm/i915/gt/intel_gt_types.h |  1 +
->  drivers/gpu/drm/i915/i915_driver.c       | 32 ++++++++++++++++++++++++
->  5 files changed, 62 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++----------
+>  1 file changed, 11 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-> index 0d812f4d787d..60deac41104d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-> @@ -160,8 +160,12 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
->  	 * machine in an unusable condition.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index aee93b0d810e..e3680ae95b83 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -687,6 +687,12 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+>  	/* From XE_LPD onwards we support from bpc upto uncompressed bpp-1 BPPs */
+>  	if (DISPLAY_VER(i915) >= 13) {
+>  		bits_per_pixel = min(bits_per_pixel, pipe_bpp - 1);
+> +
+> +		/* According to BSpec, 27 is the max DSC output bpp */
+> +		bits_per_pixel = min(bits_per_pixel, (u32)27);
+> +
+> +		/* According to BSpec, 8 is the min DSC output bpp */
+> +		bits_per_pixel = max(bits_per_pixel, (u32)8);
+
+Please use clamp() or clamp_t() for ranges. Avoid casting the
+params. The _t variants are for handling that.
+
+>  	} else {
+>  		/* Find the nearest match in the array of known BPPs from VESA */
+>  		for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
+> @@ -771,6 +777,9 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+>  		min_slice_count = DIV_ROUND_UP(mode_clock,
+>  					       DP_DSC_MAX_ENC_THROUGHPUT_1);
+>  
+> +	if (mode_clock >= ((i915->display.cdclk.max_cdclk_freq * 85) / 100))
+> +		min_slice_count = max(min_slice_count, (u8)2);
+> +
+>  	max_slice_width = drm_dp_dsc_sink_max_slice_width(intel_dp->dsc_dpcd);
+>  	if (max_slice_width < DP_DSC_MIN_SLICE_WIDTH_VALUE) {
+>  		drm_dbg_kms(&i915->drm,
+> @@ -1597,16 +1606,8 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	 * is greater than the maximum Cdclock and if slice count is even
+>  	 * then we need to use 2 VDSC instances.
 >  	 */
+> -	if (adjusted_mode->crtc_clock > dev_priv->display.cdclk.max_cdclk_freq ||
+> -	    pipe_config->bigjoiner_pipes) {
+> -		if (pipe_config->dsc.slice_count > 1) {
+> -			pipe_config->dsc.dsc_split = true;
+> -		} else {
+> -			drm_dbg_kms(&dev_priv->drm,
+> -				    "Cannot split stream to use 2 VDSC instances\n");
+> -			return -EINVAL;
+> -		}
+> -	}
+> +	if (pipe_config->bigjoiner_pipes || pipe_config->dsc.slice_count > 1)
+> +		pipe_config->dsc.dsc_split = true;
 >  
-> -	for_each_gt(gt, i915, i)
-> +	for_each_gt(gt, i915, i) {
-> +		/* Wa_14017073508: mtl */
-> +		mtl_media_busy(gt);
->  		intel_gt_suspend_late(gt);
-> +		mtl_media_idle(gt);
-> +	}
->  
->  	spin_lock_irqsave(&i915->mm.obj_lock, flags);
->  	for (phase = phases; *phase; phase++) {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index cef3d6f5c34e..1f3bf1cf0421 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -26,24 +26,34 @@
->  
->  #define I915_GT_SUSPEND_IDLE_TIMEOUT (HZ / 2)
->  
-> -static void mtl_media_busy(struct intel_gt *gt)
-> +void mtl_media_busy(struct intel_gt *gt)
->  {
->  	/* Wa_14017073508: mtl */
-> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
-> +	if (gt && IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
->  	    gt->type == GT_MEDIA)
-> -		snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
-> -				  PCODE_MBOX_GT_STATE_MEDIA_BUSY,
-> -				  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
-> +		if (!atomic_inc_not_zero(&gt->media_wakeref)) {
-> +			drm_err(&gt->i915->drm, "Media busy\n");
-> +			snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
-> +					  PCODE_MBOX_GT_STATE_MEDIA_BUSY,
-> +					  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
-> +			atomic_inc(&gt->media_wakeref);
-> +		}
->  }
->  
-> -static void mtl_media_idle(struct intel_gt *gt)
-> +void mtl_media_idle(struct intel_gt *gt)
->  {
->  	/* Wa_14017073508: mtl */
-> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
-> -	    gt->type == GT_MEDIA)
-> -		snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
-> -				  PCODE_MBOX_GT_STATE_MEDIA_NOT_BUSY,
-> -				  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
-> +	if (gt && IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
-> +	    gt->type == GT_MEDIA) {
-> +		WARN_ON(atomic_read(&gt->media_wakeref) <= 0);
-> +		if (!atomic_add_unless(&gt->media_wakeref, -1, 1)) {
-> +			drm_err(&gt->i915->drm, "Media idle\n");
-> +			snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
-> +					  PCODE_MBOX_GT_STATE_MEDIA_NOT_BUSY,
-> +					  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
-> +			atomic_dec(&gt->media_wakeref);
-> +		}
-> +	}
->  }
->  
->  static void user_forcewake(struct intel_gt *gt, bool suspend)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> index 6c9a46452364..43ffabf9babe 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> @@ -89,4 +89,7 @@ static inline bool is_mock_gt(const struct intel_gt *gt)
->  	return I915_SELFTEST_ONLY(gt->awake == -ENODEV);
->  }
->  
-> +void mtl_media_busy(struct intel_gt *gt);
-> +void mtl_media_idle(struct intel_gt *gt);
-> +
->  #endif /* INTEL_GT_PM_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index f08c2556aa25..321ccfef4028 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -145,6 +145,7 @@ struct intel_gt {
->  
->  	struct intel_wakeref wakeref;
->  	atomic_t user_wakeref;
-> +	atomic_t media_wakeref;
->  
->  	struct list_head closed_vma;
->  	spinlock_t closed_lock; /* guards the list of closed_vma */
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 8bc76dede332..c7625ea28022 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -327,6 +327,8 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
->  	intel_gmch_bar_setup(dev_priv);
->  	intel_device_info_runtime_init(dev_priv);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_busy(dev_priv->media_gt);
-
-i915_driver.c is one of the highest level files in the driver, and
-details like this just don't belong here, at all.
-
-BR,
-Jani.
-
->  	for_each_gt(gt, dev_priv, i) {
->  		ret = intel_gt_init_mmio(gt);
->  		if (ret)
-> @@ -335,10 +337,14 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
->  
->  	/* As early as possible, scrub existing GPU state before clobbering */
->  	sanitize_gpu(dev_priv);
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_idle(dev_priv->media_gt);
->  
->  	return 0;
->  
->  err_uncore:
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_idle(dev_priv->media_gt);
->  	intel_gmch_bar_teardown(dev_priv);
->  
->  	return ret;
-> @@ -781,6 +787,12 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	if (ret < 0)
->  		goto out_tiles_cleanup;
->  
-> +	/* Wa_14017073508: mtl */
-> +	if (i915->media_gt) {
-> +		atomic_set(&i915->media_gt->media_wakeref, 0);
-> +		mtl_media_busy(i915->media_gt);
-> +	}
-> +
->  	ret = i915_driver_hw_probe(i915);
->  	if (ret < 0)
->  		goto out_cleanup_mmio;
-> @@ -838,6 +850,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	i915_gem_drain_freed_objects(i915);
->  	i915_ggtt_driver_late_release(i915);
->  out_cleanup_mmio:
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_idle(i915->media_gt);
->  	i915_driver_mmio_release(i915);
->  out_tiles_cleanup:
->  	intel_gt_release_all(i915);
-> @@ -1063,6 +1077,9 @@ static int i915_drm_suspend(struct drm_device *dev)
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_busy(dev_priv->media_gt);
-> +
->  	/* We do a lot of poking in a lot of registers, make sure they work
->  	 * properly. */
->  	intel_power_domains_disable(dev_priv);
-> @@ -1097,6 +1114,9 @@ static int i915_drm_suspend(struct drm_device *dev)
->  
->  	intel_dmc_suspend(dev_priv);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_busy(dev_priv->media_gt);
-> +
->  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
->  	i915_gem_drain_freed_objects(dev_priv);
-> @@ -1197,6 +1217,9 @@ static int i915_drm_resume(struct drm_device *dev)
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_busy(dev_priv->media_gt);
-> +
->  	ret = i915_pcode_init(dev_priv);
->  	if (ret)
->  		return ret;
-> @@ -1260,6 +1283,9 @@ static int i915_drm_resume(struct drm_device *dev)
->  
->  	intel_gvt_resume(dev_priv);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_idle(dev_priv->media_gt);
-> +
->  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
->  	return 0;
-> @@ -1319,6 +1345,9 @@ static int i915_drm_resume_early(struct drm_device *dev)
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_busy(dev_priv->media_gt);
-> +
->  	ret = vlv_resume_prepare(dev_priv, false);
->  	if (ret)
->  		drm_err(&dev_priv->drm,
-> @@ -1333,6 +1362,9 @@ static int i915_drm_resume_early(struct drm_device *dev)
->  
->  	intel_power_domains_resume(dev_priv);
->  
-> +	/* Wa_14017073508: mtl */
-> +	mtl_media_idle(dev_priv->media_gt);
-> +
->  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
->  	return ret;
+>  	ret = intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
+>  	if (ret < 0) {
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
