@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4006ABCCD
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 11:32:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E586ABD6D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 11:55:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D284E10E0AE;
-	Mon,  6 Mar 2023 10:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0EF10E220;
+	Mon,  6 Mar 2023 10:55:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7FC7B10E0AE;
- Mon,  6 Mar 2023 10:32:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7788FA47DF;
- Mon,  6 Mar 2023 10:32:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49C5810E220;
+ Mon,  6 Mar 2023 10:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678100108; x=1709636108;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=/TIgeCfWFJlJ6em1rKJ0RE3ltK53jlMLsH29ltUGH68=;
+ b=b1rBFV8v1TTZOcSS5OMO3Sj680vDyOVv8o3i7apOBFOIJk6PSXQnAQZy
+ MRAjBgsM3UemBEcGi1bHcOYt7IGuW8v/K4oTEJ30FfCKXsTEaiIz2xchk
+ 7dyyj30B6wMgOojtg9Dq0xwlcKyZnD9SSBNAubcIKT0NBxVQPjHPnUuIq
+ GxtXXL76KHUIBdOAy2iVV55eJJmVWgR/PGfhnhkfB3kDmaYAKeHhHxjQM
+ 4p08xWgGEPmgTWORxgiwZeXpMRMHcEvdvhn8UECtm0MnWCmYm9y6pRkSz
+ 8O29JXgX60i0DUtXJB0kzuj+b8+ddvT2UM+PhEOWngeIFIavuWev2zOtK A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337042615"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="337042615"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 02:55:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="653567874"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="653567874"
+Received: from bholthau-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.77])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 02:55:02 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ammar Faizi <ammarfaizi2@gnuweeb.org>, Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <ZAOTU5CRwdEC1lGH@biznet-home.integral.gnuweeb.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <6feae796-db3f-1135-a607-cfefb0259788@gnuweeb.org>
+ <ZAGqet3U8AMm4Uf1@debian.me>
+ <ZAOTU5CRwdEC1lGH@biznet-home.integral.gnuweeb.org>
+Date: Mon, 06 Mar 2023 12:54:59 +0200
+Message-ID: <87v8jetaik.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Mon, 06 Mar 2023 10:32:01 -0000
-Message-ID: <167809872146.4156.11598838790992910728@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230306102850.18299-1-nirmoy.das@intel.com>
-In-Reply-To: <20230306102850.18299-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/3=5D_drm/i915=3A_Set_I915=5FBO=5FALLOC?=
- =?utf-8?q?=5FUSER_for_framebuffer?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] Linux 6.2.1 hits a display driver bug (list_del
+ corruption, ffff88811b4af298->next is NULL)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,34 +61,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel GFX Mailing List <intel-gfx@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sun, 05 Mar 2023, Ammar Faizi <ammarfaizi2@gnuweeb.org> wrote:
+> On Fri, Mar 03, 2023 at 03:06:18PM +0700, Bagas Sanjaya wrote:
+>> Can you please try v6.1?
+>
+> It's reproducible in v6.1.9. I finally can reliably reproduce it, it
+> only happens when I start a VM with qemu.
+>
+> Specifically adding this device to the qemu instance:
+>
+>   <hostdev mode="subsystem" type="pci" managed="yes">
+>     <source>
+>       <address domain="0x0000" bus="0x00" slot="0x02" function="0x0"/>
+>     </source>
+>     <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
+>   </hostdev>
+>
+> And that slot is used by this hardware:
+>
+>   0000:00:02:0 Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics]
+>
+> Removing it from the qemu instance solves the issue. But it's still a
+> kernel bug anyway.
 
-Series: series starting with [1/3] drm/i915: Set I915_BO_ALLOC_USER for framebuffer
-URL   : https://patchwork.freedesktop.org/series/114693/
-State : failure
+Please file a bug at fdo gitlab:
 
-== Summary ==
-
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbdev.o
-drivers/gpu/drm/i915/display/intel_fbdev.c: In function ‘intel_fbdev_mmap’:
-drivers/gpu/drm/i915/display/intel_fbdev.c:131:21: error: unused variable ‘dev’ [-Werror=unused-variable]
-  131 |  struct drm_device *dev = fbdev->helper.dev;
-      |                     ^~~
-cc1: all warnings being treated as errors
-make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_fbdev.o] Error 1
-make[4]: *** [scripts/Makefile.build:494: drivers/gpu/drm/i915] Error 2
-make[3]: *** [scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[2]: *** [scripts/Makefile.build:494: drivers/gpu] Error 2
-make[1]: *** [scripts/Makefile.build:494: drivers] Error 2
-make: *** [Makefile:2028: .] Error 2
+https://gitlab.freedesktop.org/drm/intel/wikis/How-to-file-i915-bugs
 
 
+BR,
+Jani.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
