@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E8D6ACC36
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 19:14:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E046ACC61
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 19:22:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB4B710E41D;
-	Mon,  6 Mar 2023 18:14:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54AD810E420;
+	Mon,  6 Mar 2023 18:22:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4614110E41D
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 18:14:40 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5A0010E420
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 18:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678126480; x=1709662480;
+ t=1678126970; x=1709662970;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WwE/zapzAeMvz9QgD+lObUX13HM/88XOpqLc+SexrfE=;
- b=m8FaT4QrO//V2C7mvT3DC0GP/yidEIWCwZt99RVPBl57zwskkvE6Zm6I
- OtpZF1ifzmfFoMb1eOLnjImEm+la1Wl6l/jeXwjMgV3YV7y430nOFFLUE
- 2huYot3/2thqiJBdT7XG0bipumw6csljK0MunLBpJRiTp0PaqB1BSCUmR
- rnS0iqgrFLrXLxmnctlOhoh0uRDzAWFd+zJ7HcIVKV+F2TEx/akT1C3A4
- Kr3cM/8AsBeqkSWrApQ2bVbWpaYPIv9hL6XYAk5eV5Le0qRJA2t8f/GGs
- FlsIF2DS3KZP6tX2MmITttdaQ/Tw3W9BCD3D8fkL11YM4BHihXqf6XneP A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="363252428"
-X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="363252428"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 10:14:39 -0800
+ message-id:mime-version:content-transfer-encoding;
+ bh=walEKc53trTebZHV0K9w8mHajM8qcxsxmn2ZOl2kt6c=;
+ b=PKd0w/jvm3rxe5yzVbIPAGt1sP3un1bMxPeg7+Twu0JzCjAWZuaNkNEX
+ S/+ca13cHQPDsSqvEBIa02fgChFLkGNfU8DHZLFNJ0dPvyzHjBZFWEGph
+ 1GbdKactiHUQS8+bYuq7bNm1e29zefhLurVrCXRDiteDRVeCLEmLROhmL
+ cYwl/+AdUUvZywIsIVirw90VYy92L8UqMBbP36S0KierAqJ0AJapSAGTc
+ Jg+xe6L+smLi1n/xivdjdUpEYODB7skuVrhJZO2ZYg+ni0Omdqtr3Z67L
+ 7JrgRLf5EN0+jaHtOs+akhueiwBiuQ36LCfWeC4029dxen6AvpJBE6VLl Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="337959235"
+X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="337959235"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 10:22:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="786342645"
-X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="786342645"
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="653692425"
+X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="653692425"
 Received: from ramuchie-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.58.188])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 10:14:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230227132607.15496-1-stanislav.lisovskiy@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 10:22:48 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <ZADbOzsUe3+iGepN@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230227132607.15496-1-stanislav.lisovskiy@intel.com>
-Date: Mon, 06 Mar 2023 20:14:35 +0200
-Message-ID: <871qm1u4qc.fsf@intel.com>
+References: <20230302164936.3034161-1-jani.nikula@intel.com>
+ <ZADbOzsUe3+iGepN@intel.com>
+Date: Mon, 06 Mar 2023 20:22:45 +0200
+Message-ID: <87y1o9spsa.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Communicate display power
- demands to pcode more accurately
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rps: split out display rps parts
+ to a separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,348 +61,295 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Feb 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> Display to communicate display pipe count/CDCLK/voltage configuration
-> to Pcode for more accurate power accounting for gen >= 12.
-> Existing sequence is only sending the voltage value to the Pcode.
-> Adding new sequence with current cdclk associate with voltage value masking.
-> Adding pcode request when any pipe power well will disable or enable.
+On Thu, 02 Mar 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Mar 02, 2023 at 06:49:36PM +0200, Jani Nikula wrote:
+>> Split out the RPS parts so they can be conditionally compiled out later.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> v2: - Make intel_cdclk_need_serialize static to make CI compiler happy.
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Thanks, pushed to din.
+
+BR,
+Jani.
+
 >
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 174 +++++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_cdclk.h |   2 +
->  drivers/gpu/drm/i915/i915_reg.h            |  14 ++
->  3 files changed, 176 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 084a483f9776..df5a21f6a393 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1932,10 +1932,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  		 * NOOP - No Pcode communication needed for
->  		 * Display versions 14 and beyond
->  		 */;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> +	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
->  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
->  				      cdclk_config->voltage_level);
-> -	else
-> +	if (DISPLAY_VER(dev_priv) < 11) {
->  		/*
->  		 * The timeout isn't specified, the 2ms used here is based on
->  		 * experiment.
-> @@ -1946,7 +1946,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
->  					      cdclk_config->voltage_level,
->  					      150, 2);
-> -
-> +	}
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
->  			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-> @@ -2242,6 +2242,40 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  		    cdclk_config->voltage_level);
->  }
->  
-> +static void intel_pcode_notify(struct drm_i915_private *i915,
-> +			       u8 voltage_level,
-> +			       u8 active_pipe_count,
-> +			       u8 cdclk,
-> +			       bool cdclk_update_valid,
-> +			       bool pipe_count_update_valid)
-> +{
-> +	int ret;
-> +	u32 update_mask = 0;
-> +
-> +	if (DISPLAY_VER(i915) < 12)
-> +		return;
-> +
-> +	update_mask = DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, active_pipe_count, voltage_level);
-> +
-> +	if (cdclk_update_valid)
-> +		update_mask |= DISPLAY_TO_PCODE_CDCLK_VALID;
-> +
-> +	if (pipe_count_update_valid)
-> +		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
-> +
-> +	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
-> +				SKL_CDCLK_PREPARE_FOR_CHANGE |
-> +				update_mask,
-> +				SKL_CDCLK_READY_FOR_CHANGE,
-> +				SKL_CDCLK_READY_FOR_CHANGE, 3);
-> +	if (ret) {
-> +		drm_err(&i915->drm,
-> +				"Failed to inform PCU about display config (err %d)\n",
-> +				ret);
-> +		return;
+>> ---
+>>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>>  .../gpu/drm/i915/display/intel_atomic_plane.c | 79 ++----------------
+>>  .../gpu/drm/i915/display/intel_display_rps.c  | 81 +++++++++++++++++++
+>>  .../gpu/drm/i915/display/intel_display_rps.h  | 22 +++++
+>>  4 files changed, 111 insertions(+), 72 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
+le
+>> index b2f91a1f8268..8e46f57e4569 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -239,6 +239,7 @@ i915-y +=3D \
+>>  	display/intel_display_power.o \
+>>  	display/intel_display_power_map.o \
+>>  	display/intel_display_power_well.o \
+>> +	display/intel_display_rps.o \
+>>  	display/intel_dmc.o \
+>>  	display/intel_dpio_phy.o \
+>>  	display/intel_dpll.o \
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers=
+/gpu/drm/i915/display/intel_atomic_plane.c
+>> index 3bd8f7eb75a6..719a60e278f3 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>> @@ -34,11 +34,10 @@
+>>  #include <drm/drm_atomic_helper.h>
+>>  #include <drm/drm_fourcc.h>
+>>=20=20
+>> -#include "gt/intel_rps.h"
+>> -
+>>  #include "i915_config.h"
+>>  #include "intel_atomic_plane.h"
+>>  #include "intel_cdclk.h"
+>> +#include "intel_display_rps.h"
+>>  #include "intel_display_trace.h"
+>>  #include "intel_display_types.h"
+>>  #include "intel_fb.h"
+>> @@ -941,64 +940,6 @@ int intel_atomic_plane_check_clipping(struct intel_=
+plane_state *plane_state,
+>>  	return 0;
+>>  }
+>>=20=20
+>> -struct wait_rps_boost {
+>> -	struct wait_queue_entry wait;
+>> -
+>> -	struct drm_crtc *crtc;
+>> -	struct i915_request *request;
+>> -};
+>> -
+>> -static int do_rps_boost(struct wait_queue_entry *_wait,
+>> -			unsigned mode, int sync, void *key)
+>> -{
+>> -	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), wai=
+t);
+>> -	struct i915_request *rq =3D wait->request;
+>> -
+>> -	/*
+>> -	 * If we missed the vblank, but the request is already running it
+>> -	 * is reasonable to assume that it will complete before the next
+>> -	 * vblank without our intervention, so leave RPS alone.
+>> -	 */
+>> -	if (!i915_request_started(rq))
+>> -		intel_rps_boost(rq);
+>> -	i915_request_put(rq);
+>> -
+>> -	drm_crtc_vblank_put(wait->crtc);
+>> -
+>> -	list_del(&wait->wait.entry);
+>> -	kfree(wait);
+>> -	return 1;
+>> -}
+>> -
+>> -static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+>> -				       struct dma_fence *fence)
+>> -{
+>> -	struct wait_rps_boost *wait;
+>> -
+>> -	if (!dma_fence_is_i915(fence))
+>> -		return;
+>> -
+>> -	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+>> -		return;
+>> -
+>> -	if (drm_crtc_vblank_get(crtc))
+>> -		return;
+>> -
+>> -	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+>> -	if (!wait) {
+>> -		drm_crtc_vblank_put(crtc);
+>> -		return;
+>> -	}
+>> -
+>> -	wait->request =3D to_request(dma_fence_get(fence));
+>> -	wait->crtc =3D crtc;
+>> -
+>> -	wait->wait.func =3D do_rps_boost;
+>> -	wait->wait.flags =3D 0;
+>> -
+>> -	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+>> -}
+>> -
+>>  /**
+>>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+>>   * @_plane: drm plane to prepare for
+>> @@ -1089,13 +1030,13 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>>  		dma_resv_iter_begin(&cursor, obj->base.resv,
+>>  				    DMA_RESV_USAGE_WRITE);
+>>  		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>> -			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>> -						   fence);
+>> +			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>> +							     fence);
+>>  		}
+>>  		dma_resv_iter_end(&cursor);
+>>  	} else {
+>> -		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>> -					   new_plane_state->uapi.fence);
+>> +		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>> +						     new_plane_state->uapi.fence);
+>>  	}
+>>=20=20
+>>  	/*
+>> @@ -1106,10 +1047,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>>  	 * that are not quite steady state without resorting to forcing
+>>  	 * maximum clocks following a vblank miss (see do_rps_boost()).
+>>  	 */
+>> -	if (!state->rps_interactive) {
+>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
+>> -		state->rps_interactive =3D true;
+>> -	}
+>> +	intel_display_rps_mark_interactive(dev_priv, state, true);
+>>=20=20
+>>  	return 0;
+>>=20=20
+>> @@ -1140,10 +1078,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+>>  	if (!obj)
+>>  		return;
+>>=20=20
+>> -	if (state->rps_interactive) {
+>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
+>> -		state->rps_interactive =3D false;
+>> -	}
+>> +	intel_display_rps_mark_interactive(dev_priv, state, false);
+>>=20=20
+>>  	/* Should only be called after a successful intel_prepare_plane_fb()! =
+*/
+>>  	intel_plane_unpin_fb(old_plane_state);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/=
+gpu/drm/i915/display/intel_display_rps.c
+>> new file mode 100644
+>> index 000000000000..918d0327169a
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+>> @@ -0,0 +1,81 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright =C2=A9 2023 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_crtc.h>
+>> +#include <drm/drm_vblank.h>
+>> +
+>> +#include "gt/intel_rps.h"
+>> +#include "i915_drv.h"
+>> +#include "intel_display_rps.h"
+>> +#include "intel_display_types.h"
+>> +
+>> +struct wait_rps_boost {
+>> +	struct wait_queue_entry wait;
+>> +
+>> +	struct drm_crtc *crtc;
+>> +	struct i915_request *request;
+>> +};
+>> +
+>> +static int do_rps_boost(struct wait_queue_entry *_wait,
+>> +			unsigned mode, int sync, void *key)
+>> +{
+>> +	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), wai=
+t);
+>> +	struct i915_request *rq =3D wait->request;
+>> +
+>> +	/*
+>> +	 * If we missed the vblank, but the request is already running it
+>> +	 * is reasonable to assume that it will complete before the next
+>> +	 * vblank without our intervention, so leave RPS alone.
+>> +	 */
+>> +	if (!i915_request_started(rq))
+>> +		intel_rps_boost(rq);
+>> +	i915_request_put(rq);
+>> +
+>> +	drm_crtc_vblank_put(wait->crtc);
+>> +
+>> +	list_del(&wait->wait.entry);
+>> +	kfree(wait);
+>> +	return 1;
+>> +}
+>> +
+>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+>> +					  struct dma_fence *fence)
+>> +{
+>> +	struct wait_rps_boost *wait;
+>> +
+>> +	if (!dma_fence_is_i915(fence))
+>> +		return;
+>> +
+>> +	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+>> +		return;
+>> +
+>> +	if (drm_crtc_vblank_get(crtc))
+>> +		return;
+>> +
+>> +	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+>> +	if (!wait) {
+>> +		drm_crtc_vblank_put(crtc);
+>> +		return;
+>> +	}
+>> +
+>> +	wait->request =3D to_request(dma_fence_get(fence));
+>> +	wait->crtc =3D crtc;
+>> +
+>> +	wait->wait.func =3D do_rps_boost;
+>> +	wait->wait.flags =3D 0;
+>> +
+>> +	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+>> +}
+>> +
+>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+>> +					struct intel_atomic_state *state,
+>> +					bool interactive)
+>> +{
+>> +	if (state->rps_interactive =3D=3D interactive)
+>> +		return;
+>> +
+>> +	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
+>> +	state->rps_interactive =3D interactive;
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/drivers/=
+gpu/drm/i915/display/intel_display_rps.h
+>> new file mode 100644
+>> index 000000000000..e19009c2371a
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
+>> @@ -0,0 +1,22 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright =C2=A9 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __INTEL_DISPLAY_RPS_H__
+>> +#define __INTEL_DISPLAY_RPS_H__
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct dma_fence;
+>> +struct drm_crtc;
+>> +struct drm_i915_private;
+>> +struct intel_atomic_state;
+>> +
+>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+>> +					  struct dma_fence *fence);
+>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+>> +					struct intel_atomic_state *state,
+>> +					bool interactive);
+>> +
+>> +#endif /* __INTEL_DISPLAY_RPS_H__ */
+>> --=20
+>> 2.39.1
 
-Superfluous return.
-
-> +	}
-> +}
-> +
->  /**
->   * intel_set_cdclk - Push the CDCLK configuration to the hardware
->   * @dev_priv: i915 device
-> @@ -2311,6 +2345,98 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
->  	}
->  }
->  
-> +/**
-> + * intel_cdclk_power_usage_to_pcode_pre_notification: display to pcode notification
-> + * before the enabling power wells.
-> + * send notification with cdclk, number of pipes, voltage_level.
-> + * @state: intel atomic state
-> + */
-> +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state)
-
-This could be static?
-
-Not happy with the name, really, but at least it could use a
-verb. Notify instead of notification.
-
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-
-No new dev_priv please.
-
-> +	const struct intel_cdclk_state *old_cdclk_state =
-> +		intel_atomic_get_old_cdclk_state(state);
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
-> +	bool change_cdclk, update_pipe_count;
-> +
-> +	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> +				 &new_cdclk_state->actual) &&
-> +				 (new_cdclk_state->active_pipes ==
-> +				 old_cdclk_state->active_pipes))
-> +		return;
-> +
-> +	/* According to "Sequence Before Frequency Change", voltage level set to 0x3 */
-> +	voltage_level = DISPLAY_TO_PCODE_VOLTAGE_MAX;
-> +
-> +	change_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
-> +	update_pipe_count = hweight8(new_cdclk_state->active_pipes) >
-> +			    hweight8(old_cdclk_state->active_pipes);
-> +
-> +	/*
-> +	 * According to "Sequence Before Frequency Change",
-> +	 * if CDCLK is increasing, set bits 25:16 to upcoming CDCLK,
-> +	 * if CDCLK is decreasing or not changing, set bits 25:16 to current CDCLK,
-> +	 * which basically means we choose the maximum of old and new CDCLK, if we know both
-> +	 */
-> +	if (change_cdclk)
-> +		cdclk = max(new_cdclk_state->actual.cdclk, old_cdclk_state->actual.cdclk);
-> +
-> +	/*
-> +	 * According to "Sequence For Pipe Count Change",
-> +	 * if pipe count is increasing, set bits 25:16 to upcoming pipe count
-> +	 * (power well is enabled)
-> +	 * no action if it is decreasing, before the change
-> +	 */
-> +	if (update_pipe_count)
-> +		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-> +
-> +	intel_pcode_notify(dev_priv, voltage_level, num_active_pipes, cdclk,
-> +			   change_cdclk, update_pipe_count);
-> +}
-> +
-> +/* intel_cdclk_power_usage_to_pcode_post_notification: after frequency change sending
-> + * voltage_level, active pipes, current CDCLK frequency.
-> + * @state: intel atomic state
-> + */
-> +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state)
-
-Ditto about static & naming.
-
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-
-No new dev_priv please.
-
-> +	const struct intel_cdclk_state *new_cdclk_state =
-> +		intel_atomic_get_new_cdclk_state(state);
-> +	const struct intel_cdclk_state *old_cdclk_state =
-> +		intel_atomic_get_old_cdclk_state(state);
-> +	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
-> +	bool update_cdclk, update_pipe_count;
-> +
-> +	/* According to "Sequence After Frequency Change", set voltage to used level */
-> +	voltage_level = new_cdclk_state->actual.voltage_level;
-> +
-> +	update_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
-> +	update_pipe_count = hweight8(new_cdclk_state->active_pipes) <
-> +			    hweight8(old_cdclk_state->active_pipes);
-> +
-> +	/*
-> +	 * According to "Sequence After Frequency Change",
-> +	 * set bits 25:16 to current CDCLK
-> +	 */
-> +	if (update_cdclk)
-> +		cdclk = new_cdclk_state->actual.cdclk;
-> +
-> +	/*
-> +	 * According to "Sequence For Pipe Count Change",
-> +	 * if pipe count is decreasing, set bits 25:16 to current pipe count,
-> +	 * after the change(power well is disabled)
-> +	 * no action if it is increasing, after the change
-> +	 */
-> +	if (update_pipe_count)
-> +		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-> +
-> +	intel_pcode_notify(dev_priv, voltage_level, num_active_pipes, cdclk,
-> +			   update_cdclk, update_pipe_count);
-> +}
-> +
->  /**
->   * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
->   * @state: intel atomic state
-> @@ -2321,7 +2447,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
->  void
->  intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	const struct intel_cdclk_state *old_cdclk_state =
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
-> @@ -2332,11 +2458,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  				 &new_cdclk_state->actual))
->  		return;
->  
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		intel_cdclk_power_usage_to_pcode_pre_notification(state);
-> +
->  	if (pipe == INVALID_PIPE ||
->  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-> -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
->  
-> -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
->  	}
->  }
->  
-> @@ -2350,7 +2479,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
->  void
->  intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	const struct intel_cdclk_state *old_cdclk_state =
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
-> @@ -2361,11 +2490,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
->  				 &new_cdclk_state->actual))
->  		return;
->  
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		intel_cdclk_power_usage_to_pcode_post_notification(state);
-> +
->  	if (pipe != INVALID_PIPE &&
->  	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
-> -		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-> +		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
->  
-> -		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-> +		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
->  	}
->  }
->  
-> @@ -2871,6 +3003,21 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
->  	return 0;
->  }
->  
-> +static bool intel_cdclk_need_serialize(struct drm_i915_private *i915,
-> +				       const struct intel_cdclk_state *old_cdclk_state,
-> +				       const struct intel_cdclk_state *new_cdclk_state)
-> +{
-> +	/*
-> +	 * We need to poke hw for gen >= 12, because we notify PCode if
-> +	 * pipe power well count changes.
-> +	 */
-> +	return intel_cdclk_changed(&old_cdclk_state->actual,
-> +				   &new_cdclk_state->actual) ||
-> +	       ((DISPLAY_VER(i915) >= 12 &&
-> +		 hweight8(old_cdclk_state->active_pipes) !=
-> +		 hweight8(new_cdclk_state->active_pipes)));
-
-That's getting a bit unweildy for one expression.
-
-> +}
-> +
->  int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> @@ -2892,8 +3039,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  	if (ret)
->  		return ret;
->  
-> -	if (intel_cdclk_changed(&old_cdclk_state->actual,
-> -				&new_cdclk_state->actual)) {
-> +	if (intel_cdclk_need_serialize(dev_priv, old_cdclk_state, new_cdclk_state)) {
->  		/*
->  		 * Also serialize commits across all crtcs
->  		 * if the actual hw needs to be poked.
-> @@ -2905,9 +3051,9 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  		   old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk ||
->  		   intel_cdclk_changed(&old_cdclk_state->logical,
->  				       &new_cdclk_state->logical)) {
-> -		ret = intel_atomic_lock_global_state(&new_cdclk_state->base);
-> -		if (ret)
-> -			return ret;
-> +			ret = intel_atomic_lock_global_state(&new_cdclk_state->base);
-> +			if (ret)
-> +				return ret;
->  	} else {
->  		return 0;
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 51e2f6a11ce4..fa356adc61d9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -64,6 +64,8 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
->  			       const struct intel_cdclk_config *b);
->  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
->  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-> +void intel_cdclk_power_usage_to_pcode_pre_notification(struct intel_atomic_state *state);
-> +void intel_cdclk_power_usage_to_pcode_post_notification(struct intel_atomic_state *state);
->  void intel_cdclk_dump_config(struct drm_i915_private *i915,
->  			     const struct intel_cdclk_config *cdclk_config,
->  			     const char *context);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c1efa655fb68..9f786952585b 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6526,6 +6526,20 @@
->  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
->  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
->  #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-> +#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-> +#define   DISPLAY_TO_PCODE_VOLTAGE_MASK		REG_GENMASK(1, 0)
-> +#define	  DISPLAY_TO_PCODE_VOLTAGE_MAX		DISPLAY_TO_PCODE_VOLTAGE_MASK
-> +#define   DISPLAY_TO_PCODE_CDCLK_VALID		REG_BIT(27)
-> +#define   DISPLAY_TO_PCODE_PIPE_COUNT_VALID	REG_BIT(31)
-> +#define   DISPLAY_TO_PCODE_CDCLK_MASK		REG_GENMASK(25, 16)
-> +#define   DISPLAY_TO_PCODE_PIPE_COUNT_MASK	REG_GENMASK(30, 28)
-> +#define   DISPLAY_TO_PCODE_CDCLK(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_CDCLK_MASK, (x))
-> +#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
-> +#define   DISPLAY_TO_PCODE_VOLTAGE(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_VOLTAGE_MASK, (x))
-> +#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
-> +		(DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
-> +		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
-> +		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level))
->  #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
->  #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
->  #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
-
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
