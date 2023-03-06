@@ -1,57 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D42C6AC0FB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 14:31:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C1F6AC14B
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 14:34:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAF410E246;
-	Mon,  6 Mar 2023 13:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51ADA10E243;
+	Mon,  6 Mar 2023 13:34:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6024310E246;
- Mon,  6 Mar 2023 13:31:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6AD510E243
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 13:34:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678109475; x=1709645475;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=YZzsV4aYN9HQIGk2BJpZQvV8a6WQZgubuKeI+OscAQE=;
- b=Li5CEFW9QLZoiCCgIvDGjojXdV/nQ3aAwbRQPZdQR5M1CpA7963I/XZt
- LfVxyMmWwm+C+pOkOTgNqeRihNYk3CTRHZCoIGiygV16Bq7TWSvqegqw0
- QtMqlaLx/tHMdc96vBkKHsFmGqvEIh53bJMYSwSXvELXsKAHpmZZYNlzV
- ThZF/++9xNEN0ucw9DU2Mqoq/BoquIU2wzvC3Lhk54y0U/9pRl1D9wdUD
- pjGupjakK3gYez2YW7PPkyMgS/pyIAWeeBTTcue9FH8rBJc7OF3Mcb/ii
- +n64payY8jOKRdxpx8OMvyF6zZbRPb90CiLjcYTuR0a7sM/EWtQ/qizun Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="421823733"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="421823733"
+ t=1678109676; x=1709645676;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=1l2mbU/00XlIlVgz8d7MAQEqIQe6Ab2U3aUTibppurU=;
+ b=cXS513yIwka68DQ+DWy+09QWHtOuekpvHS1S/YKpfLnfI2nuiUYFrDiE
+ tGoMxygjsHDSDySiThLqEA9Dt1qwpz/Y/t1LbW187kd7mk4X+8Ba49yBE
+ r86oUyoqBhgSR5ujRSVMQ/oK/jr3LF3SOQvjSdMivc4EwzF9zLs7xl5b5
+ kGNsHMmXzedMcrl2j1Adi0ddzJX0srvyI+28Xxo6r0Dgs0Fy31ktHf73C
+ PPXLPxKqiViWO0vStYqu3Ydk5WWjOS+4OuCI2g33ov0ZGOAHWDNFEMmKo
+ xi04yZxcABlxeBL+us0rvYaEzLM962BFc+z/IAoVJZkYNX7cEAvDRqtZa w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="421824410"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="421824410"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:31:14 -0800
+ 06 Mar 2023 05:34:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="765215273"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="765215273"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.46.174])
- ([10.252.46.174])
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="765215962"
+X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; d="scan'208";a="765215962"
+Received: from bholthau-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.77])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:31:13 -0800
-Message-ID: <e1be8dfd-ea15-15f8-c51c-759221be4188@linux.intel.com>
-Date: Mon, 6 Mar 2023 14:31:10 +0100
+ 06 Mar 2023 05:34:34 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230304161749.1420224-1-badal.nilawar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230304161749.1420224-1-badal.nilawar@intel.com>
+Date: Mon, 06 Mar 2023 15:34:32 +0200
+Message-ID: <87o7p6t34n.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
- intel-gfx@lists.freedesktop.org
-References: <20230306120732.28656-1-nirmoy.das@intel.com>
- <866f81b4-1968-95f8-49be-95b4927d8170@intel.com>
-Content-Language: en-US
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <866f81b4-1968-95f8-49be-95b4927d8170@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Set I915_BO_ALLOC_USER for
- framebuffer
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Extend Wa_14017073508 in
+ suspend/resume flow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,94 +59,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, dri-devel@lists.freedesktop.org,
- andrzej.hajda@intel.com
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
-
-On 3/6/2023 1:25 PM, Matthew Auld wrote:
-> On 06/03/2023 12:07, Nirmoy Das wrote:
->> Framebuffer is exposed to userspace so set I915_BO_ALLOC_USER
->> flag for it. This also make sure that ttm allocates offset
->> for lmem objects.
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dpt.c           | 4 +++-
->>   drivers/gpu/drm/i915/display/intel_fbdev.c         | 3 ++-
->>   drivers/gpu/drm/i915/display/intel_plane_initial.c | 3 ++-
->>   3 files changed, 7 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c 
->> b/drivers/gpu/drm/i915/display/intel_dpt.c
->> index ad1a37b515fb..2e6238881860 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
->> @@ -254,7 +254,9 @@ intel_dpt_create(struct intel_framebuffer *fb)
->>         size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
->>   -    dpt_obj = i915_gem_object_create_lmem(i915, size, 
->> I915_BO_ALLOC_CONTIGUOUS);
->> +    dpt_obj = i915_gem_object_create_lmem(i915, size,
->> +                          I915_BO_ALLOC_CONTIGUOUS |
->> +                          I915_BO_ALLOC_USER);
+On Sat, 04 Mar 2023, Badal Nilawar <badal.nilawar@intel.com> wrote:
+> During suspend resume flow it was seen that lots forcewakes
+> are taken and released for media. So to avoid HANG due to MC6
+> entry/exit while accessing media applied Wa_14017073508 in
+> suspend/resume flow.
 >
-> AFAICT this is just some driver internal stuff for display page-table, 
-> which gets mapped through GGTT or something, and is not the actual fb. 
-> Is it really exposed to the user?
-
-
-I misunderstood this for something else. I will remove this.
-
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_pm.c   |  6 ++++-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c    | 32 ++++++++++++++++--------
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.h    |  3 +++
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h |  1 +
+>  drivers/gpu/drm/i915/i915_driver.c       | 32 ++++++++++++++++++++++++
+>  5 files changed, 62 insertions(+), 12 deletions(-)
 >
->>       if (IS_ERR(dpt_obj) && i915_ggtt_has_aperture(to_gt(i915)->ggtt))
->>           dpt_obj = i915_gem_object_create_stolen(i915, size);
->>       if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c 
->> b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> index 3659350061a7..98ae3a3a986a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> @@ -163,7 +163,8 @@ static int intelfb_alloc(struct drm_fb_helper 
->> *helper,
->>       obj = ERR_PTR(-ENODEV);
->>       if (HAS_LMEM(dev_priv)) {
->>           obj = i915_gem_object_create_lmem(dev_priv, size,
->> -                          I915_BO_ALLOC_CONTIGUOUS);
->> +                          I915_BO_ALLOC_CONTIGUOUS |
->> +                          I915_BO_ALLOC_USER);
->>       } else {
->>           /*
->>            * If the FB is too big, just don't use it since fbdev is 
->> not very
->> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c 
->> b/drivers/gpu/drm/i915/display/intel_plane_initial.c
->> index bb6ea7de5c61..4a3680f6a3f5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
->> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
->> @@ -110,7 +110,8 @@ initial_plane_vma(struct drm_i915_private *i915,
->>           size * 2 > i915->dsm.usable_size)
->>           return NULL;
->>   -    obj = i915_gem_object_create_region_at(mem, phys_base, size, 0);
->> +    obj = i915_gem_object_create_region_at(mem, phys_base, size,
->> +                           I915_BO_ALLOC_USER);
->
-> ALLOC_USER has the side effect of also zeroing the memory underneath, 
-> IIRC. However this here is the pre-allocated fb (will have some boot 
-> logo stuff), so we shouldn't ever clear it.
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> index 0d812f4d787d..60deac41104d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> @@ -160,8 +160,12 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
+>  	 * machine in an unusable condition.
+>  	 */
+>  
+> -	for_each_gt(gt, i915, i)
+> +	for_each_gt(gt, i915, i) {
+> +		/* Wa_14017073508: mtl */
+> +		mtl_media_busy(gt);
+>  		intel_gt_suspend_late(gt);
+> +		mtl_media_idle(gt);
+> +	}
+>  
+>  	spin_lock_irqsave(&i915->mm.obj_lock, flags);
+>  	for (phase = phases; *phase; phase++) {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index cef3d6f5c34e..1f3bf1cf0421 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -26,24 +26,34 @@
+>  
+>  #define I915_GT_SUSPEND_IDLE_TIMEOUT (HZ / 2)
+>  
+> -static void mtl_media_busy(struct intel_gt *gt)
+> +void mtl_media_busy(struct intel_gt *gt)
+>  {
+>  	/* Wa_14017073508: mtl */
+> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
+> +	if (gt && IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
+>  	    gt->type == GT_MEDIA)
+> -		snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
+> -				  PCODE_MBOX_GT_STATE_MEDIA_BUSY,
+> -				  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
+> +		if (!atomic_inc_not_zero(&gt->media_wakeref)) {
+> +			drm_err(&gt->i915->drm, "Media busy\n");
+> +			snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
+> +					  PCODE_MBOX_GT_STATE_MEDIA_BUSY,
+> +					  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
+> +			atomic_inc(&gt->media_wakeref);
+> +		}
+>  }
+>  
+> -static void mtl_media_idle(struct intel_gt *gt)
+> +void mtl_media_idle(struct intel_gt *gt)
+>  {
+>  	/* Wa_14017073508: mtl */
+> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
+> -	    gt->type == GT_MEDIA)
+> -		snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
+> -				  PCODE_MBOX_GT_STATE_MEDIA_NOT_BUSY,
+> -				  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
+> +	if (gt && IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0) &&
+> +	    gt->type == GT_MEDIA) {
+> +		WARN_ON(atomic_read(&gt->media_wakeref) <= 0);
+> +		if (!atomic_add_unless(&gt->media_wakeref, -1, 1)) {
+> +			drm_err(&gt->i915->drm, "Media idle\n");
+> +			snb_pcode_write_p(gt->uncore, PCODE_MBOX_GT_STATE,
+> +					  PCODE_MBOX_GT_STATE_MEDIA_NOT_BUSY,
+> +					  PCODE_MBOX_GT_STATE_DOMAIN_MEDIA, 0);
+> +			atomic_dec(&gt->media_wakeref);
+> +		}
+> +	}
+>  }
+>  
+>  static void user_forcewake(struct intel_gt *gt, bool suspend)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> index 6c9a46452364..43ffabf9babe 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> @@ -89,4 +89,7 @@ static inline bool is_mock_gt(const struct intel_gt *gt)
+>  	return I915_SELFTEST_ONLY(gt->awake == -ENODEV);
+>  }
+>  
+> +void mtl_media_busy(struct intel_gt *gt);
+> +void mtl_media_idle(struct intel_gt *gt);
+> +
+>  #endif /* INTEL_GT_PM_H */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index f08c2556aa25..321ccfef4028 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -145,6 +145,7 @@ struct intel_gt {
+>  
+>  	struct intel_wakeref wakeref;
+>  	atomic_t user_wakeref;
+> +	atomic_t media_wakeref;
+>  
+>  	struct list_head closed_vma;
+>  	spinlock_t closed_lock; /* guards the list of closed_vma */
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 8bc76dede332..c7625ea28022 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -327,6 +327,8 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+>  	intel_gmch_bar_setup(dev_priv);
+>  	intel_device_info_runtime_init(dev_priv);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_busy(dev_priv->media_gt);
 
+i915_driver.c is one of the highest level files in the driver, and
+details like this just don't belong here, at all.
 
-This was my concern.  I wonder if there is any other better way than to 
-use a temp buffer to copy the pre-allocated content and put it back 
-after getting i915_gem_object_create_region_at().
+BR,
+Jani.
 
+>  	for_each_gt(gt, dev_priv, i) {
+>  		ret = intel_gt_init_mmio(gt);
+>  		if (ret)
+> @@ -335,10 +337,14 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+>  
+>  	/* As early as possible, scrub existing GPU state before clobbering */
+>  	sanitize_gpu(dev_priv);
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_idle(dev_priv->media_gt);
+>  
+>  	return 0;
+>  
+>  err_uncore:
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_idle(dev_priv->media_gt);
+>  	intel_gmch_bar_teardown(dev_priv);
+>  
+>  	return ret;
+> @@ -781,6 +787,12 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	if (ret < 0)
+>  		goto out_tiles_cleanup;
+>  
+> +	/* Wa_14017073508: mtl */
+> +	if (i915->media_gt) {
+> +		atomic_set(&i915->media_gt->media_wakeref, 0);
+> +		mtl_media_busy(i915->media_gt);
+> +	}
+> +
+>  	ret = i915_driver_hw_probe(i915);
+>  	if (ret < 0)
+>  		goto out_cleanup_mmio;
+> @@ -838,6 +850,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	i915_gem_drain_freed_objects(i915);
+>  	i915_ggtt_driver_late_release(i915);
+>  out_cleanup_mmio:
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_idle(i915->media_gt);
+>  	i915_driver_mmio_release(i915);
+>  out_tiles_cleanup:
+>  	intel_gt_release_all(i915);
+> @@ -1063,6 +1077,9 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  
+>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_busy(dev_priv->media_gt);
+> +
+>  	/* We do a lot of poking in a lot of registers, make sure they work
+>  	 * properly. */
+>  	intel_power_domains_disable(dev_priv);
+> @@ -1097,6 +1114,9 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  
+>  	intel_dmc_suspend(dev_priv);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_busy(dev_priv->media_gt);
+> +
+>  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+>  	i915_gem_drain_freed_objects(dev_priv);
+> @@ -1197,6 +1217,9 @@ static int i915_drm_resume(struct drm_device *dev)
+>  
+>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_busy(dev_priv->media_gt);
+> +
+>  	ret = i915_pcode_init(dev_priv);
+>  	if (ret)
+>  		return ret;
+> @@ -1260,6 +1283,9 @@ static int i915_drm_resume(struct drm_device *dev)
+>  
+>  	intel_gvt_resume(dev_priv);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_idle(dev_priv->media_gt);
+> +
+>  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+>  	return 0;
+> @@ -1319,6 +1345,9 @@ static int i915_drm_resume_early(struct drm_device *dev)
+>  
+>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_busy(dev_priv->media_gt);
+> +
+>  	ret = vlv_resume_prepare(dev_priv, false);
+>  	if (ret)
+>  		drm_err(&dev_priv->drm,
+> @@ -1333,6 +1362,9 @@ static int i915_drm_resume_early(struct drm_device *dev)
+>  
+>  	intel_power_domains_resume(dev_priv);
+>  
+> +	/* Wa_14017073508: mtl */
+> +	mtl_media_idle(dev_priv->media_gt);
+> +
+>  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>  
+>  	return ret;
 
-Regards,
-
-Nirmoy
-
-
->
->>       if (IS_ERR(obj))
->>           return NULL;
+-- 
+Jani Nikula, Intel Open Source Graphics Center
