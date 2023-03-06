@@ -2,84 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7DD6ABDFE
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 12:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF4B16ABE5C
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 12:38:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8B10E231;
-	Mon,  6 Mar 2023 11:17:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A074910E230;
+	Mon,  6 Mar 2023 11:38:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04EC10E22E
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 11:17:43 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47AD310E230
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Mar 2023 11:38:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678101464; x=1709637464;
+ t=1678102726; x=1709638726;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=1WOQbo1GZAz99rN3BNu6+QgDvUfO/nkfHmKwCqKf6h4=;
- b=R0uwxzFir8luJkRSV710AqF0Tjs2gE+d+fM8IAvM+Hjfvkalk7CgJbbs
- c9ZX7jzv2a3pyWufNOVQb+BDVf3wSclvoFT1l/qHaeuU6+D3CRhQtSTnh
- /0qwawVuvnzHXh0eIUVciYnfBsa7APyM8mRNxf3BRpd4tG3qzbetzUdFz
- PMQ90GLPvi423XMAg0DScFjjQQ62RE18OVK8SIXRU8J7Zc2DMpRusL+34
- wcnutF7gnS2EFu49dwoSARwI/Mg5qdpIPGagTnEE08ttXHXZsT7JSwbLL
- hl4fUKRpS67A9H3t9WXsYI5HeZo+v3prkZWo40nUshdMK4VrVG5Ip4E0c g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="400350199"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="400350199"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 03:17:22 -0800
+ bh=DKXxSYnlDSphMko9zNWBdeXuYTdrS4Wr9JifrllfA6E=;
+ b=bk+Y9Mc5+zt7eGab9B+/KTbziPFpUgk7BnVKz6v/ihFE1ZpIRxMOJrhf
+ 2qIR0j/ZiH310BAWR67jOlE8ziekeHe8y9UIod5dfiXmDe+dLdU1qTo4i
+ ZBvw9VkpQXoTe+A8BjfKlo5OR7as48idO1pE3TH6/bzt9yxOBrPRyb66p
+ TcifOxSyS5NcIULMQo3Pj6cbRgQG1IXIjPyk01OYZdAhPYOPT8Qa7ASww
+ BIajnVivxMVWC77TFXztC0B/mQvaGmfQbjsVlhWLVZk6KvNeZlTsYSxPg
+ fSxWao/xl47isUGlnbFdXuGo56ZAikwt9QjfM3PAO+tg3Sak2UxiguJMj A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="315190965"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="315190965"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 03:38:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="678436841"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="678436841"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 06 Mar 2023 03:17:22 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 6 Mar 2023 03:17:22 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="708620411"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="708620411"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga001.jf.intel.com with ESMTP; 06 Mar 2023 03:38:45 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 6 Mar 2023 03:17:21 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.21; Mon, 6 Mar 2023 03:38:44 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Mon, 6 Mar 2023 03:17:21 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Mon, 6 Mar 2023 03:38:44 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Mon, 6 Mar 2023 03:17:21 -0800
+ 15.1.2507.21; Mon, 6 Mar 2023 03:38:44 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d25BbIZZBVXOi/mUiJbF9s7+1U78QPhCMdPP3TxHfOVhQxtNylOC/eV98nIuyUdTLBypCX6EUoqJV56f+G5t0vqYR0MJc3y2In2KH2ptlOFrdsUrcRY5colWsTGHLnsQ9RveOducZlR44eYTnbqfbK092LVBcVQ333gd5NkWdUCuQIIvqNQ3WO04tkc7pHJ52MUTTNsVfHYa5V9N5IHf8bGnhxk2d/F9B16RZRjm4RRq/1ybLxXjYq/i4ynnpsRzVu5UsW7xnu0tJf/xK/5ychq29N//m019XKSAg0nnhIWkbArra9FfySJnTERSrIt9RapAaW4qeyCeIsnobJe0eg==
+ b=YI/pRj1OdfQu7+L/KBxhWEg74HkOikiQNKEKrcdV8MJPYl0gBxmNA5lvhXTYnFsWaF53WOMEuGnyY1usy9Q0wJUNXXftr12QvCydN6WTlI6MWdovUFA0l1n4k6B1kThsctbQscaYwTbIJ8ArdVz5B3E9ZISGi/0fgnlPTmXvuOfOFP0hazgvSODBE6RkOTUVQ4h4KEaQ8gf19v7MSHsA1yR/BN2HV0qxl/Hkb7jcxjLLXNIrmzQLw9gp96NWAtsu7hYrqkY6Tyxjn+NaJ82TtojM6ZZ35oscfX53D/yDA8hRuM3kPxx6/+qMYAtL+k5E8a16DyTeIR0jkM1JVCiFxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1WOQbo1GZAz99rN3BNu6+QgDvUfO/nkfHmKwCqKf6h4=;
- b=gQHNwbdvsF1OuIbiIo2Q3ahHfqTtxPWSzQ9TXmvRs/KU72pYO0woQX7oJwH7J7cduyfkoBpWKmEypCOB2wC+M0jgbE9R48VGxoz/QjGA+YMrXtcnumdrWicm2+GdOQ4VWhZXM1vcWhw32/kHcfT6eeZ4Plf7/73o4QPtDih9sqJ7ceEVBS/v884Nwla9UrvjGDCKvq+sdGKxuqtEFZ+5esC3L6RhlY3TUSOHFFLknZy9CCjmPmZ1mSh22bYZmbeTvEQjVlN4et0IvZQtuJLczqX3msSMAvWyockT9bvLnuizhl3aXHxtlS4zSe3CjmtixTPXBnXt+JBn2z11KMolFA==
+ bh=2HKEfF9OawI2nMZhUX3lwGlkm5S6MTDuK6LFbKYE7Xo=;
+ b=Tmrk+ToAqNr22633EaY+vPWvMAVY5PYtoUpUAlgeEkaPqVwWF3rH0bSSoivtdtIgt2EaJdBHaunyTa4j6EhviVstcBjwKXGa+NPMvBxvPpbL7HzC+XtS6Xj2eEfD7VxETEQEGk7NUOzgZm2K7xXTD8o1vutmDG4pUAvsmGFNzdZ815K4w8KWeWl/E9G1x1lQmn3oBCTfpAKCw0spA86tf+tYAm2FJ0awNZQyGxYYcrWoFkKi6NTwMtQXEpM2JruAuqwHy2ysJWYSaXYyZZxBf2hPUW/COivKfZ3b7aNjaofuWH9Ruvkalbxjnr+DrrMcbtdoV6TpVSJKUKF9MSks9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- MN2PR11MB4680.namprd11.prod.outlook.com (2603:10b6:208:26d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.23; Mon, 6 Mar
- 2023 11:17:14 +0000
+ CY5PR11MB6138.namprd11.prod.outlook.com (2603:10b6:930:2a::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6156.27; Mon, 6 Mar 2023 11:38:42 +0000
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::f677:36e:9fae:b45e]) by DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::f677:36e:9fae:b45e%5]) with mapi id 15.20.6156.027; Mon, 6 Mar 2023
- 11:17:14 +0000
+ 11:38:42 +0000
 From: "Shankar, Uma" <uma.shankar@intel.com>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v10 1/6] drm/i915/gsc: Create GSC request
- submission mechanism
-Thread-Index: AQHZNhzko7YJCBODwU62v3zoRhBLIq7tsS2Q
-Date: Mon, 6 Mar 2023 11:17:14 +0000
-Message-ID: <DM4PR11MB636077F835BC611A09283EEAF4B69@DM4PR11MB6360.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH v10 2/6] drm/i915/hdcp: Keep hdcp agonstic naming
+ convention
+Thread-Index: AQHZNhzgjX1OzprgIkq87gBDTHJjla7tzpgg
+Date: Mon, 6 Mar 2023 11:38:41 +0000
+Message-ID: <DM4PR11MB6360059DB3B31D8DE29A9DCDF4B69@DM4PR11MB6360.namprd11.prod.outlook.com>
 References: <20230201090806.3008619-1-suraj.kandpal@intel.com>
- <20230201090806.3008619-2-suraj.kandpal@intel.com>
-In-Reply-To: <20230201090806.3008619-2-suraj.kandpal@intel.com>
+ <20230201090806.3008619-3-suraj.kandpal@intel.com>
+In-Reply-To: <20230201090806.3008619-3-suraj.kandpal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -87,68 +83,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|MN2PR11MB4680:EE_
-x-ms-office365-filtering-correlation-id: 321e70b9-ae90-4a50-d579-08db1e345683
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CY5PR11MB6138:EE_
+x-ms-office365-filtering-correlation-id: eecab655-f254-4533-c089-08db1e3755fc
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MeILHsHV5ebfG3GSvYpYSMWI6bmg2o6zUQjKtHt2bPaftHdAKVh2hST3eovViCY/B7aGZ7QI8sJbDIDM7mYF/rKluVxvMff65xdtMyhR65EMcRMfnQgJ8Yv85UuyoqWEa/iWsVRbskqUVRDywtzSzrDAE8nwxMJoyEdpXlPx4E6jziGnDNmqJXKM8DIdTYDUNjzOZ3+YsdEOu+ezOnPxmCfrI5YsAiGnChNZzbB2mBh2ueRdBGGkdrWDbPP/SBDV/Uzh8PKOOfcqP1rIKLnmAqfF5vIbPBn10iuhSIAIQ6JCkeTfZfRKkWzhJ/uuL3a0ycXc9fg5K6q+/1OSXvO5C7BsnQNSVsQonXvNGo9KpACYVv+hUfWa97L5To/Foze6IguVP0JOZbMacoNxRQaq0Dfg1iOiNH/qqMb7vthlw+V51+OO1uNwvndt/yEIcwNGpIgV73m6gZmJAFC3GR/ZTSCeefAIGyirGktBhFsbxwjRXuSMZZxet6WF3MeMh7OjstasbuyzCcopW7LXtixvmqRqN/7gNAeYVD9LXkNcG5NcP1KKvLh4snqWjhpW7fQ7PvFau8CBlExmuo210lXHLPaPaQaj1DWoXGiTgx8OpfnoY3DfaOgzcc6DMMM8opbNPYxCn7CcD1OOwAN+gjwZOV8X4AgFe8JMYR5v6e7H6++QDak5CYC8aTFBeCzo2k/vj8BjB8hZfgBoRTyD737YVg==
+x-microsoft-antispam-message-info: KsLQ8WsO0LlH69v1wRBup775gzXCwmQ2mfU5dsw4ZWq/N50zjnjpYkPDJ86ygIbyCk4KgtWK/STqVYAQEl5ZSGjpqhtrO6qhjtxlPlK7t/n1hhWiTg3UnSMAxcjl2Ji1N3mBiE30jiKhYrUFzAppTziIT1LkGQ+dFduldSreKaYx5bLUkWQXI+ciddqwCX4yaF2PjG7NIuMjljgxXTahRbpfnnSxt5GRo8H2qORNKeXucmX1G71kvPiORFSlY7DjRPIQVJywCwpy5p6kOuJrSPD7RCQ7BQ1jr8UEfN/w89t/agopbkmloij8a+rwCFOu9L23t1F1xnclEG2OeZxthz2YyFoMdH8EBtKnDYkY1S6hJ7veZ89yqKVA5LS52yMNiNnO1d2tX3y4ttz/ESP1wSNQqGWHWxkkj4STvPDd0xpPQfYEPxLBkgiISQvOfILa0ZHN7/UOEe6o2845q8wYyyTNACWIJzuKxMseLB/kNFSgPkf+Zz797c1QReTMsOifx7s0mDT5k5f3RYZ2rFAYMtwrhlK1DYKZ/VQlZ7tlYAuBqhd7QGN5x7WYUmkuiGqJpNh4QGtjCMbMKm7UD3yRDGo6S9AmZC5chEBWTnFC/dMxSoh2/lAu8cgvwqhe9tiQUCVGJ1qNHu8W2cjR4al7bf/z+ZRwxgno7xPv9T0A5MvDHZfnufyJbwFSxOAIXx882faFec8HS20wJNo4e4ZmYg==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(136003)(346002)(396003)(366004)(39860400002)(451199018)(64756008)(76116006)(4326008)(8676002)(66556008)(66446008)(66946007)(66476007)(83380400001)(26005)(186003)(9686003)(7696005)(316002)(107886003)(110136005)(53546011)(478600001)(6506007)(71200400001)(33656002)(55016003)(82960400001)(122000001)(38100700002)(2906002)(38070700005)(86362001)(41300700001)(5660300002)(8936002)(52536014);
+ SFS:(13230025)(346002)(396003)(376002)(136003)(366004)(39860400002)(451199018)(33656002)(54906003)(316002)(110136005)(55016003)(478600001)(7696005)(71200400001)(8936002)(52536014)(5660300002)(2906002)(30864003)(76116006)(66556008)(66946007)(64756008)(66446008)(4326008)(66476007)(8676002)(41300700001)(122000001)(82960400001)(26005)(38070700005)(38100700002)(86362001)(9686003)(186003)(53546011)(6506007)(107886003)(83380400001)(579004)(559001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RG5uNEhxamx6elU5ZHJ4NVNoTDJLN1RST0I2S244VWlXbUUvbDdjbmZjQjk3?=
- =?utf-8?B?YWxxODlVZ0JaMkx3MkxJUHNjK1dqbVczclVDNXpVMXM4aHRGVURVNDJ3d3ov?=
- =?utf-8?B?clZhTFAxWHVXREswdDVPQ0c1blNZQmRYK0xqbGp0R09vcUtpQ0lYQ1lSS25R?=
- =?utf-8?B?U1ZhRldWN2hpWjYwYnlOczdvdFR2ejRRVzhIQUYyczUxR1YxdVY3cUEraUNH?=
- =?utf-8?B?RkxPd2lWT1ZiSzlkQ0g5cWsrSm0vVmFMa3VHQWxwa3g1cEFDbmliaS9jd3pT?=
- =?utf-8?B?ajVuVzBMQ0QxRml0aTF2ajBPNW5FanIyR1h3N1pzUkx6YkVjaFZNNE53MW1q?=
- =?utf-8?B?ZEVRdFgzdzl1WDBycE15STZId0VqUGh0K2FRSlNwZHJkWU5QaStkRWFUOGpP?=
- =?utf-8?B?VGEzTThNQWxDYVhpblNjVFRLU3FkN25BSUREdU1KUkpVZlkzVWJ0S3dBR2VO?=
- =?utf-8?B?Mm1LRFBtam11K1Y2ZlRjRU5wc1J1aW9Meld3a1VMRkxsYXhWTnlndzR3ZVVL?=
- =?utf-8?B?M2w3QlpNOWU1d2NnSU43cUlob3pURXNIMU5qQ0lieERxNWhpT2lVVFd4Vm54?=
- =?utf-8?B?d2RPRmZIc0xpSkorbzdxenBSc2FWNDMvOVYrREd3a1hLQnhPTWFQUUhuV3c5?=
- =?utf-8?B?eHF3eU9LRHpXemlMOEg2ZDFyMGJnaEJVbTJUU2dmRkk0dmNSRmJvR0ExcmZ1?=
- =?utf-8?B?ako0MEd1MUIyNU1VYjlmMnkvdG5maDVxSTVTZTFremZpVUVjSnl6aVFpc3c4?=
- =?utf-8?B?R3VPWlJCS25wVlZzNzVxc1lJRUlwQitjWEgyNXRzSWduQ0VhN2tUaDhHbzIx?=
- =?utf-8?B?bnhua2NNdmc0Mjg0MEJKd3FpRmpsUjJ5ek9kZnR2T1lORU9PamhsSWlwN3Iw?=
- =?utf-8?B?Tkp5a1luVDRUVmMrWVRQU1RBSXBKYWd1SE1lM2VZQ0hScWI2aEZyRG50SVVO?=
- =?utf-8?B?aGNncEVoUmRIanQrM2hVVWZCVDkzQzNmZnBIQTBEanUzNUxMQnJtTzVaV1Ax?=
- =?utf-8?B?ZUorTzF0b2VzOFdQcTJzc2M5R1hDZGdZUE1GWWVseERLTXl5QlBMcjVtU1R1?=
- =?utf-8?B?Wm1NS2RUYUg1NlpTK3RLUUZDb2QvTHN4cjZjM1FDUi9QQ2MvK204dlJCNHdo?=
- =?utf-8?B?MUV5ZzZqV1JsSm1NSjBsb2szNWhFUVZkM2ZZTG82Q3ZQckZoK3NtQ1krU3NS?=
- =?utf-8?B?SisrcWFVNS9zeS9PN0dnNy9UcU90VlU2YjRIZVYxUUNIUmJua3l4V04rakVU?=
- =?utf-8?B?cUpxWXlKZm9nUUMrYXRVc1VuMlZ4R2F1aXE1QkZVZnRENWhzNUxUNW9FMjlR?=
- =?utf-8?B?MkUyTUVoRVdXMnZUb3JjM0NTVlNBdVZyS01aSk1JNE9yaGR4eFc4RGhrMkt1?=
- =?utf-8?B?bkNuLzZ3RGMwVkhQenpUUG5XZ1E3MnM2cVpta3EybFhVVVRiZ3ZORnBkVFVi?=
- =?utf-8?B?c0VBcUdaK0FINmtlSjJPdzdWL3FtMks5V2k1UG51TktyaWNIcFZMMnBCci85?=
- =?utf-8?B?VVRMV2ZVa2RZZ2E0S2F6RDlYVHZ3SWNYVWRLM3ZZcllHYjVPU3gxMmd0T2ta?=
- =?utf-8?B?VTZEQ3Vic2JMUkl3RUJWMktVMU1ucXg3dUhlUXBZenZENUpWS2hPK3RkMWpX?=
- =?utf-8?B?UmFlK3JPcWlBcmZITVNJZjB3R2pTaGZ4ZmxVaWt1SHR3TDBUYnV4cU9xdmQv?=
- =?utf-8?B?dG9iOUtNUzNSYSttK09uNUUzTmF0Y05XeTFCTVhCNGdoQ1BSOWxWZ2xRRXpF?=
- =?utf-8?B?VFBSbW9VTGIvcjc4dFZrdkQ4anVySzZldnR0WWFHVDJYeS9QR0FmL2Q0UU9z?=
- =?utf-8?B?MVdlM0JOdTNZS2E2c2hsc0gwaE9GUlozMWdORmRybkFFdmlpUndnemlPWDVD?=
- =?utf-8?B?RzF6RDlFdW5wVk9JK3doeUQrNUUvV1QvbW5QMkVxZDRrem52dU03MW50VnJL?=
- =?utf-8?B?a1E0SXlBUUJUS2RncUhmK3lnUTJnMERyZ08zbVhVaEdURnRIUCtMYnhBL1ps?=
- =?utf-8?B?OFdnQWhQdlgyN0Y2c3ZSWUl4Zys5UGtyMmdKc1puUXhRTHZEdDlFUVgwcFg0?=
- =?utf-8?B?dExYczYxbDZFRUphWWlmYkE2UGRWbUVNc3JLYkVaYWtDU08zZnROQ0pvdjVL?=
- =?utf-8?Q?UcMR7W/Kzfxk9E0QjwLKVVGet?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?oUGBTwUMP2obVw527gvyszVnO9Bg6lMMYs9CR2DwANRzFRsQckywVP3de6aO?=
+ =?us-ascii?Q?QR4O4UX1JGrOPY7jSIarKKKadbT2jOTXnCXQ7TUwQAIOIEaBhQzhEw44s3zK?=
+ =?us-ascii?Q?+5Lg0wAskm5PfB4Hq91lpBzYFS2/y9JFIBgztrTED9Nl+MDA3DN8BNgOHKFL?=
+ =?us-ascii?Q?p8f+Pd1UGY4Ejf9JMEJkKJLggiunMkOdIOQdQ7Xm2AvsaKuRrSLyHerydbF0?=
+ =?us-ascii?Q?V0jb0hvy5JPxOx8TTxKwF+LCf1R4NCG9+l+2Wzm3H6P5f6O7hJBzpNF2MGUe?=
+ =?us-ascii?Q?RYIJjqg9Fy+TtG/Kh8dYtATytvNp3aCKSlyRe6ZqT4ZNdeQcX87nfq/j1muA?=
+ =?us-ascii?Q?7AiJ1dtj4OLBnpV+sZAnUa2Ja/HbAcx1e8pWHfkX7LCQr1dDJps/eEcKjEP9?=
+ =?us-ascii?Q?3Qmn9pQHY/vgY/d7bbJMaLlfBEnezfFYT+YQOV5Rl6gMDNWXUHEXKUv2TLCP?=
+ =?us-ascii?Q?E49eMlC0i2bQgUvWOTTObe3oU1kLAfZB5/Zwq6t3taflvNMwseBd/6jtd+pS?=
+ =?us-ascii?Q?yyXdkt9ETcBUeStP5pMtfFlWxMwDmjiMdj0ybBerKTyiSbdZGP6eqohQXQbC?=
+ =?us-ascii?Q?c0YTwYzVencY2U/kmy9N0WkYkuAc+t5J3xrNdsVku2RUXYcxRzNshhuKtiHN?=
+ =?us-ascii?Q?fS1lgQfbSmaRJR0+5rgPZvZYW+xSCBbx9badlaxpCdsdUqUYnHFQAccgQx+c?=
+ =?us-ascii?Q?UQl9d0jrEYGK7xnp6+zGBgZfPy33NJzf+oL4kcB6lpwr67pxAJwFzstLdeVm?=
+ =?us-ascii?Q?08loJu1A2mMli7gvo6aqoZA1iLwPaxnQnF+mM4wOV54zjzoJGDx3PlG0END4?=
+ =?us-ascii?Q?k+LBkxdaIbRC88Cswnt29taE98KL8H2InBa2DY9bkcO/i8LALZQAb22Yr22y?=
+ =?us-ascii?Q?toZeVYV44c43Q+LG+dLpCBApZxwNv1uO9O/fDlwVqH9oa6dKX/T51mNkBAOV?=
+ =?us-ascii?Q?ZPzQqyKouw7U4ZyZL5JdApeZdVSMr7K7h2M0PPhvDFERQCx0ewXthqeo9NM4?=
+ =?us-ascii?Q?Q2LFzNAzuTuTk4fmMbPRaWj/s1H/VgOVkis3fmMBuoJCHAZgd6JhoXKb/IT2?=
+ =?us-ascii?Q?aj6pJDXXYx6edFgYle+1Hsa8CEdm0n2pPV7PQCp+5ZKa8QmVbXBVH7Rb+kUE?=
+ =?us-ascii?Q?j/7jR32etKJktfzCgA06pog7YzJDvhkUHjsEmEGRvj9mENsEcjdni+aF7nsq?=
+ =?us-ascii?Q?70DVic3acfZ3TOA3TJrZ2uu0hN1c7qqb+4NqHc3n2myxstfTwCzPaHKyyoW0?=
+ =?us-ascii?Q?f+nOh3bJ56ABPWybisARs7htIHIBE+nBJpbiRnztmmTaCQUKTzp0nmqN7ByZ?=
+ =?us-ascii?Q?6rY8rs4UndcXgXiyqQvJZEswdWgsUtNrK7DvOFnFW8HYPbrjFRdooBcsw3fj?=
+ =?us-ascii?Q?Xsw7sy8Bkh34inx7JExF4tex64hD7PvRHL3Zn8oBMurcBQUPTT21uyLfs/Yk?=
+ =?us-ascii?Q?84qMYfH5zvOFpTme0sl8z3sP15Y4HmS/XtkNio1j9kQ6YNzzrc6ZfQizZ6Ir?=
+ =?us-ascii?Q?CL3GnXZiNu7GbcTpwRCPSnKG5h2zz+dU1RwI88tSb+a4o80Tjo3cOwYjxIrC?=
+ =?us-ascii?Q?CVHyrwgT7/GUU317VAhZeYgmTZbv/jDTKW4CEZYn?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 321e70b9-ae90-4a50-d579-08db1e345683
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2023 11:17:14.1358 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eecab655-f254-4533-c089-08db1e3755fc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2023 11:38:41.7406 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hNebcQa+dLfDIdvkypdRh35LWivx+nN6iQaTyUhUaMMW6r5Xv/MSBcsjLYgPPm3ss+lW792ACgfON4YVdVb0bw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4680
+X-MS-Exchange-CrossTenant-userprincipalname: kik9q9no7ZdLOsL3lJ3wrt3eF1W7a6PNAhUmlG1ZYjgSczUwZ+kq8myV7rIpF/KjOAtPq/XI1mFnsxGoV0q6fw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6138
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v10 1/6] drm/i915/gsc: Create GSC request
- submission mechanism
+Subject: Re: [Intel-gfx] [PATCH v10 2/6] drm/i915/hdcp: Keep hdcp agonstic
+ naming convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,128 +148,860 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: "Winkler, Tomas" <tomas.winkler@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBTdXJhag0K
-PiBLYW5kcGFsDQo+IFNlbnQ6IFdlZG5lc2RheSwgRmVicnVhcnkgMSwgMjAyMyAyOjM4IFBNDQo+
-IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBUZXJlcyBBbGV4aXMs
-IEFsYW4gUHJldmluIDxhbGFuLnByZXZpbi50ZXJlcy5hbGV4aXNAaW50ZWwuY29tPg0KPiBTdWJq
-ZWN0OiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggdjEwIDEvNl0gZHJtL2k5MTUvZ3NjOiBDcmVhdGUgR1ND
-IHJlcXVlc3Qgc3VibWlzc2lvbg0KPiBtZWNoYW5pc20NCj4gDQo+IEhEQ1AgYW5kIFBYUCB3aWxs
-IHJlcXVpcmUgYSBjb21tb24gZnVuY3Rpb24gdG8gYWxsb3cgaXQgdG8gc3VibWl0IGNvbW1hbmRz
-IHRvIHRoZQ0KPiBnc2MgY3MuIEFsc28gYWRkaW5nIHRoZSBnc2MgbXRsIGhlYWRlciB0aGF0IG5l
-ZWRzIHRvIGJlIGFkZGVkIG9uIHRvIHRoZSBleGlzdGluZw0KPiBwYXlsb2FkcyBvZiBIRENQIGFu
-ZCBQWFAuDQo+IA0KPiAtLXY0DQo+IC1TZXByYXRlIGdzYyBsb2FkIGFuZCBoZWNpIGNtZCBzdWJt
-aXNzaW9uIGludG8gZGlmZmVyZW50IGZ1bmN0aW9ucyBpbiBkaWZmZXJlbnQgZmlsZXMNCj4gZm9y
-IGJldHRlciBzY2FsYWJpbGl0eSBbQWxhbl0gLVJlbmFtZSBnc2MgYWRkcmVzcyBmaWVsZCBbQWxh
-bl0NCj4gDQo+IENjOiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVy
-aW9AaW50ZWwuY29tPg0KPiBDYzogQWxhbiBQcmV2aW4gPGFsYW4ucHJldmluLnRlcmVzLmFsZXhp
-c0BpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFN1cmFqIEthbmRwYWw8c3VyYWoua2FuZHBh
-bEBpbnRlbC5jb20+DQo+IFJldmlld2VkLWJ5OiBBbGFuIFByZXZpbiA8YWxhbi5wcmV2aW4udGVy
-ZXMuYWxleGlzQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
-ZmlsZSAgICAgICAgICAgICAgICAgfCAgMSArDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
-bnRlbF9ncHVfY29tbWFuZHMuaCAgfCAgMiArDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9nc2NfZncuaCAgICAgfCAgMSArDQo+ICAuLi4vaTkxNS9ndC91Yy9pbnRlbF9nc2Nf
-dWNfaGVjaV9jbWRfc3VibWl0LmMgfCA5NCArKysrKysrKysrKysrKysrKysrDQo+IC4uLi9pOTE1
-L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQuaCB8IDQ1ICsrKysrKysrKw0KPiAg
-NSBmaWxlcyBjaGFuZ2VkLCAxNDMgaW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQu
-Yw0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
-X2dzY191Y19oZWNpX2NtZF9zdWJtaXQuaA0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgaW5kZXgN
-Cj4gOTE4NDcwYTA0NTkxLi40ODI5MjhjZmZiMWMgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L01ha2VmaWxlDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxl
-DQo+IEBAIC0xOTUsNiArMTk1LDcgQEAgaTkxNS15ICs9IFwNCj4gIGk5MTUteSArPSBcDQo+ICAJ
-ICBndC91Yy9pbnRlbF9nc2NfZncubyBcDQo+ICAJICBndC91Yy9pbnRlbF9nc2NfdWMubyBcDQo+
-ICsJICBndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3VibWl0Lm9cDQo+ICAJICBndC91Yy9p
-bnRlbF9ndWMubyBcDQo+ICAJICBndC91Yy9pbnRlbF9ndWNfYWRzLm8gXA0KPiAgCSAgZ3QvdWMv
-aW50ZWxfZ3VjX2NhcHR1cmUubyBcDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9ncHVfY29tbWFuZHMuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2dwdV9jb21tYW5kcy5oDQo+IGluZGV4IDJhZjFhZTM4MzFkZi4uNDU0MTc5ODg0ODAxIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ncHVfY29tbWFuZHMu
-aA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ncHVfY29tbWFuZHMuaA0K
-PiBAQCAtNDM5LDYgKzQzOSw4IEBADQo+ICAjZGVmaW5lIEdTQ19GV19MT0FEIEdTQ19JTlNUUigx
-LCAwLCAyKQ0KPiAgI2RlZmluZSAgIEhFQ0kxX0ZXX0xJTUlUX1ZBTElEICgxIDw8IDMxKQ0KPiAN
-Cj4gKyNkZWZpbmUgR1NDX0hFQ0lfQ01EX1BLVCBHU0NfSU5TVFIoMCwgMCwgNikNCj4gKw0KPiAg
-LyoNCj4gICAqIFVzZWQgdG8gY29udmVydCBhbnkgYWRkcmVzcyB0byBjYW5vbmljYWwgZm9ybS4N
-Cj4gICAqIFN0YXJ0aW5nIGZyb20gZ2VuOCwgc29tZSBjb21tYW5kcyAoZS5nLiBTVEFURV9CQVNF
-X0FERFJFU1MsIGRpZmYgLS1naXQNCj4gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRl
-bF9nc2NfZncuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY19mdy5o
-DQo+IGluZGV4IDRiNWRiYjQ0YWZiNC4uMTQ2YWMwMTI4ZjY5IDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9nc2NfZncuaA0KPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9nc2NfZncuaA0KPiBAQCAtMTIsNCArMTIsNSBAQCBzdHJ1
-Y3QgaW50ZWxfZ3NjX3VjOw0KPiANCj4gIGludCBpbnRlbF9nc2NfdWNfZndfdXBsb2FkKHN0cnVj
-dCBpbnRlbF9nc2NfdWMgKmdzYyk7ICBib29sDQo+IGludGVsX2dzY191Y19md19pbml0X2RvbmUo
-c3RydWN0IGludGVsX2dzY191YyAqZ3NjKTsNCj4gKw0KDQpUaGlzIHJlZHVuZGFudCBhbmQgdW5y
-ZWxhdGVkIGNoYW5nZSBjYW4gYmUgZHJvcHBlZC4NCg0KPiAgI2VuZGlmDQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3VibWl0
-LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRf
-c3VibWl0LmMNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMDAwMDAwLi5i
-ZTI0MjRhZjUyMWQNCj4gLS0tIC9kZXYvbnVsbA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3VibWl0LmMNCj4gQEAgLTAsMCArMSw5NCBA
-QA0KPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVA0KPiArLyoNCj4gKyAqIENvcHly
-aWdodCDCqSAyMDIzIEludGVsIENvcnBvcmF0aW9uDQo+ICsgKi8NCj4gKw0KPiArI2luY2x1ZGUg
-Imd0L2ludGVsX2VuZ2luZV9wbS5oIg0KPiArI2luY2x1ZGUgImd0L2ludGVsX2dwdV9jb21tYW5k
-cy5oIg0KPiArI2luY2x1ZGUgImd0L2ludGVsX2d0LmgiDQo+ICsjaW5jbHVkZSAiZ3QvaW50ZWxf
-cmluZy5oIg0KPiArI2luY2x1ZGUgImludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQuaCINCj4g
-Kw0KPiArc3RydWN0IGdzY19oZWNpX3BrdCB7DQo+ICsJdTY0IGFkZHJfaW47DQo+ICsJdTMyIHNp
-emVfaW47DQo+ICsJdTY0IGFkZHJfb3V0Ow0KPiArCXUzMiBzaXplX291dDsNCj4gK307DQo+ICsN
-Cj4gK3N0YXRpYyBpbnQgZW1pdF9nc2NfaGVjaV9wa3Qoc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEs
-IHN0cnVjdA0KPiArZ3NjX2hlY2lfcGt0ICpwa3QpIHsNCj4gKwl1MzIgKmNzOw0KPiArDQo+ICsJ
-Y3MgPSBpbnRlbF9yaW5nX2JlZ2luKHJxLCA4KTsNCj4gKwlpZiAoSVNfRVJSKGNzKSkNCj4gKwkJ
-cmV0dXJuIFBUUl9FUlIoY3MpOw0KPiArDQo+ICsJKmNzKysgPSBHU0NfSEVDSV9DTURfUEtUOw0K
-PiArCSpjcysrID0gbG93ZXJfMzJfYml0cyhwa3QtPmFkZHJfaW4pOw0KPiArCSpjcysrID0gdXBw
-ZXJfMzJfYml0cyhwa3QtPmFkZHJfaW4pOw0KPiArCSpjcysrID0gcGt0LT5zaXplX2luOw0KPiAr
-CSpjcysrID0gbG93ZXJfMzJfYml0cyhwa3QtPmFkZHJfb3V0KTsNCj4gKwkqY3MrKyA9IHVwcGVy
-XzMyX2JpdHMocGt0LT5hZGRyX291dCk7DQo+ICsJKmNzKysgPSBwa3QtPnNpemVfb3V0Ow0KPiAr
-CSpjcysrID0gMDsNCj4gKw0KPiArCWludGVsX3JpbmdfYWR2YW5jZShycSwgY3MpOw0KPiArDQo+
-ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gK2ludCBpbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3Vi
-bWl0X3BhY2tldChzdHJ1Y3QgaW50ZWxfZ3NjX3VjICpnc2MsIHU2NCBhZGRyX2luLA0KPiArCQkJ
-CQl1MzIgc2l6ZV9pbiwgdTY0IGFkZHJfb3V0LA0KPiArCQkJCQl1MzIgc2l6ZV9vdXQpDQo+ICt7
-DQo+ICsJc3RydWN0IGludGVsX2NvbnRleHQgKmNlID0gZ3NjLT5jZTsNCj4gKwlzdHJ1Y3QgaTkx
-NV9yZXF1ZXN0ICpycTsNCj4gKwlzdHJ1Y3QgZ3NjX2hlY2lfcGt0IHBrdCA9IHsNCj4gKwkuYWRk
-cl9pbiA9IGFkZHJfaW4sDQo+ICsJLnNpemVfaW4gPSBzaXplX2luLA0KPiArCS5hZGRyX291dCA9
-IGFkZHJfb3V0LA0KPiArCS5zaXplX291dCA9IHNpemVfb3V0DQo+ICsJfTsNCj4gKwlpbnQgZXJy
-Ow0KPiArDQo+ICsJaWYgKCFjZSkNCj4gKwkJcmV0dXJuIC1FTk9ERVY7DQo+ICsNCj4gKwlycSA9
-IGk5MTVfcmVxdWVzdF9jcmVhdGUoY2UpOw0KPiArCWlmIChJU19FUlIocnEpKQ0KPiArCQlyZXR1
-cm4gUFRSX0VSUihycSk7DQo+ICsNCj4gKwlpZiAoY2UtPmVuZ2luZS0+ZW1pdF9pbml0X2JyZWFk
-Y3J1bWIpIHsNCj4gKwkJZXJyID0gY2UtPmVuZ2luZS0+ZW1pdF9pbml0X2JyZWFkY3J1bWIocnEp
-Ow0KPiArCQlpZiAoZXJyKQ0KPiArCQkJZ290byBvdXRfcnE7DQo+ICsJfQ0KPiArDQo+ICsJZXJy
-ID0gZW1pdF9nc2NfaGVjaV9wa3QocnEsICZwa3QpOw0KPiArDQo+ICsJaWYgKGVycikNCj4gKwkJ
-Z290byBvdXRfcnE7DQo+ICsNCj4gKwllcnIgPSBjZS0+ZW5naW5lLT5lbWl0X2ZsdXNoKHJxLCAw
-KTsNCj4gKw0KPiArb3V0X3JxOg0KPiArCWk5MTVfcmVxdWVzdF9nZXQocnEpOw0KPiArDQo+ICsJ
-aWYgKHVubGlrZWx5KGVycikpDQo+ICsJCWk5MTVfcmVxdWVzdF9zZXRfZXJyb3Jfb25jZShycSwg
-ZXJyKTsNCj4gKw0KPiArCWk5MTVfcmVxdWVzdF9hZGQocnEpOw0KPiArDQo+ICsJaWYgKCFlcnIg
-JiYgaTkxNV9yZXF1ZXN0X3dhaXQocnEsIDAsIG1zZWNzX3RvX2ppZmZpZXMoNTAwKSkgPCAwKQ0K
-PiArCQllcnIgPSAtRVRJTUU7DQo+ICsNCj4gKwlpOTE1X3JlcXVlc3RfcHV0KHJxKTsNCj4gKw0K
-PiArCWlmIChlcnIpDQo+ICsJCWRybV9lcnIoJmdzY191Y190b19ndChnc2MpLT5pOTE1LT5kcm0s
-DQo+ICsJCQkiUmVxdWVzdCBzdWJtaXNzaW9uIGZvciBHU0MgaGVjaSBjbWQgZmFpbGVkICglZClc
-biIsDQo+ICsJCQllcnIpOw0KPiArDQo+ICsJcmV0dXJuIGVycjsNCj4gK30NCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJt
-aXQuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2Nt
-ZF9zdWJtaXQuaA0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAu
-LmNmNjEwZGZjYTdhNQ0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQuaA0KPiBAQCAtMCwwICsxLDQ1
-IEBADQo+ICsvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovDQo+ICsvKg0KPiArICog
-Q29weXJpZ2h0IMKpIDIwMjMgSW50ZWwgQ29ycG9yYXRpb24NCj4gKyAqLw0KPiArDQo+ICsjaWZu
-ZGVmIF9JTlRFTF9HU0NfVUNfSEVDSV9DTURfU1VCTUlUX0hfICNkZWZpbmUNCj4gK19JTlRFTF9H
-U0NfVUNfSEVDSV9DTURfU1VCTUlUX0hfDQo+ICsNCj4gKyNpbmNsdWRlIDxsaW51eC90eXBlcy5o
-Pg0KPiArDQo+ICtzdHJ1Y3QgaW50ZWxfZ3NjX3VjOw0KPiArc3RydWN0IGludGVsX2dzY19tdGxf
-aGVhZGVyIHsNCj4gKwl1MzIgdmFsaWRpdHlfbWFya2VyOw0KPiArI2RlZmluZSBHU0NfSEVDSV9W
-QUxJRElUWV9NQVJLRVIgMHhBNTc4ODc1QQ0KPiArDQo+ICsJdTggaGVjaV9jbGllbnRfaWQ7DQo+
-ICsjZGVmaW5lIEhFQ0lfTUVBRERSRVNTX1BYUCAxNw0KPiArI2RlZmluZSBIRUNJX01FQUREUkVT
-U19IRENQIDE4DQo+ICsNCj4gKwl1OCByZXNlcnZlZDE7DQo+ICsNCj4gKwl1MTYgaGVhZGVyX3Zl
-cnNpb247DQo+ICsjZGVmaW5lIE1UTF9HU0NfSEVBREVSX1ZFUlNJT04gMQ0KPiArDQo+ICsJdTY0
-IGhvc3Rfc2Vzc2lvbl9oYW5kbGU7DQo+ICsJdTY0IGdzY19tZXNzYWdlX2hhbmRsZTsNCj4gKw0K
-PiArCXUzMiBtZXNzYWdlX3NpemU7IC8qIGxvd2VyIDIwIGJpdHMgb25seSwgdXBwZXIgMTIgYXJl
-IHJlc2VydmVkICovDQo+ICsNCj4gKwkvKg0KPiArCSAqIEZsYWdzIG1hc2s6DQo+ICsJICogQml0
-IDA6IFBlbmRpbmcNCj4gKwkgKiBCaXQgMTogU2Vzc2lvbiBDbGVhbnVwOw0KPiArCSAqIEJpdHMg
-Mi0xNTogRmxhZ3MNCj4gKwkgKiBCaXRzIDE2LTMxOiBFeHRlbnNpb24gU2l6ZQ0KPiArCSAqLw0K
-PiArCXUzMiBmbGFnczsNCj4gKw0KPiArCXUzMiBzdGF0dXM7DQo+ICt9IF9fcGFja2VkOw0KPiAr
-DQo+ICtpbnQgaW50ZWxfZ3NjX3VjX2hlY2lfY21kX3N1Ym1pdF9wYWNrZXQoc3RydWN0IGludGVs
-X2dzY191YyAqZ3NjLA0KPiArCQkJCQl1NjQgYWRkcl9pbiwgdTMyIHNpemVfaW4sDQo+ICsJCQkJ
-CXU2NCBhZGRyX291dCwgdTMyIHNpemVfb3V0KTsNCj4gKyNlbmRpZg0KPiAtLQ0KPiAyLjI1LjEN
-Cg0K
+
+
+> -----Original Message-----
+> From: Kandpal, Suraj <suraj.kandpal@intel.com>
+> Sent: Wednesday, February 1, 2023 2:38 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>; Winkler, Tomas <tomas.winkler@intel.com>; Viv=
+i,
+> Rodrigo <rodrigo.vivi@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
+> Kandpal, Suraj <suraj.kandpal@intel.com>
+> Subject: [PATCH v10 2/6] drm/i915/hdcp: Keep hdcp agonstic naming convent=
+ion
+
+Typo in agnostic.
+
+Also I feel this header can be re-phrased: "Use generic names for HDCP help=
+ers and structs"
+Add the rationale why this is required, explain the legacy and new usage wh=
+ich is the cause
+for this patch.
+
+>=20
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+>=20
+> Change the include/drm/i915_mei_hdcp_interface.h to
+> include/drm/i915_hdcp_interface.h
+>=20
+> --v6
+> -make each patch build individually [Jani]
+>=20
+> --v8
+> -change ME FW to ME/GSC FW [Ankit]
+> -fix formatting issue [Ankit]
+>=20
+> Cc: Tomas Winkler <tomas.winkler@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Acked-by: Tomas Winkler <tomas.winkler@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+>  .../drm/i915/display/intel_display_types.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 81 ++++++++--------
+>  drivers/misc/mei/hdcp/mei_hdcp.c              | 61 ++++++------
+>  ...hdcp_interface.h =3D> i915_hdcp_interface.h} | 92 +++++++++----------
+>  5 files changed, 118 insertions(+), 120 deletions(-)  rename
+> include/drm/{i915_mei_hdcp_interface.h =3D> i915_hdcp_interface.h} (73%)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
+> b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index fb8670aa2932..8e7a68339876 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -378,7 +378,7 @@ struct intel_display {
+>  	} gmbus;
+>=20
+>  	struct {
+> -		struct i915_hdcp_comp_master *master;
+> +		struct i915_hdcp_master *master;
+
+Since we are changing this up, can we drop the use of phrase like "master" =
+etc,
+if feasible in the series, else this can be taken with a follow up cleanup =
+series.
+
+>  		bool comp_added;
+>=20
+>  		/* Mutex to protect the above hdcp component related values. */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 9ccae7a46020..7accd3a8877c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -43,7 +43,7 @@
+>  #include <drm/drm_rect.h>
+>  #include <drm/drm_vblank.h>
+>  #include <drm/drm_vblank_work.h>
+> -#include <drm/i915_mei_hdcp_interface.h>
+> +#include <drm/i915_hdcp_interface.h>
+>  #include <media/cec-notifier.h>
+>=20
+>  #include "i915_vma.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 6406fd487ee5..262c76f21801 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1143,7 +1143,7 @@ hdcp2_prepare_ake_init(struct intel_connector
+> *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+
+comp name is relevant if we use component framework, having the name for a
+generic case doesn't seem right. Change it universally in patch.
+
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1154,7 +1154,7 @@ hdcp2_prepare_ake_init(struct intel_connector
+> *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->initiate_hdcp2_session(comp->mei_dev, data, ake_data=
+);
+> +	ret =3D comp->ops->initiate_hdcp2_session(comp->hdcp_dev, data,
+> +ake_data);
+>  	if (ret)
+>  		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
+>  			    ret);
+> @@ -1173,7 +1173,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connec=
+tor
+> *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1184,7 +1184,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connec=
+tor
+> *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->verify_receiver_cert_prepare_km(comp->mei_dev, data,
+> +	ret =3D comp->ops->verify_receiver_cert_prepare_km(comp->hdcp_dev, data=
+,
+>  							 rx_cert, paired,
+>  							 ek_pub_km, msg_sz);
+>  	if (ret < 0)
+> @@ -1201,7 +1201,7 @@ static int hdcp2_verify_hprime(struct intel_connect=
+or
+> *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1212,7 +1212,7 @@ static int hdcp2_verify_hprime(struct intel_connect=
+or
+> *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
+> +	ret =3D comp->ops->verify_hprime(comp->hdcp_dev, data, rx_hprime);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1227,7 +1227,7 @@ hdcp2_store_pairing_info(struct intel_connector
+> *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1238,7 +1238,7 @@ hdcp2_store_pairing_info(struct intel_connector
+> *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->store_pairing_info(comp->mei_dev, data, pairing_info=
+);
+> +	ret =3D comp->ops->store_pairing_info(comp->hdcp_dev, data,
+> +pairing_info);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
+>  			    ret);
+> @@ -1254,7 +1254,7 @@ hdcp2_prepare_lc_init(struct intel_connector *conne=
+ctor,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1265,7 +1265,7 @@ hdcp2_prepare_lc_init(struct intel_connector *conne=
+ctor,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->initiate_locality_check(comp->mei_dev, data, lc_init=
+);
+> +	ret =3D comp->ops->initiate_locality_check(comp->hdcp_dev, data,
+> +lc_init);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
+>  			    ret);
+> @@ -1281,7 +1281,7 @@ hdcp2_verify_lprime(struct intel_connector *connect=
+or,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1292,7 +1292,7 @@ hdcp2_verify_lprime(struct intel_connector *connect=
+or,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->verify_lprime(comp->mei_dev, data, rx_lprime);
+> +	ret =3D comp->ops->verify_lprime(comp->hdcp_dev, data, rx_lprime);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
+>  			    ret);
+> @@ -1307,7 +1307,7 @@ static int hdcp2_prepare_skey(struct intel_connecto=
+r
+> *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1318,7 +1318,7 @@ static int hdcp2_prepare_skey(struct intel_connecto=
+r
+> *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->get_session_key(comp->mei_dev, data, ske_data);
+> +	ret =3D comp->ops->get_session_key(comp->hdcp_dev, data, ske_data);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
+>  			    ret);
+> @@ -1336,7 +1336,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct
+> intel_connector *connector,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1347,7 +1347,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct
+> intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->repeater_check_flow_prepare_ack(comp->mei_dev,
+> data,
+> +	ret =3D comp->ops->repeater_check_flow_prepare_ack(comp->hdcp_dev,
+> data,
+>  							 rep_topology,
+>  							 rep_send_ack);
+>  	if (ret < 0)
+> @@ -1365,7 +1365,7 @@ hdcp2_verify_mprime(struct intel_connector *connect=
+or,
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1376,7 +1376,7 @@ hdcp2_verify_mprime(struct intel_connector *connect=
+or,
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
+> +	ret =3D comp->ops->verify_mprime(comp->hdcp_dev, data, stream_ready);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1389,7 +1389,7 @@ static int hdcp2_authenticate_port(struct intel_con=
+nector
+> *connector)
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct hdcp_port_data *data =3D &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1400,7 +1400,7 @@ static int hdcp2_authenticate_port(struct intel_con=
+nector
+> *connector)
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->enable_hdcp_authentication(comp->mei_dev, data);
+> +	ret =3D comp->ops->enable_hdcp_authentication(comp->hdcp_dev, data);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
+>  			    ret);
+> @@ -1413,7 +1413,7 @@ static int hdcp2_close_mei_session(struct intel_con=
+nector
+> *connector)  {
+>  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
+or);
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_master *comp;
+>  	int ret;
+>=20
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1424,7 +1424,7 @@ static int hdcp2_close_mei_session(struct intel_con=
+nector
+> *connector)
+>  		return -EINVAL;
+>  	}
+>=20
+> -	ret =3D comp->ops->close_hdcp_session(comp->mei_dev,
+> +	ret =3D comp->ops->close_hdcp_session(comp->hdcp_dev,
+>  					     &dig_port->hdcp_port_data);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>=20
+> @@ -2145,8 +2145,8 @@ static int i915_hdcp_component_bind(struct device
+> *i915_kdev,
+>=20
+>  	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> -	dev_priv->display.hdcp.master =3D (struct i915_hdcp_comp_master *)data;
+> -	dev_priv->display.hdcp.master->mei_dev =3D mei_kdev;
+> +	dev_priv->display.hdcp.master =3D (struct i915_hdcp_master *)data;
+> +	dev_priv->display.hdcp.master->hdcp_dev =3D mei_kdev;
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>=20
+>  	return 0;
+> @@ -2163,30 +2163,30 @@ static void i915_hdcp_component_unbind(struct dev=
+ice
+> *i915_kdev,
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>  }
+>=20
+> -static const struct component_ops i915_hdcp_component_ops =3D {
+> +static const struct component_ops i915_hdcp_ops =3D {
+>  	.bind   =3D i915_hdcp_component_bind,
+>  	.unbind =3D i915_hdcp_component_unbind,
+>  };
+>=20
+> -static enum mei_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
+> +static enum hdcp_ddi intel_get_hdcp_ddi_index(enum port port)
+>  {
+>  	switch (port) {
+>  	case PORT_A:
+> -		return MEI_DDI_A;
+> +		return HDCP_DDI_A;
+>  	case PORT_B ... PORT_F:
+> -		return (enum mei_fw_ddi)port;
+> +		return (enum hdcp_ddi)port;
+>  	default:
+> -		return MEI_DDI_INVALID_PORT;
+> +		return HDCP_DDI_INVALID_PORT;
+>  	}
+>  }
+>=20
+> -static enum mei_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder=
+)
+> +static enum hdcp_transcoder intel_get_hdcp_transcoder(enum transcoder
+> +cpu_transcoder)
+>  {
+>  	switch (cpu_transcoder) {
+>  	case TRANSCODER_A ... TRANSCODER_D:
+> -		return (enum mei_fw_tc)(cpu_transcoder | 0x10);
+> +		return (enum hdcp_transcoder)(cpu_transcoder | 0x10);
+>  	default: /* eDP, DSI TRANSCODERS are non HDCP capable */
+> -		return MEI_INVALID_TRANSCODER;
+> +		return HDCP_INVALID_TRANSCODER;
+>  	}
+>  }
+>=20
+> @@ -2200,20 +2200,20 @@ static int initialize_hdcp_port_data(struct
+> intel_connector *connector,
+>  	enum port port =3D dig_port->base.port;
+>=20
+>  	if (DISPLAY_VER(dev_priv) < 12)
+> -		data->fw_ddi =3D intel_get_mei_fw_ddi_index(port);
+> +		data->hdcp_ddi =3D intel_get_hdcp_ddi_index(port);
+>  	else
+>  		/*
+> -		 * As per ME FW API expectation, for GEN 12+, fw_ddi is filled
+> +		 * As per ME FW API expectation, for GEN 12+, hdcp_ddi is filled
+>  		 * with zero(INVALID PORT index).
+>  		 */
+> -		data->fw_ddi =3D MEI_DDI_INVALID_PORT;
+> +		data->hdcp_ddi =3D HDCP_DDI_INVALID_PORT;
+>=20
+>  	/*
+> -	 * As associated transcoder is set and modified at modeset, here fw_tc
+> +	 * As associated transcoder is set and modified at modeset, here
+> +hdcp_transcoder
+>  	 * is initialized to zero (invalid transcoder index). This will be
+>  	 * retained for <Gen12 forever.
+>  	 */
+> -	data->fw_tc =3D MEI_INVALID_TRANSCODER;
+> +	data->hdcp_transcoder =3D HDCP_INVALID_TRANSCODER;
+>=20
+>  	data->port_type =3D (u8)HDCP_PORT_TYPE_INTEGRATED;
+>  	data->protocol =3D (u8)shim->protocol;
+> @@ -2256,7 +2256,7 @@ void intel_hdcp_component_init(struct drm_i915_priv=
+ate
+> *dev_priv)
+>=20
+>  	dev_priv->display.hdcp.comp_added =3D true;
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> -	ret =3D component_add_typed(dev_priv->drm.dev,
+> &i915_hdcp_component_ops,
+> +	ret =3D component_add_typed(dev_priv->drm.dev, &i915_hdcp_ops,
+>  				  I915_COMPONENT_HDCP);
+>  	if (ret < 0) {
+>  		drm_dbg_kms(&dev_priv->drm, "Failed at component add(%d)\n",
+> @@ -2350,7 +2350,8 @@ int intel_hdcp_enable(struct intel_connector *conne=
+ctor,
+>  	}
+>=20
+>  	if (DISPLAY_VER(dev_priv) >=3D 12)
+> -		dig_port->hdcp_port_data.fw_tc =3D intel_get_mei_fw_tc(hdcp-
+> >cpu_transcoder);
+> +		dig_port->hdcp_port_data.hdcp_transcoder =3D
+> +			intel_get_hdcp_transcoder(hdcp->cpu_transcoder);
+>=20
+>  	/*
+>  	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup @=
+@ -
+> 2485,7 +2486,7 @@ void intel_hdcp_component_fini(struct drm_i915_private
+> *dev_priv)
+>  	dev_priv->display.hdcp.comp_added =3D false;
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>=20
+> -	component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
+> +	component_del(dev_priv->drm.dev, &i915_hdcp_ops);
+>  }
+>=20
+>  void intel_hdcp_cleanup(struct intel_connector *connector) diff --git
+> a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+> index e889a8bd7ac8..b2c49599809c 100644
+> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
+> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+> @@ -23,7 +23,7 @@
+>  #include <linux/component.h>
+>  #include <drm/drm_connector.h>
+>  #include <drm/i915_component.h>
+> -#include <drm/i915_mei_hdcp_interface.h>
+> +#include <drm/i915_hdcp_interface.h>
+>=20
+>  #include "mei_hdcp.h"
+>=20
+> @@ -57,8 +57,8 @@ mei_hdcp_initiate_session(struct device *dev, struct
+> hdcp_port_data *data,
+>=20
+> 	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
+>=20
+>  	session_init_in.port.integrated_port_type =3D data->port_type;
+> -	session_init_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	session_init_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	session_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	session_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>  	session_init_in.protocol =3D data->protocol;
+>=20
+>  	byte =3D mei_cldev_send(cldev, (u8 *)&session_init_in, @@ -127,8 +127,8
+> @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+>=20
+> 	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
+>=20
+>  	verify_rxcert_in.port.integrated_port_type =3D data->port_type;
+> -	verify_rxcert_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	verify_rxcert_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	verify_rxcert_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	verify_rxcert_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder=
+;
+>=20
+>  	verify_rxcert_in.cert_rx =3D rx_cert->cert_rx;
+>  	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN); @@ -
+> 198,8 +198,8 @@ mei_hdcp_verify_hprime(struct device *dev, struct
+> hdcp_port_data *data,
+>  	send_hprime_in.header.buffer_len =3D
+> WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
+>=20
+>  	send_hprime_in.port.integrated_port_type =3D data->port_type;
+> -	send_hprime_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	send_hprime_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	send_hprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	send_hprime_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+>  	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
+>  	       HDCP_2_2_H_PRIME_LEN);
+> @@ -256,8 +256,8 @@ mei_hdcp_store_pairing_info(struct device *dev, struc=
+t
+> hdcp_port_data *data,
+>=20
+> 	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
+>=20
+>  	pairing_info_in.port.integrated_port_type =3D data->port_type;
+> -	pairing_info_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	pairing_info_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	pairing_info_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	pairing_info_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+>  	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
+>  	       HDCP_2_2_E_KH_KM_LEN);
+> @@ -315,8 +315,8 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+>  	lc_init_in.header.buffer_len =3D
+> WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
+>=20
+>  	lc_init_in.port.integrated_port_type =3D data->port_type;
+> -	lc_init_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	lc_init_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	lc_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	lc_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+>  	byte =3D mei_cldev_send(cldev, (u8 *)&lc_init_in, sizeof(lc_init_in));
+>  	if (byte < 0) {
+> @@ -371,8 +371,8 @@ mei_hdcp_verify_lprime(struct device *dev, struct
+> hdcp_port_data *data,
+>=20
+> 	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
+>=20
+>  	verify_lprime_in.port.integrated_port_type =3D data->port_type;
+> -	verify_lprime_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	verify_lprime_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	verify_lprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	verify_lprime_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder=
+;
+>=20
+>  	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
+>  	       HDCP_2_2_L_PRIME_LEN);
+> @@ -429,8 +429,8 @@ static int mei_hdcp_get_session_key(struct device *de=
+v,
+>  	get_skey_in.header.buffer_len =3D
+> WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
+>=20
+>  	get_skey_in.port.integrated_port_type =3D data->port_type;
+> -	get_skey_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	get_skey_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	get_skey_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	get_skey_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+>  	byte =3D mei_cldev_send(cldev, (u8 *)&get_skey_in, sizeof(get_skey_in))=
+;
+>  	if (byte < 0) {
+> @@ -494,8 +494,8 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct devic=
+e
+> *dev,
+>=20
+> 	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
+>=20
+>  	verify_repeater_in.port.integrated_port_type =3D data->port_type;
+> -	verify_repeater_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	verify_repeater_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	verify_repeater_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	verify_repeater_in.port.attached_transcoder =3D
+> +(u8)data->hdcp_transcoder;
+>=20
+>  	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
+>  	       HDCP_2_2_RXINFO_LEN);
+> @@ -572,8 +572,8 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+>  	verify_mprime_in->header.buffer_len =3D cmd_size  - sizeof(verify_mprim=
+e_in-
+> >header);
+>=20
+>  	verify_mprime_in->port.integrated_port_type =3D data->port_type;
+> -	verify_mprime_in->port.physical_port =3D (u8)data->fw_ddi;
+> -	verify_mprime_in->port.attached_transcoder =3D (u8)data->fw_tc;
+> +	verify_mprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
+> +	verify_mprime_in->port.attached_transcoder =3D
+> +(u8)data->hdcp_transcoder;
+>=20
+>  	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime,
+> HDCP_2_2_MPRIME_LEN);
+>  	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data-
+> >seq_num_m); @@ -634,8 +634,8 @@ static int
+> mei_hdcp_enable_authentication(struct device *dev,
+>  	enable_auth_in.header.buffer_len =3D
+> WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
+>=20
+>  	enable_auth_in.port.integrated_port_type =3D data->port_type;
+> -	enable_auth_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	enable_auth_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	enable_auth_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	enable_auth_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>  	enable_auth_in.stream_type =3D data->streams[0].stream_type;
+>=20
+>  	byte =3D mei_cldev_send(cldev, (u8 *)&enable_auth_in, @@ -689,8 +689,8
+> @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data=
+)
+>  				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
+>=20
+>  	session_close_in.port.integrated_port_type =3D data->port_type;
+> -	session_close_in.port.physical_port =3D (u8)data->fw_ddi;
+> -	session_close_in.port.attached_transcoder =3D (u8)data->fw_tc;
+> +	session_close_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> +	session_close_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder=
+;
+>=20
+>  	byte =3D mei_cldev_send(cldev, (u8 *)&session_close_in,
+>  			      sizeof(session_close_in));
+> @@ -715,7 +715,7 @@ mei_hdcp_close_session(struct device *dev, struct
+> hdcp_port_data *data)
+>  	return 0;
+>  }
+>=20
+> -static const struct i915_hdcp_component_ops mei_hdcp_ops =3D {
+> +static const struct i915_hdcp_ops mei_hdcp_ops =3D {
+>  	.owner =3D THIS_MODULE,
+>  	.initiate_hdcp2_session =3D mei_hdcp_initiate_session,
+>  	.verify_receiver_cert_prepare_km =3D
+> @@ -735,13 +735,12 @@ static const struct i915_hdcp_component_ops
+> mei_hdcp_ops =3D {  static int mei_component_master_bind(struct device *d=
+ev)  {
+>  	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
+> -	struct i915_hdcp_comp_master *comp_master =3D
+> -						mei_cldev_get_drvdata(cldev);
+> +	struct i915_hdcp_master *comp_master =3D mei_cldev_get_drvdata(cldev);
+>  	int ret;
+>=20
+>  	dev_dbg(dev, "%s\n", __func__);
+>  	comp_master->ops =3D &mei_hdcp_ops;
+> -	comp_master->mei_dev =3D dev;
+> +	comp_master->hdcp_dev =3D dev;
+>  	ret =3D component_bind_all(dev, comp_master);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -752,8 +751,7 @@ static int mei_component_master_bind(struct device *d=
+ev)
+> static void mei_component_master_unbind(struct device *dev)  {
+>  	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
+> -	struct i915_hdcp_comp_master *comp_master =3D
+> -						mei_cldev_get_drvdata(cldev);
+> +	struct i915_hdcp_master *comp_master =3D mei_cldev_get_drvdata(cldev);
+>=20
+>  	dev_dbg(dev, "%s\n", __func__);
+>  	component_unbind_all(dev, comp_master); @@ -801,7 +799,7 @@ static
+> int mei_hdcp_component_match(struct device *dev, int subcomponent,  stati=
+c int
+> mei_hdcp_probe(struct mei_cl_device *cldev,
+>  			  const struct mei_cl_device_id *id)  {
+> -	struct i915_hdcp_comp_master *comp_master;
+> +	struct i915_hdcp_master *comp_master;
+>  	struct component_match *master_match;
+>  	int ret;
+>=20
+> @@ -846,8 +844,7 @@ static int mei_hdcp_probe(struct mei_cl_device *cldev=
+,
+>=20
+>  static void mei_hdcp_remove(struct mei_cl_device *cldev)  {
+> -	struct i915_hdcp_comp_master *comp_master =3D
+> -						mei_cldev_get_drvdata(cldev);
+> +	struct i915_hdcp_master *comp_master =3D mei_cldev_get_drvdata(cldev);
+>  	int ret;
+>=20
+>  	component_master_del(&cldev->dev, &mei_component_master_ops); diff -
+> -git a/include/drm/i915_mei_hdcp_interface.h b/include/drm/i915_hdcp_inte=
+rface.h
+> similarity index 73%
+> rename from include/drm/i915_mei_hdcp_interface.h
+> rename to include/drm/i915_hdcp_interface.h index f441cbcd95a4..75c75f52a=
+b1b
+> 100644
+> --- a/include/drm/i915_mei_hdcp_interface.h
+> +++ b/include/drm/i915_hdcp_interface.h
+> @@ -6,15 +6,15 @@
+>   * Ramalingam C <ramalingam.c@intel.com>
+>   */
+>=20
+> -#ifndef _I915_MEI_HDCP_INTERFACE_H_
+> -#define _I915_MEI_HDCP_INTERFACE_H_
+> +#ifndef _I915_HDCP_INTERFACE_H_
+> +#define _I915_HDCP_INTERFACE_H_
+>=20
+>  #include <linux/mutex.h>
+>  #include <linux/device.h>
+>  #include <drm/display/drm_hdcp.h>
+>=20
+>  /**
+> - * enum hdcp_port_type - HDCP port implementation type defined by ME FW
+> + * enum hdcp_port_type - HDCP port implementation type defined by
+> + ME/GSC FW
+>   * @HDCP_PORT_TYPE_INVALID: Invalid hdcp port type
+>   * @HDCP_PORT_TYPE_INTEGRATED: In-Host HDCP2.x port
+>   * @HDCP_PORT_TYPE_LSPCON: HDCP2.2 discrete wired Tx port with LSPCON @@
+> -41,46 +41,46 @@ enum hdcp_wired_protocol {
+>  	HDCP_PROTOCOL_DP
+>  };
+>=20
+> -enum mei_fw_ddi {
+> -	MEI_DDI_INVALID_PORT =3D 0x0,
+> +enum hdcp_ddi {
+> +	HDCP_DDI_INVALID_PORT =3D 0x0,
+>=20
+> -	MEI_DDI_B =3D 1,
+> -	MEI_DDI_C,
+> -	MEI_DDI_D,
+> -	MEI_DDI_E,
+> -	MEI_DDI_F,
+> -	MEI_DDI_A =3D 7,
+> -	MEI_DDI_RANGE_END =3D MEI_DDI_A,
+> +	HDCP_DDI_B =3D 1,
+> +	HDCP_DDI_C,
+> +	HDCP_DDI_D,
+> +	HDCP_DDI_E,
+> +	HDCP_DDI_F,
+> +	HDCP_DDI_A =3D 7,
+> +	HDCP_DDI_RANGE_END =3D HDCP_DDI_A,
+>  };
+>=20
+>  /**
+> - * enum mei_fw_tc - ME Firmware defined index for transcoders
+> - * @MEI_INVALID_TRANSCODER: Index for Invalid transcoder
+> - * @MEI_TRANSCODER_EDP: Index for EDP Transcoder
+> - * @MEI_TRANSCODER_DSI0: Index for DSI0 Transcoder
+> - * @MEI_TRANSCODER_DSI1: Index for DSI1 Transcoder
+> - * @MEI_TRANSCODER_A: Index for Transcoder A
+> - * @MEI_TRANSCODER_B: Index for Transcoder B
+> - * @MEI_TRANSCODER_C: Index for Transcoder C
+> - * @MEI_TRANSCODER_D: Index for Transcoder D
+> + * enum hdcp_tc - ME/GSC Firmware defined index for transcoders
+> + * @HDCP_INVALID_TRANSCODER: Index for Invalid transcoder
+> + * @HDCP_TRANSCODER_EDP: Index for EDP Transcoder
+> + * @HDCP_TRANSCODER_DSI0: Index for DSI0 Transcoder
+> + * @HDCP_TRANSCODER_DSI1: Index for DSI1 Transcoder
+> + * @HDCP_TRANSCODER_A: Index for Transcoder A
+> + * @HDCP_TRANSCODER_B: Index for Transcoder B
+> + * @HDCP_TRANSCODER_C: Index for Transcoder C
+> + * @HDCP_TRANSCODER_D: Index for Transcoder D
+>   */
+> -enum mei_fw_tc {
+> -	MEI_INVALID_TRANSCODER =3D 0x00,
+> -	MEI_TRANSCODER_EDP,
+> -	MEI_TRANSCODER_DSI0,
+> -	MEI_TRANSCODER_DSI1,
+> -	MEI_TRANSCODER_A =3D 0x10,
+> -	MEI_TRANSCODER_B,
+> -	MEI_TRANSCODER_C,
+> -	MEI_TRANSCODER_D
+> +enum hdcp_transcoder {
+> +	HDCP_INVALID_TRANSCODER =3D 0x00,
+> +	HDCP_TRANSCODER_EDP,
+> +	HDCP_TRANSCODER_DSI0,
+> +	HDCP_TRANSCODER_DSI1,
+> +	HDCP_TRANSCODER_A =3D 0x10,
+> +	HDCP_TRANSCODER_B,
+> +	HDCP_TRANSCODER_C,
+> +	HDCP_TRANSCODER_D
+>  };
+>=20
+>  /**
+>   * struct hdcp_port_data - intel specific HDCP port data
+> - * @fw_ddi: ddi index as per ME FW
+> - * @fw_tc: transcoder index as per ME FW
+> - * @port_type: HDCP port type as per ME FW classification
+> - * @protocol: HDCP adaptation as per ME FW
+> + * @hdcp_ddi: ddi index as per ME/GSC FW
+> + * @hdcp_transcoder: transcoder index as per ME/GSC FW
+> + * @port_type: HDCP port type as per ME/GSC FW classification
+> + * @protocol: HDCP adaptation as per ME/GSC FW
+>   * @k: No of streams transmitted on a port. Only on DP MST this is !=3D =
+1
+>   * @seq_num_m: Count of RepeaterAuth_Stream_Manage msg propagated.
+>   *	       Initialized to 0 on AKE_INIT. Incremented after every successf=
+ul
+> @@ -90,8 +90,8 @@ enum mei_fw_tc {
+>   *	     streams
+>   */
+>  struct hdcp_port_data {
+> -	enum mei_fw_ddi fw_ddi;
+> -	enum mei_fw_tc fw_tc;
+> +	enum hdcp_ddi hdcp_ddi;
+> +	enum hdcp_transcoder hdcp_transcoder;
+>  	u8 port_type;
+>  	u8 protocol;
+>  	u16 k;
+> @@ -100,7 +100,7 @@ struct hdcp_port_data {  };
+>=20
+>  /**
+> - * struct i915_hdcp_component_ops- ops for HDCP2.2 services.
+> + * struct i915_hdcp_ops- ops for HDCP2.2 services.
+>   * @owner: Module providing the ops
+>   * @initiate_hdcp2_session: Initiate a Wired HDCP2.2 Tx Session.
+>   *			    And Prepare AKE_Init.
+> @@ -119,9 +119,9 @@ struct hdcp_port_data {
+>   * @close_hdcp_session: Close the Wired HDCP Tx session per port.
+>   *			This also disables the authenticated state of the port.
+>   */
+> -struct i915_hdcp_component_ops {
+> +struct i915_hdcp_ops {
+>  	/**
+> -	 * @owner: mei_hdcp module
+> +	 * @owner: hdcp module
+>  	 */
+>  	struct module *owner;
+>=20
+> @@ -169,16 +169,16 @@ struct i915_hdcp_component_ops {
+>=20
+>  /**
+>   * struct i915_hdcp_component_master - Used for communication between i9=
+15
+
+Name doesn't match with the structure, please fix.
+
+> - * and mei_hdcp drivers for the HDCP2.2 services
+> - * @mei_dev: device that provide the HDCP2.2 service from MEI Bus.
+> - * @hdcp_ops: Ops implemented by mei_hdcp driver, used by i915 driver.
+> + * and hdcp drivers for the HDCP2.2 services
+> + * @hdcp_dev: device that provide the HDCP2.2 service from MEI Bus.
+> + * @hdcp_ops: Ops implemented by hdcp driver or intel_hdcp_gsc , used by=
+ i915
+> driver.
+>   */
+> -struct i915_hdcp_comp_master {
+> -	struct device *mei_dev;
+> -	const struct i915_hdcp_component_ops *ops;
+> +struct i915_hdcp_master {
+> +	struct device *hdcp_dev;
+> +	const struct i915_hdcp_ops *ops;
+>=20
+>  	/* To protect the above members. */
+>  	struct mutex mutex;
+>  };
+>=20
+> -#endif /* _I915_MEI_HDCP_INTERFACE_H_ */
+> +#endif /* _I915_HDCP_INTERFACE_H_ */
+> --
+> 2.25.1
+
