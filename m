@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84576C1226
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 13:44:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1381B6C131B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 14:19:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 620A310E3F9;
-	Mon, 20 Mar 2023 12:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC3910E424;
+	Mon, 20 Mar 2023 13:19:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D890510E3F9
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 12:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679316283; x=1710852283;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=46ns0NIcmuN0+e9BZoutn96whhwJ+kyj5mwGOD9BbhY=;
- b=aChe9d2uiMPbwmxYpPjN8XMwAXer1I7hOkeEELAXQHT5OTXxF8m3rshZ
- LUMkp78SiKDBnKUwu3B2f9Lcno0PRCpPA6vty4wm2U/+ipeCmnOX0ZcZj
- K6PCAeao5uj1s/FRO7sNiZRPjsFL2ISQM4FdOskMVrY2QNwHYeYzn1fwO
- yvTrStYarOa8Bnso07yVmLH9A1nVi1oHTZcHq5BKiDQn5IZDlF86ohR4y
- qocnIWMOzU4U63ZqVB7ElcEsRwZOby7q47SJ4YDkuodLlZUHeWza9dFIH
- /InAT+Pr+igPnHLi3ZwPvrh84URqhOYLz/zU2O/HrUHyhnYxSdFiutxcT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="366366981"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="366366981"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 05:44:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="791600489"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="791600489"
-Received: from mseifert-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.61.180])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 05:44:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Mar 2023 14:44:29 +0200
-Message-Id: <20230320124429.786985-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230320124429.786985-1-jani.nikula@intel.com>
-References: <20230320124429.786985-1-jani.nikula@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3D8510E1D4;
+ Mon,  6 Mar 2023 18:50:10 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3091261120;
+ Mon,  6 Mar 2023 18:50:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9290AC433D2;
+ Mon,  6 Mar 2023 18:50:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1678128609;
+ bh=cw4MV8nhP9uMJq9CJ23NV3cgqudora4kWu/txjBsI3k=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=cEkmOOnvXhLbLazXfIZ00/n4XYJnPZnWq1w2GHKk1uIpn+Mwc9PPSKJbd+m2IJ60c
+ O0+G7jl0UwS98d2baFNreCyo9aasoZL6qKchMJrWErwuvw9HBjiZDBwZ1RALz/aAnw
+ 4BU1s7YxLnf5OJwvBbiMXeuuuW0Iucf0IO2DU49niWv/a+nkiwa1pAzOu+n53m9kyK
+ 9om1eppN8gMxzZRDv2U9pG5zk7LgjpvG47wteJjoobixg8NwGoKHS5Ar1wtuO5Y2Gw
+ LOoCJeFCNitd8ougwLHSBXX2InwFOHmts663hcple2ggafGFU8nH7Rt0z4sh1ac/40
+ Dy7nCunhc+j/Q==
+Received: by mail-ed1-f41.google.com with SMTP id o12so42723142edb.9;
+ Mon, 06 Mar 2023 10:50:09 -0800 (PST)
+X-Gm-Message-State: AO0yUKUcH4C7KG/Qg9fhQh2/lb9LIt5708xXBzDDHqeK6QL8ejf+fhTl
+ fA5S4OJEhb454RDaDDzH3J5IlgawdM8LH6D/3d8=
+X-Google-Smtp-Source: AK7set+UaPbEynbBrh3UGSmnCiCaBv5SW96OSLxKRVIp5XxUSeUCjpli5uTzFJE3TrT+rpVXfDhirUviv4fr07TrXDs=
+X-Received: by 2002:a50:d581:0:b0:4bf:7914:98c5 with SMTP id
+ v1-20020a50d581000000b004bf791498c5mr6451214edi.4.1678128607845; Mon, 06 Mar
+ 2023 10:50:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/debugfs: add crtc i915_pipe
- debugfs file
+References: <20220904214134.408619-1-jim.cromie@gmail.com>
+ <20220904214134.408619-33-jim.cromie@gmail.com>
+In-Reply-To: <20220904214134.408619-33-jim.cromie@gmail.com>
+From: Timur Tabi <timur@kernel.org>
+Date: Mon, 6 Mar 2023 12:49:30 -0600
+X-Gmail-Original-Message-ID: <CAOZdJXXHGW1iceWgB47wSUhG_hYA48JWtOPRrVRnL-EvRCxhBA@mail.gmail.com>
+Message-ID: <CAOZdJXXHGW1iceWgB47wSUhG_hYA48JWtOPRrVRnL-EvRCxhBA@mail.gmail.com>
+To: Jim Cromie <jim.cromie@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Mon, 20 Mar 2023 13:19:30 +0000
+Subject: Re: [Intel-gfx] [PATCH v6 32/57] nouveau: adapt NV_DEBUG,
+ NV_ATOMIC to use DRM.debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +63,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux@rasmusvillemoes.dk, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, jbaron@akamai.com, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch, joe@perches.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The pipe may differ from crtc index if pipes are fused off. For testing
-purposes, IGT needs to know the pipe.
+On Sun, Sep 4, 2022 at 4:48 PM Jim Cromie <jim.cromie@gmail.com> wrote:
+>
+> These 2 macros used drm_debug_enabled() on DRM_UT_{DRIVER,ATOMIC}
+> respectively, replace those with drm_dbg_##cat invocations.
+>
+> this results in new class'd prdbg callsites:
+>
+> :#> grep nouveau /proc/dynamic_debug/control | grep class | wc
+>     116    1130   15584
+> :#> grep nouveau /proc/dynamic_debug/control | grep class | grep DRIVER | wc
+>      74     704    9709
+> :#> grep nouveau /proc/dynamic_debug/control | grep class | grep ATOMIC | wc
+>      31     307    4237
+> :#> grep nouveau /proc/dynamic_debug/control | grep class | grep KMS | wc
+>      11     119    1638
+>
+> the KMS entries are due to existing uses of drm_dbg_kms().
+>
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 
-There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. However,
-the upcoming Xe driver won't have that IOCTL, and going forward, we'll
-want a unified interface for testing i915 and Xe, as they share the
-display code. Thus add the debugfs for i915 display.
+Has this patch set been forgotten?  It was posted six months ago and
+there's no sign that it was picked up.
 
-v2: User letters for pipe names (Ville)
-
-Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 3c76e718b951..cc5026272558 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1383,6 +1383,17 @@ static int i915_current_bpc_show(struct seq_file *m, void *data)
- }
- DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
- 
-+/* Pipe may differ from crtc index if pipes are fused off */
-+static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
-+{
-+	struct intel_crtc *crtc = m->private;
-+
-+	seq_printf(m, "%c\n", pipe_name(crtc->pipe));
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
-+
- /**
-  * intel_connector_debugfs_add - add i915 specific connector debugfs files
-  * @connector: pointer to a registered drm_connector
-@@ -1453,4 +1464,6 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
- 
- 	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
- 			    &i915_current_bpc_fops);
-+	debugfs_create_file("i915_pipe", 0444, root, crtc,
-+			    &intel_crtc_pipe_fops);
- }
--- 
-2.39.2
-
+The changes to drm_debug_enabled have impacted NV_DEBUG and NV_ATOMIC
+and something needs to be fixed.  I posted a simpler patch a few weeks
+ago, but maybe Jim's is better.
