@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E586ABD6D
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 11:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F346ABDA8
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Mar 2023 12:04:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0EF10E220;
-	Mon,  6 Mar 2023 10:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A0710E229;
+	Mon,  6 Mar 2023 11:04:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49C5810E220;
- Mon,  6 Mar 2023 10:55:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF5E710E220;
+ Mon,  6 Mar 2023 11:04:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678100108; x=1709636108;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/TIgeCfWFJlJ6em1rKJ0RE3ltK53jlMLsH29ltUGH68=;
- b=b1rBFV8v1TTZOcSS5OMO3Sj680vDyOVv8o3i7apOBFOIJk6PSXQnAQZy
- MRAjBgsM3UemBEcGi1bHcOYt7IGuW8v/K4oTEJ30FfCKXsTEaiIz2xchk
- 7dyyj30B6wMgOojtg9Dq0xwlcKyZnD9SSBNAubcIKT0NBxVQPjHPnUuIq
- GxtXXL76KHUIBdOAy2iVV55eJJmVWgR/PGfhnhkfB3kDmaYAKeHhHxjQM
- 4p08xWgGEPmgTWORxgiwZeXpMRMHcEvdvhn8UECtm0MnWCmYm9y6pRkSz
- 8O29JXgX60i0DUtXJB0kzuj+b8+ddvT2UM+PhEOWngeIFIavuWev2zOtK A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337042615"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="337042615"
+ t=1678100684; x=1709636684;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=59LCx0e7fWrd6zc39JKACRvst+l9vqU1ah4dHd6vhVY=;
+ b=hvdclBuyviNU4yxVUPtxcr0Xtix367UAX8jn3gkDxV4sYzgisRaf1ZRQ
+ KEMkGcA1SuxKHVBWS9OYFf3d7hzdf+KdxnUnbi/YDQf6pHQetioP/cYZh
+ Ub9NrI7/NjGcCSB/VNb7lATsydZjI0m6/TZDZVsnEM+xj/7Rv7iGQWUal
+ YIqlPYST/G7hv9FiUrbOhcYPUR4swHGuSfwS3H0oGliMxEuOVG0pCKuHp
+ Q2NFKKFu6qoIZPax/u2npCPwRxMr4Vn3T5iD/bsN0L6Hrdpsinr8RmBO6
+ kMkYYo/TKnYaeJQ6ptYehQK0DwJBua+xOPYL+EQfao1rw7y8GZf+7mD4t A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337044161"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="337044161"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 02:55:07 -0800
+ 06 Mar 2023 03:04:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="653567874"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="653567874"
-Received: from bholthau-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.58.77])
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="653571159"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="653571159"
+Received: from pjgubbin-mobl.ger.corp.intel.com (HELO [10.213.204.143])
+ ([10.213.204.143])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 02:55:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ammar Faizi <ammarfaizi2@gnuweeb.org>, Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <ZAOTU5CRwdEC1lGH@biznet-home.integral.gnuweeb.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <6feae796-db3f-1135-a607-cfefb0259788@gnuweeb.org>
- <ZAGqet3U8AMm4Uf1@debian.me>
- <ZAOTU5CRwdEC1lGH@biznet-home.integral.gnuweeb.org>
-Date: Mon, 06 Mar 2023 12:54:59 +0200
-Message-ID: <87v8jetaik.fsf@intel.com>
+ 06 Mar 2023 03:04:42 -0800
+Message-ID: <6abc2ea5-4d60-765b-a830-ee0225c63871@linux.intel.com>
+Date: Mon, 6 Mar 2023 11:04:40 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] Linux 6.2.1 hits a display driver bug (list_del
- corruption, ffff88811b4af298->next is NULL)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230304012705.70003-1-ashutosh.dixit@intel.com>
+ <20230304012705.70003-2-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230304012705.70003-2-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Use only freq bits for
+ falling back to requested freq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +64,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Intel GFX Mailing List <intel-gfx@lists.freedesktop.org>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
- linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 05 Mar 2023, Ammar Faizi <ammarfaizi2@gnuweeb.org> wrote:
-> On Fri, Mar 03, 2023 at 03:06:18PM +0700, Bagas Sanjaya wrote:
->> Can you please try v6.1?
->
-> It's reproducible in v6.1.9. I finally can reliably reproduce it, it
-> only happens when I start a VM with qemu.
->
-> Specifically adding this device to the qemu instance:
->
->   <hostdev mode="subsystem" type="pci" managed="yes">
->     <source>
->       <address domain="0x0000" bus="0x00" slot="0x02" function="0x0"/>
->     </source>
->     <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
->   </hostdev>
->
-> And that slot is used by this hardware:
->
->   0000:00:02:0 Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics]
->
-> Removing it from the qemu instance solves the issue. But it's still a
-> kernel bug anyway.
 
-Please file a bug at fdo gitlab:
+On 04/03/2023 01:27, Ashutosh Dixit wrote:
+> On newer generations, the GEN12_RPSTAT1 register contains more than freq
+> information, e.g. see GEN12_VOLTAGE_MASK. Therefore use only the freq bits
+> to decide whether to fall back to requested freq.
 
-https://gitlab.freedesktop.org/drm/intel/wikis/How-to-file-i915-bugs
+Could you find an appropriate Fixes: tag please? If it can affects a 
+platform out of force probe then cc: stable to.
 
+CI is not catching the problem?
 
-BR,
-Jani.
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_pmu.c | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 52531ab28c5f..f0a1e36915b8 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -393,10 +393,8 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
+>   		 * case we assume the system is running at the intended
+>   		 * frequency. Fortunately, the read should rarely fail!
+>   		 */
+> -		val = intel_rps_read_rpstat_fw(rps);
+> -		if (val)
+> -			val = intel_rps_get_cagf(rps, val);
+> -		else
+> +		val = intel_rps_get_cagf(rps, intel_rps_read_rpstat_fw(rps));
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Will this work with gen5_invert_freq as called by intel_rps_get_cagf?
+
+Regards,
+
+Tvrtko
+
+> +		if (!val)
+>   			val = rps->cur_freq;
+>   
+>   		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_ACT],
