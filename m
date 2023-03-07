@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FDF6AE66B
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 17:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A726AE6B4
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 17:35:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E370210E0F7;
-	Tue,  7 Mar 2023 16:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0DD10E11E;
+	Tue,  7 Mar 2023 16:35:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EAE110E0F7
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 16:27:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678206425; x=1709742425;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hIgup6+vHDtI1ag0MhsfxZU4QsMSrK2zmM4i5nhXGmw=;
- b=FCw7HG1HHGxzcvqnvLHSUrBvHJS+bE6czMhWURrIIuatZ8XM0o4jbnfj
- KAfBFCThklZdrr5Ye0isNo2gMXJokW0bp6nBW00GZusB2hm7JTOYmZE1N
- Psjlb2D9SjRcw5Y+BTz61S7q5XSp7tb6QLmQmJ7mWL+EcCKlYLOBFm0Gw
- OZACiWnBmIXGQ9L60DVoH8Jarat0xWUT3+OJJm0agCOrAcupVG68nFeuU
- JMvHEx9AmDoYeqNceGuDFlJLNohhfG23X1d2dID6FG4YYyMnomx4vIgLf
- eExWbkarrGMpu41J1/aeclnZ/DB0Pn9MzCb12mqNqToK0Z+ifzQdBVnR3 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="324202493"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="324202493"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 08:27:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="740779343"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="740779343"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga008.fm.intel.com with SMTP; 07 Mar 2023 08:26:52 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Mar 2023 18:26:52 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Mar 2023 18:26:52 +0200
-Message-Id: <20230307162652.1178-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
-References: <20230214134348.11020-1-ville.syrjala@linux.intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11D6710E11E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 16:35:35 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4CAB7B81964;
+ Tue,  7 Mar 2023 16:35:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B583EC4339B;
+ Tue,  7 Mar 2023 16:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1678206932;
+ bh=Mfb96I2VFG1jpW1qgStd8AFHQ6ZOY9jOScdNDE1YN+c=;
+ h=Subject:To:Cc:From:Date:From;
+ b=OCtjbhyhZdHdIuInGDVykc3gvp7ckOf4TtHn6lpqNL1yfcsyUsVivcEleKVtNGPW/
+ dO3+kpI9Xox7uJ7MtQJ20cGhEmnETB3Wr3EI0z1jjEyBO2bnLOAEwbx9y40ot6r0Mf
+ 8dPcY5fzPzpQvehnr1J+lE5JehjphV0GEt29bTG4=
+To: John.C.Harrison@Intel.com, chris@chris-wilson.co.uk,
+ daniele.ceraolospurio@intel.com, gregkh@linuxfoundation.org,
+ intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ jouni.hogander@intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com
+From: <gregkh@linuxfoundation.org>
+Date: Tue, 07 Mar 2023 17:35:11 +0100
+Message-ID: <1678206911113154@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Don't switch to TPS1 when
- disabling DP_TP_CTL
+X-stable: commit
+X-Patchwork-Hint: ignore 
+Subject: [Intel-gfx] Patch "drm/i915: Don't use BAR mappings for ring
+ buffers with LLC" has been added to the 6.1-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +54,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable-commits@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-AFAICS Bspec has never asked us to switch to TPS1 when *disabling*
-DP_TP_CTL. Let's stop doing that in case it confuses something.
-We do have to switch before we *enable* DP_TP_CTL, but that
-is already being handled correctly.
+This is a note to let you know that I've just added the patch titled
 
-v2: Do the same for FDI
+    drm/i915: Don't use BAR mappings for ring buffers with LLC
 
-Reviewed-by: Imre Deak <imre.deak@intel.com> #v1
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+to the 6.1-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     drm-i915-don-t-use-bar-mappings-for-ring-buffers-with-llc.patch
+and it can be found in the queue-6.1 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From 85636167e3206c3fbd52254fc432991cc4e90194 Mon Sep 17 00:00:00 2001
+From: John Harrison <John.C.Harrison@Intel.com>
+Date: Wed, 15 Feb 2023 17:11:01 -0800
+Subject: drm/i915: Don't use BAR mappings for ring buffers with LLC
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+From: John Harrison <John.C.Harrison@Intel.com>
+
+commit 85636167e3206c3fbd52254fc432991cc4e90194 upstream.
+
+Direction from hardware is that ring buffers should never be mapped
+via the BAR on systems with LLC. There are too many caching pitfalls
+due to the way BAR accesses are routed. So it is safest to just not
+use it.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v4.9+
+Tested-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
+(cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++----
- drivers/gpu/drm/i915/display/intel_fdi.c | 4 +---
- 2 files changed, 3 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_ring.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bfd1e30a27b4..4af2ba2dfcad 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2624,8 +2624,7 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -53,7 +53,7 @@ int intel_ring_pin(struct intel_ring *ri
+ 	if (unlikely(ret))
+ 		goto err_unpin;
  
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
- 		val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
--		val &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
--		val |= DP_TP_CTL_LINK_TRAIN_PAT1;
-+		val &= ~DP_TP_CTL_ENABLE;
- 		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
- 	}
+-	if (i915_vma_is_map_and_fenceable(vma)) {
++	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
+ 		addr = (void __force *)i915_vma_pin_iomap(vma);
+ 	} else {
+ 		int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
+@@ -98,7 +98,7 @@ void intel_ring_unpin(struct intel_ring
+ 		return;
  
-@@ -3153,8 +3152,7 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 			wait = true;
- 		}
- 
--		dp_tp_ctl &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
--		dp_tp_ctl |= DP_TP_CTL_LINK_TRAIN_PAT1;
-+		dp_tp_ctl &= ~DP_TP_CTL_ENABLE;
- 		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
- 		intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index f62d9a931349..f3ac34b0f3fa 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -846,9 +846,7 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
- 
- 		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
--		intel_de_rmw(dev_priv, DP_TP_CTL(PORT_E),
--			     DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK,
--			     DP_TP_CTL_LINK_TRAIN_PAT1);
-+		intel_de_rmw(dev_priv, DP_TP_CTL(PORT_E), DP_TP_CTL_ENABLE, 0);
- 		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
- 
- 		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
--- 
-2.39.2
+ 	i915_vma_unset_ggtt_write(vma);
+-	if (i915_vma_is_map_and_fenceable(vma))
++	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915))
+ 		i915_vma_unpin_iomap(vma);
+ 	else
+ 		i915_gem_object_unpin_map(vma->obj);
 
+
+Patches currently in stable-queue which might be from John.C.Harrison@Intel.com are
+
+queue-6.1/drm-i915-don-t-use-bar-mappings-for-ring-buffers-with-llc.patch
+queue-6.1/drm-i915-don-t-use-stolen-memory-for-ring-buffers-with-llc.patch
