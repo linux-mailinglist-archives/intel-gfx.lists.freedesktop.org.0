@@ -2,43 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85726AF412
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 20:13:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7DC6AF5F8
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 20:43:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 808A810E530;
-	Tue,  7 Mar 2023 19:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E3A10E541;
+	Tue,  7 Mar 2023 19:43:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D9910E530
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 19:13:09 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CB90F6150D;
- Tue,  7 Mar 2023 19:13:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B98EC433EF;
- Tue,  7 Mar 2023 19:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678216388;
- bh=cyEnrYpXsnZOy1MKketWp6wTLUm03WwqL6ud0l6wyT8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ZhNdJXX3Mk1UvVna57y//8sa2Eow9cDzoGeEjEIJXi3nHP0hR0rF2r5jPcO/1ihCH
- YXGz6JIgbiIviaoRkjREBXIYRs3p3Xf96UEvBshLZOHQpAvY24M1bmF9Ni7+rrwLP9
- 5dP2pwMrECpBmJMKxBG292D2ZCJqFhyoQvSS6yzM=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Date: Tue,  7 Mar 2023 18:05:02 +0100
-Message-Id: <20230307165930.480053867@linuxfoundation.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230307165905.838066027@linuxfoundation.org>
-References: <20230307165905.838066027@linuxfoundation.org>
-User-Agent: quilt/0.67
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D06D10E515;
+ Tue,  7 Mar 2023 19:43:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678218200; x=1709754200;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=VUM3crliIX0uYvF9HWA/HxYpm4UHhPf4pcjmsOAYsyA=;
+ b=ajebq3ggaRvbjRJcNkjL5Fth65KtM3yRbT/1CJ8tLwOCkLw/hWGV8QjU
+ vASJk3ePhzxYoFmygU0ovN4qV32uxl5Xj1lx2U6CharDbdIdXb5Fhzce6
+ F1kje6MNdUm7jFfnxhs/GDTNgwkwz/wuIwazER5EtvRixF4esJcDLoLSs
+ 7Xmbpdk0cNZ9i+/qq3hb/+jFF2S1CjHcT6Olmm6k1mO6m7nVMziQwQ7kS
+ YmGjeGtuHQToQiliZz6d64OP8MKvw93J1eNWAXLUKQFaLJt2fsqtLB5dO
+ n9nfnPXc/mzgSySok/XFeXBH1P4YbNe8zoIye5N1NqyDs6PjKOuH88GTb g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="334668320"
+X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="334668320"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2023 11:43:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="654089691"
+X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="654089691"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 07 Mar 2023 11:43:17 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pZdDQ-0001YP-29;
+ Tue, 07 Mar 2023 19:43:16 +0000
+Date: Wed, 8 Mar 2023 03:42:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Message-ID: <202303080352.azyeWwwt-lkp@intel.com>
+References: <20230307144621.10748-7-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.15 566/567] drm/i915: Dont use BAR mappings
- for ring buffers with LLC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230307144621.10748-7-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/ttm: Reduce the number of used
+ allocation orders for TTM pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,60 +61,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, patches@lists.linux.dev,
- Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Christian Koenig <christian.koenig@amd.com>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Hi Thomas,
 
-commit 85636167e3206c3fbd52254fc432991cc4e90194 upstream.
+Thank you for the patch! Yet something to improve:
 
-Direction from hardware is that ring buffers should never be mapped
-via the BAR on systems with LLC. There are too many caching pitfalls
-due to the way BAR accesses are routed. So it is safest to just not
-use it.
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on drm-intel/for-linux-next]
+[cannot apply to drm-tip/drm-tip]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.9+
-Tested-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
-(cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/gt/intel_ring.c |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Fix-a-NULL-pointer-dereference/20230307-224931
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230307144621.10748-7-thomas.hellstrom%40linux.intel.com
+patch subject: [Intel-gfx] [PATCH v2 6/7] drm/ttm: Reduce the number of used allocation orders for TTM pages
+config: powerpc-randconfig-r006-20230306 (https://download.01.org/0day-ci/archive/20230308/202303080352.azyeWwwt-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/0eee47dba298051fc49965d56cb17dd113ff0236
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-ttm-Fix-a-NULL-pointer-dereference/20230307-224931
+        git checkout 0eee47dba298051fc49965d56cb17dd113ff0236
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/gpu/drm/ttm/
 
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -51,7 +51,7 @@ int intel_ring_pin(struct intel_ring *ri
- 	if (unlikely(ret))
- 		goto err_unpin;
- 
--	if (i915_vma_is_map_and_fenceable(vma)) {
-+	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
- 		addr = (void __force *)i915_vma_pin_iomap(vma);
- 	} else {
- 		int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
-@@ -96,7 +96,7 @@ void intel_ring_unpin(struct intel_ring
- 		return;
- 
- 	i915_vma_unset_ggtt_write(vma);
--	if (i915_vma_is_map_and_fenceable(vma))
-+	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915))
- 		i915_vma_unpin_iomap(vma);
- 	else
- 		i915_gem_object_unpin_map(vma->obj);
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303080352.azyeWwwt-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In function 'ttm_pool_type_init',
+       inlined from 'ttm_pool_init' at drivers/gpu/drm/ttm/ttm_pool.c:557:5:
+>> drivers/gpu/drm/ttm/ttm_pool.c:264:18: warning: iteration 9 invokes undefined behavior [-Waggressive-loop-optimizations]
+     264 |         pt->pool = pool;
+         |         ~~~~~~~~~^~~~~~
+   drivers/gpu/drm/ttm/ttm_pool.c: In function 'ttm_pool_init':
+   drivers/gpu/drm/ttm/ttm_pool.c:556:39: note: within this loop
+     556 |                         for (j = 0; j < TTM_DIM_ORDER; ++j)
+         |                                       ^
+   In file included from <command-line>:
+   drivers/gpu/drm/ttm/ttm_pool.c: In function 'ttm_pool_mgr_init':
+>> include/linux/compiler_types.h:358:45: error: call to '__compiletime_assert_283' declared with attribute error: BUILD_BUG_ON failed: TTM_DIM_ORDER > MAX_ORDER
+     358 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |                                             ^
+   include/linux/compiler_types.h:339:25: note: in definition of macro '__compiletime_assert'
+     339 |                         prefix ## suffix();                             \
+         |                         ^~~~~~
+   include/linux/compiler_types.h:358:9: note: in expansion of macro '_compiletime_assert'
+     358 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/gpu/drm/ttm/ttm_pool.c:744:9: note: in expansion of macro 'BUILD_BUG_ON'
+     744 |         BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
+         |         ^~~~~~~~~~~~
 
 
+vim +/__compiletime_assert_283 +358 include/linux/compiler_types.h
+
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  344  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  345  #define _compiletime_assert(condition, msg, prefix, suffix) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  346  	__compiletime_assert(condition, msg, prefix, suffix)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  347  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  348  /**
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  349   * compiletime_assert - break build and emit msg if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  350   * @condition: a compile-time constant condition to check
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  351   * @msg:       a message to emit if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  352   *
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  353   * In tradition of POSIX assert, this macro will break the build if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  354   * supplied condition is *false*, emitting the supplied error message if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  355   * compiler has support to do so.
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  356   */
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  357  #define compiletime_assert(condition, msg) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21 @358  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  359  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
