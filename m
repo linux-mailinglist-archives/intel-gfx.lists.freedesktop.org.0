@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AE66AE1F2
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 15:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01FE66AE1F3
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 15:13:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E3B310E06D;
-	Tue,  7 Mar 2023 14:13:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDFC10E4A1;
+	Tue,  7 Mar 2023 14:13:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8C310E4AA
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 14:13:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1307C10E4A1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 14:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678198423; x=1709734423;
+ t=1678198432; x=1709734432;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=FQC/JdtUEA2R4aJECsXobFlqmvxL6mZkDtXwDLHdK/E=;
- b=kMaSNZz0xLBj2hX+91Eua1MmM+3MfXOkj9QcpXfcVD0sfJVKLzAFTbYD
- ZvBxpwy7j7LcTaLXoJREX94dUsVoUPjuyLUMkuVitPqR0KfMbjIB7TeTD
- EUXIhQrLOlZ0B/Jh9EXa0dbsYqtyM4xieiuW20mYtAypTxK3bKcPOpg8M
- igjFbMHqo6yBQC/fprb47CLp1bjc6tEwrroUHjGOJJ93Tv8adYUX25X7d
- WJUisnjYynWWG8PTOseSSCJS5w6O0LSl0863AcjXu1EbmJYP7UGh5autx
- kJ8SbtVzALCOs5SUEDQGmba0B0vii58rKWlHG1CxltMyvPOREt9vIW2KV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="324162761"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="324162761"
+ bh=Uof6kFWjsmG3IRobeBPkLBcoIQ804mCc1RwK/Gb4MpY=;
+ b=KEwzxQYJ9b+7a/wFXBtGFKbrGeeL/GseDlcPgYWJCG+n+JR5MaeCYQPd
+ RYZGyBsbFhDn6I2yAK6rtAj7gWj4E9QvswwqP2NNxo0VAS4dkel5qEQhi
+ rozD5OqLvIsKH39f/45yKtWhfYYf3Vaft57sK9cM17WBouOdIUG1GiaPj
+ SV5+jRT1KPkG8GNidVS/ZALHE0+8nWmIprpu2wO68dXj5Hk560BXjiaMi
+ 0G0maUIETnm62Q8mLTwCRSn+RuJkdFa1nENHTvB9D97HHqzKll/Dcn53K
+ CVHX2okTpQWiZ5rJ5mUuFPXhpZLut4/OLnqirJnNcVSieA5x5lHDeGFag w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="324162792"
+X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="324162792"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 06:13:42 -0800
+ 07 Mar 2023 06:13:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="676582897"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="676582897"
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="676582915"
+X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="676582915"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 07 Mar 2023 06:13:40 -0800
+ by orsmga002.jf.intel.com with SMTP; 07 Mar 2023 06:13:49 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Mar 2023 16:13:39 +0200
-Date: Tue, 7 Mar 2023 16:13:39 +0200
+ Tue, 07 Mar 2023 16:13:48 +0200
+Date: Tue, 7 Mar 2023 16:13:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZAdGk27VfxYMLf9u@intel.com>
+Message-ID: <ZAdGnBD7WiO/ubdb@intel.com>
 References: <20230306152841.6563-1-ville.syrjala@linux.intel.com>
- <87cz5ksqmn.fsf@intel.com>
+ <20230306152841.6563-2-ville.syrjala@linux.intel.com>
+ <87a60osqaf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87cz5ksqmn.fsf@intel.com>
+In-Reply-To: <87a60osqaf.fsf@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Update vblank timestamping
- stuff on seamless M/N change
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Add belts and suspenders
+ locking for seamless M/N changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +67,94 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 07, 2023 at 02:16:48PM +0200, Jani Nikula wrote:
+On Tue, Mar 07, 2023 at 02:24:08PM +0200, Jani Nikula wrote:
 > On Mon, 06 Mar 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > >
-> > When we change the M/N values seamlessly during a fastset we should
-> > also update the vblank timestamping stuff to make sure the vblank
-> > timestamp corrections/guesstimations come out exact.
+> > Add some (probably overkill) locking to protect the vblank
+> > timestamping constants updates during seamless M/N fastsets.
 > >
-> > Note that only crtc_clock and framedur_ns can actually end up
-> > changing here during fastsets. Everything else we touch can
-> > only change during full modesets.
+> > As everything should be naturally aligned I think the individual
+> > pieces should probably end up updating atomically enough. So this
+> > is only really meant to guarantee everyone sees a consistent whole.
 > >
-> > Technically we should try to do this exactly at the start of
-> > vblank, but that would require some kind of double buffering
-> > scheme. Let's skip that for now and just update things right
-> > after the commit has been submitted to the hardware. This
-> > means the information will be properly up to date when the
-> > vblank irq handler goes to work. Only if someone ends up
-> > querying some vblanky stuff in between the commit and start
-> > of vblank may we see a slight discrepancy.
+> > All the drm_vblank.c usage is covered by vblank_time_lock,
+> > and uncore.lock will take care of __intel_get_crtc_scanline()
+> > that can also be called from outside the core vblank functionality.
+> 
+> The patch seems to do what it says on the box, but I increasingly
+> dislike the use of uncore.lock for anything other than the nuts and
+> bolts of uncore.
+
+Yeah, it's not really great. Hence the TODO I left behind there.
+
+> 
+> BR,
+> Jani.
+> 
 > >
-> > Also this same problem really exists for the DRRS downclocking
-> > stuff. But as that is supposed to be more or less transparent
-> > to the user, and it only drops to low gear after a long delay
-> > (1 sec currently) we probably don't have to worry about it.
-> > Any time something is actively submitting updates DRRS will
-> > remain in high gear and so the timestamping constants will
-> > match the hardware state.
+> > Currently only crtc_clock and framedur_ns can change, but in
+> > the future might fastset also across eg. vtotal/vblank_end
+> > changes, so let's just grab the locks across the whole thing.
 > >
-> > Fixes: e6f29923c048 ("drm/i915: Allow M/N change during fastset on bdw+")
 > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_crtc.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
+> >  drivers/gpu/drm/i915/display/intel_display.c | 24 +++++++++++++++++++-
+> >  1 file changed, 23 insertions(+), 1 deletion(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index b79a8834559f..41d381bbb57a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -686,6 +686,14 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
-> >  	 */
-> >  	intel_vrr_send_push(new_crtc_state);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index a1fbdf32bd21..020320468967 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -5908,6 +5908,8 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  	struct drm_display_mode adjusted_mode;
+> > +	int vmax_vblank_start = 0;
+> > +	unsigned long irqflags;
+> >  
+> >  	drm_mode_init(&adjusted_mode, &crtc_state->hw.adjusted_mode);
+> >  
+> > @@ -5915,11 +5917,28 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
+> >  		adjusted_mode.crtc_vtotal = crtc_state->vrr.vmax;
+> >  		adjusted_mode.crtc_vblank_end = crtc_state->vrr.vmax;
+> >  		adjusted_mode.crtc_vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
+> > -		crtc->vmax_vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
+> > +		vmax_vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
+> >  	}
 > >  
 > > +	/*
-> > +	 * Seamless M/N update may need to update frame timings.
+> > +	 * Belts and suspenders locking to guarantee everyone sees 100%
+> > +	 * consistent state during fastset seamless refresh rate changes.
 > > +	 *
-> > +	 * FIXME Should be synchronized with the start of vblank somehow...
+> > +	 * vblank_time_lock takes care of all drm_vblank.c stuff, and
+> > +	 * uncore.lock takes care of __intel_get_crtc_scanline() which
+> > +	 * may get called elsewhere as well.
+> > +	 *
+> > +	 * TODO maybe just protect everything (including
+> > +	 * __intel_get_crtc_scanline()) with vblank_time_lock?
+> > +	 * Need to audit everything to make sure it's safe.
 > > +	 */
-> > +	if (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_crtc_state))
-> > +		intel_crtc_update_active_timings(new_crtc_state);
-> 
-> Side note, do we ensure somewhere that intel_crtc_needs_modeset() &&
-> intel_crtc_needs_fastset() is never true?
-
-commit 7de5b6b54630 ("drm/i915: Don't flag both full modeset and fastset
-at the same time")
-
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-Thanks
-
-> 
+> > +	spin_lock_irqsave(&dev_priv->drm.vblank_time_lock, irqflags);
+> > +	spin_lock(&dev_priv->uncore.lock);
 > > +
-> >  	local_irq_enable();
+> >  	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
 > >  
-> >  	if (intel_vgpu_active(dev_priv))
+> > +	crtc->vmax_vblank_start = vmax_vblank_start;
+> > +
+> >  	crtc->mode_flags = crtc_state->mode_flags;
+> >  
+> >  	/*
+> > @@ -5963,6 +5982,9 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
+> >  	} else {
+> >  		crtc->scanline_offset = 1;
+> >  	}
+> > +
+> > +	spin_unlock(&dev_priv->uncore.lock);
+> > +	spin_unlock_irqrestore(&dev_priv->drm.vblank_time_lock, irqflags);
+> >  }
+> >  
+> >  /*
 > 
 > -- 
 > Jani Nikula, Intel Open Source Graphics Center
