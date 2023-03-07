@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF2B6AD9CA
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 10:02:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD346AD9E5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 10:10:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E22C910E387;
-	Tue,  7 Mar 2023 09:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51A9010E387;
+	Tue,  7 Mar 2023 09:10:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B9DC10E387;
- Tue,  7 Mar 2023 09:02:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2497CA47EB;
- Tue,  7 Mar 2023 09:02:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9194483995147760371=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5628010E387;
+ Tue,  7 Mar 2023 09:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678180201; x=1709716201;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EF3mCJC1nMFMnnDqKO4lCNZrKiMjBiQPNck/EAiz2fc=;
+ b=lpA5cId7QW8Yl5DgInehPgzRI3GzvX6a+XT5aZ3jo81D3g2Wkk+rhE9x
+ iAcaVpvK8mg0AO9UlO2azUS9fi+NL4zuTnq9bIUsQPe1EQxOv7QMU+BTg
+ kTOWOo8GgwRui24I/MSonlQF7K6N5UBu8J1IfBmwF8oQcQqTAC8+tOWEr
+ nwCtN+BRgeWCizapg+9WRcD24ln/fgYkqQMcLuN9miV2ss8Gy/96LJiCE
+ iJOd21Y1PRLp4RVaDHiHKy3pgGKZFe7afnSBzgMxXSBGFksDSFxryWou1
+ g6gLFZLgwy0/X/JHOTxkir/TTztLJtNu7Az4uhYCwm3UtSn0633ZKiKTh Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="333274781"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="333274781"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2023 01:10:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="850630860"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="850630860"
+Received: from sbarnes-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.236])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2023 01:09:59 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20230302081532.765821-3-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230302081532.765821-1-arun.r.murthy@intel.com>
+ <20230302081532.765821-3-arun.r.murthy@intel.com>
+Date: Tue, 07 Mar 2023 11:09:56 +0200
+Message-ID: <87o7p5rkpn.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Date: Tue, 07 Mar 2023 09:02:01 -0000
-Message-ID: <167817972112.31453.1383795230869456728@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230307080310.2739486-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20230307080310.2739486-1-chaitanya.kumar.borah@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Set_correct_voltage_level_for_480MHz_CDCLK?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv4 2/2] i915/display/dp: SDP CRC16 for
+ 128b132b link layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,205 +61,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9194483995147760371==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 02 Mar 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Enable SDP error detection configuration, this will set CRC16 in
+> 128b/132b link layer.
+> For Display version 13 a hardware bit31 in register VIDEO_DIP_CTL is
+> added to enable/disable SDP CRC applicable for DP2.0 only, but the
+> default value of this bit will enable CRC16 in 128b/132b hence
+> skipping this write.
+> Corrective actions on SDP corruption is yet to be defined.
+>
+> v2: Moved the CRC enable to link training init(Jani N)
+> v3: Moved crc enable to ddi pre enable <Jani N>
+> v4: Separate function for SDP CRC16 (Jani N)
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/display: Set correct voltage level for 480MHz CDCLK
-URL   : https://patchwork.freedesktop.org/series/114752/
-State : success
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  4 ++++
+>  .../drm/i915/display/intel_dp_link_training.c | 20 +++++++++++++++++++
+>  .../drm/i915/display/intel_dp_link_training.h |  2 ++
+>  3 files changed, 26 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index e5979427b38b..127b3035f92d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2519,6 +2519,10 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+> +	if (HAS_DP20(dev_priv))
+> +		intel_dp_128b132b_sdp_crc16(enc_to_intel_dp(encoder),
+> +					    crtc_state);
+> +
+>  	if (DISPLAY_VER(dev_priv) >= 12)
+>  		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
+>  	else
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 3d3efcf02011..35d31e4efab9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1454,3 +1454,23 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
+>  	if (!passed)
+>  		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
+>  }
+> +
+> +void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
+> +				 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +
+> +	/*
+> +	 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
+> +	 * disable SDP CRC. This is applicable for Display version 13.
+> +	 * Default value of bit 31 is '0' hence discarding the write
+> +	 * TODO: Corrective actions on SDP corruption yet to be defined
+> +	 */
+> +	if (intel_dp_is_uhbr(crtc_state))
+> +		/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
+> +		drm_dp_dpcd_writeb(&intel_dp->aux,
+> +				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
+> +				   DP_SDP_CRC16_128B132B_EN);
+> +
+> +	drm_dbg_kms(&i915->drm, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> index 7fa1c0833096..2c8f2775891b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -39,4 +39,6 @@ static inline u8 intel_dp_training_pattern_symbol(u8 pattern)
+>  	return pattern & ~DP_LINK_SCRAMBLING_DISABLE;
+>  }
+>  
+> +void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
+> +				 const struct intel_crtc_state *crtc_state);
+>  #endif /* __INTEL_DP_LINK_TRAINING_H__ */
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12820 -> Patchwork_114752v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/index.html
-
-Participating hosts (36 -> 29)
-------------------------------
-
-  Missing    (7): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-dg2-8 bat-dg2-9 fi-snb-2520m bat-dg2-11 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_114752v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [PASS][1] -> [ABORT][2] ([i915#7694] / [i915#7911] / [i915#7981])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         [PASS][3] -> [ABORT][4] ([i915#4983] / [i915#7913])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [ABORT][6] ([i915#7911] / [i915#7913]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-rpls-2:         [DMESG-FAIL][8] ([i915#4258]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:
-    - fi-rkl-11600:       [FAIL][10] ([fdo#103375]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12820 -> Patchwork_114752v1
-
-  CI-20190529: 20190529
-  CI_DRM_12820: 92ffdc75c9bc4983024875753cf70fe5259f72ba @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7181: f44a24fe9f1948a117daf3162db53df7820f9923 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114752v1: 92ffdc75c9bc4983024875753cf70fe5259f72ba @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4791f59a89da drm/i915/display: Set correct voltage level for 480MHz CDCLK
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/index.html
-
---===============9194483995147760371==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Set correct voltage level for 480MHz CDCLK</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114752/">https://patchwork.freedesktop.org/series/114752/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12820 -&gt; Patchwork_114752v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 29)</h2>
-<p>Missing    (7): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-dg2-8 bat-dg2-9 fi-snb-2520m bat-dg2-11 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114752v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12820/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114752v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12820 -&gt; Patchwork_114752v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12820: 92ffdc75c9bc4983024875753cf70fe5259f72ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7181: f44a24fe9f1948a117daf3162db53df7820f9923 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114752v1: 92ffdc75c9bc4983024875753cf70fe5259f72ba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4791f59a89da drm/i915/display: Set correct voltage level for 480MHz CDCLK</p>
-
-</body>
-</html>
-
---===============9194483995147760371==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
