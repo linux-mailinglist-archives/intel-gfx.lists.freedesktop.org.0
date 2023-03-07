@@ -2,62 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9646AF12C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 19:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E85726AF412
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Mar 2023 20:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8D6B10E153;
-	Tue,  7 Mar 2023 18:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 808A810E530;
+	Tue,  7 Mar 2023 19:13:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765CF10E133;
- Tue,  7 Mar 2023 18:40:37 +0000 (UTC)
-Received: from [192.168.2.57] (109-252-117-89.nat.spd-mgts.ru [109.252.117.89])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D9910E530
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 19:13:09 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 8FF316602081;
- Tue,  7 Mar 2023 18:40:33 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1678214435;
- bh=kzZgEsXwj2D2bZ03kYGGGhV7+F4z+DUuitiRMuVlXeU=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=JlISTHDejcbW8NV11WI1CuuJHLAVvg86nvzAHQUnlx9smrgfeepdwDLIw0neniFTj
- emP0FJY2JL2TzcVvPfCzr8ZFaO8OKtdRunCfJqGnzvjcVtlpJOFpp8cuheQ3OXbzs6
- V9N9BGpBN92sIZ5uNWI4YJ4/DiI7W4V2oIfJiVv4IMxBJ0nz/99Y24G/9+vtGd//4h
- oHtYSSKuxJeE9dlu7sBJepgBb2EYDmj094VB+dW7MFHpyPsVV8TsXvI120JVWipihx
- SyeAWoZl+XKIvkfD1SZPrtLr9ERswBo4rWgvIPsyPPghPQ5vX8vjAvTRTxDOmrIXNu
- 7MxWNPThh9UeQ==
-Message-ID: <a49fb815-1f02-e8c1-fd8e-128f3b43e490@collabora.com>
-Date: Tue, 7 Mar 2023 21:40:30 +0300
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CB90F6150D;
+ Tue,  7 Mar 2023 19:13:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B98EC433EF;
+ Tue,  7 Mar 2023 19:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1678216388;
+ bh=cyEnrYpXsnZOy1MKketWp6wTLUm03WwqL6ud0l6wyT8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=ZhNdJXX3Mk1UvVna57y//8sa2Eow9cDzoGeEjEIJXi3nHP0hR0rF2r5jPcO/1ihCH
+ YXGz6JIgbiIviaoRkjREBXIYRs3p3Xf96UEvBshLZOHQpAvY24M1bmF9Ni7+rrwLP9
+ 5dP2pwMrECpBmJMKxBG292D2ZCJqFhyoQvSS6yzM=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Date: Tue,  7 Mar 2023 18:05:02 +0100
+Message-Id: <20230307165930.480053867@linuxfoundation.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230307165905.838066027@linuxfoundation.org>
+References: <20230307165905.838066027@linuxfoundation.org>
+User-Agent: quilt/0.67
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Qiang Yu <yuq825@gmail.com>, Steven Price <steven.price@arm.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Rob Herring <robh@kernel.org>
-References: <20230305221011.1404672-1-dmitry.osipenko@collabora.com>
- <20230305221011.1404672-11-dmitry.osipenko@collabora.com>
- <3afbc965-4117-7d45-9a8f-b726c04d1b0c@suse.de>
- <66ddf54c-8396-2eb4-49ae-da479a997219@collabora.com>
-In-Reply-To: <66ddf54c-8396-2eb4-49ae-da479a997219@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v12 10/11] drm/virtio: Support memory
- shrinking
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 5.15 566/567] drm/i915: Dont use BAR mappings
+ for ring buffers with LLC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,23 +51,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel@collabora.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, patches@lists.linux.dev,
+ Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 3/7/23 21:25, Dmitry Osipenko wrote:
->> Not really a problem with this patchset, but having such branches looks
->> like a bug in the driver's GEM design. Whatever your GEM object needs or
->> does, it should be hidden in the implementation. Why is virtio doing this?
-> There is another "VRAM" VirtIO-GPU BO type that doesn't implement the
-> pin/unpin callbacks. Perhaps another option was to add the callbacks.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Although, the pin/unpin are optional. So yes, there was no need for the
-extra branch, good catch.
+commit 85636167e3206c3fbd52254fc432991cc4e90194 upstream.
 
--- 
-Best regards,
-Dmitry
+Direction from hardware is that ring buffers should never be mapped
+via the BAR on systems with LLC. There are too many caching pitfalls
+due to the way BAR accesses are routed. So it is safest to just not
+use it.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v4.9+
+Tested-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
+(cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/i915/gt/intel_ring.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -51,7 +51,7 @@ int intel_ring_pin(struct intel_ring *ri
+ 	if (unlikely(ret))
+ 		goto err_unpin;
+ 
+-	if (i915_vma_is_map_and_fenceable(vma)) {
++	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
+ 		addr = (void __force *)i915_vma_pin_iomap(vma);
+ 	} else {
+ 		int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
+@@ -96,7 +96,7 @@ void intel_ring_unpin(struct intel_ring
+ 		return;
+ 
+ 	i915_vma_unset_ggtt_write(vma);
+-	if (i915_vma_is_map_and_fenceable(vma))
++	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915))
+ 		i915_vma_unpin_iomap(vma);
+ 	else
+ 		i915_gem_object_unpin_map(vma->obj);
+
 
