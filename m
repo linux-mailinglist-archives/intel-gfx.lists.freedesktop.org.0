@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F426B0332
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 10:42:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F9D6B03CE
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 11:14:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF3D110E669;
-	Wed,  8 Mar 2023 09:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA05D10E668;
+	Wed,  8 Mar 2023 10:14:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D769E10E667;
- Wed,  8 Mar 2023 09:41:56 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B172610E62A;
+ Wed,  8 Mar 2023 10:14:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678268516; x=1709804516;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IOotfOVmg3pdiNQpQIdy/u1GE39m3M/0ofAz2lryi5Y=;
- b=cLmaQCowQG7opgMNi8dIqIoS3nQRApmc9iIyjDapu1UUxK3smdpkLWmC
- SLKJ5dfA6CslkDChhVWdML94y/W0gIyYzh3/E7E4G6DqRIOhBSkpS3Y8l
- 40icnVCxq+XQLwtnlM+B207OW5/Z9nnuxxUL9tAfefncm0wDZX1COJhll
- Rg+t4S7enu86spIw+wdOszEEeQR34iSgce9PFGRfYv7VPRHnliN9J5vo8
- kZrDP3xBxyMvdvb/hspE1Saasqp86pX0SvqebxuZGchJ4OfSY2xj+dfuP
- YInDuJQn8hYtRV+NGXQwh253fXZ5suzhDa1c7MVUuBZvXSZlkPCdaSLL8 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="315772854"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="315772854"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 01:41:56 -0800
+ t=1678270477; x=1709806477;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=+D/jrEdd84GKE2epfmkSjuan4nxiXuMu3BEUgOFAYmc=;
+ b=XgYh7dHE18bvJ7/XzKSeZdqUNJzZWNkym1rYRjAvDxusPRHj7yhcrbPQ
+ vp5v2T36C2cXcdnsRpQzzu0Kmsze7MQPMOQ/PoS6LpZaPQYLG9Uw95oe4
+ 3UFmLRxhpz+d68p+CqiraBsLGEsorI4pYtlNN4G8Xs/4qTCohDCzcf3DD
+ LH4e2eg8TPQ20FfLjj44TnEzEX+J0i/Za+XePsx76Fw6x4vxAiZZ0ZTVH
+ CLGwPjaj0UNJmQq9n90uvT/x4zZjhaQiJb48ZCPFyzs2f/b1Qx7beCodK
+ qMTi7ixrONWejp6PTULvgnZsQYTXkbxXt9ryIB22JsYyvNhneC6jvHyJF g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="319948486"
+X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="319948486"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 02:14:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="922712448"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="922712448"
-Received: from gbain-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.47.108])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 01:41:54 -0800
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Date: Wed,  8 Mar 2023 10:41:06 +0100
-Message-Id: <20230308094106.203686-6-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308094106.203686-1-andi.shyti@linux.intel.com>
-References: <20230308094106.203686-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="765949366"
+X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="765949366"
+Received: from nmerkulo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.177])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 02:14:32 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean
+ Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+In-Reply-To: <20230307134901.322560-7-dmitry.baryshkov@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230307134901.322560-1-dmitry.baryshkov@linaro.org>
+ <20230307134901.322560-7-dmitry.baryshkov@linaro.org>
+Date: Wed, 08 Mar 2023 12:14:30 +0200
+Message-ID: <874jqvczy1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 5/5] drm/i915/gt: Make sure that errors are
- propagated through request chains
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 06/10] drm/display/dsc: split DSC 1.2 and
+ DSC 1.1 (pre-SCR) parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,139 +65,297 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, when we perform operations such as clearing or copying
-large blocks of memory, we generate multiple requests that are
-executed in a chain.
+On Tue, 07 Mar 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+> The array of rc_parameters contains a mixture of parameters from DSC 1.1
+> and DSC 1.2 standards. Split these tow configuration arrays in
+> preparation to adding more configuration data.
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/gpu/drm/display/drm_dsc_helper.c  | 127 ++++++++++++++++++----
+>  drivers/gpu/drm/i915/display/intel_vdsc.c |  10 +-
+>  include/drm/display/drm_dsc_helper.h      |   7 +-
+>  3 files changed, 119 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dsc_helper.c b/drivers/gpu/drm/display/drm_dsc_helper.c
+> index acb93d4116e0..35b39f3109c4 100644
+> --- a/drivers/gpu/drm/display/drm_dsc_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dsc_helper.c
+> @@ -324,11 +324,81 @@ struct rc_parameters_data {
+>  
+>  #define DSC_BPP(bpp)	((bpp) << 4)
+>  
+> +static const struct rc_parameters_data rc_parameters_pre_scr[] = {
+> +	{
+> +		.bpp = DSC_BPP(8), .bpc = 8,
+> +		{ 512, 12, 6144, 3, 12, 11, 11, {
+> +			{ 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
+> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
+> +			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 }, { 5, 12, -12 },
+> +			{ 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
+> +			}
+> +		}
+> +	},
+> +	{
+> +		.bpp = DSC_BPP(8), .bpc = 10,
+> +		{ 512, 12, 6144, 7, 16, 15, 15, {
+> +			/*
+> +			 * DSC model/pre-SCR-cfg has 8 for range_max_qp[0], however
+> +			 * VESA DSC 1.1 Table E-5 sets it to 4.
+> +			 */
+> +			{ 0, 4, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
+> +			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
+> +			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
+> +			{ 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
+> +			}
+> +		}
+> +	},
+> +	{
+> +		.bpp = DSC_BPP(8), .bpc = 12,
+> +		{ 512, 12, 6144, 11, 20, 19, 19, {
+> +			{ 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
+> +			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
+> +			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
+> +			{ 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
+> +			{ 21, 23, -12 }
+> +			}
+> +		}
+> +	},
+> +	{
+> +		.bpp = DSC_BPP(12), .bpc = 8,
+> +		{ 341, 15, 2048, 3, 12, 11, 11, {
+> +			{ 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
+> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
+> +			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 },
+> +			{ 5, 12, -12 }, { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
+> +			}
+> +		}
+> +	},
+> +	{
+> +		.bpp = DSC_BPP(12), .bpc = 10,
+> +		{ 341, 15, 2048, 7, 16, 15, 15, {
+> +			{ 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
+> +			{ 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
+> +			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
+> +			{ 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
+> +			}
+> +		}
+> +	},
+> +	{
+> +		.bpp = DSC_BPP(12), .bpc = 12,
+> +		{ 341, 15, 2048, 11, 20, 19, 19, {
+> +			{ 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
+> +			{ 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
+> +			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
+> +			{ 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
+> +			{ 21, 23, -12 }
+> +			}
+> +		}
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +
+>  /*
+>   * Selected Rate Control Related Parameter Recommended Values
+>   * from DSC_v1.11 spec & C Model release: DSC_model_20161212
+>   */
 
-However, if one of these requests fails, we may not realize it
-unless it happens to be the last request in the chain. This is
-because errors are not properly propagated.
+The comment is no longer accurate, is it?
 
-For this we need to keep propagating the chain of fence
-notification in order to always reach the final fence associated
-to the final request.
+There are various ways to determine the parameters to use. There's even
+an application note "VESA DSC v1.2a Guidance on Deriving DSC Rate
+Control Parameters" that lists the options. They are all valid and
+should "provide visually lossless quality".
 
-To address this issue, we need to ensure that the chain of fence
-notifications is always propagated so that we can reach the final
-fence associated with the last request. By doing so, we will be
-able to detect any memory operation  failures and determine
-whether the memory is still invalid.
+Would it be simplest to always use the C model parameters in the tables
+here, referencing the zip file name with date above each table? That
+could at least be consistent, and drivers could override parameters
+using other methods if they desire. And it would be easiest to review.
 
-On copy and clear migration signal fences upon completion.
+I'm having a hard time finding time to review all this in a timely
+fashion. Would be good to try to get other folks to review the rest,
+it's really not very i915 specific anyway. In the mean time I think
+patches 1-5 are okay to merge via drm-misc.
 
-On copy and clear migration, signal fences upon request
-completion to ensure that we have a reliable perpetuation of the
-operation outcome.
+BR,
+Jani.
 
-Fixes: cf586021642d80 ("drm/i915/gt: Pipelined page migration")
-Reported-by: Matthew Auld <matthew.auld@intel.com>
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: stable@vger.kernel.org
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 41 ++++++++++++++++++-------
- 1 file changed, 30 insertions(+), 11 deletions(-)
+> -static const struct rc_parameters_data rc_parameters[] = {
+> +static const struct rc_parameters_data rc_parameters_1_2_444[] = {
+>  	{
+>  		.bpp = DSC_BPP(6), .bpc = 8,
+>  		{ 768, 15, 6144, 3, 13, 11, 11, {
+> @@ -388,22 +458,18 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  		{ 512, 12, 6144, 3, 12, 11, 11, {
+>  			{ 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
+>  			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
+> -			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 }, { 5, 12, -12 },
+> -			{ 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
+> +			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 10, -10 }, { 5, 11, -12 },
+> +			{ 5, 11, -12 }, { 9, 12, -12 }, { 12, 13, -12 }
+>  			}
+>  		}
+>  	},
+>  	{
+>  		.bpp = DSC_BPP(8), .bpc = 10,
+>  		{ 512, 12, 6144, 7, 16, 15, 15, {
+> -			/*
+> -			 * DSC model/pre-SCR-cfg has 8 for range_max_qp[0], however
+> -			 * VESA DSC 1.1 Table E-5 sets it to 4.
+> -			 */
+> -			{ 0, 4, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
+> +			{ 0, 8, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
+>  			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
+> -			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
+> -			{ 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
+> +			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 14, -10 }, { 9, 15, -12 },
+> +			{ 9, 15, -12 }, { 13, 16, -12 }, { 16, 17, -12 }
+>  			}
+>  		}
+>  	},
+> @@ -412,9 +478,9 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  		{ 512, 12, 6144, 11, 20, 19, 19, {
+>  			{ 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
+>  			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
+> -			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
+> -			{ 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
+> -			{ 21, 23, -12 }
+> +			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 18, -10 },
+> +			{ 13, 19, -12 }, { 13, 19, -12 }, { 17, 20, -12 },
+> +			{ 20, 21, -12 }
+>  			}
+>  		}
+>  	},
+> @@ -498,8 +564,8 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  		{ 341, 15, 2048, 3, 12, 11, 11, {
+>  			{ 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
+>  			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
+> -			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 },
+> -			{ 5, 12, -12 }, { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
+> +			{ 3, 8, -8 }, { 3, 9, -10 }, { 5, 9, -10 }, { 5, 9, -12 },
+> +			{ 5, 9, -12 }, { 7, 10, -12 }, { 10, 11, -12 }
+>  			}
+>  		}
+>  	},
+> @@ -508,8 +574,8 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  		{ 341, 15, 2048, 7, 16, 15, 15, {
+>  			{ 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
+>  			{ 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
+> -			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
+> -			{ 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
+> +			{ 7, 12, -8 }, { 7, 13, -10 }, { 9, 13, -10 }, { 9, 13, -12 },
+> +			{ 9, 13, -12 }, { 11, 14, -12 }, { 14, 15, -12 }
+>  			}
+>  		}
+>  	},
+> @@ -518,9 +584,9 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  		{ 341, 15, 2048, 11, 20, 19, 19, {
+>  			{ 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
+>  			{ 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
+> -			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
+> -			{ 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
+> -			{ 21, 23, -12 }
+> +			{ 11, 16, -8 }, { 11, 17, -10 }, { 13, 17, -10 },
+> +			{ 13, 17, -12 }, { 13, 17, -12 }, { 15, 18, -12 },
+> +			{ 18, 19, -12 }
+>  			}
+>  		}
+>  	},
+> @@ -602,7 +668,8 @@ static const struct rc_parameters_data rc_parameters[] = {
+>  	{ /* sentinel */ }
+>  };
+>  
+> -static const struct rc_parameters *get_rc_params(u16 dsc_bpp,
+> +static const struct rc_parameters *get_rc_params(const struct rc_parameters_data *rc_parameters,
+> +						 u16 dsc_bpp,
+>  						 u8 bits_per_component)
+>  {
+>  	int i;
+> @@ -622,11 +689,13 @@ static const struct rc_parameters *get_rc_params(u16 dsc_bpp,
+>   * function.
+>   *
+>   * @vdsc_cfg: DSC Configuration data partially filled by driver
+> + * @kind: operating mode and standard to follow
+>   *
+>   * Return: 0 or -error code in case of an error
+>   */
+> -int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg)
+> +int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg, enum drm_dsc_params_kind kind)
+>  {
+> +	const struct rc_parameters_data *data;
+>  	const struct rc_parameters *rc_params;
+>  	int i;
+>  
+> @@ -634,7 +703,19 @@ int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg)
+>  			 !vdsc_cfg->bits_per_component))
+>  		return -EINVAL;
+>  
+> -	rc_params = get_rc_params(vdsc_cfg->bits_per_pixel,
+> +	switch (kind) {
+> +	case DRM_DSC_1_2_444:
+> +		data = rc_parameters_1_2_444;
+> +		break;
+> +	case DRM_DSC_1_1_PRE_SCR:
+> +		data = rc_parameters_pre_scr;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	rc_params = get_rc_params(data,
+> +				  vdsc_cfg->bits_per_pixel,
+>  				  vdsc_cfg->bits_per_component);
+>  	if (!rc_params)
+>  		return -EINVAL;
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 20a4c2f343fe..a4d1d2ba71bb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -157,7 +157,15 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+>  	if (DISPLAY_VER(dev_priv) >= 13) {
+>  		calculate_rc_params(vdsc_cfg);
+>  	} else {
+> -		ret = drm_dsc_setup_rc_params(vdsc_cfg);
+> +		if ((compressed_bpp == 8 ||
+> +		     compressed_bpp == 12) &&
+> +		    (vdsc_cfg->bits_per_component == 8 ||
+> +		     vdsc_cfg->bits_per_component == 10 ||
+> +		     vdsc_cfg->bits_per_component == 12))
+> +			ret = drm_dsc_setup_rc_params(vdsc_cfg, DRM_DSC_1_1_PRE_SCR);
+> +		else
+> +			ret = drm_dsc_setup_rc_params(vdsc_cfg, DRM_DSC_1_2_444);
+> +
+>  		if (ret)
+>  			return ret;
+>  
+> diff --git a/include/drm/display/drm_dsc_helper.h b/include/drm/display/drm_dsc_helper.h
+> index 1681791f65a5..c634bb2935d3 100644
+> --- a/include/drm/display/drm_dsc_helper.h
+> +++ b/include/drm/display/drm_dsc_helper.h
+> @@ -10,12 +10,17 @@
+>  
+>  #include <drm/display/drm_dsc.h>
+>  
+> +enum drm_dsc_params_kind {
+> +	DRM_DSC_1_2_444,
+> +	DRM_DSC_1_1_PRE_SCR, /* legacy params from DSC 1.1 */
+> +};
+> +
+>  void drm_dsc_dp_pps_header_init(struct dp_sdp_header *pps_header);
+>  int drm_dsc_dp_rc_buffer_size(u8 rc_buffer_block_size, u8 rc_buffer_size);
+>  void drm_dsc_pps_payload_pack(struct drm_dsc_picture_parameter_set *pps_sdp,
+>  			      const struct drm_dsc_config *dsc_cfg);
+>  void drm_dsc_set_rc_buf_thresh(struct drm_dsc_config *vdsc_cfg);
+> -int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg);
+> +int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg, enum drm_dsc_params_kind kind);
+>  int drm_dsc_compute_rc_parameters(struct drm_dsc_config *vdsc_cfg);
+>  
+>  #endif /* _DRM_DSC_HELPER_H_ */
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 3f638f1987968..0031e7b1b4704 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -742,13 +742,19 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			dst_offset = 2 * CHUNK_SZ;
- 	}
- 
-+	/*
-+	 * While building the chain of requests, we need to ensure
-+	 * that no one can sneak into the timeline unnoticed.
-+	 */
-+	mutex_lock(&ce->timeline->mutex);
-+
- 	do {
- 		int len;
- 
--		rq = i915_request_create(ce);
-+		rq = i915_request_create_locked(ce);
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
--			goto out_ce;
-+			break;
- 		}
- 
- 		if (deps) {
-@@ -878,10 +884,14 @@ intel_context_migrate_copy(struct intel_context *ce,
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--		if (*out)
-+		i915_sw_fence_await(&rq->submit);
-+		i915_request_get(rq);
-+		i915_request_add_locked(rq);
-+		if (*out) {
-+			i915_sw_fence_complete(&(*out)->submit);
- 			i915_request_put(*out);
--		*out = i915_request_get(rq);
--		i915_request_add(rq);
-+		}
-+		*out = rq;
- 
- 		if (err)
- 			break;
-@@ -905,7 +915,10 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		cond_resched();
- 	} while (1);
- 
--out_ce:
-+	mutex_unlock(&ce->timeline->mutex);
-+
-+	if (*out)
-+		i915_sw_fence_complete(&(*out)->submit);
- 	return err;
- }
- 
-@@ -1005,7 +1018,7 @@ intel_context_migrate_clear(struct intel_context *ce,
- 		rq = i915_request_create(ce);
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
--			goto out_ce;
-+			break;
- 		}
- 
- 		if (deps) {
-@@ -1056,17 +1069,23 @@ intel_context_migrate_clear(struct intel_context *ce,
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--		if (*out)
--			i915_request_put(*out);
--		*out = i915_request_get(rq);
-+		i915_sw_fence_await(&rq->submit);
-+		i915_request_get(rq);
- 		i915_request_add(rq);
-+		if (*out) {
-+			i915_sw_fence_complete(&(*out)->submit);
-+			i915_request_put(*out);
-+		}
-+		*out = rq;
-+
- 		if (err || !it.sg || !sg_dma_len(it.sg))
- 			break;
- 
- 		cond_resched();
- 	} while (1);
- 
--out_ce:
-+	if (*out)
-+		i915_sw_fence_complete(&(*out)->submit);
- 	return err;
- }
- 
 -- 
-2.39.2
-
+Jani Nikula, Intel Open Source Graphics Center
