@@ -2,158 +2,121 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD976B00A6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 09:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB006B01F6
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 09:48:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ECE510E07C;
-	Wed,  8 Mar 2023 08:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7933610E5B0;
+	Wed,  8 Mar 2023 08:48:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD3310E07C;
- Wed,  8 Mar 2023 08:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678263382; x=1709799382;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ctXLdKZFdbwaTKDV2qQydgmNLjF2afjvxsWfPpE+9S4=;
- b=EYNif0LJ8bXnP+vWcFLwFv6qmTyphRLVwsGCO9w18srKQl4zZJ+3smlU
- P53AdFj1x57RBXOrhcqSYqDkCQGCDojRbdViA9m7p4AiShEQCZl+vw5XW
- lZtk+5a8WvQK2yA+4SSBFQFihJR0zwJVTf/huvv5qLi/EnHFJ54WVD+jQ
- nyDh7T3r9KFe1f5UMDmgI6ysNcZ3fAlMEYy/x9JbRhFQKvNCcQsa49+gh
- hWExQKRCLSmlFrT8HFko0mlWodycfbxcs0BepWzkNk5zvpQSQ15mk+J0t
- Ma4OnoS4PK7TyIbkxcfKPtB/4naJH5w9D6PcFNo9BzUMr7fQtgRIfmpIp Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="336114188"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="336114188"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 00:15:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="654260240"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="654260240"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga006.jf.intel.com with ESMTP; 08 Mar 2023 00:15:54 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 8 Mar 2023 00:15:54 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 8 Mar 2023 00:15:54 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 8 Mar 2023 00:15:54 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 8 Mar 2023 00:15:53 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on20605.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::605])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 705CC10E30A;
+ Wed,  8 Mar 2023 08:48:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oMV2cBjMeGVYk4wx/at3ZUaQw8KRvNu9/5buby3BOWUjLCwmBySeD6HOCAw81FAHqMP8No76oqBltqOnDlAt2nG4HLNrQw643kk27OpzptUsS/6vlY3zvFYR51fUy7SfjkF9iE0N8RgkdTSmVkKNeoTw4/nczMFx0UBHOc1A0DAI1vMXKqaIqVy6bOwOKc2+VjHF7TSD71hg0Ce5IqsmOrH6y85bKzOVnPZgDxLTG+eGkF7WqjAM4pMbme/MyDbb5BQVQ4bR5lJZk6bk3hY0w6gLC/Ap8XVq6Qe9nLHfJeffMvo9Fg7zC0B+A8kXZyJq8GCgDDqhoK97dbLHkkoMVQ==
+ b=Oqjb2iJOzPbGdz63mwjP4DXAH7Pl1+DzRk9qDnNUwkB4vG1ryNdmdgYVHXUqWxCP7iTOkrF3YA/GGDge6gR+L7MUsrTCTVZGrUzTLbQdOJ3bHU1/lbfIRchbRacXQhJQB+ac05avqseFimsON8FCnanTdrhi88my8TRxgjYLeM+cDpJdG8yS+SddGK3EaQyQw+7fV5eotzxcu+ItZ7GhmPs86+74H3/ZVCVCjedaSDxjtbohBGROGa6FHxUuyCFNCtkg9JDE6Rkw9j9pKTBAi9yVcBXhUUhos1FtedIEuCXwS69LaoMB0OE3FdDj7AeR94bp5EtRT4vigF9BpxhKVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wf7rBXrCKg7utoCqk46Q3PSF58W4007cBUDcAKTAE2I=;
- b=mPHJavE3Fg1D86kMlZ5oDmuSZJ7aQx1TexQq13rjWQA348ntjKTcVj3ncBAa/VJZdEtKcYmMMFEDzBle36PnRxfnAy5VGJt1LvIqxoBk5PQ5J8og4+DpCyRoI6NkXqJvV7PLVi5gxsnBXeMXPKP2h2U9ZWq2YopmMqUqqzSFWPBIE5MIy5ubXltU6o/uK9a71DRb4Vboxf8a1U63h4hHeW8iPI5bMyop5vOzIoqvmgK/rnAWBrjIggJsVzkUcaoB6vJvRmOfktVIjtStPclNdUws4oQkcjNvJJqDU0EyEanpgCwizFTQIJhsDQ46ZGA+HuC5J8X9mlXgyQuv+jqDsQ==
+ bh=Kka5P/RmuaIx/yk6HqTxJyleuq8R0fgFX2D+ShGH/iQ=;
+ b=I1M1vqZ3zhzONabEwHZFY4AEYBTeBUflQJ8Q2Ww8ERRVgQ/d3XZZau5p2PVTzScpU81EbiPhfcGEDnt8QDCg1Rp96F5v06o4ikhhsMrdQoqA0oDh00cqKodKfO/s5LNbhgvGv3rgmjbUJwGIYB51vWnQEh7SbO5d/4b9kN5mNHJHECcZXtQmvcdziKH8V/kUOLLPIXRmxlZVNyULAuCD84tbCHKLxDyrQdGLWn3/oTJ7Bs59beENIRF/sTOAXPlEZ6FM96USPGomYXHfFH10arVlAp2fJtg+NUli8KVPn/quFJhXDEx7MjOpLe2uH9hcXO0p/vBJ5yDjrRoD5Y+ggw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SN7PR11MB6678.namprd11.prod.outlook.com (2603:10b6:806:26a::20) with
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Kka5P/RmuaIx/yk6HqTxJyleuq8R0fgFX2D+ShGH/iQ=;
+ b=nhUktELQ/pWhk5T4ndO+EMIjADC38FO2GnDTBHnqCa5tjlEHQ/AdRq5dlXEwt6L5DlkaHaI2WoWVTAfbe4RXJPEWLCboG5ZxRDWRE7OQjcKcTMigObnpKtqjZXXldLtkXSxDYcvCquygBpBv+cYXGZH6dzdHK0Vsy53CaSNkSeI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by DM4PR12MB7670.namprd12.prod.outlook.com (2603:10b6:8:105::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Wed, 8 Mar
- 2023 08:15:47 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6156.029; Wed, 8 Mar 2023
- 08:15:47 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>
-Thread-Topic: [PATCH v5 09/19] vfio/pci: Allow passing zero-length fd array in
- VFIO_DEVICE_PCI_HOT_RESET
-Thread-Index: AQHZSpxNz0d7VXviIEytrFhyB5GUvK7m/3jggABFoQCAACyCAIAAGw8ggAETHYCAAKz6AIAEeeOAgADd5oCAAKkfAIAACTyQgAEyYgCAAATW0IAAAz8AgAAAarCAAAT2AIAAABiQ
-Date: Wed, 8 Mar 2023 08:15:46 +0000
-Message-ID: <DS0PR11MB75298A8C6E8FED5D90899870C3B49@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230227111135.61728-1-yi.l.liu@intel.com>
- <20230227111135.61728-10-yi.l.liu@intel.com>
- <DS0PR11MB75295B4B2578765C8B08AC7EC3B29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB527688810514A262471E4BB78CB29@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZACX+Np/IY7ygqL5@nvidia.com>
- <DS0PR11MB7529531834C0A9F1D294A5CCC3B29@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB5276B825071A4819479079A68CB39@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230303095542.2bfce5c2.alex.williamson@redhat.com>
- <ZAXny4NDDq42NUxE@nvidia.com>
- <BN9PR11MB52760ABC93BCE7FB53A131038CB79@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZAcvzvhkt9QhCmdi@nvidia.com>
- <DS0PR11MB7529A864CB1C149CF8B19E78C3B79@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB527616204417D92A1BEB5FDA8CB49@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB75298BD3EB872C938F86C96AC3B49@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB527659E9DF1849873ED089DE8CB49@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB75291E848C663CEF67B1781EC3B49@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB52767FCB0A7B838B7D78D92A8CB49@BN9PR11MB5276.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB52767FCB0A7B838B7D78D92A8CB49@BN9PR11MB5276.namprd11.prod.outlook.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.31; Wed, 8 Mar
+ 2023 08:48:49 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::d23f:bb1:df95:3918]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::d23f:bb1:df95:3918%4]) with mapi id 15.20.6178.017; Wed, 8 Mar 2023
+ 08:48:49 +0000
+Message-ID: <49aa2475-cce5-d6ec-8ad8-4744542c56df@amd.com>
+Date: Wed, 8 Mar 2023 09:48:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SN7PR11MB6678:EE_
-x-ms-office365-filtering-correlation-id: 7b6f932f-41a8-4bb5-f2c6-08db1fad5207
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: F8+Q4Co26dJJCCZdapoN1/FQb+hzBBLweLrrKL0sOiLwNaRiHcGXCp3w0YNj4c6k2XObYuxDdOOPXb4IDqJJHrU4O0y4xbhl4Raw+YxzH1owP0Wrwzh0IkpsQ+ZnAJsLmoa7eRjL1tURO35Uv5RhpNiXxpCatmSM7xoAFxGM+DliWDxzPRVDkLFoHRXP3W2k/ofAWet4ode20giDeAGlGZoYIFiRPZZnUMcqBuP3Mw/Mz37gLBMEhclufa8QIChjHw8VdOIDOWXgydZbHdqy0L8AI41HOqKR/AfKKSFjEdQciDnCzjvhiaX5pDQQYU+O0R1pb3UH+Gs6QKDPFSUn6Y+j/QQEm1sEbK71IqtFKEFBXHco424qrm5oFX72DL2nf5f0U9TCIheAhLJ7XPNNN2ptEOhuKy/KPYUEiMTVQjREt3dSC+ct/0H0KZuKqnwctddfP9j20yy7QvrzjzIiVrX8A4SI2Df4OrcndczGsBjQwMA7ZrxTdq4/vj5fuFPO4uAusGGgQD6RaTv4cRz0oXTIHe1PgLwe/1nL4YcTd9/C52e8HjqRwU/i1wTAQzoQ0hJDUrTqQttgCgDFprMoJL+9fLCB7ajB82QVOXN9RCu7HBKLCmEWIbCi24hzUbbstfYawc0Xmy0C9l6WCBKLN0kduOFrW4owhwpjP0fp2r4YW6C73Vc74nTyPw9QC0D84ORMnfMUrlTfv2RI8v0gZw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(396003)(136003)(39860400002)(366004)(346002)(451199018)(33656002)(316002)(54906003)(110136005)(2906002)(7416002)(478600001)(7696005)(66446008)(5660300002)(8936002)(64756008)(66946007)(66556008)(8676002)(66476007)(4326008)(41300700001)(52536014)(76116006)(122000001)(186003)(82960400001)(38070700005)(55016003)(38100700002)(86362001)(6506007)(71200400001)(26005)(9686003)(83380400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mYlUH3qzrIdYTY9APDtKPDM39w07tKeDNW68Dqn/qfA7J6LhVLU0EGJGtu18?=
- =?us-ascii?Q?kWKD+bWyeoa0DX1xhSSNDUAV1MF2I9IDju0TMsUEQe3b0dns+X3SASMRLP5P?=
- =?us-ascii?Q?dwMSKZhC0696oqAS9eTynfEh7fxiDANl8IUjkA10vrVlD/XFBs5opiLhPJyd?=
- =?us-ascii?Q?76yFMwtvPmbcQgYAAWuu8NK2Nq/4RTF92KTTDfhUHK0UcOQ5DwaCkZSlKmbr?=
- =?us-ascii?Q?HzgEfp+PHHQsG9RjKHrWjf057v/YVNV5cDlXfHM3GRR9jpO/U25MSiHP8GVg?=
- =?us-ascii?Q?WWNRcEeSr1xjU5ZSGk7M7HEXYAVEZ78O1JMUMtphY7mUJ4SR/hVXF7pZhEwt?=
- =?us-ascii?Q?8JjR0fwUzfZa0nfrAwSWKmX2COfOfz/00hgH81e/6W8vc2LALZ1Qrcx02iJz?=
- =?us-ascii?Q?hb2yP6UzVx3oEmjYJNs4O0+hOwb1rnU0ar85+DYa10Enf94zTmLlUS8HXjGL?=
- =?us-ascii?Q?JgeSkGrxxrn+EbCsXd8WU8/on6sabusKZCU/WzdLPmRio4hNsMhYCLE6SKBi?=
- =?us-ascii?Q?rapOjMHbhVbo2I+sLRud51hxfi+JrbcpR69FXFRGOAe26Pu4SfmQfLlHJk/X?=
- =?us-ascii?Q?sl3r8JVNvUYcDNf/wjVKiuxk5efbHl01JLI3xUAfmctMtyCTnmnvZ56fDAwX?=
- =?us-ascii?Q?SRUui9GdYuarY6pGm6oIaQz0knebph8YNE3yxvEMYon1jue9hSh0VxAW48oR?=
- =?us-ascii?Q?SDUc4uw9ic1EwJ4C85tiBWXc7oFuMfgT52xNZwFOz0J4ewupPuiyCafZnJg2?=
- =?us-ascii?Q?mtn5VP4Z86bzQXY5z571u80e+wvS0g5S4dy4A6MA6X3vGx9h5WXQPR9vSaZ/?=
- =?us-ascii?Q?DRCe7hjClOmTzS9adWcWgwLgB0y865TY63SFYu44MLzNDodXbzfbrLhzdVB+?=
- =?us-ascii?Q?SbBqYroMP6wujjfWCP2iLk7UvkZKeYzpsc2ODmfNA6Rle6TiUOzerbBajbAy?=
- =?us-ascii?Q?ufjTp+xXyPCEFcorJUkTrrfpMZimP+JoAmuwZQkOUDAJdE7JXg502FXAXlPu?=
- =?us-ascii?Q?Hqv0gv3ZZjeTLV5813DR+CevUMGwWJ2hd7eYphBVRgSpHQZouXazS3Y58Ee5?=
- =?us-ascii?Q?BshBOkwZ8PQXBMskLwYV72b7RCHgTLnXTgGdAsnUaQvUi8u6NU/G2Nts9zO/?=
- =?us-ascii?Q?YZas9Z2OS1Nxl2AFMkKv7Tm3LnWXx81B01QgVmfYIhuKjq5j/4cnzTLRiG/r?=
- =?us-ascii?Q?uaiX/0Teplf3hjR6YHO6OI623FfRNXI6bzgoYaXzuJArQrr3yD1srWRY2IKJ?=
- =?us-ascii?Q?iWmPx3WYSN/vbi/lvId3aEPpdL3uzRWO6lEmUo6rxq3y6yumm6IMp6Z6xuqE?=
- =?us-ascii?Q?sd6wnw8rc2/5EL3PKJiVTmqrFw7WE5yKPT+r5lOXiP63c98PX+gwqxBhinnQ?=
- =?us-ascii?Q?V5D0Nj7blHYBm1eUdOWTbMHTdnZNPq6j9DJSdtnvM3yINKujV7KVOtqkx9Zv?=
- =?us-ascii?Q?sBb5IYwg1rdLm9aH8F6UULECfeVSQpC5fDlt0b2wVIX5Qw4fQkFxRkGiGUnw?=
- =?us-ascii?Q?6aNS8PQ4DJo0LnJK/HlogtF7SziYz533B7e4xW8hgvMV8x2S6a+2OpYK/CaB?=
- =?us-ascii?Q?Pm5n6JUYBWbLcGd/uBMrZuhetBVrvV3J38RBCpKv?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <20230307144621.10748-1-thomas.hellstrom@linux.intel.com>
+ <20230307144621.10748-3-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230307144621.10748-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0166.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:99::13) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DM4PR12MB7670:EE_
+X-MS-Office365-Filtering-Correlation-Id: b873a264-5397-443b-62e0-08db1fb1ef58
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VVF4wLTTBOb0YGYaX/RBX6JXW7FBeAIt8RlpQWZl7vsBiLe1+uUgyu78cckzE9jViOhK6ITg1Vyl7dUGcyiqbBE9wKStObFHRi2skBGMvkZnV8yCt4KXpnbAvZEidu+g5LLnXWLchaqe41t/lUTTERRZFF3bdh1XojT+aHYGKd05FE6k3CKcl71FAk52uQt4BqRC1d01NhJmd7hRJ1pY/vSY1qAjjmaR0xl1PqNfUh7i+xRTWE5Ub9l+peBi70dzTBPq6gMbjqX/OaqfEGjju6kyHmjmFckKQde5CkCoPvqWrBNMXeiFIjHXH7YnMgL6k+0bngGJavVXOZRnSgWwgDz0m6DwChMOIbytSqsc+GOw/AXaWXi2xggbYQb0wLDOZIeAnI6xfWzIAMZuEJjoC4HCxkBYbKfhVvnyKIrD/fYedpYolkYO1AwIRxt+0gT+SqV8rLMSsXytPLQ150+6XTgsC/tiGDYnlNf6GpAU29Z1QPFfeXT47na1HaAXEyPmVsHD6nYorVHaTIkm9Z8DdgHaWG9dpd2uOOZJOXm185+Usf5XlNtWMUKsp8f08BbEJfYSdSOUv0hDRGfZ8yNoz9eva3lr6v7K6Db0wGmUiwC2lYk0JG+haW2jBhNN/XAHH45cIB9nD0SjehQuMEEujZMer8Azv4bXEPYxRkn1fZ5VLpfytL0ToH7wpVi8J716OnMlAyqLD0msLM+vGXORLjb/GqC6eKxL5JwvBB4x140=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(136003)(396003)(376002)(346002)(366004)(451199018)(4326008)(31686004)(41300700001)(66574015)(8676002)(66556008)(66946007)(66476007)(316002)(38100700002)(54906003)(186003)(36756003)(2616005)(8936002)(2906002)(6486002)(478600001)(5660300002)(6666004)(86362001)(31696002)(83380400001)(6512007)(6506007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHBsWkRKQzdRSlB5YmVRenpJQUJnVXR1dmxLMnpiL2dkeUNmamxuY3ljRk1N?=
+ =?utf-8?B?TnVyNW5YbFJUUWtMeGJweXNjK3kvMTlLbWpYY2NleWFyVUVCMGtQdnFYa2g2?=
+ =?utf-8?B?L2pKNkNqTEtOblBjOGxoMlo0RS9iZUlvdjUrNUNLOGJJcmxUMmczZ1Jyc2hi?=
+ =?utf-8?B?c2xQVkh4ZlZQeDFVbFdVdGpUeWpWOURzWnVQWko0dDQwZWpjQzRBSkN1MHR2?=
+ =?utf-8?B?TWRLNFJRbHZQdFBrR2NnVWI5RzFwNUlzd3NBZk1EUlNTMXpLYkJKMEZZWUxh?=
+ =?utf-8?B?cFVNbHdWdS9wL1RiZ3VZR08yKy9DeWhjOWtFRU9tUzFmVGFPaWJ6bUUzM2tK?=
+ =?utf-8?B?Unlhd0pHalZXM3pmQ0krZUZyMVloZGt0eVJ3Tzd1VkJneU9FektMYlZubkV4?=
+ =?utf-8?B?dXlONU5YRjFFVm85VnlIbVliUUhHME1TcmJwYUh5R01BcithSmNQUnhUVlc5?=
+ =?utf-8?B?NFNmV3JBUEh2SDIxaGhGMTlOUTgxR2hyUUJPRk4zUGRsaFlkWDdXS2cxeW1o?=
+ =?utf-8?B?UnlyQXVGRTFCd1lkT1JwNHlkeTZNbmlFR2tXMVkxWUZTR1BWT2FZdjRBWHBt?=
+ =?utf-8?B?enA5bUxhZHZmWHcrUExiL3R5aEl5OVhiSWVmRjlPZ1E5Z0ZrekxQQjhhcVBV?=
+ =?utf-8?B?Vkx0UVNtR20wK3BtcU90ZndPUGtjd2dsYiszbHEyNnpzZW9iQXdrTnJBeXdr?=
+ =?utf-8?B?UWZ1L3BQL0ZhWDdxcWFVL25RVFd6Ym1PaHd1b0JNTEpUWWV2bC9VazhMekNi?=
+ =?utf-8?B?S0k0NXVIY2ZsSEVoQlRMKzJ3eHkrdU1TajQvN0QyOFdKc2V3Si9TU0p0bjBw?=
+ =?utf-8?B?Y0NhaHVDSi9hTWdiQnYvTko5TVZ1YWdrQVVxSitxUnhTRnFlNjJabzAxTVAy?=
+ =?utf-8?B?Mlp5VEtUTUZ5Y1ZtSXJPbFZNRWh4bjdJSFh3SUVKZWxwVjJLWjlHZ0U0Vi9k?=
+ =?utf-8?B?cTlLTjBoaDdoV1BTY20yQkpPcmpkZEh0eUdQdFM2eTFselBmM0VKL2dTclVm?=
+ =?utf-8?B?cFpRYmRFeklPVDA3OTFjeGZNNVd6S0VDNFh0K2hoQ3JzTXhmcUVCc2hGVjFR?=
+ =?utf-8?B?eS9RVHlxdDZ1S0tMVHJBUmpPYkdOSTBzc2ljSm1oZEZTeXFlaFdBNUNZWDBP?=
+ =?utf-8?B?RHJNOXFEOTR0SmJwU3VLOVZtYlNKOE43RlFtSW0yanpwYlVuWHF0MnQzKzlS?=
+ =?utf-8?B?V0Z5RGxyMkFiTjJNVHk4NmF5QlFSVHlKckxDdkpqZHJGZVJiVnVnRjFicXNB?=
+ =?utf-8?B?RXVscVRFQlN0eGlnRXZzMjgyeU9HejNMMjRXeHAwZTNBVEN4blhla0grcmFi?=
+ =?utf-8?B?dXF1cGViVnJ2WE1TTFhNOW9wY0NhbVRWOU9QcHhPakVjNW5YSGlab2pTYTVK?=
+ =?utf-8?B?aW9RNUM1N1FxNDl2NGV0YlRMQzR4L2ZYSE9IazZmb3F0MTNrM1pzaTVBWXhu?=
+ =?utf-8?B?Q3ZMdkFXS21JU1Fydys3b2tOZERKNjZ1Y09jZHlucVAvUXp5SGdZV25SWkYv?=
+ =?utf-8?B?Z2h0cEEvTGlxQkJseHovcGxuTkhrVEFBUm51VmlXZkJEOXJYaEdNSFRVTDNE?=
+ =?utf-8?B?Q1JycFlrajhBdXF5bE5KVGdCQjlnaUFZbm91ZEN1c3pqY3dnTUVmRTRxcGFt?=
+ =?utf-8?B?M2pOM3JmQTVRR0oxMmNDV00xZUFldTJFQTRZNVNnaFAwQXYwQ0VzNE9TcjlG?=
+ =?utf-8?B?RXl0NXpPQ0l2UDBhaFFrNVB6ZEFkMUV2UXhCd21pMjBmdERRMHIzTTl1YkJC?=
+ =?utf-8?B?NGVEZUQ3bC95eEU5QXlPdnpmK1l5VWFyQm5WRG5ldExCaDczY3BnK2crcXBu?=
+ =?utf-8?B?UC91dWVmWlp0VEs0ZGd4Nmpaa2FvQTFLcnlCU2hUa0xlL1dnOWF2ci95LzJB?=
+ =?utf-8?B?dXd4U0J4T2oxQWJlbkREMzBXVVc3N2JFTi91TWdxY29wR1A2RXRhMjRuTndr?=
+ =?utf-8?B?cDRQL1AxZVhvUG8rUlRZOVZYYlZwSTQ3Z2tGRHFKNGxOYW0zVmM4S0YrMHhm?=
+ =?utf-8?B?ZnhrMTloOXBzZUhGK3FyZVdXTjFYOTREMU5ReS83S0o2WUFtNklXUDVZU0J4?=
+ =?utf-8?B?TTZIMUMvUEh1TVFCSXZqQUt1L0JjM0F4Ym1ESjNBdENTbmFYdFdhMGEzNWpy?=
+ =?utf-8?B?M1lOVFZOaGQvWmJGRWwreVE2WlBLN2JoM1N0RWZWOWU5SHlEZ080UjNpSUtw?=
+ =?utf-8?Q?JS/TdaL17hRbCi/olbw/artBbS8548QcejzR1p5L66vI?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b873a264-5397-443b-62e0-08db1fb1ef58
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b6f932f-41a8-4bb5-f2c6-08db1fad5207
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2023 08:15:46.8956 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OTXPmkJn06DFYWbRR6DiJbh9AZX10IGssTHbAyQ6LGLZo/AKtCDc3OmBtoSa0YzBTwEQOuEoKjF1/7u2rKmDpQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6678
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 09/19] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 08:48:48.9995 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OJlTxA4iEqZMM1kM7YkY9HnWHWegtUD+ZnI8iw3wDw7uuBpVeIc6+9ygO2RquaL/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7670
+Subject: Re: [Intel-gfx] [PATCH v2 2/7] drm/ttm/pool: Fix ttm_pool_alloc
+ error path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,128 +129,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Tian, Kevin <kevin.tian@intel.com>
-> Sent: Wednesday, March 8, 2023 4:14 PM
->=20
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Wednesday, March 8, 2023 4:01 PM
-> >
-> > > From: Tian, Kevin <kevin.tian@intel.com>
-> > > Sent: Wednesday, March 8, 2023 3:55 PM
-> > >
-> > > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > > Sent: Wednesday, March 8, 2023 3:47 PM
-> > > >
-> > > > > From: Tian, Kevin <kevin.tian@intel.com>
-> > > > > Sent: Wednesday, March 8, 2023 3:26 PM
-> > > > >
-> > > > > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > > > > Sent: Tuesday, March 7, 2023 9:29 PM
-> > > > > >
-> > > > > > >
-> > > > > > > I really prefer the 'use the iommufd option' still exist, it =
-is so
-> > > > > > > much cleaner and easier for the actual users of this API. We'=
-ve
-> lost
-> > > > > > > the point by worrying about no iommu.
-> > > > > >
-> > > > > > Hmmm, so you are suggesting to have both the device fd approach
-> > > > > > and the zero-length array approach, let user to select the best=
- way
-> > > > > > based on their wisdom. Is it? how about something like below in
-> the
-> > > > > > uapi header.
-> > > > > >
-> > > > > > /**
-> > > > > >  * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE +
-> 13,
-> > > > > >  *                                  struct vfio_pci_hot_reset)
-> > > > > >  *
-> > > > > >  * Userspace requests hot reset for the devices it uses.  Due t=
-o the
-> > > > > >  * underlying topology, multiple devices may be affected in the
-> reset.
-> > > > > >  * The affected devices may have been opened by the user or by
-> > > other
-> > > > > >  * users or not opened yet.  Only when all the affected devices=
- are
-> > > > > >  * either opened by the current user or not opened by any user,
-> > > should
-> > > > > >  * the reset request be allowed.  Otherwise, this request is
-> expected
-> > > > > >  * to return error. group_fds array can accept either group fds=
- or
-> > > > > >  * device fds.  Users using iommufd (valid fd), could also pass=
-ing a
-> > > > > >  * zero-length group_fds array to indicate using the bound
-> > > iommufd_ctx
-> > > > > >  * for ownership check to the affected devices that are opened.
-> > > > > >  *
-> > > > > >  * Return: 0 on success, -errno on failure.
-> > > > > >  */
-> > > > > > struct vfio_pci_hot_reset {
-> > > > > >         __u32   argsz;
-> > > > > >         __u32   flags;
-> > > > > >         __u32   count;
-> > > > > >         __s32   group_fds[];
-> > > > > > };
-> > > > > >
-> > > > >
-> > > > >  * Userspace requests hot reset for the devices it uses.  Due to =
-the
-> > > > >  * underlying topology, multiple devices can be affected in the r=
-eset
-> > > > >  * while some might be opened by another user. To avoid
-> interference
-> > > > >  * the calling user must ensure all affected devices, if opened, =
-are
-> > > > >  * owned by itself.
-> > > > >  *
-> > > > >  * The ownership can be proved in three ways:
-> > > > >  *   - An array of group fds
-> > > > >  *   - An array of device fds
-> > > > >  *   - A zero-length array
-> > > > >  *
-> > > > Thanks.
-> > > > >  * In the last case all affected devices which are opened by this=
- user
-> > > must
-> > > > >  * have been bound to a same iommufd_ctx.
-> > > >
-> > > > I think we only allow it when this iommufd_ctx is valid. Is it? To
-> > > > user, it means device should be bound to a positive iommufd.
-> > >
-> > > I didn't get it. Do we have a iommufd_ctx created but marked as
-> > > invalid?
-> >
-> > I mean iommufd_ctx=3D=3DNULL. If a negative iommufd is provided,
-> > then kernel side only has a NULL iommufd_ctx. If so, the ownership
-> > check just fail if it uses iommufd_ctx for ownership proof.
->=20
-> it's fine. iommufd_ctx check doesn't work with noiommu.
->=20
-> User should use device fd if involving noiommu.
+Am 07.03.23 um 15:46 schrieb Thomas Hellström:
+> When hitting an error, the error path forgot to unmap dma mappings and
+> could call set_pages_wb() on already uncached pages.
+>
+> Fix this by introducing a common __ttm_pool_free() function that
+> does the right thing.
+>
+> v2:
+> - Simplify __ttm_pool_free() (Christian König)
+>
+> Fixes: d099fc8f540a ("drm/ttm: new TT backend allocation pool v3")
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_pool.c | 68 +++++++++++++++++++---------------
+>   1 file changed, 38 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index aa116a7bbae3..0b6e20613d19 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -367,6 +367,30 @@ static int ttm_pool_page_allocated(struct ttm_pool *pool, unsigned int order,
+>   	return 0;
+>   }
+>   
+> +static void __ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt,
 
-Yes, this is my point. This zero-length array approach is only
-available for devices that are bound to positive iommufd.
+Maybe name that ttm_pool_free_range() and add a comment why we need it. 
+Something like "/* Cleanup all pages in the tt between start_page till 
+end_page */".
+
+Apart from that looks good to me.
+
+Regards,
+Christian.
+
+> +			    enum ttm_caching caching,
+> +			    pgoff_t start_page, pgoff_t end_page)
+> +{
+> +	struct page **pages = tt->pages;
+> +	unsigned int order;
+> +	pgoff_t i, nr;
+> +
+> +	for (i = start_page; i < end_page; i += nr, pages += nr) {
+> +		struct ttm_pool_type *pt = NULL;
+> +
+> +		order = ttm_pool_page_order(pool, *pages);
+> +		nr = (1UL << order);
+> +		if (tt->dma_address)
+> +			ttm_pool_unmap(pool, tt->dma_address[i], nr);
+> +
+> +		pt = ttm_pool_select_type(pool, caching, order);
+> +		if (pt)
+> +			ttm_pool_type_give(pt, *pages);
+> +		else
+> +			ttm_pool_free_page(pool, caching, order, *pages);
+> +	}
+> +}
+> +
+>   /**
+>    * ttm_pool_alloc - Fill a ttm_tt object
+>    *
+> @@ -382,12 +406,14 @@ static int ttm_pool_page_allocated(struct ttm_pool *pool, unsigned int order,
+>   int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   		   struct ttm_operation_ctx *ctx)
+>   {
+> -	unsigned long num_pages = tt->num_pages;
+> +	pgoff_t num_pages = tt->num_pages;
+>   	dma_addr_t *dma_addr = tt->dma_address;
+>   	struct page **caching = tt->pages;
+>   	struct page **pages = tt->pages;
+> +	enum ttm_caching page_caching;
+>   	gfp_t gfp_flags = GFP_USER;
+> -	unsigned int i, order;
+> +	pgoff_t caching_divide;
+> +	unsigned int order;
+>   	struct page *p;
+>   	int r;
+>   
+> @@ -410,6 +436,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   	     order = min_t(unsigned int, order, __fls(num_pages))) {
+>   		struct ttm_pool_type *pt;
+>   
+> +		page_caching = tt->caching;
+>   		pt = ttm_pool_select_type(pool, tt->caching, order);
+>   		p = pt ? ttm_pool_type_take(pt) : NULL;
+>   		if (p) {
+> @@ -418,6 +445,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   			if (r)
+>   				goto error_free_page;
+>   
+> +			caching = pages;
+>   			do {
+>   				r = ttm_pool_page_allocated(pool, order, p,
+>   							    &dma_addr,
+> @@ -426,14 +454,15 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   				if (r)
+>   					goto error_free_page;
+>   
+> +				caching = pages;
+>   				if (num_pages < (1 << order))
+>   					break;
+>   
+>   				p = ttm_pool_type_take(pt);
+>   			} while (p);
+> -			caching = pages;
+>   		}
+>   
+> +		page_caching = ttm_cached;
+>   		while (num_pages >= (1 << order) &&
+>   		       (p = ttm_pool_alloc_page(pool, gfp_flags, order))) {
+>   
+> @@ -442,6 +471,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   							   tt->caching);
+>   				if (r)
+>   					goto error_free_page;
+> +				caching = pages;
+>   			}
+>   			r = ttm_pool_page_allocated(pool, order, p, &dma_addr,
+>   						    &num_pages, &pages);
+> @@ -468,15 +498,13 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>   	return 0;
+>   
+>   error_free_page:
+> -	ttm_pool_free_page(pool, tt->caching, order, p);
+> +	ttm_pool_free_page(pool, page_caching, order, p);
+>   
+>   error_free_all:
+>   	num_pages = tt->num_pages - num_pages;
+> -	for (i = 0; i < num_pages; ) {
+> -		order = ttm_pool_page_order(pool, tt->pages[i]);
+> -		ttm_pool_free_page(pool, tt->caching, order, tt->pages[i]);
+> -		i += 1 << order;
+> -	}
+> +	caching_divide = caching - tt->pages;
+> +	__ttm_pool_free(pool, tt, tt->caching, 0, caching_divide);
+> +	__ttm_pool_free(pool, tt, ttm_cached, caching_divide, num_pages);
+>   
+>   	return r;
+>   }
+> @@ -492,27 +520,7 @@ EXPORT_SYMBOL(ttm_pool_alloc);
+>    */
+>   void ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt)
+>   {
+> -	unsigned int i;
+> -
+> -	for (i = 0; i < tt->num_pages; ) {
+> -		struct page *p = tt->pages[i];
+> -		unsigned int order, num_pages;
+> -		struct ttm_pool_type *pt;
+> -
+> -		order = ttm_pool_page_order(pool, p);
+> -		num_pages = 1ULL << order;
+> -		if (tt->dma_address)
+> -			ttm_pool_unmap(pool, tt->dma_address[i], num_pages);
+> -
+> -		pt = ttm_pool_select_type(pool, tt->caching, order);
+> -		if (pt)
+> -			ttm_pool_type_give(pt, tt->pages[i]);
+> -		else
+> -			ttm_pool_free_page(pool, tt->caching, order,
+> -					   tt->pages[i]);
+> -
+> -		i += num_pages;
+> -	}
+> +	__ttm_pool_free(pool, tt, tt->caching, 0, tt->num_pages);
+>   
+>   	while (atomic_long_read(&allocated_pages) > page_pool_size)
+>   		ttm_pool_shrink();
+
