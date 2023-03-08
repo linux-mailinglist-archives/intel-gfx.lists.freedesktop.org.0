@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF276B0866
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 14:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 781D66B0872
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 14:20:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6234110E147;
-	Wed,  8 Mar 2023 13:19:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B42A110E5DB;
+	Wed,  8 Mar 2023 13:19:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55B8F10E147;
- Wed,  8 Mar 2023 13:19:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678281578; x=1709817578;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=D2Anq1p3blmLcbAnUL/3EMfPaTwxDXaBDMRthxKOOOc=;
- b=RGW4VTRHKgua4gCG57yjojMCcrDwU5+XFO/0ONGqGaIOpMtuVTfauhq3
- W0R1ix8I1NiaE0c2dmDiG7glpE6sTTC4TgYp/21zeMWOX2MgY7rP2oJ4X
- svK48RevqsX9drQpk46cPijFFlt3ajBiwBs6bImoPWyFC0t4dKrge4wP/
- aTvj6c2ONvlQL7czEBgtL2sPBgKWJB/xyFknbAIQC0hq0bDCSDeMKxa7i
- fAeWZVmlRTOW77GqVEA0kvbO01aCRvzy1sZ+VCEiXo4VWOr8Op/qpZL9+
- iSlPkOEaYplDgHQmsytZnpn+u7g9M79g8DCv74Hgy0p60v0ETV4vle0s6 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="363784446"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="363784446"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:19:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="741121381"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; d="scan'208";a="741121381"
-Received: from eharan-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.58.177])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:19:32 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAA8EJprgvhS0YavBi2QfMLnkr+KhRge4FhfQz09ani794uYDcQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230307134901.322560-1-dmitry.baryshkov@linaro.org>
- <20230307134901.322560-7-dmitry.baryshkov@linaro.org>
- <874jqvczy1.fsf@intel.com>
- <CAA8EJprgvhS0YavBi2QfMLnkr+KhRge4FhfQz09ani794uYDcQ@mail.gmail.com>
-Date: Wed, 08 Mar 2023 15:19:29 +0200
-Message-ID: <87lek7bcta.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A26EC10E5DB;
+ Wed,  8 Mar 2023 13:19:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9BBB3A3ECB;
+ Wed,  8 Mar 2023 13:19:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0776829708571313040=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 06/10] drm/display/dsc: split DSC 1.2 and
- DSC 1.1 (pre-SCR) parameters
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Wed, 08 Mar 2023 13:19:57 -0000
+Message-ID: <167828159763.20402.7731768835114162844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230306080401.22552-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230306080401.22552-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Ensure_DSC_has_enough_BW_and_stays_within_HW_limits_?=
+ =?utf-8?b?KHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,347 +41,428 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- freedreno@lists.freedesktop.org, David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Mar 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> On Wed, 8 Mar 2023 at 12:14, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> On Tue, 07 Mar 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
->> > The array of rc_parameters contains a mixture of parameters from DSC 1.1
->> > and DSC 1.2 standards. Split these tow configuration arrays in
->> > preparation to adding more configuration data.
->> >
->> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> > ---
->> >  drivers/gpu/drm/display/drm_dsc_helper.c  | 127 ++++++++++++++++++----
->> >  drivers/gpu/drm/i915/display/intel_vdsc.c |  10 +-
->> >  include/drm/display/drm_dsc_helper.h      |   7 +-
->> >  3 files changed, 119 insertions(+), 25 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/display/drm_dsc_helper.c b/drivers/gpu/drm/display/drm_dsc_helper.c
->> > index acb93d4116e0..35b39f3109c4 100644
->> > --- a/drivers/gpu/drm/display/drm_dsc_helper.c
->> > +++ b/drivers/gpu/drm/display/drm_dsc_helper.c
->> > @@ -324,11 +324,81 @@ struct rc_parameters_data {
->> >
->> >  #define DSC_BPP(bpp) ((bpp) << 4)
->> >
->> > +static const struct rc_parameters_data rc_parameters_pre_scr[] = {
->> > +     {
->> > +             .bpp = DSC_BPP(8), .bpc = 8,
->> > +             { 512, 12, 6144, 3, 12, 11, 11, {
->> > +                     { 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
->> > +                     { 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
->> > +                     { 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 }, { 5, 12, -12 },
->> > +                     { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     {
->> > +             .bpp = DSC_BPP(8), .bpc = 10,
->> > +             { 512, 12, 6144, 7, 16, 15, 15, {
->> > +                     /*
->> > +                      * DSC model/pre-SCR-cfg has 8 for range_max_qp[0], however
->> > +                      * VESA DSC 1.1 Table E-5 sets it to 4.
->> > +                      */
->> > +                     { 0, 4, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
->> > +                     { 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
->> > +                     { 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
->> > +                     { 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     {
->> > +             .bpp = DSC_BPP(8), .bpc = 12,
->> > +             { 512, 12, 6144, 11, 20, 19, 19, {
->> > +                     { 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
->> > +                     { 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
->> > +                     { 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
->> > +                     { 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
->> > +                     { 21, 23, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     {
->> > +             .bpp = DSC_BPP(12), .bpc = 8,
->> > +             { 341, 15, 2048, 3, 12, 11, 11, {
->> > +                     { 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
->> > +                     { 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
->> > +                     { 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 },
->> > +                     { 5, 12, -12 }, { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     {
->> > +             .bpp = DSC_BPP(12), .bpc = 10,
->> > +             { 341, 15, 2048, 7, 16, 15, 15, {
->> > +                     { 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
->> > +                     { 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
->> > +                     { 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
->> > +                     { 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     {
->> > +             .bpp = DSC_BPP(12), .bpc = 12,
->> > +             { 341, 15, 2048, 11, 20, 19, 19, {
->> > +                     { 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
->> > +                     { 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
->> > +                     { 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
->> > +                     { 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
->> > +                     { 21, 23, -12 }
->> > +                     }
->> > +             }
->> > +     },
->> > +     { /* sentinel */ }
->> > +};
->> > +
->> >  /*
->> >   * Selected Rate Control Related Parameter Recommended Values
->> >   * from DSC_v1.11 spec & C Model release: DSC_model_20161212
->> >   */
->>
->> The comment is no longer accurate, is it?
->
-> Ugh, yes. it is no longer DSC 1.1. I cross-checked, the rc*cfg files
-> are the same between 20161212 and 20210623
->
->>
->> There are various ways to determine the parameters to use. There's even
->> an application note "VESA DSC v1.2a Guidance on Deriving DSC Rate
->> Control Parameters" that lists the options. They are all valid and
->> should "provide visually lossless quality".
->>
->> Would it be simplest to always use the C model parameters in the tables
->> here, referencing the zip file name with date above each table? That
->> could at least be consistent, and drivers could override parameters
->> using other methods if they desire. And it would be easiest to review.
->
-> Do you mean the calculated RC parameters?
+--===============0776829708571313040==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No, I simply mean using the values from the .cfg files, and clearly
-stating that in the source. Your reply below implies this is exactly
-what you're doing. What we currently have in intel_vdsc.c isn't clear by
-any means.
+== Series Details ==
 
-Moreover, I started checking some of the values against the *specs* and
-those actually differ from the .cfg files. I just want to get rid of the
-ambiguity.
+Series: drm/i915: Ensure DSC has enough BW and stays within HW limits (rev3)
+URL   : https://patchwork.freedesktop.org/series/114679/
+State : success
 
-> As I mentioned in another
-> email, it is at least worth investigating. I haven't looked into that,
-> as my primary goal (driven by the forthcoming drm/msm needs) were the
-> .cfg tables. I targeted cleaning up the simplest path to reduce
-> duplication (see [1]). Anyway, with the proposed patches we have the
-> API, which tells nothing about the way it fills out the RC tables.
-> They can be based on top of the cfg files (method 2) or calculated
-> (methods 3, 4).
->
-> [1] https://patchwork.freedesktop.org/patch/524051/?series=114355&rev=1
->
->>
->> I'm having a hard time finding time to review all this in a timely
->> fashion. Would be good to try to get other folks to review the rest,
->> it's really not very i915 specific anyway. In the mean time I think
->> patches 1-5 are okay to merge via drm-misc.
->
-> For reference, the tables here are a direct conversion of the rc*cfg
-> files found in the DSC model. If you wish, I can post the program that
-> I used to convert these files into C arrays. Will that help the
-> review?
+== Summary ==
 
-Probably; it's a bit annoying to cross check as the values aren't in the
-same order.
+CI Bug Log - changes from CI_DRM_12827 -> Patchwork_114679v3
+====================================================
 
-BR,
-Jani.
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/index.html
+
+Participating hosts (35 -> 36)
+------------------------------
+
+  Additional (2): fi-kbl-soraka bat-dg1-6 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114679v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_mmap@basic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][3] ([i915#4083])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_mmap@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][4] ([i915#4079]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_render_tiled_blits@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][5] ([i915#4077]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - bat-dg1-6:          NOTRUN -> [SKIP][6] ([i915#7561])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-6:          NOTRUN -> [SKIP][7] ([i915#6621])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][8] ([i915#7913])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-rpls-1:         [PASS][9] -> [INCOMPLETE][10] ([i915#4983])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][11] ([i915#1886])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-adlp-9:         [PASS][12] -> [DMESG-FAIL][13] ([i915#7699])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-adlp-9/igt@i915_selftest@live@migrate.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-adlp-9/igt@i915_selftest@live@migrate.html
+    - bat-dg2-11:         [PASS][14] -> [DMESG-WARN][15] ([i915#7699])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg1-6:          NOTRUN -> [SKIP][16] ([i915#4215])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_addfb_basic@tile-pitch-mismatch:
+    - bat-dg1-6:          NOTRUN -> [SKIP][17] ([i915#4212]) +7 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][18] ([fdo#109271]) +16 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-dg1-6:          NOTRUN -> [SKIP][19] ([i915#7828]) +8 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][20] ([i915#4103] / [i915#4213]) +1 similar issue
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg1-6:          NOTRUN -> [SKIP][21] ([fdo#109285])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-dg1-6:          NOTRUN -> [SKIP][22] ([i915#1072] / [i915#4078]) +3 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg1-6:          NOTRUN -> [SKIP][23] ([i915#3555])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-gtt:
+    - bat-dg1-6:          NOTRUN -> [SKIP][24] ([i915#3708] / [i915#4077]) +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-gtt.html
+
+  * igt@prime_vgem@basic-read:
+    - bat-dg1-6:          NOTRUN -> [SKIP][25] ([i915#3708]) +3 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - bat-dg1-6:          NOTRUN -> [SKIP][26] ([i915#3708] / [i915#4873])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [DMESG-WARN][27] ([i915#8073]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2:
+    - bat-dg1-5:          [FAIL][29] ([fdo#103375]) -> [PASS][30] +3 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-2:         [DMESG-FAIL][31] ([i915#6367] / [i915#7913]) -> [DMESG-FAIL][32] ([i915#6367] / [i915#7913] / [i915#7996])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-rpls-2/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
 
 
->
->>
->> BR,
->> Jani.
->>
->> > -static const struct rc_parameters_data rc_parameters[] = {
->> > +static const struct rc_parameters_data rc_parameters_1_2_444[] = {
->> >       {
->> >               .bpp = DSC_BPP(6), .bpc = 8,
->> >               { 768, 15, 6144, 3, 13, 11, 11, {
->> > @@ -388,22 +458,18 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >               { 512, 12, 6144, 3, 12, 11, 11, {
->> >                       { 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
->> >                       { 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
->> > -                     { 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 }, { 5, 12, -12 },
->> > -                     { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
->> > +                     { 3, 9, -8 }, { 3, 10, -10 }, { 5, 10, -10 }, { 5, 11, -12 },
->> > +                     { 5, 11, -12 }, { 9, 12, -12 }, { 12, 13, -12 }
->> >                       }
->> >               }
->> >       },
->> >       {
->> >               .bpp = DSC_BPP(8), .bpc = 10,
->> >               { 512, 12, 6144, 7, 16, 15, 15, {
->> > -                     /*
->> > -                      * DSC model/pre-SCR-cfg has 8 for range_max_qp[0], however
->> > -                      * VESA DSC 1.1 Table E-5 sets it to 4.
->> > -                      */
->> > -                     { 0, 4, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
->> > +                     { 0, 8, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
->> >                       { 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
->> > -                     { 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
->> > -                     { 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
->> > +                     { 7, 13, -8 }, { 7, 14, -10 }, { 9, 14, -10 }, { 9, 15, -12 },
->> > +                     { 9, 15, -12 }, { 13, 16, -12 }, { 16, 17, -12 }
->> >                       }
->> >               }
->> >       },
->> > @@ -412,9 +478,9 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >               { 512, 12, 6144, 11, 20, 19, 19, {
->> >                       { 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
->> >                       { 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
->> > -                     { 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
->> > -                     { 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
->> > -                     { 21, 23, -12 }
->> > +                     { 11, 17, -8 }, { 11, 18, -10 }, { 13, 18, -10 },
->> > +                     { 13, 19, -12 }, { 13, 19, -12 }, { 17, 20, -12 },
->> > +                     { 20, 21, -12 }
->> >                       }
->> >               }
->> >       },
->> > @@ -498,8 +564,8 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >               { 341, 15, 2048, 3, 12, 11, 11, {
->> >                       { 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
->> >                       { 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
->> > -                     { 3, 9, -8 }, { 3, 10, -10 }, { 5, 11, -10 },
->> > -                     { 5, 12, -12 }, { 5, 13, -12 }, { 7, 13, -12 }, { 13, 15, -12 }
->> > +                     { 3, 8, -8 }, { 3, 9, -10 }, { 5, 9, -10 }, { 5, 9, -12 },
->> > +                     { 5, 9, -12 }, { 7, 10, -12 }, { 10, 11, -12 }
->> >                       }
->> >               }
->> >       },
->> > @@ -508,8 +574,8 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >               { 341, 15, 2048, 7, 16, 15, 15, {
->> >                       { 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
->> >                       { 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
->> > -                     { 7, 13, -8 }, { 7, 14, -10 }, { 9, 15, -10 }, { 9, 16, -12 },
->> > -                     { 9, 17, -12 }, { 11, 17, -12 }, { 17, 19, -12 }
->> > +                     { 7, 12, -8 }, { 7, 13, -10 }, { 9, 13, -10 }, { 9, 13, -12 },
->> > +                     { 9, 13, -12 }, { 11, 14, -12 }, { 14, 15, -12 }
->> >                       }
->> >               }
->> >       },
->> > @@ -518,9 +584,9 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >               { 341, 15, 2048, 11, 20, 19, 19, {
->> >                       { 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
->> >                       { 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
->> > -                     { 11, 17, -8 }, { 11, 18, -10 }, { 13, 19, -10 },
->> > -                     { 13, 20, -12 }, { 13, 21, -12 }, { 15, 21, -12 },
->> > -                     { 21, 23, -12 }
->> > +                     { 11, 16, -8 }, { 11, 17, -10 }, { 13, 17, -10 },
->> > +                     { 13, 17, -12 }, { 13, 17, -12 }, { 15, 18, -12 },
->> > +                     { 18, 19, -12 }
->> >                       }
->> >               }
->> >       },
->> > @@ -602,7 +668,8 @@ static const struct rc_parameters_data rc_parameters[] = {
->> >       { /* sentinel */ }
->> >  };
->> >
->> > -static const struct rc_parameters *get_rc_params(u16 dsc_bpp,
->> > +static const struct rc_parameters *get_rc_params(const struct rc_parameters_data *rc_parameters,
->> > +                                              u16 dsc_bpp,
->> >                                                u8 bits_per_component)
->> >  {
->> >       int i;
->> > @@ -622,11 +689,13 @@ static const struct rc_parameters *get_rc_params(u16 dsc_bpp,
->> >   * function.
->> >   *
->> >   * @vdsc_cfg: DSC Configuration data partially filled by driver
->> > + * @kind: operating mode and standard to follow
->> >   *
->> >   * Return: 0 or -error code in case of an error
->> >   */
->> > -int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg)
->> > +int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg, enum drm_dsc_params_kind kind)
->> >  {
->> > +     const struct rc_parameters_data *data;
->> >       const struct rc_parameters *rc_params;
->> >       int i;
->> >
->> > @@ -634,7 +703,19 @@ int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg)
->> >                        !vdsc_cfg->bits_per_component))
->> >               return -EINVAL;
->> >
->> > -     rc_params = get_rc_params(vdsc_cfg->bits_per_pixel,
->> > +     switch (kind) {
->> > +     case DRM_DSC_1_2_444:
->> > +             data = rc_parameters_1_2_444;
->> > +             break;
->> > +     case DRM_DSC_1_1_PRE_SCR:
->> > +             data = rc_parameters_pre_scr;
->> > +             break;
->> > +     default:
->> > +             return -EINVAL;
->> > +     }
->> > +
->> > +     rc_params = get_rc_params(data,
->> > +                               vdsc_cfg->bits_per_pixel,
->> >                                 vdsc_cfg->bits_per_component);
->> >       if (!rc_params)
->> >               return -EINVAL;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > index 20a4c2f343fe..a4d1d2ba71bb 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > @@ -157,7 +157,15 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
->> >       if (DISPLAY_VER(dev_priv) >= 13) {
->> >               calculate_rc_params(vdsc_cfg);
->> >       } else {
->> > -             ret = drm_dsc_setup_rc_params(vdsc_cfg);
->> > +             if ((compressed_bpp == 8 ||
->> > +                  compressed_bpp == 12) &&
->> > +                 (vdsc_cfg->bits_per_component == 8 ||
->> > +                  vdsc_cfg->bits_per_component == 10 ||
->> > +                  vdsc_cfg->bits_per_component == 12))
->> > +                     ret = drm_dsc_setup_rc_params(vdsc_cfg, DRM_DSC_1_1_PRE_SCR);
->> > +             else
->> > +                     ret = drm_dsc_setup_rc_params(vdsc_cfg, DRM_DSC_1_2_444);
->> > +
->> >               if (ret)
->> >                       return ret;
->> >
->> > diff --git a/include/drm/display/drm_dsc_helper.h b/include/drm/display/drm_dsc_helper.h
->> > index 1681791f65a5..c634bb2935d3 100644
->> > --- a/include/drm/display/drm_dsc_helper.h
->> > +++ b/include/drm/display/drm_dsc_helper.h
->> > @@ -10,12 +10,17 @@
->> >
->> >  #include <drm/display/drm_dsc.h>
->> >
->> > +enum drm_dsc_params_kind {
->> > +     DRM_DSC_1_2_444,
->> > +     DRM_DSC_1_1_PRE_SCR, /* legacy params from DSC 1.1 */
->> > +};
->> > +
->> >  void drm_dsc_dp_pps_header_init(struct dp_sdp_header *pps_header);
->> >  int drm_dsc_dp_rc_buffer_size(u8 rc_buffer_block_size, u8 rc_buffer_size);
->> >  void drm_dsc_pps_payload_pack(struct drm_dsc_picture_parameter_set *pps_sdp,
->> >                             const struct drm_dsc_config *dsc_cfg);
->> >  void drm_dsc_set_rc_buf_thresh(struct drm_dsc_config *vdsc_cfg);
->> > -int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg);
->> > +int drm_dsc_setup_rc_params(struct drm_dsc_config *vdsc_cfg, enum drm_dsc_params_kind kind);
->> >  int drm_dsc_compute_rc_parameters(struct drm_dsc_config *vdsc_cfg);
->> >
->> >  #endif /* _DRM_DSC_HELPER_H_ */
->>
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  * Linux: CI_DRM_12827 -> Patchwork_114679v3
+
+  CI-20190529: 20190529
+  CI_DRM_12827: b794b8d84dc0470ee58467386f41870e81a86580 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7183: 3434cef8be4e487644a740039ad15123cd094526 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114679v3: b794b8d84dc0470ee58467386f41870e81a86580 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5e773aa576f8 drm/i915: Ensure DSC has enough BW and stays within HW limits
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/index.html
+
+--===============0776829708571313040==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Ensure DSC has enough BW and stays within HW limits (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114679/">https://patchwork.freedesktop.org/series/114679/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12827 -&gt; Patchwork_114679v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/index.html</p>
+<h2>Participating hosts (35 -&gt; 36)</h2>
+<p>Additional (2): fi-kbl-soraka bat-dg1-6 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114679v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-adlp-9/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-adlp-9/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</p>
+</li>
+<li>
+<p>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-6/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12827/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114679v3/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12827 -&gt; Patchwork_114679v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12827: b794b8d84dc0470ee58467386f41870e81a86580 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7183: 3434cef8be4e487644a740039ad15123cd094526 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114679v3: b794b8d84dc0470ee58467386f41870e81a86580 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5e773aa576f8 drm/i915: Ensure DSC has enough BW and stays within HW limits</p>
+
+</body>
+</html>
+
+--===============0776829708571313040==--
