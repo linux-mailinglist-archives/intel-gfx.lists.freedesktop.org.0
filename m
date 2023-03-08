@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA60F6B0E9B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 17:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE3C6B0E9C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 17:25:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2BE310E677;
-	Wed,  8 Mar 2023 16:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 494A010E679;
+	Wed,  8 Mar 2023 16:25:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F26710E656
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7D1C10E679
  for <intel-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 16:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678292708; x=1709828708;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Cx1RnSevfUWpMp0d/XRHzM7RsgMe9lk4ADcbk8VXoLo=;
- b=ONWWjdspzYMrKSPTflvZ28D+u8ZQINPcoC/sRBQK8DziNbECgosUDdM7
- P7lueqwixQz2Z81h4ELBERAjTI1E6zvCwtiiaX5QsyNcFV1FC62r3X4VY
- vwMSGzgmUOKZcsZEpYjHEkVRfyexRyVDvRyltx/om0nvYXprvq/3SRG/2
- /B0a0Y2FQFNzizochg7YNDVtxPdV7Sbes2jWUu6gDvogMrVUM5nwwx+D1
- aLuP0AeS1gUZYgEeL7oMA20NHXFGvwZnK40QRwZOYGZwNpSstVxvv+N1N
- oAHEv3UV5oKJGFDmP7UDz/QHgJBTqr5YJFRiuHgkeaJHCnxnZv5d9K3B+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="422471586"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="422471586"
+ bh=RDMwClJJ22571XOHmRP41GpjdTNCszwPkkIOtPxSKQE=;
+ b=eo0Hk4aup5NRPq4ZVwQysKEuHkPp1QHhDsymWgl3P4fIPHHI6mY9TdpJ
+ A2nFISMKBy5FFM+2nEA/g88NDl3EsQeeyYM1leKVOA0fhvbKzXj/zyqg5
+ 7WGg9G1PkTnQPaLpVyP9CuhnMD/e+4yqlKiMtGnHbSr8ZMuY5AlGifo9x
+ Iuq5Hiw210ZTozWfxtw37i76VUQ9vdmEpLlNbVEp9a1z8EW3uMj9rv4RV
+ LqsJBjyzzTwoE16yLwgfZt2tcSK5Sr9Bm4bUnRF2GjI3Bc7gAMo/Ok4tf
+ sSIBEGAkT+QRrwnsM9YaaFkWVqNnJJi+9xhGyTH1uFJBd1EfSID/x4AnP w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="422471594"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="422471594"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 08:25:07 -0800
+ 08 Mar 2023 08:25:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="626976789"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="626976789"
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="626976797"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="626976797"
 Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 08:25:06 -0800
+ 08 Mar 2023 08:25:07 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 18:25:02 +0200
-Message-Id: <20230308162503.3219200-2-imre.deak@intel.com>
+Date: Wed,  8 Mar 2023 18:25:03 +0200
+Message-Id: <20230308162503.3219200-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20230308162503.3219200-1-imre.deak@intel.com>
 References: <20230308162503.3219200-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 2/3] drm/i915/opregion: Cleanup opregion after
- errors during driver loading
+Subject: [Intel-gfx] [CI 3/3] drm/i915/opregion: Register display debugfs
+ later, after initialization steps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,79 +62,37 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clean up the opregion state if something fails after
-intel_opregion_setup() is called.
+Move the display debugfs registration later, after initializing steps
+for opregion/acpi/audio. These latter ones don't depend on the debugfs
+entries, OTOH some debugfs entries may depend on the initialized state.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_opregion.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_opregion.h | 1 +
- drivers/gpu/drm/i915/i915_driver.c            | 6 +++++-
- 3 files changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index bbcc2142d7df5..b7973a05d022d 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -1237,6 +1237,14 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
- 		unregister_acpi_notifier(&opregion->acpi_notifier);
- 		opregion->acpi_notifier.notifier_call = NULL;
- 	}
-+}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index edbcb1273ca28..e7e7a29e117dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8886,14 +8886,14 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
+-	intel_display_debugfs_register(i915);
+-
+ 	/* Must be done after probing outputs */
+ 	intel_opregion_register(i915);
+ 	intel_acpi_video_register(i915);
+ 
+ 	intel_audio_init(i915);
+ 
++	intel_display_debugfs_register(i915);
 +
-+void intel_opregion_cleanup(struct drm_i915_private *i915)
-+{
-+	struct intel_opregion *opregion = &i915->display.opregion;
-+
-+	if (!opregion->header)
-+		return;
- 
- 	/* just clear all opregion memory pointers now */
- 	memunmap(opregion->header);
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index d02e6696a050e..181eb3e9abbf3 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -60,6 +60,7 @@ struct intel_opregion {
- #ifdef CONFIG_ACPI
- 
- int intel_opregion_setup(struct drm_i915_private *dev_priv);
-+void intel_opregion_cleanup(struct drm_i915_private *i915);
- 
- void intel_opregion_register(struct drm_i915_private *dev_priv);
- void intel_opregion_unregister(struct drm_i915_private *dev_priv);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a53fd339e2cc9..da249337c23bd 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -535,7 +535,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 
- 	ret = i915_pcode_init(dev_priv);
- 	if (ret)
--		goto err_msi;
-+		goto err_opregion;
- 
  	/*
- 	 * Fill the dram structure to get the system dram info. This will be
-@@ -556,6 +556,8 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 
- 	return 0;
- 
-+err_opregion:
-+	intel_opregion_cleanup(dev_priv);
- err_msi:
- 	if (pdev->msi_enabled)
- 		pci_disable_msi(pdev);
-@@ -581,6 +583,8 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
- 
- 	i915_perf_fini(dev_priv);
- 
-+	intel_opregion_cleanup(dev_priv);
-+
- 	if (pdev->msi_enabled)
- 		pci_disable_msi(pdev);
- 
+ 	 * Some ports require correctly set-up hpd registers for
+ 	 * detection to work properly (leading to ghost connected
 -- 
 2.37.1
 
