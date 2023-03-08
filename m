@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB626B0C9C
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 16:26:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C07146B0D06
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 16:39:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCCE10E5FD;
-	Wed,  8 Mar 2023 15:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0700E10E615;
+	Wed,  8 Mar 2023 15:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E2C10E5FD
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 15:26:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3718E10E610;
+ Wed,  8 Mar 2023 15:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678289171; x=1709825171;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fo/VKDhqpykUdZS618XaHE4le5KWzJFvmF+Lqymaw3U=;
- b=CwAxE6N1mhxL932h2FN5m2jEGbO8su31TaZmSkMXxstbhY85d2nxgTOp
- QEKAFs8LYmSQmkJGVQG+pxawrKiKf1RvbTZgbTQuuvY/WNOSI5t/7wj31
- R9OpSJ60z3sfyNamRj9mE0zRw50p6y1VuhVsib4BW7nEfAa+HmpHtwQZ1
- wH8lXqBmGiAJeOgZb+/LcviXLkxfpfzH7d+3Sr7gVdbkw2JVIVLRpl77U
- +h2wr9BCa/7BVBWhCuQb+eotDHSAHG+//dCoiL6TGqQDxcZl5QV9bwOoP
- AdalUoPeR4/TbDTkp3KQt1fIHD/kC/dm+l4QWftEXRWPMC4GdOyswQmh3 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="337698338"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="337698338"
+ t=1678289988; x=1709825988;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=JZPPyfomcM6RPed2Z6objclkx7X74pCD0nLjOtDOZ2w=;
+ b=BewPIDW2s1lUAFJmrD3svTH+TDr4N1YC9+DKseXgH39XW1jTMdqaYfn5
+ kFUUfql1xvibcUZ2nsTodVWrQ5bu63sPucqcH0mUrKzYbnc53IXyIzEcV
+ UkJ+/1yubu16wh56uT4cWqmRwCS3gOxeksWcG3ilVfYeFGM4PW40p82bV
+ siZ9YogQBmd3iHo/xcOrUe/sumdzSmi/qCQ3Esb+pndNIRTo3HqkAsnP5
+ OQo55KxuhJ19Xlc32tFmWjdtxU8bnW3Hj09iglOnBtexBNRnisZge2TBh
+ /DL/puCIrLnkN/PFt/ye3wX/PUj+DY5NQ3Vt+Wv101O2+uOmKvHLxrkYn g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="337703534"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="337703534"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 07:26:10 -0800
+ 08 Mar 2023 07:39:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="787152976"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="787152976"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 08 Mar 2023 07:26:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Mar 2023 17:26:07 +0200
-Date: Wed, 8 Mar 2023 17:26:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZAipD8UzhW3dOUGW@intel.com>
-References: <20230227040324.130811-1-ankit.k.nautiyal@intel.com>
- <20230227040324.130811-4-ankit.k.nautiyal@intel.com>
- <ZAilganP5W3sCgG1@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="787160232"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="787160232"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 07:39:42 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Wed, 08 Mar 2023 16:39:03 +0100
+Message-Id: <20230308-guard_error_capture-v5-0-6d1410d13540@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZAilganP5W3sCgG1@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v10 03/13] drm/i915/dp: Add Scaler
- constraint for YCbCr420 output
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABesCGQC/x2N0QqDMAwAf0XyvEAxE2S/IkNim2oerCXVMRD/f
+ XWPx3HcCUVMpcCrOcHko0W3VKF7NOAXTrOghsrQupYcuR7ngy2MYrbZ6DnvhwlGikRPEd93EWo5
+ cRGcjJNf7jbYirvm22STqN//b3hf1w9xA2EcfwAAAA==
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+X-Mailer: b4 0.11.1
+Subject: [Intel-gfx] [PATCH v5 0/4] drm/i915: add guard page to
+ ggtt->error_capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,135 +63,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 08, 2023 at 05:10:57PM +0200, Ville Syrjälä wrote:
-> On Mon, Feb 27, 2023 at 09:33:14AM +0530, Ankit Nautiyal wrote:
-> > For YCbCr420 output, scaler is required for downsampling.
-> > Scaler can be used only when source size smaller than max_src_w and
-> > max_src_h as defined by for the platform.
-> > So go for native YCbCr420 only if there are no scaler constraints.
-> > 
-> > v2: Corrected max-width based on Display Version.
-> > 
-> > v3: Updated max-width as per latest Bspec change.
-> > 
-> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 41 ++++++++++++++++++++++---
-> >  1 file changed, 37 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 1a30cc021b25..e95fc0f0d13a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -804,11 +804,36 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-> >  	return 0;
-> >  }
-> >  
-> > +static bool
-> > +ycbcr420_scaler_constraints(struct drm_i915_private *i915,
-> > +			    const struct drm_display_mode *mode)
-> > +{
-> > +	int max_src_w, max_src_h;
-> > +
-> > +	if (DISPLAY_VER(i915) < 11) {
-> > +		max_src_w = 4096;
-> > +		max_src_h = 4096;
-> > +	} else if (DISPLAY_VER(i915) < 12) {
-> > +		max_src_w = 5120;
-> > +		max_src_h = 4096;
-> > +	} else if (DISPLAY_VER(i915) < 14) {
-> > +		max_src_w = 5120;
-> > +		max_src_h = 8192;
-> > +	} else {
-> > +		max_src_w = 4096;
-> > +		max_src_h = 8192;
-> > +	}
-> > +
-> > +	return mode->hdisplay > max_src_w || mode->vdisplay > max_src_h;
-> > +}
-> > +
-> 
-> I don't really like this. If we do something like this
-> then it should be the scaler code that checks this stuff.
-> 
-> However, after pondering about this more I'm actually
-> leaning towards using 4:4:4 output whenever possible,
-> only going for 4:2:0 if absolutely necessary. That
-> avoids having to deal with all the annoying scaler/etc
-> limitations.
+This patch tries to diminish plague of DMAR read errors present
+in CI for ADL*, RPL*, DG2 platforms, see for example [1] (grep DMAR).
+CI is usually tolerant for these errors, so the scale of the problem
+is not really visible.
+To show it I have counted lines containing DMAR read errors in dmesgs
+produced by CI for all three versions of the patch, but in contrast to v2
+I have grepped only for lines containing "PTE Read access".
+Below stats for kernel w/o patchset vs patched one.
+v1: 210 vs 0
+v2: 201 vs 0
+v3: 214 vs 0
+Apparently the patchset fixes all common PTE read errors.
 
-In fact perhaps best to try RGB first (also avoids the whole
-pipe CSC mess on glk), then YCbCr 4:4:4 (still avoids the
-scaler mess), and finally accepting that we need to do 
-native YCbCr 4:2:0 output.
+Changelog:
+v2:
+    - modified commit message (I hope the diagnosis is correct),
+    - added bug checks to ensure scratch is initialized on gen3 platforms.
+      CI produces strange stacktrace for it suggesting scratch[0] is NULL,
+      to be removed after resolving the issue with gen3 platforms.
+v3:
+    - removed bug checks, replaced with gen check.
+v4:
+    - change code for scratch page insertion to support all platforms,
+    - add info in commit message there could be more similar issues
+v5:
+    - changed to patchset adding nop_clear_range related code,
+    - re-insert scratch PTEs on resume
 
-> 
-> >  static enum intel_output_format
-> >  intel_dp_output_format(struct intel_connector *connector,
-> > +		       const struct drm_display_mode *mode,
-> >  		       enum intel_output_format sink_format)
-> >  {
-> >  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> >  
-> >  	if (!connector->base.ycbcr_420_allowed ||
-> >  	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
-> > @@ -820,8 +845,15 @@ intel_dp_output_format(struct intel_connector *connector,
-> >  
-> >  	if (intel_dp->dfp.ycbcr_444_to_420)
-> >  		return INTEL_OUTPUT_FORMAT_YCBCR444;
-> > -	else
-> > +
-> > +	/*
-> > +	 * For YCbCr420 output, scaler is required for downsampling
-> > +	 * So go for native YCbCr420 only if there are no scaler constraints.
-> > +	 */
-> > +	if (!ycbcr420_scaler_constraints(i915, mode))
-> >  		return INTEL_OUTPUT_FORMAT_YCBCR420;
-> > +
-> > +	return INTEL_OUTPUT_FORMAT_RGB;
-> >  }
-> >  
-> >  int intel_dp_min_bpp(enum intel_output_format output_format)
-> > @@ -857,7 +889,7 @@ intel_dp_mode_min_output_bpp(struct intel_connector *connector,
-> >  	else
-> >  		sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  
-> > -	output_format = intel_dp_output_format(connector, sink_format);
-> > +	output_format = intel_dp_output_format(connector, mode, sink_format);
-> >  
-> >  	return intel_dp_output_bpp(output_format, intel_dp_min_bpp(output_format));
-> >  }
-> > @@ -2052,7 +2084,8 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
-> >  		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  	}
-> >  
-> > -	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
-> > +	crtc_state->output_format = intel_dp_output_format(connector, adjusted_mode,
-> > +							   crtc_state->sink_format);
-> >  
-> >  	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> >  					   respect_downstream_limits);
-> > @@ -2063,7 +2096,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
-> >  			return ret;
-> >  
-> >  		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> > -		crtc_state->output_format = intel_dp_output_format(connector,
-> > +		crtc_state->output_format = intel_dp_output_format(connector, adjusted_mode,
-> >  								   crtc_state->sink_format);
-> >  		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> >  						   respect_downstream_limits);
-> > -- 
-> > 2.25.1
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+---
+Andrzej Hajda (4):
+      drm/i915/gt: make nop_clear_range public
+      drm/i915/display: use nop_clear_range instead of local function
+      drm/i915/selftests: use nop_clear_range instead of local function
+      drm/i915: add guard page to ggtt->error_capture
+
+ drivers/gpu/drm/i915/display/intel_dpt.c  |  7 +-----
+ drivers/gpu/drm/i915/gt/intel_ggtt.c      | 38 ++++++++++++++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_gtt.h       |  2 ++
+ drivers/gpu/drm/i915/selftests/mock_gtt.c |  9 ++------
+ 4 files changed, 37 insertions(+), 19 deletions(-)
+---
+base-commit: 3cd6c251f39c14df9ab711e3eb56e703b359ff54
+change-id: 20230308-guard_error_capture-f3f334eec85f
+
+Best regards,
 -- 
-Ville Syrjälä
-Intel
+Andrzej Hajda <andrzej.hajda@intel.com>
