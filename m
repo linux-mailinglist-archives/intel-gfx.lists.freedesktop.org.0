@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B56506B0DB6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 16:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 161396B0DBB
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 16:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9C010E62E;
-	Wed,  8 Mar 2023 15:54:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F2610E633;
+	Wed,  8 Mar 2023 15:54:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com
- [IPv6:2607:f8b0:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB88910E62C;
- Wed,  8 Mar 2023 15:54:30 +0000 (UTC)
-Received: by mail-pg1-x532.google.com with SMTP id q23so9885401pgt.7;
- Wed, 08 Mar 2023 07:54:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678290870;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qRQ1dHdIY/cau10a8E821pdOJBm+YYqmFlRisJrtcpU=;
- b=VInRsevL5hoOa24Y230bcVyeMLhH1aYIW9bUbR0nGfdeB6sMlUDfsB/IW5G+fFUrdS
- xq6loIUgrztEsywE69ZAUqsW/L7mtKOytKAxltZ3p9YKFi2P++DogG9K8Wzc4VJz9IkR
- eIWO7Ytce4BgJ/1k5T/PIexTpPW9HU/10m6MSvCYXZGAWm6rKl2YTRWJh9dj9zV/5Xcm
- ECw0NTffFqx4DWlIb59auEPRrYN6tUrv0DAG1fPg6lIXMqGtWwUlR9x0+Muci1Ohe032
- oiCRyrQ7zikzViwwCe93VCwvd/UimZPs2bcwJ5HysU/y6zbQohofGorhDeC9UnlH4d6l
- t5jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678290870;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qRQ1dHdIY/cau10a8E821pdOJBm+YYqmFlRisJrtcpU=;
- b=1BotfAEDiByJzWh1HVWKVLdhh7C6y1mP4GN/7oe1KWBdQyralk+F3GS+DcPMhKFele
- xvPOeiUQkkyTwX0GXdze/K/7nBAqi0Ub5w169X9OzS7SBjx2eJVQG8pCmSesTm4HSMi0
- dPYgxrJ2UEiCM98Esou0+ozRNQrnMRN79YhShoVBXU+eRxM7kUlQOSBXlLEzZ+BVk1WY
- SKRQyKo8hRVd7pL0/QowDbnbhl4xnE8r3DTr880rLz1R7ZICmHarDu51o16B92/fBfLh
- VEm83Dk/xPr/9pyJc6e1X7ezDZHk/u0Z7+4NrTJVi7StJ7uVnT/+ypKJ7JDb7jmoF3SG
- Dlzg==
-X-Gm-Message-State: AO0yUKUSsMJrLOO5wIz3+bdmfQ8Wr2IGLVJkeCJnJy/uAoPN9C1SSWXG
- 9PEGsMP0V5ea7NvLSyd1ZEHLnCRxliI=
-X-Google-Smtp-Source: AK7set/qurbajmx0drbw1A0UnfJ3nB9Otb6mpv7CbrkCjVlUVasHmbmab9vdSeIaq9fwrT8DYoD/PA==
-X-Received: by 2002:a62:7bc4:0:b0:5e2:62b7:f785 with SMTP id
- w187-20020a627bc4000000b005e262b7f785mr15546331pfc.29.1678290870363; 
- Wed, 08 Mar 2023 07:54:30 -0800 (PST)
-Received: from localhost ([2a00:79e1:abd:4a00:61b:48ed:72ab:435b])
- by smtp.gmail.com with ESMTPSA id
- u5-20020aa78385000000b005a91d570972sm9486660pfm.41.2023.03.08.07.54.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Mar 2023 07:54:29 -0800 (PST)
-From: Rob Clark <robdclark@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 07:53:06 -0800
-Message-Id: <20230308155322.344664-16-robdclark@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308155322.344664-1-robdclark@gmail.com>
-References: <20230308155322.344664-1-robdclark@gmail.com>
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
+ [185.176.79.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3668410E62F;
+ Wed,  8 Mar 2023 15:54:49 +0000 (UTC)
+Received: from lhrpeml100001.china.huawei.com (unknown [172.18.147.200])
+ by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4PWxh60g27z689xQ;
+ Wed,  8 Mar 2023 23:54:14 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ lhrpeml100001.china.huawei.com (7.191.160.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 8 Mar 2023 15:54:45 +0000
+Received: from lhrpeml500005.china.huawei.com ([7.191.163.240]) by
+ lhrpeml500005.china.huawei.com ([7.191.163.240]) with mapi id 15.01.2507.021; 
+ Wed, 8 Mar 2023 15:54:45 +0000
+From: Shameerali Kolothum Thodi <shameerali.kolothum.thodi@huawei.com>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Thread-Topic: [PATCH v5 00/19] Add vfio_device cdev for iommufd support
+Thread-Index: AQHZSpxHUh/YYv3qukeFp+lKFtoCf67jLB2AgACBDoCAAOlEAIAAn5IAgAIKi/CAAO3wAIAA+kPAgAEQJQCABt1mAA==
+Date: Wed, 8 Mar 2023 15:54:45 +0000
+Message-ID: <5152227cbe0e4bdcacf0763f1af16e8f@huawei.com>
+References: <20230227111135.61728-1-yi.l.liu@intel.com>
+ <Y/0Cr/tcNCzzIAhi@nvidia.com>
+ <DS0PR11MB7529A422D4361B39CCA3D248C3AC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <SA1PR11MB5873479F73CFBAA170717624F0AC9@SA1PR11MB5873.namprd11.prod.outlook.com>
+ <Y/64ejbhMiV77uUA@Asurada-Nvidia>
+ <b7c1f9d5b4b647f0b0686c3b99f3d006@huawei.com>
+ <ZAE2J0I1LiBjWUnm@Asurada-Nvidia>
+ <d59a0262d5bf423c9e49ad4ac6015296@huawei.com>
+ <ZALspPvvLGFuK96F@Asurada-Nvidia>
+In-Reply-To: <ZALspPvvLGFuK96F@Asurada-Nvidia>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.202.227.178]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 15/15] drm/i915: Add deadline based boost
+X-CFilter-Loop: Reflected
+Subject: Re: [Intel-gfx] [PATCH v5 00/19] Add vfio_device cdev for iommufd
  support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,67 +62,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- open list <linux-kernel@vger.kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- David Airlie <airlied@gmail.com>, Luben Tuikov <luben.tuikov@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
 
-I expect this patch to be replaced by someone who knows i915 better.
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+> -----Original Message-----
+> From: Nicolin Chen [mailto:nicolinc@nvidia.com]
+> Sent: 04 March 2023 07:01
+> To: Shameerali Kolothum Thodi <shameerali.kolothum.thodi@huawei.com>
+> Cc: Xu, Terrence <terrence.xu@intel.com>; Liu, Yi L <yi.l.liu@intel.com>;
+> Jason Gunthorpe <jgg@nvidia.com>; alex.williamson@redhat.com; Tian,
+> Kevin <kevin.tian@intel.com>; joro@8bytes.org; robin.murphy@arm.com;
+> cohuck@redhat.com; eric.auger@redhat.com; kvm@vger.kernel.org;
+> mjrosato@linux.ibm.com; chao.p.peng@linux.intel.com;
+> yi.y.sun@linux.intel.com; peterx@redhat.com; jasowang@redhat.com;
+> lulu@redhat.com; suravee.suthikulpanit@amd.com;
+> intel-gvt-dev@lists.freedesktop.org; intel-gfx@lists.freedesktop.org;
+> linux-s390@vger.kernel.org; Hao, Xudong <xudong.hao@intel.com>; Zhao,
+> Yan Y <yan.y.zhao@intel.com>
+> Subject: Re: [PATCH v5 00/19] Add vfio_device cdev for iommufd support
+>=20
+> On Fri, Mar 03, 2023 at 03:01:03PM +0000, Shameerali Kolothum Thodi
+> wrote:
+> > External email: Use caution opening links or attachments
+> >
+> >
+> > > -----Original Message-----
+> > > From: Nicolin Chen [mailto:nicolinc@nvidia.com]
+> > > Sent: 02 March 2023 23:51
+> > > To: Shameerali Kolothum Thodi
+> <shameerali.kolothum.thodi@huawei.com>
+> > > Cc: Xu, Terrence <terrence.xu@intel.com>; Liu, Yi L
+> > > <yi.l.liu@intel.com>; Jason Gunthorpe <jgg@nvidia.com>;
+> > > alex.williamson@redhat.com; Tian, Kevin <kevin.tian@intel.com>;
+> > > joro@8bytes.org; robin.murphy@arm.com; cohuck@redhat.com;
+> > > eric.auger@redhat.com; kvm@vger.kernel.org; mjrosato@linux.ibm.com;
+> > > chao.p.peng@linux.intel.com; yi.y.sun@linux.intel.com;
+> > > peterx@redhat.com; jasowang@redhat.com; lulu@redhat.com;
+> > > suravee.suthikulpanit@amd.com; intel-gvt-dev@lists.freedesktop.org;
+> > > intel-gfx@lists.freedesktop.org; linux-s390@vger.kernel.org; Hao,
+> > > Xudong <xudong.hao@intel.com>; Zhao, Yan Y <yan.y.zhao@intel.com>
+> > > Subject: Re: [PATCH v5 00/19] Add vfio_device cdev for iommufd
+> > > support
+> > >
+> > > On Thu, Mar 02, 2023 at 09:43:00AM +0000, Shameerali Kolothum Thodi
+> > > wrote:
+> > >
+> > > > Hi Nicolin,
+> > > >
+> > > > Thanks for the latest ARM64 branch. Do you have a working Qemu
+> > > > branch
+> > > corresponding to the
+> > > > above one?
+> > > >
+> > > > I tried the
+> > >
+> https://github.com/nicolinc/qemu/tree/wip/iommufd_rfcv3%2Bnesting%2B
+> > > smmuv3
+> > > > but for some reason not able to launch the Guest.
+> > > >
+> > > > Please let me know.
+> > >
+> > > I do use that branch. It might not be that robust though as it went
+> > > through a big rebase.
+> >
+> > Ok. The issue seems to be quite random in nature and only happens when
+> > there are multiple vCPUs. Also doesn't look like related to VFIO
+> > device assignment as I can reproduce Guest hang without it by only
+> > having nested-smmuv3 and iommufd object.
+> >
+> > ./qemu-system-aarch64-iommuf -machine
+> > virt,gic-version=3D3,iommu=3Dnested-smmuv3,iommufd=3Diommufd0 \
+> -enable-kvm
+> > -cpu host -m 1G -smp cpus=3D8,maxcpus=3D8 \ -object iommufd,id=3Diommuf=
+d0
+> \
+> > -bios QEMU_EFI.fd \ -kernel Image-6.2-iommufd \ -initrd
+> > rootfs-iperf.cpio \ -net none \ -nographic \ -append "rdinit=3Dinit
+> > console=3DttyAMA0 root=3D/dev/vda rw earlycon=3Dpl011,0x9000000" \ -tra=
+ce
+> > events=3Devents \ -D trace_iommufd
+> >
+> > When the issue happens, no output on terminal as if Qemu is in a locked
+> state.
+> >
+> >  Can you try with the followings?
+> > >
+> > > --trace "iommufd*" --trace "smmu*" --trace "vfio_*" --trace "pci_*"
+> > > --trace "msi_*" --trace "nvme_*"
+> >
+> > The only trace events with above are this,
+> >
+> > iommufd_backend_connect fd=3D22 owned=3D1 users=3D1 (0) smmu_add_mr
+> > smmuv3-iommu-memory-region-0-0
+> >
+> > I haven't debugged this further. Please let me know if issue is
+> > reproducible with multiple vCPUs at your end. For now will focus on VFI=
+O
+> dev specific tests.
+>=20
+> Oh. My test environment has been a single-core vCPU. So that doesn't
+> happen to me. Can you try a vanilla QEMU branch that our nesting branch i=
+s
+> rebased on? I took a branch from Yi as the baseline, while he might take
+> from Eric for the rfcv3.
+>=20
+> I am guessing that it might be an issue in the common tree.
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 7503dcb9043b..44491e7e214c 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -97,6 +97,25 @@ static bool i915_fence_enable_signaling(struct dma_fence *fence)
- 	return i915_request_enable_breadcrumb(to_request(fence));
- }
- 
-+static void i915_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
-+{
-+	struct i915_request *rq = to_request(fence);
-+
-+	if (i915_request_completed(rq))
-+		return;
-+
-+	if (i915_request_started(rq))
-+		return;
-+
-+	/*
-+	 * TODO something more clever for deadlines that are in the
-+	 * future.  I think probably track the nearest deadline in
-+	 * rq->timeline and set timer to trigger boost accordingly?
-+	 */
-+
-+	intel_rps_boost(rq);
-+}
-+
- static signed long i915_fence_wait(struct dma_fence *fence,
- 				   bool interruptible,
- 				   signed long timeout)
-@@ -182,6 +201,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
- 	.release = i915_fence_release,
-+	.set_deadline = i915_fence_set_deadline,
- };
- 
- static void irq_execute_cb(struct irq_work *wrk)
--- 
-2.39.2
+Yes, that looks like the case.
+I tried with:
+ commit 13356edb8750("Merge tag 'block-pull-request' of https://gitlab.com/=
+stefanha/qemu into staging")
 
+And issue is still there. So hopefully once we rebase everything it will go=
+ away.
+
+Thanks,
+Shameer
