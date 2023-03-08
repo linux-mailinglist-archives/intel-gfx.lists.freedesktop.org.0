@@ -1,53 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170666B0961
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 14:36:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 845FC6B0AB5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 15:13:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E8010E5D3;
-	Wed,  8 Mar 2023 13:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEEF10E5E2;
+	Wed,  8 Mar 2023 14:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E83D910E5D3
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 13:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678282593; x=1709818593;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=icZMxeIEqWpxktmy/2WCiZgbBuxeqBENC7bQmCUbioY=;
- b=lxcSxSH2SRzkVq7YIkwxNsdqgJGOTScUFdXpj7FDcBXK3yrHv0pTZq4v
- ptHstJhWRXZw1YTriyfO3TpUp85LCvPo4+REzxhTZyN8c/34jd5y9Y/XH
- WmkZfmnLpeskFqB1ulxCrwtlYMPCM8T0Wp89OnVj/R/URA4VQ/o/WcDQF
- LKkc+xm2Rbwobi8EpHpRmLCS3rQ5PYkFaHdjClEDybLzI128D2YkacJvT
- wksvJVkQmHUVqyWJqvSnRvL+tzzPxutrbWSZH1PvEWFltn0FOUCnoD7oS
- 0OF87Fa4ZjFWjrPpCB6syicLvemss912tZMBWNF/B8so4mVrYyaZC3KJd w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="337668657"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="337668657"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:36:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="745906841"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="745906841"
-Received: from lab-ah.igk.intel.com ([10.102.42.211])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:36:31 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 14:36:24 +0100
-Message-Id: <20230308133624.2131582-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <ZAiKuulQBp0569s/@intel.com>
-References: <ZAiKuulQBp0569s/@intel.com>
-MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: prevent forcewake releases
- during BAR resize
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA9010E0CA;
+ Wed,  8 Mar 2023 14:13:30 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id i34so66282222eda.7;
+ Wed, 08 Mar 2023 06:13:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678284809;
+ h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fYJgnl+7Us7KVNz74ou1/RTlLrV9+lTS5g77LiBuQ3c=;
+ b=V9sCNW+1YZWFT2DWSHIkc5h4/h1AyHtAH0y4hmTxYqQa7bxZKtkozguy7/MR2R/ynu
+ LtD7g6IMp4PRRj11DohjjcRDf+l4vp6Cabl8oX78gtNRyrX0pzKO6lT8DE1lvfKhRaA9
+ nXBy3yNr9k5TFRN3qfuee4BgcYdd5RaJKqQS1oE0OrV1+mfdYN6LILVuQhOKrTWVjpgJ
+ sOld3AdWulIj7Fa9D9WL3tZs4GfJnfKA+H+Ge3C7gSBTrHFiRmCy24gOJcCzz5caRY9V
+ 8YWS/0tw24asfyeqkuKAcdzkvqjlHC0rROblChFfjD4vPyrkz0jd7aXBEHG/1s5N0KCP
+ BKEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678284809;
+ h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fYJgnl+7Us7KVNz74ou1/RTlLrV9+lTS5g77LiBuQ3c=;
+ b=VV9u13OfOMKqEINqNJhD2xLlWmFKYqqGa9JD/F2gIDmSHFbr9unjJCyKQU04XCOKTX
+ hzS07XxdrgWz+tRI+l7Opytq6EI/UVkfG5xOM2lHQutFOwIRg25XNQZpMsguGpNCfQKV
+ S7jyjcMYC3oO9Dpz2d3cdxutzhyM9EhuE/3CPhJ4Cztuifaow0tEqeL3AxK8KrYrmnZl
+ eN+MVn3g85CbBgODUZnkIigmSBr8bUnIktzzv/igwrb24NXdLOstQyXw5JfC11nnkO2U
+ fXpLYvOv9sD2Msf3Xkq+HgikZDupOTgw4ZFcKKN3wRJup0yqRVYgY0uscmnaXGRN83Ba
+ 8/Ig==
+X-Gm-Message-State: AO0yUKV5gUHlsJA6eLB9iKDzA5Oore99dOhtqXrWgYbeH5r/UtDKOj88
+ WZ8OKloHlKdi1vo/9p8vqH0MsVMT6xl2Fg==
+X-Google-Smtp-Source: AK7set9KCSNRGEm9sChY9O0wotWq3iIMBNWylAEhP+Ubz3oleChgvVargNdNb4crfUiCIX8/U+bswg==
+X-Received: by 2002:a17:906:fa82:b0:8ea:a647:a5aa with SMTP id
+ lt2-20020a170906fa8200b008eaa647a5aamr23318599ejb.38.1678284808714; 
+ Wed, 08 Mar 2023 06:13:28 -0800 (PST)
+Received: from felia.fritz.box ([2a02:810d:2a40:1104:c4be:f7db:77fd:b9e5])
+ by smtp.gmail.com with ESMTPSA id
+ h7-20020a50cdc7000000b004bc15a440f1sm8283607edj.78.2023.03.08.06.13.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Mar 2023 06:13:28 -0800 (PST)
+From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Todd E Brandt <todd.e.brandt@linux.intel.com>, linux-pm@vger.kernel.org
+Date: Wed,  8 Mar 2023 15:13:22 +0100
+Message-Id: <20230308141322.25201-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] MAINTAINERS: update the 01.org website entries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,74 +75,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- chris.p.wilson@linux.intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tests on DG2 machines show that releasing forcewakes during BAR resize
-results later in forcewake ack timeouts. Since forcewakes can be realeased
-asynchronously the simplest way to prevent it is to get all forcewakes
-for duration of BAR resizing.
+The 01.org links in MAINTAINERS now forward to different other pages or do
+not resolve.
 
-v2: hold rpm as well during resizing (Rodrigo)
+The link https://01.org/linuxgraphics/ resolves to the Intel Graphics for
+Linux - Programmer's Reference Manuals. Update this webpage entry.
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+The link
+https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
+does not resolve. Remove this webpage entry.
+
+The link https://01.org/igvt-g resolves to
+https://github.com/intel/gvt-linux. Remove the webpage entry, as the
+github repository is already referred to by the T: entry in that section.
+
+The link resolves the pm-graph project page in Intel's Open Ecosystem area
+at intel.com. Update this webpage entry.
+
+M:      "Todd E Brandt" <todd.e.brandt@linux.intel.com>
+L:      linux-pm@vger.kernel.org
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
-Please ignore resend of v1, my mistake.
+ MAINTAINERS | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 25 +++++++++++++++------
- 1 file changed, 18 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 89fdfc67f8d1e0..2a3217e2890fc7 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -54,6 +54,7 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
- 	struct resource *root_res;
- 	resource_size_t rebar_size;
- 	resource_size_t current_size;
-+	intel_wakeref_t wakeref;
- 	u32 pci_cmd;
- 	int i;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1333928a7be4..99adcd74b06a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6747,7 +6747,6 @@ M:	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+ M:	Maxime Ripard <mripard@kernel.org>
+ M:	Thomas Zimmermann <tzimmermann@suse.de>
+ S:	Maintained
+-W:	https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ F:	Documentation/gpu/
+ F:	drivers/gpu/drm/*
+@@ -10250,7 +10249,7 @@ M:	Rodrigo Vivi <rodrigo.vivi@intel.com>
+ M:	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+ L:	intel-gfx@lists.freedesktop.org
+ S:	Supported
+-W:	https://01.org/linuxgraphics/
++W:	https://www.intel.com/content/www/us/en/develop/documentation/intel-graphics-for-linux-programmers-reference-guide/top.html
+ Q:	http://patchwork.freedesktop.org/project/intel-gfx/
+ B:	https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+ C:	irc://irc.oftc.net/intel-gfx
+@@ -10312,7 +10311,6 @@ M:	Zhi Wang <zhi.a.wang@intel.com>
+ L:	intel-gvt-dev@lists.freedesktop.org
+ L:	intel-gfx@lists.freedesktop.org
+ S:	Supported
+-W:	https://01.org/igvt-g
+ T:	git https://github.com/intel/gvt-linux.git
+ F:	drivers/gpu/drm/i915/gvt/
  
-@@ -102,15 +103,25 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
- 		return;
- 	}
- 
--	/* First disable PCI memory decoding references */
--	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
--	pci_write_config_dword(pdev, PCI_COMMAND,
--			       pci_cmd & ~PCI_COMMAND_MEMORY);
-+	/*
-+	 * Releasing forcewake during BAR resizing results in later forcewake
-+	 * ack timeouts and former can happen any time - it is asynchronous.
-+	 * Grabbing all forcewakes prevents it.
-+	 */
-+	with_intel_runtime_pm(i915->uncore.rpm, wakeref) {
-+		intel_uncore_forcewake_get(&i915->uncore, FORCEWAKE_ALL);
- 
--	_resize_bar(i915, GEN12_LMEM_BAR, rebar_size);
-+		/* First disable PCI memory decoding references */
-+		pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
-+		pci_write_config_dword(pdev, PCI_COMMAND,
-+				       pci_cmd & ~PCI_COMMAND_MEMORY);
- 
--	pci_assign_unassigned_bus_resources(pdev->bus);
--	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
-+		_resize_bar(i915, GEN12_LMEM_BAR, rebar_size);
-+
-+		pci_assign_unassigned_bus_resources(pdev->bus);
-+		pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
-+		intel_uncore_forcewake_put(&i915->uncore, FORCEWAKE_ALL);
-+	}
- }
- #else
- static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t lmem_size) {}
+@@ -16668,7 +16666,7 @@ PM-GRAPH UTILITY
+ M:	"Todd E Brandt" <todd.e.brandt@linux.intel.com>
+ L:	linux-pm@vger.kernel.org
+ S:	Supported
+-W:	https://01.org/pm-graph
++W:	https://www.intel.com/content/www/us/en/developer/topic-technology/open/pm-graph/overview.html
+ B:	https://bugzilla.kernel.org/buglist.cgi?component=pm-graph&product=Tools
+ T:	git git://github.com/intel/pm-graph
+ F:	tools/power/pm-graph
 -- 
-2.34.1
+2.17.1
 
