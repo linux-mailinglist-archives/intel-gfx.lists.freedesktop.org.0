@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D246B167E
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 00:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76FBC6B16B8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 00:39:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A70D010E75A;
-	Wed,  8 Mar 2023 23:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C56E310E75D;
+	Wed,  8 Mar 2023 23:39:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD3610E75A;
- Wed,  8 Mar 2023 23:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678318002; x=1709854002;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8rM4PkkqkuOyk+npwJMLFoGxt+MQmeGmfcAenhHlzDY=;
- b=LACgnnQOUsjrnrYchbTB/Y369ctQ4nxYPn30X3I4F4wzxdqCYX2bEgRc
- /Dr43DPhWoD6PeGeXHalaX9TjXDvrhjdKBizPeObbTosOmfNZhgUYE7pY
- 2eZarz/FWiPuGxtG9nR12QOE7FRnu0DjVkvb2DpgqRYXE4DmlBty4w++x
- rlM2haFe4c2rVWOwEaxlWaNCj227GJu1PFtLE1KI886A2Fjzevan3llCw
- qy2KLEro+cytgpYYmRRsIPCgai+mWNxFgxKl5iZALQNd0BHlVMrT5spMq
- 1D87FNKRPLRnMmiRici5qOf4m+qzvP4EJ05IH/zrvnWd6d+6JMKOsWpc4 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="320131760"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="320131760"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 15:26:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="654529155"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="654529155"
-Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 15:26:41 -0800
-From: fei.yang@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 15:28:26 -0800
-Message-Id: <20230308232826.1542846-1-fei.yang@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0921F10E75D;
+ Wed,  8 Mar 2023 23:39:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F315CA03D2;
+ Wed,  8 Mar 2023 23:39:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0302737234010372782=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: keep same cache settings as
- timeline
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 08 Mar 2023 23:39:51 -0000
+Message-ID: <167831879196.20407.110416948128205761@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230301162449.26672-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230301162449.26672-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_vblank_stuff_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,84 +40,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+--===============0302737234010372782==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On MTL, objects allocated through i915_gem_object_create_internal() are
-mapped as uncached in GPU by default because HAS_LLC is false. However
-in the live_hwsp_read selftest these watcher objects are mapped as WB
-on CPU side. The conseqence is that the updates done by the GPU are not
-immediately visible to CPU, thus the selftest is randomly failing due to
-the stale data in CPU cache. Solution can be either setting WC for CPU +
-UC for GPU, or WB for CPU + 1-way coherent WB for GPU.
-To keep the consistency, let's simply inherit the same cache settings
-from the timeline, which is WB for CPU + 1-way coherent WB for GPU,
-because this test is supposed to emulate the behavior of the timeline
-anyway.
+== Series Details ==
 
-v2: copy cache settings from timeline instead of setting it to WC
-    (Suggested by Chris)
+Series: drm/i915: vblank stuff (rev6)
+URL   : https://patchwork.freedesktop.org/series/112170/
+State : success
 
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Reviewed-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-Acked-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Acked-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_timeline.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-index 522d0190509c..631aaed9bc3d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-@@ -825,7 +825,8 @@ static bool cmp_gte(u32 a, u32 b)
- 	return a >= b;
- }
- 
--static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt)
-+static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt,
-+			 struct intel_timeline *tl)
- {
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
-@@ -834,7 +835,10 @@ static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt)
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
- 
--	w->map = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
-+	/* keep the same cache settings as timeline */
-+	i915_gem_object_set_cache_coherency(obj, tl->hwsp_ggtt->obj->cache_level);
-+	w->map = i915_gem_object_pin_map_unlocked(obj,
-+			page_unmask_bits(tl->hwsp_ggtt->obj->mm.mapping));
- 	if (IS_ERR(w->map)) {
- 		i915_gem_object_put(obj);
- 		return PTR_ERR(w->map);
-@@ -1004,8 +1008,10 @@ static int live_hwsp_read(void *arg)
- 	if (!tl->has_initial_breadcrumb)
- 		goto out_free;
- 
-+	selftest_tl_pin(tl);
-+
- 	for (i = 0; i < ARRAY_SIZE(watcher); i++) {
--		err = setup_watcher(&watcher[i], gt);
-+		err = setup_watcher(&watcher[i], gt, tl);
- 		if (err)
- 			goto out;
- 	}
-@@ -1160,6 +1166,8 @@ static int live_hwsp_read(void *arg)
- 	for (i = 0; i < ARRAY_SIZE(watcher); i++)
- 		cleanup_watcher(&watcher[i]);
- 
-+	intel_timeline_unpin(tl);
-+
- 	if (igt_flush_test(gt->i915))
- 		err = -EIO;
- 
--- 
-2.25.1
+CI Bug Log - changes from CI_DRM_12829 -> Patchwork_112170v6
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/index.html
+
+Participating hosts (36 -> 33)
+------------------------------
+
+  Missing    (3): fi-kbl-soraka bat-dg2-9 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112170v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-rplp-1:         [PASS][1] -> [ABORT][2] ([i915#7913])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rplp-1/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rplp-1/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-rpls-1:         NOTRUN -> [SKIP][3] ([i915#7828])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-rpls-1:         NOTRUN -> [SKIP][4] ([i915#1845])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - bat-rpls-1:         [ABORT][5] ([i915#6687] / [i915#7978]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12829 -> Patchwork_112170v6
+
+  CI-20190529: 20190529
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112170v6: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+801e5f358f97 drm/i915: Reject wm levels that exceed vblank time
+9a6990c9f06c drm/i915: Extract skl_wm_latency()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/index.html
+
+--===============0302737234010372782==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: vblank stuff (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112170/">https://patchwork.freedesktop.org/series/112170/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12829 -&gt; Patchwork_112170v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/index.html</p>
+<h2>Participating hosts (36 -&gt; 33)</h2>
+<p>Missing    (3): fi-kbl-soraka bat-dg2-9 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112170v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rplp-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rplp-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112170v6/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12829 -&gt; Patchwork_112170v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112170v6: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>801e5f358f97 drm/i915: Reject wm levels that exceed vblank time<br />
+9a6990c9f06c drm/i915: Extract skl_wm_latency()</p>
+
+</body>
+</html>
+
+--===============0302737234010372782==--
