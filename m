@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF5606B0945
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 14:34:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5AB56B095C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Mar 2023 14:36:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A99410E5DB;
-	Wed,  8 Mar 2023 13:34:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63AE610E5DC;
+	Wed,  8 Mar 2023 13:36:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88FDF10E5D3
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 13:34:26 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9C1D10E5D3;
+ Wed,  8 Mar 2023 13:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678282466; x=1709818466;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=128pKHju1glcK2Y4aZZFsdU96kC+W/FZzjPR30K+2eg=;
- b=aV8sshRKkcaalNlqI0V2QFPz/fLf5/EIKPp5L+nwTskgBlsD4cAbR6Bg
- JCg2R9+D1xSVvV2wXjxMIXXligbk0tqE5XvdOoSnOzaDLIHqGCx3Aa/qS
- 0E215yJMZxeBmJNpta7WXrXrq7J0g6joQMH4dfidGPadsmEN8Kr/ZHqgO
- /UIbKCC3bwhlUsw//SQUlu3sRrCziUvO84nGvQTkQ1iLv9my0ACzhUS9e
- IYIYfpSzBOPzQ5EKqMB5opIOLt1InyxROBwI5HuxtAYBvE0qjHuZwCpgZ
- 77d7VTQV7e/i5fAKhEOqxMjI7WN9LW5pAImvAAMHdM/5+acoiXEf2wPxw g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="363787820"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="363787820"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:34:25 -0800
+ t=1678282577; x=1709818577;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=izdQtxLQhq9XnXZ+9Uo0yoXy9vdc+dnM990cd/pSZsQ=;
+ b=itkqLgcGpnIiru4PV5NLANBj+q8RF2b56X9C/EqHvpS7G1H5PgUfNb9f
+ Z0GJG8miESTI8i/4OFsvtj9uzuIje1/iylsSfGNRfzOktEtjTXa5khpdP
+ itSTUei/eCD3R6IDV4wX4h/67n5x2baKVA7iIUYG+K3cIcgLZrpg3OIGY
+ c4rL8TDJXyE3iC0b1FNiG9E9IhUlGBR1cBiaXtTGp6ojj6K3eC8N4yJ13
+ BM0vd4pzQhnHCaz4Hccs38THnApuM979ll4NvSmOBrWVb/ZFMhA3j7IuG
+ SDvCADgy/OwIQ0Y2MA/XklXGBWgWTFc87Bjye0znurci+7FrVcmHqYEJk g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="422420824"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="422420824"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 05:36:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="670336609"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="670336609"
-Received: from lab-ah.igk.intel.com ([10.102.42.211])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:34:21 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 14:34:09 +0100
-Message-Id: <20230308133409.2127638-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <ZAiKuulQBp0569s/@intel.com>
-References: <ZAiKuulQBp0569s/@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="787123324"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="787123324"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga002.fm.intel.com with SMTP; 08 Mar 2023 05:36:14 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Mar 2023 15:36:13 +0200
+Date: Wed, 8 Mar 2023 15:36:13 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <ZAiPTaBhfhddI+DU@intel.com>
+References: <20230306141638.196359-1-maarten.lankhorst@linux.intel.com>
+ <edae44735190c4d5fbbe8959f999ad7ca65f3677.camel@intel.com>
+ <073f5ef3-523a-2997-c7e9-771cce8f4c24@linux.intel.com>
+ <ZAZT6jJlsiTF1A5a@intel.com>
+ <fc1c5bf4-8174-50e4-5109-cbf73aafe771@linux.intel.com>
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: prevent forcewake releases during
- BAR resize
+In-Reply-To: <fc1c5bf4-8174-50e4-5109-cbf73aafe771@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH] drm/xe/display: Do not use i915
+ frontbuffer tracking implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +65,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- chris.p.wilson@linux.intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tests on DG2 machines show that releasing forcewakes during BAR resize
-results later in forcewake ack timeouts. Since forcewakes can be realeased
-asynchronously the simplest way to prevent it is to get all forcewakes
-for duration of BAR resizing.
+On Wed, Mar 08, 2023 at 01:47:12PM +0100, Maarten Lankhorst wrote:
+> 
+> On 2023-03-06 21:58, Ville Syrjälä wrote:
+> > On Mon, Mar 06, 2023 at 09:23:50PM +0100, Maarten Lankhorst wrote:
+> >> Hey,
+> >>
+> >> On 2023-03-06 16:23, Souza, Jose wrote:
+> >>> On Mon, 2023-03-06 at 15:16 +0100, Maarten Lankhorst wrote:
+> >>>> As a fallback if we decide not to merge the frontbuffer tracking, allow
+> >>>> i915 to keep its own implementation, and do the right thing in Xe.
+> >>>>
+> >>>> The frontbuffer tracking for Xe is still done per-fb, while i915 can
+> >>>> keep doing the weird intel_frontbuffer + i915_active thing without
+> >>>> blocking Xe.
+> >>> Please also disable PSR and FBC with this or at least add a way for users to disable those features.
+> >>> Without frontbuffer tracker those two features will break in some cases.
+> >> FBC and PSR work completely as expected. I don't remove frontbuffer
+> >> tracking; I only remove the GEM parts.
+> >>
+> >> Explicit invalidation using pageflip or CPU rendering + DirtyFB continue
+> >> to work, as I validated on my laptop with FBC.
+> > Neither of which are relevant to the removal of the gem hooks.
+> >
+> > Like I already said ~10 times in the last meeting, we need a proper
+> > testcase. Here's a rough idea what it should do:
+> >
+> > prepare a batch with
+> > 1. spinner
+> > 2. something that clobbers the fb
+> >
+> > Then
+> > 1. grab reference crc
+> > 2. execbuffer
+> > 3. dirtyfb
+> > 4. wait long enough for fbc to recompress
+> > 5. terminate spinner
+> > 6. gem_sync
+> > 7. grab crc and compare with reference
+> >
+> > No idea what the current status of PSR+CRC is, so not sure
+> > whether we can actually test PSR or not.
+> 
+> This test doesn't make sense. DirtyFB should simply not return before 
+> execbuffer finishes.
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Of course it should. It's not a blocking ioctl, and can't
+be because that will make X unusable.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 89fdfc67f8d1e0..5a01dc6ca08324 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -54,6 +54,7 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
- 	struct resource *root_res;
- 	resource_size_t rebar_size;
- 	resource_size_t current_size;
-+	intel_wakeref_t wakeref;
- 	u32 pci_cmd;
- 	int i;
- 
-@@ -102,6 +103,14 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
- 		return;
- 	}
- 
-+	/*
-+	 * Releasing forcewake during BAR resizing results in later forcewake
-+	 * ack timeouts and former can happen any time - it is asynchronous.
-+	 * Grabbing all forcewakes prevents it.
-+	 */
-+	with_intel_runtime_pm(i915->uncore.rpm, wakeref)
-+		intel_uncore_forcewake_get(&i915->uncore, FORCEWAKE_ALL);
-+
- 	/* First disable PCI memory decoding references */
- 	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
- 	pci_write_config_dword(pdev, PCI_COMMAND,
-@@ -111,6 +120,9 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
- 
- 	pci_assign_unassigned_bus_resources(pdev->bus);
- 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
-+
-+	with_intel_runtime_pm(i915->uncore.rpm, wakeref)
-+		intel_uncore_forcewake_put(&i915->uncore, FORCEWAKE_ALL);
- }
- #else
- static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t lmem_size) {}
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
