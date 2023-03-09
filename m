@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4673E6B1AEB
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 06:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 994896B1B7A
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 07:29:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB5510E78C;
-	Thu,  9 Mar 2023 05:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C62710E79A;
+	Thu,  9 Mar 2023 06:29:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F355310E78C;
- Thu,  9 Mar 2023 05:42:41 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 714CD10E799;
+ Thu,  9 Mar 2023 06:29:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678340562; x=1709876562;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=uCAzubwyGzB49kfOfD/iqib1FthJTGQPSb2PAavTWeQ=;
- b=BhNgzPwwCcm9uh/gbE0EG4q/jagiFH1jjyp6Zt2KfoW3qqkZyjm+Ki1b
- habNOAsmx737AkRF0pP8tZCvISV0Bh7+TfNdoiTVm0eLPyqTWFj3erhVK
- HOe4noP6McunlmZ+bPOyneHoJ+hK0SOAFc6xcmIdgmm5qfWsJMeiR59dp
- RdQlyvfx2Y0/8cg8d91TpZ+GKnEVZY3Oxt/Vdp7tOumcM2HPNRc5Ja/UE
- X4dXLkJxFVxzuCFwTcLBMLSqg0/v6AhokrbNFrTmsLkWgNlN5nuURsB37
- 2kes2nVsvXmWoS3iYCYXe3ezi0AZ/FQbSgLjT0G/RtlZrmsrp32JwYXRD A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="338695607"
-X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; 
- d="asc'?scan'208";a="338695607"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 21:42:40 -0800
+ t=1678343388; x=1709879388;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N3/FXjxPSkuVUGxirAgj9t82jbGzuRAha8eOGocvIWc=;
+ b=Ql6T3FhrtDuzVz79bZkDxuQGlZ+ubLorwkl47FUBBg+Ap38soUsQFmzZ
+ CG3gRIE3ReNDccpGiIJUgwDo4v9Tu2M+nEn1tSsauPP66A2o3PuxALejl
+ 39PtW93aDESlSa0k//4wHt9gqCvJNY3aIsTF1g3siTAn5AjwRzt5gtm3V
+ lC+BLqf39brPBg4OFnpM3ghtUc6wGBbO4dKLnq2bNTUsqiNxyk602QUwZ
+ RZLTUb2Ar8sBfmBWgZIXMw7TXKdpE9JZuJwzhWIU9zlje0SOtAmyzkqO4
+ 1RQLLMDw2xSB9EIzBNuErpA0BfOo192eqY/96k71wJQT6KAN4mG/Zyuq0 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335070000"
+X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; d="scan'208";a="335070000"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 22:29:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="801047130"
-X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; 
- d="asc'?scan'208";a="801047130"
-Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.159.40])
- by orsmga004.jf.intel.com with ESMTP; 08 Mar 2023 21:42:37 -0800
-Date: Thu, 9 Mar 2023 13:41:21 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Cai Huoqing <cai.huoqing@linux.dev>
-Message-ID: <ZAlxge8ENvruScGf@debian-scheme>
-References: <20230303140718.25355-1-cai.huoqing@linux.dev>
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="1006614849"
+X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; d="scan'208";a="1006614849"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga005.fm.intel.com with ESMTP; 08 Mar 2023 22:29:46 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Mar 2023 11:58:48 +0530
+Message-Id: <20230309062855.393087-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="duxpWjsI3Cucd3ft"
-Content-Disposition: inline
-In-Reply-To: <20230303140718.25355-1-cai.huoqing@linux.dev>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gvt: Make use of idr_find and
- idr_for_each_entry in dmabuf
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/7] Enable YCbCr420 format for VDSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,230 +55,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series aims to enable the YCbCr420 format
+for DSC. Changes are mostly compute params related for
+hdmi,dp and dsi along with the addition of new rc_tables
+for native_420 and corresponding changes to macros used to
+fetch them.
+There have been discussions prior to this series in which some patches
+have gotten rb and can be found in the below link
+https://patchwork.freedesktop.org/series/113729
 
---duxpWjsI3Cucd3ft
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ankit Nautiyal (2):
+  drm/dp_helper: Add helper to check DSC support with given o/p format
+  drm/i915/dp: Check if DSC supports the given output_format
 
-On 2023.03.03 22:07:18 +0800, Cai Huoqing wrote:
-> This patch uses the already existing IDR mechanism to simplify
-> and improve the dmabuf code.
->=20
-> Using 'vgpu.object_idr' directly instead of 'dmabuf_obj_list_head'
-> or 'dmabuf.list', because the dmabuf_obj can be found by 'idr_find'
-> or 'idr_for_each_entry'.
->=20
-> Signed-off-by: Cai Huoqing <cai.huoqing@linux.dev>
-> ---
-> v1->v2:
-> 	1.Use idr_find to get the target one and free it instead of free all dma=
- objs.
-> 	2.Revert the original code 'ret' related
-> 	3.Add '&& !idr_is_empty()' like the original code '&& !list_empty()'
+Suraj Kandpal (4):
+  drm/i915/dsc: Adding the new registers for DSC
+  drm/i915/dsc: Enable YCbCr420 for VDSC
+  drm/i915/dsc: Fill in native_420 field
+  drm/i915/vdsc: Check slice design requirement
 
-Looks good to me. I'll send it for some regression test before upstream.
+Swati Sharma (1):
+  drm/i915/dsc: Add debugfs entry to validate DSC output formats
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 -
+ .../drm/i915/display/intel_crtc_state_dump.c  |   4 +-
+ .../drm/i915/display/intel_crtc_state_dump.h  |   2 +
+ .../drm/i915/display/intel_display_debugfs.c  |  78 ++++++++
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  48 ++++-
+ .../gpu/drm/i915/display/intel_qp_tables.c    | 187 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_qp_tables.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 132 +++++++++++--
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  28 +++
+ include/drm/display/drm_dp_helper.h           |  13 ++
+ 11 files changed, 467 insertions(+), 32 deletions(-)
 
-Thanks!
+-- 
+2.25.1
 
->=20
-> v1 link:
-> 	https://lore.kernel.org/lkml/20230302115318.79487-1-cai.huoqing@linux.de=
-v/
->=20
->  drivers/gpu/drm/i915/gvt/dmabuf.c | 58 +++++++------------------------
->  drivers/gpu/drm/i915/gvt/dmabuf.h |  1 -
->  drivers/gpu/drm/i915/gvt/gvt.h    |  1 -
->  drivers/gpu/drm/i915/gvt/vgpu.c   |  1 -
->  4 files changed, 12 insertions(+), 49 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt=
-/dmabuf.c
-> index 6834f9fe40cf..cf619b1ed3ad 100644
-> --- a/drivers/gpu/drm/i915/gvt/dmabuf.c
-> +++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
-> @@ -133,21 +133,15 @@ static void dmabuf_gem_object_free(struct kref *kre=
-f)
->  	struct intel_vgpu_dmabuf_obj *obj =3D
->  		container_of(kref, struct intel_vgpu_dmabuf_obj, kref);
->  	struct intel_vgpu *vgpu =3D obj->vgpu;
-> -	struct list_head *pos;
->  	struct intel_vgpu_dmabuf_obj *dmabuf_obj;
-> =20
->  	if (vgpu && test_bit(INTEL_VGPU_STATUS_ACTIVE, vgpu->status) &&
-> -	    !list_empty(&vgpu->dmabuf_obj_list_head)) {
-> -		list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
-> -			dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-> -			if (dmabuf_obj =3D=3D obj) {
-> -				list_del(pos);
-> -				idr_remove(&vgpu->object_idr,
-> -					   dmabuf_obj->dmabuf_id);
-> -				kfree(dmabuf_obj->info);
-> -				kfree(dmabuf_obj);
-> -				break;
-> -			}
-> +	    !idr_is_empty(&vgpu->object_idr)) {
-> +		dmabuf_obj =3D idr_find(&vgpu->object_idr, obj->dmabuf_id);
-> +		if (dmabuf_obj) {
-> +			idr_remove(&vgpu->object_idr, obj->dmabuf_id);
-> +			kfree(dmabuf_obj->info);
-> +			kfree(dmabuf_obj);
->  		}
->  	} else {
->  		/* Free the orphan dmabuf_objs here */
-> @@ -340,13 +334,12 @@ static struct intel_vgpu_dmabuf_obj *
->  pick_dmabuf_by_info(struct intel_vgpu *vgpu,
->  		    struct intel_vgpu_fb_info *latest_info)
->  {
-> -	struct list_head *pos;
->  	struct intel_vgpu_fb_info *fb_info;
->  	struct intel_vgpu_dmabuf_obj *dmabuf_obj =3D NULL;
->  	struct intel_vgpu_dmabuf_obj *ret =3D NULL;
-> +	int id;
-> =20
-> -	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
-> -		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-> +	idr_for_each_entry(&vgpu->object_idr, dmabuf_obj, id) {
->  		if (!dmabuf_obj->info)
->  			continue;
-> =20
-> @@ -366,24 +359,6 @@ pick_dmabuf_by_info(struct intel_vgpu *vgpu,
->  	return ret;
->  }
-> =20
-> -static struct intel_vgpu_dmabuf_obj *
-> -pick_dmabuf_by_num(struct intel_vgpu *vgpu, u32 id)
-> -{
-> -	struct list_head *pos;
-> -	struct intel_vgpu_dmabuf_obj *dmabuf_obj =3D NULL;
-> -	struct intel_vgpu_dmabuf_obj *ret =3D NULL;
-> -
-> -	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
-> -		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-> -		if (dmabuf_obj->dmabuf_id =3D=3D id) {
-> -			ret =3D dmabuf_obj;
-> -			break;
-> -		}
-> -	}
-> -
-> -	return ret;
-> -}
-> -
->  static void update_fb_info(struct vfio_device_gfx_plane_info *gvt_dmabuf,
->  		      struct intel_vgpu_fb_info *fb_info)
->  {
-> @@ -477,11 +452,6 @@ int intel_vgpu_query_plane(struct intel_vgpu *vgpu, =
-void *args)
-> =20
->  	update_fb_info(gfx_plane_info, &fb_info);
-> =20
-> -	INIT_LIST_HEAD(&dmabuf_obj->list);
-> -	mutex_lock(&vgpu->dmabuf_lock);
-> -	list_add_tail(&dmabuf_obj->list, &vgpu->dmabuf_obj_list_head);
-> -	mutex_unlock(&vgpu->dmabuf_lock);
-> -
->  	gvt_dbg_dpy("vgpu%d: %s new dmabuf_obj ref %d, id %d\n", vgpu->id,
->  		    __func__, kref_read(&dmabuf_obj->kref), ret);
-> =20
-> @@ -508,7 +478,7 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, un=
-signed int dmabuf_id)
-> =20
->  	mutex_lock(&vgpu->dmabuf_lock);
-> =20
-> -	dmabuf_obj =3D pick_dmabuf_by_num(vgpu, dmabuf_id);
-> +	dmabuf_obj =3D idr_find(&vgpu->object_idr, dmabuf_id);
->  	if (dmabuf_obj =3D=3D NULL) {
->  		gvt_vgpu_err("invalid dmabuf id:%d\n", dmabuf_id);
->  		ret =3D -EINVAL;
-> @@ -570,23 +540,19 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, =
-unsigned int dmabuf_id)
-> =20
->  void intel_vgpu_dmabuf_cleanup(struct intel_vgpu *vgpu)
->  {
-> -	struct list_head *pos, *n;
->  	struct intel_vgpu_dmabuf_obj *dmabuf_obj;
-> +	int id;
-> =20
->  	mutex_lock(&vgpu->dmabuf_lock);
-> -	list_for_each_safe(pos, n, &vgpu->dmabuf_obj_list_head) {
-> -		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-> +	idr_for_each_entry(&vgpu->object_idr, dmabuf_obj, id) {
->  		dmabuf_obj->vgpu =3D NULL;
-> =20
-> -		idr_remove(&vgpu->object_idr, dmabuf_obj->dmabuf_id);
-> -		list_del(pos);
-> -
-> +		idr_remove(&vgpu->object_idr, id);
->  		/* dmabuf_obj might be freed in dmabuf_obj_put */
->  		if (dmabuf_obj->initref) {
->  			dmabuf_obj->initref =3D false;
->  			dmabuf_obj_put(dmabuf_obj);
->  		}
-> -
->  	}
->  	mutex_unlock(&vgpu->dmabuf_lock);
->  }
-> diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.h b/drivers/gpu/drm/i915/gvt=
-/dmabuf.h
-> index 3dcdb6570eda..93c0e00bdab9 100644
-> --- a/drivers/gpu/drm/i915/gvt/dmabuf.h
-> +++ b/drivers/gpu/drm/i915/gvt/dmabuf.h
-> @@ -57,7 +57,6 @@ struct intel_vgpu_dmabuf_obj {
->  	__u32 dmabuf_id;
->  	struct kref kref;
->  	bool initref;
-> -	struct list_head list;
->  };
-> =20
->  int intel_vgpu_query_plane(struct intel_vgpu *vgpu, void *args);
-> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gv=
-t.h
-> index 2d65800d8e93..1100c789f207 100644
-> --- a/drivers/gpu/drm/i915/gvt/gvt.h
-> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
-> @@ -211,7 +211,6 @@ struct intel_vgpu {
-> =20
->  	struct dentry *debugfs;
-> =20
-> -	struct list_head dmabuf_obj_list_head;
->  	struct mutex dmabuf_lock;
->  	struct idr object_idr;
->  	struct intel_vgpu_vblank_timer vblank_timer;
-> diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/v=
-gpu.c
-> index 08ad1bd651f1..0a511cfef067 100644
-> --- a/drivers/gpu/drm/i915/gvt/vgpu.c
-> +++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-> @@ -329,7 +329,6 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
->  	vgpu->sched_ctl.weight =3D conf->weight;
->  	mutex_init(&vgpu->vgpu_lock);
->  	mutex_init(&vgpu->dmabuf_lock);
-> -	INIT_LIST_HEAD(&vgpu->dmabuf_obj_list_head);
->  	INIT_RADIX_TREE(&vgpu->page_track_tree, GFP_KERNEL);
->  	idr_init_base(&vgpu->object_idr, 1);
->  	intel_vgpu_init_cfg_space(vgpu, 1);
-> --=20
-> 2.34.1
->=20
-
---duxpWjsI3Cucd3ft
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCZAlxfAAKCRCxBBozTXgY
-J3ejAJ0QUaHuKKpb39kOTgKluWoSr+TGBQCeNkphZrUv4D9Ai64H2SOGGeLhUrU=
-=9Zt+
------END PGP SIGNATURE-----
-
---duxpWjsI3Cucd3ft--
