@@ -1,59 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E756B2439
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 13:34:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBDB6B2444
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 13:37:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4504C10E802;
-	Thu,  9 Mar 2023 12:34:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60CBA10E803;
+	Thu,  9 Mar 2023 12:37:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C3710E7FF;
- Thu,  9 Mar 2023 12:34:33 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2CA410E803;
+ Thu,  9 Mar 2023 12:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678365273; x=1709901273;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1fJVDXEkwaMvtK85ONFUTT0TBGpr/t89w4ePePPKumw=;
- b=CX3/7NakYlGRBajcZL6B53RO8xOFMh+tzM0S2CzXakPyy7hQH+8OWwZh
- Omr3ovM/3MoOV/Q5GgNkoPA+IFXWXMxqPA2NeuX8aUDHPoLl/hjAOFLaq
- 2v7P07l5q3A5V5CZ2JaAfrWQ/cvCvVgKAZNqhJxZhyWaIPqQ33Sy/CPc+
- eXO/04/ehUuE/5xEqUnBHLDQVI2tFSTig9tzNj7wxv9SgbQgG5pLiZcRt
- Gb7OQjXkG4kj8oO8fYFiqpYfENFSVzgsrCpRi60k6V6R2qyjLi8bPhN2X
- wpkAbskXSibvLF8+GHkdK9X3qd5NzVOO0dAC9Xdow7jQov2FcncJNeFiE g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335136696"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="335136696"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 04:34:32 -0800
+ t=1678365432; x=1709901432;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qf4gGbBgEWYLHMsS08dUOswllQy4Bf3y4ma74KucVlM=;
+ b=YyIxBvmF6i98rfclRaUcHWhSbMsWKA3mG/MyXB83MFDTSZEdmb6v5qdH
+ H2mJjdRvAEtyyh3hVGzJhUIRx9rTPQvZOCeTzBS2S8uL4w8bJoN9TFcPq
+ 1nQ+rMfevHz0cFuIE5i2hVcmtub9b64o//Mg+hi5VBUu8HcTxz3ZXSgn7
+ qYVhQVd5rY7kUoHCJounBeCzyfZBm4vDLTA0DnPN/VMcjVo+7rYlXFE+a
+ 2orm464VJchsBwsLSDtaB9uPTOqwfzRtg27Y4pvuNOJAA+qYtd1SFmefL
+ Fqm93TmG3ptGUKUZqWzVSSgTB06VAS+cwOt1nxW7BwaxWdRZc6VYi1vzy Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="333904598"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="333904598"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 04:37:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="820588773"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="820588773"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga001.fm.intel.com with SMTP; 09 Mar 2023 04:34:29 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Mar 2023 14:34:28 +0200
-Date: Thu, 9 Mar 2023 14:34:28 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZAnSVOrUThPUSBes@intel.com>
-References: <20230306141638.196359-1-maarten.lankhorst@linux.intel.com>
- <edae44735190c4d5fbbe8959f999ad7ca65f3677.camel@intel.com>
- <073f5ef3-523a-2997-c7e9-771cce8f4c24@linux.intel.com>
- <ZAZT6jJlsiTF1A5a@intel.com>
- <3dc66e2540e3dcf8c626d8fe79c6334b1f1066e9.camel@intel.com>
- <34de1995-7c27-c548-fbd0-00de11b5b346@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="741549771"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="741549771"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.145])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 04:37:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu,  9 Mar 2023 14:37:00 +0200
+Message-Id: <20230309123700.528641-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <34de1995-7c27-c548-fbd0-00de11b5b346@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH] drm/xe/display: Do not use i915
- frontbuffer tracking implementation
+Subject: [Intel-gfx] [PATCH] drm/ttm: let struct ttm_device_funcs be placed
+ in rodata
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,87 +57,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ Huang Rui <ray.huang@amd.com>, Christian Koenig <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 09, 2023 at 12:09:55PM +0100, Maarten Lankhorst wrote:
-> 
-> On 2023-03-09 12:04, Hogander, Jouni wrote:
-> > On Mon, 2023-03-06 at 22:58 +0200, Ville Syrjälä wrote:
-> >> On Mon, Mar 06, 2023 at 09:23:50PM +0100, Maarten Lankhorst wrote:
-> >>> Hey,
-> >>>
-> >>> On 2023-03-06 16:23, Souza, Jose wrote:
-> >>>> On Mon, 2023-03-06 at 15:16 +0100, Maarten Lankhorst wrote:
-> >>>>> As a fallback if we decide not to merge the frontbuffer
-> >>>>> tracking, allow
-> >>>>> i915 to keep its own implementation, and do the right thing in
-> >>>>> Xe.
-> >>>>>
-> >>>>> The frontbuffer tracking for Xe is still done per-fb, while
-> >>>>> i915 can
-> >>>>> keep doing the weird intel_frontbuffer + i915_active thing
-> >>>>> without
-> >>>>> blocking Xe.
-> >>>> Please also disable PSR and FBC with this or at least add a way
-> >>>> for users to disable those features.
-> >>>> Without frontbuffer tracker those two features will break in some
-> >>>> cases.
-> >>> FBC and PSR work completely as expected. I don't remove frontbuffer
-> >>> tracking; I only remove the GEM parts.
-> >>>
-> >>> Explicit invalidation using pageflip or CPU rendering + DirtyFB
-> >>> continue
-> >>> to work, as I validated on my laptop with FBC.
-> >> Neither of which are relevant to the removal of the gem hooks.
-> >>
-> >> Like I already said ~10 times in the last meeting, we need a proper
-> >> testcase. Here's a rough idea what it should do:
-> >>
-> >> prepare a batch with
-> >> 1. spinner
-> >> 2. something that clobbers the fb
-> >>
-> >> Then
-> >> 1. grab reference crc
-> >> 2. execbuffer
-> >> 3. dirtyfb
-> >> 4. wait long enough for fbc to recompress
-> >> 5. terminate spinner
-> >> 6. gem_sync
-> >> 7. grab crc and compare with reference
-> >>
-> >> No idea what the current status of PSR+CRC is, so not sure
-> >> whether we can actually test PSR or not.
-> >>
-> > CRC calculation doesn't work with PSR currently. PSR is disabled if CRC
-> > capture is requested.
-> >
-> > Are we supposed to support frontbuffer rendering using GPU?
-> 
-> No other driver does that.
+Make the struct ttm_device_funcs pointers const so the data can be placed in rodata.
 
-Every driver does that when you run X w/o a compositor. Assuming
-there is an actual GPU in there.
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_device.c | 2 +-
+ include/drm/ttm/ttm_device.h     | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-> It's fine if DirtyFB hangs instead until the 
-> job it waits on completes.
-
-No one tried to make it just wait for the fence(s) w/o doing
-a full blown atomic commit. It might work, but might also
-still suck too much. I guess depends on how overloaded the GPU
-is.
-
-What we could do is do a frontbuffer invalidate on dirtyfb
-invocation, and then once the fence(s) signal we do a frontbuffer
-flush. That would most closely match the gem hook behaviour, except
-the invalidate comes in a bit later. The alternative would be to
-skip the invalidate, which should still guarantee correctness in
-the end, just with possibly jankier interactivity.
-
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index ae2f19dc9f81..a71bb1362de4 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -190,7 +190,7 @@ EXPORT_SYMBOL(ttm_device_swapout);
+  * Returns:
+  * !0: Failure.
+  */
+-int ttm_device_init(struct ttm_device *bdev, struct ttm_device_funcs *funcs,
++int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
+ 		    struct device *dev, struct address_space *mapping,
+ 		    struct drm_vma_offset_manager *vma_manager,
+ 		    bool use_dma_alloc, bool use_dma32)
+diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+index 56e82ba2d046..c22f30535c84 100644
+--- a/include/drm/ttm/ttm_device.h
++++ b/include/drm/ttm/ttm_device.h
+@@ -223,7 +223,7 @@ struct ttm_device {
+ 	 * @funcs: Function table for the device.
+ 	 * Constant after bo device init
+ 	 */
+-	struct ttm_device_funcs *funcs;
++	const struct ttm_device_funcs *funcs;
+ 
+ 	/**
+ 	 * @sysman: Resource manager for the system domain.
+@@ -287,7 +287,7 @@ static inline void ttm_set_driver_manager(struct ttm_device *bdev, int type,
+ 	bdev->man_drv[type] = manager;
+ }
+ 
+-int ttm_device_init(struct ttm_device *bdev, struct ttm_device_funcs *funcs,
++int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
+ 		    struct device *dev, struct address_space *mapping,
+ 		    struct drm_vma_offset_manager *vma_manager,
+ 		    bool use_dma_alloc, bool use_dma32);
 -- 
-Ville Syrjälä
-Intel
+2.39.1
+
