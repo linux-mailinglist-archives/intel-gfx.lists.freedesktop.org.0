@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786526B3083
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 23:25:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4726B30A0
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 23:31:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8686010E21D;
-	Thu,  9 Mar 2023 22:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0160710E8EE;
+	Thu,  9 Mar 2023 22:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C74F8825E
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Mar 2023 22:25:52 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B91A10E0D5;
+ Thu,  9 Mar 2023 22:30:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678400752; x=1709936752;
+ t=1678401056; x=1709937056;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=4JaexIee8VCPbL5ojpcBd3e6A6flNcHNnm/dgoUJsVc=;
- b=mZum24Zf0T76F1mAa3ucoFPJw1yOwcRkSTz8YCluKiKJucy8DLOxS2uu
- +lChTHrI/41f2kVutK2rtPP8FB7PtcX4t7HL0AdE4LZZ2tnGKOQI2C1cb
- puG4r13C97NM/wMglbXuKCtjx0+Sjb2gsFXnOLIDbSUFd9r0Wwk63D6iq
- O7ja4t0nLlsbCcxXNFbc8gKDkFAN0by9FkvTpn6V2HhvAzxdgbnRvZ4/M
- QkUMgvx3BDRsgJ/4TTGEm0gFK39eol/9qf23FJYc25r0s1uQroMfrK5I4
- i7V2KeePTDakqZcvm7/V6rcBI/vn88SxFA0+B8YHAB1urE8yfKhBYEcXt A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="364237110"
-X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; d="scan'208";a="364237110"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 14:25:15 -0800
+ bh=7sPJXHAnMu/5gjdGOeP3npU39GN5Bd2sYWRVLOM+CKw=;
+ b=jw/10Z18Ran5bmi1aZ0dEb0xuEeQeH3bWcsbDweLJhXjJ7NaNtZ71p9k
+ 7gYMpdaiRIOXpXiiR/uXlg/LW4up5cGuWBuittN/6CK36BlIQ0pKZE+yt
+ ksfR0C5HtVBmszeJuzlpbgyPvE2T8nROYt/tVbRPll1dTVOFvfY05S2p3
+ 83LaoT/SiBIz/C6jcUoompP3vlOgvSQlXilzPo/zTw+FBRUqsVrc6mtjJ
+ mvTtRWL/lyTaIh/lQkI1D2c2UEQjr0nhWzvuXyoBx1Veevg3m1KL5i0gD
+ gjVobpGu67faOA/0iHgSFwtrEOqqW72sMKz08N/q77xUgxmQQgAWhxUAq w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="338140733"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; d="scan'208";a="338140733"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 14:30:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="654943235"
-X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; d="scan'208";a="654943235"
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="851693972"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; d="scan'208";a="851693972"
 Received: from pmezinca-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.251.219.71])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 14:25:13 -0800
-Date: Thu, 9 Mar 2023 23:25:10 +0100
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 14:30:52 -0800
+Date: Thu, 9 Mar 2023 23:30:49 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZApcxlaM6vrITILC@ashyti-mobl2.lan>
-References: <20230309165852.1251-1-nirmoy.das@intel.com>
+Message-ID: <ZApeGQfZ9SupVrsv@ashyti-mobl2.lan>
+References: <20230309164905.828-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230309165852.1251-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Update engine_init_common
- documentation
+In-Reply-To: <20230309164905.828-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Disable stolen memory backed
+ FB for A0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,40 +59,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Nirmoy,
 
-On Thu, Mar 09, 2023 at 05:58:52PM +0100, Nirmoy Das wrote:
-> Change the function doc to reflect updated name.
+On Thu, Mar 09, 2023 at 05:49:05PM +0100, Nirmoy Das wrote:
+> Stolen memory is not usable for MTL A0 stepping beyond
+> certain access size and we have no control over userspace
+> access size of /dev/fb which can be backed by stolen memory.
+> So disable stolen memory backed fb by setting i915->dsm.usable_size
+> to zero.
 > 
+> Cc: Matthew Auld <matthew.auld@intel.com>
 > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+
+Can you please remove this blank line from the tag space?
+
 > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index ad3413242100..83532630b639 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1429,7 +1429,7 @@ create_kernel_context(struct intel_engine_cs *engine)
->  }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index d8e06e783e30..56ccfcbdbce1 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -535,6 +535,16 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+>  	/* Basic memrange allocator for stolen space. */
+>  	drm_mm_init(&i915->mm.stolen, 0, i915->dsm.usable_size);
 >  
->  /**
-> - * intel_engines_init_common - initialize cengine state which might require hw access
-> + * engines_init_common - initialize engine state which might require hw access
+> +	/*
+> +	 * Access to stolen lmem beyond certain size for MTL A0 stepping
+> +	 * would crash the machine. Disable stolen lmem for userspace access
+> +	 * by setting usable_size to zero.
+> +	 * hsdes: 22016134735
 
-You had one change to make and you missed it :-D
+Please, remove this reference, as well.
 
-/engines_init_common/engine_init_common/
+With the above:
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
 Andi
 
->   * @engine: Engine to initialize.
->   *
->   * Initializes @engine@ structure members shared between legacy and execlists
+> +	 */
+> +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +		i915->dsm.usable_size = 0;
+> +
+>  	return 0;
+>  }
+>  
 > -- 
 > 2.39.0
