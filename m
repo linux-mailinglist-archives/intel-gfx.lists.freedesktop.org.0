@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236576B1B88
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 07:30:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCBAA6B1BF1
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 08:06:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABC410E7A6;
-	Thu,  9 Mar 2023 06:30:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6EE10E79D;
+	Thu,  9 Mar 2023 07:06:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0AE10E7A7;
- Thu,  9 Mar 2023 06:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678343405; x=1709879405;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wcUiNKCHLCVu4jOpkf5PLXYNbVFpWZxxXTB7L/9KxXs=;
- b=QB72cEXHB6kO8oE+Lx2V7SgMgxu4HXPNW6hNPpqKVgBOJT+NQYikwwnE
- zzxbqyBKRD4PpiLfSVYqA9OrawGLubahBitO+Aa/5XUkBMIsTCMezPTsk
- kSmn/j6j8HvhgiLL2+e8ZyXSL/ZLW4gSCUd8U/I+4O6t63uAdEw4kn2N6
- YdTGrwtIGThXvAdsTt6JUfBxbTgmpSLOJnvY+n99FeOcnn+flLs1Pq68s
- KzvycTSo7zaQ5d3+xz/6gDz/8hLoCbRDURa36xz6nixlo33dl+/mABwGY
- dM67Qa31a6ILlpAWh8Nsp0svYyVokH8dx6mr68TA9qwj3HHqxU68FCGcE Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335070039"
-X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; d="scan'208";a="335070039"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 22:30:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="1006614924"
-X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; d="scan'208";a="1006614924"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga005.fm.intel.com with ESMTP; 08 Mar 2023 22:30:02 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Mar 2023 11:58:55 +0530
-Message-Id: <20230309062855.393087-8-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230309062855.393087-1-suraj.kandpal@intel.com>
-References: <20230309062855.393087-1-suraj.kandpal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4290010E79D;
+ Thu,  9 Mar 2023 07:05:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36A94AADF0;
+ Thu,  9 Mar 2023 07:05:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6280373388407378721=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 7/7] drm/i915/dsc: Add debugfs entry to
- validate DSC output formats
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Thu, 09 Mar 2023 07:05:59 -0000
+Message-ID: <167834555918.12421.8394946400127681362@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230309062855.393087-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230309062855.393087-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_YCbCr420_format_for_VDSC_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,217 +40,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swati Sharma <swati2.sharma@intel.com>
+--===============6280373388407378721==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-DSC_Output_Format_Sink_Support entry is added to i915_dsc_fec_support_show
-to depict if sink supports DSC output formats (RGB/YCbCr420/YCbCr444).
-Also, new debugfs entry is created to enforce output format. This is
-required because of our driver policy. For ex. if a mode is supported
-in both RGB and YCbCr420 output formats by the sink, our policy is to
-try RGB first and fall back to YCbCr420, if mode cannot be shown
-using RGB. So, to test other output formats like YCbCr420 or YCbCr444,
-we need a debugfs entry (force_dsc_output_format) to force this
-output format.
+== Series Details ==
 
-v2: -Func name changed to intel_output_format_name() (Jani N)
-    -Return forced o/p format from intel_dp_output_format() (Jani N)
-v3: -output_format_str[] to remain static (Jani N)
+Series: Enable YCbCr420 format for VDSC (rev3)
+URL   : https://patchwork.freedesktop.org/series/114246/
+State : success
 
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
----
- .../drm/i915/display/intel_crtc_state_dump.c  |  4 +-
- .../drm/i915/display/intel_crtc_state_dump.h  |  2 +
- .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  4 +
- 5 files changed, 87 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 766633566fd6..54c8adc0702e 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -123,7 +123,7 @@ static const char * const output_format_str[] = {
- 	[INTEL_OUTPUT_FORMAT_YCBCR444] = "YCBCR4:4:4",
- };
- 
--static const char *output_formats(enum intel_output_format format)
-+const char *intel_output_format_name(enum intel_output_format format)
- {
- 	if (format >= ARRAY_SIZE(output_format_str))
- 		return "invalid";
-@@ -181,7 +181,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		    "active: %s, output_types: %s (0x%x), output format: %s\n",
- 		    str_yes_no(pipe_config->hw.active),
- 		    buf, pipe_config->output_types,
--		    output_formats(pipe_config->output_format));
-+		    intel_output_format_name(pipe_config->output_format));
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-index 9399c35b7e5e..780f3f1190d7 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-@@ -8,9 +8,11 @@
- 
- struct intel_crtc_state;
- struct intel_atomic_state;
-+enum intel_output_format;
- 
- void intel_crtc_state_dump(const struct intel_crtc_state *crtc_state,
- 			   struct intel_atomic_state *state,
- 			   const char *context);
-+const char *intel_output_format_name(enum intel_output_format format);
- 
- #endif /* __INTEL_CRTC_STATE_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 1e654ddd0815..fc2905574e5b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -12,6 +12,7 @@
- #include "i915_irq.h"
- #include "i915_reg.h"
- #include "intel_de.h"
-+#include "intel_crtc_state_dump.h"
- #include "intel_display_debugfs.h"
- #include "intel_display_power.h"
- #include "intel_display_power_well.h"
-@@ -1535,6 +1536,13 @@ static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
- 			   str_yes_no(crtc_state->dsc.compression_enable));
- 		seq_printf(m, "DSC_Sink_Support: %s\n",
- 			   str_yes_no(drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)));
-+		seq_printf(m, "DSC_Output_Format_Sink_Support: RGB: %s YCBCR420: %s YCBCR444: %s\n",
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_RGB)),
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_YCbCr420_Native)),
-+			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
-+								      DP_DSC_YCbCr444)));
- 		seq_printf(m, "Force_DSC_Enable: %s\n",
- 			   str_yes_no(intel_dp->force_dsc_en));
- 		if (!intel_dp_is_edp(intel_dp))
-@@ -1660,6 +1668,73 @@ static const struct file_operations i915_dsc_bpc_fops = {
- 	.write = i915_dsc_bpc_write
- };
- 
-+static int i915_dsc_output_format_show(struct seq_file *m, void *data)
-+{
-+	struct drm_connector *connector = m->private;
-+	struct drm_device *dev = connector->dev;
-+	struct drm_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
-+	int ret;
-+
-+	if (!encoder)
-+		return -ENODEV;
-+
-+	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	crtc = connector->state->crtc;
-+	if (connector->status != connector_status_connected || !crtc) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	crtc_state = to_intel_crtc_state(crtc->state);
-+	seq_printf(m, "DSC_Output_Format: %s\n",
-+		   intel_output_format_name(crtc_state->output_format));
-+
-+out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-+
-+	return ret;
-+}
-+
-+static ssize_t i915_dsc_output_format_write(struct file *file,
-+					    const char __user *ubuf,
-+					    size_t len, loff_t *offp)
-+{
-+	struct drm_connector *connector =
-+		((struct seq_file *)file->private_data)->private;
-+	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	int dsc_output_format = 0;
-+	int ret;
-+
-+	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_output_format);
-+	if (ret < 0)
-+		return ret;
-+
-+	intel_dp->force_dsc_output_format = dsc_output_format;
-+	*offp += len;
-+
-+	return len;
-+}
-+
-+static int i915_dsc_output_format_open(struct inode *inode,
-+				       struct file *file)
-+{
-+	return single_open(file, i915_dsc_output_format_show, inode->i_private);
-+}
-+
-+static const struct file_operations i915_dsc_output_format_fops = {
-+	.owner = THIS_MODULE,
-+	.open = i915_dsc_output_format_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = i915_dsc_output_format_write
-+};
-+
- /*
-  * Returns the Current CRTC's bpc.
-  * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
-@@ -1731,6 +1806,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
- 
- 		debugfs_create_file("i915_dsc_bpc", 0644, root,
- 				    connector, &i915_dsc_bpc_fops);
-+
-+		debugfs_create_file("i915_dsc_output_format", 0644, root,
-+				    connector, &i915_dsc_output_format_fops);
- 	}
- 
- 	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index c32bfba06ca1..59c0340d102b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1735,6 +1735,7 @@ struct intel_dp {
- 
- 	/* Display stream compression testing */
- 	bool force_dsc_en;
-+	int force_dsc_output_format;
- 	int force_dsc_bpc;
- 
- 	bool hobl_failed;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b40bb5fd9abb..cdfec559d423 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -76,6 +76,7 @@
- #include "intel_tc.h"
- #include "intel_vdsc.h"
- #include "intel_vrr.h"
-+#include "intel_crtc_state_dump.h"
- 
- /* DP DSC throughput values used for slice count calculations KPixels/s */
- #define DP_DSC_PEAK_PIXEL_RATE			2720000
-@@ -810,6 +811,9 @@ intel_dp_output_format(struct intel_connector *connector,
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 
-+	if (intel_dp->force_dsc_output_format)
-+		return intel_dp->force_dsc_output_format;
-+
- 	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
- 		return INTEL_OUTPUT_FORMAT_RGB;
- 
--- 
-2.25.1
+CI Bug Log - changes from CI_DRM_12829 -> Patchwork_114246v3
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114246v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-atsm-1:         NOTRUN -> [SKIP][1] ([i915#2582]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@fbdev@eof.html
+
+  * igt@gem_mmap@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][2] ([i915#4083])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_mmap@basic.html
+
+  * igt@gem_sync@basic-each:
+    - bat-atsm-1:         NOTRUN -> [FAIL][3] ([i915#8062]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_sync@basic-each.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][4] ([i915#4077]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#4079]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_hangman@error-state-basic:
+    - bat-atsm-1:         NOTRUN -> [ABORT][6] ([i915#8060])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][7] -> [ABORT][8] ([i915#7911])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-1:         [PASS][9] -> [ABORT][10] ([i915#4983] / [i915#7694] / [i915#7911])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-2:         [PASS][11] -> [ABORT][12] ([i915#4983] / [i915#7913])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][13] ([i915#5354]) +2 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8060]: https://gitlab.freedesktop.org/drm/intel/issues/8060
+  [i915#8062]: https://gitlab.freedesktop.org/drm/intel/issues/8062
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12829 -> Patchwork_114246v3
+
+  CI-20190529: 20190529
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114246v3: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6265f67b795c drm/i915/dsc: Add debugfs entry to validate DSC output formats
+391c8124760b drm/i915/vdsc: Check slice design requirement
+c9e9eb1c4e5d drm/i915/dsc: Fill in native_420 field
+58794bd10bb3 drm/i915/dsc: Enable YCbCr420 for VDSC
+3c5b3752a47b drm/i915/dsc: Adding the new registers for DSC
+252f741175f4 drm/i915/dp: Check if DSC supports the given output_format
+6774e60344fc drm/dp_helper: Add helper to check DSC support with given o/p format
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/index.html
+
+--===============6280373388407378721==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable YCbCr420 format for VDSC (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114246/">https://patchwork.freedesktop.org/series/114246/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12829 -&gt; Patchwork_114246v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Additional (1): bat-atsm-1 <br />
+  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114246v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_sync@basic-each:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_sync@basic-each.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8062">i915#8062</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-atsm-1/igt@i915_hangman@error-state-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8060">i915#8060</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114246v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12829 -&gt; Patchwork_114246v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114246v3: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6265f67b795c drm/i915/dsc: Add debugfs entry to validate DSC output formats<br />
+391c8124760b drm/i915/vdsc: Check slice design requirement<br />
+c9e9eb1c4e5d drm/i915/dsc: Fill in native_420 field<br />
+58794bd10bb3 drm/i915/dsc: Enable YCbCr420 for VDSC<br />
+3c5b3752a47b drm/i915/dsc: Adding the new registers for DSC<br />
+252f741175f4 drm/i915/dp: Check if DSC supports the given output_format<br />
+6774e60344fc drm/dp_helper: Add helper to check DSC support with given o/p format</p>
+
+</body>
+</html>
+
+--===============6280373388407378721==--
