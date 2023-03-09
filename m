@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD2D6B1856
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 01:59:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B26B18D7
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 02:40:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18C8010E769;
-	Thu,  9 Mar 2023 00:59:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E065710E778;
+	Thu,  9 Mar 2023 01:40:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E075E10E769
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Mar 2023 00:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678323573; x=1709859573;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=l7Yz+JJ/S4Qd+6RLhlviJf2KnYCDWsl2QUXO0s9Z3rA=;
- b=PoHQuFTbEQsVHQaO5E68WOo10YzxfRNbjTV8j+UvWrIiJ8dX/qpjTzFo
- JCtlwp/0inR3KW0ShenINpctwHpKi+Bc708orSIHLYEnvPDitc5Ddh0YU
- u+8mDF7We/MLDldY6xkxAnbiflFKiukaygM87jBhuSKDWU+Vk8essqDTm
- 05OZcw55KAWC7CgrKmu52iMMbVrI+pLnS9UW01SwVRb0Uv9+CXRb3AELx
- /MLNCmmA/AwvqhK44Hi720TP2TXzBNL1JWoFopZoZo7Ut4ZoBH/EUQpav
- 1SlcZGP7Z0XoWRfbH25KowvbbodsSyUKJlSndzM/lNbHGLdmKjEilfL1e w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="333789968"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="333789968"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 16:58:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="679542440"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="679542440"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga007.fm.intel.com with SMTP; 08 Mar 2023 16:58:55 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Mar 2023 02:58:54 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Mar 2023 02:58:54 +0200
-Message-Id: <20230309005854.9969-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D73F10E778;
+ Thu,  9 Mar 2023 01:40:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 22196AA3D8;
+ Thu,  9 Mar 2023 01:40:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7080522294181787611=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH CI] cpumask: fix incorrect cpumask scanning
- result checks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 09 Mar 2023 01:40:33 -0000
+Message-ID: <167832603313.12421.4952494430609288896@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230309005854.9969-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230309005854.9969-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgY3B1?=
+ =?utf-8?q?mask=3A_fix_incorrect_cpumask_scanning_result_checks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,187 +40,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Linus Torvalds <torvalds@linux-foundation.org>
+--===============7080522294181787611==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It turns out that commit 596ff4a09b89 ("cpumask: re-introduce
-constant-sized cpumask optimizations") exposed a number of cases of
-drivers not checking the result of "cpumask_next()" and friends
-correctly.
+== Series Details ==
 
-The documented correct check for "no more cpus in the cpumask" is to
-check for the result being equal or larger than the number of possible
-CPU ids, exactly _because_ we've always done those constant-sized
-cpumask scans using a widened type before.  So the return value of a
-cpumask scan should be checked with
+Series: cpumask: fix incorrect cpumask scanning result checks
+URL   : https://patchwork.freedesktop.org/series/114882/
+State : success
 
-	if (cpu >= nr_cpu_ids)
-		...
+== Summary ==
 
-because the cpumask scan did not necessarily stop exactly *at* that
-maximum CPU id.
+CI Bug Log - changes from CI_DRM_12829 -> Patchwork_114882v1
+====================================================
 
-But a few cases ended up instead using checks like
+Summary
+-------
 
-	if (cpu == nr_cpumask_bits)
-		...
+  **SUCCESS**
 
-which used that internal "widened" number of bits.  And that used to
-work pretty much by accident (ok, in this case "by accident" is simply
-because it matched the historical internal implementation of the cpumask
-scanning, so it was more of a "intentionally using implementation
-details rather than an accident").
+  No regressions found.
 
-But the extended constant-sized optimizations then did that internal
-implementation differently, and now that code that did things wrong but
-matched the old implementation no longer worked at all.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/index.html
 
-Which then causes subsequent odd problems due to using what ends up
-being an invalid CPU ID.
+Participating hosts (36 -> 38)
+------------------------------
 
-Most of these cases require either unusual hardware or special uses to
-hit, but the random.c one triggers quite easily.
+  Additional (3): fi-elk-e7500 fi-ilk-650 fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
 
-All you really need is to have a sufficiently small CONFIG_NR_CPUS value
-for the bit scanning optimization to be triggered, but not enough CPUs
-to then actually fill that widened cpumask.  At that point, the cpumask
-scanning will return the NR_CPUS constant, which is _not_ the same as
-nr_cpumask_bits.
+Known issues
+------------
 
-This just does the mindless fix with
+  Here are the changes found in Patchwork_114882v1 that come from known issues:
 
-   sed -i 's/== nr_cpumask_bits/>= nr_cpu_ids/'
+### IGT changes ###
 
-to fix the incorrect uses.
+#### Issues hit ####
 
-The ones in the SCSI lpfc driver in particular could probably be fixed
-more cleanly by just removing that repeated pattern entirely, but I am
-not emptionally invested enough in that driver to care.
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][1] ([fdo#109271]) +30 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-elk-e7500/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-Reported-and-tested-by: Guenter Roeck <linux@roeck-us.net>
-Link: https://lore.kernel.org/lkml/481b19b5-83a0-4793-b4fd-194ad7b978c3@roeck-us.net/
-Reported-and-tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Link: https://lore.kernel.org/lkml/CAMuHMdUKo_Sf7TjKzcNDa8Ve+6QrK+P8nSQrSQ=6LTRmcBKNww@mail.gmail.com/
-Reported-by: Vernon Yang <vernon2gm@gmail.com>
-Link: https://lore.kernel.org/lkml/20230306160651.2016767-1-vernon2gm@gmail.com/
-Cc: Yury Norov <yury.norov@gmail.com>
-Cc: Jason A. Donenfeld <Jason@zx2c4.com>
-Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
----
- arch/powerpc/xmon/xmon.c         |  2 +-
- drivers/char/random.c            |  2 +-
- drivers/net/wireguard/queueing.h |  2 +-
- drivers/scsi/lpfc/lpfc_init.c    | 14 +++++++-------
- 4 files changed, 10 insertions(+), 10 deletions(-)
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][2] -> [ABORT][3] ([i915#7911])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
 
-diff --git a/arch/powerpc/xmon/xmon.c b/arch/powerpc/xmon/xmon.c
-index 73c620c2a3a1..e753a6bd4888 100644
---- a/arch/powerpc/xmon/xmon.c
-+++ b/arch/powerpc/xmon/xmon.c
-@@ -1275,7 +1275,7 @@ static int xmon_batch_next_cpu(void)
- 	while (!cpumask_empty(&xmon_batch_cpus)) {
- 		cpu = cpumask_next_wrap(smp_processor_id(), &xmon_batch_cpus,
- 					xmon_batch_start_cpu, true);
--		if (cpu == nr_cpumask_bits)
-+		if (cpu >= nr_cpu_ids)
- 			break;
- 		if (xmon_batch_start_cpu == -1)
- 			xmon_batch_start_cpu = cpu;
-diff --git a/drivers/char/random.c b/drivers/char/random.c
-index ce3ccd172cc8..253f2ddb8913 100644
---- a/drivers/char/random.c
-+++ b/drivers/char/random.c
-@@ -1311,7 +1311,7 @@ static void __cold try_to_generate_entropy(void)
- 			/* Basic CPU round-robin, which avoids the current CPU. */
- 			do {
- 				cpu = cpumask_next(cpu, &timer_cpus);
--				if (cpu == nr_cpumask_bits)
-+				if (cpu >= nr_cpu_ids)
- 					cpu = cpumask_first(&timer_cpus);
- 			} while (cpu == smp_processor_id() && num_cpus > 1);
- 
-diff --git a/drivers/net/wireguard/queueing.h b/drivers/net/wireguard/queueing.h
-index 583adb37ee1e..125284b346a7 100644
---- a/drivers/net/wireguard/queueing.h
-+++ b/drivers/net/wireguard/queueing.h
-@@ -106,7 +106,7 @@ static inline int wg_cpumask_choose_online(int *stored_cpu, unsigned int id)
- {
- 	unsigned int cpu = *stored_cpu, cpu_index, i;
- 
--	if (unlikely(cpu == nr_cpumask_bits ||
-+	if (unlikely(cpu >= nr_cpu_ids ||
- 		     !cpumask_test_cpu(cpu, cpu_online_mask))) {
- 		cpu_index = id % cpumask_weight(cpu_online_mask);
- 		cpu = cpumask_first(cpu_online_mask);
-diff --git a/drivers/scsi/lpfc/lpfc_init.c b/drivers/scsi/lpfc/lpfc_init.c
-index 61958a24a43d..73b544bfbb2e 100644
---- a/drivers/scsi/lpfc/lpfc_init.c
-+++ b/drivers/scsi/lpfc/lpfc_init.c
-@@ -12563,7 +12563,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 					goto found_same;
- 				new_cpu = cpumask_next(
- 					new_cpu, cpu_present_mask);
--				if (new_cpu == nr_cpumask_bits)
-+				if (new_cpu >= nr_cpu_ids)
- 					new_cpu = first_cpu;
- 			}
- 			/* At this point, we leave the CPU as unassigned */
-@@ -12577,7 +12577,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 			 * selecting the same IRQ.
- 			 */
- 			start_cpu = cpumask_next(new_cpu, cpu_present_mask);
--			if (start_cpu == nr_cpumask_bits)
-+			if (start_cpu >= nr_cpu_ids)
- 				start_cpu = first_cpu;
- 
- 			lpfc_printf_log(phba, KERN_INFO, LOG_INIT,
-@@ -12613,7 +12613,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 					goto found_any;
- 				new_cpu = cpumask_next(
- 					new_cpu, cpu_present_mask);
--				if (new_cpu == nr_cpumask_bits)
-+				if (new_cpu >= nr_cpu_ids)
- 					new_cpu = first_cpu;
- 			}
- 			/* We should never leave an entry unassigned */
-@@ -12631,7 +12631,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 			 * selecting the same IRQ.
- 			 */
- 			start_cpu = cpumask_next(new_cpu, cpu_present_mask);
--			if (start_cpu == nr_cpumask_bits)
-+			if (start_cpu >= nr_cpu_ids)
- 				start_cpu = first_cpu;
- 
- 			lpfc_printf_log(phba, KERN_INFO, LOG_INIT,
-@@ -12704,7 +12704,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 				goto found_hdwq;
- 			}
- 			new_cpu = cpumask_next(new_cpu, cpu_present_mask);
--			if (new_cpu == nr_cpumask_bits)
-+			if (new_cpu >= nr_cpu_ids)
- 				new_cpu = first_cpu;
- 		}
- 
-@@ -12719,7 +12719,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
- 				goto found_hdwq;
- 
- 			new_cpu = cpumask_next(new_cpu, cpu_present_mask);
--			if (new_cpu == nr_cpumask_bits)
-+			if (new_cpu >= nr_cpu_ids)
- 				new_cpu = first_cpu;
- 		}
- 
-@@ -12730,7 +12730,7 @@ lpfc_cpu_affinity_check(struct lpfc_hba *phba, int vectors)
-  found_hdwq:
- 		/* We found an available entry, copy the IRQ info */
- 		start_cpu = cpumask_next(new_cpu, cpu_present_mask);
--		if (start_cpu == nr_cpumask_bits)
-+		if (start_cpu >= nr_cpu_ids)
- 			start_cpu = first_cpu;
- 		cpup->hdwq = new_cpup->hdwq;
-  logit:
--- 
-2.39.2
+  * igt@kms_chamelium_edid@dp-edid-read:
+    - fi-ilk-650:         NOTRUN -> [SKIP][4] ([fdo#109271]) +29 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-ilk-650/igt@kms_chamelium_edid@dp-edid-read.html
 
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-rpls-1:         NOTRUN -> [SKIP][5] ([i915#7828])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-rpls-1:         NOTRUN -> [SKIP][6] ([i915#1845])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271]) +38 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - bat-rpls-1:         [ABORT][8] ([i915#6687] / [i915#7978]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][10] ([i915#5334] / [i915#7872]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         [DMESG-FAIL][12] ([i915#6367]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-2:         [DMESG-FAIL][14] ([i915#6367] / [i915#7913]) -> [DMESG-FAIL][15] ([i915#6367] / [i915#7913] / [i915#7996])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12829 -> Patchwork_114882v1
+
+  CI-20190529: 20190529
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114882v1: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+dde2883cc9f9 cpumask: fix incorrect cpumask scanning result checks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/index.html
+
+--===============7080522294181787611==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>cpumask: fix incorrect cpumask scanning result checks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114882/">https://patchwork.freedesktop.org/series/114882/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12829 -&gt; Patchwork_114882v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 38)</h2>
+<p>Additional (3): fi-elk-e7500 fi-ilk-650 fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114882v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-elk-e7500/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_edid@dp-edid-read:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-ilk-650/igt@kms_chamelium_edid@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114882v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12829 -&gt; Patchwork_114882v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114882v1: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>dde2883cc9f9 cpumask: fix incorrect cpumask scanning result checks</p>
+
+</body>
+</html>
+
+--===============7080522294181787611==--
