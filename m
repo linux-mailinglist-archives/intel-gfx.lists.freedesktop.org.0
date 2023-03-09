@@ -1,53 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F056B2ABD
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 17:30:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 639426B2AD9
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Mar 2023 17:34:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A23F810E175;
-	Thu,  9 Mar 2023 16:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8D110E199;
+	Thu,  9 Mar 2023 16:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3085610E175
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Mar 2023 16:30:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678379415; x=1709915415;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6HT0eqgwaXyfnDYfl1VvXEC9mkIFcbjDO+cVqA/PdW8=;
- b=LIJ1nlT9m44zv6ESAMK32K0YNdp2cxFiU7b3CpW+dnV1Xq8bmGSMhfEl
- TkQ27iH5cFgTuKuvxi8WWQ13lGVVE/WZdPhNYeoZcxnWuCqLZjgyADnny
- Wot4KvWx/li0ZbPXTCA09Dj4+a5C4ytbUnANrF2t9KPSNE0keiYMknOUD
- e0mqEGIedRLPOob1eAcjGfL0uYLZE7vIwFXxxGHYj582axiorjc/aaEsj
- mRDmrbPc8A/YPUvOF5gQdDliggqGr16yzMGbLGsmz+iIw5gyQt8dKanTP
- wR1kLqaZYmlLzulK7SVW4st1X/HMTSlAEJnq6bQ6V0juPDhyHPY4SJSeE w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="338039500"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="338039500"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 08:30:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="677438204"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="677438204"
-Received: from pmezinca-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.251.219.71])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 08:30:12 -0800
-Date: Thu, 9 Mar 2023 17:30:08 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Message-ID: <ZAoJkJ5VwGRiUDTD@ashyti-mobl2.lan>
-References: <20230301201053.928709-1-radhakrishna.sripada@intel.com>
- <20230301201053.928709-2-radhakrishna.sripada@intel.com>
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
+ [IPv6:2001:4860:4864:20::32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B981910E175;
+ Thu,  9 Mar 2023 16:34:02 +0000 (UTC)
+Received: by mail-oa1-x32.google.com with SMTP id
+ 586e51a60fabf-1755e639b65so2894990fac.3; 
+ Thu, 09 Mar 2023 08:34:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678379642;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=kEkr4IaQKiN+bzmiIZcnvGMMGRo7jIir1uiKe1VUqZU=;
+ b=X5SYnXrMqzjgz7pSQ1n/dLxLkITJDxgyHHYSj/ycchtVrh4S7dT7u/jyFQsfE/Jx+h
+ Nkl7p9mvAMmKGB0tyJMD6gj2N55oSzzC1uULgZiKDFHtWDZub+wOlRcVAoMwqIASiRc5
+ mpZ1JmR0LYRjSVCYCgyWDT2ULe8NRqAOAKoNq1sA3acwapQt6/pIb6eTCJjouziTPIIH
+ E2Z0AivkzUY1yQAABFbslknMES4uL3at0+9Njau2KTx7NgkcxyNrUIR/G+FaSo9ixIBg
+ 08GWJJ/97aFQ4p60DN4LiR9FAdiiURh5iRlPaULzoCZRpZQVdnP/gS+UrFWWLDq4lLKB
+ tdlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678379642;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=kEkr4IaQKiN+bzmiIZcnvGMMGRo7jIir1uiKe1VUqZU=;
+ b=TbMLTJRzjjdm39nsktpJWjqGPsGNpYxrHWT/KrpEozhi/6clxIYYkL3/uQfSrSDDWh
+ ml9BY7R3Tn2+aBn3Bf55Iv9CpigHemUFGQA2VtFDxY035Cso/DYvPF7twD0hz947eFul
+ HP4JWnV9pnxUBf/B3bDG6g3UUUnqfcrqvv+HgdtIIkjXhQ/54ByfgmJUMBpCvGovv0AL
+ TwP47+gvdp8YgcxmBsP9h8YImCtArv6i4bKKwgRp/ZLY45Ena8u6S6397GopnOroP0KY
+ WPMpzKMYWaquEaoCc9x0Vxdoglssr29HvhJx+PVfjzGE0rJVuIgQrFclVugrvZFN5U2L
+ srfw==
+X-Gm-Message-State: AO0yUKWsBQYhqsirVvuIrt5uekHLB8IksRf0Q76PPqvx7qtGKyyK648Z
+ 9CjSy90NIpvpk/FJ0VJm3m4=
+X-Google-Smtp-Source: AK7set+KhEAx3r4Y9MIM+NVdqGP5VOGZRy6Nk+cs5k+7rrb+TRVpcVOW4MMUPsUfZPMGuLum1I/gzQ==
+X-Received: by 2002:a05:6870:819d:b0:172:21e9:21c7 with SMTP id
+ k29-20020a056870819d00b0017221e921c7mr13509074oae.40.1678379641913; 
+ Thu, 09 Mar 2023 08:34:01 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ bf7-20020a0568700a0700b0017243e98ce9sm6969444oac.54.2023.03.09.08.34.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Mar 2023 08:34:01 -0800 (PST)
+Date: Thu, 9 Mar 2023 08:33:59 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <5d99cb43-4372-43e3-ae38-b45fc21896b4@roeck-us.net>
+References: <20220812173715.2398586-1-badal.nilawar@intel.com>
+ <20220812173715.2398586-4-badal.nilawar@intel.com>
+ <b6464c27-ce81-02aa-b032-4dbcab576e44@roeck-us.net>
+ <87wn4132v4.wl-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230301201053.928709-2-radhakrishna.sripada@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915/mtl: Fix Wa_16015201720
- implementation
+In-Reply-To: <87wn4132v4.wl-ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/hwmon: Power PL1 limit and TDP
+ setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,117 +76,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: linux-hwmon@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Radhakrishna,
-
-On Wed, Mar 01, 2023 at 12:10:49PM -0800, Radhakrishna Sripada wrote:
-> The commit 2357f2b271ad ("drm/i915/mtl: Initial display workarounds")
-> extended the workaround Wa_16015201720 to MTL. However the registers
-> that the original WA implemented moved for MTL.
+On Tue, Feb 28, 2023 at 01:18:55PM -0800, Dixit, Ashutosh wrote:
+> On Fri, 12 Aug 2022 11:06:58 -0700, Guenter Roeck wrote:
+> >
 > 
-> Implement the workaround with the correct register.
+> Hi Guenter/linux-hwmon,
 > 
-> v3: Skip clock gating for pipe C, D DMC's and fix the title
 > 
-> Fixes: 2357f2b271ad ("drm/i915/mtl: Initial display workarounds")
-> Cc: Matt Atwood <matthew.s.atwood@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc.c | 26 +++++++++++++++++++-----
->  drivers/gpu/drm/i915/i915_reg.h          | 10 ++++++---
->  2 files changed, 28 insertions(+), 8 deletions(-)
+> > On 8/12/22 10:37, Badal Nilawar wrote:
+> > > From: Dale B Stimson <dale.b.stimson@intel.com>
+> > >
+> > > Use i915 HWMON to display/modify dGfx power PL1 limit and TDP setting.
+> > >
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index f70ada2357dc..b4283cf319f2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -389,15 +389,12 @@ static void disable_all_event_handlers(struct drm_i915_private *i915)
->  	}
->  }
->  
-> -static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
-> +static void adlp_pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
->  {
->  	enum pipe pipe;
->  
-> -	if (DISPLAY_VER(i915) < 13)
-> -		return;
-> -
+> /snip/
+> 
+> >
+> > Acked-by: Guenter Roeck <linux@roeck-us.net>
+> >
+> > > ---
+> > >   .../ABI/testing/sysfs-driver-intel-i915-hwmon |  20 ++
+> > >   drivers/gpu/drm/i915/i915_hwmon.c             | 176 +++++++++++++++++-
+> > >   drivers/gpu/drm/i915/i915_reg.h               |  16 ++
+> > >   drivers/gpu/drm/i915/intel_mchbar_regs.h      |   7 +
+> > >   4 files changed, 217 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> > > index 24c4b7477d51..9a2d10edfce8 100644
+> > > --- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> > > +++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> > > @@ -5,3 +5,23 @@ Contact:	dri-devel@lists.freedesktop.org
+> > >   Description:	RO. Current Voltage in millivolt.
+> > >			Only supported for particular Intel i915 graphics
+> > > platforms.
+> > > +
+> > > +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max
+> > > +Date:		June 2022
+> > > +KernelVersion:	5.19
+> > > +Contact:	dri-devel@lists.freedesktop.org
+> > > +Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
+> > > +
+> > > +		The power controller will throttle the operating frequency
+> > > +		if the power averaged over a window (typically seconds)
+> > > +		exceeds this limit.
+> 
+> We exposed this as 'power1_max' previously. However this is a "power
+> limit".
+> 
+> https://github.com/torvalds/linux/blob/master/Documentation/hwmon/sysfs-interface.rst
+> 
+> says power1_max is "Maximum power". On the other hand, power1_cap is "If
+> power use rises above this limit, the system should take action to reduce
+> power use". So it would seem we should have chosen power1_cap for this
+> power limit instead of power1_max? So do you think we should change this to
+> power1_cap instead? Though even power1_max has an associated alarm so it
+> also seems to be a sort of limit.
+> 
+> Is there any guidance as to how these different power limits should be
+> used? Generally speaking is: power1_max <= power1_cap <= power1_crit, or is
+> it arbitrary or something else?
+> 
 
-Why is this not needed anyomore?
+Nothing should ever be "arbitrary" but have some reason. Arbitrary is
+if you glue all the possible attributes onto a wall and then select the
+ones to use by throwing darts at it.
 
->  	/*
-> -	 * Wa_16015201720:adl-p,dg2, mtl
-> +	 * Wa_16015201720:adl-p,dg2
->  	 * The WA requires clock gating to be disabled all the time
->  	 * for pipe A and B.
->  	 * For pipe C and D clock gating needs to be disabled only
-> @@ -413,6 +410,25 @@ static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
->  				     PIPEDMC_GATING_DIS, 0);
->  }
->  
-> +static void mtl_pipedmc_clock_gating_wa(struct drm_i915_private *i915)
-> +{
-> +	/*
-> +	 * Wa_16015201720
-> +	 * The WA requires clock gating to be disabled all the time
-> +	 * for pipe A and B.
-> +	 */
-> +	intel_de_rmw(i915, GEN9_CLKGATE_DIS_0, 0,
-> +		     MTL_PIPEDMC_GATING_DIS_A | MTL_PIPEDMC_GATING_DIS_B);
-> +}
-> +
-> +static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
-> +{
-> +	if (DISPLAY_VER(i915) >= 14 && enable)
-> +		return mtl_pipedmc_clock_gating_wa(i915);
-> +	else if (DISPLAY_VER(i915) == 13)
-> +		return adlp_pipedmc_clock_gating_wa(i915, enable);
+powerX_min, powerX_max and powerX_crit are typically hard limits which
+can not actively be influenced without drastic measures such as turning
+off some hardware. powerX_cap is supposed to be more flexible; the
+assumption is that the hardware or firmware has some means to control power
+such that it does not exceed powerX_cap (while maintaining operational
+status), for example by modifying operational frequencies.
 
-don't you get an error here? Please don't return anything.
+Nowadays everything may be a bit more flexible; for example, one could
+imagine that a modern system could (via software) reduce the operational
+frequency of the system if power consumption exceeds powerX_max or
+powerX_crit. The distinction would be that with powerX_cap, the hardware
+or firmware would in general be in control, while with powerX_max
+and powerX_crit the host software would be in control.
 
-> +}
-> +
->  void intel_dmc_enable_pipe(struct drm_i915_private *i915, enum pipe pipe)
->  {
->  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c1efa655fb68..7c9ac5b43831 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1794,9 +1794,13 @@
->   * GEN9 clock gating regs
->   */
->  #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
-> -#define   DARBF_GATING_DIS		(1 << 27)
-> -#define   PWM2_GATING_DIS		(1 << 14)
-> -#define   PWM1_GATING_DIS		(1 << 13)
-> +#define   DARBF_GATING_DIS		REG_BIT(27)
-> +#define   MTL_PIPEDMC_GATING_DIS_A	REG_BIT(15)
-> +#define   MTL_PIPEDMC_GATING_DIS_B	REG_BIT(14)
+> Also, only power1_cap seems to have power1_cap_min and power1_cap_max (in
+> case we wanted to use min/max values for the limits), not the others.
 
-you could eventually use a GENMASK here and it can be:
+powerX_min is supported by the infrastructure. It not being documented
+is an oversight.
 
-#define   MTL_PIPEDMC_GATING_DIS	REG_GENMASK(15, 14)
+Guenter
 
-> +#define   PWM2_GATING_DIS		REG_BIT(14)
-> +#define   MTL_PIPEDMC_GATING_DIS_C	REG_BIT(13)
-
-Is this needed?
-
-> +#define   PWM1_GATING_DIS		REG_BIT(13)
-> +#define   MTL_PIPEDMC_GATING_DIS_D	REG_BIT(12)
-
-Is this needed?
-
-Thanks,
-Andi
-
->  #define GEN9_CLKGATE_DIS_3		_MMIO(0x46538)
->  #define   TGL_VRH_GATING_DIS		REG_BIT(31)
-> -- 
-> 2.34.1
+> 
+> Separately, we have already used up power1_crit (which is the other limit
+> in official hwmon power limits) so we can't use that.
+> 
+> Thanks.
+> --
+> Ashutosh
