@@ -1,49 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C9C6B4629
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 15:40:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C1A6B4A2B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 16:19:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC3A910E8E9;
-	Fri, 10 Mar 2023 14:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5135F10E971;
+	Fri, 10 Mar 2023 15:19:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA40110E03C
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 14:40:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678459238; x=1709995238;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=UP1efgxhHT+v0YYCVjDOsiZRSIh9jFRAJzkTQ2fotgQ=;
- b=TZenMcCyErYCAJXWHkpqYV5+hc3TAGNSX7dcwWjXlRxjqffIunVlSGJl
- sXNulwJ37y7Gqs+qInWJO+VwVzNIa2tqkLF296se94ZeNi1l74f+4X+5i
- rRCo4XFxZ8RblMhaZIuorS3WvphMYXFJ70TrTwFNxSrXBkMvSHZWdMOip
- PXELgAMkxeqxX6Mz3S1tdRRxPn/yUlbRHclvISmNw5gg/fGH3IxI5D6Ix
- lHsjF8RKKkPV07YmRhWvN6b5bPXF6w4VkbYCvKcsvqh7oMQ9bcMH2npnH
- tGVMePv/TbOsli1eYkRg3NGHd7yWX4n5nxnPLGeMIXeXRVQ8N+l6isq97 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="325089255"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="325089255"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 06:40:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="680228482"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="680228482"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga007.fm.intel.com with ESMTP; 10 Mar 2023 06:40:36 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Mar 2023 16:40:35 +0200
-Message-Id: <20230310144035.30754-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D3E10E971
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 15:19:47 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id h11so5372461wrm.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 07:19:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678461586;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=x++W0H9mAJQ+eGSZbKda5sqhW7JbKX3TxddFUSUc2dA=;
+ b=pzUi7NikMu9R5ZM5btk8m62T8IgFRRyaOrzENPWh6t5UZddjHhnfIQTYOTFAsye2Kz
+ MBNTYF9HybOgRUMJZeZMkFRZlNaPop6Rj7RVkbtqPqwuAzpkofhdsWSlvVFIC0w5hhnb
+ Pr3mDEakgj4orDL3Hcna/gDvX4wcbScxNQrcNTDtfE6cd2AmnCO7eL4lIAMlNHtDTzio
+ emtk1PB1BSiTQUDH/KT8s1PyJaUT6OjSE0f5LznJsdowbLRWtMoxvMoM3URYKZxOLI41
+ eWY4McgXkZIT88sRWFJeTfFhmbXU1AltuTUzj+L8VC/j1RX6wDi5GNow6NMm7i6nuIt4
+ 1RFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678461586;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x++W0H9mAJQ+eGSZbKda5sqhW7JbKX3TxddFUSUc2dA=;
+ b=E8gVukKgn2vglmdtxKuADT3DuFJNXnMbFFutw1fmNjrQFjL2fKDoztLxyx/aJT2pQF
+ VJCRVUbF+NR4GZMj2+7YNhFkcgjLM21toUpai3GhckItIdthr5UJMK609qDMYXw460pH
+ FiBtPMdpMePtyIFttLwlBl4f2OvzMnXBsvqEgp1cRhIZmU0pwtzDGVzKggeVm8apefWD
+ fn81h9irXqsJWLpQjzEgp1idzmthL2ek6evlTLZYd/wpdJr+Bc2qQXPrttvxh44Cq0xV
+ dCjXR2ApSHO53vpIKzgEI6K1ZLxviQAuHk6Zpv+LX5Lb5q5nHkF1U+hyMeFtQAo/wfPg
+ youQ==
+X-Gm-Message-State: AO0yUKXC1J5wTGAHsWg48Fnlc6UKdH887cLwPxNupdNIk4VPOJbvuM/T
+ T3l6Izkim78SLuGNDT9NCjUiEHnyX54=
+X-Google-Smtp-Source: AK7set8GIT5CGYMgFO6bvv39blbrvxKGUUQMT2zn5comT//s2GZMO+PgalZl46LqaUUas8zd/QVLcg==
+X-Received: by 2002:adf:f191:0:b0:2c7:d6e:7e6e with SMTP id
+ h17-20020adff191000000b002c70d6e7e6emr17675907wro.24.1678461585743; 
+ Fri, 10 Mar 2023 07:19:45 -0800 (PST)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ l13-20020a5d410d000000b002c5598c14acsm93592wrp.6.2023.03.10.07.19.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Mar 2023 07:19:45 -0800 (PST)
+Date: Fri, 10 Mar 2023 18:19:41 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <42a4c5e8-4234-4f4d-9810-2d84bfce1156@kili.mountain>
+References: <d1cc6919-6392-41f0-b17e-86e5b706e945@kili.mountain>
+ <875yba9dwh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Power management SAGV/QGV calculation
- rounding fix
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <875yba9dwh.fsf@intel.com>
+Subject: Re: [Intel-gfx] [bug report] drm/i915/dmc: add i915_to_dmc() and
+ dmc->i915 and use them
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,75 +72,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently in our bandwidth calculations for QGV
-points we round up the calculations.
-Recently there was an update to BSpec, recommending
-to floor those calculations.
-The reasoning behind this was that, overestimating
-BW demand with that rounding can cause SAGV to use
-next QGV point, even though the less demanding could
-be used, thus resulting in waste of power.
+On Thu, Mar 09, 2023 at 04:51:10PM +0200, Jani Nikula wrote:
+> On Thu, 09 Mar 2023, Dan Carpenter <error27@gmail.com> wrote:
+> > Hello Jani Nikula,
+> >
+> > This is a semi-automatic email about new static checker warnings.
+> >
+> > The patch 1b28c1c789d0: "drm/i915/dmc: add i915_to_dmc() and 
+> > dmc->i915 and use them" from Mar 1, 2023, leads to the following 
+> > Smatch complaint:
+> >
+> >     drivers/gpu/drm/i915/display/intel_dmc.c:1162 intel_dmc_debugfs_status_show()
+> >     error: we previously assumed 'dmc' could be null (see line 1148)
+> >
+> > drivers/gpu/drm/i915/display/intel_dmc.c
+> >   1142  
+> >   1143          wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+> >   1144  
+> >   1145          seq_printf(m, "DMC initialized: %s\n", str_yes_no(dmc));'
+> >                                                        ^^^^^^^^^^^^^^^
+> > This is a check for NULL too.
+> >
+> >   1146          seq_printf(m, "fw loaded: %s\n",
+> >   1147			   str_yes_no(intel_dmc_has_payload(i915)));
+> >   1148		seq_printf(m, "path: %s\n", dmc ? dmc->fw_path : "N/A");
+> >                                             ^^^
+> > The patch adds a check for NULL.
+> >
+> >   1149		seq_printf(m, "Pipe A fw needed: %s\n",
+> >   1150			   str_yes_no(GRAPHICS_VER(i915) >= 12));
+> >   1151		seq_printf(m, "Pipe A fw loaded: %s\n",
+> >   1152			   str_yes_no(has_dmc_id_fw(i915, DMC_FW_PIPEA)));
+> >   1153		seq_printf(m, "Pipe B fw needed: %s\n",
+> >   1154			   str_yes_no(IS_ALDERLAKE_P(i915) ||
+> >   1155				      DISPLAY_VER(i915) >= 14));
+> >   1156		seq_printf(m, "Pipe B fw loaded: %s\n",
+> >   1157			   str_yes_no(has_dmc_id_fw(i915, DMC_FW_PIPEB)));
+> >   1158	
+> >   1159		if (!intel_dmc_has_payload(i915))
+> 
+> intel_dmc_has_payload() should always return false for dmc == NULL.
 
-BSpec: 64636
+Ah, right.  Sorry for the noise.  I'm going to try figure out how to
+make Smatch parse this correctly.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 202321ffbe2a..8723ddd4d568 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -50,7 +50,7 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
- 		dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
- 	else
- 		dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
--	sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
-+	sp->dclk = ((16667 * dclk_ratio * dclk_reference) + 500) / 1000;
- 
- 	val = intel_uncore_read(&dev_priv->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
- 	if (val & DG1_GEAR_TYPE)
-@@ -87,7 +87,7 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
- 		return ret;
- 
- 	dclk = val & 0xffff;
--	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_priv) > 11 ? 500 : 0), 1000);
-+	sp->dclk = ((16667 * dclk) + (DISPLAY_VER(dev_priv) > 11 ? 500 : 0)) / 1000;
- 	sp->t_rp = (val & 0xff0000) >> 16;
- 	sp->t_rcd = (val & 0xff000000) >> 24;
- 
-@@ -179,7 +179,7 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
- 	val2 = intel_uncore_read(&dev_priv->uncore,
- 				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
- 	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
--	sp->dclk = DIV_ROUND_UP((16667 * dclk), 1000);
-+	sp->dclk = (16667 * dclk) / 1000;
- 	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
- 	sp->t_rcd = REG_FIELD_GET(MTL_TRCD_MASK, val);
- 
-@@ -425,7 +425,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 			 */
- 			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
- 				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
--			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
-+			bw = (sp->dclk * clpchgroup * 32 * num_channels) / ct;
- 
- 			bi->deratedbw[j] = min(maxdebw,
- 					       bw * (100 - sa->derating) / 100);
-@@ -527,7 +527,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 			 */
- 			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
- 				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
--			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
-+			bw = (sp->dclk * clpchgroup * 32 * num_channels) / ct;
- 
- 			bi->deratedbw[j] = min(maxdebw,
- 					       bw * (100 - sa->derating) / 100);
--- 
-2.37.3
+regards,
+dan carpenter
 
