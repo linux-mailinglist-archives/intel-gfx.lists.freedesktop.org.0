@@ -2,64 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C1A6B4A2B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 16:19:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFCF6B4A2C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 16:20:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5135F10E971;
-	Fri, 10 Mar 2023 15:19:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F63410E978;
+	Fri, 10 Mar 2023 15:20:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50D3E10E971
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 15:19:47 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id h11so5372461wrm.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 07:19:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678461586;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=x++W0H9mAJQ+eGSZbKda5sqhW7JbKX3TxddFUSUc2dA=;
- b=pzUi7NikMu9R5ZM5btk8m62T8IgFRRyaOrzENPWh6t5UZddjHhnfIQTYOTFAsye2Kz
- MBNTYF9HybOgRUMJZeZMkFRZlNaPop6Rj7RVkbtqPqwuAzpkofhdsWSlvVFIC0w5hhnb
- Pr3mDEakgj4orDL3Hcna/gDvX4wcbScxNQrcNTDtfE6cd2AmnCO7eL4lIAMlNHtDTzio
- emtk1PB1BSiTQUDH/KT8s1PyJaUT6OjSE0f5LznJsdowbLRWtMoxvMoM3URYKZxOLI41
- eWY4McgXkZIT88sRWFJeTfFhmbXU1AltuTUzj+L8VC/j1RX6wDi5GNow6NMm7i6nuIt4
- 1RFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678461586;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=x++W0H9mAJQ+eGSZbKda5sqhW7JbKX3TxddFUSUc2dA=;
- b=E8gVukKgn2vglmdtxKuADT3DuFJNXnMbFFutw1fmNjrQFjL2fKDoztLxyx/aJT2pQF
- VJCRVUbF+NR4GZMj2+7YNhFkcgjLM21toUpai3GhckItIdthr5UJMK609qDMYXw460pH
- FiBtPMdpMePtyIFttLwlBl4f2OvzMnXBsvqEgp1cRhIZmU0pwtzDGVzKggeVm8apefWD
- fn81h9irXqsJWLpQjzEgp1idzmthL2ek6evlTLZYd/wpdJr+Bc2qQXPrttvxh44Cq0xV
- dCjXR2ApSHO53vpIKzgEI6K1ZLxviQAuHk6Zpv+LX5Lb5q5nHkF1U+hyMeFtQAo/wfPg
- youQ==
-X-Gm-Message-State: AO0yUKXC1J5wTGAHsWg48Fnlc6UKdH887cLwPxNupdNIk4VPOJbvuM/T
- T3l6Izkim78SLuGNDT9NCjUiEHnyX54=
-X-Google-Smtp-Source: AK7set8GIT5CGYMgFO6bvv39blbrvxKGUUQMT2zn5comT//s2GZMO+PgalZl46LqaUUas8zd/QVLcg==
-X-Received: by 2002:adf:f191:0:b0:2c7:d6e:7e6e with SMTP id
- h17-20020adff191000000b002c70d6e7e6emr17675907wro.24.1678461585743; 
- Fri, 10 Mar 2023 07:19:45 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- l13-20020a5d410d000000b002c5598c14acsm93592wrp.6.2023.03.10.07.19.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Mar 2023 07:19:45 -0800 (PST)
-Date: Fri, 10 Mar 2023 18:19:41 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <42a4c5e8-4234-4f4d-9810-2d84bfce1156@kili.mountain>
-References: <d1cc6919-6392-41f0-b17e-86e5b706e945@kili.mountain>
- <875yba9dwh.fsf@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1955810E976
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 15:20:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678461601; x=1709997601;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XV8dT9fCGcS7xhq94/G+Dh0DOiv5/8aVRqju9CQaf1g=;
+ b=EyR5o8G9CRuiMuNhYOPmBewUdqtKMfZb4XfVxeJiUOzaMW5jWIipVNJY
+ vCOk0Oby/w+jjOsL53K6+Vta99tR6rP62QPDLFGSeXk3S9ya90nJFVIPO
+ F4oE4GGDtyNfNFZARi4wLINQGADSY9v5HFpDySVcPvPvDJlTYL2qLl2ne
+ aoHHCSDOtyhksr7xn4RVp/Z1XrOfS+F2OjPNw1ZBXmTMmCQpDVxr1R3HI
+ /PKxHJbVxrZFh2pdtBfypjR/L99fqrge7399nJL+pnez/piVdhib9Rga/
+ k4KGMbcZvONIgv5aGkCEuXQHOsuQb+ZPyDN5dx0WlwWj9m2WDJZMtDiFc A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="325098537"
+X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="325098537"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 07:20:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="708039065"
+X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="708039065"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.20.86])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 07:19:58 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Mar 2023 16:19:55 +0100
+Message-ID: <2135859.irdbgypaU6@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230310141138.6592-1-nirmoy.das@intel.com>
+References: <20230310141138.6592-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875yba9dwh.fsf@intel.com>
-Subject: Re: [Intel-gfx] [bug report] drm/i915/dmc: add i915_to_dmc() and
- dmc->i915 and use them
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/active: Fix missing debug object
+ activation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,54 +60,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>,
+ stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 09, 2023 at 04:51:10PM +0200, Jani Nikula wrote:
-> On Thu, 09 Mar 2023, Dan Carpenter <error27@gmail.com> wrote:
-> > Hello Jani Nikula,
-> >
-> > This is a semi-automatic email about new static checker warnings.
-> >
-> > The patch 1b28c1c789d0: "drm/i915/dmc: add i915_to_dmc() and 
-> > dmc->i915 and use them" from Mar 1, 2023, leads to the following 
-> > Smatch complaint:
-> >
-> >     drivers/gpu/drm/i915/display/intel_dmc.c:1162 intel_dmc_debugfs_status_show()
-> >     error: we previously assumed 'dmc' could be null (see line 1148)
-> >
-> > drivers/gpu/drm/i915/display/intel_dmc.c
-> >   1142  
-> >   1143          wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> >   1144  
-> >   1145          seq_printf(m, "DMC initialized: %s\n", str_yes_no(dmc));'
-> >                                                        ^^^^^^^^^^^^^^^
-> > This is a check for NULL too.
-> >
-> >   1146          seq_printf(m, "fw loaded: %s\n",
-> >   1147			   str_yes_no(intel_dmc_has_payload(i915)));
-> >   1148		seq_printf(m, "path: %s\n", dmc ? dmc->fw_path : "N/A");
-> >                                             ^^^
-> > The patch adds a check for NULL.
-> >
-> >   1149		seq_printf(m, "Pipe A fw needed: %s\n",
-> >   1150			   str_yes_no(GRAPHICS_VER(i915) >= 12));
-> >   1151		seq_printf(m, "Pipe A fw loaded: %s\n",
-> >   1152			   str_yes_no(has_dmc_id_fw(i915, DMC_FW_PIPEA)));
-> >   1153		seq_printf(m, "Pipe B fw needed: %s\n",
-> >   1154			   str_yes_no(IS_ALDERLAKE_P(i915) ||
-> >   1155				      DISPLAY_VER(i915) >= 14));
-> >   1156		seq_printf(m, "Pipe B fw loaded: %s\n",
-> >   1157			   str_yes_no(has_dmc_id_fw(i915, DMC_FW_PIPEB)));
-> >   1158	
-> >   1159		if (!intel_dmc_has_payload(i915))
-> 
-> intel_dmc_has_payload() should always return false for dmc == NULL.
+Hi Nirmoy,
 
-Ah, right.  Sorry for the noise.  I'm going to try figure out how to
-make Smatch parse this correctly.
+On Friday, 10 March 2023 15:11:38 CET Nirmoy Das wrote:
+> debug_active_activate() expected ref->count to be zero
+> which is not true anymore as __i915_active_activate() calls
+> debug_active_activate() after incrementing the count.
+>=20
+> Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->act=
+ive=20
+callback")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Thomas Hellstr=F6m <thomas.hellstrom@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.10+
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_active.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/
+i915_active.c
+> index a9fea115f2d2..1c3066eb359a 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -92,7 +92,7 @@ static void debug_active_init(struct i915_active *ref)
+>  static void debug_active_activate(struct i915_active *ref)
+>  {
+>  	lockdep_assert_held(&ref->tree_lock);
+> -	if (!atomic_read(&ref->count)) /* before the first inc */
+> +	if (atomic_read(&ref->count) =3D=3D 1) /* after the first inc */
 
-regards,
-dan carpenter
+While that's obviously better than never calling debug_active_activate(), I=
+'m=20
+wondering how likely we can still miss it because the counter being=20
+incremented, e.g. via i915_active_acquire_if_busy(), by a concurrent thread=
+=2E =20
+Since __i915_active_activate() is the only user and its decision making ste=
+p=20
+is serialized against itself with a spinlock, couldn't we better call=20
+debug_object_activate() unconditionally here?
+
+Thanks,
+Janusz
+
+>  		debug_object_activate(ref, &active_debug_desc);
+>  }
+> =20
+>=20
+
+
+
 
