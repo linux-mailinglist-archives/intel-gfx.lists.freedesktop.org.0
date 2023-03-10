@@ -2,90 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0FEC6B3610
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 06:30:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4186B3614
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 06:31:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCE1310E94F;
-	Fri, 10 Mar 2023 05:30:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F6410E954;
+	Fri, 10 Mar 2023 05:31:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3752D10E94F;
- Fri, 10 Mar 2023 05:30:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B077110E954;
+ Fri, 10 Mar 2023 05:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678426240; x=1709962240;
+ t=1678426267; x=1709962267;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Yf1SkS/3UaifD0YQ6Y5NoRDdvbz11rUTVQMCEeG1n3g=;
- b=RiNgpUU2hnDymLNlha41iEeYbL7cNtjWX+Erk9OjViX2gzBrE6gkCSEy
- D2sdYk8notuMl3KRYMTFIqWJRMvTzhw/vwcuXDSz1MBNJOlQT3Femx+Il
- CZts6No0vOBS3uoQxefG4eEhiIK4Vw/xyh7GvfO/wM/4X+jZ7a5UiS2N8
- uy3rxcOqDx9Z1m9fVpPJtN0aAb5xYKSY4T0AUXQvnWWscjSulzXdEo/HB
- zfBYS/rbqfbGG6zbL4mJMRhZMoweZ65nlj9jHnwL7GLkQYUQoa84ycZc5
- QJBVzxL5gWdZFpH307MV9RFDabeqAViXVKgbum3g2iMEZHkfgpSgeVoic Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="422919265"
-X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; d="scan'208";a="422919265"
+ bh=xAmVo0dHGc4YftmF9w+j8okRuHaqzzKjqZKNeYippsQ=;
+ b=AmfHQ2SBw7ZB3lDjpZhEzNcQAVuE7VEoUxNHKQIeMrdQiCzSb4bRcDlG
+ FngD/y6JgY2DyyqK1iNhFRLj9NSBVK+uXhA9SH/oCQUX+ejYU66sCcoG/
+ C+Iug/6AYwFN8tW1mogrRzPh2f2pn63PgWtBrvPkvdY52zvwrvp0au3jg
+ E3TZjh+SfFdPjeGZwrZ2EBCih7snSLjzHR7wQMMF1gohmyI0HsFGWuC06
+ HfJOhO4YNIU2o3z70vPCJcz1Db0XFlIAm4P794PJF7HFxzzDSKrc0jFmj
+ DfWu/1FnT3AhbwavHXM4wl0DZje9hYewEyMxEMFrqdgAe7cgErVXOig2H w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="422919351"
+X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; d="scan'208";a="422919351"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 21:30:39 -0800
+ 09 Mar 2023 21:31:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="627681589"
-X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; d="scan'208";a="627681589"
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="627681737"
+X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; d="scan'208";a="627681737"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga003.jf.intel.com with ESMTP; 09 Mar 2023 21:30:39 -0800
+ by orsmga003.jf.intel.com with ESMTP; 09 Mar 2023 21:31:06 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 9 Mar 2023 21:30:38 -0800
+ 15.1.2507.21; Thu, 9 Mar 2023 21:31:06 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 9 Mar 2023 21:30:38 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.21; Thu, 9 Mar 2023 21:31:06 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 9 Mar 2023 21:30:38 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Thu, 9 Mar 2023 21:31:06 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 9 Mar 2023 21:30:36 -0800
+ 15.1.2507.21; Thu, 9 Mar 2023 21:31:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YkuvLPvOScpj0+Qkl+Lwm31HMJ2GhsFZvNXLt3VKsshzBligetvkA+kAT0KkgYspBkVCusF/ZuS+/wCHOfDpAVt/feyQ5HmeBpT56fqBjb/lfuXsN7rx5KwD8dfabtTk0LC/JouMj46c5eURwq3gcMnrdXcjgfjtOIeV0gFJfqlRTIqSwSRThvKIFt59a0AGNNa1sKKGryicxAPdf2fdwRQuk6DxISlmegiTWZk9/umdei+bBqj3KxT6ZK1dAQ0Tj6q6M+v2GpOsqCKVK478e6FbPGVYHIziVGgF8d0LCJefs8mb6YecsBQgoV/YwwyOvP88v4Vlhf+I0iMeJAj2Hw==
+ b=dFlr+E/ik18MEYoSa8/qzRzLroi4TlsSRj/hKJKHzVW9kwkRkd68YoEtGdxZ3bOAH/xfUEnBXeBsU3kS44KBMB5PCnCyw63UrRtaFxGMThpZGOXROGSFWLSxhtE2F7Exqi+5qeP3PGkpSfNLNCjowk36R0o197G8TXNJqBHxyLtk5MiPNLF3wErzYdQVQFLc73cycp0kfS9rXgnKlaK7uXFILj/cn2+/6JM21tUS5MWwJbqAgOjAwIPeTsxdtwOfXvBBHFL3w5hwo7+/tDKvr8RXBUl60t6noYp2ovC+0fmEo6j2IRqCl1tOU8g9mcd5yxbAwu/BghxNqkjRpjkQqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bOWVFF2aWwbId169NHEDUgzx/jPIsneDTMykZThwYiY=;
- b=gj7PXYLTRQsTT3KII3L5VoOhRChrgDKO8oWMEun+CDywBDChCMVWPxerBTwmtX2h22VHNoRdeKqEbfSEGCbIpKwb/4ule9RJVMS3L4H4YtDMdhbfHDn9nDLbn0anCFPwAKbCMnsydlbHHtGhbQHg6kYZYqkZssABcmUQmUVATh1VSwiSpx37GmaRFBNpyGIiS8rUsc63CV+qPUc5eyz7J4MJobETqLZeOryw4CSfH7xfMt+JRhzC3dKimjZVZQ6jgEAlUxBFJMLUh8WDadwgNxmrR/MYnGBHvf7yb7oaJkfg2shtWSWIHV+Hv+iH8ou4PgEIaR92G7FDaX9sZtbw1g==
+ bh=/bVYpUFElEgzdNWAYFadJ9l1Kmom6dxmNcqjz7oUrq8=;
+ b=msZWMfkFSrkL4QT50YncO0TO1nNjdo2jzNZuMCXv0xUV0mTmo6T7mj0pbPCEfKRblQ0Rp+0E+QV3bEygHfInu7sPaoBwVR1ykrd1oKtOQXZcn96x19LuKa91nnPLKuW/h/roPF3P9e1d+4cfx2F8NSbIty3lP5EBXoCcxyCKn0PmXF8jZpRl07gxWy5UNkxi98THMSP9oebP7MUd1Xsw4Vwsdr+YMz66HLhfGCbsBCEsKnWBFSyMv56BzW/9QGrAJ7DOL27R98JT2u8ab+aU2IED7H/UEWjUV3Bb0pab78gjXSIM/Aan6Fyey9/8j5b4ieMmasAwJBrmEoIIIZoRcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com (2603:10b6:300:10d::20)
- by IA1PR11MB6193.namprd11.prod.outlook.com (2603:10b6:208:3eb::19)
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by IA1PR11MB7871.namprd11.prod.outlook.com (2603:10b6:208:3f5::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 05:30:19 +0000
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::469:cdec:dfa7:2c73]) by MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::469:cdec:dfa7:2c73%7]) with mapi id 15.20.6178.019; Fri, 10 Mar 2023
- 05:30:19 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Mark Yacoub <markyacoub@chromium.org>, "quic_khsieh@quicinc.com"
- <quic_khsieh@quicinc.com>, "linux-arm-msm@vger.kernel.org"
- <linux-arm-msm@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v6 01/10] drm/hdcp: Add
- drm_hdcp_atomic_check()
-Thread-Index: AQHZK3Nc8Xe/S4vQ4UKsTUqMt/Bw1q7zylhw
-Date: Fri, 10 Mar 2023 05:30:19 +0000
-Message-ID: <MWHPR11MB1741C74500B2A6FCE62D8B3FE3BA9@MWHPR11MB1741.namprd11.prod.outlook.com>
-References: <20230118193015.911074-1-markyacoub@google.com>
- <20230118193015.911074-2-markyacoub@google.com>
-In-Reply-To: <20230118193015.911074-2-markyacoub@google.com>
+ 2023 05:31:01 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::1aac:b695:f7c5:bcac]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::1aac:b695:f7c5:bcac%9]) with mapi id 15.20.6178.019; Fri, 10 Mar 2023
+ 05:31:01 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
+ <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>
+Thread-Topic: [PATCH v6 12/24] vfio/pci: Allow passing zero-length fd array in
+ VFIO_DEVICE_PCI_HOT_RESET
+Thread-Index: AQHZUcIISo3Z1SbL8EmJASujVt/DZK7zfnug
+Date: Fri, 10 Mar 2023 05:31:01 +0000
+Message-ID: <BN9PR11MB5276C4BB18EC47CD047D498A8CBA9@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <20230308132903.465159-1-yi.l.liu@intel.com>
+ <20230308132903.465159-13-yi.l.liu@intel.com>
+In-Reply-To: <20230308132903.465159-13-yi.l.liu@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -93,60 +87,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MWHPR11MB1741:EE_|IA1PR11MB6193:EE_
-x-ms-office365-filtering-correlation-id: 21a561b8-6551-4247-e00f-08db21288966
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|IA1PR11MB7871:EE_
+x-ms-office365-filtering-correlation-id: c780a0b7-d994-4d88-fd2d-08db2128a290
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Yf8MIHL6W1QEkX/a98o9TOj03fVy1htbT3hpmzVOlcgCtJPw1aC+ZctY16X/LdkOKUCbGG892jYJ6EcFoHovNO8dNEPp/CzZc5vvCJCRVhIM4+InU931AJHLGS8wsjwUUSEOKIlDMGFaw5+Iy/VBZHrt1XWW+PgNv7WXPbWABJRS86YItLnCs6MBoIoeN07l158FiC1AQRcElwdiEZ7D7VqC3tJljYrW8GEKr1wXcxHAh2XzJP7SjC1UmEgTQeuGctI+Ni3/GLIFyzyz8H7k+C9p2v5EmL9YIiO5jg5yQ7hT0W8xjuC7PkODYJVIuPh1g90u8Ms4hr+VInlwpH0nDP7gB4cKeMHOz7k4YwtGS60fZHmx3LNsbork/84cj2pQsWagFNEdh7rotnVwQITyYj4uyER2mH0ReF3qzou8B5RdYvwPUPbfeupPMxQYHiNg30o26I7rBbWSyKQeFMtOWjmAG2yPR3Zg9bor+JYGwfmJaSb3fCslm0tSkgzAvTseztrbZ12S/Aq5qIAYmRXPhZCtBJxuKVjLMJaQLuMovreffuUsMfpWAMVabAWjPckw11+lZXHi1xVZt72K+vioCVFvWn9Wer3l/uiZwf1l5/Rbaw62GoXVWuzy/Y3fkEIT3qUgOF8kdFlzQaT6Y9x9KA==
+x-microsoft-antispam-message-info: kZDh7fTsEJ7Z51NqKQjc0f2PsQbeP3fOJiF4EpiyVRgvbA2yIR6d/LXhKE06Kwd1EfuHIGPr4Aa1eYY9X1yX3nbsreqoPpl8XJ0SlONBwTnuIrcPZVDqmzf+kz9hlErRqTUgcBc5sD9P/ocAU/cvkn2vBUKZ6pjVcwpHj7C8/Ewhbrz3vHuyA3qhJZy2TAqVmFMeC3UVHaMx0A4agbHmEIUpsuF36gfJPFuJAu7MkNCFDvh9T23FWL/WkTtHCxDAVC5OhcKGAEwlnv2fY869lF6uxjB6pvGugNCTavuVAndQCVMnXig9DMqsrgCJFoUORatZa1rKrCZIDgyCpEMePTqkMWlGwehytLG904rA9mS3CHn7Zkk5fbsYuVDr4VEK911VUvXlrr49oR2zknWRf8YvozQk3qpWjKDQoGkCBou0ojMm7Av6rqQl6gYGp17VXKp+qzZFQEqY1aN3bZNB0FmuiolRfjw41bLdHnPcfXX35pbJszCuQlvS/oS9019mNaKDEqu4yGdQib7sdhTux/tRq1HWIejVEYqdV+hJtM1kX8ZTXioJbUKScpQpGfG27leiOOWen2EglWZtlpv/ynSMQ+72in27f3OkD241LoK1aAjMqjirZqFmEoSmchcFVCQg+r1OXi1mcUzLaw2wLWT8keSzbS5tSij3JR9zdj0KrM2/fGd7dotoySEcFJzdeulBh209oKnHCNfSaQj/wQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1741.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(346002)(39860400002)(366004)(376002)(396003)(451199018)(8936002)(52536014)(5660300002)(7406005)(7416002)(26005)(9686003)(6506007)(82960400001)(38100700002)(122000001)(83380400001)(186003)(55016003)(86362001)(66556008)(41300700001)(4326008)(66946007)(64756008)(316002)(110136005)(66446008)(33656002)(8676002)(66476007)(966005)(54906003)(71200400001)(7696005)(478600001)(38070700005)(2906002)(76116006);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(366004)(136003)(346002)(396003)(39860400002)(376002)(451199018)(38070700005)(33656002)(55016003)(86362001)(478600001)(7696005)(71200400001)(66556008)(66476007)(66446008)(64756008)(8676002)(66946007)(76116006)(110136005)(186003)(54906003)(316002)(9686003)(6506007)(26005)(2906002)(7416002)(38100700002)(122000001)(82960400001)(52536014)(8936002)(4326008)(41300700001)(5660300002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?I7b/rSplhzmxYdlNeVvioVPKGPDpnmldzlykk2jbQ/AWXNf1yPTFRAJjkQlZ?=
- =?us-ascii?Q?eX7OuW3sd5R8qlc3iYNTbxW3qIRYM84uTvfI67lj/zfeZgb7rzZa/FOmocgz?=
- =?us-ascii?Q?XmpqsQ0pjdWlBa24Gu6T2S1UiuRWETklPY4PI8uVw0LFb4SBbSC/pBp5STo/?=
- =?us-ascii?Q?r1S5GWc8pzKFUYwn41MO9Ta4B1kQ3RcQ8pqijlN8+ixuPpXfWjxVdgbTkuRF?=
- =?us-ascii?Q?SxCh1+c0kQAiS3O4x32JS2pn6P6e9zWYsp3CiChQSETLwjA7hWYeAXOCa3Rn?=
- =?us-ascii?Q?ocoQhlUT74CppdjRSYTPKUxDM7XpMwGRyQGZCVie49wjIP0kflF1dRWKzstA?=
- =?us-ascii?Q?1uzY1u8XbYCCPVhA1Kqu4lndB6R50BZ05eztfT4zdoyNMZdNSEzEdw+fJLgS?=
- =?us-ascii?Q?jPTWa7Q561LN3lPUDn+p3E/LcKHlBMs1C+i4C4mSvusN3JlpqF985+foZ4DQ?=
- =?us-ascii?Q?U8vo4vA1NVY5Bx0F3CUspN3ZpKYcaV2LuoR3lEZzGO5lR3+svTjV4d1MTo6S?=
- =?us-ascii?Q?0ZPL1Gmf++Yg4SGJpWvfJaGZ4hGGOsIMYBLRzLwPcsjbucljxMQWoPazOgB2?=
- =?us-ascii?Q?NdH6FBDp74VqinTV0U6oWzKgNz/CHasQhv5JiwUmgSL+ehsaGypo8Em65L2h?=
- =?us-ascii?Q?QkoC7PRK5mwPxatx+8pE7PxuB7NBL5IWJWfGyPTYbx3L/byLX3yI6gc1nOdC?=
- =?us-ascii?Q?quoB1e9rC4arFfiV5HZRKKWPjewbjbyT97WwSYdL2JewKs4vDYZjOq22FqES?=
- =?us-ascii?Q?T72npJsDUJlUb8SZMJ/ZrArZ0jiFRL3yKerdUxZ6xKwPX1lfd8mLhpHFHUVV?=
- =?us-ascii?Q?PNRtdWcCZd5fzEHrFlEIKAU/y1/Sgf4skslpXsNUbRofYX++7Lj9pmmkEGi1?=
- =?us-ascii?Q?U2dFg78UKmDdfmldM4Te57AwBVgl6fQF5qdwfvUfLHMmmvkbkzM6fJzXNRob?=
- =?us-ascii?Q?ZagRKHnzKlXTAupD3jnsOoKssG7tFN7FUQ37qzinsG6w1m2heIewzIQq9EgN?=
- =?us-ascii?Q?qbgOShrHmULSmaC1grPEvjMZVDOex8Lt8nvDmEgm/9oCJl36HBzoaeYf5nXl?=
- =?us-ascii?Q?PkIS2pDBCpBg9LicQBeDn9Vw/iYyidgxb9nLK0aH4TPm9dvjCDO1QkRXqqeV?=
- =?us-ascii?Q?GMi1vEq1mL5YD1Ssf6Hcvux3mf77MeMHEsnyxBZa1Yqm5mETIAfnydJ6ck6W?=
- =?us-ascii?Q?+OgkFd3bxvAcyJknhP0o4+3yBaEbogFPUJLzBBHeEHeycC3pDzdnR0jhRQWu?=
- =?us-ascii?Q?7t3zHcQcvEXikBmU3ScEBQWzzux28Ibyb3qbyYlXnli3mATK4ft/7Gxl7Bjg?=
- =?us-ascii?Q?BzzmKEW/5MutWwsootYDsL8L7yqT3ecqLOUsqZXL/8DvZcXZHj6QMQxa+Vf8?=
- =?us-ascii?Q?wJK9lOdp154Sky/RTxiiQcg7IFT4bfUyObUVeDq0gh84nIBoDYptWiMFXZBf?=
- =?us-ascii?Q?1L+91kYsGR8Yqxk1kxsBvBikZCpprtGHImnIJh+aPKYn65JUjMAv+U4Wj0HG?=
- =?us-ascii?Q?UMK0oA4V2RjKnv4j89xdfSgcp8zWCCo8ASjllW7eJAMQpXzXKkhX7PzR62MX?=
- =?us-ascii?Q?DzMGuEdYeqxSnA1XNTuLNMOHhVx+70bmWDIkHZFG?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GFpmm9guqmrTw1uCrIq+blhRrUfrLHHOIlqkBEMPXw+Qcsaiw+Q+OWMqvOfX?=
+ =?us-ascii?Q?sJM4GyaLM1HiBXdVrsDmoXUpebErVVUzlk1zipxsvuRtaJhI4zTTRvJ/UR1d?=
+ =?us-ascii?Q?sbXG4rXNplCoX5qWM3Bx7r6R1hMkZmO+3TQPNHT7R/37pjPvNS24dw3dQfAo?=
+ =?us-ascii?Q?iIVq4iIh0//joksF6w7jd32G/wSCn+m87UgSVd6BFcItDFNUnp/kNwTNx8tr?=
+ =?us-ascii?Q?F7wYzoySJWLOAngp5DYRn/G6yfh59pglI/hSHLQEI1y/6iaC1vRzY+zVfhY6?=
+ =?us-ascii?Q?i87TAYdBhHvO6ssdkojTCiZ54G1X59XFJgfVwoRpYJAvW8WvadOF80PRKm9e?=
+ =?us-ascii?Q?2BwkhaPt54z/WfsMnDQ7LX1RN+Mzm+iLdwjHwzduMgGheyFyaMGxm97q7K73?=
+ =?us-ascii?Q?FF543uUqTj2UMuOHx6iejEY/or0bBQu3S4Jc2TxIIpxZYSF2DLARv5M4jA6L?=
+ =?us-ascii?Q?BXKRS95OgT3dgu00od7iGF9/yw0A/wLZaFy/pVzUcapo0uCfGK95z+6/84GD?=
+ =?us-ascii?Q?/6WOM7TKBQQOZ5qMcbPJRLZvAETIU/0kXTphP4dEXS5ESjjbCMRPE/qOkBBI?=
+ =?us-ascii?Q?YVBKWFc39HImbh9rTqg7weirr4roDdWX0gxPSIfycKlSUvx5d6eT8UeXx0BM?=
+ =?us-ascii?Q?iUnv+1i3PdlPRtxImLAl3mXlFIAgh0YbWGOPrN2W5Ymo4UTXC5I6eYwfLsiX?=
+ =?us-ascii?Q?iKvcTLON3bIkD/TGNSUpQ1eqHn1CrVgdOs5ZvDzd0AJHMoROWhPS00uXLDai?=
+ =?us-ascii?Q?XQPtwjYgszDcKWuuy91Tg0qbKm9d3cXV/hP8KubIgsYCIuGJmZJx2C8ONbY7?=
+ =?us-ascii?Q?GqfR6YYwJ12coEiRY8+HY/s0duuJJuCUWyYe1AfbTHD+DmJIbF6kaA8VpeqU?=
+ =?us-ascii?Q?zRn+t54OsphFCkAHvcSPhC3uVRbRnO+YztvotRKIcMHy0o+qW8jJXMU2Hk9i?=
+ =?us-ascii?Q?zUHhwI8orMw0HTIuNZuVWYIU2fbxiOuSsIely5dYptQ2uF8J4g42MfVph1dr?=
+ =?us-ascii?Q?3yJslK5LmucaCAFSXOFmcJW/TWL0UTxSxeCOA8GeFU+DqihU/YavXw6ix5+I?=
+ =?us-ascii?Q?GwhRu7K3JKFpD0E+mmnvADl/fM7wvGUgZclfKNClwOypBqQF8BbQChPiiwKP?=
+ =?us-ascii?Q?krT7xgN5hPDb6G77K8F18TLsCXpssnjde3ECmmpdFZlsHwxJ6+xvXT1brzDe?=
+ =?us-ascii?Q?4wT75YfVlOfwA8tZca+3xvKQV7B8hx79PYgMHylRYB1Q4P1Z2mf8NE82HwdL?=
+ =?us-ascii?Q?QqWRSMP5MtYVEvmiZ/b+Qe9U8lM+K2M8lXwd3216/FQ90lmnaua2wTHz0I+s?=
+ =?us-ascii?Q?OCktLVH5ul+QUPm2sMccfsKDFG1umslm3G6DCIL1eWpuobbPlA2qDt+DMpiM?=
+ =?us-ascii?Q?RBRikK3T5eAox3THAXzC4qrJMd6qJAnGMHWpyPtvd+CLUjKsQjaeU3EufWHz?=
+ =?us-ascii?Q?Bi37BHFD5q3GFWwlz3csMV5Z+d1z8zQpJn5VemYCBBvNUPXmGybOicbfdOkR?=
+ =?us-ascii?Q?r62EIeT0h7nN/3SJHq8cmOALYa0LlXZzqtRZShtuk4V6Vicf96M6AsOlcvIA?=
+ =?us-ascii?Q?dmtX8Eizs5RfYxYy8wWi+4YkfmUQBcrksddp0wXr?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1741.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21a561b8-6551-4247-e00f-08db21288966
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2023 05:30:19.0529 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c780a0b7-d994-4d88-fd2d-08db2128a290
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2023 05:31:01.2720 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rD+d+Owz81REI4pfQL31f4i+9QwqE/7zJuP7Vt2DU0XLqR+E7AgUgGXF3Vay47cpJ0ZPCoMTPiRImOb4Z5nV1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6193
+X-MS-Exchange-CrossTenant-userprincipalname: im92GGfkBLp7xzFrq6lKj6tkjcpu6CoraYaHDd6qGxT5Vf2AMNkocOpu6yVWdrNV4oS+vg6Yq/s2Evq+XJpyOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7871
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 01/10] drm/hdcp: Add
- drm_hdcp_atomic_check()
+Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,322 +152,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "quic_sbillaka@quicinc.com" <quic_sbillaka@quicinc.com>,
- "konrad.dybcio@somainline.org" <konrad.dybcio@somainline.org>,
- "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "airlied@gmail.com" <airlied@gmail.com>, "hbh25y@gmail.com" <hbh25y@gmail.com>,
- "Vasut, Marek" <marex@denx.de>, "javierm@redhat.com" <javierm@redhat.com>,
- "agross@kernel.org" <agross@kernel.org>,
- "quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "Nikula, 
- Jani" <jani.nikula@intel.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
- "abhinavk@codeaurora.org" <abhinavk@codeaurora.org>,
- "swboyd@chromium.org" <swboyd@chromium.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
- "maxime@cerno.tech" <maxime@cerno.tech>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>,
- "johan+linaro@kernel.org" <johan+linaro@kernel.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "dianders@chromium.org" <dianders@chromium.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "seanpaul@chromium.org" <seanpaul@chromium.org>
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "jasowang@redhat.com" <jasowang@redhat.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
+ "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>, "Zhao, Yan
+ Y" <yan.y.zhao@intel.com>, "lulu@redhat.com" <lulu@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+> From: Yi Liu
+> Sent: Wednesday, March 8, 2023 9:29 PM
 >=20
-> From: Sean Paul <seanpaul@chromium.org>
+> This is another method to issue PCI hot reset for the users that bounds
+> device to a positive iommufd value. In such case, iommufd is a proof of
+> device ownership. By passing a zero-length fd array, user indicates kerne=
+l
+> to do ownership check with the bound iommufd. All the opened devices
+> within
+> the affected dev_set should have been bound to the same iommufd. This is
+> simpler and faster as user does not need to pass a set of fds and kernel
+> no need to search the device within the given fds.
 >=20
-> This patch moves the hdcp atomic check from i915 to drm_hdcp so other
-> drivers can use it. No functional changes, just cleaned up some of the co=
-de
-> when moving it over.
->=20
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-2-
-> sean@poorly.run #v1
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-2-
-> sean@poorly.run #v2
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-2-
-> sean@poorly.run #v3
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-
-> 2-sean@poorly.run #v4
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-
-> 2-sean@poorly.run #v5
->=20
-> Changes in v2:
-> -None
-> Changes in v3:
-> -None
-> Changes in v4:
-> -None
-> Changes in v5:
-> -None
-> Changes in V6:
-> -Rebase: move helper from drm_hdcp.c to drm_hdcp_helper.c
->=20
-> ---
->  drivers/gpu/drm/display/drm_hdcp_helper.c   | 69
-> +++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_atomic.c |  4 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c   | 47 --------------
->  drivers/gpu/drm/i915/display/intel_hdcp.h   |  3 -
->  include/drm/display/drm_hdcp_helper.h       |  3 +
->  5 files changed, 74 insertions(+), 52 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_hdcp_helper.c
-> b/drivers/gpu/drm/display/drm_hdcp_helper.c
-> index e78999c72bd7..7d910523b05f 100644
-> --- a/drivers/gpu/drm/display/drm_hdcp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_hdcp_helper.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm_property.h>
->  #include <drm/drm_mode_object.h>
->  #include <drm/drm_connector.h>
-> +#include <drm/drm_atomic.h>
->=20
->  static inline void drm_hdcp_print_ksv(const u8 *ksv)  { @@ -419,3 +420,7=
-1
-> @@ void drm_hdcp_update_content_protection(struct drm_connector
-> *connector,
->  				 dev-
-> >mode_config.content_protection_property);
->  }
->  EXPORT_SYMBOL(drm_hdcp_update_content_protection);
-> +
-> +/**
-> + * drm_hdcp_atomic_check - Helper for drivers to call during
-> +connector->atomic_check
-> + *
-> + * @state: pointer to the atomic state being checked
-> + * @connector: drm_connector on which content protection state needs an
-> +update
-> + *
-> + * This function can be used by display drivers to perform an atomic
-> +check on the
-> + * hdcp state elements. If hdcp state has changed, this function will
-> +set
-> + * mode_changed on the crtc driving the connector so it can update its
-> +hardware
-> + * to match the hdcp state.
-> + */
-> +void drm_hdcp_atomic_check(struct drm_connector *connector,
-> +			   struct drm_atomic_state *state)
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+
+I think you also need a s-o-b from Jason since he wrote most of the
+code here.
+
+> +struct iommufd_ctx *vfio_iommufd_physical_ctx(struct vfio_device *vdev)
 > +{
-> +	struct drm_connector_state *new_conn_state, *old_conn_state;
-> +	struct drm_crtc_state *new_crtc_state;
-> +	u64 old_hdcp, new_hdcp;
-> +
-> +	old_conn_state =3D drm_atomic_get_old_connector_state(state,
-> connector);
-> +	old_hdcp =3D old_conn_state->content_protection;
-> +
-> +	new_conn_state =3D drm_atomic_get_new_connector_state(state,
-> connector);
-> +	new_hdcp =3D new_conn_state->content_protection;
-> +
-> +	if (!new_conn_state->crtc) {
-> +		/*
-> +		 * If the connector is being disabled with CP enabled, mark it
-> +		 * desired so it's re-enabled when the connector is brought
-> back
-> +		 */
-> +		if (old_hdcp =3D=3D
-> DRM_MODE_CONTENT_PROTECTION_ENABLED)
-> +			new_conn_state->content_protection =3D
-> +
-> 	DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +		return;
-> +	}
-> +
-> +	new_crtc_state =3D
-> +		drm_atomic_get_new_crtc_state(state, new_conn_state-
-> >crtc);
-> +	/*
-> +	* Fix the HDCP uapi content protection state in case of modeset.
-> +	* FIXME: As per HDCP content protection property uapi doc, an
-> uevent()
-> +	* need to be sent if there is transition from ENABLED->DESIRED.
-> +	*/
+> +	/* Only serve for physical device */
+> +	if (!vdev->iommufd_device)
+> +		return NULL;
 
-Hi Mark,
-Is the above comment needed here as drm_hdcp_update_content_protection is
-used to change property which sends a uevent making the above comment misle=
-ading
+pointless comment
 
-Regards,
-Suraj Kandpal
-> +	if (drm_atomic_crtc_needs_modeset(new_crtc_state) &&
-> +	    (old_hdcp =3D=3D DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-> +	     new_hdcp !=3D DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
-> +		new_conn_state->content_protection =3D
-> +			DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +
-> +	/*
-> +	 * Nothing to do if content type is unchanged and one of:
-> +	 *  - state didn't change
-> +	 *  - HDCP was activated since the last commit
-> +	 *  - attempting to set to desired while already enabled
-> +	 */
-> +	if (old_hdcp =3D=3D new_hdcp ||
-> +	    (old_hdcp =3D=3D DRM_MODE_CONTENT_PROTECTION_DESIRED &&
-> +	     new_hdcp =3D=3D DRM_MODE_CONTENT_PROTECTION_ENABLED) ||
-> +	    (old_hdcp =3D=3D DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-> +	     new_hdcp =3D=3D DRM_MODE_CONTENT_PROTECTION_DESIRED)) {
-> +		if (old_conn_state->hdcp_content_type =3D=3D
-> +		    new_conn_state->hdcp_content_type)
-> +			return;
-> +	}
-> +
-> +	new_crtc_state->mode_changed =3D true;
-> +}
-> +EXPORT_SYMBOL(drm_hdcp_atomic_check);
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c
-> b/drivers/gpu/drm/i915/display/intel_atomic.c
-> index 18f0a5ae3bac..8a473199c4bf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -32,6 +32,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/display/drm_hdcp_helper.h>
->=20
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> @@ -39,7 +40,6 @@
->  #include "intel_cdclk.h"
->  #include "intel_display_types.h"
->  #include "intel_global_state.h"
-> -#include "intel_hdcp.h"
->  #include "intel_psr.h"
->  #include "skl_universal_plane.h"
->=20
-> @@ -123,7 +123,7 @@ int intel_digital_connector_atomic_check(struct
-> drm_connector *conn,
->  		to_intel_digital_connector_state(old_state);
->  	struct drm_crtc_state *crtc_state;
->=20
-> -	intel_hdcp_atomic_check(conn, old_state, new_state);
-> +	drm_hdcp_atomic_check(conn, state);
->=20
->  	if (!new_state->crtc)
->  		return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 6406fd487ee5..396d2cef000a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2524,53 +2524,6 @@ void intel_hdcp_cleanup(struct intel_connector
-> *connector)
->  	mutex_unlock(&hdcp->mutex);
->  }
->=20
-> -void intel_hdcp_atomic_check(struct drm_connector *connector,
-> -			     struct drm_connector_state *old_state,
-> -			     struct drm_connector_state *new_state)
-> -{
-> -	u64 old_cp =3D old_state->content_protection;
-> -	u64 new_cp =3D new_state->content_protection;
-> -	struct drm_crtc_state *crtc_state;
-> -
-> -	if (!new_state->crtc) {
-> -		/*
-> -		 * If the connector is being disabled with CP enabled, mark it
-> -		 * desired so it's re-enabled when the connector is brought
-> back
-> -		 */
-> -		if (old_cp =3D=3D
-> DRM_MODE_CONTENT_PROTECTION_ENABLED)
-> -			new_state->content_protection =3D
-> -
-> 	DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> -		return;
-> -	}
-> -
-> -	crtc_state =3D drm_atomic_get_new_crtc_state(new_state->state,
-> -						   new_state->crtc);
-> -	/*
-> -	 * Fix the HDCP uapi content protection state in case of modeset.
-> -	 * FIXME: As per HDCP content protection property uapi doc, an
-> uevent()
-> -	 * need to be sent if there is transition from ENABLED->DESIRED.
-> -	 */
-> -	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
-> -	    (old_cp =3D=3D DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-> -	    new_cp !=3D DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
-> -		new_state->content_protection =3D
-> -			DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> -
-> -	/*
-> -	 * Nothing to do if the state didn't change, or HDCP was activated
-> since
-> -	 * the last commit. And also no change in hdcp content type.
-> -	 */
-> -	if (old_cp =3D=3D new_cp ||
-> -	    (old_cp =3D=3D DRM_MODE_CONTENT_PROTECTION_DESIRED &&
-> -	     new_cp =3D=3D DRM_MODE_CONTENT_PROTECTION_ENABLED)) {
-> -		if (old_state->hdcp_content_type =3D=3D
-> -				new_state->hdcp_content_type)
-> -			return;
-> -	}
-> -
-> -	crtc_state->mode_changed =3D true;
-> -}
-> -
->  /* Handles the CP_IRQ raised from the DP HDCP sink */  void
-> intel_hdcp_handle_cp_irq(struct intel_connector *connector)  { diff --git
-> a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> index 8f53b0c7fe5c..7c5fd84a7b65 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> @@ -22,9 +22,6 @@ struct intel_digital_port;  enum port;  enum transcoder=
-;
->=20
-> -void intel_hdcp_atomic_check(struct drm_connector *connector,
-> -			     struct drm_connector_state *old_state,
-> -			     struct drm_connector_state *new_state);
->  int intel_hdcp_init(struct intel_connector *connector,
->  		    struct intel_digital_port *dig_port,
->  		    const struct intel_hdcp_shim *hdcp_shim); diff --git
-> a/include/drm/display/drm_hdcp_helper.h
-> b/include/drm/display/drm_hdcp_helper.h
-> index 8aaf87bf2735..dd02b2e72a50 100644
-> --- a/include/drm/display/drm_hdcp_helper.h
-> +++ b/include/drm/display/drm_hdcp_helper.h
-> @@ -11,6 +11,7 @@
->=20
->  #include <drm/display/drm_hdcp.h>
->=20
-> +struct drm_atomic_state;
->  struct drm_device;
->  struct drm_connector;
->=20
-> @@ -18,5 +19,7 @@ int drm_hdcp_check_ksvs_revoked(struct drm_device
-> *dev, u8 *ksvs, u32 ksv_count)  int
-> drm_connector_attach_content_protection_property(struct drm_connector
-> *connector,
->  						     bool hdcp_content_type);
->  void drm_hdcp_update_content_protection(struct drm_connector
-> *connector, u64 val);
-> +void drm_hdcp_atomic_check(struct drm_connector *connector,
-> +			   struct drm_atomic_state *state);
->=20
->  #endif
-> --
-> 2.39.0.246.g2a6d74b583-goog
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -682,6 +682,11 @@ struct vfio_pci_hot_reset_info {
+>   * The ownership can be proved by:
+>   *   - An array of group fds
+>   *   - An array of device fds
+> + *   - A zero-length array
+> + *
+> + * In the last case all affected devices which are opened by this user
+> + * must have been bound to a same iommufd_ctx.  This approach is only
+> + * available for devices bound to positive iommufd.
 
+As we chatted before I still think the last sentence is pointless. If a dev=
+ice
+is bound to negative iommufd value (i.e. noiommu) it doesn't have a
+valid iommufd_ctx so won't meet "bound to a same iommufd_ctx".=20
