@@ -2,56 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A916B4D80
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 17:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5CC06B4EB1
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 18:36:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7376010E2D7;
-	Fri, 10 Mar 2023 16:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBFA10E059;
+	Fri, 10 Mar 2023 17:36:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A20610E21C
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 16:48:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678466894; x=1710002894;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=y1BIGZuvsiTUQZyUIGha39u4IVeDwFUA9ZldRq/rR0k=;
- b=mgBFeS75v+7u+WR42Ck06bvXSlw68mAE1BFsNSW98XFxfOAHJ/yEcRca
- beezDSTIAMX9axdcN5/5EPitaFAk7g7+3dvncEQ6SzUpo3HyHdFIU9Kkc
- DgHY3nQUwtOd3OLQ1CrIqzKWS+fCq3CfvZu9FByxsI+09Kd4zNa41fsR7
- dnotr5TCJK+CPupsQ/w3oX64KQN6kC0r5j5/bKiEfQeg+J4bDNfc6EVvf
- n7f33yj8mVshOcBzp4M8yagjyOhd+jTf1z05gSjPUTpN+OMqhtAGzakhu
- dYpHHXDWEnEe6NtSqMYG865c90S8l+C5Kme1/IWW8lOGQhpNxTD7FgZzN Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="399371645"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="399371645"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 08:48:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="671145703"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="671145703"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.59.175])
- ([10.252.59.175])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 08:48:12 -0800
-Message-ID: <242c2634-1c38-351d-7198-cba3ec1ad4f2@linux.intel.com>
-Date: Fri, 10 Mar 2023 17:48:10 +0100
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9506D10E02E;
+ Fri, 10 Mar 2023 17:36:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iTL1kAFpleNRm1CJyotixKekLNuTXXxVDyoHZV11lDA4Bgewz419LWUEyO9i+US856AkMdJ1TJp0/ZmvyvMSwFFAk2R/M9em6CX1SlLAu3G7mSg+NPMQcbckLGknM9FSorFjCeB9q70by4WvL8CtVBRlpSTfHlSFsyLpZco41OUKqijiXmp0326UUcNhf3/PBJy1ZY0uYyPQ2RvlTmwvpfWzsiNDw2sfQN2Xq/SQgL30jhf7FfvrxkmpS6/5g0CJgjFuTjmOnDajPEIj0KA7dYJFTkaPXI8xhAt6aFFnkb/dxSKdlyaaVb30IOZfimr6stpfTRYMFaUwvHpTbEL4UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zmQls6YfjG+90MMdGh0L/Y72YVkgxd9wiiKpmPwQBLM=;
+ b=Wm9qGBkOPJLdsG+NjxOUhd/S5Pb58zW0VBAyEill80SAYikAvk1/C/z8O59qTPx+Rf1QhDMKIAhW8FAX9eQFokw87fUMSwYKaOSJ84fZQzrG8O/zSfFV8Ph3YRdctuXv3ifBqNaE7asVS3Wtw6JBea/q7xXnLTOmaCOaZ5KZs+kzb1NgJj688J5PSkoWkxWvcf7LjK4ho6CCY9BxvvXGMQMTr2f4qIpNPvTFf0uFnXFpecNQqG1/qaUNPsR0keuQ4DpnOnX+WDcVjan+XDZ4LpBwmGLgXvbvQStETj7obtJo4n6mexDfqhohmfu7AT4esxxNSybKjS6F7E3XKEKwhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zmQls6YfjG+90MMdGh0L/Y72YVkgxd9wiiKpmPwQBLM=;
+ b=pcotqcTU0ekEQC+XfX0Thvo4t7Jk7d3vAclBO+/+jp24Njo8SuOxy4IkqPqbZ5YliH0Ax0lJz6OmfjhKdE2wbG5Gbf1cdlKhhfGos897H0/jKxQ4eNgncdQ0zIaJCkuBAajEipGtGd81gnLPFc1ddWMQ66i4O5nfNCVfSe6lc1435g49ntdAud4Xfxc96ZI1Z1vPxOQQLZYsLlcVszIaoyJRn1NEiJJCKxsXtDzSSYzTfPPR2dYip9g+n4EX7QvXkDA5JmIfmaCo68jDnFPTButI1hGqjpdzc09hj9sEml2Gyt5aeOOTJsq0Cjc0XvpTDDR1ieCzR/V1oviU2oX4pA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by SJ0PR12MB6734.namprd12.prod.outlook.com (2603:10b6:a03:478::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
+ 2023 17:36:25 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.017; Fri, 10 Mar 2023
+ 17:36:25 +0000
+Date: Fri, 10 Mar 2023 13:36:22 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <ZAtqlnCk7uccR5E7@nvidia.com>
+References: <20230308131340.459224-1-yi.l.liu@intel.com>
+ <20230308131340.459224-2-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308131340.459224-2-yi.l.liu@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0168.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::23) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230310141138.6592-1-nirmoy.das@intel.com>
- <2135859.irdbgypaU6@jkrzyszt-mobl1.ger.corp.intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <2135859.irdbgypaU6@jkrzyszt-mobl1.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/active: Fix missing debug object
- activation
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SJ0PR12MB6734:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9a80d86-bb16-4685-c386-08db218df8cb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: stZ7A6x2+AIuZ6vxHjlfFpQqdZDEklb5yThD8f8sDnFwoum+aQPviIOii+QUpVBpBidtOATGu+kiXRxm6YSMlfSsaRsNzztFgPgbiQk00y/b9Pm+CLL+z5SnXchF1ecRr2YBoZZCHYeTcyzMCdEnazRacjUsOkxDAwlxh4GQKC0KaaG0o8ZKg77zMVg4+pf94xQtpq9Ie3MJSyeIM5EY+zBB4/lPRd4MSBumSxuPtLM28zlZ5TlkO6YjFwUiJ7EOOiOqvckYh9pvcOG6W3afau6klNpKqZ97py3CTTpbediP0UBpbPx2CCDxdWy2xJ+jbN7s0eyW/oENvuywraL361kYAPTUERAcyqmaxgPbvIt22hVdYF3O6Ov2ZgCVpRXsqFY+UhXgrobakKpj2+bzRtdFY1Nh/dl6vaJaiPIuy/trA/6y9QcY64qQhqJhanNhpQG3dZQl9au72zyc7mANDnsIy9kDyKOBdtcMK3gjWfoyAmEjCZwga+gR9t/2I36CLBFQYN3ehV+e2fByFJYbGGWqJqD2G075iCpviPXLef6oliyQYa3kkEV5IpyZhTfmSBppPlYNf0LBXtGpotDYK0Av+ASxzlhfbKBCM0lFhu74rOIR6puh5MMKUBkSXQj6yAa7x/tDwJ7CNBYc6GYfyg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(366004)(346002)(39860400002)(396003)(376002)(136003)(451199018)(316002)(36756003)(38100700002)(6512007)(86362001)(26005)(6666004)(83380400001)(186003)(2616005)(6506007)(5660300002)(7416002)(6486002)(478600001)(41300700001)(8936002)(2906002)(6916009)(66946007)(66556008)(8676002)(4326008)(66476007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KHe13wVoA6plMqCCBYimpAIU1EFcwxKn9roCwmCFMS16wZ3R8C4+lpYdGgrk?=
+ =?us-ascii?Q?jB0arIxFQ7Rpny5whJH49qvLLULKE/EbOjel0u5F1XAB9ncvcZP7ar6HihPv?=
+ =?us-ascii?Q?GmlAwremr2rrGGpq5SJ7ZHBDeIC/5Fn2SpyFnbNkxo1WJCrqqgQ7mmD+fZ00?=
+ =?us-ascii?Q?8hVapMe2Z9W1iONSUC5bnheAM1ecba01PVhjcV5XErriVsVDvEMH9w8LKccF?=
+ =?us-ascii?Q?kNrLS/c4GuQy6b2NYSuZefVde4yGw9IzuNlbgNASm5HrMwhv1aeiFU99xzRm?=
+ =?us-ascii?Q?/1YGUp2WAaQKuqbUKiJWO5Mi/GbUi0ta6lXvc3miEPXhLNpbj3Grvg8B0V8j?=
+ =?us-ascii?Q?h8MS1uEduKai3/FQFKBk4rJIUSo/JJYbrQwS5fjJ7xT6GwP8rmoOUy0pkRVC?=
+ =?us-ascii?Q?u1dGMIKsxQUp+jj4Nl+NpjikDBqHKLRbFioOhYsL/hcqgCJndHVNjnvdfyEx?=
+ =?us-ascii?Q?WfAOqI7HuIOJfVnzGoBOFh52EBCV4Ok85GlOvMPt5FoRhxgaw7+h9qD5d67P?=
+ =?us-ascii?Q?51zaM11lfAeK8orzUKgfWx9ofI8ZvAvLKheEZvbhOUV1mbdBeAq/JzhKp/a0?=
+ =?us-ascii?Q?aG7ieAI08Wn4cDcFFZBA25vYOMmbFiNJ/N1YCi2r45OhDusZfHTpTlzDGfQm?=
+ =?us-ascii?Q?o//yVsZp7AUjQsAX2J25b6EMG2YYXDJ6BeaLnJRUXQYg+LIiTMr1p/ilD78B?=
+ =?us-ascii?Q?1lHJwwuduH+Zwq+ZXoSR1/aQZ27qaL5gPwuNzJIy4Z7/3qpjPJvLIldMe+4q?=
+ =?us-ascii?Q?U8tFf+birep7pV7XV9p1wzXOLYP8G82zY+1QegUhpheDU20O0g1LLBD3HXKR?=
+ =?us-ascii?Q?75Eor2n4vSioNjxKunvpQwXwdzyCNF1LBXC7tigOROs+YtSPTTA3F5sNdQ7d?=
+ =?us-ascii?Q?bOT+QmCzXWq4t2Uw8r9rX/hsAk5SDlIStXaOQMG45yWj9t9E9I9WKeH0pLNW?=
+ =?us-ascii?Q?FacKBmehGSBgIMELbjklpkAwdjsecsdwtgp0kVhB5JXHYJB+wJ75gtixxvgu?=
+ =?us-ascii?Q?FGtYBd1oBHV896UNPInejifgOf2REKWge+0YHPZkJBzAs46fVe8d9xUgu8Jm?=
+ =?us-ascii?Q?Sk+MjeE+BPpHIaNg7eQnQXzXBhls27G+1FrWVSA6W1qJY5ESVoudyjzwX3TV?=
+ =?us-ascii?Q?UHuPyIJWlzf52Eb6OpVXT1SIpTNQGOCj6cjPrSW/wPIolZtH7FbPJJ1EmPqT?=
+ =?us-ascii?Q?/uM56FaGVlGdHwc1ZN0rHv/e7AL+ha78PbeqLUeHoFt+IBmKe1A06xSlWTix?=
+ =?us-ascii?Q?XqKwibhG5w3SEaFl0bim7yAhVwa0jy7EQ2/y8kyV3ApnmN/CTeqSdIr7aEMQ?=
+ =?us-ascii?Q?igFUcS1mt+KjsbvfTBB2vq3Un6ddxwa6sEZ+9eUaDjktyTCr3oBHGBlFV+Mc?=
+ =?us-ascii?Q?y6eykW8quVgEANlJJ45TFyZ7UUZgH5jxF3JTULyFm/y6CUEbQvEEc3bRrvxD?=
+ =?us-ascii?Q?bh+09ATHJ0szghTGDvFoZO32UBJfzSrQ28LfjUBKILGgPx+2tuaq/x9R6/iY?=
+ =?us-ascii?Q?CUFBIqLFp4Dt3HIu5f/i1BnDlQVpBYaXwNz4IyypfGQ90aYUh8kt1HCsWYZn?=
+ =?us-ascii?Q?Y5BwM39POBz6CSqmCtB1NrLSAosyVw9Xx9J5P1mh?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9a80d86-bb16-4685-c386-08db218df8cb
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:36:25.7358 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0KJEeBl01yxrj0h8zUrTM02Unu0pNlgGD4FkCIkO9ymCIioVqWlvOfEgAkBXg56L
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6734
+Subject: Re: [Intel-gfx] [PATCH v1 1/5] iommufd: Create access in
+ vfio_iommufd_emulated_bind()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,80 +115,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>, stable@vger.kernel.org,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ joro@8bytes.org, nicolinc@nvidia.com, yan.y.zhao@intel.com,
+ intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+On Wed, Mar 08, 2023 at 05:13:36AM -0800, Yi Liu wrote:
 
-On 3/10/2023 4:19 PM, Janusz Krzysztofik wrote:
-> Hi Nirmoy,
->
-> On Friday, 10 March 2023 15:11:38 CET Nirmoy Das wrote:
->> debug_active_activate() expected ref->count to be zero
->> which is not true anymore as __i915_active_activate() calls
->> debug_active_activate() after incrementing the count.
->>
->> Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active
-> callback")
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: intel-gfx@lists.freedesktop.org
->> Cc: <stable@vger.kernel.org> # v5.10+
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/i915_active.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/
-> i915_active.c
->> index a9fea115f2d2..1c3066eb359a 100644
->> --- a/drivers/gpu/drm/i915/i915_active.c
->> +++ b/drivers/gpu/drm/i915/i915_active.c
->> @@ -92,7 +92,7 @@ static void debug_active_init(struct i915_active *ref)
->>   static void debug_active_activate(struct i915_active *ref)
->>   {
->>   	lockdep_assert_held(&ref->tree_lock);
->> -	if (!atomic_read(&ref->count)) /* before the first inc */
->> +	if (atomic_read(&ref->count) == 1) /* after the first inc */
-> While that's obviously better than never calling debug_active_activate(), I'm
-> wondering how likely we can still miss it because the counter being
-> incremented, e.g. via i915_active_acquire_if_busy(), by a concurrent thread.
-> Since __i915_active_activate() is the only user and its decision making step
-> is serialized against itself with a spinlock, couldn't we better call
-> debug_object_activate() unconditionally here?
+> +int iommufd_access_set_ioas(struct iommufd_access *access, u32 ioas_id)
+> +{
+> +	struct iommufd_ioas *new_ioas = NULL, *cur_ioas;
+> +	struct iommufd_ctx *ictx = access->ictx;
+> +	struct iommufd_object *obj;
+> +	int rc = 0;
+> +
+> +	if (ioas_id) {
+> +		obj = iommufd_get_object(ictx, ioas_id, IOMMUFD_OBJ_IOAS);
+> +		if (IS_ERR(obj))
+> +			return PTR_ERR(obj);
+> +		new_ioas = container_of(obj, struct iommufd_ioas, obj);
+> +	}
+> +
+> +	mutex_lock(&access->ioas_lock);
+> +	cur_ioas = access->ioas;
+> +	if (cur_ioas == new_ioas)
+> +		goto out_unlock;
+> +
+> +	if (new_ioas) {
+> +		rc = iopt_add_access(&new_ioas->iopt, access);
+> +		if (rc)
+> +			goto out_unlock;
+> +		iommufd_ref_to_users(obj);
+> +	}
+> +
+> +	if (cur_ioas) {
+> +		iopt_remove_access(&cur_ioas->iopt, access);
+> +		refcount_dec(&cur_ioas->obj.users);
+> +	}
 
+This should match the physical side with an add/remove/replace
+API. Especially since remove is implicit in destroy this series only
+needs the add API
 
-Yes, we can call debug_object_activate() without checking ref->count. 
-Also we can remove the ref-count check for
+And the locking shouldn't come in another patch that brings the
+replace/remove since with just split add we don't need it.
 
-debug_active_deactivate() as this is wrapped with 
-"atomic_dec_and_lock_irqsave(&ref->count, &ref->tree_lock, flags)".
+That will make this patch alot smaller
 
-
-I think it makes sense to keep this patch as it is so it can be 
-backported easily. I can add another patch to remove
-
-unnecessary ref->count  checks.
-
-
-Regards,
-
-Nirmoy
-
-
->
-> Thanks,
-> Janusz
->
->>   		debug_object_activate(ref, &active_debug_desc);
->>   }
->>   
->>
->
->
->
+Jason
