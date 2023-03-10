@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49506B5617
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Mar 2023 00:58:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B3C76B5618
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Mar 2023 00:58:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7594F10EA2F;
-	Fri, 10 Mar 2023 23:58:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2343710EA31;
+	Fri, 10 Mar 2023 23:58:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E47110EA2F
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 23:58:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E792D10EA31
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 23:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678492715; x=1710028715;
+ t=1678492718; x=1710028718;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=S9k8kr9jztqJmDNl5OhKIyygY209BuGmsxA6d/HBcys=;
- b=iVJ0yhrf2OeIxvTFLvqJ3Nlqh7jcPpg3pgWQFP+SKuGHHXFnvxtMIWnv
- r0mpNJieUvfRwtMKJx+LAQnLKuT6yrIY7QntwxOyoqWj0dS2qKmLr/Bhe
- yKxNSq4GBNiUo7YV11svRSmivv1Z6zlSv9bgAQBOXnWuMXWYOyBSdnWzi
- pZRfmvxAEEkxow0Tv47KDIj/hrnJITt7GFb2qd6gUqH10ChJY6ZBQ7ot7
- eStRSz4nLcJWkKbcWLi+zUYGEaopueL0UoJGGy8kKvULdsTGOezYBWz1/
- s/HrNLSWCLziiWU0vnPGeoi3/uoGyEfIKPoV4CkaJg9viWv3HoCMsZQhU Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="399453132"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="399453132"
+ bh=tDS6jewjxonRZyx7/ilPy7hkTPqhO+8rAsVZOJ1mEVU=;
+ b=Be6PiL8cHhaSiF3H0O87/TwKZOSvFaxKWBGAwLrAiVX2vHN9J0sohMx5
+ +hTV1iq5euHrSkl7/cxGVjWzHTZFIGXNbEMqhfpfzqNYCKbjBkCRYxiTn
+ 9ek+2UAs9hq3mKlD+8C9RMWv2b7aRmk4UusOsSv1DE5BQUV7DQeMfLK7b
+ U0o2aOA7TlZhWihj62YwMM3ZA/3KG1AkAych+opDAsMV24aX8qr+gT/J+
+ zgkd6ZpC1GM8EHoxsjlES4CJIPVtv1fkY8hnDS5XmIaS13yHzi0gOWTnn
+ krp12ZyBnrzpT+SxyZXNzwOz/+iwVvYA5iNXpZUsmhBiJTH5n88bLzlcj g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="399453135"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="399453135"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 15:58:35 -0800
+ 10 Mar 2023 15:58:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="710469158"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="710469158"
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="710469169"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="710469169"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 10 Mar 2023 15:58:33 -0800
+ by orsmga001.jf.intel.com with SMTP; 10 Mar 2023 15:58:36 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 11 Mar 2023 01:58:32 +0200
+ Sat, 11 Mar 2023 01:58:35 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 11 Mar 2023 01:58:26 +0200
-Message-Id: <20230310235828.17439-2-ville.syrjala@linux.intel.com>
+Date: Sat, 11 Mar 2023 01:58:27 +0200
+Message-Id: <20230310235828.17439-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230310235828.17439-1-ville.syrjala@linux.intel.com>
 References: <20230310235828.17439-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: Add belts and suspenders
- locking for seamless M/N changes
+Subject: [Intel-gfx] [PATCH v2 3/4] drm/i915: Relocate
+ intel_crtc_update_active_timings()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,48 +66,175 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add some (probably overkill) locking to protect the vblank
-timestamping constants updates during seamless M/N fastsets.
+Move intel_crtc_update_active_timings() into intel_vblank.c
+where it more properly belongs.
 
-As everything should be naturally aligned I think the individual
-pieces should probably end up updating atomically enough. So this
-is only really meant to guarantee everyone sees a consistent whole.
-
-All the drm_vblank.c usage is covered by vblank_time_lock,
-and uncore.lock will take care of __intel_get_crtc_scanline()
-that can also be called from outside the core vblank functionality.
-
-Currently only crtc_clock and framedur_ns can change, but in
-the future might fastset also across eg. vtotal/vblank_end
-changes, so let's just grab the locks across the whole thing.
+Also do the s/dev_priv/i915/ modernization rename while at it.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 24 +++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 84 ------------------
+ drivers/gpu/drm/i915/display/intel_display.h  |  1 -
+ .../drm/i915/display/intel_modeset_setup.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 85 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vblank.h   |  2 +
+ 5 files changed, 88 insertions(+), 85 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 410c84fd905c..5bd51198281f 100644
+index 5bd51198281f..5bbcff38e02e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5910,6 +5910,8 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct drm_display_mode adjusted_mode;
+@@ -5905,90 +5905,6 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 	return 0;
+ }
+ 
+-void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	struct drm_display_mode adjusted_mode;
+-	int vmax_vblank_start = 0;
+-	unsigned long irqflags;
+-
+-	drm_mode_init(&adjusted_mode, &crtc_state->hw.adjusted_mode);
+-
+-	if (crtc_state->vrr.enable) {
+-		adjusted_mode.crtc_vtotal = crtc_state->vrr.vmax;
+-		adjusted_mode.crtc_vblank_end = crtc_state->vrr.vmax;
+-		adjusted_mode.crtc_vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
+-		vmax_vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
+-	}
+-
+-	/*
+-	 * Belts and suspenders locking to guarantee everyone sees 100%
+-	 * consistent state during fastset seamless refresh rate changes.
+-	 *
+-	 * vblank_time_lock takes care of all drm_vblank.c stuff, and
+-	 * uncore.lock takes care of __intel_get_crtc_scanline() which
+-	 * may get called elsewhere as well.
+-	 *
+-	 * TODO maybe just protect everything (including
+-	 * __intel_get_crtc_scanline()) with vblank_time_lock?
+-	 * Need to audit everything to make sure it's safe.
+-	 */
+-	spin_lock_irqsave(&dev_priv->drm.vblank_time_lock, irqflags);
+-	spin_lock(&dev_priv->uncore.lock);
+-
+-	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
+-
+-	crtc->vmax_vblank_start = vmax_vblank_start;
+-
+-	crtc->mode_flags = crtc_state->mode_flags;
+-
+-	/*
+-	 * The scanline counter increments at the leading edge of hsync.
+-	 *
+-	 * On most platforms it starts counting from vtotal-1 on the
+-	 * first active line. That means the scanline counter value is
+-	 * always one less than what we would expect. Ie. just after
+-	 * start of vblank, which also occurs at start of hsync (on the
+-	 * last active line), the scanline counter will read vblank_start-1.
+-	 *
+-	 * On gen2 the scanline counter starts counting from 1 instead
+-	 * of vtotal-1, so we have to subtract one (or rather add vtotal-1
+-	 * to keep the value positive), instead of adding one.
+-	 *
+-	 * On HSW+ the behaviour of the scanline counter depends on the output
+-	 * type. For DP ports it behaves like most other platforms, but on HDMI
+-	 * there's an extra 1 line difference. So we need to add two instead of
+-	 * one to the value.
+-	 *
+-	 * On VLV/CHV DSI the scanline counter would appear to increment
+-	 * approx. 1/3 of a scanline before start of vblank. Unfortunately
+-	 * that means we can't tell whether we're in vblank or not while
+-	 * we're on that particular line. We must still set scanline_offset
+-	 * to 1 so that the vblank timestamps come out correct when we query
+-	 * the scanline counter from within the vblank interrupt handler.
+-	 * However if queried just before the start of vblank we'll get an
+-	 * answer that's slightly in the future.
+-	 */
+-	if (DISPLAY_VER(dev_priv) == 2) {
+-		int vtotal;
+-
+-		vtotal = adjusted_mode.crtc_vtotal;
+-		if (adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+-			vtotal /= 2;
+-
+-		crtc->scanline_offset = vtotal - 1;
+-	} else if (HAS_DDI(dev_priv) &&
+-		   intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+-		crtc->scanline_offset = 2;
+-	} else {
+-		crtc->scanline_offset = 1;
+-	}
+-
+-	spin_unlock(&dev_priv->uncore.lock);
+-	spin_unlock_irqrestore(&dev_priv->drm.vblank_time_lock, irqflags);
+-}
+-
+ /*
+  * This implements the workaround described in the "notes" section of the mode
+  * set sequence documentation. When going from no pipes or single pipe to
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 50285fb4fcf5..ce97cb72f6d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -422,7 +422,6 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
+ bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			       const struct intel_crtc_state *pipe_config,
+ 			       bool fastset);
+-void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state);
+ 
+ void intel_plane_destroy(struct drm_plane *plane);
+ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 1d0c9e247c42..4558d02641fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -26,6 +26,7 @@
+ #include "intel_fifo_underrun.h"
+ #include "intel_modeset_setup.h"
+ #include "intel_pch_display.h"
++#include "intel_vblank.h"
+ #include "intel_wm.h"
+ #include "skl_watermark.h"
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 571f5dda1e66..48bf3923af11 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -8,6 +8,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_vblank.h"
++#include "intel_vrr.h"
+ 
+ /*
+  * This timing diagram depicts the video signal in and
+@@ -439,3 +440,87 @@ void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc)
+ {
+ 	wait_for_pipe_scanline_moving(crtc, true);
+ }
++
++void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct drm_display_mode adjusted_mode;
 +	int vmax_vblank_start = 0;
 +	unsigned long irqflags;
- 
- 	drm_mode_init(&adjusted_mode, &crtc_state->hw.adjusted_mode);
- 
-@@ -5917,11 +5919,28 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
- 		adjusted_mode.crtc_vtotal = crtc_state->vrr.vmax;
- 		adjusted_mode.crtc_vblank_end = crtc_state->vrr.vmax;
- 		adjusted_mode.crtc_vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
--		crtc->vmax_vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
++
++	drm_mode_init(&adjusted_mode, &crtc_state->hw.adjusted_mode);
++
++	if (crtc_state->vrr.enable) {
++		adjusted_mode.crtc_vtotal = crtc_state->vrr.vmax;
++		adjusted_mode.crtc_vblank_end = crtc_state->vrr.vmax;
++		adjusted_mode.crtc_vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
 +		vmax_vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
- 	}
- 
++	}
++
 +	/*
 +	 * Belts and suspenders locking to guarantee everyone sees 100%
 +	 * consistent state during fastset seamless refresh rate changes.
@@ -120,26 +247,79 @@ index 410c84fd905c..5bd51198281f 100644
 +	 * __intel_get_crtc_scanline()) with vblank_time_lock?
 +	 * Need to audit everything to make sure it's safe.
 +	 */
-+	spin_lock_irqsave(&dev_priv->drm.vblank_time_lock, irqflags);
-+	spin_lock(&dev_priv->uncore.lock);
++	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
++	spin_lock(&i915->uncore.lock);
 +
- 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
- 
++	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
++
 +	crtc->vmax_vblank_start = vmax_vblank_start;
 +
- 	crtc->mode_flags = crtc_state->mode_flags;
- 
- 	/*
-@@ -5965,6 +5984,9 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
- 	} else {
- 		crtc->scanline_offset = 1;
- 	}
++	crtc->mode_flags = crtc_state->mode_flags;
 +
-+	spin_unlock(&dev_priv->uncore.lock);
-+	spin_unlock_irqrestore(&dev_priv->drm.vblank_time_lock, irqflags);
- }
++	/*
++	 * The scanline counter increments at the leading edge of hsync.
++	 *
++	 * On most platforms it starts counting from vtotal-1 on the
++	 * first active line. That means the scanline counter value is
++	 * always one less than what we would expect. Ie. just after
++	 * start of vblank, which also occurs at start of hsync (on the
++	 * last active line), the scanline counter will read vblank_start-1.
++	 *
++	 * On gen2 the scanline counter starts counting from 1 instead
++	 * of vtotal-1, so we have to subtract one (or rather add vtotal-1
++	 * to keep the value positive), instead of adding one.
++	 *
++	 * On HSW+ the behaviour of the scanline counter depends on the output
++	 * type. For DP ports it behaves like most other platforms, but on HDMI
++	 * there's an extra 1 line difference. So we need to add two instead of
++	 * one to the value.
++	 *
++	 * On VLV/CHV DSI the scanline counter would appear to increment
++	 * approx. 1/3 of a scanline before start of vblank. Unfortunately
++	 * that means we can't tell whether we're in vblank or not while
++	 * we're on that particular line. We must still set scanline_offset
++	 * to 1 so that the vblank timestamps come out correct when we query
++	 * the scanline counter from within the vblank interrupt handler.
++	 * However if queried just before the start of vblank we'll get an
++	 * answer that's slightly in the future.
++	 */
++	if (DISPLAY_VER(i915) == 2) {
++		int vtotal;
++
++		vtotal = adjusted_mode.crtc_vtotal;
++		if (adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
++			vtotal /= 2;
++
++		crtc->scanline_offset = vtotal - 1;
++	} else if (HAS_DDI(i915) &&
++		   intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++		crtc->scanline_offset = 2;
++	} else {
++		crtc->scanline_offset = 1;
++	}
++
++	spin_unlock(&i915->uncore.lock);
++	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
+index c9fea2c2a990..0884db7e76ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.h
++++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+@@ -11,6 +11,7 @@
  
- /*
+ struct drm_crtc;
+ struct intel_crtc;
++struct intel_crtc_state;
+ 
+ u32 i915_get_vblank_counter(struct drm_crtc *crtc);
+ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+@@ -19,5 +20,6 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+ int intel_get_crtc_scanline(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc);
++void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_VBLANK_H__ */
 -- 
 2.39.2
 
