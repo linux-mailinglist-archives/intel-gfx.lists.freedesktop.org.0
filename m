@@ -1,108 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CC06B4EB1
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 18:36:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D956B4EBC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Mar 2023 18:37:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBFA10E059;
-	Fri, 10 Mar 2023 17:36:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3C910E21B;
+	Fri, 10 Mar 2023 17:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9506D10E02E;
- Fri, 10 Mar 2023 17:36:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iTL1kAFpleNRm1CJyotixKekLNuTXXxVDyoHZV11lDA4Bgewz419LWUEyO9i+US856AkMdJ1TJp0/ZmvyvMSwFFAk2R/M9em6CX1SlLAu3G7mSg+NPMQcbckLGknM9FSorFjCeB9q70by4WvL8CtVBRlpSTfHlSFsyLpZco41OUKqijiXmp0326UUcNhf3/PBJy1ZY0uYyPQ2RvlTmwvpfWzsiNDw2sfQN2Xq/SQgL30jhf7FfvrxkmpS6/5g0CJgjFuTjmOnDajPEIj0KA7dYJFTkaPXI8xhAt6aFFnkb/dxSKdlyaaVb30IOZfimr6stpfTRYMFaUwvHpTbEL4UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zmQls6YfjG+90MMdGh0L/Y72YVkgxd9wiiKpmPwQBLM=;
- b=Wm9qGBkOPJLdsG+NjxOUhd/S5Pb58zW0VBAyEill80SAYikAvk1/C/z8O59qTPx+Rf1QhDMKIAhW8FAX9eQFokw87fUMSwYKaOSJ84fZQzrG8O/zSfFV8Ph3YRdctuXv3ifBqNaE7asVS3Wtw6JBea/q7xXnLTOmaCOaZ5KZs+kzb1NgJj688J5PSkoWkxWvcf7LjK4ho6CCY9BxvvXGMQMTr2f4qIpNPvTFf0uFnXFpecNQqG1/qaUNPsR0keuQ4DpnOnX+WDcVjan+XDZ4LpBwmGLgXvbvQStETj7obtJo4n6mexDfqhohmfu7AT4esxxNSybKjS6F7E3XKEKwhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zmQls6YfjG+90MMdGh0L/Y72YVkgxd9wiiKpmPwQBLM=;
- b=pcotqcTU0ekEQC+XfX0Thvo4t7Jk7d3vAclBO+/+jp24Njo8SuOxy4IkqPqbZ5YliH0Ax0lJz6OmfjhKdE2wbG5Gbf1cdlKhhfGos897H0/jKxQ4eNgncdQ0zIaJCkuBAajEipGtGd81gnLPFc1ddWMQ66i4O5nfNCVfSe6lc1435g49ntdAud4Xfxc96ZI1Z1vPxOQQLZYsLlcVszIaoyJRn1NEiJJCKxsXtDzSSYzTfPPR2dYip9g+n4EX7QvXkDA5JmIfmaCo68jDnFPTButI1hGqjpdzc09hj9sEml2Gyt5aeOOTJsq0Cjc0XvpTDDR1ieCzR/V1oviU2oX4pA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by SJ0PR12MB6734.namprd12.prod.outlook.com (2603:10b6:a03:478::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 17:36:25 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.017; Fri, 10 Mar 2023
- 17:36:25 +0000
-Date: Fri, 10 Mar 2023 13:36:22 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <ZAtqlnCk7uccR5E7@nvidia.com>
-References: <20230308131340.459224-1-yi.l.liu@intel.com>
- <20230308131340.459224-2-yi.l.liu@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308131340.459224-2-yi.l.liu@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0168.namprd03.prod.outlook.com
- (2603:10b6:a03:338::23) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SJ0PR12MB6734:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9a80d86-bb16-4685-c386-08db218df8cb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: stZ7A6x2+AIuZ6vxHjlfFpQqdZDEklb5yThD8f8sDnFwoum+aQPviIOii+QUpVBpBidtOATGu+kiXRxm6YSMlfSsaRsNzztFgPgbiQk00y/b9Pm+CLL+z5SnXchF1ecRr2YBoZZCHYeTcyzMCdEnazRacjUsOkxDAwlxh4GQKC0KaaG0o8ZKg77zMVg4+pf94xQtpq9Ie3MJSyeIM5EY+zBB4/lPRd4MSBumSxuPtLM28zlZ5TlkO6YjFwUiJ7EOOiOqvckYh9pvcOG6W3afau6klNpKqZ97py3CTTpbediP0UBpbPx2CCDxdWy2xJ+jbN7s0eyW/oENvuywraL361kYAPTUERAcyqmaxgPbvIt22hVdYF3O6Ov2ZgCVpRXsqFY+UhXgrobakKpj2+bzRtdFY1Nh/dl6vaJaiPIuy/trA/6y9QcY64qQhqJhanNhpQG3dZQl9au72zyc7mANDnsIy9kDyKOBdtcMK3gjWfoyAmEjCZwga+gR9t/2I36CLBFQYN3ehV+e2fByFJYbGGWqJqD2G075iCpviPXLef6oliyQYa3kkEV5IpyZhTfmSBppPlYNf0LBXtGpotDYK0Av+ASxzlhfbKBCM0lFhu74rOIR6puh5MMKUBkSXQj6yAa7x/tDwJ7CNBYc6GYfyg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(366004)(346002)(39860400002)(396003)(376002)(136003)(451199018)(316002)(36756003)(38100700002)(6512007)(86362001)(26005)(6666004)(83380400001)(186003)(2616005)(6506007)(5660300002)(7416002)(6486002)(478600001)(41300700001)(8936002)(2906002)(6916009)(66946007)(66556008)(8676002)(4326008)(66476007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KHe13wVoA6plMqCCBYimpAIU1EFcwxKn9roCwmCFMS16wZ3R8C4+lpYdGgrk?=
- =?us-ascii?Q?jB0arIxFQ7Rpny5whJH49qvLLULKE/EbOjel0u5F1XAB9ncvcZP7ar6HihPv?=
- =?us-ascii?Q?GmlAwremr2rrGGpq5SJ7ZHBDeIC/5Fn2SpyFnbNkxo1WJCrqqgQ7mmD+fZ00?=
- =?us-ascii?Q?8hVapMe2Z9W1iONSUC5bnheAM1ecba01PVhjcV5XErriVsVDvEMH9w8LKccF?=
- =?us-ascii?Q?kNrLS/c4GuQy6b2NYSuZefVde4yGw9IzuNlbgNASm5HrMwhv1aeiFU99xzRm?=
- =?us-ascii?Q?/1YGUp2WAaQKuqbUKiJWO5Mi/GbUi0ta6lXvc3miEPXhLNpbj3Grvg8B0V8j?=
- =?us-ascii?Q?h8MS1uEduKai3/FQFKBk4rJIUSo/JJYbrQwS5fjJ7xT6GwP8rmoOUy0pkRVC?=
- =?us-ascii?Q?u1dGMIKsxQUp+jj4Nl+NpjikDBqHKLRbFioOhYsL/hcqgCJndHVNjnvdfyEx?=
- =?us-ascii?Q?WfAOqI7HuIOJfVnzGoBOFh52EBCV4Ok85GlOvMPt5FoRhxgaw7+h9qD5d67P?=
- =?us-ascii?Q?51zaM11lfAeK8orzUKgfWx9ofI8ZvAvLKheEZvbhOUV1mbdBeAq/JzhKp/a0?=
- =?us-ascii?Q?aG7ieAI08Wn4cDcFFZBA25vYOMmbFiNJ/N1YCi2r45OhDusZfHTpTlzDGfQm?=
- =?us-ascii?Q?o//yVsZp7AUjQsAX2J25b6EMG2YYXDJ6BeaLnJRUXQYg+LIiTMr1p/ilD78B?=
- =?us-ascii?Q?1lHJwwuduH+Zwq+ZXoSR1/aQZ27qaL5gPwuNzJIy4Z7/3qpjPJvLIldMe+4q?=
- =?us-ascii?Q?U8tFf+birep7pV7XV9p1wzXOLYP8G82zY+1QegUhpheDU20O0g1LLBD3HXKR?=
- =?us-ascii?Q?75Eor2n4vSioNjxKunvpQwXwdzyCNF1LBXC7tigOROs+YtSPTTA3F5sNdQ7d?=
- =?us-ascii?Q?bOT+QmCzXWq4t2Uw8r9rX/hsAk5SDlIStXaOQMG45yWj9t9E9I9WKeH0pLNW?=
- =?us-ascii?Q?FacKBmehGSBgIMELbjklpkAwdjsecsdwtgp0kVhB5JXHYJB+wJ75gtixxvgu?=
- =?us-ascii?Q?FGtYBd1oBHV896UNPInejifgOf2REKWge+0YHPZkJBzAs46fVe8d9xUgu8Jm?=
- =?us-ascii?Q?Sk+MjeE+BPpHIaNg7eQnQXzXBhls27G+1FrWVSA6W1qJY5ESVoudyjzwX3TV?=
- =?us-ascii?Q?UHuPyIJWlzf52Eb6OpVXT1SIpTNQGOCj6cjPrSW/wPIolZtH7FbPJJ1EmPqT?=
- =?us-ascii?Q?/uM56FaGVlGdHwc1ZN0rHv/e7AL+ha78PbeqLUeHoFt+IBmKe1A06xSlWTix?=
- =?us-ascii?Q?XqKwibhG5w3SEaFl0bim7yAhVwa0jy7EQ2/y8kyV3ApnmN/CTeqSdIr7aEMQ?=
- =?us-ascii?Q?igFUcS1mt+KjsbvfTBB2vq3Un6ddxwa6sEZ+9eUaDjktyTCr3oBHGBlFV+Mc?=
- =?us-ascii?Q?y6eykW8quVgEANlJJ45TFyZ7UUZgH5jxF3JTULyFm/y6CUEbQvEEc3bRrvxD?=
- =?us-ascii?Q?bh+09ATHJ0szghTGDvFoZO32UBJfzSrQ28LfjUBKILGgPx+2tuaq/x9R6/iY?=
- =?us-ascii?Q?CUFBIqLFp4Dt3HIu5f/i1BnDlQVpBYaXwNz4IyypfGQ90aYUh8kt1HCsWYZn?=
- =?us-ascii?Q?Y5BwM39POBz6CSqmCtB1NrLSAosyVw9Xx9J5P1mh?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9a80d86-bb16-4685-c386-08db218df8cb
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:36:25.7358 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0KJEeBl01yxrj0h8zUrTM02Unu0pNlgGD4FkCIkO9ymCIioVqWlvOfEgAkBXg56L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6734
-Subject: Re: [Intel-gfx] [PATCH v1 1/5] iommufd: Create access in
- vfio_iommufd_emulated_bind()
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E287E10E21B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 17:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678469823; x=1710005823;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GItCc3wjZtLNVxZdQmfpHrR556MpaiRLQGBYEZqYSqY=;
+ b=TkwPl/q4r363Iodh8Cwl7gfRvTEdwtQllIPKZud7azqtli6H3EvAgIGc
+ 6SuIx347kJDh4MQjOtlfATGhVVjMknD0prADR7MnUtEh6dmQBXCFrr9E3
+ EihBKrTO90U4hoPuUrU3CTUyDbD8Ej0MhR8q4WwNIWX/fX9mupjOopjfH
+ fBx3zxGz+zAXPSFfsK2Wu08ZrG+I/ZlZOflz9KcK8y4z4ulA0lfxl1qtt
+ NRq+E2toy4Bx6MnOHsvTS3h1CqpS0wg1g46lkCVxYPRaWNVlAinCycg6c
+ v3cnmMM+eIzaB14WtIOcupUAoC1g7RWD748zZ17bmHKmdt7KAtyyJUXgL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="320633915"
+X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="320633915"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 09:37:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="671157789"
+X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; d="scan'208";a="671157789"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.71.197])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 09:36:57 -0800
+Date: Fri, 10 Mar 2023 09:36:52 -0800
+Message-ID: <87zg8kld8r.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <ZAtdP7KDE5zOdc0k@orsosgc001.jf.intel.com>
+References: <20230307201611.773103-1-umesh.nerlige.ramappa@intel.com>
+ <20230307201611.773103-10-umesh.nerlige.ramappa@intel.com>
+ <87a60lmq9v.wl-ashutosh.dixit@intel.com>
+ <ZAtdP7KDE5zOdc0k@orsosgc001.jf.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4 9/9] drm/i915/perf: Add support for OA
+ media units
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,57 +65,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
- joro@8bytes.org, nicolinc@nvidia.com, yan.y.zhao@intel.com,
- intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 08, 2023 at 05:13:36AM -0800, Yi Liu wrote:
+On Fri, 10 Mar 2023 08:39:27 -0800, Umesh Nerlige Ramappa wrote:
+>
 
-> +int iommufd_access_set_ioas(struct iommufd_access *access, u32 ioas_id)
-> +{
-> +	struct iommufd_ioas *new_ioas = NULL, *cur_ioas;
-> +	struct iommufd_ctx *ictx = access->ictx;
-> +	struct iommufd_object *obj;
-> +	int rc = 0;
-> +
-> +	if (ioas_id) {
-> +		obj = iommufd_get_object(ictx, ioas_id, IOMMUFD_OBJ_IOAS);
-> +		if (IS_ERR(obj))
-> +			return PTR_ERR(obj);
-> +		new_ioas = container_of(obj, struct iommufd_ioas, obj);
-> +	}
-> +
-> +	mutex_lock(&access->ioas_lock);
-> +	cur_ioas = access->ioas;
-> +	if (cur_ioas == new_ioas)
-> +		goto out_unlock;
-> +
-> +	if (new_ioas) {
-> +		rc = iopt_add_access(&new_ioas->iopt, access);
-> +		if (rc)
-> +			goto out_unlock;
-> +		iommufd_ref_to_users(obj);
-> +	}
-> +
-> +	if (cur_ioas) {
-> +		iopt_remove_access(&cur_ioas->iopt, access);
-> +		refcount_dec(&cur_ioas->obj.users);
-> +	}
+Hi Umesh,
 
-This should match the physical side with an add/remove/replace
-API. Especially since remove is implicit in destroy this series only
-needs the add API
+> On Thu, Mar 09, 2023 at 03:57:48PM -0800, Dixit, Ashutosh wrote:
+> > On Tue, 07 Mar 2023 12:16:11 -0800, Umesh Nerlige Ramappa wrote:
+> >>
+> >> -static int gen8_configure_context(struct i915_gem_context *ctx,
+> >> +static int gen8_configure_context(struct i915_perf_stream *stream,
+> >> +				  struct i915_gem_context *ctx,
+> >>				  struct flex *flex, unsigned int count)
+> >>  {
+> >>	struct i915_gem_engines_iter it;
+> >> @@ -2573,7 +2594,8 @@ static int gen8_configure_context(struct i915_ge=
+m_context *ctx,
+> >>	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+> >>		GEM_BUG_ON(ce =3D=3D ce->engine->kernel_context);
+> >>
+> >> -		if (!engine_supports_oa(ce->engine))
+> >> +		if (!engine_supports_oa(ce->engine) ||
+> >> +		    ce->engine->class !=3D stream->engine->class)
+> >>			continue;
+> >>
+> >>		/* Otherwise OA settings will be set upon first use */
+> >> @@ -2704,7 +2726,7 @@ oa_configure_all_contexts(struct i915_perf_strea=
+m *stream,
+> >>
+> >>		spin_unlock(&i915->gem.contexts.lock);
+> >>
+> >> -		err =3D gen8_configure_context(ctx, regs, num_regs);
+> >> +		err =3D gen8_configure_context(stream, ctx, regs, num_regs);
+> >>		if (err) {
+> >>			i915_gem_context_put(ctx);
+> >>			return err;
+> >> @@ -2724,7 +2746,8 @@ oa_configure_all_contexts(struct i915_perf_strea=
+m *stream,
+> >>	for_each_uabi_engine(engine, i915) {
+> >>		struct intel_context *ce =3D engine->kernel_context;
+> >>
+> >> -		if (!engine_supports_oa(ce->engine))
+> >> +		if (!engine_supports_oa(ce->engine) ||
+> >> +		    ce->engine->class !=3D stream->engine->class)
+> >>			continue;
+> >>
+> >>		regs[0].value =3D intel_sseu_make_rpcs(engine->gt, &ce->sseu);
+> >> @@ -2749,6 +2772,9 @@ gen12_configure_all_contexts(struct i915_perf_st=
+ream *stream,
+> >>		},
+> >>	};
+> >>
+> >> +	if (stream->engine->class !=3D RENDER_CLASS)
+> >> +		return 0;
+> >> +
+> >>	return oa_configure_all_contexts(stream,
+> >>					 regs, ARRAY_SIZE(regs),
+> >>					 active);
+> >
+> > Can you please explain the above changes? Why are we checking for
+> > engine->class above? Should we be checking for both class and instance?=
+ Or
+> > all engines connected to an OA unit (multiple classes can be connected =
+to
+> > an OA unit and be different from stream->engine->class, e.g. VDBOX and
+> > VEBOX)? oa_configure_all_contexts is also called from
+> > lrc_configure_all_contexts.
+>
+> Only render (and compute when we support it) have OA specific configurati=
+on
+> in the context image. Media engines do not have any context specific
+> configurations.
 
-And the locking shouldn't come in another patch that brings the
-replace/remove since with just split add we don't need it.
+Yes I remember you answered this previously too. My question still is why
+did we make the 2 instances of this change above:
 
-That will make this patch alot smaller
+=46rom the original code in drm-tip:
 
-Jason
+		if (engine->class !=3D RENDER_CLASS)
+			continue;
+
+To the final code (changed in two patches):
+
+		if (!engine_supports_oa(ce->engine) ||
+		    ce->engine->class !=3D stream->engine->class)
+			continue;
+
+Thanks.
+--
+Ashutosh
