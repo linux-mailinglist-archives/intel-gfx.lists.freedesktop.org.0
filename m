@@ -2,64 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B13026B5691
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Mar 2023 01:24:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 419106B56C4
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Mar 2023 01:34:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB7D10EA52;
-	Sat, 11 Mar 2023 00:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F29D610E04B;
+	Sat, 11 Mar 2023 00:34:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x64a.google.com (mail-pl1-x64a.google.com
- [IPv6:2607:f8b0:4864:20::64a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FA610EA36
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Mar 2023 00:23:57 +0000 (UTC)
-Received: by mail-pl1-x64a.google.com with SMTP id
- k17-20020a170902d59100b0019abcf45d75so3562209plh.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 16:23:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20210112; t=1678494237;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:reply-to:from:to:cc:subject:date:message-id:reply-to;
- bh=x2tVYLFtu4+/4LAPARn3E33zkHftYTv9vOX58pVkWHM=;
- b=eCTAn9KE2O9xKHWOxj1VUE/UZXTx6Y1mDDTMlkwbdR0Y57s9PpUrM5h9i2cHbxsnki
- t0637AV0rExfo48KvvrqnyadfUnxBMwpuXsf8bzU9+CnuuH5alcmDXRXkCkOTywDKJEk
- XcU2Ssqaps8aM9ojs9FjhyBohQxSawze04pO8kWuerEOURvl7R99eb/R/ZcwEpa5D8mU
- TLGucsOnbjVeWTw9U9PMc6v0xVNdb3bFtznClK5hKBNddFaRNaHEDwN47WSFEGxmM3iV
- bkMq0Bn8TSiu6JuJ5U2kGO4Zf7ybt6AJeJqWZFsgqPjAfErV+ulDY+iqxXYTBp35bmjn
- a4Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678494237;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:reply-to:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=x2tVYLFtu4+/4LAPARn3E33zkHftYTv9vOX58pVkWHM=;
- b=yZrQ20Ob2rm6MYa0DKIzvnlFxQSXFFyuaS/0m4ZgqNip7+JbqmuQQ6Ge9P0nPCP3Xb
- FTxJ7VqIZIteLQiJB2yl51DoRJGnC2INYD7w5R5gRD3lr8LW3Tx7tgyfMrxmF2xRZI5G
- DUn4G6B7UVeT6AoJI2b9hkmGvyV1YCih4pOe8STohif9DbGEwaizHt4BWGzUAzrKS07v
- mUc0BwqnuQ0c8D8SeIvVsjD20Q5dBeG99WmbFpZO5BZBYdj0rQNoM3YEZOufWhhk/UIz
- hZM5oFf/IAaAPWkt2WRAErvL3b+K+rnkgnys+zIC4OAu11LrIdbom9AB7DCwxT7+Yu9H
- v9Nw==
-X-Gm-Message-State: AO0yUKUNaoCcsoYt83YC955OQZherSL78oXRs/Yk29vmiKE33puUFOVi
- OHK/k9rB17jtaPWYnzDjryKyUiLqorA=
-X-Google-Smtp-Source: AK7set/9DiEaGFm/frdpvFkcKgynFsB7l9O/lCeTPJ5Btk1PEMlu/T/014QaQyiTK4eR3E2EyTqi6Wr5p4Y=
-X-Received: from zagreus.c.googlers.com
- ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a17:90a:7783:b0:237:9029:c29b with SMTP id
- v3-20020a17090a778300b002379029c29bmr10323383pjk.0.1678494237678; Fri, 10 Mar
- 2023 16:23:57 -0800 (PST)
-Date: Fri, 10 Mar 2023 16:22:58 -0800
-In-Reply-To: <20230311002258.852397-1-seanjc@google.com>
-Mime-Version: 1.0
-References: <20230311002258.852397-1-seanjc@google.com>
-X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
-Message-ID: <20230311002258.852397-28-seanjc@google.com>
-From: Sean Christopherson <seanjc@google.com>
-To: Sean Christopherson <seanjc@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, 
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: [Intel-gfx] [PATCH v2 27/27] drm/i915/gvt: Drop final dependencies
- on KVM internal details
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3BD10E009;
+ Sat, 11 Mar 2023 00:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678494843; x=1710030843;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wwTDYs50FVbe7RdXLfjd2kDA5zGwPWdVcjlFpvZNpyA=;
+ b=JH/jcZjKrllhJdWWK43QGM1MsV3IowbfscgIf2Yimzn0BUt2HpC8q2g/
+ bY+jHtWL+gll7hWFd80Ei9O8pD0cCii8o26/Em+uyfWI+YA+OH3DXYDC1
+ 83hp3Km8LXS1xLyjgwOx6ZVrks0vi9iZzMAiXj5sr9cEx3zkOC8+azxv6
+ lxqe06AhW61XIxXud4GAbhBFEm6I8MKyB6FSCV8UAGx7K+tNlR9HnkhJn
+ hjbKjq6CuacHYqZVE87iJL/wwIRq1LEch+6+UpngZYFlFcyCYsZqMiXqx
+ /IEyeQFlQ3hfbyULhOuRhGJ98uNMWbI/UPDTyTS+5sbKYzepp0sEhM5H3 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="317248715"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="317248715"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 16:34:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="923869635"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="923869635"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 16:34:02 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Mar 2023 16:33:58 -0800
+Message-Id: <20230311003358.1660191-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Disable PL1 power limit when
+ loading GuC firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,57 +56,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Sean Christopherson <seanjc@google.com>
-Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Gardon <bgardon@google.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Open code gpa_to_gfn() in kvmgt_page_track_write() and drop KVMGT's
-dependency on kvm_host.h, i.e. include only kvm_page_track.h.  KVMGT
-assumes "gfn == gpa >> PAGE_SHIFT" all over the place, including a few
-lines below in the same function with the same gpa, i.e. there's no
-reason to use KVM's helper for this one case.
+On dGfx, the PL1 power limit being enabled and set to a low value results
+in a low GPU operating freq. It also negates the freq raise operation which
+is done before GuC firmware load. As a result GuC firmware load can time
+out. Such timeouts were seen in the GL #8062 bug below (where the PL1 power
+limit was enabled and set to a low value). Therefore disable the PL1 power
+limit when possible when loading GuC firmware.
 
-No functional change intended.
-
-Signed-off-by: Sean Christopherson <seanjc@google.com>
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/gvt/gvt.h   | 3 ++-
- drivers/gpu/drm/i915/gvt/kvmgt.c | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 ++++++-
+ drivers/gpu/drm/i915/i915_hwmon.c     | 34 +++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_hwmon.h     |  7 ++++++
+ 3 files changed, 47 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
-index 2d65800d8e93..53a0a42a50db 100644
---- a/drivers/gpu/drm/i915/gvt/gvt.h
-+++ b/drivers/gpu/drm/i915/gvt/gvt.h
-@@ -34,10 +34,11 @@
- #define _GVT_H_
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index 1b7ecd384a79..8794d54500d7 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -18,6 +18,7 @@
+ #include "intel_uc.h"
  
- #include <uapi/linux/pci_regs.h>
--#include <linux/kvm_host.h>
- #include <linux/vfio.h>
- #include <linux/mdev.h>
- 
-+#include <asm/kvm_page_track.h>
-+
  #include "i915_drv.h"
- #include "intel_gvt.h"
++#include "i915_hwmon.h"
  
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index d16aced134b4..798d04481f03 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -1599,7 +1599,7 @@ static void kvmgt_page_track_write(gpa_t gpa, const u8 *val, int len,
+ static const struct intel_uc_ops uc_ops_off;
+ static const struct intel_uc_ops uc_ops_on;
+@@ -460,7 +461,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_guc *guc = &uc->guc;
+ 	struct intel_huc *huc = &uc->huc;
+-	int ret, attempts;
++	int ret, attempts, pl1en;
  
- 	mutex_lock(&info->vgpu_lock);
+ 	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+ 	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+@@ -491,6 +492,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	else
+ 		attempts = 1;
  
--	if (kvmgt_gfn_is_write_protected(info, gpa_to_gfn(gpa)))
-+	if (kvmgt_gfn_is_write_protected(info, gpa >> PAGE_SHIFT))
- 		intel_vgpu_page_track_handler(info, gpa,
- 						     (void *)val, len);
++	/* Disable PL1 limit before raising freq when possible */
++	hwm_power_max_disable(gt, &pl1en);
++
+ 	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
  
+ 	while (attempts--) {
+@@ -544,6 +548,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+ 	}
+ 
++	/* Restore PL1 limit */
++	hwm_power_max_restore(gt, pl1en);
++
+ 	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
+ 	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
+ 
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index ee63a8fd88fc..4ce3da7b7adc 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -62,20 +62,23 @@ struct i915_hwmon {
+ 	int scl_shift_time;
+ };
+ 
+-static void
++static u32
+ hwm_locked_with_pm_intel_uncore_rmw(struct hwm_drvdata *ddat,
+ 				    i915_reg_t reg, u32 clear, u32 set)
+ {
+ 	struct i915_hwmon *hwmon = ddat->hwmon;
+ 	struct intel_uncore *uncore = ddat->uncore;
+ 	intel_wakeref_t wakeref;
++	u32 old;
+ 
+ 	mutex_lock(&hwmon->hwmon_lock);
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref)
+-		intel_uncore_rmw(uncore, reg, clear, set);
++		old = intel_uncore_rmw(uncore, reg, clear, set);
+ 
+ 	mutex_unlock(&hwmon->hwmon_lock);
++
++	return old;
+ }
+ 
+ /*
+@@ -444,6 +447,33 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
+ 	}
+ }
+ 
++void hwm_power_max_disable(struct intel_gt *gt, u32 *old)
++{
++	struct i915_hwmon *hwmon = gt->i915->hwmon;
++	u32 r;
++
++	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
++		return;
++
++	r = hwm_locked_with_pm_intel_uncore_rmw(&hwmon->ddat,
++						hwmon->rg.pkg_rapl_limit,
++						PKG_PWR_LIM_1_EN, 0);
++	*old = !!(r & PKG_PWR_LIM_1_EN);
++}
++
++void hwm_power_max_restore(struct intel_gt *gt, u32 old)
++{
++	struct i915_hwmon *hwmon = gt->i915->hwmon;
++
++	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
++		return;
++
++	hwm_locked_with_pm_intel_uncore_rmw(&hwmon->ddat,
++					    hwmon->rg.pkg_rapl_limit,
++					    PKG_PWR_LIM_1_EN,
++					    old ? PKG_PWR_LIM_1_EN : 0);
++}
++
+ static umode_t
+ hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i915_hwmon.h
+index 7ca9cf2c34c9..0c2db11be2e2 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.h
++++ b/drivers/gpu/drm/i915/i915_hwmon.h
+@@ -7,14 +7,21 @@
+ #ifndef __I915_HWMON_H__
+ #define __I915_HWMON_H__
+ 
++#include <linux/types.h>
++
+ struct drm_i915_private;
++struct intel_gt;
+ 
+ #if IS_REACHABLE(CONFIG_HWMON)
+ void i915_hwmon_register(struct drm_i915_private *i915);
+ void i915_hwmon_unregister(struct drm_i915_private *i915);
++void hwm_power_max_disable(struct intel_gt *gt, u32 *old);
++void hwm_power_max_restore(struct intel_gt *gt, u32 old);
+ #else
+ static inline void i915_hwmon_register(struct drm_i915_private *i915) { };
+ static inline void i915_hwmon_unregister(struct drm_i915_private *i915) { };
++void hwm_power_max_disable(struct intel_gt *gt, u32 *old) { };
++void hwm_power_max_restore(struct intel_gt *gt, u32 old) { };
+ #endif
+ 
+ #endif /* __I915_HWMON_H__ */
 -- 
-2.40.0.rc1.284.g88254d51c5-goog
+2.38.0
 
