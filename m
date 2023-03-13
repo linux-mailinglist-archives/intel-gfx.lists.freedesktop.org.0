@@ -2,143 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CA76B6D4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 03:06:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 933086B6E08
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 04:37:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D0810E46C;
-	Mon, 13 Mar 2023 02:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047A410E00D;
+	Mon, 13 Mar 2023 03:37:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A112A10E465;
- Mon, 13 Mar 2023 02:06:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678673211; x=1710209211;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QBFH/+ouivVyBTIapHMCn+4pRDBSRtmOw71huXdip9Y=;
- b=HXKotTlu/Vci8pdIN1ytjIbKwNGBMxGLW1KE6uMXjK2F9n0b1k1XSJGc
- hcXA5K47RaKHxr4o3dOg3Lo0Xb1Kg5tOqFiydAtCUgA92QddmEoGSc80H
- tR+ei5sy56wlXgo1m7AiaZcmeeUWww+m1ZJX1rH+dIIwUni4PYUf787h3
- mDbNEc1kl8MxfgFf0cLgau0TZB/Qddh06TUl74b5I/C87UTBVTCdAlSyn
- M/xGXwxVGJosgEF/kx20Uc+daZET7lrlXvum3Hc6NTM6koDz/mMPcztQ2
- tv3BbhR3BokkdUtukxkCnNrNGwYk8aM7eCiV3jluWYPhZmr2RwB1kooZK A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="316693048"
-X-IronPort-AV: E=Sophos;i="5.98,254,1673942400"; d="scan'208";a="316693048"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2023 19:06:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="678514740"
-X-IronPort-AV: E=Sophos;i="5.98,254,1673942400"; d="scan'208";a="678514740"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 12 Mar 2023 19:06:47 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Sun, 12 Mar 2023 19:06:46 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Sun, 12 Mar 2023 19:06:46 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Sun, 12 Mar 2023 19:06:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YP/IP5diN3KX285uFswRpjuoIf6TyUHDSRHgmuKJmmcQC3ZZ6Q0kAb2u2pH1s6+NdSayNObXSfKJAQo9V/IcgnHHwgkjrFsIXRF9KOydHPxnofOf45T4w3zSLiTWtFCtc01a816Lukh28giSYqK0xG1mVVqAUmlvS7WWtlIVNEnMvyhnwzv7+6JuC11OZ9Ps3Tbi9xkv7WIUBXqCAV+m2CJTa3GCW2xcVai+bmHTZdnfdnm9cI2R0MsD2QWD/UW8ZriFY4rzQE4CJjd8PJNqAOljRy0QPmD8NYBVx00tIMe7iBer/dQam2O7t1iL4yRxr7vt8I8/0dHwhCIG0KaeLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S0SH0iLHPED5VxCwaO7ObX2JG+CidPw61MO5sBRr0/g=;
- b=B7yKV0egh8ApInIzGITB2sQJUAkAvWveYeA4ttDugodkJ8bcvt62fmjS+zGZ/XNllFB3/2lWIMQX9onA7l5R1W561MnVGz2F97iASitv8pMmHzDfSXvosWoYWUn17lJlmghU+L2LgLAjEtOQZ3I8fR9o+G2dtoE2gPrL7tkdoDGViPkOiCRbErgjE9qBcZzsK4+BwLlYf4tfheltelqjWwWbsYDjQfON8IAl+OppoCe5z9ELwk/w99stqDWDGH7QZ0lsaNnWDwnH+h3kqKLjg6srh7fDzHlRMsURYkXhfcnjzyaH7f4mIlwFAnRxCG+9QQmES0vgvM+ui08o1SazeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
- by MN2PR11MB4759.namprd11.prod.outlook.com (2603:10b6:208:26a::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Mon, 13 Mar
- 2023 02:06:40 +0000
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::1aac:b695:f7c5:bcac]) by BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::1aac:b695:f7c5:bcac%8]) with mapi id 15.20.6178.024; Mon, 13 Mar 2023
- 02:06:40 +0000
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>
-Thread-Topic: [PATCH v6 13/24] vfio/iommufd: Split the compat_ioas attach out
- from vfio_iommufd_bind()
-Thread-Index: AQHZUcIKnlfid+m1xk2WV9/gWjjIRK7zp/CggAAHawCAAbRpAIACmVog
-Date: Mon, 13 Mar 2023 02:06:39 +0000
-Message-ID: <BN9PR11MB527690E711606D3DE26EEDBA8CB99@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230308132903.465159-1-yi.l.liu@intel.com>
- <20230308132903.465159-14-yi.l.liu@intel.com>
- <BN9PR11MB5276CF102D9EBB7B447C58FD8CBA9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB7529BF46B3A81438DE7A11D2C3BA9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <DS0PR11MB752958F38FC08C15E3E25C1AC3BB9@DS0PR11MB7529.namprd11.prod.outlook.com>
-In-Reply-To: <DS0PR11MB752958F38FC08C15E3E25C1AC3BB9@DS0PR11MB7529.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|MN2PR11MB4759:EE_
-x-ms-office365-filtering-correlation-id: 4e7f4567-dd12-4230-f43f-08db2367957a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PJAc4CyowLKM/U6ZDY5uGh2/jQY5J5CTawwcNUGs6nLiHIWFlWproQ42ILQUG9jtTZWmTx5jPo+WVoMoqW7+yoDD8hvMcH1pKlN0Z+xqc1qmO8RmU603PeoCVzsJhTFDcaa+pQlK6afezJz4k7ZynXzaLwqmOTiDsdZgZ/cciTc5fo+Q8v3HOJvj0tFZsiTcM9KBqnA70q0A5NyzSafE7e3WgR8tAqLB0CtjWiAEv6SUUTJRgaIJFgBfUX5+w57ZZPMR5TJiZ7sQWTOdyiusX3QHJOBlr9iY+ekPK4LcDJwkX4s9IfYPXMr199zmEm5krdOhIllNFtWVFdI7ufHtBzJ02qT2LLKn45OHlg/+8wl7zM4B4OhSYQXBuDF2fXzTv9QsbFgFG4/wCxHrF68kSrlgEql7TbZ0g2msdgSqiYU5jctVK3czmL1DXRrZbuivt0KQn7xjiJI7inbYLoTuIktCewpdqGgmhxodiUmG4THZeTUzdyjgHwsFUAQXzs1RFHPYlcSQiRaNN0MSZiE7YtOy+dHzCTEoBNr25bzFZd9ydlWiNXaD0dnLG2+RPZCXO827eGgYoJ0PuxjiihU0PEGCdA5ldQhTR1xWx/Fs6nW3UyeuLZXsDGp4M2CHTEgVQE/bxYeb9AlvC+x6EV6EUU2ex9a3IhHYFC4tzuo6qGTMxn/BBqL4qw768bWtRMA/cEzza+HiFrcJDS8pruULtw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(346002)(396003)(136003)(366004)(376002)(451199018)(66899018)(2906002)(82960400001)(7696005)(26005)(6506007)(9686003)(5660300002)(55016003)(33656002)(52536014)(8936002)(186003)(71200400001)(8676002)(86362001)(41300700001)(38070700005)(4326008)(7416002)(66446008)(66556008)(76116006)(64756008)(66946007)(66476007)(478600001)(122000001)(110136005)(38100700002)(316002)(54906003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZPHuODUvl2guqntagDFAAa52TOS4tkSElY8MxBJ4HVzHIoD7h8kHqu2mzJHM?=
- =?us-ascii?Q?TIPfrxHW38HMmRymm6LX17uiSPWfyFF3nIWYcdsQklWaEE4I2rHqHQpH8wC9?=
- =?us-ascii?Q?mcxX3mFG7yyG3UkLRew+1PolXdXnDWltRZJDFAxz2LDuzoR3KJAvq43MA1TT?=
- =?us-ascii?Q?W3NBFGvfdrXSWeXy9wkJ7f/xQKpoFu6ijRlKayDi72gOzIhu1yWO7kPd1QdT?=
- =?us-ascii?Q?M4xWGmq4QcQA2sTV8cuVqLWSOSr9VwSJYmPupJust64JZykkzKnZr2g3U114?=
- =?us-ascii?Q?vQ3rVv5JKOEVFyMyxfi9/c+3WgT57cauRT0lPltmOnUy8f5fDV0VPn7t2Aaf?=
- =?us-ascii?Q?0z1lfEkvQb4mR6DORZ1OcvpbvdLuwFuh3TRbdimyIkDoEoz/iH/yXhPu9KHm?=
- =?us-ascii?Q?vu/1ESgtKDtzjy4unOu8+HYtiGmgprKXgZnm/nru92Em1awurp5nKxphBZ0f?=
- =?us-ascii?Q?p/hIjfTuS2Bw3iIRoRgFPr5Up9QkEW7jsYF0YbTK7/Dh2Mr71dyX7097OBkx?=
- =?us-ascii?Q?1MgYBF/osVJQrKT4eVHV7PMbjBSzVEL6pln6Fpv2knCBgEBAJja96g1fcPh+?=
- =?us-ascii?Q?LqNd9WRYN4ZaH0VNUloY/Wed/R+SMvZ+pifEuZ3OFrLuRYKLNMVheBBM3RLl?=
- =?us-ascii?Q?KNk5BxMaXZ0mz0Svw3UzzvRyO0/m5dIJfNN1s+WEQBU2TMq8Ppj9QBcNCUpR?=
- =?us-ascii?Q?JTGPkj40ED5VD3B7OYCeKnBtyBFc0Ns5y2kHAmY5VnizfUCNZYkkBUxfpbQA?=
- =?us-ascii?Q?mfXJFWNiCJb7h9S8HF3NJVOD4tGFHXQqOjTcy3rSnmWzMHUQvs8pdpimZ6iI?=
- =?us-ascii?Q?g46vtk/X0iZXpwF1eYc35EPpwbYSdvRHyqWdRRr8ZXcV2aMsKNZz48nbuGvX?=
- =?us-ascii?Q?yte8hBMWSbwwpxtysJyfOaGT0UR07hJZj2No292MA/G2ujacrQK4HXA6UEF+?=
- =?us-ascii?Q?/9fOltU9ifO221xvFSCat0a1Wcz2/MbFKugdc6vLIWlNlapLlIsTqQLJRfiX?=
- =?us-ascii?Q?0ktMK7SAs3MEpZ/2IYl6eZ9G8aC/hXxOjY/I3iaKKFvbX5pZpmGNuYAhQmZK?=
- =?us-ascii?Q?dCtlgU7tbJIO0vxFb+aMEj607Ra6MUqyVCvkbkICsv+tMBUnzQrd0QAFyK/I?=
- =?us-ascii?Q?76/A0bIJJQY/meuFSeTxnHDQ+D+lfskGm6voxgpLpp46T3BS4xb6+I7jgG3V?=
- =?us-ascii?Q?+9LyFWW41INWumxas/QGe55hJCGCDRlBO0H+YycLMoYQOmw7s4V06TEGa5oK?=
- =?us-ascii?Q?ICUFHO6R8WuExKSP7+8dCeznnSSnDROuCW+RFFeaYuhJSxPAxEGiLvxOLYpP?=
- =?us-ascii?Q?4V+PRaIgnt/VD4AD0J9vS0XPMk20i54PQYivBORVmLiQd0BnyOBu4XtYik+K?=
- =?us-ascii?Q?gj6qOaADV1DfCgkRrGez8DOm5jZDgekD3582A2ZKTFWYIPJXhk3NbrxNgv7q?=
- =?us-ascii?Q?x541CkQ5DfokdiNVCSbuy99wEQ+wdsfvfYYUvcOLhqWfAsSoGT6voHOEPkba?=
- =?us-ascii?Q?L3lj4KZFdoFJORnJa1MINEUDTf93M6Ris3CzV+m4aL0Y/bBIMdtipvXsDjzH?=
- =?us-ascii?Q?ue5qQlYXXasnml+5Lu2VGVbC2yS3KdsfrZEndw2y?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
+ [IPv6:2607:f8b0:4864:20::102b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBBFB10E00D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 03:37:28 +0000 (UTC)
+Received: by mail-pj1-x102b.google.com with SMTP id
+ f6-20020a17090ac28600b0023b9bf9eb63so2002065pjt.5
+ for <intel-gfx@lists.freedesktop.org>; Sun, 12 Mar 2023 20:37:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678678648;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=L22ciYcMAM0TfCyF/RDJtXAokA1sx5bIVKoVAkAry24=;
+ b=KvIBiIJUEkq1BrtWHSTFc6//ia6m1foSfQJfyn4wy19SjN1qtoRK9Y1aWD1AxSEc5c
+ DHXHfNix/G7SmQ8FZ3mqloLKMjFn9RWdQPnuMwsWbIXion/XwVMc8XZ4fi44tM276KrT
+ ijMeRkTeb/+xQ0CGKct33k0X69VJBaZybrEN9c/ANMX6JpTHpxg8oSuTw7/IP1gfV/pr
+ ss8wL0OM+uvJmnzoflKu7fD3IOJrc8V4UyILUr3C2WufdWTEGf4MlefMB1ZD9lCpT0+F
+ vDQd3Ru74nRJBoyfkmBDVCBPnqPva+AKYkzmmHA6b1tBdJ/phwUVLMFGR+PrSehZBYzP
+ vMbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678678648;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=L22ciYcMAM0TfCyF/RDJtXAokA1sx5bIVKoVAkAry24=;
+ b=3S1cxR8tqqaAoRzFNo6qQuEEkXrXucamEmPX6YdBWeZV3gHje1+XoeuDKyLvurBEzA
+ tl7FjE47pRh8OQDmaCVsEO/XjnXY+O4r5x00oP4bVFT28ijz2rrISz6/ljxLLq1Didqz
+ xgsycMkhGp+u1+Ozb3hLDTWMquUSTs0V0R+Dnu4Ss5jGhqR962qSLThzdqz6fT7XOvp/
+ t9xZq7ipjnJGPM7+mAH42HfuEqhZsxHHK7kanzs3+xdNcqK6mbhyxW0IkI76ZJzWX5vZ
+ mmzfEBfq4VS4VRrXXM9OYJecppdJ0AbAOHNg9bfZ6CgZ2Y5AtGzjR3zkKP3lnVKMJYLi
+ XWNA==
+X-Gm-Message-State: AO0yUKX46Z1fyylpAbq0HcAS+f8l3/lKeO+OlLVUVHbqnB15aO0ZQILH
+ cC8iFFmV7ugSdQqC2kvZK1I=
+X-Google-Smtp-Source: AK7set9LPo0sfCpXv48t+q0A6LHsSOgSN6iGGdijcWdrX1+rp3VRTKC981HNXXD1PmIdac6J+LPYHA==
+X-Received: by 2002:a05:6a20:2a19:b0:d3:e4d8:a684 with SMTP id
+ e25-20020a056a202a1900b000d3e4d8a684mr3168471pzh.7.1678678648217; 
+ Sun, 12 Mar 2023 20:37:28 -0700 (PDT)
+Received: from debian.me (subs03-180-214-233-80.three.co.id. [180.214.233.80])
+ by smtp.gmail.com with ESMTPSA id
+ s199-20020a632cd0000000b00502e48db9aesm3364276pgs.53.2023.03.12.20.37.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 12 Mar 2023 20:37:27 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+ id 30A511066BC; Mon, 13 Mar 2023 10:37:24 +0700 (WIB)
+Date: Mon, 13 Mar 2023 10:37:23 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Eric Biggers <ebiggers@kernel.org>, Sasha Levin <sashal@kernel.org>
+Message-ID: <ZA6acxOlHCq/7IIj@debian.me>
+References: <20230226034256.771769-1-sashal@kernel.org>
+ <20230226034256.771769-12-sashal@kernel.org>
+ <Y/rbGxq8oAEsW28j@sol.localdomain>
+ <Y/rufenGRpoJVXZr@sol.localdomain>
+ <Y/ux9JLHQKDOzWHJ@sol.localdomain> <Y/y70zJj4kjOVfXa@sashalap>
+ <Y/zswi91axMN8OsA@sol.localdomain>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e7f4567-dd12-4230-f43f-08db2367957a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2023 02:06:39.9055 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HXj5gRzRwQksGVAXokwsnVellcXrvZ6PGQxVWZyAzdAMPLv8HvwZ+sUAFxOVD7rarPERcmPK5FJXzxxm/Z5lrw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4759
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 13/24] vfio/iommufd: Split the
- compat_ioas attach out from vfio_iommufd_bind()
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="Xq7BdBhmWpe22fxp"
+Content-Disposition: inline
+In-Reply-To: <Y/zswi91axMN8OsA@sol.localdomain>
+Subject: Re: [Intel-gfx] AUTOSEL process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,61 +80,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Liu, Yi L <yi.l.liu@intel.com>
-> Sent: Saturday, March 11, 2023 6:24 PM
-> > > >
-> > > > -	ret =3D vdev->ops->bind_iommufd(vdev, ictx, &device_id);
-> > > > -	if (ret)
-> > > > -		return ret;
-> > > > +	/* The legacy path has no way to return the device id */
-> > > > +	return vdev->ops->bind_iommufd(vdev, ictx, &device_id);
-> > > > +}
-> > > >
-> > > > -	ret =3D iommufd_vfio_compat_ioas_get_id(ictx, &ioas_id);
-> > > > -	if (ret)
-> > > > -		goto err_unbind;
-> > > > -	ret =3D vdev->ops->attach_ioas(vdev, &ioas_id);
-> > > > -	if (ret)
-> > > > -		goto err_unbind;
-> > >
-> > > after noiommu check and attach_ioas are moved out then this
-> > > entire function can be removed now. Just call the ops in
-> > > vfio_device_first_open().
-> >
-> > Yes. and also no vfio_iommufd_unbind().
->=20
-> Seems still necessary to have this wrapper. .bind_iommufd callback would
-> be NULL if CONFIG_IOMMUFD=3D=3Dn. If we call ops->bind_iommufd directly
-> in vfio_device_first_open() of vfio_main.c, it may trigger kernel panic
-> for NULL pointer dereference if there is wrong code that passes valid
-> iommufd pointer.. Ideally, if CONFIG_IOMMUFD=3D=3Dn, vfio_device_first_op=
-en
-> should not receive valid iommufd pointer hence won't call ops-
-> >bind_iommufd
-> at all. So it deserves a panic. However, if we have a wrapper for it, suc=
-h code
-> may just fail with -EOPNOTSUPPT.
->=20
 
-ok, let's keep this wrapper then. I didn't realize it's NULL if
-CONFIG_IOMMUFD=3D=3Dn.
+--Xq7BdBhmWpe22fxp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Feb 27, 2023 at 09:47:46AM -0800, Eric Biggers wrote:
+>
+> > One of the challanges here is that it's difficult to solicit reviews or
+> > really any interaction from authors after a commit lands upstream. Look
+> > at the response rates to Greg's "FAILED" emails that ask authors to
+> > provide backports to commits they tagged for stable.
+>=20
+> Well, it doesn't help that most of the stable emails aren't sent to the
+> subsystem's mailing list, but instead just to the individual people menti=
+oned in
+> the commit.  So many people who would like to help never know about it.
+
+Let me joining in the discussion.
+
+In this case, Greg send these FAILED emails to upstream commit authors,
+but some of them have expectation that their commits can be backported
+automatically (without conflicts), so when Greg ask them to "manually"
+do the backport (and with resolving conflicts between), they have
+little to no idea on what should they do. That's why there was a doc
+patch sent [1] specifically on this matter. Fortunately, some others
+are aware on this and send the backport.
+
+> I don't know, is it obvious?  You've said in the past that sometimes you'=
+d like
+> to backport a commit even if the maintainer objects and/or it is known bu=
+ggy.
+> https://lore.kernel.org/stable/d91aaff1-470f-cfdf-41cf-031eea9d6aca@mailb=
+ox.org
+> also didn't explicitly say "Don't backport this" but instead "This patch =
+has
+> issues", so maybe that made a difference?
+>=20
+> Anyway, the fact is that it happened.  And if it happened in the one bug =
+that I
+> happened to look at because it personally affected me and I spent hours
+> bisecting, it probably is happening in lots of other cases too.  So it se=
+ems the
+> process is not working...
+>=20
+> Separately from responses to the AUTOSEL email, it also seems that you ar=
+en't
+> checking for any reported regressions or pending fixes for a commit before
+> backporting it.  Simply searching lore for the commit title
+> https://lore.kernel.org/all/?q=3D%22drm%2Famdgpu%3A+use+dirty+framebuffer=
++helper%22
+> would have turned up the bug report
+> https://lore.kernel.org/dri-devel/20220918120926.10322-1-user@am64/ that
+> bisected a regression to that commit, as well as a patch that Fixes that =
+commit:
+> https://lore.kernel.org/all/20220920130832.2214101-1-alexander.deucher@am=
+d.com/
+> Both of these existed before you even sent the AUTOSEL email!
+>=20
+> So to summarize, that buggy commit was backported even though:
+>=20
+>   * There were no indications that it was a bug fix (and thus potentially
+>     suitable for stable) in the first place.
+>   * On the AUTOSEL thread, someone told you the commit is broken.
+>   * There was already a thread that reported a regression caused by the c=
+ommit.
+>     Easily findable via lore search.
+>   * There was also already a pending patch that Fixes the commit.  Again =
+easily
+>     findable via lore search.
+
+Recently there was a regression in linux-5.15.y that was caused by faulty
+backport of upstream 85636167e3206c ("drm/i915: Don't use BAR mappings for =
+ring
+buffers with LLC") as 4eb6789f9177a5 ("drm/i915: Don't use BAR mappings for
+ring buffers with LLC"). Fortunately, the upstream commit wasn't AUTOSEL'd =
+by
+Sasha's scripts and the culprit backport got reverted.
+
+[CC'ed the upstream commit author and corresponding ML.]
+
+>=20
+> So it seems a *lot* of things went wrong, no?  Why?  If so many things ca=
+n go
+> wrong, it's not just a "mistake" but rather the process is the problem...
+
+Testing the backports are also important, hence before a stable release is
+made, there is -rc review when testers can test linux-x.y trees as
+published in linux-stable-rc.git tree. The testing quality depends
+on how many testers test and send their report, as well as the type of
+test. For example, I do basic cross-compile test for arm64 and ppc64.
+
+Did they spot the regression I mentioned earlier? Nope, until after the
+release, where production users reported the regression. If they do, they
+would have replied to appropriate backported patch that caused the
+problem.
+
+Thanks.
+
+[1]: https://lore.kernel.org/linux-doc/20230303162553.17212-1-vegard.nossum=
+@oracle.com/
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--Xq7BdBhmWpe22fxp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZA6aZgAKCRD2uYlJVVFO
+o2xQAP96ak8HVvGHnRi6a/Kpxdk40Zt45FH1TCXgiO2ZLvSYBwD/dMRpEA4jdsaB
+3/5+NS0INOpYiRnI1j1jB5Ni1p9wMgM=
+=47A2
+-----END PGP SIGNATURE-----
+
+--Xq7BdBhmWpe22fxp--
