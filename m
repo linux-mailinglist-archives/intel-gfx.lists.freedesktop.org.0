@@ -1,60 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A388C6B73BB
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 11:20:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0B046B740D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 11:30:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B84A10E4CB;
-	Mon, 13 Mar 2023 10:20:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE3B10E07B;
+	Mon, 13 Mar 2023 10:30:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
- [IPv6:2a00:1450:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFCB110E4CB
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 10:20:43 +0000 (UTC)
-Received: by mail-lj1-x236.google.com with SMTP id b10so12090020ljr.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 03:20:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678702842;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=t/qFeMrS+qznZDXLSo6sq/6g+HzV/r/J17vwZrylHPo=;
- b=KZETqQaWC2J19ajWxEHYM70bTZ5FTa/v7wb5NWolDPqDouPdc8hcFZQoSswrOnRPrM
- oNSpBq3m6vRlExd/hcgPa2tFc0deW6vrByunvjMDNqodDQX3TwkCBjfnKOv5INBy6+Ji
- gkQ5fTTrcZL94gAoaaW2wl0TOOEZ2L4rX+C1xM8bn7UVtRxEk7hwxQ6GsCM1z+bmt79i
- dNIzOeKggUiiZs7oKUB/VautjlvCdsfmTGwipJdNHo66w9amEytX6zqfXVOAReQ9nXsV
- /sxQpXAHxSunc9asjFEk5H6xPweVRe8GrPSL81mp/7NxlTT+Y8AcZHc11vX0lXeg3dI1
- /v2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678702842;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=t/qFeMrS+qznZDXLSo6sq/6g+HzV/r/J17vwZrylHPo=;
- b=aWJyScPRIHWzLA0PxxGM+yO7BhbsugT+0UfTfDsaV2PD7WNooFT22pCfRroYX5lLKt
- oo8vnBt+qIgVHIUSaMqz7ipxdVMqIPjg3ZuAygdf2rpZEjHzORO6/cBjEnWQNueb/Zv5
- qQWCVLUn7OJYUdyyqfuwq5fMrAoYV71TbUNRIcc3D3ZlL7E2V6yIqD02B53V8AbTNGrr
- FRzUWSHAwbvgbeX7kPfbI3iYb1d89KFDp1mx0fwFIlV3Z+eXQBkAyqS8K48DJqGGAiS1
- eSAWA/lm7Au8TtPB2E+est07QZ7mX2Ml9H0hAtIQEnIrYF9RVY2NstlpXIUQcK2w5m9h
- XuGw==
-X-Gm-Message-State: AO0yUKXKzqslr/OBDteXhm5PI5Rk4KIX9qqquLwMVV/EvAIF18UobFsj
- vSq2f2X8A1h/369o4X/PnxXhRWn87p5YsZv5UNgvhpRWNxU=
-X-Google-Smtp-Source: AK7set+JZKSPcc9TYg04KLP058+sZ5/0Fku6vx40L5sRJKs+83P0PeStHAACP4ihbFJ1p5Li8U/3KXMWg0e7PSV0/1k=
-X-Received: by 2002:a05:651c:336:b0:295:d632:ba25 with SMTP id
- b22-20020a05651c033600b00295d632ba25mr10311394ljp.5.1678702842104; Mon, 13
- Mar 2023 03:20:42 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB44B10E4CD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 10:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678703452; x=1710239452;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sMk0eO3EmOgEh9qjVHHQT+6MoVaryNzsDDU8Ds0R08s=;
+ b=CT1RGNj4v+W2qlcB58wwcKz6/W6LWJFSOH2Eq2PoGCTFc/6YFRW67Oeo
+ REi0U1+eqiOHnXpxLx/kEfdcK/JUR0iDz3/AgJjErnYNmQnrsuBonwqCH
+ vlmbGZkYJax+e7jIE+rfQl2R/27+EaWJjZprWkpN78DZ6Kr8wjeMxmIUV
+ qGFs4akaFjqfM2i8Vkvi6naYbdoiiO/xMKzPZBBu3fhBybvK+vcM44f2m
+ m+Pe7uBFU0h6PyYFauZodBe1OY71+NhYx9Hmip1C8ZmRTgdofpiw+M+wK
+ 71Y/TC54jWSUaVWjkQgUh8DSQayZqRLh9MMLt8lmuR+lCHAILXE8k7Kwa A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="325469780"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="325469780"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 03:30:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="708835892"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="708835892"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.42.231])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 03:30:50 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Mar 2023 11:30:45 +0100
+Message-Id: <20230313103045.8906-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <20230313093913.30198-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230313093913.30198-1-ville.syrjala@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 13 Mar 2023 10:20:15 +0000
-Message-ID: <CAM0jSHN+yfZuhY+T_AzGdQja5ORmNpBe98KOJvff0hiMnWqmrA@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix build with WERROR=y
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/active: Fix missing debug object
+ activation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,18 +60,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Mar 2023 at 09:39, Ville Syrjala
-<ville.syrjala@linux.intel.com> wrote:
->
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Remove the unused i915 variable to fix the build with WERROR=3Dy.
->
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Fixes: d1b3657fb5b6 ("drm/i915: Remove redundant check for DG1")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+debug_active_activate() expected ref->count to be zero
+which is not true anymore as __i915_active_activate() calls
+debug_active_activate() after incrementing the count.
+
+v2: No need to check for "ref->count == 1" as __i915_active_activate()
+already make sure of that.
+
+Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active callback")
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.10+
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/i915_active.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index a9fea115f2d2..8ef93889061a 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -92,8 +92,7 @@ static void debug_active_init(struct i915_active *ref)
+ static void debug_active_activate(struct i915_active *ref)
+ {
+ 	lockdep_assert_held(&ref->tree_lock);
+-	if (!atomic_read(&ref->count)) /* before the first inc */
+-		debug_object_activate(ref, &active_debug_desc);
++	debug_object_activate(ref, &active_debug_desc);
+ }
+ 
+ static void debug_active_deactivate(struct i915_active *ref)
+-- 
+2.39.0
+
