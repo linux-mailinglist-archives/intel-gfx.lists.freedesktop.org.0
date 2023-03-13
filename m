@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1FE6B80DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 19:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CD9A6B812B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 19:51:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E34BD10E128;
-	Mon, 13 Mar 2023 18:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6963110E135;
+	Mon, 13 Mar 2023 18:51:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4219110E128
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 18:39:17 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A10010E135
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 18:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678732757; x=1710268757;
+ t=1678733460; x=1710269460;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Z6AVXyMZJ10O2p4sbJy/M3saaqPuvCABLTGoGTKmLic=;
- b=Y1M8MqERPqXJwvQPQVnnBgsBtPnuS+S6jshxtHgIYy2MaBjzx+GtdAmu
- F/udGpEIvehXL5Joqwuyvo7o3lz3BS6eXKfzt0848wCwGNBfuNMSDOLwu
- bL0uM/cL2YAkMPkNPXeF2JFNaQkQBJNseDcP6GbOuOCqgGC9D9lBPHtpk
- rR3gOAsz4++GiYB03QdeaEj4wHUg5+1p5HpSljm/lAqa/4uSIwCtm1hwF
- 7U18CjhWxCFoT5EslVRPfq60eSRDGvKjRIGqRtBegdt0kRV/xTdSRcotK
- tMMvmAmL6iaeANckAXzxKeOGGl/7e0eTczqZlPCHJWLegyA81iBp/6J39 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="325594874"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="325594874"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 11:37:48 -0700
+ bh=NRQXkvIHK/AVY80i5UcvlF+lV9fWlPHwifnlpjXvbaI=;
+ b=WmVElR5cxRsLPSYqE+/MU8bsutvxdQIjZlRm2enbWvKY6sgO8eVep9K1
+ hx9T/Y3qZF1FFjzYtwiIa+4AULYzi9JuAVlc4o1YaYT/1K5ofPfHyoY88
+ Vk7tgmGV7wc+HBnwx++yYOSDD9hUqAmUHZYQTXsvqRyE1rxQ0ykPbeptP
+ iLbFjI/nurq5aWj0xmsoc2ELyAhWP/HVPb/c45m1pRdrl9wi++TLktz0/
+ czKkQpCHEhNgw0dssvjuDVilqxkEdvti/xSmmSozq2+Ns9gPWygQbl4YQ
+ 4M/Z1XQ4m+O5qA3ldRE0uzd5l3DdUFXKCPNYajHWhqrxS2cGs3WYuTj5/ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399824527"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="399824527"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 11:50:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="656065877"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="656065877"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="852879750"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="852879750"
 Received: from ttulbure-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.252.34.2])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 11:37:47 -0700
-Date: Mon, 13 Mar 2023 19:37:44 +0100
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 11:50:01 -0700
+Date: Mon, 13 Mar 2023 19:49:59 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZA9teJEVT7CDxNd8@ashyti-mobl2.lan>
+Message-ID: <ZA9wV37logKwKaFj@ashyti-mobl2.lan>
 References: <20230307144652.17595-1-nirmoy.das@intel.com>
+ <20230307144652.17595-2-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230307144652.17595-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/i915: Add a function to mmap
- framebuffer obj
+In-Reply-To: <20230307144652.17595-2-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 2/2] drm/i915/display: Implement fb_mmap
+ callback function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,36 +60,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@intel.com>, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Nirmoy,
 
-[...]
+On Tue, Mar 07, 2023 at 03:46:52PM +0100, Nirmoy Das wrote:
+> If stolen memory allocation fails for fbdev, the driver will
+> fallback to system memory. Calculation of smem_start is wrong
+> for such framebuffer objs if the platform comes with no gmadr or
+> no aperture. Solve this by adding fb_mmap callback which will
+> use GTT if aperture is available otherwise will use cpu to access
+> the framebuffer.
+> 
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-> +int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct drm_device *dev = &i915->drm;
-> +	struct i915_mmap_offset *mmo = NULL;
-> +	enum i915_mmap_type mmap_type;
-> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-> +
-> +	if (drm_dev_is_unplugged(dev))
-> +		return -ENODEV;
-> +
-> +	mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
-> +	mmo = mmap_offset_attach(obj, mmap_type, NULL);
-> +	if (!mmo)
-> +		return -ENODEV;
-> +
-> +	obj = i915_gem_object_get(mmo->obj);
-
-Where do we decrease the refcount?
+I basically agree with the patch, but I would like to have an
+opinion from Jani or Ville (or whoever wants to chime in).
 
 Andi
 
-> +	return i915_gem_object_mmap(obj, mmo, vma);
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 3659350061a7..67427d020bd3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -40,8 +40,10 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_fb_helper.h>
+>  #include <drm/drm_fourcc.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+>  
+>  #include "gem/i915_gem_lmem.h"
+> +#include "gem/i915_gem_mman.h"
+>  
+>  #include "i915_drv.h"
+>  #include "intel_display_types.h"
+> @@ -120,6 +122,16 @@ static int intel_fbdev_pan_display(struct fb_var_screeninfo *var,
+>  	return ret;
+>  }
+>  
+> +#define to_intel_fbdev(x) container_of(x, struct intel_fbdev, helper)
+> +static int intel_fbdev_mmap(struct fb_info *info, struct vm_area_struct *vma)
+> +{
+> +	struct intel_fbdev *fbdev = to_intel_fbdev(info->par);
+> +	struct drm_gem_object *bo = drm_gem_fb_get_obj(&fbdev->fb->base, 0);
+> +	struct drm_i915_gem_object *obj = to_intel_bo(bo);
+> +
+> +	return i915_gem_fb_mmap(obj, vma);
 > +}
 > +
+>  static const struct fb_ops intelfb_ops = {
+>  	.owner = THIS_MODULE,
+>  	DRM_FB_HELPER_DEFAULT_OPS,
+> @@ -131,6 +143,7 @@ static const struct fb_ops intelfb_ops = {
+>  	.fb_imageblit = drm_fb_helper_cfb_imageblit,
+>  	.fb_pan_display = intel_fbdev_pan_display,
+>  	.fb_blank = intel_fbdev_blank,
+> +	.fb_mmap = intel_fbdev_mmap,
+>  };
+>  
+>  static int intelfb_alloc(struct drm_fb_helper *helper,
+> -- 
+> 2.39.0
