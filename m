@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D9C6B7293
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 10:31:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 800FE6B72C8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 10:39:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4751510E010;
-	Mon, 13 Mar 2023 09:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C781710E492;
+	Mon, 13 Mar 2023 09:39:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B38410E010
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 09:31:18 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C8E410E492
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 09:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678699878; x=1710235878;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7xBdVBYTRwxnW4RxN5/S+5mOnvZMxoH+TNkfhzZmIOY=;
- b=TdYhLDU/o2Fl73ajOYGKHw3EANCXingilN2jgZVkAqkoY78AiPA/qPNG
- CL7dt4yf1bu2OAnqqxQ/tYWvtCe0L6Od9iNO/lh5fT5J0C1OEaHSDuuSN
- QH6IwtzgyO6Zzo3zlLM6aeuX+2TObsoHU0pRyJLnbYpwtH7OtqRVADNo6
- 4IMyIL7+bzlc74TZ6oaLQHI9s/vNgN4BcbSr78ErdgRxxh5E6vVyoRsPq
- VbhkWLKHwtsG1LukXiuKcV+bjqvBKA4NFFAkBChb2ueIgCm/Ktwd3KsDF
- eQ4a0QhZ2Uyi2cylelc+EONxSHrFEWeHPWwo0NM+bgOEPqpES08/RvcD3 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="337123452"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="337123452"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 02:31:06 -0700
+ t=1678700361; x=1710236361;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9NYJn5uV0rDaSEg/MTB13aHjF7CqtTKlZCxJf+Y4kDY=;
+ b=lvcEBWQ9m9l2YACWdRxc49mO4ejc798qrRx7SIsb8pG9RxJgg2eb45Zp
+ vdcHjUgS6iQrftjTylvFH3XZICj5EnQmiiMIYkmON4jL9aq16ajOY3+BY
+ 2V4p3b/H5e4qGmsTwgDXo+uszEUNtdVS5wA/U/0tqq6qkuzPxCAFBhWUm
+ 4x8PWppxfOxaS9DKzWsN3zXNhfu/J7tOq5IoQW5/uWjJCfzQ/YeGbLDq7
+ bY+n6dPUagthJTXaoOcM7Ume7W2cmbi2jYRMs4VxFUx0Yw7MSk1mPBe0p
+ LY6ITADdAc21NfUI4CVUFRhB94GIObUITbZqXHif5VLMzJfT9AyHG6c9k A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="325461505"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="325461505"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 02:39:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="924438209"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="924438209"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 02:31:05 -0700
-Date: Mon, 13 Mar 2023 11:30:58 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Message-ID: <ZA7sn2ctsskxDJvs@intel.com>
-References: <20220906034803.4094252-1-arun.r.murthy@intel.com>
- <20220906041806.4095575-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="711061602"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="711061602"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga001.jf.intel.com with SMTP; 13 Mar 2023 02:39:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 Mar 2023 11:39:13 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Mar 2023 11:39:13 +0200
+Message-Id: <20230313093913.30198-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220906041806.4095575-1-arun.r.murthy@intel.com>
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix build with WERROR=y
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +57,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 06, 2022 at 09:48:06AM +0530, Arun R Murthy wrote:
-> Starting from Gen12 Async Flip is supported on linear buffers.
-> This patch enables support for async on linear buffer.
-> 
-> UseCase: In Hybrid graphics, for hardware unsupported pixel formats it
-> will be converted to linear memory and then composed.
-> 
-> v2: Added use case
-> v3: Added FIXME for ICL indicating the restrictions
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Remove the unused i915 variable to fix the build with WERROR=y.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index be7cff722196..f0d2c3cb3bd5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6610,6 +6610,20 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->  		 * this selectively if required.
->  		 */
->  		switch (new_plane_state->hw.fb->modifier) {
-> +		case DRM_FORMAT_MOD_LINEAR:
-> +			/*
-> +			 * FIXME: Async on Linear buffer is supported on ICL as
-> +			 * but with additional alignment and fbc restrictions
-> +			 * need to be taken care of. These aren't applicable for
-> +			 * gen12+.
-> +			 */
-> +			if (DISPLAY_VER(i915) < 12) {
-> +				drm_dbg_kms(&i915->drm,
-> +					    "[PLANE:%d:%s] Modifier does not support async flips\n",
-> +					    plane->base.base.id, plane->base.name);
-> +				return -EINVAL;
-> +			}
-> +
->  		case I915_FORMAT_MOD_X_TILED:
->  		case I915_FORMAT_MOD_Y_TILED:
->  		case I915_FORMAT_MOD_Yf_TILED:
-> -- 
-> 2.25.1
-> 
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Fixes: d1b3657fb5b6 ("drm/i915: Remove redundant check for DG1")
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 90af399cb0a3..e7ee24bcad89 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1476,8 +1476,6 @@ gen12_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ static void
+ dg1_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ {
+-	struct drm_i915_private *i915 = gt->i915;
+-
+ 	gen12_gt_workarounds_init(gt, wal);
+ 
+ 	/* Wa_1409420604:dg1 */
+-- 
+2.39.2
+
