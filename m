@@ -1,58 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19766B7F6E
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 18:25:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A676B7FB0
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 18:49:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2975610E5E8;
-	Mon, 13 Mar 2023 17:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C65A710E5F2;
+	Mon, 13 Mar 2023 17:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5770710E5E9
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 17:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678728302; x=1710264302;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=VHLBo4jmKVWsE2uPg3i2whkpst8GyG/VLmw6wAhOCl4=;
- b=AqDUoBkTnYM5DBEi+Z/BW/mw9YhI0HkRQXJ/dCmvTybGOhApwMuZ2dnY
- WEl3+eI6r58t8WYhpGE9cCJpwf4o3huGhtqyy0h7w4NaB44WC2S3M2Zu7
- p4EZnwSlaLbazZYbX5DPY4i2e9Hhq62n5J3vVKArj5cdB2+DAuCHgBT2q
- rMMkD4R669AJPi90ovHvEGcqX4AuSsWuZbttmVNWm2O2dcFMIyoL1o6iw
- 5XpUzA2GTCj4NjaWsMIa2g03d7wo0Dm1ZYZVM8XpalP2DIZ0GorAhzbBF
- FVzA56pPJkkay4at6Sn1GeTp0AG2814B4M4Yl+SBXJ80zOZd2W1wPnow5 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="339576436"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="339576436"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 10:25:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="711209278"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="711209278"
-Received: from ebrookes-mobl.ger.corp.intel.com (HELO [10.252.14.254])
- ([10.252.14.254])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 10:24:59 -0700
-Message-ID: <ae274c20-2d6e-ddc1-ec13-132046ec2449@intel.com>
-Date: Mon, 13 Mar 2023 17:24:57 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9332210E0AB;
+ Mon, 13 Mar 2023 17:49:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8F1AFA3ECB;
+ Mon, 13 Mar 2023 17:49:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5823526189776977906=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-References: <20230227171920.2438319-1-jonathan.cavitt@intel.com>
- <6b08d006-11e2-6797-6d39-06bd0d8a8630@intel.com>
- <9792ed48-7f7b-2a18-240a-c733a13a4911@intel.com>
- <CH0PR11MB5444EF1CBC9F09556DC720E8E5B99@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <CH0PR11MB5444EF1CBC9F09556DC720E8E5B99@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/i915: Migrate platform-dependent
- mock hugepage selftests to live
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 13 Mar 2023 17:49:43 -0000
+Message-ID: <167872978358.1030.10709017615621099442@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230208040911.12590-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Add_plane_SIZE=5FHINTS_property_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,125 +40,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- "chris.p.wilson@linux.intel.com" <chris.p.wilson@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13/03/2023 15:57, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Auld, Matthew <matthew.auld@intel.com>
-> Sent: Thursday, March 2, 2023 2:36 AM
-> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: Dutt, Sudeep <sudeep.dutt@intel.com>; thomas.hellstrom@linux.intel.com; maarten.lankhorst@linux.intel.com; Vetter, Daniel <daniel.vetter@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>; chris.p.wilson@linux.intel.com
-> Subject: Re: [PATCH v5 1/2] drm/i915: Migrate platform-dependent mock hugepage selftests to live
->>
->> On 28/02/2023 14:08, Matthew Auld wrote:
->>> On 27/02/2023 17:19, Jonathan Cavitt wrote:
->>>> Convert the igt_mock_ppgtt_huge_fill and igt_mock_ppgtt_64K mock
->>>> selftests into
->>>> live selftests as their requirements have recently become
->>>> platform-dependent.
->>>> Additionally, apply necessary platform dependency checks to these tests.
->>>>
->>>> v2: Reorder
->>>>
->>>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>>
->>> r-b still stands for the series. Note that CI is busted atm though, so
->>> we can't merge this yet. Likely need to re-trigger testing for the
->>> series once CI/drm-tip is working again.
->>
->> CI looks to be back. Can you trigger a retest through patchwork, or
->> resend the series?
-> 
-> The retest was submitted, but the mock hugepages subtest returned with a failure.
-> It didn't do so in the first run, nor did it fail in the prior revision (the one with the
-> incorrect patch order).  Do you have any guidance for forward progress?
+--===============5823526189776977906==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think there were some more CI issues. But from the logs it looks like 
-we just need to fix the arg handling and related bits, AFAICT. Sent a 
-version to trybot (only compile tested):
+== Series Details ==
 
-https://patchwork.freedesktop.org/patch/526566/?series=115072&rev=1
+Series: drm: Add plane SIZE_HINTS property (rev3)
+URL   : https://patchwork.freedesktop.org/series/113758/
+State : success
 
-> -Jonathan Cavitt
-> 
->>
->>>
->>>
->>>> ---
->>>>    .../gpu/drm/i915/gem/selftests/huge_pages.c   | 22 ++++++++++++++-----
->>>>    1 file changed, 17 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>>> b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>>> index defece0bcb81..375f119ab261 100644
->>>> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>>> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
->>>> @@ -710,7 +710,7 @@ static void close_object_list(struct list_head
->>>> *objects,
->>>>        }
->>>>    }
->>>> -static int igt_mock_ppgtt_huge_fill(void *arg)
->>>> +static int igt_ppgtt_huge_fill(void *arg)
->>>>    {
->>>>        struct i915_ppgtt *ppgtt = arg;
->>>>        struct drm_i915_private *i915 = ppgtt->vm.i915;
->>>> @@ -784,7 +784,8 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
->>>>            GEM_BUG_ON(!expected_gtt);
->>>>            GEM_BUG_ON(size);
->>>> -        if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
->>>> +        if (expected_gtt & I915_GTT_PAGE_SIZE_4K &&
->>>> +            GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
->>>>                expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
->>>>            i915_vma_unpin(vma);
->>>> @@ -831,7 +832,7 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
->>>>        return err;
->>>>    }
->>>> -static int igt_mock_ppgtt_64K(void *arg)
->>>> +static int igt_ppgtt_64K(void *arg)
->>>>    {
->>>>        struct i915_ppgtt *ppgtt = arg;
->>>>        struct drm_i915_private *i915 = ppgtt->vm.i915;
->>>> @@ -913,6 +914,17 @@ static int igt_mock_ppgtt_64K(void *arg)
->>>>            unsigned int offset = objects[i].offset;
->>>>            unsigned int flags = PIN_USER;
->>>> +        /*
->>>> +         * For modern GTT models, the requirements for marking a
->>>> page-table
->>>> +         * as 64K have been relaxed.  Account for this.
->>>> +         */
->>>> +
->>>> +        if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->>>> +            expected_gtt = 0;
->>>> +            expected_gtt |= size & (SZ_64K | SZ_2M) ?
->>>> I915_GTT_PAGE_SIZE_64K : 0;
->>>> +            expected_gtt |= size & SZ_4K ? I915_GTT_PAGE_SIZE_4K : 0;
->>>> +        }
->>>> +
->>>>            for (single = 0; single <= 1; single++) {
->>>>                obj = fake_huge_pages_object(i915, size, !!single);
->>>>                if (IS_ERR(obj))
->>>> @@ -1910,8 +1922,6 @@ int i915_gem_huge_page_mock_selftests(void)
->>>>            SUBTEST(igt_mock_exhaust_device_supported_pages),
->>>>            SUBTEST(igt_mock_memory_region_huge_pages),
->>>>            SUBTEST(igt_mock_ppgtt_misaligned_dma),
->>>> -        SUBTEST(igt_mock_ppgtt_huge_fill),
->>>> -        SUBTEST(igt_mock_ppgtt_64K),
->>>>        };
->>>>        struct drm_i915_private *dev_priv;
->>>>        struct i915_ppgtt *ppgtt;
->>>> @@ -1962,6 +1972,8 @@ int i915_gem_huge_page_live_selftests(struct
->>>> drm_i915_private *i915)
->>>>            SUBTEST(igt_ppgtt_sanity_check),
->>>>            SUBTEST(igt_ppgtt_compact),
->>>>            SUBTEST(igt_ppgtt_mixed),
->>>> +        SUBTEST(igt_ppgtt_huge_fill),
->>>> +        SUBTEST(igt_ppgtt_64K),
->>>>        };
->>>>        if (!HAS_PPGTT(i915)) {
->>
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12853 -> Patchwork_113758v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Missing    (1): fi-kbl-soraka 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113758v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-rpls-2:         [PASS][1] -> [DMESG-FAIL][2] ([i915#7059])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         [PASS][3] -> [DMESG-FAIL][4] ([i915#6367] / [i915#7996])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@dmabuf:
+    - fi-bsw-nick:        [DMESG-FAIL][6] ([i915#7562] / [i915#7913]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@i915_selftest@live@dmabuf.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@i915_selftest@live@dmabuf.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][8] ([i915#7911] / [i915#7913]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [DMESG-WARN][10] ([i915#8073]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-2:         [ABORT][12] ([i915#4983] / [i915#7694] / [i915#7913]) -> [ABORT][13] ([i915#4983] / [i915#7694] / [i915#7913] / [i915#7981])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-2/igt@i915_selftest@live@requests.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
+  [i915#7562]: https://gitlab.freedesktop.org/drm/intel/issues/7562
+  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12853 -> Patchwork_113758v3
+
+  CI-20190529: 20190529
+  CI_DRM_12853: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7192: 18beb515ff127e64302a491ed321125b5116aa23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113758v3: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+baca02deef04 drm/i915: Add SIZE_HINTS property for cursors
+8ffa8db8dbbc drm: Introduce plane SIZE_HINTS property
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/index.html
+
+--===============5823526189776977906==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Add plane SIZE_HINTS property (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113758/">https://patchwork.freedesktop.org/series/113758/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12853 -&gt; Patchwork_113758v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Missing    (1): fi-kbl-soraka </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113758v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@dmabuf:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@i915_selftest@live@dmabuf.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7562">i915#7562</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@i915_selftest@live@dmabuf.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v3/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12853 -&gt; Patchwork_113758v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12853: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7192: 18beb515ff127e64302a491ed321125b5116aa23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113758v3: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>baca02deef04 drm/i915: Add SIZE_HINTS property for cursors<br />
+8ffa8db8dbbc drm: Introduce plane SIZE_HINTS property</p>
+
+</body>
+</html>
+
+--===============5823526189776977906==--
