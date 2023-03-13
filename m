@@ -2,58 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021826B8228
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 21:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B34D6B832E
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 21:56:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B39E10E618;
-	Mon, 13 Mar 2023 20:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F168810E62B;
+	Mon, 13 Mar 2023 20:56:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8BE110E146;
- Mon, 13 Mar 2023 20:04:05 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA05A10E62B;
+ Mon, 13 Mar 2023 20:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678737845; x=1710273845;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Y5ECLy3twENnI8OadRYmVgVwWANZtmeHdLoi5ULIRXk=;
- b=ZTh7+dogLcEudU8JFjkCqo1vUlVN04en7EEyyTni2p4lgw2Jmx3cPfQx
- Bk1VsodTfDMaHOWXTyso6/xhhPbetEk2eMLSr7PyrdMBnLPKqQe0lqvYi
- qVz9vKS/ZCm/ADXq5Fdi+xHEtuZ1SAUhyRSeK5WZyaXiDt+sfsJOM7R5z
- szPHp7IsTSi1/XjRcQyWT0xvXf01yfmRxFfzTvIRx9Oa+NjC20oIuFDCh
- jNN9v5sXBN9BYSN/3240iYUHzUXLfg4bw9n9+8XyTSU/7rbeJEC/5i/U2
- N4jg+oyyt9Atvf5jviZwXf3eHCOWiFKKiQVpLirgJMCdstU0wlEo+4LN0 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="334725074"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="334725074"
+ t=1678740969; x=1710276969;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=THTDwnCqhVLz4biurwKN/PQ3gMDzRpGjfirl/XaLMq8=;
+ b=CmILjQk94t120XeKe9DtwhPxAOvQ/IATIAvscfsIHdw8ASSAWxl2Bfz5
+ GDQAIgmNmBU10Ce9Dg3HZ/2M4fBP/zOLQ5VWoXvjhzamtUzk/Iy4efE47
+ zSfGzeSnT1qrwdytdGKcHGlIihHiytwbE2X/87qRltsv3GvS2TI4sBBEH
+ POH0aVDvzx3l9dYMehs1wPyoLaImbXMVoLngFF99/TIjKNG12P0lcVmMP
+ +WWwAqg2WV5o99BS3wo4yEXNbBodpLCypEFwavbmDlDtJOpSc7wrddYhx
+ 79P5S5GjWOxGM0WWpqPYqSMVSTgqVqMF4zaJ13a4BtDTYh/YK/NoodPPS w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399850516"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="399850516"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:04:05 -0700
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 13:56:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="656082539"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="656082539"
-Received: from jjohanss-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.60.50])
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="656090768"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="656090768"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:04:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lukas Bulwahn <lukas.bulwahn@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Zhenyu Wang
- <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Todd
- E Brandt <todd.e.brandt@linux.intel.com>, linux-pm@vger.kernel.org
-In-Reply-To: <20230308141322.25201-1-lukas.bulwahn@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230308141322.25201-1-lukas.bulwahn@gmail.com>
-Date: Mon, 13 Mar 2023 22:03:55 +0200
-Message-ID: <87sfe87710.fsf@intel.com>
+ 13 Mar 2023 13:56:08 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Mar 2023 13:55:56 -0700
+Message-Id: <20230313205556.1174503-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] MAINTAINERS: update the 01.org website
- entries
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/huc: Cancel HuC delayed load timer on
+ reset.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,87 +56,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Mar 2023, Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
-> The 01.org links in MAINTAINERS now forward to different other pages or do
-> not resolve.
->
-> The link https://01.org/linuxgraphics/ resolves to the Intel Graphics for
-> Linux - Programmer's Reference Manuals. Update this webpage entry.
->
-> The link
-> https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
-> does not resolve. Remove this webpage entry.
->
-> The link https://01.org/igvt-g resolves to
-> https://github.com/intel/gvt-linux. Remove the webpage entry, as the
-> github repository is already referred to by the T: entry in that section.
->
-> The link resolves the pm-graph project page in Intel's Open Ecosystem area
-> at intel.com. Update this webpage entry.
->
-> M:      "Todd E Brandt" <todd.e.brandt@linux.intel.com>
-> L:      linux-pm@vger.kernel.org
->
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> ---
->  MAINTAINERS | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 1333928a7be4..99adcd74b06a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6747,7 +6747,6 @@ M:	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->  M:	Maxime Ripard <mripard@kernel.org>
->  M:	Thomas Zimmermann <tzimmermann@suse.de>
->  S:	Maintained
-> -W:	https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
+In the rare case where we do a full GT reset after starting the HuC
+load and before it completes (which basically boils down to i915 hanging
+during init), we need to cancel the delayed load fence, as it will be
+re-initialized in the post-reset recovery.
 
-This was likely the same as:
+Fixes: 27536e03271d ("drm/i915/huc: track delayed HuC load with a fence")
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 7 +++++++
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h | 7 +------
+ 2 files changed, 8 insertions(+), 6 deletions(-)
 
-https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
-
->  T:	git git://anongit.freedesktop.org/drm/drm-misc
->  F:	Documentation/gpu/
->  F:	drivers/gpu/drm/*
-> @@ -10250,7 +10249,7 @@ M:	Rodrigo Vivi <rodrigo.vivi@intel.com>
->  M:	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->  L:	intel-gfx@lists.freedesktop.org
->  S:	Supported
-> -W:	https://01.org/linuxgraphics/
-> +W:	https://www.intel.com/content/www/us/en/develop/documentation/intel-graphics-for-linux-programmers-reference-guide/top.html
-
-I don't think this is what we want, but we'll need to sort out what the
-right thing is first.
-
-BR,
-Jani.
-
->  Q:	http://patchwork.freedesktop.org/project/intel-gfx/
->  B:	https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
->  C:	irc://irc.oftc.net/intel-gfx
-> @@ -10312,7 +10311,6 @@ M:	Zhi Wang <zhi.a.wang@intel.com>
->  L:	intel-gvt-dev@lists.freedesktop.org
->  L:	intel-gfx@lists.freedesktop.org
->  S:	Supported
-> -W:	https://01.org/igvt-g
->  T:	git https://github.com/intel/gvt-linux.git
->  F:	drivers/gpu/drm/i915/gvt/
->  
-> @@ -16668,7 +16666,7 @@ PM-GRAPH UTILITY
->  M:	"Todd E Brandt" <todd.e.brandt@linux.intel.com>
->  L:	linux-pm@vger.kernel.org
->  S:	Supported
-> -W:	https://01.org/pm-graph
-> +W:	https://www.intel.com/content/www/us/en/developer/topic-technology/open/pm-graph/overview.html
->  B:	https://bugzilla.kernel.org/buglist.cgi?component=pm-graph&product=Tools
->  T:	git git://github.com/intel/pm-graph
->  F:	tools/power/pm-graph
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index 72884e21470b..aefdaa62da99 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -241,6 +241,13 @@ static void delayed_huc_load_fini(struct intel_huc *huc)
+ 	i915_sw_fence_fini(&huc->delayed_load.fence);
+ }
+ 
++int intel_huc_sanitize(struct intel_huc *huc)
++{
++	delayed_huc_load_complete(huc);
++	intel_uc_fw_sanitize(&huc->fw);
++	return 0;
++}
++
+ static bool vcs_supported(struct intel_gt *gt)
+ {
+ 	intel_engine_mask_t mask = gt->info.engine_mask;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+index 52db03620c60..db555b3c1f56 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+@@ -41,6 +41,7 @@ struct intel_huc {
+ 	} delayed_load;
+ };
+ 
++int intel_huc_sanitize(struct intel_huc *huc);
+ void intel_huc_init_early(struct intel_huc *huc);
+ int intel_huc_init(struct intel_huc *huc);
+ void intel_huc_fini(struct intel_huc *huc);
+@@ -54,12 +55,6 @@ bool intel_huc_is_authenticated(struct intel_huc *huc);
+ void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus);
+ void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, struct bus_type *bus);
+ 
+-static inline int intel_huc_sanitize(struct intel_huc *huc)
+-{
+-	intel_uc_fw_sanitize(&huc->fw);
+-	return 0;
+-}
+-
+ static inline bool intel_huc_is_supported(struct intel_huc *huc)
+ {
+ 	return intel_uc_fw_is_supported(&huc->fw);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.37.3
+
