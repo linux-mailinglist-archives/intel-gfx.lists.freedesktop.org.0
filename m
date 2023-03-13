@@ -2,56 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379136B7FC8
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 18:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA616B8099
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 19:31:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E3E310E0AB;
-	Mon, 13 Mar 2023 17:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F15C810E143;
+	Mon, 13 Mar 2023 18:30:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E922310E0AB
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 17:53:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678729998; x=1710265998;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8dJ21apbI0tMORrFDkphDRyhVjW51yImDrMyP7bKoHw=;
- b=El25VCeIlSJA613x//TaIFbtpjBOH63vNWAF3x22G9sObLOni4chlOdd
- 296pY0qGAUZD3GVoHbJkFiMggFpk8jNYSKeP8cMh9BLrHVlDs6CCftsLJ
- RRg9jI/M9ujiKp/3OTv3dxUJ0CsJl/RTc7VDrgDSdNRpDIc28l6qvIjQ5
- i1BmODoZPKn/Wx93cauejpt0nfmomVvssM+35EvSblCFM/stVTltxcCe9
- 78o0sviRrlx5vPplLWkxbL3Q74o1gOc/CY/i+YGKA8YkBOW3wF6YZcC+o
- oxaiNktolSWj04aFxFt2UlHgHn5zFyoCP5wE/D6epBDltcgXwmbH0rHJU g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="325582385"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="325582385"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 10:53:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924595702"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="924595702"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.0.29])
- ([10.213.0.29])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 10:53:15 -0700
-Message-ID: <977d29de-ca0b-7398-803a-6aa5a87d898d@intel.com>
-Date: Mon, 13 Mar 2023 18:53:13 +0100
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9A510E143;
+ Mon, 13 Mar 2023 18:30:55 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B5E166147C;
+ Mon, 13 Mar 2023 18:30:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1439C433D2;
+ Mon, 13 Mar 2023 18:30:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1678732254;
+ bh=xXfHOtpB42Nc5WnZyQQpmBHFWLUExBdm6jawq0Jm084=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=0FMXy6Knts0+zZgypoJ0GS2NVaLO5tLbDYgKvXx7LMo+bv1jhAWytcutb/BiI1vmD
+ yBEXUeCTIezUvb7qFu7X1zL/BBLS5n8X+R2ydR39/TuRmUuIlR6blTMiIf1xBYy5xQ
+ 19+sdyeK0HrYZKr/HzYzLfOdhn58D730PvNR5Cdo=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: linux-kernel@vger.kernel.org
+Date: Mon, 13 Mar 2023 19:29:12 +0100
+Message-Id: <20230313182918.1312597-30-gregkh@linuxfoundation.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230313182918.1312597-1-gregkh@linuxfoundation.org>
+References: <20230313182918.1312597-1-gregkh@linuxfoundation.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230313103045.8906-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230313103045.8906-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3256;
+ i=gregkh@linuxfoundation.org; h=from:subject;
+ bh=xXfHOtpB42Nc5WnZyQQpmBHFWLUExBdm6jawq0Jm084=;
+ b=owGbwMvMwCRo6H6F97bub03G02pJDCn82dUOV8LkZs1rW1FbEZ2+du0D7wfbfUpebF2pHn7h+
+ 5lpjir1HbEsDIJMDLJiiixftvEc3V9xSNHL0PY0zBxWJpAhDFycAjARsTcM82y+VjUWN7TzOscl
+ xYtl2WzK7ZLcwbDg8GWOaEHppcYb97/63/6QcaXxlcd/AA==
+X-Developer-Key: i=gregkh@linuxfoundation.org; a=openpgp;
+ fpr=F4B60CC5BF78C2214A313DCB3147D40DDB2DFB29
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/active: Fix missing debug
- object activation
+Subject: [Intel-gfx] [PATCH 30/36] drm/i915/huc: use const struct bus_type
+ pointers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +58,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@intel.com>,
- stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>, rafael@kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13.03.2023 11:30, Nirmoy Das wrote:
-> debug_active_activate() expected ref->count to be zero
-> which is not true anymore as __i915_active_activate() calls
-> debug_active_activate() after incrementing the count.
-> 
-> v2: No need to check for "ref->count == 1" as __i915_active_activate()
-> already make sure of that.
-> 
-> Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active callback")
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.10+
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+The struct bus_type pointers in the functions
+intel_huc_register_gsc_notifier() and
+intel_huc_unregister_gsc_notifier() should be a const pointer, as the
+structure is not modified anywhere in the functions, and the pointer
+they are passed will be a const * in the near future.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Tony Ye <tony.ye@intel.com>
+Cc: Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+Note, this is a patch that is a prepatory cleanup as part of a larger
+series of patches that is working on resolving some old driver core
+design mistakes.  It will build and apply cleanly on top of 6.3-rc2 on
+its own, but I'd prefer if I could take it through my driver-core tree
+so that the driver core changes can be taken through there for 6.4-rc1.
 
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/i915/i915_active.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index a9fea115f2d2..8ef93889061a 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -92,8 +92,7 @@ static void debug_active_init(struct i915_active *ref)
->   static void debug_active_activate(struct i915_active *ref)
->   {
->   	lockdep_assert_held(&ref->tree_lock);
-> -	if (!atomic_read(&ref->count)) /* before the first inc */
-> -		debug_object_activate(ref, &active_debug_desc);
-> +	debug_object_activate(ref, &active_debug_desc);
->   }
->   
->   static void debug_active_deactivate(struct i915_active *ref)
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index 410905da8e97..8b453bd7c953 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -183,7 +183,7 @@ static int gsc_notifier(struct notifier_block *nb, unsigned long action, void *d
+ 	return 0;
+ }
+ 
+-void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus)
++void intel_huc_register_gsc_notifier(struct intel_huc *huc, const struct bus_type *bus)
+ {
+ 	int ret;
+ 
+@@ -200,7 +200,7 @@ void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus
+ 	}
+ }
+ 
+-void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, struct bus_type *bus)
++void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, const struct bus_type *bus)
+ {
+ 	if (!huc->delayed_load.nb.notifier_call)
+ 		return;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+index 52db03620c60..05d4832f8461 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+@@ -51,8 +51,8 @@ int intel_huc_check_status(struct intel_huc *huc);
+ void intel_huc_update_auth_status(struct intel_huc *huc);
+ bool intel_huc_is_authenticated(struct intel_huc *huc);
+ 
+-void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus);
+-void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, struct bus_type *bus);
++void intel_huc_register_gsc_notifier(struct intel_huc *huc, const struct bus_type *bus);
++void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, const struct bus_type *bus);
+ 
+ static inline int intel_huc_sanitize(struct intel_huc *huc)
+ {
+-- 
+2.39.2
 
