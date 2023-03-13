@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDC86B7429
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 11:35:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E3A6B7472
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Mar 2023 11:45:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DB510E4C8;
-	Mon, 13 Mar 2023 10:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A62010E07B;
+	Mon, 13 Mar 2023 10:44:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2BC510E4C8
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 10:35:46 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D500B10E07B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 10:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678703746; x=1710239746;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KPgHDxwRfBAuYG4UonleDLLYEJEbXK1VnLDAMsEiF9Q=;
- b=MH5oC/mj5sf4Tm/UMmQHH2hV/Kxz5jiuip3qtrTTqpxcicjUD/mOv2XL
- tFRBelZDHcRIDPuhaKpnC+XZancTKpaz83EB6U5RW7mlnKrmS9MC9ql8c
- wxZyrN9z0Yca5ZdqFxeACMR7S2zeP1/lSZyh9x7zwhgzA9QQ8abJZGLrR
- 4TzXOgqOiPe3bEOHrVKhlN6qohaUmUCgcIpp2z+Ka5R46i2rmRkulxZH6
- ptQEYQEddDvNcv7dO/m4P5a97GwXKIJvdUM/ZZ5xsQqgfRsW9Gssx8J6n
- T+TcSNRd44efJj1nt4SG1htgkfczwgmUwQv24OggHoqAs5SFGPYzngwf1 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="364774922"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="364774922"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 03:35:46 -0700
+ t=1678704295; x=1710240295;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=xo/IJtsk3ctOPPJcNMxbbTt4hFi1jxAsMQyu3pqhu2A=;
+ b=mGA23fNploeojgmXCMRzmc2BZaOcoYxqBxmNi91JH0zOXX5QYcpconvL
+ +cDlXcyz8ZSYQ2Jb9rrzI7WD2S0vw6gB53ehggj3Cvz4URknNNlRx1Kq/
+ hZZ1ZBZ/mmpT4Vn/fE85Cw3Usvsi7VqwfmpcR9wzSEwN+jmjp/msxyyey
+ /TxlouWmMdXkjwf3oSmMtTWmH7BeIb+BzfCSF3ALkBpqFeks3g4aU9q+A
+ cx5+99bOe5gd3zmoWbHcInO9B++bgFPJFe54mDK/8Ee3EDXbr4icn4PrL
+ 14LS4FKkLqSGlQTfH7LgDKpmm5wM6/vTiDYtMLrLi/dpbfof+UiTjKVE+ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="334591479"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="334591479"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 03:44:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="742807513"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="742807513"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.1.93])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 03:35:44 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
-Date: Mon, 13 Mar 2023 11:35:41 +0100
-Message-ID: <21804473.EfDdHjke4D@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230313103045.8906-1-nirmoy.das@intel.com>
-References: <20230313103045.8906-1-nirmoy.das@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="788885170"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="788885170"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga002.fm.intel.com with SMTP; 13 Mar 2023 03:44:53 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 Mar 2023 12:44:52 +0200
+Date: Mon, 13 Mar 2023 12:44:52 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <ZA7+pAO8NTJlhtaq@intel.com>
+References: <20230313093913.30198-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/active: Fix missing debug
- object activation
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230313093913.30198-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix build with WERROR=y
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +60,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Monday, 13 March 2023 11:30:45 CET Nirmoy Das wrote:
-> debug_active_activate() expected ref->count to be zero
-> which is not true anymore as __i915_active_activate() calls
-> debug_active_activate() after incrementing the count.
->=20
-> v2: No need to check for "ref->count =3D=3D 1" as __i915_active_activate()
-> already make sure of that.
->=20
-> Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->act=
-ive callback")
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Thomas Hellstr=F6m <thomas.hellstrom@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.10+
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+On Mon, Mar 13, 2023 at 11:39:13AM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Remove the unused i915 variable to fix the build with WERROR=y.
 
-Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Argh. Turns out this is actually caused by
+commit 69ea87e1591a ("drm/i915/dg1: Drop support for pre-production steppings")
+being merged through drm-intel-next instead of drm-intel-gt-next.
 
+So both drm-intel-next and drm-intel-gt-next still needs that i915
+pointer, and only when both are merged to drm-tip we need to get
+rid of it.
+
+In the future it would be better to stick to the gt vs. not-gt
+split more rigorously to avoid such issues.
+
+I guess I'll need to do a fixup patch now...
+
+> 
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Fixes: d1b3657fb5b6 ("drm/i915: Remove redundant check for DG1")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_active.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i9=
-15_active.c
-> index a9fea115f2d2..8ef93889061a 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -92,8 +92,7 @@ static void debug_active_init(struct i915_active *ref)
->  static void debug_active_activate(struct i915_active *ref)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 90af399cb0a3..e7ee24bcad89 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1476,8 +1476,6 @@ gen12_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+>  static void
+>  dg1_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
 >  {
->  	lockdep_assert_held(&ref->tree_lock);
-> -	if (!atomic_read(&ref->count)) /* before the first inc */
-> -		debug_object_activate(ref, &active_debug_desc);
-> +	debug_object_activate(ref, &active_debug_desc);
->  }
-> =20
->  static void debug_active_deactivate(struct i915_active *ref)
->=20
+> -	struct drm_i915_private *i915 = gt->i915;
+> -
+>  	gen12_gt_workarounds_init(gt, wal);
+>  
+>  	/* Wa_1409420604:dg1 */
+> -- 
+> 2.39.2
 
-
-
-
+-- 
+Ville Syrjälä
+Intel
