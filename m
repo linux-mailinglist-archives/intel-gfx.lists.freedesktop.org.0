@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9476B88AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 03:33:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CA66B88BF
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 03:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8AB10E6BE;
-	Tue, 14 Mar 2023 02:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E70710E6E7;
+	Tue, 14 Mar 2023 02:49:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9FC5E10E6BE;
- Tue, 14 Mar 2023 02:32:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B128010E6C5;
+ Tue, 14 Mar 2023 02:49:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 98B77A47EB;
- Tue, 14 Mar 2023 02:32:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A5F2CA47DF;
+ Tue, 14 Mar 2023 02:49:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Tue, 14 Mar 2023 02:32:57 -0000
-Message-ID: <167876117760.26414.10812543396471235715@emeril.freedesktop.org>
+To: "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
+Date: Tue, 14 Mar 2023 02:49:29 -0000
+Message-ID: <167876216963.26414.68262609414188131@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <167820543971229@kroah.com>
-In-Reply-To: <167820543971229@kroah.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Don=27t_use_BAR_mappings_for_ring_buffers_with_LLC_?=
- =?utf-8?b?KHJldjMp?=
+References: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
+In-Reply-To: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_generic_memory_shrinker_to_VirtIO-GPU_and_Panfrost_DRM_driv?=
+ =?utf-8?q?ers_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,23 +48,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Don't use BAR mappings for ring buffers with LLC (rev3)
-URL   : https://patchwork.freedesktop.org/series/115090/
-State : failure
+Series: Add generic memory shrinker to VirtIO-GPU and Panfrost DRM drivers (rev2)
+URL   : https://patchwork.freedesktop.org/series/114671/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/115090/revisions/3/mbox/ not applied
-Applying: drm/i915: Don't use BAR mappings for ring buffers with LLC
-Using index info to reconstruct a base tree...
-A	drivers/gpu/drm/i915/gt/intel_ringbuffer.c
-Falling back to patching base and 3-way merge...
-CONFLICT (modify/delete): drivers/gpu/drm/i915/gt/intel_ringbuffer.c deleted in HEAD and modified in drm/i915: Don't use BAR mappings for ring buffers with LLC. Version drm/i915: Don't use BAR mappings for ring buffers with LLC of drivers/gpu/drm/i915/gt/intel_ringbuffer.c left in tree.
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915: Don't use BAR mappings for ring buffers with LLC
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
