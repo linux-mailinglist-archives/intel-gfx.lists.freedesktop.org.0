@@ -1,152 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB206B8EB0
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 10:27:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE156B8ED8
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 10:35:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B44E10E74C;
-	Tue, 14 Mar 2023 09:27:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794B310E74C;
+	Tue, 14 Mar 2023 09:35:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C46DE10E74C
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 09:27:45 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042D610E74C;
+ Tue, 14 Mar 2023 09:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678786065; x=1710322065;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=LrYKNCzyiGzx1Sai23hDLGgJVDRLdMuDauFKgJ+MuHw=;
- b=oECb9r+zc/9pypJx6dUn3H+bCzdeaZscavArLaIfD32X5GDwPuwwxOuH
- sgwuCpW4/t0kKWXu+UyNeLuojpO7u6phwP39fhmjLCnmp1sxdnZbOFrRh
- DbFizimrwlRFZBamZf29lIa6PCo/hhxlAOYfCoivE4RLiNJe+FraouzZ3
- v2adVOej9spixv4g/V01k8qLDg31ddZTNRRlM7i2WuGlyDdS5NhQP5aBl
- lHoMcJgVj9MlWryBDs63mgGWgiQRRBMwd5WJqO5zGbyncPR1orP2bqQYF
- 7aeG8ItDT7RQHlM/lEnJ/zAjWFdq2+AwJ2hJ+OgUhZMGQU2aVAJu115Hh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="325739472"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="325739472"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 02:27:45 -0700
+ t=1678786527; x=1710322527;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Tl6AFBqWwvwiTHRI4aA5wjymtNsH0Krz6MRqoDj5kk4=;
+ b=JuD8LY4g/ppaZ1d59lIIvDQow7sQrlghxhm279Rj7J4Sd9Kk015+FMyt
+ DlkLghYJBdOq730gFM1N2y1zu6gyi7Re+hZ+yhYfyWEMn6SxHcGIoOL74
+ R8yUBx468f/RTvJbkz/PGKX7lreyXVIxiLqL/n8fXSnrSobz2jrNF0fFJ
+ zSYXDEny+bEm5uBWomXbMhTuLQopx0asPGtF8Dk61VAIL+wW0eV5aXSQG
+ uwSIshznIiKekCFqj7YFE8My+y8gEZ4DWtMjfm+PEihv2YryCILcPfxO9
+ +m6CdwsQJMUmghfSfuwH9yytv+JlmS+WRazt9iS4VVGZBxcsQETHMqfmv g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="338919878"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="338919878"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 02:35:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="853105706"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="853105706"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 14 Mar 2023 02:27:45 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 14 Mar 2023 02:27:44 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 14 Mar 2023 02:27:44 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 14 Mar 2023 02:27:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F8p7cPHvTJaqDKmHu2zZnmJbgRwZlAH6u0ZhH/hZe80ml3lAb9VRKnNjmxANwVmWYFYnwZpezLQiT/Z/uaEEUw0VGHgsLVczZd54j6owLBoIzdsCzmrBLSau0gLRcBW/TPy8ZG20hsmifHJJYFrE8qo0si37Uvgz6dIQmgQPCQjxfKVff9BL4pMWtctfwP2SgeVEcPwvYlxD6tWOZZT5YkuXCcXEdN0g4F/3g1QHDwGMH9zGK08h+XV6dpP6SWfinZG/c+MhyIRH+EZo+TX8uQfw2K+X0eKst8CTFfihMTKO6kBjJHhSSMiOyWoXs97QebtpxxCb8MOV4N19r38N2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LrYKNCzyiGzx1Sai23hDLGgJVDRLdMuDauFKgJ+MuHw=;
- b=dgopx0dGs+KKCUrE168ScmdKcfErnNDd/1EcM33AvNYGqIEJ+8pPv0/JGAXFiMlTGDtj5bI57xv+xQowH62NL15roA+G5cqNn6qyLuispbt8TlBrh34R7BpURanUH2mD2TGoGhvXI7H77f5HxfncETrcYXGLuAnsXchrwts+J6+Dl8BO+TxS4zeEZzZhxKOuwlp4nOED+3E6uoq4KVHv4fR/fPG53/QXpNICuizFtP9iQtzB920LgGmH7HDVygsTrE9rxccAjLlLtNNaZH+WpUPNzf/xKavVFML6dr1n2aAMU2aCK66JkIDHVj41ETo55Af0TKyPUdGTLGnsn7tijA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com (2603:10b6:303:99::23)
- by SN7PR11MB7665.namprd11.prod.outlook.com (2603:10b6:806:340::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
- 2023 09:27:35 +0000
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::9cbe:1b81:53be:aae8]) by CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::9cbe:1b81:53be:aae8%7]) with mapi id 15.20.6156.029; Tue, 14 Mar 2023
- 09:27:35 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915: Power management SAGV/QGV calculation rounding
- fix
-Thread-Index: AQHZU15Jg8ZjaeQo906b7iPhUF7uVa76B6yA
-Date: Tue, 14 Mar 2023 09:27:35 +0000
-Message-ID: <7ddeaf24abf10e7e2728150310e154f4366a076c.camel@intel.com>
-References: <20230310144035.30754-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230310144035.30754-1-stanislav.lisovskiy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO1PR11MB4962:EE_|SN7PR11MB7665:EE_
-x-ms-office365-filtering-correlation-id: 09e9b433-b2fb-4a51-a15e-08db246e5887
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +IoCflCYt1H61OnaQmMIgyFD+4pOskAoqe2UASAFW9Wu/f3npJyy1rjNiWpihZoxD9N2AgQ72lyme/GIXwoyH8MUTqSDzF9divJI/2GAc+wRqbVnrXUzVm7okDZ6v5sohFnYrHtHC5M6unEOR3R8RmiKPVO9KpckZ+mqP+qbtDsJihPFZC+xJVptDCEiYELAGxp5ZccrxgCOdkadCG6ECr01neuAVnseSTxd61+oR2q3opY6pPYHSUGhXsUI2CYf6jpL/le8SAn6zkawuWLFDJdx0a2Vo/YJUFuTUuI4wPad+y1d0VbPKxiDqhXWdm4WC7UaqQP4MMiGCXhkBMLPmYQgdW/2QLnATUnk+EjoetxDwGR46fVHNypy745f8HRKtZXxEPbeR36VoHUU4PcWDbOqJT28nXclC6vZmAn3VeVxYjSgYdWACrTx6YIyOrLvslwUjvknYEhngEStTOW9M8GiO/RxZ04Wh2Wsb8UZp+GobHKD7M9T1jq72v+/foZSssIzvz1x8JWNQ2D1pMTY44mke2fyRN1pl0Xlk/GDARG9AX6MYWtcwaHa9Y0OtJDAnX4ldFcGuqcQpWg8GsZ2M+axL/5HZX7eR9RELdpHJgUxSNrvLXrZUGBYHEYbUxnMRLTT2nOMh8sCNBaQRpQ6DBG9wqIkpzQ0k41XILKlrAhtCn1Hc36eeDaRCT2edHQQXdy8eOZ9qyotOmiK8DDSzQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4962.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(39860400002)(366004)(376002)(346002)(396003)(451199018)(86362001)(36756003)(186003)(6512007)(26005)(4326008)(41300700001)(2616005)(5660300002)(8936002)(71200400001)(316002)(54906003)(478600001)(110136005)(91956017)(6486002)(76116006)(66946007)(64756008)(66556008)(8676002)(38100700002)(66446008)(82960400001)(122000001)(66476007)(38070700005)(2906002)(6506007)(83380400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OGljekJ3N0tsVHEzUEFaVVN5Lytpb3lxNjVtbkxITUxCK3lXeXpHVmJ6eWN0?=
- =?utf-8?B?bm95bWpOdi9UTUJsck1FZHZVdlVON0pQRFJkdDdHNEJSb3R4NlhjTWVCZWw4?=
- =?utf-8?B?VmZTQ3V3cGtlOE9QeHVNQVptZ2VreThOcW5wb3NpMHcrNWNKcW5Ua2dlK0pu?=
- =?utf-8?B?UTZGZlJtb0drSDdiQWZhSENKSlpHZklKbTFudkhEYmFoUVk0WVFmOGtsRlVK?=
- =?utf-8?B?ZFZIcnhvZGZ4RGsxWmEzOWdwRWFsb3U5YWtKZHBnS0tWY0dFeHNjSzNxWkda?=
- =?utf-8?B?ejFXU2NVcDg1UU1tbjY1Z3VHVHVYV0pWbkFSU1RBVWwyTW5Ub3JncUgrUk9C?=
- =?utf-8?B?OGVaVVZ2UDlIMnhrL0xadDB5UXJaOW5tODZXcVJQLzRyUTMyU0RBZ2psZWJz?=
- =?utf-8?B?aE5TQllSNU5mTzcwYmxlWStWM1N1KzdpTG1zbnlndzR4YUs3MlRoTGNPcUVu?=
- =?utf-8?B?aDl5blFNdFN5bS9LUFFLeGlkTi92Nkg2WkxYMnZDbUlyWG9WVGFNOFRvSTk4?=
- =?utf-8?B?dGNCdk5CbFNLSnhXZWx3aWM0WU0xYnlUZE84cGtrT2ljT2VBc2RmVE1mNE1h?=
- =?utf-8?B?MHJmbDRWb1NXR2t6cGJncFBKdkFoZElNMHl4TTdoRk5vN0d3NmlEcHdHeUJN?=
- =?utf-8?B?TTVud0pXbTU0Z3Q1SU9jR0Q2Vld4UG52TUNHUEVuamhPSjVXcWRBRTFZRzF0?=
- =?utf-8?B?L1VYTk5LRWJXS2JBSU9NOENLSFZtbUdRbGdta3JkUW1LQUdzallXZjlEOGR5?=
- =?utf-8?B?bUNYN1ZzeS8rOGxzSEFOM1BFWW1vRmQ4QllidEJFWCt5czR6NnNSOXF4OWJL?=
- =?utf-8?B?dU1CK0JBUmVXMSsyaW8vbE5meVpwNDBQa2c1VWlRb0FhVVdEa2YrNU5oK1Yw?=
- =?utf-8?B?MGZHVXMvR1pRL3Y3SUdaYVZMWGx0TDFDNkNuYU16YTkyVTIxK3hmQlEwN0FP?=
- =?utf-8?B?VEFZU0UvM0huTnY3NUNXeEZVWlNVbFlYWCsrYnJBOTZWKzZ6SC9vVndEZUpE?=
- =?utf-8?B?WmxSclRRVXlVZXZMRXVmVnRmYklCaGJEUWJGaEMxR1lWVUZwUVNyY2puZjRq?=
- =?utf-8?B?UzFOenhxOFZMd0UwS29FcXlKQ2tWMVRZV0JuT0VBMUVIZE11YkRnU1VNQVAr?=
- =?utf-8?B?M2hOQ3l4SEdZUFUvMFBkbWhtY1lnMjhGaEtXc054L2ZGeUJ0aDJDeXJaWVFu?=
- =?utf-8?B?VUQ5NjYyQ29MQ2Z3MExyaHdqekpnM1J2NXFoUjVqVUFkMkJOVE5TQlpRZ2FJ?=
- =?utf-8?B?WURZTGFBTkVhQmhaWUVYelJoTWg4TVk4YmNGYXM2ZXYzMUJFQVNVaVV2SnFh?=
- =?utf-8?B?bWFrV1JBN25zcUJwKytlSy9UczBlUHJhNUY4ZmQvUmpST2tvYTRSNzFFaHly?=
- =?utf-8?B?T0N2cWJhL3hXL0dWV082VW9IUzdrSlJvVnRVVlN1ZEt6YnlpZGpMUnkzMTlB?=
- =?utf-8?B?QjZXdVYzQmFseVNFU1hhalF3MG1WVG0yRk9LOTdCWkJxMXdrQTlTWGQvVE8y?=
- =?utf-8?B?anpUbGpKcnE3aE83ZUV5djk0NWp3UnJicGZ6VjFyQTl3UnJTUEtIQnZreHZn?=
- =?utf-8?B?OGdUeGhaY2phcnFqdG5OZVRMWmI0MFY3T0lRNUxuMnhab04wQnduM2JsZDJK?=
- =?utf-8?B?QmtGdko3VWY2dExQOGwyNGtpOTdJODJmd2pIbTJZNzlxdUkrVjhPWko2aTFU?=
- =?utf-8?B?eUcrUm0vejc3bmQ0N0MwQUQ1d3N2a2FYZVRDWkJRZjUwVHl5d1RqTm1kV2pU?=
- =?utf-8?B?NURuL20wdm5ZaTdOcll0b0ZxSXRRY0tLN2NUSlRoYkJQVWZ0ZFdrRzE0aEZM?=
- =?utf-8?B?Tkk1NG9SRkVIdGpYS0s3S2JBRlBuQ3JGNEpHMXJveXc3M2hwaVBOR01lQWxM?=
- =?utf-8?B?NGFURVpnRzhncDdwdk5RemFMNjJCTnV1RndnVzE3bkU1blVBbzRsUzJHM1RY?=
- =?utf-8?B?aHhTSEUybkFNSDNoaFQ4d0VFQ28vTkdZZTliRkZCbC9vbThiK0ZQbk4wTE91?=
- =?utf-8?B?RE0rUkVKV01ZbWRFdXIyY2U3L3RFZHJGSlRENlc2OXhGZkhuQXVHNjROeEZK?=
- =?utf-8?B?Q0owOVozZ1BVRmRMbVZPbytpbFMxMFVmOTg3UzZIUC96OGhEcFEwd1FKZHpY?=
- =?utf-8?B?TlFNT3FFcU91aDlPc0JlMXA1Z0s5VjBkNzYvZHZ0YS9OZ01wK00xNHlTdU1t?=
- =?utf-8?Q?KJIqspfUio6Abs9RvEq3AZs=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EA452B13032167468DD9B9A76B8508DA@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789289696"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="789289696"
+Received: from vperevez-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.84])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 02:35:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230313234936.2005565-1-ashutosh.dixit@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230313234936.2005565-1-ashutosh.dixit@intel.com>
+Date: Tue, 14 Mar 2023 11:35:07 +0200
+Message-ID: <87fsa77k1g.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4962.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09e9b433-b2fb-4a51-a15e-08db246e5887
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2023 09:27:35.2717 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ofKkRxKurTibJA0lhfoWDVQAF4JUsJotHq8PXt+rJaD2AHNPUvQpAaBsRGY2tHpOy33a7obPfnRWy/Y5n0RYp9wY/BjQDMEFlK34ssJhjOI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7665
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Power management SAGV/QGV
- calculation rounding fix
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Disable PL1 power limit
+ when loading GuC firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,85 +59,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper,
- Matthew D" <matthew.d.roper@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgU3RhbiwKCgoKT24gRnJpLCAyMDIzLTAzLTEwIGF0IDE2OjQwICswMjAwLCBTdGFuaXNsYXYg
-TGlzb3Zza2l5IHdyb3RlOgo+IEN1cnJlbnRseSBpbiBvdXIgYmFuZHdpZHRoIGNhbGN1bGF0aW9u
-cyBmb3IgUUdWCj4gcG9pbnRzIHdlIHJvdW5kIHVwIHRoZSBjYWxjdWxhdGlvbnMuCj4gUmVjZW50
-bHkgdGhlcmUgd2FzIGFuIHVwZGF0ZSB0byBCU3BlYywgcmVjb21tZW5kaW5nCj4gdG8gZmxvb3Ig
-dGhvc2UgY2FsY3VsYXRpb25zLgo+IFRoZSByZWFzb25pbmcgYmVoaW5kIHRoaXMgd2FzIHRoYXQs
-IG92ZXJlc3RpbWF0aW5nCj4gQlcgZGVtYW5kIHdpdGggdGhhdCByb3VuZGluZyBjYW4gY2F1c2Ug
-U0FHViB0byB1c2UKPiBuZXh0IFFHViBwb2ludCwgZXZlbiB0aG91Z2ggdGhlIGxlc3MgZGVtYW5k
-aW5nIGNvdWxkCj4gYmUgdXNlZCwgdGh1cyByZXN1bHRpbmcgaW4gd2FzdGUgb2YgcG93ZXIuCj4g
-Cj4gQlNwZWM6IDY0NjM2Cj4gCj4gU2lnbmVkLW9mZi1ieTogU3RhbmlzbGF2IExpc292c2tpeSA8
-c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+Cj4gLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2J3LmMgfCAxMCArKysrKy0tLS0tCj4gwqAxIGZpbGUgY2hhbmdl
-ZCwgNSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2J3LmMKPiBpbmRleCAyMDIzMjFmZmJlMmEuLjg3MjNkZGQ0ZDU2OCAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMKPiBAQCAtNTAsNyAr
-NTAsNyBAQCBzdGF0aWMgaW50IGRnMV9tY2hiYXJfcmVhZF9xZ3ZfcG9pbnRfaW5mbyhzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBkY2xrX3JlZmVyZW5jZSA9IDY7IC8qIDYgKiAxNi42NjYgTUh6ID0gMTAwIE1IeiAqLwo+
-IMKgwqDCoMKgwqDCoMKgwqBlbHNlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBk
-Y2xrX3JlZmVyZW5jZSA9IDg7IC8qIDggKiAxNi42NjYgTUh6ID0gMTMzIE1IeiAqLwo+IC3CoMKg
-wqDCoMKgwqDCoHNwLT5kY2xrID0gRElWX1JPVU5EX1VQKCgxNjY2NyAqIGRjbGtfcmF0aW8gKiBk
-Y2xrX3JlZmVyZW5jZSkgKyA1MDAsIDEwMDApOwo+ICvCoMKgwqDCoMKgwqDCoHNwLT5kY2xrID0g
-KCgxNjY2NyAqIGRjbGtfcmF0aW8gKiBkY2xrX3JlZmVyZW5jZSkgKyA1MDApIC8gMTAwMDsKPiDC
-oAo+IMKgwqDCoMKgwqDCoMKgwqB2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCgmZGV2X3ByaXYtPnVu
-Y29yZSwgU0tMX01DX0JJT1NfREFUQV8wXzBfMF9NQ0hCQVJfUENVKTsKPiDCoMKgwqDCoMKgwqDC
-oMKgaWYgKHZhbCAmIERHMV9HRUFSX1RZUEUpCj4gQEAgLTg3LDcgKzg3LDcgQEAgc3RhdGljIGlu
-dCBpY2xfcGNvZGVfcmVhZF9xZ3ZfcG9pbnRfaW5mbyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-ZGV2X3ByaXYsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+
-IMKgCj4gwqDCoMKgwqDCoMKgwqDCoGRjbGsgPSB2YWwgJiAweGZmZmY7Cj4gLcKgwqDCoMKgwqDC
-oMKgc3AtPmRjbGsgPSBESVZfUk9VTkRfVVAoKDE2NjY3ICogZGNsaykgKyAoRElTUExBWV9WRVIo
-ZGV2X3ByaXYpID4gMTEgPyA1MDAgOiAwKSwgMTAwMCk7Cj4gK8KgwqDCoMKgwqDCoMKgc3AtPmRj
-bGsgPSAoKDE2NjY3ICogZGNsaykgKyAoRElTUExBWV9WRVIoZGV2X3ByaXYpID4gMTEgPyA1MDAg
-OiAwKSkgLyAxMDAwOwo+IMKgwqDCoMKgwqDCoMKgwqBzcC0+dF9ycCA9ICh2YWwgJiAweGZmMDAw
-MCkgPj4gMTY7Cj4gwqDCoMKgwqDCoMKgwqDCoHNwLT50X3JjZCA9ICh2YWwgJiAweGZmMDAwMDAw
-KSA+PiAyNDsKPiDCoAo+IEBAIC0xNzksNyArMTc5LDcgQEAgc3RhdGljIGludCBtdGxfcmVhZF9x
-Z3ZfcG9pbnRfaW5mbyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gwqDCoMKg
-wqDCoMKgwqDCoHZhbDIgPSBpbnRlbF91bmNvcmVfcmVhZCgmZGV2X3ByaXYtPnVuY29yZSwKPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIE1UTF9NRU1fU1NfSU5GT19RR1ZfUE9JTlRfSElHSChwb2ludCkpOwo+IMKgwqDCoMKg
-wqDCoMKgwqBkY2xrID0gUkVHX0ZJRUxEX0dFVChNVExfRENMS19NQVNLLCB2YWwpOwo+IC3CoMKg
-wqDCoMKgwqDCoHNwLT5kY2xrID0gRElWX1JPVU5EX1VQKCgxNjY2NyAqIGRjbGspLCAxMDAwKTsK
-PiArwqDCoMKgwqDCoMKgwqBzcC0+ZGNsayA9ICgxNjY2NyAqIGRjbGspIC8gMTAwMDsKCk5vdCBy
-ZWxhdGVkIHRvIHRoaXMgcGF0Y2guIEJ1dCBhcyBwZXIgQnNwZWMgNjQ2MzEgYW5kIDY0NjM2CiAg
-c3AtPmRjbGsgPSAoMTY2NjcgKiBkY2xrICsgNTAwKSAvIDEwMDA7CgpEb2VzIHRoYXQgbmVlZCB0
-byBiZSBjb3JyZWN0ZWQgYXMgd2VsbD8KCkJSCnZpbm9kCgoKPiDCoMKgwqDCoMKgwqDCoMKgc3At
-PnRfcnAgPSBSRUdfRklFTERfR0VUKE1UTF9UUlBfTUFTSywgdmFsKTsKPiDCoMKgwqDCoMKgwqDC
-oMKgc3AtPnRfcmNkID0gUkVHX0ZJRUxEX0dFVChNVExfVFJDRF9NQVNLLCB2YWwpOwo+IMKgCj4g
-QEAgLTQyNSw3ICs0MjUsNyBAQCBzdGF0aWMgaW50IGljbF9nZXRfYndfaW5mbyhzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGNvbnN0IHN0cnVjdAo+IGludGVsCj4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY3QgPSBtYXhfdChpbnQsIHNwLT50
-X3JjLCBzcC0+dF9ycCArIHNwLT50X3JjZCArCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKGNscGNoZ3JvdXAgLSAx
-KSAqIHFpLnRfYmwgKyBzcC0+dF9yZHByZSk7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBidyA9IERJVl9ST1VORF9VUChzcC0+ZGNsayAqIGNscGNoZ3Jv
-dXAgKiAzMiAqIG51bV9jaGFubmVscywgY3QpOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgYncgPSAoc3AtPmRjbGsgKiBjbHBjaGdyb3VwICogMzIgKiBu
-dW1fY2hhbm5lbHMpIC8gY3Q7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBiaS0+ZGVyYXRlZGJ3W2pdID0gbWluKG1heGRlYncsCj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYncgKiAoMTAwIC0gc2EtPmRlcmF0aW5nKSAv
-IDEwMCk7Cj4gQEAgLTUyNyw3ICs1MjcsNyBAQCBzdGF0aWMgaW50IHRnbF9nZXRfYndfaW5mbyhz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGNvbnN0IHN0cnVjdAo+IGludGVsCj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY3QgPSBtYXhfdChp
-bnQsIHNwLT50X3JjLCBzcC0+dF9ycCArIHNwLT50X3JjZCArCj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKGNscGNo
-Z3JvdXAgLSAxKSAqIHFpLnRfYmwgKyBzcC0+dF9yZHByZSk7Cj4gLcKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBidyA9IERJVl9ST1VORF9VUChzcC0+ZGNsayAq
-IGNscGNoZ3JvdXAgKiAzMiAqIG51bV9jaGFubmVscywgY3QpOwo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYncgPSAoc3AtPmRjbGsgKiBjbHBjaGdyb3Vw
-ICogMzIgKiBudW1fY2hhbm5lbHMpIC8gY3Q7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBiaS0+ZGVyYXRlZGJ3W2pdID0gbWluKG1heGRlYncs
-Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYncgKiAoMTAwIC0gc2EtPmRl
-cmF0aW5nKSAvIDEwMCk7Cgo=
+On Mon, 13 Mar 2023, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+> On dGfx, the PL1 power limit being enabled and set to a low value results
+> in a low GPU operating freq. It also negates the freq raise operation which
+> is done before GuC firmware load. As a result GuC firmware load can time
+> out. Such timeouts were seen in the GL #8062 bug below (where the PL1 power
+> limit was enabled and set to a low value). Therefore disable the PL1 power
+> limit when allowed by HW when loading GuC firmware.
+>
+> v2:
+>  - Take mutex (to disallow writes to power1_max) across GuC reset/fw load
+>  - Add hwm_power_max_restore to error return code path
+>
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c | 10 ++++++-
+>  drivers/gpu/drm/i915/i915_hwmon.c     | 39 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_hwmon.h     |  7 +++++
+>  3 files changed, 55 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 4ccb4be4c9cb..15f8e94edc61 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -18,6 +18,7 @@
+>  #include "intel_uc.h"
+>  
+>  #include "i915_drv.h"
+> +#include "i915_hwmon.h"
+>  
+>  static const struct intel_uc_ops uc_ops_off;
+>  static const struct intel_uc_ops uc_ops_on;
+> @@ -460,7 +461,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	struct drm_i915_private *i915 = gt->i915;
+>  	struct intel_guc *guc = &uc->guc;
+>  	struct intel_huc *huc = &uc->huc;
+> -	int ret, attempts;
+> +	int ret, attempts, pl1en;
+>  
+>  	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+>  	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+> @@ -491,6 +492,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	else
+>  		attempts = 1;
+>  
+> +	/* Disable PL1 limit before raising freq */
+
+That's just duplicating what the code says; a few words on the why might
+be helpful.
+
+> +	hwm_power_max_disable(gt, &pl1en);
+> +
+>  	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
+>  
+>  	while (attempts--) {
+> @@ -547,6 +551,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+>  	}
+>  
+> +	hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
+> +
+>  	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
+>  	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
+>  
+> @@ -563,6 +569,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	/* Return GT back to RPn */
+>  	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+>  
+> +	hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
+
+Ditto about code and comment duplicating the same thing.
+
+Also, we don't use end of the line comments very much. 
+
+> +
+>  	__uc_sanitize(uc);
+>  
+>  	if (!ret) {
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> index ee63a8fd88fc..2bbca75ac477 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -444,6 +444,45 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
+>  	}
+>  }
+>  
+> +void hwm_power_max_disable(struct intel_gt *gt, u32 *old)
+> +{
+> +	struct i915_hwmon *hwmon = gt->i915->hwmon;
+> +	intel_wakeref_t wakeref;
+> +	u32 r;
+> +
+> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+> +		return;
+> +
+> +	/* Take mutex to prevent concurrent hwm_power_max_write */
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
+> +		r = intel_uncore_rmw(hwmon->ddat.uncore,
+> +				     hwmon->rg.pkg_rapl_limit,
+> +				     PKG_PWR_LIM_1_EN, 0);
+> +
+> +	*old = !!(r & PKG_PWR_LIM_1_EN);
+
+If you only need a bool, why do you use a u32?
+
+> +
+> +	/* hwmon_lock mutex is unlocked in hwm_power_max_restore */
+
+Not too happy about that... any better ideas?
+
+At the very minimum the functions need locking annotations. Otherwise
+we'll get an influx of static analyser complaints.
+
+> +}
+> +
+> +void hwm_power_max_restore(struct intel_gt *gt, u32 old)
+> +{
+> +	struct i915_hwmon *hwmon = gt->i915->hwmon;
+> +	intel_wakeref_t wakeref;
+> +
+> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+> +		return;
+> +
+> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
+> +		intel_uncore_rmw(hwmon->ddat.uncore,
+> +				 hwmon->rg.pkg_rapl_limit,
+> +				 PKG_PWR_LIM_1_EN,
+> +				 old ? PKG_PWR_LIM_1_EN : 0);
+> +
+> +	mutex_unlock(&hwmon->hwmon_lock);
+> +}
+> +
+>  static umode_t
+>  hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+>  {
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i915_hwmon.h
+> index 7ca9cf2c34c9..0c2db11be2e2 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.h
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
+> @@ -7,14 +7,21 @@
+>  #ifndef __I915_HWMON_H__
+>  #define __I915_HWMON_H__
+>  
+> +#include <linux/types.h>
+> +
+>  struct drm_i915_private;
+> +struct intel_gt;
+>  
+>  #if IS_REACHABLE(CONFIG_HWMON)
+>  void i915_hwmon_register(struct drm_i915_private *i915);
+>  void i915_hwmon_unregister(struct drm_i915_private *i915);
+> +void hwm_power_max_disable(struct intel_gt *gt, u32 *old);
+> +void hwm_power_max_restore(struct intel_gt *gt, u32 old);
+
+Naming should be i915_hwmon_ prefixed following the usual conventions.
+
+Why is the variable intel_gt instead of i915? There's nothing gt
+specific in the added code?
+
+>  #else
+>  static inline void i915_hwmon_register(struct drm_i915_private *i915) { };
+>  static inline void i915_hwmon_unregister(struct drm_i915_private *i915) { };
+> +void hwm_power_max_disable(struct intel_gt *gt, u32 *old) { };
+> +void hwm_power_max_restore(struct intel_gt *gt, u32 old) { };
+
+These need to be static inline.
+
+BR,
+Jani.
+
+>  #endif
+>  
+>  #endif /* __I915_HWMON_H__ */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
