@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FC16B9BDA
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 17:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF6F6B9C8B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 18:10:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AB810E188;
-	Tue, 14 Mar 2023 16:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD2010E182;
+	Tue, 14 Mar 2023 17:10:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5907210E188;
- Tue, 14 Mar 2023 16:41:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678812086; x=1710348086;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=Kavj2ZC1tyLBPrTUaz3HxM6qfeVURMkk0MyVlbxYicg=;
- b=THoyKBy975J0oUXlHFT6/h5x4hc2cJsQXvX5ShBWqAevukEVvnAOAL1O
- cXTbRLow1f0vWwqM9yDAxAVxviEMgpxvqbRTfI5wjlxEPgEQvvjSkudch
- 5GMIMHOlt9NO2S7mRdJgneod8aX0coYEe6/BJLOPOP8SB3sx00uFlxfKs
- W2eWAfj61hRzQF8Af3s7cvP/hKmzaXHSJ/aEVPdM3tWSH5jVZcFghYhKw
- 7czzrWUpLTP6Wto4NuU/IL3DkbujVafhDaiTxPHCV9G+amT8sjWhQOQS3
- QSB7Yni8Vwt62NDgab6YSN6g6OZEven0LejQTGaU2Fkm1uHzfLhHaCQrl A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="402345869"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="402345869"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 09:41:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="768163491"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="768163491"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 09:41:22 -0700
-Date: Tue, 14 Mar 2023 18:41:18 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Arnd Bergmann <arnd@kernel.org>
-Message-ID: <ZBCjrsFd7PkWnBm/@ideak-desk.fi.intel.com>
-References: <20230314162523.631652-1-arnd@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1DB310E055;
+ Tue, 14 Mar 2023 17:10:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C8EF5A0003;
+ Tue, 14 Mar 2023 17:10:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230314162523.631652-1-arnd@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/opregion: add missing
- intel_opregion_cleanup() dummy
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 14 Mar 2023 17:10:30 -0000
+Message-ID: <167881383078.26413.11197391760269658969@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Plane_cleanups_and_extra_registers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,57 +40,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 14, 2023 at 05:25:18PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> When ACPI is disabled, i915 fails to build because of a missing
-> declaration:
+== Series Details ==
 
-Hi Arnd,
+Series: drm/i915: Plane cleanups and extra registers
+URL   : https://patchwork.freedesktop.org/series/115127/
+State : warning
 
-thanks for catching this, I sent the same after the lkp note about the
-build failure:
+== Summary ==
 
-https://lore.kernel.org/intel-gfx/3238742c-0c57-b8cf-11fe-fd4a57979049@linux.intel.com/T/#me164308b49e975efb8d760e07a5ec9f4489916b9
+Error: dim checkpatch failed
+802cf3411ec1 drm/i915: Stop using pipe_offsets[] for PIPE_MISC*
+76f7c6ff785e drm/i915: s/PIPEMISC/PIPE_MISC/
+4ab5b9c730d4 drm/i915: Define more pipe timestamp registers
+-:35: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/i915_reg.h:3530:
++#define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
 
---Imre
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+cb266ee1072d drm/i915: Program VLV/CHV PIPE_MSA_MISC register
+1feeb0e1ba95 drm/i915: Define skl+ universal plane SURFLIVE registers
+-:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#37: FILE: drivers/gpu/drm/i915/i915_reg.h:4785:
++#define PLANE_SURFLIVE(pipe, plane)	\
++	_MMIO_PLANE(plane, _PLANE_SURFLIVE_1(pipe), _PLANE_SURFLIVE_2(pipe))
 
-> 
-> drivers/gpu/drm/i915/i915_driver.c: In function 'i915_driver_hw_probe':
-> drivers/gpu/drm/i915/i915_driver.c:556:9: error: implicit declaration of function 'intel_opregion_cleanup'; did you mean 'intel_opregion_setup'? [-Werror=implicit-function-declaration]
->   556 |         intel_opregion_cleanup(dev_priv);
-> 
-> Add another empty dummy helper next to intel_opregion_setup().
-> 
-> Fixes: 3e226e4a2180 ("drm/i915/opregion: Cleanup opregion after errors during driver loading")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.h | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 181eb3e9abbf..fd2ea8ef0fa2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -86,6 +86,10 @@ static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
->  	return 0;
->  }
->  
-> +static inline void intel_opregion_cleanup(struct drm_i915_private *i915)
-> +{
-> +}
-> +
->  static inline void intel_opregion_register(struct drm_i915_private *dev_priv)
->  {
->  }
-> -- 
-> 2.39.2
-> 
+total: 0 errors, 0 warnings, 1 checks, 21 lines checked
+717e5e4e9f97 drm/i915: Define vlv/chv sprite plane SURFLIVE registers
+-:39: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/i915_reg.h:4442:
++#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+b130477a1347 drm/i915: Clean up skl+ plane alpha bits
+fe9486538cff drm/i915: Relocate intel_plane_check_src_coordinates()
+-:79: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#79: FILE: drivers/gpu/drm/i915/display/intel_atomic_plane.c:984:
++		hsub = vsub = max(hsub, vsub);
+
+total: 0 errors, 0 warnings, 1 checks, 177 lines checked
+820d0149b732 drm/i915: Extract intel_sprite_uapi.c
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:187: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#187: 
+new file mode 100644
+
+-:251: WARNING:LONG_LINE: line length of 148 exceeds 100 columns
+#251: FILE: drivers/gpu/drm/i915/display/intel_sprite_uapi.c:60:
++	if ((set->flags & (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE)) == (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE))
+
+total: 0 errors, 2 warnings, 0 checks, 300 lines checked
+
+
