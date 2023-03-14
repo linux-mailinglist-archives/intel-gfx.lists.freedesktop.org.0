@@ -2,32 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E2E6B9D04
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 18:30:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FBE6B9D22
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 18:33:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3DB10E1A7;
-	Tue, 14 Mar 2023 17:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6128B10E195;
+	Tue, 14 Mar 2023 17:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 126FD10E1A7;
- Tue, 14 Mar 2023 17:30:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E991FAADD5;
- Tue, 14 Mar 2023 17:30:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2600752911860118696=="
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
+ [IPv6:2607:f8b0:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA7C510E195
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 17:33:54 +0000 (UTC)
+Received: by mail-pg1-x536.google.com with SMTP id 132so9341115pgh.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 10:33:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20210112; t=1678815234;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=8ZxqDNzvycT4+XijfCZlzYUv3fDjJKidxs0eAXMhtTA=;
+ b=XzEonMxf+ttfSArX0RHLr6D5vMNyytUI6qvABrb42iAqxe+Kr1K2F6mYdWHXqIzawe
+ qqROy5qEUYm7EHHQKxGLZI7B/OD2HliNayWc630un3jDGLAULCKMUWZ+U8H+3+sHyJqY
+ GlpFSA/Sv4DuIyOCc9Cp//nK3BL/wWxsUaQX4qXAXJ9llH2PmDVGpoZ9J4+z3jdAXi/f
+ hQZvBKlb8UTa4pF2xPP8eTta2bCICSGeE4+Z73fyTpEwa1lUFdeSre+NPHmi7jNXvbmp
+ sSP6lHR/FXX1JP0ZIgCcxpAXyTxZ4jPIfmk7W+33bFLR4PEWT4aEET6qvoW6JheTGGG9
+ M7Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678815234;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8ZxqDNzvycT4+XijfCZlzYUv3fDjJKidxs0eAXMhtTA=;
+ b=iryDmlZM9cumpqgGcLAB9iMaNW2WGi0QYYuU4Hr9NuDXy1BQYuwpc6ROMs9xjqkXfy
+ xzi2w+wOPQKyvAUQaveOdEwRVeK7+MHRB+2c+XQGBAY+t6Vea1sR9pB7mmQW2wsBP87x
+ UlL9xCHY/owRLocMbmCGx9j3vxgJoURcZrU2Jp5uNzouu0391/eJqWenmGpShJHlJ0K7
+ A/l7qLHH/Ps4mTC9i7gDtQX2L8Bjyewy6pOABjm1kAD4LOd1mMIEjP5b5DDVw9ku7kW/
+ sFyPpV1MOKlSexJxnyeVhzWS63VwxHizxZuzsKUIFnT1xGEHfhdhoNMJQzpd3Jw1Vrsc
+ 5+qw==
+X-Gm-Message-State: AO0yUKWqvxL+eaUMCbOu++6TxzIgrts8HrORTzv9CjmyuUUab5dUaRHI
+ mKwx6hPuyxX1xxUxU3CB2RLFRPzZF4LQE3OB0fjCaw==
+X-Google-Smtp-Source: AK7set/i3KKyv9hvQo5Q7ghgqcV6N777n6WzcxTQaAuUf2P00bpeT2CcXBA0yXfi6K1bW1EIgTUNp5963S1lAoLI9sQ=
+X-Received: by 2002:a65:6215:0:b0:509:93f0:a960 with SMTP id
+ d21-20020a656215000000b0050993f0a960mr3430728pgv.2.1678815234096; Tue, 14 Mar
+ 2023 10:33:54 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Tue, 14 Mar 2023 17:30:13 -0000
-Message-ID: <167881501391.26414.8850873274396976181@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Plane_cleanups_and_extra_registers?=
+References: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
+ <20230314110415.2882484-9-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20230314110415.2882484-9-ankit.k.nautiyal@intel.com>
+From: Manasi Navare <navaremanasi@google.com>
+Date: Tue, 14 Mar 2023 10:33:43 -0700
+Message-ID: <CAMNLLoSvJ1i0JyzLK8k-jy7Nih8DFrpYJ=fPqLbKToTTA4dVGw@mail.gmail.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Content-Type: multipart/alternative; boundary="000000000000ace94b05f6dfa147"
+Subject: Re: [Intel-gfx] [PATCH v11 08/11] drm/i915/dp: Avoid DSC with
+ output_format YCBCR420
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,216 +67,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2600752911860118696==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--000000000000ace94b05f6dfa147
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Since we cannot do DSC with this output format currently, can this check be
+added as part of the intel_dp_supports_dsc() ?
 
-Series: drm/i915: Plane cleanups and extra registers
-URL   : https://patchwork.freedesktop.org/series/115127/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12857 -> Patchwork_115127v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html
-
-Participating hosts (36 -> 35)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115127v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-glk-j4005:       [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         NOTRUN -> [ABORT][3] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-adlp-9:         NOTRUN -> [SKIP][4] ([i915#7828])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-8109u:       [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][7] ([i915#4983] / [i915#7694] / [i915#7911] / [i915#7981]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-    - bat-adlp-9:         [ABORT][9] ([i915#7982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@i915_selftest@live@requests.html
-
-  
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+Regards
+Manasi
 
 
-Build changes
--------------
+On Tue, Mar 14, 2023 at 4:07=E2=80=AFAM Ankit Nautiyal <ankit.k.nautiyal@in=
+tel.com>
+wrote:
 
-  * Linux: CI_DRM_12857 -> Patchwork_115127v1
+> Currently, DSC with YCBCR420 is not supported.
+> Return -EINVAL when trying with DSC with output_format as YCBCR420.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index b1431ed175bc..99a5cd370c1f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1602,6 +1602,10 @@ int intel_dp_dsc_compute_config(struct intel_dp
+> *intel_dp,
+>         if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+>                 return -EINVAL;
+>
+> +       /* Currently DSC with YCBCR420 format is not supported */
+> +       if (pipe_config->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR42=
+0)
+> +               return -EINVAL;
+> +
+>         if (compute_pipe_bpp)
+>                 pipe_bpp =3D intel_dp_dsc_compute_bpp(intel_dp,
+> pipe_config->output_format,
+>
+> conn_state->max_requested_bpc);
+> --
+> 2.25.1
+>
+>
 
-  CI-20190529: 20190529
-  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115127v1: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+--000000000000ace94b05f6dfa147
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Since we cannot do DSC with this output format currently, =
+can this check be added as part of the intel_dp_supports_dsc() ?<div><br></=
+div><div>Regards</div><div>Manasi</div></div><br><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 14, 2023 at 4:07=E2=
+=80=AFAM Ankit Nautiyal &lt;<a href=3D"mailto:ankit.k.nautiyal@intel.com">a=
+nkit.k.nautiyal@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">Currently, DSC with YCBCR420 is not supported.<br>
+Return -EINVAL when trying with DSC with output_format as YCBCR420.<br>
+<br>
+Signed-off-by: Ankit Nautiyal &lt;<a href=3D"mailto:ankit.k.nautiyal@intel.=
+com" target=3D"_blank">ankit.k.nautiyal@intel.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++<br>
+=C2=A01 file changed, 4 insertions(+)<br>
+<br>
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915=
+/display/intel_dp.c<br>
+index b1431ed175bc..99a5cd370c1f 100644<br>
+--- a/drivers/gpu/drm/i915/display/intel_dp.c<br>
++++ b/drivers/gpu/drm/i915/display/intel_dp.c<br>
+@@ -1602,6 +1602,10 @@ int intel_dp_dsc_compute_config(struct intel_dp *int=
+el_dp,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!intel_dp_supports_dsc(intel_dp, pipe_confi=
+g))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return -EINVAL;<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Currently DSC with YCBCR420 format is not su=
+pported */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (pipe_config-&gt;output_format =3D=3D INTEL_=
+OUTPUT_FORMAT_YCBCR420)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -EINVAL;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (compute_pipe_bpp)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pipe_bpp =3D intel_=
+dp_dsc_compute_bpp(intel_dp, pipe_config-&gt;output_format,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 conn_state-&gt;max_requested_bpc);<br>
+-- <br>
+2.25.1<br>
+<br>
+</blockquote></div>
 
-### Linux commits
-
-f886ede62a8c drm/i915: Extract intel_sprite_uapi.c
-7b0463644a1e drm/i915: Relocate intel_plane_check_src_coordinates()
-8c9ae51078bb drm/i915: Clean up skl+ plane alpha bits
-3b4274d07ab8 drm/i915: Define vlv/chv sprite plane SURFLIVE registers
-3da88e6aebe6 drm/i915: Define skl+ universal plane SURFLIVE registers
-54a0ec993485 drm/i915: Program VLV/CHV PIPE_MSA_MISC register
-3a6d7de044a4 drm/i915: Define more pipe timestamp registers
-bb1554ca2a67 drm/i915: s/PIPEMISC/PIPE_MISC/
-ca35eacdbc79 drm/i915: Stop using pipe_offsets[] for PIPE_MISC*
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html
-
---===============2600752911860118696==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Plane cleanups and extra registers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115127/">https://patchwork.freedesktop.org/series/115127/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12857 -&gt; Patchwork_115127v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115127v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12857 -&gt; Patchwork_115127v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115127v1: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f886ede62a8c drm/i915: Extract intel_sprite_uapi.c<br />
-7b0463644a1e drm/i915: Relocate intel_plane_check_src_coordinates()<br />
-8c9ae51078bb drm/i915: Clean up skl+ plane alpha bits<br />
-3b4274d07ab8 drm/i915: Define vlv/chv sprite plane SURFLIVE registers<br />
-3da88e6aebe6 drm/i915: Define skl+ universal plane SURFLIVE registers<br />
-54a0ec993485 drm/i915: Program VLV/CHV PIPE_MSA_MISC register<br />
-3a6d7de044a4 drm/i915: Define more pipe timestamp registers<br />
-bb1554ca2a67 drm/i915: s/PIPEMISC/PIPE_MISC/<br />
-ca35eacdbc79 drm/i915: Stop using pipe_offsets[] for PIPE_MISC*</p>
-
-</body>
-</html>
-
---===============2600752911860118696==--
+--000000000000ace94b05f6dfa147--
