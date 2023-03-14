@@ -2,42 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8606B6B86C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 01:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3156B8776
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 02:15:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7FF10E6A1;
-	Tue, 14 Mar 2023 00:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A7C10E15E;
+	Tue, 14 Mar 2023 01:15:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E4D10E69F;
- Tue, 14 Mar 2023 00:19:17 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4PbDfS2kpdz4whr;
- Tue, 14 Mar 2023 11:19:11 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1678753152;
- bh=RvgXDWT0B/3pVtS5a3R9IwdksaQYKBwWnd/n3mYIF6Q=;
- h=Date:From:To:Cc:Subject:From;
- b=VWNibYsrBi0G1m0sPOGtvW+AwNXObOJQ0uUdU8RvEGUiFl2ewoJCzd/6S7yyK2ljX
- eY5vXbAz9qOCHr0eaZFfyWbzvfDWo0SHu3rCrMcwVBc6UZpyaLBYjiGXxy/hfR5S7Z
- 2kt9MhmX4E5gWqEePsNJ08pYv85+cTMa0dzwz88bgWSNlM8I92GnwIUo5ZGfOzRK51
- FV+08MoRrQMV17bhOy9NR9yeniFzNp63LdQgx00jWO39CoLDOgBhQlATDcQnkgt+Wh
- YiYYld2IrwSIt4ilwRS3frohJQXyDYVueB/2xYA5ll6MkhlWypAHnbd5L0WzZ8kt4G
- 9FAeSOe3nAULQ==
-Date: Tue, 14 Mar 2023 11:19:11 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20230314111911.62a3e636@canb.auug.org.au>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5337310E15E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 01:15:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678756502; x=1710292502;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xxRJzM0tdIJWxLfW04QAE7vNroesWb1li65UDaIhYKI=;
+ b=jAXKK4oq3N/Ex5bb98BEq0T9oVCqiK/qIiRBtGPqq45GqO9XccxO1WPg
+ Zn3vqhxNJb2eltNhz7obc3nZNGMO4PT6Ycr6sYgbdWuk4uI/BaZMQobzl
+ luOfdmoo6HMNELDHFBEpNwztczhov3rAAtnFt1lnVS+wSRHEvJnjdDOLS
+ eMt/2uOcx5of2kOYvHMrf2PfAERde3+t5c6QgKsdvx6U+Do55lxSDJafS
+ 0UQ0O0Xm9139lrp3gJbPkBOnmeCSoxWUDRkavrz22MZqu88PSu26Pt0U4
+ 7ZUb3NMQARcy3P0go91lzLaIm4ZqKeYpObmfR756RopHz0V91b5tc3t/1 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="338846709"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="338846709"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 18:15:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="672126074"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="672126074"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orsmga007.jf.intel.com with ESMTP; 13 Mar 2023 18:15:01 -0700
+From: John.C.Harrison@Intel.com
+To: stable@vger.kernel.org
+Date: Mon, 13 Mar 2023 18:14:04 -0700
+Message-Id: <20230314011404.1009812-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <167820545815114@kroah.com>
+References: <167820545815114@kroah.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/tDg50K40RUE_6_OJTRl_W8o";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 4.14.y] drm/i915: Don't use BAR mappings for
+ ring buffers with LLC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,60 +58,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandr Sapozhnikov <alsp705@gmail.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/tDg50K40RUE_6_OJTRl_W8o
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Hi all,
+Direction from hardware is that ring buffers should never be mapped
+via the BAR on systems with LLC. There are too many caching pitfalls
+due to the way BAR accesses are routed. So it is safest to just not
+use it.
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v4.9+
+Tested-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
+(cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+(cherry picked from commit 85636167e3206c3fbd52254fc432991cc4e90194)
+---
+ drivers/gpu/drm/i915/intel_ringbuffer.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-  drivers/gpu/drm/tiny/cirrus.c
+diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
+index 63667a5c2c87..6c7563c1ab5f 100644
+--- a/drivers/gpu/drm/i915/intel_ringbuffer.c
++++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
+@@ -1314,7 +1314,7 @@ int intel_ring_pin(struct intel_ring *ring,
+ 	if (unlikely(ret))
+ 		return ret;
+ 
+-	if (i915_vma_is_map_and_fenceable(vma))
++	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915))
+ 		addr = (void __force *)i915_vma_pin_iomap(vma);
+ 	else
+ 		addr = i915_gem_object_pin_map(vma->obj, map);
+@@ -1346,7 +1346,7 @@ void intel_ring_unpin(struct intel_ring *ring)
+ 	/* Discard any unused bytes beyond that submitted to hw. */
+ 	intel_ring_reset(ring, ring->tail);
+ 
+-	if (i915_vma_is_map_and_fenceable(ring->vma))
++	if (i915_vma_is_map_and_fenceable(ring->vma) && !HAS_LLC(ring->vma->vm->i915))
+ 		i915_vma_unpin_iomap(ring->vma);
+ 	else
+ 		i915_gem_object_unpin_map(ring->vma->obj);
+-- 
+2.39.1
 
-between commit:
-
-  7245e629dcaa ("drm/cirrus: NULL-check pipe->plane.state->fb in cirrus_pip=
-e_update()")
-
-from Linus' tree and commits:
-
-  d99c028941b3 ("drm/cirrus: Convert to regular atomic helpers")
-  03e7ac67e743 ("drm/cirrus: Enable damage clipping on primary plane")
-
-from the drm-misc tree.
-
-I fixed it up (I just used the latter version) and can carry the fix as
-necessary. This is now fixed as far as linux-next is concerned, but any
-non trivial conflicts should be mentioned to your upstream maintainer
-when your tree is submitted for merging.  You may also want to consider
-cooperating with the maintainer of the conflicting tree to minimise any
-particularly complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/tDg50K40RUE_6_OJTRl_W8o
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmQPvX8ACgkQAVBC80lX
-0GwdJQgAkZ3A5Z1Zy4b6++ltoWXQsioiTemCgR9WcX3GuPntiblvL8xPt0vB6OVj
-ba2LPj/xgxI7pGyDks1TvfCVOfsYVuhUo3QEycs/cX3EfV7xvaDoL60K3Gkean3S
-FxGRCMPAaFTLOG9URh1drgzaQf6JRxfy+w3IJyyN6uanslhBm1NnmaOodUqNDtTT
-zFR/JHPDF1ftGvXYbGXmSHFiN78yKNKskyRnlAKzu3SP8QYD10fHDSv/OF2Po1ZF
-1DXLuHEwTlHV3kAOkOcIlFv78yhJ78V3XzlKZPOfdhtQcjnzKdt1SkjaUg6icF4m
-zFcdSVE+3hL1z9oS/Vl7VaWtKEbdPA==
-=lQRK
------END PGP SIGNATURE-----
-
---Sig_/tDg50K40RUE_6_OJTRl_W8o--
