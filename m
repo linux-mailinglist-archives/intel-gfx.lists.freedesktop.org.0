@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7236B9109
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 12:06:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A256B910B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 12:06:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B0F110E77E;
-	Tue, 14 Mar 2023 11:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8990310E782;
+	Tue, 14 Mar 2023 11:06:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0742510E77D
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 11:06:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9073E10E781
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 11:06:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678792004; x=1710328004;
+ t=1678792005; x=1710328005;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3pSSZqkseOOhJfImCP4O2/hx9HbQRu/4lsjXHUZlyPU=;
- b=FK7uWs/WoUA0YXh9I5y3fTW04cGjf2bZ16NylAlrg+XOrzLfIE2KPYH4
- Ng1SPDVqf7m2m7+w3f/D3p4IqxxD0Zq7J2rR2TB+RCsRx0xldUazfCDHv
- Vpy6vGl45YS5Jl7c4aELL9rXKSBA39yakGkwegdb23NU6t3hzYHZulLlL
- +jegi8OCLOze2sxZI3/Xl/SN6e+YrRN7NjcEkGOhmBDd31eOUbBvVNKqd
- SBfDeDbcLRTBlhGRLcVcM+pgy2pCejY27TqpkJ7qMKirsO0B9EQ3XOlz7
- 2UnsNUqDJ1AAhVOQXwMiXMB8mK2PhN1JJn/9gPF03xaj8I1sraJi7OI55 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="423664505"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="423664505"
+ bh=GIRqZ9v+B7PjDmFZCRHMc7L/fEsETSbwKbXxltJ8UTY=;
+ b=RF1GhwvIPKlO48ITKI+Yck/n8gIHkE8qp//NpQkoMcWtOpm5hulfXfab
+ IcJRgGBmpOD0V90yozNb6v/ennIoPHna4fcEmgHxIBnlYkfZFzMc06zvU
+ Q3S8iDUx2fZ2FQQwa7r0F0L84XwSHWXH+FA7tWdVrOzuDcFkkqTUnuMiD
+ b+pDZyn64IzU6a3ckRRVzkp6JR3KFLhgZ6vkdRlqB3r3tFDemLIdz+MNx
+ F28XR0LWkYrP/El6bYP7StIAoeHyeHRUnnde+lv48RAnf0IlCr6icV+wS
+ vZKtKeMlzTLEGx1Dt66ZWd/K56pyo8Bb5wfoKO578CSSSQYka0e0CvdOI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="423664510"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="423664510"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 04:06:43 -0700
+ 14 Mar 2023 04:06:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924872937"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="924872937"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924872940"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="924872940"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 04:06:42 -0700
+ 14 Mar 2023 04:06:43 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Mar 2023 16:34:07 +0530
-Message-Id: <20230314110415.2882484-4-ankit.k.nautiyal@intel.com>
+Date: Tue, 14 Mar 2023 16:34:08 +0530
+Message-Id: <20230314110415.2882484-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
 References: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v11 03/11] drm/i915/dp: Replace intel_dp.dfp
- members with the new crtc_state sink_format
+Subject: [Intel-gfx] [PATCH v11 04/11] drm/i915/display: Use sink_format
+ instead of ycbcr420_output flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,281 +61,316 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The decision to use DFP output format conversion capabilities should be
-during compute_config phase.
+Start passing the sink_format, to all functions that take a bool
+ycbcr420_output as parameter. This will make the functions generic,
+and will serve as a slight step towards 4:2:2 support later.
 
-This patch uses the members of intel_dp->dfp to only store the
-format conversion capabilities of the DP device and uses the crtc_state
-sink_format member, to program the protocol-converter for
-colorspace/format conversion.
+v2: Rebased.
 
-v2: Use sink_format to determine the color conversion config for the
-pcon (Ville).
-
-v3: Fix typo: missing 'break' in switch case (lkp kernel test robot).
-
-v4: Add helper to check if DP supports YCBCR420.
-
-v5: Simplify logic for computing output_format, based on the given
-sink_format. (Ville).
-Added scaler constraint for YCbCr420 output.
-
-v6: Split the patch for Scaler constraint for Ycbcr420.
-
-v7: Simplify the policy for selecting output_format:
-Always try for RGB first, followed by YCBCR444, and finally by YCBCR420.
-
+Suggested-by: Ville Syrj_l_ <ville.syrjala@linux.intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 182 +++++++++++++++++-------
- 1 file changed, 129 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c   | 33 +++++++--------
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 50 ++++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  5 ++-
+ 3 files changed, 44 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e52e2ffc355c..c31ec9c91c64 100644
+index c31ec9c91c64..b49d113357e4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -817,24 +817,82 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
- 	return 0;
+@@ -967,7 +967,8 @@ static int intel_dp_max_tmds_clock(struct intel_dp *intel_dp)
+ 
+ static enum drm_mode_status
+ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
+-			  int clock, int bpc, bool ycbcr420_output,
++			  int clock, int bpc,
++			  enum intel_output_format sink_format,
+ 			  bool respect_downstream_limits)
+ {
+ 	int tmds_clock, min_tmds_clock, max_tmds_clock;
+@@ -975,7 +976,7 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
+ 	if (!respect_downstream_limits)
+ 		return MODE_OK;
+ 
+-	tmds_clock = intel_hdmi_tmds_clock(clock, bpc, ycbcr420_output);
++	tmds_clock = intel_hdmi_tmds_clock(clock, bpc, sink_format);
+ 
+ 	min_tmds_clock = intel_dp->dfp.min_tmds_clock;
+ 	max_tmds_clock = intel_dp_max_tmds_clock(intel_dp);
+@@ -998,6 +999,7 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	enum drm_mode_status status;
+ 	bool ycbcr_420_only;
++	enum intel_output_format sink_format;
+ 
+ 	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
+ 	if (intel_dp->dfp.pcon_max_frl_bw) {
+@@ -1024,18 +1026,22 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 
+ 	ycbcr_420_only = drm_mode_is_420_only(info, mode);
+ 
++	if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
++		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
++	else
++		sink_format = INTEL_OUTPUT_FORMAT_RGB;
++
+ 	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+ 	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+-					   8, ycbcr_420_only, true);
++					   8, sink_format, true);
+ 
+ 	if (status != MODE_OK) {
+-		if (ycbcr_420_only ||
+-		    !connector->base.ycbcr_420_allowed ||
++		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+ 		    !drm_mode_is_420_also(info, mode))
+ 			return status;
+-
++		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+ 		status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+-						   8, true, true);
++						   8, sink_format, true);
+ 		if (status != MODE_OK)
+ 			return status;
+ 	}
+@@ -1271,19 +1277,10 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
+ 		drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd);
  }
  
-+static bool source_can_output(struct intel_dp *intel_dp,
-+			      enum intel_output_format format)
-+{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	bool is_branch = drm_dp_is_branch(intel_dp->dpcd);
-+
-+	if (format == INTEL_OUTPUT_FORMAT_RGB)
-+		return true;
-+
-+	/*
-+	 * No YCbCr output support on gmch platforms.
-+	 * Also, ILK doesn't seem capable of DP YCbCr output.
-+	 * The displayed image is severly corrupted. SNB+ is fine.
-+	 */
-+	if (HAS_GMCH(i915) || IS_IRONLAKE(i915))
-+		return false;
-+
-+	if (format == INTEL_OUTPUT_FORMAT_YCBCR444)
-+		return true;
-+
-+	/* Platform < Gen 11 cannot output YCbCr420 format */
-+	if (DISPLAY_VER(i915) < 11)
-+		return false;
-+
-+	/* If branch device then PCONs should support YCbCr420 Passthrough */
-+	if (format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return !is_branch || intel_dp->dfp.ycbcr420_passthrough;
-+
-+	return false;
-+}
-+
-+static bool
-+dfp_can_convert_from_rgb(struct intel_dp *intel_dp,
-+			 enum intel_output_format sink_format)
-+{
-+	if (!drm_dp_is_branch(intel_dp->dpcd))
-+		return false;
-+
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR444)
-+		return intel_dp->dfp.rgb_to_ycbcr;
-+
+-static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
+-				 const struct intel_crtc_state *crtc_state)
+-{
+-	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+-		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
+-		 intel_dp->dfp.ycbcr_444_to_420);
+-}
+-
+ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 				     const struct intel_crtc_state *crtc_state,
+ 				     int bpc, bool respect_downstream_limits)
+ {
+-	bool ycbcr420_output = intel_dp_is_ycbcr420(intel_dp, crtc_state);
+ 	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
+ 
+ 	/*
+@@ -1303,8 +1300,8 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 
+ 	for (; bpc >= 8; bpc -= 2) {
+ 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
+-					    intel_dp->has_hdmi_sink, ycbcr420_output) &&
+-		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, ycbcr420_output,
++					    intel_dp->has_hdmi_sink) &&
++		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
+ 					      respect_downstream_limits) == MODE_OK)
+ 			return bpc;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 1ad0540c13ee..15bf64a217c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1793,11 +1793,6 @@ static bool intel_has_hdmi_sink(struct intel_hdmi *hdmi,
+ 		READ_ONCE(to_intel_digital_connector_state(conn_state)->force_audio) != HDMI_AUDIO_OFF_DVI;
+ }
+ 
+-static bool intel_hdmi_is_ycbcr420(const struct intel_crtc_state *crtc_state)
+-{
+-	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420;
+-}
+-
+ static int hdmi_port_clock_limit(struct intel_hdmi *hdmi,
+ 				 bool respect_downstream_limits,
+ 				 bool has_hdmi_sink)
+@@ -1871,10 +1866,11 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
+ 	return MODE_OK;
+ }
+ 
+-int intel_hdmi_tmds_clock(int clock, int bpc, bool ycbcr420_output)
++int intel_hdmi_tmds_clock(int clock, int bpc,
++			  enum intel_output_format sink_format)
+ {
+ 	/* YCBCR420 TMDS rate requirement is half the pixel clock */
+-	if (ycbcr420_output)
 +	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return intel_dp->dfp.rgb_to_ycbcr &&
-+			intel_dp->dfp.ycbcr_444_to_420;
-+
-+	return false;
-+}
-+
-+static bool
-+dfp_can_convert_from_ycbcr444(struct intel_dp *intel_dp,
-+			      enum intel_output_format sink_format)
-+{
-+	if (!drm_dp_is_branch(intel_dp->dpcd))
-+		return false;
-+
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return intel_dp->dfp.ycbcr_444_to_420;
-+
-+	return false;
-+}
-+
- static enum intel_output_format
- intel_dp_output_format(struct intel_connector *connector,
- 		       enum intel_output_format sink_format)
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 		clock /= 2;
  
--	if (!connector->base.ycbcr_420_allowed ||
--	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
--		return INTEL_OUTPUT_FORMAT_RGB;
--
--	if (intel_dp->dfp.rgb_to_ycbcr &&
--	    intel_dp->dfp.ycbcr_444_to_420)
-+	if (sink_format == INTEL_OUTPUT_FORMAT_RGB ||
-+	    dfp_can_convert_from_rgb(intel_dp, sink_format))
- 		return INTEL_OUTPUT_FORMAT_RGB;
- 
--	if (intel_dp->dfp.ycbcr_444_to_420)
-+	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR444 ||
-+	    dfp_can_convert_from_ycbcr444(intel_dp, sink_format))
- 		return INTEL_OUTPUT_FORMAT_YCBCR444;
--	else
--		return INTEL_OUTPUT_FORMAT_YCBCR420;
-+
-+	return INTEL_OUTPUT_FORMAT_YCBCR420;
+ 	/*
+@@ -1901,7 +1897,8 @@ static bool intel_hdmi_source_bpc_possible(struct drm_i915_private *i915, int bp
  }
  
- int intel_dp_min_bpp(enum intel_output_format output_format)
-@@ -2751,6 +2809,8 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 					   const struct intel_crtc_state *crtc_state)
+ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
+-					 int bpc, bool has_hdmi_sink, bool ycbcr420_output)
++					 int bpc, bool has_hdmi_sink,
++					 enum intel_output_format sink_format)
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	bool ycbcr444_to_420 = false;
-+	bool rgb_to_ycbcr = false;
- 	u8 tmp;
+ 	const struct drm_display_info *info = &connector->display_info;
+ 	const struct drm_hdmi_info *hdmi = &info->hdmi;
+@@ -1911,7 +1908,7 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
+ 		if (!has_hdmi_sink)
+ 			return false;
  
- 	if (intel_dp->dpcd[DP_DPCD_REV] < 0x13)
-@@ -2767,8 +2827,35 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
- 			    str_enable_disable(intel_dp->has_hdmi_sink));
+-		if (ycbcr420_output)
++		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
+ 			return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_36;
+ 		else
+ 			return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_36;
+@@ -1919,7 +1916,7 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
+ 		if (!has_hdmi_sink)
+ 			return false;
  
--	tmp = crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
--		intel_dp->dfp.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
-+	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+		switch (crtc_state->output_format) {
-+		case INTEL_OUTPUT_FORMAT_YCBCR420:
-+			/*
-+			 * sink_format is YCbCr420, output_format is also YCbCr420:
-+			 * Passthrough.
-+			 */
-+			break;
-+		case INTEL_OUTPUT_FORMAT_YCBCR444:
-+			/*
-+			 * sink_format is YCbCr420, output_format is YCbCr444:
-+			 * Downsample.
-+			 */
-+			ycbcr444_to_420 = true;
-+			break;
-+		case INTEL_OUTPUT_FORMAT_RGB:
-+			/*
-+			 * sink_format is YCbCr420, output_format is RGB:
-+			 * Convert to YCbCr444 and Downsample.
-+			 */
-+			rgb_to_ycbcr = true;
-+			ycbcr444_to_420 = true;
-+			break;
-+		default:
-+			break;
-+		}
-+	}
+-		if (ycbcr420_output)
++		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
+ 			return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_30;
+ 		else
+ 			return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_30;
+@@ -1933,7 +1930,8 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
+ 
+ static enum drm_mode_status
+ intel_hdmi_mode_clock_valid(struct drm_connector *connector, int clock,
+-			    bool has_hdmi_sink, bool ycbcr420_output)
++			    bool has_hdmi_sink,
++			    enum intel_output_format sink_format)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->dev);
+ 	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
+@@ -1946,12 +1944,12 @@ intel_hdmi_mode_clock_valid(struct drm_connector *connector, int clock,
+ 	 * least one color depth is accepted.
+ 	 */
+ 	for (bpc = 12; bpc >= 8; bpc -= 2) {
+-		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc, ycbcr420_output);
++		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc, sink_format);
+ 
+ 		if (!intel_hdmi_source_bpc_possible(i915, bpc))
+ 			continue;
+ 
+-		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink, ycbcr420_output))
++		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink, sink_format))
+ 			continue;
+ 
+ 		status = hdmi_port_clock_valid(hdmi, tmds_clock, true, has_hdmi_sink);
+@@ -1976,6 +1974,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+ 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
+ 	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->state);
+ 	bool ycbcr_420_only;
++	enum intel_output_format sink_format;
+ 
+ 	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
+ 		clock *= 2;
+@@ -2000,14 +1999,17 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+ 
+ 	ycbcr_420_only = drm_mode_is_420_only(&connector->display_info, mode);
+ 
+-	status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, ycbcr_420_only);
++	sink_format = ycbcr_420_only ? INTEL_OUTPUT_FORMAT_YCBCR420 : INTEL_OUTPUT_FORMAT_RGB;
 +
-+	tmp = ycbcr444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
++	status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, sink_format);
+ 	if (status != MODE_OK) {
+ 		if (ycbcr_420_only ||
+ 		    !connector->ycbcr_420_allowed ||
+ 		    !drm_mode_is_420_also(&connector->display_info, mode))
+ 			return status;
  
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux,
- 			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
-@@ -2776,13 +2863,12 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
- 			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
- 
--	tmp = intel_dp->dfp.rgb_to_ycbcr ?
--		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
-+	tmp = rgb_to_ycbcr ? DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
- 
- 	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
- 		drm_dbg_kms(&i915->drm,
--			   "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
--			   str_enable_disable(tmp));
-+			    "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
-+			    str_enable_disable(tmp));
+-		status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, true);
++		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
++		status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, sink_format);
+ 		if (status != MODE_OK)
+ 			return status;
+ 	}
+@@ -2016,7 +2018,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
  }
  
- bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-@@ -4572,57 +4658,47 @@ intel_dp_update_dfp(struct intel_dp *intel_dp,
- 	intel_dp_get_pcon_dsc_cap(intel_dp);
+ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+-			     int bpc, bool has_hdmi_sink, bool ycbcr420_output)
++			     int bpc, bool has_hdmi_sink)
+ {
+ 	struct drm_atomic_state *state = crtc_state->uapi.state;
+ 	struct drm_connector_state *connector_state;
+@@ -2027,7 +2029,8 @@ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+ 		if (connector_state->crtc != crtc_state->uapi.crtc)
+ 			continue;
+ 
+-		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink, ycbcr420_output))
++		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink,
++						  crtc_state->sink_format))
+ 			return false;
+ 	}
+ 
+@@ -2045,14 +2048,13 @@ static bool hdmi_bpc_possible(const struct intel_crtc_state *crtc_state, int bpc
+ 		return false;
+ 
+ 	/* Display Wa_1405510057:icl,ehl */
+-	if (intel_hdmi_is_ycbcr420(crtc_state) &&
++	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
+ 	    bpc == 10 && DISPLAY_VER(dev_priv) == 11 &&
+ 	    (adjusted_mode->crtc_hblank_end -
+ 	     adjusted_mode->crtc_hblank_start) % 8 == 2)
+ 		return false;
+ 
+-	return intel_hdmi_bpc_possible(crtc_state, bpc, crtc_state->has_hdmi_sink,
+-				       intel_hdmi_is_ycbcr420(crtc_state));
++	return intel_hdmi_bpc_possible(crtc_state, bpc, crtc_state->has_hdmi_sink);
  }
  
-+static bool
-+intel_dp_can_ycbcr420(struct intel_dp *intel_dp)
-+{
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return true;
-+	/*
-+	 * If source cannot support YCbCr420, and PCON has color conv. support:
-+	 * Source sends YCbCr444, PCON converts YCbCr444->420 Or
-+	 * Source sends RGB444, PCON converts RGB->YCbCr444 + YCbCr444->YCbCr420)
-+	 */
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_RGB) &&
-+	    dfp_can_convert_from_rgb(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return true;
-+
-+	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444) &&
-+	    dfp_can_convert_from_ycbcr444(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return INTEL_OUTPUT_FORMAT_YCBCR444;
-+
-+	return false;
-+}
-+
- static void
- intel_dp_update_420(struct intel_dp *intel_dp)
+ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+@@ -2060,7 +2062,6 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+ 				  int clock, bool respect_downstream_limits)
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
--	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
--
--	/* No YCbCr output support on gmch platforms */
--	if (HAS_GMCH(i915))
--		return;
+ 	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+-	bool ycbcr420_output = intel_hdmi_is_ycbcr420(crtc_state);
+ 	int bpc;
  
--	/*
--	 * ILK doesn't seem capable of DP YCbCr output. The
--	 * displayed image is severly corrupted. SNB+ is fine.
--	 */
--	if (IS_IRONLAKE(i915))
--		return;
--
--	is_branch = drm_dp_is_branch(intel_dp->dpcd);
--	ycbcr_420_passthrough =
-+	intel_dp->dfp.ycbcr420_passthrough =
- 		drm_dp_downstream_420_passthrough(intel_dp->dpcd,
- 						  intel_dp->downstream_ports);
- 	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
--	ycbcr_444_to_420 =
-+	intel_dp->dfp.ycbcr_444_to_420 =
- 		dp_to_dig_port(intel_dp)->lspcon.active ||
- 		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
- 							intel_dp->downstream_ports);
--	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
--								 intel_dp->downstream_ports,
--								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
--
--	if (DISPLAY_VER(i915) >= 11) {
--		/* Let PCON convert from RGB->YCbCr if possible */
--		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
--			intel_dp->dfp.rgb_to_ycbcr = true;
--			intel_dp->dfp.ycbcr_444_to_420 = true;
--			connector->base.ycbcr_420_allowed = true;
--		} else {
--		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
--			intel_dp->dfp.ycbcr_444_to_420 =
--				ycbcr_444_to_420 && !ycbcr_420_passthrough;
-+	intel_dp->dfp.rgb_to_ycbcr =
-+		drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-+							  intel_dp->downstream_ports,
-+							  DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
+ 	/*
+@@ -2078,7 +2079,8 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+ 		bpc = 8;
  
--			connector->base.ycbcr_420_allowed =
--				!is_branch || ycbcr_444_to_420 || ycbcr_420_passthrough;
--		}
--	} else {
--		/* 4:4:4->4:2:0 conversion is the only way */
--		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420;
--
--		connector->base.ycbcr_420_allowed = ycbcr_444_to_420;
--	}
-+	connector->base.ycbcr_420_allowed = intel_dp_can_ycbcr420(intel_dp);
+ 	for (; bpc >= 8; bpc -= 2) {
+-		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc, ycbcr420_output);
++		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc,
++						       crtc_state->sink_format);
  
- 	drm_dbg_kms(&i915->drm,
- 		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
+ 		if (hdmi_bpc_possible(crtc_state, bpc) &&
+ 		    hdmi_port_clock_valid(intel_hdmi, tmds_clock,
+@@ -2108,7 +2110,7 @@ static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
+ 		return bpc;
+ 
+ 	crtc_state->port_clock =
+-		intel_hdmi_tmds_clock(clock, bpc, intel_hdmi_is_ycbcr420(crtc_state));
++		intel_hdmi_tmds_clock(clock, bpc, crtc_state->sink_format);
+ 
+ 	/*
+ 	 * pipe_bpp could already be below 8bpc due to
+@@ -2293,7 +2295,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		return ret;
+ 	}
+ 
+-	if (intel_hdmi_is_ycbcr420(pipe_config)) {
++	if (pipe_config->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
+ 		ret = intel_panel_fitting(pipe_config, conn_state);
+ 		if (ret)
+ 			return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+index 774dda2376ed..d1e27247b657 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.h
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
+ 
+ enum hdmi_infoframe_type;
++enum intel_output_format;
+ enum port;
+ struct drm_connector;
+ struct drm_connector_state;
+@@ -45,8 +46,8 @@ void intel_read_infoframe(struct intel_encoder *encoder,
+ bool intel_hdmi_limited_color_range(const struct intel_crtc_state *crtc_state,
+ 				    const struct drm_connector_state *conn_state);
+ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+-			     int bpc, bool has_hdmi_sink, bool ycbcr420_output);
+-int intel_hdmi_tmds_clock(int clock, int bpc, bool ycbcr420_output);
++			     int bpc, bool has_hdmi_sink);
++int intel_hdmi_tmds_clock(int clock, int bpc, enum intel_output_format sink_format);
+ int intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width,
+ 			   int num_slices, int output_format, bool hdmi_all_bpp,
+ 			   int hdmi_max_chunk_bytes);
 -- 
 2.25.1
 
