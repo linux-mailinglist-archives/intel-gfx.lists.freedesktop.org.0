@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817EE6B88C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 03:55:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7366B88DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 04:08:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C68510E6E9;
-	Tue, 14 Mar 2023 02:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4140A10E6C6;
+	Tue, 14 Mar 2023 03:08:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A67BF10E6C5;
- Tue, 14 Mar 2023 02:55:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678762513; x=1710298513;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NFzAXXoB1e7+XH5IaSm2cBjMNsWm1wKGgsZ/Zq0L7zA=;
- b=mYg8aS8U5MfWvtKLKb/bBAbooF3ABj6Ye/7ddLldZe1GriOcNRWypmlq
- DBIyDmoSBprzaNIBdKLWFDloYgbczWMxrtPFagtyATGZ/gZqCByxeHkp5
- dPSbnEbmJYokf6Ma7mv/Ym1I8zJpfu9kLOsO4pn4PO0A90CySZpul1E6J
- y+NKml4NQrGds6qI09MKQ8zzuCRDXXXY4N3RbgVt9bL9O6T53bOA0WPbR
- 7+cfy4mjJMzo5IDGDiN7qyq6kyEzDxF+tA4SST2fUtRPUGWdSY0PTwRLC
- 9yxDco9BxDJw9UPcMKiJKnyP2FKsWW3wyMTzf+qeLcCy0pojpisaw5HR6 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399904818"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="399904818"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 19:55:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789166479"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789166479"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga002.fm.intel.com with ESMTP; 13 Mar 2023 19:55:10 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pbuof-0006Qq-0g;
- Tue, 14 Mar 2023 02:55:09 +0000
-Date: Tue, 14 Mar 2023 10:54:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202303141032.GnWWCyaD-lkp@intel.com>
-References: <20230313234936.2005565-1-ashutosh.dixit@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 522B310E171;
+ Tue, 14 Mar 2023 03:08:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 495F5AADF0;
+ Tue, 14 Mar 2023 03:08:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1323951532137896325=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230313234936.2005565-1-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Disable PL1 power limit
- when loading GuC firmware
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
+Date: Tue, 14 Mar 2023 03:08:49 -0000
+Message-ID: <167876332925.26413.10565860062887249786@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
+In-Reply-To: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_generic_memory_shrinker_to_VirtIO-GPU_and_Panfrost_DRM_drivers?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,204 +41,349 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, oe-kbuild-all@lists.linux.dev
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ashutosh,
+--===============1323951532137896325==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Perhaps something to improve:
+== Series Details ==
 
-[auto build test WARNING on drm-tip/drm-tip]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm/drm-next drm-exynos/exynos-drm-next drm-misc/drm-misc-next linus/master v6.3-rc2 next-20230310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: Add generic memory shrinker to VirtIO-GPU and Panfrost DRM drivers (rev2)
+URL   : https://patchwork.freedesktop.org/series/114671/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ashutosh-Dixit/drm-i915-guc-Disable-PL1-power-limit-when-loading-GuC-firmware/20230314-075114
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230313234936.2005565-1-ashutosh.dixit%40intel.com
-patch subject: [PATCH v2] drm/i915/guc: Disable PL1 power limit when loading GuC firmware
-config: x86_64-randconfig-a016-20230313 (https://download.01.org/0day-ci/archive/20230314/202303141032.GnWWCyaD-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/931e5a87acb79926043e557341fb0dfd68a9b88d
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ashutosh-Dixit/drm-i915-guc-Disable-PL1-power-limit-when-loading-GuC-firmware/20230314-075114
-        git checkout 931e5a87acb79926043e557341fb0dfd68a9b88d
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303141032.GnWWCyaD-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_12853 -> Patchwork_114671v2
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/i915/gt/uc/intel_uc.c:483:6: warning: variable 'pl1en' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-           if (ret)
-               ^~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:572:28: note: uninitialized use occurs here
-           hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
-                                     ^~~~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:483:2: note: remove the 'if' if its condition is always false
-           if (ret)
-           ^~~~~~~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:474:6: warning: variable 'pl1en' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-           if (!intel_uc_fw_is_loadable(&guc->fw)) {
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:572:28: note: uninitialized use occurs here
-           hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
-                                     ^~~~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:474:2: note: remove the 'if' if its condition is always false
-           if (!intel_uc_fw_is_loadable(&guc->fw)) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/uc/intel_uc.c:464:26: note: initialize the variable 'pl1en' to silence this warning
-           int ret, attempts, pl1en;
-                                   ^
-                                    = 0
-   2 warnings generated.
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/index.html
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Missing    (4): fi-kbl-soraka bat-atsm-1 bat-dg1-6 fi-bsw-n3050 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114671v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@vgem_basic@dmabuf-mmap:
+    - fi-cfl-guc:         [PASS][1] -> [ABORT][2] ([i915#8242])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-guc/igt@vgem_basic@dmabuf-mmap.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-guc/igt@vgem_basic@dmabuf-mmap.html
+    - bat-jsl-3:          [PASS][3] -> [ABORT][4] ([i915#8242])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-jsl-3/igt@vgem_basic@dmabuf-mmap.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-jsl-3/igt@vgem_basic@dmabuf-mmap.html
+    - bat-dg2-9:          [PASS][5] -> [ABORT][6] ([i915#8242])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-9/igt@vgem_basic@dmabuf-mmap.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-9/igt@vgem_basic@dmabuf-mmap.html
+    - fi-kbl-x1275:       [PASS][7] -> [ABORT][8] ([i915#8242])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-x1275/igt@vgem_basic@dmabuf-mmap.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-x1275/igt@vgem_basic@dmabuf-mmap.html
+    - fi-hsw-4770:        [PASS][9] -> [ABORT][10] ([i915#8242])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-hsw-4770/igt@vgem_basic@dmabuf-mmap.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-hsw-4770/igt@vgem_basic@dmabuf-mmap.html
+    - fi-cfl-8109u:       [PASS][11] -> [ABORT][12] ([i915#8242])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-8109u/igt@vgem_basic@dmabuf-mmap.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-8109u/igt@vgem_basic@dmabuf-mmap.html
+    - bat-rpls-2:         [PASS][13] -> [ABORT][14] ([i915#8242])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@vgem_basic@dmabuf-mmap.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rpls-2/igt@vgem_basic@dmabuf-mmap.html
+    - fi-ivb-3770:        [PASS][15] -> [ABORT][16] ([i915#8242])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-ivb-3770/igt@vgem_basic@dmabuf-mmap.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-ivb-3770/igt@vgem_basic@dmabuf-mmap.html
+    - bat-dg2-8:          [PASS][17] -> [ABORT][18] ([i915#8242])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-8/igt@vgem_basic@dmabuf-mmap.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-8/igt@vgem_basic@dmabuf-mmap.html
+    - fi-kbl-guc:         [PASS][19] -> [ABORT][20] ([i915#8242])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-guc/igt@vgem_basic@dmabuf-mmap.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-guc/igt@vgem_basic@dmabuf-mmap.html
+    - fi-ilk-650:         [PASS][21] -> [ABORT][22] ([i915#8242])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-ilk-650/igt@vgem_basic@dmabuf-mmap.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-ilk-650/igt@vgem_basic@dmabuf-mmap.html
+    - bat-jsl-1:          [PASS][23] -> [ABORT][24] ([i915#8242])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-jsl-1/igt@vgem_basic@dmabuf-mmap.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-jsl-1/igt@vgem_basic@dmabuf-mmap.html
+    - bat-rpls-1:         [PASS][25] -> [ABORT][26] ([i915#8242])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-1/igt@vgem_basic@dmabuf-mmap.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rpls-1/igt@vgem_basic@dmabuf-mmap.html
+    - fi-skl-6600u:       [PASS][27] -> [ABORT][28] ([i915#8242])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-6600u/igt@vgem_basic@dmabuf-mmap.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-skl-6600u/igt@vgem_basic@dmabuf-mmap.html
+    - bat-adls-5:         [PASS][29] -> [ABORT][30] ([i915#8242])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adls-5/igt@vgem_basic@dmabuf-mmap.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adls-5/igt@vgem_basic@dmabuf-mmap.html
+    - fi-apl-guc:         [PASS][31] -> [ABORT][32] ([i915#8242])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-apl-guc/igt@vgem_basic@dmabuf-mmap.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-apl-guc/igt@vgem_basic@dmabuf-mmap.html
+    - bat-dg1-5:          [PASS][33] -> [ABORT][34] ([i915#8242])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg1-5/igt@vgem_basic@dmabuf-mmap.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg1-5/igt@vgem_basic@dmabuf-mmap.html
+    - fi-pnv-d510:        [PASS][35] -> [ABORT][36] ([i915#8242])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-pnv-d510/igt@vgem_basic@dmabuf-mmap.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-pnv-d510/igt@vgem_basic@dmabuf-mmap.html
+    - bat-dg1-7:          [PASS][37] -> [ABORT][38] ([i915#8242])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg1-7/igt@vgem_basic@dmabuf-mmap.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg1-7/igt@vgem_basic@dmabuf-mmap.html
+    - fi-glk-j4005:       [PASS][39] -> [ABORT][40] ([i915#8242])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-glk-j4005/igt@vgem_basic@dmabuf-mmap.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-glk-j4005/igt@vgem_basic@dmabuf-mmap.html
+    - bat-adlp-9:         [PASS][41] -> [ABORT][42] ([i915#8242])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adlp-9/igt@vgem_basic@dmabuf-mmap.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adlp-9/igt@vgem_basic@dmabuf-mmap.html
+    - fi-skl-guc:         [PASS][43] -> [ABORT][44] ([i915#8242])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-guc/igt@vgem_basic@dmabuf-mmap.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-skl-guc/igt@vgem_basic@dmabuf-mmap.html
+    - bat-dg2-11:         [PASS][45] -> [ABORT][46] ([i915#8242])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-11/igt@vgem_basic@dmabuf-mmap.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-11/igt@vgem_basic@dmabuf-mmap.html
+    - fi-kbl-7567u:       [PASS][47] -> [ABORT][48] ([i915#8242])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-7567u/igt@vgem_basic@dmabuf-mmap.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-7567u/igt@vgem_basic@dmabuf-mmap.html
+    - bat-adln-1:         [PASS][49] -> [ABORT][50] ([i915#8242])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adln-1/igt@vgem_basic@dmabuf-mmap.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adln-1/igt@vgem_basic@dmabuf-mmap.html
+    - fi-cfl-8700k:       [PASS][51] -> [ABORT][52] ([i915#8242])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-8700k/igt@vgem_basic@dmabuf-mmap.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-8700k/igt@vgem_basic@dmabuf-mmap.html
+    - fi-elk-e7500:       [PASS][53] -> [ABORT][54] ([i915#8242])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-elk-e7500/igt@vgem_basic@dmabuf-mmap.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-elk-e7500/igt@vgem_basic@dmabuf-mmap.html
+    - fi-bsw-nick:        [PASS][55] -> [ABORT][56] ([i915#8242])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@vgem_basic@dmabuf-mmap.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-bsw-nick/igt@vgem_basic@dmabuf-mmap.html
+    - bat-adlm-1:         [PASS][57] -> [ABORT][58] ([i915#8242])
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adlm-1/igt@vgem_basic@dmabuf-mmap.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adlm-1/igt@vgem_basic@dmabuf-mmap.html
+    - bat-rplp-1:         [PASS][59] -> [ABORT][60] ([i915#8242])
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rplp-1/igt@vgem_basic@dmabuf-mmap.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rplp-1/igt@vgem_basic@dmabuf-mmap.html
+    - fi-rkl-11600:       [PASS][61] -> [ABORT][62] ([i915#8242])
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-rkl-11600/igt@vgem_basic@dmabuf-mmap.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-rkl-11600/igt@vgem_basic@dmabuf-mmap.html
+    - fi-tgl-1115g4:      [PASS][63] -> [ABORT][64] ([i915#8242])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-tgl-1115g4/igt@vgem_basic@dmabuf-mmap.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-tgl-1115g4/igt@vgem_basic@dmabuf-mmap.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#8242]: https://gitlab.freedesktop.org/drm/intel/issues/8242
 
 
-vim +483 drivers/gpu/drm/i915/gt/uc/intel_uc.c
+Build changes
+-------------
 
-afd088ac05f120 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2022-01-06  457  
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  458  static int __uc_init_hw(struct intel_uc *uc)
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  459  {
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  460  	struct intel_gt *gt = uc_to_gt(uc);
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  461  	struct drm_i915_private *i915 = gt->i915;
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  462  	struct intel_guc *guc = &uc->guc;
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  463  	struct intel_huc *huc = &uc->huc;
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  464  	int ret, attempts, pl1en;
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  465  
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  466  	GEM_BUG_ON(!intel_uc_supports_guc(uc));
-bfe5a40a7b9a96 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2020-02-18  467  	GEM_BUG_ON(!intel_uc_wants_guc(uc));
-356c484822e6ac drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-16  468  
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  469  	print_fw_ver(gt, &guc->fw);
-afd088ac05f120 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2022-01-06  470  
-afd088ac05f120 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2022-01-06  471  	if (intel_uc_uses_huc(uc))
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  472  		print_fw_ver(gt, &huc->fw);
-afd088ac05f120 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2022-01-06  473  
-42f96e5bd41e91 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2020-02-18  474  	if (!intel_uc_fw_is_loadable(&guc->fw)) {
-6fbeda0bfd210f drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2020-01-10  475  		ret = __uc_check_hw(uc) ||
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  476  		      intel_uc_fw_is_overridden(&guc->fw) ||
-202c98e7169248 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2020-02-18  477  		      intel_uc_wants_guc_submission(uc) ?
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  478  		      intel_uc_fw_status_to_error(guc->fw.status) : 0;
-ae7a3166a708be drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  479  		goto err_out;
-ae7a3166a708be drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  480  	}
-ae7a3166a708be drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  481  
-63064d822c964c drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-30  482  	ret = uc_init_wopcm(uc);
-63064d822c964c drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-30 @483  	if (ret)
-63064d822c964c drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-30  484  		goto err_out;
-63064d822c964c drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-30  485  
-e5a1ad035938e6 drivers/gpu/drm/i915/gt/uc/intel_uc.c Matthew Brost          2021-07-26  486  	intel_guc_reset_interrupts(guc);
-61b5c1587dd82a drivers/gpu/drm/i915/intel_uc.c       Michał Winiarski       2017-12-13  487  
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  488  	/* WaEnableuKernelHeaderValidFix:skl */
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  489  	/* WaEnableGuCBootHashCheckNotSet:skl,bxt,kbl */
-c816723b6b8a62 drivers/gpu/drm/i915/gt/uc/intel_uc.c Lucas De Marchi        2021-06-05  490  	if (GRAPHICS_VER(i915) == 9)
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  491  		attempts = 3;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  492  	else
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  493  		attempts = 1;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  494  
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  495  	/* Disable PL1 limit before raising freq */
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  496  	hwm_power_max_disable(gt, &pl1en);
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  497  
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  498  	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  499  
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  500  	while (attempts--) {
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  501  		/*
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  502  		 * Always reset the GuC just before (re)loading, so
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  503  		 * that the state and timing are fairly predictable
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  504  		 */
-771051eaa74661 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-02  505  		ret = __uc_sanitize(uc);
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  506  		if (ret)
-61b5c1587dd82a drivers/gpu/drm/i915/intel_uc.c       Michał Winiarski       2017-12-13  507  			goto err_out;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  508  
-a8dc0f6d187bcc drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  509  		intel_huc_fw_upload(huc);
-386e300fe9fae7 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2019-05-27  510  		intel_guc_ads_reset(guc);
-2bf8fb39eb70b6 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-24  511  		intel_guc_write_params(guc);
-e8668bbcb0f91c drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-10-16  512  		ret = intel_guc_fw_upload(guc);
-52b832606038c5 drivers/gpu/drm/i915/intel_uc.c       Robert M. Fosha        2019-03-29  513  		if (ret == 0)
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  514  			break;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  515  
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  516  		gt_dbg(gt, "GuC fw load failed (%pe) will reset and retry %d more time(s)\n",
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  517  		       ERR_PTR(ret), attempts);
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  518  	}
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  519  
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  520  	/* Did we succeded or run out of retries? */
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  521  	if (ret)
-ac58d2ab0ad9c8 drivers/gpu/drm/i915/intel_uc.c       Daniele Ceraolo Spurio 2017-05-22  522  		goto err_log_capture;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  523  
-789a625158b0c0 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-05-02  524  	ret = guc_enable_communication(guc);
-789a625158b0c0 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-05-02  525  	if (ret)
-ac58d2ab0ad9c8 drivers/gpu/drm/i915/intel_uc.c       Daniele Ceraolo Spurio 2017-05-22  526  		goto err_log_capture;
-789a625158b0c0 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-05-02  527  
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  528  	/*
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  529  	 * GSC-loaded HuC is authenticated by the GSC, so we don't need to
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  530  	 * trigger the auth here. However, given that the HuC loaded this way
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  531  	 * survive GT reset, we still need to update our SW bookkeeping to make
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  532  	 * sure it reflects the correct HW status.
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  533  	 */
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  534  	if (intel_huc_is_loaded_by_gsc(huc))
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  535  		intel_huc_update_auth_status(huc);
-6f67930af78f10 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2022-05-04  536  	else
-a8dc0f6d187bcc drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  537  		intel_huc_auth(huc);
-0dfa1cee613e03 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-12-06  538  
-cd414f4f59f64d drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-17  539  	if (intel_uc_uses_guc_submission(uc)) {
-cd414f4f59f64d drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-17  540  		ret = intel_guc_submission_enable(guc);
-cd414f4f59f64d drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-17  541  		if (ret)
-cd414f4f59f64d drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-17  542  			goto err_log_capture;
-cd414f4f59f64d drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-17  543  	}
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  544  
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  545  	if (intel_uc_uses_guc_slpc(uc)) {
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  546  		ret = intel_guc_slpc_enable(&guc->slpc);
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  547  		if (ret)
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  548  			goto err_submission;
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  549  	} else {
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  550  		/* Restore GT back to RPn for non-SLPC path */
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  551  		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  552  	}
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  553  
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  554  	hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  555  
-4fd4fde8e42e16 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-06  556  	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
-4fd4fde8e42e16 drivers/gpu/drm/i915/gt/uc/intel_uc.c John Harrison          2023-02-06  557  	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  558  
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  559  	return 0;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  560  
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  561  	/*
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  562  	 * We've failed to load the firmware :(
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  563  	 */
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  564  err_submission:
-63c0eb30bfe926 drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-07-30  565  	intel_guc_submission_disable(guc);
-ac58d2ab0ad9c8 drivers/gpu/drm/i915/intel_uc.c       Daniele Ceraolo Spurio 2017-05-22  566  err_log_capture:
-32ff76e80c2400 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-02  567  	__uc_capture_load_err_log(uc);
-121981fafe699d drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2017-12-06  568  err_out:
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  569  	/* Return GT back to RPn */
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  570  	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
-1c40d40f6835cd drivers/gpu/drm/i915/gt/uc/intel_uc.c Vinay Belgaumkar       2021-12-16  571  
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  572  	hwm_power_max_restore(gt, pl1en); /* Restore PL1 limit */
-931e5a87acb799 drivers/gpu/drm/i915/gt/uc/intel_uc.c Ashutosh Dixit         2023-03-13  573  
-ca7b2c1bbede61 drivers/gpu/drm/i915/gt/uc/intel_uc.c Daniele Ceraolo Spurio 2019-07-13  574  	__uc_sanitize(uc);
-89195bab5d8c54 drivers/gpu/drm/i915/intel_uc.c       Michal Wajdeczko       2019-05-22  575  
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  576  	if (!ret) {
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  577  		gt_notice(gt, "GuC is uninitialized\n");
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  578  		/* We want to run without GuC submission */
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  579  		return 0;
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  580  	}
-ee402140274e87 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-18  581  
-2f8c06cb6622b5 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2023-01-28  582  	gt_probe_error(gt, "GuC initialization failed %pe\n", ERR_PTR(ret));
-a5f978c3609f02 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  583  
-a5f978c3609f02 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  584  	/* We want to keep KMS alive */
-a5f978c3609f02 drivers/gpu/drm/i915/gt/uc/intel_uc.c Michal Wajdeczko       2019-08-11  585  	return -EIO;
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  586  }
-6cd5a72c357732 drivers/gpu/drm/i915/intel_uc.c       Arkadiusz Hiler        2017-03-14  587  
+  * Linux: CI_DRM_12853 -> Patchwork_114671v2
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+  CI-20190529: 20190529
+  CI_DRM_12853: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7192: 18beb515ff127e64302a491ed321125b5116aa23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114671v2: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ddf9b34400b2 drm/panfrost: Switch to generic memory shrinker
+6f4c07f93931 drm/virtio: Support memory shrinking
+da996c7b61c8 drm/shmem-helper: Export drm_gem_shmem_get_pages_sgt_locked()
+df7516f34991 drm/shmem-helper: Remove obsoleted is_iomem test
+8e37ad0afbfd drm/shmem-helper: Add memory shrinker
+b63f13ee91e8 drm/shmem-helper: Factor out unpinning part from drm_gem_shmem_purge()
+fac41122b1aa drm/shmem-helper: Switch drm_gem_shmem_vmap/vunmap to use pin/unpin
+95f44cfb096b drm/shmem-helper: Add pages_pin_count field
+b13989274f35 drm/shmem-helper: Factor out pages alloc/release from drm_gem_shmem_get/put_pages()
+1223f9bc9406 drm/shmem-helper: Switch to reservation lock
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/index.html
+
+--===============1323951532137896325==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add generic memory shrinker to VirtIO-GPU and Panfrost DRM drivers (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114671/">https://patchwork.freedesktop.org/series/114671/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12853 -&gt; Patchwork_114671v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Missing    (4): fi-kbl-soraka bat-atsm-1 bat-dg1-6 fi-bsw-n3050 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114671v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@vgem_basic@dmabuf-mmap:</p>
+<ul>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-guc/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-guc/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-jsl-3/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-jsl-3/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-9/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-9/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-x1275/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-x1275/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-hsw-4770/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-hsw-4770/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-8109u/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-8109u/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-2/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rpls-2/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-ivb-3770/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-ivb-3770/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-8/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-8/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-guc/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-guc/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-ilk-650/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-ilk-650/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-jsl-1/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-jsl-1/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rpls-1/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rpls-1/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-6600u/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-skl-6600u/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-adls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adls-5/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adls-5/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-apl-guc/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-apl-guc/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg1-5/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg1-5/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-pnv-d510/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-pnv-d510/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg1-7/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg1-7/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-glk-j4005/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-glk-j4005/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adlp-9/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adlp-9/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-skl-guc/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-skl-guc/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-dg2-11/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-dg2-11/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-kbl-7567u/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-kbl-7567u/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adln-1/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adln-1/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-cfl-8700k/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-cfl-8700k/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-elk-e7500/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-elk-e7500/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-bsw-nick/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-bsw-nick/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-adlm-1/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-adlm-1/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/bat-rplp-1/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/bat-rplp-1/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-rkl-11600/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-rkl-11600/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12853/fi-tgl-1115g4/igt@vgem_basic@dmabuf-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/fi-tgl-1115g4/igt@vgem_basic@dmabuf-mmap.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8242">i915#8242</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12853 -&gt; Patchwork_114671v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12853: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7192: 18beb515ff127e64302a491ed321125b5116aa23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114671v2: 7cfe22e6f72f5328dded16b38e215ff290e8d7f8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ddf9b34400b2 drm/panfrost: Switch to generic memory shrinker<br />
+6f4c07f93931 drm/virtio: Support memory shrinking<br />
+da996c7b61c8 drm/shmem-helper: Export drm_gem_shmem_get_pages_sgt_locked()<br />
+df7516f34991 drm/shmem-helper: Remove obsoleted is_iomem test<br />
+8e37ad0afbfd drm/shmem-helper: Add memory shrinker<br />
+b63f13ee91e8 drm/shmem-helper: Factor out unpinning part from drm_gem_shmem_purge()<br />
+fac41122b1aa drm/shmem-helper: Switch drm_gem_shmem_vmap/vunmap to use pin/unpin<br />
+95f44cfb096b drm/shmem-helper: Add pages_pin_count field<br />
+b13989274f35 drm/shmem-helper: Factor out pages alloc/release from drm_gem_shmem_get/put_pages()<br />
+1223f9bc9406 drm/shmem-helper: Switch to reservation lock</p>
+
+</body>
+</html>
+
+--===============1323951532137896325==--
