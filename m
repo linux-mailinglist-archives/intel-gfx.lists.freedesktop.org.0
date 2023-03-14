@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE8F6B9B4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 17:25:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FC16B9BDA
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 17:41:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A2D10E038;
-	Tue, 14 Mar 2023 16:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99AB810E188;
+	Tue, 14 Mar 2023 16:41:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22DF910E00A;
- Tue, 14 Mar 2023 16:25:34 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7F587B81A3E;
- Tue, 14 Mar 2023 16:25:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FAEC433D2;
- Tue, 14 Mar 2023 16:25:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1678811130;
- bh=8ETbXH3HFRhnrmoJeOc1AT/DX/Eah23kheU2y3YZMo0=;
- h=From:To:Cc:Subject:Date:From;
- b=PECFkUwV2Ep2p0qVUg63V6DKWrMXMyZlGOZv4TaWkdfT4K32sstERsij1UHwLjkVH
- 0VNeQJKLBEO6nD5AbKWHZAPz7uQ3dVIFdXDzbXixTovR6+6jXvqp3RNSuPiDqpqHCg
- nfvmOH0guBqmee0MqDPz6JPHy7vTlLqs19yvq7aQJDuZu/uLYwZMug8A01zoq2555L
- Ild06qHasXF534xPGGZSXSwaY+uTIpuYYRM4tDMtnHStlKCMap5Od4vUeBKBi1fXwD
- tWEKJN3pCGX/RGg/pYQ1lL3UOYg35CK1gOvOQnxvpvyk7gD0q0WbfatJ68KZasBFeL
- Rd9ioyHIfpyBQ==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Imre Deak <imre.deak@intel.com>
-Date: Tue, 14 Mar 2023 17:25:18 +0100
-Message-Id: <20230314162523.631652-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5907210E188;
+ Tue, 14 Mar 2023 16:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678812086; x=1710348086;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=Kavj2ZC1tyLBPrTUaz3HxM6qfeVURMkk0MyVlbxYicg=;
+ b=THoyKBy975J0oUXlHFT6/h5x4hc2cJsQXvX5ShBWqAevukEVvnAOAL1O
+ cXTbRLow1f0vWwqM9yDAxAVxviEMgpxvqbRTfI5wjlxEPgEQvvjSkudch
+ 5GMIMHOlt9NO2S7mRdJgneod8aX0coYEe6/BJLOPOP8SB3sx00uFlxfKs
+ W2eWAfj61hRzQF8Af3s7cvP/hKmzaXHSJ/aEVPdM3tWSH5jVZcFghYhKw
+ 7czzrWUpLTP6Wto4NuU/IL3DkbujVafhDaiTxPHCV9G+amT8sjWhQOQS3
+ QSB7Yni8Vwt62NDgab6YSN6g6OZEven0LejQTGaU2Fkm1uHzfLhHaCQrl A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="402345869"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="402345869"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 09:41:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="768163491"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="768163491"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 09:41:22 -0700
+Date: Tue, 14 Mar 2023 18:41:18 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <ZBCjrsFd7PkWnBm/@ideak-desk.fi.intel.com>
+References: <20230314162523.631652-1-arnd@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/opregion: add missing
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314162523.631652-1-arnd@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/opregion: add missing
  intel_opregion_cleanup() dummy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,43 +58,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Tue, Mar 14, 2023 at 05:25:18PM +0100, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> When ACPI is disabled, i915 fails to build because of a missing
+> declaration:
 
-When ACPI is disabled, i915 fails to build because of a missing
-declaration:
+Hi Arnd,
 
-drivers/gpu/drm/i915/i915_driver.c: In function 'i915_driver_hw_probe':
-drivers/gpu/drm/i915/i915_driver.c:556:9: error: implicit declaration of function 'intel_opregion_cleanup'; did you mean 'intel_opregion_setup'? [-Werror=implicit-function-declaration]
-  556 |         intel_opregion_cleanup(dev_priv);
+thanks for catching this, I sent the same after the lkp note about the
+build failure:
 
-Add another empty dummy helper next to intel_opregion_setup().
+https://lore.kernel.org/intel-gfx/3238742c-0c57-b8cf-11fe-fd4a57979049@linux.intel.com/T/#me164308b49e975efb8d760e07a5ec9f4489916b9
 
-Fixes: 3e226e4a2180 ("drm/i915/opregion: Cleanup opregion after errors during driver loading")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/display/intel_opregion.h | 4 ++++
- 1 file changed, 4 insertions(+)
+--Imre
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index 181eb3e9abbf..fd2ea8ef0fa2 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -86,6 +86,10 @@ static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 	return 0;
- }
- 
-+static inline void intel_opregion_cleanup(struct drm_i915_private *i915)
-+{
-+}
-+
- static inline void intel_opregion_register(struct drm_i915_private *dev_priv)
- {
- }
--- 
-2.39.2
-
+> 
+> drivers/gpu/drm/i915/i915_driver.c: In function 'i915_driver_hw_probe':
+> drivers/gpu/drm/i915/i915_driver.c:556:9: error: implicit declaration of function 'intel_opregion_cleanup'; did you mean 'intel_opregion_setup'? [-Werror=implicit-function-declaration]
+>   556 |         intel_opregion_cleanup(dev_priv);
+> 
+> Add another empty dummy helper next to intel_opregion_setup().
+> 
+> Fixes: 3e226e4a2180 ("drm/i915/opregion: Cleanup opregion after errors during driver loading")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  drivers/gpu/drm/i915/display/intel_opregion.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+> index 181eb3e9abbf..fd2ea8ef0fa2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> @@ -86,6 +86,10 @@ static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  	return 0;
+>  }
+>  
+> +static inline void intel_opregion_cleanup(struct drm_i915_private *i915)
+> +{
+> +}
+> +
+>  static inline void intel_opregion_register(struct drm_i915_private *dev_priv)
+>  {
+>  }
+> -- 
+> 2.39.2
+> 
