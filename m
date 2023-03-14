@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3EDE6B9A04
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 16:41:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E47B36B9A31
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 16:46:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F092910E810;
-	Tue, 14 Mar 2023 15:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D49810E82E;
+	Tue, 14 Mar 2023 15:46:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 17B4F10E810;
- Tue, 14 Mar 2023 15:41:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0DBA1AADD2;
- Tue, 14 Mar 2023 15:41:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0244806301096197165=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC9E10E833
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 15:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678808796; x=1710344796;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tJMt/OG2WNm9zpPVKyijOT+CDUhQrSARyU28sRmcdec=;
+ b=AsmaATxAJuxRdfZYJVeR1RSLrWw8qvkASt/DJewNRegbGopf/35i67Oo
+ dw9qx+tESXsXVyOrqzwO/NjqsWSey+2VlYHaY1yMq8ZjfR3bo4gEVXUT7
+ GVyoeTsRGWEdCA6jRJju71erPyDlUAoL/fzWALnfsG7mPJaRjYheN29UQ
+ Rzb0ru/7XQJxUsS7mzMvQQpeHdBsg7ze4QM3NgPo7cI4ENdvo0SQxUT/e
+ k3+h6+5DDUo8ryTsqZujeuYrTYJhljIYCDFl246XvQ3X6QD9GOOIstPYp
+ 7737eZiHAtlML/3pOuSR6FIYzNwRrHClo8jIwDZSAdgCZN3KOHFS8qdxW A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="334948692"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="334948692"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 08:46:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="711565610"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="711565610"
+Received: from swatish2-mobl2.gar.corp.intel.com (HELO [10.213.124.221])
+ ([10.213.124.221])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 08:46:33 -0700
+Message-ID: <76d489d6-b2e6-0e97-0850-683567059172@intel.com>
+Date: Tue, 14 Mar 2023 21:16:30 +0530
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Tue, 14 Mar 2023 15:41:25 -0000
-Message-ID: <167880848594.26413.11066286228611644909@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSGFu?=
- =?utf-8?q?dle_BPC_for_HDMI2=2E1_PCON_without_DSC1=2E2_sink_and_other_fixe?=
- =?utf-8?b?cyAocmV2MTIp?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230208105932.21681-1-swati2.sharma@intel.com>
+ <Y+OHjpIX43yFVKYS@ashyti-mobl2.lan> <87fsb8sabx.fsf@intel.com>
+Content-Language: en-US
+From: Swati Sharma <swati2.sharma@intel.com>
+Organization: Intel
+In-Reply-To: <87fsb8sabx.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add a debugfs entry for
+ fifo underruns
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,229 +65,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mohammed Khajapasha <mohammed.khajapasha@intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0244806301096197165==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks Andi and Jani N for the review comments.
+Sorry for the delay.
+Will send the next rev soon.
 
-== Series Details ==
+On 14-Feb-23 5:55 PM, Jani Nikula wrote:
+> On Wed, 08 Feb 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+>> Hi Swati,
+>>
+>> [...]
+>>
+>>> +static void intel_fifo_underrun_inc_count(struct intel_crtc *crtc,
+>>> +					  bool is_cpu_fifo)
+>>
+>> I'm not a big fan of the true/false parameters in functions. I
+>> actually hate them because it's never clear from the caller what
+>> the true/false means.
+>>
+>> Isn't it clear to just have some wrappers
+>>
+>> #define intel_fifo_underrun_inc_cpu_count(...)
+>> #define intel_fifo_underrun_inc_cph_count(...)
+>>
+>> or similar?
+>>
+>>> +{
+>>> +#ifdef CONFIG_DEBUG_FS
+>>> +	if (is_cpu_fifo)
+>>> +		crtc->cpu_fifo_underrun_count++;
+>>> +	else
+>>> +		crtc->pch_fifo_underrun_count++;
+>>> +#endif
+>>> +}
+>>> +
+>>>   static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
+>>>   {
+>>>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>>> @@ -103,6 +114,7 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
+>>>   	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+>>>   	intel_de_posting_read(dev_priv, reg);
+>>>   
+>>> +	intel_fifo_underrun_inc_count(crtc, true);
+>>>   	trace_intel_cpu_fifo_underrun(dev_priv, crtc->pipe);
+>>>   	drm_err(&dev_priv->drm, "pipe %c underrun\n", pipe_name(crtc->pipe));
+>>>   }
+>>> @@ -156,6 +168,7 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
+>>>   	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
+>>>   	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
+>>>   
+>>> +	intel_fifo_underrun_inc_count(crtc, true);
+>>>   	trace_intel_cpu_fifo_underrun(dev_priv, pipe);
+>>>   	drm_err(&dev_priv->drm, "fifo underrun on pipe %c\n", pipe_name(pipe));
+>>>   }
+>>> @@ -244,6 +257,7 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
+>>>   		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+>>>   	intel_de_posting_read(dev_priv, SERR_INT);
+>>>   
+>>> +	intel_fifo_underrun_inc_count(crtc, false);
+>>>   	trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
+>>>   	drm_err(&dev_priv->drm, "pch fifo underrun on pch transcoder %c\n",
+>>>   		pipe_name(pch_transcoder));
+>>> @@ -286,6 +300,11 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+>>>   
+>>>   	old = !crtc->cpu_fifo_underrun_disabled;
+>>>   	crtc->cpu_fifo_underrun_disabled = !enable;
+>>> +#ifdef CONFIG_DEBUG_FS
+>>> +	/* don't reset count in fifo underrun irq path */
+>>> +	if (!in_irq() && !enable)
+>>> +		crtc->cpu_fifo_underrun_count = 0;
+>>> +#endif
+>>>   
+>>>   	if (HAS_GMCH(dev_priv))
+>>>   		i9xx_set_fifo_underrun_reporting(dev, pipe, enable, old);
+>>> @@ -365,6 +384,11 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+>>>   
+>>>   	old = !crtc->pch_fifo_underrun_disabled;
+>>>   	crtc->pch_fifo_underrun_disabled = !enable;
+>>> +#ifdef CONFIG_DEBUG_FS
+>>> +	/* don't reset count in fifo underrun irq path */
+>>> +	if (!in_irq() && !enable)
+>>> +		crtc->pch_fifo_underrun_count = 0;
+>>> +#endif
+>>
+>> All these ifdefs are a bit ugly. Can we put all these stuff
+>> inside the debugfs.c file that is compiled only if DEBUG_FS is
+>> configured?
+> 
+> The opposite, the debugfs should be added in this file instead. :)
+> 
+> See my reply.
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+> 
+>>
+>> Andi
+>>
+>>>   
+>>>   	if (HAS_PCH_IBX(dev_priv))
+>>>   		ibx_set_fifo_underrun_reporting(&dev_priv->drm,
+>>> @@ -434,6 +458,7 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+>>>   			drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
+>>>   	}
+>>>   
+>>> +	intel_fifo_underrun_inc_count(crtc, true);
+>>>   	intel_fbc_handle_fifo_underrun_irq(dev_priv);
+>>>   }
+> 
 
-Series: Handle BPC for HDMI2.1 PCON without DSC1.2 sink and other fixes (rev12)
-URL   : https://patchwork.freedesktop.org/series/107550/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12857 -> Patchwork_107550v12
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/index.html
-
-Participating hosts (36 -> 35)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_107550v12 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][1] -> [INCOMPLETE][2] ([i915#7913])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-adlp-9:         NOTRUN -> [SKIP][3] ([i915#7828])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-rpls-1:         NOTRUN -> [SKIP][4] ([i915#7828])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-1:         NOTRUN -> [SKIP][5] ([i915#1845])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-8109u:       [DMESG-FAIL][6] ([i915#5334]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][8] ([i915#4983] / [i915#7694] / [i915#7911] / [i915#7981]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@i915_selftest@live@requests.html
-    - bat-adlp-9:         [ABORT][10] ([i915#7982]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-adlp-9/igt@i915_selftest@live@requests.html
-
-  
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12857 -> Patchwork_107550v12
-
-  CI-20190529: 20190529
-  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107550v12: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0ce37c7b395d drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
-85f651d81633 drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
-af1d32738ec9 drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC
-8898d36619b2 drm/i915/dp: Avoid DSC with output_format YCBCR420
-ee214b9501cd drm/i915/display: Add helper function to check if sink_format is 420
-eb129b35dc6c drm/i915/dp: Consider output_format while computing dsc bpp for mode_valid
-8bc5dc0dd97f drm/i915/dp: Rearrange check for illegal mode and comments in mode_valid
-8d7d37d62f43 drm/i915/display: Use sink_format instead of ycbcr420_output flag
-af95e4103ee6 drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state sink_format
-1525d0fbf80d drm/i915/display: Add new member in intel_dp to store ycbcr420 passthrough cap
-580877b9b9de drm/i915/display: Add new member to configure PCON color conversion
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/index.html
-
---===============0244806301096197165==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Handle BPC for HDMI2.1 PCON without DSC1.2 sink and other fixes (rev12)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107550/">https://patchwork.freedesktop.org/series/107550/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12857 -&gt; Patchwork_107550v12</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/index.html</p>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107550v12 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-dg2-11/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107550v12/bat-adlp-9/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12857 -&gt; Patchwork_107550v12</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107550v12: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0ce37c7b395d drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints<br />
-85f651d81633 drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP<br />
-af1d32738ec9 drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC<br />
-8898d36619b2 drm/i915/dp: Avoid DSC with output_format YCBCR420<br />
-ee214b9501cd drm/i915/display: Add helper function to check if sink_format is 420<br />
-eb129b35dc6c drm/i915/dp: Consider output_format while computing dsc bpp for mode_valid<br />
-8bc5dc0dd97f drm/i915/dp: Rearrange check for illegal mode and comments in mode_valid<br />
-8d7d37d62f43 drm/i915/display: Use sink_format instead of ycbcr420_output flag<br />
-af95e4103ee6 drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state sink_format<br />
-1525d0fbf80d drm/i915/display: Add new member in intel_dp to store ycbcr420 passthrough cap<br />
-580877b9b9de drm/i915/display: Add new member to configure PCON color conversion</p>
-
-</body>
-</html>
-
---===============0244806301096197165==--
+-- 
+~Swati Sharma
