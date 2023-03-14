@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9503D6B8E0A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 10:02:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28046B8E44
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 10:13:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D5F10E745;
-	Tue, 14 Mar 2023 09:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AA010E73F;
+	Tue, 14 Mar 2023 09:13:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 237FA10E190
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 09:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678784538; x=1710320538;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+aCaAN4kvTTfyXrfWLfnYICFJbMX8jrfWoZRYhOV/qg=;
- b=DLwzU7lfRbLHhDT/PFTlRTcI3C9adx0IWG5NAU6ZC9folUziCHlfE7Vx
- HyC3YTebvtF7GJTQV+wRfAZwzVBg8/r05RxcHD5Soz0IFECLzIMjJqd3B
- nVdOxKI/qiLgahyLKjHO5/wTL4Ka4yXhoI+PJpBbTgh44PITOffpvurbJ
- 7m93Ov7hIx79Q/w7ctCQddOo3Y+tiZcp6iiTEFdwfOtPFYsSvIqc6vzau
- FZPA1zp8S8KuI8oa0SIIg5GVlu+41GJ2zI3SC3qram5AZ2OScWE6leoAo
- tSJnUm22WogqNLZV9vIMQEYDfhSzAXYXRSpv8Hsv2BtfTQdlRXySVwG8f A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="325734176"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="325734176"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 02:02:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="679016297"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="679016297"
-Received: from cstoita-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.252.60.14])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 02:02:14 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Mar 2023 11:01:42 +0200
-Message-Id: <20230314090142.947764-3-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230314090142.947764-1-jouni.hogander@intel.com>
-References: <20230314090142.947764-1-jouni.hogander@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B94310E73F;
+ Tue, 14 Mar 2023 09:13:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82703AA3D8;
+ Tue, 14 Mar 2023 09:13:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/psr: Check that vblank is long
- enough for psr2
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Tue, 14 Mar 2023 09:13:13 -0000
+Message-ID: <167878519350.26415.13797282937971257706@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230307201611.773103-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20230307201611.773103-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_OAM_support_for_MTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ensure vblank >= psr2 vblank
-where
-Psr2 vblank = PSR2_CTL Block Count Number maximum line count.
+== Series Details ==
 
-Bspec: 71580, 49274
+Series: Add OAM support for MTL
+URL   : https://patchwork.freedesktop.org/series/114801/
+State : warning
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index a6edd65b8edb..a385cb8dbf13 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -958,6 +958,14 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
-+	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
-+	if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
-+	    crtc_state->hw.adjusted_mode.crtc_vblank_start < 12) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "PSR2 not enabled, too short vblank time\n");
-+		return false;
-+	}
-+
- 	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
- 		if (!intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
- 		    !HAS_PSR_HW_TRACKING(dev_priv)) {
--- 
-2.34.1
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
