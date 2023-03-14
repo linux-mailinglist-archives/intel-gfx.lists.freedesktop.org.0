@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BABB6B9CBC
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 18:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4E2E6B9D04
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Mar 2023 18:30:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD4E10E1A7;
-	Tue, 14 Mar 2023 17:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3DB10E1A7;
+	Tue, 14 Mar 2023 17:30:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2B3010E182;
- Tue, 14 Mar 2023 17:14:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678814073; x=1710350073;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8maF+MyMRN8PyFjPic/AWZFEI8hxeFF4uDFIm6V9zAY=;
- b=eixqsI8VNWTmFBXA6NRjz1hmHyyBCqjHncD4fq1hpJJswFTj+BNis5OV
- gqnfO5Ctb7fOSzq4IXeemENU5+dAxvIZ5/v8gmu+VylynqVpa+v2ggYPa
- NpsxAYn/tgK+jgu+nT7lMdOoZKKrjHlGC4klN6LWhhdi7Eto2xxqJIBGM
- tTD8uWz8bVLL0yHUxu53YlvXD2CRnf6tWSVLsBcoYIRRXpp2Ym/djeB/H
- llIH3QjDD+Oo/TRqxwX3k7SLSQn6rUm9dJxPS0h3Ug8wfJTIL2hoNqClb
- y3kCebfOE0+BnuY9Un0/VT2XJ2qIifT892B22Dn1w+iyesCIDCUf1IUb1 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="334976465"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="334976465"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 10:14:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="743385788"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="743385788"
-Received: from novermar-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.219.242])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 10:14:30 -0700
-Date: Tue, 14 Mar 2023 18:14:27 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZBCrc/rJ/075n6Jf@ashyti-mobl2.lan>
-References: <20230308-guard_error_capture-v6-0-1b5f31422563@intel.com>
- <20230308-guard_error_capture-v6-1-1b5f31422563@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 126FD10E1A7;
+ Tue, 14 Mar 2023 17:30:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E991FAADD5;
+ Tue, 14 Mar 2023 17:30:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2600752911860118696=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308-guard_error_capture-v6-1-1b5f31422563@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 1/2] drm/i915/gt: introduce
- vm->scratch_range callback
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 14 Mar 2023 17:30:13 -0000
+Message-ID: <167881501391.26414.8850873274396976181@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Plane_cleanups_and_extra_registers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,23 +40,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej,
+--===============2600752911860118696==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, Mar 10, 2023 at 10:23:49AM +0100, Andrzej Hajda wrote:
-> The callback will be responsible for setting scratch page PTEs for
-> specified range. In contrast to clear_range it cannot be optimized to nop.
-> It will be used by code adding guard pages.
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+== Series Details ==
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Series: drm/i915: Plane cleanups and extra registers
+URL   : https://patchwork.freedesktop.org/series/115127/
+State : success
 
-Thanks,
-Andi
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12857 -> Patchwork_115127v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115127v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-glk-j4005:       [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         NOTRUN -> [ABORT][3] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-adlp-9:         NOTRUN -> [SKIP][4] ([i915#7828])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-8109u:       [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-1:         [ABORT][7] ([i915#4983] / [i915#7694] / [i915#7911] / [i915#7981]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@requests.html
+    - bat-adlp-9:         [ABORT][9] ([i915#7982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@i915_selftest@live@requests.html
+
+  
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#7694]: https://gitlab.freedesktop.org/drm/intel/issues/7694
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12857 -> Patchwork_115127v1
+
+  CI-20190529: 20190529
+  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115127v1: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f886ede62a8c drm/i915: Extract intel_sprite_uapi.c
+7b0463644a1e drm/i915: Relocate intel_plane_check_src_coordinates()
+8c9ae51078bb drm/i915: Clean up skl+ plane alpha bits
+3b4274d07ab8 drm/i915: Define vlv/chv sprite plane SURFLIVE registers
+3da88e6aebe6 drm/i915: Define skl+ universal plane SURFLIVE registers
+54a0ec993485 drm/i915: Program VLV/CHV PIPE_MSA_MISC register
+3a6d7de044a4 drm/i915: Define more pipe timestamp registers
+bb1554ca2a67 drm/i915: s/PIPEMISC/PIPE_MISC/
+ca35eacdbc79 drm/i915: Stop using pipe_offsets[] for PIPE_MISC*
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html
+
+--===============2600752911860118696==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Plane cleanups and extra registers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115127/">https://patchwork.freedesktop.org/series/115127/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12857 -&gt; Patchwork_115127v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115127v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>
+<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7694">i915#7694</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+<li>
+<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12857/bat-adlp-9/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115127v1/bat-adlp-9/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12857 -&gt; Patchwork_115127v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12857: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7194: d22d66efd6211a22d301649b63d58c8c293e0817 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115127v1: 004fefbbf160569f80946d1e516d538b7ecb04f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f886ede62a8c drm/i915: Extract intel_sprite_uapi.c<br />
+7b0463644a1e drm/i915: Relocate intel_plane_check_src_coordinates()<br />
+8c9ae51078bb drm/i915: Clean up skl+ plane alpha bits<br />
+3b4274d07ab8 drm/i915: Define vlv/chv sprite plane SURFLIVE registers<br />
+3da88e6aebe6 drm/i915: Define skl+ universal plane SURFLIVE registers<br />
+54a0ec993485 drm/i915: Program VLV/CHV PIPE_MSA_MISC register<br />
+3a6d7de044a4 drm/i915: Define more pipe timestamp registers<br />
+bb1554ca2a67 drm/i915: s/PIPEMISC/PIPE_MISC/<br />
+ca35eacdbc79 drm/i915: Stop using pipe_offsets[] for PIPE_MISC*</p>
+
+</body>
+</html>
+
+--===============2600752911860118696==--
