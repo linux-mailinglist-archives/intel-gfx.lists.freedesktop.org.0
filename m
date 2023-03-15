@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134776BAD01
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 11:05:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BBC6BAD00
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 11:05:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5064789D39;
-	Wed, 15 Mar 2023 10:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D6C10E9A3;
+	Wed, 15 Mar 2023 10:05:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4725F10E9A5
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 10:05:50 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C923110E998;
+ Wed, 15 Mar 2023 10:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678874750; x=1710410750;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jlNTIndgJ+6IJ0xyY04pEo5moIZeG+rH+AmfVxoB78U=;
- b=bgSKES/oChJxx+d+zwnkBpBs6ex3Texle7pbTSMLMfVUUeoCJHd5OA5y
- pEPP9jgM9ZHcKNDbMJWliEJ4rytbAJazs7aoHg/HojNYTlrH5KqYuMKUs
- r3lPU3t7dQKKR5a0ZEJ6Vx0tSZk0waDS1yhGEfvrnAKmp3iZN/vABR9wn
- 6MAwXumY/A0tpW+yAk4XgBE0EOakv+D625924eL0OB9kqae3aixX1d4ho
- Umv/afGGvfY2LfiKJ6NUGm1LH6qtk0x1psb4uv4COpuBNtIBkFmqzJdKl
- nwELIZ5ko38xpZtB2R/I0Q4ywTfYydoARzvZPNVAAbWVwqRKhubab/Rrl A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="321503642"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="321503642"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 03:05:49 -0700
+ t=1678874744; x=1710410744;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=792EcEyGkMM5NFPUcHWYoYYWA3xCUq1eLHZsnKaD7dY=;
+ b=ZZlMvZjwdUzpOIrG2uV+1OlOcjEcHdvE2shDKeH0qsfA/HL9RzhbBH2q
+ sD7AHkAW6977eBTaXYXDOWOmgNZVaqsdSvBd5EzHxAdXCJ3ctS4ZfcC0T
+ 5loCTcgHMHnnuFvdS7CIkRymx5OmkMzJMA6EoPPot8WpZQQtzI/3lETlt
+ 7V7yDBrW4oMwEMWKvDCw34vZbsRzu/0o/nyA5MwmbEMWMmRw5dGgB622V
+ pSqITq+VIc5Pxz3VkRwSGa6lPEMiDoCrt0l92F5t7CW+4D1IkYHF5TOrx
+ f1c4L7gNUb0l8hhShSwdKlX+6kEKphsXmt1nEI7KuJPVeU9Hfyby5IeOO Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="336350100"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="336350100"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 03:05:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="656700507"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="656700507"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.62.75])
- ([10.252.62.75])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 03:05:47 -0700
-Message-ID: <3958487c-1110-aa2b-2b53-56a3fe23bf9a@linux.intel.com>
-Date: Wed, 15 Mar 2023 11:05:33 +0100
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="711868677"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="711868677"
+Received: from wujunyox-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.32])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 03:05:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Wed, 15 Mar 2023 12:05:36 +0200
+Message-ID: <87r0tq5nyn.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230314151920.1065847-1-andrzej.hajda@intel.com>
-Content-Language: en-US
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230314151920.1065847-1-andrzej.hajda@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: perform uc late init after
- probe error injection
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +57,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>, chris.p.wilson@linux.intel.com,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 3/14/2023 4:19 PM, Andrzej Hajda wrote:
-> Probe pseudo errors should be injected only in places where real errors
-> can be encountered, otherwise unwinding code can be broken.
-> Placing intel_uc_init_late before i915_inject_probe_error violated
-> this rule, resulting in following bug:
-> __intel_gt_disable:655 GEM_BUG_ON(intel_gt_pm_is_awake(gt))
->
-> Fixes: 481d458caede ("drm/i915/guc: Add golden context to GuC ADS")
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 6ca944d01eb677..38c62e4ad3eba2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -736,12 +736,12 @@ int intel_gt_init(struct intel_gt *gt)
->   	if (err)
->   		goto err_gt;
->   
-> -	intel_uc_init_late(&gt->uc);
-> -
->   	err = i915_inject_probe_error(gt->i915, -EIO);
->   	if (err)
->   		goto err_gt;
->   
-> +	intel_uc_init_late(&gt->uc);
-> +
->   	intel_migrate_init(&gt->migrate, gt);
->   
->   	goto out_fw;
+Hi Dave & Daniel -
+
+Missed fixes last week, so here we are early this week.
+
+
+drm-intel-fixes-2023-03-15:
+drm/i915 fixes for v6.3-rc3:
+- Fix hwmon PL1 power limit enabling
+- Fix audio ELD handling for DP MST
+- Fix PSR io and wake line calculations
+- Fix DG2 HDMI modes with 267.30 and 319.89 MHz pixel clocks
+- Fix SSEU subslice out-of-bounds access
+- Fix misuse of non-idle barriers as fence trackers
+
+BR,
+Jani.
+
+The following changes since commit eeac8ede17557680855031c6f305ece2378af326:
+
+  Linux 6.3-rc2 (2023-03-12 16:36:44 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-03-=
+15
+
+for you to fetch changes up to e0e6b416b25ee14716f3549e0cbec1011b193809:
+
+  drm/i915/active: Fix misuse of non-idle barriers as fence trackers (2023-=
+03-13 11:38:05 +0200)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.3-rc3:
+- Fix hwmon PL1 power limit enabling
+- Fix audio ELD handling for DP MST
+- Fix PSR io and wake line calculations
+- Fix DG2 HDMI modes with 267.30 and 319.89 MHz pixel clocks
+- Fix SSEU subslice out-of-bounds access
+- Fix misuse of non-idle barriers as fence trackers
+
+----------------------------------------------------------------
+Andrea Righi (1):
+      drm/i915/sseu: fix max_subslices array-index-out-of-bounds access
+
+Ankit Nautiyal (1):
+      drm/i915/dg2: Add HDMI pixel clock frequencies 267.30 and 319.89 MHz
+
+Ashutosh Dixit (1):
+      drm/i915/hwmon: Enable PL1 power limit
+
+Janusz Krzysztofik (1):
+      drm/i915/active: Fix misuse of non-idle barriers as fence trackers
+
+Jouni H=C3=B6gander (1):
+      drm/i915/psr: Use calculated io and fast wake lines
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Fix audio ELD handling for DP MST
+
+ drivers/gpu/drm/i915/display/intel_display_types.h |  2 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        | 25 ++++---
+ drivers/gpu/drm/i915/display/intel_psr.c           | 78 +++++++++++++++++-=
+----
+ drivers/gpu/drm/i915/display/intel_snps_phy.c      | 62 +++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_sseu.h               |  2 +-
+ drivers/gpu/drm/i915/i915_active.c                 | 25 ++++---
+ drivers/gpu/drm/i915/i915_hwmon.c                  |  5 ++
+ 7 files changed, 161 insertions(+), 38 deletions(-)
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
