@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51B256BB7C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 16:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 610946BB7E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 16:32:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1012E10E8DE;
-	Wed, 15 Mar 2023 15:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7225510E8C6;
+	Wed, 15 Mar 2023 15:32:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D160B10E2F8;
- Wed, 15 Mar 2023 15:28:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678894113; x=1710430113;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yvgNWg9FppzY1THYBN9OsZwxW1rRDB/DRylJp/MMUyM=;
- b=Ugs10em/fAgL3QjoyhmzdTMoey/oxYn1dqgtCrwzBK8RQq+DSRqcrgDF
- LH7DRV2pJRbQPleQkUdJ4+dUGV2xEsw8A8rao5iRtl7Ftz4sHrKPpFIjQ
- r993TXijpxe1RlDNY07kBznhepoHtLY1xffWtJGb5fsIhyDeqpBGDq5rO
- RrEw547MfV9TnIUl4CtZt4xfNRcWnPwIt37i9hh1vULu3nPX3wrJhJekz
- cblV8o6y1QhlrCm/r7qgbqcBWckyjp8vvPnZwxI6bJL3HwaTX/Bv09CCG
- OJ/1WunB+hlqDWR5xT6mRPr6Temqe+HF9rOqlRB3IfZ2ASPB156aG+u6a w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="365419904"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="365419904"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 08:28:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="1008877154"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="1008877154"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.23.62])
- ([10.213.23.62])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 08:28:31 -0700
-Message-ID: <8b0af9b3-9588-da47-6b73-3f7c97f6c2c2@intel.com>
-Date: Wed, 15 Mar 2023 16:28:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230310094544.3865-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230310094544.3865-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/mtl: Disable stolen memory
- backed FB for A0
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
+ [IPv6:2607:f8b0:4864:20::114a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCE8810EB2C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 15:32:52 +0000 (UTC)
+Received: by mail-yw1-x114a.google.com with SMTP id
+ 00721157ae682-536a5a0b6e3so205566017b3.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 08:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20210112; t=1678894371;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=3TNqbTHQHmb2xkVyzid8TSYw/6ySfy0Rm3ZyMjb8K6Q=;
+ b=OndTXsXmttnpBFbJTuj797Wr6Hb4uuRGsMxUUd4ZPEwngST2tq9jgqAbWGLkyoc3UF
+ RUhNZhfsUQkTDYDwqU0/dV6JxWw+2ynyRmSEyI9Bwl+jseJfVeeW8gwLYFAhBZkUi1BZ
+ Rjj2jXSvFfBsYnidGAkG4GJa5P/xduE4cZra/84msBr8gC3W7KhT495aCnKxRRdA4IIK
+ 43oHM+cyZfvAjiOrOoUR5FIcSA7otu9nwtxqBXBgNK3Oo5TKpFRdN2xa7qP1kSKnHJFw
+ Z1bOTZoSAkx8hsqeuessy3+j2lwr6e+TM98ortsV9xdt+nOgsmHrWRNygXFqTvbbzcTi
+ wdxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678894371;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3TNqbTHQHmb2xkVyzid8TSYw/6ySfy0Rm3ZyMjb8K6Q=;
+ b=ru9Ig8EAlGRGAvvbGUdMSFKmC5V77G61GhW2ALPSo4+FdEgL53zEgXnwEfqAuYVhAk
+ mnrFLY3BsCjqsrSLu4qT4qg3cUfPhfWTXltdnjWfsDdxVYK7oNRWnCDYLHGjwUpaiX4c
+ DOeh8rZESSX412hRQ9x9i56zaPsIBkWLyKGsgMaFzLgn2z/V5OkK7qniuc9uNvOPTmRH
+ yExOocsZacm/tfPgpCVRWCjFs//k9UomZ/cqefMn/qvOW2n1R/EXypdxbOHIzvA12yCI
+ 3ZQufGHpA47i/yA5oAtRqIsr+cdefQzjsm3S02WQQ91g8OPgiJck83TRpGSyOmGvKYJO
+ 5dUg==
+X-Gm-Message-State: AO0yUKWcxsYc9le7NTQ0iKkuTvjJJBFPsOW9d7EFTpDJn2GZGYjERdnF
+ jcZXptGSYM1nLOthQapdqSPwGrhwB4A=
+X-Google-Smtp-Source: AK7set/iYt7e9mDhQyRut6LZI+RQO0U18hEgJBTShOBJit1b59iuVZXxUV2vD+RNR86XdMZiKEiV0PP1XPI=
+X-Received: from zagreus.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
+ (user=seanjc job=sendgmr) by 2002:a05:6902:1205:b0:b3e:c715:c313 with SMTP id
+ s5-20020a056902120500b00b3ec715c313mr2265866ybu.6.1678894371838; Wed, 15 Mar
+ 2023 08:32:51 -0700 (PDT)
+Date: Wed, 15 Mar 2023 08:32:50 -0700
+In-Reply-To: <ZBEanQaJTCkjcDOn@yzhao56-desk.sh.intel.com>
+Mime-Version: 1.0
+References: <20230311002258.852397-1-seanjc@google.com>
+ <20230311002258.852397-12-seanjc@google.com>
+ <ZBEanQaJTCkjcDOn@yzhao56-desk.sh.intel.com>
+Message-ID: <ZBHlIuhED8y3JIu1@google.com>
+From: Sean Christopherson <seanjc@google.com>
+To: Yan Zhao <yan.y.zhao@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v2 11/27] KVM: x86/mmu: Don't rely on
+ page-track mechanism to flush on memslot change
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,53 +70,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10.03.2023 10:45, Nirmoy Das wrote:
-> Stolen memory is not usable for MTL A0 stepping beyond
-> certain access size and we have no control over userspace
-> access size of /dev/fb which can be backed by stolen memory.
-> So disable stolen memory backed fb by setting i915->dsm.usable_size
-> to zero.
+On Wed, Mar 15, 2023, Yan Zhao wrote:
+> On Fri, Mar 10, 2023 at 04:22:42PM -0800, Sean Christopherson wrote:
+> ...
+> > -static void kvm_mmu_invalidate_zap_pages_in_memslot(struct kvm *kvm,
+> > -			struct kvm_memory_slot *slot,
+> > -			struct kvm_page_track_notifier_node *node)
+> > -{
+> > -	kvm_mmu_zap_all_fast(kvm);
+> > -}
+> > -
+> >  int kvm_mmu_init_vm(struct kvm *kvm)
+> >  {
+> >  	struct kvm_page_track_notifier_node *node = &kvm->arch.mmu_sp_tracker;
+> > @@ -6110,7 +6103,6 @@ int kvm_mmu_init_vm(struct kvm *kvm)
+> >  	}
+> >  
+> >  	node->track_write = kvm_mmu_pte_write;
+> > -	node->track_flush_slot = kvm_mmu_invalidate_zap_pages_in_memslot;
+> >  	kvm_page_track_register_notifier(kvm, node);
+> >  
+> >  	kvm->arch.split_page_header_cache.kmem_cache = mmu_page_header_cache;
+> > diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
+> > index f706621c35b8..29dd6c97d145 100644
+> > --- a/arch/x86/kvm/x86.c
+> > +++ b/arch/x86/kvm/x86.c
+> > @@ -12662,6 +12662,8 @@ void kvm_arch_flush_shadow_all(struct kvm *kvm)
+> >  void kvm_arch_flush_shadow_memslot(struct kvm *kvm,
+> >  				   struct kvm_memory_slot *slot)
+> >  {
+> > +	kvm_mmu_zap_all_fast(kvm);
+> Could we still call kvm_mmu_invalidate_zap_pages_in_memslot() here?
+> As I know, for TDX, its version of
+> kvm_mmu_invalidate_zap_pages_in_memslot() is like
 > 
-> v2: remove hsdes reference and fix commit message(Andi)
+> static void kvm_mmu_invalidate_zap_pages_in_memslot(struct kvm *kvm,
+>                         struct kvm_memory_slot *slot,
+>                         struct kvm_page_track_notifier_node *node)
+> {
+>         if (kvm_gfn_shared_mask(kvm))
+>                 kvm_mmu_zap_memslot(kvm, slot);
+>         else
+>                 kvm_mmu_zap_all_fast(kvm);
+> }
 > 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Maybe this kind of judegment is better to be confined in mmu.c?
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> index d8e06e783e30..bf0f0a5f2a5c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> @@ -535,6 +535,15 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
->   	/* Basic memrange allocator for stolen space. */
->   	drm_mm_init(&i915->mm.stolen, 0, i915->dsm.usable_size);
->   
-> +	/*
-> +	 * Access to stolen lmem beyond certain size for MTL A0 stepping
-> +	 * would crash the machine. Disable stolen lmem for userspace access
-> +	 * by setting usable_size to zero.
-> +	 */
-> +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
-> +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
-> +		i915->dsm.usable_size = 0;
-> +
->   	return 0;
->   }
->   
-
+Hmm, yeah, I agree.  The only reason I exposed kvm_mmu_zap_all_fast() is because
+kvm_mmu_zap_all() is already exposed for kvm_arch_flush_shadow_all() and it felt
+weird/wrong to split those.  But that's the only usage of kvm_mmu_zap_all(), so
+a better approach to maintain consistency would be to move
+kvm_arch_flush_shadow_{all,memslot}() into mmu.c.  I'll do that in the next version.
