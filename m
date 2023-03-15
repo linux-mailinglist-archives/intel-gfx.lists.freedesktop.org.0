@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3596BB013
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 13:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C47E6BB03E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 13:16:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4596D10E037;
-	Wed, 15 Mar 2023 12:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B48F10E070;
+	Wed, 15 Mar 2023 12:16:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5D6110E037
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 12:15:14 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D56B610E070
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 12:16:35 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0513EB81DDA;
- Wed, 15 Mar 2023 12:15:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB46C433EF;
- Wed, 15 Mar 2023 12:15:11 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 830F6B81C6F;
+ Wed, 15 Mar 2023 12:16:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE5DC433EF;
+ Wed, 15 Mar 2023 12:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678882511;
- bh=PbfRYudwVpSW6WpsOwdpJyKx4Dg0gn+cJDNN4yH+RKY=;
+ s=korg; t=1678882593;
+ bh=oGfP/TGRqajg7DGuCoXIX3vu2u9JvvpSXZJMeoi7bm4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=oyYcayvqJ/iSQvyAHksWsVAtFTE5UhfGJeVmrxLUyZPfoMWLWVSyPpEZuAHEyM6Cd
- jPq6OQ5Agf9MEPVbE7C3HSM6/KyyYynVaTp2A+APirWo+1SjDA2WP5FK1PSO/xvVzj
- wPRSE94xk5D9ZjvVKpTIWSR/cHFUjrhD7iOUWZlk=
+ b=DmSExJFs89SII8DUBmRfnFP+ZGBSoWwkpDI5pNJ3b56K56PU786caVcZofk6ULY4V
+ TYK+03LjvHMNr2XwutWNNHhu6COPQ3JQNXkTelkuvp4grDaQIaS0L0mrwjmaTZ57mX
+ org3wxJ729N+kjQX3Umo2CJEWnxFMyM6otMU33oU=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed, 15 Mar 2023 13:12:43 +0100
-Message-Id: <20230315115719.592804330@linuxfoundation.org>
+Date: Wed, 15 Mar 2023 13:12:50 +0100
+Message-Id: <20230315115722.581384565@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230315115718.796692048@linuxfoundation.org>
-References: <20230315115718.796692048@linuxfoundation.org>
+In-Reply-To: <20230315115721.234756306@linuxfoundation.org>
+References: <20230315115721.234756306@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4.14 20/21] drm/i915: Dont use BAR mappings for
+Subject: [Intel-gfx] [PATCH 4.19 36/39] drm/i915: Dont use BAR mappings for
  ring buffers with LLC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,7 +89,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1314,7 +1314,7 @@ int intel_ring_pin(struct intel_ring *ri
+@@ -1083,7 +1083,7 @@ int intel_ring_pin(struct intel_ring *ri
  	if (unlikely(ret))
  		return ret;
  
@@ -99,7 +98,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  		addr = (void __force *)i915_vma_pin_iomap(vma);
  	else
  		addr = i915_gem_object_pin_map(vma->obj, map);
-@@ -1346,7 +1346,7 @@ void intel_ring_unpin(struct intel_ring
+@@ -1118,7 +1118,7 @@ void intel_ring_unpin(struct intel_ring
  	/* Discard any unused bytes beyond that submitted to hw. */
  	intel_ring_reset(ring, ring->tail);
  
