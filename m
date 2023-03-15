@@ -2,123 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E256BBD99
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 20:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D87366BBDAF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 20:56:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D780110EBD9;
-	Wed, 15 Mar 2023 19:51:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2060c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8a::60c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D4E10EBCA;
- Wed, 15 Mar 2023 19:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39C3510EBE9;
+	Wed, 15 Mar 2023 19:56:26 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A4CB10EBCA;
+ Wed, 15 Mar 2023 19:56:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678910184; x=1710446184;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=TkR2PaicOI5h9fFASgGADG9eF/3pc3j0ozRL+QVkj7w=;
+ b=GP3DP1TBGG872V/vstqUSN0KD2NcG7JhOlr5m2iwEMuIJvUzT+P/ZGFE
+ mY5dyuZifcJrmq8fwNuJqUXidr12U2i4qJts+EyOxJXFyVQH24LbhVune
+ 2BrAd+sIZjwBA4qNE39COcaIt0VU4gD25CCqZ4Fq0FEHE7LqbbD8gW49M
+ afuPASnF+38U4lJTEoUPZVcQw6K2a8M3tgd2O4DUEQXKtCbERLqXdlFGB
+ oFb8isPXF+eGflPDgt7I1CGlYcY6I/9y+Gm4Q0i2aofuF9HPl/nF2ZLNr
+ 4pzrOizZ+7pghBj7dk4aN91dhk9KAKrpiN5OVxVWwCzT77niqgLvcV3q/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="318203546"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="318203546"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 12:56:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="1008951548"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="1008951548"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Mar 2023 12:56:21 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 15 Mar 2023 12:56:17 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 15 Mar 2023 12:56:16 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 15 Mar 2023 12:56:16 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Wed, 15 Mar 2023 12:56:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DUzCf+ZaSWEQPbwj2Uml9UAn6vdYEz9duk/BVhu1NQdxOAlt+CYYa3gvp94eOfvPjbhgqN1uyr7dnVmFvCj2XTWeWFjYVs5rLuQkzo+YP6CfEgc81bgaNFlP1oi9PvhVH7xkswC0xfBFHMxIZkyf/nPb6UrjwaRh2oZjftmqWKJJbB9NIYrsup767AYX6qwVb4oYy943IQxRgp0xbK3zOAj1wTpyIIpgn4QmqxqLPZWyh+QP7JlAQvyqfnFTwhgIJ9Jusz66q1cKoo/rmVI2rTSXhdSNfvh/GiBKL4U58fH0hwDNGZPp613W5FOsXgBwBZanhf/r6GUvVXYfUG637Q==
+ b=EhlKZcW5P8J3kgPj8jWNuriM1hKyntum+mEyEJhToXlzIWJvGD2rqh5VlH5TLgF8+eERVDb6/GqZT4Qoo3WHuk3+Uddq9pjYoSir/k3PNMpu2yDjtQ1AySI4dnGGdoVCzPAmzB9pZRVkecZaSNIBZS4q41n0EAuAVl/y8/gqhMsnRh1Iyl5aQPxDwJXMlpTq/Kh/IF4fWs0OHXMJmW6Ss/9LIfHMUVQ+MBHFOq0Vxs8PdzWL00fDR/dwq4LyN6v+rUDYM2HORGTPcR/Jf35/KZWhI5A1/cyHTHxlVto+gNuKW7hjFTsyDPL5+CijAR5akzivA1ou4evevpDgCqFLBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BxSIQeGTug6AQp3kIBDxgM3IpkAk8v1U9mlGz7929G0=;
- b=ibRtjSAU+N7qb7sig1oAemo3BiToX0lALju/tRICAjLjp2iT619WH8qIoEn+BQdSRThF0PV3r7AvlX0+aR14zpmULwpCeOMj6Br2IXPUtuj/r7XBgP39J13Is4SD9O3CQefkzTxulVM71YUOS0hNPtPkg613zsFzkgla6U5UOTtrSotJm816YIF/XpPs7WgvG9YeoUQUcnxMa2915L2rmuHWbM4cCQ5P4jEnFQY9TPHD4CAITFxU0zVfDmOn5F70Am+SLYxXBam0t6SL0LcRCl3slKxCyAcCCHSrtbW6wTwkXId1OvGzACZf9GflYYvrn0lRAYVP5ajNgbLNebFAiA==
+ bh=IpXqrcLaFKAyRj5tbvuUXCP2BGUGNeufdrLekXX91Bc=;
+ b=CCWBQVx6UpRb43YqgDylz6jHTWfByVtWGUZ66+nO6plVoH4LRCS6Z2v/gPinhieTokdbX/IxYxFDgQrC6+cS6FHULXRAi2uRaT3q4onHjt9T56Az+UoLWKPO423foQx5jjC7r2u4W83YJXUQgCTdG10R0ZeRe+DOig3/jnC47v9eMiEoaZumqU3zSsTAwQpA4145gNe5t3IecaptUxqIoRtrDzDWjqkEp7qLZ1M3PIpoKnhKB+PwYGlE0zMtdCnG13BVLZ+gVckcS+NejgPKkcCpwxmcB1XglJ5PT6yjAWHHh7SnEcKYC3fSaFQYcRoQYHSdJ82ITYFp6fHPevfrtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BxSIQeGTug6AQp3kIBDxgM3IpkAk8v1U9mlGz7929G0=;
- b=mkSG7rMtkouJo6qaM2DHRSqQoKRXuFyHn3YO9EsKNOYTIDkYgctJxBldfpZSgrqqONR1Ku8KrgVpKvay1H6hnhWrMzgoPMEssY4gbpQhKpztCMKc9pxMe7551ey5QCFC/4vlZDBaAa2zgb0SbRqSdB99i2tSRkJHwcbZ289TJ2E=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by BN9PR12MB5066.namprd12.prod.outlook.com (2603:10b6:408:133::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29; Wed, 15 Mar
- 2023 19:51:55 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d23f:bb1:df95:3918]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d23f:bb1:df95:3918%4]) with mapi id 15.20.6178.024; Wed, 15 Mar 2023
- 19:51:55 +0000
-Content-Type: multipart/mixed; boundary="------------0qulX44r01l1Geeg0NXyCVyE"
-Message-ID: <2b7fe203-82f5-2726-cd64-01c7421560d3@amd.com>
-Date: Wed, 15 Mar 2023 20:51:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20230307212223.7e49384a@gandalf.local.home>
- <20230307212615.7a099103@gandalf.local.home>
- <b919b550-6da8-f9f0-a0eb-0fd8af513817@amd.com>
- <20230308074333.49546088@gandalf.local.home>
- <980021d5-09f7-9fc3-2726-44884a57822f@gmail.com>
- <CAM0jSHPf5u4=GGWm6x-zVkLA_LScAxq371ny2NoozuNjHfQefQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CAM0jSHPf5u4=GGWm6x-zVkLA_LScAxq371ny2NoozuNjHfQefQ@mail.gmail.com>
-X-ClientProxiedBy: FR2P281CA0074.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9a::16) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ PH0PR11MB4838.namprd11.prod.outlook.com (2603:10b6:510:40::24) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.26; Wed, 15 Mar 2023 19:56:09 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9bf9:4252:3ddc:7ac2]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9bf9:4252:3ddc:7ac2%7]) with mapi id 15.20.6178.024; Wed, 15 Mar 2023
+ 19:56:09 +0000
+Date: Wed, 15 Mar 2023 12:56:07 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <ZBIi1269Dm/++c9t@orsosgc001.jf.intel.com>
+References: <20230314121740.1195358-1-tvrtko.ursulin@linux.intel.com>
+ <ZBC8GxZjeR5+bHOm@orsosgc001.jf.intel.com>
+ <6f83991b-e4d6-b573-9e1c-074f2c612ff7@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6f83991b-e4d6-b573-9e1c-074f2c612ff7@linux.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0181.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::6) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|BN9PR12MB5066:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9d8ae7e-29d2-453f-c643-08db258ebab5
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|PH0PR11MB4838:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea34f920-464c-4454-9f29-08db258f522c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wWFiiHctO6zJCvOI01pH8xa0pmh+t8n+Q3FIiIb6xw5ZRuRv2CuUO25OqLzZkE6s8Zu96CjbjRC9Poxn8/HqTvaUbUcJGOCbAnCsLrUO7fdTJEtjqru6wXRucFSrEack5zAPjL6i5ps2cYAHbDx7Hnh9FlqO/oV73FgvsnAW0lTaeEy99/afFM+BRi7ywrnWQYA7dfrIjNvxJxIi8ey30twM3hYXGHWsB8uNrXgba9AM6/qhBpzS/1mPMGKXAT0YGLUyZ+yq2NKc5bzi8I7mPR1USimGQ3iJ8BdIU0vWADT6um5UJw124joqE7lIEBXV/4mUh1J6nQv/3X/J4tCAcV0Kd9iCO5Nutl7X3EqdfDZJyNSuJMK2+SRtkE38AKLXbT/ipdOOpqNYbmXQUK7MmuL8osGD2vkT8Qdq8QrHZVSa5/TOyErniGee1Nm3pqRjjLKxSiFqsRW8qwuVUn2gb8WqZfoXlhH3hC3IUgacxVXh/qTXIBkHMdXE/RoXMsfUg7YL8zArOl5F1XPnhLpUMdR4YSXXzNqRj1FonL502dHyfSoVKDFWtughSsSVG7w/7QvS5CDYYJ39hqP2a5VXYbgZ2tYgog00x915fKhLMNdgMCwhcw2bKRevoq/X2rGEWEdhBNwqx1ydyTIGmxu9z1CBm+iB5AdERDbmyOtiH7IpUgZdNLzRIQEhXfmAyLZ1PHeLkVJ8G3ceZp+jJQmzM6qqhm5ZRTeNzUcaJchiDj0=
+X-Microsoft-Antispam-Message-Info: N7pBjJOWnRyZdf6VGGtTp/Vqfe6b4wI2t3ZoKjy3rHDoMr6/TlJrAO4SrxqiY3cyXCICqi4R7QVPVbZL9b1Lh8LVvM9VxJywbHuMJQf7GJfvrAj2ehLC+e+zei2oZnRh/49LACNv7owqJpc0dCLufKFehdqfwLkx0EpR7L4Dmu7Iy2fX1FFk72nNWBzdDlkKt5fGLUdY2sZ6Ud1S/AvQ2L+MkQBO5WVveTPCjJ7jN4L8C5m6x1A4UHWXf/O9S9WQOaDOZ5tOaN7Z7wD2cawl9IZD6Yjfkb505tJFRyN1HLY8hrktGrf/aBKnh5n9+bXep390IPhtp84vCRFETR3pBcnoNQRxZFtsOAF5Gzv5t5c5SYxxxJnLOaA904DotkW4CAEtt925OZBigfLv0f9z6b6GbEQsH8BBq6Hj4HjClXTe0KEkXjZya3VQz4WX8BkJcYOxR4/qRilc6qVynhyfkwNiZvJ/5tIkjBsLieZ9MSVE/mOZrgPUIo4CN1NKQ6QJYUua+G5RIfukZJfDRxv7AdkS0vCsUQqm64ZIuyge51pwvQhenm6iE6g2wEREXAmpygh4mfTRDPzmg3/hP7oJgqiBCX9GPMl8jBW42QihVxEIG7EJv6V22oQuJLD9AGHnBMLx6kOA42jVdXMBlCWS2A==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(376002)(136003)(366004)(346002)(396003)(451199018)(36756003)(86362001)(31696002)(38100700002)(41300700001)(8936002)(235185007)(2906002)(5660300002)(45080400002)(4326008)(2616005)(6512007)(33964004)(6506007)(186003)(83380400001)(66574015)(316002)(54906003)(110136005)(66476007)(8676002)(6486002)(66946007)(6666004)(966005)(478600001)(66556008)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(366004)(136003)(39860400002)(346002)(376002)(396003)(451199018)(38100700002)(316002)(82960400001)(86362001)(6512007)(186003)(83380400001)(6506007)(26005)(5660300002)(6486002)(2906002)(478600001)(8676002)(6916009)(66556008)(4326008)(41300700001)(8936002)(66946007)(66476007);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R000Z2FaN2VaL2hwUUl0WS9BNko1bGhwZVd0U0RRRzl4L3I3WGpCSG03UElS?=
- =?utf-8?B?QStJVGFkeXNUVko5TjI4SUtML1RMQnA3U3JzVUFyY1MwMUxXSnZJRU9yUkFq?=
- =?utf-8?B?TFplb1ZaalYvd01temZKeDQ0czNRS0ZlQXlEd3F1RzVjZGVCZ3c3UGdDTm9L?=
- =?utf-8?B?blgzWlhDdFBqM3MvQ05iai9LMDh6dHNQdkpIeDl4U2VROCs1c1ZUZU5ycU5M?=
- =?utf-8?B?RXZ1TzdKZ0grZ0dwN3RVQW5ObnoxRXFyUE1tSjRtTGpUNU80dE9VNlp0MUMx?=
- =?utf-8?B?QVNTVVVQUzBrTUJYMVpRYWZROVpUOGxoaEhvaUlSSUorOVYxQVRLL2VWeWVq?=
- =?utf-8?B?ZGt3bWppbFZnRnNybWJFd0ZwT1hMYlgxY21GT0F3SVRPREI3bkxJU1hOaGVq?=
- =?utf-8?B?VEtyL0JXcWxTUkFiM0UydWc2cmp1dmZubFRNK09vSFFReGUvMy90MmVSMS9D?=
- =?utf-8?B?N000ZUNKVi9HbWpMU09XcDZYM3Jha1hzTnBvcjlITTFtMDk4M2FJWHhyWDhY?=
- =?utf-8?B?aS85QVNkMlM1dnZxdUtBbVpRM2VTeWxnUHlteFJjamFtcjNOb2ZLVzI4RVJu?=
- =?utf-8?B?N0hKejR3RldnWmgvTHoxQ2FtMUUrM2JZS0o5Q1M4Y1IrM1dJMFhaNy9SajY2?=
- =?utf-8?B?ZVB2ZGFNVTRlOHo2R1h4NllkNjVYZXI0ZHVOQzZ0Z0I5bzQ2ZDJkTnAvb25S?=
- =?utf-8?B?bHZ1bHB0NkVrdGZsaVZKNEt4aDZGbVNHeEcyeDJ3d0tLNkNzV1ZWa1AwN3NN?=
- =?utf-8?B?QUZpdGtjWE9ubG5RNC8zcC9oM2dYMFN0b2tDckxYcE9wV3JmbStaZzJMSEZq?=
- =?utf-8?B?aHo0aDUwLzc2UnlwSkwwRFVYaDlVQkI1NzhUUU42VFAzR3NhOHhJTXhCNm0r?=
- =?utf-8?B?cm9WcEJqaEVWQjUwOWxQQ2RXY1lMYmtEcE9Oc1c0ZzdXaC8xSUR0YktaMUZC?=
- =?utf-8?B?T3ltSWxiaHVJRlZnQ0VzcE9rSjFObDF1aU0xWC84TG00dFg3NWFvSy9UUElD?=
- =?utf-8?B?TTdmZ0N5WDdvYVpYcWxFTG5naHhxQnVLS0pjaXVGVUgybzR1TTZZWmRvd29L?=
- =?utf-8?B?THJMKzZ0bCtycVdoRVBsdk51aEY1S3pmeStiQWVSK0srdXZqMkFQd2dvcmE2?=
- =?utf-8?B?cWtTSS9aUTArenpUUk1penBYOXdmbGF4N3dqeUNOSE1lSC8ydFVXU3lFVCtY?=
- =?utf-8?B?TWhsT1JZbXp6ZVJpOGc1RjBxQVZITlB0ZGFrM0ZLQkMvZHpMdHdJbWtoa2lp?=
- =?utf-8?B?dzF5YUFxYWw1WkxmRytrT2hTOFNwQ25DTjErRXhCVlJ2UzRjUXhvWmtzV0Fm?=
- =?utf-8?B?T2FRZ1gyL2V2MXBZOE5xWURndFJBY0dUUy9hWjZjTWViQThXME15RWNhdlps?=
- =?utf-8?B?U3ZWeDN4OUxDb0ZNNTNJU3NibVg3YlpvTlZGWDc3cEdsRnI2ZUh5cUQ5clAv?=
- =?utf-8?B?UTR0Vm5NT1l3OVltamZhZ0wxLzJCM3JvUy9MQTROd01VUWpNcUFza0dRTWRw?=
- =?utf-8?B?dmxZSHlQL2Z0TTQ5dTNFTVBHMXE1bmNHWlltSkE3MjRjOTdTS2Fza1dTMXB0?=
- =?utf-8?B?RkJsZjd4OUNlbmx5dVIvdUtyYWJJc0tMQjkzTnRTb2x5UUVvS0dZTExHTmZB?=
- =?utf-8?B?ZlovZnR1QlhWc2phazFMTUxGSFNUbDJPY2hsOEZna1p0dDNlbWNzbDlFMFNr?=
- =?utf-8?B?VUtxbklRUjlGOXdOcW4xSHdRblJEOEE5b1NvWHkvaUMzZytJTEdNQWlQMmRR?=
- =?utf-8?B?WWlXaTcrVm5GV2IxcFppMGJUbGRSNHI4dzhMeGVBbTZSWDF0by9vVG1MVm1k?=
- =?utf-8?B?dkN4eldMVmxkWXVCVm9aZklYRFUyY24wSEtPbi9wdXd2SHE5ZWJSdDBQcW13?=
- =?utf-8?B?Tmp4MUJ5MU1GK085MVVTU3gzSlovMDdWOTFKZ200ZDlBaGd0bi90QmU1djNN?=
- =?utf-8?B?c3M4M203cys4Q2tpUHY3L0ZTQXNjU1pwSmRFWWNkYm9QZWxOcGFlZXR2eU1B?=
- =?utf-8?B?ejNmRmlkQ2gxbk9EWXBnV3AyMlJyY3FoeUVEQjA2WitLUG15NUw0WDM3VitR?=
- =?utf-8?B?cUJna21tZi93cmovNjNXTFJNbm9ER0tjM1FQdDk3bUtCZWpWbEtKTFNoSXZP?=
- =?utf-8?B?RDRLT0cra2Q2OWxJdzI4Z2tXa2h6WVM3TFBabDIxSXJ6VW5oVno4SGhYYTJP?=
- =?utf-8?Q?aNv1vo0ho7WASjKxac4B8wA0GGmDETUfQ8lv7sCcn9Yo?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9d8ae7e-29d2-453f-c643-08db258ebab5
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlUwVXJnd0NoMlVVU0x5N2hTWUZkUmhNaklBUmRuRENnZUI1Z05yalQ4MnNz?=
+ =?utf-8?B?bzh2Ry9tTy96Nlhjdk1EazAyQmk3Y2VPOE1HV0xrT1ZBMExwUGlkUldaeFBp?=
+ =?utf-8?B?TDA2NzlSbFRVVFVkSXpwTWgyTWw0RGtXQXA4TFUwMEFHMHl1TitIMXhXSVFK?=
+ =?utf-8?B?aFhhL1FNdTFvYXdOc2ZQbzNJTFRuR3NHUVpVNEVSQ05vNXl6VUNVelFtenNz?=
+ =?utf-8?B?Z0VmVXVVOVUxcVVPTXR6d1IxL0g2TXBCY3Jsek5iU1VqQW8xbFNjZUQveTlZ?=
+ =?utf-8?B?UCtDSjNSSjQxZHE4Wm93c29ISjZsb0FWcEwxdEVoNzlhc29lQ3I0NnFxRkpO?=
+ =?utf-8?B?VzUvSTN4K1lnMm5xZXJPN2lNM2dWUFJSOUhLNEI2SURiZlBsREhNdHZOaEQ0?=
+ =?utf-8?B?c0ZIMmpFNkI0L3V1WlNnYTFWQmVPMEpVaGZTUGhIclVYLzN3UldiNUZTanU3?=
+ =?utf-8?B?STVxVGdRZTF5L2ltZmNsR0puUmJZVTd2RCtQVkxQRXoyZ21GaS9CREN4Vno4?=
+ =?utf-8?B?eWxJdGtOQnhzcmI0Q2t4eVV3QXRLcE5CL3dJYVVqc1BpTk5leTFjV3BxR2gr?=
+ =?utf-8?B?WHJFRTUyOG1FTGNKZmg4T3N5NjJGb0dOV1lpeUxPYUFuYjlyZTdlTloxN1M0?=
+ =?utf-8?B?a1BjTm1qeTZ6ZldVQUE3RWg5aDRIVi9uYU8yS09qRjlpaDNsRjVEbmo2cFUy?=
+ =?utf-8?B?dm1mUjhrU2FZNVhRR3B1dk5XUlpTazc3bHFDNHZIT3ZIbHNYYzlMYnMrNllq?=
+ =?utf-8?B?bG1iWVlKd3Z6aS96SVg0ZnR1ZkZZSkVoMXpxdTByaXk2bE9MTWN0RTU4WGFa?=
+ =?utf-8?B?eTU3MHFmQ0U2MHdCZjFQV0RGa1BnN3EzVEdOSXZJWVh2VmVaN1R1MW83UGx5?=
+ =?utf-8?B?bGg5ZDQrYnpUUWprQzhZR1FVc0pRencyWUVUY2Q1aGNaQkR5TEorSHlSNXhq?=
+ =?utf-8?B?VFd0ZURzcTBzK2ErTHJKRE9UQjMwMzNKbGNLclhBNHJwaTNtRzZWOXZYZUM3?=
+ =?utf-8?B?dTlWVzZWYnhzSnd6Y2lqSnZLQ2FRa215MjkvZHZuTjcwMFYxRVdscDh6eXVl?=
+ =?utf-8?B?YVRFRFR0aTF5ZkRJMjNnTmJHNllHZkhHdVVQN0dyUFVEa0Uwa3cwa242eFda?=
+ =?utf-8?B?QjJ4K3F4SUhrTlJnWDZZVnY4U2k5c003aFVucFRWc09WMFRvNHgrU1BubmFM?=
+ =?utf-8?B?MTZLaXQ5YW5OK2ZMNVdkSkJYYytOUDNRdncvUVJHeEFpajBNODRWTmFmaUwr?=
+ =?utf-8?B?Q1AwRlo5Ylh3RjdIWk9xT1hLRUxaa2RQeE8yNzJJcHR6dWVhZWd5cTdheTZS?=
+ =?utf-8?B?UGt1VlMxeUJ4cXUxUWNlTkg0cXI4bm13am1FWVVhaldMa2I1N2tJb2VyMFMv?=
+ =?utf-8?B?QllybFAwSUtXcEV6MUhvN21FbVAvUXVUdXJHVExVTlMxUDcyV3cvbHl5cm5Y?=
+ =?utf-8?B?QnZwS20ydkxxTUs2YThSM0tFVTNEdmx6RmFScWhBMkJiQ3VuTW0wOElVdVF2?=
+ =?utf-8?B?NHlRaWphbGRCRHFuZG5vT3lPNDFiNXp4YXh5OXhxcHJ0VzFZSm93ZVdwTU8w?=
+ =?utf-8?B?T2Jva1JaS3N1ZDhob3QyQ2JnUzRTMGlCd1hSN0JseVpvYmlnYnQrd2VLdm5y?=
+ =?utf-8?B?dExXSFdsajE0Q21BMG05UStMWFRaS1NiUy93bnhFa3dYQnc4emtRVU1sOUJk?=
+ =?utf-8?B?Uy93eGxtM0pjaWNYRTVtUkd2NHRVL1hCdnhNK3Q5NDFHMFR5ZWRsdEd6SGJE?=
+ =?utf-8?B?RUNTSW9HbmpzTkc1S3EwQ0svZlBNM1dMdDh0WG9aR0szMDJHYWh0VE1VQkZp?=
+ =?utf-8?B?bkMxeUUyZGVML1B3R0d2VTZ4TkhYK2RRdFE0OUhKd0pQczRwc3dVZnNjbE1w?=
+ =?utf-8?B?MHNsZnZqUW1qMkdRZi96Ymw2MDZFVFMvdmVqbFVTUlRQS1JTRmFxaUtIVVNG?=
+ =?utf-8?B?MXJWWXN5cmRLWlNzMDB0c2p2cE03dFMzTmQ4ZzVxWU9CYXdpa0ZLcnk2UDBG?=
+ =?utf-8?B?bTR0UGtiMnBCVnc2TDgxV1JWNWgxVVRSV2ZUZlREeXZ0WEZ1eGN3UVVMcnJ6?=
+ =?utf-8?B?b3JjMERJZUs5YUNWdGhLREZiZmNDRmZuYXpzcW5BV2ZjMUZpdGMvRVV2QjQy?=
+ =?utf-8?B?NnRGaTJxK0RzNVFHc2VXU3BleHR5RjIxZEtScHh6Y3BPSW56cU9PY0pwQXJu?=
+ =?utf-8?Q?qaCwpmiI5ab5dXd721f/4Uo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea34f920-464c-4454-9f29-08db258f522c
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 19:51:55.3459 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 19:56:09.4139 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J50R1MHRvjuaNWpU1tliEXv/GTLrdQhT9HTLRHvumU74c4jHxItwDzxpkiQWxoMt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5066
-Subject: Re: [Intel-gfx] [BUG 6.3-rc1] Bad lock in ttm_bo_delayed_delete()
+X-MS-Exchange-CrossTenant-UserPrincipalName: +4Fiq/7mq1pJjceJTjWIz35L/iO9Vw6w0oSHc1HBcfmyRVvDqbJUUMeeT9bPcli1nAZr6UASoeTauKSXcMDFMHbPF7xOPh5QXi2HYv1hLrU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4838
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Use actual period when
+ calculating client busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,154 +159,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel@lists.freedesktop.org, Steven Rostedt <rostedt@goodmis.org>,
- amd-gfx@lists.freedesktop.org, Linus Torvalds <torvalds@linux-foundation.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>, linux-media@vger.kernel.org
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------0qulX44r01l1Geeg0NXyCVyE
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-
-
-Am 15.03.23 um 20:15 schrieb Matthew Auld:
-> On Wed, 15 Mar 2023 at 18:41, Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> Am 08.03.23 um 13:43 schrieb Steven Rostedt:
->>> On Wed, 8 Mar 2023 07:17:38 +0100
->>> Christian König <christian.koenig@amd.com> wrote:
->>>
->>>> What test case/environment do you run to trigger this?
->>> I'm running a 32bit x86 qemu instance. Attached is the config.
->>>
->>> The libvirt xml file is here: https://rostedt.org/vm-images/tracetest-32.xml
->>> and the VM image itself is here: https://rostedt.org/vm-images/tracetest-32.qcow2.bz2
->> I've started to download that, but it will take about an hour. So I
->> tried to avoid that for now.
->>
->> But looks like there isn't any other way to reproduce this, the code
->> seems to work with both amdgpu and radeon.
->>
->> My suspicion is that we just have a reference count issue in qxl or ttm
->> which was never noticed because it didn't caused any problems (except
->> for a minor memory corruption).
-> Why does ttm_bo_cleanup_refs() do a bo_put() at the end?
-
-Yeah, that's the bug. I own you a beer!
-
-In the old model we had an extra reference while the BOs where on the 
-deleted list and I've forgot to remove this put here.
-
-Steven please try the attached patch.
-
-Thanks,
-Christian.
-
-
->   It doesn't
-> make sense to me. Say if the BO is in the process of being delay freed
-> (bo->deleted = true), and we just did the kref_init() in
-> ttm_bo_release(), it might drop that ref hitting ttm_bo_release() yet
-> again, this time doing the actual bo->destroy(), which frees the
-> object. The worker then fires at some later point calling
-> ttm_bo_delayed_delete(), but the BO has already been freed.
+On Wed, Mar 15, 2023 at 09:20:49AM +0000, Tvrtko Ursulin wrote:
 >
->> Now you get a rain of warnings because we try to grab the lock in the
->> delete worker.
+>Hi Umesh,
+>
+>On 14/03/2023 18:25, Umesh Nerlige Ramappa wrote:
+>>lgtm,
 >>
->> Christian.
->>
->>> It happened again in another test (it's not 100% reproducible).
+>>Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
+>Thanks - I had one second thought though. See below please.
+>
+>>On Tue, Mar 14, 2023 at 12:17:40PM +0000, Tvrtko Ursulin wrote:
+>>>From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>>
->>> [   23.234838] ------------[ cut here ]------------
->>> [   23.236391] DEBUG_LOCKS_WARN_ON(lock->magic != lock)
->>> [   23.236429] WARNING: CPU: 0 PID: 61 at kernel/locking/mutex.c:582 __ww_mutex_lock.constprop.0+0x566/0xfec
->>> [   23.240990] Modules linked in:
->>> [   23.242368] CPU: 0 PID: 61 Comm: kworker/0:1H Not tainted 6.3.0-rc1-test-00001-ga98bd42762ed-dirty #972
->>> [   23.245106] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
->>> [   23.247900] Workqueue: ttm ttm_bo_delayed_delete
->>> [   23.249642] EIP: __ww_mutex_lock.constprop.0+0x566/0xfec
->>> [   23.251563] Code: e8 2b 5a 95 ff 85 c0 0f 84 25 fb ff ff 8b 0d 18 71 3b c8 85 c9 0f 85 17 fb ff ff 68 c0 58 07 c8 68 07 77 05 c8 e8 e6 0a 40 ff <0f> 0b 58 5a e9 ff fa ff ff e8 f8 59 95 ff 85 c0 74 0e 8b 0d 18 71
->>> [   23.256901] EAX: 00000028 EBX: 00000000 ECX: c1847dd8 EDX: 00000002
->>> [   23.258849] ESI: 00000000 EDI: c12958bc EBP: c1847f00 ESP: c1847eac
->>> [   23.260786] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010286
->>> [   23.262840] CR0: 80050033 CR2: ffbff000 CR3: 0850e000 CR4: 00150ef0
->>> [   23.264781] Call Trace:
->>> [   23.265899]  ? lock_is_held_type+0xbe/0x10c
->>> [   23.267434]  ? ttm_bo_delayed_delete+0x30/0x94
->>> [   23.268971]  ww_mutex_lock+0x32/0x94
->>> [   23.270327]  ttm_bo_delayed_delete+0x30/0x94
->>> [   23.271818]  process_one_work+0x21a/0x538
->>> [   23.273242]  worker_thread+0x146/0x398
->>> [   23.274616]  kthread+0xea/0x10c
->>> [   23.275859]  ? process_one_work+0x538/0x538
->>> [   23.277312]  ? kthread_complete_and_exit+0x1c/0x1c
->>> [   23.278899]  ret_from_fork+0x1c/0x28
->>> [   23.280223] irq event stamp: 33
->>> [   23.281440] hardirqs last  enabled at (33): [<c7d28089>] _raw_spin_unlock_irqrestore+0x2d/0x58
->>> [   23.283860] hardirqs last disabled at (32): [<c71d4ba5>] kvfree_call_rcu+0x155/0x2ec
->>> [   23.286066] softirqs last  enabled at (0): [<c71217fd>] copy_process+0x989/0x2368
->>> [   23.288220] softirqs last disabled at (0): [<00000000>] 0x0
->>> [   23.289952] ---[ end trace 0000000000000000 ]---
->>> [   23.291501] ------------[ cut here ]------------
->>> [   23.293027] refcount_t: underflow; use-after-free.
->>> [   23.294644] WARNING: CPU: 0 PID: 61 at lib/refcount.c:28 refcount_warn_saturate+0xb6/0xfc
->>> [   23.296959] Modules linked in:
->>> [   23.298168] CPU: 0 PID: 61 Comm: kworker/0:1H Tainted: G        W          6.3.0-rc1-test-00001-ga98bd42762ed-dirty #972
->>> [   23.301073] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
->>> [   23.303642] Workqueue: ttm ttm_bo_delayed_delete
->>> [   23.305190] EIP: refcount_warn_saturate+0xb6/0xfc
->>> [   23.306767] Code: 68 70 e1 0c c8 e8 f6 d6 a9 ff 0f 0b 58 c9 c3 90 80 3d 8a 78 38 c8 00 75 8a c6 05 8a 78 38 c8 01 68 9c e1 0c c8 e8 d6 d6 a9 ff <0f> 0b 59 c9 c3 80 3d 88 78 38 c8 00 0f 85 67 ff ff ff c6 05 88 78
->>> [   23.311935] EAX: 00000026 EBX: c1295950 ECX: c1847e40 EDX: 00000002
->>> [   23.313884] ESI: c12958bc EDI: f7591100 EBP: c1847f18 ESP: c1847f14
->>> [   23.315840] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010246
->>> [   23.317887] CR0: 80050033 CR2: ffbff000 CR3: 0850e000 CR4: 00150ef0
->>> [   23.319859] Call Trace:
->>> [   23.320978]  ttm_bo_delayed_delete+0x8c/0x94
->>> [   23.322492]  process_one_work+0x21a/0x538
->>> [   23.323959]  worker_thread+0x146/0x398
->>> [   23.325353]  kthread+0xea/0x10c
->>> [   23.326609]  ? process_one_work+0x538/0x538
->>> [   23.328081]  ? kthread_complete_and_exit+0x1c/0x1c
->>> [   23.329683]  ret_from_fork+0x1c/0x28
->>> [   23.331011] irq event stamp: 33
->>> [   23.332251] hardirqs last  enabled at (33): [<c7d28089>] _raw_spin_unlock_irqrestore+0x2d/0x58
->>> [   23.334334] hardirqs last disabled at (32): [<c71d4ba5>] kvfree_call_rcu+0x155/0x2ec
->>> [   23.336176] softirqs last  enabled at (0): [<c71217fd>] copy_process+0x989/0x2368
->>> [   23.337904] softirqs last disabled at (0): [<00000000>] 0x0
->>> [   23.339313] ---[ end trace 0000000000000000 ]---
+>>>On a slow machine, or with many processes and/or file descriptors to
+>>>parse, the period of the scanning loop can drift significantly from the
+>>>assumed value. This results in artificially inflated client busyness
+>>>percentages.
 >>>
->>> -- Steve
+>>>To alleviate the issue take some real timestamps and use actual elapsed
+>>>time when calculating relative busyness.
+>>>
+>>>Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>---
+>>>tools/intel_gpu_top.c | 39 ++++++++++++++++++++++++++++++++++++++-
+>>>1 file changed, 38 insertions(+), 1 deletion(-)
+>>>
+>>>diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>>>index e13e35b71f4b..af4b350da8e4 100644
+>>>--- a/tools/intel_gpu_top.c
+>>>+++ b/tools/intel_gpu_top.c
+>>>@@ -43,6 +43,7 @@
+>>>#include <sys/types.h>
+>>>#include <unistd.h>
+>>>#include <termios.h>
+>>>+#include <time.h>
+>>>#include <sys/sysmacros.h>
+>>>
+>>>#include "igt_perf.h"
+>>>@@ -2524,6 +2525,38 @@ static void show_help_screen(void)
+>>>"\n");
+>>>}
+>>>
+>>>+static int gettime(struct timespec *ts)
+>>>+{
+>>>+    memset(ts, 0, sizeof(*ts));
+>>>+
+>>>+#ifdef CLOCK_MONOTONIC_RAW
+>>>+    if (!clock_gettime(CLOCK_MONOTONIC_RAW, ts))
+>>>+        return 0;
+>>>+#endif
+>>>+#ifdef CLOCK_MONOTONIC_COARSE
+>>>+    if (!clock_gettime(CLOCK_MONOTONIC_COARSE, ts))
+>>>+        return 0;
+>>>+#endif
+>
+>So I copied this (with some edits) from igt_core.c but I think I 
+>should actually remove the CLOCK_MONOTONIC_COARSE option. The usage in 
+>intel_gpu_top is not performance sensitive and tick granularity 
+>actually defeats to point of this patch.
+>
+>Okay to keep the r-b if I remove it?
 
---------------0qulX44r01l1Geeg0NXyCVyE
-Content-Type: text/x-patch; charset=UTF-8;
- name="0001-drm-ttm-drop-extra-ttm_bo_put-in-ttm_bo_cleanup_refs.patch"
-Content-Disposition: attachment;
- filename*0="0001-drm-ttm-drop-extra-ttm_bo_put-in-ttm_bo_cleanup_refs.pa";
- filename*1="tch"
-Content-Transfer-Encoding: base64
+Sure, okay to keep the R-b.
 
-RnJvbSBhYWFmNGFiOTZiMjdjODM5ZGE3YmMzZjhlN2E5NzM3Y2Y4NzFlNWYzIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiA9P1VURi04P3E/Q2hyaXN0aWFuPTIwSz1DMz1CNm5pZz89IDxj
-aHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkRhdGU6IFdlZCwgMTUgTWFyIDIwMjMgMjA6NDg6MjQg
-KzAxMDAKU3ViamVjdDogW1BBVENIXSBkcm0vdHRtOiBkcm9wIGV4dHJhIHR0bV9ib19wdXQgaW4g
-dHRtX2JvX2NsZWFudXBfcmVmcwpNSU1FLVZlcnNpb246IDEuMApDb250ZW50LVR5cGU6IHRleHQv
-cGxhaW47IGNoYXJzZXQ9VVRGLTgKQ29udGVudC1UcmFuc2Zlci1FbmNvZGluZzogOGJpdAoKVGhh
-dCB3YXMgYWNjaWRlbnRpYWxseSBsZWZ0IG92ZXIgd2hlbiB3ZSBzd2l0Y2hlZCB0byB0aGUgZGVs
-YXllZCBkZWxldGUKd29ya2VyLgoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hy
-aXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpGaXhlczogKCI5YmZmMThkMTM0NzMiKSBkcm0vdHRtOiB1
-c2UgcGVyIEJPIGNsZWFudXAgd29ya2VycwotLS0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2Jv
-LmMgfCAyIC0tCiAxIGZpbGUgY2hhbmdlZCwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8u
-YwppbmRleCA0NTlmMWI0NDQwZGEuLjYzMTQ2NTNlOTFmNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3R0bS90dG1fYm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCkBA
-IC0yOTQsOCArMjk0LDYgQEAgc3RhdGljIGludCB0dG1fYm9fY2xlYW51cF9yZWZzKHN0cnVjdCB0
-dG1fYnVmZmVyX29iamVjdCAqYm8sCiAJaWYgKHVubG9ja19yZXN2KQogCQlkbWFfcmVzdl91bmxv
-Y2soYm8tPmJhc2UucmVzdik7CiAKLQl0dG1fYm9fcHV0KGJvKTsKLQogCXJldHVybiAwOwogfQog
-Ci0tIAoyLjM0LjEKCg==
-
---------------0qulX44r01l1Geeg0NXyCVyE--
+Regards,
+Umesh
+>
+>Regards,
+>
+>Tvrtko
+>
+>>>+
+>>>+    return clock_gettime(CLOCK_MONOTONIC, ts);
+>>>+}
+>>>+
+>>>+static unsigned long elapsed_us(struct timespec *prev, unsigned 
+>>>int period_us)
+>>>+{
+>>>+    unsigned long elapsed;
+>>>+    struct timespec now;
+>>>+
+>>>+    if (gettime(&now))
+>>>+        return period_us;
+>>>+
+>>>+    elapsed = ((now.tv_nsec - prev->tv_nsec) / 1000 +
+>>>+               (unsigned long)USEC_PER_SEC * (now.tv_sec - 
+>>>prev->tv_sec));
+>>>+
+>>>+    *prev = now;
+>>>+
+>>>+    return elapsed;
+>>>+}
+>>>+
+>>>int main(int argc, char **argv)
+>>>{
+>>>    unsigned int period_us = DEFAULT_PERIOD_MS * 1000;
+>>>@@ -2537,6 +2570,7 @@ int main(int argc, char **argv)
+>>>    char *pmu_device, *opt_device = NULL;
+>>>    struct igt_device_card card;
+>>>    char *codename = NULL;
+>>>+    struct timespec ts;
+>>>
+>>>    /* Parse options */
+>>>    while ((ch = getopt(argc, argv, "o:s:d:pcJLlh")) != -1) {
+>>>@@ -2690,6 +2724,7 @@ int main(int argc, char **argv)
+>>>
+>>>    pmu_sample(engines);
+>>>    scan_clients(clients, false);
+>>>+    gettime(&ts);
+>>>    codename = igt_device_get_pretty_name(&card, false);
+>>>
+>>>    if (output_mode == JSON)
+>>>@@ -2698,6 +2733,7 @@ int main(int argc, char **argv)
+>>>    while (!stop_top) {
+>>>        struct clients *disp_clients;
+>>>        bool consumed = false;
+>>>+        unsigned int scan_us;
+>>>        int j, lines = 0;
+>>>        struct winsize ws;
+>>>        struct client *c;
+>>>@@ -2720,6 +2756,7 @@ int main(int argc, char **argv)
+>>>        t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
+>>>
+>>>        disp_clients = scan_clients(clients, true);
+>>>+        scan_us = elapsed_us(&ts, period_us);
+>>>
+>>>        if (stop_top)
+>>>            break;
+>>>@@ -2757,7 +2794,7 @@ int main(int argc, char **argv)
+>>>
+>>>                    lines = print_client(c, engines, t,
+>>>                                 lines, con_w,
+>>>-                                 con_h, period_us,
+>>>+                                 con_h, scan_us,
+>>>                                 &class_w);
+>>>                }
+>>>
+>>>-- 
+>>>2.37.2
+>>>
