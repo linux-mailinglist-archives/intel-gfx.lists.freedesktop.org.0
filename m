@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B066BAC45
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 10:38:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C4E6BAC60
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 10:43:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78B610E997;
-	Wed, 15 Mar 2023 09:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA4010E985;
+	Wed, 15 Mar 2023 09:43:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D68DC10E996;
- Wed, 15 Mar 2023 09:38:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C20FFAADF3;
- Wed, 15 Mar 2023 09:38:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5761320462674664395=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9F310E985;
+ Wed, 15 Mar 2023 09:43:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678873414; x=1710409414;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6GFvbkbHAauvDgaRZeTIHV3tjysZP9qaWRU08TEXMyU=;
+ b=j5Bh61qCKBlqWc6Js96lI/tSQS/XzGLsKKgwotYv9kNShI+z7GqsEf6f
+ ndpSVs1a+vtLm9yKWhtTclUTNvHz9ycJAhNmeonHGCCYpHXv5UcJ+ds4F
+ nC0rpfL9JmYvdnS6n1gGCOABL02LSRLh5M3TMmmojtPxq5m19o/xV/rQ0
+ 6iYc7TtnEf4JbAoXsaAFQn8Liv/iXt5pW8sgaM0bPtqqgrs5kGnBo79q1
+ tHENVMM4JyOMAAzFs1MkYE0aP6OY8065O3hYJA7EaQKMaf9jPenEHjRLS
+ P4kKm0ziEaaL9HbcHE86u6Dp1BmczjWIz0NuDm+ocSwuqbxUDe/xu8Uob w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="335143671"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="335143671"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 02:43:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="789732833"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="789732833"
+Received: from mchanan-mobl.ger.corp.intel.com (HELO [10.213.222.39])
+ ([10.213.222.39])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 02:43:32 -0700
+Message-ID: <44cf9bcf-ee64-3340-9836-27babb0b1b9c@linux.intel.com>
+Date: Wed, 15 Mar 2023 09:43:30 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 15 Mar 2023 09:38:25 -0000
-Message-ID: <167887310575.19840.4462754521478553155@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230309131701.65312-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230309131701.65312-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/ttm=3A_Small_fixes_/_cleanups_in_prep_for_shrinking_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230310005943.1029333-1-ashutosh.dixit@intel.com>
+ <20230310005943.1029333-2-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230310005943.1029333-2-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Use functions common with
+ sysfs to read actual freq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,170 +64,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5761320462674664395==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 10/03/2023 00:59, Ashutosh Dixit wrote:
+> Expose intel_rps_read_actual_frequency_fw to read the actual freq without
+> taking forcewake for use by PMU. The code is refactored to use a common set
+> of functions across sysfs and PMU. Using common functions with sysfs in PMU
+> solves the issues of missing support for MTL and missing support for older
+> generations (prior to Gen6). It also future proofs the PMU where sometimes
+> code has been updated for sysfs and PMU has been missed.
+> 
+> v2: Remove runtime_pm_if_in_use from read_actual_frequency_fw (Tvrtko)
+> 
+> Fixes: 22009b6dad66 ("drm/i915/mtl: Modify CAGF functions for MTL")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8280
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_rps.c | 34 ++++++++++++++++-------------
+>   drivers/gpu/drm/i915/gt/intel_rps.h |  2 +-
+>   drivers/gpu/drm/i915/i915_pmu.c     | 10 ++++-----
+>   3 files changed, 24 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 4d0dc9de23f9..9d9ac35691fc 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -2046,16 +2046,6 @@ void intel_rps_sanitize(struct intel_rps *rps)
+>   		rps_disable_interrupts(rps);
+>   }
+>   
+> -u32 intel_rps_read_rpstat_fw(struct intel_rps *rps)
+> -{
+> -	struct drm_i915_private *i915 = rps_to_i915(rps);
+> -	i915_reg_t rpstat;
+> -
+> -	rpstat = (GRAPHICS_VER(i915) >= 12) ? GEN12_RPSTAT1 : GEN6_RPSTAT1;
+> -
+> -	return intel_uncore_read_fw(rps_to_gt(rps)->uncore, rpstat);
+> -}
+> -
+>   u32 intel_rps_read_rpstat(struct intel_rps *rps)
+>   {
+>   	struct drm_i915_private *i915 = rps_to_i915(rps);
+> @@ -2089,10 +2079,11 @@ u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat)
+>   	return cagf;
+>   }
+>   
+> -static u32 read_cagf(struct intel_rps *rps)
+> +static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
+>   {
+>   	struct drm_i915_private *i915 = rps_to_i915(rps);
+>   	struct intel_uncore *uncore = rps_to_uncore(rps);
+> +	i915_reg_t r = INVALID_MMIO_REG;
+>   	u32 freq;
+>   
+>   	/*
+> @@ -2100,22 +2091,30 @@ static u32 read_cagf(struct intel_rps *rps)
+>   	 * registers will return 0 freq when GT is in RC6
+>   	 */
+>   	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+> -		freq = intel_uncore_read(uncore, MTL_MIRROR_TARGET_WP1);
+> +		r = MTL_MIRROR_TARGET_WP1;
+>   	} else if (GRAPHICS_VER(i915) >= 12) {
+> -		freq = intel_uncore_read(uncore, GEN12_RPSTAT1);
+> +		r = GEN12_RPSTAT1;
+>   	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+>   		vlv_punit_get(i915);
+>   		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+>   		vlv_punit_put(i915);
+> +		goto exit;
 
-Series: drm/ttm: Small fixes / cleanups in prep for shrinking (rev2)
-URL   : https://patchwork.freedesktop.org/series/114774/
-State : success
+Alternatively you could avoid the goto by making the read below 
+conditional on r being set. One more conditional though for avoiding 
+gotos.. up to you.
 
-== Summary ==
+>   	} else if (GRAPHICS_VER(i915) >= 6) {
+> -		freq = intel_uncore_read(uncore, GEN6_RPSTAT1);
+> +		r = GEN6_RPSTAT1;
+>   	} else {
+> -		freq = intel_uncore_read(uncore, MEMSTAT_ILK);
+> +		r = MEMSTAT_ILK;
+>   	}
+>   
+> +	freq = take_fw ? intel_uncore_read(uncore, r) : intel_uncore_read_fw(uncore, r);
+> +exit:
+>   	return intel_rps_get_cagf(rps, freq);
+>   }
+>   
+> +static u32 read_cagf(struct intel_rps *rps)
+> +{
+> +	return __read_cagf(rps, true);
+> +}
 
-CI Bug Log - changes from CI_DRM_12829 -> Patchwork_114774v2
-====================================================
+There is only one caller so up to you if you think a helper is needed or 
+not.
 
-Summary
--------
+> +
+>   u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
+>   {
+>   	struct intel_runtime_pm *rpm = rps_to_uncore(rps)->rpm;
+> @@ -2128,6 +2127,11 @@ u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
+>   	return freq;
+>   }
+>   
+> +u32 intel_rps_read_actual_frequency_fw(struct intel_rps *rps)
+> +{
+> +	return intel_gpu_freq(rps, __read_cagf(rps, false));
+> +}
+> +
+>   u32 intel_rps_read_punit_req(struct intel_rps *rps)
+>   {
+>   	struct intel_uncore *uncore = rps_to_uncore(rps);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index c622962c6bef..2d5b3ef58606 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -39,6 +39,7 @@ int intel_gpu_freq(struct intel_rps *rps, int val);
+>   int intel_freq_opcode(struct intel_rps *rps, int val);
+>   u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat1);
+>   u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
+> +u32 intel_rps_read_actual_frequency_fw(struct intel_rps *rps);
+>   u32 intel_rps_get_requested_frequency(struct intel_rps *rps);
+>   u32 intel_rps_get_min_frequency(struct intel_rps *rps);
+>   u32 intel_rps_get_min_raw_freq(struct intel_rps *rps);
+> @@ -52,7 +53,6 @@ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+>   u32 intel_rps_read_punit_req(struct intel_rps *rps);
+>   u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+>   u32 intel_rps_read_rpstat(struct intel_rps *rps);
+> -u32 intel_rps_read_rpstat_fw(struct intel_rps *rps);
+>   void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+>   void intel_rps_raise_unslice(struct intel_rps *rps);
+>   void intel_rps_lower_unslice(struct intel_rps *rps);
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index a76c5ce9513d..7ece883a7d95 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -392,14 +392,12 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
+>   		 * case we assume the system is running at the intended
+>   		 * frequency. Fortunately, the read should rarely fail!
+>   		 */
+> -		val = intel_rps_read_rpstat_fw(rps);
+> -		if (val)
+> -			val = intel_rps_get_cagf(rps, val);
 
-  **SUCCESS**
+I think you can un-export this one now.
 
-  No regressions found.
+With that looks okay to me, with or without the other stuff:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/index.html
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Participating hosts (36 -> 33)
-------------------------------
+Regards,
 
-  Missing    (3): bat-rpls-2 fi-snb-2520m fi-bsw-n3050 
+Tvrtko
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_114774v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-1:         [PASS][1] -> [TIMEOUT][2] ([i915#6794])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@mman.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/bat-rpls-1/igt@i915_selftest@live@mman.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][3] ([i915#5354]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [DMESG-FAIL][4] ([i915#5334] / [i915#7872]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12829 -> Patchwork_114774v2
-
-  CI-20190529: 20190529
-  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114774v2: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8fdd9b2fa76c drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting
-a70b4b93a66d drm/ttm: Reduce the number of used allocation orders for TTM pages
-8b35e90ab971 drm/ttm/pool: Fix ttm_pool_alloc error path
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/index.html
-
---===============5761320462674664395==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Small fixes / cleanups in prep for shrinking (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114774/">https://patchwork.freedesktop.org/series/114774/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12829 -&gt; Patchwork_114774v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Missing    (3): bat-rpls-2 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114774v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/bat-rpls-1/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/bat-rpls-1/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_heartbeat:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12829/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114774v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12829 -&gt; Patchwork_114774v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12829: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7185: 6707461ddb214bb8a75c5fcf2747941c9d9b11ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114774v2: d947159409deea43f404f35cc758740c714c8888 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8fdd9b2fa76c drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting<br />
-a70b4b93a66d drm/ttm: Reduce the number of used allocation orders for TTM pages<br />
-8b35e90ab971 drm/ttm/pool: Fix ttm_pool_alloc error path</p>
-
-</body>
-</html>
-
---===============5761320462674664395==--
+> -		else
+> -			val = rps->cur_freq;
+> +		val = intel_rps_read_actual_frequency_fw(rps);
+> +		if (!val)
+> +			val = intel_gpu_freq(rps, rps->cur_freq);
+>   
+>   		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_ACT],
+> -				intel_gpu_freq(rps, val), period_ns / 1000);
+> +				val, period_ns / 1000);
+>   	}
+>   
+>   	if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
