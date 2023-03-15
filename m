@@ -1,81 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C4A6BAA45
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 09:00:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8AC6BAA12
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 08:54:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3CA210E958;
-	Wed, 15 Mar 2023 08:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEDC10E94E;
+	Wed, 15 Mar 2023 07:54:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 569 seconds by postgrey-1.36 at gabe;
- Wed, 15 Mar 2023 08:00:50 UTC
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF43910E958
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 08:00:50 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailnew.nyi.internal (Postfix) with ESMTP id B77E8581D4B;
- Wed, 15 Mar 2023 03:51:17 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 15 Mar 2023 03:51:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
- 1678866677; x=1678873877; bh=aNNQwQzVCna7Ns3n6BIaF6xnV4h5OB3sXJx
- Eet6WtvI=; b=AoX0YRtx60/GyCP5Pl5C/3NEAIrDfj6bVizZsn+iolVqge4yWWq
- 3ly8MZ1OepeqQpI1D11wYodztO4Pk/bukfJuj72xH5loKvfG6GM9kR2QN6tnBVem
- UYv5uo4eABD+teMpY6x6ZRLw+V1aCZToFAbGndPQE9aDnwqJm3vAp8IXPfx0wrUP
- TrKsH2fLXCtzbURBMsf2+ffnv00YBDm2unZJ92Kq2Ov5p2ZOJWdocrOzyaQNipmf
- CSjH+i56xnuT3wV2CcjaDdJ0+TeF2bplcQTACgi2Uv+y7UpqQ2UE0YBI8lSynK5g
- GanOwJSFGIZahM9Jx1KxTkwnu9Rj785Qe7g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1678866677; x=1678873877; bh=aNNQwQzVCna7Ns3n6BIaF6xnV4h5OB3sXJx
- Eet6WtvI=; b=e4+sFXbrYfNrq6Md3CAaUb2PMMRL1BkxB/dBHXE8GvzTfOngDQZ
- MjQXj2w+xhNaypZh4CxSi2SOFxw0XsmcVXrBq/0PRihnGnsJ9MoPvoadfmYl3LVj
- KrvogBkdfg+o3cCE/lthP8+Xb4ryXUAOU7qq65cb3RUM9PN06ofNPPcZI6cNalXg
- syiYce7tdSduPq66/2uOwp1kJBxLGeeA9jU75XBh2BRv7sZuGz1jSKncvgq5cOej
- 7Caad7oS+1ZExNu9o6Do+4Mx/RcmBQNNWgJ3qkuF/DjLiH3hB1mMw43rns58NtPJ
- hbtQlV0omJtvEn7z3rr01cbSIgVA30LLDcg==
-X-ME-Sender: <xms:9XgRZMKtJ-4oUMtaqFIgifUHkyjJAOKRPPpEQrQVIAnBq00LAThz-g>
- <xme:9XgRZMJjz7_SH7I0Oe0R0lK2VrelxMH5EltcHhIGvG5WaPFJ9N9rDpIoTmXy9TlUk
- MrKoHpDo2SYZg>
-X-ME-Received: <xmr:9XgRZMsdJinBK9ycCAMqAoynT1Abt707Vz7mzpALRqtU5Fg_XAvtBCX11_4vtILANiFErgEFF1LBL94f3Ir0KAXWQdwbG1hySdGyVg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvjedguddutdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtudenucfhrhhomhepifhr
- vghgucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepge
- evleehjedtgfethfetveetheejtdeugeekgeevleetkeehvefghfdtueegteeknecuffho
- mhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
- enucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorghhrdgtohhm
-X-ME-Proxy: <xmx:9XgRZJZ9BoqNsCIyjg5o3OsRmy3UhDDy173YN7pwk9V9AmhGN-971A>
- <xmx:9XgRZDYBJLCuvpZhgh1I5iXmjKkcNiKpcPsW8_jr0D9_6lV2tqRQcg>
- <xmx:9XgRZFCkGcu8y2N9E-OFeKSpSsox9fC2LnQhw0JwIZJdpOuKKEcaXQ>
- <xmx:9XgRZNZGkAhjP33C3wk_SE8g33GP8FQpz0b2ieWDTqt2MNAz8QIqnQ>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 15 Mar 2023 03:51:16 -0400 (EDT)
-Date: Wed, 15 Mar 2023 08:51:14 +0100
-From: Greg KH <greg@kroah.com>
-To: John.C.Harrison@intel.com
-Message-ID: <ZBF48kVhFmXIsR+K@kroah.com>
-References: <167820543971229@kroah.com>
- <20230314022211.1393031-1-John.C.Harrison@Intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C84C410E94E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 07:54:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678866856; x=1710402856;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OxJi/3znSg+Qg6FqppA2XxOjuxvYrglYwXgvh5MHH0k=;
+ b=OORTIp3wO6WImmBtaOkstDt+gnk7C43gkX7OaNZc7dVd3tfOzbRyBGla
+ M+GmFWvb/0Qb6lLqZ0o/MonPLa9Ng8L0OFT2Gkz6obhl1UtGTHHhGAVh1
+ l8kOJ8vioMbxocWwp6ly51EOf69hd0fxMzDlRHMwQJ/mIUwUVxSs5pf52
+ GWYQ6QpJv/PIqbODulEXG+Xvu1VdnHdU8ZBSIZsQgLgnh75qoRx6bMjll
+ 5CbUifuL8al0g7y488lWw6rfPvd/B5a6MtsneL52ZuOXUrqNz3nMRIyz2
+ TLT2iUYDNcNcmdCM0Q4bq0c+zvYweMkt05sx2iRn5koJZgPPEivHxFVjm g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="335124359"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="335124359"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 00:54:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="748325963"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="748325963"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 00:54:14 -0700
+Date: Wed, 15 Mar 2023 09:54:11 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Message-ID: <ZBF5o7lRodJy23y4@intel.com>
+References: <20230310144035.30754-1-stanislav.lisovskiy@intel.com>
+ <7ddeaf24abf10e7e2728150310e154f4366a076c.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230314022211.1393031-1-John.C.Harrison@Intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5.4.y] drm/i915: Don't use BAR mappings for
- ring buffers with LLC
+In-Reply-To: <7ddeaf24abf10e7e2728150310e154f4366a076c.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Power management SAGV/QGV
+ calculation rounding fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,42 +60,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 13, 2023 at 07:22:11PM -0700, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On Tue, Mar 14, 2023 at 11:27:35AM +0200, Govindapillai, Vinod wrote:
+> Hi Stan,
 > 
-> Direction from hardware is that ring buffers should never be mapped
-> via the BAR on systems with LLC. There are too many caching pitfalls
-> due to the way BAR accesses are routed. So it is safest to just not
-> use it.
 > 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v4.9+
-> Tested-by: Jouni Högander <jouni.hogander@intel.com>
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
-> (cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> (cherry picked from commit 85636167e3206c3fbd52254fc432991cc4e90194)
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_ringbuffer.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> On Fri, 2023-03-10 at 16:40 +0200, Stanislav Lisovskiy wrote:
+> > Currently in our bandwidth calculations for QGV
+> > points we round up the calculations.
+> > Recently there was an update to BSpec, recommending
+> > to floor those calculations.
+> > The reasoning behind this was that, overestimating
+> > BW demand with that rounding can cause SAGV to use
+> > next QGV point, even though the less demanding could
+> > be used, thus resulting in waste of power.
+> > 
+> > BSpec: 64636
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.c | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> > index 202321ffbe2a..8723ddd4d568 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> > @@ -50,7 +50,7 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> >                 dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
+> >         else
+> >                 dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
+> > -       sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
+> > +       sp->dclk = ((16667 * dclk_ratio * dclk_reference) + 500) / 1000;
+> >  
+> >         val = intel_uncore_read(&dev_priv->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+> >         if (val & DG1_GEAR_TYPE)
+> > @@ -87,7 +87,7 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> >                 return ret;
+> >  
+> >         dclk = val & 0xffff;
+> > -       sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_priv) > 11 ? 500 : 0), 1000);
+> > +       sp->dclk = ((16667 * dclk) + (DISPLAY_VER(dev_priv) > 11 ? 500 : 0)) / 1000;
+> >         sp->t_rp = (val & 0xff0000) >> 16;
+> >         sp->t_rcd = (val & 0xff000000) >> 24;
+> >  
+> > @@ -179,7 +179,7 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> >         val2 = intel_uncore_read(&dev_priv->uncore,
+> >                                  MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
+> >         dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
+> > -       sp->dclk = DIV_ROUND_UP((16667 * dclk), 1000);
+> > +       sp->dclk = (16667 * dclk) / 1000;
+> 
+> Not related to this patch. But as per Bspec 64631 and 64636
+>   sp->dclk = (16667 * dclk + 500) / 1000;
+> 
+> Does that need to be corrected as well?
 
-Also queued up for 5.10.y, you forgot that one :)
+It looks like again rounding up stuff, we divide by 1000,
+so we obviously add 500 just to round up by one the end result.
+But considering the recent instructions, that we must "floor/int"
+all the results, I would say this needs to be corrected in BSpec,
+rather than here(wondering why it was implemented initially that way
+here, could be that BSpec was initially like this or the one doing
+that here was actually smarter than BSpec :) )
 
-thanks,
+Stan
 
-greg k-h
+> 
+> BR
+> vinod
+> 
+> 
+> >         sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
+> >         sp->t_rcd = REG_FIELD_GET(MTL_TRCD_MASK, val);
+> >  
+> > @@ -425,7 +425,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct
+> > intel
+> >                          */
+> >                         ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
+> >                                    (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
+> > -                       bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+> > +                       bw = (sp->dclk * clpchgroup * 32 * num_channels) / ct;
+> >  
+> >                         bi->deratedbw[j] = min(maxdebw,
+> >                                                bw * (100 - sa->derating) / 100);
+> > @@ -527,7 +527,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct
+> > intel
+> >                          */
+> >                         ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
+> >                                    (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
+> > -                       bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+> > +                       bw = (sp->dclk * clpchgroup * 32 * num_channels) / ct;
+> >  
+> >                         bi->deratedbw[j] = min(maxdebw,
+> >                                                bw * (100 - sa->derating) / 100);
+> 
