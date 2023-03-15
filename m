@@ -2,80 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B2C6BBB86
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 18:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9A76BBBAA
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 19:06:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6C0910E2C9;
-	Wed, 15 Mar 2023 17:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 562C710E2C9;
+	Wed, 15 Mar 2023 18:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFC3110E059
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 17:58:01 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id 82BDF582166;
- Wed, 15 Mar 2023 13:57:58 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Wed, 15 Mar 2023 13:57:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
- 1678903078; x=1678910278; bh=sr5VBwSlqkYKlrOEPGOlyRiFVAY5hrqp8Fq
- xt+ATTUw=; b=sOsASEdO+ZXgxCTqzuntK95Lm+6jLimXxV3hy0lCHZqFivl1QlG
- FlwO1oSPzp9Kr9+qhk3ZZ5/TSqqAjuhVlYK7MW2tKz/EH40CRYPDaFpmm3Hk66eT
- zXdrn/YwylprLX7YpDWcYG92IXcVMLhIsB37B4FUiqUpyVnvHoYWTyKAYght+QPQ
- olfEyplMIoHBP8Ak7XWEF8J+j/jCHP61vdVCZJxBp8X2aGiAwJebqZ9HH3zMSH3g
- 5zy6amoSPfXlYSXXIcotKn2uzlhl8D7nOgf22p9EVSQmnZCKxAkyiKolT1D/6eyM
- bcRzH6W9kcMEUEbb3pAZV8315QX5bJU2Akw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1678903078; x=1678910278; bh=sr5VBwSlqkYKlrOEPGOlyRiFVAY5hrqp8Fq
- xt+ATTUw=; b=lt2NdHkQ84eidOxHihp18H6i9ZZribXpCsykNYUZqXmraIp0HTf
- 1DDK+pfy8asT9QBY6Bupy8m9Z/S+ONmcFCDVTh1K3FZfYMcVgODUHMRGkXUNhgFL
- n7HKH12dWg5t/iSU7aqMHoQdGvruOxamZNoHI/w7A0HnCuxSjro4IVvJ7NvKfXzB
- lanaEChtvOj/p0H/pOCosIkgHo0PHOD0twQCZWcOaRYDTZs7Ip9wxPQ3+S8K5O3R
- sGX27MnK49126p2JCPoOwVq7q12F5CyxNycIJ0/zbwSyedYwHdt1Taz0WrCH3xSB
- MsyE6xIJr2MRZ93NMd7K9Ttk7LVcBAyyEkA==
-X-ME-Sender: <xms:JQcSZGOkkdUG7-SpqOBtu4-VABj3s2OlAXRCydvu6MZJFay7zeRzFg>
- <xme:JQcSZE8M7nWVtmihUpXj5E1beZBqHjIjZmCCTOjXDU2rJt7BD4H1Ycd7WoTDn2Sed
- BQdwPe5PUY12A>
-X-ME-Received: <xmr:JQcSZNSPnueiYL92hmwV_sea6RWoANBxCSJriBeur-dLskV4WeLwr5vx_XrANegTOJ9iPfwwTiBJw1T18RNdkTTFpEyuMnNZEjj7Qg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvkedguddtiecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtudenucfhrhhomhepifhr
- vghgucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepge
- evleehjedtgfethfetveetheejtdeugeekgeevleetkeehvefghfdtueegteeknecuffho
- mhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
- enucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorghhrdgtohhm
-X-ME-Proxy: <xmx:JgcSZGshD8gmxxzJS-5VeH0SLcI9zmNx6kXhdtrfYWb1SOu0jcEj3A>
- <xmx:JgcSZOcgX5tOai488cVg3SuTtdbHL43N2mQdD0YyMMwmUDZaI3GeJg>
- <xmx:JgcSZK0o68Z3UCdHJ3OZfb9FhGHlYphP_FapKR9CsAefCA7iUY8qlg>
- <xmx:JgcSZM_KoRld3MoO6Yk-eG9Ajzx8Ya9yF_jffPPrXcwLjJxt33ygyg>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 15 Mar 2023 13:57:57 -0400 (EDT)
-Date: Wed, 15 Mar 2023 18:57:56 +0100
-From: Greg KH <greg@kroah.com>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <ZBIHJD5FkxiammjB@kroah.com>
-References: <167820543971229@kroah.com>
- <20230314022211.1393031-1-John.C.Harrison@Intel.com>
- <ZBF48kVhFmXIsR+K@kroah.com>
- <a5cf5572-4160-3efb-4f80-aaf53aa06efe@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 257E910EBBB;
+ Wed, 15 Mar 2023 18:06:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678903579; x=1710439579;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iKIgqVSKtr+7rrXxJp8X+ouxwFqLjumi1sX/o/2bEGY=;
+ b=LuzYJm/WDzhfHJ4Hapm8rxvi8KL342czNMgfRyaNHbt5djfbGwU62G6P
+ hHXN2Hn8EZexToXI/hm18O5GNTYB74doZfuC50DdTWTN93asNs1HzRqs+
+ 62Tqu7B4VMfMNixzk4BJTgC4xmI81B5GXe+f0o5XQ37/2oNP4BiXeio/f
+ LtOftN9khh7Pzv26oKvzQn6tQWAvpLUUKEa0AxunA3p1fvPPRm/PCTtcJ
+ ryadEGKJl0W0/u/wP/H64FympGCd+0ZLUxAxLCpCMyZYPPv03NIooEbsA
+ DK4Oy1UAsPdin2IHwpFMYN9lhlHzqYXtTi7uZnFEW4dFV5q6qqI7dHNzc g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="317437177"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="317437177"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 11:06:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="679589517"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="679589517"
+Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 11:06:17 -0700
+From: fei.yang@intel.com
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Mar 2023 11:08:00 -0700
+Message-Id: <20230315180800.2632766-1-fei.yang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a5cf5572-4160-3efb-4f80-aaf53aa06efe@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5.4.y] drm/i915: Don't use BAR mappings for
- ring buffers with LLC
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: keep same cache settings as
+ timeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,49 +56,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: matthew.d.roper@intel.com, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 15, 2023 at 10:07:53AM -0700, John Harrison wrote:
-> On 3/15/2023 00:51, Greg KH wrote:
-> > On Mon, Mar 13, 2023 at 07:22:11PM -0700, John.C.Harrison@Intel.com wrote:
-> > > From: John Harrison <John.C.Harrison@Intel.com>
-> > > 
-> > > Direction from hardware is that ring buffers should never be mapped
-> > > via the BAR on systems with LLC. There are too many caching pitfalls
-> > > due to the way BAR accesses are routed. So it is safest to just not
-> > > use it.
-> > > 
-> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org
-> > > Cc: <stable@vger.kernel.org> # v4.9+
-> > > Tested-by: Jouni Högander <jouni.hogander@intel.com>
-> > > Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
-> > > (cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
-> > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > > (cherry picked from commit 85636167e3206c3fbd52254fc432991cc4e90194)
-> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/intel_ringbuffer.c | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > Also queued up for 5.10.y, you forgot that one :)
-> I'm still working through the backlog of them.
-> 
-> Note that these patches must all be applied as a pair. The 'don't use
-> stolen' can be applied in isolation but won't totally fix the problem.
-> However, applying 'don't use BAR mappings' without applying the stolen patch
-> first will results in problems such as the failure to boot that was recently
-> reported and resulted in a revert in one of the trees.
+From: Fei Yang <fei.yang@intel.com>
 
-I do not understand, you only submitted 1 patch here, what is the
-"pair"?
+On MTL, objects allocated through i915_gem_object_create_internal() are
+mapped as uncached in GPU by default because HAS_LLC is false. However
+in the live_hwsp_read selftest these watcher objects are mapped as WB
+on CPU side. The conseqence is that the updates done by the GPU are not
+immediately visible to CPU, thus the selftest is randomly failing due to
+the stale data in CPU cache. Solution can be either setting WC for CPU +
+UC for GPU, or WB for CPU + 1-way coherent WB for GPU.
+To keep the consistency, let's simply inherit the same cache settings
+from the timeline, which is WB for CPU + 1-way coherent WB for GPU,
+because this test is supposed to emulate the behavior of the timeline
+anyway.
+
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_timeline.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index 522d0190509c..631aaed9bc3d 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -825,7 +825,8 @@ static bool cmp_gte(u32 a, u32 b)
+ 	return a >= b;
+ }
+ 
+-static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt)
++static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt,
++			 struct intel_timeline *tl)
+ {
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
+@@ -834,7 +835,10 @@ static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt)
+ 	if (IS_ERR(obj))
+ 		return PTR_ERR(obj);
+ 
+-	w->map = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
++	/* keep the same cache settings as timeline */
++	i915_gem_object_set_cache_coherency(obj, tl->hwsp_ggtt->obj->cache_level);
++	w->map = i915_gem_object_pin_map_unlocked(obj,
++			page_unmask_bits(tl->hwsp_ggtt->obj->mm.mapping));
+ 	if (IS_ERR(w->map)) {
+ 		i915_gem_object_put(obj);
+ 		return PTR_ERR(w->map);
+@@ -1004,8 +1008,10 @@ static int live_hwsp_read(void *arg)
+ 	if (!tl->has_initial_breadcrumb)
+ 		goto out_free;
+ 
++	selftest_tl_pin(tl);
++
+ 	for (i = 0; i < ARRAY_SIZE(watcher); i++) {
+-		err = setup_watcher(&watcher[i], gt);
++		err = setup_watcher(&watcher[i], gt, tl);
+ 		if (err)
+ 			goto out;
+ 	}
+@@ -1160,6 +1166,8 @@ static int live_hwsp_read(void *arg)
+ 	for (i = 0; i < ARRAY_SIZE(watcher); i++)
+ 		cleanup_watcher(&watcher[i]);
+ 
++	intel_timeline_unpin(tl);
++
+ 	if (igt_flush_test(gt->i915))
+ 		err = -EIO;
+ 
+-- 
+2.25.1
+
