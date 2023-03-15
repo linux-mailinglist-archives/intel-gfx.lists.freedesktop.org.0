@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCA36BB98E
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 17:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 524B36BBA46
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 17:54:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D6B10EB5D;
-	Wed, 15 Mar 2023 16:21:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C73D10EB67;
+	Wed, 15 Mar 2023 16:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com
- [IPv6:2607:f8b0:4864:20::44a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 841FD10EB5D
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 16:21:36 +0000 (UTC)
-Received: by mail-pf1-x44a.google.com with SMTP id
- s14-20020a62e70e000000b00624029cf8f8so5394540pfh.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 09:21:36 -0700 (PDT)
+Received: from mail-pl1-x649.google.com (mail-pl1-x649.google.com
+ [IPv6:2607:f8b0:4864:20::649])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54FD910E1F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 16:54:31 +0000 (UTC)
+Received: by mail-pl1-x649.google.com with SMTP id
+ az7-20020a170902a58700b001a0534b4ddbso4609780plb.15
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 09:54:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20210112; t=1678897296;
+ d=google.com; s=20210112; t=1678899271;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=JKTk6fHXe0DcBHYZ7abQpFccg4odhIWL73B59FNN1Xk=;
- b=JIJTtqfS3TMGnsbFa8g96atWXLD9Hi639HJF8P22QUC+Vb51Lk9yNCn5QWlUY59BCc
- eptR4lQ3acknGb4WF8ZXNG89vGlBbvoMQqwd4R1MrcO5psAhmtkSb7k4gnVzvgudFdTw
- avYKauJrNh6tEZckc8zEeWTVtIy4somJPyM0y/bW71369Y2Dua/19SsouijpZn+b4kCl
- a6qBe1NKaQljePkV/vaMJuAMUt72wGV0sPX9AavXH6ip5x9HhVeK72lING95SHW3UOvC
- 2C4gFKhFmy95spZV+N9HSrT1LGnLu6EO5NNtqJ9hYJYUO3Wu5+0pRtSlgJOXOldW5Jb6
- dK6g==
+ bh=/VfOj1PxwZtE3fiW4+Wbi4dS2kE6Vdmar5BqVI1M2z0=;
+ b=BEqSBnWJskRuRBspuN6FxAXPBhQk21kw/QwpQhD+OPlE7HMQ4t4minhZOXyoQwEo3F
+ tt1stwO6FYs5bIqkpXIeC3XJ7m3dYjzvRiWySWCR3r6wfBOkC/PEY+WXuc80rxFKt27c
+ KOzAcFEhGzqEsuuAhRKgnxCk70qP0LpFveG9jRbnMqvf2vKnfdjPpL0HesVOOclo4OxM
+ BOLJ9w1PyWUHlGa3ORpqrIvOBdmK89BmWv3pPnitmBb3dg57lPujpJr63O9FjhdqQL5K
+ HCjCfb3bzmtH+GiUm5c46uiyfcwSwwsV223MDV86CcsaaHgcmDJ0bQMYtI4p/yIpPisc
+ 6r5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678897296;
+ d=1e100.net; s=20210112; t=1678899271;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=JKTk6fHXe0DcBHYZ7abQpFccg4odhIWL73B59FNN1Xk=;
- b=M9WAe+EMyVpdMvFmtJP/YvWRElRUDWoHtCkkvRqciYRFCQVLEeGV8ZInXuUsGysote
- zidhqOnJXm2I9nd8GKqTlZDwdt7H9dpsvSh8wG/zeo3Uti3kc3syj3ue4hhEpI0P99AJ
- f/YkmY3rUGoIrWyiFr0YJv8wne5zVHMB2AE57JHVC/w/I6mej6KT/xgzkrJknbV2M8TF
- Ok4LXcalRYPkLyHdGxIpnw2uOzbnYMAXLjfBDV23lpB2B58TzMHDA/KThoOI3Im9SA3O
- CdMlB8Hrb5MveTC/cNIO2kLybL9+SxCitdnS5Pei+89N6HnIaZRNnZKe+71z83GB8S+5
- vlhQ==
-X-Gm-Message-State: AO0yUKV2MkOTtYDsIQiudLzfiflZNVvS1m3BBZmTWS//lgUQHWtMbsbR
- e+AXlHoQvqzmEVQPBZ7covdfEgpGsmY=
-X-Google-Smtp-Source: AK7set8gPm4g/NvRUZwmci48nYogYWiDAtlDOVIipuNXOmnGWoPg5uKaBoV4za1AXTOtQ2HQrJ0TchlLCME=
+ bh=/VfOj1PxwZtE3fiW4+Wbi4dS2kE6Vdmar5BqVI1M2z0=;
+ b=ui4fIbsFMY+UGQYKcNjD74gdzrYLKNSowteII7MwUKe/PsyqHNyuGEzlibwdG0aZeq
+ KyH1Gfnu4N8bawOsM4xl9IAcUhrLyi9+romz8A2E8+Z7VkAYCulVJRf2jFNS5qlEca3Y
+ UUhcBJgM92V9v/MHD5mat3sD5VXrt2yhalDPED0dB0MmNTtqGUz5ddcSEw6ykjzR0QxL
+ Vdy0T6nUMVYk8/4VU/ScHmWhMrc0n4IGi+VtZqGFxcC94CMkizsEsjsN93GKQ8m9adJI
+ +CWxCSXsqi5eVr8cQnLwzGl3Wo9891yZRhjzVQjnEs/0L0N+p97BiGPEYi6YJu9h73Q1
+ cv2w==
+X-Gm-Message-State: AO0yUKVIFzZJDB0ZZbtVBJ1BEU1UyTX2f/Qnaxelx7dkrgX3uPhGLMrV
+ rZvbtS1Zx1l/KKn7E9auNk24MbriaU0=
+X-Google-Smtp-Source: AK7set8uXr2sovLYtbxUeraNaTKwMoaMEQm3jr5Cs9656uq3YKkYAaDETqng8wyzyCVhZ2HsOOop/4RwRyc=
 X-Received: from zagreus.c.googlers.com
  ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a17:903:2344:b0:1a0:561c:7276 with SMTP id
- c4-20020a170903234400b001a0561c7276mr84640plh.1.1678897295968; Wed, 15 Mar
- 2023 09:21:35 -0700 (PDT)
-Date: Wed, 15 Mar 2023 09:21:34 -0700
-In-Reply-To: <ZBGRJaV3tDTVyE/q@yzhao56-desk.sh.intel.com>
+ (user=seanjc job=sendgmr) by 2002:a65:5c43:0:b0:4f1:cd3a:3e83 with SMTP id
+ v3-20020a655c43000000b004f1cd3a3e83mr122328pgr.3.1678899271499; Wed, 15 Mar
+ 2023 09:54:31 -0700 (PDT)
+Date: Wed, 15 Mar 2023 09:54:30 -0700
+In-Reply-To: <ZBGfmLuORj+ZBziv@yzhao56-desk.sh.intel.com>
 Mime-Version: 1.0
 References: <20230311002258.852397-1-seanjc@google.com>
  <20230311002258.852397-21-seanjc@google.com>
- <ZBGRJaV3tDTVyE/q@yzhao56-desk.sh.intel.com>
-Message-ID: <ZBHwjm2heYeE40xl@google.com>
+ <ZBGfmLuORj+ZBziv@yzhao56-desk.sh.intel.com>
+Message-ID: <ZBH4RizqdigXeYte@google.com>
 From: Sean Christopherson <seanjc@google.com>
 To: Yan Zhao <yan.y.zhao@intel.com>
 Content-Type: text/plain; charset="us-ascii"
@@ -77,21 +77,45 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, Mar 15, 2023, Yan Zhao wrote:
-> Nit: there is a typo in the commit header: "iff" -> "if"
-> 
-> > -void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa, const u8 *new,
-> > -			  int bytes)
-> > +void __kvm_page_track_write(struct kvm *kvm, gpa_t gpa, const u8 *new, int bytes)
-> Line length is 81 characters. A little longer than 80 :)
-> 
-> > +static inline bool kvm_page_track_has_external_user(struct kvm *kvm) { return false; }
-> This line is also too long.
+> On Fri, Mar 10, 2023 at 04:22:51PM -0800, Sean Christopherson wrote:
+> > Disable the page-track notifier code at compile time if there are no
+> > external users, i.e. if CONFIG_KVM_EXTERNAL_WRITE_TRACKING=n.  KVM itself
+> > now hooks emulated writes directly instead of relying on the page-track
+> > mechanism.
+> > 
+> > Signed-off-by: Sean Christopherson <seanjc@google.com>
+> > ---
+> >  arch/x86/include/asm/kvm_host.h       |  2 ++
+> >  arch/x86/include/asm/kvm_page_track.h |  2 ++
+> >  arch/x86/kvm/mmu/page_track.c         |  9 ++++-----
+> >  arch/x86/kvm/mmu/page_track.h         | 29 +++++++++++++++++++++++----
+> >  4 files changed, 33 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
+> > index 1a4225237564..a3423711e403 100644
+> > --- a/arch/x86/include/asm/kvm_host.h
+> > +++ b/arch/x86/include/asm/kvm_host.h
+> > @@ -1265,7 +1265,9 @@ struct kvm_arch {
+> >  	 * create an NX huge page (without hanging the guest).
+> >  	 */
+> >  	struct list_head possible_nx_huge_pages;
+> > +#ifdef CONFIG_KVM_EXTERNAL_WRITE_TRACKING
+> >  	struct kvm_page_track_notifier_head track_notifier_head;
+> > +#endif
+> >  	/*
+> >  	 * Protects marking pages unsync during page faults, as TDP MMU page
+> >  	 * faults only take mmu_lock for read.  For simplicity, the unsync
+> > diff --git a/arch/x86/include/asm/kvm_page_track.h b/arch/x86/include/asm/kvm_page_track.h
+> > index deece45936a5..53c2adb25a07 100644
+> > --- a/arch/x86/include/asm/kvm_page_track.h
+> > +++ b/arch/x86/include/asm/kvm_page_track.h
+> The "#ifdef CONFIG_KVM_EXTERNAL_WRITE_TRACKING" can be moved to the
+> front of this file?
+> All the structures are only exposed for external users now.
 
-The 80 character limit is a "soft" limit these days, e.g. checkpatch only complains
-if a line is 100+.  In KVM x86, the preferred style is to treat the 80 char limit
-as "firm", for lack of a better word.  E.g. let a line run over if it's just a
-char or two and there's no other wrapping in the declaration, but don't create long
-lines just because checkpatch no longer yells.
+Huh.  I've no idea why I didn't do that.  IIRC, the entire reason past me wrapped
+track_notifier_head in an #ifdef was to allow this change in kvm_page_track.h.
 
-There's obviously a fair bit of subjectivity, but the guideline has worked well
-so far (hopefully I didn't just jinx us).
+I'll do this in the next version unless I discover an edge case I'm overlooking.
+
+Thanks yet again!
