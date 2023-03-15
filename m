@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8536BAA5B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 09:03:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6896BAA5C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 09:03:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 636C810E942;
-	Wed, 15 Mar 2023 08:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0B910E95D;
+	Wed, 15 Mar 2023 08:03:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32CD110E942
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 08:03:29 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C075E10E95D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 08:03:39 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id D3419B81C9E;
- Wed, 15 Mar 2023 08:03:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30138C433D2;
- Wed, 15 Mar 2023 08:03:26 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4F0EF61B41;
+ Wed, 15 Mar 2023 08:03:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63647C433EF;
+ Wed, 15 Mar 2023 08:03:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678867406;
- bh=1nCqBZYt5ng2vM+rrODN6j4ZclH8rU27PvQFkuheXzw=;
+ s=korg; t=1678867418;
+ bh=KKkro0GcjZuXIMuGPXWJYeUcasVlvDTEO5/YYpdFMz0=;
  h=Subject:To:Cc:From:Date:From;
- b=lR28WraHtkc39D1cGspR3KTa5ngo4pP+OrJ4GpA6spSzxyu9vs9HlycHkDsfvKkkM
- aaBoojEs6AZ1jQTyE34BO/DMfYxt4FWW+hdp1wIYeFpWTUGqIu4TuIckI3rO9cOWga
- jFfSCdLul21plP4f8tfpTW5Ruz8/me0qdTD3OX2E=
+ b=Jy2mL7L3izdpzFtpVGO9QuCdODR6LJMjQNw39a648rsD48Uyjjl+3nDM4zsHoGF5I
+ L7osVriGl84sp79gtjIqVUrx/W2p0uuPVVQ8+d4wJ4oyRNEWLVa/+JoyhTBWNuyOtg
+ l3vtSB91ABIFBmE2OE2E6LPU+pFZ7fg3gRlrMP6U=
 To: John.C.Harrison@Intel.com, chris@chris-wilson.co.uk,
  daniele.ceraolospurio@intel.com, gregkh@linuxfoundation.org,
  intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
@@ -34,15 +34,15 @@ To: John.C.Harrison@Intel.com, chris@chris-wilson.co.uk,
  jouni.hogander@intel.com, rodrigo.vivi@intel.com,
  tvrtko.ursulin@linux.intel.com
 From: <gregkh@linuxfoundation.org>
-Date: Wed, 15 Mar 2023 09:03:24 +0100
-Message-ID: <1678867404159167@kroah.com>
+Date: Wed, 15 Mar 2023 09:03:36 +0100
+Message-ID: <167886741649136@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/i915: Don't use BAR mappings for ring
- buffers with LLC" has been added to the 4.14-stable tree
+ buffers with LLC" has been added to the 4.19-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,12 +64,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/i915: Don't use BAR mappings for ring buffers with LLC
 
-to the 4.14-stable tree which can be found at:
+to the 4.19-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-i915-don-t-use-bar-mappings-for-ring-buffers-with-llc.patch
-and it can be found in the queue-4.14 subdirectory.
+and it can be found in the queue-4.19 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -114,7 +114,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1314,7 +1314,7 @@ int intel_ring_pin(struct intel_ring *ri
+@@ -1083,7 +1083,7 @@ int intel_ring_pin(struct intel_ring *ri
  	if (unlikely(ret))
  		return ret;
  
@@ -123,7 +123,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  		addr = (void __force *)i915_vma_pin_iomap(vma);
  	else
  		addr = i915_gem_object_pin_map(vma->obj, map);
-@@ -1346,7 +1346,7 @@ void intel_ring_unpin(struct intel_ring
+@@ -1118,7 +1118,7 @@ void intel_ring_unpin(struct intel_ring
  	/* Discard any unused bytes beyond that submitted to hw. */
  	intel_ring_reset(ring, ring->tail);
  
@@ -136,4 +136,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from John.C.Harrison@Intel.com are
 
-queue-4.14/drm-i915-don-t-use-bar-mappings-for-ring-buffers-with-llc.patch
+queue-4.19/drm-i915-don-t-use-bar-mappings-for-ring-buffers-with-llc.patch
