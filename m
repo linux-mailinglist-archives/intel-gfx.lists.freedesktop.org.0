@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01736BAF47
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 12:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B696BAF60
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 12:36:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1205210E9BF;
-	Wed, 15 Mar 2023 11:31:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0613710E9BF;
+	Wed, 15 Mar 2023 11:36:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2615 seconds by postgrey-1.36 at gabe;
- Wed, 15 Mar 2023 11:31:56 UTC
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E921410E9B9;
- Wed, 15 Mar 2023 11:31:56 +0000 (UTC)
-Received: from 91-156-4-134.elisa-laajakaista.fi ([91.156.4.134]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1pcOfU-006udF-9c;
- Wed, 15 Mar 2023 12:47:41 +0200
-Message-ID: <b10d5ada60ab823a09b64f3bfd79db2dd601d5fd.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>, Tvrtko Ursulin
- <tvrtko.ursulin@intel.com>, Jani Nikula <jani.nikula@intel.com>, Ville
- =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Date: Wed, 15 Mar 2023 12:47:38 +0200
-In-Reply-To: <5bbe7093-791e-5653-850b-aea343db3f3f@I-love.SAKURA.ne.jp>
-References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
- <5bbe7093-791e-5653-850b-aea343db3f3f@I-love.SAKURA.ne.jp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-1 
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E88810E9B9;
+ Wed, 15 Mar 2023 11:36:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678880213; x=1710416213;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=nkqyMxRNva0z2Cgsg9OnRa7fNjNuRp3O0LPdct6RpOI=;
+ b=KmPcsThAGfMF8/Zs0sA4k99l5uz2C+ampD70s1nPjyhtIek0h0xin9yR
+ Qa3Y6CPDG1M5nkGkryrUfFwPfAZNuRD5eBPxJTAHqy1J072gLkkVrKCZ1
+ z7KZoZ9lzDQahCmugfZ8kBahzJRwlOE5lWcd8o1c+iQmqUgg61Tuu+VRa
+ lYDfTbx8jXeUimERL3OSMYlT4k0TXcFRSfP4d34eV5dH1lW30+Zg4lXlJ
+ I0pNu4LEywNyOps5bIeD7B3PlvGmwa7Ib6evo2zQIdX6K8XewfvSgxIG1
+ KtEP6XFHcUxvvvj5Su6KOM74K3mo9oac5k6OMjHStIdjiMWJMfv1YYZ4Y A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="336365692"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="336365692"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 04:36:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="672706059"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="672706059"
+Received: from mriahix-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.221.151])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 04:36:50 -0700
+Date: Wed, 15 Mar 2023 12:36:22 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Message-ID: <ZBGttkQsXkxu/nlt@ashyti-mobl2.lan>
+References: <20230315105446.5858-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: avoid flush_scheduled_work()
- usage
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230315105446.5858-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Clarify seemingly unaccounted
+ obj refcount inc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,38 +59,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2023-03-14 at 20:21 +0900, Tetsuo Handa wrote:
-> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a
-> macro") says, flush_scheduled_work() is dangerous and will be forbidden.
->=20
-> Now that i915 is the last flush_scheduled_work() user, for now let's
-> start with blind conversion inside the whole drivers/gpu/drm/i915/
-> directory. Jani Nikula wants to use two workqueues in order to avoid
-> adding new module globals, but I'm not familiar enough to audit and
-> split into two workqueues.
->=20
-> Link: https://lkml.kernel.org/r/87sfeita1p.fsf@intel.com
-> Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Hi Nirmoy,
+
+On Wed, Mar 15, 2023 at 11:54:46AM +0100, Nirmoy Das wrote:
+> Add a comment why there is a obj refcount inc before installing
+> the vm_ops for the mmap call. Also remove the invalid older comment
+> as drm API(drm_gem_prime_mmap()) will hold an obj reference before
+> calling this driver mmap callback so we can't have 0-refcnted
+> object here.
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+
+fine with me!
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Andi
+
 > ---
-> Changes in v2:
->   Add missing alloc_workqueue() failure check.
-
-Hi,
-
-Thanks for your patch! But it seems that you only fixed that failure
-check, without making the other change Jani proposed, namely, move the
-work to the i915 struct instead of making it a global.
-
-I'm working on that now.
-
---
-Cheers,
-Luca.
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> index d3c1dee16af2..0bc8c3818443 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> @@ -952,9 +952,10 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+>  						  vma_pages(vma));
+>  	if (node && drm_vma_node_is_allowed(node, priv)) {
+>  		/*
+> -		 * Skip 0-refcnted objects as it is in the process of being
+> -		 * destroyed and will be invalid when the vma manager lock
+> -		 * is released.
+> +		 * When we install vm_ops for mmap we are too late for
+> +		 * the vm_ops->open() which increases the ref_count of
+> +		 * this obj and then it gets decreased by the vm_ops->close().
+> +		 * To balance this increase the obj ref_count here.
+>  		 */
+>  		if (!node->driver_private) {
+>  			mmo = container_of(node, struct i915_mmap_offset, vma_node);
+> -- 
+> 2.39.0
