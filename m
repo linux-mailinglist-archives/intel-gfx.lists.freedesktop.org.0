@@ -2,51 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CBE6BAD82
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 11:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A11D16BAE5E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 12:00:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4936E10E994;
-	Wed, 15 Mar 2023 10:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB24610E9A6;
+	Wed, 15 Mar 2023 11:00:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C371010E994
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 10:21:08 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035F910E9A5;
+ Wed, 15 Mar 2023 11:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678875668; x=1710411668;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0MXF/4WjU4+mncyxIBsoVo+H7ZfmOWgyhjS8WTT41qs=;
- b=mMulJTjOpeCfvwFSdy6d9a8quZeiDuqMxPVV36aN43Vc3re2Mz7cZg7e
- OhPcrrWBLL/opmxwAlHB/DyujoOXeJJMU6tk0Kd64C4AWV4Lpdhg/6afC
- NcTjHYWlpvSQZhay3sRSg8xIBtpZ2a1A79npogJyY3VSEmy/RoJ/6H/1N
- RQkv09DuRnX2oy5rOsgWv5HK6J+ii2YAzaNtFao0erbpvUFI5W0mkYqrR
- 8idsCjDRIZIIJTxr9qb44ASy7ctojYGAhIaFD7w9M4c1tKXwRVH83uf0V
- 3hdOmP2Y0G3OaPTOIn75WD4LArhOwafcM7GmZtdUbfxycP9cZIJBtEvvI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="336353888"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="336353888"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 03:21:08 -0700
+ t=1678878048; x=1710414048;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=IK2fwQNrf5b7/8mnntrBn4P8KxjF+2u1eIoV1gLvRBQ=;
+ b=gI3KaaE9RFs2klykGJOVQWnaoIlR9rgbSKtWRjfcTsQXsyS3NXPbZYVA
+ iNShZ8TGbNPreGH9f4sn3vSRXVOV9wZmUdnCjjabPmB/BXQhkxbmVVFoY
+ HzAvyt0WxXIVMqCqTeXVzbP7aEKi3TNLwaOn8/dp+s4UByVyf0YiAqt42
+ H7eIAuWSCrdGwH9jL0cBbnY/xmnvZggi0xhJ5AwLwhtAUF21YWBv+ePOk
+ wREehCqNDNFgIZt2qokpYbqTE/3+/q5+i1jJpPoDl0Em5boF0iUQthVPA
+ Ool8e47svgP/JhmGGPus6na+KrbTjQTDuVNDFF4nh23dafXv4qIXRR551 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="317325449"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="317325449"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 04:00:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="711878170"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="711878170"
-Received: from wujunyox-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.32])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 03:21:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Das, Nirmoy" <nirmoy.das@linux.intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <2c3efd89-ca2f-6d89-7602-9805d9974fe0@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230309081645.385650-1-jani.nikula@intel.com>
- <2c3efd89-ca2f-6d89-7602-9805d9974fe0@linux.intel.com>
-Date: Wed, 15 Mar 2023 12:21:04 +0200
-Message-ID: <87o7ou5n8v.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="803242312"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="803242312"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga004.jf.intel.com with ESMTP; 15 Mar 2023 04:00:46 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 15 Mar 2023 04:00:46 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 15 Mar 2023 04:00:46 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Wed, 15 Mar 2023 04:00:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UxlJn+LTjpBXX+easm3q/zKQpCeKDV2z+AGnRPpIaVEmliidwGxFeA1YfCqKKt1+0FIcqS5ZbmX7K/pyVSUxCPUNYRl+HE/Oc+jBpuYSuANU9KVLYSO3vz94Kmtz/Hyl33wyqhJt/DZ5t374j6fzuP6/fDPClbk+JiJYPS7i5PkJYT5I+YIe4Zh5yZWXqv0xXuFS2Ca50hbTHXMwKCb7ukHTlkAHUFleun/O9kcAK2FucJm9cFgGVOooFCNiyKF7Df/Zt7Yh4AjI/sSsaTYiNrLT3b5RkYYYwYSTHyBOSXdVw7rfRmufQ34nfsUmPRlKyDntF1U+kg7/nSdGJfuQNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hlz6/mk5CLeeNrejrR3lkP1BoIzjFpwImrGaNFPMtcA=;
+ b=dY5qIUWrReLjqM8Un6V8r9vqTQRz9DcfVDkDK3hIt+yQrCSKRTOpbW6ya27mwnxn1Etq3F/HNv2HMz27GPHYg9IfkgI/LT/UhDqSjO5MhLUxygCmxvhKn3vR5ghr7ccgwiqJZFgGg0mqmkZvWyr2GvdJ0e7+z5+6d0PRvu62TAsktEZCSdVr/akQBcYIvNSowYiPTKH3k1bBqrT1aiQon9+FKKlPDzzjCQEQ2/0wh7620Ylc7zeehWrsBU392/SQzDtWtCKqMhvDlM+MTDJTt/nuZaLhggudP8IjakwpXn9cAEGWn0YZTkUQEc+pZiCE7pldRweiFwHKvErM//TS3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
+ CY8PR11MB7780.namprd11.prod.outlook.com (2603:10b6:930:78::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.26; Wed, 15 Mar 2023 11:00:44 +0000
+Received: from DS7PR11MB5966.namprd11.prod.outlook.com
+ ([fe80::b00e:ac74:158e:1c7e]) by DS7PR11MB5966.namprd11.prod.outlook.com
+ ([fe80::b00e:ac74:158e:1c7e%4]) with mapi id 15.20.6178.026; Wed, 15 Mar 2023
+ 11:00:44 +0000
+Date: Wed, 15 Mar 2023 18:36:08 +0800
+From: Yan Zhao <yan.y.zhao@intel.com>
+To: Sean Christopherson <seanjc@google.com>
+Message-ID: <ZBGfmLuORj+ZBziv@yzhao56-desk.sh.intel.com>
+References: <20230311002258.852397-1-seanjc@google.com>
+ <20230311002258.852397-21-seanjc@google.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230311002258.852397-21-seanjc@google.com>
+X-ClientProxiedBy: SG2PR01CA0154.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::34) To DS7PR11MB5966.namprd11.prod.outlook.com
+ (2603:10b6:8:71::6)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: make kobj attributes const
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|CY8PR11MB7780:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e9fe086-a66a-41e5-0d37-08db254485e8
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OAPNw3m4+Wkndy9N74d0iUuT33GUA/Hn56JVzdMHPkAGmdIBqoiHmOxppbHm/eC2aQN9gweA0K6KBbv5fRr+dn+Ng7txuNbCsWJDeqQQQI3UgaxFMZW1pBNmhpUVlPIvxsNfpsOSOMaY7Lxxud82oXQYHYvYBedI1bVKhVif3Z79nNFzVXtr7hMa0f7qolE0Mpih+t2OLAmZofBhErR7oIAgkPTC4WbH8E2gAQNVIdB0weRGWHjOmUZEoP3RWRL78R4OjXF1Ag0Yd945354wl1FIvHV1n56o7P4DN94rpjKm1qNamhbctQVmae6aGw+hrwPEGflbujiypk0H2VZohI1RBdABik/Z/PfRRF14i8kiWa1d6tOFVYVwDhnmnJpr5XPDng8mAyjJMBOja6SdaY1IDg0ujbg15a9I7NOh0axHGSswd0cBKaeOj6mM7GKZuNXZdYeQ2HDyNmGzpu/JfgqrVGTdYELIkquIR3v0Vqx71lZn4BNFfgKoUPHJ7ZgdrdZVBaNZgHiLyh5zDTzCADvJvR63N8KnfvIQkp4iC4kSscO47H3HeAt+79411ECeEDqS/R/C6/Rb+Ushw8z+IyIbTxqZaKIiPOVUiJkGfkxck769GupsRu5Okng1JqmA09veOnuUFG9hAVRxqsRZgoITnLbChdgS3JDo2J1AA34Zpa9cFW5gc2xOpm0AOeQAvq8lSYMZ9RiS4oYLEJyWen/12iYOhU9aXilB+BSLT1tttHCA75fTsmS7dS456/uR
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(366004)(346002)(376002)(396003)(39860400002)(451199018)(6486002)(6916009)(66556008)(66946007)(186003)(66476007)(8676002)(41300700001)(4326008)(5660300002)(83380400001)(8936002)(26005)(6506007)(6666004)(6512007)(316002)(478600001)(54906003)(2906002)(82960400001)(38100700002)(3450700001)(86362001)(26730200005)(19860200003)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IPq4shFE2C9bVerqXsk2YoOGHZBjbVyAqU310dxm6R0FN7rknnw6iK/sHqu4?=
+ =?us-ascii?Q?hIOAAkpdlmWng7oAAyEL6r6QPkbJfo80r8KcIqYshd9cxQtx7WuXcs4/SomQ?=
+ =?us-ascii?Q?CIMka2mX2fMwp60AOwytZKExyoOhsC1DO/15hkCZEoy8aLZUKM3a104+Bklj?=
+ =?us-ascii?Q?urDiXTBfSFQbZjgTQ5hZyfhbhW3/mKXevxZMWB9fDJi25mTw+1lrWEJE6nbh?=
+ =?us-ascii?Q?mvZQQcOkhRvAqI+VZaa3pyh5MjvU4qGncydDCudliz77YQo/AyaEAA3DTWMa?=
+ =?us-ascii?Q?XqePX/XMAmLnKol3nYJnJb3NUN6Fu6qsioYXddTiDr+wjvXEvfst3nkKSVtC?=
+ =?us-ascii?Q?C0yKJuMXcwWii9ejiBChDudG0E0nMS4ln0QM1oIk4qDlvhQ4zFh+kiy3i1Rj?=
+ =?us-ascii?Q?g0GZ+Vwl9DgB7Pj46E5/lX+aRgDqY4pJ49p6t9dtckzmD9J91HYYIVXUfKbq?=
+ =?us-ascii?Q?HJyrTriwmmh6b+fqFQ3ZPtmra5Fu6i+wi3kZaQqmA5oQygf1f2e5JPWMs3Wz?=
+ =?us-ascii?Q?PdDW9fnOXc6MH+ngp76NgIo2nLhD9sWEiqsHeJiD7Hl9NxXhkxM8/PJjRxxD?=
+ =?us-ascii?Q?CmixT+us6whKcXEfUQuOIgPJl5LENw0pndcEyiSE7C9cdLUYkuaqOhbavuhA?=
+ =?us-ascii?Q?zQWybxAXdAznsTiqwKiyot3wFoiRp7Yr5xbvIoPm/aUtHjICYyziDK02CA24?=
+ =?us-ascii?Q?NY86r4tkbN79xoEOAeZJbZLpIg7TE0drcgxQhoFC1x6kdFmua9gMBCJbebeq?=
+ =?us-ascii?Q?mHY+zGC6G2b9qztqdcI/QZXb1swTSnuC5fUqnNiSm45MNuFOO9OfJD5hBwdk?=
+ =?us-ascii?Q?P/Sj9ewAsc17Vcf84AGeMDN3rHxwsQ+BCQJOFpQUo1LAvbhFM9H/TEjVz+0+?=
+ =?us-ascii?Q?AQBAba4bOG8QKwFBq2Nr1lBdLzZ8y7VzXkrmCpp8xscZHYLLYCcEX9HtyC82?=
+ =?us-ascii?Q?mQDtRv8t2h6qQ3nmygGN2v3+FABYT8M1pX2VPF69sdDDGGllR63df51Px80T?=
+ =?us-ascii?Q?Qd+fxRmA9yVsnOvEqAkcgmPdaMr2RR8Jp7T4wp+2Doyk5d4XuL+ZZSHEMjbS?=
+ =?us-ascii?Q?bDjZSZl1bY07lZeJyZlAPKd1Yk/IF7GfFqt7dbL97bquMi6TKrozH8SEEuDY?=
+ =?us-ascii?Q?PON70+F71YMUPQ1VnAeHyBavee5pSPROH6vmjo1ATa1chsiSCc/v3lB4Qqmv?=
+ =?us-ascii?Q?L3yCZsZ6LCQBDFJCcfglYynxvKyH/ELm2lMJgqR3Qunp9H4g4ayqBCJ6605+?=
+ =?us-ascii?Q?QsVYKz+8XctQDZZO7/nlpv0sYsHZRKHkeBjAt+c7IG/xncJDr0dIyEshAvZl?=
+ =?us-ascii?Q?NOqLbs1C0H7HcNT9Ks29HQCH7xNYagZCKa3SQafG8PBCbCqiZysuP6byyBAe?=
+ =?us-ascii?Q?pqQgMsujyOT/YiIRkjS8WHzsfdXLfU5OQNcT3gMcz8DJXgASg1hmZJTODObg?=
+ =?us-ascii?Q?jZxHgsewtiYrNpdVw50t2mnzmmZ0tyye3gdSN7Wz+L7mxOvQ6xzLhEZQHEJy?=
+ =?us-ascii?Q?pztH3fBWimWca5GYdMwMsWBAsGE3/Zy2G89oeuPj9LosVj/lwTCHQlw+QwxW?=
+ =?us-ascii?Q?tPQ0ggINctVVQ6ECfFCY4gLUJPLpllo/dw9FsjOLXAU3qZE1seJ2qI8XS9y+?=
+ =?us-ascii?Q?Ig=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e9fe086-a66a-41e5-0d37-08db254485e8
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 11:00:43.9513 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: J+UMm2WgbH0D8xMlgWRnD4G5ox+cq/nyB8hTAbRTuwAz09l7G4DgEaJJIdKEsq5HJvD9NXiYwl5lCp3EidEc/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7780
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 20/27] KVM: x86/mmu: Use page-track
+ notifiers iff there are external users
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,214 +145,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Reply-To: Yan Zhao <yan.y.zhao@intel.com>
+Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 Mar 2023, "Das, Nirmoy" <nirmoy.das@linux.intel.com> wrote:
-> On 3/9/2023 9:16 AM, Jani Nikula wrote:
->> There's no need for any of these to be mutable, constify:
->>
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000020 files.0
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000050 files.1
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 preempt_timeout_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 timeslice_duration_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 timeslice_duration_def
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 preempt_timeout_def
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 max_spin_def
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 stop_timeout_def
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 heartbeat_interval_def
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 name_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 class_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 inst_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 mmio_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 caps_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 all_caps_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 max_spin_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 stop_timeout_attr
->> drivers/gpu/drm/i915/gt/sysfs_engines.o: .data	0000000000000038 heartbeat_interval_attr
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
->
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+On Fri, Mar 10, 2023 at 04:22:51PM -0800, Sean Christopherson wrote:
+> Disable the page-track notifier code at compile time if there are no
+> external users, i.e. if CONFIG_KVM_EXTERNAL_WRITE_TRACKING=n.  KVM itself
+> now hooks emulated writes directly instead of relying on the page-track
+> mechanism.
+> 
+> Signed-off-by: Sean Christopherson <seanjc@google.com>
+> ---
+>  arch/x86/include/asm/kvm_host.h       |  2 ++
+>  arch/x86/include/asm/kvm_page_track.h |  2 ++
+>  arch/x86/kvm/mmu/page_track.c         |  9 ++++-----
+>  arch/x86/kvm/mmu/page_track.h         | 29 +++++++++++++++++++++++----
+>  4 files changed, 33 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
+> index 1a4225237564..a3423711e403 100644
+> --- a/arch/x86/include/asm/kvm_host.h
+> +++ b/arch/x86/include/asm/kvm_host.h
+> @@ -1265,7 +1265,9 @@ struct kvm_arch {
+>  	 * create an NX huge page (without hanging the guest).
+>  	 */
+>  	struct list_head possible_nx_huge_pages;
+> +#ifdef CONFIG_KVM_EXTERNAL_WRITE_TRACKING
+>  	struct kvm_page_track_notifier_head track_notifier_head;
+> +#endif
+>  	/*
+>  	 * Protects marking pages unsync during page faults, as TDP MMU page
+>  	 * faults only take mmu_lock for read.  For simplicity, the unsync
+> diff --git a/arch/x86/include/asm/kvm_page_track.h b/arch/x86/include/asm/kvm_page_track.h
+> index deece45936a5..53c2adb25a07 100644
+> --- a/arch/x86/include/asm/kvm_page_track.h
+> +++ b/arch/x86/include/asm/kvm_page_track.h
+The "#ifdef CONFIG_KVM_EXTERNAL_WRITE_TRACKING" can be moved to the
+front of this file?
+All the structures are only exposed for external users now.
 
-Thanks for the reviews, pushed to drm-intel-gt-next.
-
-BR,
-Jani.
-
->
->> ---
->>   drivers/gpu/drm/i915/gt/sysfs_engines.c | 36 ++++++++++++-------------
->>   1 file changed, 18 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> index 7eae3265f8cd..021f51d9b456 100644
->> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> @@ -27,7 +27,7 @@ name_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%s\n", kobj_to_engine(kobj)->name);
->>   }
->>   
->> -static struct kobj_attribute name_attr =
->> +static const struct kobj_attribute name_attr =
->>   __ATTR(name, 0444, name_show, NULL);
->>   
->>   static ssize_t
->> @@ -36,7 +36,7 @@ class_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_class);
->>   }
->>   
->> -static struct kobj_attribute class_attr =
->> +static const struct kobj_attribute class_attr =
->>   __ATTR(class, 0444, class_show, NULL);
->>   
->>   static ssize_t
->> @@ -45,7 +45,7 @@ inst_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_instance);
->>   }
->>   
->> -static struct kobj_attribute inst_attr =
->> +static const struct kobj_attribute inst_attr =
->>   __ATTR(instance, 0444, inst_show, NULL);
->>   
->>   static ssize_t
->> @@ -54,7 +54,7 @@ mmio_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "0x%x\n", kobj_to_engine(kobj)->mmio_base);
->>   }
->>   
->> -static struct kobj_attribute mmio_attr =
->> +static const struct kobj_attribute mmio_attr =
->>   __ATTR(mmio_base, 0444, mmio_show, NULL);
->>   
->>   static const char * const vcs_caps[] = {
->> @@ -125,7 +125,7 @@ caps_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return __caps_show(engine, engine->uabi_capabilities, buf, true);
->>   }
->>   
->> -static struct kobj_attribute caps_attr =
->> +static const struct kobj_attribute caps_attr =
->>   __ATTR(capabilities, 0444, caps_show, NULL);
->>   
->>   static ssize_t
->> @@ -134,7 +134,7 @@ all_caps_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return __caps_show(kobj_to_engine(kobj), -1, buf, false);
->>   }
->>   
->> -static struct kobj_attribute all_caps_attr =
->> +static const struct kobj_attribute all_caps_attr =
->>   __ATTR(known_capabilities, 0444, all_caps_show, NULL);
->>   
->>   static ssize_t
->> @@ -183,7 +183,7 @@ max_spin_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->props.max_busywait_duration_ns);
->>   }
->>   
->> -static struct kobj_attribute max_spin_attr =
->> +static const struct kobj_attribute max_spin_attr =
->>   __ATTR(max_busywait_duration_ns, 0644, max_spin_show, max_spin_store);
->>   
->>   static ssize_t
->> @@ -194,7 +194,7 @@ max_spin_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->defaults.max_busywait_duration_ns);
->>   }
->>   
->> -static struct kobj_attribute max_spin_def =
->> +static const struct kobj_attribute max_spin_def =
->>   __ATTR(max_busywait_duration_ns, 0444, max_spin_default, NULL);
->>   
->>   static ssize_t
->> @@ -237,7 +237,7 @@ timeslice_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->props.timeslice_duration_ms);
->>   }
->>   
->> -static struct kobj_attribute timeslice_duration_attr =
->> +static const struct kobj_attribute timeslice_duration_attr =
->>   __ATTR(timeslice_duration_ms, 0644, timeslice_show, timeslice_store);
->>   
->>   static ssize_t
->> @@ -248,7 +248,7 @@ timeslice_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->defaults.timeslice_duration_ms);
->>   }
->>   
->> -static struct kobj_attribute timeslice_duration_def =
->> +static const struct kobj_attribute timeslice_duration_def =
->>   __ATTR(timeslice_duration_ms, 0444, timeslice_default, NULL);
->>   
->>   static ssize_t
->> @@ -288,7 +288,7 @@ stop_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->props.stop_timeout_ms);
->>   }
->>   
->> -static struct kobj_attribute stop_timeout_attr =
->> +static const struct kobj_attribute stop_timeout_attr =
->>   __ATTR(stop_timeout_ms, 0644, stop_show, stop_store);
->>   
->>   static ssize_t
->> @@ -299,7 +299,7 @@ stop_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->defaults.stop_timeout_ms);
->>   }
->>   
->> -static struct kobj_attribute stop_timeout_def =
->> +static const struct kobj_attribute stop_timeout_def =
->>   __ATTR(stop_timeout_ms, 0444, stop_default, NULL);
->>   
->>   static ssize_t
->> @@ -344,7 +344,7 @@ preempt_timeout_show(struct kobject *kobj, struct kobj_attribute *attr,
->>   	return sysfs_emit(buf, "%lu\n", engine->props.preempt_timeout_ms);
->>   }
->>   
->> -static struct kobj_attribute preempt_timeout_attr =
->> +static const struct kobj_attribute preempt_timeout_attr =
->>   __ATTR(preempt_timeout_ms, 0644, preempt_timeout_show, preempt_timeout_store);
->>   
->>   static ssize_t
->> @@ -356,7 +356,7 @@ preempt_timeout_default(struct kobject *kobj, struct kobj_attribute *attr,
->>   	return sysfs_emit(buf, "%lu\n", engine->defaults.preempt_timeout_ms);
->>   }
->>   
->> -static struct kobj_attribute preempt_timeout_def =
->> +static const struct kobj_attribute preempt_timeout_def =
->>   __ATTR(preempt_timeout_ms, 0444, preempt_timeout_default, NULL);
->>   
->>   static ssize_t
->> @@ -400,7 +400,7 @@ heartbeat_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->props.heartbeat_interval_ms);
->>   }
->>   
->> -static struct kobj_attribute heartbeat_interval_attr =
->> +static const struct kobj_attribute heartbeat_interval_attr =
->>   __ATTR(heartbeat_interval_ms, 0644, heartbeat_show, heartbeat_store);
->>   
->>   static ssize_t
->> @@ -411,7 +411,7 @@ heartbeat_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->>   	return sysfs_emit(buf, "%lu\n", engine->defaults.heartbeat_interval_ms);
->>   }
->>   
->> -static struct kobj_attribute heartbeat_interval_def =
->> +static const struct kobj_attribute heartbeat_interval_def =
->>   __ATTR(heartbeat_interval_ms, 0444, heartbeat_default, NULL);
->>   
->>   static void kobj_engine_release(struct kobject *kobj)
->> @@ -447,7 +447,7 @@ kobj_engine(struct kobject *dir, struct intel_engine_cs *engine)
->>   
->>   static void add_defaults(struct kobj_engine *parent)
->>   {
->> -	static const struct attribute *files[] = {
->> +	static const struct attribute * const files[] = {
->>   		&max_spin_def.attr,
->>   		&stop_timeout_def.attr,
->>   #if CONFIG_DRM_I915_HEARTBEAT_INTERVAL
->> @@ -483,7 +483,7 @@ static void add_defaults(struct kobj_engine *parent)
->>   
->>   void intel_engines_add_sysfs(struct drm_i915_private *i915)
->>   {
->> -	static const struct attribute *files[] = {
->> +	static const struct attribute * const files[] = {
->>   		&name_attr.attr,
->>   		&class_attr.attr,
->>   		&inst_attr.attr,
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> @@ -55,6 +55,7 @@ void kvm_slot_page_track_remove_page(struct kvm *kvm,
+>  				     struct kvm_memory_slot *slot, gfn_t gfn,
+>  				     enum kvm_page_track_mode mode);
+>  
+> +#ifdef CONFIG_KVM_EXTERNAL_WRITE_TRACKING
+>  enum pg_level kvm_page_track_max_mapping_level(struct kvm *kvm, gfn_t gfn,
+>  					       enum pg_level max_level);
+>  
+> @@ -64,5 +65,6 @@ kvm_page_track_register_notifier(struct kvm *kvm,
+>  void
+>  kvm_page_track_unregister_notifier(struct kvm *kvm,
+>  				   struct kvm_page_track_notifier_node *n);
+> +#endif /* CONFIG_KVM_EXTERNAL_WRITE_TRACKING */
+>  
+>  #endif
