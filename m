@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71106BABE5
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 10:16:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8BDB6BABF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Mar 2023 10:20:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF7EC10E9D7;
-	Wed, 15 Mar 2023 09:16:24 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B7B10E98B;
- Wed, 15 Mar 2023 09:16:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E59F210E028;
+	Wed, 15 Mar 2023 09:20:54 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7BD010E028;
+ Wed, 15 Mar 2023 09:20:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678871782; x=1710407782;
+ t=1678872053; x=1710408053;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=6zu71dEOVPVS2BWnImOqjsrVz2JqGQvSt6WoeVfcT18=;
- b=N2dQ8Yeprw/zT7SfiibaAB0Br9Hgw6oJOQYwlxiBBqHVpIl/sYN00XpE
- WTwpFIiz4b0om+YsZKM4GBAZBxQ4+ycgFC3lj2G+QVvuYDLspZ25rDL9P
- vEdytuMtOS5mlLA0TpeiF3CEOYBSNDbB8c+4LkcPBUeXTRDxnLPG7o/wa
- HY32XjFxTWJXrdlwUZxqzzFP+x1kWSjQwZqJ37WrNpYSwthN+N6lntLpb
- UfZu28gFFlknb59LlzrQaTG1h2oSD17jPWxKpyhtxQ7ZrSZmThqqmY93d
- fOci5arzeIipAouRxGge0O79L6MtII/dBdkMhNOkTuEq9+XWJsMqOZy16 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="321494545"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="321494545"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 02:16:21 -0700
+ bh=VToJ+hT7t5Ir5fX7X1PbI/PvrKbWdzgNvXOVGo94AaU=;
+ b=YHD8/ZxglS5xScS2yV5P+3ZbFJvnSpkgPFrFHxv0/zM/Sx4T0YpJ1CZ4
+ Z3kx0JhwFdbjL2GyZuLnW4f1+LQE3fn54CIhTUbK5jB4c9NOPN/zdIGnA
+ H0saHHGYapyXmSbtRbpIddpKBDNRPISmXNB7meK1hX1padFbpqZtuMlWa
+ vsU7l6yMbyt8qdaDpt6O/tLaUS6Wbvm5ILpEwPmVfyYUQRq+eTUsj8IT1
+ KWWe2DrH50qc0TXfG5yMD2dqc7MuHWA4XPKM8DiEtcyhYFSKnc5HHH5+U
+ 7BvL/B+bdB82VeOn5NQsxYbzEIGz8dP1OcycmlPkeQ2m4xjvZTcrmoP+Q A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="365333116"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="365333116"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 02:20:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="853538720"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="853538720"
-Received: from kjeldbeg-mobl.ger.corp.intel.com (HELO [10.249.254.225])
- ([10.249.254.225])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 02:16:19 -0700
-Message-ID: <6cff8c19-0ab6-4b03-d778-ad57aa207b98@intel.com>
-Date: Wed, 15 Mar 2023 11:16:16 +0200
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="629387359"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="629387359"
+Received: from mchanan-mobl.ger.corp.intel.com (HELO [10.213.222.39])
+ ([10.213.222.39])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2023 02:20:51 -0700
+Message-ID: <6f83991b-e4d6-b573-9e1c-074f2c612ff7@linux.intel.com>
+Date: Wed, 15 Mar 2023 09:20:49 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230314175832.1506427-1-alan.previn.teres.alexis@intel.com>
-Content-Language: en-US, en-GB
-From: Eero Tamminen <eero.t.tamminen@intel.com>
-Organization: Intel
-In-Reply-To: <20230314175832.1506427-1-alan.previn.teres.alexis@intel.com>
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20230314121740.1195358-1-tvrtko.ursulin@linux.intel.com>
+ <ZBC8GxZjeR5+bHOm@orsosgc001.jf.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZBC8GxZjeR5+bHOm@orsosgc001.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: limit drm-errors or
- warning on firmware API failures
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Use actual period when
+ calculating client busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,216 +64,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-Tested the patch with Ubuntu 22.04 desktop + Linux 6.2-rc3 (drm-tip) 
-kernel, on TGL-H HW.
+Hi Umesh,
 
-With it, this log spam has disappeared:
-----------------------------------------------------
-[ 8691.608933] i915 0000:00:02.0: [drm] PXP firmware failed arb session 
-init request ret=[0x0000101f]
-[ 8691.709442] i915 0000:00:02.0: [drm] *ERROR* arb session failed to go 
-in play
-----------------------------------------------------
+On 14/03/2023 18:25, Umesh Nerlige Ramappa wrote:
+> lgtm,
+> 
+> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-There's now just a single message on boot:
-----------------------------------------------------
-[   11.674177] ------------[ cut here ]------------
-[   11.674183] i915 0000:00:02.0: PXP init-arb-session-15 failed due to 
-BIOS/SOC:0x0000101a:ERR_PLATFORM_CONFIG
-[   11.674222] WARNING: CPU: 12 PID: 123 at 
-drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:345 
-intel_pxp_tee_cmd_create_arb_session+0x19a/0x1e0 [i915]
-...
-[   11.674961] Call Trace:
-[   11.674966]  <TASK>
-[   11.674970]  ? pxp_session_work+0x123/0x1d0 [i915]
-[   11.675130]  pxp_session_work+0x123/0x1d0 [i915]
-[   11.675286]  process_one_work+0x1d9/0x3e0
-[   11.675295]  worker_thread+0x21b/0x3d0
-[   11.675301]  ? __pfx_worker_thread+0x10/0x10
-[   11.675307]  kthread+0xe9/0x110
-[   11.675311]  ? __pfx_kthread+0x10/0x10
-[   11.675315]  ret_from_fork+0x29/0x50
-[   11.675323]  </TASK>
-[   11.675325] ---[ end trace 0000000000000000 ]---
-----------------------------------------------------
+Thanks - I had one second thought though. See below please.
 
+> On Tue, Mar 14, 2023 at 12:17:40PM +0000, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> On a slow machine, or with many processes and/or file descriptors to
+>> parse, the period of the scanning loop can drift significantly from the
+>> assumed value. This results in artificially inflated client busyness
+>> percentages.
+>>
+>> To alleviate the issue take some real timestamps and use actual elapsed
+>> time when calculating relative busyness.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> ---
+>> tools/intel_gpu_top.c | 39 ++++++++++++++++++++++++++++++++++++++-
+>> 1 file changed, 38 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>> index e13e35b71f4b..af4b350da8e4 100644
+>> --- a/tools/intel_gpu_top.c
+>> +++ b/tools/intel_gpu_top.c
+>> @@ -43,6 +43,7 @@
+>> #include <sys/types.h>
+>> #include <unistd.h>
+>> #include <termios.h>
+>> +#include <time.h>
+>> #include <sys/sysmacros.h>
+>>
+>> #include "igt_perf.h"
+>> @@ -2524,6 +2525,38 @@ static void show_help_screen(void)
+>> "\n");
+>> }
+>>
+>> +static int gettime(struct timespec *ts)
+>> +{
+>> +    memset(ts, 0, sizeof(*ts));
+>> +
+>> +#ifdef CLOCK_MONOTONIC_RAW
+>> +    if (!clock_gettime(CLOCK_MONOTONIC_RAW, ts))
+>> +        return 0;
+>> +#endif
+>> +#ifdef CLOCK_MONOTONIC_COARSE
+>> +    if (!clock_gettime(CLOCK_MONOTONIC_COARSE, ts))
+>> +        return 0;
+>> +#endif
 
-	- Eero
+So I copied this (with some edits) from igt_core.c but I think I should 
+actually remove the CLOCK_MONOTONIC_COARSE option. The usage in 
+intel_gpu_top is not performance sensitive and tick granularity actually 
+defeats to point of this patch.
 
-On 14.3.2023 19.58, Alan Previn wrote:
-> MESA driver is creating protected context on every driver handle
-> creation to query caps bits for app. So when running CI tests,
-> they are observing hundreds of drm_errors when enabling PXP
-> in .config but using SOC fusing or BIOS configuration that cannot
-> support PXP sessions.
-> 
-> The fixes tag referenced below was to resolve a related issue
-> where we wanted to silence error messages, but that case was due
-> to outdated IFWI (firmware) that definitely needed an upgrade and
-> was, at that point, considered a one-off case as opposed to today's
-> realization that default CI was enabling PXP in kernel config for
-> all testing.
-> 
-> So with this patch, let's strike a balance between issues that is
-> critical but are root-caused from HW/platform gaps (louder drm-warn
-> but just ONCE) vs other cases where it could also come from session
-> state machine (which cannot be a WARN_ONCE since it can be triggered
-> due to runtime operation events).
-> 
-> Let's use helpers for these so as more functions are added in future
-> features / HW (or as FW designers continue to bless upstreaming of
-> the error codes and meanings), we only need to update the helpers.
-> 
-> NOTE: Don't completely remove FW errors (via drm_debug) or else cusomer
-> apps that really needs to know that content protection failed won't
-> be aware of it.
-> 
-> v2: - Add fixes tag (Trvtko)
-> v3: - Break multi-line drm_dbg strings into separate drm_dbg (Daniele)
->      - Fix couple of typecasting nits (Daniele)
-> 
-> Fixes: b762787bf767 ("drm/i915/pxp: Use drm_dbg if arb session failed due to fw version")
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   .../i915/pxp/intel_pxp_cmd_interface_cmn.h    |  3 +
->   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 77 +++++++++++++++----
->   3 files changed, 67 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> index ae9b151b7cb7..6f6541d5e49a 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> @@ -18,6 +18,9 @@
->   enum pxp_status {
->   	PXP_STATUS_SUCCESS = 0x0,
->   	PXP_STATUS_ERROR_API_VERSION = 0x1002,
-> +	PXP_STATUS_NOT_READY = 0x100e,
-> +	PXP_STATUS_PLATFCONFIG_KF1_NOVERIF = 0x101a,
-> +	PXP_STATUS_PLATFCONFIG_KF1_BAD = 0x101f,
->   	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
->   };
->   
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index 448cacb0465d..7de849cb6c47 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -74,7 +74,7 @@ static int pxp_create_arb_session(struct intel_pxp *pxp)
->   
->   	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, true);
->   	if (ret) {
-> -		drm_err(&gt->i915->drm, "arb session failed to go in play\n");
-> +		drm_dbg(&gt->i915->drm, "arb session failed to go in play\n");
->   		return ret;
->   	}
->   	drm_dbg(&gt->i915->drm, "PXP ARB session is alive\n");
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index d9d248b48093..6f89cd850251 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -19,6 +19,37 @@
->   #include "intel_pxp_tee.h"
->   #include "intel_pxp_types.h"
->   
-> +static bool
-> +is_fw_err_platform_config(u32 type)
-> +{
-> +	switch (type) {
-> +	case PXP_STATUS_ERROR_API_VERSION:
-> +	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
-> +	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
-> +		return true;
-> +	default:
-> +		break;
-> +	}
-> +	return false;
-> +}
-> +
-> +static const char *
-> +fw_err_to_string(u32 type)
-> +{
-> +	switch (type) {
-> +	case PXP_STATUS_ERROR_API_VERSION:
-> +		return "ERR_API_VERSION";
-> +	case PXP_STATUS_NOT_READY:
-> +		return "ERR_NOT_READY";
-> +	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
-> +	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
-> +		return "ERR_PLATFORM_CONFIG";
-> +	default:
-> +		break;
-> +	}
-> +	return NULL;
-> +}
-> +
->   static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
->   				    void *msg_in, u32 msg_in_size,
->   				    void *msg_out, u32 msg_out_max_size,
-> @@ -307,15 +338,22 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
->   				       &msg_out, sizeof(msg_out),
->   				       NULL);
->   
-> -	if (ret)
-> -		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
-> -	else if (msg_out.header.status == PXP_STATUS_ERROR_API_VERSION)
-> -		drm_dbg(&i915->drm, "PXP firmware version unsupported, requested: "
-> -			"CMD-ID-[0x%08x] on API-Ver-[0x%08x]\n",
-> -			msg_in.header.command_id, msg_in.header.api_version);
-> -	else if (msg_out.header.status != 0x0)
-> -		drm_warn(&i915->drm, "PXP firmware failed arb session init request ret=[0x%08x]\n",
-> -			 msg_out.header.status);
-> +	if (ret) {
-> +		drm_err(&i915->drm, "Failed to send tee msg init arb session, ret=[%d]\n", ret);
-> +	} else if (msg_out.header.status != 0) {
-> +		if (is_fw_err_platform_config(msg_out.header.status)) {
-> +			drm_WARN_ONCE(&i915->drm, true,
-> +				      "PXP init-arb-session-%d failed due to BIOS/SOC:0x%08x:%s\n",
-> +				      arb_session_id, msg_out.header.status,
-> +				      fw_err_to_string(msg_out.header.status));
-> +		} else {
-> +			drm_dbg(&i915->drm, "PXP init-arb-session--%d failed 0x%08x:%st:\n",
-> +				arb_session_id, msg_out.header.status,
-> +				fw_err_to_string(msg_out.header.status));
-> +			drm_dbg(&i915->drm, "     cmd-detail: ID=[0x%08x],API-Ver-[0x%08x]\n",
-> +				msg_in.header.command_id, msg_in.header.api_version);
-> +		}
-> +	}
->   
->   	return ret;
->   }
-> @@ -347,10 +385,21 @@ void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
->   	if ((ret || msg_out.header.status != 0x0) && ++trials < 3)
->   		goto try_again;
->   
-> -	if (ret)
-> -		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%d, ret=[%d]\n",
-> +	if (ret) {
-> +		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%u, ret=[%d]\n",
->   			session_id, ret);
-> -	else if (msg_out.header.status != 0x0)
-> -		drm_warn(&i915->drm, "PXP firmware failed inv-stream-key-%d with status 0x%08x\n",
-> -			 session_id, msg_out.header.status);
-> +	} else if (msg_out.header.status != 0) {
-> +		if (is_fw_err_platform_config(msg_out.header.status)) {
-> +			drm_WARN_ONCE(&i915->drm, true,
-> +				      "PXP inv-stream-key-%u failed due to BIOS/SOC :0x%08x:%s\n",
-> +				      session_id, msg_out.header.status,
-> +				      fw_err_to_string(msg_out.header.status));
-> +		} else {
-> +			drm_dbg(&i915->drm, "PXP inv-stream-key-%u failed 0x%08x:%s:\n",
-> +				session_id, msg_out.header.status,
-> +				fw_err_to_string(msg_out.header.status));
-> +			drm_dbg(&i915->drm, "     cmd-detail: ID=[0x%08x],API-Ver-[0x%08x]\n",
-> +				msg_in.header.command_id, msg_in.header.api_version);
-> +		}
-> +	}
->   }
-> 
-> base-commit: 07f982ec08c9bfc4aa82d98022111126cd638a0b
+Okay to keep the r-b if I remove it?
+
+Regards,
+
+Tvrtko
+
+>> +
+>> +    return clock_gettime(CLOCK_MONOTONIC, ts);
+>> +}
+>> +
+>> +static unsigned long elapsed_us(struct timespec *prev, unsigned int 
+>> period_us)
+>> +{
+>> +    unsigned long elapsed;
+>> +    struct timespec now;
+>> +
+>> +    if (gettime(&now))
+>> +        return period_us;
+>> +
+>> +    elapsed = ((now.tv_nsec - prev->tv_nsec) / 1000 +
+>> +               (unsigned long)USEC_PER_SEC * (now.tv_sec - 
+>> prev->tv_sec));
+>> +
+>> +    *prev = now;
+>> +
+>> +    return elapsed;
+>> +}
+>> +
+>> int main(int argc, char **argv)
+>> {
+>>     unsigned int period_us = DEFAULT_PERIOD_MS * 1000;
+>> @@ -2537,6 +2570,7 @@ int main(int argc, char **argv)
+>>     char *pmu_device, *opt_device = NULL;
+>>     struct igt_device_card card;
+>>     char *codename = NULL;
+>> +    struct timespec ts;
+>>
+>>     /* Parse options */
+>>     while ((ch = getopt(argc, argv, "o:s:d:pcJLlh")) != -1) {
+>> @@ -2690,6 +2724,7 @@ int main(int argc, char **argv)
+>>
+>>     pmu_sample(engines);
+>>     scan_clients(clients, false);
+>> +    gettime(&ts);
+>>     codename = igt_device_get_pretty_name(&card, false);
+>>
+>>     if (output_mode == JSON)
+>> @@ -2698,6 +2733,7 @@ int main(int argc, char **argv)
+>>     while (!stop_top) {
+>>         struct clients *disp_clients;
+>>         bool consumed = false;
+>> +        unsigned int scan_us;
+>>         int j, lines = 0;
+>>         struct winsize ws;
+>>         struct client *c;
+>> @@ -2720,6 +2756,7 @@ int main(int argc, char **argv)
+>>         t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
+>>
+>>         disp_clients = scan_clients(clients, true);
+>> +        scan_us = elapsed_us(&ts, period_us);
+>>
+>>         if (stop_top)
+>>             break;
+>> @@ -2757,7 +2794,7 @@ int main(int argc, char **argv)
+>>
+>>                     lines = print_client(c, engines, t,
+>>                                  lines, con_w,
+>> -                                 con_h, period_us,
+>> +                                 con_h, scan_us,
+>>                                  &class_w);
+>>                 }
+>>
+>> -- 
+>> 2.37.2
+>>
