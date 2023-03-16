@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A521E6BC8ED
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 09:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 787B76BC904
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 09:25:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A0E10EA80;
-	Thu, 16 Mar 2023 08:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEBB510EC7C;
+	Thu, 16 Mar 2023 08:25:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C898910EC7C
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 08:23:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678955000; x=1710491000;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BG4FiBIgXA6e0Fj7EQMsReh44+vEyre/cgu7gkoVgTw=;
- b=MEphoQm6gZgqVHdjGuOXUiWbX/CLsuTi0kt5KotwWs+4maJoBuMNESvm
- btvR7iXfDf08dpBdjpEVoV5Ww8wE+z8zsdRkNMgOr3csRtTF6az6XRwJp
- 1xyjgxYOC64DrIvPi4KoVBaAiyc/8U4dlHtBU9dKDE0E4TFPaetgHwB9s
- N4sls7FMElORG6pgDqFcV8zlejfq7453bTfn9XPI7Sq01HGWoWXiEhMVY
- /5qEfez1vEmxu/RzQ98HCn2bBwwY5bf+WnrnbF/AR+MjnbCg5TIugEaO2
- pG1ITuSfO1KVV6+KSYX1HhGYwmfQ+kYfbgQi3vw0ENA+VzY5hXyzh4P8o g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="340285480"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="340285480"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 01:23:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="744036794"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="744036794"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga008.fm.intel.com with ESMTP; 16 Mar 2023 01:23:18 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 13:52:32 +0530
-Message-Id: <20230316082232.666630-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0539E10EC7C;
+ Thu, 16 Mar 2023 08:25:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0C96AADE3;
+ Thu, 16 Mar 2023 08:25:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Remove drm_modeset_lock in
- intel_conn_to_vcpi
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Thu, 16 Mar 2023 08:25:24 -0000
+Message-ID: <167895512494.19095.7557184368789335373@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230316082035.567520-1-christian.koenig@amd.com>
+In-Reply-To: <20230316082035.567520-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/7=5D_drm=3A_remove_drm=5Fdev=5Fset=5Fu?=
+ =?utf-8?q?nique?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,38 +41,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
-anymore since all the required locks are taken in atomic check and
-prepare phases.
+== Series Details ==
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
- 1 file changed, 2 deletions(-)
+Series: series starting with [1/7] drm: remove drm_dev_set_unique
+URL   : https://patchwork.freedesktop.org/series/115239/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 2984d2810e42..f957b4bd9c26 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -41,7 +41,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		return 0;
- 	mgr = connector->port->mgr;
- 
--	drm_modeset_lock(&mgr->base.lock, NULL);
- 	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
- 	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
- 	if (drm_WARN_ON(mgr->dev, !payload))
-@@ -53,7 +52,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		goto out;
- 	}
- out:
--	drm_modeset_unlock(&mgr->base.lock);
- 	return vcpi;
- }
- 
--- 
-2.25.1
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/115239/revisions/1/mbox/ not applied
+Applying: drm: remove drm_dev_set_unique
+Applying: drm/tegra: allow compile test on !ARM
+Applying: drm/debugfs: stop calling debugfs_init() for the render node
+Applying: drm/debugfs: rework debugfs directory creation v2
+Applying: drm/debugfs: remove dev->debugfs_list and debugfs_mutex v2
+Applying: drm/debugfs: rework drm_debugfs_create_files implementation
+Applying: drm/debugfs: remove debugfs_root pointer from minor
+error: sha1 information is lacking or useless (drivers/gpu/drm/drm_debugfs.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0007 drm/debugfs: remove debugfs_root pointer from minor
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
