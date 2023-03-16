@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916826BCBF1
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 11:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 295AF6BCBFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 11:07:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0D410EC1E;
-	Thu, 16 Mar 2023 10:05:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7385510EC1E;
+	Thu, 16 Mar 2023 10:07:00 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F28410EC1E
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 10:05:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D634F10EC1E;
+ Thu, 16 Mar 2023 10:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678961119; x=1710497119;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=UfyHUWa60cHArfGcaFMmOLALLYI77NtSGJHaiXNo0yU=;
- b=miM2KuiXh4uToR3n2FIZfW9jJ4XuCjUb3RdKik4zV1u6F50PnfUndPqI
- QkVUUTNxX1pFvG2jNErxPi//0qzOHIUiLhn9FIOk0NXkKQu2lBBjyzA/Q
- +G1oOzWjwvakbj3Xi7+K6OPphTqUOZXUyIVD+HMAEr8vafyAFzYXedu+l
- ZczupvsmZDDyZrn9hXuPydTfljZKOi2tgU6ZJg4Nhcl0P2hF6zChIlV0i
- kzYx9ZKvAaEskphd4ONxZXlcatkgn7qZYSRKuqBfjLTE5t+LbL37k7GxT
- bUFgc9N4+f8iFIESxKO/RO9oqtHFLAUnvvGTWoToe3ECUFLCaiPiIytW7 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="400515203"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="400515203"
+ t=1678961218; x=1710497218;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PCCVVzOikmN0cBVKLHzSm5Ol/IHSBXuKgoy1FFbk9nk=;
+ b=ljXnveL3uzQaMaHUbgo71Tw1huuyAyc9EV65vdVUM6oZ7mEesEKze730
+ xJSYcn03elYRlXD6mJEBngUBfXWGoEQJKYeFJHrUu6DtKhXbkJPO2pWy2
+ avL6xwSS0A8DNOnHAIQwvk87VSVyIpwCa227Z69pEmN8gICms8KFk0Dal
+ rrXSnFu1PSnjhyBGNRG4HlqLEuvtVCYm3p1uEgNFoHhouxL3f77AVIJhj
+ yiO6+Smypap/XuoS2UnpgqaxxA6e+5FPYagYf1qvT6RMcX+9QNwQ4tf4t
+ 4uu9DMjFNVvWRhLtpq8Cz8Fpg+6dxw3CcG/jrg4q8mm2A/SgxBb3nR0T6 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="400515504"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="400515504"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 03:05:18 -0700
+ 16 Mar 2023 03:06:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="853957618"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="853957618"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga005.jf.intel.com with SMTP; 16 Mar 2023 03:05:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Mar 2023 12:05:14 +0200
-Date: Thu, 16 Mar 2023 12:05:14 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Message-ID: <ZBLp2jMspLQ9i3ef@intel.com>
-References: <20230316082232.666630-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="853958567"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="853958567"
+Received: from kflynn1-mobl3.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.236.25])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 03:06:56 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Mar 2023 10:06:48 +0000
+Message-Id: <20230316100649.1261221-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230316082232.666630-1-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Remove drm_modeset_lock in
- intel_conn_to_vcpi
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] intel_gpu_top: Display large pids
+ nicely in interactive mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +59,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 01:52:32PM +0530, Suraj Kandpal wrote:
-> Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
-> anymore since all the required locks are taken in atomic check and
-> prepare phases.
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 2984d2810e42..f957b4bd9c26 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -41,7 +41,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  		return 0;
->  	mgr = connector->port->mgr;
->  
-> -	drm_modeset_lock(&mgr->base.lock, NULL);
->  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
->  	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
->  	if (drm_WARN_ON(mgr->dev, !payload))
-> @@ -53,7 +52,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  		goto out;
->  	}
->  out:
-> -	drm_modeset_unlock(&mgr->base.lock);
->  	return vcpi;
->  }
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-That whole function looks like it something that should be
-part of the drm_dp_mst_helper.c.
+So far the width of the PID column was hardcoded to six characters which
+is not enough on systems with high uptime, where PID numbers can grow
+large, and results in broken line formatting.
 
-Also, it's directly accessing mgr->base.state which is just
-wrong.
+Fix it by tracking the largest width for both the pid and name fields and
+use them dynamically.
 
-And it looks like it can get called from outside the normal
-atomic commit flows (like so many other things in the hdcp
-code, sigh), so what you're doing here is also wrong in
-that case.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tools/intel_gpu_top.c | 66 +++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 58 insertions(+), 8 deletions(-)
 
-So the whole thing looks just very broken to me. Not to
-mention the HDCP vs. MST<->SST switch is also still
-fundementally broken. I'm really tempted to just send
-a patch to nuke the entire HDCP MST code.
-
+diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+index a4302aa389b4..39be916297e4 100644
+--- a/tools/intel_gpu_top.c
++++ b/tools/intel_gpu_top.c
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright Â© 2007-2021 Intel Corporation
++ * Copyright Â© 2007-2023 Intel Corporation
+  *
+  * Permission is hereby granted, free of charge, to any person obtaining a
+  * copy of this software and associated documentation files (the "Software"),
+@@ -693,6 +693,7 @@ struct client {
+ 	enum client_status status;
+ 	unsigned int id;
+ 	unsigned int pid;
++	char pid_str[10];
+ 	char name[24];
+ 	char print_name[24];
+ 	unsigned int samples;
+@@ -709,6 +710,9 @@ struct clients {
+ 	unsigned int num_classes;
+ 	struct engine_class *class;
+ 
++	int max_pid_len;
++	int max_name_len;
++
+ 	char pci_slot[64];
+ 
+ 	struct client *client;
+@@ -758,9 +762,14 @@ update_client(struct client *c, unsigned int pid, char *name,
+ 	      const struct drm_client_fdinfo *info)
+ {
+ 	unsigned int i;
++	int len;
+ 
+-	if (c->pid != pid)
++	if (c->pid != pid) {
+ 		c->pid = pid;
++		len = snprintf(c->pid_str, sizeof(c->pid_str) - 1, "%u", pid);
++		if (len > c->clients->max_pid_len)
++			c->clients->max_pid_len = len;
++	}
+ 
+ 	if (strcmp(c->name, name)) {
+ 		char *p;
+@@ -774,6 +783,10 @@ update_client(struct client *c, unsigned int pid, char *name,
+ 				*p = '*';
+ 			p++;
+ 		}
++
++		len = strlen(c->print_name);
++		if (len > c->clients->max_name_len)
++			c->clients->max_name_len = len;
+ 	}
+ 
+ 	c->last_runtime = 0;
+@@ -990,6 +1003,7 @@ static struct clients *display_clients(struct clients *clients)
+ 			ac->id = -c->pid;
+ 			ac->pid = c->pid;
+ 			strcpy(ac->name, c->name);
++			strcpy(ac->pid_str, c->pid_str);
+ 			strcpy(ac->print_name, c->print_name);
+ 			ac->val = calloc(clients->num_classes,
+ 					 sizeof(ac->val[0]));
+@@ -1013,6 +1027,9 @@ static struct clients *display_clients(struct clients *clients)
+ 	aggregated->num_clients = num;
+ 	aggregated->active_clients = num;
+ 
++	aggregated->max_pid_len = clients->max_pid_len;
++	aggregated->max_name_len = clients->max_name_len;
++
+ 	clients = aggregated;
+ 
+ out:
+@@ -1104,9 +1121,34 @@ static size_t readat2buf(int at, const char *name, char *buf, const size_t sz)
+ 	}
+ }
+ 
++static void clients_update_max_lengths(struct clients *clients)
++{
++	struct client *c;
++	int tmp;
++
++	clients->max_name_len = 0;
++	clients->max_pid_len = 0;
++
++	for_each_client(clients, c, tmp) {
++		int len;
++
++		if (c->status != ALIVE)
++			continue; /* Array not yet sorted by the caller. */
++
++		len = strlen(c->print_name);
++		if (len > clients->max_name_len)
++			clients->max_name_len = len;
++
++		len = strlen(c->pid_str);
++		if (len > clients->max_pid_len)
++			clients->max_pid_len = len;
++	}
++}
++
+ static struct clients *scan_clients(struct clients *clients, bool display)
+ {
+ 	struct dirent *proc_dent;
++	bool freed = false;
+ 	struct client *c;
+ 	DIR *proc_dir;
+ 	int tmp;
+@@ -1208,12 +1250,17 @@ next:
+ 	closedir(proc_dir);
+ 
+ 	for_each_client(clients, c, tmp) {
+-		if (c->status == PROBE)
++		if (c->status == PROBE) {
+ 			free_client(c);
+-		else if (c->status == FREE)
++			freed = true;
++		} else if (c->status == FREE) {
+ 			break;
++		}
+ 	}
+ 
++	if (freed)
++		clients_update_max_lengths(clients);
++
+ 	return display ? display_clients(clients) : clients;
+ }
+ 
+@@ -2172,15 +2219,16 @@ print_clients_header(struct clients *clients, int lines,
+ 		     int con_w, int con_h, int *class_w)
+ {
+ 	if (output_mode == INTERACTIVE) {
+-		const char *pidname = "   PID              NAME ";
+ 		unsigned int num_active = 0;
+-		int len = strlen(pidname);
++		int len;
+ 
+ 		if (lines++ >= con_h)
+ 			return lines;
+ 
+ 		printf("\033[7m");
+-		printf("%s", pidname);
++		len = printf("%*s %*s ",
++			     clients->max_pid_len, "PID",
++			     clients->max_name_len, "NAME");
+ 
+ 		if (lines++ >= con_h || len >= con_w)
+ 			return lines;
+@@ -2241,7 +2289,9 @@ print_client(struct client *c, struct engines *engines, double t, int lines,
+ 
+ 		lines++;
+ 
+-		printf("%6u %17s ", c->pid, c->print_name);
++		printf("%*s %*s ",
++		       clients->max_pid_len, c->pid_str,
++		       clients->max_name_len, c->print_name);
+ 
+ 		for (i = 0; c->samples > 1 && i < clients->num_classes; i++) {
+ 			double pct;
 -- 
-Ville Syrjälä
-Intel
+2.37.2
+
