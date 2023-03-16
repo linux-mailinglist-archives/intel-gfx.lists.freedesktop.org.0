@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEFE16BCDFA
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 12:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8FC6BCE00
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 12:19:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC24810ECC1;
-	Thu, 16 Mar 2023 11:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB85810ECD6;
+	Thu, 16 Mar 2023 11:19:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA6BB10ECB3
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 11:19:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE7210E0A7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 11:19:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678965554; x=1710501554;
+ t=1678965556; x=1710501556;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b5GC7ukFDmc4zF6hlgkoJt34SGag5t/76Sm6e6pyVEw=;
- b=cftvaRJdzGd+dGy4+JajlI/5Yt0jcSFAd5aRsQrNRmn/xp9voC+eaL23
- p9qSEj8seDcfbbe0HE71sz+h+7z6KEu+GKPRQm/FOvwXXmMb+7b1TJcOU
- xnI0gdDIUGBIv17uU4zmYCoN0pfX+4b8MRQxCuxyeNcW/hd/62DPfFvQT
- fdTtn7ewpTjx7M1eWswi/FZbSt5d2dR0EqXIZe/up5KE3rgqgeoOL4LE6
- L1v7KwqSYHsIB19fg3NgFTX4oBvhlPUyHT8pXaVBSaprX/eTJyLU5cpUC
- Vqo6f0RSYLCOgS3yZzMfMgKmRKKFUY9UvJswKZfZpVpzEYTVSumC9IEjW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339485911"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339485911"
+ bh=7bkaApEm3gyufwE56Nar9WsoMKlr/TgeQxAXyZtFd30=;
+ b=BEMCimYxSjowDsGdnzcAHKzFNMUHICsUdkxYat/MASeX35YXXAVNugVI
+ HGlgZYGAEh6ebffmUE2d1T3ierG1OYuKDt9Mh7Z9eNNW453CRo9i1iRpj
+ RtQjEAbk4VOGfiTgJh4main4CIh+z5+az2tmrMS5vzdrYPY4xVT/zSg+D
+ XVqM23uO235wbAG6nmx/MR7+8dhrNfqqcq5oJxATpa1146wKSWu4AMd6Z
+ U4DVTWFl01pc4cWT43fJjhiGkHdJJzk32PjxT4bmHl05W/el2pRlhqzjr
+ +q/7Rmhx+Dt3XyJsN9Hs4EPY7fmUpmufjXf/D4xEKNpWIXfjeltzhhqqg Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339485929"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339485929"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 04:19:14 -0700
+ 16 Mar 2023 04:19:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="744083247"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="744083247"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="744083250"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="744083250"
 Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by fmsmga008.fm.intel.com with ESMTP; 16 Mar 2023 04:19:13 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 16 Mar 2023 04:19:14 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 13:13:26 +0200
-Message-Id: <20230316111335.66915-14-mika.kahola@intel.com>
+Date: Thu, 16 Mar 2023 13:13:27 +0200
+Message-Id: <20230316111335.66915-15-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230316111335.66915-1-mika.kahola@intel.com>
 References: <20230316111335.66915-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 13/22] drm/i915/mtl: Add voltage swing
- sequence for C20
+Subject: [Intel-gfx] [PATCH v5 14/22] drm/i915/mtl: For DP2.0 10G and 20G
+ rates use MPLLA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,112 +60,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP1.4 and DP20 voltage swing sequence for C20 phy.
-
-Bspec: 65449, 67636, 67610
-
-v2: DP2.0 Tx Eq tables has been updated in BSpec.
-    Update also the driver code as per BSpec 65449
+Use MPLLA for DP2.0 rates 20G and 20G, when ssc is enabled.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 ---
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 ++
- .../drm/i915/display/intel_ddi_buf_trans.c    | 51 ++++++++++++++++++-
- 2 files changed, 54 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 929a8aa243c3..f8917f20a151 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -216,6 +216,10 @@
- #define C20_MPLLA_TX_CLK_DIV_MASK       REG_GENMASK(10, 8)
- #define C20_FB_CLK_DIV4_EN              REG_BIT(13)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 55ec256c0379..e1a919803241 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2220,8 +2220,12 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+ 		if (!intel_panel_use_ssc(i915))
+ 			ssc_enabled = false;
  
-+/* C20 Phy VSwing Masks */
-+#define C20_PHY_VSWING_PREEMPH_MASK	REG_GENMASK8(5, 0)
-+#define C20_PHY_VSWING_PREEMPH(val)	REG_FIELD_PREP8(C20_PHY_VSWING_PREEMPH_MASK, val)
-+
- #define RAWLANEAONX_DIG_TX_MPLLB_CAL_DONE_BANK(idx)	(0x303D + (idx))
+-		/* TODO: DP2.0 10G and 20G rates enable MPLLA*/
+-		val |= ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
++		/* DP2.0 10G and 20G rates enable MPLLA*/
++		if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000) {
++			val |= ssc_enabled ? XELPDP_SSC_ENABLE_PLLA : 0;
++		} else {
++			val |= ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
++		}
+ 	}
  
- #endif /* __INTEL_CX0_PHY_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index d5a9aa2de2fa..883084422f1f 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -9,6 +9,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
-+#include "intel_cx0_phy.h"
- 
- /* HDMI/DVI modes ignore everything but the last 2 items. So we share
-  * them for both DP and FDI transports, allowing those ports to
-@@ -1059,6 +1060,46 @@ static const struct intel_ddi_buf_trans mtl_cx0_trans = {
- 	.hdmi_default_entry = ARRAY_SIZE(_mtl_c10_trans_dp14) - 1,
- };
- 
-+/* HDMI2.0 */
-+static const union intel_ddi_buf_trans_entry _mtl_c20_trans_hdmi[] = {
-+	{ .snps = { 48, 0, 0 } },       /* preset 0 */
-+	{ .snps = { 38, 4, 6 } },       /* preset 1 */
-+	{ .snps = { 36, 4, 8 } },       /* preset 2 */
-+	{ .snps = { 34, 4, 10 } },      /* preset 3 */
-+	{ .snps = { 32, 4, 12 } },      /* preset 4 */
-+};
-+
-+static const struct intel_ddi_buf_trans mtl_c20_trans_hdmi = {
-+	.entries = _mtl_c20_trans_hdmi,
-+	.num_entries = ARRAY_SIZE(_mtl_c20_trans_hdmi),
-+	.hdmi_default_entry = 0,
-+};
-+
-+/* DP2.0 */
-+static const union intel_ddi_buf_trans_entry _mtl_c20_trans_uhbr[] = {
-+	{ .snps = { 48, 0, 0 } },       /* preset 0 */
-+	{ .snps = { 43, 0, 5 } },       /* preset 1 */
-+	{ .snps = { 40, 0, 8 } },       /* preset 2 */
-+	{ .snps = { 37, 0, 11 } },      /* preset 3 */
-+	{ .snps = { 33, 0, 15 } },      /* preset 4 */
-+	{ .snps = { 46, 2, 0 } },       /* preset 5 */
-+	{ .snps = { 42, 2, 4 } },       /* preset 6 */
-+	{ .snps = { 38, 2, 8 } },       /* preset 7 */
-+	{ .snps = { 35, 2, 11 } },      /* preset 8 */
-+	{ .snps = { 33, 2, 13 } },      /* preset 9 */
-+	{ .snps = { 44, 4, 0 } },       /* preset 10 */
-+	{ .snps = { 40, 4, 4 } },       /* preset 11 */
-+	{ .snps = { 37, 4, 7 } },       /* preset 12 */
-+	{ .snps = { 33, 4, 11 } },      /* preset 13 */
-+	{ .snps = { 40, 8, 0 } },	/* preset 14 */
-+	{ .snps = { 28, 2, 2 } },	/* preset 15 */
-+};
-+
-+static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
-+	.entries = _mtl_c20_trans_uhbr,
-+	.num_entries = ARRAY_SIZE(_mtl_c20_trans_uhbr),
-+};
-+
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
- {
- 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
-@@ -1635,7 +1676,15 @@ mtl_get_cx0_buf_trans(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state,
- 		      int *n_entries)
- {
--	return intel_get_buf_trans(&mtl_cx0_trans, n_entries);
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	enum phy phy = intel_port_to_phy(i915, encoder->port);
-+
-+	if (intel_crtc_has_dp_encoder(crtc_state) && crtc_state->port_clock > 1000000)
-+		return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
-+	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) && !(intel_is_c10phy(i915, phy)))
-+		return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
-+	else
-+		return intel_get_buf_trans(&mtl_cx0_trans, n_entries);
- }
- 
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
 -- 
 2.34.1
 
