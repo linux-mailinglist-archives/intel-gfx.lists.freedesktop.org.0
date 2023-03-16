@@ -2,108 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2211A6BDAF4
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 22:28:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841CF6BDB0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 22:35:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98E1C10E375;
-	Thu, 16 Mar 2023 21:28:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38A5210E375;
+	Thu, 16 Mar 2023 21:35:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20631.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A543410E370;
- Thu, 16 Mar 2023 21:27:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c0RQUpL2Z75FyysM9NEBQTcAxxMvfXhf0gWQjq/LgnJ/FC7HKg93n7NMS0PBoF8/9clEden0OUcEYm6/o0AHyYWRPXbhlwuV7PqKbewNEGvoB871sm8BghZlLmGHuqe9/quRoJz5sfT5GqEkFGWgB9xKOFfn9YiNwMuNGrCF8ZvRAPjvcQawt6PwvBu46y8vdsLBVmN9mpXCjc74hui6/O2KeMWTbMo2TX8zF7reszkOQwz044apschZFr3oLL6/b2UB7mkPHVbb2xM9iou/l+6Pz8GPDxfBiOlMs/jWa96fVKXB75Pwy8bRHJtW+Zz17idR8ksoca0YPOFrkYd3OQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q21xCDPaEDlS4MsiZgLMmYb26w9aOTOTQbxk/6rGpDE=;
- b=PdFSerM8XzkTy40FkzCsghOXakBqe0lNUF4BUcY2AfWm8bWD9p+TX+/WRYY7B6f+/shTaXr+jHLmEpO6QYW6n6C2XEs01Kn7ok3i9G8g2H6BColN95SsukOVqFzuNbed+6A++vFYTH3K/+rkbGC2dNkdvlK6lABJDxmKmSnwu+sD6B8UFfB9Wsib8M9Obt45oX6FHF6hNJ1E/LK9nm9aI5uBLLTwSWzWs6K+q7yMjEcxs/BHiDN5XyxnJey/K8zUQIkeQTL3p5yuILXKAX2lBIT7lCvTMrUlR9GRLNdmvDbcbjEwHUIHYaeXEMG4ZIwuYJfJYJrycIW2XaTNvpqhpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q21xCDPaEDlS4MsiZgLMmYb26w9aOTOTQbxk/6rGpDE=;
- b=gFev3GKg9tf3v0jvwaD1FP8rSK0LHRHCPXljWKae3Rbh7UYGtYExrrsdMfRp2zCCiBkFDLtxwhgYeniR6DIYu4yHADzVuxEC814I7cBP7loEbH0Um/JYZXd6z5/WnpVR1LCq8j5SCZ0nrK+OO5U0Ei6Elzu23TnS7enV4hBE0YxP7LPO6OUhSAGrJuqoG9V9d8YNqwFcQ/jGpYroBft4uB5Kh0W+nFMRMRBxrOIZLdGS6eGgneVJwNgRmZeOP7pY4TnRwdMjlX1EY859hvFC1ZUWhqfdPwFl7c2YLZCVn8X9u5LIiNicI8GQH8MmI7wZwhGZ1mVqma6IvhjiAQ9oIQ==
-Received: from MW4PR03CA0330.namprd03.prod.outlook.com (2603:10b6:303:dd::35)
- by SA1PR12MB7102.namprd12.prod.outlook.com (2603:10b6:806:29f::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Thu, 16 Mar
- 2023 21:27:56 +0000
-Received: from CO1NAM11FT103.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:dd:cafe::1c) by MW4PR03CA0330.outlook.office365.com
- (2603:10b6:303:dd::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29 via Frontend
- Transport; Thu, 16 Mar 2023 21:27:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT103.mail.protection.outlook.com (10.13.174.252) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6199.19 via Frontend Transport; Thu, 16 Mar 2023 21:27:56 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 16 Mar 2023
- 14:27:41 -0700
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 16 Mar
- 2023 14:27:41 -0700
-Received: from Asurada-Nvidia (10.127.8.9) by mail.nvidia.com (10.129.68.8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37 via Frontend
- Transport; Thu, 16 Mar 2023 14:27:39 -0700
-Date: Thu, 16 Mar 2023 14:27:37 -0700
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZBOJyaKcl5MCZByI@Asurada-Nvidia>
-References: <20230308132903.465159-1-yi.l.liu@intel.com>
- <20230308132903.465159-13-yi.l.liu@intel.com>
- <20230315165311.01f32bfe.alex.williamson@redhat.com>
- <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB7529C7D0409B47430D7412C5C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB5276ABE919C04E06A0326E8E8CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB75293503F92A24A716DDE2C6C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <ZBK74xltWbaWlftV@Asurada-Nvidia>
- <DS0PR11MB752937BCFB81A6018CAB94D2C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8357010E2FD;
+ Thu, 16 Mar 2023 21:35:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72C60A0003;
+ Thu, 16 Mar 2023 21:35:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0058691354842501944=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB752937BCFB81A6018CAB94D2C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT103:EE_|SA1PR12MB7102:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e09cf4b-446d-4418-72cb-08db26654f1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fO029000z9NQtHjXPxvdyKABbhbbYJoqJmbTQ/F/5ymvNibOA5sA3Hzcv76qUPoxVqTLLOhkXrYOXYVPLN+YfBXDeb259HN7C8owcl+3LstbIPNrtfsDsQH3ylTNMsKvLo0s9ZkEnE8KwA8Z7+kG4InSNE/bVUSI1V1OfV4evhQ/4+H8cFldGmPCpPiGh68dEd3cWGvVeT/MLq00N8jtQleUT2mmIciMPazHn2OVDqZ15pxMLbZwrRruR2lwQykW4hZ6h+qsmWmqUZSCGtSRg8QKk4DPfKdYbXD7Ne223a5X1yek4ItfJrSpOppk7ks88C64pa+W0QzqH/imiyoFMoA/IHIvv+s5/5ep2XspzMkZzWlkrOWmFxSMrJZs6snQ0mhHEbiwAiDfoisXGgRHbqrXtSirGN21AR1ZjEBZVpqLNCtrH9RbQHIa9+iK8JE2pXTHs32AbndhJEVb5yIL3uF1EDNdUo9UulBkTMgAZMY6FvWolmqealz0z1YC84D/w1B7T7z60omjmBbnwRR3JNZxnx457JQWHuboB6BfCvplbeW3xIs/8aFzjHVX8ZsjgT26f7nTJQwFkyzCOaK9lVcIHyUESCmN2hT7CcWy5oxsrIV+LHJjpR+nsvzcHXicvAaWque5HvqImX6V3zova/8F/3IXflWVevnFWE5JEszZZNHqySbVuHqZtyn2tAwQ+jLcnIj26LwIyIfqHuNkqBG1va2iY6hFRAoz7ZkUZ1b5Y1Yym968fTkf8+dgHwk28j8zMGzMFZLSIJaTpHdiPqiCAATJuqVUWrEOTxjUJzM=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(346002)(396003)(376002)(136003)(451199018)(46966006)(40470700004)(36840700001)(82310400005)(9686003)(7416002)(186003)(26005)(336012)(83380400001)(8936002)(33716001)(41300700001)(356005)(82740400003)(36860700001)(426003)(2906002)(47076005)(70586007)(5660300002)(966005)(40480700001)(316002)(70206006)(40460700003)(8676002)(7636003)(55016003)(86362001)(478600001)(54906003)(6916009)(4326008);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2023 21:27:56.3133 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e09cf4b-446d-4418-72cb-08db26654f1f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT103.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7102
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Date: Thu, 16 Mar 2023 21:35:01 -0000
+Message-ID: <167900250143.19095.5377501188577617023@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230316124156.12064-1-yi.l.liu@intel.com>
+In-Reply-To: <20230316124156.12064-1-yi.l.liu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
+ =?utf-8?q?roduce_new_methods_for_verifying_ownership_in_vfio_PCI_hot_rese?=
+ =?utf-8?q?t?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,55 +41,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "jgg@nvidia.com" <jgg@nvidia.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 01:22:58PM +0000, Liu, Yi L wrote:
+--===============0058691354842501944==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > And regarding the new baseline for the replace series and the
-> > nesting series, it'd be nicer to have another one git-merging
-> > your cdev v7 branch on top of Jason's iommufd_hwpt branch. We
-> > could wait for him updating to 6.3-rc2, if that's necessary.
-> 
-> Yes. I cherry-pick his iommufd_hwpt to 6.3-rc2 and then try a
-> merge and then cherry-pick the replace and nesting series from
-> your above branch. Though the order between cdev and
-> iommufd_hwpt not perfect, we may use it as a wip baseline
-> when we try to address the comments w.r.t. nesting and
-> replace series.
-> 
-> https://github.com/yiliu1765/iommufd/tree/wip/iommufd_nesting-03162023
+== Series Details ==
 
-Nice. It looks like you integrated everything from my tree so
-it saves me some effort :)
+Series: Introduce new methods for verifying ownership in vfio PCI hot reset
+URL   : https://patchwork.freedesktop.org/series/115264/
+State : success
 
-Regarding the order between cdev and iommufd_hwpt, I think it
-would be Jason's decision whether to merge his changes prior
-to the PR from the VFIO tree, or the other way around.
+== Summary ==
 
-One way or another, I think the replace v5 and the nesting v2
-will be less impacted, unless Jason makes some huge changes
-to his branch. Let's use this tree this week to rework both
-series, and rebase after he comes back and updates his tree.
+CI Bug Log - changes from CI_DRM_12872 -> Patchwork_115264v1
+====================================================
 
-Lemme know if you need a help for the nesting series or so.
+Summary
+-------
 
-Thanks
-Nic
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/index.html
+
+Participating hosts (35 -> 35)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115264v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#5334] / [i915#7872])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-dg1-5:          NOTRUN -> [SKIP][5] ([i915#7828])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+    - bat-adln-1:         NOTRUN -> [SKIP][6] ([i915#7828])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-adlp-9:         NOTRUN -> [SKIP][7] ([i915#3546]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][8] ([fdo#109271]) +38 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence:
+    - bat-adln-1:         [FAIL][9] ([i915#8064]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
+
+  * igt@dmabuf@all-tests@sanitycheck:
+    - bat-adln-1:         [ABORT][11] ([i915#8144]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [ABORT][13] ([i915#4983]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-dg2-11:         [DMESG-WARN][15] ([i915#7699]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#8064]: https://gitlab.freedesktop.org/drm/intel/issues/8064
+  [i915#8144]: https://gitlab.freedesktop.org/drm/intel/issues/8144
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12872 -> Patchwork_115264v1
+
+  CI-20190529: 20190529
+  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115264v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+15f6240acfe3 vfio/pci: Accept device fd in VFIO_DEVICE_PCI_HOT_RESET ioctl
+76d2563c493a vfio: Accpet device file from vfio PCI hot reset path
+89b88bf90326 vfio: Refine vfio file kAPIs for vfio PCI hot reset
+66d08bb82754 vfio/pci: Renaming for accepting device fd in hot reset path
+80b08445f7cb vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+deff2cd87566 vfio/pci: Only check ownership of opened devices in hot reset
+d80b37ebbe33 vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/index.html
+
+--===============0058691354842501944==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce new methods for verifying ownership in vfio PCI hot reset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115264/">https://patchwork.freedesktop.org/series/115264/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12872 -&gt; Patchwork_115264v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/index.html</p>
+<h2>Participating hosts (35 -&gt; 35)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115264v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+<li>
+<p>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence:</p>
+<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8064">i915#8064</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@dmabuf@all-tests@sanitycheck:</p>
+<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8144">i915#8144</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115264v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12872 -&gt; Patchwork_115264v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115264v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>15f6240acfe3 vfio/pci: Accept device fd in VFIO_DEVICE_PCI_HOT_RESET ioctl<br />
+76d2563c493a vfio: Accpet device file from vfio PCI hot reset path<br />
+89b88bf90326 vfio: Refine vfio file kAPIs for vfio PCI hot reset<br />
+66d08bb82754 vfio/pci: Renaming for accepting device fd in hot reset path<br />
+80b08445f7cb vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET<br />
+deff2cd87566 vfio/pci: Only check ownership of opened devices in hot reset<br />
+d80b37ebbe33 vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()</p>
+
+</body>
+</html>
+
+--===============0058691354842501944==--
