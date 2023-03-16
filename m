@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11AA6BCB45
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 10:44:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 916826BCBF1
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 11:05:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739CF10E0F2;
-	Thu, 16 Mar 2023 09:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0D410EC1E;
+	Thu, 16 Mar 2023 10:05:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BBBA10E0F2
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 09:44:45 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F28410EC1E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 10:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678959885; x=1710495885;
+ t=1678961119; x=1710497119;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Wp6NZIc74K/WM5VNmaYG2CFOx3mzKWOv/j78NTpsJ7A=;
- b=RTpBZGwnOrbRSgoRXXbR7pfftZgByRqOUasqgCSrkVYBw3JmvmHaLgIM
- F4zjhdO5yrBNwyaLUnN/IywcvconXNSRghVgvtYulwy4Roh8VLKmVkNxw
- ISYrR95Uz63FPiEr+vuc/brt91MY6fcEZqJZaDyS+anMpN04HOn1lb2pd
- aEJpI282i/vC9YiK09XBLh1PV4uD0bHZ8laAk0RgU9vM61iUoCHwtH8+3
- Wz05FN9iOIDVdnnje2CSf/KALY3gmfet21n6TZPAAkZnCMxwyo2B9d7dU
- yZ8WkMREhLwVVnKL5T16JN6iuKLzB+eAUX5zgu4hlLrvIPZYM4HBSvSFe w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339468386"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339468386"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 02:44:44 -0700
+ bh=UfyHUWa60cHArfGcaFMmOLALLYI77NtSGJHaiXNo0yU=;
+ b=miM2KuiXh4uToR3n2FIZfW9jJ4XuCjUb3RdKik4zV1u6F50PnfUndPqI
+ QkVUUTNxX1pFvG2jNErxPi//0qzOHIUiLhn9FIOk0NXkKQu2lBBjyzA/Q
+ +G1oOzWjwvakbj3Xi7+K6OPphTqUOZXUyIVD+HMAEr8vafyAFzYXedu+l
+ ZczupvsmZDDyZrn9hXuPydTfljZKOi2tgU6ZJg4Nhcl0P2hF6zChIlV0i
+ kzYx9ZKvAaEskphd4ONxZXlcatkgn7qZYSRKuqBfjLTE5t+LbL37k7GxT
+ bUFgc9N4+f8iFIESxKO/RO9oqtHFLAUnvvGTWoToe3ECUFLCaiPiIytW7 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="400515203"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="400515203"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 03:05:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="710028778"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="710028778"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="853957618"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="853957618"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 16 Mar 2023 02:44:42 -0700
+ by orsmga005.jf.intel.com with SMTP; 16 Mar 2023 03:05:15 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Mar 2023 11:44:41 +0200
-Date: Thu, 16 Mar 2023 11:44:41 +0200
+ Thu, 16 Mar 2023 12:05:14 +0200
+Date: Thu, 16 Mar 2023 12:05:14 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <ZBLlCQOB11u8IadA@intel.com>
-References: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
- <20230314130255.23273-4-ville.syrjala@linux.intel.com>
- <e69701372c2527fbfb67011a08b0322e4933f3c3.camel@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Message-ID: <ZBLp2jMspLQ9i3ef@intel.com>
+References: <20230316082232.666630-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e69701372c2527fbfb67011a08b0322e4933f3c3.camel@intel.com>
+In-Reply-To: <20230316082232.666630-1-suraj.kandpal@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Define more pipe timestamp
- registers
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Remove drm_modeset_lock in
+ intel_conn_to_vcpi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,103 +61,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 08:43:12AM +0000, Hogander, Jouni wrote:
-> On Tue, 2023-03-14 at 15:02 +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Add definitions for various pipe timestamp registers:
-> > - frame timestamp (last start of vblank) (g4x+), already had this
-> > defined
-> > - flip timestamp (when SURF was last written) (g4x+)
-> > - flipdone timestamp (when last flipdone was signalled) (tgl+)
-> > 
-> > Note that on pre-tgl the flip related timestamps are only updated
-> > for primary plane flips, but on tgl+ we can select which plane
-> > updates them (via PIPE_MISC2). Let's define those related bits
-> > as well.
-> > 
-> > Curiously VLV/CHV do not have the frame/flip timestamp registers,
-> > despite all the other related registers being inherited from g4x.
-> > This means we can get rid of the pipe_offsets[] usage for these,
-> > and thus the implicit dev_priv is gone as well.
+On Thu, Mar 16, 2023 at 01:52:32PM +0530, Suraj Kandpal wrote:
+> Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
+> anymore since all the required locks are taken in atomic check and
+> prepare phases.
 > 
-> According to bspec these exist in VLV (Bspec: 8264, 8261) ?
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 2984d2810e42..f957b4bd9c26 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -41,7 +41,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+>  		return 0;
+>  	mgr = connector->port->mgr;
+>  
+> -	drm_modeset_lock(&mgr->base.lock, NULL);
+>  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
+>  	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
+>  	if (drm_WARN_ON(mgr->dev, !payload))
+> @@ -53,7 +52,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+>  		goto out;
+>  	}
+>  out:
+> -	drm_modeset_unlock(&mgr->base.lock);
+>  	return vcpi;
+>  }
 
-It is lying to you.
+That whole function looks like it something that should be
+part of the drm_dp_mst_helper.c.
 
-> 
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > b/drivers/gpu/drm/i915/i915_reg.h
-> > index a383397ebeca..66b6f451b80a 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -3526,6 +3526,8 @@
-> >  #define   PIPE_MISC2_BUBBLE_COUNTER_MASK       REG_GENMASK(31, 24)
-> >  #define  
-> > PIPE_MISC2_BUBBLE_COUNTER_SCALER_EN  REG_FIELD_PREP(PIPE_MISC2_BUBBLE
-> > _COUNTER_MASK, 80)
-> >  #define  
-> > PIPE_MISC2_BUBBLE_COUNTER_SCALER_DIS REG_FIELD_PREP(PIPE_MISC2_BUBBLE
-> > _COUNTER_MASK, 20)
-> > +#define  
-> > PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK          REG_GENMASK(2, 0) /*
-> > tgl+ */
-> > +#define  
-> > PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)     REG_FIELD_PREP(PIPE_MISC
-> > 2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
-> >  #define PIPE_MISC2(pipe)               _MMIO_PIPE(pipe,
-> > _PIPE_MISC2_A, _PIPE_MISC2_B)
-> >  
-> >  /* Skylake+ pipe bottom (background) color */
-> > @@ -7545,9 +7547,23 @@ enum skl_power_gate {
-> >  #define  GEN9_TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT  12
-> >  #define  GEN9_TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK   (0xf
-> > << 12)
-> >  
-> > +/* g4x+, except vlv/chv! */
-> >  #define _PIPE_FRMTMSTMP_A              0x70048
-> > +#define _PIPE_FRMTMSTMP_B              0x71048
-> >  #define PIPE_FRMTMSTMP(pipe)           \
-> > -                       _MMIO_PIPE2(pipe, _PIPE_FRMTMSTMP_A)
-> > +       _MMIO_PIPE(pipe, _PIPE_FRMTMSTMP_A, _PIPE_FRMTMSTMP_B)
-> > +
-> > +/* g4x+, except vlv/chv! */
-> > +#define _PIPE_FLIPTMSTMP_A             0x7004C
-> > +#define _PIPE_FLIPTMSTMP_B             0x7104C
-> > +#define PIPE_FLIPTMSTMP(pipe)          \
-> > +       _MMIO_PIPE(pipe, _PIPE_FLIPTMSTMP_A, _PIPE_FLIPTMSTMP_B)
-> > +
-> > +/* tgl+ */
-> 
-> This is mentioned in pre tgl documentation as well? (Bspec: 29591)
+Also, it's directly accessing mgr->base.state which is just
+wrong.
 
-I think that is only a leftover artifact from before the
-gen12+ split. If you set the filter to ICLLP (or earlier)
-the register should disappear for you.
+And it looks like it can get called from outside the normal
+atomic commit flows (like so many other things in the hdcp
+code, sigh), so what you're doing here is also wrong in
+that case.
 
-> 
-> > +#define _PIPE_FLIPDONETMSTMP_A         0x70054
-> > +#define _PIPE_FLIPDONETMSTMP_B         0x71054
-> > +#define PIPE_FLIPDONETIMSTMP(pipe)     \
-> > +       _MMIO_PIPE(pipe, _PIPE_FLIPDONETMSTMP_A,
-> > _PIPE_FLIPDONETMSTMP_B)
-> >  
-> >  #define GGC                            _MMIO(0x108040)
-> >  #define   GMS_MASK                     REG_GENMASK(15, 8)
-> 
-> BR,
-> 
-> Jouni Högander
+So the whole thing looks just very broken to me. Not to
+mention the HDCP vs. MST<->SST switch is also still
+fundementally broken. I'm really tempted to just send
+a patch to nuke the entire HDCP MST code.
 
 -- 
 Ville Syrjälä
