@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0934C6BC22C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 01:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE2F6BC22B
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 01:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 287E210EBC9;
-	Thu, 16 Mar 2023 00:09:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE7710EB84;
+	Thu, 16 Mar 2023 00:09:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D105810EA35
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37C510EA3B
  for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 00:09:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678925374; x=1710461374;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fJOuOB9TqbN7Ild8uKNcOqrcAP8UpfiVpWLZfZ2Hnxw=;
- b=gnl/DsT41a3wtbxFTRSmFMs2LDHpiBdn2bIAe/YV1LAz7p2baWqrC3SG
- 6xrEO3X6tNnAIc1aN+c3vZdE5nO52dEMgZRjw+o0Iz5EIak7c3U/65Muu
- wsC+M4ZVUsURmGjPbmLx1IO42EUdvOIMIZSA+aSur4bFfjxmCqu+8rFUj
- K4U/chVdSGlYvOmbgonqiErQGXrbOGreqpCoVvjHdjyE9HQetAuIqhF0i
- MAxB489efPoi1yubU2xPfOVZcezpoV7Dj4SrRmgIMrso4/FU/H6YIDpD0
- 7oL4uNkv0bjQRkhwtHYFYWPbW+I+yItiK+q3jylXGJ/lP6Gd1PtWFD0w8 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="402718818"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="402718818"
+ bh=reqjL+8oQo+MfuUb+6YXsXVmPUi4gUN/eGSjhYp7JTk=;
+ b=G9FizuPPT+pfVbz3U5xn4XBwStCcFxCuhilC/lpRzFeTXwQX92MqtJFF
+ m7f5uPZtA2edDziSuyNBBu+QdY8ObIKamJ5I5cdKVUK5EINqGyGBIALgu
+ BErDR2C73XL4zyNjg2vxZ02XdRMx+69TdjQXTk8Pq5TwK7vSabjGUbBWP
+ 6+4rhweISn2IwtcuKAIT9HCtLQdqqiadiHV7ue/KBc4ou2vigN424K23L
+ Pf42iWDlxQNRy08JFwol6PJ1kYhgeh3ixrzeCT4so6ihBR3A/hHqj2MgS
+ /Ja9XcQRsa91k/jrY2B0Ez+jUJbA4xv0tnek/wbDnjA7UQndgvp4CwCtV w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="402718820"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="402718820"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 17:09:33 -0700
+ 15 Mar 2023 17:09:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="709863715"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="709863715"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="709863718"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="709863718"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 17:09:33 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Mar 2023 17:09:28 -0700
-Message-Id: <20230316000932.2525744-9-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 15 Mar 2023 17:09:29 -0700
+Message-Id: <20230316000932.2525744-10-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20230316000932.2525744-1-umesh.nerlige.ramappa@intel.com>
 References: <20230316000932.2525744-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 08/12] drm/i915/perf: Handle non-power-of-2
- reports
+Subject: [Intel-gfx] [PATCH v5 09/12] drm/i915/perf: Add engine class
+ instance parameters to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,121 +61,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some of the newer OA formats are not powers of 2. For those formats,
-adjust the hw_tail accordingly when checking for new reports.
+One or more engines map to a specific OA unit. All reports from these
+engines are captured in the OA buffer managed by this OA unit.
+
+Current i915 OA implementation supports only the OAG unit. OAG primarily
+caters to render engine, so i915 OA uses render as the default engine
+in the OA implementation. Since there are more OA units on newer
+hardware that map to other engines, allow user to pass engine class and
+instance to select and program specific OA units.
+
+UMD specific changes for GPUvis support:
+https://patchwork.freedesktop.org/patch/522827/?series=114023
+https://patchwork.freedesktop.org/patch/522822/?series=114023
+https://patchwork.freedesktop.org/patch/522826/?series=114023
+https://patchwork.freedesktop.org/patch/522828/?series=114023
+https://patchwork.freedesktop.org/patch/522816/?series=114023
+https://patchwork.freedesktop.org/patch/522825/?series=114023
 
 v2: (Ashutosh)
-- Switch to OA_TAKEN for diff calculation
-- Use OA_BUFFER_SIZE instead of the vma size
-- Update comments
+- Clarify commit message
+- Add drm_dbg
+- Clarify uapi description
+
+v3: (Ashutosh)
+- Remove irrelevant info from the uapi comment
+
+v4: Ensure engine class:instance is passed together (Ashutosh)
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 51 +++++++++++++++++---------------
- 1 file changed, 27 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c | 71 ++++++++++++++++++++------------
+ include/uapi/drm/i915_drm.h      | 19 +++++++++
+ 2 files changed, 63 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 8336430aa27f..9e6da8859284 100644
+index 9e6da8859284..0c52ffa6d470 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -534,6 +534,7 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	bool pollin;
- 	u32 hw_tail;
- 	u64 now;
-+	u32 partial_report_size;
- 
- 	/* We have to consider the (unlikely) possibility that read() errors
- 	 * could result in an OA buffer reset which might reset the head and
-@@ -543,10 +544,15 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 
- 	hw_tail = stream->perf->ops.oa_hw_tail_read(stream);
- 
--	/* The tail pointer increases in 64 byte increments,
--	 * not in report_size steps...
-+	/* The tail pointer increases in 64 byte increments, not in report_size
-+	 * steps. Also the report size may not be a power of 2. Compute
-+	 * potentially partially landed report in the OA buffer
- 	 */
--	hw_tail &= ~(report_size - 1);
-+	partial_report_size = OA_TAKEN(hw_tail, stream->oa_buffer.tail);
-+	partial_report_size %= report_size;
-+
-+	/* Subtract partial amount off the tail */
-+	hw_tail = gtt_offset + OA_TAKEN(hw_tail, partial_report_size);
- 
- 	now = ktime_get_mono_fast_ns();
- 
-@@ -669,6 +675,8 @@ static int append_oa_sample(struct i915_perf_stream *stream,
+@@ -4012,48 +4012,32 @@ static int read_properties_unlocked(struct i915_perf *perf,
  {
- 	int report_size = stream->oa_buffer.format->size;
- 	struct drm_i915_perf_record_header header;
-+	int report_size_partial;
-+	u8 *oa_buf_end;
+ 	struct drm_i915_gem_context_param_sseu user_sseu;
+ 	u64 __user *uprop = uprops;
++	bool config_instance = false;
++	bool config_class = false;
+ 	bool config_sseu = false;
++	u8 class, instance;
+ 	u32 i;
+ 	int ret;
  
- 	header.type = DRM_I915_PERF_RECORD_SAMPLE;
- 	header.pad = 0;
-@@ -682,8 +690,20 @@ static int append_oa_sample(struct i915_perf_stream *stream,
- 		return -EFAULT;
- 	buf += sizeof(header);
+ 	memset(props, 0, sizeof(struct perf_open_properties));
+ 	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
  
--	if (copy_to_user(buf, report, report_size))
-+	oa_buf_end = stream->oa_buffer.vaddr + OA_BUFFER_SIZE;
-+	report_size_partial = oa_buf_end - report;
-+
-+	if (report_size_partial < report_size) {
-+		if (copy_to_user(buf, report, report_size_partial))
-+			return -EFAULT;
-+		buf += report_size_partial;
-+
-+		if (copy_to_user(buf, stream->oa_buffer.vaddr,
-+				 report_size - report_size_partial))
-+			return -EFAULT;
-+	} else if (copy_to_user(buf, report, report_size)) {
- 		return -EFAULT;
-+	}
- 
- 	(*offset) += header.size;
- 
-@@ -747,12 +767,11 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 	 * An out of bounds or misaligned head or tail pointer implies a driver
- 	 * bug since we validate + align the tail pointers we read from the
- 	 * hardware and we are in full control of the head pointer which should
--	 * only be incremented by multiples of the report size (notably also
--	 * all a power of two).
-+	 * only be incremented by multiples of the report size.
- 	 */
- 	if (drm_WARN_ONCE(&uncore->i915->drm,
--			  head > OA_BUFFER_SIZE || head % report_size ||
--			  tail > OA_BUFFER_SIZE || tail % report_size,
-+			  head > OA_BUFFER_SIZE ||
-+			  tail > OA_BUFFER_SIZE,
- 			  "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
- 			  head, tail))
- 		return -EIO;
-@@ -766,22 +785,6 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 		u32 ctx_id;
- 		u64 reason;
- 
--		/*
--		 * All the report sizes factor neatly into the buffer
--		 * size so we never expect to see a report split
--		 * between the beginning and end of the buffer.
--		 *
--		 * Given the initial alignment check a misalignment
--		 * here would imply a driver bug that would result
--		 * in an overrun.
--		 */
--		if (drm_WARN_ON(&uncore->i915->drm,
--				(OA_BUFFER_SIZE - head) < report_size)) {
--			drm_err(&uncore->i915->drm,
--				"Spurious OA head ptr: non-integral report offset\n");
--			break;
--		}
+-	if (!n_props) {
+-		drm_dbg(&perf->i915->drm,
+-			"No i915 perf properties given\n");
+-		return -EINVAL;
+-	}
 -
- 		/*
- 		 * The reason field includes flags identifying what
- 		 * triggered this specific report (mostly timer
+-	/* At the moment we only support using i915-perf on the RCS. */
+-	props->engine = intel_engine_lookup_user(perf->i915,
+-						 I915_ENGINE_CLASS_RENDER,
+-						 0);
+-	if (!props->engine) {
+-		drm_dbg(&perf->i915->drm,
+-			"No RENDER-capable engines\n");
+-		return -EINVAL;
+-	}
+-
+-	if (!engine_supports_oa(props->engine)) {
+-		drm_dbg(&perf->i915->drm,
+-			"Engine not supported by OA %d:%d\n",
+-			I915_ENGINE_CLASS_RENDER, 0);
+-		return -EINVAL;
+-	}
+-
+ 	/* Considering that ID = 0 is reserved and assuming that we don't
+ 	 * (currently) expect any configurations to ever specify duplicate
+ 	 * values for a particular property ID then the last _PROP_MAX value is
+ 	 * one greater than the maximum number of properties we expect to get
+ 	 * from userspace.
+ 	 */
+-	if (n_props >= DRM_I915_PERF_PROP_MAX) {
++	if (!n_props || n_props >= DRM_I915_PERF_PROP_MAX) {
+ 		drm_dbg(&perf->i915->drm,
+-			"More i915 perf properties specified than exist\n");
++			"Invalid number of i915 perf properties given\n");
+ 		return -EINVAL;
+ 	}
+ 
++	/* Defaults when class:instance is not passed */
++	class = I915_ENGINE_CLASS_RENDER;
++	instance = 0;
++
+ 	for (i = 0; i < n_props; i++) {
+ 		u64 oa_period, oa_freq_hz;
+ 		u64 id, value;
+@@ -4174,7 +4158,15 @@ static int read_properties_unlocked(struct i915_perf *perf,
+ 			}
+ 			props->poll_oa_period = value;
+ 			break;
+-		case DRM_I915_PERF_PROP_MAX:
++		case DRM_I915_PERF_PROP_OA_ENGINE_CLASS:
++			class = (u8)value;
++			config_class = true;
++			break;
++		case DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE:
++			instance = (u8)value;
++			config_instance = true;
++			break;
++		default:
+ 			MISSING_CASE(id);
+ 			return -EINVAL;
+ 		}
+@@ -4182,6 +4174,28 @@ static int read_properties_unlocked(struct i915_perf *perf,
+ 		uprop += 2;
+ 	}
+ 
++	if ((config_class && !config_instance) ||
++	    (config_instance && !config_class)) {
++		drm_dbg(&perf->i915->drm,
++			"OA engine-class and engine-instance parameters must be passed together\n");
++		return -EINVAL;
++	}
++
++	props->engine = intel_engine_lookup_user(perf->i915, class, instance);
++	if (!props->engine) {
++		drm_dbg(&perf->i915->drm,
++			"OA engine class and instance invalid %d:%d\n",
++			class, instance);
++		return -EINVAL;
++	}
++
++	if (!engine_supports_oa(props->engine)) {
++		drm_dbg(&perf->i915->drm,
++			"Engine not supported by OA %d:%d\n",
++			class, instance);
++		return -EINVAL;
++	}
++
+ 	if (config_sseu) {
+ 		ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
+ 		if (ret) {
+@@ -5158,8 +5172,11 @@ int i915_perf_ioctl_version(void)
+ 	 *
+ 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
+ 	 *    interval for the hrtimer used to check for OA data.
++	 *
++	 * 6: Add DRM_I915_PERF_PROP_OA_ENGINE_CLASS and
++	 *    DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE
+ 	 */
+-	return 5;
++	return 6;
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 8df261c5ab9b..e8c258bfd4c9 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2758,6 +2758,25 @@ enum drm_i915_perf_property_id {
+ 	 */
+ 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
+ 
++	/**
++	 * Multiple engines may be mapped to the same OA unit. The OA unit is
++	 * identified by class:instance of any engine mapped to it".
++	 *
++	 * This parameter specifies the engine class and must be passed along
++	 * with DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE.
++	 *
++	 * This property is available in perf revision 6.
++	 */
++	DRM_I915_PERF_PROP_OA_ENGINE_CLASS,
++
++	/**
++	 * This parameter specifies the engine instance and must be passed along
++	 * with DRM_I915_PERF_PROP_OA_ENGINE_CLASS.
++	 *
++	 * This property is available in perf revision 6.
++	 */
++	DRM_I915_PERF_PROP_OA_ENGINE_INSTANCE,
++
+ 	DRM_I915_PERF_PROP_MAX /* non-ABI */
+ };
+ 
 -- 
 2.36.1
 
