@@ -2,78 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DC26BD854
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 19:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7456BD9F0
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 21:12:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C538C10E29C;
-	Thu, 16 Mar 2023 18:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E7010E362;
+	Thu, 16 Mar 2023 20:12:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 800EA10EDBA
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 18:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1678992338;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=msB9Vqg/JhQndpd4enpDX7wLYe89HC8KUPhwlSyu4MY=;
- b=Z3CwF+grJMnG7gnbuW48sWwUL9lHI2fCCA0GuhM7kD/bDgJ+vC+tVRdMGTL6m+8inD/CD8
- E9VE8FBcCdagUi+HgsZHynB6UP+c9T9XxhdUKdok9kX4SsSjctW9L17nb8AA+wA43DEpux
- oOtO/RIJQiNBVLBeP4YwffbXBISvSco=
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-216-lswOR_cIMbaZgjlS7fe79A-1; Thu, 16 Mar 2023 14:45:36 -0400
-X-MC-Unique: lswOR_cIMbaZgjlS7fe79A-1
-Received: by mail-io1-f69.google.com with SMTP id
- u23-20020a6be917000000b007532ab65c70so1219774iof.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 11:45:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678992336;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=msB9Vqg/JhQndpd4enpDX7wLYe89HC8KUPhwlSyu4MY=;
- b=cVOQ4aEqdu4EBvkDHVviICS6wpFIb79gRp6iIXha/dxc2WMaNf+3pvrS64ZAFlltrw
- 8OrFWgsVuctyDg9xDdnxk9ANRi3HggBH26ZetL+rnm3h4iFdaE2OB1pkU9YKwlr47I2O
- niiCo+9nWrcClFBgY3et9Lw0lB/Z/Nszp+qn/BimmRs06XSo6EHP/2epZ8wDAY4TcdbY
- TvKwwUv/BaKiAcfx0SZl4Pzf1PKDb4PqzpHqJa9bUmTQp8ey+cR5GvkbaQh7yq5KLNMA
- 9ZboIhGWqN7E3NoV27bwDD/4nvamEv29+Q29hnI9xjMxaFbVHQQJI0HdyhLzB1BwwrgT
- 07WQ==
-X-Gm-Message-State: AO0yUKV5ztjq+gn88GvyGlxnNYJLeg0RO3XaPRWULdIa+I1zY80xVT8n
- tGhC2hfDBSJ9PxVJnsPvW0O/3FLywV0VUWm14xWGYik5HtCzu/4SQN4QilVDfus1iqobOOw61+Y
- EL5nTX4e0H8+Z8qtLiGSzWb+Dn6zq
-X-Received: by 2002:a92:d091:0:b0:315:365d:534f with SMTP id
- h17-20020a92d091000000b00315365d534fmr8191870ilh.19.1678992335754; 
- Thu, 16 Mar 2023 11:45:35 -0700 (PDT)
-X-Google-Smtp-Source: AK7set9qQgqeAlftnpNauE2CjihQfPZJZ5OsDTnDHp/jf0ze+wvxzL6P4lb2qI9dZoMDXrMloIqAiw==
-X-Received: by 2002:a92:d091:0:b0:315:365d:534f with SMTP id
- h17-20020a92d091000000b00315365d534fmr8191844ilh.19.1678992335398; 
- Thu, 16 Mar 2023 11:45:35 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- m14-20020a02c88e000000b004050767f779sm2680270jao.164.2023.03.16.11.45.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Mar 2023 11:45:34 -0700 (PDT)
-Date: Thu, 16 Mar 2023 12:45:32 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Message-ID: <20230316124532.30839a94.alex.williamson@redhat.com>
-In-Reply-To: <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230308132903.465159-1-yi.l.liu@intel.com>
- <20230308132903.465159-13-yi.l.liu@intel.com>
- <20230315165311.01f32bfe.alex.williamson@redhat.com>
- <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C107D10E362;
+ Thu, 16 Mar 2023 20:12:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B7DA3A0003;
+ Thu, 16 Mar 2023 20:12:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7305179850478811913=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolin Chen" <nicolinc@nvidia.com>
+Date: Thu, 16 Mar 2023 20:12:50 -0000
+Message-ID: <167899757071.19095.14166036458598416592@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230316121526.5644-1-yi.l.liu@intel.com>
+In-Reply-To: <20230316121526.5644-1-yi.l.liu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgdmZp?=
+ =?utf-8?q?o=3A_Make_emulated_devices_prepared_for_vfio_device_cdev_=28rev?=
+ =?utf-8?q?3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,88 +41,365 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Mar 2023 23:31:23 +0000
-"Tian, Kevin" <kevin.tian@intel.com> wrote:
+--===============7305179850478811913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Thursday, March 16, 2023 6:53 AM
-> > 
-> > On Wed,  8 Mar 2023 05:28:51 -0800
-> > Yi Liu <yi.l.liu@intel.com> wrote:
-> >   
-> > > This is another method to issue PCI hot reset for the users that bounds
-> > > device to a positive iommufd value. In such case, iommufd is a proof of
-> > > device ownership. By passing a zero-length fd array, user indicates kernel
-> > > to do ownership check with the bound iommufd. All the opened devices  
-> > within  
-> > > the affected dev_set should have been bound to the same iommufd. This is
-> > > simpler and faster as user does not need to pass a set of fds and kernel
-> > > no need to search the device within the given fds.  
-> > 
-> > Couldn't this same idea apply to containers?  
-> 
-> User is allowed to create multiple containers. Looks we don't have a way
-> to check whether multiple containers belong to the same user today.
+== Series Details ==
 
-No, but a common configuration is that all devices are in the same
-container, ie. no-vIOMMU, and it's also rather common that when we have
-multi-function devices, all functions are within the same IOMMU group
-and therefore necessarily require the same address space and therefore
-container.
+Series: vfio: Make emulated devices prepared for vfio device cdev (rev3)
+URL   : https://patchwork.freedesktop.org/series/114846/
+State : failure
 
-> > I'm afraid this proposal reduces or eliminates the handshake we have
-> > with userspace between VFIO_DEVICE_GET_PCI_HOT_RESET_INFO and
-> > VFIO_DEVICE_PCI_HOT_RESET, which could promote userspace to ignore the
-> > _INFO ioctl altogether, resulting in drivers that don't understand the
-> > scope of the reset.  Is it worth it?  What do we really gain?  
-> 
-> Jason raised the concern whether GET_PCI_HOT_RESET_INFO is actually
-> useful today.
-> 
-> It's an interface on opened device. So the tiny difference is whether the
-> user knows the device is resettable when calling GET_INFO or later when
-> actually calling PCI_HOT_RESET.
+== Summary ==
 
-No, GET_PCI_HOT_RESET_INFO conveys not only whether a PCI_HOT_RESET can
-be performed, but equally important the scope of the reset, ie. which
-devices are affected by the reset.  If we de-emphasize the INFO
-portion, then this easily gets confused as just a variant of
-VFIO_DEVICE_RESET, which is explicitly a device-level cscope reset.  In
-fact, I'd say the interface is not only trying to validate that the
-user has sufficient privileges for the reset, but that they explicitly
-acknowledge the scope of the reset.
+CI Bug Log - changes from CI_DRM_12871 -> Patchwork_114846v3
+====================================================
 
-> and with this series we also allow reset on affected devices which are not
-> opened. Such dynamic cannot be reflected in static GET_INFO. More
-> suitable a try-and-fail style.
+Summary
+-------
 
-Resets have side-effects, obviously, so this isn't the sort of thing we
-can simply ask the user to probe for.  I agree that dynamics can
-change, the GET_PCI_HOT_RESET_INFO is a point in time, isolated
-functions on the same bus can change ownership.  However, in practice,
-and in its primary use case with GPUs without isolation, it's
-sufficiently static.  So I think this is a mischaracterization.  Thanks,
+  **FAILURE**
 
-Alex
+  Serious unknown changes coming with Patchwork_114846v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_114846v3, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_114846v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - bat-rplp-1:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_chain.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@dmabuf@all-tests@dma_fence_unwrap:
+    - bat-rplp-1:         [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_unwrap.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_unwrap.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114846v3 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-rkl-11600:       [FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/fi-rkl-11600/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][7] ([i915#7456])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][8] ([i915#2190])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][9] ([i915#4613]) +3 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][10] ([i915#3282])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][11] ([i915#7561])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@kms_chamelium_hpd@dp-hpd-fast:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([i915#7828]) +8 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_chamelium_hpd@dp-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][13] ([i915#4103]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][14] ([fdo#109285] / [i915#4098])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([i915#1072]) +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][16] ([i915#3555] / [i915#4098])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][18] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@migrate:
+    - bat-rpls-1:         [DMESG-FAIL][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rpls-1/igt@i915_selftest@live@migrate.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rpls-1/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rplp-1:         [DMESG-FAIL][21] ([i915#6367] / [i915#7913]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@i915_selftest@live@slpc.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12871 -> Patchwork_114846v3
+
+  CI-20190529: 20190529
+  CI_DRM_12871: 8774b945454da4b6e473271d6d098f573cd09787 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7201: 0603636fd4e654294f49469f40e6d2188e0f5e10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114846v3: 8774b945454da4b6e473271d6d098f573cd09787 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+1caea2709bf6 vfio: Check the presence for iommufd callbacks in __vfio_register_dev()
+62d43d38c1a3 vfio/mdev: Uses the vfio emulated iommufd ops set in the mdev sample drivers
+f1794669a417 vfio-iommufd: Make vfio_iommufd_emulated_bind() return iommufd_access ID
+a00d0e3c8f21 vfio-iommufd: No need to record iommufd_ctx in vfio_device
+8046863e1dd9 iommufd: Create access in vfio_iommufd_emulated_bind()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/index.html
+
+--===============7305179850478811913==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>vfio: Make emulated devices prepared for vfio device cdev (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114846/">https://patchwork.freedesktop.org/series/114846/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12871 -&gt; Patchwork_114846v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_114846v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_114846v3, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_114846v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_unwrap:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_unwrap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@dmabuf@all-tests@dma_fence_unwrap.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114846v3 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/fi-rkl-11600/boot.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rpls-1/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rpls-1/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12871/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114846v3/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12871 -&gt; Patchwork_114846v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12871: 8774b945454da4b6e473271d6d098f573cd09787 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7201: 0603636fd4e654294f49469f40e6d2188e0f5e10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114846v3: 8774b945454da4b6e473271d6d098f573cd09787 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>1caea2709bf6 vfio: Check the presence for iommufd callbacks in __vfio_register_dev()<br />
+62d43d38c1a3 vfio/mdev: Uses the vfio emulated iommufd ops set in the mdev sample drivers<br />
+f1794669a417 vfio-iommufd: Make vfio_iommufd_emulated_bind() return iommufd_access ID<br />
+a00d0e3c8f21 vfio-iommufd: No need to record iommufd_ctx in vfio_device<br />
+8046863e1dd9 iommufd: Create access in vfio_iommufd_emulated_bind()</p>
+
+</body>
+</html>
+
+--===============7305179850478811913==--
