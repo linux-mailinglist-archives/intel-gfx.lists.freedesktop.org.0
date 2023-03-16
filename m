@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DBA36BC22F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 01:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A646BC22E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 01:09:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 419A910EBDF;
-	Thu, 16 Mar 2023 00:09:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C7F10EBD8;
+	Thu, 16 Mar 2023 00:09:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAE110EA59
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3611710EA3C
  for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 00:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678925375; x=1710461375;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/rhoIQHuyh2E3BT636EmwDrT8BoZe2b7GOqqiJPBbR8=;
- b=hwCYJjWPxBBvmUjzrWDLoBP8/2fUoj8mkWWEhiGDA8I83t1/BfTUEjT6
- 56xHz1bzMK24zeXtN7USBZP992zosM+vbTRImBh3ZU8c04EnIr9+D0HEM
- 8+c4VRVEtnq87UcSaCEjB0AC8A2Mc7Qj5QeELCvpinkqwi9WNeZHXRmM2
- vvIPqjFyobNhSTwskUk2OUbzo3aHl/xvB2oUd9PhbPFpUlf/Tuqxto9+e
- C24hO3tblD4kQxIapxjd6mwRidmD2jYR9lnaU076vg6+IfoPtbIHqmsuG
- /2UzN/9yOdwNnGYH85mp+Ohez/R7DtHHemjP8rrXsWAM9p9/B+xvgyQ3P g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="402718823"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="402718823"
+ bh=L0FceqIFJhof6Hx0cfpW0CQFmz4RMcHKlDOYelRWfKg=;
+ b=IQAcdl0RksyKrnQydZsn5H016AtPmf4FBGRUMwWnLdQum2Ydh6MuXAgl
+ wH/i6nuMt1bTI8kMdcffd0A33uUBXjOK6K0vQCD551bwKbLqLZjo15lUb
+ Ugl0HBaUYlHLpwg8RYCj2MyB6gpBNgWC59KqYLLibkWCPV/kglik/dnSs
+ 1C+UwPS+FUV6h9mrpEXfCbEJRdxefslKZmL9Nb8LhLuxwidixW8auy+bs
+ BCjfWGWhmBVs9XvnaLR8sBMK6JsXUli+vhocQoEDVTKW9xXkiaDr7AQnn
+ vjREX2cDGzooF15Rjbq1xFZC1A18ZYyvPOzAyCyuoC5xhWTgPuy/Ra57F w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="402718824"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="402718824"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 17:09:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="709863724"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="709863724"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="709863727"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="709863727"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 17:09:34 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Mar 2023 17:09:31 -0700
-Message-Id: <20230316000932.2525744-12-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 15 Mar 2023 17:09:32 -0700
+Message-Id: <20230316000932.2525744-13-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20230316000932.2525744-1-umesh.nerlige.ramappa@intel.com>
 References: <20230316000932.2525744-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 11/12] drm/i915/perf: Pass i915 object to
- perf revision helper
+Subject: [Intel-gfx] [PATCH v5 12/12] drm/i915/perf: Wa_14017512683: Disable
+ OAM if media C6 is enabled in BIOS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +61,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In some cases, perf revision may rely on specific steppings of a
-platform. To determine the platform, pass i915 object to the perf
-revision helper.
+OAM does not work with media C6 enabled on some steppings of MTL.
+Disable OAM if we detect that media C6 was enabled in bios.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_getparam.c | 2 +-
- drivers/gpu/drm/i915/i915_perf.c     | 2 +-
- drivers/gpu/drm/i915/i915_perf.h     | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 61ef2d9cfa62..2238e096c957 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -173,7 +173,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 		value = INTEL_INFO(i915)->has_coherent_ggtt;
- 		break;
- 	case I915_PARAM_PERF_REVISION:
--		value = i915_perf_ioctl_version();
-+		value = i915_perf_ioctl_version(i915);
- 		break;
- 	case I915_PARAM_OA_TIMESTAMP_FREQUENCY:
- 		value = i915_perf_oa_timestamp_frequency(i915);
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index f68a66cc387b..77fae3d80128 100644
+index 77fae3d80128..4ac6535a0356 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -5290,7 +5290,7 @@ void i915_perf_fini(struct drm_i915_private *i915)
-  *
-  * This version number is used by userspace to detect available features.
-  */
--int i915_perf_ioctl_version(void)
-+int i915_perf_ioctl_version(struct drm_i915_private *i915)
+@@ -209,6 +209,7 @@
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_lrc.h"
+ #include "gt/intel_lrc_reg.h"
++#include "gt/intel_rc6.h"
+ #include "gt/intel_ring.h"
+ #include "gt/uc/intel_guc_slpc.h"
+ 
+@@ -4898,6 +4899,18 @@ static u32 num_perf_groups_per_gt(struct intel_gt *gt)
+ 
+ static u32 __oam_engine_group(struct intel_engine_cs *engine)
  {
- 	/*
- 	 * 1: Initial version
-diff --git a/drivers/gpu/drm/i915/i915_perf.h b/drivers/gpu/drm/i915/i915_perf.h
-index 253637651d5e..accf626f2b13 100644
---- a/drivers/gpu/drm/i915/i915_perf.h
-+++ b/drivers/gpu/drm/i915/i915_perf.h
-@@ -22,7 +22,7 @@ int i915_perf_init(struct drm_i915_private *i915);
- void i915_perf_fini(struct drm_i915_private *i915);
- void i915_perf_register(struct drm_i915_private *i915);
- void i915_perf_unregister(struct drm_i915_private *i915);
--int i915_perf_ioctl_version(void);
-+int i915_perf_ioctl_version(struct drm_i915_private *i915);
- int i915_perf_sysctl_register(void);
- void i915_perf_sysctl_unregister(void);
++	/*
++	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
++	 * C6 disable in BIOS. Do not enable OA for media classes if MC6 is
++	 * enabled in BIOS.
++	 */
++	if (IS_MTL_MEDIA_STEP(engine->i915, STEP_A0, STEP_C0) &&
++	    intel_check_bios_c6_setup(&engine->gt->rc6)) {
++		drm_notice_once(&engine->i915->drm,
++				"OAM requires media C6 to be disabled in BIOS\n");
++		return PERF_GROUP_INVALID;
++	}
++
+ 	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 70)) {
+ 		/*
+ 		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
+@@ -5317,6 +5330,23 @@ int i915_perf_ioctl_version(struct drm_i915_private *i915)
+ 	 *
+ 	 * 7: Add support for video decode and enhancement classes.
+ 	 */
++
++	/*
++	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
++	 * C6 disable in BIOS. Do not enable OA for media classes if MC6 is
++	 * enabled in BIOS.
++	 */
++	if (IS_MTL_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
++		struct intel_gt *gt;
++		int i;
++
++		for_each_gt(gt, i915, i) {
++			if (gt->type == GT_MEDIA &&
++			    intel_check_bios_c6_setup(&gt->rc6))
++				return 6;
++		}
++	}
++
+ 	return 7;
+ }
  
 -- 
 2.36.1
