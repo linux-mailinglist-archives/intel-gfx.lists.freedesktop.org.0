@@ -2,67 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9270D6BD591
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E976BD5F5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:37:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E3C10ED53;
-	Thu, 16 Mar 2023 16:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE80910ED53;
+	Thu, 16 Mar 2023 16:37:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
- [IPv6:2607:f8b0:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58E1C10E0E9;
- Thu, 16 Mar 2023 16:29:08 +0000 (UTC)
-Received: by mail-ot1-x32d.google.com with SMTP id
- w21-20020a9d6755000000b00698853a52c7so1272926otm.11; 
- Thu, 16 Mar 2023 09:29:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678984147;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Vs3zfnYLiPrlyQpAWkqpXhNbQS3/J4YFuAxSGCahd48=;
- b=ikNRzbRoiKTgXyd+o2RLa29YkJb2JOn/v6YIm0chMHa6jMtz7Aukxr3sDnZHlDLCPg
- 4D/22vj4EbWjYs2AIrlL21s+qmtcJrK2g0S0A9e8PiBm5W7d712LL6r2UFxgKnvXl/gm
- ktxn0TCtFmHN3n6/5Rqp3eY/tP+45cwvCQbEr4LKfIVc3NzHlCvpaRgPl1GjprXJngVK
- o/OzzczyZa0RYUhKwpPTamHjLGz0bzvRvfBPOcY80aDA3S86p0xzu2KL68NJou9/9dV3
- ledWYpzzPxEcC0LxkcP1aiyD5wyrscSI78/RWFrs6d2i7fFM8PEv3ajniZ3O3cfTJDJ4
- JOow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678984147;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Vs3zfnYLiPrlyQpAWkqpXhNbQS3/J4YFuAxSGCahd48=;
- b=PYRF4I6b5/OuJc0tc1bN5uHFQhq9P0Y954t4Cd7swTA0iJ6XbptiqTZ0lYHcOl4unH
- xgse1IOjtBacjUUfXuN70uWziBSShUwRfZTakrH+fkpfjM+rx2ySRcKzAPy7ECM5+Jg+
- U9TXQiXY7KtTSBYHf8BQtyQ/eS/Xrgfgv++TKU3NhsjhRHfmT0hDYQKibVgnzG8je+ZC
- M0dcsr/8IFfBhg43bTvC64D9rGpGFBVRJMFBRSc86/dVH9HJ1B6jiiA9L20TxizXFRVw
- adrxjOMvULWE7KmDEPGtP/1mMLnX9iHuxJg0eMxVHtIfARSpgH2CU7Je17hcsFrXIdOS
- yKTw==
-X-Gm-Message-State: AO0yUKXBkIsywhRCdEw6Ix1VTOT9w/4mDuB5k4isT78GDp8E9UDgVP3S
- iGriM9h4SLGwHcMgUV8NR8m6ophRc64zT1lrSLI=
-X-Google-Smtp-Source: AK7set9IcfdpvBN64YteomtwjOCFpqzUVfHueXm0TYhNaIV/bcuG5vBYfN2vscoS0EyM3rGNZE/9BSodjB6pzEb8/aE=
-X-Received: by 2002:a9d:4b8f:0:b0:696:f275:a60d with SMTP id
- k15-20020a9d4b8f000000b00696f275a60dmr3396308otf.7.1678984147388; Thu, 16 Mar
- 2023 09:29:07 -0700 (PDT)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6AA10E219;
+ Thu, 16 Mar 2023 16:37:11 +0000 (UTC)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 32GDkWeE006537; Thu, 16 Mar 2023 16:36:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5YnHe0TsPIDAxPLrToTdrq6vXixOvJdvf1Ep+qvpJWQ=;
+ b=hPXHZD8XZf7RtYJUzBvc7dSeOTBZL2z8FxE+yxB1x96FfpMfy1Yd2j6RdHK4dmWGeA3G
+ tF5sLpZ496783IfMdowp6r0hjUttLwhi1O3dBt7/mnMRZXyWqFOBoxFAHN6wFRVwoc18
+ Wc5iFMe6R5SGwFAz0VaBzUidUGlKwNj/SyoVfN/bZQgsCuy5e612I8gSgKaUVo1+BwDC
+ mWxGN7WgrVJPC53RsQ+kmwoRmqO2ETy9fr1ZbEWlDe8+g2/vf3EljeWxzEFL5uftAc0j
+ Fzto/DhV9EkZOWRJb1UbCchyWPHrNJyk5FExMhiKqmPDQPhJ+/pHBC2QJg+ZBFHoBRVS +w== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pc49u8hrn-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 16 Mar 2023 16:36:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32GGaRRn031040
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 16 Mar 2023 16:36:27 GMT
+Received: from [10.110.64.241] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Mar
+ 2023 09:36:26 -0700
+Message-ID: <10b39fab-43a7-40b4-5d11-bc191e2953f3@quicinc.com>
+Date: Thu, 16 Mar 2023 09:36:25 -0700
 MIME-Version: 1.0
-References: <20230308155322.344664-1-robdclark@gmail.com>
- <20230308155322.344664-2-robdclark@gmail.com>
- <ZAtQspuFjPtGy7ze@gmail.com>
- <CAF6AEGsGOr5+Q10wX=5ttrWCSUJfn7gzHW8QhxFC0GDLgagMHg@mail.gmail.com>
- <ZBHNvT3BLgS3qvV5@gmail.com>
- <CAF6AEGu1S2CXzRxV_c5tE_H+XUGiO=n0tXjLZ_u_tW-eMqMsQw@mail.gmail.com>
- <ZBLg0t0tTVvuPuiJ@gmail.com>
-In-Reply-To: <ZBLg0t0tTVvuPuiJ@gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 16 Mar 2023 09:28:55 -0700
-Message-ID: <CAF6AEGvV5arZThTyju_=xFFDWRbMaexgO_kkdKZuK-zeCxrN7Q@mail.gmail.com>
-To: =?UTF-8?B?Sm9uYXMgw4VkYWhs?= <jadahl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v10 01/15] dma-buf/dma-fence: Add deadline
- awareness
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>
+References: <1677267647-28672-1-git-send-email-quic_khsieh@quicinc.com>
+ <741be2a3-0208-2f40-eedf-d439c4e6795b@quicinc.com>
+ <F8A4FC18-C64E-4011-BC08-18EB3B95A357@linaro.org>
+ <d5ee8233-66c8-9b88-417c-6cf9cc5c84fe@quicinc.com>
+ <CAA8EJpro5Q-2ZpnDJt40UhFX7Zp9oBhrto=FDOERzCDR2BDPvQ@mail.gmail.com>
+ <f0dfba42-4674-3748-bf5d-39f6e1745f67@quicinc.com>
+ <f1a6ee82-9502-7ea5-fe48-f296fc7df497@linaro.org>
+ <3e114c0f-a042-6801-69bf-67436cb2a448@quicinc.com>
+ <113a10b6-6097-c80e-c29c-6f61b2b2896a@linaro.org>
+ <c4c0ebf8-275d-500f-4019-e3d7517a884f@quicinc.com>
+ <CAA8EJppxX4haZSwdvVbN7bc6kXAyNO1rg6zWZv9wPFdqGrcXuw@mail.gmail.com>
+ <c650e746-64c5-ce6b-933d-057349356b78@quicinc.com>
+ <58E03B71-20C4-4F81-96C1-6D8CE517F3FB@linaro.org>
+ <fd876ad2-3fd0-eaab-3407-dd32d494f662@quicinc.com>
+ <a5d1a74f-1b7a-569d-e487-774720dfae22@quicinc.com>
+ <CAA8EJpq_mwUt0+1yGYo6hRx8Vz12DumVdpEjJbPk8gGHhGZ2bA@mail.gmail.com>
+ <176c6088-4470-5559-e79e-fd5675db0097@quicinc.com>
+ <04156713-3f8e-c29e-322f-259ae163a93a@linaro.org>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <04156713-3f8e-c29e-322f-259ae163a93a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: SQ2BBsQqvkDL_p7Hq8CzcpLgC97BB4aU
+X-Proofpoint-ORIG-GUID: SQ2BBsQqvkDL_p7Hq8CzcpLgC97BB4aU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-16_10,2023-03-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ mlxlogscore=999 impostorscore=0 clxscore=1015 bulkscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303160131
+Subject: Re: [Intel-gfx] [Freedreno] [RFC PATCH 1/2] drm/msm/dpu: add dsc
+ helper functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,311 +101,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Luben Tuikov <luben.tuikov@amd.com>, Bagas Sanjaya <bagasdotme@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Gustavo Padovan <gustavo@padovan.org>,
- Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: quic_sbillaka@quicinc.com, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ andersson@kernel.org, freedreno@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dianders@chromium.org, vkoul@kernel.org, agross@kernel.org, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, marijn.suijten@somainline.org,
+ swboyd@chromium.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-arm-msm@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 2:26=E2=80=AFAM Jonas =C3=85dahl <jadahl@gmail.com>=
- wrote:
->
-> On Wed, Mar 15, 2023 at 09:19:49AM -0700, Rob Clark wrote:
-> > On Wed, Mar 15, 2023 at 6:53=E2=80=AFAM Jonas =C3=85dahl <jadahl@gmail.=
-com> wrote:
-> > >
-> > > On Fri, Mar 10, 2023 at 09:38:18AM -0800, Rob Clark wrote:
-> > > > On Fri, Mar 10, 2023 at 7:45=E2=80=AFAM Jonas =C3=85dahl <jadahl@gm=
-ail.com> wrote:
-> > > > >
-> > > > > On Wed, Mar 08, 2023 at 07:52:52AM -0800, Rob Clark wrote:
-> > > > > > From: Rob Clark <robdclark@chromium.org>
-> > > > > >
-> > > > > > Add a way to hint to the fence signaler of an upcoming deadline=
-, such as
-> > > > > > vblank, which the fence waiter would prefer not to miss.  This =
-is to aid
-> > > > > > the fence signaler in making power management decisions, like b=
-oosting
-> > > > > > frequency as the deadline approaches and awareness of missing d=
-eadlines
-> > > > > > so that can be factored in to the frequency scaling.
-> > > > > >
-> > > > > > v2: Drop dma_fence::deadline and related logic to filter duplic=
-ate
-> > > > > >     deadlines, to avoid increasing dma_fence size.  The fence-c=
-ontext
-> > > > > >     implementation will need similar logic to track deadlines o=
-f all
-> > > > > >     the fences on the same timeline.  [ckoenig]
-> > > > > > v3: Clarify locking wrt. set_deadline callback
-> > > > > > v4: Clarify in docs comment that this is a hint
-> > > > > > v5: Drop DMA_FENCE_FLAG_HAS_DEADLINE_BIT.
-> > > > > > v6: More docs
-> > > > > > v7: Fix typo, clarify past deadlines
-> > > > > >
-> > > > > > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > > > > > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > > > Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-> > > > > > Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> > > > > > ---
-> > > > >
-> > > > > Hi Rob!
-> > > > >
-> > > > > >  Documentation/driver-api/dma-buf.rst |  6 +++
-> > > > > >  drivers/dma-buf/dma-fence.c          | 59 ++++++++++++++++++++=
-++++++++
-> > > > > >  include/linux/dma-fence.h            | 22 +++++++++++
-> > > > > >  3 files changed, 87 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/driver-api/dma-buf.rst b/Documentati=
-on/driver-api/dma-buf.rst
-> > > > > > index 622b8156d212..183e480d8cea 100644
-> > > > > > --- a/Documentation/driver-api/dma-buf.rst
-> > > > > > +++ b/Documentation/driver-api/dma-buf.rst
-> > > > > > @@ -164,6 +164,12 @@ DMA Fence Signalling Annotations
-> > > > > >  .. kernel-doc:: drivers/dma-buf/dma-fence.c
-> > > > > >     :doc: fence signalling annotation
-> > > > > >
-> > > > > > +DMA Fence Deadline Hints
-> > > > > > +~~~~~~~~~~~~~~~~~~~~~~~~
-> > > > > > +
-> > > > > > +.. kernel-doc:: drivers/dma-buf/dma-fence.c
-> > > > > > +   :doc: deadline hints
-> > > > > > +
-> > > > > >  DMA Fences Functions Reference
-> > > > > >  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > > > >
-> > > > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-=
-fence.c
-> > > > > > index 0de0482cd36e..f177c56269bb 100644
-> > > > > > --- a/drivers/dma-buf/dma-fence.c
-> > > > > > +++ b/drivers/dma-buf/dma-fence.c
-> > > > > > @@ -912,6 +912,65 @@ dma_fence_wait_any_timeout(struct dma_fenc=
-e **fences, uint32_t count,
-> > > > > >  }
-> > > > > >  EXPORT_SYMBOL(dma_fence_wait_any_timeout);
-> > > > > >
-> > > > > > +/**
-> > > > > > + * DOC: deadline hints
-> > > > > > + *
-> > > > > > + * In an ideal world, it would be possible to pipeline a workl=
-oad sufficiently
-> > > > > > + * that a utilization based device frequency governor could ar=
-rive at a minimum
-> > > > > > + * frequency that meets the requirements of the use-case, in o=
-rder to minimize
-> > > > > > + * power consumption.  But in the real world there are many wo=
-rkloads which
-> > > > > > + * defy this ideal.  For example, but not limited to:
-> > > > > > + *
-> > > > > > + * * Workloads that ping-pong between device and CPU, with alt=
-ernating periods
-> > > > > > + *   of CPU waiting for device, and device waiting on CPU.  Th=
-is can result in
-> > > > > > + *   devfreq and cpufreq seeing idle time in their respective =
-domains and in
-> > > > > > + *   result reduce frequency.
-> > > > > > + *
-> > > > > > + * * Workloads that interact with a periodic time based deadli=
-ne, such as double
-> > > > > > + *   buffered GPU rendering vs vblank sync'd page flipping.  I=
-n this scenario,
-> > > > > > + *   missing a vblank deadline results in an *increase* in idl=
-e time on the GPU
-> > > > > > + *   (since it has to wait an additional vblank period), sendi=
-ng a signal to
-> > > > > > + *   the GPU's devfreq to reduce frequency, when in fact the o=
-pposite is what is
-> > > > > > + *   needed.
-> > > > >
-> > > > > This is the use case I'd like to get some better understanding ab=
-out how
-> > > > > this series intends to work, as the problematic scheduling behavi=
-or
-> > > > > triggered by missed deadlines has plagued compositing display ser=
-vers
-> > > > > for a long time.
-> > > > >
-> > > > > I apologize, I'm not a GPU driver developer, nor an OpenGL driver
-> > > > > developer, so I will need some hand holding when it comes to
-> > > > > understanding exactly what piece of software is responsible for
-> > > > > communicating what piece of information.
-> > > > >
-> > > > > > + *
-> > > > > > + * To this end, deadline hint(s) can be set on a &dma_fence vi=
-a &dma_fence_set_deadline.
-> > > > > > + * The deadline hint provides a way for the waiting driver, or=
- userspace, to
-> > > > > > + * convey an appropriate sense of urgency to the signaling dri=
-ver.
-> > > > > > + *
-> > > > > > + * A deadline hint is given in absolute ktime (CLOCK_MONOTONIC=
- for userspace
-> > > > > > + * facing APIs).  The time could either be some point in the f=
-uture (such as
-> > > > > > + * the vblank based deadline for page-flipping, or the start o=
-f a compositor's
-> > > > > > + * composition cycle), or the current time to indicate an imme=
-diate deadline
-> > > > > > + * hint (Ie. forward progress cannot be made until this fence =
-is signaled).
-> > > > >
-> > > > > Is it guaranteed that a GPU driver will use the actual start of t=
-he
-> > > > > vblank as the effective deadline? I have some memories of seing
-> > > > > something about vblank evasion browsing driver code, which I migh=
-t have
-> > > > > misunderstood, but I have yet to find whether this is something
-> > > > > userspace can actually expect to be something it can rely on.
-> > > >
-> > > > I guess you mean s/GPU driver/display driver/ ?  It makes things mo=
-re
-> > > > clear if we talk about them separately even if they happen to be th=
-e
-> > > > same device.
-> > >
-> > > Sure, sorry about being unclear about that.
-> > >
-> > > >
-> > > > Assuming that is what you mean, nothing strongly defines what the
-> > > > deadline is.  In practice there is probably some buffering in the
-> > > > display controller.  For ex, block based (including bandwidth
-> > > > compressed) formats, you need to buffer up a row of blocks to
-> > > > efficiently linearize for scanout.  So you probably need to latch s=
-ome
-> > > > time before you start sending pixel data to the display.  But detai=
-ls
-> > > > like this are heavily implementation dependent.  I think the most
-> > > > reasonable thing to target is start of vblank.
-> > >
-> > > The driver exposing those details would be quite useful for userspace
-> > > though, so that it can delay committing updates to late, but not too
-> > > late. Setting a deadline to be the vblank seems easy enough, but it
-> > > isn't enough for scheduling the actual commit.
-> >
-> > I'm not entirely sure how that would even work.. but OTOH I think you
-> > are talking about something on the order of 100us?  But that is a bit
-> > of another topic.
->
-> Yes, something like that. But yea, it's not really related. Scheduling
-> commits closer to the deadline has more complex behavior than that too,
-> e.g. the need for real time scheduling, and knowing how long it usually
-> takes to create and commit and for the kernel to process.
->
-> >
->
-> 8-< *snip* 8-<
->
-> > > >
-> > > > You need a fence to set the deadline, and for that work needs to be
-> > > > flushed.  But you can't associate a deadline with work that the ker=
-nel
-> > > > is unaware of anyways.
-> > >
-> > > That makes sense, but it might also a bit inadequate to have it as th=
-e
-> > > only way to tell the kernel it should speed things up. Even with the
-> > > trick i915 does, with GNOME Shell, we still end up with the feedback
-> > > loop this series aims to mitigate. Doing triple buffering, i.e. delay=
-ing
-> > > or dropping the first frame is so far the best work around that works=
-,
-> > > except doing other tricks that makes the kernel to ramp up its clock.
-> > > Having to rely on choosing between latency and frame drops should
-> > > ideally not have to be made.
-> >
-> > Before you have a fence, the thing you want to be speeding up is the
-> > CPU, not the GPU.  There are existing mechanisms for that.
->
-> Is there no benefit to let the GPU know earlier that it should speed up,
-> so that when the job queue arrives, it's already up to speed?
 
-Downstream we have input notifier that resumes the GPU so we can
-pipeline the 1-2ms it takes to boot up the GPU with userspace.  But we
-wait to boost freq until we have cmdstream to submit, since that
-doesn't take as long.  What needs help initially after input is all
-the stuff that happens on the CPU before the GPU can start to do
-anything ;-)
 
-Btw, I guess I haven't made this clear, dma-fence deadline is trying
-to help the steady-state situation, rather than the input-latency
-situation.  It might take a frame or two of missed deadlines for
-gpufreq to arrive at a good steady-state freq.
+On 3/16/2023 9:23 AM, Dmitry Baryshkov wrote:
+> On 16/03/2023 18:13, Abhinav Kumar wrote:
+>>
+>>
+>> On 3/16/2023 9:03 AM, Dmitry Baryshkov wrote:
+>>> Hi,
+>>>
+>>> [removed previous conversation]
+>>>
+>>>>
+>>>> Hi Dmitry and Abhinav,
+>>>>
+>>>> Just wanted to follow up on this thread. I've gone over the 
+>>>> MSM-specific
+>>>> DSC params for DP and DSI and have found a few shared calculations and
+>>>> variables between both DSI and DP paths:
+>>>>
+>>>> - (as mentioned earlier in the thread) almost all the calculations in
+>>>> dpu_dsc_populate_dsc_config() match dsi_populate_dsc_params() [1]. The
+>>>> only difference in the math I'm seeing is initial_scale_value.
+>>>
+>>> The value in dsi code is valid for initial_offset = 6144. Please use
+>>> the formula from the standard (= sde_dsc_populate_dsc_config) and add
+>>> it to drm_dsc_helper.c
+>>>
+>>> If I remember correctly the last remaining item in
+>>> dsi_populate_dsc_params() (except mentioned initial_offset) was
+>>> line_buf_depth, see [3]. I'm not sure about setting it to bpc+1.
+>>> According to the standard it should come from a DSC decoder spec,
+>>> which means it should be set by the DSI panel driver or via
+>>> drm_dp_dsc_sink_line_buf_depth() in the case of DP output.
+>>>
+>>>> - dsc_extra_pclk_cycle_cnt and dce_bytes_per_line, which were 
+>>>> introduced
+>>>> in Kuogee's v1 DSC series [2], are used for DSI, DP, and the DPU timing
+>>>> engine. dsc_extra_pclk_cycle_cnt is calculated based on pclk_per_line
+>>>> (which is calculated differently between DP and DSI), but
+>>>> dce_bytes_per_line is calculated the same way between DP and DSI.
+>>>>
+>>>> To avoid having to duplicate math in 2 different places, I think it
+>>>> would help to have these calculations in some msm_dsc_helper.c file. 
+>>>> Any
+>>>> thoughts on this?
+>>>
+>>> dsc_extra_pclk_cycle_cnt and dce_bytes_per_line are used only in DPU
+>>> code, so they can stay in DPU driver.
+>>>
+>>
+>> They can stay in the dpu driver is fine but where?
+>>
+>> Like Jessica wrote, this is computed and used in 3 places today :
+>>
+>> 1) DSI video engine computation
+>> 2) DP controller computation
+>> 3) timing engine programming
+> 
+> Please excuse me if I'm wrong. I checked both vendor techpack and the 
+> Kuogee's patches. I see them being used only in the SDE / DPU driver 
+> code. Could you please point me to the code path that we are discussing?
+> 
 
-> >
-> > TBF I'm of the belief that there is still a need for input based cpu
-> > boost (and early wake-up trigger for GPU).. we have something like
-> > this in CrOS kernel.  That is a bit of a different topic, but my point
-> > is that fence deadlines are just one of several things we need to
-> > optimize power/perf and responsiveness, rather than the single thing
-> > that solves every problem under the sun ;-)
->
-> Perhaps; but I believe it's a bit of a back channel of intent; the piece
-> of the puzzle that has the information to know whether there is need
-> actually speed up is the compositor, not the kernel.
->
-> For example, pressing 'p' while a terminal is focused does not need high
-> frequency clocks, it just needs the terminal emulator to draw a 'p' and
-> the compositor to composite that update. Pressing <Super> may however
-> trigger a non-trivial animation moving a lot of stuff around on screen,
-> maybe triggering Wayland clients to draw and what not, and should most
-> arguably have the ability to "warn" the kernel about the upcoming flood
-> of work before it is already knocking on its door step.
+DSI code :
 
-The super key is problematic, but not for the reason you think.  It is
-because it is a case where we should boost on key-up instead of
-key-down.. and the second key-up event comes after the cpu-boost is
-already in it's cool-down period.  But even if suboptimal in cases
-like this, it is still useful for touch/stylus cases where the
-slightest of lag is much more perceptible.
+https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/msm/dsi/dsi_host.c#L868
 
-This is getting off topic but I kinda favor coming up with some sort
-of static definition that userspace could give the kernel to let the
-kernel know what input to boost on.  Or maybe something could be done
-with BPF?
+DP code:
 
-> >
->
-> 8-< *snip* 8-<
->
-> > >
-> > > Is it expected that WSI's will set their own deadlines, or should tha=
-t
-> > > be the job of the compositor? For example by using compositors using
-> > > DMA_BUF_IOCTL_EXPORT_SYNC_FILE that you mentioned, using it to set a
-> > > deadline matching the vsync it most ideally will be committed to?
-> > >
-> >
-> > I'm kind of assuming compositors, but if the WSI somehow has more
-> > information about ideal presentation time, then I suppose it could be
-> > in the WSI?  I'll defer to folks who spend more time on WSI and
-> > compositors to hash out the details ;-)
->
-> With my compositor developer hat on, it might be best to let it be up to
-> the compositor, it's the one that knows if a client's content will
-> actually end up anywhere visible.
->
+Refer to dp_panel_dsc_pclk_param_calc in 
+https://patchwork.freedesktop.org/patch/519837/?series=113240&rev=1
 
-wfm
+Timing engine:
 
-BR,
--R
+refer to https://patchwork.freedesktop.org/patch/519838/?series=113240&rev=1
 
->
-> Jonas
->
-> >
-> > BR,
-> > -R
+Probably confusion is due to the naming. bytes_per_line is nothing but 
+bytes_per_pkt * pkt_per_line but the concept is common for DP and DSI.
+
++		if (phys->comp_type == MSM_DISPLAY_COMPRESSION_DSC) {
++			phys->dsc_extra_pclk_cycle_cnt = dsc_info->pclk_per_line;
++			phys->dsc_extra_disp_width = dsc_info->extra_width;
++			phys->dce_bytes_per_line =
++				dsc_info->bytes_per_pkt * dsc_info->pkt_per_line;
+
+> 
+>> So either we have a helper in a common location somewhere so that 
+>> these 3 modules can call that helper and use it OR each module 
+>> duplicates the computation code.
+>>
+>> What should be the common location is the discussion here.
+>>
+>> It cannot be dpu_encoder.c as the DSI/DP dont call into the encoder 
+>> methods.
+>>
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Jessica Zhang
+>>>>
+>>>> [1]
+>>>> https://elixir.bootlin.com/linux/v6.3-rc2/source/drivers/gpu/drm/msm/dsi/dsi_host.c#L1756 
+>>>>
+>>>>
+>>>> [2] https://patchwork.freedesktop.org/patch/519845/?series=113240&rev=1
+>>>
+>>> [3] https://patchwork.freedesktop.org/patch/525441/?series=114472&rev=2
+>>>
+>>>
+>>>
+> 
