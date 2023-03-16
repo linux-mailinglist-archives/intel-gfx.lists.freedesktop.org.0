@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C57A6BD034
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 13:56:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA3C6BD051
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 13:58:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F64C10ECEB;
-	Thu, 16 Mar 2023 12:56:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33A8610E13E;
+	Thu, 16 Mar 2023 12:58:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47D2A10E230;
- Thu, 16 Mar 2023 12:56:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7233410E0A9;
+ Thu, 16 Mar 2023 12:58:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678971371; x=1710507371;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ss+PjQUhxjU+laSJWlhUlqNe75tvnb7MmIudub+LfG4=;
- b=c9buXo0aTaDiLsLAjrpu6GyTk64esJe31tCnpg47tYibMrTL5ftn2GWG
- HXavz34YEC0rb/hhWjLFzyZqAb8eHmzQxmPEv1DCQwhvQGoCR3RoNlPs4
- BfNDcpuuGN+h5/JB5U/WV/8gZetpWeedqTogv23FjbozPTyuJQxFHl0RG
- k69TuK05GleFtXl6NujCgSCvh5mE+8nXKSRSl9ujFFLVp6smb/KUhVK7B
- l2B/juGQoI2XPcLw8vVV4XIAUibcyYJ6gkfpWJhd0wGups/krgCwh+omW
- R5se4V/bU3nY1WkgSvwtuM7/SzwW4eEYnH9pH5ccnhTwFFtKPJLJXEknj w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="336668271"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="336668271"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ t=1678971510; x=1710507510;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ENg8skYCFr/MmPXikreWW9N16ZSnRWxDiXFmeOHYENs=;
+ b=DrrG/EERipx/pqBjqUE1dsGUZ4vlSVoRWdUULWOe5XCvYPY5u4kdWtks
+ BOlKu7Qp47ciMzMnVFgrM+V5AnxjzVx0sTTO5d8fgdIFQHbhd5NKgClSW
+ WNbVa+JxsGdboYn3xSz6laTNg8x5UNROyf3Y182aXGEsqBwU8DOKRha6o
+ d1lFoTRgpwZFLM8d6YhPrJi6P+FyNfLGTLPlV5dxnlqKV2Ligu7yvhxDA
+ vO0WHF7RYtDJQHCo67Ga8Rw2vM3/UBDM3kFo+EVx1MhkDwZ2kjgfDLckm
+ EY5z55LR44jL+fKiGe8xrKd49rQn+NKyg0ccxLlUDvIhlri+Mx+lYB0Ko Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="336668747"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="336668747"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 05:56:11 -0700
+ 16 Mar 2023 05:58:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="790277919"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="790277919"
-Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
- by fmsmga002.fm.intel.com with ESMTP; 16 Mar 2023 05:56:10 -0700
-From: Yi Liu <yi.l.liu@intel.com>
-To: alex.williamson@redhat.com,
-	jgg@nvidia.com,
-	kevin.tian@intel.com
-Date: Thu, 16 Mar 2023 05:55:34 -0700
-Message-Id: <20230316125534.17216-23-yi.l.liu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230316125534.17216-1-yi.l.liu@intel.com>
-References: <20230316125534.17216-1-yi.l.liu@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="682305496"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="682305496"
+Received: from hmolloy-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.15.189])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 05:58:26 -0700
+Date: Thu, 16 Mar 2023 14:58:23 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZBMSb42yjjzczRhj@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 22/22] docs: vfio: Add vfio device cdev
- description
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,164 +57,288 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, yi.l.liu@intel.com, yi.y.sun@linux.intel.com,
- mjrosato@linux.ibm.com, kvm@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org, cohuck@redhat.com,
- xudong.hao@intel.com, peterx@redhat.com, yan.y.zhao@intel.com,
- eric.auger@redhat.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This gives notes for userspace applications on device cdev usage.
+Hi Dave & Daniel,
 
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
----
- Documentation/driver-api/vfio.rst | 125 ++++++++++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+Here's the first batch of drm-intel-gt-next towards v6.4.
 
-diff --git a/Documentation/driver-api/vfio.rst b/Documentation/driver-api/vfio.rst
-index 363e12c90b87..287e1bdede04 100644
---- a/Documentation/driver-api/vfio.rst
-+++ b/Documentation/driver-api/vfio.rst
-@@ -239,6 +239,123 @@ group and can access them as follows::
- 	/* Gratuitous device reset and go... */
- 	ioctl(device, VFIO_DEVICE_RESET);
- 
-+IOMMUFD and vfio_iommu_type1
-+----------------------------
-+
-+IOMMUFD is the new user API to manage I/O page tables from userspace.
-+It intends to be the portal of delivering advanced userspace DMA
-+features (nested translation [5], PASID [6], etc.) while being backward
-+compatible with the vfio_iommu_type1 driver.  Eventually vfio_iommu_type1
-+will be deprecated.
-+
-+With the backward compatibility, no change is required for legacy VFIO
-+drivers or applications to connect a VFIO device to IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=n, VFIO container still provides
-+	/dev/vfio/vfio which connects to vfio_iommu_type1.  To disable VFIO
-+	container and vfio_iommu_type1, the administrator could symbol link
-+	/dev/vfio/vfio to /dev/iommu to enable VFIO container emulation
-+	in IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=y, IOMMUFD directly provides
-+	/dev/vfio/vfio while the VFIO container and vfio_iommu_type1 are
-+	explicitly disabled.
-+
-+VFIO Device cdev
-+----------------
-+
-+Traditionally user acquires a device fd via VFIO_GROUP_GET_DEVICE_FD
-+in a VFIO group.
-+
-+With CONFIG_VFIO_DEVICE_CDEV=y the user can now acquire a device fd
-+by directly opening a character device /dev/vfio/devices/vfioX where
-+"X" is the number allocated uniquely by VFIO for registered devices.
-+
-+The cdev only works with IOMMUFD.  Both VFIO drivers and applications
-+must adapt to the new cdev security model which requires using
-+VFIO_DEVICE_BIND_IOMMUFD to claim DMA ownership before starting to
-+actually use the device.  Once BIND succeeds then a VFIO device can
-+be fully accessed by the user.
-+
-+VFIO device cdev doesn't rely on VFIO group/container/iommu drivers.
-+Hence those modules can be fully compiled out in an environment
-+where no legacy VFIO application exists.
-+
-+So far SPAPR does not support IOMMUFD yet.  So it cannot support device
-+cdev neither.
-+
-+Device cdev Example
-+-------------------
-+
-+Assume user wants to access PCI device 0000:6a:01.0::
-+
-+	$ ls /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/
-+	vfio0
-+
-+This device is therefore represented as vfio0.  The user can verify
-+its existence::
-+
-+	$ ls -l /dev/vfio/devices/vfio0
-+	crw------- 1 root root 511, 0 Feb 16 01:22 /dev/vfio/devices/vfio0
-+	$ cat /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/vfio0/dev
-+	511:0
-+	$ ls -l /dev/char/511\:0
-+	lrwxrwxrwx 1 root root 21 Feb 16 01:22 /dev/char/511:0 -> ../vfio/devices/vfio0
-+
-+Then provide the user with access to the device if unprivileged
-+operation is desired::
-+
-+	$ chown user:user /dev/vfio/devices/vfio0
-+
-+Finally the user could get cdev fd by::
-+
-+	cdev_fd = open("/dev/vfio/devices/vfio0", O_RDWR);
-+
-+An opened cdev_fd doesn't give the user any permission of accessing
-+the device except binding the cdev_fd to an iommufd.  After that point
-+then the device is fully accessible including attaching it to an
-+IOMMUFD IOAS/HWPT to enable userspace DMA::
-+
-+	struct vfio_device_bind_iommufd bind = {
-+		.argsz = sizeof(bind),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_alloc alloc_data  = {
-+		.size = sizeof(alloc_data),
-+		.flags = 0,
-+	};
-+	struct vfio_device_attach_iommufd_pt attach_data = {
-+		.argsz = sizeof(attach_data),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_map map = {
-+		.size = sizeof(map),
-+		.flags = IOMMU_IOAS_MAP_READABLE |
-+			 IOMMU_IOAS_MAP_WRITEABLE |
-+			 IOMMU_IOAS_MAP_FIXED_IOVA,
-+		.__reserved = 0,
-+	};
-+
-+	iommufd = open("/dev/iommu", O_RDWR);
-+
-+	bind.iommufd = iommufd; // negative value means vfio-noiommu mode
-+	ioctl(cdev_fd, VFIO_DEVICE_BIND_IOMMUFD, &bind);
-+
-+	ioctl(iommufd, IOMMU_IOAS_ALLOC, &alloc_data);
-+	attach_data.pt_id = alloc_data.out_ioas_id;
-+	ioctl(cdev_fd, VFIO_DEVICE_ATTACH_IOMMUFD_PT, &attach_data);
-+
-+	/* Allocate some space and setup a DMA mapping */
-+	map.user_va = (int64_t)mmap(0, 1024 * 1024, PROT_READ | PROT_WRITE,
-+				    MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
-+	map.iova = 0; /* 1MB starting at 0x0 from device view */
-+	map.length = 1024 * 1024;
-+	map.ioas_id = alloc_data.out_ioas_id;;
-+
-+	ioctl(iommufd, IOMMU_IOAS_MAP, &map);
-+
-+	/* Other device operations as stated in "VFIO Usage Example" */
-+
- VFIO User API
- -------------------------------------------------------------------------------
- 
-@@ -566,3 +683,11 @@ This implementation has some specifics:
- 				\-0d.1
- 
- 	00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev 90)
-+
-+.. [5] Nested translation is an IOMMU feature which supports two stage
-+   address translations.  This improves the address translation efficiency
-+   in IOMMU virtualization.
-+
-+.. [6] PASID stands for Process Address Space ID, introduced by PCI
-+   Express.  It is a prerequisite for Shared Virtual Addressing (SVA)
-+   and Scalable I/O Virtualization (Scalable IOV).
--- 
-2.34.1
+There is an important performance monitoring fix (#6333), more
+resiliency to pcode load delay and avoiding caching problems on LLC
+systems for ring buffers. Stolen memory probing fix and a
+missing register whitelisting for Gen12. Fix for potential OOB access
+on SSEU max_subslices array.
 
+Improvements to error capture on GuC, corrections to workarounds
+power domains across Gen11/Gen12 with subject to runtime PM.
+
+Then the regular bunch of smaller tweaks, restructuring and cleanups
+not to forget documentation, sparse and selftest improvements.
+
+Regards, Joonas
+
+***
+
+drm-intel-gt-next-2023-03-16:
+
+Driver Changes:
+
+- Fix issue #6333: "list_add corruption" and full system lockup from
+  performance monitoring (Janusz)
+- Give the punit time to settle before fatally failing (Aravind, Chris)
+- Don't use stolen memory or BAR for ring buffers on LLC platforms (John)
+- Add missing ecodes and correct timeline seqno on GuC error captures (John)
+- Make sure DSM size has correct 1MiB granularity on Gen12+ (Nirmoy,
+  Lucas)
+- Fix potential SSEU max_subslices array-index-out-of-bounds access on Gen11 (Andrea)
+- Whitelist COMMON_SLICE_CHICKEN3 for UMD access on Gen12+ (Matt R.)
+- Apply Wa_1408615072/Wa_1407596294 correctly on Gen11 (Matt R)
+- Apply LNCF/LBCF workarounds correctly on XeHP SDV/PVC/DG2 (Matt R)
+- Implement Wa_1606376872 for Xe_LP (Gustavo)
+- Consider GSI offset when doing MCR lookups on Meteorlake+ (Matt R.)
+- Add engine TLB invalidation for Meteorlake (Matt R.)
+- Fix GSC Driver-FLR completion on Meteorlake (Alan)
+- Fix GSC races on driver load/unload on Meteorlake+ (Daniele)
+- Disable MC6 for MTL A step (Badal)
+
+- Consolidate TLB invalidation flow (Tvrtko)
+- Improve debug GuC/HuC debug messages (Michal Wa., John)
+- Move fd_install after last use of fence (Rob)
+- Initialize the obj flags for shmem objects (Aravind)
+- Fix missing debug object activation (Nirmoy)
+- Probe lmem before the stolen portion (Matt A)
+- Improve clean up of GuC busyness stats worker (John)
+- Fix missing return code checks in GuC submission init (John)
+- Annotate two more workaround/tuning registers as MCR on PVC (Matt R)
+- Fix GEN8_MISCCPCTL definition and remove unused INF_UNIT_LEVEL_CLKGATE (Lucas)
+- Use sysfs_emit() and sysfs_emit_at() (Nirmoy)
+- Make kobj_type structures constant (Thomas W.)
+- make kobj attributes const on gt/ (Jani)
+- Remove the unused virtualized start hack on buddy allocator (Matt A)
+- Remove redundant check for DG1 (Lucas)
+- Move DG2 tuning to the right function (Lucas)
+- Rename dev_priv to i915 for private data naming consistency in gt/ (Andi)
+- Remove unnecessary whitelisting of CS_CTX_TIMESTAMP on Xe_HP platforms (Matt R.)
+-
+
+- Escape wildcard in method names in kerneldoc (Bagas)
+- Selftest improvements (Chris, Jonathan, Tvrtko, Anshuman, Tejas)
+- Fix sparse warnings (Jani)
+The following changes since commit 003e11ed2ef4af01b808f0f193eaa5a32f32383b:
+
+  drm/i915/mtl: Wa_22011802037: don't complain about missing regs on MTL (2023-01-31 15:17:30 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-03-16
+
+for you to fetch changes up to d2a9692ad4295e227e3352fdbf14b8491b01e1c9:
+
+  drm/i915/gt: make kobj attributes const (2023-03-15 12:20:11 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+
+- Fix issue #6333: "list_add corruption" and full system lockup from
+  performance monitoring (Janusz)
+- Give the punit time to settle before fatally failing (Aravind, Chris)
+- Don't use stolen memory or BAR for ring buffers on LLC platforms (John)
+- Add missing ecodes and correct timeline seqno on GuC error captures (John)
+- Make sure DSM size has correct 1MiB granularity on Gen12+ (Nirmoy,
+  Lucas)
+- Fix potential SSEU max_subslices array-index-out-of-bounds access on Gen11 (Andrea)
+- Whitelist COMMON_SLICE_CHICKEN3 for UMD access on Gen12+ (Matt R.)
+- Apply Wa_1408615072/Wa_1407596294 correctly on Gen11 (Matt R)
+- Apply LNCF/LBCF workarounds correctly on XeHP SDV/PVC/DG2 (Matt R)
+- Implement Wa_1606376872 for Xe_LP (Gustavo)
+- Consider GSI offset when doing MCR lookups on Meteorlake+ (Matt R.)
+- Add engine TLB invalidation for Meteorlake (Matt R.)
+- Fix GSC Driver-FLR completion on Meteorlake (Alan)
+- Fix GSC races on driver load/unload on Meteorlake+ (Daniele)
+- Disable MC6 for MTL A step (Badal)
+
+- Consolidate TLB invalidation flow (Tvrtko)
+- Improve debug GuC/HuC debug messages (Michal Wa., John)
+- Move fd_install after last use of fence (Rob)
+- Initialize the obj flags for shmem objects (Aravind)
+- Fix missing debug object activation (Nirmoy)
+- Probe lmem before the stolen portion (Matt A)
+- Improve clean up of GuC busyness stats worker (John)
+- Fix missing return code checks in GuC submission init (John)
+- Annotate two more workaround/tuning registers as MCR on PVC (Matt R)
+- Fix GEN8_MISCCPCTL definition and remove unused INF_UNIT_LEVEL_CLKGATE (Lucas)
+- Use sysfs_emit() and sysfs_emit_at() (Nirmoy)
+- Make kobj_type structures constant (Thomas W.)
+- make kobj attributes const on gt/ (Jani)
+- Remove the unused virtualized start hack on buddy allocator (Matt A)
+- Remove redundant check for DG1 (Lucas)
+- Move DG2 tuning to the right function (Lucas)
+- Rename dev_priv to i915 for private data naming consistency in gt/ (Andi)
+- Remove unnecessary whitelisting of CS_CTX_TIMESTAMP on Xe_HP platforms (Matt R.)
+-
+
+- Escape wildcard in method names in kerneldoc (Bagas)
+- Selftest improvements (Chris, Jonathan, Tvrtko, Anshuman, Tejas)
+- Fix sparse warnings (Jani)
+
+----------------------------------------------------------------
+Alan Previn (1):
+      drm/i915/gsc: Fix the Driver-FLR completion
+
+Andi Shyti (1):
+      drm/i915/gt: Rename dev_priv to i915 for private data naming consistency
+
+Andrea Righi (1):
+      drm/i915/sseu: fix max_subslices array-index-out-of-bounds access
+
+Anshuman Gupta (2):
+      drm/i915/selftest: Fix engine timestamp and ktime disparity
+      drm/i915/selftest: Fix ktime_get() and h/w access order
+
+Aravind Iddamsetty (2):
+      drm/i915: Initialize the obj flags for shmem objects
+      drm/i915/pcode: Give the punit time to settle before fatally failing
+
+Badal Nilawar (1):
+      drm/i915/mtl: Disable MC6 for MTL A step
+
+Bagas Sanjaya (1):
+      drm/i915/doc: Escape wildcard in method names
+
+Chris Wilson (1):
+      drm/i915/gt: Add selftests for TLB invalidation
+
+Daniele Ceraolo Spurio (2):
+      drm/i915/gsc: flush the GSC worker before wedging on unload
+      drm/i915/gsc: Fix race between HW init and GSC FW load
+
+Gustavo Sousa (1):
+      drm/i915/xelp: Implement Wa_1606376872
+
+Jani Nikula (3):
+      drm/i915/gt: add sparse lock annotation to avoid warnings
+      drm/i915/pxp: fix __le64 access to get rid of sparse warning
+      drm/i915/gt: make kobj attributes const
+
+Janusz Krzysztofik (1):
+      drm/i915/active: Fix misuse of non-idle barriers as fence trackers
+
+John Harrison (13):
+      drm/i915/guc: More debug print updates - UC firmware
+      drm/i915/guc: More debug print updates - GSC firmware
+      drm/i915/guc: More debug print updates - GuC reg capture
+      drm/i915/guc: More debug print updates - GuC selftests
+      drm/i915/guc: More debug print updates - GuC SLPC
+      drm/i915/guc: More debug print updates - GuC logging
+      drm/i915: Don't use stolen memory for ring buffers with LLC
+      drm/i915: Don't use BAR mappings for ring buffers with LLC
+      drm/i915/guc: Improve clean up of busyness stats worker
+      drm/i915/guc: Fix missing return code checks in submission init
+      drm/i915/guc: Fix missing ecodes
+      drm/i915/guc: Clean up of register capture search
+      drm/i915: Include timeline seqno in error capture
+
+Jonathan Cavitt (1):
+      drm/i915/mtl: X-Tile support changes to client blits
+
+Lucas De Marchi (4):
+      drm/i915: Fix GEN8_MISCCPCTL
+      drm/i915: Remove unused/wrong INF_UNIT_LEVEL_CLKGATE
+      drm/i915: Remove redundant check for DG1
+      drm/i915: Move DG2 tuning to the right function
+
+Matt Roper (7):
+      drm/i915/pvc: Annotate two more workaround/tuning registers as MCR
+      drm/i915/gen11: Wa_1408615072/Wa_1407596294 should be on GT list
+      drm/i915/xehp: LNCF/LBCF workarounds should be on the GT list
+      drm/i915/xelpmp: Consider GSI offset when doing MCR lookups
+      drm/i915/mtl: Add engine TLB invalidation
+      drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access
+      drm/i915: Stop whitelisting CS_CTX_TIMESTAMP on Xe_HP platforms
+
+Matthew Auld (2):
+      drm/i915: probe lmem before the stolen portion
+      drm/i915/ttm: remove the virtualized start hack
+
+Michal Wajdeczko (2):
+      drm/i915/guc: Improve debug message on context reset notification
+      drm/i915/huc: Add and use HuC oriented print macros
+
+Nirmoy Das (3):
+      drm/i915/gt: Use sysfs_emit() and sysfs_emit_at()
+      drm/i915: Make sure dsm_size has correct granularity
+      drm/i915/active: Fix missing debug object activation
+
+Rob Clark (1):
+      drm/i915: Move fd_install after last use of fence
+
+Tejas Upadhyay (1):
+      drm/i915/selftest: Remove avoidable init assignment
+
+Thomas Weiﬂschuh (1):
+      drm/i915: Make kobj_type structures constant
+
+Tvrtko Ursulin (2):
+      drm/i915: Consolidate TLB invalidation flow
+      drm/i915/selftests: Fix live_requests for all engines
+
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  14 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   2 +-
+ .../drm/i915/gem/selftests/i915_gem_client_blt.c   |  19 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          | 137 +++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |  14 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h       |   1 +
+ drivers/gpu/drm/i915/gt/intel_gsc.h                |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                 | 165 +++------
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c             |   9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  27 --
+ drivers/gpu/drm/i915/gt/intel_gt_print.h           |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h            |  16 +-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c           |   2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c                |   8 +
+ drivers/gpu/drm/i915/gt/intel_reset_types.h        |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c               |   6 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   4 +-
+ drivers/gpu/drm/i915/gt/intel_rps_types.h          |   2 +-
+ drivers/gpu/drm/i915/gt/intel_sseu.h               |   2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 160 +++++----
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |  10 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c             | 388 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/sysfs_engines.c            |  72 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c          |   9 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c          |  28 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h          |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c     |  78 +++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |   5 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |  21 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_print.h       |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c          |  21 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |  61 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 140 +++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h  |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  44 +--
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  56 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           | 116 +++---
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c          |  42 +--
+ .../gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c    |  23 +-
+ .../gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c    |  11 +-
+ drivers/gpu/drm/i915/i915_active.c                 |  28 +-
+ drivers/gpu/drm/i915/i915_driver.c                 |  10 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c              |   3 +
+ drivers/gpu/drm/i915/i915_gpu_error.h              |   1 +
+ drivers/gpu/drm/i915/i915_reg.h                    |   9 -
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c      |   7 -
+ drivers/gpu/drm/i915/intel_pcode.c                 |  35 +-
+ drivers/gpu/drm/i915/intel_pm.c                    |  10 +-
+ drivers/gpu/drm/i915/intel_uncore.c                |  13 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.c           |   2 +-
+ .../gpu/drm/i915/selftests/i915_live_selftests.h   |   1 +
+ drivers/gpu/drm/i915/selftests/i915_request.c      | 134 ++++---
+ 54 files changed, 1283 insertions(+), 701 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
