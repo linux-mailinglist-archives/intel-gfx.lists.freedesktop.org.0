@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B45B16BC307
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 02:01:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197206BC309
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 02:01:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B44E010E4D8;
-	Thu, 16 Mar 2023 01:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7974410E905;
+	Thu, 16 Mar 2023 01:01:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B88010E4D8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2F4010E4D8
  for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 01:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678928474; x=1710464474;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=im7aqVEyN/AUhk/iRLxFijKLudXbWLXp+Qm7bRhbuL4=;
- b=lgHyaapqWRtOQA4Hx3kA8J0rC9ah/BPURK03Cux7QVtfMUSr3fQdQHy0
- vqCPsicNtvMS7Y4olfOzln8ngteU+JSnPv7u/S1CPEQbjfUYxkjl2Rf3i
- GofrtuFzq/K8RWusm6Z6waKsHXJJmIyp3AXG1AJFbUTCJrHfTkO2TuhOS
- 3z8nOt4smgF9oqU4TfsAEL0vvnLwrJyvLJ4l1pITn42nknmReuHzyY1T6
- rRiBCXODCCXP4pKznDVbwKZR1xi2jxLnzN1SMcrEBW/vnUnE6UaVipXXS
- emL0OroPsUaLgtB3v+sW0H/2cSgVbmgofkWopfZUPqpCXxSaXmc2/SEhq A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="400434060"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="400434060"
+ bh=Ai8EGe+5p+3V1mmCUPvpnPwYj0nsISGN3rPofS+JXNY=;
+ b=bzNrkOPoLuTabCequHpzJoyxy3PGV4wS3Mc3sJZZZcgnfiwGcKcGznda
+ IZlhXMSFo1/nwS9qf7r+nzjr8jKNgQorZUf/yl6rH60Dvt/8XUr+p4YoI
+ F3lFET4bLXrtOgP6ncKLWHC1nU8K1aFJFIDiQP1vv6wZwttP/pvIoWxmT
+ 4jlix2YJn2Qw+LNz0KL9I0EKMAXk5xeCQ27LsbdeZ2SEwakn5aZzL75sL
+ Fuh7fYJIYdnenLkRL9M0ivlHhP9TIo7TxoOmLuOQZuxzQ4IChRsNj8DzH
+ SndYp+6Ubs4NM0aeZg9wNjM43U9UI/Cpw3brzIgeflSkiuuZxSUPI/q4/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="400434061"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="400434061"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 18:01:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="743916662"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="743916662"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="743916665"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="743916665"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 18:01:04 -0700
+ 15 Mar 2023 18:01:05 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Mar 2023 18:00:50 -0700
-Message-Id: <20230316010101.2590309-2-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 15 Mar 2023 18:00:51 -0700
+Message-Id: <20230316010101.2590309-3-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20230316010101.2590309-1-umesh.nerlige.ramappa@intel.com>
 References: <20230316010101.2590309-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 01/12] drm/i915/perf: Drop wakeref on GuC RC
- error
+Subject: [Intel-gfx] [PATCH v6 02/12] drm/i915/mtl: Synchronize i915/BIOS on
+ C6 enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,82 +61,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-If we fail to adjust the GuC run-control on opening the perf stream,
-make sure we unwind the wakeref just taken.
+If BIOS enables/disables C6, i915 should do the same. Also, retain
+this value across driver reloads. This is needed only for MTL as
+of now due to an existing bug in OA which needs C6 disabled for
+it to function. BIOS behavior is also different across platforms
+in terms of how C6 is enabled.
 
-v2: Retain old goto label names (Ashutosh)
-
-Fixes: 01e742746785 ("drm/i915/guc: Support OA when Wa_16011777198 is enabled")
-Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 14 +++++++++-----
- drivers/gpu/drm/i915/i915_perf_types.h |  6 ++++++
- 2 files changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rc6.c       | 26 ++++++++++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_rc6.h       |  2 ++
+ drivers/gpu/drm/i915/gt/intel_rc6_types.h |  2 ++
+ 3 files changed, 27 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 824a34ec0b83..283a4a3c6862 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1592,9 +1592,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	/*
- 	 * Wa_16011777198:dg2: Unset the override of GUCRC mode to enable rc6.
- 	 */
--	if (intel_uc_uses_guc_rc(&gt->uc) &&
--	    (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
--	     IS_DG2_GRAPHICS_STEP(gt->i915, G11, STEP_A0, STEP_B0)))
-+	if (stream->override_gucrc)
- 		drm_WARN_ON(&gt->i915->drm,
- 			    intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc));
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index f4150f61f39c..f760586f9f46 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -420,6 +420,21 @@ static void vlv_rc6_enable(struct intel_rc6 *rc6)
+ 	    GEN7_RC_CTL_TO_MODE | VLV_RC_CTL_CTX_RST_PARALLEL;
+ }
  
-@@ -3305,8 +3303,10 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 		if (ret) {
- 			drm_dbg(&stream->perf->i915->drm,
- 				"Unable to override gucrc mode\n");
--			goto err_config;
-+			goto err_gucrc;
- 		}
++bool intel_check_bios_c6_setup(struct intel_rc6 *rc6)
++{
++	if (!rc6->bios_state_captured) {
++		struct intel_uncore *uncore = rc6_to_uncore(rc6);
++		intel_wakeref_t wakeref;
 +
-+		stream->override_gucrc = true;
++		with_intel_runtime_pm(uncore->rpm, wakeref)
++			rc6->bios_rc_state = intel_uncore_read(uncore, GEN6_RC_STATE);
++
++		rc6->bios_state_captured = true;
++	}
++
++	return rc6->bios_rc_state & RC_SW_TARGET_STATE_MASK;
++}
++
+ static bool bxt_check_bios_rc6_setup(struct intel_rc6 *rc6)
+ {
+ 	struct intel_uncore *uncore = rc6_to_uncore(rc6);
+@@ -503,10 +518,10 @@ static bool rc6_supported(struct intel_rc6 *rc6)
+ 		return false;
  	}
  
- 	ret = alloc_oa_buffer(stream);
-@@ -3345,11 +3345,15 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 	free_oa_buffer(stream);
+-	if (IS_MTL_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
+-	    gt->type == GT_MEDIA) {
++	if (IS_METEORLAKE(gt->i915) &&
++	    !intel_check_bios_c6_setup(rc6)) {
+ 		drm_notice(&i915->drm,
+-			   "Media RC6 disabled on A step\n");
++			   "C6 disabled by BIOS\n");
+ 		return false;
+ 	}
  
- err_oa_buf_alloc:
--	free_oa_configs(stream);
-+	if (stream->override_gucrc)
-+		intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc);
+@@ -707,9 +722,14 @@ void intel_rc6_disable(struct intel_rc6 *rc6)
+ void intel_rc6_fini(struct intel_rc6 *rc6)
+ {
+ 	struct drm_i915_gem_object *pctx;
++	struct intel_uncore *uncore = rc6_to_uncore(rc6);
  
-+err_gucrc:
- 	intel_uncore_forcewake_put(stream->uncore, FORCEWAKE_ALL);
- 	intel_engine_pm_put(stream->engine);
+ 	intel_rc6_disable(rc6);
  
-+	free_oa_configs(stream);
++	/* We want the BIOS C6 state preserved across loads for MTL */
++	if (IS_METEORLAKE(rc6_to_i915(rc6)) && rc6->bios_state_captured)
++		set(uncore, GEN6_RC_STATE, rc6->bios_rc_state);
 +
- err_config:
- 	free_noa_wait(stream);
+ 	pctx = fetch_and_zero(&rc6->pctx);
+ 	if (pctx)
+ 		i915_gem_object_put(pctx);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.h b/drivers/gpu/drm/i915/gt/intel_rc6.h
+index 456fa668a276..e137c2c397c2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.h
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.h
+@@ -27,4 +27,6 @@ u64 intel_rc6_residency_us(struct intel_rc6 *rc6, enum intel_rc6_res_type id);
+ void intel_rc6_print_residency(struct seq_file *m, const char *title,
+ 			       enum intel_rc6_res_type id);
  
-diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index ca150b7af3f2..e36f046fe2b6 100644
---- a/drivers/gpu/drm/i915/i915_perf_types.h
-+++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -316,6 +316,12 @@ struct i915_perf_stream {
- 	 * buffer should be checked for available data.
- 	 */
- 	u64 poll_oa_period;
++bool intel_check_bios_c6_setup(struct intel_rc6 *rc6);
 +
-+	/**
-+	 * @override_gucrc: GuC RC has been overridden for the perf stream,
-+	 * and we need to restore the default configuration on release.
-+	 */
-+	bool override_gucrc:1;
+ #endif /* INTEL_RC6_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6_types.h b/drivers/gpu/drm/i915/gt/intel_rc6_types.h
+index fa23c4dce00b..cd4587098162 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_rc6_types.h
+@@ -29,6 +29,7 @@ struct intel_rc6 {
+ 	u64 cur_residency[INTEL_RC6_RES_MAX];
+ 
+ 	u32 ctl_enable;
++	u32 bios_rc_state;
+ 
+ 	struct drm_i915_gem_object *pctx;
+ 
+@@ -36,6 +37,7 @@ struct intel_rc6 {
+ 	bool enabled : 1;
+ 	bool manual : 1;
+ 	bool wakeref : 1;
++	bool bios_state_captured : 1;
  };
  
- /**
+ #endif /* INTEL_RC6_TYPES_H */
 -- 
 2.36.1
 
