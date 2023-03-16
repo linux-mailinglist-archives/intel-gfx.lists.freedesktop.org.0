@@ -1,33 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0736C6BDBA0
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 23:27:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F9E6BDBA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 23:27:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA69910E304;
-	Thu, 16 Mar 2023 22:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43D1B10E331;
+	Thu, 16 Mar 2023 22:27:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 107CA10E0DB;
- Thu, 16 Mar 2023 22:27:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 09650AADF3;
- Thu, 16 Mar 2023 22:27:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5162637097202588010=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16DB10E331;
+ Thu, 16 Mar 2023 22:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679005669; x=1710541669;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=GvokA/9IYG7aHkC04Jiuy2lsJ6RVelMBmWdx9SHI5oo=;
+ b=Sm/ywEOXV/Psh1v5tZSqypXtIBA0UVmSlV/1dPnqTv0BEVKT7DW2GCAf
+ Y8Qru2KDXRqnjX5Nfa6Et6D5ACOi0xtfOhygGK2Zq5v2hJs9FFE/1O8Uq
+ lG+hByVVJE29ODCT6I7S3mqHq240GYXWDv7kJRXYsycS/75jT56MS+RfE
+ 50vbCaeof0dmotU2HB8A+PPprCxFZfDIbgyU3RATMZbHzC9jlCL4JVNHT
+ kkv/9gEG6wAtPHkcTUWf/5QHm3A1Z8bXsCjvEQ4yKD8ignM8QNchKXemx
+ yXrdPFS5efDRThlq27/SFxv3Ds5GtVuMz23wKH444OuqrTX7+SFbSZ+KM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="338141804"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="338141804"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 15:27:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="710295801"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="710295801"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by orsmga008.jf.intel.com with ESMTP; 16 Mar 2023 15:27:45 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pcw4X-0008rm-0p;
+ Thu, 16 Mar 2023 22:27:45 +0000
+Date: Fri, 17 Mar 2023 06:27:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ mcanal@igalia.com, stanislaw.gruszka@linux.intel.com,
+ ogabbay@kernel.org, quic_jhugo@quicinc.com, daniel@ffwll.ch,
+ jani.nikula@linux.intel.com, mwen@igalia.com, maxime@cerno.tech,
+ wambui.karugax@gmail.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202303170646.MwaW3iKp-lkp@intel.com>
+References: <20230316082035.567520-5-christian.koenig@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 16 Mar 2023 22:27:33 -0000
-Message-ID: <167900565399.19095.11023049529428638972@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230316131724.359612-1-imre.deak@intel.com>
-In-Reply-To: <20230316131724.359612-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/tc=3A_Fix_a_few_TypeC_/_MST_issues?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230316082035.567520-5-christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/debugfs: rework debugfs directory
+ creation v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,296 +65,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5162637097202588010==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Christian,
 
-== Series Details ==
+I love your patch! Yet something to improve:
 
-Series: drm/i915/tc: Fix a few TypeC / MST issues
-URL   : https://patchwork.freedesktop.org/series/115270/
-State : failure
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.3-rc2 next-20230316]
+[cannot apply to drm-tip/drm-tip tegra/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230316082035.567520-5-christian.koenig%40amd.com
+patch subject: [Intel-gfx] [PATCH 4/7] drm/debugfs: rework debugfs directory creation v2
+config: ia64-defconfig (https://download.01.org/0day-ci/archive/20230317/202303170646.MwaW3iKp-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a3ad5ec323e8f1864cc8b721dbb154f0e0e2919d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
+        git checkout a3ad5ec323e8f1864cc8b721dbb154f0e0e2919d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/gpu/
 
-CI Bug Log - changes from CI_DRM_12872 -> Patchwork_115270v1
-====================================================
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303170646.MwaW3iKp-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_115270v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_115270v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/index.html
-
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_115270v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-adlm-1:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adlm-1/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adlm-1/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115270v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4] ([i915#7911])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [PASS][5] -> [DMESG-FAIL][6] ([i915#6367] / [i915#7996])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg1-5:          NOTRUN -> [SKIP][7] ([i915#7828])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-adln-1:         NOTRUN -> [SKIP][8] ([i915#7828])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +38 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence:
-    - bat-adln-1:         [FAIL][10] ([i915#8064]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
-
-  * igt@dmabuf@all-tests@sanitycheck:
-    - bat-adln-1:         [ABORT][12] ([i915#8144]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [ABORT][14] ([i915#4983]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [DMESG-WARN][16] ([i915#7699]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8064]: https://gitlab.freedesktop.org/drm/intel/issues/8064
-  [i915#8144]: https://gitlab.freedesktop.org/drm/intel/issues/8144
+   In file included from drivers/gpu/drm/drm_atomic.c:47:
+>> drivers/gpu/drm/drm_internal.h:195:8: error: return type defaults to 'int' [-Werror=implicit-int]
+     195 | static drm_debugfs_dev_register(struct drm_device *dev)
+         |        ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/drm_internal.h:195:8: warning: 'drm_debugfs_dev_register' defined but not used [-Wunused-function]
+   In file included from drivers/gpu/drm/drm_atomic.c:38:
+   include/drm/drm_drv.h:596:13: warning: 'drm_debugfs_dev_init' defined but not used [-Wunused-function]
+     596 | static void drm_debugfs_dev_init(struct drm_device *dev, struct dentry *root)
+         |             ^~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/drm_drv.c:50:
+>> drivers/gpu/drm/drm_internal.h:195:8: error: return type defaults to 'int' [-Werror=implicit-int]
+     195 | static drm_debugfs_dev_register(struct drm_device *dev)
+         |        ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/drm_drv.c: In function 'drm_dev_unregister':
+>> drivers/gpu/drm/drm_drv.c:1011:9: error: implicit declaration of function 'drm_debugfs_dev_fini'; did you mean 'drm_debugfs_dev_init'? [-Werror=implicit-function-declaration]
+    1011 |         drm_debugfs_dev_fini(dev);
+         |         ^~~~~~~~~~~~~~~~~~~~
+         |         drm_debugfs_dev_init
+   drivers/gpu/drm/drm_internal.h: In function 'drm_debugfs_dev_register':
+   drivers/gpu/drm/drm_internal.h:197:1: error: control reaches end of non-void function [-Werror=return-type]
+     197 | }
+         | ^
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/drm_managed.c:18:
+>> drivers/gpu/drm/drm_internal.h:195:8: error: return type defaults to 'int' [-Werror=implicit-int]
+     195 | static drm_debugfs_dev_register(struct drm_device *dev)
+         |        ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/drm_internal.h:195:8: warning: 'drm_debugfs_dev_register' defined but not used [-Wunused-function]
+   cc1: some warnings being treated as errors
 
 
-Build changes
--------------
+vim +/int +195 drivers/gpu/drm/drm_internal.h
 
-  * Linux: CI_DRM_12872 -> Patchwork_115270v1
+   180	
+   181	/* drm_debugfs.c drm_debugfs_crc.c */
+   182	#if defined(CONFIG_DEBUG_FS)
+   183	void drm_debugfs_dev_fini(struct drm_device *dev);
+   184	void drm_debugfs_dev_register(struct drm_device *dev);
+   185	int drm_debugfs_register(struct drm_minor *minor, int minor_id,
+   186				 struct dentry *root);
+   187	void drm_debugfs_cleanup(struct drm_minor *minor);
+   188	void drm_debugfs_late_register(struct drm_device *dev);
+   189	void drm_debugfs_connector_add(struct drm_connector *connector);
+   190	void drm_debugfs_connector_remove(struct drm_connector *connector);
+   191	void drm_debugfs_crtc_add(struct drm_crtc *crtc);
+   192	void drm_debugfs_crtc_remove(struct drm_crtc *crtc);
+   193	void drm_debugfs_crtc_crc_add(struct drm_crtc *crtc);
+   194	#else
+ > 195	static drm_debugfs_dev_register(struct drm_device *dev)
+   196	{
+   197	}
+   198	
 
-  CI-20190529: 20190529
-  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115270v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4f4cd3bb5490 drm/i915/tc: Check the PLL type used by an enabled TC port
-6788acd2d29d drm/i915/tc: Factor out a function querying active links on a TC port
-2df86ebac0ac drm/i915: Add encoder hook to get the PLL type used by TC ports
-19c9fc79f1c7 drm/i915/tc: Assume a TC port is legacy if VBT says the port has HDMI
-f62facaf83a9 drm/i915/tc: Make the TC mode readout consistent in all PHY states
-46d8d4b76ac0 drm/i915/tc: Fix initial TC mode on disabled legacy ports
-f49b12379b17 drm/i915/tc: Fix TC mode for a legacy port if the PHY is not ready
-e486592720ef drm/i915/tc: Fix target TC mode for a disconnected legacy port
-d9d040d8b0f4 drm/i915/tc: Factor out helpers converting HPD mask to TC mode
-0d755942a984 drm/i915/tc: Wait for IOM/FW PHY initialization of legacy TC ports
-640515916908 drm/i915/tc: Fix system resume MST mode restore for DP-alt sinks
-ac20f47ad7bc drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state
-befe49b817ea drm/i915/tc: Fix TC port link ref init for DP MST during HW readout
-161029d2a8c2 drm/i915/tc: Abort DP AUX transfer on a disconnected TC port
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/index.html
-
---===============5162637097202588010==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/tc: Fix a few TypeC / MST issues</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115270/">https://patchwork.freedesktop.org/series/115270/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12872 -&gt; Patchwork_115270v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_115270v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_115270v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_115270v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adlm-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adlm-1/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115270v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8064">i915#8064</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@sanitycheck:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8144">i915#8144</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12872 -&gt; Patchwork_115270v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115270v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4f4cd3bb5490 drm/i915/tc: Check the PLL type used by an enabled TC port<br />
-6788acd2d29d drm/i915/tc: Factor out a function querying active links on a TC port<br />
-2df86ebac0ac drm/i915: Add encoder hook to get the PLL type used by TC ports<br />
-19c9fc79f1c7 drm/i915/tc: Assume a TC port is legacy if VBT says the port has HDMI<br />
-f62facaf83a9 drm/i915/tc: Make the TC mode readout consistent in all PHY states<br />
-46d8d4b76ac0 drm/i915/tc: Fix initial TC mode on disabled legacy ports<br />
-f49b12379b17 drm/i915/tc: Fix TC mode for a legacy port if the PHY is not ready<br />
-e486592720ef drm/i915/tc: Fix target TC mode for a disconnected legacy port<br />
-d9d040d8b0f4 drm/i915/tc: Factor out helpers converting HPD mask to TC mode<br />
-0d755942a984 drm/i915/tc: Wait for IOM/FW PHY initialization of legacy TC ports<br />
-640515916908 drm/i915/tc: Fix system resume MST mode restore for DP-alt sinks<br />
-ac20f47ad7bc drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state<br />
-befe49b817ea drm/i915/tc: Fix TC port link ref init for DP MST during HW readout<br />
-161029d2a8c2 drm/i915/tc: Abort DP AUX transfer on a disconnected TC port</p>
-
-</body>
-</html>
-
---===============5162637097202588010==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
