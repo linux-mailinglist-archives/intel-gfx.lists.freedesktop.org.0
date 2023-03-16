@@ -1,94 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E976BD5F5
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:37:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBE36BD5FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:38:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE80910ED53;
-	Thu, 16 Mar 2023 16:37:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2B4810E250;
+	Thu, 16 Mar 2023 16:38:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6AA10E219;
- Thu, 16 Mar 2023 16:37:11 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 32GDkWeE006537; Thu, 16 Mar 2023 16:36:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5YnHe0TsPIDAxPLrToTdrq6vXixOvJdvf1Ep+qvpJWQ=;
- b=hPXHZD8XZf7RtYJUzBvc7dSeOTBZL2z8FxE+yxB1x96FfpMfy1Yd2j6RdHK4dmWGeA3G
- tF5sLpZ496783IfMdowp6r0hjUttLwhi1O3dBt7/mnMRZXyWqFOBoxFAHN6wFRVwoc18
- Wc5iFMe6R5SGwFAz0VaBzUidUGlKwNj/SyoVfN/bZQgsCuy5e612I8gSgKaUVo1+BwDC
- mWxGN7WgrVJPC53RsQ+kmwoRmqO2ETy9fr1ZbEWlDe8+g2/vf3EljeWxzEFL5uftAc0j
- Fzto/DhV9EkZOWRJb1UbCchyWPHrNJyk5FExMhiKqmPDQPhJ+/pHBC2QJg+ZBFHoBRVS +w== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pc49u8hrn-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 16 Mar 2023 16:36:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32GGaRRn031040
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 16 Mar 2023 16:36:27 GMT
-Received: from [10.110.64.241] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Mar
- 2023 09:36:26 -0700
-Message-ID: <10b39fab-43a7-40b4-5d11-bc191e2953f3@quicinc.com>
-Date: Thu, 16 Mar 2023 09:36:25 -0700
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B8810E250
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 16:38:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678984732; x=1710520732;
+ h=message-id:date:mime-version:from:subject:to:references:
+ in-reply-to:content-transfer-encoding;
+ bh=nDhUE9Ucrt3o4COG0qvMxxDssrPqovgSZtYFZKgfvUU=;
+ b=EKr/0QXcRQR0pYFjc5rcRPAavB3b6z90mF1SauE7P82wBYuaj+t0Otct
+ OrOXtVwA5CDCIu+2CGATjT7Eareg9AF2M00X7sntlCf4nKDS4G8adS+7Y
+ +Yu60ldQ3dMej61bRfCc1NguU0AyFUA/qYHKMosw3vCg7fdrpjOBCvWJI
+ nLAYy5Gg7kDR+EzkwObh9FS1fcYzrnHFqJ7qCNmWDO4EPR7UAuhY04Oi6
+ S5vl3oBG1+aHug2XFrAjacj73S9SORT26aFivpZdBUGx5wUULECF1wOyP
+ NX2ofRcWwuNNm8QYqx8Ps+4oX6jWLfza/vQRXX9O1JSwmGTNTby+AisC8 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="424319260"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="424319260"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 09:38:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="679970551"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="679970551"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.34.106])
+ ([10.252.34.106])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 09:38:51 -0700
+Message-ID: <72de05c2-68ad-72aa-23a2-4ef220f51a12@linux.intel.com>
+Date: Thu, 16 Mar 2023 17:38:48 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <cover.1678973282.git.jani.nikula@intel.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>
-References: <1677267647-28672-1-git-send-email-quic_khsieh@quicinc.com>
- <741be2a3-0208-2f40-eedf-d439c4e6795b@quicinc.com>
- <F8A4FC18-C64E-4011-BC08-18EB3B95A357@linaro.org>
- <d5ee8233-66c8-9b88-417c-6cf9cc5c84fe@quicinc.com>
- <CAA8EJpro5Q-2ZpnDJt40UhFX7Zp9oBhrto=FDOERzCDR2BDPvQ@mail.gmail.com>
- <f0dfba42-4674-3748-bf5d-39f6e1745f67@quicinc.com>
- <f1a6ee82-9502-7ea5-fe48-f296fc7df497@linaro.org>
- <3e114c0f-a042-6801-69bf-67436cb2a448@quicinc.com>
- <113a10b6-6097-c80e-c29c-6f61b2b2896a@linaro.org>
- <c4c0ebf8-275d-500f-4019-e3d7517a884f@quicinc.com>
- <CAA8EJppxX4haZSwdvVbN7bc6kXAyNO1rg6zWZv9wPFdqGrcXuw@mail.gmail.com>
- <c650e746-64c5-ce6b-933d-057349356b78@quicinc.com>
- <58E03B71-20C4-4F81-96C1-6D8CE517F3FB@linaro.org>
- <fd876ad2-3fd0-eaab-3407-dd32d494f662@quicinc.com>
- <a5d1a74f-1b7a-569d-e487-774720dfae22@quicinc.com>
- <CAA8EJpq_mwUt0+1yGYo6hRx8Vz12DumVdpEjJbPk8gGHhGZ2bA@mail.gmail.com>
- <176c6088-4470-5559-e79e-fd5675db0097@quicinc.com>
- <04156713-3f8e-c29e-322f-259ae163a93a@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <04156713-3f8e-c29e-322f-259ae163a93a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <cover.1678973282.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: SQ2BBsQqvkDL_p7Hq8CzcpLgC97BB4aU
-X-Proofpoint-ORIG-GUID: SQ2BBsQqvkDL_p7Hq8CzcpLgC97BB4aU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-16_10,2023-03-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0 spamscore=0
- mlxlogscore=999 impostorscore=0 clxscore=1015 bulkscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303160131
-Subject: Re: [Intel-gfx] [Freedreno] [RFC PATCH 1/2] drm/msm/dpu: add dsc
- helper functions
+Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915/regs: split display regs by
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,125 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: quic_sbillaka@quicinc.com, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- andersson@kernel.org, freedreno@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dianders@chromium.org, vkoul@kernel.org, agross@kernel.org, Rodrigo
- Vivi <rodrigo.vivi@intel.com>, marijn.suijten@somainline.org,
- swboyd@chromium.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- linux-arm-msm@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 3/16/2023 2:29 PM, Jani Nikula wrote:
+> Shave off 1.2k lines from i915_reg.h.
+>
+> Jani Nikula (7):
+>    drm/i915/pps: split out PPS regs to a separate file
+>    drm/i915/tv: split out TV regs to a separate file
+>    drm/i915/aux: split out DP AUX regs to a separate file
+>    drm/i915/fdi: split out FDI regs to a separate file
+>    drm/i915/wm: split out SKL+ watermark regs to a separate file
+>    drm/i915/psr: split out PSR regs to a separate file
+>    drm/i915/dsb: split out DSB regs to a separate file
 
-On 3/16/2023 9:23 AM, Dmitry Baryshkov wrote:
-> On 16/03/2023 18:13, Abhinav Kumar wrote:
->>
->>
->> On 3/16/2023 9:03 AM, Dmitry Baryshkov wrote:
->>> Hi,
->>>
->>> [removed previous conversation]
->>>
->>>>
->>>> Hi Dmitry and Abhinav,
->>>>
->>>> Just wanted to follow up on this thread. I've gone over the 
->>>> MSM-specific
->>>> DSC params for DP and DSI and have found a few shared calculations and
->>>> variables between both DSI and DP paths:
->>>>
->>>> - (as mentioned earlier in the thread) almost all the calculations in
->>>> dpu_dsc_populate_dsc_config() match dsi_populate_dsc_params() [1]. The
->>>> only difference in the math I'm seeing is initial_scale_value.
->>>
->>> The value in dsi code is valid for initial_offset = 6144. Please use
->>> the formula from the standard (= sde_dsc_populate_dsc_config) and add
->>> it to drm_dsc_helper.c
->>>
->>> If I remember correctly the last remaining item in
->>> dsi_populate_dsc_params() (except mentioned initial_offset) was
->>> line_buf_depth, see [3]. I'm not sure about setting it to bpc+1.
->>> According to the standard it should come from a DSC decoder spec,
->>> which means it should be set by the DSI panel driver or via
->>> drm_dp_dsc_sink_line_buf_depth() in the case of DP output.
->>>
->>>> - dsc_extra_pclk_cycle_cnt and dce_bytes_per_line, which were 
->>>> introduced
->>>> in Kuogee's v1 DSC series [2], are used for DSI, DP, and the DPU timing
->>>> engine. dsc_extra_pclk_cycle_cnt is calculated based on pclk_per_line
->>>> (which is calculated differently between DP and DSI), but
->>>> dce_bytes_per_line is calculated the same way between DP and DSI.
->>>>
->>>> To avoid having to duplicate math in 2 different places, I think it
->>>> would help to have these calculations in some msm_dsc_helper.c file. 
->>>> Any
->>>> thoughts on this?
->>>
->>> dsc_extra_pclk_cycle_cnt and dce_bytes_per_line are used only in DPU
->>> code, so they can stay in DPU driver.
->>>
->>
->> They can stay in the dpu driver is fine but where?
->>
->> Like Jessica wrote, this is computed and used in 3 places today :
->>
->> 1) DSI video engine computation
->> 2) DP controller computation
->> 3) timing engine programming
-> 
-> Please excuse me if I'm wrong. I checked both vendor techpack and the 
-> Kuogee's patches. I see them being used only in the SDE / DPU driver 
-> code. Could you please point me to the code path that we are discussing?
-> 
+Some of the files are new to me but haven't seen any functional changes 
+so I am confident say the series is
 
-DSI code :
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-https://gitlab.freedesktop.org/drm/msm/-/blob/msm-next/drivers/gpu/drm/msm/dsi/dsi_host.c#L868
 
-DP code:
+Thanks,
 
-Refer to dp_panel_dsc_pclk_param_calc in 
-https://patchwork.freedesktop.org/patch/519837/?series=113240&rev=1
+Nirmoy
 
-Timing engine:
-
-refer to https://patchwork.freedesktop.org/patch/519838/?series=113240&rev=1
-
-Probably confusion is due to the naming. bytes_per_line is nothing but 
-bytes_per_pkt * pkt_per_line but the concept is common for DP and DSI.
-
-+		if (phys->comp_type == MSM_DISPLAY_COMPRESSION_DSC) {
-+			phys->dsc_extra_pclk_cycle_cnt = dsc_info->pclk_per_line;
-+			phys->dsc_extra_disp_width = dsc_info->extra_width;
-+			phys->dce_bytes_per_line =
-+				dsc_info->bytes_per_pkt * dsc_info->pkt_per_line;
-
-> 
->> So either we have a helper in a common location somewhere so that 
->> these 3 modules can call that helper and use it OR each module 
->> duplicates the computation code.
->>
->> What should be the common location is the discussion here.
->>
->> It cannot be dpu_encoder.c as the DSI/DP dont call into the encoder 
->> methods.
->>
->>>>
->>>> Thanks,
->>>>
->>>> Jessica Zhang
->>>>
->>>> [1]
->>>> https://elixir.bootlin.com/linux/v6.3-rc2/source/drivers/gpu/drm/msm/dsi/dsi_host.c#L1756 
->>>>
->>>>
->>>> [2] https://patchwork.freedesktop.org/patch/519845/?series=113240&rev=1
->>>
->>> [3] https://patchwork.freedesktop.org/patch/525441/?series=114472&rev=2
->>>
->>>
->>>
-> 
+>   drivers/gpu/drm/i915/display/intel_crt.c      |    1 +
+>   .../drm/i915/display/intel_display_debugfs.c  |    1 +
+>   .../drm/i915/display/intel_display_power.c    |    2 +
+>   .../i915/display/intel_display_power_well.c   |    1 +
+>   drivers/gpu/drm/i915/display/intel_dp_aux.c   |    1 +
+>   .../gpu/drm/i915/display/intel_dp_aux_regs.h  |   84 ++
+>   drivers/gpu/drm/i915/display/intel_dsb.c      |    1 +
+>   drivers/gpu/drm/i915/display/intel_dsb_regs.h |   67 +
+>   drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |    1 +
+>   drivers/gpu/drm/i915/display/intel_fdi.c      |    1 +
+>   drivers/gpu/drm/i915/display/intel_fdi_regs.h |  151 ++
+>   drivers/gpu/drm/i915/display/intel_lvds.c     |    1 +
+>   .../gpu/drm/i915/display/intel_pch_display.c  |    1 +
+>   drivers/gpu/drm/i915/display/intel_pps.c      |    1 +
+>   drivers/gpu/drm/i915/display/intel_pps_regs.h |   78 ++
+>   drivers/gpu/drm/i915/display/intel_psr.c      |    1 +
+>   drivers/gpu/drm/i915/display/intel_psr_regs.h |  260 ++++
+>   drivers/gpu/drm/i915/display/intel_tv.c       |    3 +-
+>   drivers/gpu/drm/i915/display/intel_tv_regs.h  |  490 +++++++
+>   drivers/gpu/drm/i915/display/skl_watermark.c  |    1 +
+>   .../gpu/drm/i915/display/skl_watermark_regs.h |  165 +++
+>   drivers/gpu/drm/i915/gvt/edid.c               |    1 +
+>   drivers/gpu/drm/i915/gvt/handlers.c           |    5 +
+>   drivers/gpu/drm/i915/i915_irq.c               |    2 +
+>   drivers/gpu/drm/i915/i915_reg.h               | 1219 -----------------
+>   drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    4 +
+>   26 files changed, 1323 insertions(+), 1220 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_dsb_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_fdi_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_pps_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_psr_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_tv_regs.h
+>   create mode 100644 drivers/gpu/drm/i915/display/skl_watermark_regs.h
+>
