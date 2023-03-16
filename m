@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3A66BD254
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 15:27:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BD56BD26F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 15:33:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDACC10E22F;
-	Thu, 16 Mar 2023 14:27:40 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC3A610E22F;
- Thu, 16 Mar 2023 14:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678976858; x=1710512858;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xwhg1JIzBUZg/gGP8L22oiOdAsouTlYpiMUgeAawU6I=;
- b=JTta88fXeVHfcT1MN1Dr72zBMI8r4K7aJ7IroiMGoxAiK/sDCbRdAdTb
- 6RefxKmo/3lC8ltWG+yrnZG774PR4YTnZ/OMqNguROiEnvybgrwfahBuG
- tClhBmEHKs6DrvYriFHHk6aZhHnGjXeKcwAjDw7zagFQn78WST/rGf0ON
- IdqYXfBi/sVmjKqfXZ5tSPHtyRwLvXQMrCCgKlyMHaq15gPE3wiY3JsbA
- Pyq34c4+93sWFoUfW9CJpBRMywiT7HHBubBqPYfr9nsKEjvqHHsGcntGO
- SJbhH2OKHEYdgjUtinb4qjY2C3rIMw2Od3ySNYXX8xsccUvyV3EN5A510 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="400590766"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="400590766"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 07:27:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="629896434"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="629896434"
-Received: from kflynn1-mobl3.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.236.25])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 07:27:36 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 14:27:28 +0000
-Message-Id: <20230316142728.1335239-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.37.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id C930C10E268;
+	Thu, 16 Mar 2023 14:33:53 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE37F10E08C;
+ Thu, 16 Mar 2023 14:33:50 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 6BD55219ED;
+ Thu, 16 Mar 2023 14:33:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1678977229; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=npd/roBYej733KrkHpI8tW4sbpxSyKVLYetRazLFdjE=;
+ b=LuD58BerFAs6u6JpKhZp7BiVNE8jJo4R+WsYEEPGsuIHX812XkNw6gWD6DFfvrdsl2L8Fl
+ irIrOQ8XV+Y5WGuZw2JClAtZHRJj/RKdKFcaVIm+gcyZjS5LV5eMwBEIlDDWmvpLLRk8Yk
+ xwCQ2eL0wi80tSzaoZHUdXL6321Vei0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1678977229;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=npd/roBYej733KrkHpI8tW4sbpxSyKVLYetRazLFdjE=;
+ b=XkD/bA90iciCuhAIJyLlLiPuZ1rbs8bm5vyoTBc0km+R2UJLy67XMETN8SJBpJl9BlxF7F
+ ZYsaii24cr24zJDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 33834133E0;
+ Thu, 16 Mar 2023 14:33:49 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id jXuqC80oE2TbawAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 16 Mar 2023 14:33:49 +0000
+Date: Thu, 16 Mar 2023 15:33:47 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230316143347.GA9246@linux-uq9g>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Simplify vcs/bsc engine selection
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,57 +64,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Hi Dave and Daniel,
 
-No need to look at the mask of present engines when we already have a
-count stored ever since e2d0ff3525b9 ("drm/i915: Count engine instances
-per uabi class").
+here's the weekly PR for drm-misc-fixes.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 9dce2957b4e5..3aeede6aee4d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2449,11 +2449,6 @@ static int eb_submit(struct i915_execbuffer *eb)
- 	return err;
- }
- 
--static int num_vcs_engines(struct drm_i915_private *i915)
--{
--	return hweight_long(VDBOX_MASK(to_gt(i915)));
--}
--
- /*
-  * Find one BSD ring to dispatch the corresponding BSD command.
-  * The engine index is returned.
-@@ -2467,7 +2462,7 @@ gen8_dispatch_bsd_engine(struct drm_i915_private *dev_priv,
- 	/* Check whether the file_priv has already selected one ring. */
- 	if ((int)file_priv->bsd_engine < 0)
- 		file_priv->bsd_engine =
--			get_random_u32_below(num_vcs_engines(dev_priv));
-+			get_random_u32_below(dev_priv->engine_uabi_class_count[I915_ENGINE_CLASS_VIDEO]);
- 
- 	return file_priv->bsd_engine;
- }
-@@ -2655,7 +2650,8 @@ eb_select_legacy_ring(struct i915_execbuffer *eb)
- 		return -1;
- 	}
- 
--	if (user_ring_id == I915_EXEC_BSD && num_vcs_engines(i915) > 1) {
-+	if (user_ring_id == I915_EXEC_BSD &&
-+	    i915->engine_uabi_class_count[I915_ENGINE_CLASS_VIDEO] > 1) {
- 		unsigned int bsd_idx = args->flags & I915_EXEC_BSD_MASK;
- 
- 		if (bsd_idx == I915_EXEC_BSD_DEFAULT) {
+drm-misc-fixes-2023-03-16:
+Short summary of fixes pull:
+
+ * fix info leak in edid
+ * build fix for accel/
+ * ref-counting fix for fbdev deferred I/O
+ * driver fixes
+The following changes since commit eeac8ede17557680855031c6f305ece2378af326:
+
+  Linux 6.3-rc2 (2023-03-12 16:36:44 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-03-16
+
+for you to fetch changes up to 4028cbf867f70a3c599c9b0c9509334c56ed97d7:
+
+  drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion again (2023-03-15 10:06:46 +0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * fix info leak in edid
+ * build fix for accel/
+ * ref-counting fix for fbdev deferred I/O
+ * driver fixes
+
+----------------------------------------------------------------
+Christian Hewitt (1):
+      drm/meson: fix 1px pink line on GXM when scaling video overlay
+
+Dan Carpenter (1):
+      fbdev: chipsfb: Fix error codes in chipsfb_pci_init()
+
+Dmitry Osipenko (3):
+      drm/shmem-helper: Remove another errant put in error path
+      drm/msm/gem: Prevent blocking within shrinker loop
+      drm/panfrost: Don't sync rpm suspension after mmu flushing
+
+Johan Hovold (2):
+      drm/edid: fix info leak when failing to get panel id
+      drm/sun4i: fix missing component unbind on bind errors
+
+Liu Ying (1):
+      drm/bridge: Fix returned array size name for atomic_get_input_bus_fmts kdoc
+
+Marek Szyprowski (1):
+      drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion again
+
+Oleksandr Tyshchenko (1):
+      drm/virtio: Pass correct device to dma_sync_sgtable_for_device()
+
+Stanislaw Gruszka (1):
+      accel: Build sub-directories based on config options
+
+Takashi Iwai (1):
+      fbdev: Fix incorrect page mapping clearance at fb_deferred_io_release()
+
+Thomas Hellström (1):
+      drm/ttm: Fix a NULL pointer dereference
+
+Thomas Zimmermann (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+ drivers/accel/Makefile                  |  4 ++--
+ drivers/gpu/drm/drm_edid.c              |  2 +-
+ drivers/gpu/drm/drm_gem.c               |  9 +++++++--
+ drivers/gpu/drm/drm_gem_shmem_helper.c  |  9 ++++++---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c   |  2 +-
+ drivers/gpu/drm/meson/meson_vpp.c       |  2 ++
+ drivers/gpu/drm/msm/msm_gem_shrinker.c  | 11 +++++++++--
+ drivers/gpu/drm/panfrost/panfrost_mmu.c |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c       |  6 ++++--
+ drivers/gpu/drm/ttm/ttm_device.c        |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_vq.c     |  4 ++--
+ drivers/video/fbdev/chipsfb.c           | 14 ++++++++++----
+ drivers/video/fbdev/core/fb_defio.c     | 17 +++++++++++++----
+ include/drm/drm_bridge.h                |  4 ++--
+ include/drm/drm_gem.h                   |  4 +++-
+ include/linux/fb.h                      |  1 +
+ 16 files changed, 65 insertions(+), 28 deletions(-)
+
 -- 
-2.37.2
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
