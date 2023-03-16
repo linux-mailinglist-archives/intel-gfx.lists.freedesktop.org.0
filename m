@@ -1,59 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 918846BCE1A
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 12:25:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 863B36BCF1D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 13:15:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E987910ECA1;
-	Thu, 16 Mar 2023 11:25:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED1BE10E154;
+	Thu, 16 Mar 2023 12:15:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6879A10E0A3;
- Thu, 16 Mar 2023 11:25:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D89810E154
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 12:15:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678965933; x=1710501933;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FwHW50/xG6xGlvXZlh91opwVyZcLXNs3iGsUuI10i5A=;
- b=R8Wm5XQFmm5O7RDOgQII0dp0h6febLEw2x4PtqeeJ3gT8wT2rZo3ZcFw
- V2FJ7FmRhRE3YHIp2FJ/zbSBUf6dWLdLJxG8ZPIHGvKAlTGpVAA9lAs0B
- gNDdArJs084oV+uxvK58bBTH5zjfXj6U2gcJDqnfhzuZF1j8CK1RG5CX8
- HhTjoCZp0hdoHwOspZ+NjNxLUzBkkcSQXRrxzIVOUJ/FEt6qUaEH74MGW
- HzvRHd0Co7OCshlgUrcL0g9O+W9KyjVzSXf4fjN5rQx736AgZuSXOnMdP
- Rc4uSONfwnU6HHN/pcq/iu3xGSMi2fzxzNmhO+nq0LXIiptID9e4QnuPn A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339487384"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339487384"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 04:25:32 -0700
+ t=1678968925; x=1710504925;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=jlTvMrE0XU4kCqoycCBjAAnfRmex3FVkiq9WKbMr9aE=;
+ b=QTLIQVy8/nlctbHB0RjgADuI0sdBFtEj118egq83KYTBrRRP3IcbKH3D
+ Pps4VZNHyCWznsWGe7V2DCOmOmufy/bd/1C5+MEXrWYyG4JIJ78oDcAWV
+ 4R7fR6/tVnStUqDZ7LspPx/BvNqEKChS1MFq9p/W2hOSCsCXamYlqmSBL
+ DN9XN7V1tf4h3fbewbahiJcRrxePHXocy8mbUn0n8uJldJKkFSRveRBEn
+ 2/S9J9dOowGR9wSLh7dhnt6D1KrV1IHVLptkxQDRTH30dn4Xr9SzqaAB/
+ FMbBZzJ2dc8ZvyRM6jAnO47LekIJJaQXOrpTcfDsb7CRMes6+46JAbFMC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="337987928"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="337987928"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 05:15:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="1009186213"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="1009186213"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 16 Mar 2023 04:25:29 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pcljc-0008Ug-2A;
- Thu, 16 Mar 2023 11:25:28 +0000
-Date: Thu, 16 Mar 2023 19:24:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- mcanal@igalia.com, stanislaw.gruszka@linux.intel.com,
- ogabbay@kernel.org, quic_jhugo@quicinc.com, daniel@ffwll.ch,
- jani.nikula@linux.intel.com, mwen@igalia.com, maxime@cerno.tech,
- wambui.karugax@gmail.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202303161920.xBWFRr94-lkp@intel.com>
-References: <20230316082035.567520-8-christian.koenig@amd.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="925755751"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="925755751"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga006.fm.intel.com with ESMTP; 16 Mar 2023 05:15:24 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 16 Mar 2023 05:15:24 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 16 Mar 2023 05:15:24 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Thu, 16 Mar 2023 05:15:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OgmjQCuS4KEubGw2VOINWPtzeMp7BSkpSCJoNWaH6d45jO+WdLckXRwVA2vEZN3V4vkQiaO9x6AO+vnTH2VFE+Ym0sTOZZp3BygLcWDaOyFlvKT+vd1b319O0xUg+X49dhILKJznmCP5bKnmlwsSSlul0Yq3MYYHSCP0kltysr8zZ5EoWHo0G52444P04FsBUyd60y6k55yS5cOH01Lfkws91kOQsCQcXrDuZvxvzvoR8W3n5esjE0diz3zAbcB3pw1gnib+xHywJ7h29OJfXboz4u0d993Zcj7RGJ2j0xBPEEEEyo5968X8G8H2sUoIjyRKnzN0Q1JwU/Rp0/5ixA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QC84b3R6ZzSvyTnrIh6QHF0TvSp7RzuX83jSJnlcnsU=;
+ b=lsd2cz/KjkahxRWGU2gZ+1FG6pCLS3qIDbwcI4xbJRzN+/ioe6ZEvDIXXApO/0Xf6QM5HvtD+hbF56P6fLds+wmwOi83jpuT1NXUUyoa8y5KQcEzNppWdwtAsz7Fw3Tlaspt9uJxN9iL48JmclxIe+b4IV6DnXSShljUgcVidHJWGYYWtBOluztPZPGMG8LHx6/x1zowa3dPlcuB73OFd3AjSrRrMaF3L+sXsO6OS597qRQxohnlwGNO9Geym/JpptX81EVEuB2HHueGiQIATZ/sfxfj+SIfPlQwyDDT8eMAVvYYDoFggm8ENMCZlY+YljgS2AKW+wAaZCL4b4RsOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MWHPR11MB1741.namprd11.prod.outlook.com (2603:10b6:300:10d::20)
+ by SA1PR11MB6847.namprd11.prod.outlook.com (2603:10b6:806:29e::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.31; Thu, 16 Mar
+ 2023 12:15:21 +0000
+Received: from MWHPR11MB1741.namprd11.prod.outlook.com
+ ([fe80::469:cdec:dfa7:2c73]) by MWHPR11MB1741.namprd11.prod.outlook.com
+ ([fe80::469:cdec:dfa7:2c73%7]) with mapi id 15.20.6178.031; Thu, 16 Mar 2023
+ 12:15:21 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/hdcp: Remove drm_modeset_lock in
+ intel_conn_to_vcpi
+Thread-Index: AQHZV+CVHhrovmDT102z9qZK1Mhen679LdkAgAAiyvA=
+Date: Thu, 16 Mar 2023 12:15:20 +0000
+Message-ID: <MWHPR11MB1741A4E04E78BC7804D01D3DE3BC9@MWHPR11MB1741.namprd11.prod.outlook.com>
+References: <20230316082232.666630-1-suraj.kandpal@intel.com>
+ <ZBLp2jMspLQ9i3ef@intel.com>
+In-Reply-To: <ZBLp2jMspLQ9i3ef@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MWHPR11MB1741:EE_|SA1PR11MB6847:EE_
+x-ms-office365-filtering-correlation-id: b971f74a-ebff-4002-b009-08db26181cf3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CrRJE7D/QxyYBshYSi0Pjkqx/6eq3H5xoAlSGTU6II3GaexEW4k4o0nyjlDATA2YdoUyt4xCT8N4EB2o+oBFE2z9c+YECILM5n7G3F0in103FhI968AhnRlLGU/7AJJCE9cxB3iZtyA1uZHCY2WUIcplMiMqZJdo0wGMP+onrLZdzvKNYCzRiZJZuuEDDXDnbUHmXXgl9jIPHYzFfJ1ZPxbE2vYIjatQOhE+RpKdU4P8xuNVsozU+3oUafKN7JxcM7oKSdoTuWyNNBaC8cQqR8mljZdiubwy9jelItIOrJN4XqOQpjJ1s5mVaoFZofJE0Zb7xCrHLCh42diCu04TXjEzHucBrIHWErWdcKkkgWxgKEQyFI6Ta5ymRgEyZijBnPYIqQYKtjbLh++tV17y8YgaL1RutGX5zbkqU/t51lT6oiuoDFz4v9SXMB76NxMHnuffeN5NEq1ByqM0j8j0nNGCzTYRK48Jp1nju7uDdH5dfAzw25di32zP1AQ7zKQtXB2thQkm+y6jk563EoF6Vjer18hTJy3dt0DW6XaeY/585+KViiVE9AY48HRE1Vj3/mtKi9B0RcReVNCp98mW0s4EiWCsqr4Uc5VNVmDMadZknJA77YrU08POjsQxlIiCYCWs/ygSk8uY7HQgNdPrYhWB3kYR94mq0gatH6D57d6YUK22GIAHA3ZGgz38relLepdojstzRVNRNm+meYa1Cg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR11MB1741.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(366004)(136003)(376002)(346002)(39860400002)(396003)(451199018)(33656002)(52536014)(41300700001)(5660300002)(8936002)(2906002)(38100700002)(86362001)(38070700005)(82960400001)(122000001)(64756008)(71200400001)(8676002)(66946007)(478600001)(66556008)(76116006)(6916009)(66446008)(4326008)(66476007)(55016003)(66574015)(316002)(7696005)(83380400001)(186003)(9686003)(26005)(6506007);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?crpuYTSKAk4M6IdhSBUzWCCQXO1XXVe0RemqQ14XUsq2bVPJJq4pNnw/XG?=
+ =?iso-8859-1?Q?rX4xgDaxmnbT0yfvfJao6NxhuI8h74r5VqLWve5m2bApVY0QP32kQ7cmFv?=
+ =?iso-8859-1?Q?B8WSW4vtQWLsVWKBCDWdyHOvDF028czKnht+jrfqYtKVhM/FQrbCdfqJ6t?=
+ =?iso-8859-1?Q?B8oJqO8yEjkPVqeb6lq85hDTUZPu6v++VDyG5N8Xw4UfY/ta67OlUzKDgL?=
+ =?iso-8859-1?Q?/KoC9LBZHbv8Z8MPX17+uT10GcJRsnGNxg3nNyGkKAyb8HLoTwp2oq5/eI?=
+ =?iso-8859-1?Q?oIwicwne35BbcbV5K76fngW/FieqZvsKCOidX8yXwMTqJM5KtHJ8YjlDyC?=
+ =?iso-8859-1?Q?FKUz0yAXH0j1J5CdlsmA/LwhIj2su5a6fCXf3AjlGj5fIsi7WRUckK2vi+?=
+ =?iso-8859-1?Q?GI3hfr4KnUUHbVy3/sm7ObA9POl+JotgCFzKFxx+ZLIJsl91aFC662+uob?=
+ =?iso-8859-1?Q?5e6DJbbmxWht53XYSwbDCqF2GBPDhCUGxTEMBniD4kx62UXKcn9Hqvnxxo?=
+ =?iso-8859-1?Q?2G3XkFupBGfPodABF1PLGmjmJVr3a1OYJQORfC/Wht7E/kHCvaKpX/RI/a?=
+ =?iso-8859-1?Q?Kpe4Q/UsgCeTYJQ4qH5akTe9r0bmehhMQCNMDpR3gqKhYsY0No44fsqSxK?=
+ =?iso-8859-1?Q?1x9TnF5sSNuxro5N/SZEiu69jLx8SbxEntwpQSmsKsn/e2e42ZJkKvr60z?=
+ =?iso-8859-1?Q?/7R0LUQyp4kk22SVD6WTZdsH51UtsRhrzlap4a/+MAfDsTsLz31psHrci2?=
+ =?iso-8859-1?Q?JzXL0o2A/Gd39lNikIS8FQ6ZchBzDdclZhUAQu/PTV/2jrA8JFyOluOpgT?=
+ =?iso-8859-1?Q?xxZfdzxB3YWsY619ZHZ7RdipJOsghIu0ajXFNm96rdQ/kWZQ1IG+GGiBBx?=
+ =?iso-8859-1?Q?RHxbi+CH9ad+vp5FQ+7bS1FjVM5+cXEfcLNUHqt+iX3HGPaPHsxk9LW9cB?=
+ =?iso-8859-1?Q?xJNCVBUGPAx8K+TlXiqLFH0fi/ZqkMFwkk0l2/s4lzNDyPFzM3O0vze9Kh?=
+ =?iso-8859-1?Q?tDbIJ8jcw+j0/hur7mNCbHpPHp8JB3Zul1ZdW7xGh98nt7IZbrNdt2v19L?=
+ =?iso-8859-1?Q?eVjOhGxCEjpzvoZIP2pHLv71Rm2IxAVQZ28Xl02h5DsxCq/ikG1/fCg+4V?=
+ =?iso-8859-1?Q?oU+pWmTLxXj4azXVNSm1hV+TZZVryniNO2PMRVCVle81uc8W0lRbamXgfh?=
+ =?iso-8859-1?Q?FJRalInX6XqliKSQgqrogZTp9f4/OMFDYOiONBAKKRb6JVQUiDsVTe1puF?=
+ =?iso-8859-1?Q?cQ8leuOaWr70dbn2xCCc6hqxO4zx8es12WL5x6tZ2AiL3XZK5XAWrbmeff?=
+ =?iso-8859-1?Q?wCTdpyutrdnOtXd7O4OF8hK6B0NE9EMCh/VXqf1csoZgz16gPVre6Vlp0E?=
+ =?iso-8859-1?Q?VjUm7nRdw8LKqShKoxJUDEBntTykiMiAKj+XCNO5aFRk2S9g0Ty+J8pLax?=
+ =?iso-8859-1?Q?BXMquOqOXcn44IByxqMdSQLHV3jSlXYQ58zGBR01htcw6iBSomfEMo/bSc?=
+ =?iso-8859-1?Q?ejEqN3y6UeXYlhmB01gEqZDIrssxZHOAvQNHu71p5incoCyXvEWvh6lfO/?=
+ =?iso-8859-1?Q?RFr9buRUoNLikMn+WVfMGKCFujmvIDxZqNgguzpAVyjpuWJXAcNHLO+pYJ?=
+ =?iso-8859-1?Q?AEWzhdD2nj7mjWP2gVuXwrflHL1yvWt2gj?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230316082035.567520-8-christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/debugfs: remove debugfs_root
- pointer from minor
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1741.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b971f74a-ebff-4002-b009-08db26181cf3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2023 12:15:20.9703 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hOIgbDnr50x7QMeaPpUYVHITa3wT8trvtFu/hRZdBSHuf5+tLy1vexlqCLU+7LcaTn9AgGtjeFWA0tdbrGsRzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6847
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Remove drm_modeset_lock in
+ intel_conn_to_vcpi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,94 +148,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+>=20
+> On Thu, Mar 16, 2023 at 01:52:32PM +0530, Suraj Kandpal wrote:
+> > Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
+> > anymore since all the required locks are taken in atomic check and
+> > prepare phases.
+> >
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 --
+> >  1 file changed, 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index 2984d2810e42..f957b4bd9c26 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -41,7 +41,6 @@ static int intel_conn_to_vcpi(struct intel_connector
+> *connector)
+> >  		return 0;
+> >  	mgr =3D connector->port->mgr;
+> >
+> > -	drm_modeset_lock(&mgr->base.lock, NULL);
+> >  	mst_state =3D to_drm_dp_mst_topology_state(mgr->base.state);
+> >  	payload =3D drm_atomic_get_mst_payload_state(mst_state,
+> connector->port);
+> >  	if (drm_WARN_ON(mgr->dev, !payload)) @@ -53,7 +52,6 @@ static
+> int
+> > intel_conn_to_vcpi(struct intel_connector *connector)
+> >  		goto out;
+> >  	}
+> >  out:
+> > -	drm_modeset_unlock(&mgr->base.lock);
+> >  	return vcpi;
+> >  }
+>=20
+> That whole function looks like it something that should be part of the
+> drm_dp_mst_helper.c.
+>=20
+> Also, it's directly accessing mgr->base.state which is just wrong.
+>=20
+> And it looks like it can get called from outside the normal atomic commit
+> flows (like so many other things in the hdcp code, sigh), so what you're =
+doing
+> here is also wrong in that case.
+>=20
 
-I love your patch! Yet something to improve:
+Okay but as of now we are seeing a lock error which does not allow us to en=
+able
+HDCP (VLK-45132) when DPMST is connected so how do I move forward in a way =
+that solves the
+Issue and we access mgr->base.state in an acceptable manner
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes linus/master v6.3-rc2]
-[cannot apply to drm-tip/drm-tip drm-intel/for-linux-next tegra/for-next next-20230316]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230316082035.567520-8-christian.koenig%40amd.com
-patch subject: [PATCH 7/7] drm/debugfs: remove debugfs_root pointer from minor
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20230316/202303161920.xBWFRr94-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/70b21b15c200ec426c806bf2aa03083e3b19dd41
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
-        git checkout 70b21b15c200ec426c806bf2aa03083e3b19dd41
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/gpu/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303161920.xBWFRr94-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/msm/msm_debugfs.c: In function 'msm_debugfs_init':
->> drivers/gpu/drm/msm/msm_debugfs.c:329:58: error: 'struct drm_minor' has no member named 'debugfs_root'
-     329 |         gpu_devfreq = debugfs_create_dir("devfreq", minor->debugfs_root);
-         |                                                          ^~
-
-
-vim +329 drivers/gpu/drm/msm/msm_debugfs.c
-
-edcd60ce243d16 Rob Clark                 2016-03-16  303  
-7ce84471e3c72e Wambui Karuga             2020-03-10  304  void msm_debugfs_init(struct drm_minor *minor)
-edcd60ce243d16 Rob Clark                 2016-03-16  305  {
-edcd60ce243d16 Rob Clark                 2016-03-16  306  	struct drm_device *dev = minor->dev;
-bc5289eed48176 Rob Clark                 2016-10-26  307  	struct msm_drm_private *priv = dev->dev_private;
-6563f60f14cbb3 Rob Clark                 2023-01-10  308  	struct dentry *gpu_devfreq;
-edcd60ce243d16 Rob Clark                 2016-03-16  309  
-9e2fd463ec346d Wambui Karuga             2020-03-10  310  	drm_debugfs_create_files(msm_debugfs_list,
-edcd60ce243d16 Rob Clark                 2016-03-16  311  				 ARRAY_SIZE(msm_debugfs_list),
-70b21b15c200ec Christian König           2023-03-16  312  				 minor->dev->debugfs_root, minor);
-edcd60ce243d16 Rob Clark                 2016-03-16  313  
-70b21b15c200ec Christian König           2023-03-16  314  	debugfs_create_file("gpu", S_IRUSR, minor->dev->debugfs_root,
-4f776f4511c7f7 Jordan Crouse             2018-07-24  315  		dev, &msm_gpu_fops);
-4f776f4511c7f7 Jordan Crouse             2018-07-24  316  
-70b21b15c200ec Christian König           2023-03-16  317  	debugfs_create_file("kms", S_IRUSR, minor->dev->debugfs_root,
-c1760555884b7f Rob Clark                 2021-12-15  318  		dev, &msm_kms_fops);
-c1760555884b7f Rob Clark                 2021-12-15  319  
-70b21b15c200ec Christian König           2023-03-16  320  	debugfs_create_u32("hangcheck_period_ms", 0600, minor->dev->debugfs_root,
-1d2fa58e0dda33 Samuel Iglesias Gonsalvez 2021-06-07  321  		&priv->hangcheck_period);
-1d2fa58e0dda33 Samuel Iglesias Gonsalvez 2021-06-07  322  
-70b21b15c200ec Christian König           2023-03-16  323  	debugfs_create_bool("disable_err_irq", 0600, minor->dev->debugfs_root,
-5edf2750d998b7 Rob Clark                 2021-11-09  324  		&priv->disable_err_irq);
-5edf2750d998b7 Rob Clark                 2021-11-09  325  
-70b21b15c200ec Christian König           2023-03-16  326  	debugfs_create_file("shrink", S_IRWXU, minor->dev->debugfs_root,
-5434941fd45d30 Rob Clark                 2021-06-14  327  		dev, &shrink_fops);
-5434941fd45d30 Rob Clark                 2021-06-14  328  
-6563f60f14cbb3 Rob Clark                 2023-01-10 @329  	gpu_devfreq = debugfs_create_dir("devfreq", minor->debugfs_root);
-6563f60f14cbb3 Rob Clark                 2023-01-10  330  
-6563f60f14cbb3 Rob Clark                 2023-01-10  331  	debugfs_create_bool("idle_clamp",0600, gpu_devfreq,
-6563f60f14cbb3 Rob Clark                 2023-01-10  332  			    &priv->gpu_clamp_to_idle);
-6563f60f14cbb3 Rob Clark                 2023-01-10  333  
-6563f60f14cbb3 Rob Clark                 2023-01-10  334  	debugfs_create_u32("upthreshold",0600, gpu_devfreq,
-6563f60f14cbb3 Rob Clark                 2023-01-10  335  			   &priv->gpu_devfreq_config.upthreshold);
-6563f60f14cbb3 Rob Clark                 2023-01-10  336  
-6563f60f14cbb3 Rob Clark                 2023-01-10  337  	debugfs_create_u32("downdifferential",0600, gpu_devfreq,
-6563f60f14cbb3 Rob Clark                 2023-01-10  338  			   &priv->gpu_devfreq_config.downdifferential);
-6563f60f14cbb3 Rob Clark                 2023-01-10  339  
-7ce84471e3c72e Wambui Karuga             2020-03-10  340  	if (priv->kms && priv->kms->funcs->debugfs_init)
-7ce84471e3c72e Wambui Karuga             2020-03-10  341  		priv->kms->funcs->debugfs_init(priv->kms, minor);
-6d29709de8028c Rob Clark                 2022-08-07  342  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Regards,
+Suraj Kandpal
+> So the whole thing looks just very broken to me. Not to mention the HDCP =
+vs.
+> MST<->SST switch is also still fundementally broken. I'm really tempted t=
+o
+> just send a patch to nuke the entire HDCP MST code.
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
