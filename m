@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9296BCB2B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 10:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B1B6BCB37
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 10:41:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FEA10EC78;
-	Thu, 16 Mar 2023 09:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C20810E0F2;
+	Thu, 16 Mar 2023 09:41:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE80E10EC78
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 09:40:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82D2D10E0F2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 09:41:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678959638; x=1710495638;
+ t=1678959709; x=1710495709;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=tcVL7Ilq48i/2KL6PPYlQarxL/2LW2m+pD5WBJMOfxo=;
- b=ltgK2qTXPXuEYlvFDu6GqvUDUO5tiHzMTBI64Eh6GUnzNxp9iD+K4XB4
- 2kAUO1wiRMO9yID+rEnJ0iqP8DCqecsM3H9qCPob2qrV9jlcfdz5FMp7z
- eGPM37ROdn8W/jpTksZMKgBPuWyIG7jvW2l5PA/eobOftJxwLopnhwXN0
- JD3d/pi9b+hXe0YZ+ZZtcPtW5LhQtL9dEccwTBPwd6AVeVAwP1WHVyajc
- 5w3AioLu3hdb1FcRcbkA2QnHTvES73XVTIOQFw7ILxOAmORrxSvHAzZbE
- Q1KLaBgBfVVqhEtQTbckAyPjSkHZql2n9UHjlwsIK/9u23Ry4v3+L5JCt g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339467653"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339467653"
+ bh=gcNOk2VmmDb6Yvv28P3PjCI9cnE7Zvr2lGXAkuH1HsM=;
+ b=eKSA97wGkX9sXpY81mHuFHyYM7OKVGyTl531z1rfrRIDwMtl6v+P3Alh
+ 9udu5AiZ80CAWjThMnaZwqIRwMGcnrXLGPGo+38vDDYGZQBpCr8AQFPBF
+ lcjXWs1aNqviKbbhSE7cHp6iLF06zcMxqyr3wRaUMgeqg/Sn3kClZC99e
+ AeR0v8qG/M6rXdFM/MxuF+dbp7YS6VMxYKkDGY0aHOSabjuyoigymVWc7
+ XUHtCRmsJL1Z54/donaTeJH4yXyJ5OrvqGKpyz4EP7VyrIq7bb1TnkLyA
+ c1UBmruV7nfyO6nh98LwNGmB/xvr5dtwb3it33pzaJIqizK7uX6kOuCss g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339467812"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339467812"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 02:40:38 -0700
+ 16 Mar 2023 02:41:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="710028098"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="710028098"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="710028167"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="710028167"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 16 Mar 2023 02:40:36 -0700
+ by orsmga008.jf.intel.com with SMTP; 16 Mar 2023 02:41:46 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Mar 2023 11:40:35 +0200
-Date: Thu, 16 Mar 2023 11:40:35 +0200
+ Thu, 16 Mar 2023 11:41:46 +0200
+Date: Thu, 16 Mar 2023 11:41:46 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <ZBLkE6dzplun045y@intel.com>
+Message-ID: <ZBLkWsgg1oc7Auw8@intel.com>
 References: <20230314130255.23273-1-ville.syrjala@linux.intel.com>
- <20230314130255.23273-5-ville.syrjala@linux.intel.com>
- <7972a12266ecd7f407358690b5485f700d3e17e1.camel@intel.com>
+ <20230314130255.23273-7-ville.syrjala@linux.intel.com>
+ <083b19674d8b36c98d1edb441cca8ac200c9fbdd.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7972a12266ecd7f407358690b5485f700d3e17e1.camel@intel.com>
+In-Reply-To: <083b19674d8b36c98d1edb441cca8ac200c9fbdd.camel@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915: Program VLV/CHV PIPE_MSA_MISC
- register
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915: Define vlv/chv sprite plane
+ SURFLIVE registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,72 +67,70 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 08:55:01AM +0000, Hogander, Jouni wrote:
+On Thu, Mar 16, 2023 at 09:12:00AM +0000, Hogander, Jouni wrote:
 > On Tue, 2023-03-14 at 15:02 +0200, Ville Syrjala wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > 
-> > VLV/CHV have an extra register to configure some stereo3d
-> > signalling details via DP MSA. Make sure we reset that
-> > register to zero (since we don't do any stereo3d stuff).
+> > Might as well complete the SURFLIVE register definitions
+> > for all platforms/plane types. We are only missing the
+> > VLV/CHV sprite planes.
 > 
-> Maybe add Bspec here? It took me a while to find this documentation.
+> Can you please point out Bspec you used for these definitions?
 
-Bpec + vlv/chv is lost cause. I never even bother looking there.
-
-> 
-> Can you please check also Bspec: 8125 ?
-
-That's the HSW+ MSA register. Different beast.
+For vlv/chv you need magic offline docs.
 
 > 
 > > 
 > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 2 ++
-> >  drivers/gpu/drm/i915/i915_reg.h              | 6 ++++++
-> >  2 files changed, 8 insertions(+)
+> >  drivers/gpu/drm/i915/i915_reg.h | 3 +++
+> >  1 file changed, 3 insertions(+)
 > > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index d95817288966..7b371d2746b5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2139,6 +2139,8 @@ static void valleyview_crtc_enable(struct
-> > intel_atomic_state *state,
-> >  
-> >         intel_set_pipe_src_size(new_crtc_state);
-> >  
-> > +       intel_de_write(dev_priv, VLV_PIPE_MSA_MISC(pipe), 0);
-> > +
-> >         if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B) {
-> >                 intel_de_write(dev_priv, CHV_BLEND(pipe),
-> > CHV_BLEND_LEGACY);
-> >                 intel_de_write(dev_priv, CHV_CANVAS(pipe), 0);
 > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
 > > b/drivers/gpu/drm/i915/i915_reg.h
-> > index 66b6f451b80a..8f301bf4e2b6 100644
+> > index a2b4af711e6d..e908959dba4a 100644
 > > --- a/drivers/gpu/drm/i915/i915_reg.h
 > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -7565,6 +7565,12 @@ enum skl_power_gate {
-> >  #define PIPE_FLIPDONETIMSTMP(pipe)     \
-> >         _MMIO_PIPE(pipe, _PIPE_FLIPDONETMSTMP_A,
-> > _PIPE_FLIPDONETMSTMP_B)
-> >  
-> > +#define _VLV_PIPE_MSA_MISC_A                   0x70048
-> > +#define VLV_PIPE_MSA_MISC(pipe)                \
-> > +                       _MMIO_PIPE2(pipe, _VLV_PIPE_MSA_MISC_A)
-> > +#define   VLV_MSA_MISC1_HW_ENABLE                      REG_BIT(31)
-> > +#define  
-> > VLV_MSA_MISC1_SW_S3D_MASK                    REG_GENMASK(2, 0) /* MSA
-> > MISC1 3:1 */
-> > +
-> >  #define GGC                            _MMIO(0x108040)
-> >  #define   GMS_MASK                     REG_GENMASK(15, 8)
-> >  #define   GGMS_MASK                    REG_GENMASK(7, 6)
+> > @@ -4394,6 +4394,7 @@
+> >  #define   SP_CONST_ALPHA_ENABLE                REG_BIT(31)
+> >  #define   SP_CONST_ALPHA_MASK          REG_GENMASK(7, 0)
+> >  #define  
+> > SP_CONST_ALPHA(alpha)                REG_FIELD_PREP(SP_CONST_ALPHA_MA
+> > SK, (alpha))
+> > +#define _SPASURFLIVE           (VLV_DISPLAY_BASE + 0x721ac)
+> >  #define _SPACLRC0              (VLV_DISPLAY_BASE + 0x721d0)
+> >  #define   SP_CONTRAST_MASK             REG_GENMASK(26, 18)
+> >  #define  
+> > SP_CONTRAST(x)               REG_FIELD_PREP(SP_CONTRAST_MASK, (x)) /*
+> > u3.6 */
+> > @@ -4417,6 +4418,7 @@
+> >  #define _SPBKEYMAXVAL          (VLV_DISPLAY_BASE + 0x722a0)
+> >  #define _SPBTILEOFF            (VLV_DISPLAY_BASE + 0x722a4)
+> >  #define _SPBCONSTALPHA         (VLV_DISPLAY_BASE + 0x722a8)
+> > +#define _SPBSURFLIVE           (VLV_DISPLAY_BASE + 0x722ac)
+> >  #define _SPBCLRC0              (VLV_DISPLAY_BASE + 0x722d0)
+> >  #define _SPBCLRC1              (VLV_DISPLAY_BASE + 0x722d4)
+> >  #define _SPBGAMC               (VLV_DISPLAY_BASE + 0x722e0)
+> > @@ -4437,6 +4439,7 @@
+> >  #define SPKEYMAXVAL(pipe, plane_id)    _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
+> >  #define SPTILEOFF(pipe, plane_id)      _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPATILEOFF, _SPBTILEOFF)
+> >  #define SPCONSTALPHA(pipe, plane_id)   _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
+> > +#define SPSURFLIVE(pipe, plane_id)     _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
+> >  #define SPCLRC0(pipe, plane_id)                _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPACLRC0, _SPBCLRC0)
+> >  #define SPCLRC1(pipe, plane_id)                _MMIO_VLV_SPR((pipe),
+> > (plane_id), _SPACLRC1, _SPBCLRC1)
+> >  #define SPGAMC(pipe, plane_id, i)      _MMIO(_VLV_SPR((pipe),
+> > (plane_id), _SPAGAMC, _SPBGAMC) + (5 - (i)) * 4) /* 6 x u0.10 */
 > 
 > BR,
 > 
 > Jouni Högander
+> 
 
 -- 
 Ville Syrjälä
