@@ -2,68 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4946BDC2F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 23:59:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC7A6BDCBE
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 00:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9D9F10E39A;
-	Thu, 16 Mar 2023 22:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7A810E21F;
+	Thu, 16 Mar 2023 23:11:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
- [IPv6:2607:f8b0:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C898310E39A;
- Thu, 16 Mar 2023 22:59:38 +0000 (UTC)
-Received: by mail-oi1-x22f.google.com with SMTP id bj30so2541508oib.6;
- Thu, 16 Mar 2023 15:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1679007578;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=O+Q3zykGKWzwlxB7YogT8IrEAcZkZC2hIiwrlEj+NA8=;
- b=FguCteUmTFci0RgETq6WkwmDHT8UYfvA28+2vHPtlqupZdkc63sRWlKt14cz/toDJC
- 9OrBL5OTqtPdvx0Yom1AZ/ZERRzGsnCoGQ12R9iA79BUgAIA9aCLusQ0BWeIZzhSTreW
- W5sPl+vDj12dM8e0QYcxCCRA8JPwxf5xpUNmlTt2pbeDYB0/YVTtILynIMdsi30h+/EQ
- L9NcPHzGJM+WJr8k0Uo7f7Pcq4dRc6nkqv6WNSFPP704XrlFMMSYb8FVYo/+lv4QygWb
- 3yhjJryoyOU7Qb/ZNjVoi3NlP5l5xd0J9PIohhAAkRBsXYVnCvYSDI+1oM2KkmuIxKG0
- DMAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679007578;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=O+Q3zykGKWzwlxB7YogT8IrEAcZkZC2hIiwrlEj+NA8=;
- b=IgVFMHobdGw8nXWkFdAIaprGcS0rOAqXI+JQuG2SYfuP2T8VehZos0/omQPaMDQmS3
- qK1XU21l8iqqzQqpmmvecV5XY70S2AbYEf2kBtl39u5DQzvIhylhIbeCPPKYwxbw5t8z
- ooFxwg+/kpil837S1RyvxvvuIHnlY/kp6pbHYxKXaixbJoRW9VsgFEjxFX4qcOXaIxA1
- X+CE+W+Ua0731Z9aeRp/R9Zhrt9tZG2MY+0/b4Crcq/u6Bh6QqjRLeJHMRNrIdr0ddKS
- BilvnQEzchI8xHIrrCsWtNHtaOKKsAvzyfyzpXyzUHS9QBJ6Mj6mUbgGvrUjyOyMo67h
- DlUg==
-X-Gm-Message-State: AO0yUKUI7Q1TiAqPpIRwcCneD+W9jmEz0MBJxnwaNgjymni9xHOek+e7
- AeGhsgKa33xaLslqPJQYJvDyXfDgqlOx3wFrBP8=
-X-Google-Smtp-Source: AK7set8uDMT2O8oKnFiQPXA3/WP81jqHWAuiW4OEseQS11OgJqpHWpRBtD8xF3tvEjMqiVBjYC6q1TWBDyUQIMnPzCs=
-X-Received: by 2002:a05:6808:902:b0:378:30dc:ae5b with SMTP id
- w2-20020a056808090200b0037830dcae5bmr2657557oih.5.1679007577776; Thu, 16 Mar
- 2023 15:59:37 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1FBE10E21F;
+ Thu, 16 Mar 2023 23:11:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CB2FCA7DFB;
+ Thu, 16 Mar 2023 23:11:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7979584185911272128=="
 MIME-Version: 1.0
-References: <20230308155322.344664-1-robdclark@gmail.com>
- <20230308155322.344664-2-robdclark@gmail.com>
- <ZAtQspuFjPtGy7ze@gmail.com>
- <CAF6AEGsGOr5+Q10wX=5ttrWCSUJfn7gzHW8QhxFC0GDLgagMHg@mail.gmail.com>
- <ZBHNvT3BLgS3qvV5@gmail.com>
- <CAF6AEGu1S2CXzRxV_c5tE_H+XUGiO=n0tXjLZ_u_tW-eMqMsQw@mail.gmail.com>
- <ZBLg0t0tTVvuPuiJ@gmail.com>
- <CAF6AEGvV5arZThTyju_=xFFDWRbMaexgO_kkdKZuK-zeCxrN7Q@mail.gmail.com>
- <CA+hFU4xbssR+=Sf4ia5kPdsSb4y9SQUd4nx_2p1Szcbtna28CA@mail.gmail.com>
-In-Reply-To: <CA+hFU4xbssR+=Sf4ia5kPdsSb4y9SQUd4nx_2p1Szcbtna28CA@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 16 Mar 2023 15:59:26 -0700
-Message-ID: <CAF6AEGuSaNAQUfbkJf2bt+VMTxYWTf0j0jiJOS6Q-6HfCLnw6Q@mail.gmail.com>
-To: Sebastian Wick <sebastian.wick@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v10 01/15] dma-buf/dma-fence: Add deadline
- awareness
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 16 Mar 2023 23:11:37 -0000
+Message-ID: <167900829780.19094.6730586126537192595@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1678973282.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1678973282.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/regs=3A_split_display_regs_by_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,400 +40,321 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- =?UTF-8?B?Sm9uYXMgw4VkYWhs?= <jadahl@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Luben Tuikov <luben.tuikov@amd.com>, Bagas Sanjaya <bagasdotme@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Gustavo Padovan <gustavo@padovan.org>,
- Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 3:22=E2=80=AFPM Sebastian Wick
-<sebastian.wick@redhat.com> wrote:
->
-> On Thu, Mar 16, 2023 at 5:29=E2=80=AFPM Rob Clark <robdclark@gmail.com> w=
-rote:
-> >
-> > On Thu, Mar 16, 2023 at 2:26=E2=80=AFAM Jonas =C3=85dahl <jadahl@gmail.=
-com> wrote:
-> > >
-> > > On Wed, Mar 15, 2023 at 09:19:49AM -0700, Rob Clark wrote:
-> > > > On Wed, Mar 15, 2023 at 6:53=E2=80=AFAM Jonas =C3=85dahl <jadahl@gm=
-ail.com> wrote:
-> > > > >
-> > > > > On Fri, Mar 10, 2023 at 09:38:18AM -0800, Rob Clark wrote:
-> > > > > > On Fri, Mar 10, 2023 at 7:45=E2=80=AFAM Jonas =C3=85dahl <jadah=
-l@gmail.com> wrote:
-> > > > > > >
-> > > > > > > On Wed, Mar 08, 2023 at 07:52:52AM -0800, Rob Clark wrote:
-> > > > > > > > From: Rob Clark <robdclark@chromium.org>
-> > > > > > > >
-> > > > > > > > Add a way to hint to the fence signaler of an upcoming dead=
-line, such as
-> > > > > > > > vblank, which the fence waiter would prefer not to miss.  T=
-his is to aid
-> > > > > > > > the fence signaler in making power management decisions, li=
-ke boosting
-> > > > > > > > frequency as the deadline approaches and awareness of missi=
-ng deadlines
-> > > > > > > > so that can be factored in to the frequency scaling.
-> > > > > > > >
-> > > > > > > > v2: Drop dma_fence::deadline and related logic to filter du=
-plicate
-> > > > > > > >     deadlines, to avoid increasing dma_fence size.  The fen=
-ce-context
-> > > > > > > >     implementation will need similar logic to track deadlin=
-es of all
-> > > > > > > >     the fences on the same timeline.  [ckoenig]
-> > > > > > > > v3: Clarify locking wrt. set_deadline callback
-> > > > > > > > v4: Clarify in docs comment that this is a hint
-> > > > > > > > v5: Drop DMA_FENCE_FLAG_HAS_DEADLINE_BIT.
-> > > > > > > > v6: More docs
-> > > > > > > > v7: Fix typo, clarify past deadlines
-> > > > > > > >
-> > > > > > > > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > > > > > > > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com=
->
-> > > > > > > > Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-> > > > > > > > Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> > > > > > > > ---
-> > > > > > >
-> > > > > > > Hi Rob!
-> > > > > > >
-> > > > > > > >  Documentation/driver-api/dma-buf.rst |  6 +++
-> > > > > > > >  drivers/dma-buf/dma-fence.c          | 59 ++++++++++++++++=
-++++++++++++
-> > > > > > > >  include/linux/dma-fence.h            | 22 +++++++++++
-> > > > > > > >  3 files changed, 87 insertions(+)
-> > > > > > > >
-> > > > > > > > diff --git a/Documentation/driver-api/dma-buf.rst b/Documen=
-tation/driver-api/dma-buf.rst
-> > > > > > > > index 622b8156d212..183e480d8cea 100644
-> > > > > > > > --- a/Documentation/driver-api/dma-buf.rst
-> > > > > > > > +++ b/Documentation/driver-api/dma-buf.rst
-> > > > > > > > @@ -164,6 +164,12 @@ DMA Fence Signalling Annotations
-> > > > > > > >  .. kernel-doc:: drivers/dma-buf/dma-fence.c
-> > > > > > > >     :doc: fence signalling annotation
-> > > > > > > >
-> > > > > > > > +DMA Fence Deadline Hints
-> > > > > > > > +~~~~~~~~~~~~~~~~~~~~~~~~
-> > > > > > > > +
-> > > > > > > > +.. kernel-doc:: drivers/dma-buf/dma-fence.c
-> > > > > > > > +   :doc: deadline hints
-> > > > > > > > +
-> > > > > > > >  DMA Fences Functions Reference
-> > > > > > > >  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > > > > > >
-> > > > > > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/=
-dma-fence.c
-> > > > > > > > index 0de0482cd36e..f177c56269bb 100644
-> > > > > > > > --- a/drivers/dma-buf/dma-fence.c
-> > > > > > > > +++ b/drivers/dma-buf/dma-fence.c
-> > > > > > > > @@ -912,6 +912,65 @@ dma_fence_wait_any_timeout(struct dma_=
-fence **fences, uint32_t count,
-> > > > > > > >  }
-> > > > > > > >  EXPORT_SYMBOL(dma_fence_wait_any_timeout);
-> > > > > > > >
-> > > > > > > > +/**
-> > > > > > > > + * DOC: deadline hints
-> > > > > > > > + *
-> > > > > > > > + * In an ideal world, it would be possible to pipeline a w=
-orkload sufficiently
-> > > > > > > > + * that a utilization based device frequency governor coul=
-d arrive at a minimum
-> > > > > > > > + * frequency that meets the requirements of the use-case, =
-in order to minimize
-> > > > > > > > + * power consumption.  But in the real world there are man=
-y workloads which
-> > > > > > > > + * defy this ideal.  For example, but not limited to:
-> > > > > > > > + *
-> > > > > > > > + * * Workloads that ping-pong between device and CPU, with=
- alternating periods
-> > > > > > > > + *   of CPU waiting for device, and device waiting on CPU.=
-  This can result in
-> > > > > > > > + *   devfreq and cpufreq seeing idle time in their respect=
-ive domains and in
-> > > > > > > > + *   result reduce frequency.
-> > > > > > > > + *
-> > > > > > > > + * * Workloads that interact with a periodic time based de=
-adline, such as double
-> > > > > > > > + *   buffered GPU rendering vs vblank sync'd page flipping=
-.  In this scenario,
-> > > > > > > > + *   missing a vblank deadline results in an *increase* in=
- idle time on the GPU
-> > > > > > > > + *   (since it has to wait an additional vblank period), s=
-ending a signal to
-> > > > > > > > + *   the GPU's devfreq to reduce frequency, when in fact t=
-he opposite is what is
-> > > > > > > > + *   needed.
-> > > > > > >
-> > > > > > > This is the use case I'd like to get some better understandin=
-g about how
-> > > > > > > this series intends to work, as the problematic scheduling be=
-havior
-> > > > > > > triggered by missed deadlines has plagued compositing display=
- servers
-> > > > > > > for a long time.
-> > > > > > >
-> > > > > > > I apologize, I'm not a GPU driver developer, nor an OpenGL dr=
-iver
-> > > > > > > developer, so I will need some hand holding when it comes to
-> > > > > > > understanding exactly what piece of software is responsible f=
-or
-> > > > > > > communicating what piece of information.
-> > > > > > >
-> > > > > > > > + *
-> > > > > > > > + * To this end, deadline hint(s) can be set on a &dma_fenc=
-e via &dma_fence_set_deadline.
-> > > > > > > > + * The deadline hint provides a way for the waiting driver=
-, or userspace, to
-> > > > > > > > + * convey an appropriate sense of urgency to the signaling=
- driver.
-> > > > > > > > + *
-> > > > > > > > + * A deadline hint is given in absolute ktime (CLOCK_MONOT=
-ONIC for userspace
-> > > > > > > > + * facing APIs).  The time could either be some point in t=
-he future (such as
-> > > > > > > > + * the vblank based deadline for page-flipping, or the sta=
-rt of a compositor's
-> > > > > > > > + * composition cycle), or the current time to indicate an =
-immediate deadline
-> > > > > > > > + * hint (Ie. forward progress cannot be made until this fe=
-nce is signaled).
-> > > > > > >
-> > > > > > > Is it guaranteed that a GPU driver will use the actual start =
-of the
-> > > > > > > vblank as the effective deadline? I have some memories of sei=
-ng
-> > > > > > > something about vblank evasion browsing driver code, which I =
-might have
-> > > > > > > misunderstood, but I have yet to find whether this is somethi=
-ng
-> > > > > > > userspace can actually expect to be something it can rely on.
-> > > > > >
-> > > > > > I guess you mean s/GPU driver/display driver/ ?  It makes thing=
-s more
-> > > > > > clear if we talk about them separately even if they happen to b=
-e the
-> > > > > > same device.
-> > > > >
-> > > > > Sure, sorry about being unclear about that.
-> > > > >
-> > > > > >
-> > > > > > Assuming that is what you mean, nothing strongly defines what t=
-he
-> > > > > > deadline is.  In practice there is probably some buffering in t=
-he
-> > > > > > display controller.  For ex, block based (including bandwidth
-> > > > > > compressed) formats, you need to buffer up a row of blocks to
-> > > > > > efficiently linearize for scanout.  So you probably need to lat=
-ch some
-> > > > > > time before you start sending pixel data to the display.  But d=
-etails
-> > > > > > like this are heavily implementation dependent.  I think the mo=
-st
-> > > > > > reasonable thing to target is start of vblank.
-> > > > >
-> > > > > The driver exposing those details would be quite useful for users=
-pace
-> > > > > though, so that it can delay committing updates to late, but not =
-too
-> > > > > late. Setting a deadline to be the vblank seems easy enough, but =
-it
-> > > > > isn't enough for scheduling the actual commit.
-> > > >
-> > > > I'm not entirely sure how that would even work.. but OTOH I think y=
-ou
-> > > > are talking about something on the order of 100us?  But that is a b=
-it
-> > > > of another topic.
-> > >
-> > > Yes, something like that. But yea, it's not really related. Schedulin=
-g
-> > > commits closer to the deadline has more complex behavior than that to=
-o,
-> > > e.g. the need for real time scheduling, and knowing how long it usual=
-ly
-> > > takes to create and commit and for the kernel to process.
->
-> Vblank can be really long, especially with VRR where the additional
-> time you get to finish the frame comes from making vblank longer.
-> Using the start of vblank as a deadline makes VRR useless. It really
-> would be nice to have some feedback about the actual deadline from the
-> kernel, maybe in `struct drm_event_vblank`.
+--===============7979584185911272128==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-note that here we are only talking about the difference between
-start/end of vblank and the deadline for the hw to latch a change for
-the next frame.  (Which I _expect_ generally amounts to however long
-it takes to slurp in a row of tiles)
+== Series Details ==
 
-> But yes, sorry, off topic...
->
-> > > >
-> > >
-> > > 8-< *snip* 8-<
-> > >
-> > > > > >
-> > > > > > You need a fence to set the deadline, and for that work needs t=
-o be
-> > > > > > flushed.  But you can't associate a deadline with work that the=
- kernel
-> > > > > > is unaware of anyways.
-> > > > >
-> > > > > That makes sense, but it might also a bit inadequate to have it a=
-s the
-> > > > > only way to tell the kernel it should speed things up. Even with =
-the
-> > > > > trick i915 does, with GNOME Shell, we still end up with the feedb=
-ack
-> > > > > loop this series aims to mitigate. Doing triple buffering, i.e. d=
-elaying
-> > > > > or dropping the first frame is so far the best work around that w=
-orks,
-> > > > > except doing other tricks that makes the kernel to ramp up its cl=
-ock.
-> > > > > Having to rely on choosing between latency and frame drops should
-> > > > > ideally not have to be made.
-> > > >
-> > > > Before you have a fence, the thing you want to be speeding up is th=
-e
-> > > > CPU, not the GPU.  There are existing mechanisms for that.
-> > >
-> > > Is there no benefit to let the GPU know earlier that it should speed =
-up,
-> > > so that when the job queue arrives, it's already up to speed?
-> >
-> > Downstream we have input notifier that resumes the GPU so we can
-> > pipeline the 1-2ms it takes to boot up the GPU with userspace.  But we
-> > wait to boost freq until we have cmdstream to submit, since that
-> > doesn't take as long.  What needs help initially after input is all
-> > the stuff that happens on the CPU before the GPU can start to do
-> > anything ;-)
-> >
-> > Btw, I guess I haven't made this clear, dma-fence deadline is trying
-> > to help the steady-state situation, rather than the input-latency
-> > situation.  It might take a frame or two of missed deadlines for
-> > gpufreq to arrive at a good steady-state freq.
->
-> The mutter issue also is about a suboptimal steady-state.
->
-> Truth be told, I'm not sure if this fence deadline idea fixes the
-> issue we're seeing or at least helps sometimes. It might, it might
-> not. What annoys me is that the compositor *knows* before any work is
-> submitted that some work will be submitted and when it has to finish.
-> We could maximize the chances to get everything right but having to
-> wait for a fence to materialize in the compositor to do anything about
-> it is suboptimal.
+Series: drm/i915/regs: split display regs by function
+URL   : https://patchwork.freedesktop.org/series/115269/
+State : success
 
-Why would the app not immediately send the fence+buf to the compositor
-as soon as it is submitted to the kernel on client process side?
+== Summary ==
 
-At any rate, it really doesn't matter how early the kernel finds out
-about the deadline, since the point is to let the kernel driver know
-if it is missing the deadline so that it doesn't mis-interpret stall
-time waiting for the _next_ vblank after the one we wanted.
+CI Bug Log - changes from CI_DRM_12872 -> Patchwork_115269v1
+====================================================
 
-> > > >
-> > > > TBF I'm of the belief that there is still a need for input based cp=
-u
-> > > > boost (and early wake-up trigger for GPU).. we have something like
-> > > > this in CrOS kernel.  That is a bit of a different topic, but my po=
-int
-> > > > is that fence deadlines are just one of several things we need to
-> > > > optimize power/perf and responsiveness, rather than the single thin=
-g
-> > > > that solves every problem under the sun ;-)
-> > >
-> > > Perhaps; but I believe it's a bit of a back channel of intent; the pi=
-ece
-> > > of the puzzle that has the information to know whether there is need
-> > > actually speed up is the compositor, not the kernel.
-> > >
-> > > For example, pressing 'p' while a terminal is focused does not need h=
-igh
-> > > frequency clocks, it just needs the terminal emulator to draw a 'p' a=
-nd
-> > > the compositor to composite that update. Pressing <Super> may however
-> > > trigger a non-trivial animation moving a lot of stuff around on scree=
-n,
-> > > maybe triggering Wayland clients to draw and what not, and should mos=
-t
-> > > arguably have the ability to "warn" the kernel about the upcoming flo=
-od
-> > > of work before it is already knocking on its door step.
-> >
-> > The super key is problematic, but not for the reason you think.  It is
-> > because it is a case where we should boost on key-up instead of
-> > key-down.. and the second key-up event comes after the cpu-boost is
-> > already in it's cool-down period.  But even if suboptimal in cases
-> > like this, it is still useful for touch/stylus cases where the
-> > slightest of lag is much more perceptible.
-> >
-> > This is getting off topic but I kinda favor coming up with some sort
-> > of static definition that userspace could give the kernel to let the
-> > kernel know what input to boost on.  Or maybe something could be done
-> > with BPF?
->
-> Why? Do you think user space is so slow that it can't process the
-> input events and then do a syscall? We need to have all input devices
-> open anyway that can affect the system and know more about how they
-> affect behavior than the kernel can ever know.
+Summary
+-------
 
-Again this is getting off into a different topic.  But my gut feel is
-that the shorter the path to input cpu freq boost, the better.. since
-however many extra cycles you add, they will be cycles with cpu (and
-probably ddr) at lowest freq
+  **SUCCESS**
 
-BR,
--R
+  No regressions found.
 
-> >
-> > > >
-> > >
-> > > 8-< *snip* 8-<
-> > >
-> > > > >
-> > > > > Is it expected that WSI's will set their own deadlines, or should=
- that
-> > > > > be the job of the compositor? For example by using compositors us=
-ing
-> > > > > DMA_BUF_IOCTL_EXPORT_SYNC_FILE that you mentioned, using it to se=
-t a
-> > > > > deadline matching the vsync it most ideally will be committed to?
-> > > > >
-> > > >
-> > > > I'm kind of assuming compositors, but if the WSI somehow has more
-> > > > information about ideal presentation time, then I suppose it could =
-be
-> > > > in the WSI?  I'll defer to folks who spend more time on WSI and
-> > > > compositors to hash out the details ;-)
-> > >
-> > > With my compositor developer hat on, it might be best to let it be up=
- to
-> > > the compositor, it's the one that knows if a client's content will
-> > > actually end up anywhere visible.
-> > >
-> >
-> > wfm
-> >
-> > BR,
-> > -R
-> >
-> > >
-> > > Jonas
-> > >
-> > > >
-> > > > BR,
-> > > > -R
-> >
->
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/index.html
+
+Participating hosts (35 -> 35)
+------------------------------
+
+  Additional (2): bat-atsm-1 fi-pnv-d510 
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115269v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-atsm-1:         NOTRUN -> [SKIP][1] ([i915#2582]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@fbdev@eof.html
+
+  * igt@gem_mmap@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][2] ([i915#4083])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_mmap@basic.html
+
+  * igt@gem_sync@basic-each:
+    - bat-atsm-1:         NOTRUN -> [FAIL][3] ([i915#8062]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_sync@basic-each.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][4] ([i915#4077]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#4079]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_hangman@error-state-basic:
+    - bat-atsm-1:         NOTRUN -> [ABORT][6] ([i915#8060])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][7] -> [ABORT][8] ([i915#7911])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+    - fi-bsw-nick:        [PASS][9] -> [ABORT][10] ([i915#7911] / [i915#7913])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-adln-1:         NOTRUN -> [DMESG-WARN][11] ([i915#2867])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-dg1-5:          NOTRUN -> [SKIP][12] ([i915#7828])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+    - bat-adln-1:         NOTRUN -> [SKIP][13] ([i915#7828])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][14] ([fdo#109271]) +38 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence:
+    - bat-adln-1:         [FAIL][15] ([i915#8064]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html
+
+  * igt@dmabuf@all-tests@sanitycheck:
+    - bat-adln-1:         [ABORT][17] ([i915#8144]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [ABORT][19] ([i915#4983]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-dg2-11:         [DMESG-WARN][21] ([i915#7699]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8060]: https://gitlab.freedesktop.org/drm/intel/issues/8060
+  [i915#8062]: https://gitlab.freedesktop.org/drm/intel/issues/8062
+  [i915#8064]: https://gitlab.freedesktop.org/drm/intel/issues/8064
+  [i915#8144]: https://gitlab.freedesktop.org/drm/intel/issues/8144
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12872 -> Patchwork_115269v1
+
+  CI-20190529: 20190529
+  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115269v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ac8f58dc685d drm/i915/dsb: split out DSB regs to a separate file
+a5758c043e71 drm/i915/psr: split out PSR regs to a separate file
+d49ecd9c7143 drm/i915/wm: split out SKL+ watermark regs to a separate file
+f8af2e31da78 drm/i915/fdi: split out FDI regs to a separate file
+05d595beb92b drm/i915/aux: split out DP AUX regs to a separate file
+70b9e2066968 drm/i915/tv: split out TV regs to a separate file
+11fdddbbe690 drm/i915/pps: split out PPS regs to a separate file
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/index.html
+
+--===============7979584185911272128==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/regs: split display regs by function</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115269/">https://patchwork.freedesktop.org/series/115269/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12872 -&gt; Patchwork_115269v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/index.html</p>
+<h2>Participating hosts (35 -&gt; 35)</h2>
+<p>Additional (2): bat-atsm-1 fi-pnv-d510 <br />
+  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115269v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_sync@basic-each:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_sync@basic-each.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8062">i915#8062</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-atsm-1/igt@i915_hangman@error-state-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8060">i915#8060</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg1-5/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+<li>
+<p>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence:</p>
+<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8064">i915#8064</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@dmabuf@all-tests@dma_fence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@dmabuf@all-tests@sanitycheck:</p>
+<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8144">i915#8144</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-adln-1/igt@dmabuf@all-tests@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12872/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115269v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12872 -&gt; Patchwork_115269v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12872: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115269v1: f65e171596ef70c076fe02be596de29e83cfc8a3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ac8f58dc685d drm/i915/dsb: split out DSB regs to a separate file<br />
+a5758c043e71 drm/i915/psr: split out PSR regs to a separate file<br />
+d49ecd9c7143 drm/i915/wm: split out SKL+ watermark regs to a separate file<br />
+f8af2e31da78 drm/i915/fdi: split out FDI regs to a separate file<br />
+05d595beb92b drm/i915/aux: split out DP AUX regs to a separate file<br />
+70b9e2066968 drm/i915/tv: split out TV regs to a separate file<br />
+11fdddbbe690 drm/i915/pps: split out PPS regs to a separate file</p>
+
+</body>
+</html>
+
+--===============7979584185911272128==--
