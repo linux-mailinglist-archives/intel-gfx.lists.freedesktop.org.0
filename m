@@ -2,149 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D816BCE0E
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 12:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 918846BCE1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 12:25:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6C9910E09E;
-	Thu, 16 Mar 2023 11:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E987910ECA1;
+	Thu, 16 Mar 2023 11:25:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77F1B10E09E
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 11:20:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6879A10E0A3;
+ Thu, 16 Mar 2023 11:25:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678965630; x=1710501630;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=YFkwwu02+Ggaw0H5gilQaqAyV0LdKIQJYZfdDcP44VI=;
- b=nZ9zOc4k31vfyZLQ9lSfHZub+9ltucuJcPDufI+oe+26hq/+B8P6aa8S
- MJhggundJftAyhVjD84VmHTNYfs391rkMpryVUXv4/SZ/IaqisWMlK6qg
- 0Qp2ocqlclDMQM8I+/5+fzkp7OHONztqgwx08zR1XBtem1lQ7epGj8ZZh
- rpTt8AF5nDvpU0/buwbXnSaFJ0Wav0FhXsrEx/dv5UjsWUWpKlh8uWido
- qLcLzlvgnzAy7SB0p2JOA0TWNknLIe9o69iSV4klirALb60gz59XRwamp
- hPIKKqOh8bSYl457om+h64L57Fk5Y4dBODc98hvtXGqNAzFMxHwaQe1dP w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339486352"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339486352"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1678965933; x=1710501933;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FwHW50/xG6xGlvXZlh91opwVyZcLXNs3iGsUuI10i5A=;
+ b=R8Wm5XQFmm5O7RDOgQII0dp0h6febLEw2x4PtqeeJ3gT8wT2rZo3ZcFw
+ V2FJ7FmRhRE3YHIp2FJ/zbSBUf6dWLdLJxG8ZPIHGvKAlTGpVAA9lAs0B
+ gNDdArJs084oV+uxvK58bBTH5zjfXj6U2gcJDqnfhzuZF1j8CK1RG5CX8
+ HhTjoCZp0hdoHwOspZ+NjNxLUzBkkcSQXRrxzIVOUJ/FEt6qUaEH74MGW
+ HzvRHd0Co7OCshlgUrcL0g9O+W9KyjVzSXf4fjN5rQx736AgZuSXOnMdP
+ Rc4uSONfwnU6HHN/pcq/iu3xGSMi2fzxzNmhO+nq0LXIiptID9e4QnuPn A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339487384"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="339487384"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 04:20:29 -0700
+ 16 Mar 2023 04:25:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="657145296"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="657145296"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga006.jf.intel.com with ESMTP; 16 Mar 2023 04:20:29 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 16 Mar 2023 04:20:29 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 16 Mar 2023 04:20:29 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 16 Mar 2023 04:20:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TMHxu04bYuP8CAtgbOuQpzRP1xCiK/koFUEkW4aJrJP6TbOafZ9KfWtGWwYFReMhGPVuH/UqYmCx60G03NPxMBC0LimJYoXcRm8nX57AJyyjm+KUlsdrU5rI/QbpvWwLn60vxDxH0OFmFqmsF29IKme/+nhNMw8p+Vx/8ACySEITcpQGGQze3WQoWHogvjNGR1HhUoTGb4AkDdwwRhnMbngdadFvD6eXnJmdcU+aIQIinJa2KRrd/qxKjW899SQdAmysSbsWEFcZcex5PQX78wNT0j7bBkGMujYg9J5VsJvStjzdPAcf4l+6a9qMi6bja5w4Qb/7ZxyzYPC+0/w8BQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N6QUTUlUc1BiZMmFwteLdrd6t4JIa893xmYaNH3V4u0=;
- b=eZnDppKdto/wFApiqqR67wtuSAdjYabMMNblvWCeO3xUm7CDk+8v42gxIveCvbzD8a+PsgMuZ/556z+xhPgohZoLN5IX6HOvPxCMJCNqGB2J/U8YCwf7q5cpgILu5DrpnQed+gatxIEQXCtwkv6hEgFoUfT/GkCC2J7cVg0CgtQ8b2CAxivh+dqiMnRCJFh9xdmGx80/An+PsjZoBPUSq/a0bYFBDAVD09rxHLE/RSmOpia2ShgvtVvTzUqIiMwb9MuVGp3x5LrUrCEwaG94/Ah+pqE7jkSdePCssthQDPtuytwt4yBQVaQdWFpTJZJ7VmwFkgvGgwY/Z2gvnh8QRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH0PR11MB5949.namprd11.prod.outlook.com (2603:10b6:510:144::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.22; Thu, 16 Mar
- 2023 11:20:26 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::a4d:71cf:e6bb:6942]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::a4d:71cf:e6bb:6942%9]) with mapi id 15.20.6178.033; Thu, 16 Mar 2023
- 11:20:26 +0000
-Message-ID: <15d32e96-6468-901d-b78a-bdbd402ef163@intel.com>
-Date: Thu, 16 Mar 2023 16:50:18 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Manasi Navare <navaremanasi@google.com>
-References: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
- <20230314110415.2882484-9-ankit.k.nautiyal@intel.com>
- <CAMNLLoSvJ1i0JyzLK8k-jy7Nih8DFrpYJ=fPqLbKToTTA4dVGw@mail.gmail.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <CAMNLLoSvJ1i0JyzLK8k-jy7Nih8DFrpYJ=fPqLbKToTTA4dVGw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0030.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:97::21) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="1009186213"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="1009186213"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Mar 2023 04:25:29 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pcljc-0008Ug-2A;
+ Thu, 16 Mar 2023 11:25:28 +0000
+Date: Thu, 16 Mar 2023 19:24:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ mcanal@igalia.com, stanislaw.gruszka@linux.intel.com,
+ ogabbay@kernel.org, quic_jhugo@quicinc.com, daniel@ffwll.ch,
+ jani.nikula@linux.intel.com, mwen@igalia.com, maxime@cerno.tech,
+ wambui.karugax@gmail.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202303161920.xBWFRr94-lkp@intel.com>
+References: <20230316082035.567520-8-christian.koenig@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5949:EE_
-X-MS-Office365-Filtering-Correlation-Id: aabd1c7f-08f0-46ab-0015-08db26107129
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jGKwlWd4nG2/n/fZUCMwIcwBo07EKfGgvaZMGPBDrqp7+MhUmgbekKYZtX9spnHEcUNihZCIOeTSEklUiZFlQuAuxUppu4MSeS7E+EFfC2vDRs79Sgt+2ECW6aLkfBkB7KCGudnPhNWPrjRj10BKIqR9ROoxauCVysi1dpARSxpyu0vOfdvdxWJj25pXQgMRSPioQyeiIKvMV8GH1FRXf5/BDTiLmPjxNKPORyEoliwcvp2y2u5O7qYqseIlRzXUz9eIDthWLr6B4+XtNypI0xlsOnVcCtvtJQnfQpbV4NkkW0kKoGFHkSM970XbviuvxiCoUOqEvu785X09f09+bIdfvkEtTwAjK8iSCGmKFkGh2FwZXFOUvuIsq6Oxgzsg44OyeKomRv5vaakAC9EcRAbav4a5JLq+6nWFQo8QjARuzitWZKPDUpLLDPXMWyYxx3srNygvxNXxjDjmas5UX/lUM6JQGR3Ca5bHLYub31Qr75RBhCIONW7EHqoLhB+L6RFe1I74fP8YtpBhuiT8CnnzDCakP5MpEJzqZo2faAkdU4u6VoBnr5K8VJs9TV7MDQBK5gLMmICwN+We1GalgNu6y8A+hldJKOro1Uqo+9LU1zxBlPyTqu5gfwhdCGCY1NhiHm9zGhEfiXhJRmd+OUo6pKSB7ytUJFU/73uM9KKdT+ysCCDWUTFcm3b0nWxK
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(376002)(39860400002)(366004)(396003)(346002)(451199018)(55236004)(2616005)(82960400001)(6512007)(83380400001)(36756003)(5660300002)(478600001)(66476007)(41300700001)(6506007)(966005)(26005)(31696002)(6916009)(186003)(2906002)(8936002)(8676002)(86362001)(4326008)(66946007)(6486002)(66556008)(316002)(38100700002)(53546011)(6666004)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MUZPMVl5aFVqN04zTG9OOXV1T2pyWXhjWVJTWnBra1dvMGNXekpqSzJBWVh0?=
- =?utf-8?B?WE8xcmNkSkJPOUpIK0VzNTBaK2puRUtIeXVRRTc2aEg5RHhEekF3TkhkSEZI?=
- =?utf-8?B?VnRHVDVsR296NlV3S2E2WUJXeTZtT0hNemZlakdaQUhiRG5LbXFnSndaaGlG?=
- =?utf-8?B?b3dpMVNPMEJwMENyTGp1R3k3djJ3WnlIN3ZsUUczbm05Z0oxWG1EWVZBc1NH?=
- =?utf-8?B?bVFjRzhRVm1KQXlKZEZpSTVja3lBaSt0TkpCOWZIaFNIS2hzVU8zNE02QXJ4?=
- =?utf-8?B?a0d6WjVEYk1qRVhrWHlvZHl5dURZQnM1VERtdzNDV2Rha2wvS3hFQldNM28z?=
- =?utf-8?B?c1ByRCtLa3g3VDl6S3VmSHdyVERwK01JejRRNGNjWkZxSy9IaG5JcjZHTmg2?=
- =?utf-8?B?bTNEWlBUTjFsc05MK1ZYYjV5bEIxV2Z2OE5ZcXZ2TmptM3gxRVE5MjVVczlZ?=
- =?utf-8?B?c1BGam5XdVFVRFRpeUk1UWh2MzZiaGQvTGV5NTF2RTh0Q3RkU0lwNjhQbXNQ?=
- =?utf-8?B?T0Q5aGV4alJkNXhaQmlrQU1DL2lHWkx3Sk9ONm1Vbm9JbktOSFhueGFkMXh2?=
- =?utf-8?B?UDhRUDhUSFpKUjFRa0hMNlMxV25wcUI1ajhseUpFRkFmYlYrU3A4MGhrS0F0?=
- =?utf-8?B?dWczZkFscTl3d2x5d2t6a05qbDNYZlZJa2Yyc2d5aFJLdlJrcFpaNmRhNVBX?=
- =?utf-8?B?Vk5BNnAvUTArWE91UGpqT1RkMVZGVHhkNWN5bmhSNm9QZndoRy9rS0hYcjl1?=
- =?utf-8?B?dk9KRllOU3lnUHpPMENIcG1hTGRzYzZmbytybTB4dnNQS1poZUU4VGwzcnkr?=
- =?utf-8?B?WG4rZDA1WkRYanB2cUVWcnZOcTNvNE0yY1JRSmNEZEdZRWVvRzVWendnNEU2?=
- =?utf-8?B?WS9rODM1YWUxUTdjLzVLaDJBeHBqalRycDNIV1pNSjEzbkVWK0k0b3BVMm1N?=
- =?utf-8?B?ZlVUYWQ5TzlZVDUvZEY2MFdvQmREdHhjUDRRZk9ZT0luYUV6bjZOdFNpY1pS?=
- =?utf-8?B?WHE0bmQ3V1JrR2ZjNzdQaVI3RThsL2RWeUFibnZSMTNMSzdORjJiLzlmSjJ0?=
- =?utf-8?B?aVNITWdOZHRGTjJyMFFvZ1dBK3EydXJrR0FFNVhYSFkwVGp1WGZWWHVraEZt?=
- =?utf-8?B?N2VUWmMyZXluTW5NNktabFkrZ1VWTVEzdnBHSTBVVEdjTzJwZHNUam9CYUVl?=
- =?utf-8?B?cnVTcW80cDVuMmtsOVIyRlhJaXVCVnBmcVdqMmJWa2JIc0tzY3Q4QWpQTlVR?=
- =?utf-8?B?Y0N1c1lBTG5NTUNubDJqdU5XbGVSTkpSN2phTUMyVjNRcDREQ3BucnpBY09C?=
- =?utf-8?B?dmtqT2ZqN2RRbVcyUjZoTml0NlRYS0FKWWdmaEE5cVIrSEpmRXhWQWlnNjdJ?=
- =?utf-8?B?R1BPR21UaktPUUJ1cjFoQm90dWNCeDV2U0JZUTFKVXBhbkVjcVE0bDFBS1Zn?=
- =?utf-8?B?TVVacVJpM2dJRmY2ZkpxOVYxZXVjcGRQTytJd05iZEhhd0RDTjlvekl5Tkhi?=
- =?utf-8?B?emR0OTlWNThjdmQvSTBZU0xNKzBndDBGdDBvWTRXNmNuWEcySGlnazFSakto?=
- =?utf-8?B?VitHU3QyYW1NdjE2aHprbGFici9BZyszb0pXNi95Y2U3K1lEQU83OFU5Mm5o?=
- =?utf-8?B?RFVmK3FGZUZOaEZPNkwxeG5XUE52UEhzeVBFWkd3cmFyRTA3RGIxcmxaVVU5?=
- =?utf-8?B?QmlzcW1FOEhidFRlT3dHb0xIQTArenlTMTJxOFZJbnBiUWN3YVdCMmxxN1lU?=
- =?utf-8?B?b3IzejlHQmFVWE5PM1VDSU05aVFwYU8wMVdRT3oyK0tiaUxvc0pEWjUrT1la?=
- =?utf-8?B?MWtwNVBrK0R0ejNnVmY3Z3ZkZElUVnNBTGVMSUFDL0hoREpvbFNIU0lOSDNN?=
- =?utf-8?B?VGNyOXRGT1dHd2djNlZkUURwQnk0L3hidHdadXhqVGdXdGJpUDJ4cmdXci9J?=
- =?utf-8?B?NWZJT0xkN2J5R0YvYmhTRndoQnA0Z0hwbVQ3UCtiY0xWWHUyeDdDeHRnM1gx?=
- =?utf-8?B?Wnlhbm41UTFPczV2RGpseUdqd0Flb0Q4aTE2MGEzV2RjRGFJZHB3cEV1dUxv?=
- =?utf-8?B?ejhoN1J4clEya3JPbVA2anU0WFBtNEFlMGtYVGlOMHZiWmhZWXNsdG4vUysy?=
- =?utf-8?B?d1ZQOGFwVzRFVEMwSysyVEZMdzI5SVIvMVhsbUYxU1RaOUVYNGlMbTBlQ0RH?=
- =?utf-8?B?dWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: aabd1c7f-08f0-46ab-0015-08db26107129
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2023 11:20:26.6628 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WBdyDoqj6ebDMjglcJuFi4R6b+EwIPH4UKo1OriIZc/cBfYA6jRF0F6SFn9davuYPaYqXC3TOVGR+kCD4FLkhN0mWiaLN6D5Qm8iCfSGlC8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5949
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v11 08/11] drm/i915/dp: Avoid DSC with
- output_format YCBCR420
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230316082035.567520-8-christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/debugfs: remove debugfs_root
+ pointer from minor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,77 +66,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Manasi,
+Hi Christian,
 
-I just realized that there is a newer version of the patch in another 
-series for DSC 420 support [1].
+I love your patch! Yet something to improve:
 
-I added this patch when I was debugging an issue with PCON + 8k YCbCr420 
-only mode, and noticed that we set the output_format first and then 
-check for DSC.
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on drm-intel/for-linux-next-fixes linus/master v6.3-rc2]
+[cannot apply to drm-tip/drm-tip drm-intel/for-linux-next tegra/for-next next-20230316]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Later this patch was pulled in DSC420 series and then got some comments 
-and modifications.
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230316082035.567520-8-christian.koenig%40amd.com
+patch subject: [PATCH 7/7] drm/debugfs: remove debugfs_root pointer from minor
+config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20230316/202303161920.xBWFRr94-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/70b21b15c200ec426c806bf2aa03083e3b19dd41
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-K-nig/drm-tegra-allow-compile-test-on-ARM/20230316-172205
+        git checkout 70b21b15c200ec426c806bf2aa03083e3b19dd41
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/gpu/
 
-So, to avoid having similar change in 2 places, perhaps will drop this 
-patch from this series, and collect reviews in [1] for the change.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303161920.xBWFRr94-lkp@intel.com/
 
-Currently on [1], the check is outside of intel_dp_supports_dsc(), as a 
-separate function explicitly checking for the given output_format, but 
-we can discuss and have this inside the mentioned function.
+All errors (new ones prefixed by >>):
 
-Apologies for the inconvenience.
-
-[1] https://patchwork.freedesktop.org/patch/525903/?series=114246&rev=3 
-<https://patchwork.freedesktop.org/patch/525903/?series=114246&rev=3>
-
-Thanks & Regards,
-
-Ankit
+   drivers/gpu/drm/msm/msm_debugfs.c: In function 'msm_debugfs_init':
+>> drivers/gpu/drm/msm/msm_debugfs.c:329:58: error: 'struct drm_minor' has no member named 'debugfs_root'
+     329 |         gpu_devfreq = debugfs_create_dir("devfreq", minor->debugfs_root);
+         |                                                          ^~
 
 
-On 3/14/2023 11:03 PM, Manasi Navare wrote:
-> Since we cannot do DSC with this output format currently, can this 
-> check be added as part of the intel_dp_supports_dsc() ?
->
-> Regards
-> Manasi
->
->
-> On Tue, Mar 14, 2023 at 4:07 AM Ankit Nautiyal 
-> <ankit.k.nautiyal@intel.com> wrote:
->
->     Currently, DSC with YCBCR420 is not supported.
->     Return -EINVAL when trying with DSC with output_format as YCBCR420.
->
->     Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->     ---
->      drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
->      1 file changed, 4 insertions(+)
->
->     diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->     b/drivers/gpu/drm/i915/display/intel_dp.c
->     index b1431ed175bc..99a5cd370c1f 100644
->     --- a/drivers/gpu/drm/i915/display/intel_dp.c
->     +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->     @@ -1602,6 +1602,10 @@ int intel_dp_dsc_compute_config(struct
->     intel_dp *intel_dp,
->             if (!(intel_dp, pipe_config))
->                     return -EINVAL;
->
->     +       /* Currently DSC with YCBCR420 format is not supported */
->     +       if (pipe_config->output_format ==
->     INTEL_OUTPUT_FORMAT_YCBCR420)
->     +               return -EINVAL;
->     +
->             if (compute_pipe_bpp)
->                     pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp,
->     pipe_config->output_format,
->     conn_state->max_requested_bpc);
->     -- 
->     2.25.1
->
+vim +329 drivers/gpu/drm/msm/msm_debugfs.c
+
+edcd60ce243d16 Rob Clark                 2016-03-16  303  
+7ce84471e3c72e Wambui Karuga             2020-03-10  304  void msm_debugfs_init(struct drm_minor *minor)
+edcd60ce243d16 Rob Clark                 2016-03-16  305  {
+edcd60ce243d16 Rob Clark                 2016-03-16  306  	struct drm_device *dev = minor->dev;
+bc5289eed48176 Rob Clark                 2016-10-26  307  	struct msm_drm_private *priv = dev->dev_private;
+6563f60f14cbb3 Rob Clark                 2023-01-10  308  	struct dentry *gpu_devfreq;
+edcd60ce243d16 Rob Clark                 2016-03-16  309  
+9e2fd463ec346d Wambui Karuga             2020-03-10  310  	drm_debugfs_create_files(msm_debugfs_list,
+edcd60ce243d16 Rob Clark                 2016-03-16  311  				 ARRAY_SIZE(msm_debugfs_list),
+70b21b15c200ec Christian K�nig           2023-03-16  312  				 minor->dev->debugfs_root, minor);
+edcd60ce243d16 Rob Clark                 2016-03-16  313  
+70b21b15c200ec Christian K�nig           2023-03-16  314  	debugfs_create_file("gpu", S_IRUSR, minor->dev->debugfs_root,
+4f776f4511c7f7 Jordan Crouse             2018-07-24  315  		dev, &msm_gpu_fops);
+4f776f4511c7f7 Jordan Crouse             2018-07-24  316  
+70b21b15c200ec Christian K�nig           2023-03-16  317  	debugfs_create_file("kms", S_IRUSR, minor->dev->debugfs_root,
+c1760555884b7f Rob Clark                 2021-12-15  318  		dev, &msm_kms_fops);
+c1760555884b7f Rob Clark                 2021-12-15  319  
+70b21b15c200ec Christian K�nig           2023-03-16  320  	debugfs_create_u32("hangcheck_period_ms", 0600, minor->dev->debugfs_root,
+1d2fa58e0dda33 Samuel Iglesias Gonsalvez 2021-06-07  321  		&priv->hangcheck_period);
+1d2fa58e0dda33 Samuel Iglesias Gonsalvez 2021-06-07  322  
+70b21b15c200ec Christian K�nig           2023-03-16  323  	debugfs_create_bool("disable_err_irq", 0600, minor->dev->debugfs_root,
+5edf2750d998b7 Rob Clark                 2021-11-09  324  		&priv->disable_err_irq);
+5edf2750d998b7 Rob Clark                 2021-11-09  325  
+70b21b15c200ec Christian K�nig           2023-03-16  326  	debugfs_create_file("shrink", S_IRWXU, minor->dev->debugfs_root,
+5434941fd45d30 Rob Clark                 2021-06-14  327  		dev, &shrink_fops);
+5434941fd45d30 Rob Clark                 2021-06-14  328  
+6563f60f14cbb3 Rob Clark                 2023-01-10 @329  	gpu_devfreq = debugfs_create_dir("devfreq", minor->debugfs_root);
+6563f60f14cbb3 Rob Clark                 2023-01-10  330  
+6563f60f14cbb3 Rob Clark                 2023-01-10  331  	debugfs_create_bool("idle_clamp",0600, gpu_devfreq,
+6563f60f14cbb3 Rob Clark                 2023-01-10  332  			    &priv->gpu_clamp_to_idle);
+6563f60f14cbb3 Rob Clark                 2023-01-10  333  
+6563f60f14cbb3 Rob Clark                 2023-01-10  334  	debugfs_create_u32("upthreshold",0600, gpu_devfreq,
+6563f60f14cbb3 Rob Clark                 2023-01-10  335  			   &priv->gpu_devfreq_config.upthreshold);
+6563f60f14cbb3 Rob Clark                 2023-01-10  336  
+6563f60f14cbb3 Rob Clark                 2023-01-10  337  	debugfs_create_u32("downdifferential",0600, gpu_devfreq,
+6563f60f14cbb3 Rob Clark                 2023-01-10  338  			   &priv->gpu_devfreq_config.downdifferential);
+6563f60f14cbb3 Rob Clark                 2023-01-10  339  
+7ce84471e3c72e Wambui Karuga             2020-03-10  340  	if (priv->kms && priv->kms->funcs->debugfs_init)
+7ce84471e3c72e Wambui Karuga             2020-03-10  341  		priv->kms->funcs->debugfs_init(priv->kms, minor);
+6d29709de8028c Rob Clark                 2022-08-07  342  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
