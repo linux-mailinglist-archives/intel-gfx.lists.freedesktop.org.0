@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61156BD6E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 18:22:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B8BD6BD80E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 19:19:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD4210ED7C;
-	Thu, 16 Mar 2023 17:22:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C1BA10E29C;
+	Thu, 16 Mar 2023 18:18:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE6510E215;
- Thu, 16 Mar 2023 17:22:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9114610E29C;
+ Thu, 16 Mar 2023 18:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678987357; x=1710523357;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OeTkcfdBFKQwxpPiF1Z0wHOCaJStswRb41rkqkqtagg=;
- b=HIkCLoYn3DWN9f977l9KkIaRVfJHc+LiKg0Gy6ATYbN0daZda2K40CCb
- 1afrOC6a8tK4EbIzvN22XVN0/thbXwGBHK9n+B0Q4s4sIQINbAMnDM6VJ
- f+z7QqISoQ0vU64aJ0l8CceP3r10VuE1SQNl6detVV8h75gKnciCwx05U
- NJl68NgQp2qxJZ+MT38q2YYaGnH5zKzOZXvVNm7hd30ufo/85km9irxpn
- f6+0V27Vb/r1wTb0A/P3XLjsrGS66JXQiCIUS8TnFp0P3e/gjpxQebM1f
- 4AKh8ZNLcNwbOg6S5aivpgnAo4X4uTCF98wSv7/pNNc1TkiN75tJNoxd6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="317713417"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="317713417"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 10:22:36 -0700
+ t=1678990737; x=1710526737;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pAvg3SuZqEJ6Cl69ahM7MR7Th6gdWUEQc5iMKwqIrBY=;
+ b=Lcue1oNoLwqrvRso6Y24MwbjhajSM00n8ob4/wKObg49QLELdcKW3vhl
+ 3auoLNRoBhkgfsqS1189RZXqprOlGuEzXJWIOort779OGAI1OA5NbFg3D
+ PoTog+I9pIezJHJMiWTOtRX8CzwAa6c14LGv2hmXXu3aEPoLHpEyD7ZO2
+ 5W3c9cyx0qFRi6u9uxrGYjQ5kgtiI12QFhHuHVsvpuXV+seNdR24kvuyV
+ p2HYUsP9n9VZRwAUsOdEgKMSp7o8apBQLeRNMv6KyE86PN/kgNIvr4vwu
+ Yc62ej3TnhHnrmPNZJk3Z40TG56ijEDL9fuuE42Qn9se1QDwcf1gTQ626 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="326443555"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="326443555"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 11:18:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="629980268"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="629980268"
-Received: from nirmoyda-desk.igk.intel.com ([10.91.214.27])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 10:22:34 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 18:22:20 +0100
-Message-Id: <20230316172220.16068-2-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230316172220.16068-1-nirmoy.das@intel.com>
-References: <20230316172220.16068-1-nirmoy.das@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="1009343282"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="1009343282"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.22.209])
+ ([10.213.22.209])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 11:18:53 -0700
+Message-ID: <8a52b10f-0c6c-e776-df94-d5c85868f440@intel.com>
+Date: Thu, 16 Mar 2023 19:18:51 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 2/2] drm/i915/display: Implement fb_mmap
- callback function
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20230308-guard_error_capture-v6-0-1b5f31422563@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230308-guard_error_capture-v6-0-1b5f31422563@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6 0/2] drm/i915: add guard page to
+ ggtt->error_capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,68 +67,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If stolen memory allocation fails for fbdev, the driver will
-fallback to system memory. Calculation of smem_start is wrong
-for such framebuffer objs if the platform comes with no gmadr or
-no aperture. Solve this by adding fb_mmap callback which will
-use GTT if aperture is available otherwise will use cpu to access
-the framebuffer.
+On 10.03.2023 10:23, Andrzej Hajda wrote:
+> This patch tries to diminish plague of DMAR read errors present
+> in CI for ADL*, RPL*, DG2 platforms, see for example [1] (grep DMAR).
+> CI is usually tolerant for these errors, so the scale of the problem
+> is not really visible.
+> To show it I have counted lines containing DMAR read errors in dmesgs
+> produced by CI for all three versions of the patch, but in contrast to v2
+> I have grepped only for lines containing "PTE Read access".
+> Below stats for kernel w/o patchset vs patched one.
+> v1: 210 vs 0
+> v2: 201 vs 0
+> v3: 214 vs 0
+> Apparently the patchset fixes all common PTE read errors.
+> 
+> Changelog:
+> v2:
+>      - modified commit message (I hope the diagnosis is correct),
+>      - added bug checks to ensure scratch is initialized on gen3 platforms.
+>        CI produces strange stacktrace for it suggesting scratch[0] is NULL,
+>        to be removed after resolving the issue with gen3 platforms.
+> v3:
+>      - removed bug checks, replaced with gen check.
+> v4:
+>      - change code for scratch page insertion to support all platforms,
+>      - add info in commit message there could be more similar issues
+> v5:
+>      - changed to patchset adding nop_clear_range related code,
+>      - re-insert scratch PTEs on resume
+> v6:
+>      - use scratch_range
+> 
+> To: Jani Nikula <jani.nikula@linux.intel.com>
+> To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> 
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Queued to drm-intel-gt-next
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 673bcdfb7ff6..51d6fa034b00 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -40,8 +40,10 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
- 
- #include "gem/i915_gem_lmem.h"
-+#include "gem/i915_gem_mman.h"
- 
- #include "i915_drv.h"
- #include "intel_display_types.h"
-@@ -120,6 +122,16 @@ static int intel_fbdev_pan_display(struct fb_var_screeninfo *var,
- 	return ret;
- }
- 
-+#define to_intel_fbdev(x) container_of(x, struct intel_fbdev, helper)
-+static int intel_fbdev_mmap(struct fb_info *info, struct vm_area_struct *vma)
-+{
-+	struct intel_fbdev *fbdev = to_intel_fbdev(info->par);
-+	struct drm_gem_object *bo = drm_gem_fb_get_obj(&fbdev->fb->base, 0);
-+	struct drm_i915_gem_object *obj = to_intel_bo(bo);
-+
-+	return i915_gem_fb_mmap(obj, vma);
-+}
-+
- static const struct fb_ops intelfb_ops = {
- 	.owner = THIS_MODULE,
- 	DRM_FB_HELPER_DEFAULT_OPS,
-@@ -131,6 +143,7 @@ static const struct fb_ops intelfb_ops = {
- 	.fb_imageblit = drm_fb_helper_cfb_imageblit,
- 	.fb_pan_display = intel_fbdev_pan_display,
- 	.fb_blank = intel_fbdev_blank,
-+	.fb_mmap = intel_fbdev_mmap,
- };
- 
- static int intelfb_alloc(struct drm_fb_helper *helper,
--- 
-2.39.0
+Regards
+Andrzej
+
+> ---
+> - Link to v5: https://lore.kernel.org/r/20230308-guard_error_capture-v5-0-6d1410d13540@intel.com
+> 
+> ---
+> Andrzej Hajda (2):
+>        drm/i915/gt: introduce vm->scratch_range callback
+>        drm/i915: add guard page to ggtt->error_capture
+> 
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c      | 43 ++++++++++++++++++++++++++++---
+>   drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c |  1 +
+>   drivers/gpu/drm/i915/gt/intel_gtt.h       |  2 ++
+>   3 files changed, 42 insertions(+), 4 deletions(-)
+> ---
+> base-commit: 3cd6c251f39c14df9ab711e3eb56e703b359ff54
+> change-id: 20230308-guard_error_capture-f3f334eec85f
+> 
+> Best regards,
 
