@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300046BD18C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 14:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A015A6BD18D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 14:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCE9610ECFB;
-	Thu, 16 Mar 2023 13:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF2010ED00;
+	Thu, 16 Mar 2023 13:55:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B584F10ECFB
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 13:55:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC6C10ECFB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 13:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678974940; x=1710510940;
+ t=1678974941; x=1710510941;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aN/SACjjR0bCHZER7MU+ZNRpJUE1g99CU0xvEEDDjEw=;
- b=egH0nJyX7kBsU+OQgNIhh/J1Q4IoJpBQG4CnBc9Q5W1BxPBF7GCGXcT7
- WCz52OKuiKmQeA/RRjp/K+T27UEyL8IJdP3CLenTHzFdT8KgLOVlGicxp
- TBT/r3VcMRq1nMtF3nINdtPOsbBNFTU8MLg+eI8LTk5990KL4qcAK+I3K
- DaUV89ZoiHXwmUhNZTHVQlAyrbcf3HaNMS0cLwHUsET9BZCHhVSPip6FN
- A4Byaz8lTvFCG0g4PFTT1tGiVJfcu7dHgw/9dIBlzIiTNyICLSnycZ28g
- 2cG/DM63nd1iDw9mp9cjx9uUVBcK+QcTzK2A0e0SklFLvN8uclpa8kAxK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="402872172"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="402872172"
+ bh=eo0sUXidGeZDNtWd+EiLMRBskzbLqIo0JpNneDJpp3s=;
+ b=cbwIyEeACgeTnUZzM0DPBM0dU3QUzkqsiRtUYtSO2iWqTNK0CxSaqqMm
+ MKLbsvUlfou+MGUejkBReNyQ/U/ir9p4b4riTYNena5hD0kWE6cAUypFU
+ pPRjHUU7lkV519p4o/Souuf3oA3TDQmmhVatsndOqIUDdoLGS6sWiAES4
+ 3gD9YofxDKPmlHgR3x0uXKF/0FXepyVktm+PoCdpVl+xn8sDI4C3aIu3I
+ uRvnZffdG3rV+ev8RtkDXDnY2Bn5eppZ9smhcuJo+twOfb7tNKkO1M9ls
+ EmItJA/G78qDyWB+xhlkww3XOeYfyUZN2BrcadClvLjA0QuWoKnZMOc8Y A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="402872187"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="402872187"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 06:29:58 -0700
+ 16 Mar 2023 06:30:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="679893552"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="679893552"
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="679893586"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="679893586"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.158])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 06:29:56 -0700
+ 16 Mar 2023 06:30:01 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 15:29:33 +0200
-Message-Id: <bba37e46d767e2193d49d1d2e289040c6bf8229b.1678973282.git.jani.nikula@intel.com>
+Date: Thu, 16 Mar 2023 15:29:34 +0200
+Message-Id: <827a29f2c5f007ff9f804c990d80b5738930977b.1678973283.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1678973282.git.jani.nikula@intel.com>
 References: <cover.1678973282.git.jani.nikula@intel.com>
@@ -46,8 +46,8 @@ MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/7] drm/i915/fdi: split out FDI regs to a
- separate file
+Subject: [Intel-gfx] [PATCH 5/7] drm/i915/wm: split out SKL+ watermark regs
+ to a separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,424 +64,439 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clean up i915_reg.h by splitting out FDI regs to
-display/intel_fdi_regs.h.
+Clean up i915_reg.h by splitting out SKL+ watermark regs to
+display/skl_watermark_regs.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
- drivers/gpu/drm/i915/display/intel_fdi.c      |   1 +
- drivers/gpu/drm/i915/display/intel_fdi_regs.h | 151 ++++++++++++++++++
- .../gpu/drm/i915/display/intel_pch_display.c  |   1 +
+ .../drm/i915/display/intel_display_power.c    |   1 +
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   1 +
+ .../gpu/drm/i915/display/skl_watermark_regs.h | 165 ++++++++++++++++++
  drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
- drivers/gpu/drm/i915/i915_irq.c               |   1 +
- drivers/gpu/drm/i915/i915_reg.h               | 141 ----------------
+ drivers/gpu/drm/i915/i915_reg.h               | 154 ----------------
  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
- 8 files changed, 157 insertions(+), 141 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fdi_regs.h
+ 6 files changed, 169 insertions(+), 154 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/skl_watermark_regs.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 8f2ebead0826..38e9c61c2344 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -44,6 +44,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
-+#include "intel_fdi_regs.h"
- #include "intel_fifo_underrun.h"
- #include "intel_gmbus.h"
- #include "intel_hotplug.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index c08c26a321b3..55283677c45a 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -12,6 +12,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
-+#include "intel_fdi_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index dedfc837b727..10ea7656e6c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -22,6 +22,7 @@
+ #include "intel_pps_regs.h"
+ #include "intel_snps_phy.h"
+ #include "skl_watermark.h"
++#include "skl_watermark_regs.h"
+ #include "vlv_sideband.h"
  
- struct intel_fdi_funcs {
- 	void (*fdi_link_train)(struct intel_crtc *crtc,
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi_regs.h b/drivers/gpu/drm/i915/display/intel_fdi_regs.h
+ #define for_each_power_domain_well(__dev_priv, __power_well, __domain)	\
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 50a9a6adbe32..a9b3bdf94738 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -21,6 +21,7 @@
+ #include "intel_pcode.h"
+ #include "intel_wm.h"
+ #include "skl_watermark.h"
++#include "skl_watermark_regs.h"
+ 
+ static void skl_sagv_disable(struct drm_i915_private *i915);
+ 
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
 new file mode 100644
-index 000000000000..853b834c35a9
+index 000000000000..5a3473a7844e
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_fdi_regs.h
-@@ -0,0 +1,151 @@
++++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
+@@ -0,0 +1,165 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#ifndef __INTEL_FDI_REGS_H__
-+#define __INTEL_FDI_REGS_H__
++#ifndef __SKL_WATERMARK_REGS_H__
++#define __SKL_WATERMARK_REGS_H__
 +
 +#include "intel_display_reg_defs.h"
 +
-+#define FDI_PLL_BIOS_0  _MMIO(0x46000)
-+#define  FDI_PLL_FB_CLOCK_MASK  0xff
-+#define FDI_PLL_BIOS_1  _MMIO(0x46004)
-+#define FDI_PLL_BIOS_2  _MMIO(0x46008)
-+#define DISPLAY_PORT_PLL_BIOS_0         _MMIO(0x4600c)
-+#define DISPLAY_PORT_PLL_BIOS_1         _MMIO(0x46010)
-+#define DISPLAY_PORT_PLL_BIOS_2         _MMIO(0x46014)
++#define _PIPEA_MBUS_DBOX_CTL			0x7003C
++#define _PIPEB_MBUS_DBOX_CTL			0x7103C
++#define PIPE_MBUS_DBOX_CTL(pipe)		_MMIO_PIPE(pipe, _PIPEA_MBUS_DBOX_CTL, \
++							   _PIPEB_MBUS_DBOX_CTL)
++#define MBUS_DBOX_B2B_TRANSACTIONS_MAX_MASK	REG_GENMASK(24, 20) /* tgl+ */
++#define MBUS_DBOX_B2B_TRANSACTIONS_MAX(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_MAX_MASK, x)
++#define MBUS_DBOX_B2B_TRANSACTIONS_DELAY_MASK	REG_GENMASK(19, 17) /* tgl+ */
++#define MBUS_DBOX_B2B_TRANSACTIONS_DELAY(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_DELAY_MASK, x)
++#define MBUS_DBOX_REGULATE_B2B_TRANSACTIONS_EN	REG_BIT(16) /* tgl+ */
++#define MBUS_DBOX_BW_CREDIT_MASK		REG_GENMASK(15, 14)
++#define MBUS_DBOX_BW_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, x)
++#define MBUS_DBOX_BW_4CREDITS_MTL		REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, 0x2)
++#define MBUS_DBOX_BW_8CREDITS_MTL		REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, 0x3)
++#define MBUS_DBOX_B_CREDIT_MASK			REG_GENMASK(12, 8)
++#define MBUS_DBOX_B_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_B_CREDIT_MASK, x)
++#define MBUS_DBOX_I_CREDIT_MASK			REG_GENMASK(7, 5)
++#define MBUS_DBOX_I_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_I_CREDIT_MASK, x)
++#define MBUS_DBOX_A_CREDIT_MASK			REG_GENMASK(3, 0)
++#define MBUS_DBOX_A_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_A_CREDIT_MASK, x)
 +
-+#define FDI_PLL_FREQ_CTL        _MMIO(0x46030)
-+#define  FDI_PLL_FREQ_CHANGE_REQUEST    (1 << 24)
-+#define  FDI_PLL_FREQ_LOCK_LIMIT_MASK   0xfff00
-+#define  FDI_PLL_FREQ_DISABLE_COUNT_LIMIT_MASK  0xff
++#define MBUS_UBOX_CTL			_MMIO(0x4503C)
++#define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
++#define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
 +
-+#define _FDI_RXA_CHICKEN        0xc200c
-+#define _FDI_RXB_CHICKEN        0xc2010
-+#define  FDI_RX_PHASE_SYNC_POINTER_OVR	(1 << 1)
-+#define  FDI_RX_PHASE_SYNC_POINTER_EN	(1 << 0)
-+#define FDI_RX_CHICKEN(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_CHICKEN, _FDI_RXB_CHICKEN)
++#define MBUS_CTL			_MMIO(0x4438C)
++#define MBUS_JOIN			REG_BIT(31)
++#define MBUS_HASHING_MODE_MASK		REG_BIT(30)
++#define MBUS_HASHING_MODE_2x2		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
++#define MBUS_HASHING_MODE_1x4		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
++#define MBUS_JOIN_PIPE_SELECT_MASK	REG_GENMASK(28, 26)
++#define MBUS_JOIN_PIPE_SELECT(pipe)	REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
++#define MBUS_JOIN_PIPE_SELECT_NONE	MBUS_JOIN_PIPE_SELECT(7)
 +
-+/* CPU: FDI_TX */
-+#define _FDI_TXA_CTL            0x60100
-+#define _FDI_TXB_CTL            0x61100
-+#define FDI_TX_CTL(pipe)	_MMIO_PIPE(pipe, _FDI_TXA_CTL, _FDI_TXB_CTL)
-+#define  FDI_TX_DISABLE         (0 << 31)
-+#define  FDI_TX_ENABLE          (1 << 31)
-+#define  FDI_LINK_TRAIN_PATTERN_1       (0 << 28)
-+#define  FDI_LINK_TRAIN_PATTERN_2       (1 << 28)
-+#define  FDI_LINK_TRAIN_PATTERN_IDLE    (2 << 28)
-+#define  FDI_LINK_TRAIN_NONE            (3 << 28)
-+#define  FDI_LINK_TRAIN_VOLTAGE_0_4V    (0 << 25)
-+#define  FDI_LINK_TRAIN_VOLTAGE_0_6V    (1 << 25)
-+#define  FDI_LINK_TRAIN_VOLTAGE_0_8V    (2 << 25)
-+#define  FDI_LINK_TRAIN_VOLTAGE_1_2V    (3 << 25)
-+#define  FDI_LINK_TRAIN_PRE_EMPHASIS_NONE (0 << 22)
-+#define  FDI_LINK_TRAIN_PRE_EMPHASIS_1_5X (1 << 22)
-+#define  FDI_LINK_TRAIN_PRE_EMPHASIS_2X   (2 << 22)
-+#define  FDI_LINK_TRAIN_PRE_EMPHASIS_3X   (3 << 22)
-+/* ILK always use 400mV 0dB for voltage swing and pre-emphasis level.
-+   SNB has different settings. */
-+/* SNB A-stepping */
-+#define  FDI_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
-+#define  FDI_LINK_TRAIN_400MV_6DB_SNB_A		(0x02 << 22)
-+#define  FDI_LINK_TRAIN_600MV_3_5DB_SNB_A	(0x01 << 22)
-+#define  FDI_LINK_TRAIN_800MV_0DB_SNB_A		(0x0 << 22)
-+/* SNB B-stepping */
-+#define  FDI_LINK_TRAIN_400MV_0DB_SNB_B		(0x0 << 22)
-+#define  FDI_LINK_TRAIN_400MV_6DB_SNB_B		(0x3a << 22)
-+#define  FDI_LINK_TRAIN_600MV_3_5DB_SNB_B	(0x39 << 22)
-+#define  FDI_LINK_TRAIN_800MV_0DB_SNB_B		(0x38 << 22)
-+#define  FDI_LINK_TRAIN_VOL_EMP_MASK		(0x3f << 22)
-+#define  FDI_DP_PORT_WIDTH_SHIFT		19
-+#define  FDI_DP_PORT_WIDTH_MASK			(7 << FDI_DP_PORT_WIDTH_SHIFT)
-+#define  FDI_DP_PORT_WIDTH(width)           (((width) - 1) << FDI_DP_PORT_WIDTH_SHIFT)
-+#define  FDI_TX_ENHANCE_FRAME_ENABLE    (1 << 18)
-+/* Ironlake: hardwired to 1 */
-+#define  FDI_TX_PLL_ENABLE              (1 << 14)
++/* Watermark register definitions for SKL */
++#define _CUR_WM_A_0		0x70140
++#define _CUR_WM_B_0		0x71140
++#define _CUR_WM_SAGV_A		0x70158
++#define _CUR_WM_SAGV_B		0x71158
++#define _CUR_WM_SAGV_TRANS_A	0x7015C
++#define _CUR_WM_SAGV_TRANS_B	0x7115C
++#define _CUR_WM_TRANS_A		0x70168
++#define _CUR_WM_TRANS_B		0x71168
++#define _PLANE_WM_1_A_0		0x70240
++#define _PLANE_WM_1_B_0		0x71240
++#define _PLANE_WM_2_A_0		0x70340
++#define _PLANE_WM_2_B_0		0x71340
++#define _PLANE_WM_SAGV_1_A	0x70258
++#define _PLANE_WM_SAGV_1_B	0x71258
++#define _PLANE_WM_SAGV_2_A	0x70358
++#define _PLANE_WM_SAGV_2_B	0x71358
++#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
++#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
++#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
++#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
++#define _PLANE_WM_TRANS_1_A	0x70268
++#define _PLANE_WM_TRANS_1_B	0x71268
++#define _PLANE_WM_TRANS_2_A	0x70368
++#define _PLANE_WM_TRANS_2_B	0x71368
++#define   PLANE_WM_EN		(1 << 31)
++#define   PLANE_WM_IGNORE_LINES	(1 << 30)
++#define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
++#define   PLANE_WM_BLOCKS_MASK	REG_GENMASK(11, 0)
 +
-+/* Ivybridge has different bits for lolz */
-+#define  FDI_LINK_TRAIN_PATTERN_1_IVB       (0 << 8)
-+#define  FDI_LINK_TRAIN_PATTERN_2_IVB       (1 << 8)
-+#define  FDI_LINK_TRAIN_PATTERN_IDLE_IVB    (2 << 8)
-+#define  FDI_LINK_TRAIN_NONE_IVB            (3 << 8)
++#define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
++#define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
++#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
++#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
++#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
++#define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
++#define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
++#define _PLANE_WM_BASE(pipe, plane) \
++	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
++#define PLANE_WM(pipe, plane, level) \
++	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
++#define _PLANE_WM_SAGV_1(pipe) \
++	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
++#define _PLANE_WM_SAGV_2(pipe) \
++	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
++#define PLANE_WM_SAGV(pipe, plane) \
++	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
++#define _PLANE_WM_SAGV_TRANS_1(pipe) \
++	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
++#define _PLANE_WM_SAGV_TRANS_2(pipe) \
++	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
++#define PLANE_WM_SAGV_TRANS(pipe, plane) \
++	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_2(pipe)))
++#define _PLANE_WM_TRANS_1(pipe) \
++	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
++#define _PLANE_WM_TRANS_2(pipe) \
++	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
++#define PLANE_WM_TRANS(pipe, plane) \
++	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
 +
-+/* both Tx and Rx */
-+#define  FDI_COMPOSITE_SYNC		(1 << 11)
-+#define  FDI_LINK_TRAIN_AUTO		(1 << 10)
-+#define  FDI_SCRAMBLING_ENABLE          (0 << 7)
-+#define  FDI_SCRAMBLING_DISABLE         (1 << 7)
++#define _PLANE_BUF_CFG_1_B			0x7127c
++#define _PLANE_BUF_CFG_2_B			0x7137c
++/* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits */
++#define   PLANE_BUF_END_MASK		REG_GENMASK(27, 16)
++#define   PLANE_BUF_END(end)		REG_FIELD_PREP(PLANE_BUF_END_MASK, (end))
++#define   PLANE_BUF_START_MASK		REG_GENMASK(11, 0)
++#define   PLANE_BUF_START(start)	REG_FIELD_PREP(PLANE_BUF_START_MASK, (start))
++#define _PLANE_BUF_CFG_1(pipe)	\
++	_PIPE(pipe, _PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B)
++#define _PLANE_BUF_CFG_2(pipe)	\
++	_PIPE(pipe, _PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
++#define PLANE_BUF_CFG(pipe, plane)	\
++	_MMIO_PLANE(plane, _PLANE_BUF_CFG_1(pipe), _PLANE_BUF_CFG_2(pipe))
 +
-+/* FDI_RX, FDI_X is hard-wired to Transcoder_X */
-+#define _FDI_RXA_CTL             0xf000c
-+#define _FDI_RXB_CTL             0xf100c
-+#define FDI_RX_CTL(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_CTL, _FDI_RXB_CTL)
-+#define  FDI_RX_ENABLE          (1 << 31)
-+/* train, dp width same as FDI_TX */
-+#define  FDI_FS_ERRC_ENABLE		(1 << 27)
-+#define  FDI_FE_ERRC_ENABLE		(1 << 26)
-+#define  FDI_RX_POLARITY_REVERSED_LPT	(1 << 16)
-+#define  FDI_8BPC                       (0 << 16)
-+#define  FDI_10BPC                      (1 << 16)
-+#define  FDI_6BPC                       (2 << 16)
-+#define  FDI_12BPC                      (3 << 16)
-+#define  FDI_RX_LINK_REVERSAL_OVERRIDE  (1 << 15)
-+#define  FDI_DMI_LINK_REVERSE_MASK      (1 << 14)
-+#define  FDI_RX_PLL_ENABLE              (1 << 13)
-+#define  FDI_FS_ERR_CORRECT_ENABLE      (1 << 11)
-+#define  FDI_FE_ERR_CORRECT_ENABLE      (1 << 10)
-+#define  FDI_FS_ERR_REPORT_ENABLE       (1 << 9)
-+#define  FDI_FE_ERR_REPORT_ENABLE       (1 << 8)
-+#define  FDI_RX_ENHANCE_FRAME_ENABLE    (1 << 6)
-+#define  FDI_PCDCLK	                (1 << 4)
-+/* CPT */
-+#define  FDI_AUTO_TRAINING			(1 << 10)
-+#define  FDI_LINK_TRAIN_PATTERN_1_CPT		(0 << 8)
-+#define  FDI_LINK_TRAIN_PATTERN_2_CPT		(1 << 8)
-+#define  FDI_LINK_TRAIN_PATTERN_IDLE_CPT	(2 << 8)
-+#define  FDI_LINK_TRAIN_NORMAL_CPT		(3 << 8)
-+#define  FDI_LINK_TRAIN_PATTERN_MASK_CPT	(3 << 8)
++#define _PLANE_NV12_BUF_CFG_1_B		0x71278
++#define _PLANE_NV12_BUF_CFG_2_B		0x71378
++#define _PLANE_NV12_BUF_CFG_1(pipe)	\
++	_PIPE(pipe, _PLANE_NV12_BUF_CFG_1_A, _PLANE_NV12_BUF_CFG_1_B)
++#define _PLANE_NV12_BUF_CFG_2(pipe)	\
++	_PIPE(pipe, _PLANE_NV12_BUF_CFG_2_A, _PLANE_NV12_BUF_CFG_2_B)
++#define PLANE_NV12_BUF_CFG(pipe, plane)	\
++	_MMIO_PLANE(plane, _PLANE_NV12_BUF_CFG_1(pipe), _PLANE_NV12_BUF_CFG_2(pipe))
 +
-+#define _FDI_RXA_MISC			0xf0010
-+#define _FDI_RXB_MISC			0xf1010
-+#define  FDI_RX_PWRDN_LANE1_MASK	(3 << 26)
-+#define  FDI_RX_PWRDN_LANE1_VAL(x)	((x) << 26)
-+#define  FDI_RX_PWRDN_LANE0_MASK	(3 << 24)
-+#define  FDI_RX_PWRDN_LANE0_VAL(x)	((x) << 24)
-+#define  FDI_RX_TP1_TO_TP2_48		(2 << 20)
-+#define  FDI_RX_TP1_TO_TP2_64		(3 << 20)
-+#define  FDI_RX_FDI_DELAY_90		(0x90 << 0)
-+#define FDI_RX_MISC(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_MISC, _FDI_RXB_MISC)
++/* SKL new cursor registers */
++#define _CUR_BUF_CFG_A				0x7017c
++#define _CUR_BUF_CFG_B				0x7117c
++#define CUR_BUF_CFG(pipe)	_MMIO_PIPE(pipe, _CUR_BUF_CFG_A, _CUR_BUF_CFG_B)
 +
-+#define _FDI_RXA_TUSIZE1        0xf0030
-+#define _FDI_RXA_TUSIZE2        0xf0038
-+#define _FDI_RXB_TUSIZE1        0xf1030
-+#define _FDI_RXB_TUSIZE2        0xf1038
-+#define FDI_RX_TUSIZE1(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_TUSIZE1, _FDI_RXB_TUSIZE1)
-+#define FDI_RX_TUSIZE2(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_TUSIZE2, _FDI_RXB_TUSIZE2)
++/*
++ * The below are numbered starting from "S1" on gen11/gen12, but starting
++ * with display 13, the bspec switches to a 0-based numbering scheme
++ * (although the addresses stay the same so new S0 = old S1, new S1 = old S2).
++ * We'll just use the 0-based numbering here for all platforms since it's the
++ * way things will be named by the hardware team going forward, plus it's more
++ * consistent with how most of the rest of our registers are named.
++ */
++#define _DBUF_CTL_S0				0x45008
++#define _DBUF_CTL_S1				0x44FE8
++#define _DBUF_CTL_S2				0x44300
++#define _DBUF_CTL_S3				0x44304
++#define DBUF_CTL_S(slice)			_MMIO(_PICK(slice, \
++							    _DBUF_CTL_S0, \
++							    _DBUF_CTL_S1, \
++							    _DBUF_CTL_S2, \
++							    _DBUF_CTL_S3))
++#define  DBUF_POWER_REQUEST			REG_BIT(31)
++#define  DBUF_POWER_STATE			REG_BIT(30)
++#define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
++#define  DBUF_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
++#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(18, 16) /* ADL-P+ */
++#define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
 +
-+/* FDI_RX interrupt register format */
-+#define FDI_RX_INTER_LANE_ALIGN         (1 << 10)
-+#define FDI_RX_SYMBOL_LOCK              (1 << 9) /* train 2 */
-+#define FDI_RX_BIT_LOCK                 (1 << 8) /* train 1 */
-+#define FDI_RX_TRAIN_PATTERN_2_FAIL     (1 << 7)
-+#define FDI_RX_FS_CODE_ERR              (1 << 6)
-+#define FDI_RX_FE_CODE_ERR              (1 << 5)
-+#define FDI_RX_SYMBOL_ERR_RATE_ABOVE    (1 << 4)
-+#define FDI_RX_HDCP_LINK_FAIL           (1 << 3)
-+#define FDI_RX_PIXEL_FIFO_OVERFLOW      (1 << 2)
-+#define FDI_RX_CROSS_CLOCK_OVERFLOW     (1 << 1)
-+#define FDI_RX_SYMBOL_QUEUE_OVERFLOW    (1 << 0)
++#define MTL_LATENCY_LP0_LP1		_MMIO(0x45780)
++#define MTL_LATENCY_LP2_LP3		_MMIO(0x45784)
++#define MTL_LATENCY_LP4_LP5		_MMIO(0x45788)
++#define  MTL_LATENCY_LEVEL_EVEN_MASK	REG_GENMASK(12, 0)
++#define  MTL_LATENCY_LEVEL_ODD_MASK	REG_GENMASK(28, 16)
 +
-+#define _FDI_RXA_IIR            0xf0014
-+#define _FDI_RXA_IMR            0xf0018
-+#define _FDI_RXB_IIR            0xf1014
-+#define _FDI_RXB_IMR            0xf1018
-+#define FDI_RX_IIR(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_IIR, _FDI_RXB_IIR)
-+#define FDI_RX_IMR(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_IMR, _FDI_RXB_IMR)
++#define MTL_LATENCY_SAGV		_MMIO(0x4578b)
++#define   MTL_LATENCY_QCLK_SAGV		REG_GENMASK(12, 0)
 +
-+#define FDI_PLL_CTL_1           _MMIO(0xfe000)
-+#define FDI_PLL_CTL_2           _MMIO(0xfe004)
-+
-+#endif /* __INTEL_FDI_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 22507da0b5f0..2411fe4dee8b 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -9,6 +9,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
-+#include "intel_fdi_regs.h"
- #include "intel_lvds.h"
- #include "intel_lvds_regs.h"
- #include "intel_pch_display.h"
++#endif /* __SKL_WATERMARK_REGS_H__ */
 diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 70f8e35aa0af..ea6a21dc8322 100644
+index ea6a21dc8322..8bfccae7e026 100644
 --- a/drivers/gpu/drm/i915/gvt/handlers.c
 +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -46,6 +46,7 @@
- #include "display/intel_dp_aux_regs.h"
- #include "display/intel_dpio_phy.h"
+@@ -48,6 +48,7 @@
  #include "display/intel_fbc.h"
-+#include "display/intel_fdi_regs.h"
+ #include "display/intel_fdi_regs.h"
  #include "display/intel_pps_regs.h"
++#include "display/skl_watermark_regs.h"
  #include "display/vlv_dsi_pll_regs.h"
  #include "gt/intel_gt_regs.h"
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 31271c30a8cf..c0888cc88d04 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -37,6 +37,7 @@
- #include "display/intel_de.h"
- #include "display/intel_display_trace.h"
- #include "display/intel_display_types.h"
-+#include "display/intel_fdi_regs.h"
- #include "display/intel_fifo_underrun.h"
- #include "display/intel_hotplug.h"
- #include "display/intel_lpe_audio.h"
+ 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c1a0f8c746ba..caa24f64e8bf 100644
+index caa24f64e8bf..ea8da91b9b6c 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4294,14 +4294,6 @@
- #define  RR_HW_LOW_POWER_FRAMES_MASK    0xff
- #define  RR_HW_HIGH_POWER_FRAMES_MASK   0xff00
+@@ -1057,39 +1057,6 @@
+ #define MBUS_ABOX_BT_CREDIT_POOL1_MASK	(0x1F << 0)
+ #define MBUS_ABOX_BT_CREDIT_POOL1(x)	((x) << 0)
  
--#define FDI_PLL_BIOS_0  _MMIO(0x46000)
--#define  FDI_PLL_FB_CLOCK_MASK  0xff
--#define FDI_PLL_BIOS_1  _MMIO(0x46004)
--#define FDI_PLL_BIOS_2  _MMIO(0x46008)
--#define DISPLAY_PORT_PLL_BIOS_0         _MMIO(0x4600c)
--#define DISPLAY_PORT_PLL_BIOS_1         _MMIO(0x46010)
--#define DISPLAY_PORT_PLL_BIOS_2         _MMIO(0x46014)
+-#define _PIPEA_MBUS_DBOX_CTL			0x7003C
+-#define _PIPEB_MBUS_DBOX_CTL			0x7103C
+-#define PIPE_MBUS_DBOX_CTL(pipe)		_MMIO_PIPE(pipe, _PIPEA_MBUS_DBOX_CTL, \
+-							   _PIPEB_MBUS_DBOX_CTL)
+-#define MBUS_DBOX_B2B_TRANSACTIONS_MAX_MASK	REG_GENMASK(24, 20) /* tgl+ */
+-#define MBUS_DBOX_B2B_TRANSACTIONS_MAX(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_MAX_MASK, x)
+-#define MBUS_DBOX_B2B_TRANSACTIONS_DELAY_MASK	REG_GENMASK(19, 17) /* tgl+ */
+-#define MBUS_DBOX_B2B_TRANSACTIONS_DELAY(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_DELAY_MASK, x)
+-#define MBUS_DBOX_REGULATE_B2B_TRANSACTIONS_EN	REG_BIT(16) /* tgl+ */
+-#define MBUS_DBOX_BW_CREDIT_MASK		REG_GENMASK(15, 14)
+-#define MBUS_DBOX_BW_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, x)
+-#define MBUS_DBOX_BW_4CREDITS_MTL		REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, 0x2)
+-#define MBUS_DBOX_BW_8CREDITS_MTL		REG_FIELD_PREP(MBUS_DBOX_BW_CREDIT_MASK, 0x3)
+-#define MBUS_DBOX_B_CREDIT_MASK			REG_GENMASK(12, 8)
+-#define MBUS_DBOX_B_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_B_CREDIT_MASK, x)
+-#define MBUS_DBOX_I_CREDIT_MASK			REG_GENMASK(7, 5)
+-#define MBUS_DBOX_I_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_I_CREDIT_MASK, x)
+-#define MBUS_DBOX_A_CREDIT_MASK			REG_GENMASK(3, 0)
+-#define MBUS_DBOX_A_CREDIT(x)			REG_FIELD_PREP(MBUS_DBOX_A_CREDIT_MASK, x)
 -
- #define PCH_3DCGDIS0		_MMIO(0x46020)
- # define MARIUNIT_CLOCK_GATE_DISABLE		(1 << 18)
- # define SVSMUNIT_CLOCK_GATE_DISABLE		(1 << 1)
-@@ -4309,12 +4301,6 @@
- #define PCH_3DCGDIS1		_MMIO(0x46024)
- # define VFMUNIT_CLOCK_GATE_DISABLE		(1 << 11)
+-#define MBUS_UBOX_CTL			_MMIO(0x4503C)
+-#define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
+-#define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
+-
+-#define MBUS_CTL			_MMIO(0x4438C)
+-#define MBUS_JOIN			REG_BIT(31)
+-#define MBUS_HASHING_MODE_MASK		REG_BIT(30)
+-#define MBUS_HASHING_MODE_2x2		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
+-#define MBUS_HASHING_MODE_1x4		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
+-#define MBUS_JOIN_PIPE_SELECT_MASK	REG_GENMASK(28, 26)
+-#define MBUS_JOIN_PIPE_SELECT(pipe)	REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
+-#define MBUS_JOIN_PIPE_SELECT_NONE	MBUS_JOIN_PIPE_SELECT(7)
+-
+ /* Make render/texture TLB fetches lower priorty than associated data
+  *   fetches. This is not turned on by default
+  */
+@@ -3188,66 +3155,6 @@
+ #define I965_CURSOR_MAX_WM	32
+ #define I965_CURSOR_DFT_WM	8
  
--#define FDI_PLL_FREQ_CTL        _MMIO(0x46030)
--#define  FDI_PLL_FREQ_CHANGE_REQUEST    (1 << 24)
--#define  FDI_PLL_FREQ_LOCK_LIMIT_MASK   0xfff00
--#define  FDI_PLL_FREQ_DISABLE_COUNT_LIMIT_MASK  0xff
+-/* Watermark register definitions for SKL */
+-#define _CUR_WM_A_0		0x70140
+-#define _CUR_WM_B_0		0x71140
+-#define _CUR_WM_SAGV_A		0x70158
+-#define _CUR_WM_SAGV_B		0x71158
+-#define _CUR_WM_SAGV_TRANS_A	0x7015C
+-#define _CUR_WM_SAGV_TRANS_B	0x7115C
+-#define _CUR_WM_TRANS_A		0x70168
+-#define _CUR_WM_TRANS_B		0x71168
+-#define _PLANE_WM_1_A_0		0x70240
+-#define _PLANE_WM_1_B_0		0x71240
+-#define _PLANE_WM_2_A_0		0x70340
+-#define _PLANE_WM_2_B_0		0x71340
+-#define _PLANE_WM_SAGV_1_A	0x70258
+-#define _PLANE_WM_SAGV_1_B	0x71258
+-#define _PLANE_WM_SAGV_2_A	0x70358
+-#define _PLANE_WM_SAGV_2_B	0x71358
+-#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
+-#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
+-#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
+-#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
+-#define _PLANE_WM_TRANS_1_A	0x70268
+-#define _PLANE_WM_TRANS_1_B	0x71268
+-#define _PLANE_WM_TRANS_2_A	0x70368
+-#define _PLANE_WM_TRANS_2_B	0x71368
+-#define   PLANE_WM_EN		(1 << 31)
+-#define   PLANE_WM_IGNORE_LINES	(1 << 30)
+-#define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
+-#define   PLANE_WM_BLOCKS_MASK	REG_GENMASK(11, 0)
 -
+-#define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
+-#define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
+-#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
+-#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
+-#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
+-#define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
+-#define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
+-#define _PLANE_WM_BASE(pipe, plane) \
+-	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
+-#define PLANE_WM(pipe, plane, level) \
+-	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
+-#define _PLANE_WM_SAGV_1(pipe) \
+-	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
+-#define _PLANE_WM_SAGV_2(pipe) \
+-	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
+-#define PLANE_WM_SAGV(pipe, plane) \
+-	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
+-#define _PLANE_WM_SAGV_TRANS_1(pipe) \
+-	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
+-#define _PLANE_WM_SAGV_TRANS_2(pipe) \
+-	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
+-#define PLANE_WM_SAGV_TRANS(pipe, plane) \
+-	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_2(pipe)))
+-#define _PLANE_WM_TRANS_1(pipe) \
+-	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
+-#define _PLANE_WM_TRANS_2(pipe) \
+-	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
+-#define PLANE_WM_TRANS(pipe, plane) \
+-	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
 -
- #define _PIPEA_DATA_M1		0x60030
- #define _PIPEA_DATA_N1		0x60034
- #define _PIPEA_DATA_M2		0x60038
-@@ -5504,12 +5490,6 @@
- #define  LPT_PWM_GRANULARITY		(1 << 5)
- #define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
+ /* define the Watermark register on Ironlake */
+ #define _WM0_PIPEA_ILK		0x45100
+ #define _WM0_PIPEB_ILK		0x45104
+@@ -4155,29 +4062,6 @@
+ #define PLANE_KEYMAX(pipe, plane)	\
+ 	_MMIO_PLANE(plane, _PLANE_KEYMAX_1(pipe), _PLANE_KEYMAX_2(pipe))
  
--#define _FDI_RXA_CHICKEN        0xc200c
--#define _FDI_RXB_CHICKEN        0xc2010
--#define  FDI_RX_PHASE_SYNC_POINTER_OVR	(1 << 1)
--#define  FDI_RX_PHASE_SYNC_POINTER_EN	(1 << 0)
--#define FDI_RX_CHICKEN(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_CHICKEN, _FDI_RXB_CHICKEN)
+-#define _PLANE_BUF_CFG_1_B			0x7127c
+-#define _PLANE_BUF_CFG_2_B			0x7137c
+-/* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits */
+-#define   PLANE_BUF_END_MASK		REG_GENMASK(27, 16)
+-#define   PLANE_BUF_END(end)		REG_FIELD_PREP(PLANE_BUF_END_MASK, (end))
+-#define   PLANE_BUF_START_MASK		REG_GENMASK(11, 0)
+-#define   PLANE_BUF_START(start)	REG_FIELD_PREP(PLANE_BUF_START_MASK, (start))
+-#define _PLANE_BUF_CFG_1(pipe)	\
+-	_PIPE(pipe, _PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B)
+-#define _PLANE_BUF_CFG_2(pipe)	\
+-	_PIPE(pipe, _PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
+-#define PLANE_BUF_CFG(pipe, plane)	\
+-	_MMIO_PLANE(plane, _PLANE_BUF_CFG_1(pipe), _PLANE_BUF_CFG_2(pipe))
 -
- #define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
- #define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
- #define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
-@@ -5519,127 +5499,6 @@
- #define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
- #define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
+-#define _PLANE_NV12_BUF_CFG_1_B		0x71278
+-#define _PLANE_NV12_BUF_CFG_2_B		0x71378
+-#define _PLANE_NV12_BUF_CFG_1(pipe)	\
+-	_PIPE(pipe, _PLANE_NV12_BUF_CFG_1_A, _PLANE_NV12_BUF_CFG_1_B)
+-#define _PLANE_NV12_BUF_CFG_2(pipe)	\
+-	_PIPE(pipe, _PLANE_NV12_BUF_CFG_2_A, _PLANE_NV12_BUF_CFG_2_B)
+-#define PLANE_NV12_BUF_CFG(pipe, plane)	\
+-	_MMIO_PLANE(plane, _PLANE_NV12_BUF_CFG_1(pipe), _PLANE_NV12_BUF_CFG_2(pipe))
+-
+ #define _PLANE_AUX_DIST_1_B		0x711c0
+ #define _PLANE_AUX_DIST_2_B		0x712c0
+ #define _PLANE_AUX_DIST_1(pipe) \
+@@ -4260,11 +4144,6 @@
+ 						  _SEL_FETCH_PLANE_OFFSET_1_A - \
+ 						  _SEL_FETCH_PLANE_BASE_1_A)
  
--/* CPU: FDI_TX */
--#define _FDI_TXA_CTL            0x60100
--#define _FDI_TXB_CTL            0x61100
--#define FDI_TX_CTL(pipe)	_MMIO_PIPE(pipe, _FDI_TXA_CTL, _FDI_TXB_CTL)
--#define  FDI_TX_DISABLE         (0 << 31)
--#define  FDI_TX_ENABLE          (1 << 31)
--#define  FDI_LINK_TRAIN_PATTERN_1       (0 << 28)
--#define  FDI_LINK_TRAIN_PATTERN_2       (1 << 28)
--#define  FDI_LINK_TRAIN_PATTERN_IDLE    (2 << 28)
--#define  FDI_LINK_TRAIN_NONE            (3 << 28)
--#define  FDI_LINK_TRAIN_VOLTAGE_0_4V    (0 << 25)
--#define  FDI_LINK_TRAIN_VOLTAGE_0_6V    (1 << 25)
--#define  FDI_LINK_TRAIN_VOLTAGE_0_8V    (2 << 25)
--#define  FDI_LINK_TRAIN_VOLTAGE_1_2V    (3 << 25)
--#define  FDI_LINK_TRAIN_PRE_EMPHASIS_NONE (0 << 22)
--#define  FDI_LINK_TRAIN_PRE_EMPHASIS_1_5X (1 << 22)
--#define  FDI_LINK_TRAIN_PRE_EMPHASIS_2X   (2 << 22)
--#define  FDI_LINK_TRAIN_PRE_EMPHASIS_3X   (3 << 22)
--/* ILK always use 400mV 0dB for voltage swing and pre-emphasis level.
--   SNB has different settings. */
--/* SNB A-stepping */
--#define  FDI_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
--#define  FDI_LINK_TRAIN_400MV_6DB_SNB_A		(0x02 << 22)
--#define  FDI_LINK_TRAIN_600MV_3_5DB_SNB_A	(0x01 << 22)
--#define  FDI_LINK_TRAIN_800MV_0DB_SNB_A		(0x0 << 22)
--/* SNB B-stepping */
--#define  FDI_LINK_TRAIN_400MV_0DB_SNB_B		(0x0 << 22)
--#define  FDI_LINK_TRAIN_400MV_6DB_SNB_B		(0x3a << 22)
--#define  FDI_LINK_TRAIN_600MV_3_5DB_SNB_B	(0x39 << 22)
--#define  FDI_LINK_TRAIN_800MV_0DB_SNB_B		(0x38 << 22)
--#define  FDI_LINK_TRAIN_VOL_EMP_MASK		(0x3f << 22)
--#define  FDI_DP_PORT_WIDTH_SHIFT		19
--#define  FDI_DP_PORT_WIDTH_MASK			(7 << FDI_DP_PORT_WIDTH_SHIFT)
--#define  FDI_DP_PORT_WIDTH(width)           (((width) - 1) << FDI_DP_PORT_WIDTH_SHIFT)
--#define  FDI_TX_ENHANCE_FRAME_ENABLE    (1 << 18)
--/* Ironlake: hardwired to 1 */
--#define  FDI_TX_PLL_ENABLE              (1 << 14)
+-/* SKL new cursor registers */
+-#define _CUR_BUF_CFG_A				0x7017c
+-#define _CUR_BUF_CFG_B				0x7117c
+-#define CUR_BUF_CFG(pipe)	_MMIO_PIPE(pipe, _CUR_BUF_CFG_A, _CUR_BUF_CFG_B)
 -
--/* Ivybridge has different bits for lolz */
--#define  FDI_LINK_TRAIN_PATTERN_1_IVB       (0 << 8)
--#define  FDI_LINK_TRAIN_PATTERN_2_IVB       (1 << 8)
--#define  FDI_LINK_TRAIN_PATTERN_IDLE_IVB    (2 << 8)
--#define  FDI_LINK_TRAIN_NONE_IVB            (3 << 8)
+ /* VBIOS regs */
+ #define VGACNTRL		_MMIO(0x71400)
+ # define VGA_DISP_DISABLE			(1 << 31)
+@@ -4923,30 +4802,6 @@
+ #define  DISP_DATA_PARTITION_5_6	(1 << 6)
+ #define  DISP_IPC_ENABLE		(1 << 3)
+ 
+-/*
+- * The below are numbered starting from "S1" on gen11/gen12, but starting
+- * with display 13, the bspec switches to a 0-based numbering scheme
+- * (although the addresses stay the same so new S0 = old S1, new S1 = old S2).
+- * We'll just use the 0-based numbering here for all platforms since it's the
+- * way things will be named by the hardware team going forward, plus it's more
+- * consistent with how most of the rest of our registers are named.
+- */
+-#define _DBUF_CTL_S0				0x45008
+-#define _DBUF_CTL_S1				0x44FE8
+-#define _DBUF_CTL_S2				0x44300
+-#define _DBUF_CTL_S3				0x44304
+-#define DBUF_CTL_S(slice)			_MMIO(_PICK(slice, \
+-							    _DBUF_CTL_S0, \
+-							    _DBUF_CTL_S1, \
+-							    _DBUF_CTL_S2, \
+-							    _DBUF_CTL_S3))
+-#define  DBUF_POWER_REQUEST			REG_BIT(31)
+-#define  DBUF_POWER_STATE			REG_BIT(30)
+-#define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
+-#define  DBUF_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_TRACKER_STATE_SERVICE_MASK, x)
+-#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(18, 16) /* ADL-P+ */
+-#define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
 -
--/* both Tx and Rx */
--#define  FDI_COMPOSITE_SYNC		(1 << 11)
--#define  FDI_LINK_TRAIN_AUTO		(1 << 10)
--#define  FDI_SCRAMBLING_ENABLE          (0 << 7)
--#define  FDI_SCRAMBLING_DISABLE         (1 << 7)
+ #define GEN7_MSG_CTL	_MMIO(0x45010)
+ #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
+ #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
+@@ -6915,15 +6770,6 @@ enum skl_power_gate {
+ #define MTL_CLKGATE_DIS_TRANS(trans)			_MMIO_TRANS2(trans, _MTL_CLKGATE_DIS_TRANS_A)
+ #define  MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS		REG_BIT(7)
+ 
+-#define MTL_LATENCY_LP0_LP1		_MMIO(0x45780)
+-#define MTL_LATENCY_LP2_LP3		_MMIO(0x45784)
+-#define MTL_LATENCY_LP4_LP5		_MMIO(0x45788)
+-#define  MTL_LATENCY_LEVEL_EVEN_MASK	REG_GENMASK(12, 0)
+-#define  MTL_LATENCY_LEVEL_ODD_MASK	REG_GENMASK(28, 16)
 -
--/* FDI_RX, FDI_X is hard-wired to Transcoder_X */
--#define _FDI_RXA_CTL             0xf000c
--#define _FDI_RXB_CTL             0xf100c
--#define FDI_RX_CTL(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_CTL, _FDI_RXB_CTL)
--#define  FDI_RX_ENABLE          (1 << 31)
--/* train, dp width same as FDI_TX */
--#define  FDI_FS_ERRC_ENABLE		(1 << 27)
--#define  FDI_FE_ERRC_ENABLE		(1 << 26)
--#define  FDI_RX_POLARITY_REVERSED_LPT	(1 << 16)
--#define  FDI_8BPC                       (0 << 16)
--#define  FDI_10BPC                      (1 << 16)
--#define  FDI_6BPC                       (2 << 16)
--#define  FDI_12BPC                      (3 << 16)
--#define  FDI_RX_LINK_REVERSAL_OVERRIDE  (1 << 15)
--#define  FDI_DMI_LINK_REVERSE_MASK      (1 << 14)
--#define  FDI_RX_PLL_ENABLE              (1 << 13)
--#define  FDI_FS_ERR_CORRECT_ENABLE      (1 << 11)
--#define  FDI_FE_ERR_CORRECT_ENABLE      (1 << 10)
--#define  FDI_FS_ERR_REPORT_ENABLE       (1 << 9)
--#define  FDI_FE_ERR_REPORT_ENABLE       (1 << 8)
--#define  FDI_RX_ENHANCE_FRAME_ENABLE    (1 << 6)
--#define  FDI_PCDCLK	                (1 << 4)
--/* CPT */
--#define  FDI_AUTO_TRAINING			(1 << 10)
--#define  FDI_LINK_TRAIN_PATTERN_1_CPT		(0 << 8)
--#define  FDI_LINK_TRAIN_PATTERN_2_CPT		(1 << 8)
--#define  FDI_LINK_TRAIN_PATTERN_IDLE_CPT	(2 << 8)
--#define  FDI_LINK_TRAIN_NORMAL_CPT		(3 << 8)
--#define  FDI_LINK_TRAIN_PATTERN_MASK_CPT	(3 << 8)
+-#define MTL_LATENCY_SAGV		_MMIO(0x4578b)
+-#define   MTL_LATENCY_QCLK_SAGV		REG_GENMASK(12, 0)
 -
--#define _FDI_RXA_MISC			0xf0010
--#define _FDI_RXB_MISC			0xf1010
--#define  FDI_RX_PWRDN_LANE1_MASK	(3 << 26)
--#define  FDI_RX_PWRDN_LANE1_VAL(x)	((x) << 26)
--#define  FDI_RX_PWRDN_LANE0_MASK	(3 << 24)
--#define  FDI_RX_PWRDN_LANE0_VAL(x)	((x) << 24)
--#define  FDI_RX_TP1_TO_TP2_48		(2 << 20)
--#define  FDI_RX_TP1_TO_TP2_64		(3 << 20)
--#define  FDI_RX_FDI_DELAY_90		(0x90 << 0)
--#define FDI_RX_MISC(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_MISC, _FDI_RXB_MISC)
--
--#define _FDI_RXA_TUSIZE1        0xf0030
--#define _FDI_RXA_TUSIZE2        0xf0038
--#define _FDI_RXB_TUSIZE1        0xf1030
--#define _FDI_RXB_TUSIZE2        0xf1038
--#define FDI_RX_TUSIZE1(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_TUSIZE1, _FDI_RXB_TUSIZE1)
--#define FDI_RX_TUSIZE2(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_TUSIZE2, _FDI_RXB_TUSIZE2)
--
--/* FDI_RX interrupt register format */
--#define FDI_RX_INTER_LANE_ALIGN         (1 << 10)
--#define FDI_RX_SYMBOL_LOCK              (1 << 9) /* train 2 */
--#define FDI_RX_BIT_LOCK                 (1 << 8) /* train 1 */
--#define FDI_RX_TRAIN_PATTERN_2_FAIL     (1 << 7)
--#define FDI_RX_FS_CODE_ERR              (1 << 6)
--#define FDI_RX_FE_CODE_ERR              (1 << 5)
--#define FDI_RX_SYMBOL_ERR_RATE_ABOVE    (1 << 4)
--#define FDI_RX_HDCP_LINK_FAIL           (1 << 3)
--#define FDI_RX_PIXEL_FIFO_OVERFLOW      (1 << 2)
--#define FDI_RX_CROSS_CLOCK_OVERFLOW     (1 << 1)
--#define FDI_RX_SYMBOL_QUEUE_OVERFLOW    (1 << 0)
--
--#define _FDI_RXA_IIR            0xf0014
--#define _FDI_RXA_IMR            0xf0018
--#define _FDI_RXB_IIR            0xf1014
--#define _FDI_RXB_IMR            0xf1018
--#define FDI_RX_IIR(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_IIR, _FDI_RXB_IIR)
--#define FDI_RX_IMR(pipe)	_MMIO_PIPE(pipe, _FDI_RXA_IMR, _FDI_RXB_IMR)
--
--#define FDI_PLL_CTL_1           _MMIO(0xfe000)
--#define FDI_PLL_CTL_2           _MMIO(0xfe004)
--
- #define _PCH_DP_B		0xe4100
- #define PCH_DP_B		_MMIO(_PCH_DP_B)
- #define _PCH_DPB_AUX_CH_CTL	0xe4110
+ #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+ #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+ #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
 diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 145543b3aff0..15aab34f6107 100644
+index 15aab34f6107..0661c32f8436 100644
 --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -9,6 +9,7 @@
- #include "display/intel_dmc_regs.h"
- #include "display/intel_dp_aux_regs.h"
+@@ -11,6 +11,7 @@
  #include "display/intel_dpio_phy.h"
-+#include "display/intel_fdi_regs.h"
+ #include "display/intel_fdi_regs.h"
  #include "display/intel_lvds_regs.h"
++#include "display/skl_watermark_regs.h"
  #include "display/vlv_dsi_pll_regs.h"
  #include "gt/intel_gt_regs.h"
+ #include "gvt/gvt.h"
 -- 
 2.39.2
 
