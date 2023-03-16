@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EBE36BD5FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:38:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A40F6BD687
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 17:59:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2B4810E250;
-	Thu, 16 Mar 2023 16:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E12710ED89;
+	Thu, 16 Mar 2023 16:59:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2B8810E250
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 16:38:52 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B77210ED9D;
+ Thu, 16 Mar 2023 16:59:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678984732; x=1710520732;
- h=message-id:date:mime-version:from:subject:to:references:
- in-reply-to:content-transfer-encoding;
- bh=nDhUE9Ucrt3o4COG0qvMxxDssrPqovgSZtYFZKgfvUU=;
- b=EKr/0QXcRQR0pYFjc5rcRPAavB3b6z90mF1SauE7P82wBYuaj+t0Otct
- OrOXtVwA5CDCIu+2CGATjT7Eareg9AF2M00X7sntlCf4nKDS4G8adS+7Y
- +Yu60ldQ3dMej61bRfCc1NguU0AyFUA/qYHKMosw3vCg7fdrpjOBCvWJI
- nLAYy5Gg7kDR+EzkwObh9FS1fcYzrnHFqJ7qCNmWDO4EPR7UAuhY04Oi6
- S5vl3oBG1+aHug2XFrAjacj73S9SORT26aFivpZdBUGx5wUULECF1wOyP
- NX2ofRcWwuNNm8QYqx8Ps+4oX6jWLfza/vQRXX9O1JSwmGTNTby+AisC8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="424319260"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="424319260"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 09:38:52 -0700
+ t=1678985974; x=1710521974;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TipeZemj07QYm0tsNflZV+cnvwkXU70t44vwDs3ncuc=;
+ b=gqTUwzhXk4VIDbyaYO3EEha3DlAilkoTdhgw2uCCVIhxbqxsSIbqraL/
+ WqsGmoYpwxLvMLFXc6d/Wn40AQKUyUZF5TTTYuYEKTFI8tfcsQjT2nVtD
+ Kmc3W2+9TcjjP/bFc1R8AVIBAwSRD22mO/vQbxtMLwwYbya6kLElMhjLG
+ dja3TPF6RBM6Fcl49koZSPqWNjssm9sJgG/TrIURsATiaEZpmmFWrShls
+ bdAKitIqGPyhfEZXvMudh68Vco3BrNy0mbIV3TA923aZsFSA/5o2fPJOJ
+ ZhlaTtaIE6e/fGOy13LF3z45zhpl0C1SOgi6N72r1XkTujXpe4QrWqFl2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="317705509"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="317705509"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 09:59:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="679970551"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="679970551"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.34.106])
- ([10.252.34.106])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 09:38:51 -0700
-Message-ID: <72de05c2-68ad-72aa-23a2-4ef220f51a12@linux.intel.com>
-Date: Thu, 16 Mar 2023 17:38:48 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="854130851"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="854130851"
+Received: from nirmoyda-desk.igk.intel.com ([10.91.214.27])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 09:59:30 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Mar 2023 17:59:18 +0100
+Message-Id: <20230316165918.13074-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <cover.1678973282.git.jani.nikula@intel.com>
-Content-Language: en-US
-In-Reply-To: <cover.1678973282.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915/regs: split display regs by
- function
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Flush lmem contents after
+ construction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,64 +59,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ stable@vger.kernel.org, Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
 
-On 3/16/2023 2:29 PM, Jani Nikula wrote:
-> Shave off 1.2k lines from i915_reg.h.
->
-> Jani Nikula (7):
->    drm/i915/pps: split out PPS regs to a separate file
->    drm/i915/tv: split out TV regs to a separate file
->    drm/i915/aux: split out DP AUX regs to a separate file
->    drm/i915/fdi: split out FDI regs to a separate file
->    drm/i915/wm: split out SKL+ watermark regs to a separate file
->    drm/i915/psr: split out PSR regs to a separate file
->    drm/i915/dsb: split out DSB regs to a separate file
+i915_gem_object_create_lmem_from_data() lacks the flush of the data
+written to lmem to ensure the object is marked as dirty and the writes
+flushed to the backing store. Once created, we can immediately release
+the obj->mm.mapping caching of the vmap.
 
-Some of the files are new to me but haven't seen any functional changes 
-so I am confident say the series is
+Fixes: 7acbbc7cf485 ("drm/i915/guc: put all guc objects in lmem when available")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.16+
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+index 8949fb0a944f..3198b64ad7db 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+@@ -127,7 +127,8 @@ i915_gem_object_create_lmem_from_data(struct drm_i915_private *i915,
+ 
+ 	memcpy(map, data, size);
+ 
+-	i915_gem_object_unpin_map(obj);
++	i915_gem_object_flush_map(obj);
++	__i915_gem_object_release_map(obj);
+ 
+ 	return obj;
+ }
+-- 
+2.39.0
 
-
-Thanks,
-
-Nirmoy
-
->   drivers/gpu/drm/i915/display/intel_crt.c      |    1 +
->   .../drm/i915/display/intel_display_debugfs.c  |    1 +
->   .../drm/i915/display/intel_display_power.c    |    2 +
->   .../i915/display/intel_display_power_well.c   |    1 +
->   drivers/gpu/drm/i915/display/intel_dp_aux.c   |    1 +
->   .../gpu/drm/i915/display/intel_dp_aux_regs.h  |   84 ++
->   drivers/gpu/drm/i915/display/intel_dsb.c      |    1 +
->   drivers/gpu/drm/i915/display/intel_dsb_regs.h |   67 +
->   drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |    1 +
->   drivers/gpu/drm/i915/display/intel_fdi.c      |    1 +
->   drivers/gpu/drm/i915/display/intel_fdi_regs.h |  151 ++
->   drivers/gpu/drm/i915/display/intel_lvds.c     |    1 +
->   .../gpu/drm/i915/display/intel_pch_display.c  |    1 +
->   drivers/gpu/drm/i915/display/intel_pps.c      |    1 +
->   drivers/gpu/drm/i915/display/intel_pps_regs.h |   78 ++
->   drivers/gpu/drm/i915/display/intel_psr.c      |    1 +
->   drivers/gpu/drm/i915/display/intel_psr_regs.h |  260 ++++
->   drivers/gpu/drm/i915/display/intel_tv.c       |    3 +-
->   drivers/gpu/drm/i915/display/intel_tv_regs.h  |  490 +++++++
->   drivers/gpu/drm/i915/display/skl_watermark.c  |    1 +
->   .../gpu/drm/i915/display/skl_watermark_regs.h |  165 +++
->   drivers/gpu/drm/i915/gvt/edid.c               |    1 +
->   drivers/gpu/drm/i915/gvt/handlers.c           |    5 +
->   drivers/gpu/drm/i915/i915_irq.c               |    2 +
->   drivers/gpu/drm/i915/i915_reg.h               | 1219 -----------------
->   drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    4 +
->   26 files changed, 1323 insertions(+), 1220 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/intel_dsb_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/intel_fdi_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/intel_pps_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/intel_psr_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/intel_tv_regs.h
->   create mode 100644 drivers/gpu/drm/i915/display/skl_watermark_regs.h
->
