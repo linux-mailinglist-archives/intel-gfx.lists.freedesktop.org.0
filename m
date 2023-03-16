@@ -1,61 +1,109 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3FC6BDAD1
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 22:23:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2211A6BDAF4
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 22:28:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4C6710E370;
-	Thu, 16 Mar 2023 21:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E1C10E375;
+	Thu, 16 Mar 2023 21:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com
- [IPv6:2001:4860:4864:20::2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0029A10E090;
- Thu, 16 Mar 2023 21:22:59 +0000 (UTC)
-Received: by mail-oa1-x2a.google.com with SMTP id
- 586e51a60fabf-177ca271cb8so3684902fac.2; 
- Thu, 16 Mar 2023 14:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1679001778;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZOLm3MMBl89f2knm/a6i4nSTBzWYSuBzK1XClYHpMY4=;
- b=dSmvj4c+vhVDAQ5Zaj5Yr1DRJ4ybiDnIB4G/ylPHrFHhzAkda0nDV6qsFCC8XDGrq+
- eT863QrK6B/IcIyiPUEC4cRa0GtMAf779fuR3ilmeIz53fivuQJbIrNpTfioj65CSN0H
- EeQrdTv00bm9+R5ydA9cNvPyYFvlb5Cnck9wzX0V9VQxZBd0VDTDVRn3TXCLm3gBmkgv
- aW6YQ2C6DOswHq1c91ga2KdN/R7P23WfSv+rgkxc82u7+5Opfko/BDf2Zi8BEuF7OVQ7
- SKPdGvyXBblcQx6g3Bq8ebiT5ydjjneIU031EZX9bw84Lsn8FMDupirSITw5TxEuucC9
- t07A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679001778;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ZOLm3MMBl89f2knm/a6i4nSTBzWYSuBzK1XClYHpMY4=;
- b=YQ0l4Ey2xVryHl3ugS6iBQm00QT+CcO8/+BbsAZxr/t3gffn3hKn8uC/z+J5yQqMBn
- HLr/1WE393Li71kwuf6/uhZLt6NHw7K7StIVgofEByeXL/K1NUZVZuEPERz6o8ffQSRm
- tsr9CeEWvUaxdWbJv7Y5ztGPefarQNiWh9enGkOtLLvlrR4GJJn0u7i6TCxGerUPrPkQ
- Ek3y7+GSCrFG4e6ptFOsKzjuMg6dYKKTT7llEEDWI9/IBiMbC4zOGeEzvMGKTudvtuZA
- QFlkDhWVi0NkVK8fhKQi6kjJgFBdGDi0Tc8qLy/2P2DQ0OsMeGVUh5Qzm/zbHGw7MePo
- hRbA==
-X-Gm-Message-State: AO0yUKXtURuNSOM+a0URTUUpb18QB7XNfqOefE3cwY17epGNG2Ap46X0
- IsfKTDghpUrS8CoGzLnPeI/CXL33nZzyCSbrpO/mjsCSYPg=
-X-Google-Smtp-Source: AK7set+faq17A1DBESVulT7MGuaccV0D25PIH9DGSJys9ZSVMyY9sK6nmcgZ9NZNMc3lxfUhJXYBUInIOT3YmaNi5n0=
-X-Received: by 2002:a05:6870:6125:b0:177:be3d:2e4d with SMTP id
- s37-20020a056870612500b00177be3d2e4dmr6744075oae.5.1679001778698; Thu, 16 Mar
- 2023 14:22:58 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on20631.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A543410E370;
+ Thu, 16 Mar 2023 21:27:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c0RQUpL2Z75FyysM9NEBQTcAxxMvfXhf0gWQjq/LgnJ/FC7HKg93n7NMS0PBoF8/9clEden0OUcEYm6/o0AHyYWRPXbhlwuV7PqKbewNEGvoB871sm8BghZlLmGHuqe9/quRoJz5sfT5GqEkFGWgB9xKOFfn9YiNwMuNGrCF8ZvRAPjvcQawt6PwvBu46y8vdsLBVmN9mpXCjc74hui6/O2KeMWTbMo2TX8zF7reszkOQwz044apschZFr3oLL6/b2UB7mkPHVbb2xM9iou/l+6Pz8GPDxfBiOlMs/jWa96fVKXB75Pwy8bRHJtW+Zz17idR8ksoca0YPOFrkYd3OQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q21xCDPaEDlS4MsiZgLMmYb26w9aOTOTQbxk/6rGpDE=;
+ b=PdFSerM8XzkTy40FkzCsghOXakBqe0lNUF4BUcY2AfWm8bWD9p+TX+/WRYY7B6f+/shTaXr+jHLmEpO6QYW6n6C2XEs01Kn7ok3i9G8g2H6BColN95SsukOVqFzuNbed+6A++vFYTH3K/+rkbGC2dNkdvlK6lABJDxmKmSnwu+sD6B8UFfB9Wsib8M9Obt45oX6FHF6hNJ1E/LK9nm9aI5uBLLTwSWzWs6K+q7yMjEcxs/BHiDN5XyxnJey/K8zUQIkeQTL3p5yuILXKAX2lBIT7lCvTMrUlR9GRLNdmvDbcbjEwHUIHYaeXEMG4ZIwuYJfJYJrycIW2XaTNvpqhpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q21xCDPaEDlS4MsiZgLMmYb26w9aOTOTQbxk/6rGpDE=;
+ b=gFev3GKg9tf3v0jvwaD1FP8rSK0LHRHCPXljWKae3Rbh7UYGtYExrrsdMfRp2zCCiBkFDLtxwhgYeniR6DIYu4yHADzVuxEC814I7cBP7loEbH0Um/JYZXd6z5/WnpVR1LCq8j5SCZ0nrK+OO5U0Ei6Elzu23TnS7enV4hBE0YxP7LPO6OUhSAGrJuqoG9V9d8YNqwFcQ/jGpYroBft4uB5Kh0W+nFMRMRBxrOIZLdGS6eGgneVJwNgRmZeOP7pY4TnRwdMjlX1EY859hvFC1ZUWhqfdPwFl7c2YLZCVn8X9u5LIiNicI8GQH8MmI7wZwhGZ1mVqma6IvhjiAQ9oIQ==
+Received: from MW4PR03CA0330.namprd03.prod.outlook.com (2603:10b6:303:dd::35)
+ by SA1PR12MB7102.namprd12.prod.outlook.com (2603:10b6:806:29f::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Thu, 16 Mar
+ 2023 21:27:56 +0000
+Received: from CO1NAM11FT103.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:dd:cafe::1c) by MW4PR03CA0330.outlook.office365.com
+ (2603:10b6:303:dd::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29 via Frontend
+ Transport; Thu, 16 Mar 2023 21:27:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CO1NAM11FT103.mail.protection.outlook.com (10.13.174.252) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6199.19 via Frontend Transport; Thu, 16 Mar 2023 21:27:56 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 16 Mar 2023
+ 14:27:41 -0700
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 16 Mar
+ 2023 14:27:41 -0700
+Received: from Asurada-Nvidia (10.127.8.9) by mail.nvidia.com (10.129.68.8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37 via Frontend
+ Transport; Thu, 16 Mar 2023 14:27:39 -0700
+Date: Thu, 16 Mar 2023 14:27:37 -0700
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <ZBOJyaKcl5MCZByI@Asurada-Nvidia>
+References: <20230308132903.465159-1-yi.l.liu@intel.com>
+ <20230308132903.465159-13-yi.l.liu@intel.com>
+ <20230315165311.01f32bfe.alex.williamson@redhat.com>
+ <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529C7D0409B47430D7412C5C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BN9PR11MB5276ABE919C04E06A0326E8E8CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB75293503F92A24A716DDE2C6C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <ZBK74xltWbaWlftV@Asurada-Nvidia>
+ <DS0PR11MB752937BCFB81A6018CAB94D2C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230308155322.344664-1-robdclark@gmail.com>
-In-Reply-To: <20230308155322.344664-1-robdclark@gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 16 Mar 2023 14:22:47 -0700
-Message-ID: <CAF6AEGs1A-3vHtCCam+LfweBNG76TPrpsn8u+RzZ8=sq18yrNg@mail.gmail.com>
-To: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v10 00/15] dma-fence: Deadline awareness
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB752937BCFB81A6018CAB94D2C3BC9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT103:EE_|SA1PR12MB7102:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e09cf4b-446d-4418-72cb-08db26654f1f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fO029000z9NQtHjXPxvdyKABbhbbYJoqJmbTQ/F/5ymvNibOA5sA3Hzcv76qUPoxVqTLLOhkXrYOXYVPLN+YfBXDeb259HN7C8owcl+3LstbIPNrtfsDsQH3ylTNMsKvLo0s9ZkEnE8KwA8Z7+kG4InSNE/bVUSI1V1OfV4evhQ/4+H8cFldGmPCpPiGh68dEd3cWGvVeT/MLq00N8jtQleUT2mmIciMPazHn2OVDqZ15pxMLbZwrRruR2lwQykW4hZ6h+qsmWmqUZSCGtSRg8QKk4DPfKdYbXD7Ne223a5X1yek4ItfJrSpOppk7ks88C64pa+W0QzqH/imiyoFMoA/IHIvv+s5/5ep2XspzMkZzWlkrOWmFxSMrJZs6snQ0mhHEbiwAiDfoisXGgRHbqrXtSirGN21AR1ZjEBZVpqLNCtrH9RbQHIa9+iK8JE2pXTHs32AbndhJEVb5yIL3uF1EDNdUo9UulBkTMgAZMY6FvWolmqealz0z1YC84D/w1B7T7z60omjmBbnwRR3JNZxnx457JQWHuboB6BfCvplbeW3xIs/8aFzjHVX8ZsjgT26f7nTJQwFkyzCOaK9lVcIHyUESCmN2hT7CcWy5oxsrIV+LHJjpR+nsvzcHXicvAaWque5HvqImX6V3zova/8F/3IXflWVevnFWE5JEszZZNHqySbVuHqZtyn2tAwQ+jLcnIj26LwIyIfqHuNkqBG1va2iY6hFRAoz7ZkUZ1b5Y1Yym968fTkf8+dgHwk28j8zMGzMFZLSIJaTpHdiPqiCAATJuqVUWrEOTxjUJzM=
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(346002)(396003)(376002)(136003)(451199018)(46966006)(40470700004)(36840700001)(82310400005)(9686003)(7416002)(186003)(26005)(336012)(83380400001)(8936002)(33716001)(41300700001)(356005)(82740400003)(36860700001)(426003)(2906002)(47076005)(70586007)(5660300002)(966005)(40480700001)(316002)(70206006)(40460700003)(8676002)(7636003)(55016003)(86362001)(478600001)(54906003)(6916009)(4326008);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2023 21:27:56.3133 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e09cf4b-446d-4418-72cb-08db26654f1f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT103.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7102
+Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,147 +116,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Douglas Anderson <dianders@chromium.org>, Liu Shixin <liushixin2@huawei.com>,
- Rob Clark <robdclark@chromium.org>, Vinod Polimera <quic_vpolimer@quicinc.com>,
- Luben Tuikov <luben.tuikov@amd.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
- Matt Turner <mattst88@gmail.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Stephen Boyd <swboyd@chromium.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- freedreno@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "jgg@nvidia.com" <jgg@nvidia.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 8, 2023 at 7:53=E2=80=AFAM Rob Clark <robdclark@gmail.com> wrot=
-e:
->
-> From: Rob Clark <robdclark@chromium.org>
->
-> This series adds a deadline hint to fences, so realtime deadlines
-> such as vblank can be communicated to the fence signaller for power/
-> frequency management decisions.
->
-> This is partially inspired by a trick i915 does, but implemented
-> via dma-fence for a couple of reasons:
->
-> 1) To continue to be able to use the atomic helpers
-> 2) To support cases where display and gpu are different drivers
->
-> This iteration adds a dma-fence ioctl to set a deadline (both to
-> support igt-tests, and compositors which delay decisions about which
-> client buffer to display), and a sw_sync ioctl to read back the
-> deadline.  IGT tests utilizing these can be found at:
->
->   https://gitlab.freedesktop.org/robclark/igt-gpu-tools/-/commits/fence-d=
-eadline
->
+On Thu, Mar 16, 2023 at 01:22:58PM +0000, Liu, Yi L wrote:
 
-jfwiw, mesa side of this:
+> > And regarding the new baseline for the replace series and the
+> > nesting series, it'd be nicer to have another one git-merging
+> > your cdev v7 branch on top of Jason's iommufd_hwpt branch. We
+> > could wait for him updating to 6.3-rc2, if that's necessary.
+> 
+> Yes. I cherry-pick his iommufd_hwpt to 6.3-rc2 and then try a
+> merge and then cherry-pick the replace and nesting series from
+> your above branch. Though the order between cdev and
+> iommufd_hwpt not perfect, we may use it as a wip baseline
+> when we try to address the comments w.r.t. nesting and
+> replace series.
+> 
+> https://github.com/yiliu1765/iommufd/tree/wip/iommufd_nesting-03162023
 
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21973
+Nice. It looks like you integrated everything from my tree so
+it saves me some effort :)
 
-BR,
--R
+Regarding the order between cdev and iommufd_hwpt, I think it
+would be Jason's decision whether to merge his changes prior
+to the PR from the VFIO tree, or the other way around.
 
->
-> v1: https://patchwork.freedesktop.org/series/93035/
-> v2: Move filtering out of later deadlines to fence implementation
->     to avoid increasing the size of dma_fence
-> v3: Add support in fence-array and fence-chain; Add some uabi to
->     support igt tests and userspace compositors.
-> v4: Rebase, address various comments, and add syncobj deadline
->     support, and sync_file EPOLLPRI based on experience with perf/
->     freq issues with clvk compute workloads on i915 (anv)
-> v5: Clarify that this is a hint as opposed to a more hard deadline
->     guarantee, switch to using u64 ns values in UABI (still absolute
->     CLOCK_MONOTONIC values), drop syncobj related cap and driver
->     feature flag in favor of allowing count_handles=3D=3D0 for probing
->     kernel support.
-> v6: Re-work vblank helper to calculate time of _start_ of vblank,
->     and work correctly if the last vblank event was more than a
->     frame ago.  Add (mostly unrelated) drm/msm patch which also
->     uses the vblank helper.  Use dma_fence_chain_contained().  More
->     verbose syncobj UABI comments.  Drop DMA_FENCE_FLAG_HAS_DEADLINE_BIT.
-> v7: Fix kbuild complaints about vblank helper.  Add more docs.
-> v8: Add patch to surface sync_file UAPI, and more docs updates.
-> v9: Drop (E)POLLPRI support.. I still like it, but not essential and
->     it can always be revived later.  Fix doc build warning.
-> v10: Update 11/15 to handle multiple CRTCs
->
-> Rob Clark (15):
->   dma-buf/dma-fence: Add deadline awareness
->   dma-buf/fence-array: Add fence deadline support
->   dma-buf/fence-chain: Add fence deadline support
->   dma-buf/dma-resv: Add a way to set fence deadline
->   dma-buf/sync_file: Surface sync-file uABI
->   dma-buf/sync_file: Add SET_DEADLINE ioctl
->   dma-buf/sw_sync: Add fence deadline support
->   drm/scheduler: Add fence deadline support
->   drm/syncobj: Add deadline support for syncobj waits
->   drm/vblank: Add helper to get next vblank time
->   drm/atomic-helper: Set fence deadline for vblank
->   drm/msm: Add deadline based boost support
->   drm/msm: Add wait-boost support
->   drm/msm/atomic: Switch to vblank_start helper
->   drm/i915: Add deadline based boost support
->
-> Rob Clark (15):
->   dma-buf/dma-fence: Add deadline awareness
->   dma-buf/fence-array: Add fence deadline support
->   dma-buf/fence-chain: Add fence deadline support
->   dma-buf/dma-resv: Add a way to set fence deadline
->   dma-buf/sync_file: Surface sync-file uABI
->   dma-buf/sync_file: Add SET_DEADLINE ioctl
->   dma-buf/sw_sync: Add fence deadline support
->   drm/scheduler: Add fence deadline support
->   drm/syncobj: Add deadline support for syncobj waits
->   drm/vblank: Add helper to get next vblank time
->   drm/atomic-helper: Set fence deadline for vblank
->   drm/msm: Add deadline based boost support
->   drm/msm: Add wait-boost support
->   drm/msm/atomic: Switch to vblank_start helper
->   drm/i915: Add deadline based boost support
->
->  Documentation/driver-api/dma-buf.rst    | 16 ++++-
->  drivers/dma-buf/dma-fence-array.c       | 11 ++++
->  drivers/dma-buf/dma-fence-chain.c       | 12 ++++
->  drivers/dma-buf/dma-fence.c             | 60 ++++++++++++++++++
->  drivers/dma-buf/dma-resv.c              | 22 +++++++
->  drivers/dma-buf/sw_sync.c               | 81 +++++++++++++++++++++++++
->  drivers/dma-buf/sync_debug.h            |  2 +
->  drivers/dma-buf/sync_file.c             | 19 ++++++
->  drivers/gpu/drm/drm_atomic_helper.c     | 37 +++++++++++
->  drivers/gpu/drm/drm_syncobj.c           | 64 +++++++++++++++----
->  drivers/gpu/drm/drm_vblank.c            | 53 +++++++++++++---
->  drivers/gpu/drm/i915/i915_request.c     | 20 ++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 15 -----
->  drivers/gpu/drm/msm/msm_atomic.c        |  8 ++-
->  drivers/gpu/drm/msm/msm_drv.c           | 12 ++--
->  drivers/gpu/drm/msm/msm_fence.c         | 74 ++++++++++++++++++++++
->  drivers/gpu/drm/msm/msm_fence.h         | 20 ++++++
->  drivers/gpu/drm/msm/msm_gem.c           |  5 ++
->  drivers/gpu/drm/msm/msm_kms.h           |  8 ---
->  drivers/gpu/drm/scheduler/sched_fence.c | 46 ++++++++++++++
->  drivers/gpu/drm/scheduler/sched_main.c  |  2 +-
->  include/drm/drm_vblank.h                |  1 +
->  include/drm/gpu_scheduler.h             | 17 ++++++
->  include/linux/dma-fence.h               | 22 +++++++
->  include/linux/dma-resv.h                |  2 +
->  include/uapi/drm/drm.h                  | 17 ++++++
->  include/uapi/drm/msm_drm.h              | 14 ++++-
->  include/uapi/linux/sync_file.h          | 59 +++++++++++-------
->  28 files changed, 640 insertions(+), 79 deletions(-)
->
-> --
-> 2.39.2
->
+One way or another, I think the replace v5 and the nesting v2
+will be less impacted, unless Jason makes some huge changes
+to his branch. Let's use this tree this week to rework both
+series, and rebase after he comes back and updates his tree.
+
+Lemme know if you need a help for the nesting series or so.
+
+Thanks
+Nic
