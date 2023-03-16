@@ -2,80 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BAC6BC825
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 09:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4995B6BC87F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Mar 2023 09:12:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8828C10EA5D;
-	Thu, 16 Mar 2023 08:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E04610EC5E;
+	Thu, 16 Mar 2023 08:12:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A003410EA5D
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 08:04:20 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9D8110EC5E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 08:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678953860; x=1710489860;
+ t=1678954370; x=1710490370;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Lh69RN4Rf53r3ktP8Uc0LUFGypUoUmEQLKnlaajmA+k=;
- b=dZfcsVJIUfGiTlXGYZ930BLHbIrqbWnLOIJqE0Hxbs7AJKeV4H4kFfZl
- LKkUQpSVSIuZNfDyuFWH4UW0kdbyx9QQUTe8NdKUIsdMcVlbgcm+OYEJY
- zxjj8y8mvINhhtZ4rzFL8Cc1Mi1tOfMqSVTLdRbhoMbePt3AzLi5vVUgT
- faZ/aXtvSOqLaevIGfSrC3md5lo03Pd3CTf0XMUgvBiGqDylDPyWKuMO7
- DVRM5573CNiErofQdPZpNEWTItHUyYd0Oc8m+wZSHkGG3i37Iyyh5IHgf
- Htvaqx+n7sff8lFxiMcZ/1t+KgjL5z4N8tsriV3u9iJGKjBd0sVS+p9JJ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="340280152"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="340280152"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 01:04:20 -0700
+ bh=XhJa3epMpey/jTT+hzIL3m34xRDP7QL1t9MOTCtzvLc=;
+ b=HHnT+IMA7WGinFNY8pUv57ntjbDJRDeYOgSjS1OhSpXlIR7AWrtBaWdp
+ 6+CBm7cn7e3eqmNJ6E6hZn7HN5y1eevwCaiRM8c8eT0pmVhBJrmOaTbso
+ hwHwyPFgPba2A/27sitUrXzBx1wMVYwVcm2x+6iiE74XenkpaAcwk+63D
+ yB0sd8037dMkVPSqkjisgdfYUjXba955uqz/h5TuQTcU4P3KC1bFz3mVE
+ tifelX15lJ3PEQqiFwS7Bf+QTalih9bRohNVaY1jpcbuBNcMXjFPFzYSK
+ ytX5fe0f77JlwZyi1NfnNFgm3Brn808QKy9Zd57j7KHoSQEKb6dhKBCdw g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="326275727"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="326275727"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 01:12:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="679800608"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="679800608"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga002.jf.intel.com with ESMTP; 16 Mar 2023 01:04:20 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="629780373"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="629780373"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga003.jf.intel.com with ESMTP; 16 Mar 2023 01:12:50 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 16 Mar 2023 01:04:19 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.21; Thu, 16 Mar 2023 01:12:49 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 16 Mar 2023 01:04:19 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.21; Thu, 16 Mar 2023 01:12:49 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 16 Mar 2023 01:12:49 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 16 Mar 2023 01:04:17 -0700
+ 15.1.2507.21; Thu, 16 Mar 2023 01:12:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kvkkWvWrcmJoz/HUsOjvSvju4JaVe3NaD5jyrKXSzz+nsvTCeg5RpAHsomk3Q+qGW4JWNRs+5H6dAOE+JhI7J4xHIOEhAQcTQmv4rKXi8HmNvuxV+h2GzB/DUQDqEQgqYcHT3TBp3DvQBT0i0sv4YMUxyVTXag8nXavqcKZaYuBwCPX5tRDLWB8nH4ki3EZh62c9M4mFCs3HzibQjkAIrDEFV+ZkCovUvoVEt4UoMJ3ZnbjtaWwp/HzN8pnye0ojMZanv3FJ9DkjSEMBRvvZgxyPNEgp2f1AsR59SjxzWGMOBE2Pl//ADurIjuEfDdFz0zRuK9f4alaQPkryhy9+sA==
+ b=UhX7/T+52DMO/J++9J1a5l+FeawLa5+NWWrFlELDzqaIWFYEeH3brPCEgkjQky5dwrt4nKLDSpHz/1slQ/3A9Q4gOPHJh5lGkKzDu2ByLZeh877B16l9kLjVJv7+OeaGYJrOrTDstSPxe6yMvwQ3jysEOlgIsg0is6Npy8com338cWVVrDUqkujpHYbglTBL3LpVheHhK2vKrd6HYfGT0pJrRnUbSGNo87O7l855mtPgCN+SS6TFiUn+VOwFefYJmsvWB2TsHaUp4PueaKQJKLl+O7q/a61p7qj6J/wnR0EbFAxgrTbjgnG0So0Z5NwIoSanSo6VlDZS00aX815N9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lh69RN4Rf53r3ktP8Uc0LUFGypUoUmEQLKnlaajmA+k=;
- b=TLA5/SIt+zxd/ZAYTE43i+AgaXouFTS+onEme0R3sdGTOhw52okr/FMEwsLqa0YS6er4BmH6kBZ5UX9LPb2QB71kMLLuIyugXg6UUT4WnK6X5CFJDE1YWvRBNhY97li3jX35kjDsaBU10p2B/4KsVH6oF/lwxs+4JaLOSzGsY3tdnj4Ye5FBp0ln2K5PAo+6Fb57IPB8INVPZ7qizVGUkq07L5aidNRccy5KvawWdiVo/LjVD55r53s1Kv2gPCPa8auL6eghmC1j4GjJBzvAOh6loWJwZKnR/63hfkbs3DYAeKwiVyos61siZVD7J8YBoFMOxqrvOMOIpsXpTw9Kiw==
+ bh=A3GfMBdz/svM/nZ8vqfuRGXkSxre5o3miuVp4mnwbi4=;
+ b=f/wrmcfQti3dcZ4Qi2ZlKtjsQ46Qk8PM0pLRDZNYdFEzow3Shdsuim6JALRlBDtu5L5/T79T8aimUO51L/M4ABdzXI2gDTBa6Be8S5LCFmjXxXtu78V+giMoovFHrQkKQ+AY/vhd84bMmXx16JTJcbWQdzU0l/68SOr6jvFLhktqJQzbfgrhg4RPAM/fdTruzGF98Dp93hfgWW6fX9zU3F3oTFbpNaHlazpPEy5gcHakYlglJOG2Wn/VC56Qt6SVoNZB178AZ6dybc2QjiOv5IiAZ8hxvxwytYW7bOsljWPsJkFqq/6PhKDha916e8fA0FP6tlLu2HIhsZImuO49Mw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- MN0PR11MB6205.namprd11.prod.outlook.com (2603:10b6:208:3c7::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Thu, 16 Mar
- 2023 08:04:15 +0000
+ SA1PR11MB6712.namprd11.prod.outlook.com (2603:10b6:806:25c::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.31; Thu, 16 Mar 2023 08:12:43 +0000
 Received: from DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::f677:36e:9fae:b45e]) by DM4PR11MB6360.namprd11.prod.outlook.com
  ([fe80::f677:36e:9fae:b45e%5]) with mapi id 15.20.6178.031; Thu, 16 Mar 2023
- 08:04:15 +0000
+ 08:12:43 +0000
 From: "Shankar, Uma" <uma.shankar@intel.com>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v12 5/6] drm/i915/mtl: Add function to send command to
- GSC CS
-Thread-Index: AQHZUlyOTQ4xsiwfAkGS3mL3N9Xpe679Fu4w
-Date: Thu, 16 Mar 2023 08:04:14 +0000
-Message-ID: <DM4PR11MB636042A9C1741552F5F90E1FF4BC9@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20230309075423.409402-1-suraj.kandpal@intel.com>
- <20230309075423.409402-6-suraj.kandpal@intel.com>
-In-Reply-To: <20230309075423.409402-6-suraj.kandpal@intel.com>
+Thread-Topic: [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
+Thread-Index: AQHZNhznIANgWMQh60mJTmXUSrr3TK7t46swgAEv+5CAAzhCAIALA9Uw
+Date: Thu, 16 Mar 2023 08:12:43 +0000
+Message-ID: <DM4PR11MB63603974AFF76DC878C89BDDF4BC9@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20230201090806.3008619-1-suraj.kandpal@intel.com>
+ <20230201090806.3008619-7-suraj.kandpal@intel.com>
+ <DM4PR11MB6360A722321881F0BF949136F4B69@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <DM4PR11MB6360C3D7C4255BA69F205DDFF4B79@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <DM5PR11MB1739990B05EDF244E8958F9BE3B59@DM5PR11MB1739.namprd11.prod.outlook.com>
+In-Reply-To: <DM5PR11MB1739990B05EDF244E8958F9BE3B59@DM5PR11MB1739.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -83,68 +89,58 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|MN0PR11MB6205:EE_
-x-ms-office365-filtering-correlation-id: 7d6a4518-2530-4931-6f37-08db25f508e8
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SA1PR11MB6712:EE_
+x-ms-office365-filtering-correlation-id: f40b44d3-0554-43c5-200e-08db25f637d6
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IGGbdFPAMMA32W+6UFh5mYcDGUwOfwTqa/qE7bmLW8ja/woEPEPmVZLsAlC0z7p0nMk5rRDnLe2l2pbyE5IFLkbHPsS9htRtj+HwFI3rL9L7Oo1sXgu0fUIA97GSzDvnjG+PthzkfsRJfRtxO+aJQhO2KDxWHTkkc0Ys7L+haoaVmfYkUFv1Owh40Bttq6KPnwaALQUyBufbL1pw/VMLhvETNEL00+uOJ29My0GtRuelsq571YHNw8jn6bpgqx6pq43ZLNiTUMThCwS2IEcBfo5rkf2krff+ST7qDl4UKDTfV9udbULOy2UGUu4jEXMSUpvOLQUq9XXsoxKOeK5LYbI69GYnP3hqOHEodvq1XDQqfkNOcfcQZ4u/wHj9Gp6wNgMy8jI552OI3A0OWro8NiYogYu3tYi+XrfPafSxSswyS5BIiB84UoKVB7Ov+nrl4sBE77NkL8xbnodclu5nK+/O5tBhIymi5iIeYaVHCFjyIP6TrQXdHy3YOkG/qcTJ7s/FwDoo0ayH+hPzfBliBb14CEkk1Q7jXTjHJ0E7ae6T5+GM99q92kr+zPZiN0h9OKxAPBD/2XQApWWYN3vvfzqvTLtb7SHba6a3/wXwMmBBi5EmV5PwBi08DHFHMUUAi9p2TogN8VE+h7szIefm9MYkROHklIgTCbWNl6sUjCGlYBpxDCGVt0+EOWOAQ8mf8NhVMdt6/fWaX/ihyyJZyg==
+x-microsoft-antispam-message-info: jiJJ9YnSAiXhqo5xB8yuiWR1/JpHQX/ryu2L3mNWNpIYpS7AgMLkogMyPws30ZIVwQfuaRF52ZEUi80z9f28TnJFqhIztj9WphrFhpmNaf2tykqeuHcVClRdGeAgl9i662zd8ostLAQ949oAQXQ1ltoJqA7y1rrrupCxf1Emm9q0d9kysDpegLhgzCYUPRoJzI+UDhnwUDVT4Rp9ZOU6NjXSBZGg95beCSwtZ8mMa6XtrWg9qgWgwbKITaC8B9i1kGS1/5DjSNuafEkjFgI234n46PXuH4XpfJUQ63DRFHLkmijUxBrDWYksyc5AKq3HgEtrvzPP+BCEG2ehYJ4re0+T1Qns6aHgNa8Qt9PYQMgZ5VH8eOwZddm7+OTf8Qc2KOHMY/ll21dNoB8Gq4IdHo3pNRp/hSlFDCEdLAojvyRXunR+W7bbMSvuNRhUWZiF9ZT4Vx2BG9Jc2PkHuIscESXmD+PCO+pqL5yEV3aS6xPA0SOculqApT66arKLeW5JyZRjDybnN6WUMhvTgELf6opzakeKZE6w/+Rrsu5nsLvgrB7uvUDKyuaU6b3oek0qrLFnomRyvLn/GklqB5uo4Oo/ECLp2+nuMwIuxff4dtneYEbH7IybLSaShladNTVNz4Lo29ZtDPVDik6zE4BSggNoU9mLXxe9gdjPh0AKeyfCGl9Snuu1+XN4fd+rIaMD
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(39860400002)(376002)(396003)(366004)(136003)(451199018)(5660300002)(86362001)(38070700005)(33656002)(82960400001)(38100700002)(41300700001)(122000001)(52536014)(30864003)(8936002)(2906002)(4326008)(7696005)(53546011)(110136005)(6506007)(83380400001)(316002)(26005)(186003)(107886003)(9686003)(54906003)(55016003)(8676002)(478600001)(66476007)(64756008)(76116006)(66946007)(71200400001)(66446008)(66556008)(66899018);
+ SFS:(13230025)(376002)(346002)(396003)(366004)(136003)(39860400002)(451199018)(966005)(7696005)(4326008)(71200400001)(478600001)(107886003)(41300700001)(52536014)(8936002)(2906002)(66556008)(5660300002)(30864003)(316002)(76116006)(54906003)(64756008)(110136005)(8676002)(66946007)(66446008)(66476007)(122000001)(82960400001)(86362001)(33656002)(55016003)(38070700005)(186003)(26005)(38100700002)(6506007)(9686003)(83380400001)(53546011)(559001)(579004)(309714004);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WExUOGZ0UmR6K0JZVTlCdDB6bGVla2hVNWRvNVR2aW9yTkJ5WWhScEdKSWt2?=
- =?utf-8?B?NHJqbGFtQjh6b3lBZ3Y3RkFJcnQ2UFZUSU1OMVpLSFJETDlpcGowb1VYelh4?=
- =?utf-8?B?WVl0OVM3SmFaajRNODZHOXZQRXN1ZTFma2xET2hDYWNkbjl4TmpCZmtnSE5V?=
- =?utf-8?B?UjNIWVFxYkxzTUNtdWoyVCt3QmR2eTZ6WEdWZVVxNzhnZTlkWm1EdzJIOEFD?=
- =?utf-8?B?RzRXNFM4UE9qbzVaNE84MlB1bzVRUENEcG5TK1dmeS8zS296R1N5VkFtTTYv?=
- =?utf-8?B?ekdLK3lsMTFtQkFTeHVZYXFobVhzQTRNWTNST3pucEd6Y3Q1MzZGb0Rtdktj?=
- =?utf-8?B?OUNLMVBPL2NZeTJaTU1OYXNBekJWcVc3MHRWWjdnR1pPRHh6T29hcEhZMHFm?=
- =?utf-8?B?K1ArTkVxeityc1RneDJIMjUvbUNKeGRHY0JPc3FicXV2dmtUN1JwVk1IYndS?=
- =?utf-8?B?dlppaVVxdXB5ZitUekF0WnRtU2VoT2lycFNMNmpFOWdwY0I0S2I5MnJOWUZ2?=
- =?utf-8?B?b29SV2syaGx1V0JmakpxM1FoaW5Nam9HSVk2ditxNnBYbllsTG96NWNLYTNx?=
- =?utf-8?B?Z2Z1ZllBSHVvNUdiWGhucVBRSDNCS3dqNE9EdFdtbXpuakt2elRHZEtaZkJ5?=
- =?utf-8?B?SGdNUHVPNmJLdzNkZVY0RURUT1FHZ20rSTJsdG4yQVF5YU1WVkNoRmg1Ukpq?=
- =?utf-8?B?SzlsNHg2VXRNRVlXblEyaUhHZytuUmE2SlRpUE1oMTE3b0ppRUxvaGdlSmNv?=
- =?utf-8?B?WGpBak9XSStINm9Qc21JaGRTNWVRbTVVbmN2R1dBTXFaVCtHZ0ZBS3N5MWVj?=
- =?utf-8?B?d25kWms2OHBYYWh5RjJvUENHWVBlZWNJd1hWcFZxYUR5cnlLQmtSL0dIRkJQ?=
- =?utf-8?B?Zm1Qc3h2UlEzc2hIZzZzNUEraWJjckI0TUUwcitZbE1RMjkxc3lvSGN0dmdT?=
- =?utf-8?B?SU01ekJoZkIweE10VDk2TEdoNUxESUlwdHBZRURMNFU5L2ZkcndyUDRkQ0xz?=
- =?utf-8?B?aGpCSTZqMm1zTUhvOWNSd0srK1grZm1kN24vZVZpN2tkRjJnTmR1R0h4dXVx?=
- =?utf-8?B?MEJHSDB3YjkzaUNwTEVNYWhIWUdzeE5Ea0lJUENTVy81TExHWjRFY3JWdk43?=
- =?utf-8?B?anIvcGdSU1JQQ0d4N1F1bWxaYm9Bck1PeEl1SExhM29ia2JCZEFOUS95amsy?=
- =?utf-8?B?eTBNaXZHem8yTE00eVMvNmtTRzVGdFB5ak1ydll4N0FTeVR4SCtXckRkSkw1?=
- =?utf-8?B?Nm1yVHQwakpoSDhSTk8vVFFCQWE4RDFER0lySXpPMmtVdS9XS2NpMXRDbkdr?=
- =?utf-8?B?VXZHRXlwVTlLQWhsUHVtZWdqRGlXNHpWVUVBa0d0M25QeWFHSVB1NnFvK2Ni?=
- =?utf-8?B?MUk1eHp0ZUtTcFdHY3pCZmZhMXZidGVrb0gyQnlwejY0K2o2QUVINHhCSy92?=
- =?utf-8?B?Z3A5eFlXNm03bmNkdGU0YTNEM1UrUkVZQmtObTlsUnVjWlROYUtQR2N6VzBx?=
- =?utf-8?B?QVorOXo4UHNwZmNDbkc3OGFtckZaN3Z4Q1l6V050ME85ZytoamlHakRXQklS?=
- =?utf-8?B?RDRLTjF2d1JrR2JvS3NnditMQlJrOXBOb3B3UHNENjdXSktrSVdzdHp2Vkdw?=
- =?utf-8?B?UkxiczEvOW54K2VKemFyd2hIMWh3djk1c3JhOHF3VkJJZXVYM0dyMjJieDQ3?=
- =?utf-8?B?aGl0UDZZTGpmQk83czJ3M1BMRmoxelJvUzh5M1NQaDZ5TGE0SDNlRTJOTmdD?=
- =?utf-8?B?bGQ3N0UvOURuM21LcGhHaEpoNENCZVpqcWtUNWg0S3VZeUIyTVh1bmZUYUJn?=
- =?utf-8?B?dklVK0FMZnZiRHZseStGaUJRTG05b0hhbnFWeTdrYlZTeDJSUUtrMnFKRzVn?=
- =?utf-8?B?WWdYVXdlQVdJa2dZRkg3TVpJVzJRcytnTGVWdDA4aUlNSTM1cTdURXRhc1M2?=
- =?utf-8?B?eW0zeXBHcGhHSGlQbHFmT0tDai9EYS9VZDBZejc2N1dtY0VwNjVsbEhRZVBM?=
- =?utf-8?B?czNWSWRzNXJuQjE0Qjd4enAyQnBzSEliVVZ4Vy9xdXJFbTljd2ZDWGRZYVZl?=
- =?utf-8?B?aUNMWVlxZFJIM0VTK3NVUUNZZFpleG5LZkd6TW1iMVJRSFdpY3VDWmM5aXcz?=
- =?utf-8?Q?hOlwtCTRvm406M1JHFGqkVkvo?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?EX4HhNl1m4x+4t5X8+nX1rdDDRDBSJLrt3UEDC/mvBN6+hoHVZyT8mN7Q5al?=
+ =?us-ascii?Q?Rke/vfX8TKB8J0zUGrFHj3CVSLWvtnzpfJBThwsSCmPMtgcyp0iugLUJ6EEj?=
+ =?us-ascii?Q?aD5y9hyxPy1uBoh05fpCi+tdZ1c/OEhLn2zSzl6U50A5da5xGTF1I42wH8XG?=
+ =?us-ascii?Q?3vfX0sKapr3zDRlBIwHcXPKbDZw57SL2aLs3NFxGOa7pO1r9rb9jbFUirVnB?=
+ =?us-ascii?Q?rwc5RKs2+QgIekm5GT0mgOmvtUZojKtU19AbVUWkboyv6+OuXYKuUiQDHtcP?=
+ =?us-ascii?Q?HpylKbyd50cIjIFoY2hpPH3SUa3x8cbyGAENDdQX58zwqJLliH4yeKaymzIp?=
+ =?us-ascii?Q?pTlUVxZu7MCXEf+Kmjqfa02jne7df3kCrw8cOPJ5bJLnGZc7GPaF39UaVIC+?=
+ =?us-ascii?Q?YH/aPjFbShOOxXDZkbExywKO47WotEP2Aqx3p7O4sUGoSh3uaR+REqxkMvV8?=
+ =?us-ascii?Q?D/CS2TQDCYyisesbGJaLUWWTU6+USLf7q1wfv097LrsXwu/GemPYgbp497ry?=
+ =?us-ascii?Q?El3e+NrfMIXf2eJ9THz/mPdWoYjtr2DDjLKi9FJ7jLwphTB1AYNHiYIg5CZ+?=
+ =?us-ascii?Q?4Mobzl5KUeJtPq8M4qhwLEwmEPcS5zyCeWgvjJ/wdf6hu6/TGMpHzG1r+9Xl?=
+ =?us-ascii?Q?XFsmk4a0IZIdEspqYFh2ZFv2K61fwc2kEDrePBK7izpoGF/X0rQay6+RzWy5?=
+ =?us-ascii?Q?O5ftu9Jq38Tps+HlZnU7ihe/m79WauAggwLk8CjcH5f7Fv94hNJujRadgrGg?=
+ =?us-ascii?Q?m/SppIJwT3GubsvtLqb2luUn0bzuQM8ZVqdvGcu/OOONBRrH38oRtQNFISfZ?=
+ =?us-ascii?Q?30YHknY3o8C/6i/TjWD1xnFGJ7TbdU99bi08fdogqqL9DowNPitC6q3+x/ac?=
+ =?us-ascii?Q?sUyK8AIBfEydhl5uQEpECbTgwjMnnhoG1BO03fvU3b8xcBSy+PzAqrz6tEs9?=
+ =?us-ascii?Q?hK5YLh/nOhG/d91tUEeN2Tvf4YLd+Yi0P8fZZFTiDS9J6ObyA64ulecQaKIQ?=
+ =?us-ascii?Q?EiQ8a2DA7pcCqmy5PHbQx0NCQsCvL6ClVKeppg47Q/HQ7OqguQ6caERD6IuH?=
+ =?us-ascii?Q?29vg05U1bKKDuLRALj0GMila92IwGrMq8kRaK6wcIM3xG8HSGzbBwG1Px9NK?=
+ =?us-ascii?Q?XLUYn8TRawRxVYi9RMvVE3Q5jW24hn24Mpw9NY7/oTQO1jYWaofEYPrPEt7V?=
+ =?us-ascii?Q?6bHOePYcpnOxdeH8GpAQQfsSIpzeA0CWAooI+IiDQVOSpnuYNjHlqLRNZbfk?=
+ =?us-ascii?Q?5VrsBH5UdslBmH7JYnulsTLNH2wEgl/PoPF2+yYVT5cE8jb8EWpifcdOiFRW?=
+ =?us-ascii?Q?B4sC0phn6OvKBRQBgR9M+iwxaL2Q5rNgH1CvIUfx440pfJKZRsHUsM4RG0Qp?=
+ =?us-ascii?Q?qHXkv+unOOLUZF4cj1FvdyEWUIJ0Ah1gNrJ8CxDU/3Pj2im9pPq3lYFsNYc7?=
+ =?us-ascii?Q?jzBXb+dmusrR1kSRFJeJ07uFCzqdPHYEdFq6PY8It3aJfv5zwZZ/gms1k6YC?=
+ =?us-ascii?Q?YVkiqZj8bfTKo5Our9ot4TNkl5uqekNKaB2I3qveAbr8ISjliX+TcJ/RxvDN?=
+ =?us-ascii?Q?TbE6jvrooKEehHHwDVCuGmZm33e4//a9N7PWc/nk?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d6a4518-2530-4931-6f37-08db25f508e8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2023 08:04:14.9254 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f40b44d3-0554-43c5-200e-08db25f637d6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2023 08:12:43.1862 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aZ2xv92Xwts29tNxQRYUT8sEsrpvXeVNIguzHzX5KUevFVzbIwHBAa+utky103dvv4EDOWkcLZS9ixKEe219HQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6205
+X-MS-Exchange-CrossTenant-userprincipalname: eLtEJ11JTjNkOpmdZeqjs49S+dcB0EG62nnbPlKmuItvEkFC31ZZIH5Rrjnmpo4xp6jz7jL5ja5okOLdxaklhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6712
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v12 5/6] drm/i915/mtl: Add function to send
- command to GSC CS
+Subject: Re: [Intel-gfx] [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,255 +153,1035 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: "Winkler, Tomas" <tomas.winkler@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2FuZHBhbCwgU3VyYWog
-PHN1cmFqLmthbmRwYWxAaW50ZWwuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgTWFyY2ggOSwgMjAy
-MyAxOjI0IFBNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBO
-YXV0aXlhbCwgQW5raXQgSyA8YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+OyBTaGFua2FyLCBV
-bWENCj4gPHVtYS5zaGFua2FyQGludGVsLmNvbT47IEthbmRwYWwsIFN1cmFqIDxzdXJhai5rYW5k
-cGFsQGludGVsLmNvbT47IENlcmFvbG8NCj4gU3B1cmlvLCBEYW5pZWxlIDxkYW5pZWxlLmNlcmFv
-bG9zcHVyaW9AaW50ZWwuY29tPjsgVGVyZXMgQWxleGlzLCBBbGFuIFByZXZpbg0KPiA8YWxhbi5w
-cmV2aW4udGVyZXMuYWxleGlzQGludGVsLmNvbT47IEd1cHRhLCBBbnNodW1hbg0KPiA8YW5zaHVt
-YW4uZ3VwdGFAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjEyIDUvNl0gZHJtL2k5MTUv
-bXRsOiBBZGQgZnVuY3Rpb24gdG8gc2VuZCBjb21tYW5kIHRvIEdTQyBDUw0KPiANCj4gQWRkIGZ1
-bmN0aW9uIHRoYXQgdGFrZXMgY2FyZSBvZiBzZW5kaW5nIGNvbW1hbmQgdG8gZ3NjIGNzLiBXZSBz
-dGFydCBvZiB3aXRoDQo+IGFsbG9jYXRpb24gb2YgbWVtb3J5IGZvciBvdXIgY29tbWFuZCBpbnRl
-bF9oZGNwX2dzY19tZXNzYWdlIHRoYXQgY29udGFpbnMgZ3NjDQo+IGNzIG1lbW9yeSBoZWFkZXIg
-YXMgZGlyZWN0ZWQgaW4gc3BlY3MgZm9sbG93ZWQgYnkgdGhlIGFjdHVhbCBwYXlsb2FkIGhkY3Ag
-bWVzc2FnZQ0KPiB0aGF0IHdlIHdhbnQgdG8gc2VuZC4NCj4gU3BlYyBzdGF0ZXMgdGhhdCB3ZSBu
-ZWVkIHRvIHBvbGwgcGVuZGluZyBiaXQgb2YgcmVzcG9uc2UgaGVhZGVyIGFyb3VuZA0KPiAyMCB0
-aW1lcyBlYWNoIHRyeSBiZWluZyA1MG1zIGFwYXJ0IGhlbmNlIGFkZGluZyB0aGF0IHRvIGN1cnJl
-bnQgZ3NjX21zZ19zZW5kDQo+IGZ1bmN0aW9uIEFsc28gd2UgdXNlIHRoZSBzYW1lIGZ1bmN0aW9u
-IHRvIHRha2UgY2FyZSBvZiBib3RoIHNlbmRpbmcgYW5kIHJlY2VpdmluZw0KPiBoZW5jZSBubyBz
-ZXBhcmF0ZSBmdW5jdGlvbiB0byBnZXQgdGhlIHJlc3BvbnNlLg0KPiANCj4gLS12NA0KPiAtQ3Jl
-YXRlIGNvbW1vbiBmdW5jdGlvbiB0byBmaWxsIGluIGdzY19tdGxfaGVhZGVyIFtBbGFuXSAtZGVm
-aW5lIGhvc3Qgc2Vzc2lvbg0KPiBiaXRtYXNrIFtBbGFuXQ0KPiANCj4gLS12NQ0KPiAtdXNlIGk5
-MTUgZGlyZWN0bHkgaW5zdGVhZCBvZiBndC0+aTkxNSBbQWxhbl0gLU5vIG5lZWQgdG8gbWFrZSBm
-aWVsZHMgTlVMTCBhcyB3ZSBhcmUNCj4gYWxyZWFkeSB1c2luZyBremFsbG9jIFtBbGFuXQ0KPiAN
-Cj4gLS12OA0KPiAtY2hhbmdlIG1lY2hhbmlzbSB0byByZXVzZSB0aGUgc2FtZSBtZW1vcnkgZm9y
-IG9uZSBoZGNwIHNlc3Npb25bQWxhbl0gLWZpeA0KPiBoZWFkZXIgb3JkZXJpbmcgLWFkZCBjb21t
-ZW50cyB0byBleHBsYWluIGZsYWdzIGFuZCBob3N0IHNlc3Npb24gbWFzayBbQWxhbl0NCj4gDQo+
-IC0tdjkNCj4gLXJlbW92ZSBnZW0gb2JqIGZyb20gaGRjcCBtZXNzYWdlIGFzIHdlIGNhbiB1c2Ug
-aTkxNV92bWFfdW5waW5fYW5kX3JlbGVhc2UNCj4gW0FsYW5dIC1tb3ZlIGhkY3AgbWVzc2FnZSBh
-bGxvY2F0aW9uIGFuZCBkZWFsbG9jYXRpb24gZnJvbSBoZGNwMl9lbmFibGUgYW5kDQo+IGhkY3Ay
-X2Rpc2FibGUgdG8gaW5pdCBhbmQgdGVhcmRvd24gb2YgSERDUCBbQWxhbl0NCj4gDQo+IC0tdjEw
-DQo+IC1yZW1vdmUgdW5uZWNlc3NhcnkgaTkxNV92bWFfdW5waW4gW0FsYW5dDQo+IA0KPiAtLXYx
-MQ0KPiAtZml4IGNvbW1lbnQgc3R5bGUgW1VtYV0NCg0KTG9va3MgR29vZCB0byBtZS4NClJldmll
-d2VkLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0KDQo+IENjOiBBbmtp
-dCBOYXV0aXlhbCA8YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+DQo+IENjOiBEYW5pZWxlIENl
-cmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29tPg0KPiBDYzogQWxh
-biBQZXJ2aW4gVGVyZXMgPGFsYW4ucHJldmluLnRlcmVzLmFsZXhpc0BpbnRlbC5jb20+DQo+IENj
-OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0KPiBDYzogQW5zaHVtYW4gR3Vw
-dGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogU3VyYWogS2Fu
-ZHBhbCA8c3VyYWoua2FuZHBhbEBpbnRlbC5jb20+DQo+IFJldmlld2VkLWJ5OiBBbGFuIFByZXZp
-biA8YWxhbi5wcmV2aW4udGVyZXMuYWxleGlzQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiAgLi4uL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfY29yZS5oIHwgICA2ICsNCj4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRjcF9nc2MuYyB8IDIwMCArKysrKysrKysr
-KysrKysrKysNCj4gZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5o
-IHwgIDIzICsrDQo+IC4uLi9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQu
-YyB8ICAxNSArKw0KPiAuLi4vaTkxNS9ndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3VibWl0
-LmggfCAgMTYgKysNCj4gIDYgZmlsZXMgY2hhbmdlZCwgMjYxIGluc2VydGlvbnMoKykNCj4gIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkY3Bf
-Z3NjLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2hkY3BfZ3NjLmgNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlIGluZGV4DQo+IDhjNmIz
-ODA4YzQ5Zi4uNTMzMTg4MDlmNGExIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9NYWtlZmlsZQ0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQ0KPiBAQCAt
-MjU2LDYgKzI1Niw3IEBAIGk5MTUteSArPSBcDQo+ICAJZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZl
-ci5vIFwNCj4gIAlkaXNwbGF5L2ludGVsX2dsb2JhbF9zdGF0ZS5vIFwNCj4gIAlkaXNwbGF5L2lu
-dGVsX2hkY3AubyBcDQo+ICsJZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5vIFwNCj4gIAlkaXNwbGF5
-L2ludGVsX2hvdHBsdWcubyBcDQo+ICAJZGlzcGxheS9pbnRlbF9odGkubyBcDQo+ICAJZGlzcGxh
-eS9pbnRlbF9scGVfYXVkaW8ubyBcDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfY29yZS5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5X2NvcmUuaA0KPiBpbmRleCBkN2NiNjQ5YmU5MTUuLmNjNWM5
-MzgyYzI0ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5X2NvcmUuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXlfY29yZS5oDQo+IEBAIC0zODcsNiArMzg3LDEyIEBAIHN0cnVjdCBpbnRlbF9k
-aXNwbGF5IHsNCj4gIAkJc3RydWN0IGk5MTVfaGRjcF9tYXN0ZXIgKm1hc3RlcjsNCj4gIAkJYm9v
-bCBjb21wX2FkZGVkOw0KPiANCj4gKwkJLyoNCj4gKwkJICogSERDUCBtZXNzYWdlIHN0cnVjdCBm
-b3IgYWxsb2NhdGlvbiBvZiBtZW1vcnkgd2hpY2ggY2FuIGJlDQo+ICsJCSAqIHJldXNlZCB3aGVu
-IHNlbmRpbmcgbWVzc2FnZSB0byBnc2MgY3MuDQo+ICsJCSAqIHRoaXMgaXMgb25seSBwb3B1bGF0
-ZWQgcG9zdCBNZXRlb3JsYWtlDQo+ICsJCSAqLw0KPiArCQlzdHJ1Y3QgaW50ZWxfaGRjcF9nc2Nf
-bWVzc2FnZSAqaGRjcF9tZXNzYWdlOw0KPiAgCQkvKiBNdXRleCB0byBwcm90ZWN0IHRoZSBhYm92
-ZSBoZGNwIGNvbXBvbmVudCByZWxhdGVkIHZhbHVlcy4gKi8NCj4gIAkJc3RydWN0IG11dGV4IGNv
-bXBfbXV0ZXg7DQo+ICAJfSBoZGNwOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9oZGNwX2dzYy5jDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAw
-MDAwMDAwMDAwMC4uNDIzNGZhYmQ2MmFkDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5jDQo+IEBAIC0wLDAgKzEsMjAw
-IEBADQo+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUDQo+ICsvKg0KPiArICogQ29w
-eXJpZ2h0IDIwMjMsIEludGVsIENvcnBvcmF0aW9uLg0KPiArICovDQo+ICsNCj4gKyNpbmNsdWRl
-ICJkaXNwbGF5L2ludGVsX2hkY3BfZ3NjLmgiDQo+ICsjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX3Jl
-Z2lvbi5oIg0KPiArI2luY2x1ZGUgImd0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQu
-aCINCj4gKyNpbmNsdWRlICJpOTE1X2Rydi5oIg0KPiArI2luY2x1ZGUgImk5MTVfdXRpbHMuaCIN
-Cj4gKw0KPiArLypUaGlzIGZ1bmN0aW9uIGhlbHBzIGFsbG9jYXRlIG1lbW9yeSBmb3IgdGhlIGNv
-bW1hbmQgdGhhdCB3ZSB3aWxsIHNlbmQNCj4gK3RvIGdzYyBjcyAqLyBzdGF0aWMgaW50IGludGVs
-X2hkY3BfZ3NjX2luaXRpYWxpemVfbWVzc2FnZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQ0KPiAq
-aTkxNSwNCj4gKwkJCQkJICAgICBzdHJ1Y3QgaW50ZWxfaGRjcF9nc2NfbWVzc2FnZQ0KPiAqaGRj
-cF9tZXNzYWdlKSB7DQo+ICsJc3RydWN0IGludGVsX2d0ICpndCA9IGk5MTUtPm1lZGlhX2d0Ow0K
-PiArCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmogPSBOVUxMOw0KPiArCXN0cnVjdCBp
-OTE1X3ZtYSAqdm1hID0gTlVMTDsNCj4gKwl2b2lkICpjbWQ7DQo+ICsJaW50IGVycjsNCj4gKw0K
-PiArCS8qIGFsbG9jYXRlIG9iamVjdCBvZiBvbmUgcGFnZSBmb3IgSERDUCBjb21tYW5kIG1lbW9y
-eSBhbmQgc3RvcmUgaXQgKi8NCj4gKwlvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3NobWVt
-KGk5MTUsIFBBR0VfU0laRSk7DQo+ICsNCj4gKwlpZiAoSVNfRVJSKG9iaikpIHsNCj4gKwkJZHJt
-X2VycigmaTkxNS0+ZHJtLCAiRmFpbGVkIHRvIGFsbG9jYXRlIEhEQ1Agc3RyZWFtaW5nDQo+IGNv
-bW1hbmQhXG4iKTsNCj4gKwkJcmV0dXJuIFBUUl9FUlIob2JqKTsNCj4gKwl9DQo+ICsNCj4gKwlj
-bWQgPSBpOTE1X2dlbV9vYmplY3RfcGluX21hcF91bmxvY2tlZChvYmosDQo+IGk5MTVfY29oZXJl
-bnRfbWFwX3R5cGUoaTkxNSwgb2JqLCB0cnVlKSk7DQo+ICsJaWYgKElTX0VSUihjbWQpKSB7DQo+
-ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgIkZhaWxlZCB0byBtYXAgZ3NjIG1lc3NhZ2UgcGFnZSFc
-biIpOw0KPiArCQllcnIgPSBQVFJfRVJSKGNtZCk7DQo+ICsJCWdvdG8gb3V0X3VucGluOw0KPiAr
-CX0NCj4gKw0KPiArCXZtYSA9IGk5MTVfdm1hX2luc3RhbmNlKG9iaiwgJmd0LT5nZ3R0LT52bSwg
-TlVMTCk7DQo+ICsJaWYgKElTX0VSUih2bWEpKSB7DQo+ICsJCWVyciA9IFBUUl9FUlIodm1hKTsN
-Cj4gKwkJZ290byBvdXRfdW5tYXA7DQo+ICsJfQ0KPiArDQo+ICsJZXJyID0gaTkxNV92bWFfcGlu
-KHZtYSwgMCwgMCwgUElOX0dMT0JBTCk7DQo+ICsJaWYgKGVycikNCj4gKwkJZ290byBvdXRfdW5t
-YXA7DQo+ICsNCj4gKwltZW1zZXQoY21kLCAwLCBvYmotPmJhc2Uuc2l6ZSk7DQo+ICsNCj4gKwlo
-ZGNwX21lc3NhZ2UtPmhkY3BfY21kID0gY21kOw0KPiArCWhkY3BfbWVzc2FnZS0+dm1hID0gdm1h
-Ow0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICsNCj4gK291dF91bm1hcDoNCj4gKwlpOTE1X2dlbV9v
-YmplY3RfdW5waW5fbWFwKG9iaik7DQo+ICtvdXRfdW5waW46DQo+ICsJaTkxNV9nZW1fb2JqZWN0
-X3B1dChvYmopOw0KPiArCXJldHVybiBlcnI7DQo+ICt9DQo+ICsNCj4gK2ludCBpbnRlbF9oZGNw
-X2dzY19oZGNwMl9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KSB7DQo+ICsJc3Ry
-dWN0IGludGVsX2hkY3BfZ3NjX21lc3NhZ2UgKmhkY3BfbWVzc2FnZTsNCj4gKwlpbnQgcmV0Ow0K
-PiArDQo+ICsJaGRjcF9tZXNzYWdlID0ga3phbGxvYyhzaXplb2YoKmhkY3BfbWVzc2FnZSksIEdG
-UF9LRVJORUwpOw0KPiArDQo+ICsJaWYgKCFoZGNwX21lc3NhZ2UpDQo+ICsJCXJldHVybiAtRU5P
-TUVNOw0KPiArDQo+ICsJLyoNCj4gKwkgKiBOT1RFOiBObyBuZWVkIHRvIGxvY2sgdGhlIGNvbXAg
-bXV0ZXggaGVyZSBhcyBpdCBpcyBhbHJlYWR5DQo+ICsJICogZ29pbmcgdG8gYmUgdGFrZW4gYmVm
-b3JlIHRoaXMgZnVuY3Rpb24gY2FsbGVkDQo+ICsJICovDQo+ICsJaTkxNS0+ZGlzcGxheS5oZGNw
-LmhkY3BfbWVzc2FnZSA9IGhkY3BfbWVzc2FnZTsNCj4gKwlyZXQgPSBpbnRlbF9oZGNwX2dzY19p
-bml0aWFsaXplX21lc3NhZ2UoaTkxNSwgaGRjcF9tZXNzYWdlKTsNCj4gKw0KPiArCWlmIChyZXQp
-DQo+ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgIkNvdWxkIG5vdCBpbml0aWFsaXplIGhkY3BfbWVz
-c2FnZVxuIik7DQo+ICsNCj4gKwlyZXR1cm4gcmV0Ow0KPiArfQ0KPiArDQo+ICt2b2lkIGludGVs
-X2hkY3BfZ3NjX2ZyZWVfbWVzc2FnZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkgew0K
-PiArCXN0cnVjdCBpbnRlbF9oZGNwX2dzY19tZXNzYWdlICpoZGNwX21lc3NhZ2UgPQ0KPiArCQkJ
-CQlpOTE1LT5kaXNwbGF5LmhkY3AuaGRjcF9tZXNzYWdlOw0KPiArDQo+ICsJaTkxNV92bWFfdW5w
-aW5fYW5kX3JlbGVhc2UoJmhkY3BfbWVzc2FnZS0+dm1hLA0KPiBJOTE1X1ZNQV9SRUxFQVNFX01B
-UCk7DQo+ICsJa2ZyZWUoaGRjcF9tZXNzYWdlKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGludCBp
-bnRlbF9nc2Nfc2VuZF9zeW5jKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LA0KPiArCQkJ
-ICAgICAgIHN0cnVjdCBpbnRlbF9nc2NfbXRsX2hlYWRlciAqaGVhZGVyLCB1NjQgYWRkciwNCj4g
-KwkJCSAgICAgICBzaXplX3QgbXNnX291dF9sZW4pDQo+ICt7DQo+ICsJc3RydWN0IGludGVsX2d0
-ICpndCA9IGk5MTUtPm1lZGlhX2d0Ow0KPiArCWludCByZXQ7DQo+ICsNCj4gKwloZWFkZXItPmZs
-YWdzID0gMDsNCj4gKwlyZXQgPSBpbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3VibWl0X3BhY2tldCgm
-Z3QtPnVjLmdzYywgYWRkciwNCj4gKwkJCQkJCSAgaGVhZGVyLT5tZXNzYWdlX3NpemUsDQo+ICsJ
-CQkJCQkgIGFkZHIsDQo+ICsJCQkJCQkgIG1zZ19vdXRfbGVuICsgc2l6ZW9mKCpoZWFkZXIpKTsN
-Cj4gKwlpZiAocmV0KSB7DQo+ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgImZhaWxlZCB0byBzZW5k
-IGdzYyBIRENQIG1zZyAoJWQpXG4iLCByZXQpOw0KPiArCQlyZXR1cm4gcmV0Ow0KPiArCX0NCj4g
-Kw0KPiArCS8qDQo+ICsJICogQ2hlY2tpbmcgdmFsaWRpdHkgbWFya2VyIGZvciBtZW1vcnkgc2Fu
-aXR5DQo+ICsJICovDQo+ICsJaWYgKGhlYWRlci0+dmFsaWRpdHlfbWFya2VyICE9IEdTQ19IRUNJ
-X1ZBTElESVRZX01BUktFUikgew0KPiArCQlkcm1fZXJyKCZpOTE1LT5kcm0sICJpbnZhbGlkIHZh
-bGlkaXR5IG1hcmtlclxuIik7DQo+ICsJCXJldHVybiAtRUlOVkFMOw0KPiArCX0NCj4gKw0KPiAr
-CWlmIChoZWFkZXItPnN0YXR1cyAhPSAwKSB7DQo+ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgImhl
-YWRlciBzdGF0dXMgaW5kaWNhdGVzIGVycm9yICVkXG4iLA0KPiArCQkJaGVhZGVyLT5zdGF0dXMp
-Ow0KPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gKwl9DQo+ICsNCj4gKwlpZiAoaGVhZGVyLT5mbGFn
-cyAmIEdTQ19PVVRGTEFHX01TR19QRU5ESU5HKQ0KPiArCQlyZXR1cm4gLUVBR0FJTjsNCj4gKw0K
-PiArCXJldHVybiAwOw0KPiArfQ0KPiArDQo+ICsvKg0KPiArICogVGhpcyBmdW5jdGlvbiBjYW4g
-bm93IGJlIHVzZWQgZm9yIHNlbmRpbmcgcmVxdWVzdHMgYW5kIHdpbGwgYWxzbw0KPiAraGFuZGxl
-DQo+ICsgKiByZWNlaXB0IG9mIHJlcGx5IG1lc3NhZ2VzIGhlbmNlIG5vIGRpZmZlcmVudCBmdW5j
-dGlvbiBvZiBtZXNzYWdlDQo+ICtyZXRyaWV2YWwNCj4gKyAqIGlzIHJlcXVpcmVkLiBXZSB3aWxs
-IGluaXRpYWxpemUgaW50ZWxfaGRjcF9nc2NfbWVzc2FnZSBzdHJ1Y3R1cmUNCj4gK3RoZW4gYWRk
-DQo+ICsgKiBnc2MgY3MgbWVtb3J5IGhlYWRlciBhcyBzdGF0ZWQgaW4gc3BlY3MgYWZ0ZXIgd2hp
-Y2ggdGhlIG5vcm1hbCBIRENQDQo+ICtwYXlsb2FkDQo+ICsgKiB3aWxsIGZvbGxvdw0KPiArICov
-DQo+ICtzc2l6ZV90IGludGVsX2hkY3BfZ3NjX21zZ19zZW5kKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICppOTE1LCB1OCAqbXNnX2luLA0KPiArCQkJCXNpemVfdCBtc2dfaW5fbGVuLCB1OCAqbXNn
-X291dCwgc2l6ZV90DQo+IG1zZ19vdXRfbGVuKSB7DQo+ICsJc3RydWN0IGludGVsX2d0ICpndCA9
-IGk5MTUtPm1lZGlhX2d0Ow0KPiArCXN0cnVjdCBpbnRlbF9nc2NfbXRsX2hlYWRlciAqaGVhZGVy
-Ow0KPiArCWNvbnN0IHNpemVfdCBtYXhfbXNnX3NpemUgPSBQQUdFX1NJWkUgLSBzaXplb2YoKmhl
-YWRlcik7DQo+ICsJc3RydWN0IGludGVsX2hkY3BfZ3NjX21lc3NhZ2UgKmhkY3BfbWVzc2FnZTsN
-Cj4gKwl1NjQgYWRkciwgaG9zdF9zZXNzaW9uX2lkOw0KPiArCXUzMiByZXBseV9zaXplLCBtc2df
-c2l6ZTsNCj4gKwlpbnQgcmV0LCB0cmllcyA9IDA7DQo+ICsNCj4gKwlpZiAoIWludGVsX3VjX3Vz
-ZXNfZ3NjX3VjKCZndC0+dWMpKQ0KPiArCQlyZXR1cm4gLUVOT0RFVjsNCj4gKw0KPiArCWlmICht
-c2dfaW5fbGVuID4gbWF4X21zZ19zaXplIHx8IG1zZ19vdXRfbGVuID4gbWF4X21zZ19zaXplKQ0K
-PiArCQlyZXR1cm4gLUVOT1NQQzsNCj4gKw0KPiArCWhkY3BfbWVzc2FnZSA9IGk5MTUtPmRpc3Bs
-YXkuaGRjcC5oZGNwX21lc3NhZ2U7DQo+ICsJaGVhZGVyID0gaGRjcF9tZXNzYWdlLT5oZGNwX2Nt
-ZDsNCj4gKwlhZGRyID0gaTkxNV9nZ3R0X29mZnNldChoZGNwX21lc3NhZ2UtPnZtYSk7DQo+ICsN
-Cj4gKwltc2dfc2l6ZSA9IG1zZ19pbl9sZW4gKyBzaXplb2YoKmhlYWRlcik7DQo+ICsJbWVtc2V0
-KGhlYWRlciwgMCwgbXNnX3NpemUpOw0KPiArCWdldF9yYW5kb21fYnl0ZXMoJmhvc3Rfc2Vzc2lv
-bl9pZCwgc2l6ZW9mKHU2NCkpOw0KPiArCWludGVsX2dzY191Y19oZWNpX2NtZF9lbWl0X210bF9o
-ZWFkZXIoaGVhZGVyLA0KPiBIRUNJX01FQUREUkVTU19IRENQLA0KPiArCQkJCQkgICAgICBtc2df
-c2l6ZSwgaG9zdF9zZXNzaW9uX2lkKTsNCj4gKwltZW1jcHkoaGRjcF9tZXNzYWdlLT5oZGNwX2Nt
-ZCArIHNpemVvZigqaGVhZGVyKSwgbXNnX2luLCBtc2dfaW5fbGVuKTsNCj4gKw0KPiArCS8qDQo+
-ICsJICogS2VlcCBzZW5kaW5nIHJlcXVlc3QgaW4gY2FzZSB0aGUgcGVuZGluZyBiaXQgaXMgc2V0
-IG5vIG5lZWQgdG8gYWRkDQo+ICsJICogbWVzc2FnZSBoYW5kbGUgYXMgd2UgYXJlIHVzaW5nIHNh
-bWUgYWRkcmVzcyBoZW5jZSBsb2MuIG9mIGhlYWRlciBpcw0KPiArCSAqIHNhbWUgYW5kIGl0IHdp
-bGwgY29udGFpbiB0aGUgbWVzc2FnZSBoYW5kbGUuIHdlIHdpbGwgc2VuZCB0aGUgbWVzc2FnZQ0K
-PiArCSAqIDIwIHRpbWVzIGVhY2ggbWVzc2FnZSA1MCBtcyBhcGFydA0KPiArCSAqLw0KPiArCWRv
-IHsNCj4gKwkJcmV0ID0gaW50ZWxfZ3NjX3NlbmRfc3luYyhpOTE1LCBoZWFkZXIsIGFkZHIsIG1z
-Z19vdXRfbGVuKTsNCj4gKw0KPiArCQkvKiBPbmx5IHRyeSBhZ2FpbiBpZiBnc2Mgc2F5cyBzbyAq
-Lw0KPiArCQlpZiAocmV0ICE9IC1FQUdBSU4pDQo+ICsJCQlicmVhazsNCj4gKw0KPiArCQltc2xl
-ZXAoNTApOw0KPiArDQo+ICsJfSB3aGlsZSAoKyt0cmllcyA8IDIwKTsNCj4gKw0KPiArCWlmIChy
-ZXQpDQo+ICsJCWdvdG8gZXJyOw0KPiArDQo+ICsJLyogd2UgdXNlIHRoZSBzYW1lIG1lbSBmb3Ig
-dGhlIHJlcGx5LCBzbyBoZWFkZXIgaXMgaW4gdGhlIHNhbWUgbG9jICovDQo+ICsJcmVwbHlfc2l6
-ZSA9IGhlYWRlci0+bWVzc2FnZV9zaXplIC0gc2l6ZW9mKCpoZWFkZXIpOw0KPiArCWlmIChyZXBs
-eV9zaXplID4gbXNnX291dF9sZW4pIHsNCj4gKwkJZHJtX3dhcm4oJmk5MTUtPmRybSwgImNhbGxl
-ciB3aXRoIGluc3VmZmljaWVudCBIRENQIHJlcGx5IHNpemUgJXUNCj4gKCVkKVxuIiwNCj4gKwkJ
-CSByZXBseV9zaXplLCAodTMyKW1zZ19vdXRfbGVuKTsNCj4gKwkJcmVwbHlfc2l6ZSA9IG1zZ19v
-dXRfbGVuOw0KPiArCX0gZWxzZSBpZiAocmVwbHlfc2l6ZSAhPSBtc2dfb3V0X2xlbikgew0KPiAr
-CQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiY2FsbGVyIHVuZXhwZWN0ZWQgSENEUCByZXBseSBz
-aXplICV1DQo+ICglZClcbiIsDQo+ICsJCQkgICAgcmVwbHlfc2l6ZSwgKHUzMiltc2dfb3V0X2xl
-bik7DQo+ICsJfQ0KPiArDQo+ICsJbWVtY3B5KG1zZ19vdXQsIGhkY3BfbWVzc2FnZS0+aGRjcF9j
-bWQgKyBzaXplb2YoKmhlYWRlciksDQo+ICttc2dfb3V0X2xlbik7DQo+ICsNCj4gK2VycjoNCj4g
-KwlyZXR1cm4gcmV0Ow0KPiArfQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9oZGNwX2dzYy5oDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAw
-MDAwMDAwMC4uMDlmZmQ3ZWMwMmNkDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwX2dzYy5oDQo+IEBAIC0wLDAgKzEsMjMgQEAN
-Cj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8NCj4gKy8qDQo+ICsgKiBDb3B5
-cmlnaHQgwqkgMjAyMyBJbnRlbCBDb3Jwb3JhdGlvbg0KPiArICovDQo+ICsNCj4gKyNpZm5kZWYg
-X19JTlRFTF9IRENQX0dTQ19IX18NCj4gKyNkZWZpbmUgX19JTlRFTF9IRENQX0dTQ19IX18NCj4g
-Kw0KPiArI2luY2x1ZGUgPGxpbnV4L2Vyci5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L3R5cGVzLmg+
-DQo+ICsNCj4gK3N0cnVjdCBkcm1faTkxNV9wcml2YXRlOw0KPiArDQo+ICtzdHJ1Y3QgaW50ZWxf
-aGRjcF9nc2NfbWVzc2FnZSB7DQo+ICsJc3RydWN0IGk5MTVfdm1hICp2bWE7DQo+ICsJdm9pZCAq
-aGRjcF9jbWQ7DQo+ICt9Ow0KPiArDQo+ICtzc2l6ZV90IGludGVsX2hkY3BfZ3NjX21zZ19zZW5k
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1OCAqbXNnX2luLA0KPiArCQkJCXNpemVf
-dCBtc2dfaW5fbGVuLCB1OCAqbXNnX291dCwNCj4gKwkJCQlzaXplX3QgbXNnX291dF9sZW4pOw0K
-PiArDQo+ICsjZW5kaWYgLyogX19JTlRFTF9IRENQX0dDU19IX18gKi8NCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXQu
-Yw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNpX2NtZF9z
-dWJtaXQuYw0KPiBpbmRleCBiZTI0MjRhZjUyMWQuLmVhMGRhMDZlMmYzOSAxMDA2NDQNCj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3NjX3VjX2hlY2lfY21kX3N1Ym1p
-dC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2dzY191Y19oZWNp
-X2NtZF9zdWJtaXQuYw0KPiBAQCAtOTIsMyArOTIsMTggQEAgaW50IGludGVsX2dzY191Y19oZWNp
-X2NtZF9zdWJtaXRfcGFja2V0KHN0cnVjdCBpbnRlbF9nc2NfdWMNCj4gKmdzYywgdTY0IGFkZHJf
-aW4sDQo+IA0KPiAgCXJldHVybiBlcnI7DQo+ICB9DQo+ICsNCj4gK3ZvaWQgaW50ZWxfZ3NjX3Vj
-X2hlY2lfY21kX2VtaXRfbXRsX2hlYWRlcihzdHJ1Y3QgaW50ZWxfZ3NjX210bF9oZWFkZXINCj4g
-KmhlYWRlciwNCj4gKwkJCQkJICAgdTggaGVjaV9jbGllbnRfaWQsIHUzMiBtZXNzYWdlX3NpemUs
-DQo+ICsJCQkJCSAgIHU2NCBob3N0X3Nlc3Npb25faWQpDQo+ICt7DQo+ICsJaG9zdF9zZXNzaW9u
-X2lkICY9IH5IT1NUX1NFU1NJT05fTUFTSzsNCj4gKwlpZiAoaGVjaV9jbGllbnRfaWQgPT0gSEVD
-SV9NRUFERFJFU1NfUFhQKQ0KPiArCQlob3N0X3Nlc3Npb25faWQgfD0gSE9TVF9TRVNTSU9OX1BY
-UF9TSU5HTEU7DQo+ICsNCj4gKwloZWFkZXItPnZhbGlkaXR5X21hcmtlciA9IEdTQ19IRUNJX1ZB
-TElESVRZX01BUktFUjsNCj4gKwloZWFkZXItPmhlY2lfY2xpZW50X2lkID0gaGVjaV9jbGllbnRf
-aWQ7DQo+ICsJaGVhZGVyLT5ob3N0X3Nlc3Npb25faGFuZGxlID0gaG9zdF9zZXNzaW9uX2lkOw0K
-PiArCWhlYWRlci0+aGVhZGVyX3ZlcnNpb24gPSBNVExfR1NDX0hFQURFUl9WRVJTSU9OOw0KPiAr
-CWhlYWRlci0+bWVzc2FnZV9zaXplID0gbWVzc2FnZV9zaXplOw0KPiArfQ0KPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3NjX3VjX2hlY2lfY21kX3N1Ym1p
-dC5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3NjX3VjX2hlY2lfY21k
-X3N1Ym1pdC5oDQo+IGluZGV4IGNmNjEwZGZjYTdhNS4uM2Q1NmFlNTAxOTkxIDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9nc2NfdWNfaGVjaV9jbWRfc3Vi
-bWl0LmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3NjX3VjX2hl
-Y2lfY21kX3N1Ym1pdC5oDQo+IEBAIC0yMiw3ICsyMiwxNyBAQCBzdHJ1Y3QgaW50ZWxfZ3NjX210
-bF9oZWFkZXIgew0KPiAgCXUxNiBoZWFkZXJfdmVyc2lvbjsNCj4gICNkZWZpbmUgTVRMX0dTQ19I
-RUFERVJfVkVSU0lPTiAxDQo+IA0KPiArCS8qDQo+ICsJICogRlcgYWxsb3dzIGhvc3QgdG8gZGVj
-aWRlIGhvc3Rfc2Vzc2lvbiBoYW5kbGUNCj4gKwkgKiBhcyBpdCBzZWVzIGZpdC4NCj4gKwkgKiBG
-b3IgaW50ZXJ0cmFjZWJpbGl0eSByZXNlcnZpbmcgc2VsZWN0IGJpdHMoNjAtNjMpDQo+ICsJICog
-dG8gZGlmZmVyZW50aWF0ZSBjYWxsZXItdGFyZ2V0IHN1YnN5c3RlbQ0KPiArCSAqIDAwMDAgLSBI
-RENQDQo+ICsJICogMDAwMSAtIFBYUCBTaW5nbGUgU2Vzc2lvbg0KPiArCSAqLw0KPiAgCXU2NCBo
-b3N0X3Nlc3Npb25faGFuZGxlOw0KPiArI2RlZmluZSBIT1NUX1NFU1NJT05fTUFTSwlSRUdfR0VO
-TUFTSzY0KDYzLCA2MCkNCj4gKyNkZWZpbmUgSE9TVF9TRVNTSU9OX1BYUF9TSU5HTEUgQklUX1VM
-TCg2MCkNCj4gIAl1NjQgZ3NjX21lc3NhZ2VfaGFuZGxlOw0KPiANCj4gIAl1MzIgbWVzc2FnZV9z
-aXplOyAvKiBsb3dlciAyMCBiaXRzIG9ubHksIHVwcGVyIDEyIGFyZSByZXNlcnZlZCAqLyBAQCAt
-MzMsOA0KPiArNDMsMTEgQEAgc3RydWN0IGludGVsX2dzY19tdGxfaGVhZGVyIHsNCj4gIAkgKiBC
-aXQgMTogU2Vzc2lvbiBDbGVhbnVwOw0KPiAgCSAqIEJpdHMgMi0xNTogRmxhZ3MNCj4gIAkgKiBC
-aXRzIDE2LTMxOiBFeHRlbnNpb24gU2l6ZQ0KPiArCSAqIEFjY29yZGluZyB0byBpbnRlcm5hbCBz
-cGVjIGZsYWdzIGFyZSBlaXRoZXIgaW5wdXQgb3Igb3V0cHV0DQo+ICsJICogd2UgZGlzdGluZ3Vp
-c2ggdGhlIGZsYWdzIHVzaW5nIE9VVEZMQUcgb3IgSU5GTEFHDQo+ICAJICovDQo+ICAJdTMyIGZs
-YWdzOw0KPiArI2RlZmluZSBHU0NfT1VURkxBR19NU0dfUEVORElORwkxDQo+IA0KPiAgCXUzMiBz
-dGF0dXM7DQo+ICB9IF9fcGFja2VkOw0KPiBAQCAtNDIsNCArNTUsNyBAQCBzdHJ1Y3QgaW50ZWxf
-Z3NjX210bF9oZWFkZXIgeyAgaW50DQo+IGludGVsX2dzY191Y19oZWNpX2NtZF9zdWJtaXRfcGFj
-a2V0KHN0cnVjdCBpbnRlbF9nc2NfdWMgKmdzYywNCj4gIAkJCQkJdTY0IGFkZHJfaW4sIHUzMiBz
-aXplX2luLA0KPiAgCQkJCQl1NjQgYWRkcl9vdXQsIHUzMiBzaXplX291dCk7DQo+ICt2b2lkIGlu
-dGVsX2dzY191Y19oZWNpX2NtZF9lbWl0X210bF9oZWFkZXIoc3RydWN0IGludGVsX2dzY19tdGxf
-aGVhZGVyDQo+ICpoZWFkZXIsDQo+ICsJCQkJCSAgIHU4IGhlY2lfY2xpZW50X2lkLCB1MzIgbWVz
-c2FnZV9zaXplLA0KPiArCQkJCQkgICB1NjQgaG9zdF9zZXNzaW9uX2lkKTsNCj4gICNlbmRpZg0K
-PiAtLQ0KPiAyLjI1LjENCg0K
+
+
+> -----Original Message-----
+> From: Kandpal, Suraj <suraj.kandpal@intel.com>
+> Sent: Thursday, March 9, 2023 1:22 PM
+> To: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Winkler, Tomas
+> <tomas.winkler@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Gupta,
+> Anshuman <anshuman.gupta@intel.com>
+> Subject: RE: [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Shankar, Uma <uma.shankar@intel.com>
+> > Sent: Tuesday, March 7, 2023 12:15 PM
+> > To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
+> > gfx@lists.freedesktop.org
+> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Winkler, Tomas
+> > <tomas.winkler@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> > Gupta, Anshuman <anshuman.gupta@intel.com>
+> > Subject: RE: [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Shankar, Uma
+> > > Sent: Monday, March 6, 2023 6:05 PM
+> > > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
+> > > intel-gfx@lists.freedesktop.org
+> > > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Winkler, Tomas
+> > > <tomas.winkler@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> > > Gupta, Anshuman <Anshuman.Gupta@intel.com>
+> > > Subject: RE: [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
+> > >
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Kandpal, Suraj <suraj.kandpal@intel.com>
+> > > > Sent: Wednesday, February 1, 2023 2:38 PM
+> > > > To: intel-gfx@lists.freedesktop.org
+> > > > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
+> > > > <suraj.kandpal@intel.com>; Winkler, Tomas
+> > <tomas.winkler@intel.com>;
+> > > > Vivi, Rodrigo <rodrigo.vivi@intel.com>; Shankar, Uma
+> > > > <uma.shankar@intel.com>; Gupta, Anshuman
+> > <anshuman.gupta@intel.com>
+> > > > Subject: [PATCH v10 6/6] drm/i915/mtl: Add HDCP GSC interface
+> > > >
+> > > > MTL uses GSC command streamer i.e gsc cs to send HDCP/PXP
+> > commands
+> > > > to GSC f/w. It requires to keep hdcp display driver agnostic to
+> > > > content protection f/w (ME/GSC fw) in the form of i915_hdcp_fw_ops
+> > generic ops.
+> > > >
+> > > > Adding HDCP GSC CS interface by leveraging the i915_hdcp_fw_ops
+> > > > generic ops instead of I915_HDCP_COMPONENT as integral part of i915=
+.
+> > > >
+> > > > Adding checks to see if GSC is loaded and proxy is setup
+> > > >
+> > > > --v6
+> > > > -dont change the license date in same patch series [Jani] -fix the
+> > > > license year {Jani]
+> > > >
+> > > > --v8
+> > > > -remove stale comment [Ankit]
+> > > > -get headers in alphabetical order [Ankit] -fix hdcp2_supported
+> > > > check [Ankit]
+> > > >
+> > > > --v9
+> > > > -remove return statement from hdcp_gsc_fini [Ankit]
+> > >
+> > > Looks Good to me.
+> > > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> > >
+> > > > Cc: Tomas Winkler <tomas.winkler@intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Cc: Uma Shankar <uma.shankar@intel.com>
+> > > > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > > Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  28 +-
+> > > >  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 637
+> > +++++++++++++++++-
+> > > >  drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   3 +
+> > > >  3 files changed, 660 insertions(+), 8 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > index 0d6aed1eb171..61bb2bbd0349 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > @@ -23,6 +23,7 @@
+> > > >  #include "intel_display_power_well.h"
+> > > >  #include "intel_display_types.h"
+> > > >  #include "intel_hdcp.h"
+> > > > +#include "intel_hdcp_gsc.h"
+> > > >  #include "intel_hdcp_regs.h"
+> > > >  #include "intel_pcode.h"
+> > > >
+> > > > @@ -203,13 +204,20 @@ bool intel_hdcp2_capable(struct
+> > > > intel_connector
+> > > > *connector)
+> > > >  	struct intel_digital_port *dig_port =3D
+> > intel_attached_dig_port(connector);
+> > > >  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev=
+);
+> > > >  	struct intel_hdcp *hdcp =3D &connector->hdcp;
+> > > > +	struct intel_gt *gt =3D dev_priv->media_gt;
+> > > > +	struct intel_gsc_uc *gsc =3D &gt->uc.gsc;
+> > > >  	bool capable =3D false;
+> > > >
+> > > >  	/* I915 support for HDCP2.2 */
+> > > >  	if (!hdcp->hdcp2_supported)
+> > > >  		return false;
+> > > >
+> > > > -	/* MEI interface is solid */
+> > > > +	/* If MTL+ make sure gsc is loaded and proxy is setup */
+> > > > +	if (intel_hdcp_gsc_cs_required(dev_priv))
+> > > > +		if (!intel_uc_fw_is_running(&gsc->fw))
+> > > > +			return false;
+> > > > +
+> > > > +	/* MEI/GSC interface is solid depending on which is used */
+> > > >  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> > > >  	if (!dev_priv->display.hdcp.comp_added ||
+> > > > !dev_priv->display.hdcp.master) {
+> > > >  		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> > > > @@ -2235,6 +2243,9 @@ static int initialize_hdcp_port_data(struct
+> > > > intel_connector *connector,
+> > > >
+> > > >  static bool is_hdcp2_supported(struct drm_i915_private *dev_priv)
+> > > > {
+> > > > +	if (intel_hdcp_gsc_cs_required(dev_priv))
+> > > > +		return true;
+> > > > +
+> > > >  	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
+> > > >  		return false;
+> > > >
+> > > > @@ -2256,10 +2267,14 @@ void intel_hdcp_component_init(struct
+> > > > drm_i915_private *dev_priv)
+> > > >
+> > > >  	dev_priv->display.hdcp.comp_added =3D true;
+> > > >  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> > > > -	ret =3D component_add_typed(dev_priv->drm.dev, &i915_hdcp_ops,
+> > > > -				  I915_COMPONENT_HDCP);
+> > > > +	if (intel_hdcp_gsc_cs_required(dev_priv))
+> > > > +		ret =3D intel_hdcp_gsc_init(dev_priv);
+> > > > +	else
+> > > > +		ret =3D component_add_typed(dev_priv->drm.dev,
+> > &i915_hdcp_ops,
+> > > > +					  I915_COMPONENT_HDCP);
+> > > > +
+> > > >  	if (ret < 0) {
+> > > > -		drm_dbg_kms(&dev_priv->drm, "Failed at component
+> > add(%d)\n",
+> > > > +		drm_dbg_kms(&dev_priv->drm, "Failed at fw component
+> > > > add(%d)\n",
+> > > >  			    ret);
+> > > >  		mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> > > >  		dev_priv->display.hdcp.comp_added =3D false; @@ -2486,7
+> > +2501,10
+> > > @@
+> > > > void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
+> > > >  	dev_priv->display.hdcp.comp_added =3D false;
+> > > >  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> > > >
+> > > > -	component_del(dev_priv->drm.dev, &i915_hdcp_ops);
+> > > > +	if (intel_hdcp_gsc_cs_required(dev_priv))
+> > > > +		intel_hdcp_gsc_fini(dev_priv);
+> > > > +	else
+> > > > +		component_del(dev_priv->drm.dev, &i915_hdcp_ops);
+> > > >  }
+> > > >
+> > > >  void intel_hdcp_cleanup(struct intel_connector *connector) diff
+> > > > --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> > > > b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> > > > index 8e3b5e6733d7..7eb1eeeb5a51 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> > > > @@ -3,12 +3,617 @@
+> > > >   * Copyright 2023, Intel Corporation.
+> > > >   */
+> > > >
+> > > > +#include <drm/i915_hdcp_interface.h>
+> > > > +
+> > > >  #include "display/intel_hdcp_gsc.h"
+> > > >  #include "gem/i915_gem_region.h"
+> > > >  #include "gt/uc/intel_gsc_uc_heci_cmd_submit.h"
+> > > >  #include "i915_drv.h"
+> > > >  #include "i915_utils.h"
+> > > >
+> > > > +bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915) {
+> > > > +	return DISPLAY_VER(i915) >=3D 14;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_initiate_session(struct device *dev, struct
+> > > > +hdcp_port_data
+> > *data,
+> > > > +			  struct hdcp2_ake_init *ake_data) {
+> >
+> >
+> > One more input, can we make the data packet creation in a common file
+> > since it is defined by protocol and should be same both for mei or gsc.
+> >
+> > mei and GSC specific stuff like headers and actual command to send can
+> > be separated by respective interface but protocol part can be kept comm=
+on.
+> >
+> > Regards,
+> > Uma Shankar
+>=20
+> We actually discussed this over in a previous version to which Jani sugge=
+sted to go
+> with a Separate module which felt like a lot of rework considering they w=
+ill only be
+> used at two places.
+> https://patchwork.freedesktop.org/patch/516449/?series=3D111876&rev=3D5
+
+It may be used now even by Xe driver as well. Can you create an internal JI=
+RA to plan
+the module and cleaning these definitions. For now, we can go with this unl=
+ess some
+strong objection by anyone.
+
+Regards,
+Uma Shankar
+=20
+> Regards,
+> Suraj Kandpal
+>=20
+> >
+> > > > +	struct wired_cmd_initiate_hdcp2_session_in session_init_in =3D { =
+{
+> > > > +0 }
+> > };
+> > > > +	struct wired_cmd_initiate_hdcp2_session_out
+> > > > +						session_init_out =3D { { 0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !ake_data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	session_init_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	session_init_in.header.command_id =3D
+> > WIRED_INITIATE_HDCP2_SESSION;
+> > > > +	session_init_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	session_init_in.header.buffer_len =3D
+> > > > +
+> > > > 	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
+> > > > +
+> > > > +	session_init_in.port.integrated_port_type =3D data->port_type;
+> > > > +	session_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	session_init_in.port.attached_transcoder =3D (u8)data-
+> > >hdcp_transcoder;
+> > > > +	session_init_in.protocol =3D data->protocol;
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&session_init_in,
+> > > > +				       sizeof(session_init_in),
+> > > > +				       (u8 *)&session_init_out,
+> > > > +				       sizeof(session_init_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (session_init_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_INITIATE_HDCP2_SESSION,
+> > > > +			    session_init_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	ake_data->msg_id =3D HDCP_2_2_AKE_INIT;
+> > > > +	ake_data->tx_caps =3D session_init_out.tx_caps;
+> > > > +	memcpy(ake_data->r_tx, session_init_out.r_tx,
+> > HDCP_2_2_RTX_LEN);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+> > > > +					 struct hdcp_port_data *data,
+> > > > +					 struct hdcp2_ake_send_cert
+> > *rx_cert,
+> > > > +					 bool *km_stored,
+> > > > +					 struct hdcp2_ake_no_stored_km
+> > > > +								*ek_pub_km,
+> > > > +					 size_t *msg_sz)
+> > > > +{
+> > > > +	struct wired_cmd_verify_receiver_cert_in verify_rxcert_in =3D { {=
+ 0 } };
+> > > > +	struct wired_cmd_verify_receiver_cert_out verify_rxcert_out =3D {
+> > > > +{ 0
+> > } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !rx_cert || !km_stored || !ek_pub_km ||
+> > !msg_sz)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	verify_rxcert_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	verify_rxcert_in.header.command_id =3D
+> > WIRED_VERIFY_RECEIVER_CERT;
+> > > > +	verify_rxcert_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	verify_rxcert_in.header.buffer_len =3D
+> > > > +
+> > > > 	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
+> > > > +
+> > > > +	verify_rxcert_in.port.integrated_port_type =3D data->port_type;
+> > > > +	verify_rxcert_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	verify_rxcert_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	verify_rxcert_in.cert_rx =3D rx_cert->cert_rx;
+> > > > +	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx,
+> > HDCP_2_2_RRX_LEN);
+> > > > +	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps,
+> > > > +HDCP_2_2_RXCAPS_LEN);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_rxcert_in,
+> > > > +				       sizeof(verify_rxcert_in),
+> > > > +				       (u8 *)&verify_rxcert_out,
+> > > > +				       sizeof(verify_rxcert_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed:
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (verify_rxcert_out.header.status !=3D FW_HDCP_STATUS_SUCCESS)
+> > {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_VERIFY_RECEIVER_CERT,
+> > > > +			    verify_rxcert_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	*km_stored =3D !!verify_rxcert_out.km_stored;
+> > > > +	if (verify_rxcert_out.km_stored) {
+> > > > +		ek_pub_km->msg_id =3D HDCP_2_2_AKE_STORED_KM;
+> > > > +		*msg_sz =3D sizeof(struct hdcp2_ake_stored_km);
+> > > > +	} else {
+> > > > +		ek_pub_km->msg_id =3D HDCP_2_2_AKE_NO_STORED_KM;
+> > > > +		*msg_sz =3D sizeof(struct hdcp2_ake_no_stored_km);
+> > > > +	}
+> > > > +
+> > > > +	memcpy(ek_pub_km->e_kpub_km, &verify_rxcert_out.ekm_buff,
+> > > > +	       sizeof(verify_rxcert_out.ekm_buff));
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data
+> > *data,
+> > > > +		       struct hdcp2_ake_send_hprime *rx_hprime) {
+> > > > +	struct wired_cmd_ake_send_hprime_in send_hprime_in =3D { { 0 } };
+> > > > +	struct wired_cmd_ake_send_hprime_out send_hprime_out =3D { { 0 }
+> > };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !rx_hprime)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	send_hprime_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	send_hprime_in.header.command_id =3D WIRED_AKE_SEND_HPRIME;
+> > > > +	send_hprime_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	send_hprime_in.header.buffer_len =3D
+> > > > +WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
+> > > > +
+> > > > +	send_hprime_in.port.integrated_port_type =3D data->port_type;
+> > > > +	send_hprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	send_hprime_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
+> > > > +	       HDCP_2_2_H_PRIME_LEN);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&send_hprime_in,
+> > > > +				       sizeof(send_hprime_in),
+> > > > +				       (u8 *)&send_hprime_out,
+> > > > +				       sizeof(send_hprime_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (send_hprime_out.header.status !=3D FW_HDCP_STATUS_SUCCESS)
+> > {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_AKE_SEND_HPRIME,
+> > > > send_hprime_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_store_pairing_info(struct device *dev, struct
+> > > > +hdcp_port_data
+> > *data,
+> > > > +			    struct hdcp2_ake_send_pairing_info *pairing_info)
+> > {
+> > > > +	struct wired_cmd_ake_send_pairing_info_in pairing_info_in =3D { {
+> > > > +0 }
+> > };
+> > > > +	struct wired_cmd_ake_send_pairing_info_out pairing_info_out =3D {
+> > > > +{
+> > 0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !pairing_info)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	pairing_info_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	pairing_info_in.header.command_id =3D
+> > WIRED_AKE_SEND_PAIRING_INFO;
+> > > > +	pairing_info_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	pairing_info_in.header.buffer_len =3D
+> > > > +
+> > > > 	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
+> > > > +
+> > > > +	pairing_info_in.port.integrated_port_type =3D data->port_type;
+> > > > +	pairing_info_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	pairing_info_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
+> > > > +	       HDCP_2_2_E_KH_KM_LEN);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&pairing_info_in,
+> > > > +				       sizeof(pairing_info_in),
+> > > > +				       (u8 *)&pairing_info_out,
+> > > > +				       sizeof(pairing_info_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (pairing_info_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. Status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_AKE_SEND_PAIRING_INFO,
+> > > > +			    pairing_info_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_initiate_locality_check(struct device *dev,
+> > > > +				 struct hdcp_port_data *data,
+> > > > +				 struct hdcp2_lc_init *lc_init_data) {
+> > > > +	struct wired_cmd_init_locality_check_in lc_init_in =3D { { 0 } };
+> > > > +	struct wired_cmd_init_locality_check_out lc_init_out =3D { { 0 } =
+};
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !lc_init_data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	lc_init_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	lc_init_in.header.command_id =3D WIRED_INIT_LOCALITY_CHECK;
+> > > > +	lc_init_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	lc_init_in.header.buffer_len =3D
+> > > > +WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
+> > > > +
+> > > > +	lc_init_in.port.integrated_port_type =3D data->port_type;
+> > > > +	lc_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	lc_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder=
+;
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&lc_init_in,
+> > sizeof(lc_init_in),
+> > > > +				       (u8 *)&lc_init_out, sizeof(lc_init_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (lc_init_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_INIT_LOCALITY_CHECK,
+> > > > lc_init_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	lc_init_data->msg_id =3D HDCP_2_2_LC_INIT;
+> > > > +	memcpy(lc_init_data->r_n, lc_init_out.r_n, HDCP_2_2_RN_LEN);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data
+> > *data,
+> > > > +		       struct hdcp2_lc_send_lprime *rx_lprime) {
+> > > > +	struct wired_cmd_validate_locality_in verify_lprime_in =3D { { 0 =
+} };
+> > > > +	struct wired_cmd_validate_locality_out verify_lprime_out =3D { { =
+0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !rx_lprime)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	verify_lprime_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	verify_lprime_in.header.command_id =3D
+> > WIRED_VALIDATE_LOCALITY;
+> > > > +	verify_lprime_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	verify_lprime_in.header.buffer_len =3D
+> > > > +
+> > > > 	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
+> > > > +
+> > > > +	verify_lprime_in.port.integrated_port_type =3D data->port_type;
+> > > > +	verify_lprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	verify_lprime_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
+> > > > +	       HDCP_2_2_L_PRIME_LEN);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_lprime_in,
+> > > > +				       sizeof(verify_lprime_in),
+> > > > +				       (u8 *)&verify_lprime_out,
+> > > > +				       sizeof(verify_lprime_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (verify_lprime_out.header.status !=3D FW_HDCP_STATUS_SUCCESS)
+> > {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_VALIDATE_LOCALITY,
+> > > > +			    verify_lprime_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int gsc_hdcp_get_session_key(struct device *dev,
+> > > > +				    struct hdcp_port_data *data,
+> > > > +				    struct hdcp2_ske_send_eks *ske_data) {
+> > > > +	struct wired_cmd_get_session_key_in get_skey_in =3D { { 0 } };
+> > > > +	struct wired_cmd_get_session_key_out get_skey_out =3D { { 0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data || !ske_data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	get_skey_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	get_skey_in.header.command_id =3D WIRED_GET_SESSION_KEY;
+> > > > +	get_skey_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	get_skey_in.header.buffer_len =3D
+> > > > WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
+> > > > +
+> > > > +	get_skey_in.port.integrated_port_type =3D data->port_type;
+> > > > +	get_skey_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	get_skey_in.port.attached_transcoder =3D (u8)data-
+> > >hdcp_transcoder;
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&get_skey_in,
+> > > > sizeof(get_skey_in),
+> > > > +				       (u8 *)&get_skey_out,
+> > sizeof(get_skey_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (get_skey_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_GET_SESSION_KEY,
+> > get_skey_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	ske_data->msg_id =3D HDCP_2_2_SKE_SEND_EKS;
+> > > > +	memcpy(ske_data->e_dkey_ks, get_skey_out.e_dkey_ks,
+> > > > +	       HDCP_2_2_E_DKEY_KS_LEN);
+> > > > +	memcpy(ske_data->riv, get_skey_out.r_iv, HDCP_2_2_RIV_LEN);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+> > > > +					 struct hdcp_port_data *data,
+> > > > +					 struct
+> > hdcp2_rep_send_receiverid_list
+> > > > +							*rep_topology,
+> > > > +					 struct hdcp2_rep_send_ack
+> > > > +							*rep_send_ack)
+> > > > +{
+> > > > +	struct wired_cmd_verify_repeater_in verify_repeater_in =3D { { 0 =
+} };
+> > > > +	struct wired_cmd_verify_repeater_out verify_repeater_out =3D { { =
+0
+> > > > +}
+> > };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !rep_topology || !rep_send_ack || !data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	verify_repeater_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	verify_repeater_in.header.command_id =3D
+> > WIRED_VERIFY_REPEATER;
+> > > > +	verify_repeater_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	verify_repeater_in.header.buffer_len =3D
+> > > > +
+> > > > 	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
+> > > > +
+> > > > +	verify_repeater_in.port.integrated_port_type =3D data->port_type;
+> > > > +	verify_repeater_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	verify_repeater_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
+> > > > +	       HDCP_2_2_RXINFO_LEN);
+> > > > +	memcpy(verify_repeater_in.seq_num_v, rep_topology-
+> > >seq_num_v,
+> > > > +	       HDCP_2_2_SEQ_NUM_LEN);
+> > > > +	memcpy(verify_repeater_in.v_prime, rep_topology->v_prime,
+> > > > +	       HDCP_2_2_V_PRIME_HALF_LEN);
+> > > > +	memcpy(verify_repeater_in.receiver_ids, rep_topology-
+> > >receiver_ids,
+> > > > +	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_repeater_in,
+> > > > +				       sizeof(verify_repeater_in),
+> > > > +				       (u8 *)&verify_repeater_out,
+> > > > +				       sizeof(verify_repeater_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (verify_repeater_out.header.status !=3D
+> > FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_VERIFY_REPEATER,
+> > > > +			    verify_repeater_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	memcpy(rep_send_ack->v, verify_repeater_out.v,
+> > > > +	       HDCP_2_2_V_PRIME_HALF_LEN);
+> > > > +	rep_send_ack->msg_id =3D HDCP_2_2_REP_SEND_ACK;
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int gsc_hdcp_verify_mprime(struct device *dev,
+> > > > +				  struct hdcp_port_data *data,
+> > > > +				  struct hdcp2_rep_stream_ready
+> > *stream_ready) {
+> > > > +	struct wired_cmd_repeater_auth_stream_req_in
+> > *verify_mprime_in;
+> > > > +	struct wired_cmd_repeater_auth_stream_req_out
+> > > > +					verify_mprime_out =3D { { 0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +	size_t cmd_size;
+> > > > +
+> > > > +	if (!dev || !stream_ready || !data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	cmd_size =3D struct_size(verify_mprime_in, streams, data->k);
+> > > > +	if (cmd_size =3D=3D SIZE_MAX)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	verify_mprime_in =3D kzalloc(cmd_size, GFP_KERNEL);
+> > > > +	if (!verify_mprime_in)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	verify_mprime_in->header.api_version =3D HDCP_API_VERSION;
+> > > > +	verify_mprime_in->header.command_id =3D
+> > > > WIRED_REPEATER_AUTH_STREAM_REQ;
+> > > > +	verify_mprime_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	verify_mprime_in->header.buffer_len =3D cmd_size  -
+> > > > +sizeof(verify_mprime_in->header);
+> > > > +
+> > > > +	verify_mprime_in->port.integrated_port_type =3D data->port_type;
+> > > > +	verify_mprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	verify_mprime_in->port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime,
+> > > > HDCP_2_2_MPRIME_LEN);
+> > > > +	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data-
+> > > > >seq_num_m);
+> > > > +
+> > > > +	memcpy(verify_mprime_in->streams, data->streams,
+> > > > +	       array_size(data->k, sizeof(*data->streams)));
+> > > > +
+> > > > +	verify_mprime_in->k =3D cpu_to_be16(data->k);
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)verify_mprime_in,
+> > cmd_size,
+> > > > +				       (u8 *)&verify_mprime_out,
+> > > > +				       sizeof(verify_mprime_out));
+> > > > +	kfree(verify_mprime_in);
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (verify_mprime_out.header.status !=3D
+> > FW_HDCP_STATUS_SUCCESS) {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_REPEATER_AUTH_STREAM_REQ,
+> > > > +			    verify_mprime_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int gsc_hdcp_enable_authentication(struct device *dev,
+> > > > +					  struct hdcp_port_data *data) {
+> > > > +	struct wired_cmd_enable_auth_in enable_auth_in =3D { { 0 } };
+> > > > +	struct wired_cmd_enable_auth_out enable_auth_out =3D { { 0 } };
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	enable_auth_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	enable_auth_in.header.command_id =3D WIRED_ENABLE_AUTH;
+> > > > +	enable_auth_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	enable_auth_in.header.buffer_len =3D
+> > > > WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
+> > > > +
+> > > > +	enable_auth_in.port.integrated_port_type =3D data->port_type;
+> > > > +	enable_auth_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	enable_auth_in.port.attached_transcoder =3D (u8)data-
+> > >hdcp_transcoder;
+> > > > +	enable_auth_in.stream_type =3D data->streams[0].stream_type;
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&enable_auth_in,
+> > > > +				       sizeof(enable_auth_in),
+> > > > +				       (u8 *)&enable_auth_out,
+> > > > +				       sizeof(enable_auth_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (enable_auth_out.header.status !=3D FW_HDCP_STATUS_SUCCESS)
+> > {
+> > > > +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status:
+> > > > 0x%X\n",
+> > > > +			    WIRED_ENABLE_AUTH,
+> > enable_auth_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +gsc_hdcp_close_session(struct device *dev, struct hdcp_port_data
+> > > > +*data) {
+> > > > +	struct wired_cmd_close_session_in session_close_in =3D { { 0 } };
+> > > > +	struct wired_cmd_close_session_out session_close_out =3D { { 0 } =
+};
+> > > > +	struct drm_i915_private *i915;
+> > > > +	ssize_t byte;
+> > > > +
+> > > > +	if (!dev || !data)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	i915 =3D kdev_to_i915(dev);
+> > > > +	if (!i915) {
+> > > > +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +
+> > > > +	session_close_in.header.api_version =3D HDCP_API_VERSION;
+> > > > +	session_close_in.header.command_id =3D WIRED_CLOSE_SESSION;
+> > > > +	session_close_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
+> > > > +	session_close_in.header.buffer_len =3D
+> > > > +				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
+> > > > +
+> > > > +	session_close_in.port.integrated_port_type =3D data->port_type;
+> > > > +	session_close_in.port.physical_port =3D (u8)data->hdcp_ddi;
+> > > > +	session_close_in.port.attached_transcoder =3D
+> > > > +(u8)data->hdcp_transcoder;
+> > > > +
+> > > > +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&session_close_in,
+> > > > +				       sizeof(session_close_in),
+> > > > +				       (u8 *)&session_close_out,
+> > > > +				       sizeof(session_close_out));
+> > > > +	if (byte < 0) {
+> > > > +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send
+> > failed.
+> > > > %zd\n", byte);
+> > > > +		return byte;
+> > > > +	}
+> > > > +
+> > > > +	if (session_close_out.header.status !=3D FW_HDCP_STATUS_SUCCESS)
+> > {
+> > > > +		drm_dbg_kms(&i915->drm, "Session Close Failed. status:
+> > 0x%X\n",
+> > > > +			    session_close_out.header.status);
+> > > > +		return -EIO;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static const struct i915_hdcp_ops gsc_hdcp_ops =3D {
+> > > > +	.initiate_hdcp2_session =3D gsc_hdcp_initiate_session,
+> > > > +	.verify_receiver_cert_prepare_km =3D
+> > > > +				gsc_hdcp_verify_receiver_cert_prepare_km,
+> > > > +	.verify_hprime =3D gsc_hdcp_verify_hprime,
+> > > > +	.store_pairing_info =3D gsc_hdcp_store_pairing_info,
+> > > > +	.initiate_locality_check =3D gsc_hdcp_initiate_locality_check,
+> > > > +	.verify_lprime =3D gsc_hdcp_verify_lprime,
+> > > > +	.get_session_key =3D gsc_hdcp_get_session_key,
+> > > > +	.repeater_check_flow_prepare_ack =3D
+> > > > +
+> > 	gsc_hdcp_repeater_check_flow_prepare_ack,
+> > > > +	.verify_mprime =3D gsc_hdcp_verify_mprime,
+> > > > +	.enable_hdcp_authentication =3D gsc_hdcp_enable_authentication,
+> > > > +	.close_hdcp_session =3D gsc_hdcp_close_session, };
+> > > > +
+> > > >  /*This function helps allocate memory for the command that we
+> > > > will send to gsc cs */  static int
+> > > > intel_hdcp_gsc_initialize_message(struct
+> > > drm_i915_private *i915,
+> > > >  					     struct intel_hdcp_gsc_message
+> > > > *hdcp_message) @@ -58,7 +663,7 @@ static int
+> > > > intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+> > > >  	return err;
+> > > >  }
+> > > >
+> > > > -int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
+> > > > +static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private
+> > > > +*i915)
+> > > >  {
+> > > >  	struct intel_hdcp_gsc_message *hdcp_message;
+> > > >  	int ret;
+> > > > @@ -80,7 +685,7 @@ int intel_hdcp_gsc_hdcp2_init(struct
+> > > > drm_i915_private
+> > > *i915)
+> > > >  	return ret;
+> > > >  }
+> > > >
+> > > > -void intel_hdcp_gsc_free_message(struct drm_i915_private *i915)
+> > > > +static void intel_hdcp_gsc_free_message(struct drm_i915_private
+> > > > +*i915)
+> > > >  {
+> > > >  	struct intel_hdcp_gsc_message *hdcp_message =3D
+> > > >  					i915->display.hdcp.hdcp_message;
+> > @@ -
+> > > 89,6 +694,31 @@ void
+> > > > intel_hdcp_gsc_free_message(struct drm_i915_private
+> > > > *i915)
+> > > >  	kfree(hdcp_message);
+> > > >  }
+> > > >
+> > > > +int intel_hdcp_gsc_init(struct drm_i915_private *i915) {
+> > > > +	struct i915_hdcp_master *data;
+> > > > +	int ret;
+> > > > +
+> > > > +	data =3D kzalloc(sizeof(struct i915_hdcp_master), GFP_KERNEL);
+> > > > +	if (!data)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	mutex_lock(&i915->display.hdcp.comp_mutex);
+> > > > +	i915->display.hdcp.master =3D data;
+> > > > +	i915->display.hdcp.master->hdcp_dev =3D i915->drm.dev;
+> > > > +	i915->display.hdcp.master->ops =3D &gsc_hdcp_ops;
+> > > > +	ret =3D intel_hdcp_gsc_hdcp2_init(i915);
+> > > > +	mutex_unlock(&i915->display.hdcp.comp_mutex);
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +
+> > > > +void intel_hdcp_gsc_fini(struct drm_i915_private *i915) {
+> > > > +	intel_hdcp_gsc_free_message(i915);
+> > > > +	kfree(i915->display.hdcp.master); }
+> > > > +
+> > > >  static int intel_gsc_send_sync(struct drm_i915_private *i915,
+> > > >  			       struct intel_gsc_mtl_header *header, u64 addr,
+> > > >  			       size_t msg_out_len)
+> > > > @@ -133,7 +763,8 @@ static int intel_gsc_send_sync(struct
+> > > > drm_i915_private *i915,
+> > > >   * will follow
+> > > >   */
+> > > >  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8
+> > *msg_in,
+> > > > -				size_t msg_in_len, u8 *msg_out, size_t
+> > > > msg_out_len)
+> > > > +				size_t msg_in_len, u8 *msg_out,
+> > > > +				size_t msg_out_len)
+> > > >  {
+> > > >  	struct intel_gt *gt =3D i915->media_gt;
+> > > >  	struct intel_gsc_mtl_header *header; diff --git
+> > > > a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> > > > b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> > > > index 09ffd7ec02cd..5cc9fd2e88f6 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> > > > @@ -16,8 +16,11 @@ struct intel_hdcp_gsc_message {
+> > > >  	void *hdcp_cmd;
+> > > >  };
+> > > >
+> > > > +bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
+> > > >  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8
+> > *msg_in,
+> > > >  				size_t msg_in_len, u8 *msg_out,
+> > > >  				size_t msg_out_len);
+> > > > +int intel_hdcp_gsc_init(struct drm_i915_private *i915); void
+> > > > +intel_hdcp_gsc_fini(struct drm_i915_private *i915);
+> > > >
+> > > >  #endif /* __INTEL_HDCP_GCS_H__ */
+> > > > --
+> > > > 2.25.1
+
