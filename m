@@ -1,78 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F946BF001
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:43:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E975C6BEFFD
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:42:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F9F10EF5F;
-	Fri, 17 Mar 2023 17:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2BA10E3F4;
+	Fri, 17 Mar 2023 17:42:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE1510EF5F
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 17:43:01 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id ek18so23380955edb.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 10:43:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1679074980;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=juFDL1t+0yx3APjFMS4e9m1CxbDK324iou62xX9HrZ0=;
- b=NrMkHPI/1sCbp+kVBJdSrVRHGhstjuhJx8JsuOAJUDWTq5FMpzxrc+eyzjBDdjyCrn
- Aef0tO3pW3aYvH4mDo6hNHxG5ZSmgOUTPlL4Nj37692tYHdDUX6YDNroUPs9AJGVfWCU
- d9jUyh4VO6yjVoLr+W7ztk/TwkUMJBeQRL77g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679074980;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=juFDL1t+0yx3APjFMS4e9m1CxbDK324iou62xX9HrZ0=;
- b=epnINXQVLsry+kw1GTztrP98g68acJsU5lVaI5PU8y5tlAyw9kmjG4omS5e6v2mRzE
- sWUtMp3DAxHZ2GheORmcd0Sy5eWXVGo6m9vPcYOtw/Rg2SrIl8HJSaBhxUAhHGom36AY
- i/wA3ygHdr4FaeeN8aPk7Xg8Ny3rYIF+vECIyUgV2JHgy0VUPcO3AeHZMh+yUmP50oUo
- vCbbkPblMm6jaKg73DQUt+ImXlrDn0Xa4BBzXs+ogoX7fPKlLtMvBgE5W26RNUyGGjcs
- cDHY/7wZUF0MYAPu+Ny7ivtz502nlSzj3fEZk/E2hvowuovr1zC+9L2mqt8UztgCkzLm
- Wk8g==
-X-Gm-Message-State: AO0yUKWM/OkQtInARge9bf2SoYKbiAuGEHrZxUzMUxdGxOc5hO7h8opv
- JSESEAlGRgdaTrFaxYSsQ5ohkB1HRUcDsYj1B2G+3Q==
-X-Google-Smtp-Source: AK7set/c2Up3YIiPD0fhgFZN6KJU4f6ZVHs11pnzg2qlLrNvRJjGARO8BKOV1k0iio+1/DuTJesT9g==
-X-Received: by 2002:a17:906:3688:b0:877:a9d2:e5e9 with SMTP id
- a8-20020a170906368800b00877a9d2e5e9mr152918ejc.42.1679074979988; 
- Fri, 17 Mar 2023 10:42:59 -0700 (PDT)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com.
- [209.85.208.45]) by smtp.gmail.com with ESMTPSA id
- h19-20020a1709070b1300b008ec4333fd65sm1206051ejl.188.2023.03.17.10.42.55
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 17 Mar 2023 10:42:57 -0700 (PDT)
-Received: by mail-ed1-f45.google.com with SMTP id x13so23433743edd.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 10:42:55 -0700 (PDT)
-X-Received: by 2002:a50:ce54:0:b0:4fa:794a:c0cc with SMTP id
- k20-20020a50ce54000000b004fa794ac0ccmr2222273edj.2.1679074975032; Fri, 17 Mar
- 2023 10:42:55 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3580B10E3F4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 17:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679074971; x=1710610971;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=KXprC2RaULrCA7El3hDzJlGZ5IxCS+Iwth0TahKiG5w=;
+ b=GNGf2nkYodzoGW+sIcK/eSdyzonXGBgFOrx4yymtT6HqyLgfgE+pMnJJ
+ YINVzKmnvhMnZRZPv/FFCc+j2Ia0tFhSFsvoH2EyWtnCwi1xtvkppYv8c
+ B7fIyCJlOln2nRQeEheBl2eCvp4MjjDxOG993TUMpeJNrYMbkF/lyULYv
+ f0h0L/KePA28dF2cgpz9naVgy73PYxqCcP67ecFbHvkETTUsoIRdzMASo
+ lqksw9Wgn2UPcCj5RpuSSu+epVO+QGrRstHpK168Bmsyg1OAAFANl3vWH
+ w/lvD1WUceO464QaLMuL0MWTsT1Hc5HIQUD2MKi3zQ0czRQ6FxAoTFWeo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="337025285"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="337025285"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 10:42:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="682760861"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="682760861"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 10:42:49 -0700
+Date: Fri, 17 Mar 2023 19:42:45 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <ZBSmleJKK31MtF5M@ideak-desk.fi.intel.com>
+References: <20230316202549.1764024-1-radhakrishna.sripada@intel.com>
+ <20230316202549.1764024-2-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-References: <20230307212223.7e49384a@gandalf.local.home>
- <20230307212615.7a099103@gandalf.local.home>
- <b919b550-6da8-f9f0-a0eb-0fd8af513817@amd.com>
- <20230308074333.49546088@gandalf.local.home>
- <980021d5-09f7-9fc3-2726-44884a57822f@gmail.com>
- <CAM0jSHPf5u4=GGWm6x-zVkLA_LScAxq371ny2NoozuNjHfQefQ@mail.gmail.com>
- <2b7fe203-82f5-2726-cd64-01c7421560d3@amd.com>
- <20230315162011.351d0f71@gandalf.local.home>
- <20230315202133.7cb1a0fe@gandalf.local.home>
- <20230315202242.581c67bf@gandalf.local.home>
-In-Reply-To: <20230315202242.581c67bf@gandalf.local.home>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Fri, 17 Mar 2023 10:42:38 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjH83GOhjDaVnTUYfSf0XOLp-jpFACLSd8Uc59GzaCZug@mail.gmail.com>
-Message-ID: <CAHk-=wjH83GOhjDaVnTUYfSf0XOLp-jpFACLSd8Uc59GzaCZug@mail.gmail.com>
-To: Steven Rostedt <rostedt@goodmis.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [BUG 6.3-rc1] Bad lock in ttm_bo_delayed_delete()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230316202549.1764024-2-radhakrishna.sripada@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Use separate "DC off" power
+ well for ADL-P and DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,24 +59,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 15, 2023 at 5:22=E2=80=AFPM Steven Rostedt <rostedt@goodmis.org=
-> wrote:
->
-> I hope that this gets in by -rc3, as I want to start basing my next branc=
-h
-> on that tag.
+On Thu, Mar 16, 2023 at 01:25:45PM -0700, Radhakrishna Sripada wrote:
+> From: Matt Roper <matthew.d.roper@intel.com>
+> 
+> Although ADL-P and DG2 both use the same general power well setup, the
+> DC5/DC6 requirements are slightly different which means each platform
+> should have its own "DC off" power well.
+> 
+> DG2 (i.e., Xe_HPD IP) requires that DC5 be disabled whenever PG2 is
+> active.  However ADL-P (i.e., Xe_LPD IP) only requires DC5/DC6 to be
+> disabled when the PGC or PGD subwells are active; we should be able to
+> remain in these DC states when PGB and general PG2 functionality is in
+> use.
+> 
+> Bspec: 49193
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>  .../i915/display/intel_display_power_map.c    | 41 +++++++++++++++++--
+>  1 file changed, 38 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> index 6645eb1911d8..d9e02cc9cf3c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> @@ -1301,7 +1301,8 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_2,
+>   */
+>  
+>  I915_DECL_PW_DOMAINS(xelpd_pwdoms_dc_off,
+> -	XELPD_PW_2_POWER_DOMAINS,
+> +	XELPD_PW_C_POWER_DOMAINS,
+> +	XELPD_PW_D_POWER_DOMAINS,
+>  	POWER_DOMAIN_PORT_DSI,
+>  	POWER_DOMAIN_AUDIO_MMIO,
+>  	POWER_DOMAIN_AUX_A,
+> @@ -1310,14 +1311,38 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_dc_off,
+>  	POWER_DOMAIN_DC_OFF,
+>  	POWER_DOMAIN_INIT);
+>  
+> -static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+> +static const struct i915_power_well_desc xelpd_power_wells_dcoff[] = {
 
-My tree should have it now as commit c00133a9e87e ("drm/ttm: drop
-extra ttm_bo_put in ttm_bo_cleanup_refs").
+Nit: Here and in the xehpd defintion, s/dcoff/dc_off/ to match other platforms.
 
-                Linus
+>  	{
+>  		.instances = &I915_PW_INSTANCES(
+>  			I915_PW("DC_off", &xelpd_pwdoms_dc_off,
+>  				.id = SKL_DISP_DC_OFF),
+>  		),
+>  		.ops = &gen9_dc_off_power_well_ops,
+> -	}, {
+> +	}
+> +};
+> +
+> +I915_DECL_PW_DOMAINS(xehpd_pwdoms_dc_off,
+> +	XELPD_PW_2_POWER_DOMAINS,
+> +	POWER_DOMAIN_PORT_DSI,
+> +	POWER_DOMAIN_AUDIO_MMIO,
+> +	POWER_DOMAIN_AUX_A,
+> +	POWER_DOMAIN_AUX_B,
+> +	POWER_DOMAIN_MODESET,
+> +	POWER_DOMAIN_DC_OFF,
+> +	POWER_DOMAIN_INIT);
+> +
+> +static const struct i915_power_well_desc xehpd_power_wells_dcoff[] = {
+> +	{
+> +		.instances = &I915_PW_INSTANCES(
+> +			I915_PW("DC_off", &xehpd_pwdoms_dc_off,
+> +				.id = SKL_DISP_DC_OFF),
+> +		),
+> +		.ops = &gen9_dc_off_power_well_ops,
+> +	}
+> +};
+
+Could you move the xehpd definitions to precede xehpd_power_wells[]?
+
+Patches 1, 2 look ok to me:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> +
+> +static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+> +	{
+>  		.instances = &I915_PW_INSTANCES(
+>  			I915_PW("PW_2", &xelpd_pwdoms_pw_2,
+>  				.hsw.idx = ICL_PW_CTL_IDX_PW_2,
+> @@ -1400,6 +1425,14 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+>  static const struct i915_power_well_desc_list xelpd_power_wells[] = {
+>  	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
+>  	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
+> +	I915_PW_DESCRIPTORS(xelpd_power_wells_dcoff),
+> +	I915_PW_DESCRIPTORS(xelpd_power_wells_main),
+> +};
+> +
+> +static const struct i915_power_well_desc_list xehpd_power_wells[] = {
+> +	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
+> +	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
+> +	I915_PW_DESCRIPTORS(xehpd_power_wells_dcoff),
+>  	I915_PW_DESCRIPTORS(xelpd_power_wells_main),
+>  };
+>  
+> @@ -1624,6 +1657,8 @@ int intel_display_power_map_init(struct i915_power_domains *power_domains)
+>  
+>  	if (DISPLAY_VER(i915) >= 14)
+>  		return set_power_wells(power_domains, xelpdp_power_wells);
+> +	else if (IS_DG2(i915))
+> +		return set_power_wells(power_domains, xehpd_power_wells);
+>  	else if (DISPLAY_VER(i915) >= 13)
+>  		return set_power_wells(power_domains, xelpd_power_wells);
+>  	else if (IS_DG1(i915))
+> -- 
+> 2.34.1
+> 
