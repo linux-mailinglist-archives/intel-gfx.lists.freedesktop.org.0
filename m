@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A3F6BF062
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 19:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1333F6BF063
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 19:07:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2978510E0B9;
-	Fri, 17 Mar 2023 18:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 636CE10E11D;
+	Fri, 17 Mar 2023 18:07:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C1DB10E06E;
- Fri, 17 Mar 2023 18:07:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5F0210E11D;
+ Fri, 17 Mar 2023 18:07:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 98031A3ECB;
- Fri, 17 Mar 2023 18:07:26 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2CF6A3ECB;
+ Fri, 17 Mar 2023 18:07:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 17 Mar 2023 18:07:26 -0000
-Message-ID: <167907644662.12995.5262616887731772840@emeril.freedesktop.org>
+Date: Fri, 17 Mar 2023 18:07:28 -0000
+Message-ID: <167907644892.12996.15353092241516153077@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230317134144.223936-1-jani.nikula@intel.com>
 In-Reply-To: <20230317134144.223936-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/psr=3A_move_PSR_debugfs?=
- =?utf-8?q?_to_intel=5Fpsr=2Ec?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/3=5D_drm/i915/psr=3A_move_PSR_debugfs_t?=
+ =?utf-8?q?o_intel=5Fpsr=2Ec?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
