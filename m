@@ -1,49 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CDA6BE699
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 11:24:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228DE6BE6EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 11:34:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D83FC10EEC8;
-	Fri, 17 Mar 2023 10:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD1510EECB;
+	Fri, 17 Mar 2023 10:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0AD10EEC8
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 10:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679048669; x=1710584669;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cph4lTnjCUK7HgWho3PKDNYKPggPypsAV0cHfdCTh9I=;
- b=UK9aOX/Qt99fPMVUV2zWA4WXKiPE9lgUIp2DBNCrQT7z6UIKoF7uHIPU
- S1L9gi6uoQg/cW+PLhHdYcULyquJ9V7eE55nHzcvxe6EHxIt9vyVLgKdz
- 7dKB43t/UbDzhsvByGiJY0PpeBSsIlPbL2C0z3E13EF83/hw+mYiacDoI
- YcvNY0VpwekDLjOl+xjq62p4EpuOXHsudaF6iNNZazayxVf+/lBJVlhFj
- 3htSe7zF+ytQKKCiHi044VQbgEilaTH+Y9204bPrQ6HOPXblZFUQbDdei
- wdt0a/p9N/A/NxaD9o1WeaahXXUjNlMosc+O9qVcaHGgWc7KStbT591i4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="339770632"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="339770632"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 03:24:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="1009588882"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="1009588882"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga005.fm.intel.com with ESMTP; 17 Mar 2023 03:24:27 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Mar 2023 12:24:26 +0200
-Message-Id: <20230317102426.14810-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
+ [IPv6:2a00:1450:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E254110EEC8;
+ Fri, 17 Mar 2023 10:34:20 +0000 (UTC)
+Received: by mail-lf1-x133.google.com with SMTP id bi9so5859527lfb.12;
+ Fri, 17 Mar 2023 03:34:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679049259;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=dKIcPjerwo9Qxhcf4rruTzBCBqvgWlgWq1SyhjCF46U=;
+ b=VbvFgLA5ylxCZVO0FYIh6rQzx9zwNTVYuydIgL5Za4303a+iLVXbdC9Q8U/lRm1IiL
+ RYBAs7RpkiWX+Uu4XXExHo4NC3qbsVtrafJvcEN1xYdN+CAh3XlYhK+cwaNvqtNjZiJd
+ g45vbh1c1K9jeA6HztbxcibHKFLWzzNGzp+A3gGrV7eIswn78SKGMaXD82A6Y6ZmIBAD
+ LcXHHxBbJ3qYpLsL69vZL/+iyOPCYlwXI4vuwrVjcA0YwiEsTxhIBZivcbxpaUNpGUZu
+ m/nATpUu42/VH5blaHFD2TjglMTT581J5zUSUonWhu6pcFiYs80gGe4iOVQadb02O9qH
+ 90OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679049259;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=dKIcPjerwo9Qxhcf4rruTzBCBqvgWlgWq1SyhjCF46U=;
+ b=PAzlmC1g1OkTBRWqLMRVG6iwXXIXOhhaIzE1fH2QRN6zTb4BLAK8b06l3EQ9sob0i2
+ SvY72Pf7JfekSDwizEA3q5DCRvEOY7fSmnc6kDR6AbdeS8YURy6n7x2KTZFp3+cwPGuo
+ 3s4M0o0qngsGTj4SLSOtlQCWlPLeI8BRJskLquF27FUampuGmxgNc9X1Ns5QfrEPDSgB
+ Mb5R/5Q+TTnXKdptTVdiYZKBRGjR0ApV8zdbGsK7LGKUQtJD0DZ0FqEUJjJiW46Y4UsO
+ EwYw6+lv3lUKr+9vcPXRUZd4UqJrsXOCq/jcdT94WaNy7I+rVK6RuDBLtHalPlnzN/Ar
+ Xa/w==
+X-Gm-Message-State: AO0yUKWdeXbXNTkh9XWNLeM0NxlmnNOEi8d51MnM/ZOGPij8ZgmdpJYC
+ Z11+tOhFA9vVQPj7zV77TAg=
+X-Google-Smtp-Source: AK7set+s3bOyPdw6FeEEkGZztjF4eHnQIYMzlFq2JIy+eymHSZfHxt47k/QdPVYXpT9e2JZ6RbwTuA==
+X-Received: by 2002:a19:740f:0:b0:4e6:3e36:cb35 with SMTP id
+ v15-20020a19740f000000b004e63e36cb35mr3706366lfe.41.1679049258893; 
+ Fri, 17 Mar 2023 03:34:18 -0700 (PDT)
+Received: from gmail.com (host-95-193-64-255.mobileonline.telia.com.
+ [95.193.64.255]) by smtp.gmail.com with ESMTPSA id
+ d23-20020ac24c97000000b004d61af6771dsm325098lfl.41.2023.03.17.03.34.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Mar 2023 03:34:18 -0700 (PDT)
+Date: Fri, 17 Mar 2023 11:34:16 +0100
+From: Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <ZBRCKIl+jdkohbVB@gmail.com>
+References: <20230208211016.7034-1-ville.syrjala@linux.intel.com>
+ <20230313163311.11379-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Communicate display power
- demands to pcode more accurately
+In-Reply-To: <20230313163311.11379-1-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm: Introduce plane SIZE_HINTS
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,295 +75,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display to communicate display pipe count/CDCLK/voltage configuration
-to Pcode for more accurate power accounting for gen >= 12.
-Existing sequence is only sending the voltage value to the Pcode.
-Adding new sequence with current cdclk associate with voltage value masking.
-Adding pcode request when any pipe power well will disable or enable.
+On Mon, Mar 13, 2023 at 06:33:11PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Add a new immutable plane property by which a plane can advertise
+> a handful of recommended plane sizes. This would be mostly exposed
+> by cursor planes as a slightly more capable replacement for
+> the DRM_CAP_CURSOR_WIDTH/HEIGHT caps, which can only declare
+> a one size fits all limit for the whole device.
+> 
+> Currently eg. amdgpu/i915/nouveau just advertize the max cursor
+> size via the cursor size caps. But always using the max sized
+> cursor can waste a surprising amount of power, so a better
+> stragey is desirable.
+> 
+> Most other drivers don't specify any cursor size at all, in
+> which case the ioctl code just claims that 64x64 is a great
+> choice. Whether that is actually true is debatable.
+> 
+> A poll of various compositor developers informs us that
+> blindly probing with setcursor/atomic ioctl to determine
+> suitable cursor sizes is not acceptable, thus the
+> introduction of the new property to supplant the cursor
+> size caps. The compositor will now be free to select a
+> more optimal cursor size from the short list of options.
+> 
+> Note that the reported sizes (either via the property or the
+> caps) make no claims about things such as plane scaling. So
+> these things should only really be consulted for simple
+> "cursor like" use cases.
+> 
+> v2: Try to add some docs
+> v3: Specify that value 0 is reserved for future use (basic idea from Jonas)
+>     Drop the note about typical hardware (Pekka)
+> 
+> Cc: Simon Ser <contact@emersion.fr>
+> Cc: Jonas Ådahl <jadahl@redhat.com>
+> Cc: Daniel Stone <daniel@fooishbar.org>
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Acked-by: Harry Wentland <harry.wentland@amd.com>
+> Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/drm_mode_config.c |  7 ++++
+>  drivers/gpu/drm/drm_plane.c       | 53 +++++++++++++++++++++++++++++++
+>  include/drm/drm_mode_config.h     |  5 +++
+>  include/drm/drm_plane.h           |  4 +++
+>  include/uapi/drm/drm_mode.h       | 11 +++++++
+>  5 files changed, 80 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+> index 87eb591fe9b5..21860f94a18c 100644
+> --- a/drivers/gpu/drm/drm_mode_config.c
+> +++ b/drivers/gpu/drm/drm_mode_config.c
+> @@ -374,6 +374,13 @@ static int drm_mode_create_standard_properties(struct drm_device *dev)
+>  		return -ENOMEM;
+>  	dev->mode_config.modifiers_property = prop;
+>  
+> +	prop = drm_property_create(dev,
+> +				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
+> +				   "SIZE_HINTS", 0);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +	dev->mode_config.size_hints_property = prop;
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> index 24e7998d1731..d2a6fdff1a57 100644
+> --- a/drivers/gpu/drm/drm_plane.c
+> +++ b/drivers/gpu/drm/drm_plane.c
+> @@ -140,6 +140,26 @@
+>   *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there have been
+>   *     various bugs in this area with inconsistencies between the capability
+>   *     flag and per-plane properties.
+> + *
+> + * SIZE_HINTS:
+> + *     Blob property which contains the set of recommended plane size
+> + *     which can used for simple "cursor like" use cases (eg. no scaling).
+> + *     Using these hints frees userspace from extensive probing of
+> + *     supported plane sizes through atomic/setcursor ioctls.
+> + *
+> + *     For optimal usage userspace should pick the smallest size
+> + *     that satisfies its own requirements.
+> + *
+> + *     The blob contains an array of struct drm_plane_size_hint.
+> + *
+> + *     Drivers should only attach this property to planes that
+> + *     support a very limited set of sizes.
+> + *
+> + *     Note that property value 0 (ie. no blob) is reserved for potential
+> + *     future use. Current userspace is expected to ignore the property
+> + *     if the value is 0, and fall back to some other means (eg.
+> + *     &DRM_CAP_CURSOR_WIDTH and &DRM_CAP_CURSOR_HEIGHT) to determine
+> + *     the appropriate plane size to use.
 
-v2: - Make intel_cdclk_need_serialize static to make CI compiler happy.
-v3: - Removed redundant return(Jani Nikula)
-    - Changed intel_cdclk_power_usage_to_pcode_(pre|post)_notification to be
-      static and also naming to intel_cdclk_pcode_(pre|post)_notify(Jani Nikula)
-    - Changed u8 to be u16 for cdclk parameter in intel_pcode_notify function,
-      as according to BSpec it requires 10 bits(Jani Nikula)
-    - Replaced dev_priv's with i915's(Jani Nikula)
-    - Simplified expression in intel_cdclk_need_serialize(Jani Nikula)
-    - Removed redundant kernel-doc and indentation(Jani Nikula)
+Does this intend to mean userspace has the kernel's blessing on choosing
+an arbitrary size as long as it's smaller than &DRM_CAP_CURSOR_WIDTH x
+&DRM_CAP_CURSOR_HEIGHT?
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 156 +++++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h            |  14 ++
- 2 files changed, 159 insertions(+), 11 deletions(-)
+It's a bit to vague for me to make a confident interpretation whether I
+can, or whether I should pretend I didn't see SIZE_HINTS and apply the
+old logic, meaning only using the exact cap size.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 084a483f9776..fa739796c701 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1932,10 +1932,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 		 * NOOP - No Pcode communication needed for
- 		 * Display versions 14 and beyond
- 		 */;
--	else if (DISPLAY_VER(dev_priv) >= 11)
-+	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
- 		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
- 				      cdclk_config->voltage_level);
--	else
-+	if (DISPLAY_VER(dev_priv) < 11) {
- 		/*
- 		 * The timeout isn't specified, the 2ms used here is based on
- 		 * experiment.
-@@ -1946,7 +1946,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 					      HSW_PCODE_DE_WRITE_FREQ_REQ,
- 					      cdclk_config->voltage_level,
- 					      150, 2);
--
-+	}
- 	if (ret) {
- 		drm_err(&dev_priv->drm,
- 			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-@@ -2242,6 +2242,38 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
- 		    cdclk_config->voltage_level);
- }
- 
-+static void intel_pcode_notify(struct drm_i915_private *i915,
-+			       u8 voltage_level,
-+			       u8 active_pipe_count,
-+			       u16 cdclk,
-+			       bool cdclk_update_valid,
-+			       bool pipe_count_update_valid)
-+{
-+	int ret;
-+	u32 update_mask = 0;
-+
-+	if (DISPLAY_VER(i915) < 12)
-+		return;
-+
-+	update_mask = DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, active_pipe_count, voltage_level);
-+
-+	if (cdclk_update_valid)
-+		update_mask |= DISPLAY_TO_PCODE_CDCLK_VALID;
-+
-+	if (pipe_count_update_valid)
-+		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
-+
-+	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
-+				SKL_CDCLK_PREPARE_FOR_CHANGE |
-+				update_mask,
-+				SKL_CDCLK_READY_FOR_CHANGE,
-+				SKL_CDCLK_READY_FOR_CHANGE, 3);
-+	if (ret)
-+		drm_err(&i915->drm,
-+				"Failed to inform PCU about display config (err %d)\n",
-+				ret);
-+}
-+
- /**
-  * intel_set_cdclk - Push the CDCLK configuration to the hardware
-  * @dev_priv: i915 device
-@@ -2311,6 +2343,88 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
- 	}
- }
- 
-+static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_cdclk_state *old_cdclk_state =
-+		intel_atomic_get_old_cdclk_state(state);
-+	const struct intel_cdclk_state *new_cdclk_state =
-+		intel_atomic_get_new_cdclk_state(state);
-+	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
-+	bool change_cdclk, update_pipe_count;
-+
-+	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-+				 &new_cdclk_state->actual) &&
-+				 (new_cdclk_state->active_pipes ==
-+				 old_cdclk_state->active_pipes))
-+		return;
-+
-+	/* According to "Sequence Before Frequency Change", voltage level set to 0x3 */
-+	voltage_level = DISPLAY_TO_PCODE_VOLTAGE_MAX;
-+
-+	change_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
-+	update_pipe_count = hweight8(new_cdclk_state->active_pipes) >
-+			    hweight8(old_cdclk_state->active_pipes);
-+
-+	/*
-+	 * According to "Sequence Before Frequency Change",
-+	 * if CDCLK is increasing, set bits 25:16 to upcoming CDCLK,
-+	 * if CDCLK is decreasing or not changing, set bits 25:16 to current CDCLK,
-+	 * which basically means we choose the maximum of old and new CDCLK, if we know both
-+	 */
-+	if (change_cdclk)
-+		cdclk = max(new_cdclk_state->actual.cdclk, old_cdclk_state->actual.cdclk);
-+
-+	/*
-+	 * According to "Sequence For Pipe Count Change",
-+	 * if pipe count is increasing, set bits 25:16 to upcoming pipe count
-+	 * (power well is enabled)
-+	 * no action if it is decreasing, before the change
-+	 */
-+	if (update_pipe_count)
-+		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-+
-+	intel_pcode_notify(i915, voltage_level, num_active_pipes, cdclk,
-+			   change_cdclk, update_pipe_count);
-+}
-+
-+static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_cdclk_state *new_cdclk_state =
-+		intel_atomic_get_new_cdclk_state(state);
-+	const struct intel_cdclk_state *old_cdclk_state =
-+		intel_atomic_get_old_cdclk_state(state);
-+	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
-+	bool update_cdclk, update_pipe_count;
-+
-+	/* According to "Sequence After Frequency Change", set voltage to used level */
-+	voltage_level = new_cdclk_state->actual.voltage_level;
-+
-+	update_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
-+	update_pipe_count = hweight8(new_cdclk_state->active_pipes) <
-+			    hweight8(old_cdclk_state->active_pipes);
-+
-+	/*
-+	 * According to "Sequence After Frequency Change",
-+	 * set bits 25:16 to current CDCLK
-+	 */
-+	if (update_cdclk)
-+		cdclk = new_cdclk_state->actual.cdclk;
-+
-+	/*
-+	 * According to "Sequence For Pipe Count Change",
-+	 * if pipe count is decreasing, set bits 25:16 to current pipe count,
-+	 * after the change(power well is disabled)
-+	 * no action if it is increasing, after the change
-+	 */
-+	if (update_pipe_count)
-+		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-+
-+	intel_pcode_notify(i915, voltage_level, num_active_pipes, cdclk,
-+			   update_cdclk, update_pipe_count);
-+}
-+
- /**
-  * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
-  * @state: intel atomic state
-@@ -2321,7 +2435,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
- void
- intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	const struct intel_cdclk_state *old_cdclk_state =
- 		intel_atomic_get_old_cdclk_state(state);
- 	const struct intel_cdclk_state *new_cdclk_state =
-@@ -2332,11 +2446,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- 				 &new_cdclk_state->actual))
- 		return;
- 
-+	if (DISPLAY_VER(i915) >= 12)
-+		intel_cdclk_pcode_pre_notify(state);
-+
- 	if (pipe == INVALID_PIPE ||
- 	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
--		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-+		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
- 
--		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-+		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
- 	}
- }
- 
-@@ -2350,7 +2467,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- void
- intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	const struct intel_cdclk_state *old_cdclk_state =
- 		intel_atomic_get_old_cdclk_state(state);
- 	const struct intel_cdclk_state *new_cdclk_state =
-@@ -2361,11 +2478,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- 				 &new_cdclk_state->actual))
- 		return;
- 
-+	if (DISPLAY_VER(i915) >= 12)
-+		intel_cdclk_pcode_post_notify(state);
-+
- 	if (pipe != INVALID_PIPE &&
- 	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
--		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
-+		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
- 
--		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
-+		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
- 	}
- }
- 
-@@ -2871,6 +2991,21 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
- 	return 0;
- }
- 
-+static bool intel_cdclk_need_serialize(struct drm_i915_private *i915,
-+				       const struct intel_cdclk_state *old_cdclk_state,
-+				       const struct intel_cdclk_state *new_cdclk_state)
-+{
-+	bool power_well_cnt_changed = hweight8(old_cdclk_state->active_pipes) !=
-+				      hweight8(new_cdclk_state->active_pipes);
-+	bool cdclk_changed = intel_cdclk_changed(&old_cdclk_state->actual,
-+						 &new_cdclk_state->actual);
-+	/*
-+	 * We need to poke hw for gen >= 12, because we notify PCode if
-+	 * pipe power well count changes.
-+	 */
-+	return cdclk_changed || (DISPLAY_VER(i915) >= 12 && power_well_cnt_changed);
-+}
-+
- int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-@@ -2892,8 +3027,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	if (intel_cdclk_changed(&old_cdclk_state->actual,
--				&new_cdclk_state->actual)) {
-+	if (intel_cdclk_need_serialize(dev_priv, old_cdclk_state, new_cdclk_state)) {
- 		/*
- 		 * Also serialize commits across all crtcs
- 		 * if the actual hw needs to be poked.
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9db6b3f06a74..acf8d297605a 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6413,6 +6413,20 @@
- #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
- #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
- #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-+#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-+#define   DISPLAY_TO_PCODE_VOLTAGE_MASK		REG_GENMASK(1, 0)
-+#define	  DISPLAY_TO_PCODE_VOLTAGE_MAX		DISPLAY_TO_PCODE_VOLTAGE_MASK
-+#define   DISPLAY_TO_PCODE_CDCLK_VALID		REG_BIT(27)
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT_VALID	REG_BIT(31)
-+#define   DISPLAY_TO_PCODE_CDCLK_MASK		REG_GENMASK(25, 16)
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT_MASK	REG_GENMASK(30, 28)
-+#define   DISPLAY_TO_PCODE_CDCLK(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_CDCLK_MASK, (x))
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
-+#define   DISPLAY_TO_PCODE_VOLTAGE(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_VOLTAGE_MASK, (x))
-+#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
-+		(DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
-+		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
-+		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level))
- #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
- #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
- #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
--- 
-2.37.3
 
+Jonas
+
+>   */
+>  
+>  static unsigned int drm_num_planes(struct drm_device *dev)
+> @@ -1582,3 +1602,36 @@ int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_plane_create_scaling_filter_property);
+> +
+> +/**
+> + * drm_plane_add_size_hint_property - create a size hint property
+> + *
+> + * @plane: drm plane
+> + * @hints: size hints
+> + * @num_hints: number of size hints
+> + *
+> + * Create a size hints property for the plane.
+> + *
+> + * RETURNS:
+> + * Zero for success or -errno
+> + */
+> +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> +				      const struct drm_plane_size_hint *hints,
+> +				      int num_hints)
+> +{
+> +	struct drm_device *dev = plane->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+> +	struct drm_property_blob *blob;
+> +
+> +	blob = drm_property_create_blob(dev,
+> +					array_size(sizeof(hints[0]), num_hints),
+> +					hints);
+> +	if (IS_ERR(blob))
+> +		return PTR_ERR(blob);
+> +
+> +	drm_object_attach_property(&plane->base, config->size_hints_property,
+> +				   blob->base.id);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_plane_add_size_hints_property);
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index e5b053001d22..5bc8aed9b445 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -949,6 +949,11 @@ struct drm_mode_config {
+>  	 */
+>  	struct drm_property *modifiers_property;
+>  
+> +	/**
+> +	 * @size_hints_propertty: Plane SIZE_HINTS property.
+> +	 */
+> +	struct drm_property *size_hints_property;
+> +
+>  	/* cursor size */
+>  	uint32_t cursor_width, cursor_height;
+>  
+> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> index 51291983ea44..1997d7d64b69 100644
+> --- a/include/drm/drm_plane.h
+> +++ b/include/drm/drm_plane.h
+> @@ -32,6 +32,7 @@
+>  #include <drm/drm_util.h>
+>  
+>  struct drm_crtc;
+> +struct drm_plane_size_hint;
+>  struct drm_printer;
+>  struct drm_modeset_acquire_ctx;
+>  
+> @@ -945,5 +946,8 @@ drm_plane_get_damage_clips(const struct drm_plane_state *state);
+>  
+>  int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+>  					     unsigned int supported_filters);
+> +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> +				      const struct drm_plane_size_hint *hints,
+> +				      int num_hints);
+>  
+>  #endif
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 46becedf5b2f..9d7c5967264f 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -849,6 +849,17 @@ struct drm_color_lut {
+>  	__u16 reserved;
+>  };
+>  
+> +/**
+> + * struct drm_plane_size_hint - Plane size hints
+> + *
+> + * The plane SIZE_HINTS property blob contains an
+> + * array of struct drm_plane_size_hint.
+> + */
+> +struct drm_plane_size_hint {
+> +	__u16 width;
+> +	__u16 height;
+> +};
+> +
+>  /**
+>   * struct hdr_metadata_infoframe - HDR Metadata Infoframe Data.
+>   *
+> -- 
+> 2.39.2
+> 
