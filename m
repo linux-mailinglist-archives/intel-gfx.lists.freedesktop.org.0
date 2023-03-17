@@ -2,55 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F09D86BED8D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 17:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A77A6BEDF3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 17:21:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7100410E3C6;
-	Fri, 17 Mar 2023 16:00:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFAA710E3C6;
+	Fri, 17 Mar 2023 16:21:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85D5810E3C6
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 16:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679068827; x=1710604827;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ZgL1yPUWvcGikyxTu6IYbuGN/GDj+cDU9Kogau2JOj0=;
- b=CxPiSkfuduCSeGLm8EwfYVB7bXMBOvvpKqa+BpcVFJEwIABgkOGKRt6n
- HY1wNoqdLOjvS43UAz7IgVQHpPWXU7/76twle6zTwrQ3TykgvANS/4qnC
- KcuTS49IJK8LWk5C/hgGy/bW8seaEerC+nHcG3xkDL4hdUDQ4X9e1f4+J
- AWZhyCh2JLNapb66+YuFba4FtgbS4EjQQqZpThecBzyXYR/yj3wW/MJny
- EGZyDbrllkeIyoxk48ovBl/17Yh78g+MvloXhC++tp350G++Q3H5psHoc
- wzGKAVu9+ZPRvJOv9sJSVs30ZT/Zmu01y70SRfD+SQiHT7k3MBsG8r6R6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="326653527"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="326653527"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 09:00:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="657601733"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="657601733"
-Received: from shuchen-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.60.191])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 09:00:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <ZBR7QmtetGmroxrI@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230317125352.198042-1-jani.nikula@intel.com>
- <20230317125352.198042-2-jani.nikula@intel.com>
- <ZBRpOllVY8PFfc3w@intel.com> <87pm97a48q.fsf@intel.com>
- <ZBR5jb3TY6S92yZE@intel.com> <ZBR7QmtetGmroxrI@intel.com>
-Date: Fri, 17 Mar 2023 18:00:23 +0200
-Message-ID: <87mt4b9xm0.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/debugfs: add crtc i915_pipe
- debugfs file
+Received: from mail-pl1-x649.google.com (mail-pl1-x649.google.com
+ [IPv6:2607:f8b0:4864:20::649])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64A7A10E3CF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 16:21:00 +0000 (UTC)
+Received: by mail-pl1-x649.google.com with SMTP id
+ i6-20020a170902c94600b0019d16e4ac0bso2964451pla.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 09:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20210112; t=1679070060;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=7o24l6fiOGywvlphm2ivpMOdYXRizefraPoQnT9L//E=;
+ b=Q6gE273gkihi8mp0lUkxiT8ezb4i1bDN5mWojYXiFSbCt1gdV+GSm119e73GRHWveU
+ BX7oyl+NnMHXsGN0MoPCc5ADNRD9sMejdGVqQyg1BFFO+uKHTSqgfBCRkwOUFIMy3VRm
+ e9vrQ82Ak82Vfdr9u6yGZj6llbXvEMnk70DuJ6YhG9BhuixwafqpMoEX7hMO/92chbuY
+ bowzGc908/CczWahD6JUJnaErwDYpFxrNsajMOceS8iF7nwQloz2BK0RucdP6gGBXynX
+ TFjqAiKOslA8OqK+bdesF3cFxwkvsaaR83lJqgaTZQjWZJ8ETLkbSOmv3RxQ5lOu3Quv
+ FfgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679070060;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=7o24l6fiOGywvlphm2ivpMOdYXRizefraPoQnT9L//E=;
+ b=Digk3NBGBHYn0XA+znWP+LvWgV03e25cgBUktnzbWb0ZJtf2e9yw60x2ubIN4Qmt3M
+ PVBZkws/0V6XWSjmxkXHl8uWegiCfiI9zR2nkZzZmDrMpbuf4VmX0WP0ZKLifymZSl3Q
+ cHzDGMN1IHv5MNFGPLoGjX/bamAWywRT7YIXJ9xpT9maciv9FQPjINo6crMrCepZp+u6
+ DFhS+rV5NrK/WsKgE2VDjm9Mja+KqzWFK75WPTHu8lBPC+roQQ0Xj+GvULK6JevrdO3v
+ hXDtULYPDap5Qb+MLTLxccry8t6aObnkIaS5S7XvEcmLJmFNSMZughVLdhcBmQnPafji
+ GZUg==
+X-Gm-Message-State: AO0yUKV1B3j/GuYSsomRtnfT2JzhQzck1MpHuJ2IcrAhIsVSd73SNULh
+ AkZWtASxerNVIkgAnwWcuXiFI9blU18=
+X-Google-Smtp-Source: AK7set/8zojERNqCXTgL/pFzMwr+KZPa+uB5aM7ijsiHAnfP0EdMkqyDGbo32YXbT/II5YP93V991/QrGl8=
+X-Received: from zagreus.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
+ (user=seanjc job=sendgmr) by 2002:a17:90a:17a7:b0:23d:34db:f5be with SMTP id
+ q36-20020a17090a17a700b0023d34dbf5bemr2467306pja.4.1679070059931; Fri, 17 Mar
+ 2023 09:20:59 -0700 (PDT)
+Date: Fri, 17 Mar 2023 09:20:58 -0700
+In-Reply-To: <ZBQaFRdRawenuEan@yzhao56-desk.sh.intel.com>
+Mime-Version: 1.0
+References: <20230311002258.852397-1-seanjc@google.com>
+ <20230311002258.852397-17-seanjc@google.com>
+ <ZBQaFRdRawenuEan@yzhao56-desk.sh.intel.com>
+Message-ID: <ZBSTapUu+VzWmIfQ@google.com>
+From: Sean Christopherson <seanjc@google.com>
+To: Yan Zhao <yan.y.zhao@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v2 16/27] KVM: x86: Add a new page-track
+ hook to handle memslot deletion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,120 +70,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Mar 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Mar 17, 2023 at 04:30:37PM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
->> On Fri, Mar 17, 2023 at 03:37:09PM +0200, Jani Nikula wrote:
->> > On Fri, 17 Mar 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.inte=
-l.com> wrote:
->> > > On Fri, Mar 17, 2023 at 02:53:52PM +0200, Jani Nikula wrote:
->> > >> The pipe may differ from crtc index if pipes are fused off. For tes=
-ting
->> > >> purposes, IGT needs to know the pipe.
->> > >>=20
->> > >> There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. Howeve=
-r,
->> > >> the upcoming Xe driver won't have that IOCTL, and going forward, we=
-'ll
->> > >> want a unified interface for testing i915 and Xe, as they share the
->> > >> display code. Thus add the debugfs for i915 display.
->> > >>=20
->> > >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> > >> ---
->> > >>  .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++=
-++++
->> > >>  1 file changed, 13 insertions(+)
->> > >>=20
->> > >> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b=
-/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> > >> index faa44fb80aac..e85270adca95 100644
->> > >> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> > >> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> > >> @@ -1657,6 +1657,17 @@ static int i915_current_bpc_show(struct seq_=
-file *m, void *data)
->> > >>  }
->> > >>  DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
->> > >>=20=20
->> > >> +/* Pipe may differ from crtc index if pipes are fused off */
->> > >> +static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
->> > >> +{
->> > >> +	struct intel_crtc *crtc =3D m->private;
->> > >> +
->> > >> +	seq_printf(m, "%d\n", crtc->pipe);
->> > >
->> > > Are we happy with an integer or should we use the actual alphabetic
->> > > name here?
->> >=20
->> > Primarily I considered the programmatic use case, and the ease of
->> > switching over from the ioctl. What do we gain by making IGT parse thi=
-s?
->>=20
->> Well even the integer is represented in ascii so parsing
->> needs to happen anyway. But I was mainly thinking if any
->> human looks at it they may be confused as to what the
->> raw integer even means.
->
-> Eg. if I just jump on some random machine an do
->
-> # grep . crtc-1/*
+On Fri, Mar 17, 2023, Yan Zhao wrote:
+> On Fri, Mar 10, 2023 at 04:22:47PM -0800, Sean Christopherson wrote:
+> > From: Yan Zhao <yan.y.zhao@intel.com>
+> > 
+> > Add a new page-track hook, track_remove_region(), that is called when a
+> > memslot DELETE operation is about to be committed.  The "remove" hook
+> > will be used by KVMGT and will effectively replace the existing
+> > track_flush_slot() altogether now that KVM itself doesn't rely on the
+> > "flush" hook either.
+> > 
+> > The "flush" hook is flawed as it's invoked before the memslot operation
+> > is guaranteed to succeed, i.e. KVM might ultimately keep the existing
+> > memslot without notifying external page track users, a.k.a. KVMGT.  In
+> > practice, this can't currently happen on x86, but there are no guarantees
+> > that won't change in the future, not to mention that "flush" does a very
+> > poor job of describing what is happening.
+> > 
+> > Pass in the gfn+nr_pages instead of the slot itself so external users,
+> > i.e. KVMGT, don't need to exposed to KVM internals (memslots).  This will
+> > help set the stage for additional cleanups to the page-track APIs.
+> > 
+> > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
+> > Co-developed-by: Sean Christopherson <seanjc@google.com>
+> > Signed-off-by: Sean Christopherson <seanjc@google.com>
 > ...
-> i915_pipe: 3
-> ...
->
-> Now I need to most likely count with my fingers
-> to figure out I'm actually looking at pipe D :P
+> 
+> > +void kvm_page_track_delete_slot(struct kvm *kvm, struct kvm_memory_slot *slot)
+> > +{
+> > +	struct kvm_page_track_notifier_head *head;
+> > +	struct kvm_page_track_notifier_node *n;
+> > +	int idx;
+> > +
+> > +	head = &kvm->arch.track_notifier_head;
+> > +
+> > +	if (hlist_empty(&head->track_notifier_list))
+> > +		return;
+> > +
+> > +	idx = srcu_read_lock(&head->track_srcu);
+> > +	hlist_for_each_entry_srcu(n, &head->track_notifier_list, node,
+> > +				srcu_read_lock_held(&head->track_srcu))
+> Sorry, not sure why the alignment here is not right.
+> Patchwork just sent me a mail to complain about it.
+> Would you mind helping fix it in the next version?
 
-Fair enough, not unreasonable.
+Ah, it's off by two spaces, should be 
 
-Is it enough to have just A, B, ... or do we go with explanatory text
-like i915_current_bpc has "Current: %u\n"?
+	hlist_for_each_entry_srcu(n, &head->track_notifier_list, node,
+				  srcu_read_lock_held(&head->track_srcu))
 
-BR,
-Jani.
-
-
-
-
->
->>=20
->> >=20
->> > > Either way, the series is:
->> > > Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >=20
->> > Thanks,
->> > Jani.
->> >=20
->> > >
->> > >> +
->> > >> +	return 0;
->> > >> +}
->> > >> +DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
->> > >> +
->> > >>  /**
->> > >>   * intel_connector_debugfs_add - add i915 specific connector debug=
-fs files
->> > >>   * @connector: pointer to a registered drm_connector
->> > >> @@ -1735,4 +1746,6 @@ void intel_crtc_debugfs_add(struct intel_crtc=
- *crtc)
->> > >>=20=20
->> > >>  	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
->> > >>  			    &i915_current_bpc_fops);
->> > >> +	debugfs_create_file("i915_pipe", 0444, root, crtc,
->> > >> +			    &intel_crtc_pipe_fops);
->> > >>  }
->> > >> --=20
->> > >> 2.39.2
->> >=20
->> > --=20
->> > Jani Nikula, Intel Open Source Graphics Center
->>=20
->> --=20
->> Ville Syrj=C3=A4l=C3=A4
->> Intel
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+I'll get it fixed in the next version.
