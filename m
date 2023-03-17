@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38B86BEB7E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 15:38:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE7516BEBB5
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 15:48:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4445110E38B;
-	Fri, 17 Mar 2023 14:38:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A8110E3B7;
+	Fri, 17 Mar 2023 14:48:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDEFB10E125
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 14:37:57 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43D7910E3B7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 14:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679063877; x=1710599877;
+ t=1679064532; x=1710600532;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Y2EWhZVhqJSY/xxBBb4SKMi2v1aCfkgTEY5graL6rEA=;
- b=U8S4EJ1H/F3CnWyEERROUd2DAEcJssddv/wC85zXwP/XDvOBe4ZhunbH
- lqILZ0qHfYeLrjaIa4w3lSfB9zIF3b7YakZNsAw1LnjoHbXe8I9H6TT1S
- ppWoZUsLy4UmX4CuIhVxQq6EpyuoYU8+Bu2fJpQ8Bn1abHayBET5iCa7S
- or9gHwykv1PaV1pyFpKx3lhnWzg+fDopOdOGYC+pxkTyvuwhzCK0S6Vul
- 9xA5rX2xkoLqKU6Jwgw/uRBnDod/HFndKVciBgMkUnv4+Nn1Xjdh3PNXO
- LG9uAVIZmhHefwt+Y5hy412ij1RwGTiq1zS81xMFFEtAf5E4rhcGo/XFk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="340630871"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="340630871"
+ bh=MQM9zquc+6dKNgUYd0m4QHMLLCGJS5wZ08FUDcJyb10=;
+ b=cNSPi//yVbAW+CglgrQB+/ljzcQCQodObc9TC4gNx8t/2j+iiBlDSuR8
+ 6uGTw+uEsA+hmE5OZ+LNHs29BNS5PL3hxEXBSXJBj0cbr8XVLJlqo0c7W
+ NWm7Zv/e5XEKSmE8wzJUIsieOcqg0iFmyp11sLDP/LeOdwLzILeXEXnt3
+ i74eFFmAeo2uNMUgnnqHkGNHibT6Zwwsrfnq36ysonLdnYHaLry7VpHMW
+ 9Y97o1yeiXH/Y8T3wn39jXEmqS/NHUa1o9aXgwHI9yRB0ER+BynfOBuHf
+ bhEpgWH73+Dl3yIOBVi4FAqjUb0udgC2cQYuXNuCeNP962mi7Ef57VPd5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="365974576"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="365974576"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 07:37:57 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 07:48:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680302425"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="680302425"
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680303279"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="680303279"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 17 Mar 2023 07:37:55 -0700
+ by orsmga002.jf.intel.com with SMTP; 17 Mar 2023 07:48:49 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Mar 2023 16:37:54 +0200
-Date: Fri, 17 Mar 2023 16:37:54 +0200
+ Fri, 17 Mar 2023 16:48:48 +0200
+Date: Fri, 17 Mar 2023 16:48:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZBR7QmtetGmroxrI@intel.com>
-References: <20230317125352.198042-1-jani.nikula@intel.com>
- <20230317125352.198042-2-jani.nikula@intel.com>
- <ZBRpOllVY8PFfc3w@intel.com> <87pm97a48q.fsf@intel.com>
- <ZBR5jb3TY6S92yZE@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Message-ID: <ZBR90DlmiOvTuKUP@intel.com>
+References: <20230317110437.2780483-1-jouni.hogander@intel.com>
+ <20230317110437.2780483-4-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZBR5jb3TY6S92yZE@intel.com>
+In-Reply-To: <20230317110437.2780483-4-jouni.hogander@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/debugfs: add crtc i915_pipe
- debugfs file
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/psr: Implement Wa_1136
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,92 +65,101 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 17, 2023 at 04:30:37PM +0200, Ville Syrjälä wrote:
-> On Fri, Mar 17, 2023 at 03:37:09PM +0200, Jani Nikula wrote:
-> > On Fri, 17 Mar 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > > On Fri, Mar 17, 2023 at 02:53:52PM +0200, Jani Nikula wrote:
-> > >> The pipe may differ from crtc index if pipes are fused off. For testing
-> > >> purposes, IGT needs to know the pipe.
-> > >> 
-> > >> There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. However,
-> > >> the upcoming Xe driver won't have that IOCTL, and going forward, we'll
-> > >> want a unified interface for testing i915 and Xe, as they share the
-> > >> display code. Thus add the debugfs for i915 display.
-> > >> 
-> > >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > >> ---
-> > >>  .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++++++
-> > >>  1 file changed, 13 insertions(+)
-> > >> 
-> > >> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > >> index faa44fb80aac..e85270adca95 100644
-> > >> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > >> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > >> @@ -1657,6 +1657,17 @@ static int i915_current_bpc_show(struct seq_file *m, void *data)
-> > >>  }
-> > >>  DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
-> > >>  
-> > >> +/* Pipe may differ from crtc index if pipes are fused off */
-> > >> +static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
-> > >> +{
-> > >> +	struct intel_crtc *crtc = m->private;
-> > >> +
-> > >> +	seq_printf(m, "%d\n", crtc->pipe);
-> > >
-> > > Are we happy with an integer or should we use the actual alphabetic
-> > > name here?
-> > 
-> > Primarily I considered the programmatic use case, and the ease of
-> > switching over from the ioctl. What do we gain by making IGT parse this?
+On Fri, Mar 17, 2023 at 01:04:37PM +0200, Jouni Högander wrote:
+> Implement Wa_1136 for SKL/BXT/ICL.
 > 
-> Well even the integer is represented in ascii so parsing
-> needs to happen anyway. But I was mainly thinking if any
-> human looks at it they may be confused as to what the
-> raw integer even means.
-
-Eg. if I just jump on some random machine an do
-
-# grep . crtc-1/*
-...
-i915_pipe: 3
-...
-
-Now I need to most likely count with my fingers
-to figure out I'm actually looking at pipe D :P
-
+> Bspec: 21664
 > 
-> > 
-> > > Either way, the series is:
-> > > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Thanks,
-> > Jani.
-> > 
-> > >
-> > >> +
-> > >> +	return 0;
-> > >> +}
-> > >> +DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
-> > >> +
-> > >>  /**
-> > >>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
-> > >>   * @connector: pointer to a registered drm_connector
-> > >> @@ -1735,4 +1746,6 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
-> > >>  
-> > >>  	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
-> > >>  			    &i915_current_bpc_fops);
-> > >> +	debugfs_create_file("i915_pipe", 0444, root, crtc,
-> > >> +			    &intel_crtc_pipe_fops);
-> > >>  }
-> > >> -- 
-> > >> 2.39.2
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c     | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_watermark.c |  5 -----
+>  2 files changed, 15 insertions(+), 5 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index a385cb8dbf13..e6bd46441392 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1049,6 +1049,13 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+>  		return;
+>  	}
+>  
+> +	/* Wa_1136 */
+
+The syntax we've used for the old w/as is different.
+
+> +	if (DISPLAY_VER(dev_priv) < 12 && crtc_state->wm_level_disabled) {
+
+This won't have been calculated yet.
+
+As for the platform check. I think the one hsd we still have left
+indicates that icl already got some kind of full fix. So probably
+that should at least be safe. And I do think the KBL+ should also
+work fine.
+
+But we could do that as followups:
+1. do this
+2. switch to the chicken bit approach for icl
+3. switch to the chicken bit approach for kbl+
+
+Then of any issue later come up that point to a problem
+with the chicken bits we could more easily revert to full
+psr disable.
+
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "PSR condition failed: WM level disabled and no HW WA available\n");
+> +		return;
+> +	}
+> +
+>  	crtc_state->has_psr = true;
+>  	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
+>  
+> @@ -1260,6 +1267,10 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>  
+>  	drm_WARN_ON(&dev_priv->drm, intel_dp->psr.enabled);
+>  
+> +	/* Wa_1136 */
+> +	if (DISPLAY_VER(dev_priv) < 12 && crtc_state->wm_level_disabled)
+
+It's a bit weird to handle this differently than the active_planes case.
+Though the fact that the pre and post updatre hooks also do things
+in different ways is also confusing. Seems to me some general cleanup
+in this area could be worthwile.
+
+> +		return;
+> +
+>  	intel_dp->psr.psr2_enabled = crtc_state->has_psr2;
+>  	intel_dp->psr.busy_frontbuffer_bits = 0;
+>  	intel_dp->psr.pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+> @@ -1940,6 +1951,10 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+>  		needs_to_disable |= !new_crtc_state->active_planes;
+>  		needs_to_disable |= new_crtc_state->has_psr2 != psr->psr2_enabled;
+>  
+> +		/* Wa_1136 */
+> +		needs_to_disable |= DISPLAY_VER(i915) < 12 &&
+> +			new_crtc_state->wm_level_disabled;
+> +
+>  		if (psr->enabled && needs_to_disable)
+>  			intel_psr_disable_locked(intel_dp);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index afb751c024ba..ced61da8b496 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2278,11 +2278,6 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
+>  	 */
+>  	crtc_state->wm_level_disabled = level < i915->display.wm.num_levels - 1;
+>  
+> -	/*
+> -	 * FIXME also related to skl+ w/a 1136 (also unimplemented as of
+> -	 * now) perhaps?
+> -	 */
+> -
+>  	for (level++; level < i915->display.wm.num_levels; level++) {
+>  		enum plane_id plane_id;
+>  
 > -- 
-> Ville Syrjälä
-> Intel
+> 2.34.1
 
 -- 
 Ville Syrjälä
