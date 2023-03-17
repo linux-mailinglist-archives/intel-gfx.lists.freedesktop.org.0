@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501CE6BEFCA
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:37:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16266BEFE9
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:39:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A774010E3D8;
-	Fri, 17 Mar 2023 17:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A34010EF54;
+	Fri, 17 Mar 2023 17:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B74BD10E3D8;
- Fri, 17 Mar 2023 17:37:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9919210E400;
+ Fri, 17 Mar 2023 17:39:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 88E3BA7DFB;
- Fri, 17 Mar 2023 17:37:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9183FA7DFB;
+ Fri, 17 Mar 2023 17:39:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Fri, 17 Mar 2023 17:37:28 -0000
-Message-ID: <167907464852.12997.16888596621715526465@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 17 Mar 2023 17:39:39 -0000
+Message-ID: <167907477959.12996.12628802253960299797@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230317110437.2780483-1-jouni.hogander@intel.com>
-In-Reply-To: <20230317110437.2780483-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBI?=
- =?utf-8?q?igh_refresh_rate_PSR_fixes_=28rev2=29?=
+References: <20230317125352.198042-1-jani.nikula@intel.com>
+In-Reply-To: <20230317125352.198042-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/debugfs=3A_switch_crtc_d?=
+ =?utf-8?q?ebugfs_to_struct_intel=5Fcrtc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +48,27 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: High refresh rate PSR fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/115109/
+Series: series starting with [1/2] drm/i915/debugfs: switch crtc debugfs to struct intel_crtc
+URL   : https://patchwork.freedesktop.org/series/115314/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/115109/revisions/2/mbox/ not applied
-Committer identity unknown
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got 'kbuild2@gfx-ci.(none)')
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_display_debugfs.o
+drivers/gpu/drm/i915/display/intel_display_debugfs.c: In function ‘crtc_updates_add’:
+drivers/gpu/drm/i915/display/intel_display_debugfs.c:810:52: error: ‘struct intel_crtc’ has no member named ‘debugfs_entry’
+  810 |  debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
+      |                                                    ^~
+make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_display_debugfs.o] Error 1
+make[4]: *** [scripts/Makefile.build:494: drivers/gpu/drm/i915] Error 2
+make[3]: *** [scripts/Makefile.build:494: drivers/gpu/drm] Error 2
+make[2]: *** [scripts/Makefile.build:494: drivers/gpu] Error 2
+make[1]: *** [scripts/Makefile.build:494: drivers] Error 2
+make: *** [Makefile:2028: .] Error 2
 Build failed, no error log produced
 
 
