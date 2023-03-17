@@ -2,69 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3456BE92F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 13:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6365A6BE951
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 13:33:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C83710E114;
-	Fri, 17 Mar 2023 12:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B7410E366;
+	Fri, 17 Mar 2023 12:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCDDC10E114;
- Fri, 17 Mar 2023 12:29:17 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id g17so6284403lfv.4;
- Fri, 17 Mar 2023 05:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1679056156;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=Z9iw9ROsVj3odzN5DXBBOp0EmWo1iW674uPMX2CrdbU=;
- b=it4nZ4B0NSC3oV4G3BWmiGCEa4f/iQhYt4E8DUTU+R1m1fKkIu02jDLBUZRfr1sLAg
- WfOEf5AVonJV/+g05SgQx6F/4vl0hdmPm0pcFjU4gSwhhFAsHyHxFjbTXmFoFoXJ6fus
- VoBeJPachR5Oz1WLLt1utjkMB7eaMc4jgJ0Xlj8b7NJ3z087HqT4x+XHZFSx54Zs9g1V
- hQ6E3950il8EPQeASOtw0il7DzQN2S6UNqhtlv3aNJi02cYTyLpAn/UqFhuVz3x6WhAK
- mNEbzt7SRsRV2AWcyQ5VCxl/Y9VbqPMqmPyalsneBxsAF4J9j31s4dYpR+7tz8Um2Pgz
- 8fqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679056156;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Z9iw9ROsVj3odzN5DXBBOp0EmWo1iW674uPMX2CrdbU=;
- b=n4E9AcRGDxKIX32YPYotOMsmyq3ENBfy/vxvYBjoN0KBqHXY/5yGVUzE8yprUqQpNK
- HdxXfe0+KJdOr72nsu+qSq0//LLAFg4vPIYMpCdoMcmp/Ziz8RcfD8I/LJ4ceoRmhw+U
- k939Ia2Gou/N+Kx/+4PxKeVUZ7Pb63Gqvr69pucnXGPOMK4EEyc8XXAGJamr/st6vfGC
- /Jvxdu+7ESomXyRZq+XI5aIFZdHmsrHkSVR+QBBOffUe/y69JzmzvILJU64JfgFAmneC
- Pde4CALnK6t1I9bppyCKUDLN9ab0hXz+xp0XSUjXj1rm3oDf2STGnT5o3imR/w0gx5FG
- 34og==
-X-Gm-Message-State: AO0yUKWVEihn2EbmZsrwPqiy/mrimTJZ/lEuM74Dfd7mSiXVsZtv/lJI
- s7qn54zizQYRXelI5znQ/Q7nEO7B2UqKkg==
-X-Google-Smtp-Source: AK7set+1qEfHAuCygG1LEnUSs/sWzFNGypfvmTHbU+7nT48xKG/qqSqK12WLIWt/W7e7Cpto7kmjkg==
-X-Received: by 2002:a05:6512:491:b0:4e8:a093:5eea with SMTP id
- v17-20020a056512049100b004e8a0935eeamr961889lfq.11.1679056156063; 
- Fri, 17 Mar 2023 05:29:16 -0700 (PDT)
-Received: from gmail.com (host-95-193-64-255.mobileonline.telia.com.
- [95.193.64.255]) by smtp.gmail.com with ESMTPSA id
- s12-20020ac25fec000000b004dda80cabf0sm349996lfg.172.2023.03.17.05.29.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Mar 2023 05:29:15 -0700 (PDT)
-Date: Fri, 17 Mar 2023 13:29:13 +0100
-From: Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@gmail.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZBRdGVOQgH6IuBQK@gmail.com>
-References: <20230208211016.7034-1-ville.syrjala@linux.intel.com>
- <20230313163311.11379-1-ville.syrjala@linux.intel.com>
- <ZBRCKIl+jdkohbVB@gmail.com> <ZBRQBfuEZS+2ieIM@intel.com>
- <ZBRbVJyoH0Gn6gLw@gmail.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA7B10E366
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 12:33:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679056429; x=1710592429;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=fjDdrZCBMhezq6wiWFiIZs5Wg+ipfRWNoATFMHDrz/s=;
+ b=FZt+5kWCkOEy9qD9VGG1C5Xk6MU+D+aA7vgWpezFskXa8uOmU89I1jQA
+ SO2CPSPngr8F2sV3kVdInDwjaNPrIDDCNFKIYbVWomUwb5abXBkHE9ns3
+ PqeTKjShyqDSoAHejSqDUk9nhyJawLDyCeK53p2YyCu9h6/0yE/zJ2Wao
+ NAJZWAnPr2C6ySvi06VSMTxfMCsBmIpbN/d0rvV6zwdUDAB35jHu+iOp4
+ k12OR89ffQL283nDLtyo+361gpiX4wkB3YWw1RD6viqO9dLIVPEf28B49
+ iQUAJ1nhIf9JuijFaU0ePimsQGS8QIFKQmAVjm51HYG9IR2mR6TZuP/Y1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="424521291"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="424521291"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 05:33:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="790699102"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="790699102"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga002.fm.intel.com with SMTP; 17 Mar 2023 05:33:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Mar 2023 14:33:46 +0200
+Date: Fri, 17 Mar 2023 14:33:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <ZBReKiJaPWdM+zFc@intel.com>
+References: <20230314090142.947764-1-jouni.hogander@intel.com>
+ <20230314090142.947764-2-jouni.hogander@intel.com>
+ <ZBNeKlSPGaCkqn2q@intel.com>
+ <f3c5b7509a64d4d677bda6c896c782aff31d9435.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZBRbVJyoH0Gn6gLw@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm: Introduce plane SIZE_HINTS
- property
+In-Reply-To: <f3c5b7509a64d4d677bda6c896c782aff31d9435.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/psr: Fix Wa_16013835468 and
+ Wa_14015648006
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,139 +64,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>,
- dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 17, 2023 at 01:21:43PM +0100, Jonas Ådahl wrote:
-> On Fri, Mar 17, 2023 at 01:33:25PM +0200, Ville Syrjälä wrote:
-> > On Fri, Mar 17, 2023 at 11:34:16AM +0100, Jonas Ådahl wrote:
-> > > On Mon, Mar 13, 2023 at 06:33:11PM +0200, Ville Syrjala wrote:
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > 
-> > > > Add a new immutable plane property by which a plane can advertise
-> > > > a handful of recommended plane sizes. This would be mostly exposed
-> > > > by cursor planes as a slightly more capable replacement for
-> > > > the DRM_CAP_CURSOR_WIDTH/HEIGHT caps, which can only declare
-> > > > a one size fits all limit for the whole device.
-> > > > 
-> > > > Currently eg. amdgpu/i915/nouveau just advertize the max cursor
-> > > > size via the cursor size caps. But always using the max sized
-> > > > cursor can waste a surprising amount of power, so a better
-> > > > stragey is desirable.
-> > > > 
-> > > > Most other drivers don't specify any cursor size at all, in
-> > > > which case the ioctl code just claims that 64x64 is a great
-> > > > choice. Whether that is actually true is debatable.
-> > > > 
-> > > > A poll of various compositor developers informs us that
-> > > > blindly probing with setcursor/atomic ioctl to determine
-> > > > suitable cursor sizes is not acceptable, thus the
-> > > > introduction of the new property to supplant the cursor
-> > > > size caps. The compositor will now be free to select a
-> > > > more optimal cursor size from the short list of options.
-> > > > 
-> > > > Note that the reported sizes (either via the property or the
-> > > > caps) make no claims about things such as plane scaling. So
-> > > > these things should only really be consulted for simple
-> > > > "cursor like" use cases.
-> > > > 
-> > > > v2: Try to add some docs
-> > > > v3: Specify that value 0 is reserved for future use (basic idea from Jonas)
-> > > >     Drop the note about typical hardware (Pekka)
-> > > > 
-> > > > Cc: Simon Ser <contact@emersion.fr>
-> > > > Cc: Jonas Ådahl <jadahl@redhat.com>
-> > > > Cc: Daniel Stone <daniel@fooishbar.org>
-> > > > Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-> > > > Acked-by: Harry Wentland <harry.wentland@amd.com>
-> > > > Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-> > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_mode_config.c |  7 ++++
-> > > >  drivers/gpu/drm/drm_plane.c       | 53 +++++++++++++++++++++++++++++++
-> > > >  include/drm/drm_mode_config.h     |  5 +++
-> > > >  include/drm/drm_plane.h           |  4 +++
-> > > >  include/uapi/drm/drm_mode.h       | 11 +++++++
-> > > >  5 files changed, 80 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
-> > > > index 87eb591fe9b5..21860f94a18c 100644
-> > > > --- a/drivers/gpu/drm/drm_mode_config.c
-> > > > +++ b/drivers/gpu/drm/drm_mode_config.c
-> > > > @@ -374,6 +374,13 @@ static int drm_mode_create_standard_properties(struct drm_device *dev)
-> > > >  		return -ENOMEM;
-> > > >  	dev->mode_config.modifiers_property = prop;
-> > > >  
-> > > > +	prop = drm_property_create(dev,
-> > > > +				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
-> > > > +				   "SIZE_HINTS", 0);
-> > > > +	if (!prop)
-> > > > +		return -ENOMEM;
-> > > > +	dev->mode_config.size_hints_property = prop;
-> > > > +
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> > > > index 24e7998d1731..d2a6fdff1a57 100644
-> > > > --- a/drivers/gpu/drm/drm_plane.c
-> > > > +++ b/drivers/gpu/drm/drm_plane.c
-> > > > @@ -140,6 +140,26 @@
-> > > >   *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there have been
-> > > >   *     various bugs in this area with inconsistencies between the capability
-> > > >   *     flag and per-plane properties.
-> > > > + *
-> > > > + * SIZE_HINTS:
-> > > > + *     Blob property which contains the set of recommended plane size
-> > > > + *     which can used for simple "cursor like" use cases (eg. no scaling).
-> > > > + *     Using these hints frees userspace from extensive probing of
-> > > > + *     supported plane sizes through atomic/setcursor ioctls.
-> > > > + *
-> > > > + *     For optimal usage userspace should pick the smallest size
-> > > > + *     that satisfies its own requirements.
-> > > > + *
-> > > > + *     The blob contains an array of struct drm_plane_size_hint.
-> > > > + *
-> > > > + *     Drivers should only attach this property to planes that
-> > > > + *     support a very limited set of sizes.
-> > > > + *
-> > > > + *     Note that property value 0 (ie. no blob) is reserved for potential
-> > > > + *     future use. Current userspace is expected to ignore the property
-> > > > + *     if the value is 0, and fall back to some other means (eg.
-> > > > + *     &DRM_CAP_CURSOR_WIDTH and &DRM_CAP_CURSOR_HEIGHT) to determine
-> > > > + *     the appropriate plane size to use.
+On Fri, Mar 17, 2023 at 06:54:02AM +0000, Hogander, Jouni wrote:
+> On Thu, 2023-03-16 at 20:21 +0200, Ville Syrjälä wrote:
+> > On Tue, Mar 14, 2023 at 11:01:41AM +0200, Jouni Högander wrote:
+> > > PSR WM optimization should be disabled based on any wm level being
+> > > disabled. Currently it's disabled always when using delayed vblank.
 > > > 
-> > > Does this intend to mean userspace has the kernel's blessing on choosing
-> > > an arbitrary size as long as it's smaller than &DRM_CAP_CURSOR_WIDTH x
-> > > &DRM_CAP_CURSOR_HEIGHT?
+> > > Bspec: 71580
 > > > 
-> > > It's a bit to vague for me to make a confident interpretation whether I
-> > > can, or whether I should pretend I didn't see SIZE_HINTS and apply the
-> > > old logic, meaning only using the exact cap size.
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+> > >  drivers/gpu/drm/i915/display/intel_psr.c           | 12 +++++-----
+> > > --
+> > >  drivers/gpu/drm/i915/display/skl_watermark.c       |  7 +++++--
+> > >  3 files changed, 11 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index c32bfba06ca1..60504c390408 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1152,6 +1152,7 @@ struct intel_crtc_state {
+> > >         bool has_psr2;
+> > >         bool enable_psr2_sel_fetch;
+> > >         bool req_psr2_sdp_prior_scanline;
+> > > +       bool wm_level_disabled;
+> > >         u32 dc3co_exitline;
+> > >         u16 su_y_granularity;
+> > >         struct drm_dp_vsc_sdp psr_vsc;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > index 44610b20cd29..a6edd65b8edb 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > @@ -1177,13 +1177,11 @@ static void intel_psr_enable_source(struct
+> > > intel_dp *intel_dp,
+> > >          * Wa_16013835468
+> > >          * Wa_14015648006
+> > >          */
+> > > -       if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+> > > -           IS_DISPLAY_VER(dev_priv, 12, 13)) {
+> > > -               if (crtc_state->hw.adjusted_mode.crtc_vblank_start
+> > > !=
+> > > -                   crtc_state->hw.adjusted_mode.crtc_vdisplay)
 > > 
-> > Using the exact cap size is the only thing more or less
-> > guaranteed to work. But other approaches (such as probing
-> > the size with atomic/cursor ioctls) can also be used.
+> > That looks like something we want to keep. The delayed vblank w/a is
+> > still supposedly necessary.
 > 
-> I think you should then just disallow drivers for exposing SIZE_HINTS
-> with the value 0, and make it a bug if they do, to let userspace know
-> when the value 0 means anything.
+> 16013835468 and 14015648006 are specifically mentioning "low power
+> watermark (level 1 and up) is disabled" I haven't seen or couldn't find
+> any older Wa speaking generally about delayed vblank.
+
+14015648006:
+"High refresh rate panels with small vblank size (either because of the
+ panel vblank size or the internal delayed vblank) must have some
+ watermark levels disabled..."
+-> that's the w/a you're now implementing, so the comment is
+   lying to us by claiming it was already implemented
+
+16013835468:
+"Display underrun when using delayed vblank with PSR2..."
+-> that's the one we actually already had implemented
+
 > 
-> In other words, userspace should *not* ignore the property value being
-> 0, but treat it as a kernel bug if there is a SIZE_HINTS only containing
-> a 0, until the value 0 has gotten any meaning. Otherwise I don't see how
-> it'll be usable in the future, since userspace doesn't know the
-> difference between 'legacy 0' and 'new 0' once it's defined to mean
-> anything.
+> > 
+> > > -                       intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
+> > > 0,
+> > > -                                   
+> > > wa_16013835468_bit_get(intel_dp));
+> > > -       }
+> > > +       if ((IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+> > > +            IS_DISPLAY_VER(dev_priv, 12, 13)) &&
+> > 
+> > I think we need this for all KBL+.
+> 
+> Do you have Wa lineage for a reference?
 
-On a second thought, userspace needs to ignore it, to not fall apart
-when running on never future kernels, you're right. Never mind.
+I think it was part of the w/a 1136. You see it only lists
+skl/bxt/kbl a-b to need the full psr disable, leaving kbl c+
+to do something different. And the latency reporting chicken
+bits were added exactly for kbl c+.
 
-I guess with "is reserved" implies that it's a bug if it's used before
-it's defined to be anything, right?
+But yeah, the way this is now documented in bpsec is very poor.
+And sadly the older hsds have now disappread into bit heaven
+so we can't double check the full details there. But I'm 99%
+sure I read through those hsds in the past and came to this
+same conclusion back then.
 
-Jonas
+> 
+> > 
+> > > +           crtc_state->wm_level_disabled)
+> > > +               intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
+> > > +                            wa_16013835468_bit_get(intel_dp));
+> > >  
+> > >         if (intel_dp->psr.psr2_enabled) {
+> > >                 if (DISPLAY_VER(dev_priv) == 9)
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > index 50a9a6adbe32..afb751c024ba 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > @@ -2273,9 +2273,12 @@ static int skl_wm_check_vblank(struct
+> > > intel_crtc_state *crtc_state)
+> > >                 return level;
+> > >  
+> > >         /*
+> > > -        * FIXME PSR needs to toggle
+> > > LATENCY_REPORTING_REMOVED_PIPE_*
+> > > +        * PSR needs to toggle LATENCY_REPORTING_REMOVED_PIPE_*
+> > >          * based on whether we're limited by the vblank duration.
+> > > -        *
+> > > +        */
+> > > +       crtc_state->wm_level_disabled = level < i915-
+> > > >display.wm.num_levels - 1;
+> > > +
+> > > +       /*
+> > >          * FIXME also related to skl+ w/a 1136 (also unimplemented
+> > > as of
+> > >          * now) perhaps?
+> > >          */
+> > 
+> > And that is more or less corresponding w/a for SKL/BXT that did not
+> > yet have
+> > these chicken bits.
+> 
+> Ok, I will check this as well.
+> 
+> > 
+> > > -- 
+> > > 2.34.1
+> > 
+> 
+
+-- 
+Ville Syrjälä
+Intel
