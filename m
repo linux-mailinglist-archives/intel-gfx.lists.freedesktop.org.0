@@ -2,155 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F566BDF7A
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 04:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FDFD6BDFB8
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 04:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21BC210E04A;
-	Fri, 17 Mar 2023 03:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF9210E02C;
+	Fri, 17 Mar 2023 03:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C149910E04A;
- Fri, 17 Mar 2023 03:17:28 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 409C910E02C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 03:43:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679023048; x=1710559048;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=OsoEYw5zbAxz9/1MBxu2aRwyUgpPBsteqRJm4rrmFys=;
- b=SMEvB3DuGvmSThcxFt5PXDKWl7Lt1ia8FoV3bInsJEOyZowWjShxS5FM
- PMvWamffVNGROWVAuz6GcmxYY4wiTqJjOaR593PdWa8wHjxvNazeetXqv
- 9biRi4yTNUgNVZMYjVd2cAstWzCLfWK7pkus/64ddPZ9xn03guZIxiJWp
- tY6oH3btV/AWAWtplmLzg1XNhfMg2jo4J5zmT+WgjbdFplOUliWxlcfv3
- dDxeamhfLjsk5G8YaINC4EF1/LpZqoY/83yGWX7LnNUpBcGjqILd53mWI
- GZBuusi2At6Y2hEXQd5d1bwoRBDknRt188bIDPHbcWqvoKA+HOMfIgC+b g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="317827144"
-X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="317827144"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 20:17:28 -0700
+ t=1679024628; x=1710560628;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=ilQMLNj8SxmwTU7lkD/9QyCYMuIGXjMrbkKZx6j9oDs=;
+ b=nofXnSoaiVChtTI2mnjh25l2CUXThqv9bMvMejbgi8LqOu2WRucMOc9v
+ QPt+eIp9O01GbuVPLqhDgqJQ0lErtHH1FHQJLY9YMsdRYUxpzMc7RvKVI
+ MCPS+nZLVU3V/tSRjCCLYxn3LIR4WV5vVib8W7vOk/gkX7co6EXfZ20lV
+ W9+KDB3zFGPjyV/P8c4OFgSR5WmMzHwxDg1v4kIzaWD9ehPxu/j0+/v/s
+ fF6/WqYqoqxh7ESGcemz7SMBKD4ATkyS4GBGcpCVxYP+fYncLE4zqq9fH
+ 9CezwOFyZqVNWbUAHUPGNcbNdrp1zsa/HKQi/loai1cKfW7srhgy8z02i A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="400755709"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="400755709"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 20:43:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="744402838"
-X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="744402838"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 16 Mar 2023 20:17:27 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 16 Mar 2023 20:17:27 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 16 Mar 2023 20:17:26 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 16 Mar 2023 20:17:26 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 16 Mar 2023 20:17:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WuCxeV/u/JewSxbW4F8XhtqukK2xx4ea6zEVn9RpFPOk+nMYyzBLWvMF55m4oFPYTvHCzu585EHaXDDbuTfckOjpPp49UQoNLD+Uny+cuxVR/ZWZcP/aL5xG0+oogC85C5J0F7LoYSv7qegl4lTxtfoU/NjZsQXBUDzatM0qqCglCZymVu83rQE7X2Ao4QrEywiXVZpsvOgr71qVIUm5CGdvZRRqkW2wWcdYpC+bDzBrxeANGEN0aEzjmhycA+QiTKeN9DPYtHAbvExaNemKPgSThAJDjU8M83gkQRxVXOVYs7Cj33ARzcpy7dF81xt2CaDSDHnr377qxz4Q+IkgvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OsoEYw5zbAxz9/1MBxu2aRwyUgpPBsteqRJm4rrmFys=;
- b=JIGMjMhxznCT3Dv9rmI6DpK0WjrkZgecRK6ghJFHecdnZLmC4Al7W6miWKj26vydOFLDxRlAXvWWyh/4eR56YGIUQwzd9UutmCzBVNUUYnYwaC1U0yAn7oXbTrEI3DuQ586Kz+r49VnQnTNim6m2dHXiScd5jfId1SxyyK076sNbaODrphRgtdq7VKPlWM6J/Y7V82gMVNoyfU7xVOpSpUhD3MzVhDzl54N9F6WfkpMd5b0vXuXghccvAhzqfm/ckHLzg4dByQuqBeInhmJSemFzi9Hxrh0d72tVpn9EF4JGfEp4L+wgxSS9yjuidk5bPrJ7uHKOYjKTVUM3NtqIyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
- by DM4PR11MB7373.namprd11.prod.outlook.com (2603:10b6:8:103::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.31; Fri, 17 Mar
- 2023 03:17:24 +0000
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::1aac:b695:f7c5:bcac]) by BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::1aac:b695:f7c5:bcac%8]) with mapi id 15.20.6178.035; Fri, 17 Mar 2023
- 03:17:24 +0000
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>
-Thread-Topic: [PATCH v7 15/22] vfio-iommufd: Add detach_ioas support for
- physical VFIO devices
-Thread-Index: AQHZWAax3HHdmgaIcka42QBoWIvZ1K7+O3vwgAAPbQCAAALXYA==
-Date: Fri, 17 Mar 2023 03:17:23 +0000
-Message-ID: <BN9PR11MB5276F40C9C448101616CF11F8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230316125534.17216-1-yi.l.liu@intel.com>
- <20230316125534.17216-16-yi.l.liu@intel.com>
- <BN9PR11MB5276399B61F4E2E260BFFEBA8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB75291C8343E91ACF2401AB3CC3BD9@DS0PR11MB7529.namprd11.prod.outlook.com>
-In-Reply-To: <DS0PR11MB75291C8343E91ACF2401AB3CC3BD9@DS0PR11MB7529.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|DM4PR11MB7373:EE_
-x-ms-office365-filtering-correlation-id: b5a9a50a-b5de-4bee-985e-08db269620d0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Tt9JS+fIYQNsTAmTBlQbm/fJIgHQZI55QauQer957jDfXL7LLJwCmfSCWyOx0xDZaDWrECQVQymXUAPyRWIggXVlD0MrvC39NK2lG1GNCT1WrzzQ2ZxbQQba7KzsUoVchTKCQY9zj1YI448pmM0cJq19pbBnCbwLFRhWaOAbOYH6xKNkBqKDBjMH4x/jWIv4PteNSSCA6xdT4aJ7Jo2Qyd4N0shT0tSmRFpITAWTii2DkbRfS1WqfkiAE4eKOBy16dh2dMQj5sYD/VwQ7kC27ja1UjOCsAL4eevi3s3uVPAGUK2TLTj+8WzbcXCUqhsvatEIU8vvTYWSwmpa1WGtcJPoXyM/gblwNFU30bos4krMdtOufVNJBW4nNMO6Y7K4nOsoWhv4dOWWx2C5HljFquuayzDhVkwUmJw+Lk41GjOBOR1ifIv9wQovtukbXwtakY5vL3N6TvNTP+ible5/DvHa3jsrMDhBXtDSDdcgEiPcqKIbTKE/XhQu33OphVqvsEaO9P5FrUcBOjmO1hBP1jmhtfqBbkixzYXlQCgPR5+KwKcramcnR4Um7DTiZ8sgKnSpycO4ug4q7da3NELPXyMxG1ZIicKCpL/wbKok/rlA3ijvJSon64KVUGYvNO9r6oYA+t4gBMMUY1aVpeiWSI7+Tu6XgdPdI3WTpMrYk1xm5pSrcHz9V8MDCgWfonNg8AhAK7qj7XVM9rSL+cvDjw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(366004)(346002)(396003)(376002)(136003)(451199018)(83380400001)(38070700005)(55016003)(33656002)(122000001)(82960400001)(6506007)(26005)(186003)(9686003)(38100700002)(66476007)(86362001)(478600001)(7696005)(71200400001)(316002)(8936002)(66556008)(64756008)(4326008)(8676002)(76116006)(66446008)(110136005)(66946007)(54906003)(2906002)(41300700001)(7416002)(52536014)(5660300002)(4744005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eEdXWGpxam53SURWY3ZLTnJpUSs4cElRZ1ppKzRWSEl6OFpIcnFlbVQ3K05w?=
- =?utf-8?B?Z3dBUWl4UEF0VDY0Y3lIRDhZY2k3MmtQS01oZ01rNnQ4L1RPcGJVQzE0ZVUw?=
- =?utf-8?B?Q0ozSEpMemtSbjMrNmd1RnQ0SHZiWWIrZ3VVcDlHRjJSZ0tpOUZLeDhqYTdZ?=
- =?utf-8?B?QmR0MDlMNTRLd1VwNlNzZ0hacmRKbjNGMzlXS1JSaXgzMWNFT1FVajlVcVRm?=
- =?utf-8?B?SnpqdDFLd2FpRUR4bDFodCt6S3FhaFphYkVpajhsL0w1dzFoQjlSc3ZJWjdV?=
- =?utf-8?B?d3l0UXNnUFhBMlVPdllmR2JRclBzNnlXbVUzMUtjMUFVaURkMlI3b083RzBp?=
- =?utf-8?B?eEdRbllLcnpNVHN6UkRPeENhU2ZpWmIvQ0FhQ2VHK2JYNHJlOXhhSmI4dmhZ?=
- =?utf-8?B?VFgrVTFsN1kva3dONXpIWDVwZnl4Q3ZFaDVJYTBmSjVBcEVPL0lJcGl1UFdH?=
- =?utf-8?B?RDdNaUgvcFBHSE15bkNxMjlxUG9lUUsvcW9kNzJXbHpJUmMyb3Zaam12dGkw?=
- =?utf-8?B?bnUvRXFLZEpKRFZ4SThmMW5sU0U0VlNJMlBnK0ZOa0ljN2lheXkxM3hzK2tu?=
- =?utf-8?B?QWJnVGg3UytDSDRNb3lpWnJ2RW5GQ0JhTFJOd1paNk8xcUpueFZCWkpFU3h2?=
- =?utf-8?B?WitpTWM0T09Ia2xIbm5xZno3VGkvd2oxVVZUSjVTTytxTTJTQ3Y3NkdVaC8r?=
- =?utf-8?B?VTdYWkw0YVNBbGZYbnBwUzI2M2dWZGh2cVYyK2hMUVY2WEJoRWdQREIrUFYy?=
- =?utf-8?B?d3dqVSs3MUZzVG1PNGtJKzlYdEVGZ1JBSXhPOWRnRFJXS2pNcTlFbldvQmFn?=
- =?utf-8?B?K2hwWTZIYkltT1hXS3YrbTE1Wit0dUJXSml3cUVaQ2RJWHcra3A0eUM4VTJB?=
- =?utf-8?B?Rk51VW1YVUI1N1VNc2JVemZsS1NyL2xFWDVVbzM5UUhxU05kbmZHY2tlTkRn?=
- =?utf-8?B?eHZ0SytoM2tZeFhHK3JNK2lUd2dHb2dWZHlXTDh2VUR4dkhidTJ4dXhkbGh4?=
- =?utf-8?B?dStBdnRUWlNzQlV3RmtDVnEwUllMQnoxUXcrTUFHWDBuQVZSNXFoRkVZTFdo?=
- =?utf-8?B?Q1NUeU5idWlncjgvUHNkRlRDcUd2L3BQYW8yZHJrTm8xWTJXZVgzTFpubzdR?=
- =?utf-8?B?N3ZkbDBvbG80UjV6V2IxK0Ywc001cTVGK09aT244Q3V0dk5zYURlUzUxZ3pK?=
- =?utf-8?B?cmJZRmZiQ1czTEZLNm1MNDJEcEwyOTZ4K2tGaHVSV0c0cGZXbTNDQ1lMMU1x?=
- =?utf-8?B?SElFeHBsaHg3V3YxcVRZRnlVVUpzVjZnZ0pueXRmdlQ1M0NxeWtOd3pucDlG?=
- =?utf-8?B?N2tpOGEwVDViTlQ4L3habUhYckZpQ3JrOCtuck8xK0ZqUjA3M2NwS3FOVkNJ?=
- =?utf-8?B?NGEwR2VYNEtuTlY3UHNpWm1GUEs1bjRqdFdnQWM1eG1RUVZndXNQYUhIRnZa?=
- =?utf-8?B?WkQ0cnBBVUIxLzBwczFCbnlnekY1MkRWa3NadHlZTTZuR0JkVHBML3ExamVT?=
- =?utf-8?B?UmVmak16ajE1NmFPNnk5RDFnd2l5ZnFZTlAyamlkQXpvLzU0VTk5cVdXdjQ1?=
- =?utf-8?B?VEp5aWRTYVBKUVBMbm1oY2VuUzlYT0ZXbVJrb2Z6cWxKdFVSbDczOXZERmh3?=
- =?utf-8?B?K3hBNTRvVEFWNXlyUEhUR21xNHFrSmhEM2hMMWFsYU9CcCs0SU4xZEZFZ0lQ?=
- =?utf-8?B?a1o0NEF4dnFmZmtsUTM1YWVqRGRMTmtvbk5tbW5hVVZSWndoanRKZ1lEN3hK?=
- =?utf-8?B?Qnh1b1FFYzRnaHBRbU5LMTJXRDB4dzJKNlJXYkkzZGxEU1VuWG51QkhUNXV2?=
- =?utf-8?B?bDBVZ1NoVnJDeHU1QXkzZWxEclAvRXVuNHhsekkzM3p3QmNybE1BZHAzSzRa?=
- =?utf-8?B?eTRsL2xsWStPeHIvY01Mc1Ric1lPUTRwS1YzeEx5dU5lS2VKNW9CWERERU1j?=
- =?utf-8?B?K1IyRys1TDhXQy9qYVRWSkhSTDhyYXAwM2RJOG1QMHpVQ0xsbERTZzNNT1hx?=
- =?utf-8?B?Z3BreFZxYzRUNmdZVGJrUTM3cEdsdHdnd0dzaUd4UmMyQVBkTWh5Zm0wSjNP?=
- =?utf-8?B?SFQ5ai80T2FyNGtCUlA5TCtYZjZGTnpGOEc1TEJEUXI2Q1ROdFBzc0RIbmxR?=
- =?utf-8?Q?+H1PwaxmhFhvICSFGrl25NMvg?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5a9a50a-b5de-4bee-985e-08db269620d0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2023 03:17:23.9923 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: o5PpXBsp2kw+Y8k073vtZ41BapMDJmnn9BpL7UJvC9Thuu+HWdzfS+xi05ygL5eZBoUjqGS+peOzrV7PX7Qiaw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7373
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 15/22] vfio-iommufd: Add detach_ioas
- support for physical VFIO devices
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="803971585"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="803971585"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.119.150])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 20:43:39 -0700
+Date: Thu, 16 Mar 2023 20:43:39 -0700
+Message-ID: <87jzzgvy8k.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20230316010101.2590309-3-umesh.nerlige.ramappa@intel.com>
+References: <20230316010101.2590309-1-umesh.nerlige.ramappa@intel.com>
+ <20230316010101.2590309-3-umesh.nerlige.ramappa@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH v6 02/12] drm/i915/mtl: Synchronize
+ i915/BIOS on C6 enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,35 +62,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiBGcm9tOiBMaXUsIFlpIEwgPHlpLmwubGl1QGludGVsLmNvbT4NCj4gU2VudDogRnJpZGF5LCBN
-YXJjaCAxNywgMjAyMyAxMTowNyBBTQ0KPiANCj4gPiBGcm9tOiBUaWFuLCBLZXZpbiA8a2V2aW4u
-dGlhbkBpbnRlbC5jb20+DQo+ID4gU2VudDogRnJpZGF5LCBNYXJjaCAxNywgMjAyMyAxMDoxNCBB
-TQ0KPiA+DQo+ID4gPiBGcm9tOiBMaXUsIFlpIEwgPHlpLmwubGl1QGludGVsLmNvbT4NCj4gPiA+
-IFNlbnQ6IFRodXJzZGF5LCBNYXJjaCAxNiwgMjAyMyA4OjU1IFBNDQo+ID4gPg0KPiA+ID4gK3Zv
-aWQgdmZpb19pb21tdWZkX3BoeXNpY2FsX2RldGFjaF9pb2FzKHN0cnVjdCB2ZmlvX2RldmljZSAq
-dmRldikNCj4gPiA+ICt7DQo+ID4gPiArCWxvY2tkZXBfYXNzZXJ0X2hlbGQoJnZkZXYtPmRldl9z
-ZXQtPmxvY2spOw0KPiA+ID4gKw0KPiA+ID4gKwlpZiAoV0FSTl9PTighdmRldi0+aW9tbXVmZF9k
-ZXZpY2UpIHx8ICF2ZGV2LT5pb21tdWZkX2F0dGFjaGVkKQ0KPiA+ID4gKwkJcmV0dXJuOw0KPiA+
-ID4gKw0KPiA+DQo+ID4gdGhlIDJuZCBjaGVjayBzaG91bGRuJ3QgYmUgYSBXQVJOX09OLiBJdCdz
-IHVzZXItdHJpZ2dlcmFibGUuDQo+IA0KPiBZZXMuIGl0IGhhcyBhbHJlYWR5IGJlZW4gcmVtb3Zl
-ZCBpbiB0aGlzIHZlcnNpb24uOikNCg0KSHVoLCBiYWQgZXllcy4g8J+Yig0K
+On Wed, 15 Mar 2023 18:00:51 -0700, Umesh Nerlige Ramappa wrote:
+>
+> From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+Hi Vinay,
+
+> If BIOS enables/disables C6, i915 should do the same.
+
+So MTL bios has a control for enabling/disabling C6? Both RC6 and MC6
+individually or collectively?
+
+What happens if bios has disabled RC6 and i915 enables it: just that it
+will bust OA?
+
+The patch itself LGTM if the above is true, I can R-b it after I hear about
+the above.
+
+Thanks.
+--
+Ashutosh
+
+> Also, retain this value across driver reloads. This is needed only for
+> MTL as of now due to an existing bug in OA which needs C6 disabled for it
+> to function. BIOS behavior is also different across platforms in terms of
+> how C6 is enabled.
+>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
