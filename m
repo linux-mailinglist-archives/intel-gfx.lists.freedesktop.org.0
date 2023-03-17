@@ -1,34 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16266BEFE9
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:39:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F946BF001
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 18:43:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A34010EF54;
-	Fri, 17 Mar 2023 17:39:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6F9F10EF5F;
+	Fri, 17 Mar 2023 17:43:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9919210E400;
- Fri, 17 Mar 2023 17:39:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9183FA7DFB;
- Fri, 17 Mar 2023 17:39:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE1510EF5F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 17:43:01 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id ek18so23380955edb.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 10:43:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1679074980;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=juFDL1t+0yx3APjFMS4e9m1CxbDK324iou62xX9HrZ0=;
+ b=NrMkHPI/1sCbp+kVBJdSrVRHGhstjuhJx8JsuOAJUDWTq5FMpzxrc+eyzjBDdjyCrn
+ Aef0tO3pW3aYvH4mDo6hNHxG5ZSmgOUTPlL4Nj37692tYHdDUX6YDNroUPs9AJGVfWCU
+ d9jUyh4VO6yjVoLr+W7ztk/TwkUMJBeQRL77g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679074980;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=juFDL1t+0yx3APjFMS4e9m1CxbDK324iou62xX9HrZ0=;
+ b=epnINXQVLsry+kw1GTztrP98g68acJsU5lVaI5PU8y5tlAyw9kmjG4omS5e6v2mRzE
+ sWUtMp3DAxHZ2GheORmcd0Sy5eWXVGo6m9vPcYOtw/Rg2SrIl8HJSaBhxUAhHGom36AY
+ i/wA3ygHdr4FaeeN8aPk7Xg8Ny3rYIF+vECIyUgV2JHgy0VUPcO3AeHZMh+yUmP50oUo
+ vCbbkPblMm6jaKg73DQUt+ImXlrDn0Xa4BBzXs+ogoX7fPKlLtMvBgE5W26RNUyGGjcs
+ cDHY/7wZUF0MYAPu+Ny7ivtz502nlSzj3fEZk/E2hvowuovr1zC+9L2mqt8UztgCkzLm
+ Wk8g==
+X-Gm-Message-State: AO0yUKWM/OkQtInARge9bf2SoYKbiAuGEHrZxUzMUxdGxOc5hO7h8opv
+ JSESEAlGRgdaTrFaxYSsQ5ohkB1HRUcDsYj1B2G+3Q==
+X-Google-Smtp-Source: AK7set/c2Up3YIiPD0fhgFZN6KJU4f6ZVHs11pnzg2qlLrNvRJjGARO8BKOV1k0iio+1/DuTJesT9g==
+X-Received: by 2002:a17:906:3688:b0:877:a9d2:e5e9 with SMTP id
+ a8-20020a170906368800b00877a9d2e5e9mr152918ejc.42.1679074979988; 
+ Fri, 17 Mar 2023 10:42:59 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com.
+ [209.85.208.45]) by smtp.gmail.com with ESMTPSA id
+ h19-20020a1709070b1300b008ec4333fd65sm1206051ejl.188.2023.03.17.10.42.55
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 17 Mar 2023 10:42:57 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id x13so23433743edd.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 10:42:55 -0700 (PDT)
+X-Received: by 2002:a50:ce54:0:b0:4fa:794a:c0cc with SMTP id
+ k20-20020a50ce54000000b004fa794ac0ccmr2222273edj.2.1679074975032; Fri, 17 Mar
+ 2023 10:42:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 17 Mar 2023 17:39:39 -0000
-Message-ID: <167907477959.12996.12628802253960299797@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230317125352.198042-1-jani.nikula@intel.com>
-In-Reply-To: <20230317125352.198042-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/debugfs=3A_switch_crtc_d?=
- =?utf-8?q?ebugfs_to_struct_intel=5Fcrtc?=
+References: <20230307212223.7e49384a@gandalf.local.home>
+ <20230307212615.7a099103@gandalf.local.home>
+ <b919b550-6da8-f9f0-a0eb-0fd8af513817@amd.com>
+ <20230308074333.49546088@gandalf.local.home>
+ <980021d5-09f7-9fc3-2726-44884a57822f@gmail.com>
+ <CAM0jSHPf5u4=GGWm6x-zVkLA_LScAxq371ny2NoozuNjHfQefQ@mail.gmail.com>
+ <2b7fe203-82f5-2726-cd64-01c7421560d3@amd.com>
+ <20230315162011.351d0f71@gandalf.local.home>
+ <20230315202133.7cb1a0fe@gandalf.local.home>
+ <20230315202242.581c67bf@gandalf.local.home>
+In-Reply-To: <20230315202242.581c67bf@gandalf.local.home>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 17 Mar 2023 10:42:38 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjH83GOhjDaVnTUYfSf0XOLp-jpFACLSd8Uc59GzaCZug@mail.gmail.com>
+Message-ID: <CAHk-=wjH83GOhjDaVnTUYfSf0XOLp-jpFACLSd8Uc59GzaCZug@mail.gmail.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [BUG 6.3-rc1] Bad lock in ttm_bo_delayed_delete()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,34 +85,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Mar 15, 2023 at 5:22=E2=80=AFPM Steven Rostedt <rostedt@goodmis.org=
+> wrote:
+>
+> I hope that this gets in by -rc3, as I want to start basing my next branc=
+h
+> on that tag.
 
-Series: series starting with [1/2] drm/i915/debugfs: switch crtc debugfs to struct intel_crtc
-URL   : https://patchwork.freedesktop.org/series/115314/
-State : failure
+My tree should have it now as commit c00133a9e87e ("drm/ttm: drop
+extra ttm_bo_put in ttm_bo_cleanup_refs").
 
-== Summary ==
-
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_debugfs.o
-drivers/gpu/drm/i915/display/intel_display_debugfs.c: In function ‘crtc_updates_add’:
-drivers/gpu/drm/i915/display/intel_display_debugfs.c:810:52: error: ‘struct intel_crtc’ has no member named ‘debugfs_entry’
-  810 |  debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
-      |                                                    ^~
-make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_display_debugfs.o] Error 1
-make[4]: *** [scripts/Makefile.build:494: drivers/gpu/drm/i915] Error 2
-make[3]: *** [scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[2]: *** [scripts/Makefile.build:494: drivers/gpu] Error 2
-make[1]: *** [scripts/Makefile.build:494: drivers] Error 2
-make: *** [Makefile:2028: .] Error 2
-Build failed, no error log produced
-
-
+                Linus
