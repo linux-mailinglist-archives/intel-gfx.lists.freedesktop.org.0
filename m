@@ -1,34 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349FD6BF11F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 19:54:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165686BF1CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 20:38:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB97F10E3D3;
-	Fri, 17 Mar 2023 18:54:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5855B10E3F5;
+	Fri, 17 Mar 2023 19:38:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ABC8010E13A;
- Fri, 17 Mar 2023 18:54:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A300DA0003;
- Fri, 17 Mar 2023 18:54:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4028849829889858050=="
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
+ [IPv6:2001:4860:4864:20::30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECDF10E14D;
+ Fri, 17 Mar 2023 19:38:34 +0000 (UTC)
+Received: by mail-oa1-x30.google.com with SMTP id
+ 586e51a60fabf-1755e639b65so6871354fac.3; 
+ Fri, 17 Mar 2023 12:38:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679081913;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=g4CRQW5pF6Xx0toKLDpXgqayNx8cYo+HEUQnJtr2Bps=;
+ b=V1FnTrEDvrmXooPxB9BFOFCSWeFA3PtHSqlkjo3B/kgdwP55lAHlbXCarz0wrLHewv
+ 2zD8JslNGzIuuGMggdw0yQCXPJEpioP7O/1ukOSfEUq74v7a1J8AJoXNsl8t6GOgcUag
+ 6DCSJdrSQtnwyYdU1AhxYv61LIxrTvbm2r0Pq1JFTFBlexf9kBPjlqC25c08RPqSzcCg
+ LvrlapBm0HRhqfM2MBcKzOmqOGLsGY36asurvz2OlJefE5wDaET4HwD9wo2GUSepQeIm
+ zoiAaNv4syW2StXWCw4oqyP09CY2LtVhfq3TVEfMIt6+cI4DaMAev5aAT+hWpUfgbKCU
+ 9PLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679081913;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=g4CRQW5pF6Xx0toKLDpXgqayNx8cYo+HEUQnJtr2Bps=;
+ b=isQzvBmE/aCvSLjfUcR0GELVR58oS/uqdaN7xKfDnKClOSdaCHIIEaWYxeZnmnvFp+
+ D0cm2+gMhwU40Jh9yIqVI0lePqcga7NUC16YjTHt/73ZRVbox8KhqhV8a+S0Ns/IVYOd
+ Eg4ld9xanfImw+hz8TobydLUuXKERP+Ygm6veg/O0GAJgdlxztUAtaGpkOQ0vstrk4w4
+ 2MqLK4UNZHlH+fNzRNZbuWeUFDp9A4cqAwPHJIfhCAkIQMCyRwv/C8nRejbfThm09pje
+ vgmc+rB0T2sx1CHZ0HWLxvAg0aIBGaRXlMym1Vo6hYv45Jml0dKJmI272RUql8yG1scO
+ j8lw==
+X-Gm-Message-State: AO0yUKXLp/zL25e8msACFWPG5fUDyl0jFp0WiY9ZjvqURzXSmZFf9ReE
+ 482WM6JAD5kqh1+/NNLS/RuCoY9CxSiK9lSDgk+X5Trt
+X-Google-Smtp-Source: AK7set8HTaL1eqc4hBHnhHOUeVdf6WbJQVjDF98pwXR1E4FskcwcsCC/FpTAIQOgS8D203EVYEsr5r2haK6MFrcmjus=
+X-Received: by 2002:a05:6870:df8c:b0:176:3897:6928 with SMTP id
+ us12-20020a056870df8c00b0017638976928mr263980oab.5.1679081913684; Fri, 17 Mar
+ 2023 12:38:33 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Date: Fri, 17 Mar 2023 18:54:32 -0000
-Message-ID: <167907927263.12996.6588005471377140994@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <ZBSu2QsUJy31kjSE@work>
-In-Reply-To: <ZBSu2QsUJy31kjSE@work>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/uapi=3A_Replace_fake_flex-array_with_flexible-array_membe?=
- =?utf-8?q?r?=
+References: <20230308155322.344664-1-robdclark@gmail.com>
+ <20230308155322.344664-10-robdclark@gmail.com>
+ <CAOFGe944_xJOJ3a-uJDVyca_1_+aYTqat4=Qc3CC1wUubxw3XQ@mail.gmail.com>
+In-Reply-To: <CAOFGe944_xJOJ3a-uJDVyca_1_+aYTqat4=Qc3CC1wUubxw3XQ@mail.gmail.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Fri, 17 Mar 2023 12:38:22 -0700
+Message-ID: <CAF6AEGv5Bo6sbT+en7=C+QG9+m+Wn0gauQ1qhdzBv6AEkChu7A@mail.gmail.com>
+To: Faith Ekstrand <faith@gfxstrand.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v10 09/15] drm/syncobj: Add deadline support
+ for syncobj waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,484 +71,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rob Clark <robdclark@chromium.org>, freedreno@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>, Maxime Ripard <mripard@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Matt Turner <mattst88@gmail.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4028849829889858050==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/uapi: Replace fake flex-array with flexible-array member
-URL   : https://patchwork.freedesktop.org/series/115326/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12873 -> Patchwork_115326v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/index.html
-
-Participating hosts (35 -> 35)
-------------------------------
-
-  Additional (2): bat-atsm-1 bat-dg1-6 
-  Missing    (2): bat-adlm-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115326v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-atsm-1:         NOTRUN -> [SKIP][1] ([i915#2582]) +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@fbdev@eof.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         NOTRUN -> [ABORT][2] ([i915#6687] / [i915#7978])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_mmap@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][3] ([i915#4083])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_mmap@basic.html
-    - bat-dg1-6:          NOTRUN -> [SKIP][4] ([i915#4083])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_mmap@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][5] ([i915#4079]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html
-
-  * igt@gem_sync@basic-each:
-    - bat-atsm-1:         NOTRUN -> [FAIL][6] ([i915#8062]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_sync@basic-each.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][7] ([i915#4077]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html
-    - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#4077]) +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][9] ([i915#4079]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_hangman@error-state-basic:
-    - bat-atsm-1:         NOTRUN -> [ABORT][10] ([i915#8060])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@i915_hangman@error-state-basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - bat-dg1-6:          NOTRUN -> [SKIP][11] ([i915#7561])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-6:          NOTRUN -> [SKIP][12] ([i915#6621])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adlp-9:         [PASS][13] -> [INCOMPLETE][14] ([i915#4983])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-adlp-9/igt@i915_selftest@live@gt_lrc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-adlp-9/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][15] ([i915#6367] / [i915#7996])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-rpls-1:         [PASS][16] -> [DMESG-FAIL][17] ([i915#7102])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-6:          NOTRUN -> [SKIP][18] ([i915#4215])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg1-6:          NOTRUN -> [SKIP][19] ([i915#4212]) +7 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg1-6:          NOTRUN -> [SKIP][20] ([i915#7828]) +8 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - fi-bsw-nick:        NOTRUN -> [SKIP][21] ([fdo#109271]) +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-jsl-3:          NOTRUN -> [SKIP][22] ([i915#7828])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-jsl-3/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][23] ([fdo#109271])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][24] ([i915#4103] / [i915#4213]) +1 similar issue
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg1-6:          NOTRUN -> [SKIP][25] ([fdo#109285])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:
-    - fi-rkl-11600:       [PASS][26] -> [FAIL][27] ([fdo#103375])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-dg1-6:          NOTRUN -> [SKIP][28] ([i915#1072] / [i915#4078]) +3 similar issues
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg1-6:          NOTRUN -> [SKIP][29] ([i915#3555])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-gtt:
-    - bat-dg1-6:          NOTRUN -> [SKIP][30] ([i915#3708] / [i915#4077]) +1 similar issue
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html
-
-  * igt@prime_vgem@basic-read:
-    - bat-dg1-6:          NOTRUN -> [SKIP][31] ([i915#3708]) +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - bat-dg1-6:          NOTRUN -> [SKIP][32] ([i915#3708] / [i915#4873])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [ABORT][33] ([i915#7911]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-    - fi-bsw-nick:        [ABORT][35] ([i915#7911] / [i915#7913]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - bat-jsl-3:          [INCOMPLETE][37] -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [ABORT][39] ([i915#4983]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7102]: https://gitlab.freedesktop.org/drm/intel/issues/7102
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8060]: https://gitlab.freedesktop.org/drm/intel/issues/8060
-  [i915#8062]: https://gitlab.freedesktop.org/drm/intel/issues/8062
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12873 -> Patchwork_115326v1
-
-  CI-20190529: 20190529
-  CI_DRM_12873: b97925f47e2a20e1b79bc7c8cc236ded1bd431df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115326v1: b97925f47e2a20e1b79bc7c8cc236ded1bd431df @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-deb87bc13dd3 drm/i915/uapi: Replace fake flex-array with flexible-array member
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/index.html
-
---===============4028849829889858050==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/uapi: Replace fake flex-array with flexible-array member</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115326/">https://patchwork.freedesktop.org/series/115326/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12873 -&gt; Patchwork_115326v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 35)</h2>
-<p>Additional (2): bat-atsm-1 bat-dg1-6 <br />
-  Missing    (2): bat-adlm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115326v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>
-<p>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_sync@basic-each:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_sync@basic-each.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8062">i915#8062</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</p>
-</li>
-<li>
-<p>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-atsm-1/igt@i915_hangman@error-state-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8060">i915#8060</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-adlp-9/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-adlp-9/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7102">i915#7102</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</p>
-</li>
-<li>
-<p>bat-jsl-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-jsl-3/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12873/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115326v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12873 -&gt; Patchwork_115326v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12873: b97925f47e2a20e1b79bc7c8cc236ded1bd431df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7202: b4ec7dac375eed2dda89c64d4de94c4c9205b601 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115326v1: b97925f47e2a20e1b79bc7c8cc236ded1bd431df @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>deb87bc13dd3 drm/i915/uapi: Replace fake flex-array with flexible-array member</p>
-
-</body>
-</html>
-
---===============4028849829889858050==--
+On Fri, Mar 17, 2023 at 12:08=E2=80=AFPM Faith Ekstrand <faith@gfxstrand.ne=
+t> wrote:
+>
+>
+> On Wed, Mar 8, 2023 at 9:54=E2=80=AFAM Rob Clark <robdclark@gmail.com> wr=
+ote:
+>>
+>> From: Rob Clark <robdclark@chromium.org>
+>>
+>> Add a new flag to let userspace provide a deadline as a hint for syncobj
+>> and timeline waits.  This gives a hint to the driver signaling the
+>> backing fences about how soon userspace needs it to compete work, so it
+>> can addjust GPU frequency accordingly.  An immediate deadline can be
+>> given to provide something equivalent to i915 "wait boost".
+>>
+>> v2: Use absolute u64 ns value for deadline hint, drop cap and driver
+>>     feature flag in favor of allowing count_handles=3D=3D0 as a way for
+>>     userspace to probe kernel for support of new flag
+>> v3: More verbose comments about UAPI
+>>
+>> Signed-off-by: Rob Clark <robdclark@chromium.org>
+>> ---
+>>  drivers/gpu/drm/drm_syncobj.c | 64 ++++++++++++++++++++++++++++-------
+>>  include/uapi/drm/drm.h        | 17 ++++++++++
+>>  2 files changed, 68 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj=
+.c
+>> index 0c2be8360525..a85e9464f07b 100644
+>> --- a/drivers/gpu/drm/drm_syncobj.c
+>> +++ b/drivers/gpu/drm/drm_syncobj.c
+>> @@ -126,6 +126,11 @@
+>>   * synchronize between the two.
+>>   * This requirement is inherited from the Vulkan fence API.
+>>   *
+>> + * If &DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE is set, the ioctl will also=
+ set
+>> + * a fence deadline hint on the backing fences before waiting, to provi=
+de the
+>> + * fence signaler with an appropriate sense of urgency.  The deadline i=
+s
+>> + * specified as an absolute &CLOCK_MONOTONIC value in units of ns.
+>> + *
+>>   * Similarly, &DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT takes an array of syncob=
+j
+>>   * handles as well as an array of u64 points and does a host-side wait =
+on all
+>>   * of syncobj fences at the given points simultaneously.
+>> @@ -973,7 +978,8 @@ static signed long drm_syncobj_array_wait_timeout(st=
+ruct drm_syncobj **syncobjs,
+>>                                                   uint32_t count,
+>>                                                   uint32_t flags,
+>>                                                   signed long timeout,
+>> -                                                 uint32_t *idx)
+>> +                                                 uint32_t *idx,
+>> +                                                 ktime_t *deadline)
+>>  {
+>>         struct syncobj_wait_entry *entries;
+>>         struct dma_fence *fence;
+>> @@ -1053,6 +1059,15 @@ static signed long drm_syncobj_array_wait_timeout=
+(struct drm_syncobj **syncobjs,
+>>                         drm_syncobj_fence_add_wait(syncobjs[i], &entries=
+[i]);
+>>         }
+>>
+>> +       if (deadline) {
+>> +               for (i =3D 0; i < count; ++i) {
+>> +                       fence =3D entries[i].fence;
+>> +                       if (!fence)
+>> +                               continue;
+>> +                       dma_fence_set_deadline(fence, *deadline);
+>> +               }
+>> +       }
+>> +
+>>         do {
+>>                 set_current_state(TASK_INTERRUPTIBLE);
+>>
+>> @@ -1151,7 +1166,8 @@ static int drm_syncobj_array_wait(struct drm_devic=
+e *dev,
+>>                                   struct drm_file *file_private,
+>>                                   struct drm_syncobj_wait *wait,
+>>                                   struct drm_syncobj_timeline_wait *time=
+line_wait,
+>> -                                 struct drm_syncobj **syncobjs, bool ti=
+meline)
+>> +                                 struct drm_syncobj **syncobjs, bool ti=
+meline,
+>> +                                 ktime_t *deadline)
+>>  {
+>>         signed long timeout =3D 0;
+>>         uint32_t first =3D ~0;
+>> @@ -1162,7 +1178,8 @@ static int drm_syncobj_array_wait(struct drm_devic=
+e *dev,
+>>                                                          NULL,
+>>                                                          wait->count_han=
+dles,
+>>                                                          wait->flags,
+>> -                                                        timeout, &first=
+);
+>> +                                                        timeout, &first=
+,
+>> +                                                        deadline);
+>>                 if (timeout < 0)
+>>                         return timeout;
+>>                 wait->first_signaled =3D first;
+>> @@ -1172,7 +1189,8 @@ static int drm_syncobj_array_wait(struct drm_devic=
+e *dev,
+>>                                                          u64_to_user_ptr=
+(timeline_wait->points),
+>>                                                          timeline_wait->=
+count_handles,
+>>                                                          timeline_wait->=
+flags,
+>> -                                                        timeout, &first=
+);
+>> +                                                        timeout, &first=
+,
+>> +                                                        deadline);
+>>                 if (timeout < 0)
+>>                         return timeout;
+>>                 timeline_wait->first_signaled =3D first;
+>> @@ -1243,17 +1261,22 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, v=
+oid *data,
+>>  {
+>>         struct drm_syncobj_wait *args =3D data;
+>>         struct drm_syncobj **syncobjs;
+>> +       unsigned possible_flags;
+>> +       ktime_t t, *tp =3D NULL;
+>>         int ret =3D 0;
+>>
+>>         if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ))
+>>                 return -EOPNOTSUPP;
+>>
+>> -       if (args->flags & ~(DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
+>> -                           DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT))
+>> +       possible_flags =3D DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
+>> +                        DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+>> +                        DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE;
+>> +
+>> +       if (args->flags & ~possible_flags)
+>>                 return -EINVAL;
+>>
+>>         if (args->count_handles =3D=3D 0)
+>> -               return -EINVAL;
+>> +               return 0;
+>
+>
+> Did you intend this change? If so, why? What does waiting with no handles=
+ gain us? I mean, it's probably fine but it seems unrelated to this change.
+
+Yes, it was intentional.. it gives userspace a way to probe whether
+the kernel supports the new flag..
+
+BR,
+-R
+
+>>         ret =3D drm_syncobj_array_find(file_private,
+>>                                      u64_to_user_ptr(args->handles),
+>> @@ -1262,8 +1285,13 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, vo=
+id *data,
+>>         if (ret < 0)
+>>                 return ret;
+>>
+>> +       if (args->flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE) {
+>> +               t =3D ns_to_ktime(args->deadline_ns);
+>> +               tp =3D &t;
+>> +       }
+>> +
+>>         ret =3D drm_syncobj_array_wait(dev, file_private,
+>> -                                    args, NULL, syncobjs, false);
+>> +                                    args, NULL, syncobjs, false, tp);
+>>
+>>         drm_syncobj_array_free(syncobjs, args->count_handles);
+>>
+>> @@ -1276,18 +1304,23 @@ drm_syncobj_timeline_wait_ioctl(struct drm_devic=
+e *dev, void *data,
+>>  {
+>>         struct drm_syncobj_timeline_wait *args =3D data;
+>>         struct drm_syncobj **syncobjs;
+>> +       unsigned possible_flags;
+>> +       ktime_t t, *tp =3D NULL;
+>>         int ret =3D 0;
+>>
+>>         if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ_TIMELINE))
+>>                 return -EOPNOTSUPP;
+>>
+>> -       if (args->flags & ~(DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
+>> -                           DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+>> -                           DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE))
+>> +       possible_flags =3D DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
+>> +                        DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
+>> +                        DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE |
+>> +                        DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE;
+>> +
+>> +       if (args->flags & ~possible_flags)
+>>                 return -EINVAL;
+>>
+>>         if (args->count_handles =3D=3D 0)
+>> -               return -EINVAL;
+>> +               return -0;
+>
+>
+> Did you intend this change? -0 is a pretty weird integer.
+>
+>>
+>>         ret =3D drm_syncobj_array_find(file_private,
+>>                                      u64_to_user_ptr(args->handles),
+>> @@ -1296,8 +1329,13 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device=
+ *dev, void *data,
+>>         if (ret < 0)
+>>                 return ret;
+>>
+>> +       if (args->flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE) {
+>> +               t =3D ns_to_ktime(args->deadline_ns);
+>> +               tp =3D &t;
+>> +       }
+>> +
+>>         ret =3D drm_syncobj_array_wait(dev, file_private,
+>> -                                    NULL, args, syncobjs, true);
+>> +                                    NULL, args, syncobjs, true, tp);
+>>
+>>         drm_syncobj_array_free(syncobjs, args->count_handles);
+>>
+>> diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
+>> index 642808520d92..bff0509ac8b6 100644
+>> --- a/include/uapi/drm/drm.h
+>> +++ b/include/uapi/drm/drm.h
+>> @@ -887,6 +887,7 @@ struct drm_syncobj_transfer {
+>>  #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL (1 << 0)
+>>  #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT (1 << 1)
+>>  #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE (1 << 2) /* wait for time=
+ point to become available */
+>> +#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE (1 << 3) /* set fence dead=
+line based to deadline_ns */
+>>  struct drm_syncobj_wait {
+>>         __u64 handles;
+>>         /* absolute timeout */
+>> @@ -895,6 +896,14 @@ struct drm_syncobj_wait {
+>>         __u32 flags;
+>>         __u32 first_signaled; /* only valid when not waiting all */
+>>         __u32 pad;
+>> +       /**
+>> +        * @deadline_ns - fence deadline hint
+>> +        *
+>> +        * Deadline hint, in absolute CLOCK_MONOTONIC, to set on backing
+>> +        * fence(s) if the DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE flag is
+>> +        * set.
+>> +        */
+>> +       __u64 deadline_ns;
+>>  };
+>>
+>>  struct drm_syncobj_timeline_wait {
+>> @@ -907,6 +916,14 @@ struct drm_syncobj_timeline_wait {
+>>         __u32 flags;
+>>         __u32 first_signaled; /* only valid when not waiting all */
+>>         __u32 pad;
+>> +       /**
+>> +        * @deadline_ns - fence deadline hint
+>> +        *
+>> +        * Deadline hint, in absolute CLOCK_MONOTONIC, to set on backing
+>> +        * fence(s) if the DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE flag is
+>> +        * set.
+>> +        */
+>> +       __u64 deadline_ns;
+>>  };
+>>
+>>
+>> --
+>> 2.39.2
+>>
