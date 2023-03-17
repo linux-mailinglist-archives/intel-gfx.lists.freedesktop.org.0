@@ -2,151 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C35B6BEE4B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 17:29:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E09E6BEE2A
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 17:28:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BA010E3DC;
-	Fri, 17 Mar 2023 16:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13EE610E3DF;
+	Fri, 17 Mar 2023 16:28:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 303FA10E3DC
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 16:29:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679070591; x=1710606591;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=E2IYz2KQ5UXVN2S/YZjudn5bMrgh5ZyQr8jutcm/0tk=;
- b=XYi5TOAbackcL32wV/uAhLRYOEgYH+wJHah0HO+2Vrqjwm23O62wIK93
- f2H+LZ7dHCYZaMGVtp71y4/yymR9ZiICaV5d3zJa1I2sgLbI18wWnu4TH
- mqj6DnLTvf2AVqKCZX7GnucBSLjuM05YWqnstt4yYazojUIG9NljgfG/K
- 6tfPNS/gXihwpwSHIPfXx+wraDSG+8mARnD5kqPyXNJJjNfjD/fQEeKzu
- /wwD7EqLpi3w4eD+NS5fgoHkzabWu+dkZXcgY/DpMPH4OkVS56qsCoJui
- D/dANqU+QkkqPcWdOooOCTiaS77k/kU0ijzlvvQq6bGDM//fx8Bd8PxMM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="403172103"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="403172103"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 09:24:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="769408167"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="769408167"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Mar 2023 09:24:53 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 17 Mar 2023 09:24:52 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 17 Mar 2023 09:24:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 17 Mar 2023 09:24:52 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 17 Mar 2023 09:24:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CDcL95xY6ASm8Bu9ylEGI9h3CZc8ncnkcTdTSdP0NdNGI6heLx6Qgp1Ts0qOSiQjpahRMGhj9Oa1o9CicyC68j2RS04bhForjVQ4NK2n5LTye29STZxsspjYXQIP5BSISjc6yMZVUmOPN6GF10S6rDOYX1V+6ph6LFjt+nH0gp984fnOOE9lNcmpSbyax+Y4+uJHsHFeVDV+prW4ekAqjBq479DYcgFc9NQq2FPLf/1iMU5GaUKCW/qM9TGYbhyuNHVqQq1AA89IAcGpc1q6+hlWGyFxRffZDMQscKz/b9gwYj5fR8OETyNqIXsSJyEiYT8ZDjZwljP0vFh8D9b15w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6CVmvhRxl/mg8YhPpaMQuaJfn3zMQGOw693/h7euu1M=;
- b=b+kdJkGTs5VLm5ZxH9mkErKj9ymo5Pu0vVoOvHhGLGzb2F5gpEi9l7aTwl5sAaTGCs4X7l4G6kbD2ewtHQo/zcLfRHPqroFuBUU1KemKtJ3KWQdAc+s44bVZwa6YlOoayRAw4lvCexLLTHbUAq7QJznnZ+NeZVaU3VSgnJ9vC7dDRuqKLb0ehcQ1RWi21VeBBWRmsVfql5P/QKuONAWvNswfErp5gvTOn+aCDhqXKBCScnEfyrnNog5Ufq25ktfDsl4wMQlPRWCy7SvPM8D8RxkiZ65TgCP/CeJtyWRAc87rGHYym8bMzGoD5BUFeoxnFOL5G+O5G2QBzNrJ0OT4Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
- BN9PR11MB5419.namprd11.prod.outlook.com (2603:10b6:408:100::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.35; Fri, 17 Mar 2023 16:24:39 +0000
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::9bf9:4252:3ddc:7ac2]) by DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::9bf9:4252:3ddc:7ac2%7]) with mapi id 15.20.6178.024; Fri, 17 Mar 2023
- 16:24:39 +0000
-Date: Fri, 17 Mar 2023 09:24:24 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <ZBSUOFc4Rq5n5dfn@orsosgc001.jf.intel.com>
-References: <20230316010101.2590309-1-umesh.nerlige.ramappa@intel.com>
- <20230316010101.2590309-13-umesh.nerlige.ramappa@intel.com>
- <87fsa4vu0j.wl-ashutosh.dixit@intel.com>
- <87cz57x67j.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <87cz57x67j.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: BY3PR10CA0027.namprd10.prod.outlook.com
- (2603:10b6:a03:255::32) To DM6PR11MB2987.namprd11.prod.outlook.com
- (2603:10b6:5:65::14)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D030010E3DF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 16:28:09 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id z21so22645465edb.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 09:28:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679070488;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=sM+dgA1qJekrwZUnv1JRioekXpIxgoz4g8TBkXglJrg=;
+ b=ERIurE41vo/1q7+ch26aXDWBoDa6ERGJoxkX2agpSlOzlN0G6f+SUkpJGXDs1/AqeJ
+ IU7hRV/3VB0J4dYk0lcil8hiW0T9vOG16lKHppFUezP+QOPJK1Jr8xcFR7mMC2+ON7dP
+ 69WL96k28ZqMAA53w0ES0hAnZLD7qbuyPOWCWnMxqap6uBUmgxgZMi46ozT/LcKMANIG
+ g2kfHGtGVENleOx640sfvI+i1h7dMtxooPePFmdyU+S0sbRTEF2cfz5b0wqF1/Cf9va7
+ eaI1/ZgqEK4RN49XBRQsqXfAknMQpaZyR0vFpoZmaegOikFYwQJq8wGaVUjvGqTbQK8s
+ KcDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679070488;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=sM+dgA1qJekrwZUnv1JRioekXpIxgoz4g8TBkXglJrg=;
+ b=GtEby52MGT2iVko0Ov//IoPFf6ylpnXZJcGEHDQQUAo2fRXFFcVKpnjzgFmE85PsEe
+ 50WcJO3feM4hOK7c1vOYJy3MjzjZH2tztbacTM19wil4UwaYeN/p85GQBA+r4TmfO8mT
+ X/iA57Zxsi6vYmMIiVxaK34afk3IcErryI8gwMyJ++P1k/rg6HfssMYfiC+wkPlUQAo3
+ 7ynLrcxHZAp9Pe3lSpDR8Kcd7TUJBrsghOxQTyUw3jM77xr8WDPvwNmPCQix4oh2qxLF
+ eUQQBvMxhKKbBwmEKiTGin+OMi5hcwubdBh7wcEL84cDXNT/AvpeOP/5Hu/PlXtWlMzg
+ FUUA==
+X-Gm-Message-State: AO0yUKUufwUurffTpd1dCvyCUobRkvZn6NT97+MbhNlQ74hQn9NQT6aA
+ WpZUgYv5KBFthibtaBLV+X6c3wzJn2MlRRZqzjc=
+X-Google-Smtp-Source: AK7set/t2C7YiSG4njN2lPhwC/PbBKecrkAqU4JdADOsqb4X3uxx37D/X05JZ6VpBn9NXnJ4svHDNw1CtdTeBBIsbU0=
+X-Received: by 2002:a17:907:36e:b0:877:747d:4a85 with SMTP id
+ rs14-20020a170907036e00b00877747d4a85mr7798535ejb.3.1679070488213; Fri, 17
+ Mar 2023 09:28:08 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|BN9PR11MB5419:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19549458-83ab-43b5-9a84-08db27041b5b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fwbBn7LZkMI3UIcb2Q0Slo27nUq9rQlKUgmaQNOf/cLtyl48D9Ge8z8fvOBk9ktAeZV6G5GFn05mxibSaCRiBvMeaWkbe5JZfSOQjXol59M7DNzgRwxbGpSrCgXj3k0EJ2iXFN8n/DCbAOJQerOU1eW7BdpzzWDiXbY9VJj+0nfcn1Nqa0TRjVDsSfOkiCR/IM6LZAJPitmWvisclQ79KqoPMS5u4sj8TkB17lSO4hAq5gL9vSYOhjF6B53NBdo5JJSg+cUxM+poPLYVXaR+A4ChaBgG21bz6JMwqSjOSFE17ICzAkGNary0Cf46j6O02h0FDhGRqreQsjlBjm/6oSbuB8cLeri0FG7U7rG16IzmOl41GqwcAfTkjfZTNCvGf0AZtZmEeYjehrKAt70lpfIpEejwxckv8G1oncTqf0hLJylgiJfxAZBnLuivjffv3Ah8m8gJ+/AMsD82BdYd8LwZ/QV6bRWDiQ3KHeAs3s+LYqSJbq0TgZRvkplspJYgT4jK8e98yhpLuJwm6yaEmodySXMn/ljskrSa+ADnCYCxz8DQCLKfbebpde3a19mcQa8DxybtkqbbmF3EGoHvpvZd85oc4pilJx0qS0I1lUnObljacx3IVi5gyVBlpA3d
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(366004)(396003)(346002)(39860400002)(136003)(376002)(451199018)(38100700002)(86362001)(5660300002)(82960400001)(2906002)(41300700001)(8936002)(6862004)(4326008)(26005)(6506007)(186003)(83380400001)(6512007)(316002)(6636002)(8676002)(6666004)(6486002)(66556008)(966005)(478600001)(66946007)(66476007)(66899018);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1ExU00vb2JEMURmT1JIdjNvYWZQd1Z0NnFXNG04eVNOdU1yOXBpYkhEdlFJ?=
- =?utf-8?B?VlEwa09SdjB5YitlTUNPNW16TmhrZWFLU3JOMzN6Z3lBdmQzeXN4MkRyVm1m?=
- =?utf-8?B?Tnk1Q0owRzRLdHdpRXhwRyszY0ZqN2lyQVRDYnNXQU0ybWlhQzNrTEdMZ1Zv?=
- =?utf-8?B?VTV0Q3Bzb1BlUWc4Y1htSDM0SzZjYjhwc3ROK0JRT0ZCcmd4SXBsR24yRkdV?=
- =?utf-8?B?SG5SMXMwT1FEZEloS1ZPWDQySkpNQm0veVovN3p4SjZSMW5kSXFMREVtVXhN?=
- =?utf-8?B?WW16WUlWMXZPc081T0VWYVBwV2ZYZlUyV05KbzRXNlcrV2JYdFVkcTJiZ1FQ?=
- =?utf-8?B?K292Tkc5N3dmV0xsSUxWOWZmbmVsZlY4V0JXWVhvNkwwL3MzQ3hVc1NoRWJl?=
- =?utf-8?B?QWtLcDZXc2FVU281RWhZcEtjcDd2UVdiTnM5dFA4a0FiaVptV1g3Y21PbzFU?=
- =?utf-8?B?UzRhcVhoOXJuT2lYNVdKODVwQW5wUXoxaTk5WStlNjBhOGtoWXp3eHMxbUtG?=
- =?utf-8?B?eWw5MW1iTEF0cFlERnpHWDhKcEFIV09jdkgyaGw3YkdBVVo5OVBVZmVUSlQ5?=
- =?utf-8?B?QUhYK2RldzNHTGhUc1dmdFFEdjkyakVuRm1FUnpCY3JRaDlwMlh2aDMwb0xu?=
- =?utf-8?B?Mi9mcjVBemRrRDNYemxtQW5DL1cyNmpwaW0zc0tqeG9maUp6NC9BWUVxcnhm?=
- =?utf-8?B?RlFQMVFpeWdVYXQ1U3A4d3UxWDNvM3pkNDJYbW1xeVNCckpRMGl6L3JWb3Fx?=
- =?utf-8?B?eGN0VnRWdjBBdklOcGd3aUpXV3YwTUdzbW1NQjFURkFIaitiNWJrSExzaXJu?=
- =?utf-8?B?bGo5SzR2WGRNY2tpN1BqMmk3M0I3anNqNC9HUm9RQmFiMVliYUNvdkRBM2ph?=
- =?utf-8?B?Zkx2b1pzbzk0Sm03U0xNdndaWXBnWTRTcjRVS1NPbC9iRWc4UnBtaVMwR3BP?=
- =?utf-8?B?Ty82aW05NDJjQ1BJY0tBZU9VZC9HUTR2aEVIaTBvbnY2ZW5OTDNXL09NaXlJ?=
- =?utf-8?B?ODlDRit2Unhnd01SSmxDeDF3MTlFL1k5dkRXMXNRa2hCNmhTTC9peUlzSFhI?=
- =?utf-8?B?SUZSMlBaTExBelpZeDRnYmFVZnZwQkUxbWhZdTViejVXTEJvRG9rWU9IemdM?=
- =?utf-8?B?V01VOGNVNWpkak5xeThkbC85TnlLSEV6OHBrSnZFM2J1bXVERWtraEI4cy9Z?=
- =?utf-8?B?dlU3QUlTSWVUNUYyNVhON3pKQlpzMVAwTHYwWnY5aFlIaWZxejhOV3BzQmw2?=
- =?utf-8?B?ZG5ZY2FpbFYyZ2NjRHZTemJ1RTI2OHl1QXAwS3BEZnltOGNZMk1PQm9WaXU5?=
- =?utf-8?B?Q0xwOExTb2RxWUJ2QXVDSnNuM0FjeUVHUmljUW5LWU5HRlFsZklLYWd1NFl6?=
- =?utf-8?B?WkdWalMxb2t1T0lqYk5xK1JHS3l0Qkp4cnZmTldzUmtINzZ6RG9HQ1crbmYv?=
- =?utf-8?B?c3hib0o3RGJkbmNWTWFRakd6b0VFZDloZVdlUFppNkFuaVVnV1p0T0RvcHZk?=
- =?utf-8?B?MkF1TFNpc2NuUTQwTzVNdmdBRHFHbEgxSGc4b1l0MThkWE9FSzF0cnlGSGVL?=
- =?utf-8?B?MEo3OUlJcitwM1lCd2I3OFdmZHNMQ1BkQ2lORmxXTFpKbW5wK3JBTVpPaWNL?=
- =?utf-8?B?eW5xZzQ0dlNiOFpoZXhBNERldHhKZG5IOXNFN2pHVktFeHJUYnVTMDhzM2lF?=
- =?utf-8?B?dHRBNUR1SFVUdklpUW1DelVGMGMvMVJQVDluamlDWlVCazA1WmxpOFkxWmhm?=
- =?utf-8?B?Y0xEWVBrN0dVMFd4N1Bud2dhdnVGcWhFUDlIblpVR2s5S2tpdy80NEdmWU9s?=
- =?utf-8?B?Q2xQWFUyT3NCMTFnZHZsbFdWT1BDWXk2eU5QZzB2a1pacWxnRjZSWEdsWFhS?=
- =?utf-8?B?eGxrdE1Cd0tLQjNNUERpc1dKeldYSExIeVdZSndnWExDRFlqZXhTNEF5VDRx?=
- =?utf-8?B?R1daSkgzcmRxY2RVMkJkWUVTcXkzWmJFTGdXK3Z5RHRJMlRZdWV3S0lyaWl5?=
- =?utf-8?B?T212ZXdXc2hnYjdJMDlVYTh4ODhGN1IxME5wM09JVndKekJJVGRkWnZ3ajdz?=
- =?utf-8?B?QmNlRWRlbXRhWFlieVRhVGpUcmFBMlM0eWMxZVVuaVU2eGhwL1RldXkxU0di?=
- =?utf-8?B?UHpObElGWVJianN4WEV2OE8vZHc0ZkN4c0tsMFhabDZrSFBJdXFsVHpJcE5V?=
- =?utf-8?Q?JJgyw/50QETKrpr9eaRDh1w=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19549458-83ab-43b5-9a84-08db27041b5b
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2023 16:24:39.7585 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H8I6FADEaHXMJtJ1Um2Idq5fdj/u7ZDW7GjhRWhdK1v/KlRcUv36GJaxWOkHLkRQdy94XYdxeAS501y5nOwlfnqnQV2mzIFoe+mK8RPBO+o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5419
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 12/12] drm/i915/perf: Wa_14017512683:
- Disable OAM if media C6 is enabled in BIOS
+References: <167820543971229@kroah.com>
+ <20230314022211.1393031-1-John.C.Harrison@Intel.com>
+ <ZBF48kVhFmXIsR+K@kroah.com> <a5cf5572-4160-3efb-4f80-aaf53aa06efe@intel.com>
+ <ZBIHJD5FkxiammjB@kroah.com> <5ed286b7-c2df-9e63-d85a-be9994f93eec@intel.com>
+ <ZBRkAZwItdidH32z@kroah.com>
+In-Reply-To: <ZBRkAZwItdidH32z@kroah.com>
+From: Jason Andryuk <jandryuk@gmail.com>
+Date: Fri, 17 Mar 2023 12:27:56 -0400
+Message-ID: <CAKf6xpvo6suOZWF1QKYp1fy3kyMhD05snebpSq5+ha5osPxJLg@mail.gmail.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 5.4.y] drm/i915: Don't use BAR mappings for
+ ring buffers with LLC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,127 +72,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 11:06:08PM -0700, Dixit, Ashutosh wrote:
->On Thu, 16 Mar 2023 22:14:52 -0700, Dixit, Ashutosh wrote:
->>
->> On Wed, 15 Mar 2023 18:01:01 -0700, Umesh Nerlige Ramappa wrote:
->> >
->>
->> Hi Umesh,
->>
->> Mostly looks good but one nit below.
->>
->> > OAM does not work with media C6 enabled on some steppings of MTL.
->> > Disable OAM if we detect that media C6 was enabled in bios.
->> >
->> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/i915_perf.c | 30 ++++++++++++++++++++++++++++++
->> >  1 file changed, 30 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->> > index 77fae3d80128..4ac6535a0356 100644
->> > --- a/drivers/gpu/drm/i915/i915_perf.c
->> > +++ b/drivers/gpu/drm/i915/i915_perf.c
->> > @@ -209,6 +209,7 @@
->> >  #include "gt/intel_gt_regs.h"
->> >  #include "gt/intel_lrc.h"
->> >  #include "gt/intel_lrc_reg.h"
->> > +#include "gt/intel_rc6.h"
->> >  #include "gt/intel_ring.h"
->> >  #include "gt/uc/intel_guc_slpc.h"
->> >
->> > @@ -4898,6 +4899,18 @@ static u32 num_perf_groups_per_gt(struct intel_gt *gt)
->> >
->> >  static u32 __oam_engine_group(struct intel_engine_cs *engine)
->> >  {
->> > +	/*
->> > +	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
->> > +	 * C6 disable in BIOS. Do not enable OA for media classes if MC6 is
->> > +	 * enabled in BIOS.
->> > +	 */
->> > +	if (IS_MTL_MEDIA_STEP(engine->i915, STEP_A0, STEP_C0) &&
->> > +	    intel_check_bios_c6_setup(&engine->gt->rc6)) {
->> > +		drm_notice_once(&engine->i915->drm,
->> > +				"OAM requires media C6 to be disabled in BIOS\n");
->>
->> I think the typical mode of working with MTL would be to enable C6 unless OA
->> is needed. But this will print out this notice on every MTL system. So IMO
->> we should print this out only when a OAM perf stream is opened and that
->> fails.
-
-We could do that. I can move this to the open ioctl.
-
->>
->> Though not sure if it's ok to add a line to an already cluttered dmesg? The
->> default console log level is 4 (WARNING) so maybe ok?
->>
->> https://linuxconfig.org/introduction-to-the-linux-kernel-log-levels
->>
->> Though if we fail the opening of an OAM stream we could make it a drm_warn?
-
-Hmm, I was thinking of just keeping it in line with the other failures 
-in open ioctl - a drm_err message, so that it helps debug.
-
+On Fri, Mar 17, 2023 at 8:58=E2=80=AFAM Greg KH <gregkh@linuxfoundation.org=
+> wrote:
 >
->Another idea: there is a drm_notice in Patch 2 when C6 is disabled, maybe
->we could just change it to "C6 disabled by BIOS, OAM availbable\n" or
->something like that and just remove the notice from here. I think we should
->avoid the notice when C6 is enabled since that is likely to be the default
->mode.
-
-Ideally patch 2 is required irrespective of the OA issue, since i915 
-should make sure it honors the bios setting. With that in mind, I would 
-leave the drm message in OA code.
-
+> On Thu, Mar 16, 2023 at 01:58:35PM -0700, John Harrison wrote:
+> > On 3/15/2023 10:57, Greg KH wrote:
+> > > On Wed, Mar 15, 2023 at 10:07:53AM -0700, John Harrison wrote:
+> > > > On 3/15/2023 00:51, Greg KH wrote:
+> > > > > On Mon, Mar 13, 2023 at 07:22:11PM -0700, John.C.Harrison@Intel.c=
+om wrote:
+> > > > > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > > > >
+> > > > > > Direction from hardware is that ring buffers should never be ma=
+pped
+> > > > > > via the BAR on systems with LLC. There are too many caching pit=
+falls
+> > > > > > due to the way BAR accesses are routed. So it is safest to just=
+ not
+> > > > > > use it.
+> > > > > >
+> > > > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > > > > Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound a=
+nywhere")
+> > > > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > > > > > Cc: intel-gfx@lists.freedesktop.org
+> > > > > > Cc: <stable@vger.kernel.org> # v4.9+
+> > > > > > Tested-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> > > > > > Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@inte=
+l.com>
+> > > > > > Link: https://patchwork.freedesktop.org/patch/msgid/20230216011=
+101.1909009-3-John.C.Harrison@Intel.com
+> > > > > > (cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851=
+d919)
+> > > > > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > > > > > (cherry picked from commit 85636167e3206c3fbd52254fc432991cc4e9=
+0194)
+> > > > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > > > > ---
+> > > > > >    drivers/gpu/drm/i915/gt/intel_ringbuffer.c | 4 ++--
+> > > > > >    1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > Also queued up for 5.10.y, you forgot that one :)
+> > > > I'm still working through the backlog of them.
+> > > >
+> > > > Note that these patches must all be applied as a pair. The 'don't u=
+se
+> > > > stolen' can be applied in isolation but won't totally fix the probl=
+em.
+> > > > However, applying 'don't use BAR mappings' without applying the sto=
+len patch
+> > > > first will results in problems such as the failure to boot that was=
+ recently
+> > > > reported and resulted in a revert in one of the trees.
+> > > I do not understand, you only submitted 1 patch here, what is the
+> > > "pair"?
+> > The original patch series was two patches -
+> > https://patchwork.freedesktop.org/series/114080/. One to not use stolen
+> > memory and the other to not use BAR mappings. If the anti-BAR patch is
+> > applied without the anti-stolen patch then the i915 driver will attempt=
+ to
+> > access stolen memory directly which will fail. So both patches must be
+> > applied and in the correct order to fix the problem of cache aliasing w=
+hen
+> > using BAR accesses on LLC systems.
+> >
+> > As above, I am working my way through the bunch of 'FAILED patch' email=
+s.
+> > The what-to-do instructions in those emails explicitly say to send the =
+patch
+> > individually in reply to the 'FAILED' message rather than as part of an=
+y
+> > original series.
 >
->>
->> > +		return PERF_GROUP_INVALID;
->> > +	}
->> > +
->> >	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 70)) {
->> >		/*
->> >		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
->> > @@ -5317,6 +5330,23 @@ int i915_perf_ioctl_version(struct drm_i915_private *i915)
->> >	 *
->> >	 * 7: Add support for video decode and enhancement classes.
->> >	 */
->> > +
->> > +	/*
->> > +	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
->> > +	 * C6 disable in BIOS. Do not enable OA for media classes if MC6 is
->> > +	 * enabled in BIOS.
->>
->> Maybe add something like "Return version 6 to indicate non-support for OAM."
->> just to make clear.
->>
-will do
+> So what commits exactly in Linus's tree should be in these stable
+> branches?  Sorry, I still do not understand if we are missing one or if
+> we need to revert something.
+
+Hi, Greg,
+
+5.4.237 fails to boot as a Xen PV Dom0.  It hangs after modprobe
+i915.ko with no further output, though it seems to response to magic
+sysrq.
+
+Reverting 5.4.y commit 1aed78cfda7f17f3cc71cb127a85a188eafc679a
+("drm/i915: Don't use BAR mappings for ring buffers with LLC") lets it
+boot properly.
 
 Thanks,
-Umesh
->> > +	 */
->> > +	if (IS_MTL_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
->> > +		struct intel_gt *gt;
->> > +		int i;
->> > +
->> > +		for_each_gt(gt, i915, i) {
->> > +			if (gt->type == GT_MEDIA &&
->> > +			    intel_check_bios_c6_setup(&gt->rc6))
->> > +				return 6;
->> > +		}
->> > +	}
->> > +
->> >	return 7;
->> >  }
->> >
->> > --
->> > 2.36.1
->> >
->>
->> Thanks.
->> --
->> Ashutosh
+Jason
