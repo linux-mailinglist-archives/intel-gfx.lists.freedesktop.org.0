@@ -2,54 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D06686BE540
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 10:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 269F16BE556
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 10:17:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7B6610EEB0;
-	Fri, 17 Mar 2023 09:16:12 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 698CB10EEB0
- for <Intel-GFX@lists.freedesktop.org>; Fri, 17 Mar 2023 09:16:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679044570; x=1710580570;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=752zws2AP3EVoP82Zw/tEJ1bICjTaA+0cd0wv1phSbQ=;
- b=AcAD/jyrB6ZwOLY9F43Fa537O2Lp8G0ThKItjGXQozvR4MbDRAi0GL6N
- eq7Aum15JqB96yojOsOyTYdL2Ri6B58ovQv3C54PqVzqJqRzL2PdoAgFy
- uwI2ykZqt3kLrjesAWOvLML5/GBAchPxKqbQ4RfTOiqjXy6VJ7AUMSRLl
- /c05PllZjylQ0W/qvWozl5x31z26/TjsgJnh7kFCnWeO0xjRtg0+Ij1We
- drQGnUWWILIW16MN92rgVHxNrhVJZb3jp/3/LOFSJ32atpOPf8S4LcS7T
- w+fJq6w3mGkp3qIos0l00S+7focUMgsnFQTYcL3aNGPMvymDCiYA3UHsv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="338238076"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="338238076"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 02:16:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="744493687"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="744493687"
-Received: from fcostelx-mobl2.ger.corp.intel.com (HELO [10.213.223.216])
- ([10.213.223.216])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 02:16:09 -0700
-Message-ID: <eeec7ffd-0e77-9360-6bd3-9054c23b77a5@linux.intel.com>
-Date: Fri, 17 Mar 2023 09:16:07 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E6B10EEAF;
+	Fri, 17 Mar 2023 09:17:45 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
+ [IPv6:2a00:1450:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1C8610EEAF;
+ Fri, 17 Mar 2023 09:17:43 +0000 (UTC)
+Received: by mail-lj1-x232.google.com with SMTP id g18so4375512ljl.3;
+ Fri, 17 Mar 2023 02:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679044662;
+ h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=3uLwGBxnZ1mAAqp3kTFoVsk1Zncv2fMmnt4yJjzaSC8=;
+ b=ThkJ4upO2U9CB7ruJSqqqRCeWvmgm8ZAj4QsOTm1eC4gVChNyzDjQlKVuwvk1pO1Fw
+ xt7F2HUHYa0c/ylvlXnMBydDEKBF6iDyMDFGwBfHgSp4mHudp+up9hMsJ6HgiUK1EFOY
+ pUkT03WY1yR7BwkS4KhtxBEQTsqrR6kGVXk9Cytg4D3yo1j2ojLdWH5oE8RZHoJXgF2x
+ Kd1CBEoJEqNmdG9tBeHLiowK59HhG6w+afImzrcdPPUKxmomDpY69VWFAs9DiyBq4zbt
+ njWqSx1+A4HuZHg4uS+TAYcgNDOaHLpJFor6KennsYkCUG4gcAa6kw3mk1bxPTAzIaBN
+ iGgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679044662;
+ h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3uLwGBxnZ1mAAqp3kTFoVsk1Zncv2fMmnt4yJjzaSC8=;
+ b=5zw1SyOlskI/JvW+J4YFAEv+rnG2Zq+uWuToYwUI5c3HDszDE9tUsi6GL2O0vOa4Hl
+ WvnztUeIzz947txOHtYiSJ2mZakR5xw0/JP/bJseVajnz/HQXYYQfmu+SuJHxllBW3a6
+ jHgPQGLESNpy/aETZY1eLkhdctTbleeRLJj1eB8WFnJDRnm2TNJim0JfKQ+ry8KnR7/d
+ 4Jh/+icFyVOhQU+NZnRq45bo9c26MSYOEPDmOelBUcOjoNZBLsNxtDp5VrOlUMbw8Itp
+ mAK07T29rr2u8YFvaS8XxaoMdxNtDAQvMsDbkPaUnN2iFT11kHJ01Vp+OWzMP4Ujb/LB
+ W3Pg==
+X-Gm-Message-State: AO0yUKUSq6uCp0F4rekXB+k908gzmsd4OVjXVUzLCiBHTjNrgpLtlrCK
+ i9nd6SLiPhxopu3oWjV4/yA=
+X-Google-Smtp-Source: AK7set8Wy+EAASUZlw92CKWNn4SHSF73SNcbsJZangV3rMR/ZtM8l7f1OxSnUfUPci3N1EtDFWGHmg==
+X-Received: by 2002:a2e:6816:0:b0:299:ac58:1c4 with SMTP id
+ c22-20020a2e6816000000b00299ac5801c4mr1330636lja.1.1679044661786; 
+ Fri, 17 Mar 2023 02:17:41 -0700 (PDT)
+Received: from eldfell ([194.136.85.206]) by smtp.gmail.com with ESMTPSA id
+ v5-20020a056512048500b004db513b0175sm280708lfq.136.2023.03.17.02.17.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Mar 2023 02:17:41 -0700 (PDT)
+Date: Fri, 17 Mar 2023 11:17:37 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Sebastian Wick <sebastian.wick@redhat.com>
+Message-ID: <20230317111737.48702bca@eldfell>
+In-Reply-To: <20230317110921.0862cc8b@eldfell>
+References: <20230308155322.344664-1-robdclark@gmail.com>
+ <20230308155322.344664-2-robdclark@gmail.com>
+ <ZAtQspuFjPtGy7ze@gmail.com>
+ <CAF6AEGsGOr5+Q10wX=5ttrWCSUJfn7gzHW8QhxFC0GDLgagMHg@mail.gmail.com>
+ <ZBHNvT3BLgS3qvV5@gmail.com>
+ <CAF6AEGu1S2CXzRxV_c5tE_H+XUGiO=n0tXjLZ_u_tW-eMqMsQw@mail.gmail.com>
+ <ZBLg0t0tTVvuPuiJ@gmail.com>
+ <CAF6AEGvV5arZThTyju_=xFFDWRbMaexgO_kkdKZuK-zeCxrN7Q@mail.gmail.com>
+ <CA+hFU4xbssR+=Sf4ia5kPdsSb4y9SQUd4nx_2p1Szcbtna28CA@mail.gmail.com>
+ <20230317110921.0862cc8b@eldfell>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20230317055239.1313175-1-tejas.upadhyay@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230317055239.1313175-1-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Consider multi-gt at all places
+Content-Type: multipart/signed; boundary="Sig_/Q5zE_g6+8PZb=tpp8CN.PRC";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] [PATCH v10 01/15] dma-buf/dma-fence: Add deadline
+ awareness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,136 +80,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rob Clark <robdclark@chromium.org>, DMA@freedesktop.org,
+	Jonas =?UTF-8?B?w4VkYWhs?= <jadahl@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Christian =?UTF-8?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>,
+	intel-gfx@lists.freedesktop.org,
+	"open  list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--Sig_/Q5zE_g6+8PZb=tpp8CN.PRC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On 17/03/2023 05:52, Tejas Upadhyay wrote:
-> In order to make igt_live_test work in proper
-> way, we need to consider multi-gt in all tests
-> where igt_live_test is used as well as at other
-> random places where multi-gt should be considered.
+On Fri, 17 Mar 2023 11:09:21 +0200
+Pekka Paalanen <ppaalanen@gmail.com> wrote:
 
-Description is a bit vague - is this for Meteorlake in general? What is 
-the "proper way" ie what is broken?
+> On Thu, 16 Mar 2023 23:22:24 +0100
+> Sebastian Wick <sebastian.wick@redhat.com> wrote:
 
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 ++--
->   .../drm/i915/gem/selftests/i915_gem_context.c | 28 ++++----
->   drivers/gpu/drm/i915/gt/intel_engine_user.c   |  2 +-
->   drivers/gpu/drm/i915/gt/selftest_execlists.c  | 68 +++++++++----------
->   drivers/gpu/drm/i915/selftests/i915_request.c | 36 +++++-----
->   .../gpu/drm/i915/selftests/igt_live_test.c    | 10 +--
->   .../gpu/drm/i915/selftests/igt_live_test.h    |  4 +-
->   7 files changed, 81 insertions(+), 80 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 9dce2957b4e5..289b75ac39e1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2449,9 +2449,9 @@ static int eb_submit(struct i915_execbuffer *eb)
->   	return err;
->   }
->   
-> -static int num_vcs_engines(struct drm_i915_private *i915)
-> +static int num_vcs_engines(struct intel_gt *gt)
->   {
-> -	return hweight_long(VDBOX_MASK(to_gt(i915)));
-> +	return hweight_long(VDBOX_MASK(gt));
->   }
->   
->   /*
-> @@ -2459,7 +2459,7 @@ static int num_vcs_engines(struct drm_i915_private *i915)
->    * The engine index is returned.
->    */
->   static unsigned int
-> -gen8_dispatch_bsd_engine(struct drm_i915_private *dev_priv,
-> +gen8_dispatch_bsd_engine(struct intel_gt *gt,
->   			 struct drm_file *file)
->   {
->   	struct drm_i915_file_private *file_priv = file->driver_priv;
-> @@ -2467,7 +2467,7 @@ gen8_dispatch_bsd_engine(struct drm_i915_private *dev_priv,
->   	/* Check whether the file_priv has already selected one ring. */
->   	if ((int)file_priv->bsd_engine < 0)
->   		file_priv->bsd_engine =
-> -			get_random_u32_below(num_vcs_engines(dev_priv));
-> +			get_random_u32_below(num_vcs_engines(gt));
->   
->   	return file_priv->bsd_engine;
->   }
-> @@ -2644,6 +2644,7 @@ static unsigned int
->   eb_select_legacy_ring(struct i915_execbuffer *eb)
->   {
->   	struct drm_i915_private *i915 = eb->i915;
-> +	struct intel_gt *gt = eb->gt;
->   	struct drm_i915_gem_execbuffer2 *args = eb->args;
->   	unsigned int user_ring_id = args->flags & I915_EXEC_RING_MASK;
->   
-> @@ -2655,11 +2656,11 @@ eb_select_legacy_ring(struct i915_execbuffer *eb)
->   		return -1;
->   	}
->   
-> -	if (user_ring_id == I915_EXEC_BSD && num_vcs_engines(i915) > 1) {
-> +	if (user_ring_id == I915_EXEC_BSD && num_vcs_engines(gt) > 1) {
->   		unsigned int bsd_idx = args->flags & I915_EXEC_BSD_MASK;
->   
->   		if (bsd_idx == I915_EXEC_BSD_DEFAULT) {
-> -			bsd_idx = gen8_dispatch_bsd_engine(i915, eb->file);
-> +			bsd_idx = gen8_dispatch_bsd_engine(gt, eb->file);
->   		} else if (bsd_idx >= I915_EXEC_BSD_RING1 &&
->   			   bsd_idx <= I915_EXEC_BSD_RING2) {
->   			bsd_idx >>= I915_EXEC_BSD_SHIFT;
+> > Vblank can be really long, especially with VRR where the additional
+> > time you get to finish the frame comes from making vblank longer.
 
-The hunks above I don't think are correct. Execbuf is in principle based 
-on uabi engines, and that is not a per GT concept.
+Btw. VRR extends front porch, not vblank.
 
-There is also no functional change above so I can only guess it is a 
-prep work for something?
 
-[snip]
+Thanks,
+pq
 
-> -int igt_live_test_end(struct igt_live_test *t)
-> +int igt_live_test_end(struct igt_live_test *t, struct intel_gt *gt)
->   {
-> -	struct drm_i915_private *i915 = t->i915;
-> +	struct drm_i915_private *i915 = gt->i915;
->   	struct intel_engine_cs *engine;
->   	enum intel_engine_id id;
->   
-> @@ -57,7 +57,7 @@ int igt_live_test_end(struct igt_live_test *t)
->   		return -EIO;
->   	}
->   
-> -	for_each_engine(engine, to_gt(i915), id) {
-> +	for_each_engine(engine, gt, id) {
->   		if (t->reset_engine[id] ==
->   		    i915_reset_engine_count(&i915->gpu_error, engine))
->   			continue;
-> diff --git a/drivers/gpu/drm/i915/selftests/igt_live_test.h b/drivers/gpu/drm/i915/selftests/igt_live_test.h
-> index 36ed42736c52..209b0548c603 100644
-> --- a/drivers/gpu/drm/i915/selftests/igt_live_test.h
-> +++ b/drivers/gpu/drm/i915/selftests/igt_live_test.h
-> @@ -27,9 +27,9 @@ struct igt_live_test {
->    * e.g. if the GPU was reset.
->    */
->   int igt_live_test_begin(struct igt_live_test *t,
-> -			struct drm_i915_private *i915,
-> +			struct intel_gt *gt,
->   			const char *func,
->   			const char *name);
-> -int igt_live_test_end(struct igt_live_test *t);
-> +int igt_live_test_end(struct igt_live_test *t, struct intel_gt *gt);
+--Sig_/Q5zE_g6+8PZb=tpp8CN.PRC
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Back in the day the plan was that live selftests are device focused and 
-then we also have intel_gt_live_subtests, which are obviously GT 
-focused. So in that sense adding a single GT parameter to 
-igt_live_test_begin isn't something I immediately understand.
+-----BEGIN PGP SIGNATURE-----
 
-Could you explain in one or two practical examples what is not working 
-properly and how is this patch fixing it?
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmQUMDEACgkQI1/ltBGq
+qqdONw//Rgotd8hOFTtCdsTpbSF7YOFikuzzzDIDxuXPRDAkMFSndLcsdjesT/3L
+KZqIPV4Ep1pelG71zllYvYB/cRQ9tMa8iITUhMVcAwYCp7I1645/1yhOJ2HHDiFZ
+sWHoek/TEIB46ReOidtjFo2xHX4xWMF5+MNqOevoo3ZB54nqvCTmNZSbisuGaBsn
+IVtV98giR2ioxwxsPmrhKufULtu+DP2eQmZv8Y9SIQBIIqlAr6dqF5Z0jwaITRsw
+/XK1o0CpJv/L1SEo5Of8XhT7YCU5l16cpUXA4OjPQsHZdIiZ/1+4wcm7seJNSM6Q
+D/HKZuvmmE5FJV8M6O7rhKeYmxRefMntg5wngAxwqpuu80PxZa3MRH0dk1wcuvei
+EinMcr4IukkOijVlQQ05yDy6SpNUGTOaez0zWy6ftLUI7bNk8jL2DVsgyfU9zkUZ
+7QT5CDKTIUtLuCs+5QT7iphcGo+iBq1M9bgQyM2MU26oOOnP95dIFAEXw5Ofcuab
+ZxcQDNE22dJlDOj5zGz2r9B30zzaX6E+Tw2CFq6Tm58BBRBv9o9MuM3StNUNuOQ8
+lsF9q7BZiuBDr3pFks+YIWt6Ia5Wz/LMw92UYkSx+vnNKcZO3k/kcAYYnpU0izfH
+gd082Gvt7zd/rjURoruKFxaG6hQOIzqHZuRukX6Oj4rTSva/mPQ=
+=kkpl
+-----END PGP SIGNATURE-----
 
-Regards,
-
-Tvrtko
+--Sig_/Q5zE_g6+8PZb=tpp8CN.PRC--
