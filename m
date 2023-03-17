@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE98B6BF4B4
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 22:54:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91DDA6BF532
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 23:33:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57AE810E273;
-	Fri, 17 Mar 2023 21:54:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4B5110E288;
- Fri, 17 Mar 2023 21:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=+GbVqzctd4n33a2yd9rymKGEXP8gzDcHMfyXnPYe278=; b=OZAFd+LZk8wcpvfkH9hf8/m1uw
- gn/iBfzaHcOQC1S2njhHeV5ZJ8WkKVf0Utb3o/IwebMMHuL8l35Gz2CZ7JeQUsOiQT7Rjk2nsevnl
- 8xI6+E28Snt8kx67u8hSvLJ3jIauClqE+9Ao/i0xH5f8HwUIgEPjIaUofu/r8APxgkVc9W3RR1yYY
- r14QWzuuAmwamCeqbV0rAf+ZIo8JfXRM4aQEbrP6Hxk7wj85HTDV4whgdGPTU6aBDqgfI3c4xrq6r
- 7Mi1tqQT3KGvkKvNtYX8O6zpda9rnlAT5lRinN62+0pneQIdA67mZR0cNuMPN1YV5GrPg1EozotSE
- XarGB0Mg==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pdI2E-00GMAw-36; Fri, 17 Mar 2023 22:54:49 +0100
-Message-ID: <21eeb767a9ef197f4ca443231bb483a00291afdb.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Fri, 17 Mar 2023 22:54:49 +0100
-In-Reply-To: <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
-References: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
- <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
-MIME-Version: 1.0
-Subject: [Intel-gfx] Reminder: Only 2 days left to nominate candidates for
- the 2023 X.Org Board of Directors Elections
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB90010E288;
+	Fri, 17 Mar 2023 22:33:43 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08AF710E288;
+ Fri, 17 Mar 2023 22:33:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679092423; x=1710628423;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=8l70R9GcJ6YeYTuYXe0lFe7BIOKEHLqAVwuJ5HHbu8Y=;
+ b=nsEOPgYTg/aSUJC248VUbSepmRVOgrwa8U2zm9wrYDrppk6BB/fiZwUI
+ u+p4O+BvrA0IRxjk83lh19ct33baLWjW2/otrUx0qEW5Bpm9+QyQQJ5p5
+ 6ILC/qv4pg0/0CNrQlJVlkgjhxQbcM7mMs1tcLVy2GXqRWK8Z5xK4ysnT
+ /EhP2UA7te1HzhOzOfc49+DaBdHrN5dpqSmYMPJipvwaEPUOBG5asMiqC
+ dPSgKH9qNpeNNKCgC8d+Rf3c5adv9qChwPjdeDIoUDUPJB6IVF72Zsjc5
+ m2eliInMynkKC5N/oantJfqn1Kn1WkOL6B/izoAGqSVTSba4uv0V3Oy1W w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="403246013"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="403246013"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 15:33:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="926297238"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="926297238"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.197.230])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 15:33:39 -0700
+Date: Fri, 17 Mar 2023 15:33:39 -0700
+Message-ID: <87bkkrvwho.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: John.C.Harrison@Intel.com
+In-Reply-To: <20230316220632.3312218-3-John.C.Harrison@Intel.com>
+References: <20230316220632.3312218-1-John.C.Harrison@Intel.com>
+ <20230316220632.3312218-3-John.C.Harrison@Intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/guc: Allow for very slow
+ GuC loading
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,85 +62,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: Intel-GFX@Lists.FreeDesktop.Org, DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Further reminder that the nomination period for the X.Org Board of
-Director elections finishes in only 2 days, on March 19th.
+On Thu, 16 Mar 2023 15:06:32 -0700, John.C.Harrison@Intel.com wrote:
+>
+> From: John Harrison <John.C.Harrison@Intel.com>
+>
+> A failure to load the GuC is occasionally observed where the GuC log
+> actually showed that the GuC had loaded just fine. The implication
+> being that the load just took ever so slightly longer than the 200ms
+> timeout. Given that the actual time should be tens of milliseconds at
+> the slowest, this should never happen. So far the issue has generally
+> been caused by a bad IFWI resulting in low frequencies during boot
+> (depsite the KMD requesting max frequency). However, the issue seems
+> to happen more often than one would like.
+>
+> So a) increase the timeout so that the user still gets a working
+> system even in the case of slow load. And b) report the frequency
+> during the load to see if that is the case of the slow down.
+>
+> v2: Reduce timeout in non-debug builds, add references (Daniele)
+>
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7931
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8060
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8083
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8136
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8137
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-Please send your nominations or self-nominations as soon as possible
-following the instructions below.
+Tested this on ATSM and saw the interrmittent GuC FW load timeouts
+disappear:
 
-Thanks again for your attention.
-
-On Mon, 2023-03-13 at 16:27 +0100, Ricardo Garcia wrote:
-> This is a reminder that the nomination period for the X.Org Board of
-> Director elections finishes in a week, on March 19th.
->=20
-> If you would like to nominate yourself please send email to the election
-> committee elections@x.org, giving your
->=20
->     name
->     current professional affiliation
->     a statement of contribution to X.Org or related technologies
->     a personal statement.
->=20
-> To vote or to be elected to the Board you needed to be a Member of the
-> X.Org Foundation. To be a Member of the X.Org Foundation you need to
-> apply or renew your membership until the end of the nomination period.
->=20
-> Original email follows below. Thanks for your attention.
->=20
-> On Wed, 2023-02-15 at 21:53 +0100, Ricardo Garcia wrote:
-> > We are seeking nominations for candidates for election to the X.Org
-> > Foundation Board of Directors. All X.Org Foundation members are eligibl=
-e
-> > for election to the board.
-> >=20
-> > Nominations for the 2023 election are now open and will remain open
-> > until 23:59 UTC on 19 March 2023.
-> >=20
-> > The Board consists of directors elected from the membership. Each year,
-> > an election is held to bring the total number of directors to eight. Th=
-e
-> > four members receiving the highest vote totals will serve as directors
-> > for two year terms.
-> >=20
-> > The directors who received two year terms starting in 2022 were Emma
-> > Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
-> > continue to serve until their term ends in 2024. Current directors whos=
-e
-> > term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navar=
-e,
-> > Lyude Paul and Daniel Vetter.
-> >=20
-> > A director is expected to participate in the fortnightly IRC meeting to
-> > discuss current business and to attend the annual meeting of the X.Org
-> > Foundation, which will be held at a location determined in advance by
-> > the Board of Directors.
-> >=20
-> > A member may nominate themselves or any other member they feel is
-> > qualified. Nominations should be sent to the Election Committee at
-> > elections at x.org.
-> >=20
-> > Nominees shall be required to be current members of the X.Org
-> > Foundation, and submit a personal statement of up to 200 words that wil=
-l
-> > be provided to prospective voters. The collected statements, along with
-> > the statement of contribution to the X.Org Foundation in the member's
-> > account page on http://members.x.org, will be made available to all
-> > voters to help them make their voting decisions.
-> >=20
-> > Nominations, membership applications or renewals and completed personal
-> > statements must be received no later than 23:59 UTC on 19 March 2023.
-> >=20
-> > The slate of candidates will be published 26 March 2023 and candidate
-> > Q&A will begin then. The deadline for Xorg membership applications and
-> > renewals is 26 March 2023.
-> >=20
-> > Cheers,
-> > Ricardo Garcia, on behalf of the X.Org BoD
-> >=20
->=20
-
+Tested-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
