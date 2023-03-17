@@ -1,81 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEA96BDD87
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 01:23:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7666BDD8D
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 01:24:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A78410E24C;
-	Fri, 17 Mar 2023 00:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E55210E310;
+	Fri, 17 Mar 2023 00:24:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90EFC10E249
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 00:23:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1679012581;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XSyAHP79zbLTHByO1UMWkwG5VhqMvodcFmqqMUfSNXU=;
- b=G5iAY90fvDh3VZrLRrZDMlpBWYaAHZtVo9BYOHAk3hCzxfL97jt4niJ/Xg1wpgYrKE3DYu
- VU/dj5pMr65G4JCUBy8jkTJeqQmt/0U5XgaP5l0Ca87bKYncW58F0ueeln28aQilXD6FLO
- YEEBYTy4Pef/W3x0+uVlvnL5M08YvAc=
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
- [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-422-ZT9ygSzxPB2FFtnnZOqTEw-1; Thu, 16 Mar 2023 20:23:00 -0400
-X-MC-Unique: ZT9ygSzxPB2FFtnnZOqTEw-1
-Received: by mail-io1-f70.google.com with SMTP id
- i138-20020a6b3b90000000b007531077e788so1730439ioa.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Mar 2023 17:23:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679012579;
- h=content-transfer-encoding:mime-version:organization:references
- :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=XSyAHP79zbLTHByO1UMWkwG5VhqMvodcFmqqMUfSNXU=;
- b=nKHQQFA6OZvyYa7obB6sVbGmlhpKbz5NbPuFrfVYJDKDtVR1SIJAgWkLl1r/s/+9OK
- 6FVeOIah87NJYdVjk1THGLRPe9Io5vNLuaQkOtQQbV0FLzaMBNrGHBW1ttYUsfL3Glg7
- 0b5FNDsvOuVTwb1vA8wU/dusW7v1bs4+bkxyCfleHosdeAE3yXtafhOPRStCjLQczsxP
- crrRssHaRo5ZjhqzWZvNFKhkM0Yl5gCLEiJlz8kyTEnDaUeWKrprkzxcKaQ3ZG+XYldF
- Ief2VxopWKSF5DRWQN4OPaNrnu3EANbpfI/zAljrf/iPg8oophEAJGe494H7zaNdyoV4
- jGsA==
-X-Gm-Message-State: AO0yUKXC20bBBRlZko4UHoI9WRcHOYWoCPdTV2gpeiOgVpIiGPSR2L/4
- kf7wFdrQouJGB1yl6zLiGouEaL/3ZMKoz5DJbEkMeyrexyGjec3DZwXD4y9VHrpBwwOws1iMCKM
- JMDjY+i3F4chkWaCYmny/vrc5yPiV
-X-Received: by 2002:a05:6e02:1151:b0:317:eef2:f5cc with SMTP id
- o17-20020a056e02115100b00317eef2f5ccmr8697397ill.10.1679012579505; 
- Thu, 16 Mar 2023 17:22:59 -0700 (PDT)
-X-Google-Smtp-Source: AK7set/iT+8IeRFfmQPOt1YsJVElfStX87uq3MIp8yFcWKSg+oPhoPMe5gX/E9CYwiObV9svKZZ9jA==
-X-Received: by 2002:a05:6e02:1151:b0:317:eef2:f5cc with SMTP id
- o17-20020a056e02115100b00317eef2f5ccmr8697382ill.10.1679012579260; 
- Thu, 16 Mar 2023 17:22:59 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- q16-20020a0566380d1000b003c2b76fcdf2sm230584jaj.52.2023.03.16.17.22.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Mar 2023 17:22:58 -0700 (PDT)
-Date: Thu, 16 Mar 2023 18:22:56 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Message-ID: <20230316182256.6659bbbd.alex.williamson@redhat.com>
-In-Reply-To: <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230308132903.465159-1-yi.l.liu@intel.com>
- <20230308132903.465159-13-yi.l.liu@intel.com>
- <20230315165311.01f32bfe.alex.williamson@redhat.com>
- <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230316124532.30839a94.alex.williamson@redhat.com>
- <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
-Organization: Red Hat
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CFA410E310
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 00:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679012647; x=1710548647;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QQBu0cN6twwquq4iUlCdyXR2fEq/fMUkhO1QQ0mOLy8=;
+ b=F7VTvKvl5GkQopv9J9hWxD736W1WMwLsU8Ezabd3VI0CmAoSfasK2ZuB
+ 22GhVZPBsM5/4OpzXubt4dFxA1ki73I0TIWjIb06ac/J2Px9XxhQvztXo
+ 90ZApNtLbBVBa2eGJX57qGEYogmp1fM1nxwVahhQgtR8xSxlVKMuRX3XW
+ JRVHGM2WUGyG9fNJ6QdALtKqnvYdsd405DlBoIGi6QGsZiL/zWhu6SISq
+ fDTx2I3hOyyO+jFxsCl4a9141fs4zx19NVcMUzpDz8mE5tnYOxXWX58Tj
+ 60etHLWIfbvcodl4Lh7YfiDk21NedggS4sMm743S4bGyRf6OfQ3sofLR6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="338160771"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="338160771"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2023 17:24:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="744364125"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; d="scan'208";a="744364125"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga008.fm.intel.com with SMTP; 16 Mar 2023 17:24:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Mar 2023 02:24:04 +0200
+Date: Fri, 17 Mar 2023 02:24:04 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZBOzJLhoeAFpHgoI@intel.com>
+References: <20230314110415.2882484-1-ankit.k.nautiyal@intel.com>
+ <20230314110415.2882484-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230314110415.2882484-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v11 01/11] drm/i915/display: Add new member
+ to configure PCON color conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,79 +62,371 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Mar 2023 23:29:21 +0000
-"Tian, Kevin" <kevin.tian@intel.com> wrote:
-
-> > From: Alex Williamson
-> > Sent: Friday, March 17, 2023 2:46 AM
-> > 
-> > On Wed, 15 Mar 2023 23:31:23 +0000
-> > "Tian, Kevin" <kevin.tian@intel.com> wrote:
-> >   
-> > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > Sent: Thursday, March 16, 2023 6:53 AM
-> > > > I'm afraid this proposal reduces or eliminates the handshake we have
-> > > > with userspace between VFIO_DEVICE_GET_PCI_HOT_RESET_INFO and
-> > > > VFIO_DEVICE_PCI_HOT_RESET, which could promote userspace to ignore  
-> > the  
-> > > > _INFO ioctl altogether, resulting in drivers that don't understand the
-> > > > scope of the reset.  Is it worth it?  What do we really gain?  
-> > >
-> > > Jason raised the concern whether GET_PCI_HOT_RESET_INFO is actually
-> > > useful today.
-> > >
-> > > It's an interface on opened device. So the tiny difference is whether the
-> > > user knows the device is resettable when calling GET_INFO or later when
-> > > actually calling PCI_HOT_RESET.  
-> > 
-> > No, GET_PCI_HOT_RESET_INFO conveys not only whether a PCI_HOT_RESET
-> > can
-> > be performed, but equally important the scope of the reset, ie. which
-> > devices are affected by the reset.  If we de-emphasize the INFO
-> > portion, then this easily gets confused as just a variant of
-> > VFIO_DEVICE_RESET, which is explicitly a device-level cscope reset.  In
-> > fact, I'd say the interface is not only trying to validate that the
-> > user has sufficient privileges for the reset, but that they explicitly
-> > acknowledge the scope of the reset.
-> >   
+On Tue, Mar 14, 2023 at 04:34:05PM +0530, Ankit Nautiyal wrote:
+> The decision to use DFP output format conversion capabilities should be
+> during compute_config phase.
 > 
-> IMHO the usefulness of scope is if it's discoverable by the management
-> stack which then can try to assign devices with affected reset to a same
-> user.
+> This patch adds new member to crtc_state to represent the final
+> output_format to the sink. In case of a DFP this can be different than
+> the output_format, as per the format conversion done via the PCON.
+> 
+> This will help to store only the format conversion capabilities of the
+> DP device in intel_dp->dfp, and use crtc_state to compute and store the
+> configuration for color/format conversion for a given mode.
+> 
+> v2: modified the new member to crtc_state to represent the final
+> output_format that eaches the sink, after possible conversion by
+> PCON kind of devices. (Ville)
+> 
+> v3: Addressed comments from Ville:
+> -Added comments to clarify difference between sink_format and
+> output_format.
+> -Corrected the order of setting sink_format and output_format.
+> -Added readout for sink_format in get_pipe_config hooks.
+> 
+> v4: Set sink_format for intel_sdvo too. (Ville)
+> 
+> v5: Rebased.
+> 
+> v6: Fixed condition to go for YCbCr420 format for dp and hdmi. (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> (v3)
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+>  drivers/gpu/drm/i915/display/intel_crt.c      |  1 +
+>  .../drm/i915/display/intel_crtc_state_dump.c  |  5 +--
+>  drivers/gpu/drm/i915/display/intel_display.c  |  5 +++
+>  .../drm/i915/display/intel_display_types.h    | 11 ++++++-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 33 +++++++++++++------
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 23 +++++++------
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_tv.c       |  1 +
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  1 +
+>  13 files changed, 62 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 50dcaa895854..e8ac4552e681 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1593,6 +1593,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>  		&pipe_config->hw.adjusted_mode;
+>  	int ret;
+>  
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> index 8f2ebead0826..e925e21d87fc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -393,6 +393,7 @@ static int intel_crt_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 766633566fd6..185cd1971aa5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -178,10 +178,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>  
+>  	snprintf_output_types(buf, sizeof(buf), pipe_config->output_types);
+>  	drm_dbg_kms(&i915->drm,
+> -		    "active: %s, output_types: %s (0x%x), output format: %s\n",
+> +		    "active: %s, output_types: %s (0x%x), output format: %s, sink format: %s\n",
+>  		    str_yes_no(pipe_config->hw.active),
+>  		    buf, pipe_config->output_types,
+> -		    output_formats(pipe_config->output_format));
+> +		    output_formats(pipe_config->output_format),
+> +		    output_formats(pipe_config->sink_format));
+>  
+>  	drm_dbg_kms(&i915->drm,
+>  		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 410c84fd905c..6fa86d1e0480 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -3127,6 +3127,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+>  		return false;
+>  
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> +	pipe_config->sink_format = pipe_config->output_format;
+>  	pipe_config->cpu_transcoder = (enum transcoder) crtc->pipe;
+>  	pipe_config->shared_dpll = NULL;
+>  
+> @@ -3586,6 +3587,8 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+>  		break;
+>  	}
+>  
+> +	pipe_config->sink_format = pipe_config->output_format;
+> +
+>  	pipe_config->gamma_mode = REG_FIELD_GET(TRANSCONF_GAMMA_MODE_MASK_ILK, tmp);
+>  
+>  	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
+> @@ -3984,6 +3987,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+>  			bdw_get_pipemisc_output_format(crtc);
+>  	}
+>  
+> +	pipe_config->sink_format = pipe_config->output_format;
+> +
+>  	pipe_config->gamma_mode = intel_de_read(dev_priv,
+>  						GAMMA_MODE(crtc->pipe));
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index c32bfba06ca1..c9d1863d2765 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1274,9 +1274,18 @@ struct intel_crtc_state {
+>  	/* HDMI High TMDS char rate ratio */
+>  	bool hdmi_high_tmds_clock_ratio;
+>  
+> -	/* Output format RGB/YCBCR etc */
+> +	/*
+> +	 * Output format RGB/YCBCR etc., that is coming out
+> +	 * at the end of the pipe.
+> +	 */
+>  	enum intel_output_format output_format;
+>  
+> +	/*
+> +	 * Sink output format RGB/YCBCR etc., that is going
+> +	 * into the sink.
+> +	 */
+> +	enum intel_output_format sink_format;
+> +
+>  	/* enable pipe gamma? */
+>  	bool gamma_enable;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8e16745275f6..e52e2ffc355c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -819,11 +819,12 @@ u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+>  
+>  static enum intel_output_format
+>  intel_dp_output_format(struct intel_connector *connector,
+> -		       bool ycbcr_420_output)
+> +		       enum intel_output_format sink_format)
+>  {
+>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>  
+> -	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
+> +	if (!connector->base.ycbcr_420_allowed ||
+> +	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
+>  		return INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	if (intel_dp->dfp.rgb_to_ycbcr &&
+> @@ -862,8 +863,14 @@ intel_dp_mode_min_output_bpp(struct intel_connector *connector,
+>  			     const struct drm_display_mode *mode)
+>  {
+>  	const struct drm_display_info *info = &connector->base.display_info;
+> -	enum intel_output_format output_format =
+> -		intel_dp_output_format(connector, drm_mode_is_420_only(info, mode));
+> +	enum intel_output_format output_format, sink_format;
+> +
+> +	if (drm_mode_is_420_only(info, mode))
+> +		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> +	else
+> +		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> +
+> +	output_format = intel_dp_output_format(connector, sink_format);
+>  
+>  	return intel_dp_output_bpp(output_format, intel_dp_min_bpp(output_format));
+>  }
+> @@ -2040,23 +2047,29 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+>  
+>  	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
+>  
+> -	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
+> -
+> -	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
+> +	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+> -		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> +	} else if (ycbcr_420_only) {
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> +	} else {
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	}
+>  
+> +	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
+> +
+>  	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+>  					   respect_downstream_limits);
+>  	if (ret) {
+> -		if (intel_dp_is_ycbcr420(intel_dp, crtc_state) ||
+> +		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+>  		    !connector->base.ycbcr_420_allowed ||
+>  		    !drm_mode_is_420_also(info, adjusted_mode))
+>  			return ret;
+>  
+> -		crtc_state->output_format = intel_dp_output_format(connector, true);
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> +		crtc_state->output_format = intel_dp_output_format(connector,
+> +								   crtc_state->sink_format);
+>  		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+>  						   respect_downstream_limits);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index a860cbc5dbea..ff0b821a901a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -293,6 +293,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->has_pch_encoder = false;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+> index eb2dcd866cc8..9884678743b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> @@ -271,6 +271,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index c7e9e1fbed37..1ad0540c13ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2171,13 +2171,13 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
+>  
+>  static enum intel_output_format
+>  intel_hdmi_output_format(const struct intel_crtc_state *crtc_state,
+> -			 struct intel_connector *connector,
+> -			 bool ycbcr_420_output)
+> +			 struct intel_connector *connector)
+>  {
+>  	if (!crtc_state->has_hdmi_sink)
+>  		return INTEL_OUTPUT_FORMAT_RGB;
 
-Disagree, the user needs to know the scope of reset.  Take for instance
-two function of a device configured onto separate buses within a VM.
-The VMM needs to know that a hot-reset of one will reset the other.
-That's not obvious to the VMM without some understanding of PCI/e
-topology and analysis of the host system.  The info ioctl simplifies
-that discovery for the VMM and the handshake of passing the affected
-groups makes sure that the info ioctl remains relevant.
+I think we need to move this into the sink_format selection since
+we can't have sink_format!=output_format with HDMI.
 
-OTOH, I really haven't seen any evidence that the null-array concept
-provides significant simplification for userspace, especially without
-compromising the user's understanding of the scope of the provided
-reset.  Thanks,
+>  
+> -	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
+> +	if (connector->base.ycbcr_420_allowed &&
 
-Alex
+Similarly the 420_allowed check here doesn't seem correct.
 
+In fact I guess what we need is simply:
+ intel_hdmi_output_format()
+ {
+ 	return sink_format;
+ }
+
+> +	    crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
+>  		return INTEL_OUTPUT_FORMAT_YCBCR420;
+>  	else
+>  		return INTEL_OUTPUT_FORMAT_RGB;
+> @@ -2195,23 +2195,26 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+>  	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
+>  	int ret;
+>  
+> -	crtc_state->output_format =
+> -		intel_hdmi_output_format(crtc_state, connector, ycbcr_420_only);
+> -
+> -	if (ycbcr_420_only && !intel_hdmi_is_ycbcr420(crtc_state)) {
+> +	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+> -		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> +	} else if (ycbcr_420_only) {
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> +	} else {
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	}
+>  
+> +	crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector);
+>  	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+>  	if (ret) {
+> -		if (intel_hdmi_is_ycbcr420(crtc_state) ||
+> +		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+
+With intel_hdmi_output_format() adjusted as mentined above this will
+also need an explicit has_hdmi_sink check.
+
+>  		    !connector->base.ycbcr_420_allowed ||
+>  		    !drm_mode_is_420_also(info, adjusted_mode))
+>  			return ret;
+>  
+> -		crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector, true);
+> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> +		crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector);
+>  		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+> index a504b3a7fbd5..a7783da37dfd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -436,6 +436,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+>  		crtc_state->pipe_bpp = lvds_bpp;
+>  	}
+>  
+> +	crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index e12ba458636c..34ee9dd82a78 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -1351,6 +1351,7 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+>  
+>  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
+>  	pipe_config->pipe_bpp = 8*3;
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
+> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+> index 3b5ff84dc615..6f7ac225293e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> @@ -1204,6 +1204,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	drm_dbg_kms(&dev_priv->drm, "forcing bpc to 8 for TV\n");
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index 8d2e6e151ba0..82c30feb7a91 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -280,6 +280,7 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
+>  	int ret;
+>  
+>  	drm_dbg_kms(&dev_priv->drm, "\n");
+> +	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  
+>  	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
