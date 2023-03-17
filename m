@@ -1,54 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB436BEA57
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 14:42:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D716BEB46
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 15:30:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF5A510E139;
-	Fri, 17 Mar 2023 13:42:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B530110E125;
+	Fri, 17 Mar 2023 14:30:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54B8C10E139
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 13:42:00 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE5F510E125
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 14:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679060520; x=1710596520;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EMhSm+1Bi5O6bGLi9GCJWnJMmU1zA/KQqw8Bdp+fZ0k=;
- b=dpUCL54+LnDl10QIq210QMS8TmTWW/qE1qA6TC0FSBH0f6PgMcEN4DXa
- tDWZ7hNRJZOd94rY8rFelhw3lTezD1aQhFPGdhk0dq70krbM5M8AzqP25
- +98ShaEP5meTejp6MGUc04TbsL+ApY3OcaksJoqbeh19mX4POrVVrmVjG
- HHU6V3v9I9A8M/AemJbEGX9zF+mdX8aMCaU12zi80Xu2OsLoF0hVa+xZe
- ws0xrf8hRmXa1Nd87Zs4GjKZd5quF9vdPJJ3E7odyuJquv5PeDUHz4ehx
- nft+Imspwe2iNA07PM3tBl4wxlewkOAyuxeQRhmopcFf6QH6C64I4SY82 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="424532323"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="424532323"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 06:42:00 -0700
+ t=1679063440; x=1710599440;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KgptQsEw5g+EHBUfosQcjJWgkEuWtKGSMHSfFVU28q0=;
+ b=HNHhAm3LxK+YmfaD/5fBtXPTTMTnY8+FMfFZIzl3uwMmMmbiTUmaH42W
+ o8aMP+nZUoyg0DVDBPMiasYyNQMxsUI1rQ6PedkuYd7oUPXw37NRdZdZU
+ BFYj2spYX8aykkcV0yyWgIcGQoBJs9mKzpsdrHKVjDn1nSR0/lh+6fUj7
+ Figk4rcLIUXitdaf5rmrT1exUr6buXxk2Y20PXamEvOMsf9d2hwY6FVYt
+ dm476tfQXK5bkGhDOo0iMsYgGU9DhPgKF7GftsIkhn6ekLn+J4QRNQTU1
+ 8mNvrG33884GOmODdVI1Jdo4ZKXqkulXMloshxUMbdI8bv/YJMqdaXjM8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="340629414"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="340629414"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 07:30:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="790717034"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="790717034"
-Received: from shuchen-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.60.191])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 06:41:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Mar 2023 15:41:44 +0200
-Message-Id: <20230317134144.223936-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230317134144.223936-1-jani.nikula@intel.com>
-References: <20230317134144.223936-1-jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680301483"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="680301483"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga002.jf.intel.com with SMTP; 17 Mar 2023 07:30:38 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Mar 2023 16:30:37 +0200
+Date: Fri, 17 Mar 2023 16:30:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZBR5jb3TY6S92yZE@intel.com>
+References: <20230317125352.198042-1-jani.nikula@intel.com>
+ <20230317125352.198042-2-jani.nikula@intel.com>
+ <ZBRpOllVY8PFfc3w@intel.com> <87pm97a48q.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/psr: clean up PSR debugfs sink
- status error handling
+In-Reply-To: <87pm97a48q.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/debugfs: add crtc i915_pipe
+ debugfs file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +63,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handle errors first and return early, and reduce indentation on the
-happy day code path.
+On Fri, Mar 17, 2023 at 03:37:09PM +0200, Jani Nikula wrote:
+> On Fri, 17 Mar 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Fri, Mar 17, 2023 at 02:53:52PM +0200, Jani Nikula wrote:
+> >> The pipe may differ from crtc index if pipes are fused off. For testing
+> >> purposes, IGT needs to know the pipe.
+> >> 
+> >> There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. However,
+> >> the upcoming Xe driver won't have that IOCTL, and going forward, we'll
+> >> want a unified interface for testing i915 and Xe, as they share the
+> >> display code. Thus add the debugfs for i915 display.
+> >> 
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++++++
+> >>  1 file changed, 13 insertions(+)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >> index faa44fb80aac..e85270adca95 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >> @@ -1657,6 +1657,17 @@ static int i915_current_bpc_show(struct seq_file *m, void *data)
+> >>  }
+> >>  DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
+> >>  
+> >> +/* Pipe may differ from crtc index if pipes are fused off */
+> >> +static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
+> >> +{
+> >> +	struct intel_crtc *crtc = m->private;
+> >> +
+> >> +	seq_printf(m, "%d\n", crtc->pipe);
+> >
+> > Are we happy with an integer or should we use the actual alphabetic
+> > name here?
+> 
+> Primarily I considered the programmatic use case, and the ease of
+> switching over from the ioctl. What do we gain by making IGT parse this?
 
-Cc: Jouni HÃ¶gander <jouni.hogander@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+Well even the integer is represented in ascii so parsing
+needs to happen anyway. But I was mainly thinking if any
+human looks at it they may be confused as to what the
+raw integer even means.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bd1a1a2524b5..31084d95711d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2891,6 +2891,7 @@ static int i915_psr_sink_status_show(struct seq_file *m, void *data)
- 		"reserved",
- 		"sink internal error",
- 	};
-+	const char *str;
- 	int ret;
- 	u8 val;
- 
-@@ -2903,17 +2904,16 @@ static int i915_psr_sink_status_show(struct seq_file *m, void *data)
- 		return -ENODEV;
- 
- 	ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_PSR_STATUS, &val);
-+	if (ret != 1)
-+		return ret < 0 ? ret : -EIO;
- 
--	if (ret == 1) {
--		const char *str = "unknown";
-+	val &= DP_PSR_SINK_STATE_MASK;
-+	if (val < ARRAY_SIZE(sink_status))
-+		str = sink_status[val];
-+	else
-+		str = "unknown";
- 
--		val &= DP_PSR_SINK_STATE_MASK;
--		if (val < ARRAY_SIZE(sink_status))
--			str = sink_status[val];
--		seq_printf(m, "Sink PSR status: 0x%x [%s]\n", val, str);
--	} else {
--		return ret;
--	}
-+	seq_printf(m, "Sink PSR status: 0x%x [%s]\n", val, str);
- 
- 	return 0;
- }
+> 
+> > Either way, the series is:
+> > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Thanks,
+> Jani.
+> 
+> >
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
+> >> +
+> >>  /**
+> >>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
+> >>   * @connector: pointer to a registered drm_connector
+> >> @@ -1735,4 +1746,6 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
+> >>  
+> >>  	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
+> >>  			    &i915_current_bpc_fops);
+> >> +	debugfs_create_file("i915_pipe", 0444, root, crtc,
+> >> +			    &intel_crtc_pipe_fops);
+> >>  }
+> >> -- 
+> >> 2.39.2
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
