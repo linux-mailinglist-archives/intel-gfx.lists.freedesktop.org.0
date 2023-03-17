@@ -1,83 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C936BECAA
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 16:16:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AE16BED5F
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Mar 2023 16:55:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D603F10EF16;
-	Fri, 17 Mar 2023 15:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0929C10E3CD;
+	Fri, 17 Mar 2023 15:55:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 736FA10EF26
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 15:16:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1679066166;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rao+xNWRizX0LhN/4wRd+0JAP8O4y7cKTfv6w4e7mjg=;
- b=A2+ewIwDtwZwx0/I4S8XFXDkfildU+yuodR+ScAisOdYRZTd8mMQ+PIf1xT7odOYxPgcLf
- F0ourd01UeHz4WW8aFSILZ/ya3a6Gn6rUfpmwh1hkMDCAotOXscov529wbl/coqkwBhOOO
- hjJYBN15/NMI+1uSoI2iLaQrKe46oHM=
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
- [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-594-UXrHjdHDN26CLoMaNxZQ0A-1; Fri, 17 Mar 2023 11:16:05 -0400
-X-MC-Unique: UXrHjdHDN26CLoMaNxZQ0A-1
-Received: by mail-io1-f70.google.com with SMTP id
- u23-20020a6be917000000b007532ab65c70so2516360iof.12
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 08:16:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679066161;
- h=content-transfer-encoding:mime-version:organization:references
- :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=rao+xNWRizX0LhN/4wRd+0JAP8O4y7cKTfv6w4e7mjg=;
- b=H1OY8jOZf4lAfcw/IFpCmYHH2zbpVCl/tn7nwHSQMRMV5VraNunzhIyBzXd3OP9sg+
- TjcCGYMYciP0tLaiPYHePyQckKqI4rwarMwTzTgBk9mHeDGifE5ZIIuvdsLaPBaYiTix
- 3BdOngQ5wFKtaSEcLy94jM0vuxX7SO+PMv3OINTqZTCBRmkNsrdM5F7Pr7fHO0FGdd2X
- t0JnasDclH3eJ3uMVIM9u1xRq4fPEpT4CFeY6ggMIYpsb8apEHR+vtw1MUUgrFPIVdx9
- p1v0oz4I6tknYQSzXQydcFOdMqn3ZCHBsl+i5Xbex2ndkw4/tN21akeYcnrvUYs+NMhF
- 9elg==
-X-Gm-Message-State: AO0yUKWZtPkRv//ipzpk5/LXXK8zFE7YS6mrqeIA9vRU3P8ADT/eGpnI
- tl30k2f6NZWumUUh2IhuHYj3D+HS2Yhld625fLhMgJvWXgKAq/OgrDMDbLeyKDlwEDYRJzIEoYc
- JymX22gXRW8lLzjTms/5zX2Iauwyk
-X-Received: by 2002:a92:d6c4:0:b0:323:29e2:a19 with SMTP id
- z4-20020a92d6c4000000b0032329e20a19mr121689ilp.19.1679066161234; 
- Fri, 17 Mar 2023 08:16:01 -0700 (PDT)
-X-Google-Smtp-Source: AK7set80NGJKORot4gljugv8vYBR/BBkOhmUyaZ4ioD6GUgk2kD4aof7c53go0lOXTZ/o0x4VYZ9Cw==
-X-Received: by 2002:a92:d6c4:0:b0:323:29e2:a19 with SMTP id
- z4-20020a92d6c4000000b0032329e20a19mr121668ilp.19.1679066160983; 
- Fri, 17 Mar 2023 08:16:00 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- i7-20020a05663815c700b00406147dad72sm761750jat.104.2023.03.17.08.15.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Mar 2023 08:16:00 -0700 (PDT)
-Date: Fri, 17 Mar 2023 09:15:57 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Message-ID: <20230317091557.196638a6.alex.williamson@redhat.com>
-In-Reply-To: <BN9PR11MB5276D5A71E43EA4CDD1C960A8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230308132903.465159-1-yi.l.liu@intel.com>
- <20230308132903.465159-13-yi.l.liu@intel.com>
- <20230315165311.01f32bfe.alex.williamson@redhat.com>
- <BN9PR11MB5276300FCAAF8BF7B4E03BA48CBF9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230316124532.30839a94.alex.williamson@redhat.com>
- <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230316182256.6659bbbd.alex.williamson@redhat.com>
- <BN9PR11MB5276D5A71E43EA4CDD1C960A8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
-Organization: Red Hat
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C36510E39F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Mar 2023 15:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679068515; x=1710604515;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=5II7/mhrwKYQPXFCb5HFE3rC/ipbVCKc/WkC0jh6K6k=;
+ b=Iej4HZVf5rDqNJ+BkHLKhSlPfiA7aeIMyYRFPmiC1OzB9xiPitLj7/SZ
+ +UgZTgRXkUV+kmb4pDabC3wigXoEY9cwxpVsk4KtjFb/6ChhFosSbzi1M
+ sxV3OPsybjpRiFRS611uEE3+HI/7I7mT9iZAJT+nei7FFuAx9MbrKtZOW
+ OAjR75nW42F5C+zS/Jl76mp6kw/CYyZP+4pSL+olAzyC3QHi9ywVLian+
+ AO6DFVYaXh+iJKFHnGE3wnekcN8H3EUrarMB0iqWlwvXs5ZB5lyvRFsUw
+ pEfwrnCf1GrfS0eiVHdeKgFOQ6i/CGUqNTv4isFJ7ytb/YzLqQUIrz0Ll A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="403159416"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="403159416"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 08:55:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="790757130"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="790757130"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by fmsmga002.fm.intel.com with ESMTP; 17 Mar 2023 08:55:13 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pdCQC-0009SO-2C;
+ Fri, 17 Mar 2023 15:55:12 +0000
+Date: Fri, 17 Mar 2023 23:54:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202303172307.KAbTCHfP-lkp@intel.com>
+References: <20230317125352.198042-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230317125352.198042-1-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/debugfs: switch crtc debugfs
+ to struct intel_crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,102 +60,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: jani.nikula@intel.com, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Mar 2023 00:57:23 +0000
-"Tian, Kevin" <kevin.tian@intel.com> wrote:
+Hi Jani,
 
-> > From: Alex Williamson
-> > Sent: Friday, March 17, 2023 8:23 AM
-> > 
-> > On Thu, 16 Mar 2023 23:29:21 +0000
-> > "Tian, Kevin" <kevin.tian@intel.com> wrote:
-> >   
-> > > > From: Alex Williamson
-> > > > Sent: Friday, March 17, 2023 2:46 AM
-> > > >
-> > > > On Wed, 15 Mar 2023 23:31:23 +0000
-> > > > "Tian, Kevin" <kevin.tian@intel.com> wrote:
-> > > >  
-> > > > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > > > Sent: Thursday, March 16, 2023 6:53 AM
-> > > > > > I'm afraid this proposal reduces or eliminates the handshake we have
-> > > > > > with userspace between VFIO_DEVICE_GET_PCI_HOT_RESET_INFO  
-> > and  
-> > > > > > VFIO_DEVICE_PCI_HOT_RESET, which could promote userspace to  
-> > ignore  
-> > > > the  
-> > > > > > _INFO ioctl altogether, resulting in drivers that don't understand the
-> > > > > > scope of the reset.  Is it worth it?  What do we really gain?  
-> > > > >
-> > > > > Jason raised the concern whether GET_PCI_HOT_RESET_INFO is actually
-> > > > > useful today.
-> > > > >
-> > > > > It's an interface on opened device. So the tiny difference is whether the
-> > > > > user knows the device is resettable when calling GET_INFO or later  
-> > when  
-> > > > > actually calling PCI_HOT_RESET.  
-> > > >
-> > > > No, GET_PCI_HOT_RESET_INFO conveys not only whether a  
-> > PCI_HOT_RESET  
-> > > > can
-> > > > be performed, but equally important the scope of the reset, ie. which
-> > > > devices are affected by the reset.  If we de-emphasize the INFO
-> > > > portion, then this easily gets confused as just a variant of
-> > > > VFIO_DEVICE_RESET, which is explicitly a device-level cscope reset.  In
-> > > > fact, I'd say the interface is not only trying to validate that the
-> > > > user has sufficient privileges for the reset, but that they explicitly
-> > > > acknowledge the scope of the reset.
-> > > >  
-> > >
-> > > IMHO the usefulness of scope is if it's discoverable by the management
-> > > stack which then can try to assign devices with affected reset to a same
-> > > user.  
-> > 
-> > Disagree, the user needs to know the scope of reset.  Take for instance
-> > two function of a device configured onto separate buses within a VM.
-> > The VMM needs to know that a hot-reset of one will reset the other.
-> > That's not obvious to the VMM without some understanding of PCI/e
-> > topology and analysis of the host system.  The info ioctl simplifies
-> > that discovery for the VMM and the handshake of passing the affected
-> > groups makes sure that the info ioctl remains relevant.  
-> 
-> If that is the intended usage then I don't see why this proposal will
-> promote userspace to ignore the _INFO ioctl. It should be always
-> queried no matter how the reset ioctl itself is designed. The motivation
-> of calling _INFO is not from the reset ioctl asking for an array of fds.
+I love your patch! Yet something to improve:
 
-The VFIO_DEVICE_PCI_HOT_RESET ioctl requires a set of group (or cdev)
-fds that encompass the set of affected devices reported by the
-VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl, so I don't agree with the
-last sentence above.
+[auto build test ERROR on drm-tip/drm-tip]
 
-This proposal seems to be based on some confusion about the difference
-between VFIO_DEVICE_RESET and VFIO_DEVICE_PCI_HOT_RESET, and therefore
-IMO, proliferates that confusion by making the scope argument optional,
-which I see as a key difference.  This therefore makes the behavior of
-the ioctl less intuitive, easier to get wrong, and I expect we'll see
-users unitentionally resetting devices beyond the desired scope if the
-group/device fd array is allowed to be empty.  Thanks,
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-debugfs-add-crtc-i915_pipe-debugfs-file/20230317-205512
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230317125352.198042-1-jani.nikula%40intel.com
+patch subject: [Intel-gfx] [PATCH 1/2] drm/i915/debugfs: switch crtc debugfs to struct intel_crtc
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230317/202303172307.KAbTCHfP-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/506415b57ce52f43962e9e766ff8dd5410fe3051
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jani-Nikula/drm-i915-debugfs-add-crtc-i915_pipe-debugfs-file/20230317-205512
+        git checkout 506415b57ce52f43962e9e766ff8dd5410fe3051
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Alex
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303172307.KAbTCHfP-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/display/intel_display_debugfs.c: In function 'crtc_updates_add':
+>> drivers/gpu/drm/i915/display/intel_display_debugfs.c:810:59: error: 'struct intel_crtc' has no member named 'debugfs_entry'
+     810 |         debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
+         |                                                           ^~
+
+
+vim +810 drivers/gpu/drm/i915/display/intel_display_debugfs.c
+
+829270e4552e9e Chris Wilson 2020-12-02  807  
+506415b57ce52f Jani Nikula  2023-03-17  808  static void crtc_updates_add(struct intel_crtc *crtc)
+829270e4552e9e Chris Wilson 2020-12-02  809  {
+829270e4552e9e Chris Wilson 2020-12-02 @810  	debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
+506415b57ce52f Jani Nikula  2023-03-17  811  			    crtc, &crtc_updates_fops);
+829270e4552e9e Chris Wilson 2020-12-02  812  }
+829270e4552e9e Chris Wilson 2020-12-02  813  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
