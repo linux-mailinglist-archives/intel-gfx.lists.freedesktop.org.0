@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895B46BF7B6
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 05:20:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 383606BF7B7
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 05:21:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFE68908B;
-	Sat, 18 Mar 2023 04:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB14110E036;
+	Sat, 18 Mar 2023 04:20:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C21310E036
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Mar 2023 04:20:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD6CC10E036
+ for <intel-gfx@lists.freedesktop.org>; Sat, 18 Mar 2023 04:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679113251; x=1710649251;
+ t=1679113252; x=1710649252;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pQl79i+LtVzERhRdVFbkIf3XgkT00SC/43Uo4dQ35vY=;
- b=j6AwB5QtXkwPvOPb10QdAkQI6Cg4E3teK1Ufu1DANKCQr1oDsKhE/Zbe
- +JiiFIdSon75SS6Dt0WDzapst5J5YhOLijUr9Xv3EshikXMU9H5Cq82RO
- GO215npBCzFF2vdu+1lsx1KSQCwguAXm+a/4yBHJS0rhNO3381JX/cflT
- hOz/cgSx/6Uu7B5zNfHMnOvLvkczpeCEdGNi1a33PAaWF6cCrv0P0ui4d
- M6UJ4/Cj67YEfTQK4tyFiNMc89vUJKgiQ6IH6Iu/OkNqCt4eG54075P3c
- 6YbzSuc89bBfy9yYL2odFtaT8PR725fityKNwT6zkk+AO0hIWAOmM/LbD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="424681851"
-X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="424681851"
+ bh=xCZZvGjOgHVWyS9jyBDzIv9E3lUnz/N8lm/mOiI60YY=;
+ b=XvtL6Alq9cz+FO+1QApaQvbO/97oyKs5lWjzsCyLETHYP5dYlRnQOMty
+ OLjykB3uCvHpHdmUyp6MljUmuTt4zga789usrFy2U167ZVTvIqrDiuLtb
+ Dpz3zR+E/VUvox4l1w6aeu8QPAtG/WJKXdeL8kVn9gj/hz6Twjs1vT92v
+ yL1PSYh5SKf4XemzY5rzjNRR4In8oUBWWfSTZWIBKqLQJ+dFhXu6ymcoR
+ 1robVtBQbQT6Ppq/cKX1vj1U0yhNlSDuiZovNZYMg30BLe2tzupoKH5yh
+ Deu9uQBkE1zc9tI/q64H2zEhYEb5bFHM2rWFNlCjN+12OO/Qkdf02x9SB Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="424681854"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="424681854"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 21:20:50 -0700
+ 17 Mar 2023 21:20:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680511420"
-X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="680511420"
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680511437"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="680511437"
 Received: from bhanu-nuclab.iind.intel.com ([10.145.169.172])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 21:20:49 -0700
+ 17 Mar 2023 21:20:50 -0700
 From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 18 Mar 2023 09:47:03 +0530
-Message-Id: <20230318041704.2714520-2-bhanuprakash.modem@intel.com>
+Date: Sat, 18 Mar 2023 09:47:04 +0530
+Message-Id: <20230318041704.2714520-3-bhanuprakash.modem@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230318041704.2714520-1-bhanuprakash.modem@intel.com>
 References: <20230318041704.2714520-1-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [V2 1/2] drm/i915/debugfs: switch crtc debugfs to
- struct intel_crtc
+Subject: [Intel-gfx] [V2 2/2] drm/i915/debugfs: add crtc i915_pipe debugfs
+ file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,117 +65,49 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Jani Nikula <jani.nikula@intel.com>
 
-Convert the crtc debugfs code to use struct intel_crtc instead of struct
-drm_crtc.
+The pipe may differ from crtc index if pipes are fused off. For testing
+purposes, IGT needs to know the pipe.
 
-V2: - Fix build failures in CI
+There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. However,
+the upcoming Xe driver won't have that IOCTL, and going forward, we'll
+want a unified interface for testing i915 and Xe, as they share the
+display code. Thus add the debugfs for i915 display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
- .../drm/i915/display/intel_display_debugfs.c  | 22 ++++++++++---------
- .../drm/i915/display/intel_display_debugfs.h  |  6 ++---
- 3 files changed, 16 insertions(+), 14 deletions(-)
+ .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index b79a8834559f..60e52c5abd82 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -212,7 +212,7 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- 
- static int intel_crtc_late_register(struct drm_crtc *crtc)
- {
--	intel_crtc_debugfs_add(crtc);
-+	intel_crtc_debugfs_add(to_intel_crtc(crtc));
- 	return 0;
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 65585f19c6c8..29c049aac252 100644
+index 29c049aac252..4e489f5aade7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -805,10 +805,10 @@ static const struct file_operations crtc_updates_fops = {
- 	.write = crtc_updates_write
- };
- 
--static void crtc_updates_add(struct drm_crtc *crtc)
-+static void crtc_updates_add(struct intel_crtc *crtc)
- {
--	debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
--			    to_intel_crtc(crtc), &crtc_updates_fops);
-+	debugfs_create_file("i915_update_info", 0644, crtc->base.debugfs_entry,
-+			    crtc, &crtc_updates_fops);
+@@ -1657,6 +1657,17 @@ static int i915_current_bpc_show(struct seq_file *m, void *data)
  }
+ DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
  
- #else
-@@ -818,7 +818,7 @@ static void crtc_updates_info(struct seq_file *m,
- {
- }
- 
--static void crtc_updates_add(struct drm_crtc *crtc)
-+static void crtc_updates_add(struct intel_crtc *crtc)
- {
- }
- #endif
-@@ -1640,7 +1640,7 @@ static const struct file_operations i915_dsc_bpc_fops = {
-  */
- static int i915_current_bpc_show(struct seq_file *m, void *data)
- {
--	struct intel_crtc *crtc = to_intel_crtc(m->private);
++/* Pipe may differ from crtc index if pipes are fused off */
++static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
++{
 +	struct intel_crtc *crtc = m->private;
- 	struct intel_crtc_state *crtc_state;
- 	int ret;
- 
-@@ -1722,15 +1722,17 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
-  *
-  * Failure to add debugfs entries should generally be ignored.
-  */
--void intel_crtc_debugfs_add(struct drm_crtc *crtc)
-+void intel_crtc_debugfs_add(struct intel_crtc *crtc)
- {
--	if (!crtc->debugfs_entry)
-+	struct dentry *root = crtc->base.debugfs_entry;
 +
-+	if (!root)
- 		return;
++	seq_printf(m, "%d\n", crtc->pipe);
++
++	return 0;
++}
++DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
++
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered drm_connector
+@@ -1735,4 +1746,6 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
  
- 	crtc_updates_add(crtc);
--	intel_drrs_crtc_debugfs_add(to_intel_crtc(crtc));
--	intel_fbc_crtc_debugfs_add(to_intel_crtc(crtc));
-+	intel_drrs_crtc_debugfs_add(crtc);
-+	intel_fbc_crtc_debugfs_add(crtc);
- 
--	debugfs_create_file("i915_current_bpc", 0444, crtc->debugfs_entry, crtc,
-+	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
+ 	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
  			    &i915_current_bpc_fops);
++	debugfs_create_file("i915_pipe", 0444, root, crtc,
++			    &intel_crtc_pipe_fops);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-index d3a79c07c384..e1f479b7acd1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-@@ -6,18 +6,18 @@
- #ifndef __INTEL_DISPLAY_DEBUGFS_H__
- #define __INTEL_DISPLAY_DEBUGFS_H__
- 
--struct drm_crtc;
- struct drm_i915_private;
- struct intel_connector;
-+struct intel_crtc;
- 
- #ifdef CONFIG_DEBUG_FS
- void intel_display_debugfs_register(struct drm_i915_private *i915);
- void intel_connector_debugfs_add(struct intel_connector *connector);
--void intel_crtc_debugfs_add(struct drm_crtc *crtc);
-+void intel_crtc_debugfs_add(struct intel_crtc *crtc);
- #else
- static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
- static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
--static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
-+static inline void intel_crtc_debugfs_add(struct intel_crtc *crtc) {}
- #endif
- 
- #endif /* __INTEL_DISPLAY_DEBUGFS_H__ */
 -- 
 2.40.0
 
