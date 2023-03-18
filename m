@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDD36BF854
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 07:26:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B226BF855
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 07:27:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A95210E28B;
-	Sat, 18 Mar 2023 06:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF0F010E297;
+	Sat, 18 Mar 2023 06:26:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D0FEE10E28B;
- Sat, 18 Mar 2023 06:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 40D5610E290;
+ Sat, 18 Mar 2023 06:26:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B35F3AADEA;
- Sat, 18 Mar 2023 06:26:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2556DAADEA;
+ Sat, 18 Mar 2023 06:26:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
-Date: Sat, 18 Mar 2023 06:26:53 -0000
-Message-ID: <167912081370.6190.14777958412157698359@emeril.freedesktop.org>
+Date: Sat, 18 Mar 2023 06:26:56 -0000
+Message-ID: <167912081614.6191.8761962430196946952@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230318041704.2714520-1-bhanuprakash.modem@intel.com>
 In-Reply-To: <20230318041704.2714520-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBB?=
- =?utf-8?q?dd_crtc_i915=5Fpipe_debugfs_file?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_crtc_i915=5Fpipe_debugfs_file?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
