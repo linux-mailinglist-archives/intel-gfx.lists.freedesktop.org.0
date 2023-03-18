@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1551C6BF70C
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 01:48:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96896BF71B
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Mar 2023 01:59:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C52E10E158;
-	Sat, 18 Mar 2023 00:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C5210E2AA;
+	Sat, 18 Mar 2023 00:59:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B62A10E158
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Mar 2023 00:47:55 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB8610E2AA
+ for <intel-gfx@lists.freedesktop.org>; Sat, 18 Mar 2023 00:59:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679100476; x=1710636476;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Msi1NikWIi16Ei2S1R8vvyEju2cIcpebbUpp3VinUKQ=;
- b=iy3N+XDFE/uFOeIMR8PiHsplVQUYkB4opZ0oAJKcVnDgwpZvt2hXKe7+
- PaQErs0Qk5WawVeO8Xv/NndM2WHJrb86iO5HZGa3rtiAZdEiC9tiRBbiR
- X6gwp4n4BOvme/d4VWU8LW3740az7nWyHQCTXaEwG+yGPfUYXciKpHb3Q
- iiy/skVs+B7XOocF8tHtOh6PPhd44dd6ESUAGB84SGCn/46HVCAZhqCoA
- 3C85it0GbLP6tzAn30mIdo7POmUJ4M+se2JCoekAjqczAXCIxgKXj3fyA
- gEsxcjBWqrHrh48vpEwmyQ5Pz3iZeAhccOho/1RydAnumDsfipltiGrlI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="318792387"
-X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="318792387"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 17:47:51 -0700
+ t=1679101171; x=1710637171;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nKpZwHFUNK6k2l+oUbXczd4NzRAMtE9z0x5Moutoo8A=;
+ b=Jf+5zotuTSDoElQ/7FAn36ZAu4I3kvgQ4g+CjTfzRv7SE2LoCFxcQxBg
+ 3Ivp5oUiwniPCVgmsKnbWbTTSU7ggKGZE9TAtyTma/a8WzxuXCvUEu9Kb
+ pNCj3pWPknR+7lK/0qpZl8UeyvCKwx7HMZdx6HJX/1cqRuZFj1ppBiIR5
+ n3dr4fzK4jTc4WkgKgY/FW6Ev/6l15XQUoeyEQ+KTgbk0/P/fP+PXm0Hx
+ yvXWURpD7ouBqYfUmvuWnYnEzqpvvAqR7YvZwhx0XJo+/Zdi/o6OpdRFL
+ fI5awEWmfJhEUPAWuGIeWNW1iqaFS1M5Hk6BGd/nTZf1f0MYqWZiiydNU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="400971052"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="400971052"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 17:59:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="790942111"
-X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="790942111"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga002.fm.intel.com with ESMTP; 17 Mar 2023 17:47:50 -0700
-From: John.C.Harrison@Intel.com
-To: stable@vger.kernel.org
-Date: Fri, 17 Mar 2023 17:46:59 -0700
-Message-Id: <20230318004659.817361-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <167820537619158@kroah.com>
-References: <167820537619158@kroah.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="804301798"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; d="scan'208";a="804301798"
+Received: from invictus.jf.intel.com ([10.165.21.134])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 17:59:31 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Mar 2023 17:58:48 -0700
+Message-Id: <20230318005852.2303937-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.10.y] drm/i915: Don't use stolen memory for
- ring buffers with LLC
+Subject: [Intel-gfx] [PATCH 0/4] Add MTL DP and HDMI Sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +56,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+This series is dependent on the Meteorlake Phy enabling series
+which is being reviewed here [1].
 
-Direction from hardware is that stolen memory should never be used for
-ring buffer allocations on platforms with LLC. There are too many
-caching pitfalls due to the way stolen memory accesses are routed. So
-it is safest to just not use it.
+The first patch of the series is a squashed patch of all the
+patches in [1].
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Fixes: c58b735fc762 ("drm/i915: Allocate rings from stolen")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.9+
-Tested-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-2-John.C.Harrison@Intel.com
-(cherry picked from commit f54c1f6c697c4297f7ed94283c184acc338a5cf8)
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-(cherry picked from commit 690e0ec8e63da9a29b39fedc6ed5da09c7c82651)
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ring.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The second and third patches in the series add Display port
+and HDMI programming sequences respectively.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 69b2e5509d67..de67b2745258 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -108,7 +108,7 @@ static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
- 	struct i915_vma *vma;
- 
- 	obj = ERR_PTR(-ENODEV);
--	if (i915_ggtt_has_aperture(ggtt))
-+	if (i915_ggtt_has_aperture(ggtt) && !HAS_LLC(i915))
- 		obj = i915_gem_object_create_stolen(i915, size);
- 	if (IS_ERR(obj))
- 		obj = i915_gem_object_create_internal(i915, size);
+The last patch in the series skips programming the pcode
+for qgv bandwidth restrictions which is handled by PM Demand
+patch part of the squashed patch 1 and patch no 07/22 in [1].
+
+[1] https://patchwork.freedesktop.org/series/109714/
+Ankit Nautiyal (1):
+  drm/i915/display/mtl: Fill port width in
+    DDI_BUF_/TRANS_DDI_FUNC_/PORT_BUF_CTL for HDMI
+
+Clint Taylor (1):
+  drm/i915/mtl: Squashed Phy Support
+
+José Roberto de Souza (1):
+  drm/i915/mtl/display: Implement DisplayPort sequences
+
+Radhakrishna Sripada (1):
+  drm/i915/mtl: Skip pcode qgv restrictions for MTL
+
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/display/intel_bw.c       |    7 +-
+ drivers/gpu/drm/i915/display/intel_bw.h       |    2 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 2802 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   57 +
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  233 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  458 ++-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |   85 +-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |    6 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   25 +-
+ .../drm/i915/display/intel_display_power.c    |    9 +-
+ .../i915/display/intel_display_power_map.c    |    1 +
+ .../i915/display/intel_display_power_well.c   |    2 +-
+ .../drm/i915/display/intel_display_types.h    |   23 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   23 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   22 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |    7 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |    1 +
+ .../drm/i915/display/intel_modeset_verify.c   |    2 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |  177 +-
+ drivers/gpu/drm/i915/i915_drv.h               |    6 +
+ drivers/gpu/drm/i915/i915_irq.c               |  276 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   76 +-
+ drivers/gpu/drm/i915/i915_reg_defs.h          |   57 +
+ drivers/gpu/drm/i915/intel_pm.c               |  289 ++
+ drivers/gpu/drm/i915/intel_pm.h               |   36 +
+ 27 files changed, 4631 insertions(+), 54 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+
 -- 
-2.39.1
+2.34.1
 
