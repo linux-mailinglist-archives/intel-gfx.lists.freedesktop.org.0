@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD096C023B
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Mar 2023 15:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5056C02C1
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Mar 2023 16:25:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54A7010E4E4;
-	Sun, 19 Mar 2023 14:03:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E0110E046;
+	Sun, 19 Mar 2023 15:25:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0DEE10E48A;
- Sun, 19 Mar 2023 14:03:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679234585; x=1710770585;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Kam5KnEwSr8wv6TKx5GlijRY5Fj7Idrg7iQSml4/RDs=;
- b=IeKrAxvR3OQSdq0gqjqOY+JBTjlTddWyxIg5CvcSNYcrv9bYMgAK9kQn
- hjEflvO+o1Sa0C1MIiDW2w75+PB/y7p+2EJhBxHjeeESaisazgx7sytdK
- MM/dzEL7zTvsrS5Y3K5GRy89gnoccFGdSRNutgxOoy0csoAzyVDTnA+xa
- m5Va8HGeh1DhURVATXAQTZNzVXgLNYNYL6GJSDKKMWjv6SU4xQSlofnps
- q3e6PGh61GrujhiRsfaNZUk80kfVShpYLNIcu/UDhHY3jkN8cEVSOu1wD
- 7Y52uMJicaP/RY0Fd7qwX6Sh8crGTevIfju4mTSe1wKRhtu1KevBimb/P w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="318911018"
-X-IronPort-AV: E=Sophos;i="5.98,273,1673942400"; d="scan'208";a="318911018"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2023 07:03:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="926701886"
-X-IronPort-AV: E=Sophos;i="5.98,273,1673942400"; d="scan'208";a="926701886"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2023 07:03:04 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 19 Mar 2023 07:03:00 -0700
-Message-Id: <20230319140300.2892032-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E98B10E046;
+ Sun, 19 Mar 2023 15:25:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1EA7CA3ECB;
+ Sun, 19 Mar 2023 15:25:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] Revert "drm/i915/hwmon: Enable PL1 power limit"
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Date: Sun, 19 Mar 2023 15:25:13 -0000
+Message-ID: <167923951308.1814.8699392061028503888@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230319140300.2892032-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20230319140300.2892032-1-ashutosh.dixit@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Revert_=22drm/i915/hwmon=3A_Enable_PL1_power_limit=22_=28re?=
+ =?utf-8?b?djMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,44 +41,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit ee892ea83d99610fa33bea612de058e0955eec3a.
+== Series Details ==
 
+Series: Revert "drm/i915/hwmon: Enable PL1 power limit" (rev3)
+URL   : https://patchwork.freedesktop.org/series/113793/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+99b53261c0ad Revert "drm/i915/hwmon: Enable PL1 power limit"
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0349c41b0596 ("drm/i915/hwmon: Enable PL1 power limit")'
+#8: 
 0349c41b0596 ("drm/i915/hwmon: Enable PL1 power limit") was reverted in
+
+-:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 05d5562e401e ("Revert "drm/i915/hwmon: Enable PL1 power limit"")'
+#9: 
 05d5562e401e ("Revert "drm/i915/hwmon: Enable PL1 power limit"") but has
+
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ee892ea83d99 ("drm/i915/hwmon: Enable PL1 power limit")'
+#10: 
 appeared again as ee892ea83d99 ("drm/i915/hwmon: Enable PL1 power
-limit"). Revert it again.
 
-Cc: <stable@vger.kernel.org> # v6.2+
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+-:16: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'Bug:', use 'Link:' instead
+#16: 
 Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
-Fixes: ee892ea83d99 ("drm/i915/hwmon: Enable PL1 power limit")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 5 -----
- 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index ee63a8fd88fc1..596dd2c070106 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -688,11 +688,6 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
- 		for_each_gt(gt, i915, i)
- 			hwm_energy(&hwmon->ddat_gt[i], &energy);
- 	}
--
--	/* Enable PL1 power limit */
--	if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
--		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
--						    PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
- }
- 
- void i915_hwmon_register(struct drm_i915_private *i915)
--- 
-2.38.0
+total: 3 errors, 1 warnings, 0 checks, 11 lines checked
+
 
