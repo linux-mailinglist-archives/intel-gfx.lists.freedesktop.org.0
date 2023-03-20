@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEE206C1FE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 19:35:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA7316C2015
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 19:39:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41D3110E2C9;
-	Mon, 20 Mar 2023 18:35:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22AB110E2D7;
+	Mon, 20 Mar 2023 18:39:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C4410E22C
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 18:35:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A72CC10E22C;
+ Mon, 20 Mar 2023 18:39:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679337336; x=1710873336;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Hh1xabn9JQfh1zJvJ9e671Pv0J7j7t5wEdWLcUotYXk=;
- b=lHr+ElJHFd9JbJcx24CtTzrnOa9jq52VOF4tvtYLd3BlEcc+9/X9v3Pg
- NS/8GPdzITQ7c6Sp6G2oclDlDy0s4b80JbDtejhMYzW6J0qol0Q1Qd3PE
- QBTH2e5RHwRRdjMR03Lqo8hcbhb692046yFtX7qp9tM5OUxZT8songugg
- hYRq8LNGdjuPbYYvucGQWKUfVAa8ylwlVvhoi/N/dDbdCxgW/QfwYQxwK
- 267ffiez6boPKkIrCmOm1eYgKYe8EgJjX6pxHRfb5+/AK77YWrbeshGL0
- 85QUDg3vDNYJUQM4jHwlHaEHZ7zQEox405oSbxlHiCSjOGkhmLKyWf4Wm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="318396846"
-X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="318396846"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 11:35:36 -0700
+ t=1679337569; x=1710873569;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=NVpb0s44A4CDvY38C/xGCzroKuG69A4v+lxaRmy7irg=;
+ b=cnYUN8KGLi4+h/2RaMcY4fr0LSk3xCFUJad2HXO/b1BjYIrfBKKDPbdA
+ 5eFstzgp+dQScplTPCNhyBkNobL3SVW4eEpAoZhgDQjg41Zm4lh+1+LW/
+ KjXpZ9KATk7Eqqq+fOt3+ubem9KOpOYjNloo93Uav+RhTFOUoBEltzJCF
+ b+PQU+f2wUEjVyEhAJk+z8nFO72yffcEuR3AFHi7yvnG167YC+PXvoySS
+ /nsk5uoPN9xHWfXx5+F1RlAOvM4G/6f3akGgiDo7sTxT8rF47IAvWfBCh
+ Qm0bs4ego4uwVCzjzBbmt6o+nBa4/oFvK5BmIvnaf2LxMgdL0boFfGEDP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="337463651"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="337463651"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 11:39:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="770291131"
-X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="770291131"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by FMSMGA003.fm.intel.com with SMTP; 20 Mar 2023 11:35:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Mar 2023 20:35:32 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Mar 2023 20:35:32 +0200
-Message-Id: <20230320183532.17727-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230320095438.17328-6-ville.syrjala@linux.intel.com>
-References: <20230320095438.17328-6-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="824605929"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="824605929"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.65])
+ ([10.213.6.65])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 11:39:25 -0700
+Message-ID: <e0481f32-1245-f429-cebe-b6c55c613f80@intel.com>
+Date: Mon, 20 Mar 2023 19:39:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 5/6] drm/i915: Disable DC states for all
- commits
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230224-track_gt-v4-0-464e8ab4c9ab@intel.com>
+ <20230224-track_gt-v4-6-464e8ab4c9ab@intel.com>
+ <ZBehYC0npr4nv4mw@ashyti-mobl2.lan>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <ZBehYC0npr4nv4mw@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 06/10] drm/i915: Separate wakeref tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,106 +65,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Drew Davenport <ddavenport@chromium.org>
+Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Eric Dumazet <edumazet@google.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jakub Kicinski <kuba@kernel.org>,
+ David Airlie <airlied@gmail.com>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 20.03.2023 00:57, Andi Shyti wrote:
+> Hi Andrzej,
+> 
+> On Mon, Mar 06, 2023 at 05:32:02PM +0100, Andrzej Hajda wrote:
+>> From: Chris Wilson <chris@chris-wilson.co.uk>
+>>
+>> Extract the callstack tracking of intel_runtime_pm.c into its own
+>> utility so that that we can reuse it for other online debugging of
+>> scoped wakerefs.
+>>
+>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/Kconfig.debug           |   9 ++
+>>   drivers/gpu/drm/i915/Makefile                |   4 +
+>>   drivers/gpu/drm/i915/intel_runtime_pm.c      | 222 +++----------------------
+>>   drivers/gpu/drm/i915/intel_wakeref.h         |   2 +-
+>>   drivers/gpu/drm/i915/intel_wakeref_tracker.c | 234 +++++++++++++++++++++++++++
+>>   drivers/gpu/drm/i915/intel_wakeref_tracker.h |  52 ++++++
+>>   6 files changed, 319 insertions(+), 204 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+>> index 93dfb7ed970547..5fde52107e3b44 100644
+>> --- a/drivers/gpu/drm/i915/Kconfig.debug
+>> +++ b/drivers/gpu/drm/i915/Kconfig.debug
+>> @@ -25,6 +25,7 @@ config DRM_I915_DEBUG
+>>   	select PREEMPT_COUNT
+>>   	select I2C_CHARDEV
+>>   	select STACKDEPOT
+>> +	select STACKTRACE
+>>   	select DRM_DP_AUX_CHARDEV
+>>   	select X86_MSR # used by igt/pm_rpm
+>>   	select DRM_VGEM # used by igt/prime_vgem (dmabuf interop checks)
+>> @@ -37,6 +38,7 @@ config DRM_I915_DEBUG
+>>   	select DRM_I915_DEBUG_GEM
+>>   	select DRM_I915_DEBUG_GEM_ONCE
+>>   	select DRM_I915_DEBUG_MMIO
+>> +	select DRM_I915_TRACK_WAKEREF
+>>   	select DRM_I915_DEBUG_RUNTIME_PM
+>>   	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
+>>   	select DRM_I915_SELFTEST
+>> @@ -227,11 +229,18 @@ config DRM_I915_DEBUG_VBLANK_EVADE
+>>   
+>>   	  If in doubt, say "N".
+>>   
+>> +config DRM_I915_TRACK_WAKEREF
+>> +	depends on STACKDEPOT
+>> +	depends on STACKTRACE
+>> +	bool
+>> +
+>>   config DRM_I915_DEBUG_RUNTIME_PM
+>>   	bool "Enable extra state checking for runtime PM"
+>>   	depends on DRM_I915
+>>   	default n
+>>   	select STACKDEPOT
+>> +	select STACKTRACE
+>> +	select DRM_I915_TRACK_WAKEREF
+>>   	help
+>>   	  Choose this option to turn on extra state checking for the
+>>   	  runtime PM functionality. This may introduce overhead during
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index b2f91a1f826858..42daff6d575a82 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -81,6 +81,10 @@ i915-$(CONFIG_DEBUG_FS) += \
+>>   	i915_debugfs_params.o \
+>>   	display/intel_display_debugfs.o \
+>>   	display/intel_pipe_crc.o
+>> +
+>> +i915-$(CONFIG_DRM_I915_TRACK_WAKEREF) += \
+>> +	intel_wakeref_tracker.o
+>> +
+> 
+> This patch, along with the previous one and two following it, is
+> a bit confusing. We add this file only to remove it later and
+> the code hops from file to file. There seem to be some extra
+> steps that could be avoided.
+> 
+> Is there room for simplification?
 
-Keeping DC states enabled is incompatible with the _noarm()/_arm()
-split we use for writing pipe/plane registers. When DC5 and PSR
-are enabled, all pipe/plane registers effectively become self-arming
-on account of DC5 exit arming the update, and PSR exit latching it.
+The reason behind this was that i915 had it's own tracker integrated 
+with i915_runtime_pm, then it was abstracted out (05,06) to allow track 
+gt->wakerefs (07) and then I proposed replacement of internal tracker 
+with ref_tracker (09). I wanted to keep original history of development.
+I can squash all/some of this work, but I am afraid it will generate 
+less readable patches - now we have separated abstract-out and replace 
+steps.
 
-What probably saves us most of the time is that (with PIPE_MISC[21]=0)
-all pipe register writes themselves trigger PSR exit, and then
-we don't re-enter PSR until the idle frame count has elapsed.
-So it may be that the PSR exit happens alreday before we're
-update the state too much.
+Probably sending patches 05-08 1st, then proposing conversion to 
+ref_tracker in another patchset would make it more clear.
 
-Also the PSR1 panel (at least on this KBL) seems to discard the first
-frame we trasmit, presumably still scanning out from its internal
-framebuffer at that point. So only the second frame we transmit is
-actually visible. But I suppose that could also be panel specific
-behaviour. I haven't checked out how other PSR panels behave, nor
-did I bother to check what the eDP spec has to say about this.
+Regards
+Andrzej
 
-And since this really is all about DC states, let's switch from
-the MODESET domain to the DC_OFF domain. Functionally they are
-100% identical. We should probably remove the MODESET domain...
 
-And for good measure let's toss in an assert to the place where
-we do the _noarm() register writes to make sure DC states are
-in fact off.
-
-v2: Just use intel_display_power_is_enabled() (Imre)
-
-Cc: Manasi Navare <navaremanasi@google.com>
-Cc: Drew Davenport <ddavenport@chromium.org>
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-Fixes: d13dde449580 ("drm/i915: Split pipe+output CSC programming to noarm+arm pair")
-Fixes: f8a005eb8972 ("drm/i915: Optimize icl+ universal plane programming")
-Fixes: 890b6ec4a522 ("drm/i915: Split skl+ plane update into noarm+arm pair")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++++++++++---
- 1 file changed, 25 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5146d6cc7400..5a386c7c0bc9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6989,6 +6989,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 
- 	intel_fbc_update(state, crtc);
- 
-+	drm_WARN_ON(&i915->drm, !intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF));
-+
- 	if (!modeset &&
- 	    intel_crtc_needs_color_update(new_crtc_state))
- 		intel_color_commit_noarm(new_crtc_state);
-@@ -7356,8 +7358,28 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	drm_atomic_helper_wait_for_dependencies(&state->base);
- 	drm_dp_mst_atomic_wait_for_dependencies(&state->base);
- 
--	if (state->modeset)
--		wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_MODESET);
-+	/*
-+	 * During full modesets we write a lot of registers, wait
-+	 * for PLLs, etc. Doing that while DC states are enabled
-+	 * is not a good idea.
-+	 *
-+	 * During fastsets and other updates we also need to
-+	 * disable DC states due to the following scenario:
-+	 * 1. DC5 exit and PSR exit happen
-+	 * 2. Some or all _noarm() registers are written
-+	 * 3. Due to some long delay PSR is re-entered
-+	 * 4. DC5 entry -> DMC saves the already written new
-+	 *    _noarm() registers and the old not yet written
-+	 *    _arm() registers
-+	 * 5. DC5 exit -> DMC restores a mixture of old and
-+	 *    new register values and arms the update
-+	 * 6. PSR exit -> hardware latches a mixture of old and
-+	 *    new register values -> corrupted frame, or worse
-+	 * 7. New _arm() registers are finally written
-+	 * 8. Hardware finally latches a complete set of new
-+	 *    register values, and subsequent frames will be OK again
-+	 */
-+	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_DC_OFF);
- 
- 	intel_atomic_prepare_plane_clear_colors(state);
- 
-@@ -7506,8 +7528,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * the culprit.
- 		 */
- 		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
--		intel_display_power_put(dev_priv, POWER_DOMAIN_MODESET, wakeref);
- 	}
-+	intel_display_power_put(dev_priv, POWER_DOMAIN_DC_OFF, wakeref);
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 
- 	/*
--- 
-2.39.2
+> 
+> Thanks,
+> Andi
 
