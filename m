@@ -1,108 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B206C20E0
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 20:07:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4086C213C
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 20:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0542010E30D;
-	Mon, 20 Mar 2023 19:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C55610E2EA;
+	Mon, 20 Mar 2023 19:21:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9C710E301;
- Mon, 20 Mar 2023 19:07:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UFS0hxI4H1pf+i1Zw05LHATZAFSUkzQlnDJrnsAnDmWPL3+Tl8jkytnBbHqogMMTwEUE/U+x+FVkWZMMyo17R6EeI8ow+ybZLZ6wA+I0MTGjy4OT6TqorUCAPPqDN7hBUEITjBPwuhhq8JsjWWkjmFpcbKFhYt0n1CBYs4ghH6ka33vhlT4nlMQabhOz8cDXZuM+nsqs7ISPqMtE7A4HVzNCSKmgdWybHq7zOnOt1ZDPyv2bE97atvAO3+UBv5cvKu5YHCcylKyewr3UG+ySmq6ABK0iPWk/nYz++mZVc4zJopYWHFIjYVdYMZrFEtRHSoNdRTRRoSjqa7RtilBuqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vtkgITDDVN/UdhLiUfKsgQVzvCsf0t3AvaJh76R8lSk=;
- b=Aum6VLDu03PuP38JSNGstYK5Ni+ZyjWsY9hEPqFLX/pK1g/EINkKI2oAyu6MHKWOmYjnzo1dwCOlroaT0VKqRoV5mOOh7+MW7xQlpWZ9ohr9a+HQoJheHYTU+B8xfi8v7vB+ucf/Sot7JKIGSpjgMJzt/plY9O27XGEFl+ufuB+xNP0xdbmBgyNjOg9JkYwFE3yVHfYlv7N174hwHh9zqof2Q7m9byh71svj+nK9NLsDvPhbzosexStl+I3yoq5cOTDp3CAigv1zVL8W1ky5A2sb69arqEPkUVyosMA8B2L1Xj6lC/4/v10OxzqBs2vHcICPt3tlOAyF0O79CCMzXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vtkgITDDVN/UdhLiUfKsgQVzvCsf0t3AvaJh76R8lSk=;
- b=Y/Dj3/8/INjMmYO+u/3H3QSx7DwpQ+JlF9bhfmIBErM9urMb2OqsAnlT+sTKKYodxUURq4Q65l4997XG7jm6vxdTf8oIIxiuthq1szjNwDJBru/UBHXlJKMpc4qNzu8cJXSfT0joi4r7x/c9kmNeiZ76npMKAV+5bUGsMvdbeoTqwHsE/TqbQ9oTlorX5c+OhKH+15jXTmMKB+4Moiy+jdI4eIZVBeQR0A52AaGAaLlTbHe1jr3wZEuXsLh/OlPZGSun/VU5zi5me0O9DWa34BRO2cqvhgDR2Qb7bBr5FYY5eYaiZPsOjbXG0arjKIJgZ1nnoicmuRy2lUHmWHyjpg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MW3PR12MB4489.namprd12.prod.outlook.com (2603:10b6:303:5e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
- 2023 19:07:33 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
- 19:07:37 +0000
-Date: Mon, 20 Mar 2023 16:07:35 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <ZBiu9+mVurbW0x5k@nvidia.com>
-References: <20230316124156.12064-1-yi.l.liu@intel.com>
- <20230316124156.12064-7-yi.l.liu@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230316124156.12064-7-yi.l.liu@intel.com>
-X-ClientProxiedBy: MN2PR15CA0032.namprd15.prod.outlook.com
- (2603:10b6:208:1b4::45) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E73A10E2EA;
+ Mon, 20 Mar 2023 19:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679340112; x=1710876112;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uvcr7NxjRXQCLP4W5cPNVmvFn5HYzfAGaWwOnti0g2E=;
+ b=RTrTqddg487R7l6qGZbdeVh9OyNNLjrhdHnbhSfI7FjREDEQf5vxI2pt
+ sP5lpCImwMYSrYVtHlv6KXJLq+12jiuSncvGjQsvWjGGHWSzAs0sFdt5F
+ K8Zq74QVtjzFq45m4dsWl18K+m9wFB45ZPFKAkHH9sfUWuKvwmIN1hoXG
+ ih3vUgGEA/aTx4yH2ZQ+6ba7areB50QHo3PJHFOVJbCvoj/jKAREtuyae
+ vwkeP3OITVAb4RyxG7LMb6Buu2rrgty/cJNVo8m58IdSNBKUheEnnQNuk
+ zPm73xkBuQut/AqQfi4hB9pxKTulK5KHSI+Pj1G8anNjAbwD6r+OrnERW A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="318408334"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="318408334"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 12:21:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="683550134"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="683550134"
+Received: from ggranovs-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.60.202])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 12:21:49 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date: Mon, 20 Mar 2023 20:21:17 +0100
+Message-Id: <20230320192117.287374-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW3PR12MB4489:EE_
-X-MS-Office365-Filtering-Correlation-Id: 046aacf1-5586-4b19-b1e2-08db29765e73
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FvvEIcPqVr0fxXnRylbd8uu6OSQwMAzp5HLca9jzjs54guwS28I55Oe7/pzo8j+Hf5CRNrjFnq3JqUbHSFrShc+u3mgfaB04r5bjxf9JOb8DAUjJNojFbTVKVQeBZplLaaU/0pEXu32MFlM6jD5WRRlZ2lp2ds54PuelfuYT3Hd3JZIGF5HXdymPhvyqvGEUrsgtNzHqmYB6c79tSaIqF3yi+LzdgwbFV3noIi8bG9ioZ9dwOxcH+f1ORb8lRrVw6tvc6p87QCUeoEu7HCscatTMCkgpmdchK6/72oqufh8lYf8wU+1PdMTlJsHo22N5yh06AmnXjEdTtQ3XdE5+cI9m0s1jI1yYAl+0RHNi2lWG6hIJfFE3SgKcVqju9rnN6aKpnAVChdZP4PN2drY/giCBzrp8o/leknoEhh8G3Xp/vXrcIV9zNs5nQwxjZGgpi1RzKKR10mkFJgnKT1y3zqdd2M4U+ug5Ul/Dkez2dNQC77qQU0zQRe9CKi+JtTGrlUU9y/sn+vWrzHV7CdqwMXACoNtRfLqAhzqYsClXBqlt6V9hLNnzB0XyMbtGgoy7YJkc69JOP1RqUdvfj5eNx7ktxJ6D995irwW8dHsb1I4KyHvW5LyfHUhx0xYshxYNUyloALWDLeSR2LSH56D7QwJBCaWdSAmQXCtREQAcjUiNXoDzj+B8WQYpj5ThCR8H
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(396003)(376002)(346002)(136003)(366004)(451199018)(38100700002)(86362001)(4744005)(316002)(8676002)(478600001)(66946007)(66476007)(66556008)(36756003)(6916009)(41300700001)(8936002)(4326008)(7416002)(5660300002)(2906002)(83380400001)(2616005)(6506007)(26005)(6512007)(186003)(6486002)(67856001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VE6XnuyqOHXHnIVAYCigLYncuQ6VwpNicRffB005ETGhBkaxAhACOSzfKwjX?=
- =?us-ascii?Q?cZi0qf5ToFH3xiKGOTELj5JddCxEnUbQLe4udSZEvYB3BiCP6POtBLmekGug?=
- =?us-ascii?Q?fm37/a4ylS3GpFZOcMwSNa/sPrWjPSMMxwIz2CdMRFW2/8nllttwoEvNyV/I?=
- =?us-ascii?Q?5b8bY5D+2yuWYwToil8fJKUO68HXEX+UeglyE3+EKUnH1Q+z8ZlAOV2wreio?=
- =?us-ascii?Q?1RXav3xgaxZahdFEKf7w3mrkmriqFUqYV58xcCsqqSPDI58KhJwxB0F+qAcG?=
- =?us-ascii?Q?dL697GqKaXI5Lv/dOgx8BqulRCORMqfNtbef3qeXK9GkSyrDXAPwBqJypntj?=
- =?us-ascii?Q?MBV9KXeR+VSZpian88sBWICDH4dqDNMSerjuW5/pUGzCsebIv59oOuMeKbvI?=
- =?us-ascii?Q?3xDgYU/mjuS4QdcJYZjCLOLVJcpLlHf5ZXJmjWhaRWL75gYqY22RFHG6dnWH?=
- =?us-ascii?Q?iSGZUXI1/6N4Ww3FDOBoKiOMM4YN1FuYVmBgUprZ25uuoEDTXjFRXgIl6DAt?=
- =?us-ascii?Q?j/r3OnAT5INajMgcn4nlZSmKR7xYH8Su0pJClFg9rO7/OYaA7hjdwemsMi5X?=
- =?us-ascii?Q?MKOkGNEwfhj33yVdY7KKwmtxmWhARVyVxt8W2FSu3ftcvCPv1vUOtpZGAFgC?=
- =?us-ascii?Q?bDRIIi/RM2oC0fn2WlIjvjiq96RnBPBKJm5yPK6QFqd2cxpAhETrpjHhv9mF?=
- =?us-ascii?Q?e3nysIMtMfA4M4Mn2QsQ5tC476OBcZP+s/7sCVi/EBeZva1zdKbS4Uv6glEi?=
- =?us-ascii?Q?hliCZy43r/dFYLydLtNty2qWpM5CIEAp7HJQ0H5WnrIkmlNUXazRY5IBlkXi?=
- =?us-ascii?Q?aq71vcREJOq4qyWMzcZaMv79w3tOsMBSwZpn41JB8t2RyoLKiGK9sFFWUcYg?=
- =?us-ascii?Q?wBw0yHo6uOor2xd233p4EXwFEt+HmuGVq+eJFn6unCpSmDNon8I3aJxb2GoL?=
- =?us-ascii?Q?HpN2rvjtkT2xNCjc2sDWYHebrhOBl4em/g4MYm4j1+zaCFLNgJkYfeaghVP9?=
- =?us-ascii?Q?fI3im96BbluWiuyYdSh1DB6vLSBarRecm70NLryY4IYHsuCvnlcjILpWXLqX?=
- =?us-ascii?Q?qB9y9elCXFI6YCWItZgnT3SGkfpv9Vfs/kWNZRYNKqg9W92/2iCcHvWpZwYT?=
- =?us-ascii?Q?GXz7x6CLLWY8hPTB92hsu5qxO3RAeJzg9WfJTV7UZS0nmQ6C0tJBEadJGLl7?=
- =?us-ascii?Q?ZYL4Daqsvk6dBrjqK5ZsRByZiLUvo/d5XgzNPmuneFO0AHkT9EtNYrYM0NEb?=
- =?us-ascii?Q?EXEM7NlcY3MQC+YGYETqeUImIK1BuMLCaqC0ReOeuSiT+5E9+tkuMMmE/QcX?=
- =?us-ascii?Q?QKNrU8akEWwahSB7aMG/y6zSYRIAatCkT6hxKYbbRsyxUBl0Dn1KLklwjvhk?=
- =?us-ascii?Q?qNQJ0JJlo91XSJSwyzFLrNkcCu/R4RAFiPbpOV477jP3CwhBdME0YT0kPs9T?=
- =?us-ascii?Q?0lYDbNr4oVKRw2+Ntn30tA93wnESkHdG/cNGdrdtR84xong2E232wsc94848?=
- =?us-ascii?Q?FwC+zkAZ89HCcCdn0OxKXFs4RGt+/jEps41GU/D+inh78SIGtnfTwQFt5s49?=
- =?us-ascii?Q?NSk2jn5XkMQCWPEja511Ql/B6WkP6ZUWhuuzKP5B?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 046aacf1-5586-4b19-b1e2-08db29765e73
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2023 19:07:37.2920 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lKkmOdu5TfD6nrR7yLbqvQUKQydF7LtrKSwbF29c3Gku6qcCVAzisVxvjDXx8+/N
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4489
-Subject: Re: [Intel-gfx] [PATCH 6/7] vfio: Accpet device file from vfio PCI
- hot reset path
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,45 +57,411 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
- joro@8bytes.org, nicolinc@nvidia.com, yan.y.zhao@intel.com,
- intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: Andi Shyti <andi.shyti@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 05:41:55AM -0700, Yi Liu wrote:
-> This extends both vfio_file_is_valid() and vfio_file_has_dev() to accept
-> device file from the vfio PCI hot reset.
-> 
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
->  1 file changed, 19 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index fe7446805afd..ebbb6b91a498 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops = {
->  	.mmap		= vfio_device_fops_mmap,
->  };
->  
-> +static struct vfio_device *vfio_device_from_file(struct file *file)
-> +{
-> +	struct vfio_device *device = file->private_data;
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Isn't this a df now?
+The gt_tlb live selftest has the same code coverage as the
+igt_cs_tlb subtest of gtt, except it is better at detecting
+TLB bugs.  Furthermore, while igt_cs_tlb is hitting some
+unforeseen issues, these issues are either false positives
+due to the test being poorly formatted, or are true
+positives that can be more easily diagnosed with smaller
+tests.  As such, igt_cs_tlb is superceded by and obsoleted
+by gt_tlb, meaning it can be removed.
 
-> +	if (file->f_op != &vfio_device_fops)
-> +		return NULL;
-> +	return device;
-> +}
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+Hi,
 
-The device has to be bound to be a security proof.
+just respinning this patch that has been sent some times ago.
+It should be ready to be pushed.
 
-Jason
+Andi
+
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 356 ------------------
+ 1 file changed, 356 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index 01e75160a84ab..5361ce70d3f29 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -1940,361 +1940,6 @@ int i915_gem_gtt_mock_selftests(void)
+ 	return err;
+ }
+ 
+-static int context_sync(struct intel_context *ce)
+-{
+-	struct i915_request *rq;
+-	long timeout;
+-
+-	rq = intel_context_create_request(ce);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	i915_request_get(rq);
+-	i915_request_add(rq);
+-
+-	timeout = i915_request_wait(rq, 0, HZ / 5);
+-	i915_request_put(rq);
+-
+-	return timeout < 0 ? -EIO : 0;
+-}
+-
+-static struct i915_request *
+-submit_batch(struct intel_context *ce, u64 addr)
+-{
+-	struct i915_request *rq;
+-	int err;
+-
+-	rq = intel_context_create_request(ce);
+-	if (IS_ERR(rq))
+-		return rq;
+-
+-	err = 0;
+-	if (rq->engine->emit_init_breadcrumb) /* detect a hang */
+-		err = rq->engine->emit_init_breadcrumb(rq);
+-	if (err == 0)
+-		err = rq->engine->emit_bb_start(rq, addr, 0, 0);
+-
+-	if (err == 0)
+-		i915_request_get(rq);
+-	i915_request_add(rq);
+-
+-	return err ? ERR_PTR(err) : rq;
+-}
+-
+-static u32 *spinner(u32 *batch, int i)
+-{
+-	return batch + i * 64 / sizeof(*batch) + 4;
+-}
+-
+-static void end_spin(u32 *batch, int i)
+-{
+-	*spinner(batch, i) = MI_BATCH_BUFFER_END;
+-	wmb();
+-}
+-
+-static int igt_cs_tlb(void *arg)
+-{
+-	const unsigned int count = PAGE_SIZE / 64;
+-	const unsigned int chunk_size = count * PAGE_SIZE;
+-	struct drm_i915_private *i915 = arg;
+-	struct drm_i915_gem_object *bbe, *act, *out;
+-	struct i915_gem_engines_iter it;
+-	struct i915_address_space *vm;
+-	struct i915_gem_context *ctx;
+-	struct intel_context *ce;
+-	struct i915_vma *vma;
+-	I915_RND_STATE(prng);
+-	struct file *file;
+-	unsigned int i;
+-	u32 *result;
+-	u32 *batch;
+-	int err = 0;
+-
+-	/*
+-	 * Our mission here is to fool the hardware to execute something
+-	 * from scratch as it has not seen the batch move (due to missing
+-	 * the TLB invalidate).
+-	 */
+-
+-	file = mock_file(i915);
+-	if (IS_ERR(file))
+-		return PTR_ERR(file);
+-
+-	ctx = live_context(i915, file);
+-	if (IS_ERR(ctx)) {
+-		err = PTR_ERR(ctx);
+-		goto out_unlock;
+-	}
+-
+-	vm = i915_gem_context_get_eb_vm(ctx);
+-	if (i915_is_ggtt(vm))
+-		goto out_vm;
+-
+-	/* Create two pages; dummy we prefill the TLB, and intended */
+-	bbe = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(bbe)) {
+-		err = PTR_ERR(bbe);
+-		goto out_vm;
+-	}
+-
+-	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
+-	if (IS_ERR(batch)) {
+-		err = PTR_ERR(batch);
+-		goto out_put_bbe;
+-	}
+-	memset32(batch, MI_BATCH_BUFFER_END, PAGE_SIZE / sizeof(u32));
+-	i915_gem_object_flush_map(bbe);
+-	i915_gem_object_unpin_map(bbe);
+-
+-	act = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(act)) {
+-		err = PTR_ERR(act);
+-		goto out_put_bbe;
+-	}
+-
+-	/* Track the execution of each request by writing into different slot */
+-	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
+-	if (IS_ERR(batch)) {
+-		err = PTR_ERR(batch);
+-		goto out_put_act;
+-	}
+-	for (i = 0; i < count; i++) {
+-		u32 *cs = batch + i * 64 / sizeof(*cs);
+-		u64 addr = (vm->total - PAGE_SIZE) + i * sizeof(u32);
+-
+-		GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
+-		cs[0] = MI_STORE_DWORD_IMM_GEN4;
+-		if (GRAPHICS_VER(i915) >= 8) {
+-			cs[1] = lower_32_bits(addr);
+-			cs[2] = upper_32_bits(addr);
+-			cs[3] = i;
+-			cs[4] = MI_NOOP;
+-			cs[5] = MI_BATCH_BUFFER_START_GEN8;
+-		} else {
+-			cs[1] = 0;
+-			cs[2] = lower_32_bits(addr);
+-			cs[3] = i;
+-			cs[4] = MI_NOOP;
+-			cs[5] = MI_BATCH_BUFFER_START;
+-		}
+-	}
+-
+-	out = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(out)) {
+-		err = PTR_ERR(out);
+-		goto out_put_batch;
+-	}
+-	i915_gem_object_set_cache_coherency(out, I915_CACHING_CACHED);
+-
+-	vma = i915_vma_instance(out, vm, NULL);
+-	if (IS_ERR(vma)) {
+-		err = PTR_ERR(vma);
+-		goto out_put_out;
+-	}
+-
+-	err = i915_vma_pin(vma, 0, 0,
+-			   PIN_USER |
+-			   PIN_OFFSET_FIXED |
+-			   (vm->total - PAGE_SIZE));
+-	if (err)
+-		goto out_put_out;
+-	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
+-
+-	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
+-	if (IS_ERR(result)) {
+-		err = PTR_ERR(result);
+-		goto out_put_out;
+-	}
+-
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+-		IGT_TIMEOUT(end_time);
+-		unsigned long pass = 0;
+-
+-		if (!intel_engine_can_store_dword(ce->engine))
+-			continue;
+-
+-		while (!__igt_timeout(end_time, NULL)) {
+-			struct i915_vm_pt_stash stash = {};
+-			struct i915_request *rq;
+-			struct i915_gem_ww_ctx ww;
+-			struct i915_vma_resource *vma_res;
+-			u64 offset;
+-
+-			offset = igt_random_offset(&prng,
+-						   0, vm->total - PAGE_SIZE,
+-						   chunk_size, PAGE_SIZE);
+-
+-			memset32(result, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
+-
+-			vma = i915_vma_instance(bbe, vm, NULL);
+-			if (IS_ERR(vma)) {
+-				err = PTR_ERR(vma);
+-				goto end;
+-			}
+-
+-			i915_gem_object_lock(bbe, NULL);
+-			err = i915_vma_get_pages(vma);
+-			i915_gem_object_unlock(bbe);
+-			if (err)
+-				goto end;
+-
+-			vma_res = i915_vma_resource_alloc();
+-			if (IS_ERR(vma_res)) {
+-				i915_vma_put_pages(vma);
+-				err = PTR_ERR(vma_res);
+-				goto end;
+-			}
+-
+-			i915_gem_ww_ctx_init(&ww, false);
+-retry:
+-			err = i915_vm_lock_objects(vm, &ww);
+-			if (err)
+-				goto end_ww;
+-
+-			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
+-			if (err)
+-				goto end_ww;
+-
+-			err = i915_vm_map_pt_stash(vm, &stash);
+-			if (!err)
+-				vm->allocate_va_range(vm, &stash, offset, chunk_size);
+-			i915_vm_free_pt_stash(vm, &stash);
+-end_ww:
+-			if (err == -EDEADLK) {
+-				err = i915_gem_ww_ctx_backoff(&ww);
+-				if (!err)
+-					goto retry;
+-			}
+-			i915_gem_ww_ctx_fini(&ww);
+-			if (err) {
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			i915_vma_resource_init_from_vma(vma_res, vma);
+-			/* Prime the TLB with the dummy pages */
+-			for (i = 0; i < count; i++) {
+-				vma_res->start = offset + i * PAGE_SIZE;
+-				vm->insert_entries(vm, vma_res, I915_CACHE_NONE,
+-						   0);
+-
+-				rq = submit_batch(ce, vma_res->start);
+-				if (IS_ERR(rq)) {
+-					err = PTR_ERR(rq);
+-					i915_vma_resource_fini(vma_res);
+-					kfree(vma_res);
+-					goto end;
+-				}
+-				i915_request_put(rq);
+-			}
+-			i915_vma_resource_fini(vma_res);
+-			i915_vma_put_pages(vma);
+-
+-			err = context_sync(ce);
+-			if (err) {
+-				pr_err("%s: dummy setup timed out\n",
+-				       ce->engine->name);
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			vma = i915_vma_instance(act, vm, NULL);
+-			if (IS_ERR(vma)) {
+-				kfree(vma_res);
+-				err = PTR_ERR(vma);
+-				goto end;
+-			}
+-
+-			i915_gem_object_lock(act, NULL);
+-			err = i915_vma_get_pages(vma);
+-			i915_gem_object_unlock(act);
+-			if (err) {
+-				kfree(vma_res);
+-				goto end;
+-			}
+-
+-			i915_vma_resource_init_from_vma(vma_res, vma);
+-			/* Replace the TLB with target batches */
+-			for (i = 0; i < count; i++) {
+-				struct i915_request *rq;
+-				u32 *cs = batch + i * 64 / sizeof(*cs);
+-				u64 addr;
+-
+-				vma_res->start = offset + i * PAGE_SIZE;
+-				vm->insert_entries(vm, vma_res, I915_CACHE_NONE, 0);
+-
+-				addr = vma_res->start + i * 64;
+-				cs[4] = MI_NOOP;
+-				cs[6] = lower_32_bits(addr);
+-				cs[7] = upper_32_bits(addr);
+-				wmb();
+-
+-				rq = submit_batch(ce, addr);
+-				if (IS_ERR(rq)) {
+-					err = PTR_ERR(rq);
+-					i915_vma_resource_fini(vma_res);
+-					kfree(vma_res);
+-					goto end;
+-				}
+-
+-				/* Wait until the context chain has started */
+-				if (i == 0) {
+-					while (READ_ONCE(result[i]) &&
+-					       !i915_request_completed(rq))
+-						cond_resched();
+-				} else {
+-					end_spin(batch, i - 1);
+-				}
+-
+-				i915_request_put(rq);
+-			}
+-			end_spin(batch, count - 1);
+-
+-			i915_vma_resource_fini(vma_res);
+-			kfree(vma_res);
+-			i915_vma_put_pages(vma);
+-
+-			err = context_sync(ce);
+-			if (err) {
+-				pr_err("%s: writes timed out\n",
+-				       ce->engine->name);
+-				goto end;
+-			}
+-
+-			for (i = 0; i < count; i++) {
+-				if (result[i] != i) {
+-					pr_err("%s: Write lost on pass %lu, at offset %llx, index %d, found %x, expected %x\n",
+-					       ce->engine->name, pass,
+-					       offset, i, result[i], i);
+-					err = -EINVAL;
+-					goto end;
+-				}
+-			}
+-
+-			vm->clear_range(vm, offset, chunk_size);
+-			pass++;
+-		}
+-	}
+-end:
+-	if (igt_flush_test(i915))
+-		err = -EIO;
+-	i915_gem_context_unlock_engines(ctx);
+-	i915_gem_object_unpin_map(out);
+-out_put_out:
+-	i915_gem_object_put(out);
+-out_put_batch:
+-	i915_gem_object_unpin_map(act);
+-out_put_act:
+-	i915_gem_object_put(act);
+-out_put_bbe:
+-	i915_gem_object_put(bbe);
+-out_vm:
+-	i915_vm_put(vm);
+-out_unlock:
+-	fput(file);
+-	return err;
+-}
+-
+ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+@@ -2314,7 +1959,6 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_ggtt_fill),
+ 		SUBTEST(igt_ggtt_page),
+ 		SUBTEST(igt_ggtt_misaligned_pin),
+-		SUBTEST(igt_cs_tlb),
+ 	};
+ 
+ 	GEM_BUG_ON(offset_in_page(to_gt(i915)->ggtt->vm.total));
+-- 
+2.39.2
+
