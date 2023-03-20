@@ -2,46 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8FD6C139E
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 14:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C025E6C1431
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 14:59:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6BD10E19E;
-	Mon, 20 Mar 2023 13:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A7710E56D;
+	Mon, 20 Mar 2023 13:59:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F4110E19E
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 13:38:46 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id BEE8A61508;
- Mon, 20 Mar 2023 13:38:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB02C433EF;
- Mon, 20 Mar 2023 13:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1679319525;
- bh=XrMkOHfmxu4R57PY9N10gTwPO4r/4EPfi7X8XBm7ld4=;
- h=Subject:To:Cc:From:Date:From;
- b=clTuiAy8WcOcEnnpKRo7VY1lLk2PTWtZjVOr7ATW7mq7vBV5ug/rigqdAzd31UTjd
- A7L72Rly5eKjm9JgEKrl2wQmGH/C3Q0Q7C32cxmRRVH7ksZc/N/P9gds111Hv+w0p0
- Pyu0I7UNUGClsQCGWgyqleG0+/cjikX5SpUv/OBk=
-To: John.C.Harrison@Intel.com, chris@chris-wilson.co.uk,
- daniele.ceraolospurio@intel.com, gregkh@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- jouni.hogander@intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 20 Mar 2023 14:38:42 +0100
-Message-ID: <1679319522127111@kroah.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93BF710E19E;
+ Mon, 20 Mar 2023 13:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679320744; x=1710856744;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eLfDELRNr3e2p2cdCu1LV29kvGpX6cLV1xTIjodSG88=;
+ b=J1ZUm6OaqBN0FDlaRq2REjz8gXDoC3GpsO6z6B+1wkA6bF5C/m2pug1F
+ 6MBSTa0TttqFmMjwbLPLnZn6++eLPIcQhh4GhLI5gPj/kuhtOKRUXPb16
+ 9qS9+hW9A9UGTS2wIwOdnbC49sGePOABVIDSf4rfryNjeDGtIU3aEd/Ab
+ x94ba/ek9jWY9SiYth3LlRcH8YQGPKpXy/Ro9EOTUFFhiLBTeAuxLj09a
+ koycP2xNMp/paxipSp77TW/6+W02KWg+BXuOSc4WP7Hv1+GfYB8IN+B/C
+ TXnYelHgs66UzPOxVgulVA5n8OcHJyM+vipGXPDBNC7k8/3L4DL5lBAj3 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="340210207"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="340210207"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 06:59:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="713571839"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="713571839"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.65])
+ ([10.213.6.65])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 06:59:02 -0700
+Message-ID: <41b74bd5-1eb4-029a-40f2-79481dae439d@intel.com>
+Date: Mon, 20 Mar 2023 14:58:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230320100903.23588-1-nirmoy.das@intel.com>
+ <20230320100903.23588-2-nirmoy.das@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230320100903.23588-2-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
-Subject: [Intel-gfx] Patch "drm/i915: Don't use stolen memory for ring
- buffers with LLC" has been added to the 5.4-stable tree
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: Add helper func to
+ get intel_fbdev from drm_fb_helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,81 +65,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable-commits@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 20.03.2023 11:09, Nirmoy Das wrote:
+> Add a helper function to retrieve struct intel_fbdev from
+> struct drm_fb_helper.
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-This is a note to let you know that I've just added the patch titled
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-    drm/i915: Don't use stolen memory for ring buffers with LLC
+Regards
+Andrzej
 
-to the 5.4-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+> ---
+>   drivers/gpu/drm/i915/display/intel_fbdev.c | 23 ++++++++++------------
+>   1 file changed, 10 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 673bcdfb7ff6..8c3b3c3fd0e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -67,6 +67,11 @@ struct intel_fbdev {
+>   	struct mutex hpd_lock;
+>   };
+>   
+> +static struct intel_fbdev *to_intel_fbdev(struct drm_fb_helper *fb_helper)
+> +{
+> +	return container_of(fb_helper, struct intel_fbdev, helper);
+> +}
+> +
+>   static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbdev)
+>   {
+>   	return ifbdev->fb->frontbuffer;
+> @@ -79,9 +84,7 @@ static void intel_fbdev_invalidate(struct intel_fbdev *ifbdev)
+>   
+>   static int intel_fbdev_set_par(struct fb_info *info)
+>   {
+> -	struct drm_fb_helper *fb_helper = info->par;
+> -	struct intel_fbdev *ifbdev =
+> -		container_of(fb_helper, struct intel_fbdev, helper);
+> +	struct intel_fbdev *ifbdev = to_intel_fbdev(info->par);
+>   	int ret;
+>   
+>   	ret = drm_fb_helper_set_par(info);
+> @@ -93,9 +96,7 @@ static int intel_fbdev_set_par(struct fb_info *info)
+>   
+>   static int intel_fbdev_blank(int blank, struct fb_info *info)
+>   {
+> -	struct drm_fb_helper *fb_helper = info->par;
+> -	struct intel_fbdev *ifbdev =
+> -		container_of(fb_helper, struct intel_fbdev, helper);
+> +	struct intel_fbdev *ifbdev = to_intel_fbdev(info->par);
+>   	int ret;
+>   
+>   	ret = drm_fb_helper_blank(blank, info);
+> @@ -108,9 +109,7 @@ static int intel_fbdev_blank(int blank, struct fb_info *info)
+>   static int intel_fbdev_pan_display(struct fb_var_screeninfo *var,
+>   				   struct fb_info *info)
+>   {
+> -	struct drm_fb_helper *fb_helper = info->par;
+> -	struct intel_fbdev *ifbdev =
+> -		container_of(fb_helper, struct intel_fbdev, helper);
+> +	struct intel_fbdev *ifbdev = to_intel_fbdev(info->par);
+>   	int ret;
+>   
+>   	ret = drm_fb_helper_pan_display(var, info);
+> @@ -136,8 +135,7 @@ static const struct fb_ops intelfb_ops = {
+>   static int intelfb_alloc(struct drm_fb_helper *helper,
+>   			 struct drm_fb_helper_surface_size *sizes)
+>   {
+> -	struct intel_fbdev *ifbdev =
+> -		container_of(helper, struct intel_fbdev, helper);
+> +	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
+>   	struct drm_framebuffer *fb;
+>   	struct drm_device *dev = helper->dev;
+>   	struct drm_i915_private *dev_priv = to_i915(dev);
+> @@ -193,8 +191,7 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+>   static int intelfb_create(struct drm_fb_helper *helper,
+>   			  struct drm_fb_helper_surface_size *sizes)
+>   {
+> -	struct intel_fbdev *ifbdev =
+> -		container_of(helper, struct intel_fbdev, helper);
+> +	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
+>   	struct intel_framebuffer *intel_fb = ifbdev->fb;
+>   	struct drm_device *dev = helper->dev;
+>   	struct drm_i915_private *dev_priv = to_i915(dev);
 
-The filename of the patch is:
-     drm-i915-don-t-use-stolen-memory-for-ring-buffers-with-llc.patch
-and it can be found in the queue-5.4 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From 690e0ec8e63da9a29b39fedc6ed5da09c7c82651 Mon Sep 17 00:00:00 2001
-From: John Harrison <John.C.Harrison@Intel.com>
-Date: Wed, 15 Feb 2023 17:11:00 -0800
-Subject: drm/i915: Don't use stolen memory for ring buffers with LLC
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-From: John Harrison <John.C.Harrison@Intel.com>
-
-commit 690e0ec8e63da9a29b39fedc6ed5da09c7c82651 upstream.
-
-Direction from hardware is that stolen memory should never be used for
-ring buffer allocations on platforms with LLC. There are too many
-caching pitfalls due to the way stolen memory accesses are routed. So
-it is safest to just not use it.
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Fixes: c58b735fc762 ("drm/i915: Allocate rings from stolen")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.9+
-Tested-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-2-John.C.Harrison@Intel.com
-(cherry picked from commit f54c1f6c697c4297f7ed94283c184acc338a5cf8)
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/gt/intel_ringbuffer.c |    5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
---- a/drivers/gpu/drm/i915/gt/intel_ringbuffer.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ringbuffer.c
-@@ -1268,10 +1268,11 @@ static struct i915_vma *create_ring_vma(
- {
- 	struct i915_address_space *vm = &ggtt->vm;
- 	struct drm_i915_private *i915 = vm->i915;
--	struct drm_i915_gem_object *obj;
-+	struct drm_i915_gem_object *obj = NULL;
- 	struct i915_vma *vma;
- 
--	obj = i915_gem_object_create_stolen(i915, size);
-+	if (!HAS_LLC(i915))
-+		obj = i915_gem_object_create_stolen(i915, size);
- 	if (!obj)
- 		obj = i915_gem_object_create_internal(i915, size);
- 	if (IS_ERR(obj))
-
-
-Patches currently in stable-queue which might be from John.C.Harrison@Intel.com are
-
-queue-5.4/drm-i915-don-t-use-stolen-memory-for-ring-buffers-with-llc.patch
