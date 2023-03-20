@@ -2,49 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903836C134D
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 14:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BFAC6C1356
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 14:28:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E792510E03B;
-	Mon, 20 Mar 2023 13:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE12D10E538;
+	Mon, 20 Mar 2023 13:28:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D375B10E03B
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 13:28:09 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DCB610E538
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 13:28:40 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 26F22614F0;
- Mon, 20 Mar 2023 13:28:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64EF4C4339C;
- Mon, 20 Mar 2023 13:28:08 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 96F6E61243;
+ Mon, 20 Mar 2023 13:28:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B83C433EF;
+ Mon, 20 Mar 2023 13:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1679318889;
- bh=+4hfR7FRnWoFkcY5muup1dYEccZSPx9x35eXcItS+kE=;
+ s=korg; t=1679318919;
+ bh=J9tT0Z0kcizEGp64qroQ5lL/kHeEmcb0s2y62vQGDng=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=K8FaPs4wClF5CAKIi8KriQHi/KRlajW//XNMPdJivW+sdFbkXB3/z2TwPiMJPIvQs
- 7en4PpSO9XF8TsZ40GGzEkvO6b+Mmm51t8+1Yzv8DC2JU5ad4bZdhLr1mlAID45h6d
- 4Q6cA5o1SdALaYV6boD82uEYsmQW0ztyIECKBsbs=
-Date: Mon, 20 Mar 2023 14:28:01 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <ZBhfYUnt2gPxEOam@kroah.com>
-References: <167820543971229@kroah.com>
- <20230314022211.1393031-1-John.C.Harrison@Intel.com>
- <ZBF48kVhFmXIsR+K@kroah.com>
- <a5cf5572-4160-3efb-4f80-aaf53aa06efe@intel.com>
- <ZBIHJD5FkxiammjB@kroah.com>
- <5ed286b7-c2df-9e63-d85a-be9994f93eec@intel.com>
- <ZBRkAZwItdidH32z@kroah.com>
- <17301b8c-19e0-4364-3e4c-c1c3d8cc45aa@intel.com>
+ b=Bk3PowtJhcNlzlW2Rg4JfwiPSN94nxrY41GSLUTb8LfNEkaBgAtOGqRYeEvhPZcO2
+ wwapGKKBYOrMvylHfWxQDdjBFtShK6CkrI1c7I0tmFoOc+Xslxzi+TS4/SBG7sqe07
+ QvRNC3mOg2pRH8+5xE4i+/YMWIpnZfAAs6ZFUhls=
+Date: Mon, 20 Mar 2023 14:28:36 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Philip =?iso-8859-1?Q?M=FCller?= <philm@manjaro.org>
+Message-ID: <ZBhfhJ0ylxqXPHee@kroah.com>
+References: <8a1bbe56-4463-d18d-d5a9-d249171a569d@manjaro.org>
+ <a0be2b31-9e72-1254-978e-570b27abb364@manjaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <17301b8c-19e0-4364-3e4c-c1c3d8cc45aa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5.4.y] drm/i915: Don't use BAR mappings for
- ring buffers with LLC
+In-Reply-To: <a0be2b31-9e72-1254-978e-570b27abb364@manjaro.org>
+Subject: Re: [Intel-gfx] [Regression] drm/i915: Don't use BAR mappings for
+ ring buffers with LLC alone creates issues in stable kernels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,78 +52,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
  stable@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 17, 2023 at 09:07:50PM -0700, John Harrison wrote:
-> On 3/17/2023 05:58, Greg KH wrote:
-> > On Thu, Mar 16, 2023 at 01:58:35PM -0700, John Harrison wrote:
-> > > On 3/15/2023 10:57, Greg KH wrote:
-> > > > On Wed, Mar 15, 2023 at 10:07:53AM -0700, John Harrison wrote:
-> > > > > On 3/15/2023 00:51, Greg KH wrote:
-> > > > > > On Mon, Mar 13, 2023 at 07:22:11PM -0700, John.C.Harrison@Intel.com wrote:
-> > > > > > > From: John Harrison <John.C.Harrison@Intel.com>
-> > > > > > > 
-> > > > > > > Direction from hardware is that ring buffers should never be mapped
-> > > > > > > via the BAR on systems with LLC. There are too many caching pitfalls
-> > > > > > > due to the way BAR accesses are routed. So it is safest to just not
-> > > > > > > use it.
-> > > > > > > 
-> > > > > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > > > > > Fixes: 9d80841ea4c9 ("drm/i915: Allow ringbuffers to be bound anywhere")
-> > > > > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > > > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > > > > > > Cc: intel-gfx@lists.freedesktop.org
-> > > > > > > Cc: <stable@vger.kernel.org> # v4.9+
-> > > > > > > Tested-by: Jouni Högander <jouni.hogander@intel.com>
-> > > > > > > Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > > > > Link: https://patchwork.freedesktop.org/patch/msgid/20230216011101.1909009-3-John.C.Harrison@Intel.com
-> > > > > > > (cherry picked from commit 65c08339db1ada87afd6cfe7db8e60bb4851d919)
-> > > > > > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > > > > > > (cherry picked from commit 85636167e3206c3fbd52254fc432991cc4e90194)
-> > > > > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > > > > > ---
-> > > > > > >     drivers/gpu/drm/i915/gt/intel_ringbuffer.c | 4 ++--
-> > > > > > >     1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > > > Also queued up for 5.10.y, you forgot that one :)
-> > > > > I'm still working through the backlog of them.
-> > > > > 
-> > > > > Note that these patches must all be applied as a pair. The 'don't use
-> > > > > stolen' can be applied in isolation but won't totally fix the problem.
-> > > > > However, applying 'don't use BAR mappings' without applying the stolen patch
-> > > > > first will results in problems such as the failure to boot that was recently
-> > > > > reported and resulted in a revert in one of the trees.
-> > > > I do not understand, you only submitted 1 patch here, what is the
-> > > > "pair"?
-> > > The original patch series was two patches -
-> > > https://patchwork.freedesktop.org/series/114080/. One to not use stolen
-> > > memory and the other to not use BAR mappings. If the anti-BAR patch is
-> > > applied without the anti-stolen patch then the i915 driver will attempt to
-> > > access stolen memory directly which will fail. So both patches must be
-> > > applied and in the correct order to fix the problem of cache aliasing when
-> > > using BAR accesses on LLC systems.
-> > > 
-> > > As above, I am working my way through the bunch of 'FAILED patch' emails.
-> > > The what-to-do instructions in those emails explicitly say to send the patch
-> > > individually in reply to the 'FAILED' message rather than as part of any
-> > > original series.
-> > So what commits exactly in Linus's tree should be in these stable
-> > branches?  Sorry, I still do not understand if we are missing one or if
-> > we need to revert something.
-> > 
-> > confused,
-> > 
-> > greg k-h
-> As far as I can tell, I have replied to all the "FAILED: patch" emails now.
-> There should be a versions of these two patches available for all trees
-> (being 4.14, 4.19, 5.4, 5.10 and 5.15):
->     690e0ec8e63d drm/i915: Don't use stolen memory for ring buffers with LLC
+On Sun, Mar 19, 2023 at 10:01:01AM +0700, Philip Müller wrote:
+> Have to correct the affected kernels to these: 4.14.310, 4.19.278, 5.4.237,
+> 5.10.175
 
-Your backports of this are all now queued up, thanks.
+Please don't top-post :(
+
+Anyway, should be fixed in the next round of releases in a few days, if
+not, please let us know.
 
 greg k-h
