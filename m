@@ -1,34 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCC56C21A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 20:37:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC566C21C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 20:42:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC0C810E314;
-	Mon, 20 Mar 2023 19:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 090C710E319;
+	Mon, 20 Mar 2023 19:42:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A9D6010E2FF;
- Mon, 20 Mar 2023 19:36:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5DE0AA3D8;
- Mon, 20 Mar 2023 19:36:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32C0710E662;
+ Mon, 20 Mar 2023 19:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679341367; x=1710877367;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M4kvjawd5dHIEOqKhpIV4Vx2yJIlgQaXbeRa5BMhIVw=;
+ b=l1YCCrhR8uWhntoKKyUj/PbbrBd48iAgo5JkhtJIlcwGoIbMgiiBMmA6
+ nI1A1Tpe121Ttr174P+6xdyuY3NxLNQLBwUeK01Oy536HggWB7/Q25Xlp
+ 22Z5/i5uF2TzD2Hn42hq6RtygaAgLhORJuwxU/bg53EB3b8orvKe8QTzE
+ +7JNcBNMeJ62lUtp/HH4mEZjG3DU+HUCzQInClTkQ08I6iiZW5L4qkLDW
+ FPNN8aC0Ma7QT5eiQ9E0tDSG4X/hbzXHhQj/Mine4hPwe6ALv03yqtNxH
+ I7RmkW39d9tVedTt+UTGeShrhQe40axf357xGQy1h5NnEs+q0JhwUNm7d w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="338790392"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="338790392"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 12:42:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="745517973"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="745517973"
+Received: from ggranovs-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.60.202])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 12:42:44 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date: Mon, 20 Mar 2023 20:41:17 +0100
+Message-Id: <20230320194119.290561-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Mon, 20 Mar 2023 19:36:56 -0000
-Message-ID: <167934101667.26309.15666223235862697472@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230320100903.23588-1-nirmoy.das@intel.com>
-In-Reply-To: <20230320100903.23588-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=3A=2C1/3=5D_drm/i915=3A_Add_a_functi?=
- =?utf-8?q?on_to_mmap_framebuffer_obj?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] Aux invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,19 +57,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andi Shyti <andi.shyti@kernel.org>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: series starting with [v2:,1/3] drm/i915: Add a function to mmap framebuffer obj
-URL   : https://patchwork.freedesktop.org/series/115383/
-State : warning
+I'm just respinning these two aux invalidation patches from
+Jonathan. They have been sent some times ago and need to be
+reviewed.
 
-== Summary ==
+Thanks,
+Andi
 
-Error: git fetch origin failed
+Jonathan Cavitt (2):
+  drm/i915/gt: Ensure memory quiesced before invalidation
+  drm/i915/gt: Poll aux invalidation register bit on invalidation
 
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 24 ++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  1 +
+ 2 files changed, 21 insertions(+), 4 deletions(-)
+
+-- 
+2.39.2
 
