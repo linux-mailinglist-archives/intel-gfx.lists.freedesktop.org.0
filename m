@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813EF6C0F39
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 11:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7849E6C1126
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 12:50:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C174910E33A;
-	Mon, 20 Mar 2023 10:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B8E410E3F9;
+	Mon, 20 Mar 2023 11:49:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7388810E335;
- Mon, 20 Mar 2023 10:39:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679308792; x=1710844792;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=FypxD+G9f5MyAPl6y48QwCXFpUI3OCR1S6VPGnEZ+9A=;
- b=UbThV+ROA2RGwhX5RKcy0dREFNHUEtr0I0vqo6kUp0UbVN/PK0F9yDxA
- ARynhv+EZCmBH3GwCo2SmdVE7lWQsE4pPhCEZrwqP+si0fdk/Tj4ostgV
- tW33+bURiomr0JfxgMWuZanY+tTiDTaD2RZVhwIaBQwoxgeUX+znPhMFK
- hih+1pBd7ou9nnN995zuK+F7jivH7Jpz11MKv8yHdhWtg/7RG3ZndWbMh
- M77g0MJ7LTJia2gAV/HqOHOSLQuHaXujqyI4aZ3voOCp0dWC+XyZijCVS
- oszengikvv7Tr7VYd84794DlFqf5YmgB5cdvE3vhdrEPv1mOUWllT3lsM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="319028449"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="319028449"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 03:39:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="658303350"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="658303350"
-Received: from mseifert-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.61.180])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 03:39:48 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230320100903.23588-2-nirmoy.das@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230320100903.23588-1-nirmoy.das@intel.com>
- <20230320100903.23588-2-nirmoy.das@intel.com>
-Date: Mon, 20 Mar 2023 12:39:41 +0200
-Message-ID: <875yavaeqa.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B48410E3F9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 11:49:55 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 728E56149D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 11:49:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2DC3C433D2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 11:49:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1679312993;
+ bh=Gak5PJ7Tbav4/N7rE4+JEDOkjuxFmTP0bpW8Jv78R2w=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=X8Qx7eSoPzyLLHP60sb2Ss26R7nmY245SLNik2tLJLKjB4zjULIoWj+Y48XcOGC4X
+ FWyWogW02iJoUbEoBbJguutHFEmlO4Zajt+HeNROFpuvBZwZss5uZFewKAFlGdHT0m
+ oU0BWp/Vs6Rel4nVGwbJd1eXuIXWx/7zvus+AaSbrMuPg4Q6S5+5rQOHwD0RxMAAOt
+ CY7lD3LYiVQYleltBvS+gTBYoZ1t/w5VdrO+fis1QE31CDHh6WQa5DypnbzfnRWWbs
+ LpayF/xoBXd2wLVr4L8ysQ5oKvTalr55aVbHoMa/0KuvDAt1ul0AV1rbt3jV7jQwm3
+ yOzQLP0vbG3aw==
+Received: by mail-yw1-f175.google.com with SMTP id
+ 00721157ae682-536af432ee5so220007707b3.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 04:49:53 -0700 (PDT)
+X-Gm-Message-State: AO0yUKV9DO7uo14MFIWDk6o4WQ1CWSqnCns1nZZhxACyk4Vjp6RGZqPS
+ FUHMwRxKHyI3Hc+sXET1Xd/sb1HcHuoLLb6OjoM=
+X-Google-Smtp-Source: AK7set9JAv+yOAs3sI4sBjEurJtk//AKRSll4hj/3FNS3VIqOVrSwQPfH1dbtmLxuyHvlxl2Cbo2XXuj/ogYzA5a+7U=
+X-Received: by 2002:a81:af4d:0:b0:544:b7ff:b0df with SMTP id
+ x13-20020a81af4d000000b00544b7ffb0dfmr8005587ywj.2.1679312992962; Mon, 20 Mar
+ 2023 04:49:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20230317171202.7nyudie5yxkg2o55@gjsousa-mobl2>
+In-Reply-To: <20230317171202.7nyudie5yxkg2o55@gjsousa-mobl2>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Mon, 20 Mar 2023 07:49:42 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA7kr+=Qu4aW7ZQ9f9zM8wPOEU=f3jZTTpYWAaJmGHD0Ww@mail.gmail.com>
+Message-ID: <CA+5PVA7kr+=Qu4aW7ZQ9f9zM8wPOEU=f3jZTTpYWAaJmGHD0Ww@mail.gmail.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: Add helper func to
- get intel_fbdev from drm_fb_helper
+Subject: Re: [Intel-gfx] PR for ADLP DMC v2.19 and MTL DMC v2.12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +62,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: kyle@mcmartin.ca, intel-gfx@lists.freedesktop.org, ben@decadent.org.uk,
+ linux-firmware@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Mar 2023, Nirmoy Das <nirmoy.das@intel.com> wrote:
-> Add a helper function to retrieve struct intel_fbdev from
-> struct drm_fb_helper.
+On Fri, Mar 17, 2023 at 1:12=E2=80=AFPM Gustavo Sousa <gustavo.sousa@intel.=
+com> wrote:
 >
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_fbdev.c | 23 ++++++++++------------
->  1 file changed, 10 insertions(+), 13 deletions(-)
+> The following changes since commit c761dbe804f903cc2df81f251d367cca285eca=
+06:
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index 673bcdfb7ff6..8c3b3c3fd0e0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -67,6 +67,11 @@ struct intel_fbdev {
->  	struct mutex hpd_lock;
->  };
->=20=20
-> +static struct intel_fbdev *to_intel_fbdev(struct drm_fb_helper *fb_helpe=
-r)
-> +{
-> +	return container_of(fb_helper, struct intel_fbdev, helper);
-> +}
-> +
->  static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbd=
-ev)
->  {
->  	return ifbdev->fb->frontbuffer;
-> @@ -79,9 +84,7 @@ static void intel_fbdev_invalidate(struct intel_fbdev *=
-ifbdev)
->=20=20
->  static int intel_fbdev_set_par(struct fb_info *info)
->  {
-> -	struct drm_fb_helper *fb_helper =3D info->par;
-> -	struct intel_fbdev *ifbdev =3D
-> -		container_of(fb_helper, struct intel_fbdev, helper);
-> +	struct intel_fbdev *ifbdev =3D to_intel_fbdev(info->par);
->  	int ret;
->=20=20
->  	ret =3D drm_fb_helper_set_par(info);
-> @@ -93,9 +96,7 @@ static int intel_fbdev_set_par(struct fb_info *info)
->=20=20
->  static int intel_fbdev_blank(int blank, struct fb_info *info)
->  {
-> -	struct drm_fb_helper *fb_helper =3D info->par;
-> -	struct intel_fbdev *ifbdev =3D
-> -		container_of(fb_helper, struct intel_fbdev, helper);
-> +	struct intel_fbdev *ifbdev =3D to_intel_fbdev(info->par);
->  	int ret;
->=20=20
->  	ret =3D drm_fb_helper_blank(blank, info);
-> @@ -108,9 +109,7 @@ static int intel_fbdev_blank(int blank, struct fb_inf=
-o *info)
->  static int intel_fbdev_pan_display(struct fb_var_screeninfo *var,
->  				   struct fb_info *info)
->  {
-> -	struct drm_fb_helper *fb_helper =3D info->par;
-> -	struct intel_fbdev *ifbdev =3D
-> -		container_of(fb_helper, struct intel_fbdev, helper);
-> +	struct intel_fbdev *ifbdev =3D to_intel_fbdev(info->par);
->  	int ret;
->=20=20
->  	ret =3D drm_fb_helper_pan_display(var, info);
-> @@ -136,8 +135,7 @@ static const struct fb_ops intelfb_ops =3D {
->  static int intelfb_alloc(struct drm_fb_helper *helper,
->  			 struct drm_fb_helper_surface_size *sizes)
->  {
-> -	struct intel_fbdev *ifbdev =3D
-> -		container_of(helper, struct intel_fbdev, helper);
-> +	struct intel_fbdev *ifbdev =3D to_intel_fbdev(helper);
->  	struct drm_framebuffer *fb;
->  	struct drm_device *dev =3D helper->dev;
->  	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> @@ -193,8 +191,7 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
->  static int intelfb_create(struct drm_fb_helper *helper,
->  			  struct drm_fb_helper_surface_size *sizes)
->  {
-> -	struct intel_fbdev *ifbdev =3D
-> -		container_of(helper, struct intel_fbdev, helper);
-> +	struct intel_fbdev *ifbdev =3D to_intel_fbdev(helper);
->  	struct intel_framebuffer *intel_fb =3D ifbdev->fb;
->  	struct drm_device *dev =3D helper->dev;
->  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+>   Merge tag 'iwlwifi-fw-2023-03-13' of http://git.kernel.org/pub/scm/linu=
+x/kernel/git/iwlwifi/linux-firmware (2023-03-13 09:20:47 -0400)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-firmware dmc-adlp_2.19-mtl_2.12
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Pulled and pushed out.
+
+josh
+
+>
+> for you to fetch changes up to a18a444bfbd6097515272f587b86856a6de15218:
+>
+>   i915: Update MTL DMC to v2.12 (2023-03-17 14:06:32 -0300)
+>
+> ----------------------------------------------------------------
+> Gustavo Sousa (2):
+>       i915: Update ADLP DMC to v2.19
+>       i915: Update MTL DMC to v2.12
+>
+>  WHENCE            |   4 ++--
+>  i915/adlp_dmc.bin | Bin 78500 -> 79044 bytes
+>  i915/mtl_dmc.bin  | Bin 48512 -> 49104 bytes
+>  3 files changed, 2 insertions(+), 2 deletions(-)
