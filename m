@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873DD6C24F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 23:56:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A626C255A
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 00:04:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A5710E00F;
-	Mon, 20 Mar 2023 22:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB11710E33D;
+	Mon, 20 Mar 2023 23:04:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D099110E00F
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 22:56:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679353001; x=1710889001;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=L8dkAazkP6gp+tUnia7Go6L7A/IteNz5613YzTAF6qw=;
- b=UEoSwDu3QSQRhOrksgVNA3/fpU41OoPSJHXoe0aXAnmJg72jKYXvv72Z
- 1XPM+pXw5M22pRYj61LtZhbENbsrAlvRThVBYFOAlFCjq3YGZHToKhh8g
- qM+/JzObvl5umAmROttJVk3cz8JXZLcSKKluVidA0uPbWql1MySHhc7b5
- poCY+5V0TpjIfO1yCCDdI9jFAjrdnvQdGX8jZbkTFqb5U8Mja0VWqJxTg
- lXEVKhKzhUuUi2yfGI7uIkLC8w5kiK7GV2f+efWEtShlrKePHWqSYmqlU
- 1TzKCZ1tAdoc3p7K3qz7uYE6BSvcQlPvzZRekKFLwL7fzhEZDyJlGBPrB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="322639146"
-X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; d="scan'208";a="322639146"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 15:56:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="745590000"
-X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; d="scan'208";a="745590000"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga008.fm.intel.com with SMTP; 20 Mar 2023 15:56:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Mar 2023 00:56:35 +0200
-Date: Tue, 21 Mar 2023 00:56:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "David E. Box" <david.e.box@linux.intel.com>
-Message-ID: <ZBjko/ifunIwsK2v@intel.com>
-References: <20230120031522.2304439-1-david.e.box@linux.intel.com>
- <20230120031522.2304439-5-david.e.box@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EBE0110E00F;
+ Mon, 20 Mar 2023 23:04:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2059AADD6;
+ Mon, 20 Mar 2023 23:04:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7664678778052709285=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230120031522.2304439-5-david.e.box@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH V10 4/4] PCI: vmd: Add quirk to configure
- PCIe ASPM and LTR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 20 Mar 2023 23:04:17 -0000
+Message-ID: <167935345788.26306.6175759495485038676@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230320124429.786985-1-jani.nikula@intel.com>
+In-Reply-To: <20230320124429.786985-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/debugfs=3A_switch_crt?=
+ =?utf-8?q?c_debugfs_to_struct_intel=5Fcrtc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,96 +41,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
- robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
- jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
- michael.a.bottini@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 19, 2023 at 07:15:22PM -0800, David E. Box wrote:
-> +/*
-> + * Enable ASPM and LTR settings on devices that aren't configured by BIOS.
-> + */
-> +static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
-> +{
-> +	unsigned long features = *(unsigned long *)userdata;
-> +	u16 ltr = VMD_BIOS_PM_QUIRK_LTR;
-> +	u32 ltr_reg;
-> +	int pos;
-> +
-> +	if (!(features & VMD_FEAT_BIOS_PM_QUIRK))
-> +		return 0;
-> +
-> +	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+--===============7664678778052709285==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi,
+== Series Details ==
 
-This is tripping lockdep on one our CI ADL machines.
+Series: series starting with [v2,1/2] drm/i915/debugfs: switch crtc debugfs to struct intel_crtc
+URL   : https://patchwork.freedesktop.org/series/115384/
+State : success
 
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12814/bat-adlp-6/boot0.txt
+== Summary ==
 
-<4>[   13.815380] ============================================
-<4>[   13.815382] WARNING: possible recursive locking detected
-<4>[   13.815384] 6.3.0-rc1-CI_DRM_12814-g4753bbc2a817+ #1 Not tainted
-<4>[   13.815386] --------------------------------------------
-<4>[   13.815387] swapper/0/1 is trying to acquire lock:
-<4>[   13.815389] ffffffff827ab0b0 (pci_bus_sem){++++}-{3:3}, at: pci_enable_link_state+0x69/0x1d0
-<4>[   13.815396] 
-                  but task is already holding lock:
-<4>[   13.815398] ffffffff827ab0b0 (pci_bus_sem){++++}-{3:3}, at: pci_walk_bus+0x24/0x90
-<4>[   13.815403] 
-                  other info that might help us debug this:
-<4>[   13.815404]  Possible unsafe locking scenario:
+CI Bug Log - changes from CI_DRM_12884 -> Patchwork_115384v1
+====================================================
 
-<4>[   13.815406]        CPU0
-<4>[   13.815407]        ----
-<4>[   13.815408]   lock(pci_bus_sem);
-<4>[   13.815410]   lock(pci_bus_sem);
-<4>[   13.815411] 
-                   *** DEADLOCK ***
+Summary
+-------
 
-<4>[   13.815413]  May be due to missing lock nesting notation
+  **SUCCESS**
 
-<4>[   13.815414] 2 locks held by swapper/0/1:
-<4>[   13.815416]  #0: ffff8881029511b8 (&dev->mutex){....}-{3:3}, at: __driver_attach+0xab/0x180
-<4>[   13.815422]  #1: ffffffff827ab0b0 (pci_bus_sem){++++}-{3:3}, at: pci_walk_bus+0x24/0x90
-<4>[   13.815426] 
-                  stack backtrace:
-<4>[   13.815428] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.3.0-rc1-CI_DRM_12814-g4753bbc2a817+ #1
-<4>[   13.815431] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.3135.A00.2203251419 03/25/2022
-<4>[   13.815434] Call Trace:
-<4>[   13.815436]  <TASK>
-<4>[   13.815437]  dump_stack_lvl+0x64/0xb0
-<4>[   13.815443]  __lock_acquire+0x9b5/0x2550
-<4>[   13.815461]  lock_acquire+0xd7/0x330
-<4>[   13.815463]  ? pci_enable_link_state+0x69/0x1d0
-<4>[   13.815466]  down_read+0x3d/0x180
-<4>[   13.815480]  ? pci_enable_link_state+0x69/0x1d0
-<4>[   13.815482]  pci_enable_link_state+0x69/0x1d0
-<4>[   13.815485]  ? __pfx_vmd_pm_enable_quirk+0x10/0x10
-<4>[   13.815488]  vmd_pm_enable_quirk+0x49/0xb0
-<4>[   13.815490]  pci_walk_bus+0x6d/0x90
-<4>[   13.815492]  vmd_probe+0x75f/0x9d0
-<4>[   13.815495]  pci_device_probe+0x95/0x120
-<4>[   13.815498]  really_probe+0x164/0x3c0
-<4>[   13.815500]  ? __pfx___driver_attach+0x10/0x10
-<4>[   13.815503]  __driver_probe_device+0x73/0x170
-<4>[   13.815506]  driver_probe_device+0x19/0xa0
-<4>[   13.815508]  __driver_attach+0xb6/0x180
-<4>[   13.815511]  ? __pfx___driver_attach+0x10/0x10
-<4>[   13.815513]  bus_for_each_dev+0x77/0xd0
-<4>[   13.815516]  bus_add_driver+0x114/0x210
-<4>[   13.815518]  driver_register+0x5b/0x110
-<4>[   13.815520]  ? __pfx_vmd_drv_init+0x10/0x10
-<4>[   13.815523]  do_one_initcall+0x57/0x330
-<4>[   13.815527]  kernel_init_freeable+0x181/0x3a0
-<4>[   13.815529]  ? __pfx_kernel_init+0x10/0x10
-<4>[   13.815532]  kernel_init+0x15/0x120
-<4>[   13.815534]  ret_from_fork+0x29/0x50
-<4>[   13.815537]  </TASK>
+  No regressions found.
 
--- 
-Ville Syrjälä
-Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/index.html
+
+Participating hosts (35 -> 34)
+------------------------------
+
+  Missing    (1): bat-dg1-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115384v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#6687] / [i915#7978])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-dg2-11:         [PASS][2] -> [DMESG-WARN][3] ([i915#7699])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][4] ([i915#6367])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [ABORT][5] ([i915#4983]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12884 -> Patchwork_115384v1
+
+  CI-20190529: 20190529
+  CI_DRM_12884: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7208: f327c5d77b6ea6adff1ef6d08f21f232dfe093e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115384v1: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6538cd57243a drm/i915/debugfs: add crtc i915_pipe debugfs file
+23e68b112c38 drm/i915/debugfs: switch crtc debugfs to struct intel_crtc
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/index.html
+
+--===============7664678778052709285==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/debugfs: switch crtc debugfs to struct intel_crtc</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115384/">https://patchwork.freedesktop.org/series/115384/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12884 -&gt; Patchwork_115384v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/index.html</p>
+<h2>Participating hosts (35 -&gt; 34)</h2>
+<p>Missing    (1): bat-dg1-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115384v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@reset:<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115384v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12884 -&gt; Patchwork_115384v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12884: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7208: f327c5d77b6ea6adff1ef6d08f21f232dfe093e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115384v1: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6538cd57243a drm/i915/debugfs: add crtc i915_pipe debugfs file<br />
+23e68b112c38 drm/i915/debugfs: switch crtc debugfs to struct intel_crtc</p>
+
+</body>
+</html>
+
+--===============7664678778052709285==--
