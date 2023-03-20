@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 246996C06CE
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 01:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2C46C06DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 01:38:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 751E610E050;
-	Mon, 20 Mar 2023 00:25:01 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8641110E069;
+	Mon, 20 Mar 2023 00:38:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C60F810E050
- for <Intel-GFX@lists.freedesktop.org>; Mon, 20 Mar 2023 00:24:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4E410E050;
+ Mon, 20 Mar 2023 00:38:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679271899; x=1710807899;
+ t=1679272730; x=1710808730;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=hRg4LhAkN/adgPGPV/i2N96tRIruwIc4u+L120zGVD4=;
- b=Jka1BGBZVXAuqGpPMzZbCiysyvkY058lsATvzHmsiFyblOWZIQpC5imN
- vZBfc8Fw5/BXcniy+P4tKhBMIjMot91xHt0TpCO5t2TzDwe+QUtgQ0dja
- zfEz5UW20VQN+qtgxNBKEF6T9j6q5StadhYoe/gtCjP+hcSUdoJMy6yWP
- 6V4DRJQMn6o8HGdrKlHIuzVYCenaOBWP0799k8LpFByjYYViMRlCt78WW
- TGr44xz3mRc1TfPVScBcGUuWlBm+U5xg78StuSQGsUd6x+eaXYwBU05tb
- lTTwrGSq8M2bjyy3hVFNbwRsM85qNzwuWeg/rlXU4GkMhm9TSxQOHkG+L A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="424824296"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="424824296"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=k8MlJ5wC5CEGcPxXpNqSMEYG1WOgf+fkWCJ4Oq2iZ3E=;
+ b=c/cJ/KrOia1mLIwQWSWxnqFTB9kzWX60kQ14I5WQTmXsrLvF6MLmtC9n
+ cEAHJ1nHVW+RNs2zJJkwvQbbv6HYg3QpFE72o/Fok3bbqyBvNZjA9HEfo
+ zOwRmG9son17sgWhbfm3PfyBwoN+9bvRlCcJCAJ0cHLJpA+OFRtfXwgrH
+ cJFRfMA1pP96IGvdMO0x9IRXev6KH3aOrlnSOeZ0IfMfwYudsYJ95VMpb
+ W/SNhZ6McmIEofsFooVuN7YeWFT08w0Un/QJ1glGaX/cbUCOBzftp2pSt
+ IL6CnY9viHEYmh5o7WivixCgzaBMwkdl8+JG6q4W3e+X32fU9Db2M6Em9 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="424825389"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="424825389"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2023 17:24:59 -0700
+ 19 Mar 2023 17:38:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="855101568"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="855101568"
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="674164997"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="674164997"
 Received: from msbunten-mobl1.amr.corp.intel.com (HELO intel.com)
  ([10.251.221.102])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2023 17:24:57 -0700
-Date: Mon, 20 Mar 2023 01:24:33 +0100
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2023 17:38:46 -0700
+Date: Mon, 20 Mar 2023 01:38:21 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Message-ID: <ZBenwTnXPzvjK7WC@ashyti-mobl2.lan>
-References: <20230317055239.1313175-1-tejas.upadhyay@intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Message-ID: <ZBeq/bqrpeuUMkp0@ashyti-mobl2.lan>
+References: <20230316172220.16068-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20230317055239.1313175-1-tejas.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Consider multi-gt at all places
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230316172220.16068-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/i915: Add a function to mmap
+ framebuffer obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,27 +60,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tejas,
+Hi Nirmoy,
 
-On Fri, Mar 17, 2023 at 11:22:39AM +0530, Tejas Upadhyay wrote:
-> In order to make igt_live_test work in proper
-> way, we need to consider multi-gt in all tests
-> where igt_live_test is used as well as at other
-> random places where multi-gt should be considered.
+On Thu, Mar 16, 2023 at 06:22:19PM +0100, Nirmoy Das wrote:
+> Implement i915_gem_fb_mmap() to enable fb_ops.fb_mmap()
+> callback for i915's framebuffer objects.
 > 
+> v2: add a comment why i915_gem_object_get() needed(Andi).
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
 > Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Everything looks good, but many things could potentially go wrong
-when changing i915 to gt. I would like to see some positive
-results from the CI before proceeding.
+I think you can fire the PATCH here instead of the RFC. Looks
+good to me.
 
-I will take care of resubmitting the tests once CI is back from
-holiday.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Thanks Tejas,
 Andi
