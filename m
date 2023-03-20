@@ -2,64 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFDA6C1E2A
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 18:36:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F07696C1EBB
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 18:58:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9810C10E5FE;
-	Mon, 20 Mar 2023 17:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9756B10E057;
+	Mon, 20 Mar 2023 17:58:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
- [IPv6:2607:f8b0:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F3DA10E5FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 17:36:26 +0000 (UTC)
-Received: by mail-pl1-x630.google.com with SMTP id u5so13259924plq.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 10:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1679333785;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:subject:cc:to:from:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=hpUGiYeox1kWl4OfAxGx9LTy4s9lwzAPEC2LintUMTc=;
- b=BtCwXN29zeO1Y2JubkxnqAj2y9r5ppxzyhIYMyUQ+7kjvqpqF6WoKT4KRHH7v86VmB
- cmGLns+Rn5mdrrdVa8FbMLj4dwKKemEB/I3XQ3Dg2L5CNV/jfELfU6YlYE1BR0yw8z0K
- lVe9NTGAOFCpmqwTdASeFMuSLzz2DXBQENOss=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679333785;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:subject:cc:to:from:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=hpUGiYeox1kWl4OfAxGx9LTy4s9lwzAPEC2LintUMTc=;
- b=2QZpo0Kyknk3aBfrQpMW9RgvNucnZzW8qqJY1/IlDK3lMFAp6W0LGOAV/BB0zy4ffa
- H3eUpHzkmrNq1MmK/4BaPFyBgIZML2sKAn+RF0vZMKHpZCaWGvg8xkHZovJfEcYkI2yJ
- Lv9YP39ijViwbbfBD4kE0Gn9SI0XM5Jk2Cta71mSw81J/ECq10/OMswEY4jvDdBlMchI
- +tScwV/d85pS3Sf8NSji45XsJVed3feDKRSILQ9dPs90OPwXYTa6kq++3bxIvKO3toDi
- b0tOC2YCoomV1mOxy/IALvsMeJ2C60J665e1g03NsfnnLnIdJ2ETXyRM1x2OhIdGPE9N
- D6dQ==
-X-Gm-Message-State: AO0yUKVlqbKGfOJ/10TZmQWc0rIo9FMYs+MYdx7eInwztrcidNdDVFB1
- g4ZSkI7T+zUTzF9oPY3+cmp29g==
-X-Google-Smtp-Source: AK7set9t390bG2K3Xo5adX8F8Bk16FfVLogcMGAN0o6Fz61VzJapYPhoEvZSKsa75t3/lr7IoM3W2g==
-X-Received: by 2002:a17:903:120f:b0:1a0:549d:39a1 with SMTP id
- l15-20020a170903120f00b001a0549d39a1mr20418380plh.32.1679333785667; 
- Mon, 20 Mar 2023 10:36:25 -0700 (PDT)
-Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
- [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- k23-20020a170902ba9700b0019a95baaaa6sm6979664pls.222.2023.03.20.10.36.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Mar 2023 10:36:25 -0700 (PDT)
-Message-ID: <64189999.170a0220.fa1d9.c3f5@mx.google.com>
-X-Google-Original-Message-ID: <202303201036.@keescook>
-Date: Mon, 20 Mar 2023 10:36:24 -0700
-From: Kees Cook <keescook@chromium.org>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-References: <ZBSu2QsUJy31kjSE@work>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDF7B10E057
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 17:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679335124; x=1710871124;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ne4os+vdky+epU6ioWIqOrRrJL/FSe9sqrcD9JmM9J8=;
+ b=AQ7PUWcgE+7UsVQgli80TOZ5Yzqd1I2fU4c50JWQtvkGpdoxuxVM/876
+ VLVGkeGRVwhcOw4i/bpdFhJvuv6eSD0jCal9Zqjz9UMPYHhTiHKypR+Rz
+ pReTGEjHEzDDMIXK41Yo9XuLNRTrEeT86/yWpsw11rDzxGSqng/6NnOeI
+ NHrk8tKwTZSRUx++2BC6L6hPfGftGQkIMjpNR6+2SnfWop+i638IkhYC1
+ CSidQbtCTJ0J6ZH/YLyxBUtjRkj3iVy9Cwo7UAApROVdV4FLxQMs8q9cj
+ mteomEwDd8oALqmhycxCQIaz0kNWSek2E/HtgQpr2k4cSZRx6DLlPAyCj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="327107419"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="327107419"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 10:58:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="745480924"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; d="scan'208";a="745480924"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.45.176])
+ ([10.249.45.176])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 10:58:42 -0700
+Message-ID: <8764662b-da24-5c11-b0e7-d641567463e8@linux.intel.com>
+Date: Mon, 20 Mar 2023 18:58:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZBSu2QsUJy31kjSE@work>
-Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/uapi: Replace fake
- flex-array with flexible-array member
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230217223350.1124232-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Drop igt_cs_tlb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,36 +62,402 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- linux-hardening@vger.kernel.org
+Cc: thomas.hellstrom@linux.intel.com, chris.p.wilson@linux.intel.com,
+ lucas.demarchi@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 17, 2023 at 12:18:01PM -0600, Gustavo A. R. Silva wrote:
-> Zero-length arrays as fake flexible arrays are deprecated and we are
-> moving towards adopting C99 flexible-array members instead.
-> 
-> Address the following warning found with GCC-13 and
-> -fstrict-flex-arrays=3 enabled:
-> drivers/gpu/drm/i915/gem/i915_gem_context.c: In function ‘set_proto_ctx_engines.isra’:
-> drivers/gpu/drm/i915/gem/i915_gem_context.c:769:41: warning: array subscript n is outside array bounds of ‘struct i915_engine_class_instance[0]’ [-Warray-bounds=]
->   769 |                 if (copy_from_user(&ci, &user->engines[n], sizeof(ci))) {
->       |                                         ^~~~~~~~~~~~~~~~~
-> ./include/uapi/drm/i915_drm.h:2494:43: note: while referencing ‘engines’
->  2494 |         struct i915_engine_class_instance engines[0];
-> 
-> This helps with the ongoing efforts to tighten the FORTIFY_SOURCE
-> routines on memcpy() and help us make progress towards globally
-> enabling -fstrict-flex-arrays=3 [1].
-> 
-> Link: https://github.com/KSPP/linux/issues/21
-> Link: https://github.com/KSPP/linux/issues/271
-> Link: https://gcc.gnu.org/pipermail/gcc-patches/2022-October/602902.html [1]
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+On 2/17/2023 11:33 PM, Jonathan Cavitt wrote:
+> The gt_tlb live selftest has the same code coverage as the
+> igt_cs_tlb subtest of gtt, except it is better at detecting
+> TLB bugs.  Furthermore, while igt_cs_tlb is hitting some
+> unforeseen issues, these issues are either false positives
+> due to the test being poorly formatted, or are true
+> positives that can be more easily diagnosed with smaller
+> tests.  As such, igt_cs_tlb is superceded by and obsoleted
+> by gt_tlb, meaning it can be removed.
+>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
--- 
-Kees Cook
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+
+
+> ---
+>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 356 ------------------
+>   1 file changed, 356 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> index 01e75160a84a..5361ce70d3f2 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> @@ -1940,361 +1940,6 @@ int i915_gem_gtt_mock_selftests(void)
+>   	return err;
+>   }
+>   
+> -static int context_sync(struct intel_context *ce)
+> -{
+> -	struct i915_request *rq;
+> -	long timeout;
+> -
+> -	rq = intel_context_create_request(ce);
+> -	if (IS_ERR(rq))
+> -		return PTR_ERR(rq);
+> -
+> -	i915_request_get(rq);
+> -	i915_request_add(rq);
+> -
+> -	timeout = i915_request_wait(rq, 0, HZ / 5);
+> -	i915_request_put(rq);
+> -
+> -	return timeout < 0 ? -EIO : 0;
+> -}
+> -
+> -static struct i915_request *
+> -submit_batch(struct intel_context *ce, u64 addr)
+> -{
+> -	struct i915_request *rq;
+> -	int err;
+> -
+> -	rq = intel_context_create_request(ce);
+> -	if (IS_ERR(rq))
+> -		return rq;
+> -
+> -	err = 0;
+> -	if (rq->engine->emit_init_breadcrumb) /* detect a hang */
+> -		err = rq->engine->emit_init_breadcrumb(rq);
+> -	if (err == 0)
+> -		err = rq->engine->emit_bb_start(rq, addr, 0, 0);
+> -
+> -	if (err == 0)
+> -		i915_request_get(rq);
+> -	i915_request_add(rq);
+> -
+> -	return err ? ERR_PTR(err) : rq;
+> -}
+> -
+> -static u32 *spinner(u32 *batch, int i)
+> -{
+> -	return batch + i * 64 / sizeof(*batch) + 4;
+> -}
+> -
+> -static void end_spin(u32 *batch, int i)
+> -{
+> -	*spinner(batch, i) = MI_BATCH_BUFFER_END;
+> -	wmb();
+> -}
+> -
+> -static int igt_cs_tlb(void *arg)
+> -{
+> -	const unsigned int count = PAGE_SIZE / 64;
+> -	const unsigned int chunk_size = count * PAGE_SIZE;
+> -	struct drm_i915_private *i915 = arg;
+> -	struct drm_i915_gem_object *bbe, *act, *out;
+> -	struct i915_gem_engines_iter it;
+> -	struct i915_address_space *vm;
+> -	struct i915_gem_context *ctx;
+> -	struct intel_context *ce;
+> -	struct i915_vma *vma;
+> -	I915_RND_STATE(prng);
+> -	struct file *file;
+> -	unsigned int i;
+> -	u32 *result;
+> -	u32 *batch;
+> -	int err = 0;
+> -
+> -	/*
+> -	 * Our mission here is to fool the hardware to execute something
+> -	 * from scratch as it has not seen the batch move (due to missing
+> -	 * the TLB invalidate).
+> -	 */
+> -
+> -	file = mock_file(i915);
+> -	if (IS_ERR(file))
+> -		return PTR_ERR(file);
+> -
+> -	ctx = live_context(i915, file);
+> -	if (IS_ERR(ctx)) {
+> -		err = PTR_ERR(ctx);
+> -		goto out_unlock;
+> -	}
+> -
+> -	vm = i915_gem_context_get_eb_vm(ctx);
+> -	if (i915_is_ggtt(vm))
+> -		goto out_vm;
+> -
+> -	/* Create two pages; dummy we prefill the TLB, and intended */
+> -	bbe = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(bbe)) {
+> -		err = PTR_ERR(bbe);
+> -		goto out_vm;
+> -	}
+> -
+> -	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
+> -	if (IS_ERR(batch)) {
+> -		err = PTR_ERR(batch);
+> -		goto out_put_bbe;
+> -	}
+> -	memset32(batch, MI_BATCH_BUFFER_END, PAGE_SIZE / sizeof(u32));
+> -	i915_gem_object_flush_map(bbe);
+> -	i915_gem_object_unpin_map(bbe);
+> -
+> -	act = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(act)) {
+> -		err = PTR_ERR(act);
+> -		goto out_put_bbe;
+> -	}
+> -
+> -	/* Track the execution of each request by writing into different slot */
+> -	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
+> -	if (IS_ERR(batch)) {
+> -		err = PTR_ERR(batch);
+> -		goto out_put_act;
+> -	}
+> -	for (i = 0; i < count; i++) {
+> -		u32 *cs = batch + i * 64 / sizeof(*cs);
+> -		u64 addr = (vm->total - PAGE_SIZE) + i * sizeof(u32);
+> -
+> -		GEM_BUG_ON(GRAPHICS_VER(i915) < 6);
+> -		cs[0] = MI_STORE_DWORD_IMM_GEN4;
+> -		if (GRAPHICS_VER(i915) >= 8) {
+> -			cs[1] = lower_32_bits(addr);
+> -			cs[2] = upper_32_bits(addr);
+> -			cs[3] = i;
+> -			cs[4] = MI_NOOP;
+> -			cs[5] = MI_BATCH_BUFFER_START_GEN8;
+> -		} else {
+> -			cs[1] = 0;
+> -			cs[2] = lower_32_bits(addr);
+> -			cs[3] = i;
+> -			cs[4] = MI_NOOP;
+> -			cs[5] = MI_BATCH_BUFFER_START;
+> -		}
+> -	}
+> -
+> -	out = i915_gem_object_create_internal(i915, PAGE_SIZE);
+> -	if (IS_ERR(out)) {
+> -		err = PTR_ERR(out);
+> -		goto out_put_batch;
+> -	}
+> -	i915_gem_object_set_cache_coherency(out, I915_CACHING_CACHED);
+> -
+> -	vma = i915_vma_instance(out, vm, NULL);
+> -	if (IS_ERR(vma)) {
+> -		err = PTR_ERR(vma);
+> -		goto out_put_out;
+> -	}
+> -
+> -	err = i915_vma_pin(vma, 0, 0,
+> -			   PIN_USER |
+> -			   PIN_OFFSET_FIXED |
+> -			   (vm->total - PAGE_SIZE));
+> -	if (err)
+> -		goto out_put_out;
+> -	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
+> -
+> -	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
+> -	if (IS_ERR(result)) {
+> -		err = PTR_ERR(result);
+> -		goto out_put_out;
+> -	}
+> -
+> -	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+> -		IGT_TIMEOUT(end_time);
+> -		unsigned long pass = 0;
+> -
+> -		if (!intel_engine_can_store_dword(ce->engine))
+> -			continue;
+> -
+> -		while (!__igt_timeout(end_time, NULL)) {
+> -			struct i915_vm_pt_stash stash = {};
+> -			struct i915_request *rq;
+> -			struct i915_gem_ww_ctx ww;
+> -			struct i915_vma_resource *vma_res;
+> -			u64 offset;
+> -
+> -			offset = igt_random_offset(&prng,
+> -						   0, vm->total - PAGE_SIZE,
+> -						   chunk_size, PAGE_SIZE);
+> -
+> -			memset32(result, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
+> -
+> -			vma = i915_vma_instance(bbe, vm, NULL);
+> -			if (IS_ERR(vma)) {
+> -				err = PTR_ERR(vma);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_object_lock(bbe, NULL);
+> -			err = i915_vma_get_pages(vma);
+> -			i915_gem_object_unlock(bbe);
+> -			if (err)
+> -				goto end;
+> -
+> -			vma_res = i915_vma_resource_alloc();
+> -			if (IS_ERR(vma_res)) {
+> -				i915_vma_put_pages(vma);
+> -				err = PTR_ERR(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_ww_ctx_init(&ww, false);
+> -retry:
+> -			err = i915_vm_lock_objects(vm, &ww);
+> -			if (err)
+> -				goto end_ww;
+> -
+> -			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
+> -			if (err)
+> -				goto end_ww;
+> -
+> -			err = i915_vm_map_pt_stash(vm, &stash);
+> -			if (!err)
+> -				vm->allocate_va_range(vm, &stash, offset, chunk_size);
+> -			i915_vm_free_pt_stash(vm, &stash);
+> -end_ww:
+> -			if (err == -EDEADLK) {
+> -				err = i915_gem_ww_ctx_backoff(&ww);
+> -				if (!err)
+> -					goto retry;
+> -			}
+> -			i915_gem_ww_ctx_fini(&ww);
+> -			if (err) {
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_vma_resource_init_from_vma(vma_res, vma);
+> -			/* Prime the TLB with the dummy pages */
+> -			for (i = 0; i < count; i++) {
+> -				vma_res->start = offset + i * PAGE_SIZE;
+> -				vm->insert_entries(vm, vma_res, I915_CACHE_NONE,
+> -						   0);
+> -
+> -				rq = submit_batch(ce, vma_res->start);
+> -				if (IS_ERR(rq)) {
+> -					err = PTR_ERR(rq);
+> -					i915_vma_resource_fini(vma_res);
+> -					kfree(vma_res);
+> -					goto end;
+> -				}
+> -				i915_request_put(rq);
+> -			}
+> -			i915_vma_resource_fini(vma_res);
+> -			i915_vma_put_pages(vma);
+> -
+> -			err = context_sync(ce);
+> -			if (err) {
+> -				pr_err("%s: dummy setup timed out\n",
+> -				       ce->engine->name);
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			vma = i915_vma_instance(act, vm, NULL);
+> -			if (IS_ERR(vma)) {
+> -				kfree(vma_res);
+> -				err = PTR_ERR(vma);
+> -				goto end;
+> -			}
+> -
+> -			i915_gem_object_lock(act, NULL);
+> -			err = i915_vma_get_pages(vma);
+> -			i915_gem_object_unlock(act);
+> -			if (err) {
+> -				kfree(vma_res);
+> -				goto end;
+> -			}
+> -
+> -			i915_vma_resource_init_from_vma(vma_res, vma);
+> -			/* Replace the TLB with target batches */
+> -			for (i = 0; i < count; i++) {
+> -				struct i915_request *rq;
+> -				u32 *cs = batch + i * 64 / sizeof(*cs);
+> -				u64 addr;
+> -
+> -				vma_res->start = offset + i * PAGE_SIZE;
+> -				vm->insert_entries(vm, vma_res, I915_CACHE_NONE, 0);
+> -
+> -				addr = vma_res->start + i * 64;
+> -				cs[4] = MI_NOOP;
+> -				cs[6] = lower_32_bits(addr);
+> -				cs[7] = upper_32_bits(addr);
+> -				wmb();
+> -
+> -				rq = submit_batch(ce, addr);
+> -				if (IS_ERR(rq)) {
+> -					err = PTR_ERR(rq);
+> -					i915_vma_resource_fini(vma_res);
+> -					kfree(vma_res);
+> -					goto end;
+> -				}
+> -
+> -				/* Wait until the context chain has started */
+> -				if (i == 0) {
+> -					while (READ_ONCE(result[i]) &&
+> -					       !i915_request_completed(rq))
+> -						cond_resched();
+> -				} else {
+> -					end_spin(batch, i - 1);
+> -				}
+> -
+> -				i915_request_put(rq);
+> -			}
+> -			end_spin(batch, count - 1);
+> -
+> -			i915_vma_resource_fini(vma_res);
+> -			kfree(vma_res);
+> -			i915_vma_put_pages(vma);
+> -
+> -			err = context_sync(ce);
+> -			if (err) {
+> -				pr_err("%s: writes timed out\n",
+> -				       ce->engine->name);
+> -				goto end;
+> -			}
+> -
+> -			for (i = 0; i < count; i++) {
+> -				if (result[i] != i) {
+> -					pr_err("%s: Write lost on pass %lu, at offset %llx, index %d, found %x, expected %x\n",
+> -					       ce->engine->name, pass,
+> -					       offset, i, result[i], i);
+> -					err = -EINVAL;
+> -					goto end;
+> -				}
+> -			}
+> -
+> -			vm->clear_range(vm, offset, chunk_size);
+> -			pass++;
+> -		}
+> -	}
+> -end:
+> -	if (igt_flush_test(i915))
+> -		err = -EIO;
+> -	i915_gem_context_unlock_engines(ctx);
+> -	i915_gem_object_unpin_map(out);
+> -out_put_out:
+> -	i915_gem_object_put(out);
+> -out_put_batch:
+> -	i915_gem_object_unpin_map(act);
+> -out_put_act:
+> -	i915_gem_object_put(act);
+> -out_put_bbe:
+> -	i915_gem_object_put(bbe);
+> -out_vm:
+> -	i915_vm_put(vm);
+> -out_unlock:
+> -	fput(file);
+> -	return err;
+> -}
+> -
+>   int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+>   {
+>   	static const struct i915_subtest tests[] = {
+> @@ -2314,7 +1959,6 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+>   		SUBTEST(igt_ggtt_fill),
+>   		SUBTEST(igt_ggtt_page),
+>   		SUBTEST(igt_ggtt_misaligned_pin),
+> -		SUBTEST(igt_cs_tlb),
+>   	};
+>   
+>   	GEM_BUG_ON(offset_in_page(to_gt(i915)->ggtt->vm.total));
