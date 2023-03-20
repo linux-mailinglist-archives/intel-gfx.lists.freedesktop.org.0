@@ -2,56 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089C46C145B
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 15:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 755446C1465
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 15:10:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABFC010E002;
-	Mon, 20 Mar 2023 14:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6FE810E581;
+	Mon, 20 Mar 2023 14:10:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897BA10E002;
- Mon, 20 Mar 2023 14:08:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679321312; x=1710857312;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=XW7+ruv9w7lb2rFrQN8zsge4pr2Xi61xw33/fynuXu4=;
- b=HzrL+PTHUnu4cLSaqajtxvbKpHlpdPGHVdnVX6chSKP2iSCKn3sYhLQb
- iteXja+2h7pcSbt2YBNqv7xf2Cz+QR4dcPRcJvF/VOOoF2dLt2/y62wuT
- /x9fV9x0EMfkwJMxPTwCnS86qpUCLXDWBL0GzVTMp5Dcphs/QWwSSexDI
- ti8vdq/B8rBhZvY/EbAlZTd2Am7dn2nR+QnuKTzT0/DIAIZ95sPpfSrDh
- aPb3vEF+oVtROJaTY62dU+JJ6ntR4vAtM595mM2hcbeMODKZTR8Ldfp7g
- F9Y9TOYcrxJU9tbj/uPrG4AouG3si7fR4LwnKR1ZvEPmGuxr/YRaiD5ot Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="366387335"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="366387335"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 07:03:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="770207249"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="770207249"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.65])
- ([10.213.6.65])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 07:02:59 -0700
-Message-ID: <c1b797a5-92d6-6590-9c47-6606ec409a12@intel.com>
-Date: Mon, 20 Mar 2023 15:02:57 +0100
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B2410E581;
+ Mon, 20 Mar 2023 14:10:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MDQoolACmBEJtnIFinp/Ul/xTOJj/YrxdPnC+Yr7QgXAWm+lmyF06/flnfz7J/KPbOFZP+J6PvTEoIqFx5a8WmA4P2Hv+YiBdhSdbq5+6nVyLvzG8HgsUclFvZ3kcTy8CDJN23IWNhPIA/uIdYyMMxD/7ly8PsvNtIh3DvTEYL2hnb5WMwqQrmrXGojkW2/R4XYVcfJ9pYj8serQid5JPPXfrv2wcCFDYjHrAnT69IbVrYWLFrP++aQjF16DB17nimb2otEgMvPP5wQ7GHH8PNz+9iHThKEt8zZc0cp1jUfpEUjTbmjM4QjArYfU+/7HXFHbJlXuKzxWlbacdscpIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r2VdCG4/ZGlQchCRCP4RQNupoabzADS8RgLRpXRFwm0=;
+ b=GkOvCejzIhjsxQx4tUpEvPYk+M54MPPKb2e8EL7/md8xe96iSbUbnBG5W95ggwigyuVygIz+jFFT7ff3X6CYbKFGjQN1n3cbeToINz/9OmMRKV8rb4j2IyxGaSGGo3PkJjVowls3SQGVhboW0WD8pEof3MLhc/2l5q3ypInrkddrTshH1pomDUyip0foIQXTUJzCQP7EQ+hD04EETiycFKZP8S/5jTPk1xVOb1IWbJ2i5002r51SHYla/RN5BJvBjDS8sxkmW6T2xTnbOoYLb1bcEaB1oc5Pk5e2xdkb/Gd3x5NBvL9XinITAJ+84yRRmjbkM+IN+ByYaF4K4DCyQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r2VdCG4/ZGlQchCRCP4RQNupoabzADS8RgLRpXRFwm0=;
+ b=DRQNr4zzQcWufHkKVy5VcAUowG7m1hM9LHc126lfa6UZZu5I4x65B+8KVdrjSM3E2ohsLPwhNhf71PIXlATyh/+OSoi+Kgc0bqfsZvgjxqSlGNsGIwajLcoUnE0o5dv5y+Vp+zxdhVysmyee2XEiZds8O3t/w19w7B/zi3KvXOS32WCWebjR1Xx54KVf4QmKL+G2QwXg69angW6YKafep1BDSEE4g2XHWwwQ7Z4JPmm7PcW5xJg/sewIhu41hPoecI6x5roNCj3Mw/d+Q2/OrkUJDOZ7eUYNvG7AjyCl/d3v5pkav8ODBCrih00j/IYxJq1gHD7tQH1jhRHIw2EGkw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DS0PR12MB7727.namprd12.prod.outlook.com (2603:10b6:8:135::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
+ 2023 14:10:01 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
+ 14:10:01 +0000
+Date: Mon, 20 Mar 2023 11:09:59 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <ZBhpNyrBr9nm5Ae+@nvidia.com>
+References: <20230308132903.465159-1-yi.l.liu@intel.com>
+ <20230308132903.465159-22-yi.l.liu@intel.com>
+ <BN9PR11MB527665CA5753E413CB4291AE8CBA9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B3BFD999C9720836F049C3BA9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BN9PR11MB5276684B2C0CD076FA3CD0938CBA9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB752922A0C9058583F677369EC3BF9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB752922A0C9058583F677369EC3BF9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BL1PR13CA0392.namprd13.prod.outlook.com
+ (2603:10b6:208:2c2::7) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230320100903.23588-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230320100903.23588-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2: 1/3] drm/i915: Add a function to mmap
- framebuffer obj
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DS0PR12MB7727:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4cf94b8e-66c8-4796-8fa7-08db294ccb53
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XzgTGQ231tyTmH1Y/V80QQPBXuKJFFLZwpU6vb4r3zpp5yzfY8e3x9jFbwStg0o/u8Xqe6tpfV20xsDUbhEnHOFItZ7eAW8rNeKt0+9LtTnjSiIk055XtiiVtrZx0tHl00rwt3/BluZkiXc34sc1P1v1mP655zDApiqsymVgXdn4+MgsoQlNX5Ppxbx5MBFvvZamIYsfS1SPeeqNuX0uE39mTu06KiwkeRB6WuF4cfIxA6oe7OoDt9LQl2NM1RuBPBkFJ6nOiHbFLyzx2e3Jt/vnO4d6Gx/nUrurZ/jjS6R6VYqSPkm1IcAe4eSqdJJkWgx5s3UEpiY9OpfWGLYoE35Z+UbNn0FmJVtgqIzP1Jd+4rb4p9aEWnjOCngb+z//js0PDF9jFuukHaXVTnz/dBmhk8QhIgHgZuhZj5HwtJXYeHcXM3ltW4CfzWgI3Domjk68f6WP6w6noT67hkh8UxFYQU/lTODGT0mrwJeVamhzv0uy84Sw8aEuMkeH9EKydN7RUe1jJu1KFV3md4Hi3LBtOC/RchRaeepBAs1TuWzarGGg8CljjCce8O9/5Zz9FfGAPKQKg0HF21vkP7WE0CwG60gOS/wVbwzfWJjOEinceMeDb72DHzMwqpN6CJRN8oSC37+7+F6SPnf3uHE9og==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(451199018)(316002)(54906003)(38100700002)(6916009)(66946007)(8676002)(4326008)(478600001)(66476007)(66556008)(2906002)(6486002)(2616005)(41300700001)(186003)(26005)(86362001)(8936002)(6512007)(6506007)(36756003)(5660300002)(7416002)(4744005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Shn7IV2Tr0KHY/twrNDKpZWEuMmr7PZ8nQ/kEKNrs0/AKCTklb/6qz/4HDQq?=
+ =?us-ascii?Q?1CqEuXNngHXBSEPHS+CPQX3MQD21CDTJHHYS+e6/ojl8/TH7YmuosmIGLQCA?=
+ =?us-ascii?Q?FVSB4tVvsKwAfeCkVkTFqBi6z2yxgdcRLQV9nrGpUWnioFig9wBT0BUXqsPI?=
+ =?us-ascii?Q?hX/UJlkEzVIYOMzBP4Ht0N6d/qeL7ODdpr86RTPR4bh3+/bn3EHResf5gMFS?=
+ =?us-ascii?Q?8RKm0rDTeekoLLU5erAS0j5rMaK9E/ScuY+ldsgWi+hEtjKOcZzSOMoAqjeF?=
+ =?us-ascii?Q?+E2Jqb26Ky7CrFV5g56nnCGYTBu9M0+mVqB9pbHATtHIDsDphZBKJFBzWsaq?=
+ =?us-ascii?Q?A4/WrfNJDt4JbUAL4PH5VqYRFdCnPkte9oUnT2Rkc/pvizgxs+SUrvfJcXIR?=
+ =?us-ascii?Q?L3iw+T5AMLlh1n1H5znY+5bKiLxQj74d5gwNfBHmu8CDwRzNKbv1rX3XqT9N?=
+ =?us-ascii?Q?sBwG4PwPNMg03HFUnHo1vGPUzxO5qE3Sleu83DnMHHk7nE4CqLO2F/XaClD9?=
+ =?us-ascii?Q?XuVDWcCsI+F9dXFVDAmJsH9Be/qlu1wUQDi0TVHU1DzH43A0Ugatn+YgmN/z?=
+ =?us-ascii?Q?3FDsy0LtX9QTlV/DC9YrOt1Dx5kzIGiw2Y6WZezqIGzjWxsh+iRltyzp/LnC?=
+ =?us-ascii?Q?1Ns6NoUA0RAyre/MsFMSSsQUE8QTm6dBprh/QErkelUcIy8njMuwcCxHGlzs?=
+ =?us-ascii?Q?sQAD4RTKgxs2RkC4FDav1B+qfA0XzioppRSG7OKmZCMI+rQpkTpLxo1nj9SJ?=
+ =?us-ascii?Q?WI3xc4wwU4eeAXxopTyD8/gQS4e5kIGm2xDXPuqyRKZ3deBv8KmDqCcVHRZs?=
+ =?us-ascii?Q?RnLJGjxWVeZuvGriIVfYbTj7lntKhRHkA0y4/6xN+eTmqLwv1Q2ewC1aj51i?=
+ =?us-ascii?Q?ImF3gQUW49x4f5mhtWrXNA2TbL/P3Wr7mFC5PV/XSRiRqwaZzAdwiJyBxOC7?=
+ =?us-ascii?Q?i8WVPXGxlG6WDOfLdHQjTldtFIHOaFMwApWJnG7i15jQCUl6j+Kw2JNZzbO7?=
+ =?us-ascii?Q?n8eDE2NO57DMC1ifOEqc8V/IX60s86jkThJ6wf3MrQ3EBpDmnHaW6qbGMx2D?=
+ =?us-ascii?Q?Yjw7SHGK8GCvo+eYpgjayTCK40vL7jWRLmS94u56j53EgH4EWdzTMVQAb/rq?=
+ =?us-ascii?Q?ipF4fiY+FN/2uJx2Mbnm/IyesO6d1DK8GJJz0M5a0D8U/AqfDDU9dMu5AOoP?=
+ =?us-ascii?Q?oD2cJAuabfgoXGQAbIT9A/FpHK2NKky2gMZSs1mmmpXN3x+uWDN/FOkKQ4lv?=
+ =?us-ascii?Q?dgrMC51jAyBfZRbmPBvVuOTxi1cfTuKyvERHFhMi/zicjnygGJvBaUKfbsq4?=
+ =?us-ascii?Q?v2pjkLtAX/KASSnUMKlX61HNK/wKBlx2ZtiCvXRGaK7b8Gzk45UffHAmlUpo?=
+ =?us-ascii?Q?qClyLp9bHTNxW8rHBnAx7eZtTb2S1qyK2y2PA+HNiolLEA/XqFZMrh7q7tge?=
+ =?us-ascii?Q?ywoR0JTDs69q68rXxx3a/fatBUzbj+97r+XkknCX95uZyAqNhrLaNzOHjPNh?=
+ =?us-ascii?Q?SlOb35n4YWQC4d22Ir8EU7c0EEtQOD+waGncewVuU7W44vEzxG/igOSH6dRm?=
+ =?us-ascii?Q?72qyi2NKMX2ovbs32r9d1oEvkgwdcDJ5SfBH/f9y?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cf94b8e-66c8-4796-8fa7-08db294ccb53
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2023 14:10:01.0123 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +/LXDlDeJ0V/8b+shtxfwa4k/v8WzTPIngM59w3DeOmpDKL29AInrldkIq8HfVVH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7727
+Subject: Re: [Intel-gfx] [PATCH v6 21/24] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,199 +118,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 20.03.2023 11:09, Nirmoy Das wrote:
-> Implement i915_gem_fb_mmap() to enable fb_ops.fb_mmap()
-> callback for i915's framebuffer objects.
+On Wed, Mar 15, 2023 at 04:40:19AM +0000, Liu, Yi L wrote:
+
+> # if IS_ENABLED(CONFIG_VFIO_GROUP)
+> static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
+> {
+>         return IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
+>                vdev->group->type == VFIO_NO_IOMMU;
+> }
+> #else
+> static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
+> {
+>         struct iommu_group *iommu_group;
 > 
-> v2: add a comment why i915_gem_object_get() needed(Andi).
+>         if (!IS_ENABLED(CONFIG_VFIO_NOIOMMU) || !vfio_noiommu)
+>                 return -EINVAL;
 > 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>         iommu_group = iommu_group_get(vdev->dev);
+>         if (iommu_group)
+>                 iommu_group_put(iommu_group);
+>
+>         return !iommu_group;
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+If we don't have VFIO_GROUP then no-iommu is signaled by a NULL
+iommu_ctx pointer in the vdev, don't mess with groups
 
-Regards
-Andrzej
-
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 127 +++++++++++++++--------
->   drivers/gpu/drm/i915/gem/i915_gem_mman.h |   2 +-
->   2 files changed, 83 insertions(+), 46 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index d3c1dee16af2..341e952d3510 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -927,53 +927,15 @@ static struct file *mmap_singleton(struct drm_i915_private *i915)
->   	return file;
->   }
->   
-> -/*
-> - * This overcomes the limitation in drm_gem_mmap's assignment of a
-> - * drm_gem_object as the vma->vm_private_data. Since we need to
-> - * be able to resolve multiple mmap offsets which could be tied
-> - * to a single gem object.
-> - */
-> -int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
-> +static int
-> +i915_gem_object_mmap(struct drm_i915_gem_object *obj,
-> +		     struct i915_mmap_offset *mmo,
-> +		     struct vm_area_struct *vma)
->   {
-> -	struct drm_vma_offset_node *node;
-> -	struct drm_file *priv = filp->private_data;
-> -	struct drm_device *dev = priv->minor->dev;
-> -	struct drm_i915_gem_object *obj = NULL;
-> -	struct i915_mmap_offset *mmo = NULL;
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct drm_device *dev = &i915->drm;
->   	struct file *anon;
->   
-> -	if (drm_dev_is_unplugged(dev))
-> -		return -ENODEV;
-> -
-> -	rcu_read_lock();
-> -	drm_vma_offset_lock_lookup(dev->vma_offset_manager);
-> -	node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
-> -						  vma->vm_pgoff,
-> -						  vma_pages(vma));
-> -	if (node && drm_vma_node_is_allowed(node, priv)) {
-> -		/*
-> -		 * Skip 0-refcnted objects as it is in the process of being
-> -		 * destroyed and will be invalid when the vma manager lock
-> -		 * is released.
-> -		 */
-> -		if (!node->driver_private) {
-> -			mmo = container_of(node, struct i915_mmap_offset, vma_node);
-> -			obj = i915_gem_object_get_rcu(mmo->obj);
-> -
-> -			GEM_BUG_ON(obj && obj->ops->mmap_ops);
-> -		} else {
-> -			obj = i915_gem_object_get_rcu
-> -				(container_of(node, struct drm_i915_gem_object,
-> -					      base.vma_node));
-> -
-> -			GEM_BUG_ON(obj && !obj->ops->mmap_ops);
-> -		}
-> -	}
-> -	drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
-> -	rcu_read_unlock();
-> -	if (!obj)
-> -		return node ? -EACCES : -EINVAL;
-> -
->   	if (i915_gem_object_is_readonly(obj)) {
->   		if (vma->vm_flags & VM_WRITE) {
->   			i915_gem_object_put(obj);
-> @@ -1005,7 +967,7 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
->   	if (obj->ops->mmap_ops) {
->   		vma->vm_page_prot = pgprot_decrypted(vm_get_page_prot(vma->vm_flags));
->   		vma->vm_ops = obj->ops->mmap_ops;
-> -		vma->vm_private_data = node->driver_private;
-> +		vma->vm_private_data = obj->base.vma_node.driver_private;
->   		return 0;
->   	}
->   
-> @@ -1043,6 +1005,81 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
->   	return 0;
->   }
->   
-> +/*
-> + * This overcomes the limitation in drm_gem_mmap's assignment of a
-> + * drm_gem_object as the vma->vm_private_data. Since we need to
-> + * be able to resolve multiple mmap offsets which could be tied
-> + * to a single gem object.
-> + */
-> +int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
-> +{
-> +	struct drm_vma_offset_node *node;
-> +	struct drm_file *priv = filp->private_data;
-> +	struct drm_device *dev = priv->minor->dev;
-> +	struct drm_i915_gem_object *obj = NULL;
-> +	struct i915_mmap_offset *mmo = NULL;
-> +
-> +	if (drm_dev_is_unplugged(dev))
-> +		return -ENODEV;
-> +
-> +	rcu_read_lock();
-> +	drm_vma_offset_lock_lookup(dev->vma_offset_manager);
-> +	node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
-> +						  vma->vm_pgoff,
-> +						  vma_pages(vma));
-> +	if (node && drm_vma_node_is_allowed(node, priv)) {
-> +		/*
-> +		 * Skip 0-refcnted objects as it is in the process of being
-> +		 * destroyed and will be invalid when the vma manager lock
-> +		 * is released.
-> +		 */
-> +		if (!node->driver_private) {
-> +			mmo = container_of(node, struct i915_mmap_offset, vma_node);
-> +			obj = i915_gem_object_get_rcu(mmo->obj);
-> +
-> +			GEM_BUG_ON(obj && obj->ops->mmap_ops);
-> +		} else {
-> +			obj = i915_gem_object_get_rcu
-> +				(container_of(node, struct drm_i915_gem_object,
-> +					      base.vma_node));
-> +
-> +			GEM_BUG_ON(obj && !obj->ops->mmap_ops);
-> +		}
-> +	}
-> +	drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
-> +	rcu_read_unlock();
-> +	if (!obj)
-> +		return node ? -EACCES : -EINVAL;
-> +
-> +	return i915_gem_object_mmap(obj, mmo, vma);
-> +}
-> +
-> +int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct drm_device *dev = &i915->drm;
-> +	struct i915_mmap_offset *mmo = NULL;
-> +	enum i915_mmap_type mmap_type;
-> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-> +
-> +	if (drm_dev_is_unplugged(dev))
-> +		return -ENODEV;
-> +
-> +	mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
-> +	mmo = mmap_offset_attach(obj, mmap_type, NULL);
-> +	if (!mmo)
-> +		return -ENODEV;
-> +
-> +	/*
-> +	 * When we install vm_ops for mmap we are too late for
-> +	 * the vm_ops->open() which increases the ref_count of
-> +	 * this obj and then it gets decreased by the vm_ops->close().
-> +	 * To balance this increase the obj ref_count here.
-> +	 */
-> +	obj = i915_gem_object_get(mmo->obj);
-> +	return i915_gem_object_mmap(obj, mmo, vma);
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->   #include "selftests/i915_gem_mman.c"
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> index 1fa91b3033b3..196417fd0f5c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> @@ -29,5 +29,5 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
->   
->   void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj);
->   void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
-> -
-> +int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma);
->   #endif
-
+Jason
