@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669056C0BBF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 09:07:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FEE06C0BC0
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Mar 2023 09:07:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9434910E247;
-	Mon, 20 Mar 2023 08:07:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97C3C10E248;
+	Mon, 20 Mar 2023 08:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 87C2210E247;
- Mon, 20 Mar 2023 08:07:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D7F7210E248;
+ Mon, 20 Mar 2023 08:07:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83E4CAADD5;
- Mon, 20 Mar 2023 08:07:21 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D490BAADD5;
+ Mon, 20 Mar 2023 08:07:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 20 Mar 2023 08:07:21 -0000
-Message-ID: <167929964153.26309.14122779391133087313@emeril.freedesktop.org>
+Date: Mon, 20 Mar 2023 08:07:23 -0000
+Message-ID: <167929964386.26309.7231767931870443652@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/display=3A_Communicate_display_power_demands_to_pcode?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/display=3A_Communicate_display_power_demands_to_pcode?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
