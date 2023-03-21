@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B6E6C27F1
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 03:17:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB206C27F2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 03:17:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D3410E6AD;
-	Tue, 21 Mar 2023 02:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B428B10E308;
+	Tue, 21 Mar 2023 02:17:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 431AA10E308;
- Tue, 21 Mar 2023 02:17:28 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7AECC10E308;
+ Tue, 21 Mar 2023 02:17:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B2E2A0003;
- Tue, 21 Mar 2023 02:17:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 78430A0003;
+ Tue, 21 Mar 2023 02:17:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 21 Mar 2023 02:17:28 -0000
-Message-ID: <167936504807.18676.7907355908339159564@emeril.freedesktop.org>
+Date: Tue, 21 Mar 2023 02:17:30 -0000
+Message-ID: <167936505049.18676.9440542183835323106@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230320151423.1708436-1-tvrtko.ursulin@linux.intel.com>
 In-Reply-To: <20230320151423.1708436-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_context_runtime_accounting?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Fix_context_runtime_accounting?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
