@@ -2,115 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310E86C3DA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 23:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E14C26C3DCA
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 23:37:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 195B710E100;
-	Tue, 21 Mar 2023 22:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C4DB10E0DF;
+	Tue, 21 Mar 2023 22:37:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2059.outbound.protection.outlook.com [40.107.220.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7679B10E2A2;
- Tue, 21 Mar 2023 22:20:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oMu+be4E2cezzlW3xQG/kuHFg8aONlYtv/LbZYtXKCd4+/90pu0wOnRcsNzJcXxARU42F7u68kf/cJ+l069dWtblSSCwoFSdcmwX7B3anCefP5GWeK5AfrgcKI26D8g3Oe4HTo3l6cfkvHQL8ysdQ2BHiJqkBE4Ywtxnqlttyt+saEgIcpDn9PQyMwW7CIlTbBrphI1RoZ28RFTF6nmC8QLJfUF86SG86RlWzQgrANLxyZUPf0AKnGr6FntJCuIRQz1OCcFyLefaAeRHHq7nmz3nZJWPVc56TVqQ95yGhHv62TtBAMllsJKABhYoddZOnMapkz7j4/BxBbb8BNdkdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ky09bLiIGYgg+uU8sChMH79b26Y8kq8au11+px232O0=;
- b=Hsrzb1+3CC/eSD4Dndv0Gi4/cq1g7KI8cEeAPuQwDv2gWz31i0lbmhgkmFnt4EXJHuLjQRSPtwQKekN8fwIx6aXXSsEcgiLfgSqJhhlCnMhO9KmifkDkkT0gzeiICWIPU0r2Cl6kR/TxdBll347sgOa3Q9eN467tDHVw+3kerSLdBeoqztiJJHaPpRDkC+2nQdOODJj4X0wZ5ygr7Yp3gCMRJ4g+TfombuwPM8NwBzPM28BSI/keRAzyj3wdOKkxgTtukjpxyIfvtJZXr8AWdKABoDtK0CgvewCwKTmPjI1GMkjMi0mGPoUMjD+QUaeDOyPNO2NWhPJnRA9jjcyKKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ky09bLiIGYgg+uU8sChMH79b26Y8kq8au11+px232O0=;
- b=B45kNG4jPabcOmssHJq1+HjJ0X5drJk5xqD5J1p57+WTo9oTmUisMqaUqrPQ00RMSlNxt/ADiaGrKT7Jx5wFj0Y5AGaA3KvIfp77h2gb9ZrTKL2/s6ygUg56BzUxSFy6PUEZzN/2WivNjk1/8ejH1KhMpfvAd4/fybwIktjXKo15B5nX9FKrlrzvKzIaDf0KyDCq3oGunPGOEpeR1t1bVhggKDXce41KVdV68PodX/1MBCj2q0DtXt0q77ZLhY+DAByHSeGkuGCKyfva0XkNYSZhREZ+oyg7mX4Rn1cnWecA0q4AqIc0FSKKzH1U9EHWD6hYDzJ1oga+eFRLFpuQRw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by IA1PR12MB6329.namprd12.prod.outlook.com (2603:10b6:208:3e5::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Tue, 21 Mar
- 2023 22:20:38 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Tue, 21 Mar 2023
- 22:20:38 +0000
-Date: Tue, 21 Mar 2023 19:20:37 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Message-ID: <ZBottXxBlOsXmnmX@nvidia.com>
-References: <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230316182256.6659bbbd.alex.williamson@redhat.com>
- <BN9PR11MB5276D5A71E43EA4CDD1C960A8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230317091557.196638a6.alex.williamson@redhat.com>
- <ZBiUiEC8Xj9sOphr@nvidia.com>
- <20230320165217.5b1019a4.alex.williamson@redhat.com>
- <ZBjum1wQ1L2AIfhB@nvidia.com>
- <20230321143122.632f7e63.alex.williamson@redhat.com>
- <ZBoYgNq60eDpV9Un@nvidia.com>
- <20230321150112.1c482380.alex.williamson@redhat.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230321150112.1c482380.alex.williamson@redhat.com>
-X-ClientProxiedBy: BL1PR13CA0012.namprd13.prod.outlook.com
- (2603:10b6:208:256::17) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2C79010E0A7;
+ Tue, 21 Mar 2023 22:37:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23A99AADDC;
+ Tue, 21 Mar 2023 22:37:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5374879256265203409=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|IA1PR12MB6329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2aaa27ef-af1b-4116-bcca-08db2a5a7fe8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s1pZlzhcj9hlUqUbP6YwA5FJ/lYIyXlDQB7lNaqKokfikYW/vX4w5yD1RsnXCYLfNLNKcrSPF2GdB0bwHcyAPC/H6H/TItWQFYowM8YBHSyLM5easlvawRNq62k7x6v+PzYb/nIM5sXjUoCpklKBdHiiXrpJJyzBWRCG3Y6z0ARZxlvdJ4kSJo1yN3qlxsVleEAFYJF63wneWkua9knFGpJNbsqCrB4xxtSYb4WrsjPdtaskVSlrTfX0tDe9v8jFHfHCb5JOn135uLal6rKrLckqEWvYwxat8gNQzsqeC9IkHIAJQuTbmro1QZ7IsTJijIXmu8i4sRq5fQ7pPPxC/YVOgd/qFrGiw5CBjY/VU3x1URD4m3TdM+kojET8B1z8KmA126sv0UIXnM9/n/7NoATpczvm9Pzn98bPho8eMXwMwrQvgav3bzFb+lHUn5rpAR/YYk42MeDpb3M1yasfBAM/9OPgf95vX/B353W0+s7h7WKddXSJjycxw/p14SoVOo4GsweomNGFlEKklB5oK+T7BsQKQoYaTBh178kw6IDiK3cMO579yj3BEcQjpLeRFK3gTXtI9ykCRzwYFS7Nw676JCI4egVLJHRJCz/wUmK8h3OppBVHKlSgjyWp06C9MXQ61G3X+Koz52HO61LO5A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(366004)(39860400002)(346002)(396003)(376002)(136003)(451199018)(8936002)(4744005)(41300700001)(7416002)(5660300002)(36756003)(86362001)(4326008)(38100700002)(2906002)(54906003)(6506007)(83380400001)(6512007)(478600001)(186003)(26005)(6486002)(8676002)(66476007)(66556008)(6916009)(66946007)(2616005)(316002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BYZnLJVUNtHKNs76ZMjzuI+Cs5fE8VhJsb6mDoY5avNOtYbx+DiMYarW2OFO?=
- =?us-ascii?Q?O05J15+z7hTmqJKMQ7uBKViOW7xvh5oVDUI26w3JQvcoRCOnlWBKb3MCToiD?=
- =?us-ascii?Q?uSuqEx8U9whifOg+Lt0CigJCJDYYSY5vdQNlUmYADTFCKiWy6LnepzLnRNXv?=
- =?us-ascii?Q?v3EpMq0/syzG3H6DcLL9w0+nRyqrfK4Fy6uMuJEB/3Rd/JsDiElyaT6boYXn?=
- =?us-ascii?Q?cZELdrlkMgIKDPfxhCER+9i8WmQOT2XTd41wzEotqbqY8VDOKAFyInO5MIM3?=
- =?us-ascii?Q?B4HT/4xWbvWABZ1sJMZw3jmPY+d47d6yJvz99o1PpQHMphVqbc2aIlRbF65G?=
- =?us-ascii?Q?TiZlb5R2zRsoHKeCSgWmMq1d9bDTENzlL8d/jjJT6+FqhfWjDYojq5nYPt2C?=
- =?us-ascii?Q?v1/kLKgm4vN1nLmCkgsI0ifRj4YWPGK8Dhor8A8N0LhDjsuWjXaLRGPPt3Fv?=
- =?us-ascii?Q?rvokAnRQ7hgQ4hF70qcgS6UklEofvQ1NDgv165up51CUzBxEhDPKAXT5znLI?=
- =?us-ascii?Q?O6tAAmf2buUdpI51iJLxCB6j4l8yvSPYBLkx4rZWwLAr5nZk6av50rohrlaV?=
- =?us-ascii?Q?+oNCpcaFIH6lg33G9K89NoTH1g/VSCpLKpiPfsFc9dOfvasy9w5mK0YqQcsL?=
- =?us-ascii?Q?b6CbZ41rHc7TibkbzQajYPJGOddP05Pp2hVqNSGsKbYHCzgGxyeCbuU7nYOO?=
- =?us-ascii?Q?LwOKs8UkyExiylK/+gGFI/9El24gUrEIsHLSKcdmQeumX0hEGDc22I0vjqid?=
- =?us-ascii?Q?qEvZp/CO9MbXKcAm80IO9Ii6LJdCK250ailDTx0qbEL00oQ1Ru4+U5pDozXe?=
- =?us-ascii?Q?0F+YXxkdwtkx8NmmuTH3Um6SFJl3evoHzNPzEQofeEPUEaxBMyj/jf9h8Utn?=
- =?us-ascii?Q?KLcqmHlFlzRs/mu7vNvi/pk0/Ggmgmb2DLQ/yyptNchTICa5mbfUjLfTe8G/?=
- =?us-ascii?Q?7fgbphtkWGswWGQF5Pw7+KYSIAwrXOZRuptY1BTNKtkDuud0EllgXWI3b3Lx?=
- =?us-ascii?Q?xtNMYenkgFhl2GPzrb+LWF4U31mnRdLRFMjYgfpd5EzdCpRyRvTsqtqFVJkP?=
- =?us-ascii?Q?VPx99luIo23w1bR96OSml78gz0tObmkuT+Cxshhslo5mIGmFUKwaRyXQxMEy?=
- =?us-ascii?Q?3xcOPXvLZvUvrYobf5pOSjbiQX47VCEn7wpGbnRQxE8/PICTdeBdipbkh2S2?=
- =?us-ascii?Q?GiHCa/dv+SXZThgrWrIq0ZoTmVmSXQjX6HJyLQ6UwIcU2jvnqucbcgAoWkqd?=
- =?us-ascii?Q?2GbMVKs9QiBe7EKg/okthcWkNRXEsW9RU34KBaAphtesw39EuJ8wIpjpL0uZ?=
- =?us-ascii?Q?u53BYIF3po1QSpM+MeSSTBpfRGbF8kSanrHZJiD8Fluv0woaBvKdUwrS0kff?=
- =?us-ascii?Q?YgV36hlSlWYb/1HV3aRBeD8Xh/pqRgeNVGvnYP4TjG8ALq0Df3Qa3E5Kayty?=
- =?us-ascii?Q?88ngsj/s+NMPddeCjGE941/PwpnPNxn6B8/7vgzpkibQe1inh0gll51zpm++?=
- =?us-ascii?Q?tuuybDmAm9f9BcfGGAsSd4O0Krma9Bs3F12JhjYDABo/EVeT4jTyicBvE7cV?=
- =?us-ascii?Q?ZtgjIzyRSydZh8DDb+S3q0tVoC9zlBAhimKr9xZa?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2aaa27ef-af1b-4116-bcca-08db2a5a7fe8
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 22:20:38.6314 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oUmZBIXYkp8x/EcnGNI58L6H2TkHCHxfOOeBo9DVeuqHnzQPM+VRNbsaTarAOtTo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6329
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 21 Mar 2023 22:37:41 -0000
+Message-ID: <167943826111.18680.12676154866981282039@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230316131724.359612-1-imre.deak@intel.com>
+In-Reply-To: <20230316131724.359612-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tc=3A_Fix_a_few_TypeC_/_MST_issues_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,45 +40,405 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 21, 2023 at 03:01:12PM -0600, Alex Williamson wrote:
+--===============5374879256265203409==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > Though it would be nice if qemu didn't need two implementations so Yi
-> > I'd rather see a new info in this series as well and qemu can just
-> > consistently use dev_id and never bdf in iommufd mode.
-> 
-> We also need to consider how libvirt determines if QEMU has the kernel
-> support it needs to pass file descriptors.  It'd be a lot cleaner if
-> this aligned with the introduction of vfio cdevs.
+== Series Details ==
 
-Yes, that would be much better if it was one package.
+Series: drm/i915/tc: Fix a few TypeC / MST issues (rev5)
+URL   : https://patchwork.freedesktop.org/series/115270/
+State : failure
 
-But this is starting to grow and we have so many threads that need to
-progress blocked on this cdev enablement :(
+== Summary ==
 
-Could we go forward with the cdev main patches and kconfig it to
-experimental or something while the rest of the parts are completed
-and tested through qemu? ie move the vfio-pci reset enablment to after
-the cdev patches?
+CI Bug Log - changes from CI_DRM_12890 -> Patchwork_115270v5
+====================================================
 
-Jason
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_115270v5 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_115270v5, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html
+
+Participating hosts (36 -> 36)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_115270v5:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-rpls-2:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-6:          [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115270v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#2582]) +4 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@fbdev@eof.html
+
+  * igt@gem_mmap@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][6] ([i915#4083])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_mmap@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][7] ([i915#4077]) +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#4079]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-dg2-11:         [PASS][9] -> [DMESG-WARN][10] ([i915#7699])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-atsm-1:         NOTRUN -> [SKIP][11] ([i915#6645])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_addfb_basic@size-max:
+    - bat-atsm-1:         NOTRUN -> [SKIP][12] ([i915#6077]) +36 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_addfb_basic@size-max.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][13] ([i915#6078]) +19 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_flip@basic-plain-flip:
+    - bat-atsm-1:         NOTRUN -> [SKIP][14] ([i915#6166]) +3 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_flip@basic-plain-flip.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-atsm-1:         NOTRUN -> [SKIP][15] ([i915#6093]) +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][16] ([i915#1836]) +6 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][17] ([i915#7357])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-atsm-1:         NOTRUN -> [SKIP][18] ([i915#1072]) +3 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][19] ([i915#6094])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-atsm-1:         NOTRUN -> [SKIP][20] ([fdo#109295] / [i915#6078])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-atsm-1:         NOTRUN -> [SKIP][21] ([fdo#109295] / [i915#4077]) +1 similar issue
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-atsm-1:         NOTRUN -> [SKIP][22] ([fdo#109295]) +3 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-write.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-2:         [DMESG-FAIL][23] ([i915#6367] / [i915#7913]) -> [DMESG-FAIL][24] ([i915#6997] / [i915#7913])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12890 -> Patchwork_115270v5
+
+  CI-20190529: 20190529
+  CI_DRM_12890: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7210: 5f7116708590b55864456acd993ecdb02374a06f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115270v5: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+69b197a11e90 drm/i915/tc: Check the PLL type used by an enabled TC port
+f08c2734efbd drm/i915/tc: Factor out a function querying active links on a TC port
+ce43f166e4c8 drm/i915: Add encoder hook to get the PLL type used by TC ports
+2004793ac26f drm/i915/tc: Assume a TC port is legacy if VBT says the port has HDMI
+9e9d2fd16a78 drm/i915/tc: Make the TC mode readout consistent in all PHY states
+515a64b25cbc drm/i915/tc: Fix initial TC mode on disabled legacy ports
+eca58eb98289 drm/i915/tc: Fix TC mode for a legacy port if the PHY is not ready
+92a4660856f7 drm/i915/tc: Fix target TC mode for a disconnected legacy port
+731d038c38d4 drm/i915/tc: Factor out helpers converting HPD mask to TC mode
+8854cbcfe768 drm/i915/tc: Wait for IOM/FW PHY initialization of legacy TC ports
+5a6cf2c99b77 drm/i915/tc: Fix system resume MST mode restore for DP-alt sinks
+be709c10c911 drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state
+19e8be5df491 drm/i915/tc: Fix TC port link ref init for DP MST during HW readout
+63821e5a3efd drm/i915/tc: Abort DP AUX transfer on a disconnected TC port
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html
+
+--===============5374879256265203409==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/tc: Fix a few TypeC / MST issues (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115270/">https://patchwork.freedesktop.org/series/115270/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12890 -&gt; Patchwork_115270v5</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_115270v5 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_115270v5, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): bat-atsm-1 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_115270v5:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg1-6/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg1-6/igt@i915_pm_rps@basic-api.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115270v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@size-max:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) +36 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>) +19 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_flip@basic-plain-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6166">i915#6166</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6093">i915#6093</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7357">i915#7357</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6094">i915#6094</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12890 -&gt; Patchwork_115270v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12890: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7210: 5f7116708590b55864456acd993ecdb02374a06f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115270v5: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>69b197a11e90 drm/i915/tc: Check the PLL type used by an enabled TC port<br />
+f08c2734efbd drm/i915/tc: Factor out a function querying active links on a TC port<br />
+ce43f166e4c8 drm/i915: Add encoder hook to get the PLL type used by TC ports<br />
+2004793ac26f drm/i915/tc: Assume a TC port is legacy if VBT says the port has HDMI<br />
+9e9d2fd16a78 drm/i915/tc: Make the TC mode readout consistent in all PHY states<br />
+515a64b25cbc drm/i915/tc: Fix initial TC mode on disabled legacy ports<br />
+eca58eb98289 drm/i915/tc: Fix TC mode for a legacy port if the PHY is not ready<br />
+92a4660856f7 drm/i915/tc: Fix target TC mode for a disconnected legacy port<br />
+731d038c38d4 drm/i915/tc: Factor out helpers converting HPD mask to TC mode<br />
+8854cbcfe768 drm/i915/tc: Wait for IOM/FW PHY initialization of legacy TC ports<br />
+5a6cf2c99b77 drm/i915/tc: Fix system resume MST mode restore for DP-alt sinks<br />
+be709c10c911 drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state<br />
+19e8be5df491 drm/i915/tc: Fix TC port link ref init for DP MST during HW readout<br />
+63821e5a3efd drm/i915/tc: Abort DP AUX transfer on a disconnected TC port</p>
+
+</body>
+</html>
+
+--===============5374879256265203409==--
