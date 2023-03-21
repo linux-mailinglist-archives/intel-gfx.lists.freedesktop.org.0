@@ -1,47 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10816C3DD2
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 23:44:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2075B6C3DD5
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 23:47:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C54D10E090;
-	Tue, 21 Mar 2023 22:44:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2767E10E0DB;
+	Tue, 21 Mar 2023 22:47:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB7B410E090;
- Tue, 21 Mar 2023 22:43:58 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C3A7961EA5;
- Tue, 21 Mar 2023 22:43:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 859B7C433EF;
- Tue, 21 Mar 2023 22:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1679438637;
- bh=wfo7V47Np3h5tGvyKnD1o5gYIQhfx16SqiwtGmzkge8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=PRGJE5aYL1Bj3ZY+M0ayws6Z+9gowGQkJUXbMex2IgNEP8JEwRKtJvi0qScssXJzQ
- tjGrKwu3ZV9aFc4vHPNkYP4akXGcv74kBUZ7hCV/dSfL2e82PfrWbCl/7TT7tKG1zI
- vEm8NxEAvriIWLml8Pr/XZ/STWalUyjaZvgu70d+dkVc2S+85YQvEnYIs9jzqDleLu
- 8fZt5SqMJ/8RHxQTjHFJKpklerFqqoxO/24cVXk50nfitnJ4prjXWV+WiLBBRc5v6T
- fJjIcG7M18Eqe+kU5QNSPAaH7jH9MQ6+V63uMsKcS6bKBxPrrwcwGiTfcHhM3iaqCD
- JTd7xYdRuT3yQ==
-Date: Tue, 21 Mar 2023 23:43:53 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20230321224353.h6l2gwv3iuac6vd2@intel.intel>
-References: <20230321170936.478631-1-andi.shyti@linux.intel.com>
- <20230321170936.478631-2-andi.shyti@linux.intel.com>
- <20230321215527.GQ4085390@mdroper-desk1.amr.corp.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4854C10E0DB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 22:47:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1679438861;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pkqj6f0mmvcRZY6WGcLhSYjSkEneOC6n3/87lujTtak=;
+ b=E/FN7OSole7Ev8l7nlXxXfiOv+0BvbSYc0EIFq1PIkn6bKG/NGYVO7AVFL+JDEM9fHaOEF
+ Qt+aI69yOjwrKhArt1HQf/3oVL8wb3E4KrPaS2GNccCm3guPPAuKP7BWE7ifAf41pquv1D
+ ekDDyxBxu+wibL72FNvulsJWoDrsJkU=
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-628-ocom_g0KPMSqjPHD5IfSBg-1; Tue, 21 Mar 2023 18:47:40 -0400
+X-MC-Unique: ocom_g0KPMSqjPHD5IfSBg-1
+Received: by mail-il1-f200.google.com with SMTP id
+ d3-20020a056e02050300b00317999dcfb1so8642451ils.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679438859;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pkqj6f0mmvcRZY6WGcLhSYjSkEneOC6n3/87lujTtak=;
+ b=De01UFq6ne/Wfb5lXNVh+7MJ+AoIPC79eFZQOvUnRw9uJdePJeqund6skRne2nuVlp
+ ModaCbQ9bu2SJaaedyhIuce5uLmll4fhk5ON7hyYCsbu/6PYorbrrgWkeTSi18z3qTKE
+ z50kNiIULLUCMz3FY3ICaX09gAp267WemOvFNj/u7MqUnHTVgC687AxEFoJ3cuVlx1Wp
+ SZ9wPK5POTQStCkZu0dRAQ4qI1iAC1bzw11Y7E7bu7eZOchzqLjjTiN/ZEr/Tsx0wshD
+ iR523xQrCFs955pL9XRa0hNxRFn0SuLtbOm06CBpzMDqoH8rdepom+K/wJCuebXKT8Pi
+ nWGw==
+X-Gm-Message-State: AO0yUKUYqgr2x2HFJ3Nu2yUohoPp7KJrInkNc8EagdAcX1nNf3ZuhldI
+ VcbQl3YlQFf6RpVwRHUWe1aMlx/yzNoQUcTLJDSolc7Pf41V2JsB/LRm1aInFr0rg7eYpktZ9l7
+ /1nCSRXtNn4VnvAiVRoFyCVyMLbw+
+X-Received: by 2002:a6b:db09:0:b0:74c:bc54:def6 with SMTP id
+ t9-20020a6bdb09000000b0074cbc54def6mr3056430ioc.16.1679438859337; 
+ Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
+X-Google-Smtp-Source: AK7set9EbNNXSPjEUSnoMvgIPdEGf1CXd6ABSfzKBINcdwi6xMSz3jsAv4ymlWXyfvMVdfEnqs2RsA==
+X-Received: by 2002:a6b:db09:0:b0:74c:bc54:def6 with SMTP id
+ t9-20020a6bdb09000000b0074cbc54def6mr3056419ioc.16.1679438859071; 
+ Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ y16-20020a027310000000b004061d6abcd1sm4452110jab.162.2023.03.21.15.47.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Mar 2023 15:47:38 -0700 (PDT)
+Date: Tue, 21 Mar 2023 16:47:37 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20230321164737.62b45132.alex.williamson@redhat.com>
+In-Reply-To: <ZBottXxBlOsXmnmX@nvidia.com>
+References: <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20230316182256.6659bbbd.alex.williamson@redhat.com>
+ <BN9PR11MB5276D5A71E43EA4CDD1C960A8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20230317091557.196638a6.alex.williamson@redhat.com>
+ <ZBiUiEC8Xj9sOphr@nvidia.com>
+ <20230320165217.5b1019a4.alex.williamson@redhat.com>
+ <ZBjum1wQ1L2AIfhB@nvidia.com>
+ <20230321143122.632f7e63.alex.williamson@redhat.com>
+ <ZBoYgNq60eDpV9Un@nvidia.com>
+ <20230321150112.1c482380.alex.williamson@redhat.com>
+ <ZBottXxBlOsXmnmX@nvidia.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230321215527.GQ4085390@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: Sanitycheck MMIO access
- early in driver load
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,108 +93,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@kernel.org>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao, 
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+On Tue, 21 Mar 2023 19:20:37 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-> > We occasionally see the PCI device in a non-accessible state at the
-> > point the driver is loaded.  When this happens, all BAR accesses will
-> > read back as 0xFFFFFFFF.  Rather than reading registers and
-> > misinterpreting their (invalid) values, let's specifically check for
-> > 0xFFFFFFFF in a register that cannot have that value to see if the
-> > device is accessible.
+> On Tue, Mar 21, 2023 at 03:01:12PM -0600, Alex Williamson wrote:
+> 
+> > > Though it would be nice if qemu didn't need two implementations so Yi
+> > > I'd rather see a new info in this series as well and qemu can just
+> > > consistently use dev_id and never bdf in iommufd mode.  
 > > 
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/intel_uncore.c | 35 +++++++++++++++++++++++++++++
-> >  1 file changed, 35 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> > index e1e1f34490c8e..0b69081d6d285 100644
-> > --- a/drivers/gpu/drm/i915/intel_uncore.c
-> > +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> > @@ -2602,11 +2602,46 @@ static int uncore_forcewake_init(struct intel_uncore *uncore)
-> >  	return 0;
-> >  }
-> >  
-> > +static int sanity_check_mmio_access(struct intel_uncore *uncore)
-> > +{
-> > +	struct drm_i915_private *i915 = uncore->i915;
-> > +	int ret;
-> > +
-> > +	if (GRAPHICS_VER(i915) < 8)
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * Sanitycheck that MMIO access to the device is working properly.  If
-> > +	 * the CPU is unable to communcate with a PCI device, BAR reads will
-> > +	 * return 0xFFFFFFFF.  Let's make sure the device isn't in this state
-> > +	 * before we start trying to access registers.
-> > +	 *
-> > +	 * We use the primary GT's forcewake register as our guinea pig since
-> > +	 * it's been around since HSW and it's a masked register so the upper
-> > +	 * 16 bits can never read back as 1's if device access is operating
-> > +	 * properly.
-> > +	 *
-> > +	 * If MMIO isn't working, we'll wait up to 2 seconds to see if it
-> > +	 * recovers, then give up.
-> > +	 */
-> > +	ret = intel_wait_for_register_fw(uncore, FORCEWAKE_MT, 0, 0, 2000000);
+> > We also need to consider how libvirt determines if QEMU has the kernel
+> > support it needs to pass file descriptors.  It'd be a lot cleaner if
+> > this aligned with the introduction of vfio cdevs.  
 > 
-> It looks like you lost the check for 0xFFFFFFFF specifically.  In fact
-> with a mask/value of 0, isn't this always going to just always pass
-> immediately?
-
-uh... yes... sorry, I just got confused and lost track of the
-goal of the patch.
-
-Sorry, then please ignore... I don't see then how
-intel_wait_for_register_fw() can be used with a '!='.
-
-Please, ignore this v2.
-
-Thanks and sorry, again,
-Andi
-
-> We don't know what the value of this register will be (there may or may
-> not be some bits set), but we need to make sure that it isn't 0xFFFFFFFF
-> because that means we're not even truly accessing the register, just
-> hitting a PCI BAR read failure.
+> Yes, that would be much better if it was one package.
 > 
+> But this is starting to grow and we have so many threads that need to
+> progress blocked on this cdev enablement :(
 > 
-> Matt
-> 
-> > +	if (ret == -ETIMEDOUT) {
-> > +		drm_err(&i915->drm, "Device is non-operational; MMIO access returns 0xFFFFFFFF!\n");
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  int intel_uncore_init_mmio(struct intel_uncore *uncore)
-> >  {
-> >  	struct drm_i915_private *i915 = uncore->i915;
-> >  	int ret;
-> >  
-> > +	ret = sanity_check_mmio_access(uncore);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	/*
-> >  	 * The boot firmware initializes local memory and assesses its health.
-> >  	 * If memory training fails, the punit will have been instructed to
-> > -- 
-> > 2.39.2
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+> Could we go forward with the cdev main patches and kconfig it to
+> experimental or something while the rest of the parts are completed
+> and tested through qemu? ie move the vfio-pci reset enablment to after
+> the cdev patches?
+
+We need to be able to guarantee that there cannot be any significant
+builds of the kernel with vfio cdev support if our intention is to stage
+it for libvirt.  We don't have a global EXPERIMENTAL config option any
+more.  Adding new code under BROKEN seems wrong.  Fedora ships with
+STAGING enabled.  A sternly worded Kconfig entry is toothless.  What is
+the proposed mechanism to make this not look like a big uncompiled code
+dump?  Thanks,
+
+Alex
+
