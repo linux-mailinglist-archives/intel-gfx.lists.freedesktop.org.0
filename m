@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE8FB6C32F1
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 14:33:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439AC6C32F2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 14:33:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6126D10E795;
-	Tue, 21 Mar 2023 13:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEC710E798;
+	Tue, 21 Mar 2023 13:33:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A4CFE10E790;
- Tue, 21 Mar 2023 13:33:19 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D30C10E797;
+ Tue, 21 Mar 2023 13:33:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 99F05AADE8;
- Tue, 21 Mar 2023 13:33:19 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0A095AADF8;
+ Tue, 21 Mar 2023 13:33:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Tue, 21 Mar 2023 13:33:19 -0000
-Message-ID: <167940559962.18680.253210922571376897@emeril.freedesktop.org>
+Date: Tue, 21 Mar 2023 13:33:22 -0000
+Message-ID: <167940560203.18680.16158006426273657416@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230320211039.1513368-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20230320211039.1513368-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_limit_double_GT_?=
- =?utf-8?q?reset_to_pre-MTL?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_limit_double_GT_rese?=
+ =?utf-8?q?t_to_pre-MTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
