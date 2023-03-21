@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A766B6C346F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 15:38:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE056C3461
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 15:37:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACFF810E790;
-	Tue, 21 Mar 2023 14:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A292E10E0AC;
+	Tue, 21 Mar 2023 14:37:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C901010E229;
- Tue, 21 Mar 2023 14:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679409499; x=1710945499;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1i9juQG1wIe8gITmEKAWeS9272iLCNnj0vEBZaPxs98=;
- b=AckCa5QhR7O/BSZkKVBeGXbkc0cf3UIQyX1/h0NioX76IyC5dRHuPRsD
- RcFeen6PHqHwiPz98iYL+5o/PjaPe/3P16nRLRHs2ZAIZScjK8Jzi7Fey
- 9O5E4fRjdsZLlHb3dy2px6ti55+z/RO6wQyElkloqgJpBIWFyKAhoIK6E
- z+CoVeeL96vd4uIL36tYxo1rR4iGHhv+IHuzQ/Z9apE5xu14SAxGNvxW5
- PAo0MhLZoHw396LP0nqk1FYwEwCn/oppgS2CE+PLwjwIAEYDpiHNAmB7e
- mk4PpTHZAkjpRAs+Rgcf3E9FQQPOqQjQ2K231PKd6xpa1NFD43bysySYi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="403832830"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="403832830"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 07:36:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="674851705"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="674851705"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga007.jf.intel.com with SMTP; 21 Mar 2023 07:36:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Mar 2023 16:36:54 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue, 21 Mar 2023 16:36:43 +0200
-Message-Id: <20230321143643.26676-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230321143643.26676-1-ville.syrjala@linux.intel.com>
-References: <20230321143643.26676-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9AE810E0AC;
+ Tue, 21 Mar 2023 14:36:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D266FAADD6;
+ Tue, 21 Mar 2023 14:36:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8328494700056297207=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC][PATCH v2 3/3] drm/i915: Add SIZE_HINTS property
- for cursors
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Tue, 21 Mar 2023 14:36:59 -0000
+Message-ID: <167940941985.18676.1145657688925751949@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230310094544.3865-1-nirmoy.das@intel.com>
+In-Reply-To: <20230310094544.3865-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Disable_stolen_memory_backed_FB_for_A0_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,168 +40,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>,
- Daniel Stone <daniel@fooishbar.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============8328494700056297207==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Advertize more suitable cursor sizes via the new SIZE_HINTS
-plane property.
+== Series Details ==
 
-Here are some examples on various platforms:
-ivb+:
-            31 SIZE_HINTS:
-                    flags: immutable blob
-                    blobs:
+Series: drm/i915/mtl: Disable stolen memory backed FB for A0 (rev5)
+URL   : https://patchwork.freedesktop.org/series/114925/
+State : success
 
-                    value:
-                            4000080000010001ff6f0200
-                    size_hints blob decoded:
-                            min: 64x8
-                            max: 256x256
-                            bitmap[0]: 0b100110111111111111
-                                    64  128  256
-                               8     *    *    *
-                              16     *    *    *
-                              32     *    *    *
-                              64     *    *    *
-                             128          *    *
-                             256               *
-i945+:
-            31 SIZE_HINTS:
-                    flags: immutable blob
-                    blobs:
+== Summary ==
 
-                    value:
-                            400040000001000111010000
-                    size_hints blob decoded:
-                            min: 64x64
-                            max: 256x256
-                            bitmap[0]: 0b100010001
-                                    64  128  256
-                              64     *
-                             128          *
-                             256               *
-i865:
-            31 SIZE_HINTS:
-                    flags: immutable blob
-                    blobs:
+CI Bug Log - changes from CI_DRM_12884 -> Patchwork_114925v5
+====================================================
 
-                    value:
-                            400001000002ff03ffffffffff0f0000
-                    size_hints blob decoded:
-                            min: 64x1
-                            max: 512x1023
-                            bitmap[0]: 0b11111111111111111111111111111111
-                            bitmap[1]: 0b111111111111
-                                    64  128  256  512
-                               1     *    *    *    *
-                               2     *    *    *    *
-                               4     *    *    *    *
-                               8     *    *    *    *
-                              16     *    *    *    *
-                              32     *    *    *    *
-                              64     *    *    *    *
-                             128     *    *    *    *
-                             256     *    *    *    *
-                             512     *    *    *    *
-                            1023     *    *    *    *
+Summary
+-------
 
-Cc: Simon Ser <contact@emersion.fr>
-Cc: Jonas Ådahl <jadahl@redhat.com>
-Cc: Daniel Stone <daniel@fooishbar.org>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 43 ++++++++++++++++++---
- 1 file changed, 38 insertions(+), 5 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index edeeb5f9f795..449860342aea 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -388,9 +388,9 @@ static u32 i9xx_cursor_ctl(const struct intel_crtc_state *crtc_state,
- 	return cntl;
- }
- 
--static bool i9xx_cursor_size_ok(struct drm_plane *plane,
--				int width, int height,
--				unsigned int rotation)
-+static bool _i9xx_cursor_size_ok(struct drm_plane *plane,
-+				 int width, int height,
-+				 unsigned int rotation)
- {
- 	struct drm_i915_private *i915 = to_i915(plane->dev);
- 
-@@ -424,6 +424,12 @@ static bool i9xx_cursor_size_ok(struct drm_plane *plane,
- 	return true;
- }
- 
-+static bool i9xx_cursor_size_ok(struct drm_plane *plane,
-+				int width, int height)
-+{
-+	return _i9xx_cursor_size_ok(plane, width, height, DRM_MODE_ROTATE_0);
-+}
-+
- static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
- 			     struct intel_plane_state *plane_state)
- {
-@@ -445,8 +451,8 @@ static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
- 	height = drm_rect_height(&plane_state->uapi.dst);
- 
- 	/* Check for which cursor types we support */
--	if (!i9xx_cursor_size_ok(&plane->base, width, height,
--				 plane_state->hw.rotation)) {
-+	if (!_i9xx_cursor_size_ok(&plane->base, width, height,
-+				  plane_state->hw.rotation)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Cursor dimension %dx%d not supported\n",
- 			    width, height);
-@@ -757,6 +763,31 @@ static const struct drm_plane_funcs intel_cursor_plane_funcs = {
- 	.format_mod_supported = intel_cursor_format_mod_supported,
- };
- 
-+static void intel_cursor_add_size_hints_property(struct intel_plane *plane)
-+{
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+	const struct drm_mode_config *config = &i915->drm.mode_config;
-+
-+	if (IS_I845G(i915) || IS_I865G(i915))
-+		drm_plane_add_size_hints_property(&plane->base,
-+						  64, 1,
-+						  config->cursor_width,
-+						  config->cursor_height,
-+						  i845_cursor_size_ok);
-+	else if (HAS_CUR_FBC(i915))
-+		drm_plane_add_size_hints_property(&plane->base,
-+						  64, 8,
-+						  config->cursor_width,
-+						  config->cursor_height,
-+						  i9xx_cursor_size_ok);
-+	else
-+		drm_plane_add_size_hints_property(&plane->base,
-+						  64, 64,
-+						  config->cursor_width,
-+						  config->cursor_height,
-+						  i9xx_cursor_size_ok);
-+}
-+
- struct intel_plane *
- intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe)
-@@ -815,6 +846,8 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 						   DRM_MODE_ROTATE_0 |
- 						   DRM_MODE_ROTATE_180);
- 
-+	intel_cursor_add_size_hints_property(cursor);
-+
- 	zpos = RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
- 	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
- 
--- 
-2.39.2
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/index.html
+
+Participating hosts (35 -> 35)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114925v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@migrate:
+    - bat-adlp-9:         [PASS][1] -> [DMESG-FAIL][2] ([i915#7699])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-adlp-9/igt@i915_selftest@live@migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-adlp-9/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][3] ([i915#6367])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-rpls-1:         [PASS][4] -> [DMESG-FAIL][5] ([i915#6763])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-dg1-6:          NOTRUN -> [SKIP][6] ([i915#7828])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+    - bat-rpls-1:         NOTRUN -> [SKIP][7] ([i915#7828])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-rpls-1:         NOTRUN -> [SKIP][8] ([i915#1845])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-6:          [ABORT][9] ([i915#7883]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-6/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [ABORT][11] ([i915#4983]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+#### Warnings ####
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg1-6:          [SKIP][13] ([i915#3555]) -> [SKIP][14] ([i915#3555] / [i915#4579])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-rkl-11600:       [SKIP][15] ([i915#3555] / [i915#4098]) -> [SKIP][16] ([i915#3555] / [i915#4098] / [i915#4579])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-dg1-5:          [SKIP][17] ([i915#3555]) -> [SKIP][18] ([i915#3555] / [i915#4579])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-tgl-1115g4:      [SKIP][19] ([i915#3555]) -> [SKIP][20] ([i915#3555] / [i915#4579])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-dg1-7:          [SKIP][21] ([i915#3555]) -> [SKIP][22] ([i915#3555] / [i915#4579])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6763]: https://gitlab.freedesktop.org/drm/intel/issues/6763
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7883]: https://gitlab.freedesktop.org/drm/intel/issues/7883
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12884 -> Patchwork_114925v5
+
+  CI-20190529: 20190529
+  CI_DRM_12884: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7208: f327c5d77b6ea6adff1ef6d08f21f232dfe093e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114925v5: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+94f6cc0f4e80 drm/i915/mtl: Disable stolen memory backed FB for A0
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/index.html
+
+--===============8328494700056297207==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: Disable stolen memory backed FB for A0 (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114925/">https://patchwork.freedesktop.org/series/114925/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12884 -&gt; Patchwork_114925v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/index.html</p>
+<h2>Participating hosts (35 -&gt; 35)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114925v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-adlp-9/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-adlp-9/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6763">i915#6763</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+<li>
+<p>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-6/igt@i915_pm_rpm@module-reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7883">i915#7883</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+<li>
+<p>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12884/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114925v5/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12884 -&gt; Patchwork_114925v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12884: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7208: f327c5d77b6ea6adff1ef6d08f21f232dfe093e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114925v5: 1d4054731cfcb1cb9810d309b70535ae0b90ecf0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>94f6cc0f4e80 drm/i915/mtl: Disable stolen memory backed FB for A0</p>
+
+</body>
+</html>
+
+--===============8328494700056297207==--
