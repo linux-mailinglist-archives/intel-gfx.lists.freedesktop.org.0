@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9180C6C2E57
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 10:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E566C2F33
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 11:39:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DEFD10E09F;
-	Tue, 21 Mar 2023 09:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A90610E16D;
+	Tue, 21 Mar 2023 10:39:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D64710E09F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 09:59:38 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2431210E16D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 10:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679392778; x=1710928778;
+ t=1679395182; x=1710931182;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=C3kx+EYXH0bR4lyOf7KfMmn51AFQp+MBKEGHIFF63eU=;
- b=aU3FuMgaMSP6KiZSiH5x9oyjQbV6SYmL8liZldzYcDfujxoGYuxUcLs5
- rKVG/Dghnw3H035LHEFFO8elUBZx51Q1iu9vLR4mwgfxPshEI3l34JUi5
- En3zyayivbtwh++ErsxUiyNeP+uRDP4pY7Gj4mv29Zsu+rbAXTtuVmnF4
- 5j2IJsD2DWcicTCy4Klk1Mvf2CT8GBEQ3zK0y7X4U4GorHLg4OD6wyIf6
- 1X0fCXE8shlAuvhqR4ZdoCDw51fGUSher1vgl5RsNSn0hPYDzI81SD6B/
- pIxIj1ZEFg95bX+qEagpMzyS5QagKVmHHEi/oTotVwCjDXR2ccESbo6Cd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="336404386"
-X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="336404386"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 02:59:37 -0700
+ message-id:mime-version:content-transfer-encoding;
+ bh=QzyY2NgznRiwbqF6Ozmw25m4NkVutGwqNmeJffJ7CWA=;
+ b=m4GQsauEFyoghx7GzhD2NidVKKdVeypBY93BaEx6mlAhCP2fUfLa6ZYi
+ h2Vz/nbQ4MsF3Z9/R9i0283B91k4M/z1tJFCPVIXHaKjZYs4qOCCIXOAZ
+ iz9Tk8bWL73NziaU+0GMzZSeRCAXEORMYXCW3DblFyXXpTSc3gdp5FQeY
+ NBWL0+x6CaeaJmOOehRNNi2uUmjJsezNYW4taqRshQJxcyeUpkLN1/ZFl
+ OGKq1WGJI77axlbF8kPN5UGWsGm9A0qgGVam+HgAf2WBLRxtY0EC1R96s
+ byIFNmbZkdI4WgNJ47bL59B6pdwXwbNcMAYZNYRiK+oSeOcBzX45S/HtM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="319295368"
+X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="319295368"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 03:39:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="711742880"
-X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="711742880"
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="750497274"
+X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="750497274"
 Received: from trybicki-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.63.119])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 02:59:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <ZBiy8icI4foN5Eo7@orsosgc001.jf.intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 03:39:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <dc5ded98-7cb9-23f9-999b-341ee0e03e54@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230317231641.2815418-1-umesh.nerlige.ramappa@intel.com>
- <20230317231641.2815418-2-umesh.nerlige.ramappa@intel.com>
- <87bkknafta.fsf@intel.com> <ZBiy8icI4foN5Eo7@orsosgc001.jf.intel.com>
-Date: Tue, 21 Mar 2023 11:59:33 +0200
-Message-ID: <87sfdy8lx6.fsf@intel.com>
+References: <20230320124429.786985-1-jani.nikula@intel.com>
+ <20230320124429.786985-2-jani.nikula@intel.com>
+ <dc5ded98-7cb9-23f9-999b-341ee0e03e54@intel.com>
+Date: Tue, 21 Mar 2023 12:39:37 +0200
+Message-ID: <87pm928k2e.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v7 01/11] drm/i915/perf: Drop wakeref on GuC
- RC error
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/debugfs: add crtc i915_pipe
+ debugfs file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,122 +63,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Mar 2023, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
-> On Mon, Mar 20, 2023 at 12:16:17PM +0200, Jani Nikula wrote:
->>On Fri, 17 Mar 2023, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
->>> From: Chris Wilson <chris.p.wilson@linux.intel.com>
->>>
->>> If we fail to adjust the GuC run-control on opening the perf stream,
->>> make sure we unwind the wakeref just taken.
->>>
->>> v2: Retain old goto label names (Ashutosh)
->>>
->>> Fixes: 01e742746785 ("drm/i915/guc: Support OA when Wa_16011777198 is enabled")
->>> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
->>> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/i915_perf.c       | 14 +++++++++-----
->>>  drivers/gpu/drm/i915/i915_perf_types.h |  6 ++++++
->>>  2 files changed, 15 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->>> index 824a34ec0b83..283a4a3c6862 100644
->>> --- a/drivers/gpu/drm/i915/i915_perf.c
->>> +++ b/drivers/gpu/drm/i915/i915_perf.c
->>> @@ -1592,9 +1592,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
->>>  	/*
->>>  	 * Wa_16011777198:dg2: Unset the override of GUCRC mode to enable rc6.
->>>  	 */
->>> -	if (intel_uc_uses_guc_rc(&gt->uc) &&
->>> -	    (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
->>> -	     IS_DG2_GRAPHICS_STEP(gt->i915, G11, STEP_A0, STEP_B0)))
->>> +	if (stream->override_gucrc)
->>>  		drm_WARN_ON(&gt->i915->drm,
->>>  			    intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc));
->>>
->>> @@ -3305,8 +3303,10 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
->>>  		if (ret) {
->>>  			drm_dbg(&stream->perf->i915->drm,
->>>  				"Unable to override gucrc mode\n");
->>> -			goto err_config;
->>> +			goto err_gucrc;
->>>  		}
->>> +
->>> +		stream->override_gucrc = true;
->>>  	}
->>>
->>>  	ret = alloc_oa_buffer(stream);
->>> @@ -3345,11 +3345,15 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
->>>  	free_oa_buffer(stream);
->>>
->>>  err_oa_buf_alloc:
->>> -	free_oa_configs(stream);
->>> +	if (stream->override_gucrc)
->>> +		intel_guc_slpc_unset_gucrc_mode(&gt->uc.guc.slpc);
->>>
->>> +err_gucrc:
->>>  	intel_uncore_forcewake_put(stream->uncore, FORCEWAKE_ALL);
->>>  	intel_engine_pm_put(stream->engine);
->>>
->>> +	free_oa_configs(stream);
->>> +
->>>  err_config:
->>>  	free_noa_wait(stream);
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
->>> index ca150b7af3f2..e36f046fe2b6 100644
->>> --- a/drivers/gpu/drm/i915/i915_perf_types.h
->>> +++ b/drivers/gpu/drm/i915/i915_perf_types.h
->>> @@ -316,6 +316,12 @@ struct i915_perf_stream {
->>>  	 * buffer should be checked for available data.
->>>  	 */
->>>  	u64 poll_oa_period;
->>> +
->>> +	/**
->>> +	 * @override_gucrc: GuC RC has been overridden for the perf stream,
->>> +	 * and we need to restore the default configuration on release.
->>> +	 */
->>> +	bool override_gucrc:1;
->>
->>What do you gain by making this a bitfield? It's already a big struct,
->>and there already are other bool flags.
+On Mon, 20 Mar 2023, "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com> w=
+rote:
+> On Mon-20-03-2023 06:14 pm, Jani Nikula wrote:
+>> The pipe may differ from crtc index if pipes are fused off. For testing
+>> purposes, IGT needs to know the pipe.
+>>=20
+>> There's already a I915_GET_PIPE_FROM_CRTC_ID IOCTL for this. However,
+>> the upcoming Xe driver won't have that IOCTL, and going forward, we'll
+>> want a unified interface for testing i915 and Xe, as they share the
+>> display code. Thus add the debugfs for i915 display.
+>>=20
+>> v2: User letters for pipe names (Ville)
+>>=20
+>> Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+>> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> Noticed it now. I guess this is not portable as it's compiler dependent.  
-> I would just remove the bitfield. I do see a few occurrences of bitfield 
-> bools in i915 though, so any specific guidelines on when to use bool vs 
-> bitfields?
+> With IGT [1], this patch is
+>
+> Tested-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 
-Use it when you really need the space saving, but don't mind the added
-cost for accessing the bit. And then you do need to pay attention to how
-the struct members are added to not do silly padding.
-
-The VBT code uses bitfields for parsing the binary data, it's
-implementation dependent behaviour but it works for us. Need to be
-mindful about it.
+Thanks, pushed to drm-intel-next. It'll take a moment for that to be
+part of the baseline for testing. Please re-run the tests for [1] after
+that.
 
 BR,
 Jani.
 
-
 >
-> Thanks,
-> Umesh
->>
->>BR,
->>Jani.
->>
->>
->>
->>>  };
->>>
->>>  /**
->>
->>-- 
->>Jani Nikula, Intel Open Source Graphics Center
+> [1]:=20
+> https://patchwork.freedesktop.org/patch/msgid/20230320131342.2980032-1-bh=
+anuprakash.modem@intel.com
+>
+> - Bhanu
+>
+>> ---
+>>   .../gpu/drm/i915/display/intel_display_debugfs.c    | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/driv=
+ers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index 3c76e718b951..cc5026272558 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -1383,6 +1383,17 @@ static int i915_current_bpc_show(struct seq_file =
+*m, void *data)
+>>   }
+>>   DEFINE_SHOW_ATTRIBUTE(i915_current_bpc);
+>>=20=20=20
+>> +/* Pipe may differ from crtc index if pipes are fused off */
+>> +static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
+>> +{
+>> +	struct intel_crtc *crtc =3D m->private;
+>> +
+>> +	seq_printf(m, "%c\n", pipe_name(crtc->pipe));
+>> +
+>> +	return 0;
+>> +}
+>> +DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
+>> +
+>>   /**
+>>    * intel_connector_debugfs_add - add i915 specific connector debugfs f=
+iles
+>>    * @connector: pointer to a registered drm_connector
+>> @@ -1453,4 +1464,6 @@ void intel_crtc_debugfs_add(struct intel_crtc *crt=
+c)
+>>=20=20=20
+>>   	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
+>>   			    &i915_current_bpc_fops);
+>> +	debugfs_create_file("i915_pipe", 0444, root, crtc,
+>> +			    &intel_crtc_pipe_fops);
+>>   }
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
