@@ -2,58 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581326C3EB1
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 00:40:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97AE6C3EBD
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 00:43:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C71210E0A7;
-	Tue, 21 Mar 2023 23:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6556C10E130;
+	Tue, 21 Mar 2023 23:43:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8092F10E0A7
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 23:40:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C61CA10E130
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 23:43:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679442037; x=1710978037;
- h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=pGF/Owt8sHEYuKKC2m0YqEqvQ9bwrNgtMef7To+3Wc0=;
- b=QKLcpWs4uBugkJmMw9jV3u6qqnSH0hU00RcLnU2Y4GTrYWW9rWqW/dL+
- 49sV9s8+PZcmmdn3w0wjeAkBA51WDqt+bWDGNdKfxw2HdkaAznlC+Hfi8
- aYr/ZelDuLXG3NrLjqLyayDkGnKLR7QB4BBZk3OlS2Gp84UbC6rsa/RbZ
- veWRlpK0uHag30vBKQXt9Sfe7rIiSVqjQXd2iOvheB3ZqvYlcGKKJgQMl
- wC+4AJIuO9FEzmJFDUBTXzQiyo5vhWghdKF/O5chJgBbTui1UsaY5PA+C
- QCDQVn+FExdDRrcLLeZDB9vbZQOWZ7GZ/kBsKSUfSUjXGZhPHt+GrgqzK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="341439111"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="341439111"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 16:40:36 -0700
+ t=1679442224; x=1710978224;
+ h=date:from:to:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=TN69HiF43gnbsZIKbMwELE1lV4yY1pzUzRFaqFuR1CI=;
+ b=At+U8W/t3CDD4lFKGjuO5JyAIzfWk7peilvXeSeWMQxWgc/lZwJZoGIl
+ txqFk9O1OCh7HytacyNuyQtvdylu3N1W1t4LxdsmSzz1dvoDg2LV2ufAF
+ r3xqxG2po5N5fqFJACCyP3RitG+H8XMUvPteqgT/Ad1wbVEYya/yiT2H+
+ gn95CQDRzhCzB8f+x/bpqZRXqpnWiVqpOoxFMwh1tRaM/7LsTONcPQcDZ
+ tVNnoamc2eOU2cCer9OjM0HNR8qT1OvsnHhIZJYN5KsMyotL98TAXmc8Y
+ m/iuvtCLAmcW0hYv9oVRQKgvHFGWQ4kC4vvP2VorMfIjXhL8MYIr3YAw5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="327464356"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="327464356"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 16:43:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="927622669"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="927622669"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga006.fm.intel.com with ESMTP; 21 Mar 2023 16:40:35 -0700
-Received: from ejgrimme-mobl1.amr.corp.intel.com (unknown [10.251.1.45])
- by linux.intel.com (Postfix) with ESMTP id 98D25580AA4;
- Tue, 21 Mar 2023 16:40:35 -0700 (PDT)
-Message-ID: <4210e5ceccb8206da32e855915bcd4a9c6235fe2.camel@linux.intel.com>
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Date: Tue, 21 Mar 2023 16:40:35 -0700
-In-Reply-To: <ZBmlPIU4FIBU7HU1@intel.com>
-References: <20230120031522.2304439-1-david.e.box@linux.intel.com>
- <20230120031522.2304439-5-david.e.box@linux.intel.com>
- <ZBjko/ifunIwsK2v@intel.com>
- <8675a80b311443d3c3ed99e09832bd07355bfcc2.camel@linux.intel.com>
- <ZBmlPIU4FIBU7HU1@intel.com>
-Organization: David E. Box
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu1 
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="792311966"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="792311966"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 16:43:42 -0700
+Date: Wed, 22 Mar 2023 01:43:39 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <ZBpBKwzKxXMzb0dk@ideak-desk.fi.intel.com>
+References: <20230316131724.359612-1-imre.deak@intel.com>
+ <167943826111.18680.12676154866981282039@emeril.freedesktop.org>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH V10 4/4] PCI: vmd: Add quirk to configure
- PCIe ASPM and LTR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <167943826111.18680.12676154866981282039@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tc=3A_Fix_a_few_TypeC_/_MST_issues_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,171 +60,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: david.e.box@linux.intel.com
-Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
- robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
- jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
- michael.a.bottini@intel.com
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2023-03-21 at 14:38 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Mon, Mar 20, 2023 at 07:24:16PM -0700, David E. Box wrote:
-> > Hi,
-> >=20
-> > On Tue, 2023-03-21 at 00:56 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > On Thu, Jan 19, 2023 at 07:15:22PM -0800, David E. Box wrote:
-> > > > +/*
-> > > > + * Enable ASPM and LTR settings on devices that aren't configured =
-by
-> > > > BIOS.
-> > > > + */
-> > > > +static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdat=
-a)
-> > > > +{
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0unsigned long features =
-=3D *(unsigned long *)userdata;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 ltr =3D VMD_BIOS_PM_=
-QUIRK_LTR;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 ltr_reg;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int pos;
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!(features & VMD_FEA=
-T_BIOS_PM_QUIRK))
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pd=
-ev, PCIE_LINK_STATE_ALL);
-> >=20
-> > We call pci_enable_link_state from a callback that's run during
-> > pci_walk_bus()
-> > which I see already acquires the semaphore. We've had this patch for we=
-ll
-> > over a
-> > year and I haven't seen this issue before. Is there a particular config
-> > needed
-> > to reproduce it?
->=20
-> Not sure what would affect it, beyond the normal PROVE_LOCKING=3Dy.
+On Tue, Mar 21, 2023 at 10:37:41PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915/tc: Fix a few TypeC / MST issues (rev5)
+> URL   : https://patchwork.freedesktop.org/series/115270/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_12890 -> Patchwork_115270v5
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_115270v5 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_115270v5, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html
+> 
+> Participating hosts (36 -> 36)
+> ------------------------------
+> 
+>   Additional (1): bat-atsm-1 
+>   Missing    (1): fi-snb-2520m 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_115270v5:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@gem_exec_suspend@basic-s0@smem:
+>     - bat-rpls-2:         [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
 
-Thanks. Did not have this set. I reproduced the issue and have sent a fix.
+Unrelated problem: there are no TypeC PHYs on RPL-S and there is no
+display connected to the above host. Looks like some xHCI
+suspend/resume issue, which also happened earlier in:
 
-David
+https://intel-gfx-ci.01.org/tree/drm-tip/IGT_7193/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
 
->=20
-> This is the .config our CI uses:
-> https://gitlab.freedesktop.org/gfx-ci/i915-infra/-/blob/master/kconfig/de=
-bug
->=20
-> >=20
-> > As far as a solution I think we can copy what __pci_disable_link_state(=
-)
-> > does
-> > and add a bool argument so that we only do down/up on the semaphore whe=
-n set
-> > to
-> > true. Since we know we will in be the lock during the bus walk we can s=
-et it
-> > to
-> > false.
-> >=20
-> > David
-> >=20
-> > >=20
-> > > Hi,
-> > >=20
-> > > This is tripping lockdep on one our CI ADL machines.
-> > >=20
-> > > https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12814/bat-adlp-6/boot=
-0.txt
-> > >=20
-> > > <4>[=C2=A0=C2=A0 13.815380] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-> > > <4>[=C2=A0=C2=A0 13.815382] WARNING: possible recursive locking detec=
-ted
-> > > <4>[=C2=A0=C2=A0 13.815384] 6.3.0-rc1-CI_DRM_12814-g4753bbc2a817+ #1 =
-Not tainted
-> > > <4>[=C2=A0=C2=A0 13.815386] -----------------------------------------=
----
-> > > <4>[=C2=A0=C2=A0 13.815387] swapper/0/1 is trying to acquire lock:
-> > > <4>[=C2=A0=C2=A0 13.815389] ffffffff827ab0b0 (pci_bus_sem){++++}-{3:3=
-}, at:
-> > > pci_enable_link_state+0x69/0x1d0
-> > > <4>[=C2=A0=C2=A0 13.815396]=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 but task is already holding lock:
-> > > <4>[=C2=A0=C2=A0 13.815398] ffffffff827ab0b0 (pci_bus_sem){++++}-{3:3=
-}, at:
-> > > pci_walk_bus+0x24/0x90
-> > > <4>[=C2=A0=C2=A0 13.815403]=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 other info that might help us debug this:
-> > > <4>[=C2=A0=C2=A0 13.815404]=C2=A0 Possible unsafe locking scenario:
-> > >=20
-> > > <4>[=C2=A0=C2=A0 13.815406]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- CPU0
-> > > <4>[=C2=A0=C2=A0 13.815407]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- ----
-> > > <4>[=C2=A0=C2=A0 13.815408]=C2=A0=C2=A0 lock(pci_bus_sem);
-> > > <4>[=C2=A0=C2=A0 13.815410]=C2=A0=C2=A0 lock(pci_bus_sem);
-> > > <4>[=C2=A0=C2=A0 13.815411]=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *** DEADLOCK ***
-> > >=20
-> > > <4>[=C2=A0=C2=A0 13.815413]=C2=A0 May be due to missing lock nesting =
-notation
-> > >=20
-> > > <4>[=C2=A0=C2=A0 13.815414] 2 locks held by swapper/0/1:
-> > > <4>[=C2=A0=C2=A0 13.815416]=C2=A0 #0: ffff8881029511b8 (&dev->mutex){=
-....}-{3:3}, at:
-> > > __driver_attach+0xab/0x180
-> > > <4>[=C2=A0=C2=A0 13.815422]=C2=A0 #1: ffffffff827ab0b0 (pci_bus_sem){=
-++++}-{3:3}, at:
-> > > pci_walk_bus+0x24/0x90
-> > > <4>[=C2=A0=C2=A0 13.815426]=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stack backtrace:
-> > > <4>[=C2=A0=C2=A0 13.815428] CPU: 0 PID: 1 Comm: swapper/0 Not tainted=
- 6.3.0-rc1-
-> > > CI_DRM_12814-g4753bbc2a817+ #1
-> > > <4>[=C2=A0=C2=A0 13.815431] Hardware name: Intel Corporation Alder La=
-ke Client
-> > > Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.3135.A00.2203251419
-> > > 03/25/2022
-> > > <4>[=C2=A0=C2=A0 13.815434] Call Trace:
-> > > <4>[=C2=A0=C2=A0 13.815436]=C2=A0 <TASK>
-> > > <4>[=C2=A0=C2=A0 13.815437]=C2=A0 dump_stack_lvl+0x64/0xb0
-> > > <4>[=C2=A0=C2=A0 13.815443]=C2=A0 __lock_acquire+0x9b5/0x2550
-> > > <4>[=C2=A0=C2=A0 13.815461]=C2=A0 lock_acquire+0xd7/0x330
-> > > <4>[=C2=A0=C2=A0 13.815463]=C2=A0 ? pci_enable_link_state+0x69/0x1d0
-> > > <4>[=C2=A0=C2=A0 13.815466]=C2=A0 down_read+0x3d/0x180
-> > > <4>[=C2=A0=C2=A0 13.815480]=C2=A0 ? pci_enable_link_state+0x69/0x1d0
-> > > <4>[=C2=A0=C2=A0 13.815482]=C2=A0 pci_enable_link_state+0x69/0x1d0
-> > > <4>[=C2=A0=C2=A0 13.815485]=C2=A0 ? __pfx_vmd_pm_enable_quirk+0x10/0x=
-10
-> > > <4>[=C2=A0=C2=A0 13.815488]=C2=A0 vmd_pm_enable_quirk+0x49/0xb0
-> > > <4>[=C2=A0=C2=A0 13.815490]=C2=A0 pci_walk_bus+0x6d/0x90
-> > > <4>[=C2=A0=C2=A0 13.815492]=C2=A0 vmd_probe+0x75f/0x9d0
-> > > <4>[=C2=A0=C2=A0 13.815495]=C2=A0 pci_device_probe+0x95/0x120
-> > > <4>[=C2=A0=C2=A0 13.815498]=C2=A0 really_probe+0x164/0x3c0
-> > > <4>[=C2=A0=C2=A0 13.815500]=C2=A0 ? __pfx___driver_attach+0x10/0x10
-> > > <4>[=C2=A0=C2=A0 13.815503]=C2=A0 __driver_probe_device+0x73/0x170
-> > > <4>[=C2=A0=C2=A0 13.815506]=C2=A0 driver_probe_device+0x19/0xa0
-> > > <4>[=C2=A0=C2=A0 13.815508]=C2=A0 __driver_attach+0xb6/0x180
-> > > <4>[=C2=A0=C2=A0 13.815511]=C2=A0 ? __pfx___driver_attach+0x10/0x10
-> > > <4>[=C2=A0=C2=A0 13.815513]=C2=A0 bus_for_each_dev+0x77/0xd0
-> > > <4>[=C2=A0=C2=A0 13.815516]=C2=A0 bus_add_driver+0x114/0x210
-> > > <4>[=C2=A0=C2=A0 13.815518]=C2=A0 driver_register+0x5b/0x110
-> > > <4>[=C2=A0=C2=A0 13.815520]=C2=A0 ? __pfx_vmd_drv_init+0x10/0x10
-> > > <4>[=C2=A0=C2=A0 13.815523]=C2=A0 do_one_initcall+0x57/0x330
-> > > <4>[=C2=A0=C2=A0 13.815527]=C2=A0 kernel_init_freeable+0x181/0x3a0
-> > > <4>[=C2=A0=C2=A0 13.815529]=C2=A0 ? __pfx_kernel_init+0x10/0x10
-> > > <4>[=C2=A0=C2=A0 13.815532]=C2=A0 kernel_init+0x15/0x120
-> > > <4>[=C2=A0=C2=A0 13.815534]=C2=A0 ret_from_fork+0x29/0x50
-> > > <4>[=C2=A0=C2=A0 13.815537]=C2=A0 </TASK>
-> > >=20
->=20
+and starts with:
+<6> [368.247539] pcieport 0000:00:1d.0: pciehp: Slot(8): Card not present
+<3> [368.251918] pci 0000:02:03.0: Unable to change power state from D3cold to D0, device inaccessible
+<6> [368.252118] xhci_hcd 0000:38:00.0: remove, state 4
+<6> [368.252129] usb usb3: USB disconnect, device number 1
+<6> [368.252792] i915 0000:00:02.0: [drm] GT0: GuC firmware i915/tgl_guc_70.bin version 70.5.1
+<6> [368.252796] i915 0000:00:02.0: [drm] GT0: HuC firmware i915/tgl_huc.bin version 7.9.3
+<6> [368.253381] xhci_hcd 0000:38:00.0: USB bus 3 deregistered
+<6> [368.253395] xhci_hcd 0000:38:00.0: remove, state 4
+<6> [368.253400] usb usb1: USB disconnect, device number 1
+<4> [368.254914] xhci_hcd 0000:38:00.0: Host halt failed, -19
+<4> [368.254934] xhci_hcd 0000:38:00.0: Host not accessible, reset failed.
+<7> [368.255694] i915 0000:00:02.0: [drm:guc_enable_communication [i915]] GT0: GUC: communication enabled
+<6> [368.255808] xhci_hcd 0000:38:00.0: USB bus 1 deregistered
+<4> [368.255822] ------------[ cut here ]------------
+<4> [368.255823] xhci_hcd 0000:38:00.0: disabling already-disabled device
+<4> [368.255832] WARNING: CPU: 0 PID: 149 at drivers/pci/pci.c:2241 pci_disable_device+0x8f/0xb0
 
+I see the above 'Host halt failed' error on this machine in all/most CI
+runs.
+
+>   * igt@i915_pm_rps@basic-api:
+>     - bat-dg1-6:          [PASS][3] -> [FAIL][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+
+Unrelated problem, no TC PHYs or displays connected on the above card:
+
+Decrease max to midpoint...
+(i915_pm_rps:5287) DEBUG: gt freq (MHz):  act=0  cur=983  min=300  max=975  RP0=1650  RP1=600  RPn=300  boost=1650
+(i915_pm_rps:5287) CRITICAL: Test assertion failure function check_freq_constraints, file ../../../usr/src/igt-gpu-tools/tests/i915/i915_pm_rps.c:162:
+(i915_pm_rps:5287) CRITICAL: Failed assertion: freqs[CUR] <= freqs[MAX]
+(i915_pm_rps:5287) CRITICAL: Last errno: 22, Invalid argument
+(i915_pm_rps:5287) CRITICAL: error: 983 > 975
+
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_115270v5 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@fbdev@eof:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#2582]) +4 similar issues
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@fbdev@eof.html
+> 
+>   * igt@gem_mmap@basic:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][6] ([i915#4083])
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_mmap@basic.html
+> 
+>   * igt@gem_tiled_fence_blits@basic:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][7] ([i915#4077]) +2 similar issues
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+> 
+>   * igt@gem_tiled_pread_basic:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#4079]) +1 similar issue
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@gem_tiled_pread_basic.html
+> 
+>   * igt@i915_selftest@live@migrate:
+>     - bat-dg2-11:         [PASS][9] -> [DMESG-WARN][10] ([i915#7699])
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-dg2-11/igt@i915_selftest@live@migrate.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-dg2-11/igt@i915_selftest@live@migrate.html
+> 
+>   * igt@i915_suspend@basic-s3-without-i915:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][11] ([i915#6645])
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
+> 
+>   * igt@kms_addfb_basic@size-max:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][12] ([i915#6077]) +36 similar issues
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_addfb_basic@size-max.html
+> 
+>   * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][13] ([i915#6078]) +19 similar issues
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+> 
+>   * igt@kms_flip@basic-plain-flip:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][14] ([i915#6166]) +3 similar issues
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_flip@basic-plain-flip.html
+> 
+>   * igt@kms_force_connector_basic@prune-stale-modes:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][15] ([i915#6093]) +3 similar issues
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
+> 
+>   * igt@kms_pipe_crc_basic@hang-read-crc:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][16] ([i915#1836]) +6 similar issues
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_pipe_crc_basic@hang-read-crc.html
+> 
+>   * igt@kms_prop_blob@basic:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][17] ([i915#7357])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_prop_blob@basic.html
+> 
+>   * igt@kms_psr@sprite_plane_onoff:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][18] ([i915#1072]) +3 similar issues
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_psr@sprite_plane_onoff.html
+> 
+>   * igt@kms_setmode@basic-clone-single-crtc:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][19] ([i915#6094])
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
+> 
+>   * igt@prime_vgem@basic-fence-flip:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][20] ([fdo#109295] / [i915#6078])
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html
+> 
+>   * igt@prime_vgem@basic-fence-mmap:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][21] ([fdo#109295] / [i915#4077]) +1 similar issue
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
+> 
+>   * igt@prime_vgem@basic-write:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][22] ([fdo#109295]) +3 similar issues
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-atsm-1/igt@prime_vgem@basic-write.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@i915_selftest@live@slpc:
+>     - bat-rpls-2:         [DMESG-FAIL][23] ([i915#6367] / [i915#7913]) -> [DMESG-FAIL][24] ([i915#6997] / [i915#7913])
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12890/bat-rpls-2/igt@i915_selftest@live@slpc.html
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/bat-rpls-2/igt@i915_selftest@live@slpc.html
+> 
+>   
+>   [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+>   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+>   [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+>   [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+>   [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+>   [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+>   [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+>   [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+>   [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+>   [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+>   [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+>   [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+>   [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+>   [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+>   [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+>   [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+>   [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+>   [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_12890 -> Patchwork_115270v5
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_12890: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_7210: 5f7116708590b55864456acd993ecdb02374a06f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_115270v5: d4834b54c9207f50e07560f1be732a626a1f4bca @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> ### Linux commits
+> 
+> 69b197a11e90 drm/i915/tc: Check the PLL type used by an enabled TC port
+> f08c2734efbd drm/i915/tc: Factor out a function querying active links on a TC port
+> ce43f166e4c8 drm/i915: Add encoder hook to get the PLL type used by TC ports
+> 2004793ac26f drm/i915/tc: Assume a TC port is legacy if VBT says the port has HDMI
+> 9e9d2fd16a78 drm/i915/tc: Make the TC mode readout consistent in all PHY states
+> 515a64b25cbc drm/i915/tc: Fix initial TC mode on disabled legacy ports
+> eca58eb98289 drm/i915/tc: Fix TC mode for a legacy port if the PHY is not ready
+> 92a4660856f7 drm/i915/tc: Fix target TC mode for a disconnected legacy port
+> 731d038c38d4 drm/i915/tc: Factor out helpers converting HPD mask to TC mode
+> 8854cbcfe768 drm/i915/tc: Wait for IOM/FW PHY initialization of legacy TC ports
+> 5a6cf2c99b77 drm/i915/tc: Fix system resume MST mode restore for DP-alt sinks
+> be709c10c911 drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state
+> 19e8be5df491 drm/i915/tc: Fix TC port link ref init for DP MST during HW readout
+> 63821e5a3efd drm/i915/tc: Abort DP AUX transfer on a disconnected TC port
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115270v5/index.html
