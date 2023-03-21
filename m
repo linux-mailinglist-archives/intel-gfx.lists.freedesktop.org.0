@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69D76C36F3
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 17:29:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7A46C370E
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 17:38:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDD810E7E9;
-	Tue, 21 Mar 2023 16:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A70610E26B;
+	Tue, 21 Mar 2023 16:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3CE10E7DD
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 16:29:53 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C554B10E26B;
+ Tue, 21 Mar 2023 16:38:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679416193; x=1710952193;
+ t=1679416718; x=1710952718;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Mbx4AKJZ+hI7tKcfKSLci79iv3Wq22mFiHY7Cf7KiDM=;
- b=QZ+5AcjcozvRAkdjqZGavHoMW5z8edc2/UnzS/u6n6i2u/4lindaggrA
- jfb1nMQsSMPoG30jkOhZdcvQdHFf1/MaYq6OEy2zfjBef4+/frV1dAAqW
- oq9I7biz5PzljVDfWIWT/EmNUL1hsJ3zzWWoSJG3jnRUWzahNO4xuohmj
- EaGohcJzNZBXvV5sTYm3KeK5lodd+kxZVwCQZMMi7ZNDGpELYxoIJAUKh
- xc6EEgcF6RoJwYeoGjf3++UcyrlHEKaQrQkLjmFy2wA3HyIi2+WmvFSOT
- H7Pez9ATNCul4KIK2B2eBYSYPTzkaScT/Lz9gUa8lkEAqenytnXmKX1vM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="322837062"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="322837062"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 09:29:52 -0700
+ mime-version:in-reply-to;
+ bh=Wnmv9VkG5Xwa1hZGVPIaSIYEkK2sSR9fPa0uDXjlpNU=;
+ b=Xk2sLLfruqVNJQ1bPczQ5Oc7jbbyfS19tRW6uAGfph9u3feQSBK6ywa5
+ vJ6GOKzQp52NedWPKQ+duFw0cKvpaWYo8/ZrfbUY394UJjBfaJ/+r1iuc
+ /L1W4RT1/haZ0RUwC0VphouKM//ZKKJqyuKJx39x26WM1O9SDw02Xonxc
+ CLKv1VioP2T7EUMOk2rOjwo9CUctTf1Ti5hRjdzXG05oFZ3QpRZ9332td
+ v1qfRAZjOByOjdxtuC03DrL1m7L+ltLyTppCqn9Q0YcG3T9zUx1nq8/AK
+ C1JnffGUtzeFl6Bldk9fnLtt1BCllNSuzMziPTSfHLlGwCE6FhRzH37Md Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="366729126"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="366729126"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:38:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="714057570"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="714057570"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 21 Mar 2023 09:29:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Mar 2023 18:29:49 +0200
-Date: Tue, 21 Mar 2023 18:29:49 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <ZBnbfdZG1h2Kle/h@intel.com>
-References: <20230320165945.3564891-1-jouni.hogander@intel.com>
- <20230320165945.3564891-4-jouni.hogander@intel.com>
- <ZBnQmxYHDiii0FGn@intel.com>
- <3949ac3ef5e631323813faac33053d144d02b810.camel@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="770721949"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="770721949"
+Received: from rbirkl-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.222.70])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:38:36 -0700
+Date: Tue, 21 Mar 2023 17:38:13 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZBnddVWywj4pc9ZI@ashyti-mobl2.lan>
+References: <20230320202326.296498-1-andi.shyti@linux.intel.com>
+ <20230320202326.296498-2-andi.shyti@linux.intel.com>
+ <877cva8hdj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3949ac3ef5e631323813faac33053d144d02b810.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 3/4] drm/i915/psr: Check that vblank is
- long enough for psr2
+In-Reply-To: <877cva8hdj.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Sanitycheck MMIO access early
+ in driver load
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +61,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 21, 2023 at 04:14:57PM +0000, Hogander, Jouni wrote:
-> On Tue, 2023-03-21 at 17:43 +0200, Ville Syrjälä wrote:
-> > On Mon, Mar 20, 2023 at 06:59:44PM +0200, Jouni Högander wrote:
-> > > Ensure vblank >= psr2 vblank
-> > > where
-> > > Psr2 vblank = PSR2_CTL Block Count Number maximum line count.
-> > > 
-> > > Bspec: 71580, 49274
-> > > 
-> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > index 1050d777a108..1b40d9c73c18 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > @@ -958,6 +958,14 @@ static bool intel_psr2_config_valid(struct
-> > > intel_dp *intel_dp,
-> > >                 return false;
-> > >         }
-> > >  
-> > > +       /* Vblank >= PSR2_CTL Block Count Number maximum line count
-> > > */
-> > > +       if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
-> > > +           crtc_state->hw.adjusted_mode.crtc_vblank_start < 12) {
-> > 
-> > Why 12? Shouldn't it be based on the wake_lines/BLOCK_COUNT_NUM
-> > stuff?
+Hi Jani,
+
+Thanks for looking into this,
+
+[...]
+
+> > +#define COND (__raw_uncore_read32(uncore, FORCEWAKE_MT) != ~0)
+> > +	if (wait_for(COND, 2000) == -ETIMEDOUT) {
 > 
-> I took this directly from Bspec. I think your suggestions make sense. I
-> will experiment them and come back on this.
-> 
-> > 
-> > 
-> > If so I would suggest we try someting like this:
-> > 
-> > psr2_block_count_lines()
-> > {
-> >         return ...wake_lines... ? 12 : 8;
+> I guess this somewhat reimplements intel_wait_for_register_fw()?
 
-I guess we could even make that 'roundup(max(wake_lines), 4)'
-to be more future proof.
+Thanks!
 
-Hmm, except that might not be all that future proof if the
-hardware didn't support all block size between the min/max.
-Eg. if it only supported 2,3,5 blocks.
+Andi
 
-So I guess we might want this thing to return only actually
-supported numbers.
-
-> > }
-> > 
-> > psr2_block_count()
-> > {
-> >         return psr2_block_count_lines() / 4;
-> > }
-> > 
-> > if (vblank_lengh < psr2_block_count_lines())
-> >         fail;
-> > 
-> > if (psr_block_count() > 2)
-> >         val |= BLOCK_COUNT_NUM_3;
-> > else
-> >         val |= BLOCK_COUNT_NUM_2;
-> > 
-> > > +               drm_dbg_kms(&dev_priv->drm,
-> > > +                           "PSR2 not enabled, too short vblank
-> > > time\n");
-> > > +               return false;
-> > > +       }
-> > > +
-> > >         if (HAS_PSR2_SEL_FETCH(dev_priv)) {
-> > >                 if (!intel_psr2_sel_fetch_config_valid(intel_dp,
-> > > crtc_state) &&
-> > >                     !HAS_PSR_HW_TRACKING(dev_priv)) {
-> > > -- 
-> > > 2.34.1
-> > 
-> 
-
--- 
-Ville Syrjälä
-Intel
+> > +		drm_err(&i915->drm, "Device is non-operational; MMIO access returns 0xFFFFFFFF!\n");
+> > +		return -EIO;
+> > +	}
