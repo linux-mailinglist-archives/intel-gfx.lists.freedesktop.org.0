@@ -2,85 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2075B6C3DD5
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Mar 2023 23:47:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D53356C3E68
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 00:21:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2767E10E0DB;
-	Tue, 21 Mar 2023 22:47:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A51BB10E0A7;
+	Tue, 21 Mar 2023 23:20:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4854C10E0DB
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 22:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1679438861;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pkqj6f0mmvcRZY6WGcLhSYjSkEneOC6n3/87lujTtak=;
- b=E/FN7OSole7Ev8l7nlXxXfiOv+0BvbSYc0EIFq1PIkn6bKG/NGYVO7AVFL+JDEM9fHaOEF
- Qt+aI69yOjwrKhArt1HQf/3oVL8wb3E4KrPaS2GNccCm3guPPAuKP7BWE7ifAf41pquv1D
- ekDDyxBxu+wibL72FNvulsJWoDrsJkU=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-628-ocom_g0KPMSqjPHD5IfSBg-1; Tue, 21 Mar 2023 18:47:40 -0400
-X-MC-Unique: ocom_g0KPMSqjPHD5IfSBg-1
-Received: by mail-il1-f200.google.com with SMTP id
- d3-20020a056e02050300b00317999dcfb1so8642451ils.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679438859;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=pkqj6f0mmvcRZY6WGcLhSYjSkEneOC6n3/87lujTtak=;
- b=De01UFq6ne/Wfb5lXNVh+7MJ+AoIPC79eFZQOvUnRw9uJdePJeqund6skRne2nuVlp
- ModaCbQ9bu2SJaaedyhIuce5uLmll4fhk5ON7hyYCsbu/6PYorbrrgWkeTSi18z3qTKE
- z50kNiIULLUCMz3FY3ICaX09gAp267WemOvFNj/u7MqUnHTVgC687AxEFoJ3cuVlx1Wp
- SZ9wPK5POTQStCkZu0dRAQ4qI1iAC1bzw11Y7E7bu7eZOchzqLjjTiN/ZEr/Tsx0wshD
- iR523xQrCFs955pL9XRa0hNxRFn0SuLtbOm06CBpzMDqoH8rdepom+K/wJCuebXKT8Pi
- nWGw==
-X-Gm-Message-State: AO0yUKUYqgr2x2HFJ3Nu2yUohoPp7KJrInkNc8EagdAcX1nNf3ZuhldI
- VcbQl3YlQFf6RpVwRHUWe1aMlx/yzNoQUcTLJDSolc7Pf41V2JsB/LRm1aInFr0rg7eYpktZ9l7
- /1nCSRXtNn4VnvAiVRoFyCVyMLbw+
-X-Received: by 2002:a6b:db09:0:b0:74c:bc54:def6 with SMTP id
- t9-20020a6bdb09000000b0074cbc54def6mr3056430ioc.16.1679438859337; 
- Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
-X-Google-Smtp-Source: AK7set9EbNNXSPjEUSnoMvgIPdEGf1CXd6ABSfzKBINcdwi6xMSz3jsAv4ymlWXyfvMVdfEnqs2RsA==
-X-Received: by 2002:a6b:db09:0:b0:74c:bc54:def6 with SMTP id
- t9-20020a6bdb09000000b0074cbc54def6mr3056419ioc.16.1679438859071; 
- Tue, 21 Mar 2023 15:47:39 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- y16-20020a027310000000b004061d6abcd1sm4452110jab.162.2023.03.21.15.47.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Mar 2023 15:47:38 -0700 (PDT)
-Date: Tue, 21 Mar 2023 16:47:37 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20230321164737.62b45132.alex.williamson@redhat.com>
-In-Reply-To: <ZBottXxBlOsXmnmX@nvidia.com>
-References: <BN9PR11MB5276F7879E428080D2B214D98CBC9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230316182256.6659bbbd.alex.williamson@redhat.com>
- <BN9PR11MB5276D5A71E43EA4CDD1C960A8CBD9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <20230317091557.196638a6.alex.williamson@redhat.com>
- <ZBiUiEC8Xj9sOphr@nvidia.com>
- <20230320165217.5b1019a4.alex.williamson@redhat.com>
- <ZBjum1wQ1L2AIfhB@nvidia.com>
- <20230321143122.632f7e63.alex.williamson@redhat.com>
- <ZBoYgNq60eDpV9Un@nvidia.com>
- <20230321150112.1c482380.alex.williamson@redhat.com>
- <ZBottXxBlOsXmnmX@nvidia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAE9710E090;
+ Tue, 21 Mar 2023 23:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679440849; x=1710976849;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UsqKTo91wUQK7ceAEqYtePGKnFrbM2iP61CwVRfFsDo=;
+ b=A7LiYjRLFf87ckBzLllHf7QaLlMo5IkVrJcDzYrEAXnZK1OS7GON1pDX
+ SsPQ9C+7pT8IGIBrqMSFxnnfhu7R2+ub8ZBL7zKZXqM4/Owfa7KvxqvaH
+ kFT2Ca2OnxbbD79XeI+P1TzbmvZcHkAA49I3yCVdu/X1VrkSB14cXvY4/
+ EVu2EsbJeOZdWQN2EoTT8C6By171Ca7cxB8rGRCsEo97VY32H6EFZPGOR
+ bBY86wZnuAapwAI48dxzIy/+z6q86aSQ2QFPWtimhJbVh1clb5gcRUCVD
+ dka+bkRy36wH+GIV7npnnA/RsBuQ+NLTlmUidBzcXiuSOnLKfearQgl+C g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="327460155"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="327460155"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 16:20:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="714184207"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="714184207"
+Received: from rbirkl-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.222.70])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 16:20:39 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Paulo Zanoni <paulo.r.zanoni@intel.com>
+Date: Wed, 22 Mar 2023 00:20:09 +0100
+Message-Id: <20230321232009.541585-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 12/24] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Make IRQ reset and postinstall
+ multi-gt aware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,57 +58,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao, 
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Mar 2023 19:20:37 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
+From: Paulo Zanoni <paulo.r.zanoni@intel.com>
 
-> On Tue, Mar 21, 2023 at 03:01:12PM -0600, Alex Williamson wrote:
-> 
-> > > Though it would be nice if qemu didn't need two implementations so Yi
-> > > I'd rather see a new info in this series as well and qemu can just
-> > > consistently use dev_id and never bdf in iommufd mode.  
-> > 
-> > We also need to consider how libvirt determines if QEMU has the kernel
-> > support it needs to pass file descriptors.  It'd be a lot cleaner if
-> > this aligned with the introduction of vfio cdevs.  
-> 
-> Yes, that would be much better if it was one package.
-> 
-> But this is starting to grow and we have so many threads that need to
-> progress blocked on this cdev enablement :(
-> 
-> Could we go forward with the cdev main patches and kconfig it to
-> experimental or something while the rest of the parts are completed
-> and tested through qemu? ie move the vfio-pci reset enablment to after
-> the cdev patches?
+In multitile systems IRQ need to be reset and enabled per GT.
 
-We need to be able to guarantee that there cannot be any significant
-builds of the kernel with vfio cdev support if our intention is to stage
-it for libvirt.  We don't have a global EXPERIMENTAL config option any
-more.  Adding new code under BROKEN seems wrong.  Fedora ships with
-STAGING enabled.  A sternly worded Kconfig entry is toothless.  What is
-the proposed mechanism to make this not look like a big uncompiled code
-dump?  Thanks,
+Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 28 ++++++++++++++++++----------
+ 1 file changed, 18 insertions(+), 10 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 31271c30a8cf4..ee4530ec14de3 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2762,14 +2762,19 @@ static void dg1_irq_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_gt *gt = to_gt(dev_priv);
+ 	struct intel_uncore *uncore = gt->uncore;
++	unsigned int i;
+ 
+ 	dg1_master_intr_disable(dev_priv->uncore.regs);
+ 
+-	gen11_gt_irq_reset(gt);
+-	gen11_display_irq_reset(dev_priv);
++	for_each_gt(gt, dev_priv, i) {
++		gen11_gt_irq_reset(gt);
+ 
+-	GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
+-	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
++		uncore = gt->uncore;
++		GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
++		GEN3_IRQ_RESET(uncore, GEN8_PCU_);
++	}
++
++	gen11_display_irq_reset(dev_priv);
+ }
+ 
+ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+@@ -3423,13 +3428,16 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+ {
+-	struct intel_gt *gt = to_gt(dev_priv);
+-	struct intel_uncore *uncore = gt->uncore;
+ 	u32 gu_misc_masked = GEN11_GU_MISC_GSE;
++	struct intel_gt *gt;
++	unsigned int i;
+ 
+-	gen11_gt_irq_postinstall(gt);
++	for_each_gt(gt, dev_priv, i) {
++		gen11_gt_irq_postinstall(gt);
+ 
+-	GEN3_IRQ_INIT(uncore, GEN11_GU_MISC_, ~gu_misc_masked, gu_misc_masked);
++		GEN3_IRQ_INIT(gt->uncore, GEN11_GU_MISC_, ~gu_misc_masked,
++			      gu_misc_masked);
++	}
+ 
+ 	if (HAS_DISPLAY(dev_priv)) {
+ 		icp_irq_postinstall(dev_priv);
+@@ -3438,8 +3446,8 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+ 				   GEN11_DISPLAY_IRQ_ENABLE);
+ 	}
+ 
+-	dg1_master_intr_enable(uncore->regs);
+-	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
++	dg1_master_intr_enable(to_gt(dev_priv)->uncore->regs);
++	intel_uncore_posting_read(to_gt(dev_priv)->uncore, DG1_MSTR_TILE_INTR);
+ }
+ 
+ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+-- 
+2.39.2
 
