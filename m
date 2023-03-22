@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123B96C48F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 12:20:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 419CF6C49BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 12:56:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6476D10E91F;
-	Wed, 22 Mar 2023 11:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B7910E91D;
+	Wed, 22 Mar 2023 11:56:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A01CF10E91F;
- Wed, 22 Mar 2023 11:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679484008; x=1711020008;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=oFkem9rIujBoqVeQvfgA9l4aoAczXyugj84MB3ez9UI=;
- b=L2M34ao6rOnBDLOxXdUtS8/xxFpuSVIXE0yc+vyfr29DZb94sUl9NX6N
- Dtt10nrxjLirql8s0IzyQxagojDof8rOlPicj5NSyZv+LV/OE7eGQ7qDG
- RUv75C8WjQPg+RVuTB/yfwcgfOJEQjtQw5iNA1jWrU2yqQbaPZ5hlgaT4
- oFqdXTKUV2dr/vHUhHnb3mu7UKnvCaQaG0sgXJFscYdf3rbf2lKnRorcg
- 1/48PfiLEWVBVWDOF2VElpDMHwtM5HEcxZixIBs1MMMAq8rBBr2poJ+r2
- +NipivETABjDOcTy9xwUrm9ZPzT6aMKRGWG+c+4yyVF4kjFl2KeyBsCcY A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="366923639"
-X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; d="scan'208";a="366923639"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 04:20:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="659161869"
-X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; d="scan'208";a="659161869"
-Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 04:20:05 -0700
-Date: Wed, 22 Mar 2023 12:20:03 +0100
-From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <20230322112003.GB2066233@linux.intel.com>
-References: <20230316082035.567520-1-christian.koenig@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE3AE10E91D;
+ Wed, 22 Mar 2023 11:56:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9D3BAADE0;
+ Wed, 22 Mar 2023 11:56:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230316082035.567520-1-christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] DRM debugfs cleanup take 3
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Wed, 22 Mar 2023 11:56:45 -0000
+Message-ID: <167948620575.13423.3329081920968327014@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
+ =?utf-8?q?rm/i915/display=3A_Communicate_display_power_demands_to_pcode_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,20 +41,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: quic_jhugo@quicinc.com, dri-devel@lists.freedesktop.org, ogabbay@kernel.org,
- mcanal@igalia.com, mwen@igalia.com, maxime@cerno.tech, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, wambui.karugax@gmail.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 16, 2023 at 09:20:28AM +0100, Christian König wrote:
-> Hi guys,
-> 
-> I've messed up the last send out. Cleanup up some issues reported by people with the accel drivers (duplicated files) and rebased the result.
-> 
-> Apart from that the same approach we already discussed previously.
+== Series Details ==
 
-I tested the whole set with accel/ivpu driver and everything works as expected.
+Series: drm/i915/display: Communicate display power demands to pcode (rev2)
+URL   : https://patchwork.freedesktop.org/series/115371/
+State : warning
 
-Regards
-Stanislaw
+== Summary ==
+
+Error: git fetch origin failed
+
+
