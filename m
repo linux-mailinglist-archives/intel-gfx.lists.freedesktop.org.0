@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D8F86C3F18
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 01:27:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3656C3F67
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 02:02:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 026A910E195;
-	Wed, 22 Mar 2023 00:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A3E10E012;
+	Wed, 22 Mar 2023 01:02:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10E3810E114;
- Wed, 22 Mar 2023 00:27:34 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8D610E012
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 01:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679444855; x=1710980855;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=AxT4gKMF+Ze3+5GrQDXU4rgOoBznShabNwONzJNA1J4=;
- b=A7TSiw4jH+I0vNr6jGoDFv6zt3V8jF3qoQqYY3ZBdqvLYBz/N+jEhrbQ
- SSwZVD26pHme4fPwxRshpW0yLDEM9YJnKy0vBWQ5OcPHZ1THBR4TgFiSg
- THyliq3uTiHV7r+YKqkisd1fAAYdSeU5i+1wavJThZtbOIvyYrrFmxlzQ
- tpUV5z5CgVMM55bzl8Q/LR9T3VJfB915fc9WxAIa6fP95cqnG7CaMrBSj
- nMNz9E8a+rp2CN2xCrS3a+uP7vCRV+vnN9nAzcrjdAILuZqbff9frmVHE
- E5bH6kMcvzhWZeiZn9aJEEh5lQbyvw5b/1oNdMOH/UnhfeFbwXTWEmUYT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="322933432"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="322933432"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 17:27:34 -0700
+ t=1679446919; x=1710982919;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9gDQXYaZk8vXMWwlhgeYbFs7Fb50t5M4pSpp0/RiNX8=;
+ b=NBt6SQbDXfToOZ5HTxuBiT6sUjx+o1bQrfVANOrnRMKoNV7/Vrr9Rlji
+ 55YMLUz1eOFhUZaR/f5Y+0BOt2Jp84fQ2O6L1tMXhARU4v2xnoBLwUiL8
+ VyG/oY6y1AVVPiRaVXy9MS3RVouheKKzJ8eBicwAz434zzfRDAZcY9xKf
+ BalHaB4pbsvEyvvpKEhybZuvdJ8Oya/9FMht4T+nJSQyl9gxGo9qFZJ8+
+ vQ55ZawoEGcaa9vZrHSMvrjYF9ei+gSq/kThXXqiGRNIO5oSFfV58Y/so
+ Qx42sNqvn0We89B1rApYFgGzyabf7qXo66CbsTjYPNVNx2Cum8PU6li4o g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="341452064"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="341452064"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 18:01:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="631791878"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="631791878"
-Received: from rbirkl-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.222.70])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 17:27:31 -0700
-Date: Wed, 22 Mar 2023 01:27:08 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZBpLXDo65Mq8CzI5@ashyti-mobl2.lan>
-References: <20230321232009.541585-1-andi.shyti@linux.intel.com>
- <20230322001051.GU4085390@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="712043935"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="712043935"
+Received: from sahalama-mobl1.amr.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.251.221.201])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 18:01:52 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Mar 2023 03:01:36 +0200
+Message-Id: <20230322010138.663264-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230322001051.GU4085390@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make IRQ reset and postinstall
- multi-gt aware
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v1 0/2] Correction to QGV related register
+ addresses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +58,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@kernel.org>,
- dri-devel@lists.freedesktop.org, Paulo Zanoni <paulo.r.zanoni@intel.com>
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Wrong offsets are calculated to read QGV points from mem ss. Also
+a wrong register address is used to get the dagv block time. Fix
+these two issues.
 
-On Tue, Mar 21, 2023 at 05:10:51PM -0700, Matt Roper wrote:
-> On Wed, Mar 22, 2023 at 12:20:09AM +0100, Andi Shyti wrote:
-> > From: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > 
-> > In multitile systems IRQ need to be reset and enabled per GT.
-> 
-> At the moment we're not enabling multi-tile support on any platforms
-> yet.  Xe_HP SDV has pretty much already served its purpose as an early
-> Xe_HP test platform, and most PVC effort is refocusing on the Xe KMD
-> right now.
-> 
-> Note that we don't want/need changes like this on non-tile multi-gt
-> platforms like MTL.  The interrupt registers you're accessing here are
-> sgunit registers so there's only ever a single copy of the register on
-> such platforms; looping around and processing the same register two
-> times in a row doesn't accomplish anything that just processing them a
-> single time doesn't.
+Vinod Govindapillai (2):
+  drm/i915/reg: fix QGV points register access offsets
+  drm/i915/reg: use the correct register to access SAGV block time
 
-Right... irq's registers in MTL are in the root tile.
+ drivers/gpu/drm/i915/i915_reg.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-However, In a multi-gt point of view all the "gt" functions need
-to be iterated over all the GT's... maybe to have things cleaner
-we might need some dedicated mtl_irq_reset and
-mtl_irq_postinstall wrappers.
+-- 
+2.34.1
 
-Thanks! (again :-))
-
-Andi
