@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966056C504E
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 17:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E37416C535C
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 19:12:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF05B10E3CA;
-	Wed, 22 Mar 2023 16:17:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6E510E9BE;
+	Wed, 22 Mar 2023 18:12:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C1D10E3C3
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 16:17:13 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 575F110E9BE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 18:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679501833; x=1711037833;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=PQapz2d63buGkMCgKWkV4Wop0sKeyODv58YMzBo673I=;
- b=XJ179lFRNXGDowBeEYzSUo4zyaiT1pe398ogbxw1w/T5Jm+qQnkiCAn7
- SXntwBNGn8gThVnKTirz3DKBkpzuyhbllZEjb1X9vbZTv5Hihe+eOUQh8
- tQbGf67o/4SFhNfJk54tC861vPEminhxo5A5uqJ4VdooDpkijWCZL14D0
- uYndhAGZbtWhUU+mKyMbXMgjCKHPY6Z9qfywm4hVosvcIrsD0w8sFoKCL
- Qp1EwqU3/Zkqydv5WYpBhkuQkDC7ewDicGHl3r6GQEEL2Hf6pUyYm+9ym
- OQ3gB69dCJo0oeYCe4xbxvSXGOkHLwjQeVwGHKQci7CmhmsI475Tq/jqb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="425546629"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="425546629"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 09:15:45 -0700
+ t=1679508771; x=1711044771;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hb68a1HpvvF11YAQgyhj6Dg3Mq17qb3BkKBoi07RBVk=;
+ b=n5/T2R+ugezyjCttpMQNLAQZgk4DH/e7z4Q+jnbQWouT9cTzW6mHRj1e
+ tX+VUCMKOwSQrTryAnz3bmGfazYqKZudy5SRRtTwKG4xiM9iWYLIiN2jE
+ j3ad3QWP7zmgziO8DA8ft/KpX4yWWEGWlBzBowcAz4LkuaZfZ9qGj35aS
+ N0PjwKmSX3NXTO87H/a1dksLhUUvXp78Qhnvl5AOcpcdlDx+fazQ2+mEQ
+ fFmPrDE5Jj0qPf13W1MPCENVXaKVRFxd6BfhGJyyuFIyWe5AMWILLUzMe
+ vimGYgs2VAZC9KJ7odkrkPDmy77n6fY2d8vHhPSBuJ+B6nPGqVL1SSMj0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="341652919"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="341652919"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 11:12:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="712286745"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="712286745"
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="675384598"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="675384598"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 22 Mar 2023 09:15:42 -0700
+ by orsmga007.jf.intel.com with SMTP; 22 Mar 2023 11:12:20 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Mar 2023 18:15:41 +0200
-Date: Wed, 22 Mar 2023 18:15:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Message-ID: <ZBsprRdvIKoC7Xyc@intel.com>
-References: <20230320090522.9909-1-ville.syrjala@linux.intel.com>
- <9b0a61ad-2f02-b35d-9cd4-68367aa4a85c@gmail.com>
+ Wed, 22 Mar 2023 20:12:19 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Mar 2023 20:12:19 +0200
+Message-Id: <20230322181219.5511-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9b0a61ad-2f02-b35d-9cd4-68367aa4a85c@gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915/dpt: Fix DPT+shmem combo and
- add i915.enable_dpt modparam
+Subject: [Intel-gfx] [PATCH] drm/i915: Add i915.enable_sagv modparam
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,63 +57,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 22, 2023 at 05:15:56PM +0200, Juha-Pekka Heikkila wrote:
-> Set look all ok,
-> 
-> Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Thanks.
+Currently we have no sane way to forcibly disable SAGV, which
+makes debugging things a PITA. Manually poking at the pcode
+mailbox with it's various SAGV/QGV/PSF formats is no fun,
+and likely to be clobbered by the driver anyway.
 
-> 
-> I guess should start to think about how to write igt tests which would 
-> target directly at dpt so this kind of issues wouldn't get missed.
+Let's add a modparam for this.
 
-Yeah, I was already thinking that we should try something like
-that to see if we could catch the the DPT fault bug reliably by
-invoking the shrinker directly while doing stuff with DPTs.
+Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++++
+ drivers/gpu/drm/i915/i915_params.c           | 3 +++
+ drivers/gpu/drm/i915/i915_params.h           | 1 +
+ 3 files changed, 8 insertions(+)
 
-> 
-> /Juha-Pekka
-> 
-> On 20.3.2023 11.05, Ville Syrjala wrote:
-> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > 
-> > Avoid the shrinker evicting the DPT during hibernate and
-> > causing an oops. This might also fix DPT induced display faults
-> > during high memory pressure (though still don't have a real
-> > theory how that could actually happen).
-> > 
-> > Also add a i915.enable_dpt modparam to disable DPT usage via
-> > the chicken bit. This can be useful when trying to debug suspected
-> > DPT issues.
-> > 
-> > Ville Syrj‰l‰ (6):
-> >    drm/i915/dpt: Treat the DPT BO as a framebuffer
-> >    drm/i915/dpt: Only do the POT stride remap when using DPT
-> >    drm/i915/dpt: Introduce HAS_DPT()
-> >    drm/i915: Add PLANE_CHICKEN registers
-> >    drm/i915/dpt: Add a modparam to disable DPT via the chicken bit
-> >    drm/i915: Move PLANE_BUG_CFG bit definitons to the correct place
-> > 
-> >   drivers/gpu/drm/i915/display/intel_display.c  |  6 +++++
-> >   drivers/gpu/drm/i915/display/intel_dpt.c      | 23 +++++++++++++++++++
-> >   drivers/gpu/drm/i915/display/intel_dpt.h      |  2 ++
-> >   drivers/gpu/drm/i915/display/intel_fb.c       | 11 +++++----
-> >   drivers/gpu/drm/i915/display/intel_fb.h       |  1 +
-> >   .../drm/i915/display/skl_universal_plane.c    |  6 +++++
-> >   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
-> >   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +++
-> >   drivers/gpu/drm/i915/i915_drv.h               |  2 ++
-> >   drivers/gpu/drm/i915/i915_params.c            |  3 +++
-> >   drivers/gpu/drm/i915/i915_params.h            |  1 +
-> >   drivers/gpu/drm/i915/i915_reg.h               | 21 +++++++++++++----
-> >   12 files changed, 70 insertions(+), 11 deletions(-)
-> > 
-
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 50a9a6adbe32..ff70225c0263 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -411,6 +411,9 @@ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
++	if (!i915->params.enable_sagv)
++		return false;
++
+ 	if (DISPLAY_VER(i915) >= 12)
+ 		return tgl_crtc_can_enable_sagv(crtc_state);
+ 	else
+@@ -3696,6 +3699,7 @@ static int intel_sagv_status_show(struct seq_file *m, void *unused)
+ 	};
+ 
+ 	seq_printf(m, "SAGV available: %s\n", str_yes_no(intel_has_sagv(i915)));
++	seq_printf(m, "SAGV modparam: %s\n", str_enabled_disabled(i915->params.enable_sagv));
+ 	seq_printf(m, "SAGV status: %s\n", sagv_status[i915->display.sagv.status]);
+ 	seq_printf(m, "SAGV block time: %d usec\n", i915->display.sagv.block_time_us);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index ade744cccfea..66141906ea05 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -121,6 +121,9 @@ i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
+ 	"(0=disabled, 1=enabled) "
+ 	"Default: 0");
+ 
++i915_param_named_unsafe(enable_sagv, bool, 0600,
++	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
++
+ i915_param_named_unsafe(force_probe, charp, 0400,
+ 	"Force probe options for specified supported devices. "
+ 	"See CONFIG_DRM_I915_FORCE_PROBE for details.");
+diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+index 3f51f90145b6..6798b5c2363d 100644
+--- a/drivers/gpu/drm/i915/i915_params.h
++++ b/drivers/gpu/drm/i915/i915_params.h
+@@ -56,6 +56,7 @@ struct drm_printer;
+ 	param(int, enable_psr, -1, 0600) \
+ 	param(bool, psr_safest_params, false, 0400) \
+ 	param(bool, enable_psr2_sel_fetch, true, 0400) \
++	param(bool, enable_sagv, true, 0600) \
+ 	param(int, disable_power_well, -1, 0400) \
+ 	param(int, enable_ips, 1, 0600) \
+ 	param(int, invert_brightness, 0, 0600) \
 -- 
-Ville Syrj‰l‰
-Intel
+2.39.2
+
