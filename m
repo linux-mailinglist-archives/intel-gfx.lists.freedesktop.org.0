@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3C906C49BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 12:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5DB86C49BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 12:56:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6F710E91F;
-	Wed, 22 Mar 2023 11:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE2910E920;
+	Wed, 22 Mar 2023 11:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1ECEA10E91F;
- Wed, 22 Mar 2023 11:56:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 07D5A10E923;
+ Wed, 22 Mar 2023 11:56:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1BB25AADE8;
- Wed, 22 Mar 2023 11:56:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 04A21AADE8;
+ Wed, 22 Mar 2023 11:56:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Date: Wed, 22 Mar 2023 11:56:48 -0000
-Message-ID: <167948620811.13421.4522230520517120209@emeril.freedesktop.org>
+Date: Wed, 22 Mar 2023 11:56:53 -0000
+Message-ID: <167948621301.13421.15239767473584250955@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20230320073110.29969-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Communicate_display_power_demands_to_pc?=
- =?utf-8?q?ode_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/display=3A_Communicate_display_power_demands_to_pcode_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +54,6 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-c32b9b91ef02 drm/i915/display: Communicate display power demands to pcode
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Adding new sequence with current cdclk associate with voltage value masking.
-
--:279: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#279: FILE: drivers/gpu/drm/i915/i915_reg.h:6439:
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
-
-total: 0 errors, 2 warnings, 0 checks, 244 lines checked
+Error: git fetch origin failed
 
 
