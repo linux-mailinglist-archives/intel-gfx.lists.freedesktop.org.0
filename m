@@ -2,141 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656926C5933
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 23:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 990486C598E
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 23:47:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C482010E413;
-	Wed, 22 Mar 2023 22:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E489410E41C;
+	Wed, 22 Mar 2023 22:46:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A363B10E413
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 22:00:37 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA8410E41C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 22:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679522437; x=1711058437;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=BPtYV5VxBEdVk2HW0weTKLVJPfHZtJsiOQ3aSnPrZ7w=;
- b=Vuik2/a7apBUDajU/X4BlW1+p/zuiD1JzVdiDZxsi2az64JKc9UUAyah
- uia4PgkmQIzwaS+NTeTcw/sq9qy4zXTALBKngJDCJP/OjiLTflStnu7WY
- foQ68ANgWBXAW6lNwjxDlWxFlU6/XdorRkTNF/NSze4FSkU3BHUjCaW4H
- xzgv4f6JE7d8L6d5UtvO2Sl078IpsnMm32+VomVZ3wJrLVM5hNjJTULvX
- lxIvRF8YkU5/dGumFrOxNGNJK8PjDeSRowOMPl83FEuPw4BW3M+4bPKHV
- ohXBLUFP1Cp4CLMwuBGfEiB3DJBHj0RykybXr79EsagNInI020aO2pUMr w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="338063199"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="338063199"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 15:00:34 -0700
+ t=1679525217; x=1711061217;
+ h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=HDQsZ+Zd2OeoFbQT7/pK+vspHsprO3oIK582aYdmdL8=;
+ b=lsVkw+q7YSfnu1ao7bte5Hnc/pIPYh+nE6sDpgXA7k4jWj+IdQKUG29q
+ Ep8lMxHQvWuHJjZFQHE2TB0v3diLAMAiQyp+X+0/POfjImugHXspCOUar
+ i2gRep9aVb4WUwEi4dI1QNskA7Wf8ZaoNEbMQ9eU/djCVhrYRYmtm7C1A
+ J3brVQFGDqUxZKhKM+21r+ghqQ6/HSLF1Q5q9v0SVjg/89k0q4FDdhLfw
+ iXg0hXfVT4viRD6tN9tCYkfQBdNdjhrtzqZH/mi7VTbzCsnK8cvhrwQN1
+ oVCOxnw/C8SxTG1Lavf5Rl4iDPzXe+F64qDXx1GSpVxPu3AjNaRRt3Z0z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="341706566"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="341706566"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 15:46:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="675455756"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="675455756"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga007.jf.intel.com with ESMTP; 22 Mar 2023 15:00:29 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 22 Mar 2023 15:00:28 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 22 Mar 2023 15:00:28 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 22 Mar 2023 15:00:28 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 22 Mar 2023 15:00:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hKBMbeer1OYxkr86Ul3wMJCgGyCE65QawJPVFWRpE5ooBCQbQTovmNzMjpRw5WcNqplDRt2rfDg46C9ocC+5re4HbbO+jsP1SZCSqfSTCcqmj1hftwMQe3zj/0w6Krg5pbgxlWFZTP5Gq8NalwBAwOxNXkrDtvNRbRER0HuYRkHimwb37+bcyUCrgj1ox3C3x+asUzcOWjxeWP0JrI4iz2aDwirJcrJ1triJId6QpL7x7Spm/SqYHen8PXDEfTJyoEFMEJGs383qwG25exAom0J3IbHh0RDIyjdQkJT1rOyRQcWrH4BNP5gctSBG1AvpqFjfuZ8Uq6+lgJ/62K93Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o8HATzxGBXu2gNo8p/Ka8tMC9yJwvYnK9vo9B0dTU9o=;
- b=RqoiyWUjjw4IndUFgczxOTGyg4rpzh4hxSp5KHYWlkRF4kfxZOKZpCDJvtW77NrZxFf7iZh0hDpO5vz7qraQwR3lusFuP8dIxOYCxDx+hQK9k14n+Vh+INhGDwxHUkKI1TNymOQoCXbMkRKElx4YfPwuBNUbJ+EjwTLqqOyZSs1hoK7d1BZ7XT6MefMyQD/ebY1V1irIk/1z+DnW0B7WMAQmb3R1F+7Mq6D+0x6vCL+EIMrjJPBDy2Sd2A6ifXyaEjCfPlcA16pO7IKye9Jl+Jp+Ov5r/a24U01H5pL46nk6Wp73pZBTN1KFDCFghkQLPjLL6gD+A0inH4vx6mQugQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH8PR11MB6925.namprd11.prod.outlook.com (2603:10b6:510:227::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29; Wed, 22 Mar
- 2023 22:00:26 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6178.037; Wed, 22 Mar 2023
- 22:00:26 +0000
-Date: Wed, 22 Mar 2023 18:00:22 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZBt6dtHiJL2Y3o7t@intel.com>
-References: <20230322181219.5511-1-ville.syrjala@linux.intel.com>
- <ZBtmuYJ2re9NkvQX@intel.com> <ZBtxsHKk1ztYLB84@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZBtxsHKk1ztYLB84@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0107.namprd03.prod.outlook.com
- (2603:10b6:a03:333::22) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="928002484"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="928002484"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga006.fm.intel.com with ESMTP; 22 Mar 2023 15:46:55 -0700
+Received: from anithaha-mobl1.amr.corp.intel.com (unknown [10.209.65.203])
+ by linux.intel.com (Postfix) with ESMTP id AB9AC580CD3;
+ Wed, 22 Mar 2023 15:46:55 -0700 (PDT)
+Message-ID: <ab9bf3032ed46fc0586e089edc5aac6e71b331d8.camel@linux.intel.com>
+From: "David E. Box" <david.e.box@linux.intel.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Date: Wed, 22 Mar 2023 15:46:55 -0700
+In-Reply-To: <20230322205702.GA2493123@bhelgaas>
+References: <20230322205702.GA2493123@bhelgaas>
+Organization: David E. Box
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH8PR11MB6925:EE_
-X-MS-Office365-Filtering-Correlation-Id: cafc8ec5-3e6f-44d8-f7a6-08db2b20d7b9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j8GQU17B1W9qhdhjk8QaEKtaaAKEKJ7dmZERZQj1kpN0kwzrZ+XgmMtPYxXrf4m8lSxXNFBe07ChGWd5SQvqJmJrd2bSGn9FFKpCJNw9oGwxNAR46YrAHIhzvzi3/eVbQI5wRR6B1Qvcgz8T6FwLZ4wMNgu+hkx7wnMpFIl1oXDqWTfqGapaIT3ZcM1JuiEQXmLELBI2HVcbvgugcWx1VHnqOBemiP5lMYeK/KI/Bhj9W1vk9D2EhnXiIwt/gxo1kLWTGYmRTAP3ZfNVx/m0c6yY1bKuSIQaHUSL9Bg1JgCNGnw0Howt6linshQRNNg6SkjAuOr9Dy4KnfUTolcbr4DsIzWHCZUXB25NoPRTddilFsm/xoS0BAXE07Hgsn9ZY49Ns5rwZAfvAIMAACa5wFR5RNeFsSvVyLDGb+h7EYY7eXiJIlik06YQUUhGVMAnedyzE4+TskuzGzHENvvddB4cTja+nV0LNC3yJCvG+ftFFYGqIOIFDtkM5uyGIRP3qRWB1O/fBLO2r212SxboVeL5gj/zSxjKPvD8Pd55xBNXRFYiKZewNDc7ScBVhIuE5MHuVPfuvnj7U8p8+OwzcXCVgeh4Q4pn5fzy77RCYVAesGQR8N1yL60/03MkOUsQSmKl8rshT4eVoXVG9zCBDQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(39860400002)(396003)(366004)(376002)(136003)(451199018)(38100700002)(6506007)(8676002)(41300700001)(2906002)(86362001)(36756003)(8936002)(82960400001)(44832011)(5660300002)(83380400001)(4326008)(2616005)(186003)(6666004)(6512007)(66574015)(316002)(66476007)(66556008)(6916009)(478600001)(6486002)(66946007)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Ogjm3LtcBwvX93Rq8dhiMsF0WoHQjH8zw39jkwQA7sh14z8Ec50MFE8L22?=
- =?iso-8859-1?Q?bv8E6VpOO1LED1eyf40nGL+ZfqBv1+XoDgtylnvdgeKajxh6gMwAdSwWQx?=
- =?iso-8859-1?Q?jS5BX4jbGAvfzFYAjA1jtyopijRxSJMGoFV2jyvaYy4aGAI9LgweNRaWqt?=
- =?iso-8859-1?Q?8DlJiPBsJ4aPWca1UW0/qEpNHboqnvB22zml69xpyiB9fjC+8ITr2laOks?=
- =?iso-8859-1?Q?Hz4xQ+XumZv3hVJ0cqFK7PScHED6D96e7jtCU7VNdpXeaMOXhPAxopbkZI?=
- =?iso-8859-1?Q?l3x/DJeindDOGxAu77Ut/RvaQJvo6dhaCDrgiRBu4UpW1o0qY1i8C7NFEY?=
- =?iso-8859-1?Q?dGVoyiLVP/7/lKi+sw+8ECOSbCd34U22inBp3VsL6EN06sxmKyrkrsDX8r?=
- =?iso-8859-1?Q?2uQ9kz0OK6pU3ycF+P90lLZN9x77pYVdG0Vj3Pv96cZ/nC1IYtJmk92avL?=
- =?iso-8859-1?Q?ROc4dnZUbgTMtlt8TTPJYOLgG1U0um9sn2DLI5ld1tuOAApZ9l4HHqQINs?=
- =?iso-8859-1?Q?yAISyJZE5Mfxvdl16DDkAFcSWlJV3JgHWjRKe7zboEOYdFGTWg4ifnpRvr?=
- =?iso-8859-1?Q?n8uxLrqGtYQJvyYA+BmtQnu5yRHBcL0if3CyT9/pWB+LZUFT87Hdi0V4jd?=
- =?iso-8859-1?Q?QBHFd5tL/cOMoLVZKgtUhiZf4+5ub/GcH7/rOofgAqXykZBLqhlSN6QuQt?=
- =?iso-8859-1?Q?wKyh8quCTVD7W7Eu+vCP2LYNAXYbjhHgtJIlJf6WdNqSZRjj25x1SmFvBD?=
- =?iso-8859-1?Q?DMuzHI0BslsdDJz10Lcu7tLXEFVccKSklgCXqImjZxqI4uQjo82022iHil?=
- =?iso-8859-1?Q?Vez1bYQeV2Y8nJv9TJ+oCEwSqg+zcdtcF9LeGRnn+Qvstcf9BThSr4JOg9?=
- =?iso-8859-1?Q?jq/84r+j3ruJehIQ3BfYpSqJ0EKuznCRAmI7kQ2/JGdvNFFdW2vsP7g0tz?=
- =?iso-8859-1?Q?BAIVUcr2xKJRSpaVDypwCwCWXzsCz4XkVzACGDNX/bTUcyKj5p6wn+vNfL?=
- =?iso-8859-1?Q?thjbcRpYegMziQy5aNlCU8IQlpyjEhkMz6W5YEGzrxrs4lIB8bXcPtTaeo?=
- =?iso-8859-1?Q?inovj+0pabLmMMgA2qAWiQ2LhLzh9msrWvQ3wRBO5G1ExG0kAwXhiSc/rX?=
- =?iso-8859-1?Q?1ClO0uZF27rd8ELrTDj9/oLIayHo8LQoMCe4f/gS09jtGkeUbBdOGX18tb?=
- =?iso-8859-1?Q?1RODH1NGfkLvH3wpCoXn7T+jIRmu08IC8UuGTCxU8goI6HEhA6ruLQA5bN?=
- =?iso-8859-1?Q?eyxMZgygFARvjiT7RH0mXwQrs6ZTRDd9WQdo/EDQ9o/DLPZBDytnYa40Ym?=
- =?iso-8859-1?Q?0xcIslorzhXqDTtv06KaQdonT+UPB1RJsZPZ4QLD4JsazR4mnLtg9yiCMM?=
- =?iso-8859-1?Q?AcQO4EG8/ad2T7lkGjU0sVTxcvSE5Efv2E5FkCeMCozs08pST+I1dBCulk?=
- =?iso-8859-1?Q?3lxU10YgW2qrx4aJDxOT1eT9EzzCqe+NJeVtqaWVpDg+yHrju7NHnbFYN9?=
- =?iso-8859-1?Q?orBFCzlHggLFPNXlnNlTmW7Hbs+yaPFCi3JcFNryyKAFbHgkB0h3gYqtnb?=
- =?iso-8859-1?Q?zbEcq9EwRfDH/ipjEQInQrMGWkgzxtNHlBlvPhF8R+LQFpVlYntqpMx/nv?=
- =?iso-8859-1?Q?tQC3HWr2AIV2CIoiRNY0kRRPI1AgLjvqrGqwNC0eXsJRhu7AjCjPC34g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cafc8ec5-3e6f-44d8-f7a6-08db2b20d7b9
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 22:00:26.6293 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OrIoUFY2V26OtFP9kMP3xmHfKMPdOw4BhC4+ZKbKEToIGegbjGKnVJqvt771eXCjjr3W7neH/QdMV8SuBQOwhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6925
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add i915.enable_sagv modparam
+Subject: Re: [Intel-gfx] [PATCH] PCI/ASPM: pci_enable_link_state: Add
+ argument to acquire bus lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,110 +62,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: david.e.box@linux.intel.com
+Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
+ robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
+ jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
+ michael.a.bottini@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 22, 2023 at 11:22:56PM +0200, Ville Syrjälä wrote:
-> On Wed, Mar 22, 2023 at 04:36:09PM -0400, Rodrigo Vivi wrote:
-> > On Wed, Mar 22, 2023 at 08:12:19PM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > Currently we have no sane way to forcibly disable SAGV, which
-> > > makes debugging things a PITA. Manually poking at the pcode
-> > > mailbox with it's various SAGV/QGV/PSF formats is no fun,
-> > > and likely to be clobbered by the driver anyway.
-> > > 
-> > > Let's add a modparam for this.
-> > > 
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi Bjorn,
+
+On Wed, 2023-03-22 at 15:57 -0500, Bjorn Helgaas wrote:
+> On Wed, Mar 22, 2023 at 03:45:01PM -0500, Bjorn Helgaas wrote:
+> > Hi David,
+> >=20
+> > On Tue, Mar 21, 2023 at 04:38:49PM -0700, David E. Box wrote:
+> > > The VMD driver calls pci_enabled_link_state as a callback from
+> > > pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a loc=
+kdep
+> > > warning. Add an argument to pci_enable_link_state to set whether the =
+lock
+> > > should be acquired. In the VMD driver, set the argument to false sinc=
+e the
+> > > lock will already be obtained by pci_bus_walk.
+> > >=20
+> > > Reported-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > Fixes: de82f60f9c86 ("PCI/ASPM: Add pci_enable_link_state()")
+> >=20
+> > This means "if your kernel includes de82f60f9c86, you probably want to
+> > backport this fix to it."=C2=A0 But that's not the case here.=C2=A0 Thi=
+s patch
+> > is not fixing an issue with de82f60f9c86, so I don't think there's a
+> > reason to include a "Fixes" line.
+>=20
+> Oops, sorry, forgot to engage brain before hitting "send".
+>=20
+> I think the "Fixes" line should reference f492edb40b54 ("PCI: vmd: Add
+> quirk to configure PCIe ASPM and LTR") instead, since that's where the
+> locking problem started.
+>=20
+> > This patch is adding functionality that is only needed by some other
+> > patch, and it should be part of a series that also includes the patch
+> > that uses it to make sure they go together.
+
+Yeah this should have been two patches.
+
+>=20
+> And I see that the use *is* included in this patch.=C2=A0 But I don't
+> really like this pattern:
+>=20
+> =C2=A0 vmd_probe
+> =C2=A0=C2=A0=C2=A0 vmd_enable_domain
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vmd->bus =3D pci_create_root_bus(...);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pci_scan_child_bus(vmd->bus);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pci_walk_bus(vmd->bus, vmd_pm_enable_quirk=
+, &features);
+>=20
+> because pci_walk_bus() makes locking complicated (as this issue shows)
+> and it doesn't work for hot-added devices (I don't know if that's an
+> issue for VMD, but the pattern gets copied to places where it *is*).
+>=20
+> Normally vmd_pm_enable_quirk() would be done by making it an actual
+> DECLARE_PCI_FIXUP_HEADER() or DECLARE_PCI_FIXUP_FINAL(), so it would
+> be called automatically by the PCI core when a new device is
+> enumerated.=C2=A0 Would that work here?=C2=A0 If it would, I don't think =
+you'd
+> need to add the extra flag to pci_enable_link_state().
+
+It should work. I'll test the change.
+
+David
+
+>=20
+> > > Link: https://lore.kernel.org/linux-pci/ZBjko%2FifunIwsK2v@intel.com/
+> > > Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++++
-> > >  drivers/gpu/drm/i915/i915_params.c           | 3 +++
-> > >  drivers/gpu/drm/i915/i915_params.h           | 1 +
-> > >  3 files changed, 8 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > index 50a9a6adbe32..ff70225c0263 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > > @@ -411,6 +411,9 @@ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state
-> > >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > >  
-> > > +	if (!i915->params.enable_sagv)
-> > > +		return false;
-> > 
-> > would this be one more ifdef for xe?
-> 
-> Why? xe needs it just as much.
+> > > =C2=A0drivers/pci/controller/vmd.c | 2 +-
+> > > =C2=A0drivers/pci/pcie/aspm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 9 +++++=
++---
+> > > =C2=A0include/linux/pci.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 5 +++--
+> > > =C2=A03 files changed, 10 insertions(+), 6 deletions(-)
+> > >=20
+> > > diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vm=
+d.c
+> > > index 990630ec57c6..45aa35744eae 100644
+> > > --- a/drivers/pci/controller/vmd.c
+> > > +++ b/drivers/pci/controller/vmd.c
+> > > @@ -737,7 +737,7 @@ static int vmd_pm_enable_quirk(struct pci_dev *pd=
+ev,
+> > > void *userdata)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!(features & VMD_=
+FEAT_BIOS_PM_QUIRK))
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+> > > =C2=A0
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pdev=
+, PCIE_LINK_STATE_ALL);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pdev=
+, PCIE_LINK_STATE_ALL, false);
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pos =3D pci_find_ext_=
+capability(pdev, PCI_EXT_CAP_ID_LTR);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!pos)
+> > > diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
+> > > index 66d7514ca111..5b5a600bb864 100644
+> > > --- a/drivers/pci/pcie/aspm.c
+> > > +++ b/drivers/pci/pcie/aspm.c
+> > > @@ -1147,8 +1147,9 @@ EXPORT_SYMBOL(pci_disable_link_state);
+> > > =C2=A0 *
+> > > =C2=A0 * @pdev: PCI device
+> > > =C2=A0 * @state: Mask of ASPM link states to enable
+> > > + * @sem: Boolean to acquire/release pci_bus_sem
+> > > =C2=A0 */
+> > > -int pci_enable_link_state(struct pci_dev *pdev, int state)
+> > > +int pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)
+> > > =C2=A0{
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pcie_link_stat=
+e *link =3D pcie_aspm_get_link(pdev);
+> > > =C2=A0
+> > > @@ -1165,7 +1166,8 @@ int pci_enable_link_state(struct pci_dev *pdev,=
+ int
+> > > state)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return -EPERM;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > > =C2=A0
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0down_read(&pci_bus_sem);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (sem)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0down_read(&pci_bus_sem);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_lock(&aspm_lock=
+);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link->aspm_default =
+=3D 0;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (state & PCIE_LINK=
+_STATE_L0S)
+> > > @@ -1186,7 +1188,8 @@ int pci_enable_link_state(struct pci_dev *pdev,=
+ int
+> > > state)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link->clkpm_default =
+=3D (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pcie_set_clkpm(link, =
+policy_to_clkpm_state(link));
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_unlock(&aspm_lo=
+ck);
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0up_read(&pci_bus_sem);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (sem)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0up_read(&pci_bus_sem);
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+> > > =C2=A0}
+> > > diff --git a/include/linux/pci.h b/include/linux/pci.h
+> > > index fafd8020c6d7..a6f9f24b39fd 100644
+> > > --- a/include/linux/pci.h
+> > > +++ b/include/linux/pci.h
+> > > @@ -1707,7 +1707,7 @@ extern bool pcie_ports_native;
+> > > =C2=A0#ifdef CONFIG_PCIEASPM
+> > > =C2=A0int pci_disable_link_state(struct pci_dev *pdev, int state);
+> > > =C2=A0int pci_disable_link_state_locked(struct pci_dev *pdev, int sta=
+te);
+> > > -int pci_enable_link_state(struct pci_dev *pdev, int state);
+> > > +int pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)=
+;
+> > > =C2=A0void pcie_no_aspm(void);
+> > > =C2=A0bool pcie_aspm_support_enabled(void);
+> > > =C2=A0bool pcie_aspm_enabled(struct pci_dev *pdev);
+> > > @@ -1716,7 +1716,8 @@ static inline int pci_disable_link_state(struct
+> > > pci_dev *pdev, int state)
+> > > =C2=A0{ return 0; }
+> > > =C2=A0static inline int pci_disable_link_state_locked(struct pci_dev =
+*pdev, int
+> > > state)
+> > > =C2=A0{ return 0; }
+> > > -static inline int pci_enable_link_state(struct pci_dev *pdev, int st=
+ate)
+> > > +static inline int
+> > > +pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)
+> > > =C2=A0{ return 0; }
+> > > =C2=A0static inline void pcie_no_aspm(void) { }
+> > > =C2=A0static inline bool pcie_aspm_support_enabled(void) { return fal=
+se; }
+> > > --=20
+> > > 2.34.1
+> > >=20
 
-yes, I know... but the param will be different...
-open like this we need to have ifdef, or we need to hide in a macro,
-or have it in a xe/ext/display/ duplicated file...
-
-it was a comment more to raise the thoughts around items like this
-that impacts xe... definitely not a blocker or anything like that...
-
-> 
-> > should we hide this on a HAS_SAGV?
-> 
-> If we have no sagv then we're not going to enable sagv anyway.
-> Doesn't matter if it's blocked a few lines earlier by the
-> modparam rather than falling through to checking the other
-> stuff.
-> 
-> > 
-> > anyway, let's move on:
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Thanks
-> 
-> > 
-> > 
-> > > +
-> > >  	if (DISPLAY_VER(i915) >= 12)
-> > >  		return tgl_crtc_can_enable_sagv(crtc_state);
-> > >  	else
-> > > @@ -3696,6 +3699,7 @@ static int intel_sagv_status_show(struct seq_file *m, void *unused)
-> > >  	};
-> > >  
-> > >  	seq_printf(m, "SAGV available: %s\n", str_yes_no(intel_has_sagv(i915)));
-> > > +	seq_printf(m, "SAGV modparam: %s\n", str_enabled_disabled(i915->params.enable_sagv));
-> > >  	seq_printf(m, "SAGV status: %s\n", sagv_status[i915->display.sagv.status]);
-> > >  	seq_printf(m, "SAGV block time: %d usec\n", i915->display.sagv.block_time_us);
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> > > index ade744cccfea..66141906ea05 100644
-> > > --- a/drivers/gpu/drm/i915/i915_params.c
-> > > +++ b/drivers/gpu/drm/i915/i915_params.c
-> > > @@ -121,6 +121,9 @@ i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
-> > >  	"(0=disabled, 1=enabled) "
-> > >  	"Default: 0");
-> > >  
-> > > +i915_param_named_unsafe(enable_sagv, bool, 0600,
-> > > +	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
-> > > +
-> > >  i915_param_named_unsafe(force_probe, charp, 0400,
-> > >  	"Force probe options for specified supported devices. "
-> > >  	"See CONFIG_DRM_I915_FORCE_PROBE for details.");
-> > > diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> > > index 3f51f90145b6..6798b5c2363d 100644
-> > > --- a/drivers/gpu/drm/i915/i915_params.h
-> > > +++ b/drivers/gpu/drm/i915/i915_params.h
-> > > @@ -56,6 +56,7 @@ struct drm_printer;
-> > >  	param(int, enable_psr, -1, 0600) \
-> > >  	param(bool, psr_safest_params, false, 0400) \
-> > >  	param(bool, enable_psr2_sel_fetch, true, 0400) \
-> > > +	param(bool, enable_sagv, true, 0600) \
-> > >  	param(int, disable_power_well, -1, 0400) \
-> > >  	param(int, enable_ips, 1, 0600) \
-> > >  	param(int, invert_brightness, 0, 0600) \
-> > > -- 
-> > > 2.39.2
-> > > 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
