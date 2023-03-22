@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 072066C4255
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 06:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF20A6C4259
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 06:46:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D153410E064;
-	Wed, 22 Mar 2023 05:46:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4818E10E0A2;
+	Wed, 22 Mar 2023 05:46:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 141A910E064;
- Wed, 22 Mar 2023 05:46:14 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 738C210E0A2;
+ Wed, 22 Mar 2023 05:46:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10AD3A0BA8;
- Wed, 22 Mar 2023 05:46:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6E4DFAADE8;
+ Wed, 22 Mar 2023 05:46:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Date: Wed, 22 Mar 2023 05:46:14 -0000
-Message-ID: <167946397406.13423.14991351933356984022@emeril.freedesktop.org>
+Date: Wed, 22 Mar 2023 05:46:16 -0000
+Message-ID: <167946397644.13420.7069227376450021967@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230322010138.663264-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20230322010138.663264-1-vinod.govindapillai@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Correction_to_QGV_related_register_addresses?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIENv?=
+ =?utf-8?q?rrection_to_QGV_related_register_addresses?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
