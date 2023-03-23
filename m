@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD446C6AAA
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:20:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6766C6AAB
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:20:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E7110EAB6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D5510EAB7;
 	Thu, 23 Mar 2023 14:20:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBFF10EAAE
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 14:20:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 530F710EAAE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 14:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679581243; x=1711117243;
+ t=1679581244; x=1711117244;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=MlPX4lg9f1up5MLEuwJbajAWJaOYwSjVoq+MzVOeFNU=;
- b=TPuoor8vZMz5UVrpGOATvT62w/V0gtCCm/ndB6G2DvhLhCZs9KpYgC1g
- XpNtza75NpZXRG3bic3aJScx4xxMTXAxvRMeGi2IOfIZQZObcFqBTbK36
- YykJE2+W9lX+IUoC16n0KPP3hJFq6xMtZcERcZGGKBgj+ZNsFHzMi6lRs
- /yc+BFrKFlzsjQ8/JePuDCGJOeyBYfFrA2fgdJAuf2kb7UGRtN8v1X0us
- GyBQHgqr/eRyC7mnLDMLUXE+b5oKTaX9ntVz1RxOiNaMhR1ccPuvh+Eb4
- 81R+yy7uS/sJ2J6lQcnBt2YP45/7jZjZNzEuVG8NaWMdRoEr4GAEqlBZr A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="327892253"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="327892253"
+ bh=StCEG513McSo+rRPEBSHm01JMWRfNXnELheHPaDXT8M=;
+ b=j/MBXH1K2r+Os/W/Zb6Vw+QB7XAiiSzWnp/wAW/jEOoKUH1vMG85ozT9
+ k67hxxxDA7O+T/XCPjlgKjq1q0W+9AJYYQdfs46QVKjfKbLjS6M/9De97
+ qdyM4fFdu3hzxh5Hpmu9teBoVl0chtB4rUDWejN8qBbeCxSnVAagcUHuu
+ KuVXESEDQEmbYl9pUJYhjAdcKOhJl2X/d7iXKPKQa2LYMYns+r6+JjwKO
+ phs8M2gx+9O19Hnx1s94F7fTvTJ7bS1fJyFd02pKAbqNrktE5PtcXmV09
+ pNjxDCGG30nefT+DMbu9UUpHltY7Dq90R32XBzhesAmmWN7vb4DBuiA+g w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="327892257"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="327892257"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Mar 2023 07:20:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="746722623"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="746722623"
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="746722626"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="746722626"
 Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 07:20:42 -0700
+ 23 Mar 2023 07:20:43 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Mar 2023 16:20:09 +0200
-Message-Id: <20230323142035.1432621-4-imre.deak@intel.com>
+Date: Thu, 23 Mar 2023 16:20:10 +0200
+Message-Id: <20230323142035.1432621-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20230323142035.1432621-1-imre.deak@intel.com>
 References: <20230323142035.1432621-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 03/29] drm/i915/tc: Rename
- tc_phy_status_complete() to tc_phy_is_ready()
+Subject: [Intel-gfx] [PATCH 04/29] drm/i915/tc: Use the tc_phy prefix for
+ all TC PHY functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,117 +61,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For consistency rename tc_phy_status_complete() to tc_phy_is_ready()
-following the terminology of new platforms.
+For consistency use the tc_phy prefix for all TC PHY functions.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tc.c | 30 ++++++++++++-------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 099b1ec842ba2..9fecf24b69c16 100644
+index 9fecf24b69c16..d2afe8b65beee 100644
 --- a/drivers/gpu/drm/i915/display/intel_tc.c
 +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -16,7 +16,7 @@
+@@ -15,7 +15,7 @@
+ #include "intel_mg_phy_regs.h"
  #include "intel_tc.h"
  
- static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port);
--static bool tc_phy_status_complete(struct intel_digital_port *dig_port);
-+static bool tc_phy_is_ready(struct intel_digital_port *dig_port);
+-static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port);
++static u32 tc_phy_hpd_live_status(struct intel_digital_port *dig_port);
+ static bool tc_phy_is_ready(struct intel_digital_port *dig_port);
  static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, bool take);
  
- static const char *tc_port_mode_name(enum tc_port_mode mode)
-@@ -303,7 +303,7 @@ static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
-  * owned by the TBT subsystem and so switching the ownership to display is not
-  * required.
+@@ -264,7 +264,7 @@ static void tc_port_fixup_legacy_flag(struct intel_digital_port *dig_port,
+  * ICL TC PHY handlers
+  * -------------------
   */
--static bool icl_tc_phy_status_complete(struct intel_digital_port *dig_port)
-+static bool icl_tc_phy_is_ready(struct intel_digital_port *dig_port)
+-static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
++static u32 icl_tc_phy_hpd_live_status(struct intel_digital_port *dig_port)
  {
  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	u32 val;
-@@ -311,7 +311,7 @@ static bool icl_tc_phy_status_complete(struct intel_digital_port *dig_port)
- 	val = intel_de_read(i915, PORT_TX_DFLEXDPPMS(dig_port->tc_phy_fia));
- 	if (val == 0xffffffff) {
- 		drm_dbg_kms(&i915->drm,
--			    "Port %s: PHY in TCCOLD, assuming not complete\n",
-+			    "Port %s: PHY in TCCOLD, assuming not ready\n",
- 			    dig_port->tc_port_name);
- 		return false;
+ 	u32 isr_bit = i915->display.hotplug.pch_hpd[dig_port->base.hpd_pin];
+@@ -384,7 +384,7 @@ static void icl_tc_phy_connect(struct intel_digital_port *dig_port,
+ 		goto out_set_tbt_alt_mode;
  	}
-@@ -377,7 +377,7 @@ static void icl_tc_phy_connect(struct intel_digital_port *dig_port,
- 	u32 live_status_mask;
- 	int max_lanes;
  
--	if (!tc_phy_status_complete(dig_port) &&
-+	if (!tc_phy_is_ready(dig_port) &&
- 	    !drm_WARN_ON(&i915->drm, dig_port->tc_legacy_port)) {
- 		drm_dbg_kms(&i915->drm, "Port %s: PHY not ready\n",
+-	live_status_mask = tc_port_live_status_mask(dig_port);
++	live_status_mask = tc_phy_hpd_live_status(dig_port);
+ 	if (!(live_status_mask & (BIT(TC_PORT_DP_ALT) | BIT(TC_PORT_LEGACY))) &&
+ 	    !dig_port->tc_legacy_port) {
+ 		drm_dbg_kms(&i915->drm, "Port %s: PHY ownership not required (live status %02x)\n",
+@@ -408,7 +408,7 @@ static void icl_tc_phy_connect(struct intel_digital_port *dig_port,
+ 	 * Now we have to re-check the live state, in case the port recently
+ 	 * became disconnected. Not necessary for legacy mode.
+ 	 */
+-	if (!(tc_port_live_status_mask(dig_port) & BIT(TC_PORT_DP_ALT))) {
++	if (!(tc_phy_hpd_live_status(dig_port) & BIT(TC_PORT_DP_ALT))) {
+ 		drm_dbg_kms(&i915->drm, "Port %s: PHY sudden disconnect\n",
  			    dig_port->tc_port_name);
-@@ -492,7 +492,7 @@ static u32 adlp_tc_port_live_status_mask(struct intel_digital_port *dig_port)
-  * DP-alt, legacy or nothing). For TBT-alt sinks the PHY is owned by the TBT
-  * subsystem and so switching the ownership to display is not required.
+ 		goto out_release_phy;
+@@ -457,7 +457,7 @@ static void icl_tc_phy_disconnect(struct intel_digital_port *dig_port)
+  * ADLP TC PHY handlers
+  * --------------------
   */
--static bool adlp_tc_phy_status_complete(struct intel_digital_port *dig_port)
-+static bool adlp_tc_phy_is_ready(struct intel_digital_port *dig_port)
+-static u32 adlp_tc_port_live_status_mask(struct intel_digital_port *dig_port)
++static u32 adlp_tc_phy_hpd_live_status(struct intel_digital_port *dig_port)
  {
  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
  	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
-@@ -501,7 +501,7 @@ static bool adlp_tc_phy_status_complete(struct intel_digital_port *dig_port)
- 	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
- 	if (val == 0xffffffff) {
- 		drm_dbg_kms(&i915->drm,
--			    "Port %s: PHY in TCCOLD, assuming not complete\n",
-+			    "Port %s: PHY in TCCOLD, assuming not ready\n",
- 			    dig_port->tc_port_name);
- 		return false;
- 	}
-@@ -545,14 +545,14 @@ static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
- 	return icl_tc_port_live_status_mask(dig_port);
- }
- 
--static bool tc_phy_status_complete(struct intel_digital_port *dig_port)
-+static bool tc_phy_is_ready(struct intel_digital_port *dig_port)
+@@ -535,14 +535,14 @@ static bool adlp_tc_phy_is_owned(struct intel_digital_port *dig_port)
+  * Generic TC PHY handlers
+  * -----------------------
+  */
+-static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
++static u32 tc_phy_hpd_live_status(struct intel_digital_port *dig_port)
  {
  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
  
  	if (IS_ALDERLAKE_P(i915))
--		return adlp_tc_phy_status_complete(dig_port);
-+		return adlp_tc_phy_is_ready(dig_port);
+-		return adlp_tc_port_live_status_mask(dig_port);
++		return adlp_tc_phy_hpd_live_status(dig_port);
  
--	return icl_tc_phy_status_complete(dig_port);
-+	return icl_tc_phy_is_ready(dig_port);
+-	return icl_tc_port_live_status_mask(dig_port);
++	return icl_tc_phy_hpd_live_status(dig_port);
  }
  
- static bool tc_phy_is_owned(struct intel_digital_port *dig_port)
-@@ -590,7 +590,7 @@ static bool tc_phy_is_connected(struct intel_digital_port *dig_port,
+ static bool tc_phy_is_ready(struct intel_digital_port *dig_port)
+@@ -631,7 +631,7 @@ hpd_mask_to_tc_mode(u32 live_status_mask)
+ static enum tc_port_mode
+ tc_phy_hpd_live_mode(struct intel_digital_port *dig_port)
  {
- 	struct intel_encoder *encoder = &dig_port->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	bool phy_is_ready = tc_phy_status_complete(dig_port);
-+	bool phy_is_ready = tc_phy_is_ready(dig_port);
- 	bool phy_is_owned = tc_phy_is_owned(dig_port);
- 	bool is_connected;
+-	u32 live_status_mask = tc_port_live_status_mask(dig_port);
++	u32 live_status_mask = tc_phy_hpd_live_status(dig_port);
  
-@@ -614,7 +614,7 @@ static void tc_phy_wait_for_ready(struct intel_digital_port *dig_port)
+ 	return hpd_mask_to_tc_mode(live_status_mask);
+ }
+@@ -678,7 +678,7 @@ get_tc_mode_in_phy_not_owned_state(struct intel_digital_port *dig_port,
+ }
+ 
+ static enum tc_port_mode
+-intel_tc_port_get_current_mode(struct intel_digital_port *dig_port)
++tc_phy_get_current_mode(struct intel_digital_port *dig_port)
  {
  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 
--	if (wait_for(tc_phy_status_complete(dig_port), 100))
-+	if (wait_for(tc_phy_is_ready(dig_port), 100))
- 		drm_err(&i915->drm, "Port %s: timeout waiting for PHY ready\n",
- 			dig_port->tc_port_name);
+ 	enum tc_port_mode live_mode = tc_phy_hpd_live_mode(dig_port);
+@@ -735,9 +735,9 @@ hpd_mask_to_target_mode(struct intel_digital_port *dig_port, u32 live_status_mas
  }
-@@ -694,7 +694,7 @@ intel_tc_port_get_current_mode(struct intel_digital_port *dig_port)
- 	if (dig_port->tc_legacy_port)
- 		tc_phy_wait_for_ready(dig_port);
  
--	phy_is_ready = tc_phy_status_complete(dig_port);
-+	phy_is_ready = tc_phy_is_ready(dig_port);
- 	phy_is_owned = tc_phy_is_owned(dig_port);
+ static enum tc_port_mode
+-intel_tc_port_get_target_mode(struct intel_digital_port *dig_port)
++tc_phy_get_target_mode(struct intel_digital_port *dig_port)
+ {
+-	u32 live_status_mask = tc_port_live_status_mask(dig_port);
++	u32 live_status_mask = tc_phy_hpd_live_status(dig_port);
  
- 	if (!tc_phy_is_ready_and_owned(dig_port, phy_is_ready, phy_is_owned)) {
+ 	return hpd_mask_to_target_mode(dig_port, live_status_mask);
+ }
+@@ -770,7 +770,7 @@ static void intel_tc_port_reset_mode(struct intel_digital_port *dig_port,
+ 
+ static bool intel_tc_port_needs_reset(struct intel_digital_port *dig_port)
+ {
+-	return intel_tc_port_get_target_mode(dig_port) != dig_port->tc_mode;
++	return tc_phy_get_target_mode(dig_port) != dig_port->tc_mode;
+ }
+ 
+ static void intel_tc_port_update_mode(struct intel_digital_port *dig_port,
+@@ -847,7 +847,7 @@ void intel_tc_port_init_mode(struct intel_digital_port *dig_port)
+ 
+ 	tc_cold_wref = tc_cold_block(dig_port, &domain);
+ 
+-	dig_port->tc_mode = intel_tc_port_get_current_mode(dig_port);
++	dig_port->tc_mode = tc_phy_get_current_mode(dig_port);
+ 	/*
+ 	 * Save the initial mode for the state check in
+ 	 * intel_tc_port_sanitize_mode().
+@@ -976,7 +976,7 @@ bool intel_tc_port_connected_locked(struct intel_encoder *encoder)
+ 
+ 	drm_WARN_ON(&i915->drm, !intel_tc_port_ref_held(dig_port));
+ 
+-	return tc_port_live_status_mask(dig_port) & BIT(dig_port->tc_mode);
++	return tc_phy_hpd_live_status(dig_port) & BIT(dig_port->tc_mode);
+ }
+ 
+ bool intel_tc_port_connected(struct intel_encoder *encoder)
 -- 
 2.37.1
 
