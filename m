@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B8C6C6520
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 11:32:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D00F6C6551
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 11:40:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC61510EA57;
-	Thu, 23 Mar 2023 10:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4995610E47B;
+	Thu, 23 Mar 2023 10:40:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A983C10EA57
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 10:32:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679567560; x=1711103560;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ty8fxYOrGriyxONPhuumEPNR/vrZJogwRKpO1qVKIMk=;
- b=gJUU4bGZmzZ4r/jBwRThsFdteYoWW+KTT0mhTFHc8HCAeKnzwbxFEJxm
- rdP4R/VAm8ZsTBAT5S9POMoXwrSN2QjvXeoBD+01FLC95CIQRx1AaSkm7
- WoviwcS/9o+q9fnVTrDvgAO8QT01480b0xMrx9MecVbSGhDg2sJnEAjUu
- LaaATDcmpiITcxKWlxJRqkJCAOhwsF6ZKYyncpNZeFU1ghdfTHSzCxKLJ
- dUTjLs/mMKL3QhasknOwezAF4HS1RK58p/D2yKkqsCiM4Rj143ZHHRMdW
- juWbMJWF7HkeECTsTsjUfIvYfiP47O1ZlWfoQMYEcSzUtWJhIn5gg+e3+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="404338341"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="404338341"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 03:32:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="675654582"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="675654582"
-Received: from mplechx-mobl.ger.corp.intel.com (HELO [10.213.211.105])
- ([10.213.211.105])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 03:32:38 -0700
-Message-ID: <2fb70980-5a85-a226-c0d9-9772d1c9cc14@linux.intel.com>
-Date: Thu, 23 Mar 2023 10:32:36 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C85A10E47B;
+ Thu, 23 Mar 2023 10:40:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93F4AAA917;
+ Thu, 23 Mar 2023 10:40:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6851488060175995129=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230323101226.1031488-1-badal.nilawar@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230323101226.1031488-1-badal.nilawar@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Add per-tile rc6
- enable/disable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Thu, 23 Mar 2023 10:40:11 -0000
+Message-ID: <167956801157.6630.7063834133951476223@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230323100120.7661-1-nirmoy.das@intel.com>
+In-Reply-To: <20230323100120.7661-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/3=5D_drm/i915=3A_Add_a_function_to_?=
+ =?utf-8?q?mmap_framebuffer_obj?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,260 +41,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, rodrigo.vivi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6851488060175995129==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 23/03/2023 10:12, Badal Nilawar wrote:
-> From: Don Hiatt <don.hiatt@intel.com>
-> 
-> Add the ability to enable/disable rc6 on a per tile basis.
+== Series Details ==
 
-Some words on justification?
+Series: series starting with [v2,1/3] drm/i915: Add a function to mmap framebuffer obj
+URL   : https://patchwork.freedesktop.org/series/115542/
+State : success
 
-> To enable rc6 on a tile:
->     echo 1 > /sys/class/drm/card0/gt/gtX/rc6_enable
-> 
-> To disable rc6 on a tile:
->     echo 0 > /sys/class/drm/card0/gt/gtX/rc6_enable
-> 
-> To display the rc6 state of a tile:
->     cat /sys/class/drm/card0/gt/gtX/rc6_enable
-> 
-> Cc: Andi Shyti <andi.shyti@intel.com>
-> Co-developed-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Don Hiatt <don.hiatt@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 84 ++++++++++++++++++---
->   drivers/gpu/drm/i915/gt/intel_rc6.c         | 14 ++--
->   drivers/gpu/drm/i915/gt/intel_rc6.h         |  3 +
->   3 files changed, 82 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> index 28f27091cd3b..e8f77dab8f5f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> @@ -176,18 +176,78 @@ static u32 get_residency(struct intel_gt *gt, enum intel_rc6_res_type id)
->   	return DIV_ROUND_CLOSEST_ULL(res, 1000);
->   }
->   
-> -static u8 get_rc6_mask(struct intel_gt *gt)
-> +static ssize_t rc6_enable_store(struct kobject *kobj,
-> +				struct kobj_attribute *attr,
-> +				const char *buff, size_t count)
->   {
-> -	u8 mask = 0;
-> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> +	intel_wakeref_t wakeref;
-> +	ssize_t ret;
-> +	u32 val;
-> +
-> +	ret = kstrtou32(buff, 0, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +
-> +	if (val) {
-> +		if (gt->rc6.enabled)
-> +			goto unlock;
+== Summary ==
 
-Access to rc6.enabled is not serialized should multiple threads write to 
-this file.
+CI Bug Log - changes from CI_DRM_12903 -> Patchwork_115542v1
+====================================================
 
-> +
-> +		if (!gt->rc6.wakeref)
-> +			intel_rc6_rpm_get(&gt->rc6);
+Summary
+-------
 
-Similar with rc6.wakeref.
+  **SUCCESS**
 
-I think some locking of the internal state will be needed.
+  No regressions found.
 
-> +
-> +		intel_rc6_enable(&gt->rc6);
-> +		intel_rc6_unpark(&gt->rc6);
-> +	} else {
-> +		intel_rc6_disable(&gt->rc6);
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/index.html
 
-I am noticing the lack of symmetry with the above enable, unpark - it is 
-okay to not do the reverse park, disable here?
+Participating hosts (36 -> 36)
+------------------------------
 
-> +
-> +		if (gt->rc6.wakeref)
-> +			intel_rc6_rpm_put(&gt->rc6);
-> +	}
-> +
-> +unlock:
-> +	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t rc6_enable_dev_store(struct device *dev,
-> +				    struct device_attribute *attr,
-> +				    const char *buff, size_t count)
-> +{
-> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(&dev->kobj, attr->attr.name);
-> +	intel_wakeref_t wakeref;
-> +	ssize_t ret;
-> +	u32 val;
-> +
-> +	ret = kstrtou32(buff, 0, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +
-> +	if (val) {
-> +		if (gt->rc6.enabled)
-> +			goto unlock;
-> +
-> +		if (!gt->rc6.wakeref)
-> +			intel_rc6_rpm_get(&gt->rc6);
-> +
-> +		intel_rc6_enable(&gt->rc6);
-> +		intel_rc6_unpark(&gt->rc6);
-> +	} else {
-> +		intel_rc6_disable(&gt->rc6);
-> +
-> +		if (gt->rc6.wakeref)
-> +			intel_rc6_rpm_put(&gt->rc6);
-> +	}
->   
-> -	if (HAS_RC6(gt->i915))
-> -		mask |= BIT(0);
-> -	if (HAS_RC6p(gt->i915))
-> -		mask |= BIT(1);
-> -	if (HAS_RC6pp(gt->i915))
-> -		mask |= BIT(2);
-> +unlock:
-> +	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->   
-> -	return mask;
-> +	return count;
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
 
-rc6_enable_store and rc6_enable_dev_store end up pretty much almost 
-identical? Common helper that takes the gt?
+New tests
+---------
 
-Which gt will the device one work on on say MTL?
+  New tests have been introduced between CI_DRM_12903 and Patchwork_115542v1:
 
->   }
->   
->   static ssize_t rc6_enable_show(struct kobject *kobj,
-> @@ -196,7 +256,7 @@ static ssize_t rc6_enable_show(struct kobject *kobj,
->   {
->   	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
->   
-> -	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-> +	return sysfs_emit(buff, "%u\n", gt->rc6.enabled);
+### New IGT tests (1) ###
 
-Change from bitmask to boolean needs to be mentioned and explained in 
-the commit message how it doesn't break any existing userspace.
+  * igt@fbdev:
+    - Statuses :
+    - Exec time: [None] s
 
-Regards,
+  
 
-Tvrtko
+Known issues
+------------
 
->   }
->   
->   static ssize_t rc6_enable_dev_show(struct device *dev,
-> @@ -205,7 +265,7 @@ static ssize_t rc6_enable_dev_show(struct device *dev,
->   {
->   	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(&dev->kobj, attr->attr.name);
->   
-> -	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-> +	return sysfs_emit(buff, "%u\n", gt->rc6.enabled);
->   }
->   
->   static u32 __rc6_residency_ms_show(struct intel_gt *gt)
-> @@ -233,7 +293,7 @@ INTEL_GT_SYSFS_SHOW_MIN(rc6p_residency_ms);
->   INTEL_GT_SYSFS_SHOW_MIN(rc6pp_residency_ms);
->   INTEL_GT_SYSFS_SHOW_MIN(media_rc6_residency_ms);
->   
-> -INTEL_GT_DUAL_ATTR_RO(rc6_enable);
-> +INTEL_GT_DUAL_ATTR_RW(rc6_enable);
->   INTEL_GT_DUAL_ATTR_RO(rc6_residency_ms);
->   INTEL_GT_DUAL_ATTR_RO(rc6p_residency_ms);
->   INTEL_GT_DUAL_ATTR_RO(rc6pp_residency_ms);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> index f4150f61f39c..ea7420271849 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> @@ -513,14 +513,14 @@ static bool rc6_supported(struct intel_rc6 *rc6)
->   	return true;
->   }
->   
-> -static void rpm_get(struct intel_rc6 *rc6)
-> +void intel_rc6_rpm_get(struct intel_rc6 *rc6)
->   {
->   	GEM_BUG_ON(rc6->wakeref);
->   	pm_runtime_get_sync(rc6_to_i915(rc6)->drm.dev);
->   	rc6->wakeref = true;
->   }
->   
-> -static void rpm_put(struct intel_rc6 *rc6)
-> +void intel_rc6_rpm_put(struct intel_rc6 *rc6)
->   {
->   	GEM_BUG_ON(!rc6->wakeref);
->   	pm_runtime_put(rc6_to_i915(rc6)->drm.dev);
-> @@ -582,7 +582,7 @@ void intel_rc6_init(struct intel_rc6 *rc6)
->   	int err;
->   
->   	/* Disable runtime-pm until we can save the GPU state with rc6 pctx */
-> -	rpm_get(rc6);
-> +	intel_rc6_rpm_get(rc6);
->   
->   	if (!rc6_supported(rc6))
->   		return;
-> @@ -607,7 +607,7 @@ void intel_rc6_sanitize(struct intel_rc6 *rc6)
->   	memset(rc6->prev_hw_residency, 0, sizeof(rc6->prev_hw_residency));
->   
->   	if (rc6->enabled) { /* unbalanced suspend/resume */
-> -		rpm_get(rc6);
-> +		intel_rc6_rpm_get(rc6);
->   		rc6->enabled = false;
->   	}
->   
-> @@ -650,7 +650,7 @@ void intel_rc6_enable(struct intel_rc6 *rc6)
->   		return;
->   
->   	/* rc6 is ready, runtime-pm is go! */
-> -	rpm_put(rc6);
-> +	intel_rc6_rpm_put(rc6);
->   	rc6->enabled = true;
->   }
->   
-> @@ -698,7 +698,7 @@ void intel_rc6_disable(struct intel_rc6 *rc6)
->   	if (!rc6->enabled)
->   		return;
->   
-> -	rpm_get(rc6);
-> +	intel_rc6_rpm_get(rc6);
->   	rc6->enabled = false;
->   
->   	__intel_rc6_disable(rc6);
-> @@ -715,7 +715,7 @@ void intel_rc6_fini(struct intel_rc6 *rc6)
->   		i915_gem_object_put(pctx);
->   
->   	if (rc6->wakeref)
-> -		rpm_put(rc6);
-> +		intel_rc6_rpm_put(rc6);
->   }
->   
->   static u64 vlv_residency_raw(struct intel_uncore *uncore, const i915_reg_t reg)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.h b/drivers/gpu/drm/i915/gt/intel_rc6.h
-> index 456fa668a276..8771fbd9a6cf 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rc6.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.h
-> @@ -12,6 +12,9 @@ enum intel_rc6_res_type;
->   struct intel_rc6;
->   struct seq_file;
->   
-> +void intel_rc6_rpm_get(struct intel_rc6 *rc6);
-> +void intel_rc6_rpm_put(struct intel_rc6 *rc6);
-> +
->   void intel_rc6_init(struct intel_rc6 *rc6);
->   void intel_rc6_fini(struct intel_rc6 *rc6);
->   
+  Here are the changes found in Patchwork_115542v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-glk-j4005:       [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [PASS][6] -> [DMESG-WARN][7] ([i915#8073])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-2:         NOTRUN -> [ABORT][8] ([i915#4983] / [i915#7913])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +16 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-2:         [ABORT][10] ([i915#7913]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-2/igt@i915_selftest@live@requests.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         [DMESG-FAIL][12] ([i915#6367] / [i915#7996]) -> [DMESG-FAIL][13] ([i915#6367])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12903 -> Patchwork_115542v1
+
+  CI-20190529: 20190529
+  CI_DRM_12903: 08c3a5cb8ecc67b7251e5c2b127e8778cc4deab0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7211: c0cc1de7b2f4041ca68960362aa55f881d416bac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115542v1: 08c3a5cb8ecc67b7251e5c2b127e8778cc4deab0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f6d515324b45 drm/i915/display: Implement fb_mmap callback function
+92699dae5d4b drm/i915/display: Add helper func to get intel_fbdev from drm_fb_helper
+5bb887cdfa82 drm/i915: Add a function to mmap framebuffer obj
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/index.html
+
+--===============6851488060175995129==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/i915: Add a function to mmap framebuffer obj</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115542/">https://patchwork.freedesktop.org/series/115542/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12903 -&gt; Patchwork_115542v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_12903 and Patchwork_115542v1:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@fbdev:<ul>
+<li>Statuses :</li>
+<li>Exec time: [None] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115542v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12903/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115542v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12903 -&gt; Patchwork_115542v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12903: 08c3a5cb8ecc67b7251e5c2b127e8778cc4deab0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7211: c0cc1de7b2f4041ca68960362aa55f881d416bac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115542v1: 08c3a5cb8ecc67b7251e5c2b127e8778cc4deab0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f6d515324b45 drm/i915/display: Implement fb_mmap callback function<br />
+92699dae5d4b drm/i915/display: Add helper func to get intel_fbdev from drm_fb_helper<br />
+5bb887cdfa82 drm/i915: Add a function to mmap framebuffer obj</p>
+
+</body>
+</html>
+
+--===============6851488060175995129==--
