@@ -2,142 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AB26C6310
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 10:15:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9DBB6C6451
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 11:01:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EEFC10EA4F;
-	Thu, 23 Mar 2023 09:15:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F8310EA64;
+	Thu, 23 Mar 2023 10:01:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0762510E46A;
- Thu, 23 Mar 2023 09:15:22 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5A3F10EA57;
+ Thu, 23 Mar 2023 10:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679562923; x=1711098923;
- h=date:from:to:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=Ol+e0BQS+bBfUjMfCJRZPjqPBVSvdfYCHW/bhD/+sQw=;
- b=AMjv/HX3635SBa/je4qJ13197rtxoWdRGWCDIfGVZzZM8/1t3RuSYo8z
- Th1ONzL/QDPLyZ+dWb2kgAFJkB/ITbagrL/gQ3GEf+uMCUy1ldNPElqjj
- SOE99b0xMqzar5oXsRva74HpnbqbUyCdyKSXfVs37dCcsq1ZUZFbNPBKj
- 9rRR/eVuBCXyfz/Qpr/YUYcye0rCK3rN5OsOB92XXmGPi/PK4f9VEm+Ob
- ATbt66upaXKNulDUGiLbjszBOSTbQPwy74UPq9VqEHUgHTtxJzrqrDGjc
- pjLuEFV210WCpCkGxt9lyap23sHEzBoomWbHV5iYCKjID3imTdto43mW6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="340976429"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="340976429"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 02:15:22 -0700
+ t=1679565703; x=1711101703;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aetDp6ebEl8cZEgarHrDUT0N0XhjFTrHOPw01OsgAuI=;
+ b=Tj2aG9udnHWGCnwesvYkVciftsd0VhAWLvq+VCbfQoAMOeEbLvBpux+T
+ i46DWEMbkutvLVQcFodzqJ8OPZxKirDdKFskaTV0d7/snTKKA/g9W2cC3
+ mnpVdK1PBwg6RZNzCcWmJo6ugYnaNnlR0Z+BcvXRkntYLQNnhUOsILuY/
+ SzfoQDK04TIS2ARpBajVtZrsYif4jq39ebl/0xeUemSXmvd+M+leto7mP
+ 0HLhB+LdiWlHdgcutDThrcitvdNqL0+J7RfC947M+q7lwLgBQYE+HH33s
+ NfgduGgRiA8wB0SSPL13Yglj8Yvc4Y7ywwMUvZFT3hzAlq4suHcQin2g6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="319834072"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="319834072"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 03:01:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="712586682"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="712586682"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 23 Mar 2023 02:15:22 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 23 Mar 2023 02:15:21 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 23 Mar 2023 02:15:21 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 23 Mar 2023 02:15:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=npLTMGsREEOxsjtrdvwSAyc0foK9gOgsBQQ5HgBsoZMKD0jMTHSqAaK8HMcaQYFNug+QLigxOF0gs4Ah4yqX7CXj2G8BFGHcSgOfKBCT+gdJuG5ENyW5ggs2YcT9UDfmsyalm4N1TZ7mMrN91uTP1R3IlWcPkGQ3aWqJaiHf7TM9Os6lVUGUfq66dAcFNn5mIt5BbclB5iG3NFzIbXCPyAD2XCHUazKufukWtWmvwOOI3F6HJb2PMt/1e9LB9bMpGMwL2CENnLkMQk1/DKHVnsOV3BlTcZIusnXcOftcZuu6BB36DQS6ttWrjSmAibq/drjdNZBv0CcLgfpL9Z1O+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C56y6LjXp8+7GJt5ld8yW+OfCD22PGgRmTHR0dwJuro=;
- b=XUJCcibGaOZSXMTV2ojC1UUoKI64lmbK+woTdWOq50s0FYGEcgWrHsQpybMjnUqY3/gOZyDiKV3PKJNglbe/5PacPriHh6VAwVXhfg7d9CGbFMhQHrKjb8G6RjRKrDI3cIm7b0ZuCbS6AklLg61HSlvxckutwILla+qSZBgsgNLXWcyB0XMX3uNoos3MyFG6/6tIkfNfhMKPhnoYXY85cxZjza74yVn0KfiglnF0C58XC1kqb0E1lQUUV/Y4QeDMpIMjxxNP9aw7f6bXCsqPuKqpQf5YuQOvjuoukgf6dTo0yR88OXLyBIC4zoyivVw6m1xA2yUOY+dQuRwebwaHqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- SA1PR11MB7130.namprd11.prod.outlook.com (2603:10b6:806:29f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Thu, 23 Mar
- 2023 09:15:15 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::b00e:ac74:158e:1c7e]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::b00e:ac74:158e:1c7e%4]) with mapi id 15.20.6178.038; Thu, 23 Mar 2023
- 09:15:14 +0000
-Date: Thu, 23 Mar 2023 16:50:24 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>, <kvm@vger.kernel.org>,
- <intel-gfx@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, "Zhenyu
- Wang" <zhenyuw@linux.intel.com>, Ben Gardon <bgardon@google.com>, "Paolo
- Bonzini" <pbonzini@redhat.com>, <intel-gvt-dev@lists.freedesktop.org>, "Zhi
- Wang" <zhi.a.wang@intel.com>
-Message-ID: <ZBwS0DNOwMf7OVmV@yzhao56-desk.sh.intel.com>
-References: <20230311002258.852397-1-seanjc@google.com>
- <20230311002258.852397-26-seanjc@google.com>
- <ZBQkyB3KJP34D9/h@yzhao56-desk.sh.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZBQkyB3KJP34D9/h@yzhao56-desk.sh.intel.com>
-X-ClientProxiedBy: SG2PR02CA0106.apcprd02.prod.outlook.com
- (2603:1096:4:92::22) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="792949455"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="792949455"
+Received: from nirmoyda-desk.igk.intel.com ([10.91.214.27])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 03:01:41 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Mar 2023 11:01:18 +0100
+Message-Id: <20230323100120.7661-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|SA1PR11MB7130:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f99932a-e2db-4b67-79b6-08db2b7f1ca8
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oAn8gyPEVprPV3weWZaGqFrwdHazSzf8HLt2RJbbhDIE7Rn90wchJC+RwWgeoc8DUAqekxfJdwwMPMvdVg5ITvpNvD9WZxiG2RgLYhScbaKzI+k3AsUKNnoYYzpiym5cyNJeIUwPX9kvgKbR2aKr8qnVhlcE/cYueVcS8pSkOeXMioiOkczGtRLf9itcbIVZEsYGjqStsBPNyouzMLt1zdH5Xe0iZBqI661wERgeRZ8inEKVr68LUOiGstYtv/Yc3DD1KsG0VYkC+P6hM18ZftLnGWmP1Faknwky8D7U3sMQfc4GZa4kipwZ8xo8/XDhtFLKBW2O7Ed7Ci7uWd0xCQT8REpHpl0OEmQq0fA3j0SPYSeV/lrPRUJWaeKJuPMhlg7Np6v3yGHdwyEWJE2f2O9Qn+MkYE3bpdvzzXN4cSXAymqCN8UISpQtlQyoDT6or8pFWMVvdkE3NYdVn4NGT1YnN8s0mRcjwvzjW3oK3yphz/FUnKIhEICMtHHcslzBaxLOJLRkHXt+4236F5TYF2HCqfumFMO6Mcgg2Lzob9BZaF+7jGFbX5Q+0FuzClLpG/SgF0dhrjTWwWEI8Yoh7COoaWper34STEkwnSLuMSGE8ywNK8cUEtwwJVYBsypXINfNLgmiowp9Gv6TPTIpbg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(366004)(346002)(39860400002)(376002)(136003)(396003)(451199018)(6512007)(83380400001)(26005)(8676002)(186003)(66946007)(6506007)(316002)(66476007)(6486002)(478600001)(110136005)(6636002)(6666004)(66556008)(41300700001)(82960400001)(5660300002)(2906002)(3450700001)(8936002)(38100700002)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s8RoL6UXcxtKTGPeWIZ/Y1I/cYlYEkKv2C3DkVFPKaS/kuMWQrBN5HfB2BUO?=
- =?us-ascii?Q?g0L4y3/UTx2rbEW3TQayZeSy9V10Cx1alei47BAefJNCuw/qo56qcuDUGG83?=
- =?us-ascii?Q?s7hys9Ad0bZPUsKL9XFukRi0Sj4x+caSkplPH0B03Md098f9B8MLWTk8iKs0?=
- =?us-ascii?Q?pL6pXvQQnwvIFqJF6M4Yz2+cnI//mnu4ZS4k9xL7KLl2fs5UFIcbkw7MZdTR?=
- =?us-ascii?Q?q3Z+QGRvNNJq1vJUdqMbKLRjnl5Gv1jbv5ZbYF1QPme+3jc4B1sMopqC/VvC?=
- =?us-ascii?Q?Ewxn7Bk3BH7LlQ0ezFmnEFSulkmqikRCpohKjcEoQaJOiDn+4P1GmHDcr8/T?=
- =?us-ascii?Q?VcPfazRoH8MUs35UeZcnBWw3fiQn6bI/GUvO/OorN3bH3cowiBNGQmAMelSw?=
- =?us-ascii?Q?7TeqthkIx1S01aNvLrppdj6Xx5wSBfm7H3jy0VkgIOMnKkXXSpFYTKkK8wVj?=
- =?us-ascii?Q?2ToGHtvOlwdb9+ZuFR9Lqh01WSaA8pOSl9lNpwH2Cb2anWeY2wYEYpGtDBRY?=
- =?us-ascii?Q?su1gvNoIt9OVG8pCygiXbj0lvl8nOh8EqYEtt9skI96XF96mlnultf+UuQjX?=
- =?us-ascii?Q?IiznzspTgd4GBZZTniDSjQ1VFY84lXQ5B5opU4QdUh5gInuEWg32HNuoQtLh?=
- =?us-ascii?Q?oF4GOMVdsc3KWS3+K3EpkU7O8DxdYcAl9O5bkdTFdDqP1SJdOtyTyX7Ndg7Y?=
- =?us-ascii?Q?ZvxSHkg7TRbcQcs/OnY815cgD5S30RhDQZbDU5D3HWPU6vaQ6xp8VOTi1H1Q?=
- =?us-ascii?Q?uy0u40uynCZGdpCMCvtOxFBpyalR+tWGyECkEKk2PKxtlBBJTZ3m6A0hcvHf?=
- =?us-ascii?Q?AP26sKSlhyuda3dvXJ65oUfii+nZaA1wxEcQ/H3zVzWF9J8ByNYBx9KKNudN?=
- =?us-ascii?Q?KA/iqWrSlhId9K1U8H39yt8dbt6Sunu9zPooqNlwEkKOidXOaUqRVDXZXKml?=
- =?us-ascii?Q?uxAxS3HkV7AvH5rzFgYn2RkhY9CY/FGIDao5bTgRkPTXyCH5Elp9rWLNaxih?=
- =?us-ascii?Q?zkpbhLf+BCC4LIrNytwGWy4ul5RQ3HR/nxxH79zN5Annr+tEUheOiPKc0/Bz?=
- =?us-ascii?Q?ODRrCvQXct5RzZT6RlgLtIYmgLVkzv+1M6B5PP4MrahHxHi8hyrKYBbQ4l34?=
- =?us-ascii?Q?Jolk5a5La2tZTWW1+fiImjfdV6HHjASKGu9XBFuU6213a3zjWd54Aw6eTqUZ?=
- =?us-ascii?Q?FqvJMW/8IMmJado9qKChQHE8tc77rBNNF8/0jqRf1yIwAwNUNp3lKTt7RGec?=
- =?us-ascii?Q?iXT+d4toBFzyjhv3Or/tDRSei6RG8eukWonBSnma8BRtmS4MOWOCRXz4Eybu?=
- =?us-ascii?Q?qtCWHFlb5Vfj/FMIjfmDpIrZdYmJTUsCeBK0JeilQg+9EBQACMTp38sg4Qh8?=
- =?us-ascii?Q?eYD9FC33CUOU3bnY5WvSP3HR4HKVC0chmlhtjhQ5XA9tn8HcygVtX6BkgbiV?=
- =?us-ascii?Q?xudalaGU2A4B8udqnVnyV7Tx8QDclsWVgXPOMD9M32nCvVCnSd5+YIbfLs2Y?=
- =?us-ascii?Q?WwPiM6ppglb8/5kK2M0AzNxWnrfRbVe0OgxuJGUzSmRNvNMytnJP/cnmkDBC?=
- =?us-ascii?Q?gzmlP+6nZqWw+OYBjBWNxf1pL5rPhrWPyjjF9YSMfv8MmqSCDRLLinpcuIQI?=
- =?us-ascii?Q?KA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f99932a-e2db-4b67-79b6-08db2b7f1ca8
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2023 09:15:14.6744 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: avj5XMDXIoZvuJhDjhlTV2eY4Esd+RV1XywZ79pdkMYau6HaIJsM7tvnnm77rPQtVaUzKfvQtmNykQyHO31kEQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7130
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 25/27] KVM: x86/mmu: Drop @slot param
- from exported/external page-track APIs
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Add a function to mmap
+ framebuffer obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,77 +60,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 17, 2023 at 04:28:56PM +0800, Yan Zhao wrote:
-> On Fri, Mar 10, 2023 at 04:22:56PM -0800, Sean Christopherson wrote:
-> ...
-> > +int kvm_write_track_add_gfn(struct kvm *kvm, gfn_t gfn)
-> > +{
-> > +	struct kvm_memory_slot *slot;
-> > +	int idx;
-> > +
-> > +	idx = srcu_read_lock(&kvm->srcu);
-> > +
-> > +	slot = gfn_to_memslot(kvm, gfn);
-> > +	if (!slot) {
-> > +		srcu_read_unlock(&kvm->srcu, idx);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> Also fail if slot->flags & KVM_MEMSLOT_INVALID is true?
-> There should exist a window for external users to see an invalid slot
-> when a slot is about to get deleted/moved.
-> (It happens before MOVE is rejected in kvm_arch_prepare_memory_region()).
+Implement i915_gem_fb_mmap() to enable fb_ops.fb_mmap()
+callback for i915's framebuffer objects.
 
-Or using
-        if (!kvm_is_visible_memslot(slot)) {
-		srcu_read_unlock(&kvm->srcu, idx);
-		return -EINVAL;
-	}
+v2: add a comment why i915_gem_object_get() needed(Andi).
 
-> 
-> > +	write_lock(&kvm->mmu_lock);
-> > +	__kvm_write_track_add_gfn(kvm, slot, gfn);
-> > +	write_unlock(&kvm->mmu_lock);
-> > +
-> > +	srcu_read_unlock(&kvm->srcu, idx);
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(kvm_write_track_add_gfn);
-> > +
-> > +/*
-> > + * remove the guest page from the tracking pool which stops the interception
-> > + * of corresponding access on that page.
-> > + *
-> > + * @kvm: the guest instance we are interested in.
-> > + * @gfn: the guest page.
-> > + */
-> > +int kvm_write_track_remove_gfn(struct kvm *kvm, gfn_t gfn)
-> > +{
-> > +	struct kvm_memory_slot *slot;
-> > +	int idx;
-> > +
-> > +	idx = srcu_read_lock(&kvm->srcu);
-> > +
-> > +	slot = gfn_to_memslot(kvm, gfn);
-> > +	if (!slot) {
-> > +		srcu_read_unlock(&kvm->srcu, idx);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> Ditto.
-> 
-> > +	write_lock(&kvm->mmu_lock);
-> > +	__kvm_write_track_remove_gfn(kvm, slot, gfn);
-> > +	write_unlock(&kvm->mmu_lock);
-> > +
-> > +	srcu_read_unlock(&kvm->srcu, idx);
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(kvm_write_track_remove_gfn);
-> 
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 127 +++++++++++++++--------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h |   2 +-
+ 2 files changed, 83 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index d3c1dee16af2..341e952d3510 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -927,53 +927,15 @@ static struct file *mmap_singleton(struct drm_i915_private *i915)
+ 	return file;
+ }
+ 
+-/*
+- * This overcomes the limitation in drm_gem_mmap's assignment of a
+- * drm_gem_object as the vma->vm_private_data. Since we need to
+- * be able to resolve multiple mmap offsets which could be tied
+- * to a single gem object.
+- */
+-int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
++static int
++i915_gem_object_mmap(struct drm_i915_gem_object *obj,
++		     struct i915_mmap_offset *mmo,
++		     struct vm_area_struct *vma)
+ {
+-	struct drm_vma_offset_node *node;
+-	struct drm_file *priv = filp->private_data;
+-	struct drm_device *dev = priv->minor->dev;
+-	struct drm_i915_gem_object *obj = NULL;
+-	struct i915_mmap_offset *mmo = NULL;
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct drm_device *dev = &i915->drm;
+ 	struct file *anon;
+ 
+-	if (drm_dev_is_unplugged(dev))
+-		return -ENODEV;
+-
+-	rcu_read_lock();
+-	drm_vma_offset_lock_lookup(dev->vma_offset_manager);
+-	node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
+-						  vma->vm_pgoff,
+-						  vma_pages(vma));
+-	if (node && drm_vma_node_is_allowed(node, priv)) {
+-		/*
+-		 * Skip 0-refcnted objects as it is in the process of being
+-		 * destroyed and will be invalid when the vma manager lock
+-		 * is released.
+-		 */
+-		if (!node->driver_private) {
+-			mmo = container_of(node, struct i915_mmap_offset, vma_node);
+-			obj = i915_gem_object_get_rcu(mmo->obj);
+-
+-			GEM_BUG_ON(obj && obj->ops->mmap_ops);
+-		} else {
+-			obj = i915_gem_object_get_rcu
+-				(container_of(node, struct drm_i915_gem_object,
+-					      base.vma_node));
+-
+-			GEM_BUG_ON(obj && !obj->ops->mmap_ops);
+-		}
+-	}
+-	drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
+-	rcu_read_unlock();
+-	if (!obj)
+-		return node ? -EACCES : -EINVAL;
+-
+ 	if (i915_gem_object_is_readonly(obj)) {
+ 		if (vma->vm_flags & VM_WRITE) {
+ 			i915_gem_object_put(obj);
+@@ -1005,7 +967,7 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 	if (obj->ops->mmap_ops) {
+ 		vma->vm_page_prot = pgprot_decrypted(vm_get_page_prot(vma->vm_flags));
+ 		vma->vm_ops = obj->ops->mmap_ops;
+-		vma->vm_private_data = node->driver_private;
++		vma->vm_private_data = obj->base.vma_node.driver_private;
+ 		return 0;
+ 	}
+ 
+@@ -1043,6 +1005,81 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 	return 0;
+ }
+ 
++/*
++ * This overcomes the limitation in drm_gem_mmap's assignment of a
++ * drm_gem_object as the vma->vm_private_data. Since we need to
++ * be able to resolve multiple mmap offsets which could be tied
++ * to a single gem object.
++ */
++int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
++{
++	struct drm_vma_offset_node *node;
++	struct drm_file *priv = filp->private_data;
++	struct drm_device *dev = priv->minor->dev;
++	struct drm_i915_gem_object *obj = NULL;
++	struct i915_mmap_offset *mmo = NULL;
++
++	if (drm_dev_is_unplugged(dev))
++		return -ENODEV;
++
++	rcu_read_lock();
++	drm_vma_offset_lock_lookup(dev->vma_offset_manager);
++	node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
++						  vma->vm_pgoff,
++						  vma_pages(vma));
++	if (node && drm_vma_node_is_allowed(node, priv)) {
++		/*
++		 * Skip 0-refcnted objects as it is in the process of being
++		 * destroyed and will be invalid when the vma manager lock
++		 * is released.
++		 */
++		if (!node->driver_private) {
++			mmo = container_of(node, struct i915_mmap_offset, vma_node);
++			obj = i915_gem_object_get_rcu(mmo->obj);
++
++			GEM_BUG_ON(obj && obj->ops->mmap_ops);
++		} else {
++			obj = i915_gem_object_get_rcu
++				(container_of(node, struct drm_i915_gem_object,
++					      base.vma_node));
++
++			GEM_BUG_ON(obj && !obj->ops->mmap_ops);
++		}
++	}
++	drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
++	rcu_read_unlock();
++	if (!obj)
++		return node ? -EACCES : -EINVAL;
++
++	return i915_gem_object_mmap(obj, mmo, vma);
++}
++
++int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma)
++{
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct drm_device *dev = &i915->drm;
++	struct i915_mmap_offset *mmo = NULL;
++	enum i915_mmap_type mmap_type;
++	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
++
++	if (drm_dev_is_unplugged(dev))
++		return -ENODEV;
++
++	mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
++	mmo = mmap_offset_attach(obj, mmap_type, NULL);
++	if (!mmo)
++		return -ENODEV;
++
++	/*
++	 * When we install vm_ops for mmap we are too late for
++	 * the vm_ops->open() which increases the ref_count of
++	 * this obj and then it gets decreased by the vm_ops->close().
++	 * To balance this increase the obj ref_count here.
++	 */
++	obj = i915_gem_object_get(mmo->obj);
++	return i915_gem_object_mmap(obj, mmo, vma);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftests/i915_gem_mman.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+index 1fa91b3033b3..196417fd0f5c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+@@ -29,5 +29,5 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
+ 
+ void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj);
+ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
+-
++int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma);
+ #endif
+-- 
+2.39.0
+
