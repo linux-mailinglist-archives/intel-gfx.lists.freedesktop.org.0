@@ -1,57 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315476C6190
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 09:24:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82AAC6C61E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 09:35:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B4E10E0ED;
-	Thu, 23 Mar 2023 08:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0639810E32E;
+	Thu, 23 Mar 2023 08:35:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C08710E0ED;
- Thu, 23 Mar 2023 08:24:04 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 16D1A33B63;
- Thu, 23 Mar 2023 08:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1679559843; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=4w9r6Q0E7jeLVI2fkecPUDfIAXkoMgIQoXKd2lmMmOk=;
- b=z5ZIHi0xQ4zbmIKmsrpLKB1lCXejTXb5q6SBqQvizvXLA3b9oVkEQ2uJj+8V8adiLE9vto
- CZ3QphN7JTZjj5/P7EeHfN/qBOjpE3BcWaqGzBo4E7QeTWzakPUs4fZqF7vCFKgY7OUHop
- wfFpwYTrouDOimEnfHNXYNiAUBPfo+8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1679559843;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=4w9r6Q0E7jeLVI2fkecPUDfIAXkoMgIQoXKd2lmMmOk=;
- b=9n4InMC90+EwT+u7JkVhhVICj6cKli4g6MqRdTVxC01kkRMNkZh/N3GH1yBZAizmHrHDXz
- 0d2GW8p4Vp3znPDQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id CBEAD132C2;
- Thu, 23 Mar 2023 08:24:02 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 9WTcMKIMHGSPIQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 23 Mar 2023 08:24:02 +0000
-Date: Thu, 23 Mar 2023 09:24:01 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230323082401.GA8371@linux-uq9g>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F1710E32E;
+ Thu, 23 Mar 2023 08:35:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679560555; x=1711096555;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=wDdeSb/bg+wF+kSpsoEp2QhZRodkIdNWumr/7wREvzk=;
+ b=B9a59O8pOk0VlSAZbX9Os3EQUt7kydUU+GNXtRQnnZ1ZbG65svOaqtIo
+ 0slQ5Vfzc08vyy0atR9Pf9pX7+D5qq6QeANZC2nJaYSrvRgT8ih4a+rJc
+ 3Ru4ZV+tzKmaf/vIw1B7v2W2EzmDYsk6YPyq7bSdBsx6j4YQE0VPF7+kF
+ 1/dty5mZrtdkgk7S2zfmu4LFuIb2ea3Uk0lFPqGHMH8kXzlqSUJUS7MLD
+ OTeasnYI8fPrjCiKtZoToppTvWRyKueSbMOO2gevQaODWzwPtzDs5EhJM
+ jCl7H7vGZvhOGaiKmWydQWzIgDWjIghbLalbFWUf2SbLUE7Z1bL9JhKIZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="323276911"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="323276911"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 01:35:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="682230055"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="682230055"
+Received: from mplechx-mobl.ger.corp.intel.com (HELO [10.213.211.105])
+ ([10.213.211.105])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 01:35:53 -0700
+Message-ID: <416a0d13-0013-ecbe-716e-f3bda59c9d30@linux.intel.com>
+Date: Thu, 23 Mar 2023 08:35:50 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "Tamminen, Eero T" <eero.t.tamminen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230314175832.1506427-1-alan.previn.teres.alexis@intel.com>
+ <6cff8c19-0ab6-4b03-d778-ad57aa207b98@intel.com>
+ <cc56d923-4021-3423-bfdf-986e7b73283f@linux.intel.com>
+ <3841da5b-06df-eacf-ebd1-0e7885e6c9cb@intel.com>
+ <38deebc090105826da9c85172392b10b93e99801.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <38deebc090105826da9c85172392b10b93e99801.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: limit drm-errors or
+ warning on firmware API failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +69,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
 
-here's the weekly PR for drm-misc-fixes.
+On 23/03/2023 00:27, Teres Alexis, Alan Previn wrote:
+> On Fri, 2023-03-17 at 13:37 +0200, Tamminen, Eero T wrote:
+>> Hi,
+>>
+>> On 16.3.2023 10.50, Tvrtko Ursulin wrote:
+>>>> [Â Â  11.674183] i915 0000:00:02.0: PXP init-arb-session-15 failed due
+>>>> to BIOS/SOC:0x0000101a:ERR_PLATFORM_CONFIG
+>> ...
+>>> Alan - is this expected during normal operation on some parts, or it's
+>>> something truly unexpected/unexplained? If the former then I think it
+>>> would be good to downgrade away from drm_WARN so it is less scary.
+>>>
+>>> Commit message talks about "HW/platform gaps" - if it is like a missing
+>>> BIOS support or so then I think WARN_ON is too much.
+>>
+>> Note that this was on pre-production TGL-H HW with BIOS from April 2021.
+>>
+>> (I don't know where to get update, nor interested to update it.)
+>>
+>>
+>> 	- Eero
+> 
+> Alan:Â Hi Tvrtko, thanks for the feedback -i shall change from WARN_ONCE to drm_info_once.
 
-Best regards
-Thomas
+Maybe it deserves to be a warning? Or a notice? I was just thinking it 
+does not need a call trace and all since it is not a driver issue. Your 
+call on the level and whether or not there is any chance for it to 
+happen in the field to make the discussion relevant or not.
 
-drm-misc-fixes-2023-03-23:
-Short summary of fixes pull:
+Regards,
 
- * fixes for bind and probing error handling
- * panel-orientation fixes for Lenovo Book X90F
-The following changes since commit 4028cbf867f70a3c599c9b0c9509334c56ed97d7:
-
-  drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion again (2023-03-15 10:06:46 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-03-23
-
-for you to fetch changes up to 1a70ca89d59c7c8af006d29b965a95ede0abb0da:
-
-  drm/bridge: lt8912b: return EPROBE_DEFER if bridge is not found (2023-03-22 18:01:57 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * fixes for bind and probing error handling
- * panel-orientation fixes for Lenovo Book X90F
-
-----------------------------------------------------------------
-Hans de Goede (1):
-      drm: panel-orientation-quirks: Add quirk for Lenovo Yoga Book X90F
-
-Johan Hovold (1):
-      drm/meson: fix missing component unbind on bind errors
-
-Matheus Castello (1):
-      drm/bridge: lt8912b: return EPROBE_DEFER if bridge is not found
-
- drivers/gpu/drm/bridge/lontium-lt8912b.c       |  4 ++--
- drivers/gpu/drm/drm_panel_orientation_quirks.c | 13 ++++++++++---
- drivers/gpu/drm/meson/meson_drv.c              | 13 ++++++++-----
- 3 files changed, 20 insertions(+), 10 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+Tvrtko
