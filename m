@@ -2,147 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC116C6085
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 08:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8886C6135
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 09:00:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6009D10E452;
-	Thu, 23 Mar 2023 07:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CFD10EA43;
+	Thu, 23 Mar 2023 08:00:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5BFF10E44F;
- Thu, 23 Mar 2023 07:18:23 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA6A10EA43;
+ Thu, 23 Mar 2023 08:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679555903; x=1711091903;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=yxD43jG93moM17S3uB/eRnrwjgTonMseECqR2We2I0Q=;
- b=NnWeuOnoy4lv1D4MytkPFWofu3cmY1Hu5+z++Do7PnEmumHyERuWO/Gs
- OWeyK5S9FREtAXQyTbXXWQvmcEYARGDStix43olR37L6DMKmlZ52JJnFF
- Tem3YREVWt/v1p4fE2UYV1XS940h13qfizNn7rZU9epDn4NmvFCKFWv7E
- QITZMPxgH2i1EBytASA+NE1MleAazXqbV2CSVbRsl1ozhGzsroRYKmOQ9
- 1Izz/RR7XRptwieeCCS7BGLVB7bBHUsgA3YS4l+ZQJlI1ExMHrgrl+CuJ
- f3ooTOTqKuH/7HAMabJXmTRISaIC7y1vgkIJ3DB6PmKdJc16x9g7sY9a8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="327794663"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="327794663"
+ t=1679558455; x=1711094455;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=bSKsCiwKEcMLBa0evmEIV2cW2Z+RXVvhMh4pXPysk9I=;
+ b=JEdvA2qVEabu8fNTuBQFm7tMTjSsF2829BDS9uml4s8nn76/tyndZoLD
+ 2cZGM1v8LxKfXDuzek3uXeGeUh1ergRr1p1B8TxG+7bjGVN1cwpUPiQSu
+ K7tBEEw2pfnCEiyEftYlWTPg7TM8nnDdOy7GIN7MtibviwW6bSmSCmjLD
+ RbPXUK3vh7NDGEqofIyvyK2h+e+NmLEUHqpm+xogzWFm25U+PhwVhTgs9
+ G+V7YlxiSNRl8qAPJk3uhLOQ8AppnBQmqKe9e5wN28svPdRryS8pmsbc0
+ vZaX5s30sXv7oeuALYCJzMo0t5V4jgAc4/0ApziefzQqtb+ymxKN1wrQd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="404310796"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="404310796"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 00:17:59 -0700
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 01:00:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="659478015"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="659478015"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 23 Mar 2023 00:17:44 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 23 Mar 2023 00:17:43 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 23 Mar 2023 00:17:43 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 23 Mar 2023 00:17:43 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iypZC8B56frVj9/AcMT4KDLrmbdE6Ttq9dy9uMU8mqSsfiXJlpZHAemIm7+oghAiFtWs+82WWxnSiG19uqoTr3iKBHOxGCOByFlbFuNLrach79JRhU+1V08fvYAdgG8SAG7GqpCTx6c3eANVk+FSiAlFiEara+ijojQqG0PJ6R/WbEQLKIXaPajmrMybcXnedgkFNtEnFcX+pXSqEmdZbqqGEpP6p7oPCbCrvEe/pAYetZopGUHmMDxP15FM3KMm/fy2qTN2kM68vxtbhs6Wk0zhRyjdeEnIVh8VbT+UOYjNVwOwvmzj+iFiQckhANHOihIpI1hQen1zaNL134mUqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UkgJs5N4kNhQYO9eyByAY57qmqlcroYIRZ1wd3j1LnI=;
- b=OhBDCXwq/Mm5j7RI+M5L69SpOtOlPvPyK7ttRykRnYzFGnUXVfDXKjHgfpAtC/Gv6QMWKGycgAWeOtlLbvnzKqRqczeEYWP3Esh7HXduEPnFA/mndKcn3rywlr7MKdaLjp3ljVaDkjvsoBaTN2KQqlDN8n67lh2DsR3zQ1+G4iTGw8kuJAEH1kfoaJzQCABlajJim+r3bi9KB5pk8cxq/pSJxNZTHOGi3TfTq8EvV20bdo4VOKyH4LU8oHKhcTwktyrcE57FCnVJJ+PTp4ry8tFAsJ5rIkKiGY4VDUjFTyOssUELNAryZKyHKkfIce5gGdBJE3fb/d3w1hrhMccxZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com (2603:10b6:300:10d::20)
- by CH0PR11MB5313.namprd11.prod.outlook.com (2603:10b6:610:bc::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Thu, 23 Mar
- 2023 07:17:34 +0000
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::469:cdec:dfa7:2c73]) by MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::469:cdec:dfa7:2c73%7]) with mapi id 15.20.6178.037; Thu, 23 Mar 2023
- 07:17:34 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Mark Yacoub <markyacoub@chromium.org>, "quic_khsieh@quicinc.com"
- <quic_khsieh@quicinc.com>, "linux-arm-msm@vger.kernel.org"
- <linux-arm-msm@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable return codes
-Thread-Index: AQHZK3NzHw1adqIUP0ahY6fdLOLhFK7z909ggBRfsoA=
-Date: Thu, 23 Mar 2023 07:17:34 +0000
-Message-ID: <MWHPR11MB1741D833E10227E8BA1CEE03E3879@MWHPR11MB1741.namprd11.prod.outlook.com>
-References: <20230118193015.911074-1-markyacoub@google.com>
- <20230118193015.911074-7-markyacoub@google.com>
- <MWHPR11MB1741FB33E933A3285B7DC88DE3BA9@MWHPR11MB1741.namprd11.prod.outlook.com>
-In-Reply-To: <MWHPR11MB1741FB33E933A3285B7DC88DE3BA9@MWHPR11MB1741.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MWHPR11MB1741:EE_|CH0PR11MB5313:EE_
-x-ms-office365-filtering-correlation-id: c31af43d-99ca-4953-6e9c-08db2b6eac7d
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dYRrpZnYkT5VyxvUQZvzsDBlaVGPYLbNapZ6mF2dMXTzyKJMc6aAvlNXvGj3ko6cElJhP4aRWwX6SIUOf23PRofu5zWTyBci6G6y1bftGgTbozX7VIpr4eFccio5el8Zc64VFCu/fCjajLd+pghatB2nWkaYnZSkgj6Y8u3z0RTCrEZfOjbt+qr7AZRkksAT/l5HLZGUWH6KSeHGkMamsP9KZJKUNhPrJMa+bL+WBWSLbwcvwiy+Zj1v0MubNh2Fj5GzX2oQCf45DyJelkQGrK1ra4aubtJg5rEnFAQ7KzRy2F9phZBzfB6nvElvgwVumVkajUbw2NmWyMa6ZP2+4ZwnnTvp2mLpUXof7NhvJuoLJHnbpOmyfPc4RA72e2c8l5S2GwIHV8MxB2fMNwWRq1tAMiQk9Wd5HwEaPpxo08JHiWo7d89QV6yV8hFZJFvw4jDKPsVq5G5AItH/uhALC+Rj7ILmvyhMHaNvBJm473UTnM7Xy3NHJFiVHIzba8H+mTQcqloXhDmrEpW1zeidp0lXjjwiDYB8XgfJWZyH+7NlZUrtT6yN07jjB9vM7kNzzYRNbxUtCEaVfzon5AUjjZ4ma9ToMzlrYAAAH6e6Z/4kuRf2wDlKRLAbSzJ739EabMDBNf5mIpffvT9wtznLaQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1741.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(366004)(136003)(396003)(346002)(39860400002)(451199018)(7416002)(82960400001)(7406005)(86362001)(52536014)(8936002)(5660300002)(41300700001)(66556008)(38070700005)(55016003)(2906002)(38100700002)(122000001)(478600001)(53546011)(54906003)(110136005)(6506007)(33656002)(966005)(83380400001)(26005)(7696005)(71200400001)(66946007)(66476007)(8676002)(4326008)(66446008)(64756008)(9686003)(186003)(76116006)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YoIEJt2gAbDtZJoHl3Nz/Y5Vp9gNtXKav65YG5K5vBBomV+vitj7W03SXmCJ?=
- =?us-ascii?Q?Du6Mn6KcfpHRVsltgXnotmN+VgB7u9NDM4OzxlWOqpYJ2fbdSG8z7NM08zWp?=
- =?us-ascii?Q?78f2ot/dRdK2MFiv4l+BMs+QtSb5l2RZPHNOTrFNrJRgZibv4gmQGVeh/H6t?=
- =?us-ascii?Q?kqXCuiNHqjrnWAAfcI/nhv7lrJhm9YFsgwkc6+VDHhCoeUecbQNfvqWUxYtR?=
- =?us-ascii?Q?p+H/Dzy7ngEOcNeVLCAQrTRt4i1j+JZrqAuurj73fbXUGMRf2F7/ZN0kLlZB?=
- =?us-ascii?Q?n/Z4fOUqxl8ehfJ0NpT7nGrO2PCBVS4gcs6IJxA2Os/mNk/jov81P+qLV6mY?=
- =?us-ascii?Q?Efy8bPlFshei5il/xYnlU5dPQIr7y7JVz22K1KWzKm8ycFfdxtPnjiqb0jXl?=
- =?us-ascii?Q?/yOp1kb9T0f7SSN9S7zkUcuSKafOZLssVOF9fL+cXbkrqh3B9anJWQ+B6irF?=
- =?us-ascii?Q?q6rjcxzBf7dsXedvXeneJMg14H0qABiPYOTDqsc7wbMoUxiVkSNjecBIWNQa?=
- =?us-ascii?Q?rgT/qgTWMqDCzn1AXHM10ZVaui3CHoVOrFoK4CWYXKbh83pqHnAKCM6XWStc?=
- =?us-ascii?Q?bhqEcc3pwzMkOJItCcd0faUUyrDWbcjGh28yDOuCAXgVlTneVUgm1xmeT+JD?=
- =?us-ascii?Q?9u2D0uc84AryTVzOmHGQGM76ZLL4gEAtAJNQ4EcWmsxDx300OoEWGjeqZmAo?=
- =?us-ascii?Q?9cLq1DWt/GgJlEWf6mAMpsUFoOsMf00kboQ4NUEzx10j97mSe3Qs2WS16QVa?=
- =?us-ascii?Q?QT29RTGXbA52DvJqZewsU6zW+xOBFcuwbjrjnFWdDhQgQ8/2wDechGnRVNi3?=
- =?us-ascii?Q?Ffyv5Ud+d7/AZeMu0xEbnH7uXzuLhnlPyOLq/nUy9sV1BsbRO7t15N8efD6R?=
- =?us-ascii?Q?NQEpVq2auw9futbrEtQX+eMaP3D+q9wZN6IIW8nFYr+TPALu+BbOZTlIQat7?=
- =?us-ascii?Q?yaZo4iHB1mFbeURXCE/QeFQt/LKCjIeIwmhTqnHPaAeCRfAUiYASerN3z4Ro?=
- =?us-ascii?Q?o1hscycl7OI44d0/xfmYChoFAmvkV3AzF8LER8KkPjI6zs6DI9pL/py672Vg?=
- =?us-ascii?Q?i4fueTUvswVQXxWOXU8hhQP/u48/o9QZorgXfDvvvkWsSptfQd3QymXutN/K?=
- =?us-ascii?Q?wS5ki44uhT72rt09gDJDaEPOClnfW6vugF4zToAZGEMlwC6i1NY/WK5EwskQ?=
- =?us-ascii?Q?tYkbeM4jx/hnUYp8S4RO0AdT7uDc2oQVgMsrGfUwmrEfCiBiPMgj6jUyV6eN?=
- =?us-ascii?Q?qEFPxOgLutWpq8i8CfSTvZ76pvZ9bl2Xwwsv11//RmihBGUdktNzLOsWnbAr?=
- =?us-ascii?Q?0p4iu1qB0UDA9ZIXIQHBqKnfl21sAc+ZjvZRJ5gQZUZVtgVfR/+XwwuKF3FI?=
- =?us-ascii?Q?2CcODsjYJuvYKrhJMJ+2p0+ON739/RhMVObqauHQnj353HilEZr5rTrPLbHZ?=
- =?us-ascii?Q?en3m55VrN7mzrmdK8I63RVU+ScAQNEXVIt1bwibTx+5wOUsbdryFRqxB0nUk?=
- =?us-ascii?Q?wE5wj/eH4NVI55KvSd/dCrKcNuVVgmA19vC3DHOWetFf5wGa9L2yxXfG6zze?=
- =?us-ascii?Q?GJclZDfFs678daHRY0n0Bi9+BMeDjVwXKsK7ePm7?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="659503088"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="659503088"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.62.49])
+ ([10.252.62.49])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 01:00:52 -0700
+Message-ID: <f1d57967-0671-88c0-5c08-3b79ec188360@linux.intel.com>
+Date: Thu, 23 Mar 2023 09:00:50 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1741.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c31af43d-99ca-4953-6e9c-08db2b6eac7d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2023 07:17:34.2886 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ydEcBlwrhkxFuQyUbGaESDwuEPA7x3FG82xZCT/7yTbJ4B7A/B3NheKrmVZuz2YdyuFDmZdX9lFMHo9Y6Pw77g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5313
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable
- return codes
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das
+ <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230320100903.23588-1-nirmoy.das@intel.com>
+ <c1b797a5-92d6-6590-9c47-6606ec409a12@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <c1b797a5-92d6-6590-9c47-6606ec409a12@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2: 1/3] drm/i915: Add a function to mmap
+ framebuffer obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,317 +64,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "quic_sbillaka@quicinc.com" <quic_sbillaka@quicinc.com>,
- "konrad.dybcio@somainline.org" <konrad.dybcio@somainline.org>,
- "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "hbh25y@gmail.com" <hbh25y@gmail.com>, "Vasut, Marek" <marex@denx.de>,
- "javierm@redhat.com" <javierm@redhat.com>,
- "agross@kernel.org" <agross@kernel.org>,
- "quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
- "abhinavk@codeaurora.org" <abhinavk@codeaurora.org>,
- "swboyd@chromium.org" <swboyd@chromium.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
- "maxime@cerno.tech" <maxime@cerno.tech>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>,
- "johan+linaro@kernel.org" <johan+linaro@kernel.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "dianders@chromium.org" <dianders@chromium.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "seanpaul@chromium.org" <seanpaul@chromium.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 3/20/2023 3:02 PM, Andrzej Hajda wrote:
+> On 20.03.2023 11:09, Nirmoy Das wrote:
+>> Implement i915_gem_fb_mmap() to enable fb_ops.fb_mmap()
+>> callback for i915's framebuffer objects.
+>>
+>> v2: add a comment why i915_gem_object_get() needed(Andi).
+>>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-> -----Original Message-----
-> From: Kandpal, Suraj
-> Sent: Friday, March 10, 2023 1:55 PM
-> To: Mark Yacoub <markyacoub@chromium.org>; quic_khsieh@quicinc.com;
-> linux-arm-msm@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; intel-gfx@lists.freedesktop.org
-> Cc: quic_sbillaka@quicinc.com; konrad.dybcio@somainline.org; Souza, Jose
-> <jose.souza@intel.com>; bjorn.andersson@linaro.org;
-> krzysztof.kozlowski+dt@linaro.org; hbh25y@gmail.com; Vasut, Marek
-> <marex@denx.de>; Dixit, Ashutosh <ashutosh.dixit@intel.com>;
-> sean@poorly.run; abhinavk@codeaurora.org; javierm@redhat.com; Murthy,
-> Arun R <arun.r.murthy@intel.com>; Lisovskiy, Stanislav
-> <Stanislav.Lisovskiy@intel.com>; agross@kernel.org;
-> quic_jesszhan@quicinc.com; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>=
-;
-> Nikula, Jani <jani.nikula@intel.com>; De Marchi, Lucas
-> <lucas.demarchi@intel.com>; quic_abhinavk@quicinc.com;
-> swboyd@chromium.org; robh+dt@kernel.org;
-> christophe.jaillet@wanadoo.fr; maxime@cerno.tech; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>; johan+linaro@kernel.org;
-> tvrtko.ursulin@linux.intel.com; andersson@kernel.org;
-> dianders@chromium.org; Sharma, Swati2 <swati2.sharma@intel.com>;
-> Navare, Manasi D <manasi.d.navare@intel.com>; tzimmermann@suse.de;
-> Modem, Bhanuprakash <Bhanuprakash.Modem@intel.com>;
-> dmitry.baryshkov@linaro.org; seanpaul@chromium.org
-> Subject: RE: [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable return
-> codes
->=20
-> > Subject: [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable return
-> > codes
-> >
-> > From: Sean Paul <seanpaul@chromium.org>
-> >
-> > The shim functions return error codes, but they are discarded in
-> > intel_hdcp.c. This patch plumbs the return codes through so they are
-> > properly handled.
-> >
-> > Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> > Link:
-> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-7-
-> > sean@poorly.run #v1
-> > Link:
-> > https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-7-
-> > sean@poorly.run #v2
-> > Link:
-> > https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-7-
-> > sean@poorly.run #v3
-> > Link:
-> >
-> https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-
-> > 7-sean@poorly.run #v4
-> > Link:
-> >
-> https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-
-> > 7-sean@poorly.run #v5
-> >
-> > Changes in v2:
-> > -None
-> > Changes in v3:
-> > -None
-> > Changes in v4:
-> > -None
-> > Changes in v5:
-> > -None
-> > Changes in v6:
-> > -Rebased
-> >
-> > ---
-> >  .../drm/i915/display/intel_display_debugfs.c  |  9 +++-
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c     | 51 ++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_hdcp.h     |  4 +-
-> >  3 files changed, 37 insertions(+), 27 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index 7c7253a2541c..13a4153bb76e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -492,6 +492,7 @@ static void intel_panel_info(struct seq_file *m,
-> > static void intel_hdcp_info(struct seq_file *m,
-> >  			    struct intel_connector *intel_connector)  {
-> > +	int ret;
-> >  	bool hdcp_cap, hdcp2_cap;
-> >
-> >  	if (!intel_connector->hdcp.shim) {
-> > @@ -499,8 +500,12 @@ static void intel_hdcp_info(struct seq_file *m,
-> >  		goto out;
-> >  	}
-> >
-> > -	hdcp_cap =3D intel_hdcp_capable(intel_connector);
-> > -	hdcp2_cap =3D intel_hdcp2_capable(intel_connector);
-> > +	ret =3D intel_hdcp_capable(intel_connector, &hdcp_cap);
-> > +	if (ret)
-> > +		hdcp_cap =3D false;
-> > +	ret =3D intel_hdcp2_capable(intel_connector, &hdcp2_cap);
-> > +	if (ret)
-> > +		hdcp2_cap =3D false;
-> >
->=20
-> This does not seem to be adding value here as this error which you referr=
-ed
-> to as being ignored is used both in case of hdmi and dp is being to deter=
-mine
-> if hdcp_cap or hdcp2 cap is true or false which you basically reiterate h=
-ere too
-> check the intel_dp_hdcp2_capable and intel_hdmi_hdcp2_capable .
-> this change in itself can be removed.
->=20
-> Regards,
-> Suraj Kandpal
->=20
-> >  	if (hdcp_cap)
-> >  		seq_puts(m, "HDCP1.4 ");
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index 0a20bc41be55..61a862ae1f28 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -177,50 +177,49 @@ int intel_hdcp_read_valid_bksv(struct
-> > intel_digital_port *dig_port,  }
-> >
-> >  /* Is HDCP1.4 capable on Platform and Sink */ -bool
-> > intel_hdcp_capable(struct intel_connector *connector)
-> > +int intel_hdcp_capable(struct intel_connector *connector, bool
-> > +*capable)
-> >  {
-> >  	struct intel_digital_port *dig_port =3D
-> > intel_attached_dig_port(connector);
-> >  	const struct intel_hdcp_shim *shim =3D connector->hdcp.shim;
-> > -	bool capable =3D false;
-> >  	u8 bksv[5];
-> >
-> > +	*capable =3D false;
-> > +
-> >  	if (!shim)
-> > -		return capable;
-> > +		return 0;
-> >
-> > -	if (shim->hdcp_capable) {
-> > -		shim->hdcp_capable(dig_port, &capable);
-> > -	} else {
-> > -		if (!intel_hdcp_read_valid_bksv(dig_port, shim, bksv))
-> > -			capable =3D true;
-> > -	}
-> > +	if (shim->hdcp_capable)
-> > +		return shim->hdcp_capable(dig_port, capable);
-> > +
-> > +	if (!intel_hdcp_read_valid_bksv(dig_port, shim, bksv))
-> > +		*capable =3D true;
-> >
-> > -	return capable;
-> > +	return 0;
-> >  }
-> >
-> >  /* Is HDCP2.2 capable on Platform and Sink */ -bool
-> > intel_hdcp2_capable(struct intel_connector *connector)
-> > +int intel_hdcp2_capable(struct intel_connector *connector, bool
-> > +*capable)
-> >  {
-> >  	struct intel_digital_port *dig_port =3D
-> > intel_attached_dig_port(connector);
-> >  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
-> >  	struct intel_hdcp *hdcp =3D &connector->hdcp;
-> > -	bool capable =3D false;
-> > +
-> > +	*capable =3D false;
-> >
-> >  	/* I915 support for HDCP2.2 */
-> >  	if (!hdcp->hdcp2_supported)
-> > -		return false;
-> > +		return 0;
-> >
-> >  	/* MEI interface is solid */
-> >  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> >  	if (!dev_priv->display.hdcp.comp_added ||  !dev_priv-
-> > >display.hdcp.master) {
-> >  		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-> > -		return false;
-> > +		return 0;
-> >  	}
-> >  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-> >
-> >  	/* Sink's capability for HDCP2.2 */
-> > -	hdcp->shim->hdcp_2_2_capable(dig_port, &capable);
-> > -
-> > -	return capable;
-> > +	return hdcp->shim->hdcp_2_2_capable(dig_port, capable);
-> >  }
-> >
-> >  static bool intel_hdcp_in_use(struct drm_i915_private *dev_priv, @@ -
-> > 2355,6 +2354,7 @@ int intel_hdcp_enable(struct intel_connector
-> > *connector,
-> >  	struct intel_digital_port *dig_port =3D
-> > intel_attached_dig_port(connector);
-> >  	struct intel_hdcp *hdcp =3D &connector->hdcp;
-> >  	unsigned long check_link_interval =3D
-> DRM_HDCP_CHECK_PERIOD_MS;
-> > +	bool capable;
-> >  	int ret =3D -EINVAL;
-> >
-> >  	if (!hdcp->shim)
-> > @@ -2373,21 +2373,27 @@ int intel_hdcp_enable(struct intel_connector
-> > *connector,
-> >  	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the
-> > setup
-> >  	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
-> >  	 */
-> > -	if (intel_hdcp2_capable(connector)) {
-> > +	ret =3D intel_hdcp2_capable(connector, &capable);
-> > +	if (capable) {
-> >  		ret =3D _intel_hdcp2_enable(connector);
-> > -		if (!ret)
-> > +		if (!ret) {
-> >  			check_link_interval =3D
-> > DRM_HDCP2_CHECK_PERIOD_MS;
-> > +			goto out;
-> > +		}
 
-HI,
-Just noticed another changed here if any error is returned with intel_hdc2_=
-capable
-You directly jump to out which will stop us from enabling hdcp 1.4 we shoul=
-d check
-for hdcp 1.4 capability even if hdcp 2.2 capability is returned with an err=
-or one other
-reason I don't think the handling of error codes are adding value here.
+Thanks, Andrzej.
+
+
+Going to resend it without RFC now as there are two r-bs and no one 
+complained.
+
 
 Regards,
-Suraj Kandpal
-> >  	}
-> >
-> >  	/*
-> >  	 * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
-> >  	 * be attempted.
-> >  	 */
-> > -	if (ret && intel_hdcp_capable(connector) &&
-> > -	    hdcp->content_type !=3D DRM_MODE_HDCP_CONTENT_TYPE1) {
-> > +	ret =3D intel_hdcp_capable(connector, &capable);
-> > +	if (ret)
-> > +		goto out;
-> > +
-> > +	if (capable && hdcp->content_type !=3D
-> > DRM_MODE_HDCP_CONTENT_TYPE1)
-> >  		ret =3D _intel_hdcp_enable(connector);
-> > -	}
-> >
-> > +out:
-> >  	if (!ret) {
-> >  		schedule_delayed_work(&hdcp->check_work,
-> > check_link_interval);
-> >  		intel_hdcp_update_value(connector,
-> > @@ -2395,7 +2401,6 @@ int intel_hdcp_enable(struct intel_connector
-> > *connector,
-> >  					true);
-> >  	}
-> >
-> > -out:
-> >  	mutex_unlock(&dig_port->hdcp_mutex);
-> >  	mutex_unlock(&hdcp->mutex);
-> >  	return ret;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > index 7c5fd84a7b65..f06f6e5a2b1a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > @@ -33,8 +33,8 @@ void intel_hdcp_update_pipe(struct
-> > intel_atomic_state *state,
-> >  			    const struct intel_crtc_state *crtc_state,
-> >  			    const struct drm_connector_state *conn_state);
-> bool
-> > is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port);
-> > -bool intel_hdcp_capable(struct intel_connector *connector); -bool
-> > intel_hdcp2_capable(struct intel_connector *connector);
-> > +int intel_hdcp_capable(struct intel_connector *connector, bool
-> > +*capable); int intel_hdcp2_capable(struct intel_connector *connector,
-> > +bool *capable);
-> >  void intel_hdcp_component_init(struct drm_i915_private *dev_priv);
-> > void intel_hdcp_component_fini(struct drm_i915_private *dev_priv);
-> > void intel_hdcp_cleanup(struct intel_connector *connector);
-> > --
-> > 2.39.0.246.g2a6d74b583-goog
 
+Nirmoy
+
+>
+> Regards
+> Andrzej
+>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 127 +++++++++++++++--------
+>>   drivers/gpu/drm/i915/gem/i915_gem_mman.h |   2 +-
+>>   2 files changed, 83 insertions(+), 46 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>> index d3c1dee16af2..341e952d3510 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>> @@ -927,53 +927,15 @@ static struct file *mmap_singleton(struct 
+>> drm_i915_private *i915)
+>>       return file;
+>>   }
+>>   -/*
+>> - * This overcomes the limitation in drm_gem_mmap's assignment of a
+>> - * drm_gem_object as the vma->vm_private_data. Since we need to
+>> - * be able to resolve multiple mmap offsets which could be tied
+>> - * to a single gem object.
+>> - */
+>> -int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+>> +static int
+>> +i915_gem_object_mmap(struct drm_i915_gem_object *obj,
+>> +             struct i915_mmap_offset *mmo,
+>> +             struct vm_area_struct *vma)
+>>   {
+>> -    struct drm_vma_offset_node *node;
+>> -    struct drm_file *priv = filp->private_data;
+>> -    struct drm_device *dev = priv->minor->dev;
+>> -    struct drm_i915_gem_object *obj = NULL;
+>> -    struct i915_mmap_offset *mmo = NULL;
+>> +    struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>> +    struct drm_device *dev = &i915->drm;
+>>       struct file *anon;
+>>   -    if (drm_dev_is_unplugged(dev))
+>> -        return -ENODEV;
+>> -
+>> -    rcu_read_lock();
+>> -    drm_vma_offset_lock_lookup(dev->vma_offset_manager);
+>> -    node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
+>> -                          vma->vm_pgoff,
+>> -                          vma_pages(vma));
+>> -    if (node && drm_vma_node_is_allowed(node, priv)) {
+>> -        /*
+>> -         * Skip 0-refcnted objects as it is in the process of being
+>> -         * destroyed and will be invalid when the vma manager lock
+>> -         * is released.
+>> -         */
+>> -        if (!node->driver_private) {
+>> -            mmo = container_of(node, struct i915_mmap_offset, 
+>> vma_node);
+>> -            obj = i915_gem_object_get_rcu(mmo->obj);
+>> -
+>> -            GEM_BUG_ON(obj && obj->ops->mmap_ops);
+>> -        } else {
+>> -            obj = i915_gem_object_get_rcu
+>> -                (container_of(node, struct drm_i915_gem_object,
+>> -                          base.vma_node));
+>> -
+>> -            GEM_BUG_ON(obj && !obj->ops->mmap_ops);
+>> -        }
+>> -    }
+>> -    drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
+>> -    rcu_read_unlock();
+>> -    if (!obj)
+>> -        return node ? -EACCES : -EINVAL;
+>> -
+>>       if (i915_gem_object_is_readonly(obj)) {
+>>           if (vma->vm_flags & VM_WRITE) {
+>>               i915_gem_object_put(obj);
+>> @@ -1005,7 +967,7 @@ int i915_gem_mmap(struct file *filp, struct 
+>> vm_area_struct *vma)
+>>       if (obj->ops->mmap_ops) {
+>>           vma->vm_page_prot = 
+>> pgprot_decrypted(vm_get_page_prot(vma->vm_flags));
+>>           vma->vm_ops = obj->ops->mmap_ops;
+>> -        vma->vm_private_data = node->driver_private;
+>> +        vma->vm_private_data = obj->base.vma_node.driver_private;
+>>           return 0;
+>>       }
+>>   @@ -1043,6 +1005,81 @@ int i915_gem_mmap(struct file *filp, struct 
+>> vm_area_struct *vma)
+>>       return 0;
+>>   }
+>>   +/*
+>> + * This overcomes the limitation in drm_gem_mmap's assignment of a
+>> + * drm_gem_object as the vma->vm_private_data. Since we need to
+>> + * be able to resolve multiple mmap offsets which could be tied
+>> + * to a single gem object.
+>> + */
+>> +int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+>> +{
+>> +    struct drm_vma_offset_node *node;
+>> +    struct drm_file *priv = filp->private_data;
+>> +    struct drm_device *dev = priv->minor->dev;
+>> +    struct drm_i915_gem_object *obj = NULL;
+>> +    struct i915_mmap_offset *mmo = NULL;
+>> +
+>> +    if (drm_dev_is_unplugged(dev))
+>> +        return -ENODEV;
+>> +
+>> +    rcu_read_lock();
+>> +    drm_vma_offset_lock_lookup(dev->vma_offset_manager);
+>> +    node = drm_vma_offset_exact_lookup_locked(dev->vma_offset_manager,
+>> +                          vma->vm_pgoff,
+>> +                          vma_pages(vma));
+>> +    if (node && drm_vma_node_is_allowed(node, priv)) {
+>> +        /*
+>> +         * Skip 0-refcnted objects as it is in the process of being
+>> +         * destroyed and will be invalid when the vma manager lock
+>> +         * is released.
+>> +         */
+>> +        if (!node->driver_private) {
+>> +            mmo = container_of(node, struct i915_mmap_offset, 
+>> vma_node);
+>> +            obj = i915_gem_object_get_rcu(mmo->obj);
+>> +
+>> +            GEM_BUG_ON(obj && obj->ops->mmap_ops);
+>> +        } else {
+>> +            obj = i915_gem_object_get_rcu
+>> +                (container_of(node, struct drm_i915_gem_object,
+>> +                          base.vma_node));
+>> +
+>> +            GEM_BUG_ON(obj && !obj->ops->mmap_ops);
+>> +        }
+>> +    }
+>> +    drm_vma_offset_unlock_lookup(dev->vma_offset_manager);
+>> +    rcu_read_unlock();
+>> +    if (!obj)
+>> +        return node ? -EACCES : -EINVAL;
+>> +
+>> +    return i915_gem_object_mmap(obj, mmo, vma);
+>> +}
+>> +
+>> +int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct 
+>> vm_area_struct *vma)
+>> +{
+>> +    struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>> +    struct drm_device *dev = &i915->drm;
+>> +    struct i915_mmap_offset *mmo = NULL;
+>> +    enum i915_mmap_type mmap_type;
+>> +    struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+>> +
+>> +    if (drm_dev_is_unplugged(dev))
+>> +        return -ENODEV;
+>> +
+>> +    mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : 
+>> I915_MMAP_TYPE_WC;
+>> +    mmo = mmap_offset_attach(obj, mmap_type, NULL);
+>> +    if (!mmo)
+>> +        return -ENODEV;
+>> +
+>> +    /*
+>> +     * When we install vm_ops for mmap we are too late for
+>> +     * the vm_ops->open() which increases the ref_count of
+>> +     * this obj and then it gets decreased by the vm_ops->close().
+>> +     * To balance this increase the obj ref_count here.
+>> +     */
+>> +    obj = i915_gem_object_get(mmo->obj);
+>> +    return i915_gem_object_mmap(obj, mmo, vma);
+>> +}
+>> +
+>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>   #include "selftests/i915_gem_mman.c"
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+>> index 1fa91b3033b3..196417fd0f5c 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+>> @@ -29,5 +29,5 @@ void i915_gem_object_release_mmap_gtt(struct 
+>> drm_i915_gem_object *obj);
+>>     void i915_gem_object_runtime_pm_release_mmap_offset(struct 
+>> drm_i915_gem_object *obj);
+>>   void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object 
+>> *obj);
+>> -
+>> +int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct 
+>> vm_area_struct *vma);
+>>   #endif
+>
