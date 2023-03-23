@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5696C6AC6
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D5E6C6B10
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:33:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D4E10EACD;
-	Thu, 23 Mar 2023 14:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6FDF10E48F;
+	Thu, 23 Mar 2023 14:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE1910EAC2
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 14:21:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CDC10E48F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 14:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679581269; x=1711117269;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=RPenNow5MGIhp+4fsbk/BM8p9AQJY2ugZyKHuSgVYXg=;
- b=SlUPEABW7oVNy76kSbZQqVwB7Qkh8AXS1TFyLYudz64tEi78F33h3b/Q
- rZNCMgtnbp6gOmSW1iWPB3qejgAnAr5xwVR9XFQrHwcMBZH1aAhpQI5pC
- FxDFN4MpsjZY7dEuPbfa4LUK0yvkVY6dCQZV5UDTVSV+9UXB5bBMQHSdb
- Iwos20dWjKdNvWyyHcTGAoKr8PaS8Y1fJD6/OMFtFa0H74DiLMEd16ypb
- dHSwIDdkO1b6LlutBYCCp4TCbLQDoZ4Nmueic5QV2TWdmx0OW8bmOwMa4
- 5Zz5lcgkcVjUGbJGJ/GNiAgpdCiOK1ng/UEWnTNrnABZ/S5A427sZakm6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="327892359"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="327892359"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 07:21:08 -0700
+ t=1679581995; x=1711117995;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=ePyaTsZKPV1Egph1OwecnGT1tBk7pS2odv/vuDK5GvA=;
+ b=bDFyGGtHW7DqsVYmNRSx8sCQ0S8GNiyVJjh6ECMB1ZdnccU98pzNDwQo
+ HiYBEKWnqM2GXnlo2yPOHeBHE2TF6QAC7/B40P9TOsYEsBdExg0ci2mCK
+ aOPf456JEUxahY9iqMgAN+kSiPjvpnj1fZYI1Ywm6GLNhbMt/PdD0dtDQ
+ wJEl/ZCsw7mLZwc3RW/RGnwT1QjnT3cE8Va7qZF2IQn9oDmZsIrfW55la
+ H2Nb7WZCS2isSU6nJUNhJSWMlV/TtfwJ2kIqCZTO2yCggUTljy22kLW2E
+ lUYX5L3o0+bVjDHbAYijkEeTQn3/bQ9ZtblnafHYHDHjeZg3FY0auqA5n w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="404407074"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="404407074"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 07:33:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="746722771"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="746722771"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 07:21:07 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Mar 2023 16:20:35 +0200
-Message-Id: <20230323142035.1432621-30-imre.deak@intel.com>
-X-Mailer: git-send-email 2.31.1.189.g2e36527f23
-In-Reply-To: <20230323142035.1432621-1-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="793040523"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="793040523"
+Received: from rkiss-mobl.ger.corp.intel.com (HELO localhost) ([10.252.63.51])
+ by fmsmga002-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2023 07:33:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230323142035.1432621-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230323142035.1432621-1-imre.deak@intel.com>
+ <20230323142035.1432621-2-imre.deak@intel.com>
+Date: Thu, 23 Mar 2023 16:33:10 +0200
+Message-ID: <87v8ir5yhl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 29/29] drm/i915: Remove the encoder
- update_prepare()/complete() hooks
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 01/29] drm/i915/tc: Group the TC PHY
+ setup/query functions per platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,231 +61,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The encoder update_prepare()/complete() hooks were added to hold a
-TC port link reference for all outputs in the atomic state around the
-whole modeset enable sequence - thus locking the ports' TC mode - and
-set the TBT/DP-alt PLL type corresponding to the current TC mode.
+On Thu, 23 Mar 2023, Imre Deak <imre.deak@intel.com> wrote:
+> Arrange the TC PHY HW state setup/query functions into platform
+> specific and generic groups. This prepares for upcoming patches adding
+> generic TC PHY handlers and platform specific hooks for these,
+> replacing the corresponding if ladders.
+>
+> No functional changes.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_tc.c | 244 +++++++++++++-----------
+>  1 file changed, 130 insertions(+), 114 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index bd8c9df5f98fe..b6e425c44fcb9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -15,6 +15,10 @@
+>  #include "intel_mg_phy_regs.h"
+>  #include "intel_tc.h"
+>  
+> +static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port);
+> +static bool tc_phy_status_complete(struct intel_digital_port *dig_port);
+> +static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, bool take);
+> +
+>  static const char *tc_port_mode_name(enum tc_port_mode mode)
+>  {
+>  	static const char * const names[] = {
+> @@ -256,6 +260,10 @@ static void tc_port_fixup_legacy_flag(struct intel_digital_port *dig_port,
+>  	dig_port->tc_legacy_port = !dig_port->tc_legacy_port;
+>  }
+>  
+> +/**
+> + * ICL TC PHY handlers
+> + * -------------------
+> + */
 
-Since nothing depends on the PLL selection before/after then encoder's
-pre_pll_enable/post_pll_disable hooks are called, the above steps can be
-moved to these hooks, so do that and remove the
-update_prepare()/complete() hooks.
+These should not be kernel-doc comments, please replace /** with /*.
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      | 49 +++---------
- drivers/gpu/drm/i915/display/intel_display.c  | 78 -------------------
- .../drm/i915/display/intel_display_types.h    |  6 --
- 3 files changed, 12 insertions(+), 121 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 62bd4196dc464..dc294717bcdf4 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3060,39 +3060,6 @@ void intel_ddi_update_pipe(struct intel_atomic_state *state,
- 	intel_hdcp_update_pipe(state, encoder, crtc_state, conn_state);
- }
- 
--static void
--intel_ddi_update_prepare(struct intel_atomic_state *state,
--			 struct intel_encoder *encoder,
--			 struct intel_crtc *crtc)
--{
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	struct intel_crtc_state *crtc_state =
--		crtc ? intel_atomic_get_new_crtc_state(state, crtc) : NULL;
--	int required_lanes = crtc_state ? crtc_state->lane_count : 1;
--
--	drm_WARN_ON(state->base.dev, crtc && crtc->active);
--
--	intel_tc_port_get_link(enc_to_dig_port(encoder),
--		               required_lanes);
--	if (crtc_state && crtc_state->hw.active) {
--		struct intel_crtc *slave_crtc;
--
--		intel_update_active_dpll(state, crtc, encoder);
--
--		for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
--						 intel_crtc_bigjoiner_slave_pipes(crtc_state))
--			intel_update_active_dpll(state, slave_crtc, encoder);
--	}
--}
--
--static void
--intel_ddi_update_complete(struct intel_atomic_state *state,
--			  struct intel_encoder *encoder,
--			  struct intel_crtc *crtc)
--{
--	intel_tc_port_put_link(enc_to_dig_port(encoder));
--}
--
- static void
- intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- 			 struct intel_encoder *encoder,
-@@ -3104,9 +3071,20 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- 	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
- 
--	if (is_tc_port)
-+	if (is_tc_port) {
-+		struct intel_crtc *master_crtc =
-+			to_intel_crtc(crtc_state->uapi.crtc);
-+		struct intel_crtc *slave_crtc;
-+
- 		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
- 
-+		intel_update_active_dpll(state, master_crtc, encoder);
-+
-+		for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
-+						 intel_crtc_bigjoiner_slave_pipes(crtc_state))
-+			intel_update_active_dpll(state, slave_crtc, encoder);
-+	}
-+
- 	main_link_aux_power_domain_get(dig_port, crtc_state);
- 
- 	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
-@@ -4552,9 +4530,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 
- 		if (intel_tc_port_init(dig_port, is_legacy) < 0)
- 			goto err;
--
--		encoder->update_prepare = intel_ddi_update_prepare;
--		encoder->update_complete = intel_ddi_update_complete;
- 	}
- 
- 	drm_WARN_ON(&dev_priv->drm, port > PORT_I);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0e171f66d6983..cdf2c33cd544d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1320,36 +1320,11 @@ static void intel_crtc_disable_planes(struct intel_atomic_state *state,
- 	intel_frontbuffer_flip(dev_priv, fb_bits);
- }
- 
--/*
-- * intel_connector_primary_encoder - get the primary encoder for a connector
-- * @connector: connector for which to return the encoder
-- *
-- * Returns the primary encoder for a connector. There is a 1:1 mapping from
-- * all connectors to their encoder, except for DP-MST connectors which have
-- * both a virtual and a primary encoder. These DP-MST primary encoders can be
-- * pointed to by as many DP-MST connectors as there are pipes.
-- */
--static struct intel_encoder *
--intel_connector_primary_encoder(struct intel_connector *connector)
--{
--	struct intel_encoder *encoder;
--
--	if (connector->mst_port)
--		return &dp_to_dig_port(connector->mst_port)->base;
--
--	encoder = intel_attached_encoder(connector);
--	drm_WARN_ON(connector->base.dev, !encoder);
--
--	return encoder;
--}
--
- static void intel_encoders_update_prepare(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
--	struct drm_connector_state *new_conn_state;
--	struct drm_connector *connector;
- 	int i;
- 
- 	/*
-@@ -1365,57 +1340,6 @@ static void intel_encoders_update_prepare(struct intel_atomic_state *state)
- 			new_crtc_state->dpll_hw_state = old_crtc_state->dpll_hw_state;
- 		}
- 	}
--
--	if (!state->modeset)
--		return;
--
--	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
--					i) {
--		struct intel_connector *intel_connector;
--		struct intel_encoder *encoder;
--		struct intel_crtc *crtc;
--
--		if (!intel_connector_needs_modeset(state, connector))
--			continue;
--
--		intel_connector = to_intel_connector(connector);
--		encoder = intel_connector_primary_encoder(intel_connector);
--		if (!encoder->update_prepare)
--			continue;
--
--		crtc = new_conn_state->crtc ?
--			to_intel_crtc(new_conn_state->crtc) : NULL;
--		encoder->update_prepare(state, encoder, crtc);
--	}
--}
--
--static void intel_encoders_update_complete(struct intel_atomic_state *state)
--{
--	struct drm_connector_state *new_conn_state;
--	struct drm_connector *connector;
--	int i;
--
--	if (!state->modeset)
--		return;
--
--	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
--					i) {
--		struct intel_connector *intel_connector;
--		struct intel_encoder *encoder;
--		struct intel_crtc *crtc;
--
--		if (!intel_connector_needs_modeset(state, connector))
--			continue;
--
--		intel_connector = to_intel_connector(connector);
--		encoder = intel_connector_primary_encoder(intel_connector);
--		if (!encoder->update_complete)
--			continue;
--
--		crtc = new_conn_state->crtc ?
--			to_intel_crtc(new_conn_state->crtc) : NULL;
--		encoder->update_complete(state, encoder, crtc);
--	}
- }
- 
- static void intel_encoders_pre_pll_enable(struct intel_atomic_state *state,
-@@ -7439,8 +7363,6 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	dev_priv->display.funcs.display->commit_modeset_enables(state);
- 
--	intel_encoders_update_complete(state);
--
- 	if (state->modeset)
- 		intel_set_cdclk_post_plane_update(state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ce24e58b2a825..fbdc94ad1d081 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -170,9 +170,6 @@ struct intel_encoder {
- 	int (*compute_config_late)(struct intel_encoder *,
- 				   struct intel_crtc_state *,
- 				   struct drm_connector_state *);
--	void (*update_prepare)(struct intel_atomic_state *,
--			       struct intel_encoder *,
--			       struct intel_crtc *);
- 	void (*pre_pll_enable)(struct intel_atomic_state *,
- 			       struct intel_encoder *,
- 			       const struct intel_crtc_state *,
-@@ -185,9 +182,6 @@ struct intel_encoder {
- 		       struct intel_encoder *,
- 		       const struct intel_crtc_state *,
- 		       const struct drm_connector_state *);
--	void (*update_complete)(struct intel_atomic_state *,
--				struct intel_encoder *,
--				struct intel_crtc *);
- 	void (*disable)(struct intel_atomic_state *,
- 			struct intel_encoder *,
- 			const struct intel_crtc_state *,
+
+
+>  static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> @@ -287,44 +295,6 @@ static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  	return mask;
+>  }
+>  
+> -static u32 adl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+> -	u32 isr_bit = i915->display.hotplug.pch_hpd[dig_port->base.hpd_pin];
+> -	u32 val, mask = 0;
+> -
+> -	/*
+> -	 * On ADL-P HW/FW will wake from TCCOLD to complete the read access of
+> -	 * registers in IOM. Note that this doesn't apply to PHY and FIA
+> -	 * registers.
+> -	 */
+> -	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+> -	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT)
+> -		mask |= BIT(TC_PORT_DP_ALT);
+> -	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT)
+> -		mask |= BIT(TC_PORT_TBT_ALT);
+> -
+> -	if (intel_de_read(i915, SDEISR) & isr_bit)
+> -		mask |= BIT(TC_PORT_LEGACY);
+> -
+> -	/* The sink can be connected only in a single mode. */
+> -	if (!drm_WARN_ON(&i915->drm, hweight32(mask) > 1))
+> -		tc_port_fixup_legacy_flag(dig_port, mask);
+> -
+> -	return mask;
+> -}
+> -
+> -static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -
+> -	if (IS_ALDERLAKE_P(i915))
+> -		return adl_tc_port_live_status_mask(dig_port);
+> -
+> -	return icl_tc_port_live_status_mask(dig_port);
+> -}
+> -
+>  /*
+>   * Return the PHY status complete flag indicating that display can acquire the
+>   * PHY ownership. The IOM firmware sets this flag when a DP-alt or legacy sink
+> @@ -349,40 +319,6 @@ static bool icl_tc_phy_status_complete(struct intel_digital_port *dig_port)
+>  	return val & DP_PHY_MODE_STATUS_COMPLETED(dig_port->tc_phy_fia_idx);
+>  }
+>  
+> -/*
+> - * Return the PHY status complete flag indicating that display can acquire the
+> - * PHY ownership. The IOM firmware sets this flag when it's ready to switch
+> - * the ownership to display, regardless of what sink is connected (TBT-alt,
+> - * DP-alt, legacy or nothing). For TBT-alt sinks the PHY is owned by the TBT
+> - * subsystem and so switching the ownership to display is not required.
+> - */
+> -static bool adl_tc_phy_status_complete(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+> -	u32 val;
+> -
+> -	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+> -	if (val == 0xffffffff) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Port %s: PHY in TCCOLD, assuming not complete\n",
+> -			    dig_port->tc_port_name);
+> -		return false;
+> -	}
+> -
+> -	return val & TCSS_DDI_STATUS_READY;
+> -}
+> -
+> -static bool tc_phy_status_complete(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -
+> -	if (IS_ALDERLAKE_P(i915))
+> -		return adl_tc_phy_status_complete(dig_port);
+> -
+> -	return icl_tc_phy_status_complete(dig_port);
+> -}
+> -
+>  static bool icl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+>  				      bool take)
+>  {
+> @@ -407,28 +343,6 @@ static bool icl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+>  	return true;
+>  }
+>  
+> -static bool adl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+> -				      bool take)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	enum port port = dig_port->base.port;
+> -
+> -	intel_de_rmw(i915, DDI_BUF_CTL(port), DDI_BUF_CTL_TC_PHY_OWNERSHIP,
+> -		     take ? DDI_BUF_CTL_TC_PHY_OWNERSHIP : 0);
+> -
+> -	return true;
+> -}
+> -
+> -static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, bool take)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -
+> -	if (IS_ALDERLAKE_P(i915))
+> -		return adl_tc_phy_take_ownership(dig_port, take);
+> -
+> -	return icl_tc_phy_take_ownership(dig_port, take);
+> -}
+> -
+>  static bool icl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> @@ -445,26 +359,6 @@ static bool icl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  	return val & DP_PHY_MODE_STATUS_NOT_SAFE(dig_port->tc_phy_fia_idx);
+>  }
+>  
+> -static bool adl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	enum port port = dig_port->base.port;
+> -	u32 val;
+> -
+> -	val = intel_de_read(i915, DDI_BUF_CTL(port));
+> -	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> -}
+> -
+> -static bool tc_phy_is_owned(struct intel_digital_port *dig_port)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -
+> -	if (IS_ALDERLAKE_P(i915))
+> -		return adl_tc_phy_is_owned(dig_port);
+> -
+> -	return icl_tc_phy_is_owned(dig_port);
+> -}
+> -
+>  /*
+>   * This function implements the first part of the Connect Flow described by our
+>   * specification, Gen11 TypeC Programming chapter. The rest of the flow (reading
+> @@ -559,6 +453,128 @@ static void icl_tc_phy_disconnect(struct intel_digital_port *dig_port)
+>  	}
+>  }
+>  
+> +/**
+> + * ADLP TC PHY handlers
+> + * --------------------
+> + */
+> +static u32 adl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+> +	u32 isr_bit = i915->display.hotplug.pch_hpd[dig_port->base.hpd_pin];
+> +	u32 val, mask = 0;
+> +
+> +	/*
+> +	 * On ADL-P HW/FW will wake from TCCOLD to complete the read access of
+> +	 * registers in IOM. Note that this doesn't apply to PHY and FIA
+> +	 * registers.
+> +	 */
+> +	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+> +	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT)
+> +		mask |= BIT(TC_PORT_DP_ALT);
+> +	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT)
+> +		mask |= BIT(TC_PORT_TBT_ALT);
+> +
+> +	if (intel_de_read(i915, SDEISR) & isr_bit)
+> +		mask |= BIT(TC_PORT_LEGACY);
+> +
+> +	/* The sink can be connected only in a single mode. */
+> +	if (!drm_WARN_ON(&i915->drm, hweight32(mask) > 1))
+> +		tc_port_fixup_legacy_flag(dig_port, mask);
+> +
+> +	return mask;
+> +}
+> +
+> +/*
+> + * Return the PHY status complete flag indicating that display can acquire the
+> + * PHY ownership. The IOM firmware sets this flag when it's ready to switch
+> + * the ownership to display, regardless of what sink is connected (TBT-alt,
+> + * DP-alt, legacy or nothing). For TBT-alt sinks the PHY is owned by the TBT
+> + * subsystem and so switching the ownership to display is not required.
+> + */
+> +static bool adl_tc_phy_status_complete(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+> +	u32 val;
+> +
+> +	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+> +	if (val == 0xffffffff) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Port %s: PHY in TCCOLD, assuming not complete\n",
+> +			    dig_port->tc_port_name);
+> +		return false;
+> +	}
+> +
+> +	return val & TCSS_DDI_STATUS_READY;
+> +}
+> +
+> +static bool adl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+> +				      bool take)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum port port = dig_port->base.port;
+> +
+> +	intel_de_rmw(i915, DDI_BUF_CTL(port), DDI_BUF_CTL_TC_PHY_OWNERSHIP,
+> +		     take ? DDI_BUF_CTL_TC_PHY_OWNERSHIP : 0);
+> +
+> +	return true;
+> +}
+> +
+> +static bool adl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum port port = dig_port->base.port;
+> +	u32 val;
+> +
+> +	val = intel_de_read(i915, DDI_BUF_CTL(port));
+> +	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +}
+> +
+> +/**
+> + * Generic TC PHY handlers
+> + * -----------------------
+> + */
+> +static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_port_live_status_mask(dig_port);
+> +
+> +	return icl_tc_port_live_status_mask(dig_port);
+> +}
+> +
+> +static bool tc_phy_status_complete(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_status_complete(dig_port);
+> +
+> +	return icl_tc_phy_status_complete(dig_port);
+> +}
+> +
+> +static bool tc_phy_is_owned(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_is_owned(dig_port);
+> +
+> +	return icl_tc_phy_is_owned(dig_port);
+> +}
+> +
+> +static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, bool take)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_take_ownership(dig_port, take);
+> +
+> +	return icl_tc_phy_take_ownership(dig_port, take);
+> +}
+> +
+>  static bool tc_phy_is_ready_and_owned(struct intel_digital_port *dig_port,
+>  				      bool phy_is_ready, bool phy_is_owned)
+>  {
+
 -- 
-2.37.1
-
+Jani Nikula, Intel Open Source Graphics Center
