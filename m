@@ -1,51 +1,110 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD7D6C6B18
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:34:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4736C6B52
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 15:43:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8281B10EAB0;
-	Thu, 23 Mar 2023 14:33:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC93210E0E0;
+	Thu, 23 Mar 2023 14:43:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBCF10EAB0
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 14:33:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679582038; x=1711118038;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Zm2yVm9ET31QEyMFbw+K87XYBeL6xDiXnuxzmgS5M0c=;
- b=C3Ixl2KUFOypu6mEETEDOVshskD/l8hlpjDD12tpxqo5CAP8g/MQnZUL
- GqlO/0m2j1UJ7jMwWHzZR/UA1rvUi3A4IFbMXaVAcUbaG6le07g6L04jf
- VHHxfGGoKOan/ps70lK2KSOMoj0Wb02m07t9HCPTAAsxpVxNHv4Z8ABDk
- TYFk30QFumDIIyRdqYKErVnXJ4CfTy75RQ3quMhQQ43/4QDUZKkenYwKD
- 3x8VRcBIUoeXXbsQnZUNYu6ajMAkf+Hufs0ZiSl+qUQ/Yd/FpY0fZNdh7
- w+NOuA4uO6wJ2uhkmx5nxeKeCqwN1Z2lmba+CTtgPD9ahVidY3ZshDbVG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="319891230"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="319891230"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 07:33:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="1011820589"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="1011820589"
-Received: from rkiss-mobl.ger.corp.intel.com (HELO localhost) ([10.252.63.51])
- by fmsmga005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2023 07:33:56 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230323142035.1432621-21-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230323142035.1432621-1-imre.deak@intel.com>
- <20230323142035.1432621-21-imre.deak@intel.com>
-Date: Thu, 23 Mar 2023 16:33:54 +0200
-Message-ID: <87sfdv5ygd.fsf@intel.com>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48F7710E030;
+ Thu, 23 Mar 2023 14:43:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T052fmcvVNLE3twz4KKsLSNMqh+WKbZLg2sFN78rWWGGKHMz8S/TuEZoPO0S0Rzo7PUtbSa/J6Ioc3fYnQT98TDY0CNuo+fRRNuTWSzINIsRALr04gM6U0OK+sqGkmAyfRiueK82sn0MBlOMR6uOqscY/N0d/YFfPKM5P0BJBvU17YoWFTJYRudjy266zqhRqfmKSqZ+CdgakaXr/xhuMO2CJTKdG72GGqHnNeBRaADHp3qznogJ+pF2PBkLSBaXr9aw7BwkkI+qXCj38IeLkRIE8LrunYRrbsydM9IwSjfcdJuKl3wN00pfFJi8tHLRFph8sy+wfVzugYHEVIQN2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xZQyarvGvVT+NVLhw504PPrq7LhzidR+gYwnKWibsUs=;
+ b=Eu697J0G+p2Nq6j11OsaKWC3xhWp9JJnI564Was3gA/IM6ngTF+foTl4ehQfNEeJltWNogSeeyxlbTrIAz6tuEgIUUo/z6nM9AnAuIZoskjNVz2SS8z9Y1Re8lP0oMSpBmGcYgX/uaGtahO4tqb6w7VU4HXe0qYcZPzrNk3n+z7Mb3bwNg/IouESl9LrVnQA1b4Pq1R2Vc4/HbJKMVzZW1qWGAdZuCWNp5WI1rM6gacUEBl/Cx/lXsqOXnFw0K9CuzfjxKjLt2Vf1xjOs6MzI+ed1RFi7UsN0rkBWavp6/RiCcECEbG3PBM+QuJQKPJb3lQ8/H+FRK1teEzqtRjMxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xZQyarvGvVT+NVLhw504PPrq7LhzidR+gYwnKWibsUs=;
+ b=Zfl2y9ylsJsykVNBteIVkvdHaxDXtFbtauuPwQLldBT/7PS6lGG5GHBfh4zWJTBbgho9DHDdYuQQPso/YlzIzSDGCzmXEGhMHNGHrYYEDXckeXFDAxBTtIAVAEPKXeoPBHGK/AbcqfdkvfAzlW7bg1kTFGTzch3DTliYXqrc9+ySNYpzP6KYaGz4poVj510iN+mU5wi+SjGNc5TweQTmZ6KA2sNcQhzHzHw34dk1NNcYsn+r7meBYOm0pvKnxHpxXZP/oktcJeXkfs9gkdC9Ui+2ENLNwAPJCOa156ML5za88t/slGYCa20VgAXfD+HPBZj6u4Ivb+5NZc0gNNXiqg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by CH0PR12MB5218.namprd12.prod.outlook.com (2603:10b6:610:d1::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Thu, 23 Mar
+ 2023 14:43:16 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Thu, 23 Mar 2023
+ 14:43:16 +0000
+Date: Thu, 23 Mar 2023 11:43:14 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <ZBxlgnpg9QzuoO56@nvidia.com>
+References: <20230316124156.12064-1-yi.l.liu@intel.com>
+ <20230316124156.12064-7-yi.l.liu@intel.com>
+ <ZBiu9+mVurbW0x5k@nvidia.com>
+ <DS0PR11MB7529BEB87EC6941C19D56660C3879@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS0PR11MB7529BEB87EC6941C19D56660C3879@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: CH0PR03CA0415.namprd03.prod.outlook.com
+ (2603:10b6:610:11b::26) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 20/29] drm/i915/tc: Add asserts in TC PHY
- hooks that the required power is on
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH0PR12MB5218:EE_
+X-MS-Office365-Filtering-Correlation-Id: bdef4f76-69bf-4876-a1cb-08db2bacefbb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cvBc8vkb9YEE3Vf0/XGtca5duCsrdPCr4RcoLxVVFTt7s5aSGMdzLU43YT06daVl6gIojJv/g8wF1hFeSQDusEMZ0YiOHehNrcrbit6mH0a1IPF3LxBPFvHEUxef98fVi88eAD/31dHiHl9h/ez58kwvgKx50ruV0650ZY5vnirCeO6rEqUGDo3qs5qyz6MM/w5IeXyaXMfOSmm+K53nZYTUidZMHiADGYcQhRF0pijHQknWRhB+LnHqla1LgF1dHY5XwVzz2SF8bYvlDRR9DaQ0yJNg1wvHb2+nlmDc1VNrTp1ZhCbva2QG8fLsuEeRwAH12/In2Hfmjjfc6YYUmifljguu51BCobsm01q/8TjLINfTMrYWfxIXe8OrNhNCcf5fbLDkFMatSUUsN9yx8OvDhyCM29SelhVNapa5UVvvOtp1/3bkTta7mH/Ojtpy3+gEw4NB36P1YQF9xFl+yJCR3DywhUhrk8zurpzBQN9G1+YvqDcKdZvO+DZxid+gW4mVXN4I2bkYqVfAknWy3SONXaj4y2qMVdnqtVlN+xJWhAsaf5PBXbZtUFtikGFEblcdVGWnzQADe7mUQfmjvjF0HCE8YDSbrComyk4JMiPmt805dlf5w89OaW0RbrZ+4NXbfY5SxVCaCGZTQWcKtg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(396003)(346002)(376002)(136003)(366004)(39860400002)(451199018)(8936002)(66946007)(66556008)(66476007)(41300700001)(6916009)(4326008)(8676002)(86362001)(36756003)(38100700002)(26005)(6512007)(6506007)(2616005)(83380400001)(186003)(316002)(478600001)(6486002)(54906003)(7416002)(2906002)(5660300002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0ujSqp4DQ8Xjnt8sTTN0JTmt+iQA71M6Mgj5DbJ2AcNFc8jQqjOhOxLhCwf7?=
+ =?us-ascii?Q?sDDh14r9USOKa3rGXi93V9qDMRFmB1/WS2yYlPS0hPQDbktzjWbnSb6QCPXq?=
+ =?us-ascii?Q?9oFwWk3ORmeDUgEcWmlCQAtSAVTNWtPqjTyg38FNQDFmwX/uQdI1MOyjEenW?=
+ =?us-ascii?Q?qjqRlbLxADy1GP2ewvDLdJ9UYB3iELXZR3RstwDmrF5bXmNKCulfyvJLbPfM?=
+ =?us-ascii?Q?+58W342qcoiqEtT+Xd5xrgtfcQEvqcuvrnG/yUcyFSiDoR7GKAYBbJBdebMC?=
+ =?us-ascii?Q?/w5m9C8iW2S6UTt2UyFvmsq3Y17NtbUlGPBYzgfj6JqaRUxzcGrxRV8ttCF1?=
+ =?us-ascii?Q?ZEGN12GfkkgmMLfwgM4ickVaBZxMbHH+8oICL4LP50oS6+4lrdi35otrvnes?=
+ =?us-ascii?Q?JQx1qVdhzpf+gw4ogWOCJbaLyFZC4eszF3iOu2B7QtLS89pi1m7gL3RyJv+l?=
+ =?us-ascii?Q?3sLNTHxvqWeL9/qsO7qo4EpjzWMjTKSVOCDUHRhyaqd0pZLsRa+EyIONCsl8?=
+ =?us-ascii?Q?xJgGHdldQrIaacNiSzHywHTlCe27sUAhmqhRo4qBRYGg7JRx0xCxzps8dXl3?=
+ =?us-ascii?Q?MMAZ8vduGeuqQhK0uSlqQbUGKSxp0evCWN/Ubx6TS1inXAup1NqKX2Nnud0u?=
+ =?us-ascii?Q?ZNDhpInjSZJkTsx9DX0ySwMS5Rtm55+AoVjQVGflRCPZTIG9w8I78QwSZcsw?=
+ =?us-ascii?Q?KV4pO4UFUjBm3AxI0mLTD+uM7EzXYkSZ2FT4pBfbEb7Xbh8sQxXkirR4TBIL?=
+ =?us-ascii?Q?ZYLX2ZVqsUQn3ZYvvWhwobtGJnICJBctqQP2YBgdvyvx7elNa6BWy8j2j67j?=
+ =?us-ascii?Q?oDP950jr/Fcs3BFiCP2zm88SSjWpHC+hOEb1HeNnCnt9t5wApAfvPwsoEJLs?=
+ =?us-ascii?Q?jaPStnxDyI27ZAiqjMeRqpOpmJadcesEx4FGp2x6MSK22t4RFBRSzqeb1tNc?=
+ =?us-ascii?Q?W1r+nA3AG7PlJ/ligB+Z+QLwOrRfwwMc7PECmWqgR+RzHXf0IpFH9pfP5luG?=
+ =?us-ascii?Q?1KCjDGZs6M7rCcfn7ERe5sW0C1aNotdgrBzw3qgwlDfrkuH73D0RnFquFNmZ?=
+ =?us-ascii?Q?VWlxOb3as7JUfE8fFSqTh2Z59bLkappuCAfbdO/n3urRGFlmN3ttYxBr4zu+?=
+ =?us-ascii?Q?zeulhGVapRdjm+fjGLhQHAPodQbKJpoXT0hmVtfX7FrjqWcVMzWGA02AvWJX?=
+ =?us-ascii?Q?BmN0VspHUMp1HyKpYPV1HGbRKaFEgNAUCpa9P7F9M2PPENXXvjh+UADgMUhK?=
+ =?us-ascii?Q?NI9MW5eK5PVwb7elvns0X4CsKhDoVeaA9qeMn1QE8DNrC76qAgr97H0kesCS?=
+ =?us-ascii?Q?RuFJgVCqR/LppmmNevMJgJ1xxGT+I9F3AWFKodOJd/QZ+m/PoSfvVsjeIIMk?=
+ =?us-ascii?Q?CdcdowINZtVSWixNvk2kBtITRtNL0oXyY3ptR6X+Nf5TN9zJdOjb/Tux99rZ?=
+ =?us-ascii?Q?d4DqESG5gr4mOzVKMx4StdhrEArrI/1ba9t2cRyspUPmGQ8Y46NB4ePImR7W?=
+ =?us-ascii?Q?4HwKbOYdMcxoj4cXTOsLOkvfaNcigsDypK85IKdy9b1G6SEGkEM8fp4VBUF8?=
+ =?us-ascii?Q?8RBKhzYlU9xysZCBIIY2puuHh6IIQ8HuS6HD3t/l?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdef4f76-69bf-4876-a1cb-08db2bacefbb
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2023 14:43:16.2758 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uQYigiGwzg57yrGHPG/8ymIAB6CtdfFIaIfZBAmRxKZO3ax4ykm2NLdmdS497O+b
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5218
+Subject: Re: [Intel-gfx] [PATCH 6/7] vfio: Accpet device file from vfio PCI
+ hot reset path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,148 +117,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 Mar 2023, Imre Deak <imre.deak@intel.com> wrote:
-> Add an assert to each TC PHY hook that their required power domain is
-> enabled.
->
-> While at it add a comment describing the domains used on each platform
-> and TC mode.
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_tc.c | 61 +++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> index e68346c5e6036..7bcd93f1f0597 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -111,6 +111,46 @@ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port)
->  	return intel_tc_port_in_mode(dig_port, TC_PORT_LEGACY);
->  }
->  
-> +/**
+On Thu, Mar 23, 2023 at 10:14:31AM +0000, Liu, Yi L wrote:
+> > From: Jason Gunthorpe <jgg@nvidia.com>
+> > Sent: Tuesday, March 21, 2023 3:08 AM
+> > 
+> > On Thu, Mar 16, 2023 at 05:41:55AM -0700, Yi Liu wrote:
+> > > This extends both vfio_file_is_valid() and vfio_file_has_dev() to accept
+> > > device file from the vfio PCI hot reset.
+> > >
+> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> > > ---
+> > >  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
+> > >  1 file changed, 19 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> > > index fe7446805afd..ebbb6b91a498 100644
+> > > --- a/drivers/vfio/vfio_main.c
+> > > +++ b/drivers/vfio/vfio_main.c
+> > > @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops
+> > = {
+> > >  	.mmap		= vfio_device_fops_mmap,
+> > >  };
+> > >
+> > > +static struct vfio_device *vfio_device_from_file(struct file *file)
+> > > +{
+> > > +	struct vfio_device *device = file->private_data;
+> > 
+> > Isn't this a df now?
+> 
+> Not yet. It is placed before the cdev series. So it is vfio_device here.
+> 
+> > > +	if (file->f_op != &vfio_device_fops)
+> > > +		return NULL;
+> > > +	return device;
+> > > +}
+> > 
+> > The device has to be bound to be a security proof.
+> 
+> I think it is because this helper is used by vfio_file_has_dev(). This
+> requires to be bound to security proof. For now, the device fd is
+> got via group. So as long s user can get it, it should have been bound.
+> 
+> In the later cdev series, the below helper is added to ensure
+> given device file has bound to security proof (a.k.a access_granted).
 
-This also shouldn't be a kernel-doc comment.
+Yes OK that makes senese
 
-BR,
-Jani.
-
-> + * The display power domains used for TC ports depending on the
-> + * platform and TC mode (legacy, DP-alt, TBT):
-> + *
-> + * POWER_DOMAIN_DISPLAY_CORE:
-> + * --------------------------
-> + * ADLP/all modes:
-> + *   - TCSS/IOM access for PHY ready state.
-> + * ADLP+/all modes:
-> + *   - DE/north-,south-HPD ISR access for HPD live state.
-> + *
-> + * POWER_DOMAIN_PORT_DDI_LANES_<port>:
-> + * -----------------------------------
-> + * ICL+/all modes:
-> + *   - DE/DDI_BUF access for port enabled state.
-> + * ADLP/all modes:
-> + *   - DE/DDI_BUF access for PHY owned state.
-> + *
-> + * POWER_DOMAIN_AUX_USBC<TC port index>:
-> + * -------------------------------------
-> + * ICL/legacy mode:
-> + *   - TCSS/IOM,FIA access for PHY ready, owned and HPD live state
-> + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
-> + *     main lanes.
-> + * ADLP/legacy, DP-alt modes:
-> + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
-> + *     main lanes.
-> + *
-> + * POWER_DOMAIN_TC_COLD_OFF:
-> + * -------------------------
-> + * TGL/legacy, DP-alt modes:
-> + *   - TCSS/IOM,FIA access for PHY ready, owned and HPD live state
-> + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
-> + *     main lanes.
-> + *
-> + * ICL, TGL, ADLP/TBT mode:
-> + *   - TCSS/IOM,FIA access for HPD live state
-> + *   - TCSS/TBT: block TC-cold power state for using the (TBT DP-IN)
-> + *     AUX and main lanes.
-> + */
->  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
->  {
->  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> @@ -163,6 +203,15 @@ tc_cold_unblock(struct intel_tc_port *tc, intel_wakeref_t wakeref)
->  	__tc_cold_unblock(tc, domain, wakeref);
->  }
->  
-> +static void
-> +assert_display_core_power_enabled(struct intel_tc_port *tc)
-> +{
-> +	struct drm_i915_private *i915 = tc_to_i915(tc);
-> +
-> +	drm_WARN_ON(&i915->drm,
-> +		    !intel_display_power_is_enabled(i915, POWER_DOMAIN_DISPLAY_CORE));
-> +}
-> +
->  static void
->  assert_tc_cold_blocked(struct intel_tc_port *tc)
->  {
-> @@ -378,6 +427,8 @@ static bool icl_tc_phy_is_ready(struct intel_tc_port *tc)
->  	struct drm_i915_private *i915 = tc_to_i915(tc);
->  	u32 val;
->  
-> +	assert_tc_cold_blocked(tc);
-> +
->  	val = intel_de_read(i915, PORT_TX_DFLEXDPPMS(tc->phy_fia));
->  	if (val == 0xffffffff) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -395,6 +446,8 @@ static bool icl_tc_phy_take_ownership(struct intel_tc_port *tc,
->  	struct drm_i915_private *i915 = tc_to_i915(tc);
->  	u32 val;
->  
-> +	assert_tc_cold_blocked(tc);
-> +
->  	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(tc->phy_fia));
->  	if (val == 0xffffffff) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -418,6 +471,8 @@ static bool icl_tc_phy_is_owned(struct intel_tc_port *tc)
->  	struct drm_i915_private *i915 = tc_to_i915(tc);
->  	u32 val;
->  
-> +	assert_tc_cold_blocked(tc);
-> +
->  	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(tc->phy_fia));
->  	if (val == 0xffffffff) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -626,6 +681,8 @@ static bool adlp_tc_phy_is_ready(struct intel_tc_port *tc)
->  	enum tc_port tc_port = intel_port_to_tc(i915, tc->dig_port->base.port);
->  	u32 val;
->  
-> +	assert_display_core_power_enabled(tc);
-> +
->  	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
->  	if (val == 0xffffffff) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -643,6 +700,8 @@ static bool adlp_tc_phy_take_ownership(struct intel_tc_port *tc,
->  	struct drm_i915_private *i915 = tc_to_i915(tc);
->  	enum port port = tc->dig_port->base.port;
->  
-> +	assert_tc_port_power_enabled(tc);
-> +
->  	intel_de_rmw(i915, DDI_BUF_CTL(port), DDI_BUF_CTL_TC_PHY_OWNERSHIP,
->  		     take ? DDI_BUF_CTL_TC_PHY_OWNERSHIP : 0);
->  
-> @@ -655,6 +714,8 @@ static bool adlp_tc_phy_is_owned(struct intel_tc_port *tc)
->  	enum port port = tc->dig_port->base.port;
->  	u32 val;
->  
-> +	assert_tc_port_power_enabled(tc);
-> +
->  	val = intel_de_read(i915, DDI_BUF_CTL(port));
->  	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
->  }
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Jason
