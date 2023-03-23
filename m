@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8376C5CBC
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 03:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 898456C5CBD
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 03:40:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0845910E429;
-	Thu, 23 Mar 2023 02:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7849010E426;
+	Thu, 23 Mar 2023 02:40:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7EED210E426;
- Thu, 23 Mar 2023 02:40:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E281810E426;
+ Thu, 23 Mar 2023 02:40:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 769D2AADD5;
- Thu, 23 Mar 2023 02:40:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DE493AADD5;
+ Thu, 23 Mar 2023 02:40:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "John Harrison" <john.c.harrison@intel.com>
-Date: Thu, 23 Mar 2023 02:40:49 -0000
-Message-ID: <167953924945.6628.8427877386808361140@emeril.freedesktop.org>
+Date: Thu, 23 Mar 2023 02:40:51 -0000
+Message-ID: <167953925190.6629.8724518753574915971@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230316220632.3312218-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20230316220632.3312218-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Improvements_to_GuC_load_failure_handling_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Improvements_to_GuC_load_failure_handling_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,29 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-b4df7f16c846 drm/i915/guc: Improve GuC load error reporting
-2be0fcf3087c drm/i915/guc: Allow for very slow GuC loading
--:21: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
-#21: 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/7931
-
--:22: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
-#22: 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8060
-
--:23: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
-#23: 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8083
-
--:24: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
-#24: 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8136
-
--:25: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
-#25: 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8137
-
-total: 0 errors, 5 warnings, 0 checks, 85 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
