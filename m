@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 750426C7376
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 23:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9946C73F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 00:19:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61FBF10EB7B;
-	Thu, 23 Mar 2023 22:59:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B92310E121;
+	Thu, 23 Mar 2023 23:19:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86ED810E13F
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 22:59:03 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646FC10E121
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 23:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679612343; x=1711148343;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=RjX6vsGbsXlLGMrEMwhlSZC2biUf6B1qssbca0j7qtk=;
- b=YGyIGhEUAlACK4mTbxawTtOjusynfmfezpabB1y08KJigjuU3YXyfXT7
- Gb6xgiJ5nfB4BeoO+tZ3FKsyfA7dMZECuuvWsxS6ZXP+cdIHBafEt0Ffv
- z6RL/jdzcK9DG1+ST1UXnc+8D2cyvllXN7crsPmmROrxa0gA1JTj1em32
- Zwvg9TS9lRgYZY6EEumyWnVxpGD1vyGO3n4rDxM1VRCDs3BgKnLxoqC9l
- xIdNtZBHUsHXO1Ro0WqZ+NG5BuzXEDFG9PVGTXvO2UYAKP9dgDnj7fg5N
- SvM1oNYhMWRAtgpTJAUPAA1lRlk4qBRR3PcfWu9PTks8bNNQvUrD5ejPM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="320033259"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="320033259"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 15:59:02 -0700
+ t=1679613573; x=1711149573;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M/CZP/XYi88uURwJu3pOSUC/ikXcXcZ0V9dE39VjvBg=;
+ b=Pinj9f4o1XyrPBeQpBW6sKhzoqBowG1uQ+urGe1t8XvJ6gg23B3RdcF9
+ umvKFh/Jones8NLqAZI/iOgKSnyc12IGPyrBnNQftoLOe5VX820q/JdJS
+ 6mJ0tmY71yCuKTi/noqnpWsdznpqSKh0CQe0ZsDTc7p58LIoiQ8EcSe/g
+ UwpQ++phq4N58UsYQ3lLPSyhCyROC8tyvi0exG5u7Wmlo60E62bAXXlvM
+ tXE8lPDcSGlwDGqcLBntPOWqxoksnuv7tnsV0qrrF3tgFqQrhE/1vktMG
+ xd90/qJHhMclwprvOFQlBzrcI1aI+GmUL4gZM+ok9ISwFVWZD91YU6c9M Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="402232264"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="402232264"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 16:19:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="771639225"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="771639225"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 15:59:02 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="715011509"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="715011509"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 16:19:24 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Mar 2023 15:59:01 -0700
-Message-Id: <20230323225901.3743681-12-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230323225901.3743681-1-umesh.nerlige.ramappa@intel.com>
-References: <20230323225901.3743681-1-umesh.nerlige.ramappa@intel.com>
+Date: Thu, 23 Mar 2023 16:18:56 -0700
+Message-Id: <20230323231857.2194435-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915/perf: Wa_14017512683: Disable
- OAM if media C6 is enabled in BIOS
+Subject: [Intel-gfx] [CI 1/2] drm/i915: limit double GT reset to pre-MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +58,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-OAM does not work with media C6 enabled on some steppings of MTL.
-Disable OAM if we detect that media C6 was enabled in bios.
+Commit 3db9d590557d ("drm/i915/gt: Reset twice") modified the code to
+always hit the GDRST register twice when doing a reset, with the
+reported aim to fix invalid post-reset engine state on some platforms
+(Jasperlake being the only one actually mentioned).
 
-v2: (Ashutosh)
-- Remove drm_notice from the driver load path
-- Log a drm_err when opening an OAM stream on affected steppings
+This is a problem on MTL, due to the fact that we have to apply a time
+consuming WA (coming in the next patch) every time we hit the GDRST
+register in a way that can include the GSC engine. Even post MTL, the
+expectation is that we'll have some work to do before and after hitting
+the GDRST if the GSC is involved.
 
-v3:
-- Initialize the engine group even if mc6 is enabled (Ashutosh)
-- Checkpatch fix
+Since the issue requiring the double reset seems to be limited to older
+platforms, instead of trying to handle the double-reset on MTL and
+future platforms it is just easier to turn it off. The default on MTL is
+also for GuC to own engine reset, with i915 only covering full-GT reset.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 35 +++++++++++++++------------
+ 1 file changed, 20 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 18afa76653b7..c035dbb84c9b 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -209,6 +209,7 @@
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc.h"
- #include "gt/intel_lrc_reg.h"
-+#include "gt/intel_rc6.h"
- #include "gt/intel_ring.h"
- #include "gt/uc/intel_guc_slpc.h"
- 
-@@ -4223,6 +4224,19 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 		return -EINVAL;
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 0bb9094fdacd..2c3463f77e5c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -268,9 +268,27 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+ static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+ {
+ 	struct intel_uncore *uncore = gt->uncore;
+-	int loops = 2;
++	int loops;
+ 	int err;
  
 +	/*
-+	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
-+	 * C6 disable in BIOS. Fail if Media C6 is enabled on steppings where OAM
-+	 * does not work as expected.
++	 * On some platforms, e.g. Jasperlake, we see that the engine register
++	 * state is not cleared until shortly after GDRST reports completion,
++	 * causing a failure as we try to immediately resume while the internal
++	 * state is still in flux. If we immediately repeat the reset, the
++	 * second reset appears to serialise with the first, and since it is a
++	 * no-op, the registers should retain their reset value. However, there
++	 * is still a concern that upon leaving the second reset, the internal
++	 * engine state is still in flux and not ready for resuming.
++	 *
++	 * Starting on MTL, there are some prep steps that we need to do when
++	 * resetting some engines that need to be applied every time we write to
++	 * GEN6_GDRST. As those are time consuming (tens of ms), we don't want
++	 * to perform that twice, so, since the Jasperlake issue hasn't been
++	 * observed on MTL, we avoid repeating the reset on newer platforms.
 +	 */
-+	if (IS_MTL_MEDIA_STEP(props->engine->i915, STEP_A0, STEP_C0) &&
-+	    props->engine->oa_group->type == TYPE_OAM &&
-+	    intel_check_bios_c6_setup(&props->engine->gt->rc6)) {
-+		drm_dbg(&perf->i915->drm,
-+			"OAM requires media C6 to be disabled in BIOS\n");
-+		return -EINVAL;
-+	}
++	loops = GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70) ? 2 : 1;
 +
- 	i = array_index_nospec(props->oa_format, I915_OA_FORMAT_MAX);
- 	f = &perf->oa_formats[i];
- 	if (!engine_supports_oa_format(props->engine, f->type)) {
-@@ -5316,6 +5330,23 @@ int i915_perf_ioctl_version(struct drm_i915_private *i915)
- 	 *
- 	 * 7: Add support for video decode and enhancement classes.
- 	 */
-+
-+	/*
-+	 * Wa_14017512683: mtl[a0..c0): Use of OAM must be preceded with Media
-+	 * C6 disable in BIOS. If Media C6 is enabled in BIOS, return version 6
-+	 * to indicate that OA media is not supported.
-+	 */
-+	if (IS_MTL_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
-+		struct intel_gt *gt;
-+		int i;
-+
-+		for_each_gt(gt, i915, i) {
-+			if (gt->type == GT_MEDIA &&
-+			    intel_check_bios_c6_setup(&gt->rc6))
-+				return 6;
-+		}
-+	}
-+
- 	return 7;
- }
+ 	/*
+ 	 * GEN6_GDRST is not in the gt power well, no need to check
+ 	 * for fifo space for the write or forcewake the chip for
+@@ -279,20 +297,7 @@ static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+ 	do {
+ 		intel_uncore_write_fw(uncore, GEN6_GDRST, hw_domain_mask);
  
+-		/*
+-		 * Wait for the device to ack the reset requests.
+-		 *
+-		 * On some platforms, e.g. Jasperlake, we see that the
+-		 * engine register state is not cleared until shortly after
+-		 * GDRST reports completion, causing a failure as we try
+-		 * to immediately resume while the internal state is still
+-		 * in flux. If we immediately repeat the reset, the second
+-		 * reset appears to serialise with the first, and since
+-		 * it is a no-op, the registers should retain their reset
+-		 * value. However, there is still a concern that upon
+-		 * leaving the second reset, the internal engine state
+-		 * is still in flux and not ready for resuming.
+-		 */
++		/* Wait for the device to ack the reset requests. */
+ 		err = __intel_wait_for_register_fw(uncore, GEN6_GDRST,
+ 						   hw_domain_mask, 0,
+ 						   2000, 0,
 -- 
-2.36.1
+2.37.3
 
