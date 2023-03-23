@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F746C6E22
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 17:51:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AA86C6E6B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 18:08:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC6E10EADC;
-	Thu, 23 Mar 2023 16:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 126FA10E0CA;
+	Thu, 23 Mar 2023 17:08:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9003F10EADC
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 16:51:37 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0485510E0CA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 17:08:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679590297; x=1711126297;
- h=date:from:to:cc:subject:message-id:references:
+ t=1679591310; x=1711127310;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=gol4GFX54FO4WNeKu+XTxoaVCDKBpq4J47Q+uJRsF4M=;
- b=Ak641kH+u9BYtoXxcuaeAScBPo6n9y7L5Y2p9YCvb/oZu0uYPnwj9uCr
- URLhWkroNidOlY4LvP7FIFiUk2dSfvgdAfp5JRSC1jQWzA7R0APZBst7M
- fiTle+cYmnDjRJsurei13GSUDdCk4XA+VQABxUIjKRHG/vkc3hIz73V42
- dseW+ce0FS6jflemY6+Vh6u1KvvWnG7vgIN3Ov2Uh3PJ6oNxCuaukucGx
- eDH44aIINGvkeFvgf7XYQ4/2bG571BY+341yjHo+YEwq4YHAZ6fy+BEnX
- eFzt9R25twEPhG3lf2AB9n0ERPDQFIJ43jtTd4Hr45gqtqlrnF5eVfdYq A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="339588635"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="339588635"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 09:51:37 -0700
+ bh=mt4jCCOP5GDj9FD9ufeCb9hNqLCtXzE6JJRP6uBk5GA=;
+ b=ereFeuJ16s15MFors/jm+tSFaEYNC0RIOMXsN8WY6qyxAzfb2sxrGHjh
+ VHON9Il6wPBMsfeJ+UUnXvJzSXtkFKKUeFEdz2JciGHVIzjwNOi2SaTup
+ RNQZokFzUTeuwIXXLKOVS4JqUZzx1yBzjHlsmxX9+ZKT/pCB/l6nPehb2
+ GF9dzeU8qzW33C+3Bz4JgN91fzvmL2lNS4sbvW1nszaH6ZHgR7ctHQdrX
+ VZ+9IVfRNbbwhUp+3IRYLzLP86YsvLRWleK6IFxlOc+wF41luSJzu66B9
+ /noUwc2BtJOOtYJgLQ2Iwisw7UIFYM/hINEqSQW/2YR97hW2jTYRNLVkp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="338281627"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="338281627"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 10:08:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="682374288"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="682374288"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 23 Mar 2023 09:51:35 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pfOA2-000EY4-2l;
- Thu, 23 Mar 2023 16:51:34 +0000
-Date: Fri, 24 Mar 2023 00:50:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202303240020.UQr6flaJ-lkp@intel.com>
-References: <20230323142035.1432621-2-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="659695434"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="659695434"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 10:08:28 -0700
+Date: Thu, 23 Mar 2023 19:08:24 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZByHiN5Qn4JOMSM0@ideak-desk.fi.intel.com>
+References: <20230323142035.1432621-1-imre.deak@intel.com>
+ <20230323142035.1432621-21-imre.deak@intel.com>
+ <87sfdv5ygd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230323142035.1432621-2-imre.deak@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 01/29] drm/i915/tc: Group the TC PHY
- setup/query functions per platform
+In-Reply-To: <87sfdv5ygd.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 20/29] drm/i915/tc: Add asserts in TC PHY
+ hooks that the required power is on
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,89 +60,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Imre,
+On Thu, Mar 23, 2023 at 04:33:54PM +0200, Jani Nikula wrote:
+> On Thu, 23 Mar 2023, Imre Deak <imre.deak@intel.com> wrote:
+> > Add an assert to each TC PHY hook that their required power domain is
+> > enabled.
+> >
+> > While at it add a comment describing the domains used on each platform
+> > and TC mode.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_tc.c | 61 +++++++++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> > index e68346c5e6036..7bcd93f1f0597 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > @@ -111,6 +111,46 @@ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port)
+> >  	return intel_tc_port_in_mode(dig_port, TC_PORT_LEGACY);
+> >  }
+> >  
+> > +/**
+> 
+> This also shouldn't be a kernel-doc comment.
 
-Thank you for the patch! Perhaps something to improve:
+Ok, will change these.
 
-[auto build test WARNING on drm-tip/drm-tip]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Imre-Deak/drm-i915-tc-Group-the-TC-PHY-setup-query-functions-per-platform/20230323-222328
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230323142035.1432621-2-imre.deak%40intel.com
-patch subject: [Intel-gfx] [PATCH 01/29] drm/i915/tc: Group the TC PHY setup/query functions per platform
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20230324/202303240020.UQr6flaJ-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7b85ed1627f7c16b7ff080b604d35d729c70313f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Imre-Deak/drm-i915-tc-Group-the-TC-PHY-setup-query-functions-per-platform/20230323-222328
-        git checkout 7b85ed1627f7c16b7ff080b604d35d729c70313f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303240020.UQr6flaJ-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/intel_tc.c:264: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * ICL TC PHY handlers
-   drivers/gpu/drm/i915/display/intel_tc.c:457: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * ADLP TC PHY handlers
-   drivers/gpu/drm/i915/display/intel_tc.c:535: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Generic TC PHY handlers
-   drivers/gpu/drm/i915/display/intel_tc.c:1026: warning: Function parameter or member 'work' not described in 'intel_tc_port_disconnect_phy_work'
-   drivers/gpu/drm/i915/display/intel_tc.c:1026: warning: Excess function parameter 'dig_port' description in 'intel_tc_port_disconnect_phy_work'
-
-
-vim +264 drivers/gpu/drm/i915/display/intel_tc.c
-
-   262	
-   263	/**
- > 264	 * ICL TC PHY handlers
-   265	 * -------------------
-   266	 */
-   267	static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
-   268	{
-   269		struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-   270		u32 isr_bit = i915->display.hotplug.pch_hpd[dig_port->base.hpd_pin];
-   271		u32 mask = 0;
-   272		u32 val;
-   273	
-   274		val = intel_de_read(i915, PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
-   275	
-   276		if (val == 0xffffffff) {
-   277			drm_dbg_kms(&i915->drm,
-   278				    "Port %s: PHY in TCCOLD, nothing connected\n",
-   279				    dig_port->tc_port_name);
-   280			return mask;
-   281		}
-   282	
-   283		if (val & TC_LIVE_STATE_TBT(dig_port->tc_phy_fia_idx))
-   284			mask |= BIT(TC_PORT_TBT_ALT);
-   285		if (val & TC_LIVE_STATE_TC(dig_port->tc_phy_fia_idx))
-   286			mask |= BIT(TC_PORT_DP_ALT);
-   287	
-   288		if (intel_de_read(i915, SDEISR) & isr_bit)
-   289			mask |= BIT(TC_PORT_LEGACY);
-   290	
-   291		/* The sink can be connected only in a single mode. */
-   292		if (!drm_WARN_ON_ONCE(&i915->drm, hweight32(mask) > 1))
-   293			tc_port_fixup_legacy_flag(dig_port, mask);
-   294	
-   295		return mask;
-   296	}
-   297	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> 
+> BR,
+> Jani.
+> 
+> > + * The display power domains used for TC ports depending on the
+> > + * platform and TC mode (legacy, DP-alt, TBT):
+> > + *
+> > + * POWER_DOMAIN_DISPLAY_CORE:
+> > + * --------------------------
+> > + * ADLP/all modes:
+> > + *   - TCSS/IOM access for PHY ready state.
+> > + * ADLP+/all modes:
+> > + *   - DE/north-,south-HPD ISR access for HPD live state.
+> > + *
+> > + * POWER_DOMAIN_PORT_DDI_LANES_<port>:
+> > + * -----------------------------------
+> > + * ICL+/all modes:
+> > + *   - DE/DDI_BUF access for port enabled state.
+> > + * ADLP/all modes:
+> > + *   - DE/DDI_BUF access for PHY owned state.
+> > + *
+> > + * POWER_DOMAIN_AUX_USBC<TC port index>:
+> > + * -------------------------------------
+> > + * ICL/legacy mode:
+> > + *   - TCSS/IOM,FIA access for PHY ready, owned and HPD live state
+> > + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
+> > + *     main lanes.
+> > + * ADLP/legacy, DP-alt modes:
+> > + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
+> > + *     main lanes.
+> > + *
+> > + * POWER_DOMAIN_TC_COLD_OFF:
+> > + * -------------------------
+> > + * TGL/legacy, DP-alt modes:
+> > + *   - TCSS/IOM,FIA access for PHY ready, owned and HPD live state
+> > + *   - TCSS/PHY: block TC-cold power state for using the PHY AUX and
+> > + *     main lanes.
+> > + *
+> > + * ICL, TGL, ADLP/TBT mode:
+> > + *   - TCSS/IOM,FIA access for HPD live state
+> > + *   - TCSS/TBT: block TC-cold power state for using the (TBT DP-IN)
+> > + *     AUX and main lanes.
+> > + */
+> >  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > @@ -163,6 +203,15 @@ tc_cold_unblock(struct intel_tc_port *tc, intel_wakeref_t wakeref)
+> >  	__tc_cold_unblock(tc, domain, wakeref);
+> >  }
+> >  
+> > +static void
+> > +assert_display_core_power_enabled(struct intel_tc_port *tc)
+> > +{
+> > +	struct drm_i915_private *i915 = tc_to_i915(tc);
+> > +
+> > +	drm_WARN_ON(&i915->drm,
+> > +		    !intel_display_power_is_enabled(i915, POWER_DOMAIN_DISPLAY_CORE));
+> > +}
+> > +
+> >  static void
+> >  assert_tc_cold_blocked(struct intel_tc_port *tc)
+> >  {
+> > @@ -378,6 +427,8 @@ static bool icl_tc_phy_is_ready(struct intel_tc_port *tc)
+> >  	struct drm_i915_private *i915 = tc_to_i915(tc);
+> >  	u32 val;
+> >  
+> > +	assert_tc_cold_blocked(tc);
+> > +
+> >  	val = intel_de_read(i915, PORT_TX_DFLEXDPPMS(tc->phy_fia));
+> >  	if (val == 0xffffffff) {
+> >  		drm_dbg_kms(&i915->drm,
+> > @@ -395,6 +446,8 @@ static bool icl_tc_phy_take_ownership(struct intel_tc_port *tc,
+> >  	struct drm_i915_private *i915 = tc_to_i915(tc);
+> >  	u32 val;
+> >  
+> > +	assert_tc_cold_blocked(tc);
+> > +
+> >  	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(tc->phy_fia));
+> >  	if (val == 0xffffffff) {
+> >  		drm_dbg_kms(&i915->drm,
+> > @@ -418,6 +471,8 @@ static bool icl_tc_phy_is_owned(struct intel_tc_port *tc)
+> >  	struct drm_i915_private *i915 = tc_to_i915(tc);
+> >  	u32 val;
+> >  
+> > +	assert_tc_cold_blocked(tc);
+> > +
+> >  	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(tc->phy_fia));
+> >  	if (val == 0xffffffff) {
+> >  		drm_dbg_kms(&i915->drm,
+> > @@ -626,6 +681,8 @@ static bool adlp_tc_phy_is_ready(struct intel_tc_port *tc)
+> >  	enum tc_port tc_port = intel_port_to_tc(i915, tc->dig_port->base.port);
+> >  	u32 val;
+> >  
+> > +	assert_display_core_power_enabled(tc);
+> > +
+> >  	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+> >  	if (val == 0xffffffff) {
+> >  		drm_dbg_kms(&i915->drm,
+> > @@ -643,6 +700,8 @@ static bool adlp_tc_phy_take_ownership(struct intel_tc_port *tc,
+> >  	struct drm_i915_private *i915 = tc_to_i915(tc);
+> >  	enum port port = tc->dig_port->base.port;
+> >  
+> > +	assert_tc_port_power_enabled(tc);
+> > +
+> >  	intel_de_rmw(i915, DDI_BUF_CTL(port), DDI_BUF_CTL_TC_PHY_OWNERSHIP,
+> >  		     take ? DDI_BUF_CTL_TC_PHY_OWNERSHIP : 0);
+> >  
+> > @@ -655,6 +714,8 @@ static bool adlp_tc_phy_is_owned(struct intel_tc_port *tc)
+> >  	enum port port = tc->dig_port->base.port;
+> >  	u32 val;
+> >  
+> > +	assert_tc_port_power_enabled(tc);
+> > +
+> >  	val = intel_de_read(i915, DDI_BUF_CTL(port));
+> >  	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
