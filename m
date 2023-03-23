@@ -1,48 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B618B6C6476
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 11:09:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316E96C6486
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 11:14:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A926310E07C;
-	Thu, 23 Mar 2023 10:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD5E910EA57;
+	Thu, 23 Mar 2023 10:14:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB5A610E07C
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Mar 2023 10:09:49 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C1410E07C;
+ Thu, 23 Mar 2023 10:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679566189; x=1711102189;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zQ8043ROW74p8l3nnC0UJqWQdTgKCPmQD5IGSAnMh3w=;
- b=XPQVPBmLYxgXL4XiO65UYSDuitmF2W4vyIqQdRQXTqPWGn15BtjglvHN
- evVgR4b0WGTq75B8+JxqBwcmZK4LTtFh93/mw7mnEqOF6Esk1Ln2fulB2
- kCX7MfSdZHYs017yZ1rtmJ0k5pfxHlJLD+q8SRY/jZ/eCTgiqxq70oYXU
- XHPaGMGB2x9rM9lGji0wYw6MF4zWykGHNVC93f7D4hCh5DpZ4Y8+ZK9PE
- BhJOK0Han1D47VM1wjZ0MQ1ZJ4Y4+KxOHU8qo5G6Pn/x4VTv6PglOJ9pg
- +tNi7mMD86r0X1PWO3gbQtbmcE1NeLDqNfQwwnEZKKuOa3C1ZiBHkm2l1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="319835329"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="319835329"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 03:09:49 -0700
+ t=1679566474; x=1711102474;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=JVdDo3p1OAW/O8TVGUey2qhgIy9Prrct6seA5yZ6v9g=;
+ b=daK1TqXDKFtcYLVJD2hqT6MElyc1k/IksDqF80eD+PMTf7CZQE8CbgO1
+ xtAHerwc7Muw++HVStymGe3e4/+PpJzzfF4D/YgrGIqfeEuxQfTcOcjpt
+ LrhND0SCoMGOx4a9ouUHZ4aPDCoSCn1C4VWcZxCu7jHl8Q/7dSIJIMPv0
+ GkR8Jp6mcegqbrMvi5Bbu1NkLEc+cWxXK6nO9sA/XM/uVqhTYylt7yfqF
+ DVOjVJOVA/DwgQ4o5IC3n1KHN1WG4B4QlAgTnUWS2wlYbAjSmEoHXfr3S
+ BN93FPQjzZdnQOPbmm0RWQCqQ5WVHYdtp0eyeG4TJK6oMFkFUaeRZG69g w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="336953106"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="336953106"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 03:14:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="771403687"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="771403687"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 03:09:47 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Mar 2023 15:42:26 +0530
-Message-Id: <20230323101226.1031488-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="746665118"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="746665118"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga008.fm.intel.com with ESMTP; 23 Mar 2023 03:14:34 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 23 Mar 2023 03:14:33 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 23 Mar 2023 03:14:33 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 23 Mar 2023 03:14:33 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.45) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Thu, 23 Mar 2023 03:14:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ClLFcHou6ANEI6iqmCz1sJzC135Sl4/JtYmw0B79VIaO2s3bSy/Jj9M8qANQhk8gPaUw1LY0sU5BSp2Dk95o7EI2XpNR6L0ite/tGTlVI2ZttRmm18L2/I9zgPfph89YAL+aDNI6tzsLnOLIS1DJJ+GlZ/9KnbuUbINpzd+o9SJFZSngZXkUcVwoU8epmFA1V9YcyT/KBC1irc+tvxSDtDHul/XghI+QvEJvv1FsPRy/oUgrJGQ2jYH7IXwabe03RUKzAcjhBxpqiPLPWzSOCA+AFNLJPOMEExQLxcxIkpgWKgP6UZwrE+ekxs+qhyWNFPrpFKOYygd0c1S6QYXyhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LFQMTY4HkBeaPyK4ZkrXxXXcdGHVjUiwPYa/LsrdK/0=;
+ b=gOz8GdUYmweG/iHoNU4ZLAqqhOV7tV/Pzn+ak5i2R6GPP6A9xiWkXt6D41j6Jyxgd22ed75CQFqUD5LxaTxrvnYZxMEo+9Vxj1Pq76JP7SiUksD8RFV/pz09obrcf20DvGJW5LeyFqBtIAko100B6rUEtajiP/vnjCw2AWiunrUOs1Qg9BsDpUAgvVa2MmRoiyTySRR/k9BVq+K9LOS1ZUbHzwCtlcRLnfRDW6IgMVw7yuLkFj+Ph5niiYwwEJaWdmsMW6o5t8HFYQvobslijuQQ3Xn3A0YF6mqzNt6rFOYD34tRrnRfgAK/O19YGohRzGr05315RAOTC7wclX6yew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by IA1PR11MB6147.namprd11.prod.outlook.com (2603:10b6:208:3ed::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Thu, 23 Mar
+ 2023 10:14:31 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6178.037; Thu, 23 Mar 2023
+ 10:14:31 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH 6/7] vfio: Accpet device file from vfio PCI hot reset path
+Thread-Index: AQHZW19JEMmjcrKSV0yRXuf6Ou6fcK8IJvKA
+Date: Thu, 23 Mar 2023 10:14:31 +0000
+Message-ID: <DS0PR11MB7529BEB87EC6941C19D56660C3879@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230316124156.12064-1-yi.l.liu@intel.com>
+ <20230316124156.12064-7-yi.l.liu@intel.com> <ZBiu9+mVurbW0x5k@nvidia.com>
+In-Reply-To: <ZBiu9+mVurbW0x5k@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|IA1PR11MB6147:EE_
+x-ms-office365-filtering-correlation-id: 3bc267e2-b6a7-4b73-c2a6-08db2b876490
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AahMQMfMK5kpLE+MwifVoex2zGJo1C0xt7kJxMxHZn3fAAPBlYyo2zS+5G2xFbK4TmthC2cCLZwoKATSPZCtUMByZ0lklKZxSxMxuw7+pZOiNBewGYXKn9LWxdwOvEoTSixKqI5t+b95pqqE4ROQ4ube8Ip973Sa4QVQrDfSZjrEkJ9QCLZcVyigjqNiwg+bPXLnB+DxkFXM6zqt0OOXG9XZ2Vt4Uvq/nbhbNS6zloKIXBXmyhHUMIcZWpL24f5dql7v/cqHWAca9RF2PIIpCEzAfFVNr0DTZs/hjhKicy99a6Vu0uFMdlL5kreXB+OrGiYE2+fWImLSSz7N4YT7IcMi4lAE6INq/1Xy6zrrGBu2UwN6Yf8X7LqXvbbvqL6CbhwGckt0Dd/yqP0iiW1JqcSoY4Sf9Kca3jozKyAEi610te1Dou+AWjIAIuH/cHCS3/RaQTgcS7peNI8aiHziQ3vG+rYZU02picp/WEVnyWorxXv+UR4WVvtEOBruZg0xwaKZMUhim0vJZh72Y5k4kBpldX5EY9lhUCt6dLkqG8WdmD+zt1rftMQlygUuj4m3h2JZpaX7IYPORbgTP0Ud9bCB2vNKgmz2/jZF7mn/VsFavKLbCrQnfyc8HrmUHn0MoG6Cf+bIaPlPrmdMNG3RiYUsnro53+siq14IQqie4L3RRTzrjbV8tj/38yAYT4zc
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(396003)(346002)(136003)(376002)(366004)(39860400002)(451199018)(55016003)(38100700002)(38070700005)(2906002)(83380400001)(478600001)(966005)(71200400001)(9686003)(186003)(7696005)(33656002)(86362001)(316002)(54906003)(66556008)(66476007)(66446008)(64756008)(8676002)(66946007)(4326008)(6916009)(76116006)(52536014)(8936002)(26005)(6506007)(122000001)(5660300002)(7416002)(41300700001)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?QyagcnCnQGQvN0VybUiO16fHsz1nd1LjLqxqa3XwalMkfP85Fq24XiAsz0l1?=
+ =?us-ascii?Q?FneHfheG3wUJE+ZebcN0AmkhfjOy55Us+ECTM8BHa5JEjjtr4/e2uql11Gzx?=
+ =?us-ascii?Q?8XJJvm2FWdZ0DA3hdjl16giPS8GVM0wJ8DvcIcJ6l/htXQN2EJ7/KaTeCsNt?=
+ =?us-ascii?Q?vv4BwGln4PfhLpcCX82Bu39clH0n1fe35rsr9h7F6nncnCqBvN7ttVqHT/05?=
+ =?us-ascii?Q?P0xwDMqca1ATWWbMbt1tqAcgnbYaiAtXmOkjoK/7L/DrYJecDDkwgjvvUddA?=
+ =?us-ascii?Q?RpUkYa5Rz1iqOCmjzFCJxOv2hvyqrzGsCbvLO9KQhHN9F7jYriqrjwTZcwnz?=
+ =?us-ascii?Q?h1m1zlHYF4ua5qPz6rOHw6qz33RvewfCCgdssXyiqea/Uxxh0NzcpFbWAO1/?=
+ =?us-ascii?Q?83tQP1E91faSsyITw5uSZmtvtrRY6Q4aMJo3mWxK4y9+qGVVijr11zMiqtMh?=
+ =?us-ascii?Q?onQBwNccb/YVL+k70Fb7/DfJyJ9/XdQe1GzLs1tqIbX7sNPDw/s7cZDvNVnc?=
+ =?us-ascii?Q?m28oDeWTIsq62pGE9ddH+caHgUBQ6FafStjGCJCm5iO16p635hhDzc80QxHp?=
+ =?us-ascii?Q?OrMkMRv1n9Gt8QJkb6ORsxt53IVI2CoAAxILQqUyiGiJDPC/6zejhC/8ZMQ1?=
+ =?us-ascii?Q?PBjG/FTJ+rpXlzUS6/3opYbY70OxCwUZMa8kY59ru5XjKG/60aBc6e5F5Bwl?=
+ =?us-ascii?Q?KkUykLG8uGsONp26i6fKtwoa72KMwkkcj9rMPD/DUOJZJA5NlEgFv3IaBOdl?=
+ =?us-ascii?Q?rlyK/gU0xWHvOeJc1Qbiut3dgS9S4P1deJZaznCJh+CtCW4E/0w1znz9XbjP?=
+ =?us-ascii?Q?C6BB1WAat2R3PcyzwKu22WMKP5EfXK6D5YZ7zTTTbeq02r6xbCQmKzMcEHID?=
+ =?us-ascii?Q?G3tNMaHY4/Y+zF5b76zrGe9ib8sSpeBWWIsMI6VWBlGKdSCFBztA78Monjrv?=
+ =?us-ascii?Q?FQS5Q3PX39N4wunTPAYaNbvPxC7Oacg+uctymix05IKEeM8fj+aykl+Hn50M?=
+ =?us-ascii?Q?NYz2V4BeQXdTiFa+Y2XPpzAVJBOm67ylPbu/U041wqn/qDhb9jK+nprDOw/3?=
+ =?us-ascii?Q?Ztl3f2m4f6KMNccYk6Qdyx38jYklTV+UfrDdgjqExainl3MpLI0phl9sTOo1?=
+ =?us-ascii?Q?+DbsHjk5MPvrtTb2zAfDZxMk11/NEuCGET+uAydsbyKYhO4sMkczvvjZwrZ/?=
+ =?us-ascii?Q?+8LKaORI4OJUMqN6cHp6iQOxYZ52JnqcZURVPYb4x03TuSyC34aov0GIzsRV?=
+ =?us-ascii?Q?VbTj70B4V/VeZKviF4vmEkt7Ktv1sYyFKhtTGcIcykvNAuRUkJGIvQJP6yyl?=
+ =?us-ascii?Q?hPIJpZUdkVftkJqj9TsD1p+Cc1WllbZBECXphnHCBusSu3rxPnlmyDQ9O6z8?=
+ =?us-ascii?Q?pvZZH/qr5w37YO+ZM9emykDbRiLLQ1Ks3EJDM440FbufR09SCG+gx42AviYX?=
+ =?us-ascii?Q?jtXhb9h8r/E/xAkb3NygFDL3Z4pktidhpw3EXxvBndlFt3/Kf4nvDdpyyeZe?=
+ =?us-ascii?Q?j23i+paPb0STwzMP6B+47tbXijCokSvZlo4ldmooWtigB7iy2n7owdbokafp?=
+ =?us-ascii?Q?LSX0qc8lgc5E1VkfpYwkoYESv9o42xnZivY2V2e3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Add per-tile rc6 enable/disable
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bc267e2-b6a7-4b73-c2a6-08db2b876490
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2023 10:14:31.0376 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hmS8bdMbYOrejbT0xKf1dGG3uYNLznJzm0/2iuhbTkjwOB78+HRr0QbHzdkItIks0CPLCWderWorvKbEnPjTZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6147
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 6/7] vfio: Accpet device file from vfio PCI
+ hot reset path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,232 +150,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com, andi.shyti@intel.com
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Don Hiatt <don.hiatt@intel.com>
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, March 21, 2023 3:08 AM
+>=20
+> On Thu, Mar 16, 2023 at 05:41:55AM -0700, Yi Liu wrote:
+> > This extends both vfio_file_is_valid() and vfio_file_has_dev() to accep=
+t
+> > device file from the vfio PCI hot reset.
+> >
+> > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> > ---
+> >  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
+> >  1 file changed, 19 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> > index fe7446805afd..ebbb6b91a498 100644
+> > --- a/drivers/vfio/vfio_main.c
+> > +++ b/drivers/vfio/vfio_main.c
+> > @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops
+> =3D {
+> >  	.mmap		=3D vfio_device_fops_mmap,
+> >  };
+> >
+> > +static struct vfio_device *vfio_device_from_file(struct file *file)
+> > +{
+> > +	struct vfio_device *device =3D file->private_data;
+>=20
+> Isn't this a df now?
 
-Add the ability to enable/disable rc6 on a per tile basis.
+Not yet. It is placed before the cdev series. So it is vfio_device here.
 
-To enable rc6 on a tile:
-   echo 1 > /sys/class/drm/card0/gt/gtX/rc6_enable
+> > +	if (file->f_op !=3D &vfio_device_fops)
+> > +		return NULL;
+> > +	return device;
+> > +}
+>=20
+> The device has to be bound to be a security proof.
 
-To disable rc6 on a tile:
-   echo 0 > /sys/class/drm/card0/gt/gtX/rc6_enable
+I think it is because this helper is used by vfio_file_has_dev(). This
+requires to be bound to security proof. For now, the device fd is
+got via group. So as long s user can get it, it should have been bound.
 
-To display the rc6 state of a tile:
-   cat /sys/class/drm/card0/gt/gtX/rc6_enable
+In the later cdev series, the below helper is added to ensure
+given device file has bound to security proof (a.k.a access_granted).
 
-Cc: Andi Shyti <andi.shyti@intel.com>
-Co-developed-by: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Don Hiatt <don.hiatt@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 84 ++++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_rc6.c         | 14 ++--
- drivers/gpu/drm/i915/gt/intel_rc6.h         |  3 +
- 3 files changed, 82 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 28f27091cd3b..e8f77dab8f5f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -176,18 +176,78 @@ static u32 get_residency(struct intel_gt *gt, enum intel_rc6_res_type id)
- 	return DIV_ROUND_CLOSEST_ULL(res, 1000);
- }
- 
--static u8 get_rc6_mask(struct intel_gt *gt)
-+static ssize_t rc6_enable_store(struct kobject *kobj,
-+				struct kobj_attribute *attr,
-+				const char *buff, size_t count)
- {
--	u8 mask = 0;
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	intel_wakeref_t wakeref;
-+	ssize_t ret;
-+	u32 val;
-+
-+	ret = kstrtou32(buff, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
-+	if (val) {
-+		if (gt->rc6.enabled)
-+			goto unlock;
-+
-+		if (!gt->rc6.wakeref)
-+			intel_rc6_rpm_get(&gt->rc6);
-+
-+		intel_rc6_enable(&gt->rc6);
-+		intel_rc6_unpark(&gt->rc6);
-+	} else {
-+		intel_rc6_disable(&gt->rc6);
-+
-+		if (gt->rc6.wakeref)
-+			intel_rc6_rpm_put(&gt->rc6);
-+	}
-+
-+unlock:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+
-+	return count;
-+}
-+
-+static ssize_t rc6_enable_dev_store(struct device *dev,
-+				    struct device_attribute *attr,
-+				    const char *buff, size_t count)
++static bool vfio_file_has_device_access(struct file *file,
++					struct vfio_device *device)
 +{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(&dev->kobj, attr->attr.name);
-+	intel_wakeref_t wakeref;
-+	ssize_t ret;
-+	u32 val;
++	struct vfio_device *vdev =3D vfio_device_from_file(file);
++	struct vfio_device_file *df;
 +
-+	ret = kstrtou32(buff, 0, &val);
-+	if (ret)
-+		return ret;
++	if (!vdev || vdev !=3D device)
++		return false;
 +
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
++	df =3D file->private_data;
 +
-+	if (val) {
-+		if (gt->rc6.enabled)
-+			goto unlock;
-+
-+		if (!gt->rc6.wakeref)
-+			intel_rc6_rpm_get(&gt->rc6);
-+
-+		intel_rc6_enable(&gt->rc6);
-+		intel_rc6_unpark(&gt->rc6);
-+	} else {
-+		intel_rc6_disable(&gt->rc6);
-+
-+		if (gt->rc6.wakeref)
-+			intel_rc6_rpm_put(&gt->rc6);
-+	}
- 
--	if (HAS_RC6(gt->i915))
--		mask |= BIT(0);
--	if (HAS_RC6p(gt->i915))
--		mask |= BIT(1);
--	if (HAS_RC6pp(gt->i915))
--		mask |= BIT(2);
-+unlock:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- 
--	return mask;
-+	return count;
- }
- 
- static ssize_t rc6_enable_show(struct kobject *kobj,
-@@ -196,7 +256,7 @@ static ssize_t rc6_enable_show(struct kobject *kobj,
- {
- 	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
- 
--	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-+	return sysfs_emit(buff, "%u\n", gt->rc6.enabled);
- }
- 
- static ssize_t rc6_enable_dev_show(struct device *dev,
-@@ -205,7 +265,7 @@ static ssize_t rc6_enable_dev_show(struct device *dev,
- {
- 	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(&dev->kobj, attr->attr.name);
- 
--	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-+	return sysfs_emit(buff, "%u\n", gt->rc6.enabled);
- }
- 
- static u32 __rc6_residency_ms_show(struct intel_gt *gt)
-@@ -233,7 +293,7 @@ INTEL_GT_SYSFS_SHOW_MIN(rc6p_residency_ms);
- INTEL_GT_SYSFS_SHOW_MIN(rc6pp_residency_ms);
- INTEL_GT_SYSFS_SHOW_MIN(media_rc6_residency_ms);
- 
--INTEL_GT_DUAL_ATTR_RO(rc6_enable);
-+INTEL_GT_DUAL_ATTR_RW(rc6_enable);
- INTEL_GT_DUAL_ATTR_RO(rc6_residency_ms);
- INTEL_GT_DUAL_ATTR_RO(rc6p_residency_ms);
- INTEL_GT_DUAL_ATTR_RO(rc6pp_residency_ms);
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index f4150f61f39c..ea7420271849 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -513,14 +513,14 @@ static bool rc6_supported(struct intel_rc6 *rc6)
- 	return true;
- }
- 
--static void rpm_get(struct intel_rc6 *rc6)
-+void intel_rc6_rpm_get(struct intel_rc6 *rc6)
- {
- 	GEM_BUG_ON(rc6->wakeref);
- 	pm_runtime_get_sync(rc6_to_i915(rc6)->drm.dev);
- 	rc6->wakeref = true;
- }
- 
--static void rpm_put(struct intel_rc6 *rc6)
-+void intel_rc6_rpm_put(struct intel_rc6 *rc6)
- {
- 	GEM_BUG_ON(!rc6->wakeref);
- 	pm_runtime_put(rc6_to_i915(rc6)->drm.dev);
-@@ -582,7 +582,7 @@ void intel_rc6_init(struct intel_rc6 *rc6)
- 	int err;
- 
- 	/* Disable runtime-pm until we can save the GPU state with rc6 pctx */
--	rpm_get(rc6);
-+	intel_rc6_rpm_get(rc6);
- 
- 	if (!rc6_supported(rc6))
- 		return;
-@@ -607,7 +607,7 @@ void intel_rc6_sanitize(struct intel_rc6 *rc6)
- 	memset(rc6->prev_hw_residency, 0, sizeof(rc6->prev_hw_residency));
- 
- 	if (rc6->enabled) { /* unbalanced suspend/resume */
--		rpm_get(rc6);
-+		intel_rc6_rpm_get(rc6);
- 		rc6->enabled = false;
- 	}
- 
-@@ -650,7 +650,7 @@ void intel_rc6_enable(struct intel_rc6 *rc6)
- 		return;
- 
- 	/* rc6 is ready, runtime-pm is go! */
--	rpm_put(rc6);
-+	intel_rc6_rpm_put(rc6);
- 	rc6->enabled = true;
- }
- 
-@@ -698,7 +698,7 @@ void intel_rc6_disable(struct intel_rc6 *rc6)
- 	if (!rc6->enabled)
- 		return;
- 
--	rpm_get(rc6);
-+	intel_rc6_rpm_get(rc6);
- 	rc6->enabled = false;
- 
- 	__intel_rc6_disable(rc6);
-@@ -715,7 +715,7 @@ void intel_rc6_fini(struct intel_rc6 *rc6)
- 		i915_gem_object_put(pctx);
- 
- 	if (rc6->wakeref)
--		rpm_put(rc6);
-+		intel_rc6_rpm_put(rc6);
- }
- 
- static u64 vlv_residency_raw(struct intel_uncore *uncore, const i915_reg_t reg)
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.h b/drivers/gpu/drm/i915/gt/intel_rc6.h
-index 456fa668a276..8771fbd9a6cf 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.h
-@@ -12,6 +12,9 @@ enum intel_rc6_res_type;
- struct intel_rc6;
- struct seq_file;
- 
-+void intel_rc6_rpm_get(struct intel_rc6 *rc6);
-+void intel_rc6_rpm_put(struct intel_rc6 *rc6);
-+
- void intel_rc6_init(struct intel_rc6 *rc6);
- void intel_rc6_fini(struct intel_rc6 *rc6);
- 
--- 
-2.25.1
++	return READ_ONCE(df->access_granted);
++}
+
+https://lore.kernel.org/kvm/20230316125534.17216-9-yi.l.liu@intel.com/
+
+Regards,
+Yi Liu
+
 
