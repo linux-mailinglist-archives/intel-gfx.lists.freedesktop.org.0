@@ -1,62 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AAC6C61E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 09:35:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5576C6233
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 09:50:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0639810E32E;
-	Thu, 23 Mar 2023 08:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EAB910E455;
+	Thu, 23 Mar 2023 08:50:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F1710E32E;
- Thu, 23 Mar 2023 08:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679560555; x=1711096555;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wDdeSb/bg+wF+kSpsoEp2QhZRodkIdNWumr/7wREvzk=;
- b=B9a59O8pOk0VlSAZbX9Os3EQUt7kydUU+GNXtRQnnZ1ZbG65svOaqtIo
- 0slQ5Vfzc08vyy0atR9Pf9pX7+D5qq6QeANZC2nJaYSrvRgT8ih4a+rJc
- 3Ru4ZV+tzKmaf/vIw1B7v2W2EzmDYsk6YPyq7bSdBsx6j4YQE0VPF7+kF
- 1/dty5mZrtdkgk7S2zfmu4LFuIb2ea3Uk0lFPqGHMH8kXzlqSUJUS7MLD
- OTeasnYI8fPrjCiKtZoToppTvWRyKueSbMOO2gevQaODWzwPtzDs5EhJM
- jCl7H7vGZvhOGaiKmWydQWzIgDWjIghbLalbFWUf2SbLUE7Z1bL9JhKIZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="323276911"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="323276911"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 01:35:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="682230055"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="682230055"
-Received: from mplechx-mobl.ger.corp.intel.com (HELO [10.213.211.105])
- ([10.213.211.105])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 01:35:53 -0700
-Message-ID: <416a0d13-0013-ecbe-716e-f3bda59c9d30@linux.intel.com>
-Date: Thu, 23 Mar 2023 08:35:50 +0000
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4825410E43D;
+ Thu, 23 Mar 2023 08:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=ubX+nnzIxzDny+5k+G0pJbfcXie/ybrhPkiV40AdBmw=; b=c+i7uj8z3jWy25uAUAR45qnaaT
+ pF3tyH/ZjP0wTJjtmbOrXnGcW4sql3YaYj6MZSogbloXIZVITUnYxaEhkdkdZGfF44hUx6SPaE9a0
+ xBQfiNtm13EsVbjmnrxvpKZ+GhK4HcE6JamresuAMIAPDpsNnMQfN/c2qbLJncaZW+HRMBbuEnUQn
+ WlMCQ33hqkQvD8SOdim8Co2aWJXy8H4SUHJsokyAPRKKsuO/m5UFp9AoLoRdsC3NEs7XRMY+IVarW
+ NHQUKY0C6P2v9a3OIKypXSqH242vPOXOEd29Ql/vyVbl5+O5iKbzPF1BxoBOL+V7KjlBNHfCp9yYW
+ FqQ8q7Xg==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pfGe1-003vRg-Vl; Thu, 23 Mar 2023 09:50:02 +0100
+Message-ID: <b32a52db030cc746ee082fa89078898a7d88ad28.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
+Date: Thu, 23 Mar 2023 09:50:01 +0100
+In-Reply-To: <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
+References: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+ <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "Tamminen, Eero T" <eero.t.tamminen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230314175832.1506427-1-alan.previn.teres.alexis@intel.com>
- <6cff8c19-0ab6-4b03-d778-ad57aa207b98@intel.com>
- <cc56d923-4021-3423-bfdf-986e7b73283f@linux.intel.com>
- <3841da5b-06df-eacf-ebd1-0e7885e6c9cb@intel.com>
- <38deebc090105826da9c85172392b10b93e99801.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <38deebc090105826da9c85172392b10b93e99801.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: limit drm-errors or
- warning on firmware API failures
+Subject: [Intel-gfx] 2023 X.Org Board of Directors Elections timeline
+ extended, request for nominations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +59,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: board <board@foundation.x.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We are seeking nominations for candidates for election to the X.org
+Foundation Board of Directors. However, as we presently do not have
+enough nominations to start the election - the decision has been made to
+extend the timeline by 2 weeks. Note this is a fairly regular part of
+the elections process.
 
-On 23/03/2023 00:27, Teres Alexis, Alan Previn wrote:
-> On Fri, 2023-03-17 at 13:37 +0200, Tamminen, Eero T wrote:
->> Hi,
->>
->> On 16.3.2023 10.50, Tvrtko Ursulin wrote:
->>>> [   11.674183] i915 0000:00:02.0: PXP init-arb-session-15 failed due
->>>> to BIOS/SOC:0x0000101a:ERR_PLATFORM_CONFIG
->> ...
->>> Alan - is this expected during normal operation on some parts, or it's
->>> something truly unexpected/unexplained? If the former then I think it
->>> would be good to downgrade away from drm_WARN so it is less scary.
->>>
->>> Commit message talks about "HW/platform gaps" - if it is like a missing
->>> BIOS support or so then I think WARN_ON is too much.
->>
->> Note that this was on pre-production TGL-H HW with BIOS from April 2021.
->>
->> (I don't know where to get update, nor interested to update it.)
->>
->>
->> 	- Eero
-> 
-> Alan: Hi Tvrtko, thanks for the feedback -i shall change from WARN_ONCE to drm_info_once.
+The new deadline for nominations to the X.org Board of Directors is
+23:59 UTC on April 2nd, 2023.
 
-Maybe it deserves to be a warning? Or a notice? I was just thinking it 
-does not need a call trace and all since it is not a driver issue. Your 
-call on the level and whether or not there is any chance for it to 
-happen in the field to make the discussion relevant or not.
+The new deadline for membership application or renewals is April 9th,
+2023. Membership is required to vote on the elections.
 
-Regards,
+The Board consists of directors elected from the membership. Each year,
+an election is held to bring the total number of directors to eight. The
+four members receiving the highest vote totals will serve as directors
+for two year terms.
 
-Tvrtko
+The directors who received two year terms starting in 2022 were Emma
+Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
+continue to serve until their term ends in 2024. Current directors whose
+term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
+Lyude Paul and Daniel Vetter.
+
+A director is expected to participate in the fortnightly IRC meeting to
+discuss current business and to attend the annual meeting of the X.Org
+Foundation, which will be held at a location determined in advance by
+the Board of Directors.
+
+A member may nominate themselves or any other member they feel is
+qualified. Nominations should be sent to the Election Committee at
+elections@x.org.
+
+Nominees shall be required to be current members of the X.Org
+Foundation, and submit a personal statement of up to 200 words that will
+be provided to prospective voters. The collected statements, along with
+the statement of contribution to the X.Org Foundation in the member's
+account page on http://members.x.org, will be made available to all
+voters to help them make their voting decisions.
+
+Nominations, membership applications or renewals and completed personal
+statements must be received no later than 23:59 UTC on April 2nd, 2023.
+
+The slate of candidates will be published April 10th 2023 and candidate
+Q&A will begin then. The deadline for Xorg membership applications and
+renewals is April 9th, 2023.
+
+Cheers,
+Ricardo Garcia, on behalf of the X.Org BoD
+
