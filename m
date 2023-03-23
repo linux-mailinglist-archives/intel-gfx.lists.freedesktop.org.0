@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990486C598E
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Mar 2023 23:47:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E99476C5B48
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Mar 2023 01:16:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E489410E41C;
-	Wed, 22 Mar 2023 22:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F164A10E14B;
+	Thu, 23 Mar 2023 00:16:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA8410E41C
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 22:46:57 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44D4310E14B;
+ Thu, 23 Mar 2023 00:16:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679525217; x=1711061217;
- h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=HDQsZ+Zd2OeoFbQT7/pK+vspHsprO3oIK582aYdmdL8=;
- b=lsVkw+q7YSfnu1ao7bte5Hnc/pIPYh+nE6sDpgXA7k4jWj+IdQKUG29q
- Ep8lMxHQvWuHJjZFQHE2TB0v3diLAMAiQyp+X+0/POfjImugHXspCOUar
- i2gRep9aVb4WUwEi4dI1QNskA7Wf8ZaoNEbMQ9eU/djCVhrYRYmtm7C1A
- J3brVQFGDqUxZKhKM+21r+ghqQ6/HSLF1Q5q9v0SVjg/89k0q4FDdhLfw
- iXg0hXfVT4viRD6tN9tCYkfQBdNdjhrtzqZH/mi7VTbzCsnK8cvhrwQN1
- oVCOxnw/C8SxTG1Lavf5Rl4iDPzXe+F64qDXx1GSpVxPu3AjNaRRt3Z0z A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="341706566"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="341706566"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 15:46:56 -0700
+ t=1679530599; x=1711066599;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=hUcdA/EZf3wSrxPghrvp76QuacXfEPbSMw7LM2tW7Qg=;
+ b=Rphu33znNn/DYktggKAS4PeHz8KMzkG/ldBkwVELuxdq95RJbGp7qb5L
+ EhD3WjoQONkfuEgNxHLdy4fQfRCZWzC4qP0jqP4cYY7hnsQVrhGd8/JrF
+ 4FQDy1ZdgzQOljlvmfCOuF+1NJ3wlmVfTSyTEZ1Ut/Z8vez2RLL0TP3RE
+ 5+Pw1T+fK8ggj3GLGAfMbcC+4ngP4PBGuHoRwiRPwRpJ59nCJM/GK2RzQ
+ NB59+f2Fh68lS/zSMsbNGQjWmNvDverFcZszfz2Q4F1YzeDulnUE9rLhA
+ SdonPcpsmxgRyYNbSkr7YTRQQIxVRISsPyeLvmj4UTuQsNcUNTFLu9Amp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="336867682"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="336867682"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 17:16:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="928002484"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="928002484"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga006.fm.intel.com with ESMTP; 22 Mar 2023 15:46:55 -0700
-Received: from anithaha-mobl1.amr.corp.intel.com (unknown [10.209.65.203])
- by linux.intel.com (Postfix) with ESMTP id AB9AC580CD3;
- Wed, 22 Mar 2023 15:46:55 -0700 (PDT)
-Message-ID: <ab9bf3032ed46fc0586e089edc5aac6e71b331d8.camel@linux.intel.com>
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Date: Wed, 22 Mar 2023 15:46:55 -0700
-In-Reply-To: <20230322205702.GA2493123@bhelgaas>
-References: <20230322205702.GA2493123@bhelgaas>
-Organization: David E. Box
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu1 
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="1011562772"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="1011562772"
+Received: from hlakyil-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.36.178])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 17:16:34 -0700
+Date: Thu, 23 Mar 2023 01:16:08 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Message-ID: <ZBuaSHIRkZh3Ot6x@ashyti-mobl2.lan>
+References: <20230320211039.1513368-1-daniele.ceraolospurio@intel.com>
+ <382f0058-2b4f-4ef2-8031-27a2f75715df@intel.com>
+ <0296ba17-6e91-76f2-4866-179feb94074b@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] PCI/ASPM: pci_enable_link_state: Add
- argument to acquire bus lock
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0296ba17-6e91-76f2-4866-179feb94074b@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: limit double GT reset to
+ pre-MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,190 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: david.e.box@linux.intel.com
-Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
- robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
- jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
- michael.a.bottini@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Bjorn,
+Hi,
 
-On Wed, 2023-03-22 at 15:57 -0500, Bjorn Helgaas wrote:
-> On Wed, Mar 22, 2023 at 03:45:01PM -0500, Bjorn Helgaas wrote:
-> > Hi David,
-> >=20
-> > On Tue, Mar 21, 2023 at 04:38:49PM -0700, David E. Box wrote:
-> > > The VMD driver calls pci_enabled_link_state as a callback from
-> > > pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a loc=
-kdep
-> > > warning. Add an argument to pci_enable_link_state to set whether the =
-lock
-> > > should be acquired. In the VMD driver, set the argument to false sinc=
-e the
-> > > lock will already be obtained by pci_bus_walk.
-> > >=20
-> > > Reported-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > > Fixes: de82f60f9c86 ("PCI/ASPM: Add pci_enable_link_state()")
-> >=20
-> > This means "if your kernel includes de82f60f9c86, you probably want to
-> > backport this fix to it."=C2=A0 But that's not the case here.=C2=A0 Thi=
-s patch
-> > is not fixing an issue with de82f60f9c86, so I don't think there's a
-> > reason to include a "Fixes" line.
->=20
-> Oops, sorry, forgot to engage brain before hitting "send".
->=20
-> I think the "Fixes" line should reference f492edb40b54 ("PCI: vmd: Add
-> quirk to configure PCIe ASPM and LTR") instead, since that's where the
-> locking problem started.
->=20
-> > This patch is adding functionality that is only needed by some other
-> > patch, and it should be part of a series that also includes the patch
-> > that uses it to make sure they go together.
+> On 3/22/2023 12:44 PM, John Harrison wrote:
+> > On 3/20/2023 14:10, Daniele Ceraolo Spurio wrote:
+> > > Commit 3db9d590557d ("drm/i915/gt: Reset twice") modified the code to
+> > > always hit the GDRST register twice when doing a reset, with the
+> > > reported aim to fix invalid post-reset engine state on some platforms
+> > > (Jasperlake being the only one actually mentioned).
+> >
+> > It still concerns me that there are no actual details about this issue
+> > from a hardware perspective as to what/why it goes wrong, the comment is
+> > fully of non-definitive language - 'appears to', 'should', 'is still a
+> > concern that'. And there is no w/a number associated with it. It all
+> > feels extremely suspect and warrants a great big FIXME tag as a minimum.
+> 
+> I agree that the whole thing is unclear and we could add a FIXME, but IMO
+> that is outside the scope of this patch as I'm not adding the code in
+> question. This should be discussed with the original author/reviewers.
 
-Yeah this should have been two patches.
+Sorry for chiming in a bit late. I'm with Daniele on this one;
+the patch just takes things back to how they were before Chris's
+patch, so we should look into the reasoning behind Chris's patch
+itself.
 
->=20
-> And I see that the use *is* included in this patch.=C2=A0 But I don't
-> really like this pattern:
->=20
-> =C2=A0 vmd_probe
-> =C2=A0=C2=A0=C2=A0 vmd_enable_domain
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vmd->bus =3D pci_create_root_bus(...);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pci_scan_child_bus(vmd->bus);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pci_walk_bus(vmd->bus, vmd_pm_enable_quirk=
-, &features);
->=20
-> because pci_walk_bus() makes locking complicated (as this issue shows)
-> and it doesn't work for hot-added devices (I don't know if that's an
-> issue for VMD, but the pattern gets copied to places where it *is*).
->=20
-> Normally vmd_pm_enable_quirk() would be done by making it an actual
-> DECLARE_PCI_FIXUP_HEADER() or DECLARE_PCI_FIXUP_FINAL(), so it would
-> be called automatically by the PCI core when a new device is
-> enumerated.=C2=A0 Would that work here?=C2=A0 If it would, I don't think =
-you'd
-> need to add the extra flag to pci_enable_link_state().
+As mentioned in the commit log, in Jasperlake (and only
+Jasperlake), a second reset attempt is needed to clear the
+register state. If I remember right, Chris discovered this
+through experimentation, and I don't think any hardware folks
+have documented it.
 
-It should work. I'll test the change.
+Chris can probably give more details on this.
 
-David
+In general, I'm on board with Daniele's patch since it's doing
+what the driver has always done, which is why I gave it a quick
+review already in V1.
 
->=20
-> > > Link: https://lore.kernel.org/linux-pci/ZBjko%2FifunIwsK2v@intel.com/
-> > > Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-> > > ---
-> > > =C2=A0drivers/pci/controller/vmd.c | 2 +-
-> > > =C2=A0drivers/pci/pcie/aspm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 9 +++++=
-+---
-> > > =C2=A0include/linux/pci.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 5 +++--
-> > > =C2=A03 files changed, 10 insertions(+), 6 deletions(-)
-> > >=20
-> > > diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vm=
-d.c
-> > > index 990630ec57c6..45aa35744eae 100644
-> > > --- a/drivers/pci/controller/vmd.c
-> > > +++ b/drivers/pci/controller/vmd.c
-> > > @@ -737,7 +737,7 @@ static int vmd_pm_enable_quirk(struct pci_dev *pd=
-ev,
-> > > void *userdata)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!(features & VMD_=
-FEAT_BIOS_PM_QUIRK))
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > > =C2=A0
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pdev=
-, PCIE_LINK_STATE_ALL);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pdev=
-, PCIE_LINK_STATE_ALL, false);
-> > > =C2=A0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pos =3D pci_find_ext_=
-capability(pdev, PCI_EXT_CAP_ID_LTR);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!pos)
-> > > diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
-> > > index 66d7514ca111..5b5a600bb864 100644
-> > > --- a/drivers/pci/pcie/aspm.c
-> > > +++ b/drivers/pci/pcie/aspm.c
-> > > @@ -1147,8 +1147,9 @@ EXPORT_SYMBOL(pci_disable_link_state);
-> > > =C2=A0 *
-> > > =C2=A0 * @pdev: PCI device
-> > > =C2=A0 * @state: Mask of ASPM link states to enable
-> > > + * @sem: Boolean to acquire/release pci_bus_sem
-> > > =C2=A0 */
-> > > -int pci_enable_link_state(struct pci_dev *pdev, int state)
-> > > +int pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)
-> > > =C2=A0{
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pcie_link_stat=
-e *link =3D pcie_aspm_get_link(pdev);
-> > > =C2=A0
-> > > @@ -1165,7 +1166,8 @@ int pci_enable_link_state(struct pci_dev *pdev,=
- int
-> > > state)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return -EPERM;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> > > =C2=A0
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0down_read(&pci_bus_sem);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (sem)
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0down_read(&pci_bus_sem);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_lock(&aspm_lock=
-);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link->aspm_default =
-=3D 0;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (state & PCIE_LINK=
-_STATE_L0S)
-> > > @@ -1186,7 +1188,8 @@ int pci_enable_link_state(struct pci_dev *pdev,=
- int
-> > > state)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link->clkpm_default =
-=3D (state & PCIE_LINK_STATE_CLKPM) ? 1 : 0;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pcie_set_clkpm(link, =
-policy_to_clkpm_state(link));
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_unlock(&aspm_lo=
-ck);
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0up_read(&pci_bus_sem);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (sem)
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0up_read(&pci_bus_sem);
-> > > =C2=A0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > > =C2=A0}
-> > > diff --git a/include/linux/pci.h b/include/linux/pci.h
-> > > index fafd8020c6d7..a6f9f24b39fd 100644
-> > > --- a/include/linux/pci.h
-> > > +++ b/include/linux/pci.h
-> > > @@ -1707,7 +1707,7 @@ extern bool pcie_ports_native;
-> > > =C2=A0#ifdef CONFIG_PCIEASPM
-> > > =C2=A0int pci_disable_link_state(struct pci_dev *pdev, int state);
-> > > =C2=A0int pci_disable_link_state_locked(struct pci_dev *pdev, int sta=
-te);
-> > > -int pci_enable_link_state(struct pci_dev *pdev, int state);
-> > > +int pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)=
-;
-> > > =C2=A0void pcie_no_aspm(void);
-> > > =C2=A0bool pcie_aspm_support_enabled(void);
-> > > =C2=A0bool pcie_aspm_enabled(struct pci_dev *pdev);
-> > > @@ -1716,7 +1716,8 @@ static inline int pci_disable_link_state(struct
-> > > pci_dev *pdev, int state)
-> > > =C2=A0{ return 0; }
-> > > =C2=A0static inline int pci_disable_link_state_locked(struct pci_dev =
-*pdev, int
-> > > state)
-> > > =C2=A0{ return 0; }
-> > > -static inline int pci_enable_link_state(struct pci_dev *pdev, int st=
-ate)
-> > > +static inline int
-> > > +pci_enable_link_state(struct pci_dev *pdev, int state, bool sem)
-> > > =C2=A0{ return 0; }
-> > > =C2=A0static inline void pcie_no_aspm(void) { }
-> > > =C2=A0static inline bool pcie_aspm_support_enabled(void) { return fal=
-se; }
-> > > --=20
-> > > 2.34.1
-> > >=20
+On the other hand, the price to pay having something like this:
 
+  loops = GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70) ? 2 : 1;
+
+Is the following perhaps a bit more self-explanatory?
+
+  /*
+   * The big comment with explanation
+   */
+  if (IS_PLATFORM(i915, INTEL_JASPERLAKE))
+  	/* try again */ ;
+
+Andi
