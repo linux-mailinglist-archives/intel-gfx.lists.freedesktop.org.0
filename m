@@ -2,63 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C20B6C85D3
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 20:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B316C85F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 20:27:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C98AA10EC63;
-	Fri, 24 Mar 2023 19:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD1010EC5F;
+	Fri, 24 Mar 2023 19:27:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2616410EC6C
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 19:21:31 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id l12so2813643wrm.10
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 12:21:31 -0700 (PDT)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 994DD10EC5F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 19:27:27 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id d17so2826913wrb.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 12:27:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1679685690; x=1682277690;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=AX4B2DDC1SB0xPuqXS2qii3BKe5v0DlUrWGvXdqesBY=;
- b=cnjCFiMb+vM2mmhdQ8VfvGQxGtCx4nMZfo5O7PYeSGHr2fW9Kg+rFob5JtY3FvqtZy
- jRakWWSpsMeP5HoGa9c6L3oXqZYIXJZ1/K4/tdiqgQMKbhMwF/UK5XXpS9vRCGiw9tm/
- SCUfJC5OPmyPE7120WaQbuo2/tf30SkSAiu34=
+ d=chromium.org; s=google; t=1679686046;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=A76mQMLCXjYaVOvcsZRi/XfbCpgyGK8ELYNqRDF4dnY=;
+ b=BGlDYDhoCSHvCE30sxCZJ330CsatpMec4rqSDHE1b4iNuDgzdZP3RcITGzQLdhSQE1
+ 0N3Yz4BMfkOggoOZZEfuE48SBNrNXGe5M58Yo36TE3i0jUzVIoBUrgNYgI0hYrQog6Yc
+ 0ccSEqEMB5Z2pmlPWflgH7nYkrYlTvygQ/xE0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679685690; x=1682277690;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AX4B2DDC1SB0xPuqXS2qii3BKe5v0DlUrWGvXdqesBY=;
- b=0LrC9BvlsvP30RYzJAxKP2k8Wg7e9kVTZdN01iQ8iQ9eYHzNEwMvAJJgDV5CWNrsMF
- 4jcpGnt4nvKnKYJRVd4wo6s+9gwiiEmZ2XEOVOksSc5BugMNW/zy723yDONyD2sU27F8
- ojaw7SXA2fUQRsZAvpTtWZCLpIHlryFoc7H8MAAdEYXQGWrqu4Izi4pm+FF504GsLljy
- COwsdh+5WT7awkQbiPCaFrBA77zrZ4leBM5ShIWyAQR9vhxURmTpZR+wiaQEZSR6IJEo
- j+PKslA02e4qVjk/Tep7ZvMklOUmW6R1ua7sn3X9yhCg1XeSsh7ATnffB7bakA8/ZHcT
- pyAQ==
-X-Gm-Message-State: AAQBX9dx8fEK44BnnGRswYrk7Gu1j2ZE12791FCloznfo29QWCWcxxEq
- Zgt/2XwqVkiIa0nSlql8/ysdSnnWrA0QZkIXxaM=
-X-Google-Smtp-Source: AKy350ZeD5jLgqVp2nkJq1yCQ4fhNF10xWyx7nc2WoD9fm101E1wY8esed8rIlUoJtWoYYBJ1hX72A==
-X-Received: by 2002:adf:e6cc:0:b0:2c7:d80:ffc4 with SMTP id
- y12-20020adfe6cc000000b002c70d80ffc4mr2267880wrm.7.1679685690264; 
- Fri, 24 Mar 2023 12:21:30 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- p5-20020a5d4e05000000b002d75909c76esm12091464wrt.73.2023.03.24.12.21.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Mar 2023 12:21:29 -0700 (PDT)
-Date: Fri, 24 Mar 2023 20:21:27 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZB34N6YE/a+klSLe@phenom.ffwll.local>
-References: <5a4c438e-7047-c044-fc77-5a3597000264@linux.intel.com>
+ d=1e100.net; s=20210112; t=1679686046;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=A76mQMLCXjYaVOvcsZRi/XfbCpgyGK8ELYNqRDF4dnY=;
+ b=YMQDePWbEA8mQONFq9jxVsMUsK98gqBStgMB9g1aCnREUhcGRGR4pD6UYu96owmvC8
+ 5vTehTIgz1irFx3t1e5dN+pAOV/MkN95NQeq/Pns15BTb50M4SouktG+3vZhOB2bxUpX
+ V1AHIDvkKaRn1FzUmdHtSs/ZVS0YwO2MbXV5IpQlOPpZsmrQw11ilDuQU0NkBgSo+VZK
+ 47Ru0YKs7H7khbl10r4kTd5sZOQ2ZPU7Aeu9JmOEDAQrYW9H5uRtgpU0d0uUYeN3N4cR
+ iE733GTvy2+eGHy9BQ64Az+9eEutuLdDXId8OK4HjI9f8jRbcVcgPBP+Mvact7Uknj3Q
+ DF9w==
+X-Gm-Message-State: AAQBX9dr4CxZpxzeauswTfEZTfh3EfMASt/VdR/BSIaD+54veamLMEgz
+ gbbl6eCFf7m5zh7qsY7fqXwnwyW9FU7tBaakrTqtZg==
+X-Google-Smtp-Source: AKy350aA0OrVbBXXikGt1TrNwIXDxKvzGrW8p1JqkcKi/TrZpSty/ja8lUFG73jSGVmL/obLAm6bK/QBzKB/s35FXu4=
+X-Received: by 2002:adf:f8cf:0:b0:2d3:3db2:bbae with SMTP id
+ f15-20020adff8cf000000b002d33db2bbaemr804498wrq.5.1679686046094; Fri, 24 Mar
+ 2023 12:27:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5a4c438e-7047-c044-fc77-5a3597000264@linux.intel.com>
-X-Operating-System: Linux phenom 6.1.0-6-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+References: <20230118193015.911074-1-markyacoub@google.com>
+ <20230118193015.911074-7-markyacoub@google.com>
+ <MWHPR11MB1741FB33E933A3285B7DC88DE3BA9@MWHPR11MB1741.namprd11.prod.outlook.com>
+ <MWHPR11MB1741D833E10227E8BA1CEE03E3879@MWHPR11MB1741.namprd11.prod.outlook.com>
+In-Reply-To: <MWHPR11MB1741D833E10227E8BA1CEE03E3879@MWHPR11MB1741.namprd11.prod.outlook.com>
+From: Mark Yacoub <markyacoub@chromium.org>
+Date: Fri, 24 Mar 2023 15:27:15 -0400
+Message-ID: <CAJUqKUqhHmvD0K7OzrFKPeBBxprXgLVw1-L-vpNAAS7u4CxNoA@mail.gmail.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable
+ return codes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,200 +68,347 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>
+Cc: "quic_sbillaka@quicinc.com" <quic_sbillaka@quicinc.com>,
+ "dianders@chromium.org" <dianders@chromium.org>,
+ "konrad.dybcio@somainline.org" <konrad.dybcio@somainline.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "hbh25y@gmail.com" <hbh25y@gmail.com>, "Vasut, Marek" <marex@denx.de>,
+ "javierm@redhat.com" <javierm@redhat.com>,
+ "quic_khsieh@quicinc.com" <quic_khsieh@quicinc.com>,
+ "agross@kernel.org" <agross@kernel.org>,
+ "quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "Nikula,
+ Jani" <jani.nikula@intel.com>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
+ "abhinavk@codeaurora.org" <abhinavk@codeaurora.org>,
+ "swboyd@chromium.org" <swboyd@chromium.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "johan+linaro@kernel.org" <johan+linaro@kernel.org>,
+ "andersson@kernel.org" <andersson@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "maxime@cerno.tech" <maxime@cerno.tech>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 23, 2023 at 12:08:57PM +0100, Maarten Lankhorst wrote:
-> Hi Dave, Daniel,
-> 
-> Lots of small commits with cleanup and fixes this time around, nothing major otherwise.
-> 
-> Cheers,
-> ~Maarten
-> 
-> drm-misc-next-2023-03-23:
-> drm-misc-next for v6.4-rc1:
-> 
-> Core Changes:
-> - Add unit test for xrgb8888 to mono.
-> - Assorted small fixes to format helper selftests.
-> - Assorted documentation updates.
-> - Drop drm_dev_set_unique.
-> - Always use shadow buffer in generic fbdev emulation helpers, and
->   improve error handling.
-> 
-> Driver Changes:
-> - Assorted small fixes to malidp, hdlcd, gma500, lima, bridge, rockchip.
-> - Move fbdev in gma500 to use drm_client.
-> - Convert bridge platform callbacks to void return.
-> - Drop leftover from vgem to shmem helper conversion.
-> 
-> The following changes since commit b24343eaceedb902c1625854f85a193b0549d85f:
-> 
->   drm/nouveau/nvfw/acr: set wpr_generic_header_dump storage-class-specifier to static (2023-03-16 14:53:15 +0100)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-03-23
-
-Pulled, thanks
-
-> 
-> for you to fetch changes up to 4ab9157c7e02019fa8d8ab98d4f9e67e6a7cfad1:
-> 
->   drm/rockchip: vop2: Add error check to devm_regmap_init_mmio (2023-03-23 00:18:58 +0100)
-> 
-> ----------------------------------------------------------------
-> drm-misc-next for v6.4-rc1:
-> 
-> Core Changes:
-> - Add unit test for xrgb8888 to mono.
-> - Assorted small fixes to format helper selftests.
-> - Assorted documentation updates.
-> - Drop drm_dev_set_unique.
-> - Always use shadow buffer in generic fbdev emulation helpers, and
->   improve error handling.
-> 
-> Driver Changes:
-> - Assorted small fixes to malidp, hdlcd, gma500, lima, bridge, rockchip.
-> - Move fbdev in gma500 to use drm_client.
-> - Convert bridge platform callbacks to void return.
-> - Drop leftover from vgem to shmem helper conversion.
-> 
-> ----------------------------------------------------------------
-> Adam Ford (1):
->       drm/bridge: adv7533: Fix adv7533_mode_valid for adv7533 and adv7535
-> 
-> Alfredo Cruz (1):
->       drm/rockchip: vop2: Add error check to devm_regmap_init_mmio
-> 
-> Arthur Grillo (2):
->       drm/format-helper: Add Kunit tests for drm_fb_xrgb8888_to_mono()
->       drm/format-helper: Make "destination_pitch" test usable for mono
-> 
-> Christian König (1):
->       drm: remove drm_dev_set_unique
-> 
-> Javier Martinez Canillas (1):
->       drm/format-helper: Use drm_format_info_min_pitch() in tests helper
-> 
-> Lee Jones (1):
->       drm/ttm/ttm_bo: Provide a missing 'bulk' description and correct misnaming of 'placement'
-> 
-> Maíra Canal (2):
->       drm/vgem: Drop struct drm_vgem_gem_object
->       drm/lima: Use drm_sched_job_add_syncobj_dependency()
-> 
-> Petr Tesarik (1):
->       drm/prime: Fix documentation of drm_gem_prime_fd_to_handle()
-> 
-> Simon Ser (1):
->       drm: fix typo in margin connector properties docs
-> 
-> Thomas Zimmermann (15):
->       drm/gma500: Remove unnecessary include statements
->       drm/gma500: Move fbdev code into separate source file
->       drm/gma500: Remove fbdev vma open and close callbacks
->       drm/gma500: Fix naming in fb_ops
->       drm/gma500: Inline psbfb_create() into psbfb_probe()
->       drm/gma500: Implement client-based fbdev emulation
->       drm/gma500: Pass fb_info to psb_fbdev_vm_fault()
->       drm/fbdev-generic: Always use shadow buffering
->       drm/fbdev-generic: Remove unused prefer_shadow_fbdev flag
->       drm/fb-helper: Export drm_fb_helper_release_info()
->       drm/fb-helper: Support smem_len in deferred I/O
->       drm/fbdev-generic: Set screen size to size of GEM buffer
->       drm/fbdev-generic: Clean up after failed probing
->       drm/fb-helper: Consolidate CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM
->       drm/fbdev-generic: Rename symbols
-> 
-> Toby Chen (1):
->       drm/rockchip: dw_hdmi: cleanup drm encoder during unbind
-> 
-> Tom Rix (3):
->       gpu: drm: bridge: sii9234: remove unused bridge_to_sii9234 function
->       drm/gma500: remove unused gma_pipe_event function
->       drm/rockchip: vop2: fix uninitialized variable possible_crtcs
-> 
-> Uwe Kleine-König (17):
->       drm/bridge: cdns-dsi: Convert to platform remove callback returning void
->       drm/bridge: display-connector: Convert to platform remove callback returning void
->       drm/bridge: fsl-ldb: Convert to platform remove callback returning void
->       drm/bridge: imx8qm-ldb: Convert to platform remove callback returning void
->       drm/bridge: imx8qxp-ldb: Convert to platform remove callback returning void
->       drm/bridge: imx8qxp-pixel-combiner: Convert to platform remove callback returning void
->       drm/bridge: imx8qxp-pixel-link: Convert to platform remove callback returning void
->       drm/bridge: imx8qxp-pxl2dpi: Convert to platform remove callback returning void
->       drm/bridge: lvds-codec: Convert to platform remove callback returning void
->       drm/bridge: nwl-dsi: Convert to platform remove callback returning void
->       drm/bridge: simple-bridg: Convert to platform remove callback returning void
->       drm/bridge: dw-hdmi-ahb-audio: Convert to platform remove callback returning void
->       drm/bridge: dw-hdmi-cec: Convert to platform remove callback returning void
->       drm/bridge: dw-hdmi-gp-audio: Convert to platform remove callback returning void
->       drm/bridge: dw-hdmi-i2s-audio: Convert to platform remove callback returning void
->       drm/bridge: thc63lvd1024: Convert to platform remove callback returning void
->       drm/bridge: ti-tfp410: Convert to platform remove callback returning void
-> 
-> Yang Li (2):
->       drm/arm/malidp: Use devm_platform_get_and_ioremap_resource()
->       drm/arm/hdlcd: Use devm_platform_ioremap_resource()
-> 
-> Ye Xingchen (2):
->       drm/bridge: display-connector: Use dev_err_probe()
->       drm: bridge: simple-bridge: Use dev_err_probe()
-> 
->  drivers/gpu/drm/arm/hdlcd_drv.c                    |   4 +-
->  drivers/gpu/drm/arm/malidp_drv.c                   |   3 +-
->  drivers/gpu/drm/bridge/adv7511/adv7533.c           |  25 +-
->  drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c     |   6 +-
->  drivers/gpu/drm/bridge/display-connector.c         |  15 +-
->  drivers/gpu/drm/bridge/fsl-ldb.c                   |   6 +-
->  drivers/gpu/drm/bridge/imx/imx8qm-ldb-drv.c        |   6 +-
->  drivers/gpu/drm/bridge/imx/imx8qxp-ldb-drv.c       |   6 +-
->  .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    |   6 +-
->  drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c    |   6 +-
->  drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c       |   6 +-
->  drivers/gpu/drm/bridge/lvds-codec.c                |   6 +-
->  drivers/gpu/drm/bridge/nwl-dsi.c                   |   5 +-
->  drivers/gpu/drm/bridge/sii9234.c                   |   5 -
->  drivers/gpu/drm/bridge/simple-bridge.c             |  14 +-
->  .../gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c    |   6 +-
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c      |   6 +-
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-gp-audio.c |   6 +-
->  .../gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c    |   6 +-
->  drivers/gpu/drm/bridge/thc63lvd1024.c              |   6 +-
->  drivers/gpu/drm/bridge/ti-tfp410.c                 |   6 +-
->  drivers/gpu/drm/drm_connector.c                    |   2 +-
->  drivers/gpu/drm/drm_drv.c                          |  26 +-
->  drivers/gpu/drm/drm_fb_helper.c                    |  63 ++--
->  drivers/gpu/drm/drm_fbdev_dma.c                    |   9 +-
->  drivers/gpu/drm/drm_fbdev_generic.c                | 279 ++++++-----------
->  drivers/gpu/drm/drm_prime.c                        |   4 +-
->  drivers/gpu/drm/gma500/Makefile                    |   1 +
->  drivers/gpu/drm/gma500/fbdev.c                     | 344 +++++++++++++++++++++
->  drivers/gpu/drm/gma500/framebuffer.c               | 341 +-------------------
->  drivers/gpu/drm/gma500/psb_drv.c                   |   5 +-
->  drivers/gpu/drm/gma500/psb_drv.h                   |  19 +-
->  drivers/gpu/drm/gma500/psb_irq.c                   |  11 -
->  drivers/gpu/drm/lima/lima_gem.c                    |  12 +-
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   1 +
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  11 +-
->  drivers/gpu/drm/tests/drm_format_helper_test.c     | 141 ++++++---
->  drivers/gpu/drm/tiny/bochs.c                       |   1 -
->  drivers/gpu/drm/ttm/ttm_bo.c                       |   3 +-
->  drivers/gpu/drm/vgem/vgem_drv.h                    |  11 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   1 -
->  include/drm/drm_drv.h                              |   2 -
->  include/drm/drm_fb_helper.h                        |  14 +-
->  include/drm/drm_mode_config.h                      |   7 -
->  44 files changed, 664 insertions(+), 799 deletions(-)
->  create mode 100644 drivers/gpu/drm/gma500/fbdev.c
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+On Thu, Mar 23, 2023 at 3:18=E2=80=AFAM Kandpal, Suraj <suraj.kandpal@intel=
+.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Kandpal, Suraj
+> > Sent: Friday, March 10, 2023 1:55 PM
+> > To: Mark Yacoub <markyacoub@chromium.org>; quic_khsieh@quicinc.com;
+> > linux-arm-msm@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> > freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; intel-gfx@lists.freedesktop.org
+> > Cc: quic_sbillaka@quicinc.com; konrad.dybcio@somainline.org; Souza, Jos=
+e
+> > <jose.souza@intel.com>; bjorn.andersson@linaro.org;
+> > krzysztof.kozlowski+dt@linaro.org; hbh25y@gmail.com; Vasut, Marek
+> > <marex@denx.de>; Dixit, Ashutosh <ashutosh.dixit@intel.com>;
+> > sean@poorly.run; abhinavk@codeaurora.org; javierm@redhat.com; Murthy,
+> > Arun R <arun.r.murthy@intel.com>; Lisovskiy, Stanislav
+> > <Stanislav.Lisovskiy@intel.com>; agross@kernel.org;
+> > quic_jesszhan@quicinc.com; Nautiyal, Ankit K <ankit.k.nautiyal@intel.co=
+m>;
+> > Nikula, Jani <jani.nikula@intel.com>; De Marchi, Lucas
+> > <lucas.demarchi@intel.com>; quic_abhinavk@quicinc.com;
+> > swboyd@chromium.org; robh+dt@kernel.org;
+> > christophe.jaillet@wanadoo.fr; maxime@cerno.tech; Vivi, Rodrigo
+> > <rodrigo.vivi@intel.com>; johan+linaro@kernel.org;
+> > tvrtko.ursulin@linux.intel.com; andersson@kernel.org;
+> > dianders@chromium.org; Sharma, Swati2 <swati2.sharma@intel.com>;
+> > Navare, Manasi D <manasi.d.navare@intel.com>; tzimmermann@suse.de;
+> > Modem, Bhanuprakash <Bhanuprakash.Modem@intel.com>;
+> > dmitry.baryshkov@linaro.org; seanpaul@chromium.org
+> > Subject: RE: [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable return
+> > codes
+> >
+> > > Subject: [PATCH v6 06/10] drm/i915/hdcp: Retain hdcp_capable return
+> > > codes
+> > >
+> > > From: Sean Paul <seanpaul@chromium.org>
+> > >
+> > > The shim functions return error codes, but they are discarded in
+> > > intel_hdcp.c. This patch plumbs the return codes through so they are
+> > > properly handled.
+> > >
+> > > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> > > Link:
+> > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-7-
+> > > sean@poorly.run #v1
+> > > Link:
+> > > https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-7-
+> > > sean@poorly.run #v2
+> > > Link:
+> > > https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-7-
+> > > sean@poorly.run #v3
+> > > Link:
+> > >
+> > https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-
+> > > 7-sean@poorly.run #v4
+> > > Link:
+> > >
+> > https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-
+> > > 7-sean@poorly.run #v5
+> > >
+> > > Changes in v2:
+> > > -None
+> > > Changes in v3:
+> > > -None
+> > > Changes in v4:
+> > > -None
+> > > Changes in v5:
+> > > -None
+> > > Changes in v6:
+> > > -Rebased
+> > >
+> > > ---
+> > >  .../drm/i915/display/intel_display_debugfs.c  |  9 +++-
+> > >  drivers/gpu/drm/i915/display/intel_hdcp.c     | 51 ++++++++++-------=
+--
+> > >  drivers/gpu/drm/i915/display/intel_hdcp.h     |  4 +-
+> > >  3 files changed, 37 insertions(+), 27 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > index 7c7253a2541c..13a4153bb76e 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > @@ -492,6 +492,7 @@ static void intel_panel_info(struct seq_file *m,
+> > > static void intel_hdcp_info(struct seq_file *m,
+> > >                         struct intel_connector *intel_connector)  {
+> > > +   int ret;
+> > >     bool hdcp_cap, hdcp2_cap;
+> > >
+> > >     if (!intel_connector->hdcp.shim) {
+> > > @@ -499,8 +500,12 @@ static void intel_hdcp_info(struct seq_file *m,
+> > >             goto out;
+> > >     }
+> > >
+> > > -   hdcp_cap =3D intel_hdcp_capable(intel_connector);
+> > > -   hdcp2_cap =3D intel_hdcp2_capable(intel_connector);
+> > > +   ret =3D intel_hdcp_capable(intel_connector, &hdcp_cap);
+> > > +   if (ret)
+> > > +           hdcp_cap =3D false;
+> > > +   ret =3D intel_hdcp2_capable(intel_connector, &hdcp2_cap);
+> > > +   if (ret)
+> > > +           hdcp2_cap =3D false;
+> > >
+> >
+> > This does not seem to be adding value here as this error which you refe=
+rred
+> > to as being ignored is used both in case of hdmi and dp is being to det=
+ermine
+> > if hdcp_cap or hdcp2 cap is true or false which you basically reiterate=
+ here too
+> > check the intel_dp_hdcp2_capable and intel_hdmi_hdcp2_capable .
+> > this change in itself can be removed.
+> >
+> > Regards,
+> > Suraj Kandpal
+> >
+Hey Suraj, what we're trying to do here is to have a distinction
+between 2 things:
+1. were we able to check of the capability or not. like did the
+connection work well
+2. if the check went well, what capability were were able to read
+We may or may not need both info. But since we moved to common DRM, it
+might be best keep the distinction and each driver can handle it as it
+sees fit.
+> > >     if (hdcp_cap)
+> > >             seq_puts(m, "HDCP1.4 ");
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > index 0a20bc41be55..61a862ae1f28 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > @@ -177,50 +177,49 @@ int intel_hdcp_read_valid_bksv(struct
+> > > intel_digital_port *dig_port,  }
+> > >
+> > >  /* Is HDCP1.4 capable on Platform and Sink */ -bool
+> > > intel_hdcp_capable(struct intel_connector *connector)
+> > > +int intel_hdcp_capable(struct intel_connector *connector, bool
+> > > +*capable)
+> > >  {
+> > >     struct intel_digital_port *dig_port =3D
+> > > intel_attached_dig_port(connector);
+> > >     const struct intel_hdcp_shim *shim =3D connector->hdcp.shim;
+> > > -   bool capable =3D false;
+> > >     u8 bksv[5];
+> > >
+> > > +   *capable =3D false;
+> > > +
+> > >     if (!shim)
+> > > -           return capable;
+> > > +           return 0;
+> > >
+> > > -   if (shim->hdcp_capable) {
+> > > -           shim->hdcp_capable(dig_port, &capable);
+> > > -   } else {
+> > > -           if (!intel_hdcp_read_valid_bksv(dig_port, shim, bksv))
+> > > -                   capable =3D true;
+> > > -   }
+> > > +   if (shim->hdcp_capable)
+> > > +           return shim->hdcp_capable(dig_port, capable);
+> > > +
+> > > +   if (!intel_hdcp_read_valid_bksv(dig_port, shim, bksv))
+> > > +           *capable =3D true;
+> > >
+> > > -   return capable;
+> > > +   return 0;
+> > >  }
+> > >
+> > >  /* Is HDCP2.2 capable on Platform and Sink */ -bool
+> > > intel_hdcp2_capable(struct intel_connector *connector)
+> > > +int intel_hdcp2_capable(struct intel_connector *connector, bool
+> > > +*capable)
+> > >  {
+> > >     struct intel_digital_port *dig_port =3D
+> > > intel_attached_dig_port(connector);
+> > >     struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev=
+);
+> > >     struct intel_hdcp *hdcp =3D &connector->hdcp;
+> > > -   bool capable =3D false;
+> > > +
+> > > +   *capable =3D false;
+> > >
+> > >     /* I915 support for HDCP2.2 */
+> > >     if (!hdcp->hdcp2_supported)
+> > > -           return false;
+> > > +           return 0;
+> > >
+> > >     /* MEI interface is solid */
+> > >     mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> > >     if (!dev_priv->display.hdcp.comp_added ||  !dev_priv-
+> > > >display.hdcp.master) {
+> > >             mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> > > -           return false;
+> > > +           return 0;
+> > >     }
+> > >     mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> > >
+> > >     /* Sink's capability for HDCP2.2 */
+> > > -   hdcp->shim->hdcp_2_2_capable(dig_port, &capable);
+> > > -
+> > > -   return capable;
+> > > +   return hdcp->shim->hdcp_2_2_capable(dig_port, capable);
+> > >  }
+> > >
+> > >  static bool intel_hdcp_in_use(struct drm_i915_private *dev_priv, @@ =
+-
+> > > 2355,6 +2354,7 @@ int intel_hdcp_enable(struct intel_connector
+> > > *connector,
+> > >     struct intel_digital_port *dig_port =3D
+> > > intel_attached_dig_port(connector);
+> > >     struct intel_hdcp *hdcp =3D &connector->hdcp;
+> > >     unsigned long check_link_interval =3D
+> > DRM_HDCP_CHECK_PERIOD_MS;
+> > > +   bool capable;
+> > >     int ret =3D -EINVAL;
+> > >
+> > >     if (!hdcp->shim)
+> > > @@ -2373,21 +2373,27 @@ int intel_hdcp_enable(struct intel_connector
+> > > *connector,
+> > >      * Considering that HDCP2.2 is more secure than HDCP1.4, If the
+> > > setup
+> > >      * is capable of HDCP2.2, it is preferred to use HDCP2.2.
+> > >      */
+> > > -   if (intel_hdcp2_capable(connector)) {
+> > > +   ret =3D intel_hdcp2_capable(connector, &capable);
+> > > +   if (capable) {
+> > >             ret =3D _intel_hdcp2_enable(connector);
+> > > -           if (!ret)
+> > > +           if (!ret) {
+> > >                     check_link_interval =3D
+> > > DRM_HDCP2_CHECK_PERIOD_MS;
+> > > +                   goto out;
+> > > +           }
+>
+> HI,
+> Just noticed another changed here if any error is returned with intel_hdc=
+2_capable
+> You directly jump to out which will stop us from enabling hdcp 1.4 we sho=
+uld check
+> for hdcp 1.4 capability even if hdcp 2.2 capability is returned with an e=
+rror one other
+> reason I don't think the handling of error codes are adding value here.
+>
+> Regards,
+> Suraj Kandpal
+Hey Suraj - the goto happens if we know that the device is hdcp2
+capable. If it's capable, we do enable it. If we have no error
+returned, that's when we skip hdcp1.4
+otherwise, if it's not capable, or the enable returned with an error
+code, we don't goto out but move on to try on hdcp 1.4
+Thanks!
+> > >     }
+> > >
+> > >     /*
+> > >      * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
+> > >      * be attempted.
+> > >      */
+> > > -   if (ret && intel_hdcp_capable(connector) &&
+> > > -       hdcp->content_type !=3D DRM_MODE_HDCP_CONTENT_TYPE1) {
+> > > +   ret =3D intel_hdcp_capable(connector, &capable);
+> > > +   if (ret)
+> > > +           goto out;
+> > > +
+> > > +   if (capable && hdcp->content_type !=3D
+> > > DRM_MODE_HDCP_CONTENT_TYPE1)
+> > >             ret =3D _intel_hdcp_enable(connector);
+> > > -   }
+> > >
+> > > +out:
+> > >     if (!ret) {
+> > >             schedule_delayed_work(&hdcp->check_work,
+> > > check_link_interval);
+> > >             intel_hdcp_update_value(connector,
+> > > @@ -2395,7 +2401,6 @@ int intel_hdcp_enable(struct intel_connector
+> > > *connector,
+> > >                                     true);
+> > >     }
+> > >
+> > > -out:
+> > >     mutex_unlock(&dig_port->hdcp_mutex);
+> > >     mutex_unlock(&hdcp->mutex);
+> > >     return ret;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > index 7c5fd84a7b65..f06f6e5a2b1a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > @@ -33,8 +33,8 @@ void intel_hdcp_update_pipe(struct
+> > > intel_atomic_state *state,
+> > >                         const struct intel_crtc_state *crtc_state,
+> > >                         const struct drm_connector_state *conn_state)=
+;
+> > bool
+> > > is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port);
+> > > -bool intel_hdcp_capable(struct intel_connector *connector); -bool
+> > > intel_hdcp2_capable(struct intel_connector *connector);
+> > > +int intel_hdcp_capable(struct intel_connector *connector, bool
+> > > +*capable); int intel_hdcp2_capable(struct intel_connector *connector=
+,
+> > > +bool *capable);
+> > >  void intel_hdcp_component_init(struct drm_i915_private *dev_priv);
+> > > void intel_hdcp_component_fini(struct drm_i915_private *dev_priv);
+> > > void intel_hdcp_cleanup(struct intel_connector *connector);
+> > > --
+> > > 2.39.0.246.g2a6d74b583-goog
+>
