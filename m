@@ -2,49 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854D96C7FD3
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 15:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB876C819F
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 16:43:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD11810E534;
-	Fri, 24 Mar 2023 14:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E09710E534;
+	Fri, 24 Mar 2023 15:42:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA9210E534
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 14:26:01 +0000 (UTC)
-Received: from mx0.riseup.net (mx0-pn.riseup.net [10.0.1.42])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
- client-signature RSA-PSS (2048 bits) client-digest SHA256)
- (Client CN "mx0.riseup.net", Issuer "R3" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 4Pjkyk55G0zDrVg
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 14:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1679667961; bh=0aZYGMFA9MsV5s2n9ojDlQvwwNraYa8eq0U/8qjHObI=;
- h=From:To:Cc:Subject:Date:From;
- b=gRsOzJA1DJo6dUr3RE/Cq6cbsCrl/j/q18hykupe1ucpbO/YVI/sJUwwAi9jnHD7p
- QASfCht5TPrJA06aYHv+2/9aq2ioxPOoj1iP4QjL+ak+Ye3cOVJ+QhaENyvm7v4XRM
- 68uKxWjl1Or8HoXOWFxsMdCfUBx1j13VC9iogqv8=
-Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
- client-signature RSA-PSS (2048 bits) client-digest SHA256)
- (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx0.riseup.net (Postfix) with ESMTPS id 4Pjkyk02ctz9sx6;
- Fri, 24 Mar 2023 14:25:49 +0000 (UTC)
-X-Riseup-User-ID: 6474530C2DBFFB2176AFBA943F60B4E41054962F6EC0FF1CDBDFA39B49D443E2
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews1.riseup.net (Postfix) with ESMTPSA id 4Pjkyc05Prz5vZh;
- Fri, 24 Mar 2023 14:25:43 +0000 (UTC)
-From: Arthur Grillo <arthurgrillo@riseup.net>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 24 Mar 2023 11:25:33 -0300
-Message-Id: <20230324142533.6357-1-arthurgrillo@riseup.net>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1104F10E511;
+ Fri, 24 Mar 2023 15:42:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679672577; x=1711208577;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=WzE7F2UEYbL0CuJ6OhGLOkCxQTtF/mS+uIl9cyeBVgY=;
+ b=DqMZTIjxHVgUzoCwfwZJX5jZNdi2WYtaC6zwNUwW0DNYhbt6WECPPPje
+ J8PZlFmli/r/THyEJRDagh/nSQdmweLD6i+00sQjsyqEW04QUHPqEeibF
+ RKZJjZzWqMFjgLoq1lQepxs5KxOeAnn1aZ2dQYkj6C/EDSo+RWEolHXft
+ noJQY0bR5SKtyeXYj+K60QVQ7sFObuRDSFvCquH7JERhDUv1WQquCXH9N
+ htl61oHT8rsp6kU8UG7uu+jM8Gh1m08ZzuqlNlozq/Ufnj5Bxho6rG7ty
+ FzHM9kdwRp9T0g8SX1Tuatb29DF4VW6ohtr7AEqZg8pNfXAJti3V5dqU2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="338529023"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="338529023"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2023 08:42:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="793481528"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="793481528"
+Received: from fdugast-mobl3.ger.corp.intel.com (HELO [10.252.38.170])
+ ([10.252.38.170])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2023 08:42:54 -0700
+Message-ID: <ce7d6225-bc04-fef7-6a46-a3169fcd3feb@linux.intel.com>
+Date: Fri, 24 Mar 2023 16:42:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/overlay: Remove redundant
- drm_rect_visible() use
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20230309062855.393087-1-suraj.kandpal@intel.com>
+ <20230309062855.393087-2-suraj.kandpal@intel.com> <87h6ufajdo.fsf@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <87h6ufajdo.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 1/7] drm/dp_helper: Add helper to check
+ DSC support with given o/p format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,35 +65,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tales.aparecida@gmail.com, lucas.demarchi@intel.com, mairacanal@riseup.net,
- daniel@ffwll.ch, rodrigo.vivi@intel.com, andrealmeid@riseup.net,
- airlied@gmail.com, Arthur Grillo <arthurgrillo@riseup.net>
+Cc: Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The drm_rect_intersect() already returns if the intersection is visible
-or not, so the use of drm_rect_visible() is duplicate.
+ack
 
-Signed-off-by: Arthur Grillo <arthurgrillo@riseup.net>
----
- drivers/gpu/drm/i915/display/intel_overlay.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index c12bdca8da9b..444d88f418c5 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -966,9 +966,8 @@ static int check_overlay_dst(struct intel_overlay *overlay,
- 		      rec->dst_width, rec->dst_height);
- 
- 	clipped = req;
--	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
- 
--	if (!drm_rect_visible(&clipped) ||
-+	if (!drm_rect_intersect(&clipped, &crtc_state->pipe_src) ||
- 	    !drm_rect_equals(&clipped, &req))
- 		return -EINVAL;
- 
--- 
-2.39.2
-
+On 2023-03-20 09:59, Jani Nikula wrote:
+> Thomas, Maxime, Maarten, ack for merging this one via drm-intel?
+>
+> BR,
+> Jani.
+>
+>
+>
+> On Thu, 09 Mar 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>
+>> Add helper to check if the DP sink supports DSC with the given
+>> o/p format.
+>>
+>> v2: Add documentation for the helper. (Uma Shankar)
+>>
+>> v3: /** instead of  /* (Uma Shankar)
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+>> ---
+>>   include/drm/display/drm_dp_helper.h | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+>> index ab55453f2d2c..533d3ee7fe05 100644
+>> --- a/include/drm/display/drm_dp_helper.h
+>> +++ b/include/drm/display/drm_dp_helper.h
+>> @@ -194,6 +194,19 @@ drm_dp_dsc_sink_max_slice_width(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+>>   		DP_DSC_SLICE_WIDTH_MULTIPLIER;
+>>   }
+>>   
+>> +/**
+>> + * drm_dp_dsc_sink_supports_format() - check if sink supports DSC with given output format
+>> + * @dsc_dpcd : DSC-capability DPCDs of the sink
+>> + * @output_format: output_format which is to be checked
+>> + *
+>> + * Returns true if the sink supports DSC with the given output_format, false otherwise.
+>> + */
+>> +static inline bool
+>> +drm_dp_dsc_sink_supports_format(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE], u8 output_format)
+>> +{
+>> +	return dsc_dpcd[DP_DSC_DEC_COLOR_FORMAT_CAP - DP_DSC_SUPPORT] & output_format;
+>> +}
+>> +
+>>   /* Forward Error Correction Support on DP 1.4 */
+>>   static inline bool
+>>   drm_dp_sink_supports_fec(const u8 fec_capable)
