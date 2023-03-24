@@ -1,48 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6746B6C878A
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 22:39:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3B66C87C7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Mar 2023 22:55:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C2EA10E1A3;
-	Fri, 24 Mar 2023 21:39:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3923F10ECA2;
+	Fri, 24 Mar 2023 21:55:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847E710E1A3
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Mar 2023 21:39:23 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69D8910EC86;
+ Fri, 24 Mar 2023 21:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679693963; x=1711229963;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T4dS1yQl4NDwF6IhKCiwAC7DVbhS2fgZEpeQXjzaYEk=;
- b=KPnXjYNTJNmJYqKX9HuPPOaSdQEOs4Fwrhtt5vOUlNmCBJ68tBMKbKaK
- leoxB2e4+z4yVDvvT/5rn5Y4QFH3vfsTcZpi5afjfIpAFkeO8trnQFcpR
- WMQCQG8PRjkwkosNDYgvHUugci8GUFHM2sNuEuSKMWTjZ71ubv9pfAlsN
- ol9y6W4wsdd5hcxfnur1pyY9adx6kTE5dCemSHXY0g6b/z1Yj0XL4rTTi
- Apc9hh9sPBkefvqnVS62Um/OgfZ611WU2jVfAJCFTZwpTInqlHh1FvYYU
- UQcHwcKAle5ty08k6Hx+eehMuQCAK4B30tnOG+ZZS+nROX9mdW/TZE7S8 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="367626646"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="367626646"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2023 14:39:22 -0700
+ t=1679694942; x=1711230942;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=YksY2hSUR7m0Zeln9tDoJnCUNP9iNuUtZGTbLWoWV3I=;
+ b=g3MzQwJ5LJDX6/Qsp/0CmDuOWjhk10FFvRaGDUoxlX5klbGKYpeW7QFS
+ Wa3qRsUaebFBJsq+L0MgwZ/q9BgkXCXQdJIEkcW/6kO7pnZcrtZTJqQre
+ nZIzk1HxPg4wR9O5H7j0V4cdvUafXMt5GZkAkdelpxnk7asyo/q8OHEy1
+ j+4aww52sJLAcSybk6wM5HIQEgQ432D/FcJ/ynmHf7nRTuGxAdo+N7WpQ
+ D0JWFE1slHPVOQuFB2Rx+Q5WD4rRb5H+FGEiL7DD/TubIEO94lkfmMojF
+ k/wVeTDlsnvPTXBYfhh5ucuDwOkzRtH9OR2VUAB1DuhQ/BOaCFSrh168g A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="404814521"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="404814521"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2023 14:55:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="715392969"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="715392969"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2023 14:39:22 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Mar 2023 14:39:18 -0700
-Message-Id: <20230324213918.75212-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.36.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="1012432681"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="1012432681"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga005.fm.intel.com with SMTP; 24 Mar 2023 14:55:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 24 Mar 2023 23:55:36 +0200
+Date: Fri, 24 Mar 2023 23:55:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Arthur Grillo <arthurgrillo@riseup.net>
+Message-ID: <ZB4cWCVPLPWTAM0H@intel.com>
+References: <20230324142533.6357-1-arthurgrillo@riseup.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Disable C6 on MTL A0 for media
+In-Reply-To: <20230324142533.6357-1-arthurgrillo@riseup.net>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/overlay: Remove redundant
+ drm_rect_visible() use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,39 +61,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: tales.aparecida@gmail.com, intel-gfx@lists.freedesktop.org,
+ lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org,
+ mairacanal@riseup.net, daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ andrealmeid@riseup.net, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Earlier merge dropped an if block when applying the patch -
-"drm/i915/mtl: Synchronize i915/BIOS on C6 enabling". Bring back the
-if block as the check is required by - "drm/i915/mtl: Disable MC6 for MTL
-A step" to disable C6 on media for A0 stepping.
+On Fri, Mar 24, 2023 at 11:25:33AM -0300, Arthur Grillo wrote:
+> The drm_rect_intersect() already returns if the intersection is visible
+> or not, so the use of drm_rect_visible() is duplicate.
+> 
+> Signed-off-by: Arthur Grillo <arthurgrillo@riseup.net>
+> ---
+>  drivers/gpu/drm/i915/display/intel_overlay.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+> index c12bdca8da9b..444d88f418c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> @@ -966,9 +966,8 @@ static int check_overlay_dst(struct intel_overlay *overlay,
+>  		      rec->dst_width, rec->dst_height);
+>  
+>  	clipped = req;
+> -	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
+>  
+> -	if (!drm_rect_visible(&clipped) ||
+> +	if (!drm_rect_intersect(&clipped, &crtc_state->pipe_src) ||
+>  	    !drm_rect_equals(&clipped, &req))
 
-Fixes: 3735040978a4 ("drm/i915/mtl: Synchronize i915/BIOS on C6 enabling")
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rc6.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Hmm. I think I like the original a bit better because there is
+no hard to spot dependency between the two sides of the ||.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index f760586f9f46..8f3cd68d14f8 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -525,6 +525,13 @@ static bool rc6_supported(struct intel_rc6 *rc6)
- 		return false;
- 	}
- 
-+	if (IS_MTL_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
-+	    gt->type == GT_MEDIA) {
-+		drm_notice(&i915->drm,
-+			   "Media RC6 disabled on A step\n");
-+		return false;
-+	}
-+
- 	return true;
- }
- 
+I suppose another option would to to replace the || with
+two separate if statements.
+
+>  		return -EINVAL;
+>  
+> -- 
+> 2.39.2
+
 -- 
-2.36.1
-
+Ville Syrjälä
+Intel
