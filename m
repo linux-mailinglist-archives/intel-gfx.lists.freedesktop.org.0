@@ -1,52 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C186C8EED
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Mar 2023 15:58:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F816C8FBF
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Mar 2023 18:28:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22AC510E002;
-	Sat, 25 Mar 2023 14:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE5410E053;
+	Sat, 25 Mar 2023 17:28:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B072010E002;
- Sat, 25 Mar 2023 14:58:47 +0000 (UTC)
-Received: from [192.168.2.204] (109-252-120-116.nat.spd-mgts.ru
- [109.252.120.116])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 0455F6603103;
- Sat, 25 Mar 2023 14:58:43 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1679756326;
- bh=dU1D86JTqo/yGLLA5mJPUROTMQUYgMAFWoNb6lY2hgc=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=bUQ9ZL5vbpwKPXHcT8taJDSRfEanqwsD9J953DywnuIp0FSwWHV/2wSRf9J5xU5zx
- XW/mdsIIfoghLBKjfQPkeYiqvdZ4f2JwUM/BltUQ+07OYxCfHr7IVeuimMghXooJ7l
- j6BGYFM/wSBHC7XY04Yf3fRtkEBUjO/65qTpM6NqPcXZ0jLYq9eS+/7yTQXAkaMOHF
- 4RADMreTDjWabykjnZ8jDzKDl3FAfokQR1jscEGg2MIisWZodEGMeVeKlDDh+9cWdS
- Jrvvad0aDK1RldZWLJsqSmE4u14RvF1KiHvjxBpA7tYCfxUCovyjj5ySAkoIobWdxZ
- CEdgGP1UzPc9Q==
-Message-ID: <20c88807-8513-a816-aed9-5cd67eb5c1ed@collabora.com>
-Date: Sat, 25 Mar 2023 17:58:41 +0300
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A82D310E053;
+ Sat, 25 Mar 2023 17:28:53 +0000 (UTC)
+Received: from fews2.riseup.net (fews2-pn.riseup.net [10.0.1.84])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4PkQzS5ZSWzDr1r;
+ Sat, 25 Mar 2023 17:28:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1679765333; bh=a7cIYAiwZ09xv6n94pofKkkL5zxjN5XJBatIhLW6cRc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=d5N8tsNnjnTtU9HBR0Wnb0R+5QEgiZCA8ZTjelbrukNLlIL8LZqPH83C6TCyPhoaX
+ foZFQ63+RKO0QpbvXzH9U7LHT1LiIWbhUCUrPQ4G0FsMdtzKQNHRoHGEG69lGatWWI
+ UjVXvQOP+U6oqpyNWQYdXjOowp4g6Iddw8c3vLR8=
+X-Riseup-User-ID: DFFDE329F4163AA6BE3EDC0BB6655159F995F415CFE1D37105CFD61B346B7E09
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews2.riseup.net (Postfix) with ESMTPSA id 4PkQzM3knxz1yPW;
+ Sat, 25 Mar 2023 17:28:47 +0000 (UTC)
+From: Arthur Grillo <arthurgrillo@riseup.net>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Sat, 25 Mar 2023 14:27:19 -0300
+Message-Id: <20230325172719.92102-1-arthurgrillo@riseup.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
- <20230314022659.1816246-2-dmitry.osipenko@collabora.com>
- <6b5644cf-6229-f99b-d429-a45d724493ee@collabora.com>
-Content-Language: en-US
-In-Reply-To: <6b5644cf-6229-f99b-d429-a45d724493ee@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v13 01/10] drm/shmem-helper: Switch to
- reservation lock
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/overlay: Remove redundant
+ drm_rect_visible() use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,68 +50,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Rob Herring <robh@kernel.org>, Daniel Stone <daniel@fooishbar.org>,
- Steven Price <steven.price@arm.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>, linux-kernel@vger.kernel.org,
- Qiang Yu <yuq825@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: tales.aparecida@gmail.com, lucas.demarchi@intel.com, mairacanal@riseup.net,
+ daniel@ffwll.ch, rodrigo.vivi@intel.com, andrealmeid@riseup.net,
+ airlied@gmail.com, Arthur Grillo <arthurgrillo@riseup.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 3/15/23 16:46, Dmitry Osipenko wrote:
-> On 3/14/23 05:26, Dmitry Osipenko wrote:
->> @@ -633,7 +605,10 @@ int drm_gem_shmem_mmap(struct drm_gem_shmem_object *shmem, struct vm_area_struct
->>  		return ret;
->>  	}
->>  
->> +	dma_resv_lock(shmem->base.resv, NULL);
->>  	ret = drm_gem_shmem_get_pages(shmem);
->> +	dma_resv_unlock(shmem->base.resv);
-> 
-> Intel CI reported locking problem [1] here. It actually was also
-> reported for v12, but I missed that report because of the other noisy
-> reports.
-> 
-> [1]
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/shard-snb5/igt@prime_vgem@sync@rcs0.html
-> 
-> The test does the following:
-> 
-> 1. creates vgem
-> 2. export it do dmabuf
-> 3. mmaps dmabuf
-> 
-> There is an obvious deadlock there. The DRM code assumes that mmap() is
-> unlocked, while for dma-buf it's locked. I'll see how to fix it for v14.
-> 
+The drm_rect_intersect() already returns if the intersection is visible
+or not, so the use of drm_rect_visible() is duplicate.
 
-Christian, there is a deadlock problem in drm_gem_shmem_mmap() once we
-move drm-shmem to use resv lock. The current dma-buf locking policy
-claims that importer holds the lock for mmap(), but DRM code assumes
-that obj->mmap() handles the locking itself and then the same
-obj->mmap() code path is used by both dma-buf DRM and a usual DRM object
-paths. Hence importer -> dma_buf_mmap_internal()[takes the lock] ->
-exporter -> drm_gem_shmem_mmap()[takes the lock] deadlocks.
+Signed-off-by: Arthur Grillo <arthurgrillo@riseup.net>
+---
+v1->v2: https://lore.kernel.org/all/20230324142533.6357-1-arthurgrillo@riseup.net/
+- Split the if condition.
+---
+ drivers/gpu/drm/i915/display/intel_overlay.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-I was looking at how to fix it and to me the best option is to change
-the dma-buf locking policy, making exporter responsible for handling the
-resv lock. Changing DRM code mmap lockings might be possible too [moving
-locking to drm_gem_mmap_obj()], but will be very messy and doesn't feel
-intuitive.
-
-Want to get yours thoughts on this before sending out the dma-buf mmap()
-policy-change patch. Does the new mmap() locking policy sound good to
-you? Thanks!
-
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index c12bdca8da9b..d55153587cae 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -966,10 +966,11 @@ static int check_overlay_dst(struct intel_overlay *overlay,
+ 		      rec->dst_width, rec->dst_height);
+ 
+ 	clipped = req;
+-	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
+ 
+-	if (!drm_rect_visible(&clipped) ||
+-	    !drm_rect_equals(&clipped, &req))
++	if (!drm_rect_intersect(&clipped, &crtc_state->pipe_src))
++		return -EINVAL;
++
++	if (!drm_rect_equals(&clipped, &req))
+ 		return -EINVAL;
+ 
+ 	return 0;
 -- 
-Best regards,
-Dmitry
+2.39.2
 
