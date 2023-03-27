@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02B76CA04A
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 11:41:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CFBD6CA1C0
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 12:53:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA1AC10E388;
-	Mon, 27 Mar 2023 09:41:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6874110E087;
+	Mon, 27 Mar 2023 10:53:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0526010E3A7;
- Mon, 27 Mar 2023 09:41:11 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA29C10E087
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 10:53:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679910072; x=1711446072;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YzrYHRRSSnWZ4mdh4aFQ/UpzIKgjX+mxbD6s774VmKM=;
- b=Nv7yeO6Suu3JjcUfNX5ZEJPgPNiiJSdir8GVlepjoe4WMZQ5tmUJQXrs
- kz/vVwa1pZHdVEU1mHm7AzzRP1Iwz2iOJ9CJbrf1lIJdqNH1w2hsjLIus
- dJYs8JIkJbbe3OtngyAUaPzzJ5tobKWQm20fVosYJspj7CvPkpK9cF0AY
- 0xvzVefBnvcYa+LWjO9YnmAKZ1IyCPx5Iafpl3ztWRimSVv3RZZ653Rbv
- YfK62HjLEHsDEs3SA82LjQFS7OhQdkFgvS9aXso7tnq7COw9KsvsGAg7I
- eLJqRSg5JQRjqfpWlnmAnk3JX5XzTdOsyDBlr2Mbo6T7s40HvrF289tR1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="426485503"
-X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="426485503"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 02:41:11 -0700
+ t=1679914418; x=1711450418;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Nk6efYCosf1NCXIBKPgLTfCej2yGSrCLpLgfoS3CPiI=;
+ b=DqO+CxA61h8h4MTGd8O1PgZHeOND1rKDfUV3p7zoEO/WQE4jSkt0/hJW
+ e4pHkCcKjiinc4b02fVLTMI88wsBJ95SZp4yXI13e733jjB5nKNsW7FWZ
+ 4hlPcOsIpCsMGDipWJNrC6sffwa5eKkH/B1arvahBfm8dpo4NJ5w8QF5v
+ PvS5SlFeWxi2DqG3SUWcblzR41iOLknYIB2wIuEPT/S8bX3FqoDOyL5ud
+ 2QL6xAll/wL7N2JtcTSUfU8+KXepBr9Hl98dreb6XahES36fFupsHY5RJ
+ vm3lW1J9tHg8TX4AIUnTK1jNcMktwyiiIA6CCBFzH+YwusHcZK+v5a96t Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="338955249"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="338955249"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 03:53:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="660775869"
-X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="660775869"
-Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
- by orsmga006.jf.intel.com with ESMTP; 27 Mar 2023 02:41:10 -0700
-From: Yi Liu <yi.l.liu@intel.com>
-To: alex.williamson@redhat.com,
-	jgg@nvidia.com,
-	kevin.tian@intel.com
-Date: Mon, 27 Mar 2023 02:40:47 -0700
-Message-Id: <20230327094047.47215-25-yi.l.liu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230327094047.47215-1-yi.l.liu@intel.com>
-References: <20230327094047.47215-1-yi.l.liu@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="1013068066"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="1013068066"
+Received: from mstancu-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.49.51])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 03:53:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Mar 2023 13:53:29 +0300
+Message-Id: <20230327105330.312131-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v8 24/24] docs: vfio: Add vfio device cdev
- description
+Subject: [Intel-gfx] [PATCH 1/2] [core-for-CI] Revert "Revert "drm/i915:
+ Don't select BROKEN""
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,167 +58,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, yi.l.liu@intel.com, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This gives notes for userspace applications on device cdev usage.
+This reverts commit 211c4b0aba30d2eab9690ad61944c7bf20b33c16.
 
-Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+Drop the commit from the topic/core-for-CI branch. We no longer need to
+select BROKEN to enable DRM_I915_UNSTABLE.
+
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- Documentation/driver-api/vfio.rst | 127 ++++++++++++++++++++++++++++++
- 1 file changed, 127 insertions(+)
+ drivers/gpu/drm/i915/Kconfig.debug | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/driver-api/vfio.rst b/Documentation/driver-api/vfio.rst
-index 363e12c90b87..77408788b98d 100644
---- a/Documentation/driver-api/vfio.rst
-+++ b/Documentation/driver-api/vfio.rst
-@@ -239,6 +239,125 @@ group and can access them as follows::
- 	/* Gratuitous device reset and go... */
- 	ioctl(device, VFIO_DEVICE_RESET);
- 
-+IOMMUFD and vfio_iommu_type1
-+----------------------------
-+
-+IOMMUFD is the new user API to manage I/O page tables from userspace.
-+It intends to be the portal of delivering advanced userspace DMA
-+features (nested translation [5], PASID [6], etc.) while being backward
-+compatible with the vfio_iommu_type1 driver.  Eventually vfio_iommu_type1
-+will be deprecated.
-+
-+With the backward compatibility, no change is required for legacy VFIO
-+drivers or applications to connect a VFIO device to IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=n, VFIO container still provides
-+	/dev/vfio/vfio which connects to vfio_iommu_type1.  To disable VFIO
-+	container and vfio_iommu_type1, the administrator could symbol link
-+	/dev/vfio/vfio to /dev/iommu to enable VFIO container emulation
-+	in IOMMUFD.
-+
-+	When CONFIG_IOMMUFD_VFIO_CONTAINER=y, IOMMUFD directly provides
-+	/dev/vfio/vfio while the VFIO container and vfio_iommu_type1 are
-+	explicitly disabled.
-+
-+VFIO Device cdev
-+----------------
-+
-+Traditionally user acquires a device fd via VFIO_GROUP_GET_DEVICE_FD
-+in a VFIO group.
-+
-+With CONFIG_VFIO_DEVICE_CDEV=y the user can now acquire a device fd
-+by directly opening a character device /dev/vfio/devices/vfioX where
-+"X" is the number allocated uniquely by VFIO for registered devices.
-+For noiommu devices, the character device would be named with "noiommu-"
-+prefix. e.g. /dev/vfio/devices/noiommu-vfioX.
-+
-+The cdev only works with IOMMUFD.  Both VFIO drivers and applications
-+must adapt to the new cdev security model which requires using
-+VFIO_DEVICE_BIND_IOMMUFD to claim DMA ownership before starting to
-+actually use the device.  Once BIND succeeds then a VFIO device can
-+be fully accessed by the user.
-+
-+VFIO device cdev doesn't rely on VFIO group/container/iommu drivers.
-+Hence those modules can be fully compiled out in an environment
-+where no legacy VFIO application exists.
-+
-+So far SPAPR does not support IOMMUFD yet.  So it cannot support device
-+cdev neither.
-+
-+Device cdev Example
-+-------------------
-+
-+Assume user wants to access PCI device 0000:6a:01.0::
-+
-+	$ ls /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/
-+	vfio0
-+
-+This device is therefore represented as vfio0.  The user can verify
-+its existence::
-+
-+	$ ls -l /dev/vfio/devices/vfio0
-+	crw------- 1 root root 511, 0 Feb 16 01:22 /dev/vfio/devices/vfio0
-+	$ cat /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/vfio0/dev
-+	511:0
-+	$ ls -l /dev/char/511\:0
-+	lrwxrwxrwx 1 root root 21 Feb 16 01:22 /dev/char/511:0 -> ../vfio/devices/vfio0
-+
-+Then provide the user with access to the device if unprivileged
-+operation is desired::
-+
-+	$ chown user:user /dev/vfio/devices/vfio0
-+
-+Finally the user could get cdev fd by::
-+
-+	cdev_fd = open("/dev/vfio/devices/vfio0", O_RDWR);
-+
-+An opened cdev_fd doesn't give the user any permission of accessing
-+the device except binding the cdev_fd to an iommufd.  After that point
-+then the device is fully accessible including attaching it to an
-+IOMMUFD IOAS/HWPT to enable userspace DMA::
-+
-+	struct vfio_device_bind_iommufd bind = {
-+		.argsz = sizeof(bind),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_alloc alloc_data  = {
-+		.size = sizeof(alloc_data),
-+		.flags = 0,
-+	};
-+	struct vfio_device_attach_iommufd_pt attach_data = {
-+		.argsz = sizeof(attach_data),
-+		.flags = 0,
-+	};
-+	struct iommu_ioas_map map = {
-+		.size = sizeof(map),
-+		.flags = IOMMU_IOAS_MAP_READABLE |
-+			 IOMMU_IOAS_MAP_WRITEABLE |
-+			 IOMMU_IOAS_MAP_FIXED_IOVA,
-+		.__reserved = 0,
-+	};
-+
-+	iommufd = open("/dev/iommu", O_RDWR);
-+
-+	bind.iommufd = iommufd; // negative value means vfio-noiommu mode
-+	ioctl(cdev_fd, VFIO_DEVICE_BIND_IOMMUFD, &bind);
-+
-+	ioctl(iommufd, IOMMU_IOAS_ALLOC, &alloc_data);
-+	attach_data.pt_id = alloc_data.out_ioas_id;
-+	ioctl(cdev_fd, VFIO_DEVICE_ATTACH_IOMMUFD_PT, &attach_data);
-+
-+	/* Allocate some space and setup a DMA mapping */
-+	map.user_va = (int64_t)mmap(0, 1024 * 1024, PROT_READ | PROT_WRITE,
-+				    MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
-+	map.iova = 0; /* 1MB starting at 0x0 from device view */
-+	map.length = 1024 * 1024;
-+	map.ioas_id = alloc_data.out_ioas_id;;
-+
-+	ioctl(iommufd, IOMMU_IOAS_MAP, &map);
-+
-+	/* Other device operations as stated in "VFIO Usage Example" */
-+
- VFIO User API
- -------------------------------------------------------------------------------
- 
-@@ -566,3 +685,11 @@ This implementation has some specifics:
- 				\-0d.1
- 
- 	00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev 90)
-+
-+.. [5] Nested translation is an IOMMU feature which supports two stage
-+   address translations.  This improves the address translation efficiency
-+   in IOMMU virtualization.
-+
-+.. [6] PASID stands for Process Address Space ID, introduced by PCI
-+   Express.  It is a prerequisite for Shared Virtual Addressing (SVA)
-+   and Scalable I/O Virtualization (Scalable IOV).
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 93dfb7ed9705..47e845353ffa 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -40,7 +40,6 @@ config DRM_I915_DEBUG
+ 	select DRM_I915_DEBUG_RUNTIME_PM
+ 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
+ 	select DRM_I915_SELFTEST
+-	select BROKEN # for prototype uAPI
+ 	default n
+ 	help
+ 	  Choose this option to turn on extra driver debugging that may affect
 -- 
-2.34.1
+2.39.2
 
