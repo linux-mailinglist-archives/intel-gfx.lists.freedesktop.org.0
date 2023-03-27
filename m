@@ -2,61 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B326CAA2A
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 18:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3476CAABC
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 18:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D416110E125;
-	Mon, 27 Mar 2023 16:15:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8710E64C;
+	Mon, 27 Mar 2023 16:35:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E27A10E125;
- Mon, 27 Mar 2023 16:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679933728; x=1711469728;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4JIKZC+9NY/5FOeeP6iXzyllTtbXjzLxR/bFWeU3qv4=;
- b=Y/GSKdO/S2g/LnfAi1TzjsawpreQW9Vs3StF9rmseNdsJVowPcZyq2L6
- E2QcOCG4GPK6ByPOrEEgcm5cxs2m7FxJzcvbIhEDtkT1Ug26amtTdu3cF
- hegyxpgtkZs/PmiXZjmGaaMY6+qdtMfrTv8m2DL1/co5mOGwqBqxIxz/S
- nKgQ1BVnWRBLESI0lL+dRwe0oUYfm5v0t9u191fGxEQaI/qcBloQY4jMw
- Fxb1LHkKpqf+ZhTmhtXtm31MAeNtkMYsCvC1cg9v5K//V0LP+Lrrzf9UK
- Zw6okzTIyPO+hItGeKKvQUt+lkifAJVNpt8MNQHImM9sisD9qDMc0p02a w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="320712297"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="320712297"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 09:15:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="713893777"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="713893777"
-Received: from ctuohy-mobl1.ger.corp.intel.com (HELO [10.213.213.244])
- ([10.213.213.244])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 09:15:25 -0700
-Message-ID: <cf63d62b-3e2d-f8fe-82b6-95e71e376cc2@linux.intel.com>
-Date: Mon, 27 Mar 2023 17:15:23 +0100
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 124C010E62F;
+ Mon, 27 Mar 2023 16:35:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bgSqAuyFlDQw2xmEokexn2tXenSeo2J9o1Cxb83DxASYevxNkM13thL0oK1d0dP4IZes3o3aKMn2GsHTr7/CvSKBx/RavaWKdA0PFDzhSa3rftGaERsFF7+I7Jxbje0cbLlVqjgWcrRUkdHxVVcxHhR+3ITE3RjPIh0Ap++Z4wrWig2n4N0og/OPnHV/QjmxUDU8C3YBo92/D0H8mzW0Ey6NiROJfel4MiMZlvm5bZ1Vg93LyzEzhOdB7mrilkvti1B2NGffpzt9O7Aqu1iMuJgMBlFuUZBV0ErKTRkDouZi/SId9ywafKME4lTd/CH6vWwKdL8XMWCHYIkrFirpow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HTbWUv2iuqfAN99I3OyNsknOXLcrej7ZMcrqjRngQOg=;
+ b=BTrIcmts7a6BCuM80FeHekBAitnZKmliiylCf2+DgkvLvUFWcma7iAl1wz1jxog+ZI0S/vmf8y9WwZb2MG+HZVkfGPx5H2Q9N3LDN5Pl4NXw8sw06h87W5BNeFQ3udwCkqZhThE6ZvhLk/P4SRaMeLrEqlhC+b1v2bXAuRmUOWqMgnEGbCGQTJcz4cZTz9X+X1fA2NDBojBZ233eDCvkUt9VhJX82O4iMFUllPhXUG78LFVcumWUcofJ0O9YFHS0jw1YumpFRLSeycbkeIa3vpcJZx2Xn15EV/Q8hFFUUqhjy9RZ2janhOpkx6fCgABUWi2rPow5XTHd+ZuFPkom0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HTbWUv2iuqfAN99I3OyNsknOXLcrej7ZMcrqjRngQOg=;
+ b=guqnyC7y4ZYZ69572zVc+YKPzPsOG/kYih6pmSh2RIdcGbI/dX+qlLGNDR1LG9b18DPGNT1jAItUUmBpDOYQyluZL/WSchq7vpbC4lQU9GHP+unJgNt7XnioVMrIkUYoy4+16c5v+febIm+wxfw069OvgWr/Z50qWl1wjGVHzD4arjXrxQ0vL4JTwG0KQ7lvvyoazQqCUkJgc1xrmIABZL1nSC8i5aXtqDyyByWF9Bld0WX8Zy5eg8If2TWO4ZqaoIQa8pqYd3Wih/AW2dhGOkr6uv+c+O1CKe3W09OZse72lF83TuvlD0+NLy5QZimz65Pdg5qLuwFeRmL3q5GxtQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by CH2PR12MB4295.namprd12.prod.outlook.com (2603:10b6:610:a7::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Mon, 27 Mar
+ 2023 16:35:42 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Mon, 27 Mar 2023
+ 16:35:41 +0000
+Date: Mon, 27 Mar 2023 13:35:39 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <ZCHF29VYiS1ZaKdj@nvidia.com>
+References: <20230327093351.44505-1-yi.l.liu@intel.com>
+ <20230327093351.44505-2-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327093351.44505-2-yi.l.liu@intel.com>
+X-ClientProxiedBy: YTBP288CA0019.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:b01:14::32) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-References: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
- <20230228022150.1657843-6-alan.previn.teres.alexis@intel.com>
- <fabe4123-53cc-005e-e0af-7683e0d45896@intel.com>
- <3b8091c51677878b968d1d275b9b16e5088d913d.camel@intel.com>
- <ZCAqDlUIp0YmCkyu@intel.com> <fef256a6-3027-8beb-0ef8-fddf972db441@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <fef256a6-3027-8beb-0ef8-fddf972db441@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v6 5/8] drm/i915/pxp: Add ARB session
- creation and cleanup
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH2PR12MB4295:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4265063-a1e4-4f65-9e19-08db2ee14df7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1nYvPLBuOELdjYo0OOulalqAYbmFUZQ1hEjDMuvrTgqoqtXUGajtJqP9TYdX2WxKmEWJ70tYBAnpdQ+DDB/9fQ/FQPMfwB+mNOt38wKYdlTMbD/3R9WjfqFqlvbFicTemNYFdM3xTemU5347l9PKJijQSJjeHwZi173yiALqckbedZhmDgJ4x7d8fhkUTr3au1Q1gkIN73sTLmgCQqeOk3p/ngDd00b9Cw0337og7xss7Ch3qrB8O6jIPblOPCLoY1Ny2EBqiEPiduqpcJC58Lu3kCG8Tx2eaerir6avB96sApxoo/2+93TWJCeno+JEZpxK5dq8OzzE/FlY/2yrCN6WWvDJ9g+dlaf0CFnsg7cjKNZSgWIBJjBg09lOoy29sQooGZjNo4Hebp42GPPtLI3Bw6hz83wD5B1c6DT+BD0rTtN7JTajYWraYPG2noq3cyf1AZwcIyot/nukjVokWG7jkkWmfi3NqH6NLgXuE5d8ZAuYBLOJmnQc/E32qip3vtX01UYp3APXRtVhG/fdSlKk1Y9+Y6mF6jAOi7pgwfKHX4g5SRqQJucc1K0kOUI+
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(366004)(136003)(396003)(39860400002)(346002)(451199021)(2616005)(83380400001)(8676002)(2906002)(66476007)(66946007)(66556008)(4326008)(6916009)(6486002)(478600001)(6512007)(316002)(186003)(6506007)(26005)(7416002)(4744005)(86362001)(36756003)(41300700001)(8936002)(5660300002)(38100700002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Pp8zxUsnyfGoKIFfFYFMDNhe54URJuLVk2pac9Uc3Iy6nh11SzWJaGc/Cz2O?=
+ =?us-ascii?Q?w3C1X/luTKDEMvhjYQcBmCwTIeZdN+m8AgLqQOGS03t5wYaJd5rOV17m5UAx?=
+ =?us-ascii?Q?4ByEWlLGG9VWcGgWtwFZm2ruy4dW0HCvaQfln0iexCJLGjyS7krObOP715Y8?=
+ =?us-ascii?Q?LkNeKJTdXB2Y9057jx5HJZTLcJbRiWJ5Sj5vxHYeuhQvsnrSyv2gA4gJ490q?=
+ =?us-ascii?Q?IW2YyPoOh8ld8L5UkDdCGzmVBl0U97xcFYf5uFCU8OgtTIXbVbmi3E11sh84?=
+ =?us-ascii?Q?WganJB0LXnk2zCUSLMbtWqyHGPmkUbLAP+TN7i4yHdAmuLLR9P2UbWrX4SzC?=
+ =?us-ascii?Q?65qWoKluNXlLx6326mVfENG/fyM5bu2O4zgCXolPgtIqvHuVuQyiACjmOpPY?=
+ =?us-ascii?Q?nsdFPZLz6sjetUiguk6QRjozfP86bSd+K+6zHt4MaGHU2Y0V680pEJjTXBXa?=
+ =?us-ascii?Q?Hf86bmVZp5VRb2H0XsWwEymJTpM8Pr9RlrJ1bH3DUFVaflqMvZ4Egjh/WMP1?=
+ =?us-ascii?Q?pWKLZThx6fj50GrS6a/x/mg5iRPL1SYAjMDmjAQE2s4yptpzQPjvyONoIAtq?=
+ =?us-ascii?Q?t1Szy9QPh9OHGDe4/cUxq8ffku8qI/qdej3L6/AUePbs4uWjT1pST4pT1PtR?=
+ =?us-ascii?Q?USMib4uxdZAHyxUhhANdKEFGzplesDuVhk7rzAGVaiH46x6od0dusJMKjwJR?=
+ =?us-ascii?Q?9s4qz7YNGBxhuH1rRvR+7wI8knnZEiEhl2BoE3F1a61F3EFYDyFgwTqt5fvw?=
+ =?us-ascii?Q?wj/p+kejPmHLaQDbwMDHdBbMQC+rp0qa3lCIpWGRrLmc2qTHPbQ5FqAeXvAU?=
+ =?us-ascii?Q?Xn+W7pKX3ekfEY2MTecy+hb5AtJpCHhRw6oavbuIpGDYb8g2Ue9esmwRZj+n?=
+ =?us-ascii?Q?kYstaKbqCwfLA5QtybmJjcJSVqo2calGosJ+cKG9V2OAbEHW2HWzMu6DWJHd?=
+ =?us-ascii?Q?IpaRk6D0dUevg2j9HEWs7zKf9ut7vQqgC3V20O6Ol9cqihUF+LB2flaaKdpo?=
+ =?us-ascii?Q?AprLE7JLlGxkaVnK4LZ7dem+UktEkYsFaYEEwn5xS1sDQLP5+1REgWr2kcHB?=
+ =?us-ascii?Q?st7TluJQWVfaa4/CFux1RYbe0AKOB/Fz7O1+t6/ssRIkUT4+tdNmdsdTBU64?=
+ =?us-ascii?Q?1poZEHVu1fDWG6ZaZbz7UyUix4OfpVPcxo3VIlFhrnWlYuwc8JyfOu/SD5Pj?=
+ =?us-ascii?Q?vCGW9o99zlaMG0X6XvImVXRFQN0chS8okRx0u8vJR30p4AmfUfIF61Sq7+6Q?=
+ =?us-ascii?Q?6votstDuIwSvoPYXACUoMJdL6xT/NI2b+b69SD9ORw2EeDmwfdPSYFGnQhfE?=
+ =?us-ascii?Q?ibhIdWHgedA6DLKCal0QGv99kPeRR68yWQMFsrgeDuGXdA2mHjORwgxMZDeP?=
+ =?us-ascii?Q?MQ7mPnjZYkg1r7m+mHxebqfYIHTKRuacPbMmoLu9XXSZvfMPYpQYeojoMvX7?=
+ =?us-ascii?Q?qUFUeeqAS58dlN7HbRR1XN+MMnDo9EdtJXwOfgfdrh6x0gtZbeLin9eS/dM4?=
+ =?us-ascii?Q?O9dnzNrpJBmOPHo+DAh4IPXpwkNyTRMfwfW8FaUy9/wDVETOPyTP2jaOpsj9?=
+ =?us-ascii?Q?YCkV+zUAqP348hahp3Y3c1n2gFhcceAd+yAB/HQB?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4265063-a1e4-4f65-9e19-08db2ee14df7
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 16:35:41.8180 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: onKL56FIgk86huIYvGcp7JCQA/49p1pk4RWBABwe8UaZIccXMFZZ9sFlSgTSqJnA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4295
+Subject: Re: [Intel-gfx] [PATCH v3 1/6] iommu/iommufd: Pass iommufd_ctx
+ pointer in iommufd_get_ioas()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,108 +115,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Lahtinen, Joonas" <joonas.lahtinen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Mar 27, 2023 at 02:33:46AM -0700, Yi Liu wrote:
+> no need to pass the iommufd_ucmd pointer.
+> 
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/iommu/iommufd/ioas.c            | 14 +++++++-------
+>  drivers/iommu/iommufd/iommufd_private.h |  4 ++--
+>  drivers/iommu/iommufd/selftest.c        |  6 +++---
+>  drivers/iommu/iommufd/vfio_compat.c     |  2 +-
+>  4 files changed, 13 insertions(+), 13 deletions(-)
 
-On 27/03/2023 08:07, Lionel Landwerlin wrote:
-> On 26/03/2023 14:18, Rodrigo Vivi wrote:
->> On Sat, Mar 25, 2023 at 02:19:21AM -0400, Teres Alexis, Alan Previn 
->> wrote:
->>> alan:snip
->>>
->>> @@ -353,8 +367,20 @@ int intel_pxp_start(struct intel_pxp *pxp)
->>> alan:snip
->>>>> +    if (HAS_ENGINE(pxp->ctrl_gt, GSC0)) {
->>>>> +        /*
->>>>> +         * GSC-fw loading, GSC-proxy init (requiring an mei 
->>>>> component driver) and
->>>>> +         * HuC-fw loading must all occur first before we start 
->>>>> requesting for PXP
->>>>> +         * sessions. Checking HuC authentication (the last 
->>>>> dependency)  will suffice.
->>>>> +         * Let's use a much larger 8 second timeout considering 
->>>>> all the types of
->>>>> +         * dependencies prior to that.
->>>>> +         */
->>>>> +        if 
->>>>> (wait_for(intel_huc_is_authenticated(&pxp->ctrl_gt->uc.huc), 8000))
->>>> This big timeout needs an ack from userspace drivers, as 
->>>> intel_pxp_start
->>>> is called during context creation and the current way to query if the
->>>> feature is supported is to create a protected context. 
->>>> Unfortunately, we
->>>> do need to wait to confirm that PXP is available (although in most 
->>>> cases
->>>> it shouldn't take even close to 8 secs), because until everything is
->>>> setup we're not sure if things will work as expected. I see 2 potential
->>>> mitigations in case the timeout doesn't work as-is:
->>>>
->>>> 1) we return -EAGAIN (or another dedicated error code) to userspace if
->>>> the prerequisite steps aren't done yet. This would indicate that the
->>>> feature is there, but that we haven't completed the setup yet. The
->>>> caller can then decide if they want to retry immediately or later. Pro:
->>>> more flexibility for userspace; Cons: new interface return code.
->>>>
->>>> 2) we add a getparam to say if PXP is supported in HW and the 
->>>> support is
->>>> compiled in i915. Userspace can query this as a way to check the 
->>>> feature
->>>> support and only create the context if they actually need it for PXP
->>>> operations. Pro: simpler kernel implementation; Cons: new getparam, 
->>>> plus
->>>> even if the getparam returns true the pxp_start could later fail, so
->>>> userspace needs to handle that case.
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-These two:
-
-e6177ec586d1 ("drm/i915/huc: stall media submission until HuC is loaded")
-b76c14c8fb2a ("drm/i915/huc: better define HuC status getparam possible return values.")
-
-They do not help here? It is not possible to use or extend the refined I915_PARAM_HUC_STATUS return values combined with huc load fence for this all to keep working?
-
-Regards,
-
-Tvrtko
-
->>> alan: I've cc'd Rodrigo, Joonas and Lionel. Folks - what are your 
->>> thoughts on above issue?
->>> Recap: On MTL, only when creating a GEM Protected (PXP) context for 
->>> the very first time after
->>> a driver load, it will be dependent on (1) loading the GSC firmware, 
->>> (2) GuC loading the HuC
->>> firmware and (3) GSC authenticating the HuC fw. But step 3 also 
->>> depends on additional
->>> GSC-proxy-init steps that depend on a new mei-gsc-proxy component 
->>> driver. I'd used the
->>> 8 second number based on offline conversations with Daniele but that 
->>> is a worse-case.
->>> Alternatively, should we change UAPI instead to return -EAGAIN as per 
->>> Daniele's proposal?
->>> I believe we've had the get-param conversation offline recently and 
->>> the direction was to
->>> stick with attempting to create the context as it is normal in 3D UMD 
->>> when it comes to
->>> testing capabilities for other features too.
->>>
->>> Thoughts?
->> I like the option 1 more. This extra return handling won't break 
->> compatibility.
-> 
-> 
-> I like option 2 better because we have to report support as fast as we 
-> can when enumerating devices on the system for example.
-> 
-> If I understand correctly, with the get param, most apps won't ever be 
-> blocking on any PXP stuff if they don't use it.
-> 
-> Only the ones that require protected support might block.
-> 
-> 
-> -Lionel
-> 
-> 
-> 
+Jason
