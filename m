@@ -1,33 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D8A6CAE7B
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 21:23:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE886CAE88
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 21:26:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C70C10E0F7;
-	Mon, 27 Mar 2023 19:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55BD410E3EF;
+	Mon, 27 Mar 2023 19:26:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA9F210E0F7;
- Mon, 27 Mar 2023 19:23:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E26C0AADE0;
- Mon, 27 Mar 2023 19:23:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4298640801824954253=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 093FB10E278
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 19:26:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1679945186;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YsJ82OYx+hJHZIpI5yk6abwb8YmFKXJFuVMXDYupmyI=;
+ b=enivWANKeCR7J2JaGfMGmHZ9qz9qcWloCPhxNCjAv/gkVmxFdRG8P99FowkUD6VFKFvvah
+ LIXWVf2Tc2bzOFBgHDz7/NergakoUHX9/9METyYatMsKgJXsnuAipDdc0cW6qloDre0ld8
+ I8RDew8zNXBPJ++XEBPj2sTZ84kd5V4=
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-459-KJ3faY3nOk2BIcg8jKaF0w-1; Mon, 27 Mar 2023 15:26:23 -0400
+X-MC-Unique: KJ3faY3nOk2BIcg8jKaF0w-1
+Received: by mail-il1-f198.google.com with SMTP id
+ n17-20020a056e02141100b003259a56715bso6414678ilo.15
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 12:26:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679945183;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=YsJ82OYx+hJHZIpI5yk6abwb8YmFKXJFuVMXDYupmyI=;
+ b=VAy07sirUW/V1C4ajkYhrAaIHTnGlAkoz9Q+U1E9Ce+fb5rE2o9VXWFwhvlNXU5dmB
+ r08bKDTP5LRJ1Vm9orzsqrAaSFx8qtajGkDePliGzg89CSHL7lNg7tKQB6az2FLLV8rm
+ Dkl90CVWkaoWp1tQjLCVh6rBMRLlB2hd48F8ymYew5BTSR0QOAuolR4XheQ/REbh2YJ5
+ LJexYkM5YbCFL3MZ3tDHLNzOEynJHuIecQa6BGFwFJuLXpvvGTnMZJlrC9s8UXTCg0dL
+ RtNiHd8FMnhKxGNpnHmR38MmtN9E2oAQ+4BrhgmyuiRgu9v3C+XKwwwcKcI5mZi6R2Gw
+ nG/A==
+X-Gm-Message-State: AAQBX9edvt9C5z3cdDmnx+F+L0dTiZE/TXJbgbj130N4RfSMhml4ArIH
+ Zj2i5dhIgxmL2KPW/SoQB7vesL4OkBnzfVo2XS+gPhxdvfdp110T9n4wnchO8/LhV2UGiWdMona
+ k4b/H0XZq6Nvj+ShrpYWroFiQy4bF
+X-Received: by 2002:a92:d40a:0:b0:31f:9b6e:2f49 with SMTP id
+ q10-20020a92d40a000000b0031f9b6e2f49mr10852804ilm.10.1679945182674; 
+ Mon, 27 Mar 2023 12:26:22 -0700 (PDT)
+X-Google-Smtp-Source: AKy350Y2QNTmEbvdTz9lk9IkQz7nrMs0PzBDjUBGarV1PGA7S1BCrjZKxc1bKrijv1Hfy90uc2/XWg==
+X-Received: by 2002:a92:d40a:0:b0:31f:9b6e:2f49 with SMTP id
+ q10-20020a92d40a000000b0031f9b6e2f49mr10852782ilm.10.1679945182317; 
+ Mon, 27 Mar 2023 12:26:22 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ x10-20020a92300a000000b0030c0dce44b1sm8006694ile.15.2023.03.27.12.26.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Mar 2023 12:26:21 -0700 (PDT)
+Date: Mon, 27 Mar 2023 13:26:19 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230327132619.5ab15440.alex.williamson@redhat.com>
+In-Reply-To: <20230327093458.44939-11-yi.l.liu@intel.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <20230327093458.44939-11-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kahola, Mika" <mika.kahola@intel.com>
-Date: Mon, 27 Mar 2023 19:23:47 -0000
-Message-ID: <167994502789.32629.17943731768774493043@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230327123433.896216-1-mika.kahola@intel.com>
-In-Reply-To: <20230327123433.896216-1-mika.kahola@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/mtl=3A_Add_Support_for_C10_chips?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,206 +84,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com, jgg@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4298640801824954253==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 27 Mar 2023 02:34:58 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-== Series Details ==
-
-Series: drm/i915/mtl: Add Support for C10 chips
-URL   : https://patchwork.freedesktop.org/series/115664/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12921 -> Patchwork_115664v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-kbl-soraka 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115664v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [PASS][1] -> [DMESG-WARN][2] ([i915#7699])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         NOTRUN -> [DMESG-FAIL][3] ([i915#6997] / [i915#7913])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         NOTRUN -> [ABORT][4] ([i915#6687])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         [ABORT][5] ([i915#4983] / [i915#7913]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-FAIL][7] ([i915#6367]) -> [DMESG-FAIL][8] ([i915#6367] / [i915#7996])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+> This is a preparation for vfio device cdev as cdev gives userspace the
+> capability to open device cdev fd and management stack (e.g. libvirt)
+> could pass the device fd to the actual user (e.g. QEMU). As a result,
+> the actual user has no idea about the device's bus:devfn information.
+> This is a problem when user uses VFIO_DEVICE_GET_PCI_HOT_RESET_INFO to
+> know the hot reset affected device scope as this ioctl returns bus:devfn
+> info. For the fd passing usage, the acutal user cannot map the bus:devfn
+> to the devices it has opened via the fd passed from management stack. So
+> a new ioctl is required.
+> 
+> This new ioctl reports the list of iommufd dev_id that is opened by the
+> user. If there is affected device that is not bound to vfio driver or
+> opened by another user, this command shall fail with -EPERM. For the
+> noiommu mode in the vfio device cdev path, this shall fail as no dev_id
+> would be generated, hence nothing to report.
+> 
+> This ioctl is useless to the users that open vfio group as such users
+> have no idea about the iommufd dev_id and it can use the existing
+> VFIO_DEVICE_GET_PCI_HOT_RESET_INFO. The user that uses the traditional
+> mode vfio group/container would be failed if invoking this ioctl. But
+> the user that uses the iommufd compat mode vfio group/container shall
+> succeed. This is harmless as long as user cannot make use of it and
+> should use VFIO_DEVICE_GET_PCI_HOT_RESET_INFO.
 
 
-Build changes
--------------
+So VFIO_DEVICE_GET_PCI_HOT_RESET_INFO reports a group and bdf, but
+VFIO_DEVICE_GET_PCI_HOT_RESET_*GROUP*_INFO is meant for the non-group,
+cdev use case and returns a dev_id rather than a group???
 
-  * Linux: CI_DRM_12921 -> Patchwork_115664v1
+Additionally, VFIO_DEVICE_GET_PCI_HOT_RESET_INFO has a flags arg that
+isn't used, why do we need a new ioctl vs defining
+VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID.  In fact, we could define
+vfio_dependent_device as:
 
-  CI-20190529: 20190529
-  CI_DRM_12921: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115664v1: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux
+struct vfio_pci_dependent_device {
+	union {
+	        __u32   group_id;
+		__u32	dev_id;
+	}
+        __u16   segment;
+        __u8    bus;
+        __u8    devfn;
+};
 
+If the user calls with the above flag, dev_id is valid, otherwise
+group_id.  Perhaps segment:buus:devfn could still be filled in with a
+NULL/invalid dev_id if the user doesn't have permissions for the device
+so that debugging from userspace isn't so opaque.  Thanks,
 
-### Linux commits
+Alex
+ 
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_core.c | 98 ++++++++++++++++++++++++++++++++
+>  include/uapi/linux/vfio.h        | 47 +++++++++++++++
+>  2 files changed, 145 insertions(+)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 19f5b075d70a..45edf4e9b98b 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -1181,6 +1181,102 @@ static int vfio_pci_ioctl_reset(struct vfio_pci_core_device *vdev,
+>  	return ret;
+>  }
+>  
+> +static struct pci_dev *
+> +vfio_pci_dev_set_resettable(struct vfio_device_set *dev_set);
+> +
+> +static int vfio_pci_ioctl_get_pci_hot_reset_group_info(
+> +	struct vfio_pci_core_device *vdev,
+> +	struct vfio_pci_hot_reset_group_info __user *arg)
+> +{
+> +	unsigned long minsz =
+> +		offsetofend(struct vfio_pci_hot_reset_group_info, count);
+> +	struct vfio_pci_hot_reset_group_info hdr;
+> +	struct iommufd_ctx *iommufd, *cur_iommufd;
+> +	u32 count = 0, index = 0, *devices = NULL;
+> +	struct vfio_pci_core_device *cur;
+> +	bool slot = false;
+> +	int ret = 0;
+> +
+> +	if (copy_from_user(&hdr, arg, minsz))
+> +		return -EFAULT;
+> +
+> +	if (hdr.argsz < minsz)
+> +		return -EINVAL;
+> +
+> +	hdr.flags = 0;
+> +
+> +	/* Can we do a slot or bus reset or neither? */
+> +	if (!pci_probe_reset_slot(vdev->pdev->slot))
+> +		slot = true;
+> +	else if (pci_probe_reset_bus(vdev->pdev->bus))
+> +		return -ENODEV;
+> +
+> +	mutex_lock(&vdev->vdev.dev_set->lock);
+> +	if (!vfio_pci_dev_set_resettable(vdev->vdev.dev_set)) {
+> +		ret = -EPERM;
+> +		goto out_unlock;
+> +	}
+> +
+> +	iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
+> +	if (!iommufd) {
+> +		ret = -EPERM;
+> +		goto out_unlock;
+> +	}
+> +
+> +	/* How many devices are affected? */
+> +	ret = vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_count_devs,
+> +					    &count, slot);
+> +	if (ret)
+> +		goto out_unlock;
+> +
+> +	WARN_ON(!count); /* Should always be at least one */
+> +
+> +	/*
+> +	 * If there's enough space, fill it now, otherwise return -ENOSPC and
+> +	 * the number of devices affected.
+> +	 */
+> +	if (hdr.argsz < sizeof(hdr) + (count * sizeof(*devices))) {
+> +		ret = -ENOSPC;
+> +		hdr.count = count;
+> +		goto reset_info_exit;
+> +	}
+> +
+> +	devices = kcalloc(count, sizeof(*devices), GFP_KERNEL);
+> +	if (!devices) {
+> +		ret = -ENOMEM;
+> +		goto reset_info_exit;
+> +	}
+> +
+> +	list_for_each_entry(cur, &vdev->vdev.dev_set->device_list, vdev.dev_set_list) {
+> +		cur_iommufd = vfio_iommufd_physical_ictx(&cur->vdev);
+> +		if (cur->vdev.open_count) {
+> +			if (cur_iommufd != iommufd) {
+> +				ret = -EPERM;
+> +				break;
+> +			}
+> +			ret = vfio_iommufd_physical_devid(&cur->vdev, &devices[index]);
+> +			if (ret)
+> +				break;
+> +			index++;
+> +		}
+> +	}
+> +
+> +reset_info_exit:
+> +	if (copy_to_user(arg, &hdr, minsz))
+> +		ret = -EFAULT;
+> +
+> +	if (!ret) {
+> +		if (copy_to_user(&arg->devices, devices,
+> +				 hdr.count * sizeof(*devices)))
+> +			ret = -EFAULT;
+> +	}
+> +
+> +	kfree(devices);
+> +out_unlock:
+> +	mutex_unlock(&vdev->vdev.dev_set->lock);
+> +	return ret;
+> +}
+> +
+>  static int vfio_pci_ioctl_get_pci_hot_reset_info(
+>  	struct vfio_pci_core_device *vdev,
+>  	struct vfio_pci_hot_reset_info __user *arg)
+> @@ -1404,6 +1500,8 @@ long vfio_pci_core_ioctl(struct vfio_device *core_vdev, unsigned int cmd,
+>  		return vfio_pci_ioctl_get_irq_info(vdev, uarg);
+>  	case VFIO_DEVICE_GET_PCI_HOT_RESET_INFO:
+>  		return vfio_pci_ioctl_get_pci_hot_reset_info(vdev, uarg);
+> +	case VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO:
+> +		return vfio_pci_ioctl_get_pci_hot_reset_group_info(vdev, uarg);
+>  	case VFIO_DEVICE_GET_REGION_INFO:
+>  		return vfio_pci_ioctl_get_region_info(vdev, uarg);
+>  	case VFIO_DEVICE_IOEVENTFD:
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 25432ef213ee..61b801dfd40b 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -669,6 +669,53 @@ struct vfio_pci_hot_reset_info {
+>  
+>  #define VFIO_DEVICE_GET_PCI_HOT_RESET_INFO	_IO(VFIO_TYPE, VFIO_BASE + 12)
+>  
+> +/**
+> + * VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 12,
+> + *						    struct vfio_pci_hot_reset_group_info)
+> + *
+> + * This is used in the vfio device cdev mode.  It returns the list of
+> + * affected devices (represented by iommufd dev_id) when hot reset is
+> + * issued on the current device with which this ioctl is invoked.  It
+> + * only includes the devices that are opened by the current user in the
+> + * time of this command is invoked.  This list may change when user opens
+> + * new device or close opened device, hence user should re-invoke it
+> + * after open/close devices.  This command has no guarantee on the result
+> + * of VFIO_DEVICE_PCI_HOT_RESET since the not-opened affected device can
+> + * be by other users in the window between the two ioctls.  If the affected
+> + * devices are opened by multiple users, the VFIO_DEVICE_PCI_HOT_RESET
+> + * shall fail, detail can check the description of VFIO_DEVICE_PCI_HOT_RESET.
+> + *
+> + * For the users that open vfio group/container, this ioctl is useless as
+> + * they have no idea about the iommufd dev_id returned by this ioctl.  For
+> + * the users of the traditional mode vfio group/container, this ioctl will
+> + * fail as this mode does not use iommufd hence no dev_id to report back.
+> + * For the users of the iommufd compat mode vfio group/container, this ioctl
+> + * would succeed as this mode uses iommufd as container fd.  But such users
+> + * still have no idea about the iommufd dev_id as the dev_id is only stored
+> + * in kernel in this mode.  For the users of the vfio group/container, the
+> + * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO should be used to know the hot reset
+> + * affected devices.
+> + *
+> + * Return: 0 on success, -errno on failure:
+> + *	-enospc = insufficient buffer;
+> + *	-enodev = unsupported for device;
+> + *	-eperm = no permission for device, this error comes:
+> + *		 - when there are affected devices that are opened but
+> + *		   not bound to the same iommufd with the current device
+> + *		   with which this ioctl is invoked,
+> + *		 - there are affected devices that are not bound to vfio
+> + *		   driver yet.
+> + *		 - no valid iommufd is bound (e.g. noiommu mode)
+> + */
+> +struct vfio_pci_hot_reset_group_info {
+> +	__u32	argsz;
+> +	__u32	flags;
+> +	__u32	count;
+> +	__u32	devices[];
+> +};
+> +
+> +#define VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO	_IO(VFIO_TYPE, VFIO_BASE + 18)
+> +
+>  /**
+>   * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE + 13,
+>   *				    struct vfio_pci_hot_reset)
 
-44fd26d03e78 drm/i915/mtl: Add support for PM DEMAND
-0a81d023ecf3 drm/i915/mtl: Add vswing programming for C10 phys
-8dc097cb04ea drm/i915/mtl: Add C10 phy programming for HDMI
-5c7fcca442fa drm/i915/mtl: Add Support for C10 PHY message bus and pll programming
-8c2f753b154f drm/i915/mtl: Create separate reg file for PICA registers
-d5b7d4eeaded drm/i915/mtl: Add DP rates
-be08398ebf6f drm/i915/mtl: Initial DDI port setup
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/index.html
-
---===============4298640801824954253==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Add Support for C10 chips</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115664/">https://patchwork.freedesktop.org/series/115664/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12921 -&gt; Patchwork_115664v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-kbl-soraka </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115664v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115664v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12921 -&gt; Patchwork_115664v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12921: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115664v1: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>44fd26d03e78 drm/i915/mtl: Add support for PM DEMAND<br />
-0a81d023ecf3 drm/i915/mtl: Add vswing programming for C10 phys<br />
-8dc097cb04ea drm/i915/mtl: Add C10 phy programming for HDMI<br />
-5c7fcca442fa drm/i915/mtl: Add Support for C10 PHY message bus and pll programming<br />
-8c2f753b154f drm/i915/mtl: Create separate reg file for PICA registers<br />
-d5b7d4eeaded drm/i915/mtl: Add DP rates<br />
-be08398ebf6f drm/i915/mtl: Initial DDI port setup</p>
-
-</body>
-</html>
-
---===============4298640801824954253==--
