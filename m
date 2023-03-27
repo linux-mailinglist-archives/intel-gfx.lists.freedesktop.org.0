@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79536C9BC8
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 09:16:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446AE6C9BFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 09:28:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82D9610E222;
-	Mon, 27 Mar 2023 07:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B446010E23B;
+	Mon, 27 Mar 2023 07:28:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7CDF710E222;
- Mon, 27 Mar 2023 07:16:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73DF7AADD1;
- Mon, 27 Mar 2023 07:16:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8699842403412883048=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32DAA10E23B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 07:28:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679902082; x=1711438082;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qFhC1UGtukvu2jUxX8lVcTnvB2+kagvcqBdzpUWGQpk=;
+ b=BEJ+SAv6vJpJjg38m5fH1ocP9kFL1jetG30bG37wD1I5Kma6iBPktUuV
+ mYnHz5JzbRnLt8+HOouhBEfcb+/+rxVpNtILvpdmAPsQuh/gfVE/p3xce
+ duJqIOUvLXX+u5+w690h3zfpQY1bthpQXxM14/wK4mYJg2CsRvQJyo8lV
+ Rdp2Tjo0+uOdNA0gObdjWFT+DXNe2IHQiqnKANqXR3TpwD1Kwh/l7bD7P
+ 1wsqqDXMqFjBroVMJWTgVBaGS0QmlZoGbks0cEv4iUcLucvyN4HH1fCxR
+ uOLpxP3S02bq+AiyRDpQx2LxrAWmwtWYF0ygIGvFxoVRWbZeJ8Dbrfo7o w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="426461496"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="426461496"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 00:28:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="807378136"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="807378136"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orsmga004.jf.intel.com with ESMTP; 27 Mar 2023 00:28:00 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Mar 2023 12:50:09 +0530
+Message-Id: <20230327072009.1340-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 27 Mar 2023 07:16:31 -0000
-Message-ID: <167990139144.32631.2069154417314431931@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230327064217.24033-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230327064217.24033-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_compressed_bpp_when_calculating_m/n_value_for_DP_M?=
- =?utf-8?q?ST_DSC?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Program pipe A PIPE_MISC_A
+ bit 9 Pixel Extension to 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,185 +55,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jigar Bhatt <jigar.bhatt@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8699842403412883048==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Jigar Bhatt <jigar.bhatt@intel.com>
 
-== Series Details ==
+Due to RTL bug FBC cannot be enabled when pipe is programed in Pixel
+Extension mode of Zero Extend. This caused 1 bit change in pixel value
+in compressed vs uncompressed frame which comes up as a flicker.
+WA for D13 is to always used MSB Extend for Pixel extension.
 
-Series: drm/i915: Use compressed bpp when calculating m/n value for DP MST DSC
-URL   : https://patchwork.freedesktop.org/series/115649/
-State : success
+WA: 16015082434
 
-== Summary ==
+Signed-off-by: Jigar Bhatt <jigar.bhatt@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
+ drivers/gpu/drm/i915/i915_reg.h              | 1 +
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-CI Bug Log - changes from CI_DRM_12914 -> Patchwork_115649v1
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5a386c7c0bc9..7006c1cb09f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3374,8 +3374,10 @@ static void bdw_set_pipe_misc(const struct intel_crtc_state *crtc_state)
+ 	if (DISPLAY_VER(dev_priv) >= 11 && is_hdr_mode(crtc_state))
+ 		val |= PIPE_MISC_HDR_MODE_PRECISION;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 12)
++	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		val |= PIPE_MISC_PIXEL_ROUNDING_TRUNC;
++		val &= ~(PIPEMISC_PIXEL_EXTENSION_ZERO_EXTEND);
++	}
+ 
+ 	intel_de_write(dev_priv, PIPE_MISC(crtc->pipe), val);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index d22ffd7a32dc..dcad60b5f50e 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3501,6 +3501,7 @@
+ #define   PIPE_MISC_YUV420_MODE_FULL_BLEND	REG_BIT(26) /* glk+ */
+ #define   PIPE_MISC_HDR_MODE_PRECISION		REG_BIT(23) /* icl+ */
+ #define   PIPE_MISC_OUTPUT_COLORSPACE_YUV	REG_BIT(11)
++#define   PIPEMISC_PIXEL_EXTENSION_ZERO_EXTEND	REG_BIT(9)
+ #define   PIPE_MISC_PIXEL_ROUNDING_TRUNC		REG_BIT(8) /* tgl+ */
+ /*
+  * For Display < 13, Bits 5-7 of PIPE MISC represent DITHER BPC with
+-- 
+2.29.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-kbl-soraka fi-snb-2520m fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115649v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-atsm-1:         [PASS][1] -> [ABORT][2] ([i915#8219])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-atsm-1/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-atsm-1/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [PASS][3] -> [FAIL][4] ([i915#8308])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-dg1-5:          [FAIL][5] ([fdo#103375]) -> [PASS][6] +7 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-dg1-5/igt@gem_exec_suspend@basic-s0@smem.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-dg1-5/igt@gem_exec_suspend@basic-s0@smem.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][7] ([i915#6367] / [i915#7913] / [i915#7996]) -> [DMESG-FAIL][8] ([i915#6997] / [i915#7913])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8219]: https://gitlab.freedesktop.org/drm/intel/issues/8219
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12914 -> Patchwork_115649v1
-
-  CI-20190529: 20190529
-  CI_DRM_12914: 6e5f96153989e454041848f66a5227be9bd0bbc3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7218: 8036123f781059c54a31240756794b17bd3d15dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115649v1: 6e5f96153989e454041848f66a5227be9bd0bbc3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b821a7755b26 drm/i915: Use compressed bpp when calculating m/n value for DP MST DSC
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/index.html
-
---===============8699842403412883048==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use compressed bpp when calculating m/n value for DP MST DSC</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115649/">https://patchwork.freedesktop.org/series/115649/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12914 -&gt; Patchwork_115649v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-kbl-soraka fi-snb-2520m fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115649v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-atsm-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-atsm-1/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8219">i915#8219</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-dg1-5/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-dg1-5/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +7 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12914/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115649v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12914 -&gt; Patchwork_115649v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12914: 6e5f96153989e454041848f66a5227be9bd0bbc3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7218: 8036123f781059c54a31240756794b17bd3d15dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115649v1: 6e5f96153989e454041848f66a5227be9bd0bbc3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b821a7755b26 drm/i915: Use compressed bpp when calculating m/n value for DP MST DSC</p>
-
-</body>
-</html>
-
---===============8699842403412883048==--
