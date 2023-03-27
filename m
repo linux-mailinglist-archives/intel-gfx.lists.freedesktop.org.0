@@ -1,108 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3476CAABC
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 18:35:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D6B6CAB39
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 19:01:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8710E64C;
-	Mon, 27 Mar 2023 16:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE3F510E118;
+	Mon, 27 Mar 2023 17:01:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 124C010E62F;
- Mon, 27 Mar 2023 16:35:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bgSqAuyFlDQw2xmEokexn2tXenSeo2J9o1Cxb83DxASYevxNkM13thL0oK1d0dP4IZes3o3aKMn2GsHTr7/CvSKBx/RavaWKdA0PFDzhSa3rftGaERsFF7+I7Jxbje0cbLlVqjgWcrRUkdHxVVcxHhR+3ITE3RjPIh0Ap++Z4wrWig2n4N0og/OPnHV/QjmxUDU8C3YBo92/D0H8mzW0Ey6NiROJfel4MiMZlvm5bZ1Vg93LyzEzhOdB7mrilkvti1B2NGffpzt9O7Aqu1iMuJgMBlFuUZBV0ErKTRkDouZi/SId9ywafKME4lTd/CH6vWwKdL8XMWCHYIkrFirpow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HTbWUv2iuqfAN99I3OyNsknOXLcrej7ZMcrqjRngQOg=;
- b=BTrIcmts7a6BCuM80FeHekBAitnZKmliiylCf2+DgkvLvUFWcma7iAl1wz1jxog+ZI0S/vmf8y9WwZb2MG+HZVkfGPx5H2Q9N3LDN5Pl4NXw8sw06h87W5BNeFQ3udwCkqZhThE6ZvhLk/P4SRaMeLrEqlhC+b1v2bXAuRmUOWqMgnEGbCGQTJcz4cZTz9X+X1fA2NDBojBZ233eDCvkUt9VhJX82O4iMFUllPhXUG78LFVcumWUcofJ0O9YFHS0jw1YumpFRLSeycbkeIa3vpcJZx2Xn15EV/Q8hFFUUqhjy9RZ2janhOpkx6fCgABUWi2rPow5XTHd+ZuFPkom0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HTbWUv2iuqfAN99I3OyNsknOXLcrej7ZMcrqjRngQOg=;
- b=guqnyC7y4ZYZ69572zVc+YKPzPsOG/kYih6pmSh2RIdcGbI/dX+qlLGNDR1LG9b18DPGNT1jAItUUmBpDOYQyluZL/WSchq7vpbC4lQU9GHP+unJgNt7XnioVMrIkUYoy4+16c5v+febIm+wxfw069OvgWr/Z50qWl1wjGVHzD4arjXrxQ0vL4JTwG0KQ7lvvyoazQqCUkJgc1xrmIABZL1nSC8i5aXtqDyyByWF9Bld0WX8Zy5eg8If2TWO4ZqaoIQa8pqYd3Wih/AW2dhGOkr6uv+c+O1CKe3W09OZse72lF83TuvlD0+NLy5QZimz65Pdg5qLuwFeRmL3q5GxtQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by CH2PR12MB4295.namprd12.prod.outlook.com (2603:10b6:610:a7::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Mon, 27 Mar
- 2023 16:35:42 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Mon, 27 Mar 2023
- 16:35:41 +0000
-Date: Mon, 27 Mar 2023 13:35:39 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <ZCHF29VYiS1ZaKdj@nvidia.com>
-References: <20230327093351.44505-1-yi.l.liu@intel.com>
- <20230327093351.44505-2-yi.l.liu@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327093351.44505-2-yi.l.liu@intel.com>
-X-ClientProxiedBy: YTBP288CA0019.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:b01:14::32) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH2PR12MB4295:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4265063-a1e4-4f65-9e19-08db2ee14df7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1nYvPLBuOELdjYo0OOulalqAYbmFUZQ1hEjDMuvrTgqoqtXUGajtJqP9TYdX2WxKmEWJ70tYBAnpdQ+DDB/9fQ/FQPMfwB+mNOt38wKYdlTMbD/3R9WjfqFqlvbFicTemNYFdM3xTemU5347l9PKJijQSJjeHwZi173yiALqckbedZhmDgJ4x7d8fhkUTr3au1Q1gkIN73sTLmgCQqeOk3p/ngDd00b9Cw0337og7xss7Ch3qrB8O6jIPblOPCLoY1Ny2EBqiEPiduqpcJC58Lu3kCG8Tx2eaerir6avB96sApxoo/2+93TWJCeno+JEZpxK5dq8OzzE/FlY/2yrCN6WWvDJ9g+dlaf0CFnsg7cjKNZSgWIBJjBg09lOoy29sQooGZjNo4Hebp42GPPtLI3Bw6hz83wD5B1c6DT+BD0rTtN7JTajYWraYPG2noq3cyf1AZwcIyot/nukjVokWG7jkkWmfi3NqH6NLgXuE5d8ZAuYBLOJmnQc/E32qip3vtX01UYp3APXRtVhG/fdSlKk1Y9+Y6mF6jAOi7pgwfKHX4g5SRqQJucc1K0kOUI+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(366004)(136003)(396003)(39860400002)(346002)(451199021)(2616005)(83380400001)(8676002)(2906002)(66476007)(66946007)(66556008)(4326008)(6916009)(6486002)(478600001)(6512007)(316002)(186003)(6506007)(26005)(7416002)(4744005)(86362001)(36756003)(41300700001)(8936002)(5660300002)(38100700002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Pp8zxUsnyfGoKIFfFYFMDNhe54URJuLVk2pac9Uc3Iy6nh11SzWJaGc/Cz2O?=
- =?us-ascii?Q?w3C1X/luTKDEMvhjYQcBmCwTIeZdN+m8AgLqQOGS03t5wYaJd5rOV17m5UAx?=
- =?us-ascii?Q?4ByEWlLGG9VWcGgWtwFZm2ruy4dW0HCvaQfln0iexCJLGjyS7krObOP715Y8?=
- =?us-ascii?Q?LkNeKJTdXB2Y9057jx5HJZTLcJbRiWJ5Sj5vxHYeuhQvsnrSyv2gA4gJ490q?=
- =?us-ascii?Q?IW2YyPoOh8ld8L5UkDdCGzmVBl0U97xcFYf5uFCU8OgtTIXbVbmi3E11sh84?=
- =?us-ascii?Q?WganJB0LXnk2zCUSLMbtWqyHGPmkUbLAP+TN7i4yHdAmuLLR9P2UbWrX4SzC?=
- =?us-ascii?Q?65qWoKluNXlLx6326mVfENG/fyM5bu2O4zgCXolPgtIqvHuVuQyiACjmOpPY?=
- =?us-ascii?Q?nsdFPZLz6sjetUiguk6QRjozfP86bSd+K+6zHt4MaGHU2Y0V680pEJjTXBXa?=
- =?us-ascii?Q?Hf86bmVZp5VRb2H0XsWwEymJTpM8Pr9RlrJ1bH3DUFVaflqMvZ4Egjh/WMP1?=
- =?us-ascii?Q?pWKLZThx6fj50GrS6a/x/mg5iRPL1SYAjMDmjAQE2s4yptpzQPjvyONoIAtq?=
- =?us-ascii?Q?t1Szy9QPh9OHGDe4/cUxq8ffku8qI/qdej3L6/AUePbs4uWjT1pST4pT1PtR?=
- =?us-ascii?Q?USMib4uxdZAHyxUhhANdKEFGzplesDuVhk7rzAGVaiH46x6od0dusJMKjwJR?=
- =?us-ascii?Q?9s4qz7YNGBxhuH1rRvR+7wI8knnZEiEhl2BoE3F1a61F3EFYDyFgwTqt5fvw?=
- =?us-ascii?Q?wj/p+kejPmHLaQDbwMDHdBbMQC+rp0qa3lCIpWGRrLmc2qTHPbQ5FqAeXvAU?=
- =?us-ascii?Q?Xn+W7pKX3ekfEY2MTecy+hb5AtJpCHhRw6oavbuIpGDYb8g2Ue9esmwRZj+n?=
- =?us-ascii?Q?kYstaKbqCwfLA5QtybmJjcJSVqo2calGosJ+cKG9V2OAbEHW2HWzMu6DWJHd?=
- =?us-ascii?Q?IpaRk6D0dUevg2j9HEWs7zKf9ut7vQqgC3V20O6Ol9cqihUF+LB2flaaKdpo?=
- =?us-ascii?Q?AprLE7JLlGxkaVnK4LZ7dem+UktEkYsFaYEEwn5xS1sDQLP5+1REgWr2kcHB?=
- =?us-ascii?Q?st7TluJQWVfaa4/CFux1RYbe0AKOB/Fz7O1+t6/ssRIkUT4+tdNmdsdTBU64?=
- =?us-ascii?Q?1poZEHVu1fDWG6ZaZbz7UyUix4OfpVPcxo3VIlFhrnWlYuwc8JyfOu/SD5Pj?=
- =?us-ascii?Q?vCGW9o99zlaMG0X6XvImVXRFQN0chS8okRx0u8vJR30p4AmfUfIF61Sq7+6Q?=
- =?us-ascii?Q?6votstDuIwSvoPYXACUoMJdL6xT/NI2b+b69SD9ORw2EeDmwfdPSYFGnQhfE?=
- =?us-ascii?Q?ibhIdWHgedA6DLKCal0QGv99kPeRR68yWQMFsrgeDuGXdA2mHjORwgxMZDeP?=
- =?us-ascii?Q?MQ7mPnjZYkg1r7m+mHxebqfYIHTKRuacPbMmoLu9XXSZvfMPYpQYeojoMvX7?=
- =?us-ascii?Q?qUFUeeqAS58dlN7HbRR1XN+MMnDo9EdtJXwOfgfdrh6x0gtZbeLin9eS/dM4?=
- =?us-ascii?Q?O9dnzNrpJBmOPHo+DAh4IPXpwkNyTRMfwfW8FaUy9/wDVETOPyTP2jaOpsj9?=
- =?us-ascii?Q?YCkV+zUAqP348hahp3Y3c1n2gFhcceAd+yAB/HQB?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4265063-a1e4-4f65-9e19-08db2ee14df7
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 16:35:41.8180 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: onKL56FIgk86huIYvGcp7JCQA/49p1pk4RWBABwe8UaZIccXMFZZ9sFlSgTSqJnA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4295
-Subject: Re: [Intel-gfx] [PATCH v3 1/6] iommu/iommufd: Pass iommufd_ctx
- pointer in iommufd_get_ioas()
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A858D10E118;
+ Mon, 27 Mar 2023 17:01:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679936500; x=1711472500;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=EIsCjKZCHe1Jm4LeFCYTqDF84qtFlGzjW9pa6mAZ3io=;
+ b=KsrAw/RFQ8OhNz5s3gn/0Mi3IMyrqI7ydN/UBWCQ9nTeFDUloX9Zwzb0
+ NuyFkZwjS0jzbNk2pE05BwemNQju506gJDvdquxh5GitzOyw0Z5o38TTT
+ mZs3tDY6SfSM9p+6DiEYM7bOM+4R3n3FqOaRs5lySfTD52WpsjsbYPqW8
+ +Dq7zfppYAxKBko9Cpbw8bOSs0Qu8CthW6OUjVen5u0yjW7G7gDfo88cw
+ +vPaGySTBFVEc7YAA9LDYpEXFXhfv4Ge1eB9rhGpsflVXx03+SU13sc0h
+ WCJ4J2Dzch7XpmgZegicSCF02rtTguEeUuT2LegRm9VWfMgfAjoCboZWl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="342730449"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="342730449"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 10:01:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="686042443"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="686042443"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.162.223])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 10:01:37 -0700
+Date: Mon, 27 Mar 2023 09:57:03 -0700
+Message-ID: <87o7oeku8w.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <7b24abc4-30df-227c-bb6c-04de96e59f40@intel.com>
+References: <20230316035954.2593843-1-ashutosh.dixit@intel.com>	<4760d41f-c237-9f97-eb32-5d2ab05eea20@intel.com>	<87sfdtload.wl-ashutosh.dixit@intel.com>	<7b24abc4-30df-227c-bb6c-04de96e59f40@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Disable PL1 power limit when
+ loading GuC firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,28 +62,341 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
- yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 27, 2023 at 02:33:46AM -0700, Yi Liu wrote:
-> no need to pass the iommufd_ucmd pointer.
-> 
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  drivers/iommu/iommufd/ioas.c            | 14 +++++++-------
->  drivers/iommu/iommufd/iommufd_private.h |  4 ++--
->  drivers/iommu/iommufd/selftest.c        |  6 +++---
->  drivers/iommu/iommufd/vfio_compat.c     |  2 +-
->  4 files changed, 13 insertions(+), 13 deletions(-)
+On Fri, 24 Mar 2023 17:06:33 -0700, Belgaumkar, Vinay wrote:
+>
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Hi Vinay,
 
-Jason
+> On 3/24/2023 4:31 PM, Dixit, Ashutosh wrote:
+> > On Fri, 24 Mar 2023 11:15:02 -0700, Belgaumkar, Vinay wrote:
+> > Hi Vinay,
+> >
+> > Thanks for the review. Comments inline below.
+> Sorry about asking the same questions all over again :) Didn't look at
+> previous versions.
+
+Np, the previous versions were buried somewhere anyway that's why I
+provided the link.
+
+> >
+> >> On 3/15/2023 8:59 PM, Ashutosh Dixit wrote:
+> >>> On dGfx, the PL1 power limit being enabled and set to a low value res=
+ults
+> >>> in a low GPU operating freq. It also negates the freq raise operation=
+ which
+> >>> is done before GuC firmware load. As a result GuC firmware load can t=
+ime
+> >>> out. Such timeouts were seen in the GL #8062 bug below (where the PL1=
+ power
+> >>> limit was enabled and set to a low value). Therefore disable the PL1 =
+power
+> >>> limit when allowed by HW when loading GuC firmware.
+> >> v3 label missing in subject.
+> >>> v2:
+> >>>    - Take mutex (to disallow writes to power1_max) across GuC reset/f=
+w load
+> >>>    - Add hwm_power_max_restore to error return code path
+> >>>
+> >>> v3 (Jani N):
+> >>>    - Add/remove explanatory comments
+> >>>    - Function renames
+> >>>    - Type corrections
+> >>>    - Locking annotation
+> >>>
+> >>> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+> >>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >>> ---
+> >>>    drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 +++++++
+> >>>    drivers/gpu/drm/i915/i915_hwmon.c     | 39 +++++++++++++++++++++++=
+++++
+> >>>    drivers/gpu/drm/i915/i915_hwmon.h     |  7 +++++
+> >>>    3 files changed, 55 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/=
+i915/gt/uc/intel_uc.c
+> >>> index 4ccb4be4c9cba..aa8e35a5636a0 100644
+> >>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> >>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> >>> @@ -18,6 +18,7 @@
+> >>>    #include "intel_uc.h"
+> >>>      #include "i915_drv.h"
+> >>> +#include "i915_hwmon.h"
+> >>>      static const struct intel_uc_ops uc_ops_off;
+> >>>    static const struct intel_uc_ops uc_ops_on;
+> >>> @@ -461,6 +462,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+> >>>	struct intel_guc *guc =3D &uc->guc;
+> >>>	struct intel_huc *huc =3D &uc->huc;
+> >>>	int ret, attempts;
+> >>> +	bool pl1en;
+> >> Init to 'false' here
+> > See next comment.
+> >
+> >>
+> >>>		GEM_BUG_ON(!intel_uc_supports_guc(uc));
+> >>>	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+> >>> @@ -491,6 +493,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+> >>>	else
+> >>>		attempts =3D 1;
+> >>>    +	/* Disable a potentially low PL1 power limit to allow freq to be
+> >>> raised */
+> >>> +	i915_hwmon_power_max_disable(gt->i915, &pl1en);
+> >>> +
+> >>>	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
+> >>>		while (attempts--) {
+> >>> @@ -547,6 +552,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+> >>>		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+> >>>	}
+> >>>    +	i915_hwmon_power_max_restore(gt->i915, pl1en);
+> >>> +
+> >>>	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_g=
+uc_submission(uc)));
+> >>>	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slp=
+c(uc)));
+> >>>    @@ -563,6 +570,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+> >>>	/* Return GT back to RPn */
+> >>>	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+> >>>    +	i915_hwmon_power_max_restore(gt->i915, pl1en);
+> >> if (pl1en)
+> >>
+> >>  =A0=A0=A0 i915_hwmon_power_max_enable().
+> > IMO it's better not to have checks in the main __uc_init_hw() function =
+(if
+> > we do this we'll need to add 2 checks in __uc_init_hw()). If you really
+> > want we could do something like this inside
+> > i915_hwmon_power_max_disable/i915_hwmon_power_max_restore. But for now I
+> > am not making any changes.
+> ok.
+> >
+> > (I can send a patch with the changes if you want to take a look but IMO=
+ it
+> > will add more logic/code but without real benefits (it will save a rmw =
+if
+> > the limit was already disabled, but IMO this code is called so infreque=
+ntly
+> > (only during GuC resets) as to not have any significant impact)).
+> >
+> >>> +
+> >>>	__uc_sanitize(uc);
+> >>>		if (!ret) {
+> >>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915=
+/i915_hwmon.c
+> >>> index ee63a8fd88fc1..769b5bda4d53f 100644
+> >>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> >>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> >>> @@ -444,6 +444,45 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 at=
+tr, int chan, long val)
+> >>>	}
+> >>>    }
+> >>>    +void i915_hwmon_power_max_disable(struct drm_i915_private *i915, =
+bool
+> >>> *old)
+> >> Shouldn't we call this i915_hwmon_package_pl1_disable()?
+> > I did think of using "pl1" in the function name but then decided to ret=
+ain
+> > "power_max" because other hwmon functions for PL1 limit also use
+> > "power_max" (hwm_power_max_read/hwm_power_max_write) and currently
+> > "hwmon_power_max" is mapped to the PL1 limit. So "power_max" is used to
+> > show that all these functions deal with the PL1 power limit.
+> >
+> > There is a comment in __uc_init_hw() explaining "power_max" means the P=
+L1
+> > power limit.
+> ok.
+> >
+> >>> +	__acquires(i915->hwmon->hwmon_lock)
+> >>> +{
+> >>> +	struct i915_hwmon *hwmon =3D i915->hwmon;
+> >>> +	intel_wakeref_t wakeref;
+> >>> +	u32 r;
+> >>> +
+> >>> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+> >>> +		return;
+> >>> +
+> >>> +	/* Take mutex to prevent concurrent hwm_power_max_write */
+> >>> +	mutex_lock(&hwmon->hwmon_lock);
+> >>> +
+> >>> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
+> >>> +		r =3D intel_uncore_rmw(hwmon->ddat.uncore,
+> >>> +				     hwmon->rg.pkg_rapl_limit,
+> >>> +				     PKG_PWR_LIM_1_EN, 0);
+> >> Most of this code (lock and rmw parts) is already inside static void
+> >> hwm_locked_with_pm_intel_uncore_rmw() , can we reuse that here?
+> > This was the case in v1 of the patch:
+> >
+> > https://patchwork.freedesktop.org/patch/526393/?series=3D115003&rev=3D1
+> >
+> > But now this cannot be done because if you notice we acquire the mutex =
+in
+> > i915_hwmon_power_max_disable() and release the mutex in
+> > i915_hwmon_power_max_restore().
+> >
+> > I explained the reason why this the mutex is handled this way in my rep=
+ly
+> > to Jani Nikula here:
+> >
+> > https://patchwork.freedesktop.org/patch/526598/?series=3D115003&rev=3D2
+> >
+> > Quoting below:
+> >
+> > ```
+> >>> +	/* hwmon_lock mutex is unlocked in hwm_power_max_restore */
+> >> Not too happy about that... any better ideas?
+> > Afais, taking the mutex is the only fully correct solution (when we dis=
+able
+> > the power limit, userspace can go re-enable it). Examples of partly
+> > incorrect solutions (which don't take the mutex) include:
+> >
+> > a. Don't take the mutex, don't do anything, ignore any changes to the v=
+alue
+> >     if it has changed during GuC reset/fw load (just overwrite the chan=
+ged
+> >     value). Con: changed value is lost.
+> >
+> > b. Detect if the value has changed (the limit has been re-enabled) afte=
+r we
+> >     have disabled the limit and in that case skip restoring the value. =
+But
+> >     then someone can say why do we allow enabling the PL1 limit since we
+> >     want to disable it.
+> >
+> > Both these are very unlikely scenarios so they might work. But I would
+> > first like to explore if holding a mutex across GuC reset is prolebmatic
+> > since that is /the/ correct solution. But if anyone comes up with a rea=
+son
+> > why that cannot be done we can look at these other not completely corre=
+ct
+> > options.
+>
+> Well, one reason is that this is adding a lot of duplicate/non-reusable
+> code needlessly. If it gets re-used elsewhere, that could lead to some
+> weird situations where the lock could be held for an extended period of
+> time and introduce dependencies.
+
+The lock will only be held if userspace tries to set the PL1 limit while
+GuC load is in progress. The chance of this is low (though not
+zero). Otherwise the lock will be uncontended. But otherwise yes the lock
+is being held across GuC load. I would think as long as GuC load completes
+in the 200 ms (or even a few seconds) it should not be an issue. These
+hwmon operations are happening very infrequently, say in a matter of
+seconds, at least 100's of milliseconds.
+
+We could add a different lock here but I don't think it's worth it.
+
+> Also, how/why would the user modify this
+> PL1 during guc load? The sysfs interfaces are not even ready at this poin=
+t?
+> Even if we consider this during a resume, the terminal will not be
+> available to the user.
+
+A few points:
+
+* Agree about probe, the sysfs doesn't exist
+* About resume, again agreed. But in general a userspace process (say a
+  daemon) might be writing to hwmon sysfs even when a terminal is not
+  available. hwmon is accessed by L0 sysman e.g.
+* Finally, GuC is not loaded only during probe and resume but GuC can also
+  get reset because of error conditions. When the sysfs and the terminal
+  are available (e.g what if you set a low PL1 limit and then run
+  i915_hangman, it fails currently as was seen in CI, I will try to write
+  an IGT for this).
+
+So that's the reason for taking the lock. I think it's not a big problem
+even if we take the lock that is why it is in the patch.
+
+> > ```
+> >
+> >>> +
+> >>> +	*old =3D !!(r & PKG_PWR_LIM_1_EN);
+> >>> +}
+> >>> +
+> >>> +void i915_hwmon_power_max_restore(struct drm_i915_private *i915, boo=
+l old)
+> >>> +	__releases(i915->hwmon->hwmon_lock)
+> >> We can just call this i915_hwmon_power_max_enable() and call whenever =
+the
+> >> old value was actually enabled. That way, we have proper mirror functi=
+ons.
+> > As I explained that would mean adding two checks in the main __uc_init_=
+hw()
+> > function which I am trying to avoid. So we have disable/restore pair.
+> >
+> >>> +{
+> >>> +	struct i915_hwmon *hwmon =3D i915->hwmon;
+> >>> +	intel_wakeref_t wakeref;
+> >>> +
+> >>> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
+> >>> +		return;
+> >>> +
+> >>> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
+> >>> +		intel_uncore_rmw(hwmon->ddat.uncore,
+> >>> +				 hwmon->rg.pkg_rapl_limit,
+> >>> +				 PKG_PWR_LIM_1_EN,
+> >>> +				 old ? PKG_PWR_LIM_1_EN : 0);
+> >> 3rd param should be 0 here, else we will end up clearing other bits.
+> > No see intel_uncore_rmw(), it will only clear the PKG_PWR_LIM_1_EN bit,=
+ so
+> > the code here is correct. intel_uncore_rmw() does:
+> >
+> >          val =3D (old & ~clear) | set;
+> Ok, just confusing, since you are also setting it with the 4th param.
+
+No, the 3rd param is clearing (old & ~clear) and the 4th param is setting
+(| set). Look at intel_uncore_rmw(). Also I've tested this patch ;-)
+
+Thanks.
+--
+Ashutosh
+
+
+> >
+> > So for now I am not making any changes, if you feel strongly about
+> > something one way or another let me know. Anyway these comments should =
+help
+> > you understand the patch better so take a look and we can go from there.
+> >
+> > Thanks.
+> > --
+> > Ashutosh
+> >
+> >>> +
+> >>> +	mutex_unlock(&hwmon->hwmon_lock);
+> >>> +}
+> >>> +
+> >>>    static umode_t
+> >>>    hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+> >>>    {
+> >>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915=
+/i915_hwmon.h
+> >>> index 7ca9cf2c34c96..0fcb7de844061 100644
+> >>> --- a/drivers/gpu/drm/i915/i915_hwmon.h
+> >>> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
+> >>> @@ -7,14 +7,21 @@
+> >>>    #ifndef __I915_HWMON_H__
+> >>>    #define __I915_HWMON_H__
+> >>>    +#include <linux/types.h>
+> >>> +
+> >>>    struct drm_i915_private;
+> >>> +struct intel_gt;
+> >>>      #if IS_REACHABLE(CONFIG_HWMON)
+> >>>    void i915_hwmon_register(struct drm_i915_private *i915);
+> >>>    void i915_hwmon_unregister(struct drm_i915_private *i915);
+> >>> +void i915_hwmon_power_max_disable(struct drm_i915_private *i915, boo=
+l *old);
+> >>> +void i915_hwmon_power_max_restore(struct drm_i915_private *i915, boo=
+l old);
+> >>>    #else
+> >>>    static inline void i915_hwmon_register(struct drm_i915_private *i9=
+15) { };
+> >>>    static inline void i915_hwmon_unregister(struct drm_i915_private *=
+i915) { };
+> >>> +static inline void i915_hwmon_power_max_disable(struct drm_i915_priv=
+ate *i915, bool *old) { };
+> >>> +static inline void i915_hwmon_power_max_restore(struct drm_i915_priv=
+ate *i915, bool old) { };
+> >>>    #endif
+> >>>      #endif /* __I915_HWMON_H__ */
