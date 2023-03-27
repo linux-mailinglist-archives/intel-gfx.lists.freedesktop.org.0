@@ -2,33 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601A16CAF33
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 21:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB886CAF41
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 21:56:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B601910E745;
-	Mon, 27 Mar 2023 19:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36EBF10E36A;
+	Mon, 27 Mar 2023 19:56:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B513F10E745;
- Mon, 27 Mar 2023 19:54:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1968A7E03;
- Mon, 27 Mar 2023 19:54:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7468423205922019035=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB61910E05A;
+ Mon, 27 Mar 2023 19:56:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679946986; x=1711482986;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JwuIcvdTis/z43bJkLOFhBhmGEqPdL/+PeyI64r4v9k=;
+ b=BOGrBTt7omLCyUVwCGnwUe24/aSoACYQkAqd+1/dcpTRchXLB86MsUv2
+ V5Jnx2Rijkox4RJeZkGoBm9MHNFWUH1oWFl2GzWP3HBbAdXqi6Ijc8ClD
+ axNHcljkAtMAasxmDi7Sy1A2tp4kuCfAdO1zVcBCrQUE+9cqOG6YlEC6g
+ jNhhmQ/TlRwEl9LaLA2pIIoHaT9iyRU5fKOFetUHzqYk4NTkZTinqrnEc
+ WHUWKPw9HO7wYR5eM6r4hjKbBGziCOfbww6YfPhDElHw/l1RpLmxPCl45
+ dwim0pi/62IJgxqUG4fWBlGj3/l+kbnx483OM3cm9lcEdM13j6+PduiwP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="341950287"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="341950287"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 12:56:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="1013247327"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="1013247327"
+Received: from mgaucher-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.63.207])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2023 12:56:23 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
+Date: Mon, 27 Mar 2023 21:55:45 +0200
+Message-Id: <20230327195547.356584-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 27 Mar 2023 19:54:26 -0000
-Message-ID: <167994686672.32630.9218877149888664008@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230327105330.312131-1-jani.nikula@intel.com>
-In-Reply-To: <20230327105330.312131-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=2Ccore-for-CI=5D_Revert_=22Revert_=22d?=
- =?utf-8?q?rm/i915=3A_Don=27t_select_BROKEN=22=22_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/2] Report MMIO communication problems more
+ clearly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,155 +58,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andi Shyti <andi.shyti@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7468423205922019035==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+just copy pasting Matt's original cover letter. Thank you Andrzej and
+Jani for looking into this series.
 
-Series: series starting with [1/2,core-for-CI] Revert "Revert "drm/i915: Don't select BROKEN"" (rev2)
-URL   : https://patchwork.freedesktop.org/series/115659/
-State : success
+We're periodically facing problems in CI where all registers read back
+as 0xFFFFFFFF.  In general this is what happens when the CPU is unable
+to communicate with a PCI device, so the transaction autocompletes with
+all F's as a placeholder.  Sometimes the device will recover on its own,
+sometimes it will never come back.
 
-== Summary ==
+We already have some attempts to detect when this happens (e.g., when
+checking FPGA_DBG), but let's add a couple more checks with descriptive
+error messages to identify the problem in other cases:
 
-CI Bug Log - changes from CI_DRM_12921 -> Patchwork_115659v2
-====================================================
+ - When the device is first probed, we'll do an initial check of the GT
+   forcewake register.  As a masked register, the upper bits should
+   always come back as 0's if device access is behaving properly, so if
+   we see all F's, we can conclude that the device is already in a bad
+   state.  We'll wait two seconds to see if it recovers on its own, then
+   give up on the device.
 
-Summary
--------
+ - When we encounter a 'forcewake timed out while waiting for clear'
+   error, we'll do one more read of the register to see if it's because
+   we're just reading back all F's.  If so, we'll print a more
+   meaningful message clarifying that it isn't the forcewake itself
+   that's the problem, but rather communication with the device.
 
-  **SUCCESS**
+Note that this only captures the failure case where accessing the device
+is problematic (resulting in registers giving all F's).  There's a
+separate class of problems where the device is okay, but the GT inside
+the device is busted and all GT registers read back as 0's (other
+registers like sgunit registers are usually still readable).  This
+series does not address that class of errors.
 
-  No regressions found.
+This is just a quick change to get some better CI error messages.  Some
+ideas for future enhancements:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/index.html
+ - Try something to reset the device if we detect a problem at driver
+   load (e.g., PCI FLR, toggling the PCI power state, etc.)?
 
-Participating hosts (37 -> 36)
-------------------------------
+ - Use something more standard like pci_read_config_dword() instead of a
+   device register read to determine when we're not communicating
+   properly?  Generally the PCI config space is also giving all F's at
+   this point.
 
-  Missing    (1): fi-kbl-soraka 
+ - Also handle the "device OK, GT dead" case by finding some GT
+   register(s) that should never be 0 on a functioning system.  Maybe
+   one of the fuse registers would work for this?
 
-Known issues
-------------
+Changelog
+=========
+v2 -> v3
+ - Restored the previous change in V1 which was wrong.
+ - A little cosmetic suggested by Andrzej in patch 2.
+ - Added mine and Andrzej's r-b.
+v1 -> v2
+ - The sanity check can use intel_wait_for_register_fw().
+   (Thanks, Jani)
 
-  Here are the changes found in Patchwork_115659v2 that come from known issues:
+Matt Roper (2):
+  drm/i915: Sanitycheck MMIO access early in driver load
+  drm/i915: Check for unreliable MMIO during forcewake
 
-### IGT changes ###
+ drivers/gpu/drm/i915/intel_uncore.c | 47 +++++++++++++++++++++++++++--
+ 1 file changed, 44 insertions(+), 3 deletions(-)
 
-#### Possible fixes ####
+-- 
+2.39.2
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [FAIL][1] ([i915#8308]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-FAIL][3] ([i915#6367]) -> [DMESG-FAIL][4] ([i915#6367] / [i915#7996])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12921 -> Patchwork_115659v2
-
-  CI-20190529: 20190529
-  CI_DRM_12921: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115659v2: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-992436d2fe1b drm/i915: remove unused config DRM_I915_UNSTABLE
-2a7fe3dd9bca Revert "Revert "drm/i915: Don't select BROKEN""
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/index.html
-
---===============7468423205922019035==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2,core-for-CI] Revert &quot;Revert &quot;drm/i915: Don&#39;t select BROKEN&quot;&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115659/">https://patchwork.freedesktop.org/series/115659/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12921 -&gt; Patchwork_115659v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-kbl-soraka </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115659v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rps@basic-api:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12921/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115659v2/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12921 -&gt; Patchwork_115659v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12921: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115659v2: 3de6040ce9900a94ec626662d5c6a227b37eeb1c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>992436d2fe1b drm/i915: remove unused config DRM_I915_UNSTABLE<br />
-2a7fe3dd9bca Revert "Revert "drm/i915: Don't select BROKEN""</p>
-
-</body>
-</html>
-
---===============7468423205922019035==--
