@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9456CA629
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 15:39:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A83186CA62A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Mar 2023 15:39:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242BA10E5D6;
-	Mon, 27 Mar 2023 13:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F09F10E5D7;
+	Mon, 27 Mar 2023 13:39:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD70A10E5D6
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 13:39:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23ED310E5D5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 13:39:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679924386; x=1711460386;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8t5ADBHGWQUspl02YPLmyvypR2DywS2ceYIMZPPypC0=;
- b=cIx1Y09ox/HKy1g1TbtqRbO3ibDiIQbWYzPFYgKygH9XDFJJgyMBN5hQ
- 68qr7QAIvOsv9dxwCOmpDVtTRSc8s75b4IUWIL7NZFg7MltC4HjxMaH9b
- X8nEfkWAjCmq+x39CaF0Th5hbA2JqxAAr9Bu7wIuXTLeRwuibKX8a/XNb
- Jnb+Mypr5hwv98rC/njnJBBsJ5sjL2UxuzTAWj+QRuwVElZ9iei1HzVp0
- 0jzBccM0SBrKOovmgeB7R6dJq7CmtQkZy7VWkXdxGCMkqv1WuwxU4kkNX
- YL9MV+hx3aRQTwopnsE0O9+lw+H67oCNm2mgxkTknDp3zv/Eljmpsc+7c w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="337765880"
-X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="337765880"
+ t=1679924389; x=1711460389;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=V1PCY9rhjB8p5TF0mw3pQbP2j36qdJ45+bfiXL6Za3o=;
+ b=Im1OrLzsjGu9AJyszbAyaJ5iVHN5ZW/lkP9k8JbGSI8UjwZdSerLw8pq
+ Nad5XHOOzgerCKF1fThl2onPl1A3yEVLyPFR9Vpzqk4CEE6UqZfYcrW1/
+ opjh+4z8FMtmMjWmXdv0s2Ezs/CPZGb1tzJ6//O9CqiHKPqe5VpqjcAeB
+ XL3aQXMAua3yL8V7Ln40Ro4oFyDLpm70p2zbTomm8XCYmgDOanNxTm5+Z
+ hWbp0vjkzEVzXOMzX4+FhPZ98HKs2plmrbnOqCPyXvF5lP8rvC2kwU78U
+ fvUvc0kdzc1XFNj4s23VNNR499iwxxfxPfeHiRkS+tavIvxOoVvuzQndi g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="337765891"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="337765891"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 06:39:46 -0700
+ 27 Mar 2023 06:39:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="676971872"
-X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="676971872"
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="676971893"
+X-IronPort-AV: E=Sophos;i="5.98,294,1673942400"; d="scan'208";a="676971893"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga007.jf.intel.com with SMTP; 27 Mar 2023 06:39:43 -0700
+ by orsmga007.jf.intel.com with SMTP; 27 Mar 2023 06:39:46 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 27 Mar 2023 16:39:42 +0300
+ Mon, 27 Mar 2023 16:39:46 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Mar 2023 16:39:41 +0300
-Message-Id: <20230327133942.22063-1-ville.syrjala@linux.intel.com>
+Date: Mon, 27 Mar 2023 16:39:42 +0300
+Message-Id: <20230327133942.22063-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230327133942.22063-1-ville.syrjala@linux.intel.com>
+References: <20230327133942.22063-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/ips: Make IPS debugfs per-crtc
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/ips: Add i915_ips_false_color
+ debugfs file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,92 +65,146 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-IPS is a per-pipe feature, so let's move the debugfs stuff
-under the crtc directory, and only register it when IPS
-is actually available.
+Similar to FBC let's expose an debugfs file to control
+IPS false color. Enabling this provides an immediate visual
+feedback on whether IPS is working or not.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/hsw_ips.c            | 15 +++++++--------
- drivers/gpu/drm/i915/display/hsw_ips.h            |  3 +--
- .../gpu/drm/i915/display/intel_display_debugfs.c  |  2 +-
- 3 files changed, 9 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c        | 58 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_display_core.h |  4 ++
+ drivers/gpu/drm/i915/i915_reg.h               |  3 +-
+ 3 files changed, 62 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
-index 2910f5d0f3e2..47209c858c32 100644
+index 47209c858c32..8eca0de065b6 100644
 --- a/drivers/gpu/drm/i915/display/hsw_ips.c
 +++ b/drivers/gpu/drm/i915/display/hsw_ips.c
-@@ -270,12 +270,10 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+@@ -14,6 +14,7 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	u32 val;
  
+ 	if (!crtc_state->ips_enabled)
+ 		return;
+@@ -26,10 +27,15 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 	drm_WARN_ON(&i915->drm,
+ 		    !(crtc_state->active_planes & ~BIT(PLANE_CURSOR)));
+ 
++	val = IPS_ENABLE;
++
++	if (i915->display.ips.false_color)
++		val |= IPS_FALSE_COLOR;
++
+ 	if (IS_BROADWELL(i915)) {
+ 		drm_WARN_ON(&i915->drm,
+ 			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL,
+-					    IPS_ENABLE | IPS_PCODE_CONTROL));
++					    val | IPS_PCODE_CONTROL));
+ 		/*
+ 		 * Quoting Art Runyan: "its not safe to expect any particular
+ 		 * value in IPS_CTL bit 31 after enabling IPS through the
+@@ -37,7 +43,7 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 		 * so we need to just enable it and continue on.
+ 		 */
+ 	} else {
+-		intel_de_write(i915, IPS_CTL, IPS_ENABLE);
++		intel_de_write(i915, IPS_CTL, val);
+ 		/*
+ 		 * The bit only becomes 1 in the next vblank, so this wait here
+ 		 * is essentially intel_wait_for_vblank. If we don't have this
+@@ -268,6 +274,51 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ 	}
+ }
+ 
++static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
++{
++	struct intel_crtc *crtc = data;
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++
++	*val = i915->display.ips.false_color;
++
++	return 0;
++}
++
++static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
++{
++	struct intel_crtc *crtc = data;
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_crtc_state *crtc_state;
++	int ret;
++
++	ret = drm_modeset_lock(&crtc->base.mutex, NULL);
++	if (ret)
++		return ret;
++
++	i915->display.ips.false_color = val;
++
++	crtc_state = to_intel_crtc_state(crtc->base.state);
++
++	if (!crtc_state->hw.active)
++		goto unlock;
++
++	if (crtc_state->uapi.commit &&
++	    !try_wait_for_completion(&crtc_state->uapi.commit->hw_done))
++		goto unlock;
++
++	hsw_ips_enable(crtc_state);
++
++ unlock:
++	drm_modeset_unlock(&crtc->base.mutex);
++
++	return ret;
++}
++
++DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
++			 hsw_ips_debugfs_false_color_get,
++			 hsw_ips_debugfs_false_color_set,
++			 "%llu\n");
++
  static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
  {
--	struct drm_i915_private *i915 = m->private;
-+	struct intel_crtc *crtc = m->private;
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	intel_wakeref_t wakeref;
+ 	struct intel_crtc *crtc = m->private;
+@@ -300,6 +351,9 @@ void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc)
+ 	if (!hsw_crtc_supports_ips(crtc))
+ 		return;
  
--	if (!HAS_IPS(i915))
--		return -ENODEV;
--
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
- 	seq_printf(m, "Enabled by kernel parameter: %s\n",
-@@ -297,10 +295,11 @@ static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
- 
- DEFINE_SHOW_ATTRIBUTE(hsw_ips_debugfs_status);
- 
--void hsw_ips_debugfs_register(struct drm_i915_private *i915)
-+void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc)
- {
--	struct drm_minor *minor = i915->drm.primary;
-+	if (!hsw_crtc_supports_ips(crtc))
-+		return;
- 
--	debugfs_create_file("i915_ips_status", 0444, minor->debugfs_root,
--			    i915, &hsw_ips_debugfs_status_fops);
-+	debugfs_create_file("i915_ips_status", 0444, crtc->base.debugfs_entry,
-+			    crtc, &hsw_ips_debugfs_status_fops);
++	debugfs_create_file("i915_ips_false_color", 0644, crtc->base.debugfs_entry,
++			    crtc, &hsw_ips_debugfs_false_color_fops);
++
+ 	debugfs_create_file("i915_ips_status", 0444, crtc->base.debugfs_entry,
+ 			    crtc, &hsw_ips_debugfs_status_fops);
  }
-diff --git a/drivers/gpu/drm/i915/display/hsw_ips.h b/drivers/gpu/drm/i915/display/hsw_ips.h
-index 7ed6061874f7..4eb83b350791 100644
---- a/drivers/gpu/drm/i915/display/hsw_ips.h
-+++ b/drivers/gpu/drm/i915/display/hsw_ips.h
-@@ -8,7 +8,6 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 0b5509f268a7..e36f88a39b86 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -418,6 +418,10 @@ struct intel_display {
+ 		u32 state;
+ 	} hti;
  
- #include <linux/types.h>
++	struct {
++		bool false_color;
++	} ips;
++
+ 	struct {
+ 		struct i915_power_domains domains;
  
--struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
-@@ -23,6 +22,6 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state);
- int hsw_ips_compute_config(struct intel_atomic_state *state,
- 			   struct intel_crtc *crtc);
- void hsw_ips_get_config(struct intel_crtc_state *crtc_state);
--void hsw_ips_debugfs_register(struct drm_i915_private *i915);
-+void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index f79e8a544f51..9362c42788ef 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1397,7 +1397,8 @@
+ #define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
  
- #endif /* __HSW_IPS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index cc5026272558..d5715ccc37f0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1092,7 +1092,6 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
- 				 ARRAY_SIZE(intel_display_debugfs_list),
- 				 minor->debugfs_root, minor);
+ #define IPS_CTL		_MMIO(0x43408)
+-#define   IPS_ENABLE	(1 << 31)
++#define   IPS_ENABLE		REG_BIT(31)
++#define   IPS_FALSE_COLOR	REG_BIT(4)
  
--	hsw_ips_debugfs_register(i915);
- 	intel_dmc_debugfs_register(i915);
- 	intel_fbc_debugfs_register(i915);
- 	intel_hpd_debugfs_register(i915);
-@@ -1461,6 +1460,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
- 	crtc_updates_add(crtc);
- 	intel_drrs_crtc_debugfs_add(crtc);
- 	intel_fbc_crtc_debugfs_add(crtc);
-+	hsw_ips_crtc_debugfs_add(crtc);
- 
- 	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
- 			    &i915_current_bpc_fops);
+ #define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
+ #define   FBC_REND_NUKE			REG_BIT(2)
 -- 
 2.39.2
 
