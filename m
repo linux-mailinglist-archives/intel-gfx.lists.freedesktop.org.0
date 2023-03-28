@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3D36CBABE
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 11:30:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AF76CBAC7
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 11:31:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F6E10E309;
-	Tue, 28 Mar 2023 09:30:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5621810E455;
+	Tue, 28 Mar 2023 09:31:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C854010E451
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 09:30:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8F010E309
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 09:30:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679995853; x=1711531853;
+ t=1679995854; x=1711531854;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Pzs2oyqJsqVa2A8VCk7t76H5I40ZL57zCLO5gFnnZTg=;
- b=jWMEfsd4laFi1X3zwycGOd6h5ZRhuLoNKfda8mJKXsgv8crB3vfXNnbZ
- CoSUwWNV578Zxu6JZyIGv/cJWByBqZ2Hd14D/JidiTyUG18tVqO8FgSJ3
- HB27I4H0KvrZEXkBwrI0rmEiBzUCKsFMWMjJElfP1v2aTOFC/eGGo7goR
- 702gObU92bz+Q4yLEO1oeQSVXW+3QzUB35CvB3pNpJezoNm35XCBwkYHv
- bqcSj3U9WTOEogcQaXA2HT8wsdyDil8Ww2ger44v5EmGkPidn/4Qa4e4d
- 4jR11lUVZQACdNlM9WlsuX16sMrRKmeF6T0HHfdWtb3A4CUeKCi3vdCr7 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="403129443"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="403129443"
+ bh=wy+XHrGgEPxDYzwZ7mJkZgQ/ZSZ+G11zj+ACWJoANHU=;
+ b=UntH0VeZMa6MpIb21zBL6z/H4OgM6QejVdBV8zZHPAeEdk+r5QwL6YlW
+ Z4pEGtlGIo7aZNR4Zq669bO9kagPPMI//SYfJYsEzc2B8aPHjPB0mzG/a
+ +o+4L+2tRL9WnnUbOMQ3X+AaCHpswRbzPeCIL2i26+J8Bnyg8B2+x0dMg
+ saTCY+TfJwPCVTeOopDc/g9nS8XUUzr6DOJp+XY2yAC6eYjiMzIKJMSR+
+ 4Gudtxvejm7iGN5fYXv5/9tYX5SdMRwbHrlceyXEHZYTQjFBfmsRgIaI1
+ bLigBAVPINz8ttKn3hDM+wRYxbRRnNq1Kbw15Rqw4wuL5BDPS6k1lH97n A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="403129489"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="403129489"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 02:30:51 -0700
+ 28 Mar 2023 02:30:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="686343555"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="686343555"
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="686343576"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="686343576"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga007.fm.intel.com with SMTP; 28 Mar 2023 02:30:48 -0700
+ by fmsmga007.fm.intel.com with SMTP; 28 Mar 2023 02:30:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Mar 2023 12:30:47 +0300
+ Tue, 28 Mar 2023 12:30:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Mar 2023 12:30:36 +0300
-Message-Id: <20230328093042.7469-3-ville.syrjala@linux.intel.com>
+Date: Tue, 28 Mar 2023 12:30:37 +0300
+Message-Id: <20230328093042.7469-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328093042.7469-1-ville.syrjala@linux.intel.com>
 References: <20230328093042.7469-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915: Clean up various display chicken
- registers
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/psr: Clean up PSR register
+ defininitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,184 +65,364 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Modernize a bunch of display chicken registers by using
-REG_BIT() & co.
+Use REG_BIT() & co. to make the PSR register definitions
+nicer.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 106 +++++++++++++++++---------------
- 1 file changed, 55 insertions(+), 51 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c |  34 ++--
+ drivers/gpu/drm/i915/i915_reg.h          | 197 ++++++++++++-----------
+ 2 files changed, 116 insertions(+), 115 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 31084d95711d..9495ea5d1b37 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -418,7 +418,7 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
+ 	u32 val = 0;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 11)
+-		val |= EDP_PSR_TP4_TIME_0US;
++		val |= EDP_PSR_TP4_TIME_0us;
+ 
+ 	if (dev_priv->params.psr_safest_params) {
+ 		val |= EDP_PSR_TP1_TIME_2500us;
+@@ -447,9 +447,9 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
+ check_tp3_sel:
+ 	if (intel_dp_source_supports_tps3(dev_priv) &&
+ 	    drm_dp_tps3_supported(intel_dp->dpcd))
+-		val |= EDP_PSR_TP1_TP3_SEL;
++		val |= EDP_PSR_TP_TP1_TP3;
+ 	else
+-		val |= EDP_PSR_TP1_TP2_SEL;
++		val |= EDP_PSR_TP_TP1_TP2;
+ 
+ 	return val;
+ }
+@@ -478,9 +478,9 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+ 	u32 max_sleep_time = 0x1f;
+ 	u32 val = EDP_PSR_ENABLE;
+ 
+-	val |= psr_compute_idle_frames(intel_dp) << EDP_PSR_IDLE_FRAME_SHIFT;
++	val |= EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+-	val |= max_sleep_time << EDP_PSR_MAX_SLEEP_TIME_SHIFT;
++	val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
+ 	if (IS_HASWELL(dev_priv))
+ 		val |= EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES;
+ 
+@@ -524,7 +524,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	u32 val = EDP_PSR2_ENABLE;
+ 
+-	val |= psr_compute_idle_frames(intel_dp) << EDP_PSR2_IDLE_FRAME_SHIFT;
++	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+ 	if (DISPLAY_VER(dev_priv) <= 13 && !IS_ALDERLAKE_P(dev_priv))
+ 		val |= EDP_SU_TRACK_ENABLE;
+@@ -559,15 +559,13 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 		 * Still using the default IO_BUFFER_WAKE and FAST_WAKE, see
+ 		 * comments bellow for more information
+ 		 */
+-		u32 tmp;
++		int tmp;
+ 
+ 		tmp = map[intel_dp->psr.io_wake_lines - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
+-		tmp = tmp << TGL_EDP_PSR2_IO_BUFFER_WAKE_SHIFT;
+-		val |= tmp;
++		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(tmp + TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES);
+ 
+ 		tmp = map[intel_dp->psr.fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
+-		tmp = tmp << TGL_EDP_PSR2_FAST_WAKE_MIN_SHIFT;
+-		val |= tmp;
++		val |= TGL_EDP_PSR2_FAST_WAKE(tmp + TGL_EDP_PSR2_FAST_WAKE_MIN_LINES);
+ 	} else if (DISPLAY_VER(dev_priv) >= 12) {
+ 		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
+ 		val |= TGL_EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
+@@ -623,9 +621,9 @@ static void psr2_program_idle_frames(struct intel_dp *intel_dp,
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 
+-	idle_frames <<=  EDP_PSR2_IDLE_FRAME_SHIFT;
+ 	intel_de_rmw(dev_priv, EDP_PSR2_CTL(intel_dp->psr.transcoder),
+-		     EDP_PSR2_IDLE_FRAME_MASK, idle_frames);
++		     EDP_PSR2_IDLE_FRAMES_MASK,
++		     EDP_PSR2_IDLE_FRAMES(idle_frames));
+ }
+ 
+ static void tgl_psr2_enable_dc3co(struct intel_dp *intel_dp)
+@@ -1087,8 +1085,7 @@ void intel_psr_get_config(struct intel_encoder *encoder,
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		val = intel_de_read(dev_priv, TRANS_EXITLINE(intel_dp->psr.transcoder));
+-		val &= EXITLINE_MASK;
+-		pipe_config->dc3co_exitline = val;
++		pipe_config->dc3co_exitline = REG_FIELD_GET(EXITLINE_MASK, val);
+ 	}
+ unlock:
+ 	mutex_unlock(&intel_dp->psr.lock);
+@@ -2684,8 +2681,7 @@ psr_source_status(struct intel_dp *intel_dp, struct seq_file *m)
+ 		};
+ 		val = intel_de_read(dev_priv,
+ 				    EDP_PSR_STATUS(intel_dp->psr.transcoder));
+-		status_val = (val & EDP_PSR_STATUS_STATE_MASK) >>
+-			      EDP_PSR_STATUS_STATE_SHIFT;
++		status_val = REG_FIELD_GET(EDP_PSR_STATUS_STATE_MASK, val);
+ 		if (status_val < ARRAY_SIZE(live_status))
+ 			status = live_status[status_val];
+ 	}
+@@ -2747,8 +2743,8 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
+ 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+ 		val = intel_de_read(dev_priv,
+ 				    EDP_PSR_PERF_CNT(intel_dp->psr.transcoder));
+-		val &= EDP_PSR_PERF_CNT_MASK;
+-		seq_printf(m, "Performance counter: %u\n", val);
++		seq_printf(m, "Performance counter: %u\n",
++			   REG_FIELD_GET(EDP_PSR_PERF_CNT_MASK, val));
+ 	}
+ 
+ 	if (psr->debug & I915_PSR_DEBUG_IRQ) {
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4ad10fe45686..ce27529aee6d 100644
+index ce27529aee6d..d0f5ea0a0e78 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1366,7 +1366,7 @@
- #define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
- 
- #define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
--#define   ILK_FBCQ_DIS		(1 << 22)
-+#define   ILK_FBCQ_DIS			REG_BIT(22)
- #define   ILK_PABSTRETCH_DIS		REG_BIT(21)
- #define   ILK_SABSTRETCH_DIS		REG_BIT(20)
- #define   IVB_PRI_STRETCH_MAX_MASK	REG_GENMASK(21, 20)
-@@ -5470,54 +5470,55 @@
- 
- #define ILK_DISPLAY_CHICKEN2	_MMIO(0x42004)
- /* Required on all Ironlake and Sandybridge according to the B-Spec. */
--#define  ILK_ELPIN_409_SELECT	(1 << 25)
--#define  ILK_DPARB_GATE	(1 << 22)
--#define  ILK_VSDPFD_FULL	(1 << 21)
--#define FUSE_STRAP			_MMIO(0x42014)
--#define  ILK_INTERNAL_GRAPHICS_DISABLE	(1 << 31)
--#define  ILK_INTERNAL_DISPLAY_DISABLE	(1 << 30)
--#define  ILK_DISPLAY_DEBUG_DISABLE	(1 << 29)
--#define  IVB_PIPE_C_DISABLE		(1 << 28)
--#define  ILK_HDCP_DISABLE		(1 << 25)
--#define  ILK_eDP_A_DISABLE		(1 << 24)
--#define  HSW_CDCLK_LIMIT		(1 << 24)
--#define  ILK_DESKTOP			(1 << 23)
--#define  HSW_CPU_SSC_ENABLE		(1 << 21)
-+#define   ILK_ELPIN_409_SELECT	REG_BIT(25)
-+#define   ILK_DPARB_GATE	REG_BIT(22)
-+#define   ILK_VSDPFD_FULL	REG_BIT(21)
- 
--#define FUSE_STRAP3			_MMIO(0x42020)
--#define  HSW_REF_CLK_SELECT		(1 << 1)
-+#define FUSE_STRAP		_MMIO(0x42014)
-+#define   ILK_INTERNAL_GRAPHICS_DISABLE	REG_BIT(31)
-+#define   ILK_INTERNAL_DISPLAY_DISABLE	REG_BIT(30)
-+#define   ILK_DISPLAY_DEBUG_DISABLE	REG_BIT(29)
-+#define   IVB_PIPE_C_DISABLE		REG_BIT(28)
-+#define   ILK_HDCP_DISABLE		REG_BIT(25)
-+#define   ILK_eDP_A_DISABLE		REG_BIT(24)
-+#define   HSW_CDCLK_LIMIT		REG_BIT(24)
-+#define   ILK_DESKTOP			REG_BIT(23)
-+#define   HSW_CPU_SSC_ENABLE		REG_BIT(21)
- 
--#define ILK_DSPCLK_GATE_D			_MMIO(0x42020)
--#define   ILK_VRHUNIT_CLOCK_GATE_DISABLE	(1 << 28)
--#define   ILK_DPFCUNIT_CLOCK_GATE_DISABLE	(1 << 9)
--#define   ILK_DPFCRUNIT_CLOCK_GATE_DISABLE	(1 << 8)
--#define   ILK_DPFDUNIT_CLOCK_GATE_ENABLE	(1 << 7)
--#define   ILK_DPARBUNIT_CLOCK_GATE_ENABLE	(1 << 5)
-+#define FUSE_STRAP3		_MMIO(0x42020)
-+#define   HSW_REF_CLK_SELECT		REG_BIT(1)
- 
--#define IVB_CHICKEN3	_MMIO(0x4200c)
--# define CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	(1 << 5)
--# define CHICKEN3_DGMG_DONE_FIX_DISABLE		(1 << 2)
-+#define ILK_DSPCLK_GATE_D	_MMIO(0x42020)
-+#define   ILK_VRHUNIT_CLOCK_GATE_DISABLE	REG_BIT(28)
-+#define   ILK_DPFCUNIT_CLOCK_GATE_DISABLE	REG_BIT(9)
-+#define   ILK_DPFCRUNIT_CLOCK_GATE_DISABLE	REG_BIT(8)
-+#define   ILK_DPFDUNIT_CLOCK_GATE_ENABLE	REG_BIT(7)
-+#define   ILK_DPARBUNIT_CLOCK_GATE_ENABLE	REG_BIT(5)
- 
--#define CHICKEN_PAR1_1			_MMIO(0x42080)
-+#define IVB_CHICKEN3		_MMIO(0x4200c)
-+#define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
-+#define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
-+
-+#define CHICKEN_PAR1_1		_MMIO(0x42080)
- #define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
- #define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
--#define  DIS_RAM_BYPASS_PSR2_MAN_TRACK	(1 << 16)
--#define  SKL_DE_COMPRESSED_HASH_MODE	(1 << 15)
--#define  DPA_MASK_VBLANK_SRD		(1 << 15)
--#define  FORCE_ARB_IDLE_PLANES		(1 << 14)
--#define  SKL_EDP_PSR_FIX_RDWRAP		(1 << 3)
--#define  IGNORE_PSR2_HW_TRACKING	(1 << 1)
-+#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
-+#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
-+#define   DPA_MASK_VBLANK_SRD		REG_BIT(15)
-+#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
-+#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
-+#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
- 
- #define CHICKEN_PAR2_1		_MMIO(0x42090)
--#define  KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	(1 << 14)
-+#define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
- 
- #define CHICKEN_MISC_2		_MMIO(0x42084)
- #define   CHICKEN_MISC_DISABLE_DPT	REG_BIT(30) /* adl,dg2 */
- #define   KBL_ARB_FILL_SPARE_14		REG_BIT(14)
- #define   KBL_ARB_FILL_SPARE_13		REG_BIT(13)
--#define  GLK_CL2_PWR_DOWN	(1 << 12)
--#define  GLK_CL1_PWR_DOWN	(1 << 11)
--#define  GLK_CL0_PWR_DOWN	(1 << 10)
-+#define   GLK_CL2_PWR_DOWN		REG_BIT(12)
-+#define   GLK_CL1_PWR_DOWN		REG_BIT(11)
-+#define   GLK_CL0_PWR_DOWN		REG_BIT(10)
- 
- #define CHICKEN_MISC_4		_MMIO(0x4208c)
- #define   CHICKEN_FBC_STRIDE_OVERRIDE	REG_BIT(13)
-@@ -5537,13 +5538,13 @@
- #define   HSW_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 1)
- #define   HSW_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 2)
- #define   HSW_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 3)
--#define  HSW_FBCQ_DIS			(1 << 22)
--#define  BDW_DPRS_MASK_VBLANK_SRD	(1 << 0)
-+#define   HSW_FBCQ_DIS			REG_BIT(22)
- #define   SKL_PLANE1_STRETCH_MAX_MASK	REG_GENMASK(1, 0)
- #define   SKL_PLANE1_STRETCH_MAX_X8	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 0)
- #define   SKL_PLANE1_STRETCH_MAX_X4	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 1)
- #define   SKL_PLANE1_STRETCH_MAX_X2	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 2)
- #define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
-+#define   BDW_DPRS_MASK_VBLANK_SRD	REG_BIT(0)
- 
- #define _CHICKEN_TRANS_A	0x420c0
- #define _CHICKEN_TRANS_B	0x420c4
-@@ -5576,12 +5577,13 @@
- #define   PSR2_VSC_ENABLE_PROG_HEADER	REG_BIT(12)
- 
- #define DISP_ARB_CTL	_MMIO(0x45000)
--#define  DISP_FBC_MEMORY_WAKE		(1 << 31)
--#define  DISP_TILE_SURFACE_SWIZZLING	(1 << 13)
--#define  DISP_FBC_WM_DIS		(1 << 15)
-+#define   DISP_FBC_MEMORY_WAKE		REG_BIT(31)
-+#define   DISP_TILE_SURFACE_SWIZZLING	REG_BIT(13)
-+#define   DISP_FBC_WM_DIS		REG_BIT(15)
-+
- #define DISP_ARB_CTL2	_MMIO(0x45004)
--#define  DISP_DATA_PARTITION_5_6	(1 << 6)
--#define  DISP_IPC_ENABLE		(1 << 3)
-+#define   DISP_DATA_PARTITION_5_6	REG_BIT(6)
-+#define   DISP_IPC_ENABLE		REG_BIT(3)
+@@ -2111,30 +2111,36 @@
+ #define _SRD_CTL_A				0x60800
+ #define _SRD_CTL_EDP				0x6f800
+ #define EDP_PSR_CTL(tran)			_MMIO_TRANS2(tran, _SRD_CTL_A)
+-#define   EDP_PSR_ENABLE			(1 << 31)
+-#define   BDW_PSR_SINGLE_FRAME			(1 << 30)
+-#define   EDP_PSR_RESTORE_PSR_ACTIVE_CTX_MASK	(1 << 29) /* SW can't modify */
+-#define   EDP_PSR_LINK_STANDBY			(1 << 27)
+-#define   EDP_PSR_MIN_LINK_ENTRY_TIME_MASK	(3 << 25)
+-#define   EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES	(0 << 25)
+-#define   EDP_PSR_MIN_LINK_ENTRY_TIME_4_LINES	(1 << 25)
+-#define   EDP_PSR_MIN_LINK_ENTRY_TIME_2_LINES	(2 << 25)
+-#define   EDP_PSR_MIN_LINK_ENTRY_TIME_0_LINES	(3 << 25)
+-#define   EDP_PSR_MAX_SLEEP_TIME_SHIFT		20
+-#define   EDP_PSR_SKIP_AUX_EXIT			(1 << 12)
+-#define   EDP_PSR_TP1_TP2_SEL			(0 << 11)
+-#define   EDP_PSR_TP1_TP3_SEL			(1 << 11)
+-#define   EDP_PSR_CRC_ENABLE			(1 << 10) /* BDW+ */
+-#define   EDP_PSR_TP2_TP3_TIME_500us		(0 << 8)
+-#define   EDP_PSR_TP2_TP3_TIME_100us		(1 << 8)
+-#define   EDP_PSR_TP2_TP3_TIME_2500us		(2 << 8)
+-#define   EDP_PSR_TP2_TP3_TIME_0us		(3 << 8)
+-#define   EDP_PSR_TP4_TIME_0US			(3 << 6) /* ICL+ */
+-#define   EDP_PSR_TP1_TIME_500us		(0 << 4)
+-#define   EDP_PSR_TP1_TIME_100us		(1 << 4)
+-#define   EDP_PSR_TP1_TIME_2500us		(2 << 4)
+-#define   EDP_PSR_TP1_TIME_0us			(3 << 4)
+-#define   EDP_PSR_IDLE_FRAME_SHIFT		0
++#define   EDP_PSR_ENABLE			REG_BIT(31)
++#define   BDW_PSR_SINGLE_FRAME			REG_BIT(30)
++#define   EDP_PSR_RESTORE_PSR_ACTIVE_CTX_MASK	REG_BIT(29) /* SW can't modify */
++#define   EDP_PSR_LINK_STANDBY			REG_BIT(27)
++#define   EDP_PSR_MIN_LINK_ENTRY_TIME_MASK	REG_GENMASK(26, 25)
++#define   EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES	REG_FIELD_PREP(EDP_PSR_MIN_LINK_ENTRY_TIME_MASK, 0)
++#define   EDP_PSR_MIN_LINK_ENTRY_TIME_4_LINES	REG_FIELD_PREP(EDP_PSR_MIN_LINK_ENTRY_TIME_MASK, 1)
++#define   EDP_PSR_MIN_LINK_ENTRY_TIME_2_LINES	REG_FIELD_PREP(EDP_PSR_MIN_LINK_ENTRY_TIME_MASK, 2)
++#define   EDP_PSR_MIN_LINK_ENTRY_TIME_0_LINES	REG_FIELD_PREP(EDP_PSR_MIN_LINK_ENTRY_TIME_MASK, 3)
++#define   EDP_PSR_MAX_SLEEP_TIME_MASK		REG_GENMASK(24, 20)
++#define   EDP_PSR_MAX_SLEEP_TIME(x)		REG_FIELD_PREP(EDP_PSR_MAX_SLEEP_TIME_MASK, (x))
++#define   EDP_PSR_SKIP_AUX_EXIT			REG_BIT(12)
++#define   EDP_PSR_TP_MASK			REG_BIT(11)
++#define   EDP_PSR_TP_TP1_TP2			REG_FIELD_PREP(EDP_PSR_TP_MASK, 0)
++#define   EDP_PSR_TP_TP1_TP3			REG_FIELD_PREP(EDP_PSR_TP_MASK, 1)
++#define   EDP_PSR_CRC_ENABLE			REG_BIT(10) /* BDW+ */
++#define   EDP_PSR_TP2_TP3_TIME_MASK		REG_GENMASK(9, 8)
++#define   EDP_PSR_TP2_TP3_TIME_500us		REG_FIELD_PREP(EDP_PSR_TP2_TP3_TIME_MASK, 0)
++#define   EDP_PSR_TP2_TP3_TIME_100us		REG_FIELD_PREP(EDP_PSR_TP2_TP3_TIME_MASK, 1)
++#define   EDP_PSR_TP2_TP3_TIME_2500us		REG_FIELD_PREP(EDP_PSR_TP2_TP3_TIME_MASK, 2)
++#define   EDP_PSR_TP2_TP3_TIME_0us		REG_FIELD_PREP(EDP_PSR_TP2_TP3_TIME_MASK, 3)
++#define   EDP_PSR_TP4_TIME_MASK			REG_GENMASK(7, 6)
++#define   EDP_PSR_TP4_TIME_0us			REG_FIELD_PREP(EDP_PSR_TP4_TIME_MASK, 3) /* ICL+ */
++#define   EDP_PSR_TP1_TIME_MASK			REG_GENMASK(5, 4)
++#define   EDP_PSR_TP1_TIME_500us		REG_FIELD_PREP(EDP_PSR_TP1_TIME_MASK, 0)
++#define   EDP_PSR_TP1_TIME_100us		REG_FIELD_PREP(EDP_PSR_TP1_TIME_MASK, 1)
++#define   EDP_PSR_TP1_TIME_2500us		REG_FIELD_PREP(EDP_PSR_TP1_TIME_MASK, 2)
++#define   EDP_PSR_TP1_TIME_0us			REG_FIELD_PREP(EDP_PSR_TP1_TIME_MASK, 3)
++#define   EDP_PSR_IDLE_FRAMES_MASK		REG_GENMASK(3, 0)
++#define   EDP_PSR_IDLE_FRAMES(x)		REG_FIELD_PREP(EDP_PSR_IDLE_FRAMES_MASK, (x))
  
  /*
-  * The below are numbered starting from "S1" on gen11/gen12, but starting
-@@ -6114,20 +6116,22 @@
- #define  TRANS_BPC_10			REG_FIELD_PREP(TRANS_BPC_MASK, 1)
- #define  TRANS_BPC_6			REG_FIELD_PREP(TRANS_BPC_MASK, 2)
- #define  TRANS_BPC_12			REG_FIELD_PREP(TRANS_BPC_MASK, 3)
-+
- #define _TRANSA_CHICKEN1	 0xf0060
- #define _TRANSB_CHICKEN1	 0xf1060
- #define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
--#define  TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	(1 << 10)
--#define  TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	(1 << 4)
-+#define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
-+#define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
-+
- #define _TRANSA_CHICKEN2	 0xf0064
- #define _TRANSB_CHICKEN2	 0xf1064
- #define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
--#define  TRANS_CHICKEN2_TIMING_OVERRIDE			(1 << 31)
--#define  TRANS_CHICKEN2_FDI_POLARITY_REVERSED		(1 << 29)
--#define  TRANS_CHICKEN2_FRAME_START_DELAY_MASK		(3 << 27)
--#define  TRANS_CHICKEN2_FRAME_START_DELAY(x)		((x) << 27) /* 0-3 */
--#define  TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER	(1 << 26)
--#define  TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH	(1 << 25)
-+#define   TRANS_CHICKEN2_TIMING_OVERRIDE		REG_BIT(31)
-+#define   TRANS_CHICKEN2_FDI_POLARITY_REVERSED		REG_BIT(29)
-+#define   TRANS_CHICKEN2_FRAME_START_DELAY_MASK		REG_GENMASK(28, 27)
-+#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK, (x)) /* 0-3 */
-+#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER	REG_BIT(26)
-+#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH	REG_BIT(25)
+  * Until TGL, IMR/IIR are fixed at 0x648xx. On TGL+ those registers are relative
+@@ -2169,81 +2175,80 @@
+ #define _SRD_STATUS_A				0x60840
+ #define _SRD_STATUS_EDP				0x6f840
+ #define EDP_PSR_STATUS(tran)			_MMIO_TRANS2(tran, _SRD_STATUS_A)
+-#define   EDP_PSR_STATUS_STATE_MASK		(7 << 29)
+-#define   EDP_PSR_STATUS_STATE_SHIFT		29
+-#define   EDP_PSR_STATUS_STATE_IDLE		(0 << 29)
+-#define   EDP_PSR_STATUS_STATE_SRDONACK		(1 << 29)
+-#define   EDP_PSR_STATUS_STATE_SRDENT		(2 << 29)
+-#define   EDP_PSR_STATUS_STATE_BUFOFF		(3 << 29)
+-#define   EDP_PSR_STATUS_STATE_BUFON		(4 << 29)
+-#define   EDP_PSR_STATUS_STATE_AUXACK		(5 << 29)
+-#define   EDP_PSR_STATUS_STATE_SRDOFFACK	(6 << 29)
+-#define   EDP_PSR_STATUS_LINK_MASK		(3 << 26)
+-#define   EDP_PSR_STATUS_LINK_FULL_OFF		(0 << 26)
+-#define   EDP_PSR_STATUS_LINK_FULL_ON		(1 << 26)
+-#define   EDP_PSR_STATUS_LINK_STANDBY		(2 << 26)
+-#define   EDP_PSR_STATUS_MAX_SLEEP_TIMER_SHIFT	20
+-#define   EDP_PSR_STATUS_MAX_SLEEP_TIMER_MASK	0x1f
+-#define   EDP_PSR_STATUS_COUNT_SHIFT		16
+-#define   EDP_PSR_STATUS_COUNT_MASK		0xf
+-#define   EDP_PSR_STATUS_AUX_ERROR		(1 << 15)
+-#define   EDP_PSR_STATUS_AUX_SENDING		(1 << 12)
+-#define   EDP_PSR_STATUS_SENDING_IDLE		(1 << 9)
+-#define   EDP_PSR_STATUS_SENDING_TP2_TP3	(1 << 8)
+-#define   EDP_PSR_STATUS_SENDING_TP1		(1 << 4)
+-#define   EDP_PSR_STATUS_IDLE_MASK		0xf
++#define   EDP_PSR_STATUS_STATE_MASK		REG_GENMASK(31, 29)
++#define   EDP_PSR_STATUS_STATE_IDLE		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 0)
++#define   EDP_PSR_STATUS_STATE_SRDONACK		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 1)
++#define   EDP_PSR_STATUS_STATE_SRDENT		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 2)
++#define   EDP_PSR_STATUS_STATE_BUFOFF		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 3)
++#define   EDP_PSR_STATUS_STATE_BUFON		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 4)
++#define   EDP_PSR_STATUS_STATE_AUXACK		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 5)
++#define   EDP_PSR_STATUS_STATE_SRDOFFACK	REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 6)
++#define   EDP_PSR_STATUS_LINK_MASK		REG_GENMASK(27, 26)
++#define   EDP_PSR_STATUS_LINK_FULL_OFF		REG_FIELD_PREP(EDP_PSR_STATUS_LINK_MASK, 0)
++#define   EDP_PSR_STATUS_LINK_FULL_ON		REG_FIELD_PREP(EDP_PSR_STATUS_LINK_MASK, 1)
++#define   EDP_PSR_STATUS_LINK_STANDBY		REG_FIELD_PREP(EDP_PSR_STATUS_LINK_MASK, 2)
++#define   EDP_PSR_STATUS_MAX_SLEEP_TIMER_MASK	REG_GENMASK(24, 20)
++#define   EDP_PSR_STATUS_COUNT_MASK		REG_GENMASK(19, 16)
++#define   EDP_PSR_STATUS_AUX_ERROR		REG_BIT(15)
++#define   EDP_PSR_STATUS_AUX_SENDING		REG_BIT(12)
++#define   EDP_PSR_STATUS_SENDING_IDLE		REG_BIT(9)
++#define   EDP_PSR_STATUS_SENDING_TP2_TP3	REG_BIT(8)
++#define   EDP_PSR_STATUS_SENDING_TP1		REG_BIT(4)
++#define   EDP_PSR_STATUS_IDLE_MASK		REG_GENMASK(3, 0)
  
- #define SOUTH_CHICKEN1		_MMIO(0xc2000)
- #define  FDIA_PHASE_SYNC_SHIFT_OVR	19
+ #define _SRD_PERF_CNT_A			0x60844
+ #define _SRD_PERF_CNT_EDP		0x6f844
+ #define EDP_PSR_PERF_CNT(tran)		_MMIO_TRANS2(tran, _SRD_PERF_CNT_A)
+-#define   EDP_PSR_PERF_CNT_MASK		0xffffff
++#define   EDP_PSR_PERF_CNT_MASK		REG_GENMASK(23, 0)
+ 
+ /* PSR_MASK on SKL+ */
+ #define _SRD_DEBUG_A				0x60860
+ #define _SRD_DEBUG_EDP				0x6f860
+ #define EDP_PSR_DEBUG(tran)			_MMIO_TRANS2(tran, _SRD_DEBUG_A)
+-#define   EDP_PSR_DEBUG_MASK_MAX_SLEEP         (1 << 28)
+-#define   EDP_PSR_DEBUG_MASK_LPSP              (1 << 27)
+-#define   EDP_PSR_DEBUG_MASK_MEMUP             (1 << 26)
+-#define   EDP_PSR_DEBUG_MASK_HPD               (1 << 25)
+-#define   EDP_PSR_DEBUG_MASK_DISP_REG_WRITE    (1 << 16) /* Reserved in ICL+ */
+-#define   EDP_PSR_DEBUG_EXIT_ON_PIXEL_UNDERRUN (1 << 15) /* SKL+ */
++#define   EDP_PSR_DEBUG_MASK_MAX_SLEEP		REG_BIT(28)
++#define   EDP_PSR_DEBUG_MASK_LPSP		REG_BIT(27)
++#define   EDP_PSR_DEBUG_MASK_MEMUP		REG_BIT(26)
++#define   EDP_PSR_DEBUG_MASK_HPD		REG_BIT(25)
++#define   EDP_PSR_DEBUG_MASK_DISP_REG_WRITE	REG_BIT(16) /* Reserved in ICL+ */
++#define   EDP_PSR_DEBUG_EXIT_ON_PIXEL_UNDERRUN	REG_BIT(15) /* SKL+ */
+ 
+ #define _PSR2_CTL_A				0x60900
+ #define _PSR2_CTL_EDP				0x6f900
+ #define EDP_PSR2_CTL(tran)			_MMIO_TRANS2(tran, _PSR2_CTL_A)
+-#define   EDP_PSR2_ENABLE			(1 << 31)
+-#define   EDP_SU_TRACK_ENABLE			(1 << 30) /* up to adl-p */
+-#define   TGL_EDP_PSR2_BLOCK_COUNT_NUM_2	(0 << 28)
+-#define   TGL_EDP_PSR2_BLOCK_COUNT_NUM_3	(1 << 28)
++#define   EDP_PSR2_ENABLE			REG_BIT(31)
++#define   EDP_SU_TRACK_ENABLE			REG_BIT(30) /* up to adl-p */
++#define   TGL_EDP_PSR2_BLOCK_COUNT_MASK		REG_BIT(28)
++#define   TGL_EDP_PSR2_BLOCK_COUNT_NUM_2	REG_FIELD_PREP(TGL_EDP_PSR2_BLOCK_COUNT_MASK, 0)
++#define   TGL_EDP_PSR2_BLOCK_COUNT_NUM_3	REG_FIELD_PREP(TGL_EDP_PSR2_BLOCK_COUNT_MASK, 1)
+ #define   EDP_Y_COORDINATE_ENABLE		REG_BIT(25) /* display 10, 11 and 12 */
+ #define   EDP_PSR2_SU_SDP_SCANLINE		REG_BIT(25) /* display 13+ */
+-#define   EDP_MAX_SU_DISABLE_TIME(t)		((t) << 20)
+-#define   EDP_MAX_SU_DISABLE_TIME_MASK		(0x1f << 20)
++#define   EDP_MAX_SU_DISABLE_TIME_MASK		REG_GENMASK(24, 20)
++#define   EDP_MAX_SU_DISABLE_TIME(t)		REG_FIELD_PREP(EDP_MAX_SU_DISABLE_TIME, (t))
++#define   EDP_PSR2_IO_BUFFER_WAKE_MASK		REG_GENMASK(14, 13)
+ #define   EDP_PSR2_IO_BUFFER_WAKE_MAX_LINES	8
+-#define   EDP_PSR2_IO_BUFFER_WAKE(lines)	((EDP_PSR2_IO_BUFFER_WAKE_MAX_LINES - (lines)) << 13)
+-#define   EDP_PSR2_IO_BUFFER_WAKE_MASK		(3 << 13)
++#define   EDP_PSR2_IO_BUFFER_WAKE(lines)	REG_FIELD_PREP(EDP_PSR2_IO_BUFFER_WAKE_MASK, \
++							       EDP_PSR2_IO_BUFFER_WAKE_MAX_LINES - (lines))
++#define   TGL_EDP_PSR2_IO_BUFFER_WAKE_MASK	REG_GENMASK(15, 13)
+ #define   TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES	5
+-#define   TGL_EDP_PSR2_IO_BUFFER_WAKE_SHIFT	13
+-#define   TGL_EDP_PSR2_IO_BUFFER_WAKE(lines)	(((lines) - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES) << TGL_EDP_PSR2_IO_BUFFER_WAKE_SHIFT)
+-#define   TGL_EDP_PSR2_IO_BUFFER_WAKE_MASK	(7 << 13)
++#define   TGL_EDP_PSR2_IO_BUFFER_WAKE(lines)	REG_FIELD_PREP(TGL_EDP_PSR2_IO_BUFFER_WAKE_MASK, \
++							       (lines) - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES)
++#define   EDP_PSR2_FAST_WAKE_MASK		REG_GENMASK(12, 11)
+ #define   EDP_PSR2_FAST_WAKE_MAX_LINES		8
+-#define   EDP_PSR2_FAST_WAKE(lines)		((EDP_PSR2_FAST_WAKE_MAX_LINES - (lines)) << 11)
+-#define   EDP_PSR2_FAST_WAKE_MASK		(3 << 11)
++#define   EDP_PSR2_FAST_WAKE(lines)		REG_FIELD_PREP(EDP_PSR2_FAST_WAKE_MASK, \
++							       EDP_PSR2_FAST_WAKE_MAX_LINES - (lines))
++#define   TGL_EDP_PSR2_FAST_WAKE_MASK		REG_GENMASK(12, 10)
+ #define   TGL_EDP_PSR2_FAST_WAKE_MIN_LINES	5
+-#define   TGL_EDP_PSR2_FAST_WAKE_MIN_SHIFT	10
+-#define   TGL_EDP_PSR2_FAST_WAKE(lines)		(((lines) - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES) << TGL_EDP_PSR2_FAST_WAKE_MIN_SHIFT)
+-#define   TGL_EDP_PSR2_FAST_WAKE_MASK		(7 << 10)
+-#define   EDP_PSR2_TP2_TIME_500us		(0 << 8)
+-#define   EDP_PSR2_TP2_TIME_100us		(1 << 8)
+-#define   EDP_PSR2_TP2_TIME_2500us		(2 << 8)
+-#define   EDP_PSR2_TP2_TIME_50us		(3 << 8)
+-#define   EDP_PSR2_TP2_TIME_MASK		(3 << 8)
+-#define   EDP_PSR2_FRAME_BEFORE_SU_SHIFT	4
+-#define   EDP_PSR2_FRAME_BEFORE_SU_MASK		(0xf << 4)
+-#define   EDP_PSR2_FRAME_BEFORE_SU(a)		((a) << 4)
+-#define   EDP_PSR2_IDLE_FRAME_MASK		0xf
+-#define   EDP_PSR2_IDLE_FRAME_SHIFT		0
++#define   TGL_EDP_PSR2_FAST_WAKE(lines)		REG_FIELD_PREP(TGL_EDP_PSR2_FAST_WAKE_MASK, \
++							       (lines) - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES)
++#define   EDP_PSR2_TP2_TIME_MASK		REG_GENMASK(9, 8)
++#define   EDP_PSR2_TP2_TIME_500us		REG_FIELD_PREP(EDP_PSR2_TP2_TIME_MASK, 0)
++#define   EDP_PSR2_TP2_TIME_100us		REG_FIELD_PREP(EDP_PSR2_TP2_TIME_MASK, 1)
++#define   EDP_PSR2_TP2_TIME_2500us		REG_FIELD_PREP(EDP_PSR2_TP2_TIME_MASK, 2)
++#define   EDP_PSR2_TP2_TIME_50us		REG_FIELD_PREP(EDP_PSR2_TP2_TIME_MASK, 3)
++#define   EDP_PSR2_FRAME_BEFORE_SU_MASK		REG_GENMASK(7, 4)
++#define   EDP_PSR2_FRAME_BEFORE_SU(a)		REG_FIELD_PREP(EDP_PSR2_FRAME_BEFORE_SU_MASK, (a))
++#define   EDP_PSR2_IDLE_FRAMES_MASK		REG_GENMASK(3, 0)
++#define   EDP_PSR2_IDLE_FRAMES(x)		REG_FIELD_PREP(EDP_PSR2_IDLE_FRAMES_MASK, (x))
+ 
+ #define _PSR_EVENT_TRANS_A			0x60848
+ #define _PSR_EVENT_TRANS_B			0x61848
+@@ -2251,22 +2256,22 @@
+ #define _PSR_EVENT_TRANS_D			0x63848
+ #define _PSR_EVENT_TRANS_EDP			0x6f848
+ #define PSR_EVENT(tran)				_MMIO_TRANS2(tran, _PSR_EVENT_TRANS_A)
+-#define  PSR_EVENT_PSR2_WD_TIMER_EXPIRE		(1 << 17)
+-#define  PSR_EVENT_PSR2_DISABLED		(1 << 16)
+-#define  PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN	(1 << 15)
+-#define  PSR_EVENT_SU_CRC_FIFO_UNDERRUN		(1 << 14)
+-#define  PSR_EVENT_GRAPHICS_RESET		(1 << 12)
+-#define  PSR_EVENT_PCH_INTERRUPT		(1 << 11)
+-#define  PSR_EVENT_MEMORY_UP			(1 << 10)
+-#define  PSR_EVENT_FRONT_BUFFER_MODIFY		(1 << 9)
+-#define  PSR_EVENT_WD_TIMER_EXPIRE		(1 << 8)
+-#define  PSR_EVENT_PIPE_REGISTERS_UPDATE	(1 << 6)
+-#define  PSR_EVENT_REGISTER_UPDATE		(1 << 5) /* Reserved in ICL+ */
+-#define  PSR_EVENT_HDCP_ENABLE			(1 << 4)
+-#define  PSR_EVENT_KVMR_SESSION_ENABLE		(1 << 3)
+-#define  PSR_EVENT_VBI_ENABLE			(1 << 2)
+-#define  PSR_EVENT_LPSP_MODE_EXIT		(1 << 1)
+-#define  PSR_EVENT_PSR_DISABLE			(1 << 0)
++#define  PSR_EVENT_PSR2_WD_TIMER_EXPIRE		REG_BIT(17)
++#define  PSR_EVENT_PSR2_DISABLED		REG_BIT(16)
++#define  PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN	REG_BIT(15)
++#define  PSR_EVENT_SU_CRC_FIFO_UNDERRUN		REG_BIT(14)
++#define  PSR_EVENT_GRAPHICS_RESET		REG_BIT(12)
++#define  PSR_EVENT_PCH_INTERRUPT		REG_BIT(11)
++#define  PSR_EVENT_MEMORY_UP			REG_BIT(10)
++#define  PSR_EVENT_FRONT_BUFFER_MODIFY		REG_BIT(9)
++#define  PSR_EVENT_WD_TIMER_EXPIRE		REG_BIT(8)
++#define  PSR_EVENT_PIPE_REGISTERS_UPDATE	REG_BIT(6)
++#define  PSR_EVENT_REGISTER_UPDATE		REG_BIT(5) /* Reserved in ICL+ */
++#define  PSR_EVENT_HDCP_ENABLE			REG_BIT(4)
++#define  PSR_EVENT_KVMR_SESSION_ENABLE		REG_BIT(3)
++#define  PSR_EVENT_VBI_ENABLE			REG_BIT(2)
++#define  PSR_EVENT_LPSP_MODE_EXIT		REG_BIT(1)
++#define  PSR_EVENT_PSR_DISABLE			REG_BIT(0)
+ 
+ #define _PSR2_STATUS_A				0x60940
+ #define _PSR2_STATUS_EDP			0x6f940
 -- 
 2.39.2
 
