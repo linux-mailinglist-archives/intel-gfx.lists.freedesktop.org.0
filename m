@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93A36CBF98
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:47:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E896CBFA0
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:48:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95EEF10E040;
-	Tue, 28 Mar 2023 12:47:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51CB10E0D4;
+	Tue, 28 Mar 2023 12:48:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D02EB10E040
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 12:47:28 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A03310E0D4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 12:48:07 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1EF2A61764;
- Tue, 28 Mar 2023 12:47:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AF05C433D2;
- Tue, 28 Mar 2023 12:47:27 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 87626CE1C8B;
+ Tue, 28 Mar 2023 12:48:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71238C433D2;
+ Tue, 28 Mar 2023 12:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1680007647;
- bh=CXsm1V2TmrTArP6fSuh20i9xt5D+eay8ASiggGxTbR8=;
+ s=korg; t=1680007682;
+ bh=idtGv/U5e6hsE8IKafehd9oQrznpNqqWkIjh8Nm6WVg=;
  h=Subject:To:Cc:From:Date:From;
- b=TOR8QXMsAjO8Wpc/W5f2ChwlGAbQz5lwpA3wesEuWSMLYnNy7kpXCuorwC06uhtF1
- yl6UVxj2ToqhT6yB9LH4uRn1hK34q+yDzmsKORn5e5zp4eZH54oXjhoJPLiQeXJ8ew
- eMp+INtvuhPzhlfjUw3XK3kg4OeK5upkSPRuhxvQ=
+ b=TeA/cIVlz1Ha9oYbCGsBMJLZoZoCev3DSk324swhY152HRAsnUQTvIBdOYiQEdEut
+ ZpBoykCcrwdk6nndnTrwY9Q1Zed9hM8OpgYjV44kPM6z/OlUhm1MzM1WHZErvERyCE
+ lL7Pf9EmR+aBCL7rpgw2OcK7OWh8B9tMIz+ifCG0=
 To: andi.shyti@linux.intel.com, andrzej.hajda@intel.com,
  chris@chris-wilson.co.uk, gregkh@linuxfoundation.org,
  intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
  janusz.krzysztofik@linux.intel.com, nirmoy.das@intel.com,
  thomas.hellstrom@intel.com, tvrtko.ursulin@intel.com
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 28 Mar 2023 14:47:05 +0200
-Message-ID: <1680007625114205@kroah.com>
+Date: Tue, 28 Mar 2023 14:47:16 +0200
+Message-ID: <1680007636171198@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/i915/active: Fix missing debug object
- activation" has been added to the 5.10-stable tree
+ activation" has been added to the 5.15-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,12 +62,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/i915/active: Fix missing debug object activation
 
-to the 5.10-stable tree which can be found at:
+to the 5.15-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-i915-active-fix-missing-debug-object-activation.patch
-and it can be found in the queue-5.10 subdirectory.
+and it can be found in the queue-5.15 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -115,7 +114,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/i915_active.c
 +++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -96,8 +96,7 @@ static void debug_active_init(struct i91
+@@ -92,8 +92,7 @@ static void debug_active_init(struct i91
  static void debug_active_activate(struct i915_active *ref)
  {
  	lockdep_assert_held(&ref->tree_lock);
@@ -129,4 +128,5 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from nirmoy.das@intel.com are
 
-queue-5.10/drm-i915-active-fix-missing-debug-object-activation.patch
+queue-5.15/drm-i915-gt-perform-uc-late-init-after-probe-error-i.patch
+queue-5.15/drm-i915-active-fix-missing-debug-object-activation.patch
