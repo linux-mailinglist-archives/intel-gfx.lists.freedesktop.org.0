@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC0F6CCDF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 01:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F42C6CCDFE
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 01:25:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78DC710E4C9;
-	Tue, 28 Mar 2023 23:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 997A210E4B7;
+	Tue, 28 Mar 2023 23:24:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7EA9010E4C9;
- Tue, 28 Mar 2023 23:22:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4247910E9FC;
+ Tue, 28 Mar 2023 23:24:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7B40BA7DFF;
- Tue, 28 Mar 2023 23:22:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37C19A7DFF;
+ Tue, 28 Mar 2023 23:24:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Date: Tue, 28 Mar 2023 23:22:04 -0000
-Message-ID: <168004572450.29057.8771431424624622946@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Tue, 28 Mar 2023 23:24:57 -0000
+Message-ID: <168004589720.29056.1047692060430299041@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230307134901.322560-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230307134901.322560-1-dmitry.baryshkov@linaro.org>
+References: <20230224-track_gt-v5-0-77be86f2c872@intel.com>
+In-Reply-To: <20230224-track_gt-v5-0-77be86f2c872@intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_move_DSC_RC_tables_to_drm=5Fdsc=5Fhelper=2Ec_=28rev3?=
- =?utf-8?q?=29?=
+ =?utf-8?q?rm/i915=3A_use_ref=5Ftracker_library_for_tracking_wakerefs_=28r?=
+ =?utf-8?q?ev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,20 +48,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: move DSC RC tables to drm_dsc_helper.c (rev3)
-URL   : https://patchwork.freedesktop.org/series/114473/
+Series: drm/i915: use ref_tracker library for tracking wakerefs (rev6)
+URL   : https://patchwork.freedesktop.org/series/100327/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/114473/revisions/3/mbox/ not applied
-Applying: drm/i915/dsc: change DSC param tables to follow the DSC model
-Applying: drm/i915/dsc: move rc_buf_thresh values to common helper
-Applying: drm/i915/dsc: move DSC tables to DRM DSC helper
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_vdsc.c).
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/100327/revisions/6/mbox/ not applied
+Applying: lib/ref_tracker: add unlocked leak print helper
+Applying: lib/ref_tracker: improve printing stats
+Applying: lib/ref_tracker: add printing to memory buffer
+Applying: lib/ref_tracker: remove warnings in case of allocation failure
+Applying: drm/i915: Correct type of wakeref variable
+Applying: drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+Applying: drm/i915: track gt pm wakerefs
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/Kconfig.debug).
 error: could not build fake ancestor
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 drm/i915/dsc: move DSC tables to DRM DSC helper
+Patch failed at 0007 drm/i915: track gt pm wakerefs
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
