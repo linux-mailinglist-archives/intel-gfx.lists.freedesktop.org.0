@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CD66CCE1F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 01:36:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7476CCE30
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 01:48:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDD510E4B7;
-	Tue, 28 Mar 2023 23:36:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42E3D10E266;
+	Tue, 28 Mar 2023 23:48:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B7CD10E13D;
- Tue, 28 Mar 2023 23:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680046562; x=1711582562;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tDVH8RDqRu0zI89/KRom/DN3qLs+DojynELDAVNwNC0=;
- b=QBtk4AInstsgv/LD3sdd13teYthHw/TRpc0Ora9iojzLu+IreH1HmOkq
- auA9W9UJ4NggzdTFnMclkoCuWYpFVQTPwgsBd6yiFDAjM/gciHr/89DvQ
- 6Zdi+00pEqg0K8bKDHLY72ZoBhTDi12r3l+/FoP0EREoOnUJSLVAs+mfx
- Z5kiZZH/nnJ3vR0AexQD0YYnyUCuD+jtl3QAhxmApDkEip8ZkMeBRnDoA
- eVboU7l3rMBvPQZinjW9uaMIT2/NzVtXcgE4JGowCsR7fhTPaQYTuuIyi
- MzRCmSSLAHSWn7hAdWPkFWb0yV/pQYESANVHEkKeIucxshTyw1ukejss2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="338228424"
-X-IronPort-AV: E=Sophos;i="5.98,299,1673942400"; d="scan'208";a="338228424"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 16:35:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="686610521"
-X-IronPort-AV: E=Sophos;i="5.98,299,1673942400"; d="scan'208";a="686610521"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 16:35:48 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Mar 2023 16:35:43 -0700
-Message-Id: <20230328233543.1091127-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A18210E266;
+ Tue, 28 Mar 2023 23:48:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 91E6EAADD6;
+ Tue, 28 Mar 2023 23:48:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Use 0 to designate disabled PL1
- power limit
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 28 Mar 2023 23:48:33 -0000
+Message-ID: <168004731357.29056.6054789549156409525@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Make_utility_pin_asserts_more_accurate?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,93 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On ATSM the PL1 limit is disabled at power up. The previous uapi assumed
-that the PL1 limit is always enabled and therefore did not have a notion of
-a disabled PL1 limit. This results in erroneous PL1 limit values when the
-PL1 limit is disabled. For example at power up, the disabled ATSM PL1 limit
-was previously shown as 0 which means a low PL1 limit whereas the limit
-being disabled actually implies a high effective PL1 limit value.
+== Series Details ==
 
-To get round this problem, the PL1 limit uapi is expanded to include a
-special value 0 to designate a disabled PL1 limit.
+Series: drm/i915: Make utility pin asserts more accurate
+URL   : https://patchwork.freedesktop.org/series/115741/
+State : warning
 
-Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
-Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/8060
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- .../ABI/testing/sysfs-driver-intel-i915-hwmon |  3 ++-
- drivers/gpu/drm/i915/i915_hwmon.c             | 24 +++++++++++++++++++
- 2 files changed, 26 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-index 2d6a472eef885..96fec0bb74c2c 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-@@ -14,7 +14,8 @@ Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
- 
- 		The power controller will throttle the operating frequency
- 		if the power averaged over a window (typically seconds)
--		exceeds this limit.
-+		exceeds this limit. A read value of 0 means that the PL1 power
-+		limit is disabled. Writing 0 disables the limit if possible.
- 
- 		Only supported for particular Intel i915 graphics platforms.
- 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 596dd2c070106..c099057888914 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -349,6 +349,8 @@ hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
- 	}
- }
- 
-+#define PL1_DISABLE 0
-+
- /*
-  * HW allows arbitrary PL1 limits to be set but silently clamps these values to
-  * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
-@@ -362,6 +364,14 @@ hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
- 	intel_wakeref_t wakeref;
- 	u64 r, min, max;
- 
-+	/* Check if PL1 limit is disabled */
-+	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-+		r = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
-+	if (!(r & PKG_PWR_LIM_1_EN)) {
-+		*val = PL1_DISABLE;
-+		return 0;
-+	}
-+
- 	*val = hwm_field_read_and_scale(ddat,
- 					hwmon->rg.pkg_rapl_limit,
- 					PKG_PWR_LIM_1,
-@@ -385,8 +395,22 @@ static int
- hwm_power_max_write(struct hwm_drvdata *ddat, long val)
- {
- 	struct i915_hwmon *hwmon = ddat->hwmon;
-+	intel_wakeref_t wakeref;
- 	u32 nval;
- 
-+	if (val == PL1_DISABLE) {
-+		/* Disable PL1 limit */
-+		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
-+						    PKG_PWR_LIM_1_EN, 0);
-+
-+		/* Verify, because PL1 limit cannot be disabled on all platforms */
-+		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-+			nval = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
-+		if (nval & PKG_PWR_LIM_1_EN)
-+			return -EPERM;
-+		return 0;
-+	}
-+
- 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
- 	nval = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_power, SF_POWER);
- 	nval = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
--- 
-2.38.0
+Error: dim checkpatch failed
+7920f6c79d29 drm/i915: Make utility pin asserts more accurate
+-:12: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
+#12: 
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/6609
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+
 
