@@ -2,50 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489196CBEF7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9DF6CBF59
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:40:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D565210E089;
-	Tue, 28 Mar 2023 12:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF63410E30A;
+	Tue, 28 Mar 2023 12:40:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 510B810E089
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 12:24:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680006245; x=1711542245;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=F8Uk7hUcRwkALXYf8eGxHXAFunLwIXzN90m6iBQdoC8=;
- b=Kh+lw9SM/UvDr5sir2rho5l5SelH0yjINBBCco+wg/5Yl9qpwe7hWrdk
- tqOV+4H75u0lm/kbiilDTyoZGwxmSPNnxA5pVLGht7ierRWSp3rzdZaj2
- zXkRbFpbiLer9wnYhE72d+JY87tKV3Hkers6qnA42KIY8IbDFMwKiRHwN
- jY0gA7ncDEyvyYLvpHrjdSOh1oicFFMLjmkVZLe9KR2LwvHbsLK+/euq8
- md/krPK3n0iM8l8qiNGiI8yYG/lE45gD7mJoEwLZ33JvslEcNsxKDWnRW
- 2EJld9pvH8tbRDo3iuz9/mrmWmfbwTZUFSC0a/xJBuTGJIoN+dzQaMZgF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="368307672"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="368307672"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 05:24:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="661148012"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="661148012"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga006.jf.intel.com with SMTP; 28 Mar 2023 05:23:57 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Mar 2023 15:23:57 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Mar 2023 15:23:57 +0300
-Message-Id: <20230328122357.1697-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2056.outbound.protection.outlook.com [40.107.93.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A724E10E0D4;
+ Tue, 28 Mar 2023 12:40:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gVYj/2x2RnvnRvMsFN8SbT9zEsFrUyCHeQavBm6xTjO+mXDUUX8D/RR2eXW4tmk2ndY55hQFcx2O181HvLYTaDuhUjbuBlRwI0wacmiYj/fAt7gBNWk23bxv9BZ190FwbJ95Id41AbExYajpMlFryP6KgVZTqEtz0bpSswVbPdX32qIAPJf15uNX18jauWeXAYVaL9jvjdgHh3e1xhuRh9Dwsh1x7CQWkiyDBeeKxQGb1EWkUifCPog1ChOjSvzD7/Ts9QaaOYCpCvgTtsKVK9Q9yosqY2GuFzZX3Q1zB25NKSo3fD3paPD8hm5pe95Zun1z0RW/42y1lXy214104Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Za6JcKnTjWSLWsCy+Fb1cEu2P1jM/s3tiQNMQTfTp5s=;
+ b=J9EuemWpiEyCDcutU7J6WJUsV4cZTueE1znxXqsqcC+899Vt1k5iPN2fUzi1rLTHGQPPQgz1TOStunzY0lDoAnOd7OnQhL8mLAhgJ6XJ9ZZTALILH5MYNcH+TPvwmFXBYv8SELq5alqfkrHJSx/46D6DTmiuEx9zaDYgAdQjOelMgRk+21BC0K/rqKtCaq4e4tYvjm7qpk7c0CAcQ4H4gNpzeoQAX44ECJBY73TCO2gTFveWHPYk8w7/gSOAwroMdUN5I/pR5UD+rr8+Pa3cbVph41ui9Vesq1h0MCDWFG0etrevC9F/beJMloFGSO12n3ITXsMXD0Fx2qDWvnN9Kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Za6JcKnTjWSLWsCy+Fb1cEu2P1jM/s3tiQNMQTfTp5s=;
+ b=BZoQehOxJjoqhYDkZ0UJE+FxF9CNUuucaDTbpmqOGmUv38RrE5/TU3bDYT7keG+HFglVqYpLgYJUeab3PT+n9BcvOHebTXe9R/8zAzZAyMVQ7Abxm43FD0wfUn+kr3pVJIOg9naDoIuzIeh9PCQolquXEgNfe42dCLm1qvE09aZ9JVqVVN5zErJwXEOYJu90ljCi+0HEDJsfZcNjkGPLAHmBqWBGkQI4lcZ4wcw72uo6aV0Lt2A8ZxkuGr/meMBp83T4d6Lvf/WbY8LMzk0/wopZVac/ILZRGB3P+4du5AXGelbc68Rf8a/T8p/OkINbRBMsHoCJBTIABIB8C6Hw9A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DS0PR12MB8563.namprd12.prod.outlook.com (2603:10b6:8:165::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Tue, 28 Mar
+ 2023 12:40:11 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Tue, 28 Mar 2023
+ 12:40:10 +0000
+Date: Tue, 28 Mar 2023 09:40:08 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <ZCLgKKeESkh3Cdk2@nvidia.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <20230327093458.44939-11-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327093458.44939-11-yi.l.liu@intel.com>
+X-ClientProxiedBy: CH2PR18CA0040.namprd18.prod.outlook.com
+ (2603:10b6:610:55::20) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Flag purely internal commits to not
- clear crtc_state->inherited
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DS0PR12MB8563:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e9be98e-27cb-4172-5e3e-08db2f89918c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Z5UJVksyHFx3ZswKWqFkhxVEsQ4SBwncdB1VMJrFyFfeGj0Mrn2ZPv2v5VKwx0F5TJpMvfbzWQ23hpN1ckzMEIDTWw263KIyWrEH4iXh4o1TJzdyQmrsCkptsBa83OGmX2+KRzzXxUlHyCUDwzHEcR/4Zjp/IZC6W3lB28fMW6Adt2LQ50W+x2m6hfrJ6QtBBV+J/vgMsFFvY/TEwi7Nl1CeeNUEHhLXPQkVzj9Dq4ntaYcDT6xnSk76rQEjgdniKGVeagqzL5B0OinUHk3cKnLrffm/aBdXHi830ZA4RLuKhD+eqqmmT7yLjY2/lK4IxKA6Ykk03cRH+kFKzj3uKNxzycGfUhoYEpYx56tnPYZKyFhdraRtyt5X2Q2IFsEmebq3js1i/ThL64/4knaLSqjeFgrFX0LqVtiiHzNTk8lrfSUdEfvAQmwnSf+Mf0DzRejgGtXHX28QskvJOzc0ondM5CJUYeiNQ4hXAmuajewu32AAUuZxYKFLHWlJlDFt7HRg4xZ0Clbr5G/4XwTZ6f9vOo6GAiWDkAO4gIC2bd/X9h+YfWq2/ELox3fb5ccp
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(136003)(366004)(39860400002)(396003)(346002)(376002)(451199021)(26005)(6512007)(6506007)(41300700001)(186003)(6486002)(2616005)(478600001)(316002)(38100700002)(4326008)(66476007)(4744005)(7416002)(66946007)(66556008)(6916009)(8676002)(2906002)(36756003)(86362001)(5660300002)(8936002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/7C7bY9d3rLNd6+LbPsQZEZ9h9WB+ve73EuSXnmLagHagvkGGzDhzW7VzYbE?=
+ =?us-ascii?Q?afKeM+m8UMXB7H7q8qxn2cxvEXkuFHnMeVpJWtlftWJargB6UQZocEhCPGQY?=
+ =?us-ascii?Q?Q3NkdHWtNp7rOO896cf2njrp5QJWA2DQj+xHn4vX1ryu9nqj5UHz9q4vibEE?=
+ =?us-ascii?Q?K7W8/jhozTEz3mum9ErlJz7OLobPlD6PWv8BThMqV/8m49BzbGTQO3Hx00IX?=
+ =?us-ascii?Q?qf4G7FvVsrgOZKHYz48T/hiZ338hJYuye7XEuu22hwh47HUdzkVUD0CZGuWN?=
+ =?us-ascii?Q?7cJRWg8jPoBH0QdszojcFEl0tzgztWGLSzQTWs9VigGSkcKdTq56f+MNpuWC?=
+ =?us-ascii?Q?wI5Yt7tqhtdQ2l48jqacmEN6hqM2z6GllgF8zJMnN2tfk8BJFBhgYHBtE1EX?=
+ =?us-ascii?Q?fe79x4EAdzHlnhuyTsPS1+0P7lbdD+NcjzLyHHFtWfbPD3pOMxf6ciIyDYkn?=
+ =?us-ascii?Q?ciYrMqDsBldh4rsg+dTVRK+Cs6++3j+BywvvUT6ILVUQJ8rcw2yB/o11ujY7?=
+ =?us-ascii?Q?7zlB5V9ZL/Jn9/2hgnQ9tbxG/PakMzGV9kGzamNPeFYJUaGKY+tyJVzUZSZA?=
+ =?us-ascii?Q?4Cexgr/w5hdMPoPk6E+7EqHtuoLctye0jdOfTAOmg6u/dHJ+6NhX6MRgLbBI?=
+ =?us-ascii?Q?FO+2jm4BU0rsTlpvOTAcGnzXMoeU/cA6vR8LjW7vRj/CPNLB1Pg/qMTfmwNe?=
+ =?us-ascii?Q?6TNXGwTjLayUVSyFBgCIJ8m8NZp204ofQmxlvrSN/lVjrEiWi0qo3RcqSm6X?=
+ =?us-ascii?Q?z2YhUoooRA7cyiPn0y4Rd17ze9o/SFjcWqAsuaaXMSL6oHWkawku8hUi6koi?=
+ =?us-ascii?Q?5243N1TQsWZcoS5WX6sJ1C798LHvzHpVs/dH6IqzJjNCAiDib8tfqMvEcyeC?=
+ =?us-ascii?Q?puwPcSfR9vrgnOXXDXCOZvBqvpBfy/V0kp6i2t080IzXF7ap7jnczcAvd147?=
+ =?us-ascii?Q?Kb8C2P0wYgaioCp48G86fEOLJFZF1iK6LndpK077mfO2dAOIO2RCcjuc+axS?=
+ =?us-ascii?Q?6lGhE9qQhBaLGoooaLXFtuHaAW5NpvXWwoTA9Gnr0eA3QsueJrs21tI2cyjc?=
+ =?us-ascii?Q?V5Q5ZCe2j0spHaJhxNG7Wgtb7gaw1g5c1rm3d3v7Z5/1GhmWk1KPWRH0nh4g?=
+ =?us-ascii?Q?WwoycSdhUgOr6XvvqpfB3SOmiGKR0U2YsZUtLmh1NXOWWhUZ5XtglnkXw/AB?=
+ =?us-ascii?Q?/sTtUTRprcyC4DecvlYqcmu65mcnIvkr5fL8j0jYHtRsbPXLMxV4DvIh6A9f?=
+ =?us-ascii?Q?gf3dust72XLCq9O8o2tvMc3B78+fmJ6cV3gJmZtA0ZKGFXi6VC0U1XRPfdjJ?=
+ =?us-ascii?Q?5NXQqFr7yser/dFjr7l5rr+HYCaW/KA+8/MjxCRD7mcl7HGAv3uLM7PNgg0Z?=
+ =?us-ascii?Q?y8q9UAttRf8cboANM3vAnMcuXnT8aJF3huBEbZj5Y3GrcY4dhH6yYoyCTzvm?=
+ =?us-ascii?Q?zWaFM39kYSIo+ttJtNxTsSlpafPjKTwPyRXxbbGz4bjT0uPuBGJ+5X906W5K?=
+ =?us-ascii?Q?NrpUmXu/6w0i0UprsPNkJ2aYBobeEbr0hYdnmUYLD9WnS2N5xHr3jldYnTkj?=
+ =?us-ascii?Q?1pdnnUdm6sAlV7Tfqt+dbRGON9aiXzb5pkC/G+1C?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e9be98e-27cb-4172-5e3e-08db2f89918c
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 12:40:10.3205 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T0usAbq72WcJ6yIQBvnqs5/przNvRqhNp+mqBQmsjBhSbjTUe1vbjvZYOGz+zA0d
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8563
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,232 +115,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Mar 27, 2023 at 02:34:58AM -0700, Yi Liu wrote:
 
-If we have to force the hardware to go through a full modeset
-due to eg. cdclk reprogramming, we need to preserve
-crtc_state->inherited for all crtcs that have not otherwise
-gone through the whole compute_config() stuff after connectors
-have been detected.
+> +	devices = kcalloc(count, sizeof(*devices), GFP_KERNEL);
+> +	if (!devices) {
+> +		ret = -ENOMEM;
+> +		goto reset_info_exit;
+> +	}
 
-Otherwise eg. cdclk induced modeset glk_force_audio_cdclk()
-will clear the inherited flag, and thus the first real commit
-coming from userspace later on will not be forced through
-the full .compute_config() path and so eg. audio state may
-not get properly recomputed.
+This doesn't need to be so complicated
 
-But instead of adding all kinds of ad-hoc crtc_state->inherited
-preservation hacks all over, let's change things so that we
-only clear it for the crtcs directly included in userspace/client
-initiated commits.
+> +	list_for_each_entry(cur, &vdev->vdev.dev_set->device_list, vdev.dev_set_list) {
+> +		cur_iommufd = vfio_iommufd_physical_ictx(&cur->vdev);
+> +		if (cur->vdev.open_count) {
+> +			if (cur_iommufd != iommufd) {
+> +				ret = -EPERM;
+> +				break;
+> +			}
+> +			ret = vfio_iommufd_physical_devid(&cur->vdev, &devices[index]);
 
-Should be far less fragile since now we just need to remember
-to flag the internal commits, and not worry about where new
-crtcs might get pulled in.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5260
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_wm.c        |  3 ++-
- drivers/gpu/drm/i915/display/intel_atomic.c   |  3 ++-
- drivers/gpu/drm/i915/display/intel_audio.c    |  1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
- drivers/gpu/drm/i915/display/intel_display.c  | 22 ++++++++++---------
- .../drm/i915/display/intel_display_types.h    |  3 +++
- .../drm/i915/display/intel_modeset_setup.c    |  1 +
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      |  3 ++-
- .../gpu/drm/i915/display/intel_sprite_uapi.c  |  1 +
- 10 files changed, 26 insertions(+), 13 deletions(-)
+u32 device;
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index caef72d38798..6288826a9497 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -3447,9 +3447,10 @@ void ilk_wm_sanitize(struct drm_i915_private *dev_priv)
- 
- 	drm_modeset_acquire_init(&ctx, 0);
- 
--retry:
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
-+retry:
- 	/*
- 	 * Hardware readout is the only time we don't want to calculate
- 	 * intermediate watermarks (since we don't trust the current
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index a9a3f3715279..61011641f6ab 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -265,7 +265,6 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
- 	crtc_state->update_wm_post = false;
- 	crtc_state->fifo_changed = false;
- 	crtc_state->preload_luts = false;
--	crtc_state->inherited = false;
- 	crtc_state->wm.need_postvbl_update = false;
- 	crtc_state->do_async_flip = false;
- 	crtc_state->fb_bits = 0;
-@@ -599,6 +598,8 @@ void intel_atomic_state_clear(struct drm_atomic_state *s)
- 	drm_atomic_state_default_clear(&state->base);
- 	intel_atomic_clear_global_state(state);
- 
-+	/* state->internal not reset on purpose */
-+
- 	state->dpll_set = state->modeset = false;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 3d5a9bbc6fde..3d9c9b4f27f8 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -1039,6 +1039,7 @@ static void glk_force_audio_cdclk(struct drm_i915_private *i915,
- 		return;
- 
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- retry:
- 	ret = glk_force_audio_cdclk_commit(to_intel_atomic_state(state), crtc,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 73240cf78c8b..a0058fc0a197 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3922,6 +3922,7 @@ static int modeset_pipe(struct drm_crtc *crtc,
- 		return -ENOMEM;
- 
- 	state->acquire_ctx = ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- 	crtc_state = drm_atomic_get_crtc_state(state, crtc);
- 	if (IS_ERR(crtc_state)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b53a1d969344..d274faf520ec 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4180,7 +4180,10 @@ int intel_get_load_detect_pipe(struct drm_connector *connector,
- 	}
- 
- 	state->acquire_ctx = ctx;
-+	to_intel_atomic_state(state)->internal = true;
-+
- 	restore_state->acquire_ctx = ctx;
-+	to_intel_atomic_state(restore_state)->internal = true;
- 
- 	connector_state = drm_atomic_get_connector_state(state, connector);
- 	if (IS_ERR(connector_state)) {
-@@ -6606,6 +6609,13 @@ int intel_atomic_check(struct drm_device *dev,
- 
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
-+		/*
-+		 * crtc's state no longer considered to be inherited
-+		 * after the first userspace/client initiated commit.
-+		 */
-+		if (!state->internal)
-+			new_crtc_state->inherited = false;
-+
- 		if (new_crtc_state->inherited != old_crtc_state->inherited)
- 			new_crtc_state->uapi.mode_changed = true;
- 
-@@ -8296,9 +8306,10 @@ static int intel_initial_commit(struct drm_device *dev)
- 
- 	drm_modeset_acquire_init(&ctx, 0);
- 
--retry:
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
-+retry:
- 	for_each_intel_crtc(dev, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			intel_atomic_get_crtc_state(state, crtc);
-@@ -8311,15 +8322,6 @@ static int intel_initial_commit(struct drm_device *dev)
- 		if (crtc_state->hw.active) {
- 			struct intel_encoder *encoder;
- 
--			/*
--			 * We've not yet detected sink capabilities
--			 * (audio,infoframes,etc.) and thus we don't want to
--			 * force a full state recomputation yet. We want that to
--			 * happen only for the first real commit from userspace.
--			 * So preserve the inherited flag for the time being.
--			 */
--			crtc_state->inherited = true;
--
- 			ret = drm_atomic_add_affected_planes(state, &crtc->base);
- 			if (ret)
- 				goto out;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ab146b5b68bd..adbf0dfa91d8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -648,6 +648,9 @@ struct intel_atomic_state {
- 	struct __intel_global_objs_state *global_objs;
- 	int num_global_objs;
- 
-+	/* Internal commit, as opposed to userspace/client initiated one */
-+	bool internal;
-+
- 	bool dpll_set, modeset;
- 
- 	struct intel_shared_dpll_state shared_dpll[I915_NUM_PLLS];
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 4558d02641fe..2324ee83f6aa 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -69,6 +69,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
- 	}
- 
- 	state->acquire_ctx = ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- 	/* Everything's already locked, -EDEADLK can't happen. */
- 	temp_crtc_state = intel_atomic_get_crtc_state(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-index 8d3ea8d7b737..5a468ed6e26c 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-@@ -293,6 +293,7 @@ intel_crtc_crc_setup_workarounds(struct intel_crtc *crtc, bool enable)
- 	}
- 
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- retry:
- 	pipe_config = intel_atomic_get_crtc_state(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 31084d95711d..d1f26309429f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2096,10 +2096,11 @@ static int intel_psr_fastset_force(struct drm_i915_private *dev_priv)
- 		return -ENOMEM;
- 
- 	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
-+
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- retry:
--
- 	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
- 	drm_for_each_connector_iter(conn, &conn_iter) {
- 		struct drm_connector_state *conn_state;
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite_uapi.c b/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
-index 70a391083751..a76b48ebc2d3 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
-@@ -86,6 +86,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
- 		goto out;
- 	}
- 	state->acquire_ctx = &ctx;
-+	to_intel_atomic_state(state)->internal = true;
- 
- 	while (1) {
- 		plane_state = drm_atomic_get_plane_state(state, plane);
--- 
-2.39.2
+if (index >= hdr.count)
+   return -ENOSPC;
 
+ret = vfio_iommufd_physical_devid(&cur->vdev, &devices);
+...
+
+if (put_user(&arg->devices[index], device))
+   -EFAULT
+
+index++;
+
+Jason
