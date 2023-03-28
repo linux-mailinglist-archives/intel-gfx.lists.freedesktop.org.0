@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3006CCBE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 23:08:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2150A6CCC0B
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 23:19:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 360F810E49C;
-	Tue, 28 Mar 2023 21:08:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEAFC10E9B2;
+	Tue, 28 Mar 2023 21:19:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6B5C10E48E;
- Tue, 28 Mar 2023 21:08:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680037718; x=1711573718;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6GLo3d35oVtHdFhb6UNpuguyDFJRdNOuxUvgwUhlmnY=;
- b=LglhwN39RVgEo5FLlQyQGAK7E30JKuG6QDcXLAacgGymVQqdiPyM9BsR
- PktPGUQtOjjF+E9K7+bhDXyds1N41adi2+hJ+URoTDczRt1nyf2HfXu9c
- VKXxaTb6EWB3IoGbaTMokBgLTqN2h3QtU2NZGHGsSWlQCc8ciB5r4OP8w
- ovFBAEz9OkSGFT24L602Kk3rloMh1zso3/DQcrU/Ce8AgNKUHgXLyZLWB
- DV9L2v1qD9FpjwpnrJNLFjoBkmNbM2S9P1JR3Mcfl5gX0DD7vHum0dfVl
- xnEZd8Qm1wxv/atGHEvT9cggufuivuepzgqofbUPRr4oC+NU1Hw5O+e4J g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="338193558"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="338193558"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 14:08:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="827628736"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="827628736"
-Received: from fhannebi-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.50.224])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 14:08:36 -0700
-Date: Tue, 28 Mar 2023 23:08:11 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Min Li <lm0963hack@gmail.com>
-Message-ID: <ZCNXO/NJecxaGwep@ashyti-mobl2.lan>
-References: <20230328093627.5067-1-lm0963hack@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89B0510E9B2;
+ Tue, 28 Mar 2023 21:19:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80537A00E6;
+ Tue, 28 Mar 2023 21:19:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328093627.5067-1-lm0963hack@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: fix race condition UAF in
- i915_perf_add_config_ioctl
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 28 Mar 2023 21:19:23 -0000
+Message-ID: <168003836348.29056.13796465467526983413@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230328093042.7469-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230328093042.7469-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_=28mostly=29_PSR_related_register_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,51 +40,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- stable@vger.kernel.org, airlied@gmail.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 28, 2023 at 05:36:27PM +0800, Min Li wrote:
-> Userspace can guess the id value and try to race oa_config object creation
-> with config remove, resulting in a use-after-free if we dereference the
-> object after unlocking the metrics_lock.  For that reason, unlocking the
-> metrics_lock must be done after we are done dereferencing the object.
-> 
-> Signed-off-by: Min Li <lm0963hack@gmail.com>
+== Series Details ==
 
-I think we should also add
+Series: drm/i915: (mostly) PSR related register cleanups
+URL   : https://patchwork.freedesktop.org/series/115708/
+State : warning
 
-Fixes: f89823c21224 ("drm/i915/perf: Implement I915_PERF_ADD/REMOVE_CONFIG interface")
-Cc: <stable@vger.kernel.org> # v4.14+
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+ea8054e733df drm/i915: Fix up whitespace in some display chicken registers
+9e76c77a8f5c drm/i915: Clean up various display chicken registers
+-:182: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#182: FILE: drivers/gpu/drm/i915/i915_reg.h:6142:
++#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK, (x)) /* 0-3 */
 
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 824a34ec0b83..93748ca2c5da 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4634,13 +4634,13 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
->  		err = oa_config->id;
->  		goto sysfs_err;
->  	}
-> -
-> -	mutex_unlock(&perf->metrics_lock);
-> +	id = oa_config->id;
->  
->  	drm_dbg(&perf->i915->drm,
->  		"Added config %s id=%i\n", oa_config->uuid, oa_config->id);
-> +	mutex_unlock(&perf->metrics_lock);
->  
-> -	return oa_config->id;
-> +	return id;
->  
->  sysfs_err:
->  	mutex_unlock(&perf->metrics_lock);
-> -- 
-> 2.25.1
+total: 0 errors, 1 warnings, 0 checks, 165 lines checked
+74b23268a3ee drm/i915/psr: Clean up PSR register defininitions
+-:281: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#281: FILE: drivers/gpu/drm/i915/i915_reg.h:2240:
++							       EDP_PSR2_IO_BUFFER_WAKE_MAX_LINES - (lines))
+
+-:288: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#288: FILE: drivers/gpu/drm/i915/i915_reg.h:2244:
++							       (lines) - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES)
+
+-:294: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#294: FILE: drivers/gpu/drm/i915/i915_reg.h:2248:
++							       EDP_PSR2_FAST_WAKE_MAX_LINES - (lines))
+
+-:311: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#311: FILE: drivers/gpu/drm/i915/i915_reg.h:2252:
++							       (lines) - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES)
+
+total: 0 errors, 4 warnings, 0 checks, 329 lines checked
+3d03b651bafd drm/i915/psr: Use intel_de_rmw()
+c49d375d773e drm/i915/psr: Define more PSR mask bits
+f93a5e2b108c drm/i915/psr: Add a FIXME for the PSR vs. AUX usage conflict
+79e3dc149d68 drm/i915/psr: Include PSR_PERF_CNT in debugfs output on all platforms
+40976ed7f984 drm/i915/psr: Sprinkle cpu_transcoder variables around
+-:150: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#150: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1186:
++			    intel_de_read(dev_priv, EDP_PSR2_CTL(cpu_transcoder)) & EDP_PSR2_ENABLE);
+
+total: 0 errors, 1 warnings, 0 checks, 387 lines checked
+
+
