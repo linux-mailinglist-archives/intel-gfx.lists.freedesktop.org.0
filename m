@@ -1,150 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3F46CC439
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:01:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685086CC5A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:16:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA1FB10E10F;
-	Tue, 28 Mar 2023 15:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C810610E935;
+	Tue, 28 Mar 2023 15:15:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F23010E10F;
- Tue, 28 Mar 2023 15:01:20 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA8610E91C;
+ Tue, 28 Mar 2023 15:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680015680; x=1711551680;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7dKuorAvDSf748yf9JlHRdB5Gr3HzSafGazGs4KPmg8=;
- b=PYZQBkb47T7wdxiLgsaYKozaxGRodDLQft7EmLwd+wJynuPA1HS5fYWi
- 7x/SgV9LxZgoF2PYqWpQhZyaY4FKCoE0sEqg60ucyPoXMPWG+smK2CQxR
- Zb2/B+8xv+W2Lou/3GmjdHbhKlbqr4eDm65jJe9jBKAQW9/ykj6z618/M
- gXRNO3Cb2KMKNiIIcJ5YQc5fjGHKy83gzT8DMCwqqt75RjnEqlGDSxkJK
- krxq29XvnIYIdOhRek87QXRHzWIXCuvyJ9CO9UHRwDLmIN01nGo/Fohv6
- uZY8Lf6Ho8M3MP76l/4Kfgws1CkVRTZNVKnidHiEd8LCZUxKguFDdotBI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="405526255"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="405526255"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 08:00:46 -0700
+ t=1680016551; x=1711552551;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=k2hx/WBFqL7VuFz0I6+8fGkxNCCWOhJe2NR5annG8QI=;
+ b=Wy/x9NANPixK0qDrUIrbk7hbVbXtTtMgsCJI7m0V/Cuts+IYqdC0sNco
+ lil+p17MpmVvFkKhO0NYQwo/R83gonrdk+esgx0Aa1N7mDTLiZCQW8Hlh
+ +zAVOkb4QFwbkTlGkTlajgdJoY4Xa/5QMfBGbT75B0m+WGucW98qMZXtS
+ UQBb6WsTWe6RoeXg4/WQ8GuqKpLwcfxgy/l39GDgD9PpGE1zRd2xC+ryW
+ ElkvxKHOHgygoKhZZy7n6hEjybp7QVjcPoNwa8dLIcNuHmTToJMAnRkZl
+ OQLcekksBtCmWLWYSX6pPQciW5h5W4yHUKbOoUVASoZ3kOsicO1QU+PUv g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="403208618"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="403208618"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 08:15:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="716508117"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="716508117"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga001.jf.intel.com with ESMTP; 28 Mar 2023 08:00:46 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 28 Mar 2023 08:00:46 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 28 Mar 2023 08:00:45 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 28 Mar 2023 08:00:45 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 28 Mar 2023 08:00:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EPSAN36wwJ3os5/8NInSmWTzWqtHeFAzb3TTKMhKwD4KTtpoK1JG7WI21T2vLGWE25wRIQilOHpp4P1boLgbZwbCNHezWvd+4wUpAWhgjB8/V/Yf9GO+kdiKDgtL/t5cpj+5xWLI7ecjqrh5AUN/4NiyenyR1Qxfv6ER6I23Rm/Iq+dUiDhr+zvUZFmwzOM3xgb/CLxZDZwGShXercFE/olIClQ7cZf/lhrK9ya8fFrbKCvdPHrcKi+Mov9NiObBVQ2Q1Icu4j1PYOUmab1Cz8k53QV/naUSur6CqWYDFrhcy9AXgyLTXSQX3f2BJIyNvP8bkKEdvTGlG7qJW/N+EQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fFUusXdcHyUjHq5OlY4WY0pdZl8F6OqPNGD0cDTBHqU=;
- b=Rsvq92PDJA5+LdRCsHsHVz9aOIQaYSKEJcgMGbE3qwU7KQpdi2hrcposIpIaKr3U6fFW4Mkm0QkdotFv9dAPXt1oQN6N3obqBk8GYf3GhkKya5t5AC76h5KQYsdaYbiVq+Jn5jeDWPeKJ2uGnqivHLXCQwXlRJbrNdcvkhkShg5EADldIXMh4/+XX2YI3fxdEHajYQyTcD0ldycq7eb+iDIZ746Rh+NySdgxp6o493eZOdb1QSAf6Yh/lLk/WPj2tpsBS8LZb9Jp0SSNoHl8+e1QFv+gj/qiQVJdcLTX5isj75OlzeZSXVPZDFYJMSh0wVmQRAkDylc8gsL8KN7aQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by DM4PR11MB5295.namprd11.prod.outlook.com (2603:10b6:5:392::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 15:00:43 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6178.041; Tue, 28 Mar 2023
- 15:00:43 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v2 10/10] vfio/pci: Add
- VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
-Thread-Index: AQHZYI92Dc+A7iEOnEaMeK3O2ipWfK8PAuSAgACBxlCAADScAIAAh+4AgAABaZCAAARdAIAAAahg
-Date: Tue, 28 Mar 2023 15:00:42 +0000
-Message-ID: <DS0PR11MB75290B84D334FC726A8BBA95C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230327093458.44939-1-yi.l.liu@intel.com>
- <20230327093458.44939-11-yi.l.liu@intel.com>
- <20230327132619.5ab15440.alex.williamson@redhat.com>
- <DS0PR11MB7529E969C27995D535A24EC0C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BL1PR11MB52717FB9E6D5C10BF4B7DA0A8C889@BL1PR11MB5271.namprd11.prod.outlook.com>
- <20230328082536.5400da67.alex.williamson@redhat.com>
- <DS0PR11MB7529B6782565BE8489D922F9C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230328084616.3361a293.alex.williamson@redhat.com>
-In-Reply-To: <20230328084616.3361a293.alex.williamson@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DM4PR11MB5295:EE_
-x-ms-office365-filtering-correlation-id: a383a9a8-3640-4b8d-a48d-08db2f9d33e9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +wAymlCk8Y0jfMsHcgjG9n1fKDwNajl18SUmdYYiES5R2BgIKK4X8p2I45tM39Rz11isUkB2YePwCaXncpqVwrcPZ+lrEr4RlzqstpkN5hNii1aSZJLMH+MfHbem9YCuCUSKsfQqVC+FhQliy3cVKaB19vKNpUv/83Xssgik+b7bB7rYUWCj7mdd58Fk7K6Z3CWwr4wKlbOIeSrasWIA3eC30aKXQRKwylWg2fZwmww5qijxsyYp6slLMZalDaA+322xtbCj9UL0Bct7RY3frGRnteVeqeyROVejGtDHebTuyn+UnyAkVma4xMGWIWn/QpyKJ6ENUejAnOHcQ0SgfQ809wTTb5qqkuayWeOb9krsQIOGtv+/oWoZIxGLGN2iahCzciyw0UDvBF4DPj/oV30Nve8FFm2B+qp2+gcIOSm6Np14tXCAsYydq1wMvL8XF2zM9Q3X2oS241y+GOwbBhohINgFV0MHMgy0h4fTrPZGNNd7/9XArz5Du02UFDh9g/6wSokt5NlFHWkYupnnN25Ttyavt8NwIgUiYW+xtUmJc0zSyy2qxlrN1ZIYL/+/A0PoyuJ+g5KyBysqXPVzPBpiBzdXeTqqjvRKko3gQwtfQLNobqodA4mVTPPpka4yN6ojPviH5CW7+eCCm0fxoA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(346002)(396003)(366004)(136003)(376002)(451199021)(2906002)(7416002)(8936002)(52536014)(5660300002)(83380400001)(7696005)(55016003)(71200400001)(86362001)(33656002)(38070700005)(38100700002)(82960400001)(122000001)(66556008)(66476007)(66446008)(64756008)(6916009)(4326008)(8676002)(41300700001)(186003)(76116006)(66946007)(316002)(54906003)(26005)(6506007)(9686003)(478600001)(13296009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4L4DXY22pIvA4ZiLUEPk1J9wUDXReYeb25L0oYYrfo6dBsETVjB9agOgiU0j?=
- =?us-ascii?Q?cwyY1AysQejuLyYZ5xaSPBIGQHj6J6sO22qCApkLBcSTeWyt1iZeXDRIjWYr?=
- =?us-ascii?Q?AoC+QW2cOkuztTNWwvQXQ5mt6y0+4qtTwtABjq6qpwz1ThkTBhA52r0WB1tJ?=
- =?us-ascii?Q?8nup5I7z4O16qbhL5v4FHnpt4mmAlSMrRMq7ndK4xlP3ooJu746Q3oC7QxdU?=
- =?us-ascii?Q?zaTRw9xerjnICwLMAJbtbWUsq99f0K2dUGUbGD/DT57qJRN3h+E38Iw4T6LL?=
- =?us-ascii?Q?cwyjFxl7Ucv7Vy2wCtVXtbJzqSF4qv3gkdLIE5CwlNS1ReULwyaVQOTu8i66?=
- =?us-ascii?Q?OUJWQxVVvIyet4/HY1u6bYdzlAynWEkQzW/b/RPYiS8wwFLjZzN21mArO5PW?=
- =?us-ascii?Q?WgfmZpgmNnyGsxXhZJjUKDJLrrZf60hlMhVQn5bYWLwOgPFIg7YpLVzfCAPX?=
- =?us-ascii?Q?wUdFD+BXdcFIZBZplE+eyKEt4hePwsNoS0rl3W9b6odfUpYXlmZGMo+utwhd?=
- =?us-ascii?Q?XUu0pbdGFfad2I95LO0hBxkMOYJRgXqzCT4BhIRDg+0GASCfA/pg9W+F/EDT?=
- =?us-ascii?Q?AYYggKHjb7YlYfneD66AGBr8Ucimhh7O63HWXWEe0en9ahSOUHkmjUuWVBPD?=
- =?us-ascii?Q?WZQZxbbD7BXL690XGkK6mFlHp3s9v3xY/gjyYydIiOfOxT3+q9ToI7MnL6aP?=
- =?us-ascii?Q?MnPOaAgtAnkw4+W/b1Bc1HQp4mx9HKYCBJHIvTr3jIk70PqbqVahf99uNggo?=
- =?us-ascii?Q?VPGTYEQ4SRH4lZ9RrIUGouVDE3F1MYwcJDFnmdORuHus3TBi2K1H1zqAdl/w?=
- =?us-ascii?Q?JU6Mcqxf8NbmrCmpEsWwajN/Mz2V0tkf08/sFY2pda1kjz/0KE93iKIrqX/V?=
- =?us-ascii?Q?2PeJZ5RMo4edz27/9XZQUjEfnQUyvgdaL1ZdZeuWRhLzI33pDF9aZLjW856H?=
- =?us-ascii?Q?C4LIfUFR3aZGTOT0rV48rTMzM5D7mps6hT7dvIa51REfXG9Di5kezxsmo6d9?=
- =?us-ascii?Q?iAjT6gs0phzb2otDU7cP3wgsNuHKYRYifHZXsoWezfnpCPGNXsXP7K3whC4H?=
- =?us-ascii?Q?G7Ol5onlnYr+86Wdheg/AzXpsDfQvMGqDTWUnboMCz0fhUMQMzS20cGxjBLS?=
- =?us-ascii?Q?1GzuVqI1iBwh5qWxwPIdIh5IicsdsZY0Pp6ZW+cJvK6mKKrJpbUtPFejzM5b?=
- =?us-ascii?Q?1xs4yQQVsQ+m2KquXVmJ9GqtpQHfK5ZketGJxGWby1LPdBLchgxOkHWr/itS?=
- =?us-ascii?Q?zB/sMjMiacICnKoKEtdkqrvmTGwgvKONktMmF84F4aXcLIo8mpLqUcenumwU?=
- =?us-ascii?Q?rHogh59XyGOttoAOQO8DszyqFZVXvUouaT4b0D7MaheJU9J13IKAgRJPtZd7?=
- =?us-ascii?Q?3qjjE1G+KGAqfDiZGIerrUjMI1KRr9O494l7u04HxxWT570ELFIqQmMvB2E8?=
- =?us-ascii?Q?cw1RxFMJ0agWTKWcDfKU6SR464LEVaW/se4LKUbIb14F0h4U7AtxEiYvTILE?=
- =?us-ascii?Q?pcBIpi5Wb6oc13evG2NVmlp+Dt5e3GnVLaMIXvcTDG/taNn570yJhcFqG7d+?=
- =?us-ascii?Q?hBGmlQQfydeAbZw4SoU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="773181739"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="773181739"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 08:15:46 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Tue, 28 Mar 2023 17:15:24 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a383a9a8-3640-4b8d-a48d-08db2f9d33e9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2023 15:00:42.9909 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hiyR6jrkXtnfZXFGgTx4IwuPV5hDfXvA8WQyUXh3efW8cF+zPck/XaX/Vou8X9R7cI7hGE+owfyTPZ4JiJfKZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5295
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
- VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230224-track_gt-v5-1-77be86f2c872@intel.com>
+References: <20230224-track_gt-v5-0-77be86f2c872@intel.com>
+In-Reply-To: <20230224-track_gt-v5-0-77be86f2c872@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+X-Mailer: b4 0.11.1
+Subject: [Intel-gfx] [PATCH v5 1/8] lib/ref_tracker: add unlocked leak print
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,128 +63,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Eric Dumazet <edumazet@google.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Alex Williamson <alex.williamson@redhat.com>
-> Sent: Tuesday, March 28, 2023 10:46 PM
->=20
-> On Tue, 28 Mar 2023 14:38:12 +0000
-> "Liu, Yi L" <yi.l.liu@intel.com> wrote:
->=20
-> > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > Sent: Tuesday, March 28, 2023 10:26 PM
-> > >
-> > > On Tue, 28 Mar 2023 06:19:06 +0000
-> > > "Tian, Kevin" <kevin.tian@intel.com> wrote:
-> > >
-> > > > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > > > Sent: Tuesday, March 28, 2023 11:32 AM
-> > > > >
-> > > > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > > > Sent: Tuesday, March 28, 2023 3:26 AM
-> > > > > >
-> > > > > > Additionally, VFIO_DEVICE_GET_PCI_HOT_RESET_INFO has a flags
-> arg
-> > > that
-> > > > > > isn't used, why do we need a new ioctl vs defining
-> > > > > > VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID.
-> > > > >
-> > > > > Sure. I can follow this suggestion. BTW. I have a doubt here. Thi=
-s
-> new
-> > > flag
-> > > > > is set by user. What if in the future kernel has new extensions a=
-nd
-> needs
-> > > > > to report something new to the user and add new flags to tell use=
-r?
-> Such
-> > > > > flag is set by kernel. Then the flags field may have two kinds of=
- flags
-> > > (some
-> > > > > set by user while some set by kernel). Will it mess up the flags =
-space?
-> > > > >
-> > > >
-> > > > flags in a GET_INFO ioctl is for output.
-> > > >
-> > > > if user needs to use flags as input to select different type of inf=
-o then it
-> > > should
-> > > > be split into multiple GET_INFO cmds.
-> > >
-> > > I don't know that that's actually a rule, however we don't currently
-> > > test flags is zero for input, so in this case I think we are stuck wi=
-th
-> > > it only being for output.
-> > >
-> > > Alternatively, should VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
-> > > automatically
-> > > return the dev_id variant of the output and set a flag to indicate th=
-is
-> > > is the case when called on a device fd opened as a cdev?  Thanks,
-> >
-> > Personally I prefer that user asks for dev_id info explicitly. The majo=
-r
-> reason
-> > that we return dev_id is that the group/bdf info is not enough for the
-> device
-> > fd passing case. But if qemu opens device by itself, the group/bdf info=
- is
-> still
-> > enough. So a device opened as a cdev doesn't mean it should return
-> dev_id,
-> > it depends on if user has the bdf knowledge.
->=20
-> But if QEMU opens the cdev, vs getting it from the group, does it make
-> any sense to return a set of group-ids + bdf in the host-reset info?
-> I'm inclined to think the answer is no.
->=20
-> Per my previous suggestion, I think we should always return the bdf. We
-> can't know if the user is accessing through an fd they opened
-> themselves or were passed,
+To have reliable detection of leaks, caller must be able to check under the same
+lock both: tracked counter and the leaks. dir.lock is natural candidate for such
+lock and unlocked print helper can be called with this lock taken.
+As a bonus we can reuse this helper in ref_tracker_dir_exit.
 
-Oh, yes. I'm convinced by this reason since only cdev mode supports device =
-fd
-passing. So I'll reuse the existing _INFO and let kernel set a flag to mark=
- the returned
-info is dev_id+bdf.
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ include/linux/ref_tracker.h |  8 ++++++
+ lib/ref_tracker.c           | 66 ++++++++++++++++++++++++++-------------------
+ 2 files changed, 46 insertions(+), 28 deletions(-)
 
-A check. If the device that the _INFIO is invoked is opened via cdev, but t=
-here
-are devices in the dev_set that are got via VFIO_GROUP_GET_DEVICE_FD, shoul=
-d
-I fail it or allow it?
+diff --git a/include/linux/ref_tracker.h b/include/linux/ref_tracker.h
+index 9ca353ab712b5e..87a92f2bec1b88 100644
+--- a/include/linux/ref_tracker.h
++++ b/include/linux/ref_tracker.h
+@@ -36,6 +36,9 @@ static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
+ 
+ void ref_tracker_dir_exit(struct ref_tracker_dir *dir);
+ 
++void ref_tracker_dir_print_locked(struct ref_tracker_dir *dir,
++				  unsigned int display_limit);
++
+ void ref_tracker_dir_print(struct ref_tracker_dir *dir,
+ 			   unsigned int display_limit);
+ 
+@@ -56,6 +59,11 @@ static inline void ref_tracker_dir_exit(struct ref_tracker_dir *dir)
+ {
+ }
+ 
++static inline void ref_tracker_dir_print_locked(struct ref_tracker_dir *dir,
++						unsigned int display_limit)
++{
++}
++
+ static inline void ref_tracker_dir_print(struct ref_tracker_dir *dir,
+ 					 unsigned int display_limit)
+ {
+diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
+index dc7b14aa3431e2..d4eb0929af8f96 100644
+--- a/lib/ref_tracker.c
++++ b/lib/ref_tracker.c
+@@ -14,6 +14,38 @@ struct ref_tracker {
+ 	depot_stack_handle_t	free_stack_handle;
+ };
+ 
++void ref_tracker_dir_print_locked(struct ref_tracker_dir *dir,
++				  unsigned int display_limit)
++{
++	struct ref_tracker *tracker;
++	unsigned int i = 0;
++
++	lockdep_assert_held(&dir->lock);
++
++	list_for_each_entry(tracker, &dir->list, head) {
++		if (i < display_limit) {
++			pr_err("leaked reference.\n");
++			if (tracker->alloc_stack_handle)
++				stack_depot_print(tracker->alloc_stack_handle);
++			i++;
++		} else {
++			break;
++		}
++	}
++}
++EXPORT_SYMBOL(ref_tracker_dir_print_locked);
++
++void ref_tracker_dir_print(struct ref_tracker_dir *dir,
++			   unsigned int display_limit)
++{
++	unsigned long flags;
++
++	spin_lock_irqsave(&dir->lock, flags);
++	ref_tracker_dir_print_locked(dir, display_limit);
++	spin_unlock_irqrestore(&dir->lock, flags);
++}
++EXPORT_SYMBOL(ref_tracker_dir_print);
++
+ void ref_tracker_dir_exit(struct ref_tracker_dir *dir)
+ {
+ 	struct ref_tracker *tracker, *n;
+@@ -27,13 +59,13 @@ void ref_tracker_dir_exit(struct ref_tracker_dir *dir)
+ 		kfree(tracker);
+ 		dir->quarantine_avail++;
+ 	}
+-	list_for_each_entry_safe(tracker, n, &dir->list, head) {
+-		pr_err("leaked reference.\n");
+-		if (tracker->alloc_stack_handle)
+-			stack_depot_print(tracker->alloc_stack_handle);
++	if (!list_empty(&dir->list)) {
++		ref_tracker_dir_print_locked(dir, 16);
+ 		leak = true;
+-		list_del(&tracker->head);
+-		kfree(tracker);
++		list_for_each_entry_safe(tracker, n, &dir->list, head) {
++			list_del(&tracker->head);
++			kfree(tracker);
++		}
+ 	}
+ 	spin_unlock_irqrestore(&dir->lock, flags);
+ 	WARN_ON_ONCE(leak);
+@@ -42,28 +74,6 @@ void ref_tracker_dir_exit(struct ref_tracker_dir *dir)
+ }
+ EXPORT_SYMBOL(ref_tracker_dir_exit);
+ 
+-void ref_tracker_dir_print(struct ref_tracker_dir *dir,
+-			   unsigned int display_limit)
+-{
+-	struct ref_tracker *tracker;
+-	unsigned long flags;
+-	unsigned int i = 0;
+-
+-	spin_lock_irqsave(&dir->lock, flags);
+-	list_for_each_entry(tracker, &dir->list, head) {
+-		if (i < display_limit) {
+-			pr_err("leaked reference.\n");
+-			if (tracker->alloc_stack_handle)
+-				stack_depot_print(tracker->alloc_stack_handle);
+-			i++;
+-		} else {
+-			break;
+-		}
+-	}
+-	spin_unlock_irqrestore(&dir->lock, flags);
+-}
+-EXPORT_SYMBOL(ref_tracker_dir_print);
+-
+ int ref_tracker_alloc(struct ref_tracker_dir *dir,
+ 		      struct ref_tracker **trackerp,
+ 		      gfp_t gfp)
 
-> but it allows an actually useful debugging
-> report if userspace can know "I can't perform a hot reset of this
-> device because my iommufd context doesn't know about device <bdf>", vs
-> an opaque -EPERM.  Therefore I think we're only discussing the data
-> conveyed in the u32, a group-id or dev_id.  Thanks,
-
-Sure.
-
-Regards,
-Yi Liu
-
-
+-- 
+2.34.1
