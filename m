@@ -2,44 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FD36CC512
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E226CC274
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 16:45:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B03B910E0F1;
-	Tue, 28 Mar 2023 15:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D874B10E8F6;
+	Tue, 28 Mar 2023 14:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75EB610E0F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:12:08 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 1F382B81D77;
- Tue, 28 Mar 2023 15:12:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584F1C433EF;
- Tue, 28 Mar 2023 15:12:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1680016325;
- bh=dU4cXv3GN5nyO7RK1N6UM13F/DcpChRh/3UE/JMFQWw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UT8zNHOW9W58in444r0YNAMHXT/mBiMs3+M5oScFsj/czBV2H4b2TjpVpHSk0UpFA
- yVKC4oapnLVW/+yRiJS+ETZT3//Ele2zuJnLekNhW3x0gGP4Nobzklbc+5q/r9O4bg
- 2hN7zmoDRX9/ar//Ga4UlPPK23xKyvLyEuaL5t2s=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Date: Tue, 28 Mar 2023 16:43:41 +0200
-Message-Id: <20230328142608.175023979@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230328142602.660084725@linuxfoundation.org>
-References: <20230328142602.660084725@linuxfoundation.org>
-User-Agent: quilt/0.67
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CCA010E8F6;
+ Tue, 28 Mar 2023 14:45:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680014742; x=1711550742;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Om8+E3FsPNzf43Lfwlvm1isKNwKjz/rm0d4fTy0WtSk=;
+ b=HyUSXN9+bdkxIfuBlMxP05UGp2RF1dKL6y8O25hX0fC7Hmi6wKWUTrBy
+ gmNc4+kUdg5Eo+K03GLs/7Z3tISbMFLY0pbUY5SdW9ItWB6JFCqq7af9g
+ ChKCsOkJNmQTuFJxNP7CkTgdVWg7K8S/SiMWx+gb9DxzbmqAT6+GrusAi
+ akJRqIUklLnLdeeDzuYbouENsOffXZjGj8LUDrmofBiumx+5S16Fz+UoI
+ y52Q5XZNetvNrHSOUwrz6pe/43jTrvSIzyfOKxdOGC+5likNFXh/YZ24a
+ PIYiRLrySFqiBjaLRjV4yroZWdDNjLAcWywZ4k5Mh47nwOymVE7X+xrnB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="403196075"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="403196075"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 07:45:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="827496333"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="827496333"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 28 Mar 2023 07:45:35 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 28 Mar 2023 07:45:31 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 28 Mar 2023 07:45:31 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Tue, 28 Mar 2023 07:45:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a9GCRjP4iB1QljwqeLwkCzrQd+/CE4BdyWDYXfbo+N1Yn6MkBw+Iv7HjD1229QhNxDEdDFI1urEaIBpMwecmEyS/EMhbi66WnUD6ZPhavdZhVMSmJBUUHg665sI9T/eKPotorlu0nD//BCdFDKSgaOoBOWVmWKZD38J80VyGDIdAgSVqDUfrORVJ583aT7nScqpbYbc0r5kw9OT1iWGFbqlW4sHDdwsZgD8utObDE/1sWAr5YRt9N8v8AigbCWLOgl80KOpClt7GxDI6t00Y5opaV1fjKUtX5XfOOgo2n4L4o81MU+Y3weekcVJKgQOqAL+77tB/u9AJy0WCm98W6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vKcgA8M44yH875ZIJ1Q/yguUPgUBbEr5zMGsBdf8icY=;
+ b=YMoHWHfiS8I31JDDsRvb2GfwN2cOJol8ply1Kynt3x9nspuRPbwcVuqsRJ4gE1p/e0xZkkE1Oj+fGjjxZedEAM+OQPp3xs8BUipliZLWXbMUl9ln4u5ply5OMaecOhK0w07F350YepNVplV4eWLIv9WyeWo4lalRSGzmqTpOroDsomfSoaQkSkEZgOqNjEZ/Beck775fjmtdNrDsAAZwzFfsmTwmOuGQb96klqsX2Doat5/1I2lEtyVyGJuhsa9P3dmKNRqZUcnbBPKKKp67vRzy0SCM2BvSTEZG4dIFuB3h1MkofYHJvg9UGE5AoBlYtxplez3v69EeJjaA7/4e5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by DS7PR11MB7908.namprd11.prod.outlook.com (2603:10b6:8:ea::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.38; Tue, 28 Mar 2023 14:45:29 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::6f7:944a:aaad:301f%8]) with mapi id 15.20.6178.041; Tue, 28 Mar 2023
+ 14:45:29 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
+Thread-Index: AQHZYI92Dc+A7iEOnEaMeK3O2ipWfK8QI7wAgAAiDDA=
+Date: Tue, 28 Mar 2023 14:45:29 +0000
+Message-ID: <DS0PR11MB7529AE495EE69B4F7A471E0EC3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <20230327093458.44939-11-yi.l.liu@intel.com> <ZCLgKKeESkh3Cdk2@nvidia.com>
+In-Reply-To: <ZCLgKKeESkh3Cdk2@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DS7PR11MB7908:EE_
+x-ms-office365-filtering-correlation-id: 60829cf5-c550-47bf-bbe4-08db2f9b1373
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: C6F4E9xggm6fJyYAGl/JpV3yzoWvVCiWYbHgbPeucV5537aQq6DE0aNu3szJHpPuwKJXl9Xw4B+39qbrEkFy/8t9YrrYFem6O/T3sD3VU2vfqKmDXThn4mTYmdnp+1FKNhlJdDFHTlbQMQF+7St1xAcN1jolQomB6cRv2D47k9HDvBmzvlFr8zTJdlnQl2ywt1yOh0ptVfwdjEyCtTUHRFOimWldsb4P9qAnVZzLHiF1uZXP7Tl/c2lii88HmAeFbtiMlUBsiMtcJGiMipDsSnctiD7hR9MXHLlHfLgy9hZNqv7DErz6/3yXEYv5CvLIZCPECDC8dnuocRsJbUKwH+bGPy1IHbfVsFVUQSDfJc4/gAV2zrLPlhf2C2MKUeikv2lpHlogQgwuubMELvoy2h0j2LmnXMbJFmxNTJAlnEJGGB8wEForvsdh9D2USj2b1lypjFA0/7uxVYAiSIdVvqRoqbV/KVXNaY/rIUMG1ztCIyBxbPjYGd4+wDgBWQOF8GaKRrdisgC9Xo+ZmEz5XPrLtJtCzTd93dVviLl0bypQUpY62Ux2P+VNjgdN6NxDnfpwZ5jH2xT3zs7T4XsPPpJDrmJNr37z8EEngdYBA24IcVcxfgLtQ12BY1tLqIzl3GrORdE0K9h9DRqtCs3CEQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(136003)(366004)(396003)(376002)(346002)(451199021)(66476007)(66946007)(83380400001)(64756008)(8936002)(41300700001)(86362001)(55016003)(186003)(316002)(38070700005)(122000001)(7696005)(2906002)(8676002)(71200400001)(76116006)(4326008)(52536014)(54906003)(9686003)(82960400001)(38100700002)(6506007)(26005)(5660300002)(66556008)(6916009)(478600001)(33656002)(7416002)(66446008)(13296009);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?IJ9Tsj24rSqcrSPRhrHBozhGAN12+uL4PSEzKZaxhGudCL0NQLPzqOBq7Pqn?=
+ =?us-ascii?Q?TiZQ51lh8HnlGuN9qYliPeh5NWNzvmw98Qj/cF28rYZc8ZcsQlSrd5UvHl80?=
+ =?us-ascii?Q?sXVdPKL8UAegItCetCv1ZGwCh17ocbtTg1SOFoXGYRsVoAGT4LP42Xw1L+k2?=
+ =?us-ascii?Q?wv6Sl6zQX8TsbweKRkeiKy5A20D50udDMt8DVhidzvv/V+15DLhuJslqoBq4?=
+ =?us-ascii?Q?D7W9fA0mQ3tKIbpid+kcHLcWHrPhLqy9D59C8k3xBeui5uJF2FtJ4ZiSqOFv?=
+ =?us-ascii?Q?kGilrhwMTnEcpNotc9S4QuQPk3wb3lU6jQiHL+vi1x9PdXWp1GZYYqfrtSPe?=
+ =?us-ascii?Q?VSY9IgBQVylzqz6FD2SIeJx//7pu0AwZcxMCtEJH3KYpQpAZaJI5xxCJM4y6?=
+ =?us-ascii?Q?qmsZZYwFImSbVoageVkIjP3lLyfBFpYzHDxdRTwuBrZluDnKzu8DWiBhgWBW?=
+ =?us-ascii?Q?gXU5YsyY0vuzMcH2M6wVURUeEGu9wGXzAVF32sy0YSYCsXwZ6gN7Ae66hsDt?=
+ =?us-ascii?Q?1BMdV48tWEZgnNsDp3jJa09xmmkRHPMoNF2I4AVwWZ9lo+jpXO1rgYnZU9v+?=
+ =?us-ascii?Q?fcM3hOQL1TiGR+mXlhY8XjMNhoPQ62W8mEF7/ojXovG26wRXwzAu7O9j6fR3?=
+ =?us-ascii?Q?dNk8m/4NQ4jbQ8/XX+T2eN/l/FR7/JSFTKKLjqUarl57DJL7n18v6YrDg3Yo?=
+ =?us-ascii?Q?SB6Gn89lXw124YQASJCYRZbkS7gocZoyIj9RCAPbx8FTnpmRk/gKPjfulmv+?=
+ =?us-ascii?Q?7LWF43sGlATTS6oQQB42hN30/mYSePyQsGJr1vc6NtksMIK123ygl/s6wTZg?=
+ =?us-ascii?Q?/fR5qvt1pQ3QM4WsPKLE9JzEAyaQM2sOkHPl+9AwDEFIhwYkwhriSFIn9xpN?=
+ =?us-ascii?Q?8I+DPDPkhZLpC4+bhrkndRwTzo14aQPeVkG+2s4jdEyu+3KnPeE1Ifq8fAZU?=
+ =?us-ascii?Q?rI1ybjdkOKD13wNjCHEoSmlK8Jeuqbj1Wj1vdWSdh25HIt9lhP4mvAaV+7K1?=
+ =?us-ascii?Q?/6GAq8iVXp5WSJoGpZooqfBFBsv7Q6rM5hsxnWXjH3qKSr56atXlLozZHMKj?=
+ =?us-ascii?Q?zbr5xoSupf4ZPFIKYjSoxy4AFGjcB4/ACRsOBGj1EjRxO6ZndoW6apCTe7HX?=
+ =?us-ascii?Q?pg6yidNXydgnDZpPfKidWJWJNU/ZMZzGOg1yRxwgKGTQT3RqIwI21b/JrbTk?=
+ =?us-ascii?Q?AY8u2TNc/rUNM0CH4AnMXk1lXIb8O7QJeZPoaB1sPh8DwznswrH9sq5mOJV4?=
+ =?us-ascii?Q?NTwOYN+3NWcO6bTM7fwiHIf+HjpG1CI0klNjQvrUrFVroeYiZZW8H136n0h+?=
+ =?us-ascii?Q?MVXdJR68bqAbpgVv6/5dbO39uEgTekBVB1p41Di+hwfxlkNFXbACYtBTyrOM?=
+ =?us-ascii?Q?Bzk3+cVqMV/Mmafe3vBjt/brAuUAggA5DyOhK3SuhPF6p3FxCHvkreBbjr9Y?=
+ =?us-ascii?Q?ZvmsgN6wZtZlADNZ/ggFf3FDk8flOjMIs7YLzAl1DAlQaJF9dQvTIlCObAgu?=
+ =?us-ascii?Q?9ooqCWNJjnbd7dz++Hw52dUtV8fqJMwuawKT9GuhnftcVF3IaRJkG44W4f2Z?=
+ =?us-ascii?Q?k7ac2mcaOqYYGeQPVW4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.15 132/146] drm/i915/active: Fix missing debug
- object activation
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60829cf5-c550-47bf-bbe4-08db2f9b1373
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2023 14:45:29.5220 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KtlsuCWYuMQdKr918HSQ4MkFzxvIKLu/duSsft4yS1MXlTzX2IbuuG/hpiPrFIs+D1th7pP2OfA43rZ3Wm0DDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7908
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,57 +146,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, patches@lists.linux.dev,
- Chris Wilson <chris@chris-wilson.co.uk>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Nirmoy Das <nirmoy.das@intel.com>
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, March 28, 2023 8:40 PM
+>=20
+> On Mon, Mar 27, 2023 at 02:34:58AM -0700, Yi Liu wrote:
+>=20
+> > +	devices =3D kcalloc(count, sizeof(*devices), GFP_KERNEL);
+> > +	if (!devices) {
+> > +		ret =3D -ENOMEM;
+> > +		goto reset_info_exit;
+> > +	}
+>=20
+> This doesn't need to be so complicated
+>=20
+> > +	list_for_each_entry(cur, &vdev->vdev.dev_set->device_list,
+> vdev.dev_set_list) {
+> > +		cur_iommufd =3D vfio_iommufd_physical_ictx(&cur->vdev);
+> > +		if (cur->vdev.open_count) {
+> > +			if (cur_iommufd !=3D iommufd) {
+> > +				ret =3D -EPERM;
+> > +				break;
+> > +			}
+> > +			ret =3D vfio_iommufd_physical_devid(&cur->vdev,
+> &devices[index]);
+>=20
+>=20
+> u32 device;
+>=20
+> if (index >=3D hdr.count)
+>    return -ENOSPC;
+>=20
+> ret =3D vfio_iommufd_physical_devid(&cur->vdev, &devices);
 
-commit e92eb246feb9019b0b137706c934b8891cdfe3c2 upstream.
+Ok, so the whole point is that if  cur->vdev->iommufd_ctx=3D=3Dnull, then t=
+he
+vfio_iommufd_physical_devid() shall fail as well.
 
-debug_active_activate() expected ref->count to be zero
-which is not true anymore as __i915_active_activate() calls
-debug_active_activate() after incrementing the count.
+> ...
+>=20
+> if (put_user(&arg->devices[index], device))
 
-v2: No need to check for "ref->count == 1" as __i915_active_activate()
-already make sure of that(Janusz).
+Will modify it. let's close the "separate ioctl" v.s. "reuse ioctl + new fl=
+ag" open with
+Alex first.
 
-Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active callback")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.10+
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230313114613.9874-1-nirmoy.das@intel.com
-(cherry picked from commit bfad380c542438a9b642f8190b7fd37bc77e2723)
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/i915_active.c |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Thanks,
+Yi Liu
 
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -92,8 +92,7 @@ static void debug_active_init(struct i91
- static void debug_active_activate(struct i915_active *ref)
- {
- 	lockdep_assert_held(&ref->tree_lock);
--	if (!atomic_read(&ref->count)) /* before the first inc */
--		debug_object_activate(ref, &active_debug_desc);
-+	debug_object_activate(ref, &active_debug_desc);
- }
- 
- static void debug_active_deactivate(struct i915_active *ref)
-
-
+>    -EFAULT
+>=20
+> index++;
+>=20
+> Jason
