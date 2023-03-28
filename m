@@ -2,100 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABA76CC72D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC0186CC742
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:59:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD7AD10E493;
-	Tue, 28 Mar 2023 15:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5F210E28B;
+	Tue, 28 Mar 2023 15:59:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2061.outbound.protection.outlook.com [40.107.92.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55FE110E11F;
- Tue, 28 Mar 2023 15:55:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nYg1tKrm4a9Mflyammj7GHKAsIApx/X69bZeEKGHNCIBaXGOLX10exa+5crNneA11txu+dnbe54H61ShtDm4SdAJzgPE8rGRGoqxEbXddoztpYL+y+GA41/JjAeM2Y+38eas66H+PpGzgu7I8QVlUjdVd0BxRQ14/YEgUS15AcE4QVno7JQMA4s0c82OKvQysYiasIBKfXSihQ92AYOFWKOIQP9RmHj5+gLAG0S/XU/lGsdcdsxKjUMjOnMUqwyDsW3F24nk+ZFU4zV5aymdZYhaGyRBgm/YZSnl8gAM7LeYkMBzB/RTSkqLhVEvxdGp2sz7hR850cXY6khCbIUgKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eXLb5b/cMJrkIR4iCRJYZ45E9TXyuB6I1RHDRJqPp7A=;
- b=i8cHJaQPL34ioxoUCo8ph3Io9iGD/RVOfh3sB0SbYZV2oq60C/chh0f+g5qucyB4qFpdt9MOGTQZwI03TBfQn4cGwEuwfYYJAzxzkWVKEoK46DnzCV0DyJZ3581LknQPTsreM/f/jn4TMeYcdjWj0JrXtmnsVmy5PAXxA1Fj8PBHyTgBXcnKxUW0SrLbDzGByzOWm+WpgFp9FxalEcMUKxPQ2E/TCy1Ghh+/YrXEaNtPx0aKVZyhrR4vP1CVkELJXqWlhDlDGEbMYoAQk0J5oCaK07d4wz1pXdUMBkhh9qTSZ5yJ8QViCX/QfiqpwX27sV0PN45koEGuULSS1XjtOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eXLb5b/cMJrkIR4iCRJYZ45E9TXyuB6I1RHDRJqPp7A=;
- b=BLyvQaw/KocwrYQ81CYSLa/JtnS6Au3mljptsMzEPl7WLRQj2OMgLwunFCzSgM19uKracpVLiv/9o+fQeXM0Nn9hfpYRMgA8YOslasOgF/Wc6YwcQDu3HpTRztF+4xQKgILqsr6frMTgqMm2cAAmj1wR8r9UvyXaXntvlfDyepz4MP18lvI8q0F2RcN5ECwo7pLYtmpeLn11JdODaTl8mbk6IIPjQCEzaJIS91kTZiBlmjmUcGkaVwf2wej8yPlzbEHwvOQN9xbG66GLNVvWLaR2GGB0dwf0vA5HYW0+CrcRXblbYu2J4KYcATjW0BXjLnSfTBUcHsA3a6xs1yLKpw==
-Received: from MW4PR02CA0019.namprd02.prod.outlook.com (2603:10b6:303:16d::23)
- by DS0PR12MB7852.namprd12.prod.outlook.com (2603:10b6:8:147::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 15:55:08 +0000
-Received: from CO1NAM11FT079.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:16d:cafe::76) by MW4PR02CA0019.outlook.office365.com
- (2603:10b6:303:16d::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.43 via Frontend
- Transport; Tue, 28 Mar 2023 15:55:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- CO1NAM11FT079.mail.protection.outlook.com (10.13.175.134) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6222.17 via Frontend Transport; Tue, 28 Mar 2023 15:55:08 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 28 Mar 2023
- 08:54:55 -0700
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Tue, 28 Mar 2023 08:54:54 -0700
-Received: from Asurada-Nvidia (10.127.8.11) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5 via Frontend
- Transport; Tue, 28 Mar 2023 08:54:53 -0700
-Date: Tue, 28 Mar 2023 08:54:52 -0700
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: <yi.l.liu@intel.com>, Jon Pan-Doh <pandoh@google.com>
-Message-ID: <ZCMNzMV0DTOQEdgH@Asurada-Nvidia>
-References: <20230327094047.47215-17-yi.l.liu@intel.com>
- <20230328022357.2268961-1-pandoh@google.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E200E10E28B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:59:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680019153; x=1711555153;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=Mqhxr04d3eR/WEiBk8GiQkLHWBg37VElKCUYXF7axx0=;
+ b=a2JtFqDaI0vYXy21rBNXCK8Xkt5017d78ff2bG4B1vOQhk4Q44g73AWQ
+ ZN2F07mrGU+p0fDdOpjYrHDRSUq8nZvFDF0TUvyAhlgn18KTsHoI8Z6mL
+ VXt/il86oekikopTW1hG7ZqKKPRqhtxpNk+p76fDofZIPmar3QWFjiYP3
+ YJQ9GrFMyiUyPUhHdKEUYdOgN+VONVa78R/O1CF5Nij1T5nKmLbd0AgFM
+ QRnTgxdVS/aGRTd90WkRRkTjgeWfPMOfvShZjend+zbjPH2PBBc2j4LtM
+ uMDFtn0Pm6es8Ot1RLDFd4OWyFgBfs81ovLcYi7EIianVTliqWhoa6/RS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339331370"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="339331370"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 08:59:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="858148070"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="858148070"
+Received: from mmetzger-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.49.159])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 08:59:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230327121116.1785979-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230327121116.1785979-1-imre.deak@intel.com>
+Date: Tue, 28 Mar 2023 18:59:08 +0300
+Message-ID: <87wn3050kz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230328022357.2268961-1-pandoh@google.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT079:EE_|DS0PR12MB7852:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81fe0650-ac72-4ffa-1055-08db2fa4ce26
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cqn9DUSOJforz+Omefp4f6HN0oCZm//RUDcsvzHLsJF9wrQH0Bo8OnYMkArr9fRtaKDcHC0u/gYVrR+HVe1ynKkuYB6kvuuwT78EhcCLyIH/wFlJb+l49CRir1Outx9JIww8Eopb/IQ6r+dDn0kbvHcccBqePMB22aztUhQ0ilrG52+sWb5RMQLRAecKUZsSsmugjLuMj0cpK0eqqmaUXDTXRXHUBccLlSv6rFMh5mTR/q0Ij1UCBin+AdtzUuU7mp5iC5uu+MODHR2cYaJMWhM/oschuFyNrMWhwUlATMs6aQTPwotvK3b7U6IDyl8ii7S5aXCfYzrX52BM6sqpy+pK4tytX9WXmh0as0d7SIUe/s5DKs6BBgUrKtQO4yItfTJJpjw1+CiSLuOJPc8OHLujKt4mgYBmejrS8NgWDevGICPOhQz2wX/7TacNlExEbgw2gyqkg73y31vAF/IIjimfFdAhMbgoAxHi8H8zOd53KB9c0memmqW9XSOw3gUR8/UmBLYDeYNYfm27Lc+vEADAkDAA3uvpZQLo54HjPjU2cLO7T5zWzlh2/n6lMIdZY4/kN1YUnOpyPASG0z9rQTx7oKy7T4ifQmRhiUFIOFA6J2suIXV2IWWoVFGdgnPXBUR/Du2d/CcFYiz5Gh3h19EFOmGSS2nJbmpX5cyhe3Hec6aI2XEtCxFzpnWEtNxGwBpNy9+Q5VHVC8R0SORUEiRu7M+q+uSszl3A82qWK7VLzneucspRuX1DVGMbYXhF2aBe4Q43AXr/NXMPeDnGGg==
-X-Forefront-Antispam-Report: CIP:216.228.118.233; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge2.nvidia.com; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(84040400005)(451199021)(40470700004)(36840700001)(46966006)(40480700001)(55016003)(4326008)(41300700001)(36860700001)(40460700003)(70586007)(70206006)(316002)(34020700004)(110136005)(478600001)(8676002)(54906003)(2906002)(53546011)(83380400001)(7416002)(5660300002)(82310400005)(186003)(336012)(426003)(33716001)(86362001)(47076005)(9686003)(82740400003)(26005)(8936002)(7636003)(356005);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:55:08.1862 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81fe0650-ac72-4ffa-1055-08db2fa4ce26
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.233];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT079.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7852
-Subject: Re: [Intel-gfx] [PATCH v8 16/24] iommufd/device: Add
- iommufd_access_detach() API
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [core-for-CI] x86/topology: fix erroneous
+ smp_num_siblings on Intel Hybrid platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,61 +58,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, mjrosato@linux.ibm.com, lulu@redhat.com,
- yanting.jiang@intel.com, joro@8bytes.org, jgg@nvidia.com, yan.y.zhao@intel.com,
- intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 27, 2023 at 07:23:57PM -0700, Jon Pan-Doh wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> On 2023/3/27 02:40, Yi Liu wrote:
-> > diff --git a/drivers/iommu/iommufd/iommufd_private.h b/drivers/iommu/iommufd/iommufd_private.h
-> > index 2e6e8e217cce..ec2ce3ef187d 100644
-> > --- a/drivers/iommu/iommufd/iommufd_private.h
-> > +++ b/drivers/iommu/iommufd/iommufd_private.h
-> > @@ -263,6 +263,8 @@ struct iommufd_access {
-> >       struct iommufd_object obj;
-> >       struct iommufd_ctx *ictx;
-> >       struct iommufd_ioas *ioas;
-> > +     struct iommufd_ioas *ioas_unpin;
-> > +     struct mutex ioas_lock;
-> >       const struct iommufd_access_ops *ops;
-> >       void *data;
-> >       unsigned long iova_alignment;
-> 
-> I think you may need to initialize ioas_lock. I got lockdep warnings running
-> iommufd selftests against this patch. Those went away when I added mutex_init().
-> 
+On Mon, 27 Mar 2023, Imre Deak <imre.deak@intel.com> wrote:
+> From: Zhang Rui <rui.zhang@intel.com>
+>
+> The SMT siblings value returned by CPUID.1F SMT level EBX differs
+> among CPUs on Intel Hybrid platforms like AlderLake and MeteorLake.
+> It returns 2 for Pcore CPUs which have SMT siblings and returns 1 for
+> Ecore CPUs which do not have SMT siblings.
+>
+> Today, the CPU boot code sets the global variable smp_num_siblings when
+> every CPU thread is brought up. The last thread to boot will overwrite
+> it with the number of siblings of *that* thread. That last thread to
+> boot will "win". If the thread is a Pcore, smp_num_siblings == 2.  If it
+> is an Ecore, smp_num_siblings == 1.
+>
+> smp_num_siblings describes if the *system* supports SMT.  It should
+> specify the maximum number of SMT threads among all cores.
+>
+> Ensure that smp_num_siblings represents the system-wide maximum number
+> of siblings by always increasing its value. Never allow it to decrease.
+>
+> On MeteorLake-P platform, this fixes a problem that the Ecore CPUs are
+> not updated in any cpu sibling map because the system is treated as an
+> UP system when probing Ecore CPUs.
+>
+> Below shows part of the CPU topology information before and after the
+> fix, for both Pcore and Ecore CPU (cpu0 is Pcore, cpu 12 is Ecore).
+> ...
+> -/sys/devices/system/cpu/cpu0/topology/package_cpus:000fff
+> -/sys/devices/system/cpu/cpu0/topology/package_cpus_list:0-11
+> +/sys/devices/system/cpu/cpu0/topology/package_cpus:3fffff
+> +/sys/devices/system/cpu/cpu0/topology/package_cpus_list:0-21
+> ...
+> -/sys/devices/system/cpu/cpu12/topology/package_cpus:001000
+> -/sys/devices/system/cpu/cpu12/topology/package_cpus_list:12
+> +/sys/devices/system/cpu/cpu12/topology/package_cpus:3fffff
+> +/sys/devices/system/cpu/cpu12/topology/package_cpus_list:0-21
+>
+> And this also breaks userspace tools like lscpu
+> -Core(s) per socket:  1
+> -Socket(s):           11
+> +Core(s) per socket:  16
+> +Socket(s):           1
+>
+> CC: stable@kernel.org
+> Fixes: bbb65d2d365e ("x86: use cpuid vector 0xb when available for detecting cpu topology")
+> Fixes: 95f3d39ccf7a ("x86/cpu/topology: Provide detect_extended_topology_early()")
+> Suggested-by: Len Brown <len.brown@intel.com>
+> Signed-off-by: Zhang Rui <rui.zhang@intel.com>
+> Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> [Imre: resend for core-for-CI]
+> References: https://lore.kernel.org/lkml/20230323015640.27906-1-rui.zhang@intel.com
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8317
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+Pushed to topic/core-for-CI as a stopgap measure.
+
+BR,
+Jani.
+
 > ---
->  drivers/iommu/iommufd/device.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/iommu/iommufd/device.c b/drivers/iommu/iommufd/device.c
-> index f0522d80919d..0eaae60f3537 100644
-> --- a/drivers/iommu/iommufd/device.c
-> +++ b/drivers/iommu/iommufd/device.c
-> @@ -474,6 +474,7 @@ iommufd_access_create(struct iommufd_ctx *ictx,
->         iommufd_ctx_get(ictx);
->         iommufd_object_finalize(ictx, &access->obj);
->         *id = access->obj.id;
-> +       mutex_init(&access->ioas_lock);
->         return access;
+>  arch/x86/kernel/cpu/topology.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/x86/kernel/cpu/topology.c b/arch/x86/kernel/cpu/topology.c
+> index 5e868b62a7c4e..0270925fe013b 100644
+> --- a/arch/x86/kernel/cpu/topology.c
+> +++ b/arch/x86/kernel/cpu/topology.c
+> @@ -79,7 +79,7 @@ int detect_extended_topology_early(struct cpuinfo_x86 *c)
+>  	 * initial apic id, which also represents 32-bit extended x2apic id.
+>  	 */
+>  	c->initial_apicid = edx;
+> -	smp_num_siblings = LEVEL_MAX_SIBLINGS(ebx);
+> +	smp_num_siblings = max_t(int, smp_num_siblings, LEVEL_MAX_SIBLINGS(ebx));
+>  #endif
+>  	return 0;
 >  }
->  EXPORT_SYMBOL_NS_GPL(iommufd_access_create, IOMMUFD);
-> --
-> 2.40.0.348.gf938b09366-goog
+> @@ -109,7 +109,8 @@ int detect_extended_topology(struct cpuinfo_x86 *c)
+>  	 */
+>  	cpuid_count(leaf, SMT_LEVEL, &eax, &ebx, &ecx, &edx);
+>  	c->initial_apicid = edx;
+> -	core_level_siblings = smp_num_siblings = LEVEL_MAX_SIBLINGS(ebx);
+> +	core_level_siblings = LEVEL_MAX_SIBLINGS(ebx);
+> +	smp_num_siblings = max_t(int, smp_num_siblings, LEVEL_MAX_SIBLINGS(ebx));
+>  	core_plus_mask_width = ht_mask_width = BITS_SHIFT_NEXT_LEVEL(eax);
+>  	die_level_siblings = LEVEL_MAX_SIBLINGS(ebx);
+>  	pkg_mask_width = die_plus_mask_width = BITS_SHIFT_NEXT_LEVEL(eax);
 
-Yes... I think I lost that when splitting the changes.
-
-Yi, can you help add this in the next version? 
-
-Thanks!
-Nicolin
+-- 
+Jani Nikula, Intel Open Source Graphics Center
