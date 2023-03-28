@@ -1,79 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747736CCB38
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 22:09:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183D26CCB91
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 22:40:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4110E9DD;
-	Tue, 28 Mar 2023 20:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19A010E483;
+	Tue, 28 Mar 2023 20:40:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C489510E9DD
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 20:09:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680034180;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=yK2cTA5q4Nfc8vKHAw1WbIYaanBBsDzhnNJNFr/v03o=;
- b=QVnDyuB2Er61WAR5L9lO3WsO4v4jzeJ3GRutmdXjnfk14zFfixXekzd3GF72WQaQkIQFqx
- M3nDviflugu/a8Nt8lj440Wjq1MckvqHsftPdqUY5zApbvsp5gL7AUl8Ek0DK2zaCnAEWU
- co4YZ1jNxTQJxlaipkOs7yDZ6vxZxR0=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-622-dELYqT6zOFmF_O0IlEDR-w-1; Tue, 28 Mar 2023 16:09:36 -0400
-X-MC-Unique: dELYqT6zOFmF_O0IlEDR-w-1
-Received: by mail-qk1-f197.google.com with SMTP id
- 195-20020a3705cc000000b00746a3ab9426so6218540qkf.20
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 13:09:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680034175;
- h=mime-version:user-agent:content-transfer-encoding:organization
- :references:in-reply-to:date:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=E3ViBLrQstoIszMf9vlxgWcAdqanW9ooiBnc3wbNkBI=;
- b=XImF3hMSIVH37wfpqOvaL46ZOddxkM6/sW/KHNBX4p03mOI7+wVYWdHKbVyT4/Tqrq
- vLH2B/wcDpd0ol5aSBg/Tf+vKEt1+vZZNXNUYHhp0lSy86cy9t8ivKwOdGrywKZKgfF+
- 2ZOoGBqhx7OXyNbpDl1FlOqDic1H49WhjzzbMnsAnLFxIVIAdTwbnofv3yggStNO4K0z
- KcEv36X4vVzGumJYNFYPIhxdqSZjY1u1rwjUILR+mb+Vic9LF8s6kS7CerdSSbn0VGHQ
- yCEsDbN/0OEyboih4ieeRx4FZ4hLD77H6HBp7htkFhMI3eVzOzqIIQnBafSZ/6WVgCZ1
- GJpA==
-X-Gm-Message-State: AAQBX9eGfDO1FAoWJgMGaJ3U/O1OL3AsduryAUCRV+iE6NZ0Bnrimjbw
- 5XcUhZ2xaMXbryfPV4Vbyd0n86/qMM9t+kiTTRbV7fFUFsdpidxd9vNEvwVXU/pFbnTKrOMfvAy
- MiS4egdaEaOnwqP2nYP2DmKhPFeb0ptzbdRvF
-X-Received: by 2002:a05:6214:248f:b0:5cd:d042:263a with SMTP id
- gi15-20020a056214248f00b005cdd042263amr27609463qvb.51.1680034174958; 
- Tue, 28 Mar 2023 13:09:34 -0700 (PDT)
-X-Google-Smtp-Source: AKy350Y+RO43i9OdXjza249uNCPI5P7b2MC+lObCQRC9iy04p3oZBWYpTKrxqo1G2dNKQDCizmnrAQ==
-X-Received: by 2002:a05:6214:248f:b0:5cd:d042:263a with SMTP id
- gi15-20020a056214248f00b005cdd042263amr27609436qvb.51.1680034174710; 
- Tue, 28 Mar 2023 13:09:34 -0700 (PDT)
-Received: from ?IPv6:2600:4040:5c57:b700::feb? ([2600:4040:5c57:b700::feb])
- by smtp.gmail.com with ESMTPSA id
- q6-20020a37f706000000b0074235386738sm4583567qkj.37.2023.03.28.13.09.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Mar 2023 13:09:34 -0700 (PDT)
-Message-ID: <02587a9825173367ef41b1409512e80df8818cf7.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Mar 2023 16:09:33 -0400
-In-Reply-To: <20230220164718.23117-1-ville.syrjala@linux.intel.com>
-References: <20230220164718.23117-1-ville.syrjala@linux.intel.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06A2810E481;
+ Tue, 28 Mar 2023 20:40:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680036025; x=1711572025;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=gvb2HmdFB0pZ7hrIpyWYWFwcMsyDepZT+cCpwZ9+i3U=;
+ b=NPiAET3iVay2dtVpQfdTV8crem784OhM/cHGq0jq6zAUKaVqEj7JsxVS
+ lqT2EzAk5hIWDoVjtB2DxUBaI+2T8VcfYMxLsZvSmSpr/RWE5wl4NqjJu
+ cKLpsTB/4+eBYfrthIOq1zG1yNH2wqt0UZ7YhP2sw9h/hBJM0qC52lGs0
+ T9kVXGhS5NhQ9fjL5nMIVHC/7lpp7CaSha4dDHffUh4xQZcPO2riCwlnl
+ G5WhcTwqi7DE9bXcOYEWazT4Xd5aeEWkPWrdCFKHHvnCkC2IxuUNh+X0k
+ ZjiCJbQSd/0+P53hgu63yIlzFKeA6w5Z9pHV/YIDp7jq8B0rQpeQWOEdQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="320339020"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="320339020"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 13:40:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="773297847"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="773297847"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by FMSMGA003.fm.intel.com with ESMTP; 28 Mar 2023 13:40:21 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1phG7A-000It5-2N;
+ Tue, 28 Mar 2023 20:40:20 +0000
+Date: Wed, 29 Mar 2023 04:40:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, airlied@gmail.com, daniel@ffwll.ch,
+ ville.syrjala@linux.intel.com, imre.deak@intel.com,
+ tejas.upadhyay@intel.com, javierm@redhat.com
+Message-ID: <202303290420.6rd5p4br-lkp@intel.com>
+References: <20230328111422.23986-5-tzimmermann@suse.de>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Get HDR DPCD refresh timeout from
- VBT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328111422.23986-5-tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Implement fbdev emulation as
+ in-kernel client
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,113 +64,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-BTW - I just started catching up with my email, is this waiting on me or wa=
-s
-someone else able to review it?
+Hi Thomas,
 
-On Mon, 2023-02-20 at 18:47 +0200, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Grab the HDR DPCD refresh timeout (time we need to wait after
-> writing the sourc OUI before the HDR DPCD registers are ready)
-> from the VBT.
->=20
-> Windows doesn't even seem to have any default value for this,
-> which is perhaps a bit weird since the VBT value is documented
-> as TGL+ and I thought the HDR backlight stuff might already be
-> used on earlier platforms. To play it safe I left the old
-> hardcoded 30ms default in place. Digging through some internal
-> stuff that seems to have been a number given by the vendor for
-> one particularly slow TCON. Although I did see 50ms mentioned
-> somewhere as well.
->=20
-> Let's also include the value in the debug print to ease
-> debugging, and toss in the customary connector id+name as well.
->=20
-> The TGL Thinkpad T14 I have sets this to 0 btw. So the delay
-> is now gone on this machine:
->  [CONNECTOR:308:eDP-1] Detected Intel HDR backlight interface version 1
->  [CONNECTOR:308:eDP-1] Using Intel proprietary eDP backlight controls
->  [CONNECTOR:308:eDP-1] SDR backlight is controlled through PWM
->  [CONNECTOR:308:eDP-1] Using native PCH PWM for backlight control (contro=
-ller=3D0)
->  [CONNECTOR:308:eDP-1] Using AUX HDR interface for backlight control (ran=
-ge 0..496)
->  [CONNECTOR:308:eDP-1] Performing OUI wait (0 ms)
->=20
-> Cc: Lyude Paul <lyude@redhat.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c          | 6 ++++++
->  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
->  drivers/gpu/drm/i915/display/intel_dp.c            | 9 +++++++--
->  3 files changed, 14 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index f35ef3675d39..f16887aed56d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1084,6 +1084,12 @@ parse_lfp_backlight(struct drm_i915_private *i915,
->  =09=09panel->vbt.backlight.min_brightness =3D entry->min_brightness;
->  =09}
-> =20
-> +=09if (i915->display.vbt.version >=3D 239)
-> +=09=09panel->vbt.backlight.hdr_dpcd_refresh_timeout =3D
-> +=09=09=09DIV_ROUND_UP(backlight_data->hdr_dpcd_refresh_timeout[panel_typ=
-e], 100);
-> +=09else
-> +=09=09panel->vbt.backlight.hdr_dpcd_refresh_timeout =3D 30;
-> +
->  =09drm_dbg_kms(&i915->drm,
->  =09=09    "VBT backlight PWM modulation frequency %u Hz, "
->  =09=09    "active %s, min brightness %u, level %u, controller %u\n",
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 748b0cd411fa..76f47ba3be45 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -326,6 +326,7 @@ struct intel_vbt_panel_data {
->  =09struct {
->  =09=09u16 pwm_freq_hz;
->  =09=09u16 brightness_precision_bits;
-> +=09=09u16 hdr_dpcd_refresh_timeout;
->  =09=09bool present;
->  =09=09bool active_low_pwm;
->  =09=09u8 min_brightness;=09/* min_brightness/255 of max */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index b77bd4565864..3734e7567230 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2293,10 +2293,15 @@ intel_edp_init_source_oui(struct intel_dp *intel_=
-dp, bool careful)
-> =20
->  void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
->  {
-> +=09struct intel_connector *connector =3D intel_dp->attached_connector;
->  =09struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> =20
-> -=09drm_dbg_kms(&i915->drm, "Performing OUI wait\n");
-> -=09wait_remaining_ms_from_jiffies(intel_dp->last_oui_write, 30);
-> +=09drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Performing OUI wait (%u ms=
-)\n",
-> +=09=09    connector->base.base.id, connector->base.name,
-> +=09=09    connector->panel.vbt.backlight.hdr_dpcd_refresh_timeout);
-> +
-> +=09wait_remaining_ms_from_jiffies(intel_dp->last_oui_write,
-> +=09=09=09=09       connector->panel.vbt.backlight.hdr_dpcd_refresh_timeo=
-ut);
->  }
-> =20
->  /* If the device supports it, try to set the power state appropriately *=
-/
+I love your patch! Yet something to improve:
 
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+[auto build test ERROR on 6e5f96153989e454041848f66a5227be9bd0bbc3]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Zimmermann/drm-i915-Move-fbdev-functions/20230328-191627
+base:   6e5f96153989e454041848f66a5227be9bd0bbc3
+patch link:    https://lore.kernel.org/r/20230328111422.23986-5-tzimmermann%40suse.de
+patch subject: [Intel-gfx] [PATCH 4/4] drm/i915: Implement fbdev emulation as in-kernel client
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230329/202303290420.6rd5p4br-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/6db03fde4587438371c6f7871675cba6389a1319
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Thomas-Zimmermann/drm-i915-Move-fbdev-functions/20230328-191627
+        git checkout 6db03fde4587438371c6f7871675cba6389a1319
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303290420.6rd5p4br-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/i915/i915_driver.c:55:
+>> drivers/gpu/drm/i915/display/intel_fbdev.h:22:1: error: expected identifier or '(' before '{' token
+      22 | {
+         | ^
+
+
+vim +22 drivers/gpu/drm/i915/display/intel_fbdev.h
+
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  15  
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  16  #ifdef CONFIG_DRM_FBDEV_EMULATION
+6db03fde458743 drivers/gpu/drm/i915/display/intel_fbdev.h Thomas Zimmermann 2023-03-28  17  void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  18  void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+c1c04560ac038d drivers/gpu/drm/i915/display/intel_fbdev.h Jani Nikula       2022-02-15  19  struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  20  #else
+6db03fde458743 drivers/gpu/drm/i915/display/intel_fbdev.h Thomas Zimmermann 2023-03-28  21  void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05 @22  {
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  23  }
+6dfccb95cf17cd drivers/gpu/drm/i915/intel_fbdev.h         Jani Nikula       2019-04-05  24  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
