@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02CF6CBFAA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:49:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5441F6CBFBB
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 14:50:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C58C10E30A;
-	Tue, 28 Mar 2023 12:49:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 779E610E8A0;
+	Tue, 28 Mar 2023 12:50:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BF8610E30A
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 12:49:03 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7513310E89D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 12:50:06 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id B9FF5B81CA7;
- Tue, 28 Mar 2023 12:49:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CFF5C433EF;
- Tue, 28 Mar 2023 12:48:59 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id DEA1061724;
+ Tue, 28 Mar 2023 12:50:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE174C4339B;
+ Tue, 28 Mar 2023 12:50:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1680007740;
- bh=fMJtgmyFjvOc/0gc+D1uyAqmfZVeIGtNlQkIpe4Bo+o=;
+ s=korg; t=1680007805;
+ bh=cAHlpNInHbXxg2X5AKvtLfzVJyTKUGD/4HLxxcbk/BE=;
  h=Subject:To:Cc:From:Date:From;
- b=b7Kb6k17Irta2I7SzHRrYn8IlDJXXtdb11TZNnlmPVY9lmLxCCkDlo1MqhZEnQ9bN
- 2ITCb1zt6JWDTkWb+3o2jSTyckikIBFPS2Y34m8tT2ra7pfoDCXkMvXCkb3Qd45sUD
- eoXpmZy41nPcqj44PI37fbOh+i1lyAm0vBqsNxOQ=
+ b=RaLx3pR6KWPTQ4+cv5PAbWJQVPv+p5rCjP/Lauxk/D2tXAvnG8f6XtYytjayB4HAz
+ BRgnPO92sISzBI7hRIsVsfyI9/Ki493hVONSrest2MeBQ0p0Qe18VsGT9B5KRTZFRF
+ GcM2L+nqF6q4t+79snoF0pDLTV0d8H1Zn39BEP1c=
 To: andi.shyti@linux.intel.com, andrzej.hajda@intel.com,
  chris@chris-wilson.co.uk, gregkh@linuxfoundation.org,
  intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
  janusz.krzysztofik@linux.intel.com, nirmoy.das@intel.com,
  thomas.hellstrom@intel.com, tvrtko.ursulin@intel.com
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 28 Mar 2023 14:47:28 +0200
-Message-ID: <168000764822222@kroah.com>
+Date: Tue, 28 Mar 2023 14:47:41 +0200
+Message-ID: <168000766157163@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/i915/active: Fix missing debug object
- activation" has been added to the 6.1-stable tree
+ activation" has been added to the 6.2-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,12 +63,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/i915/active: Fix missing debug object activation
 
-to the 6.1-stable tree which can be found at:
+to the 6.2-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-i915-active-fix-missing-debug-object-activation.patch
-and it can be found in the queue-6.1 subdirectory.
+and it can be found in the queue-6.2 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -129,6 +129,5 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from nirmoy.das@intel.com are
 
-queue-6.1/drm-i915-gt-perform-uc-late-init-after-probe-error-i.patch
-queue-6.1/drm-i915-print-return-value-on-error.patch
-queue-6.1/drm-i915-active-fix-missing-debug-object-activation.patch
+queue-6.2/drm-i915-gt-perform-uc-late-init-after-probe-error-i.patch
+queue-6.2/drm-i915-active-fix-missing-debug-object-activation.patch
