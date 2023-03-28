@@ -1,60 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A9846CBA34
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 11:15:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1786CBABA
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 11:29:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B95A10E2E5;
-	Tue, 28 Mar 2023 09:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E74110E441;
+	Tue, 28 Mar 2023 09:29:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B065810E24D;
- Tue, 28 Mar 2023 09:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679994904; x=1711530904;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vgqaubslCtnLY0skT/NizIF4CUEaszd8RVLqnwFpe4A=;
- b=nCkxEQ+0sZCDUTE4owjmNQZ8IlLti+530XSjJqx4gT+5QDgiSpwpBGwi
- Efv33sKChxj+HwxSTYR3dL0SvsdKrLhXZJc92VxUVZP0hn39ftxOi0N2p
- /eyL6cA4YmXFcF+JhOdw2MI1piO/2tdcC7Xedc0T88zEZSWLTRGeYR2xv
- KCN7JJ31r2IE3/UpLTfxoxK7qxEzwuV+ftnBLw7b22jGo4yfbxwhzDF2j
- yvvAEh4/V1n8gk/1EXWamEPDKD70eP1ArO8pOb90dEuU2FmkRW4fJKdo1
- 3JR3J4uMRdhdv8kH0a+8tiZnek7dA54j1YpiIvC06H2zBoxjRC76ox3Is Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="426780466"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; d="scan'208";a="426780466"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 02:14:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="683817509"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; d="scan'208";a="683817509"
-Received: from wheelerj-mobl.ger.corp.intel.com (HELO [10.213.213.242])
- ([10.213.213.242])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 02:14:44 -0700
-Message-ID: <e06ab8d7-c293-296a-8065-6730f4c85cb2@linux.intel.com>
-Date: Tue, 28 Mar 2023 10:14:42 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9EDAE10E358;
+ Tue, 28 Mar 2023 09:29:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95E9BA0BCB;
+ Tue, 28 Mar 2023 09:29:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2235278190445824134=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <20230316035954.2593843-1-ashutosh.dixit@intel.com>
- <4760d41f-c237-9f97-eb32-5d2ab05eea20@intel.com>
- <87sfdtload.wl-ashutosh.dixit@intel.com> <ZCAyGzvnu5mwHMJg@intel.com>
- <87mt3yku5v.wl-ashutosh.dixit@intel.com> <ZCHWrf7v51Hu9EK8@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZCHWrf7v51Hu9EK8@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Disable PL1 power limit when
- loading GuC firmware
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Tue, 28 Mar 2023 09:29:27 -0000
+Message-ID: <167999576760.29056.10019496092607356810@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230328012430.2524330-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230328012430.2524330-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Fix_MTL_stolen_memory_GGTT_mapping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,410 +40,356 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2235278190445824134==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 27/03/2023 18:47, Rodrigo Vivi wrote:
-> 
-> +Daniel
-> 
-> On Mon, Mar 27, 2023 at 09:58:52AM -0700, Dixit, Ashutosh wrote:
->> On Sun, 26 Mar 2023 04:52:59 -0700, Rodrigo Vivi wrote:
->>>
->>
->> Hi Rodrigo,
->>
->>> On Fri, Mar 24, 2023 at 04:31:22PM -0700, Dixit, Ashutosh wrote:
->>>> On Fri, 24 Mar 2023 11:15:02 -0700, Belgaumkar, Vinay wrote:
->>>>>
->>>>
->>>> Hi Vinay,
->>>>
->>>> Thanks for the review. Comments inline below.
->>>>
->>>>> On 3/15/2023 8:59 PM, Ashutosh Dixit wrote:
->>>>>> On dGfx, the PL1 power limit being enabled and set to a low value results
->>>>>> in a low GPU operating freq. It also negates the freq raise operation which
->>>>>> is done before GuC firmware load. As a result GuC firmware load can time
->>>>>> out. Such timeouts were seen in the GL #8062 bug below (where the PL1 power
->>>>>> limit was enabled and set to a low value). Therefore disable the PL1 power
->>>>>> limit when allowed by HW when loading GuC firmware.
->>>>> v3 label missing in subject.
->>>>>>
->>>>>> v2:
->>>>>>    - Take mutex (to disallow writes to power1_max) across GuC reset/fw load
->>>>>>    - Add hwm_power_max_restore to error return code path
->>>>>>
->>>>>> v3 (Jani N):
->>>>>>    - Add/remove explanatory comments
->>>>>>    - Function renames
->>>>>>    - Type corrections
->>>>>>    - Locking annotation
->>>>>>
->>>>>> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
->>>>>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->>>>>> ---
->>>>>>    drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 +++++++
->>>>>>    drivers/gpu/drm/i915/i915_hwmon.c     | 39 +++++++++++++++++++++++++++
->>>>>>    drivers/gpu/drm/i915/i915_hwmon.h     |  7 +++++
->>>>>>    3 files changed, 55 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->>>>>> index 4ccb4be4c9cba..aa8e35a5636a0 100644
->>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->>>>>> @@ -18,6 +18,7 @@
->>>>>>    #include "intel_uc.h"
->>>>>>      #include "i915_drv.h"
->>>>>> +#include "i915_hwmon.h"
->>>>>>      static const struct intel_uc_ops uc_ops_off;
->>>>>>    static const struct intel_uc_ops uc_ops_on;
->>>>>> @@ -461,6 +462,7 @@ static int __uc_init_hw(struct intel_uc *uc)
->>>>>> 	struct intel_guc *guc = &uc->guc;
->>>>>> 	struct intel_huc *huc = &uc->huc;
->>>>>> 	int ret, attempts;
->>>>>> +	bool pl1en;
->>>>>
->>>>> Init to 'false' here
->>>>
->>>> See next comment.
->>>>
->>>>>
->>>>>
->>>>>> 		GEM_BUG_ON(!intel_uc_supports_guc(uc));
->>>>>> 	GEM_BUG_ON(!intel_uc_wants_guc(uc));
->>>>>> @@ -491,6 +493,9 @@ static int __uc_init_hw(struct intel_uc *uc)
->>>>>> 	else
->>>>>> 		attempts = 1;
->>>>>>    +	/* Disable a potentially low PL1 power limit to allow freq to be
->>>>>> raised */
->>>>>> +	i915_hwmon_power_max_disable(gt->i915, &pl1en);
->>>>>> +
->>>>>> 	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
->>>>>> 		while (attempts--) {
->>>>>> @@ -547,6 +552,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->>>>>> 		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
->>>>>> 	}
->>>>>>    +	i915_hwmon_power_max_restore(gt->i915, pl1en);
->>>>>> +
->>>>>> 	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
->>>>>> 	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
->>>>>>    @@ -563,6 +570,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->>>>>> 	/* Return GT back to RPn */
->>>>>> 	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
->>>>>>    +	i915_hwmon_power_max_restore(gt->i915, pl1en);
->>>>>
->>>>> if (pl1en)
->>>>>
->>>>>      i915_hwmon_power_max_enable().
->>>>
->>>> IMO it's better not to have checks in the main __uc_init_hw() function (if
->>>> we do this we'll need to add 2 checks in __uc_init_hw()). If you really
->>>> want we could do something like this inside
->>>> i915_hwmon_power_max_disable/i915_hwmon_power_max_restore. But for now I
->>>> am not making any changes.
->>>>
->>>> (I can send a patch with the changes if you want to take a look but IMO it
->>>> will add more logic/code but without real benefits (it will save a rmw if
->>>> the limit was already disabled, but IMO this code is called so infrequently
->>>> (only during GuC resets) as to not have any significant impact)).
->>>>
->>>>>
->>>>>> +
->>>>>> 	__uc_sanitize(uc);
->>>>>> 		if (!ret) {
->>>>>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
->>>>>> index ee63a8fd88fc1..769b5bda4d53f 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
->>>>>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
->>>>>> @@ -444,6 +444,45 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
->>>>>> 	}
->>>>>>    }
->>>>>>    +void i915_hwmon_power_max_disable(struct drm_i915_private *i915, bool
->>>>>> *old)
->>>>> Shouldn't we call this i915_hwmon_package_pl1_disable()?
->>>>
->>>> I did think of using "pl1" in the function name but then decided to retain
->>>> "power_max" because other hwmon functions for PL1 limit also use
->>>> "power_max" (hwm_power_max_read/hwm_power_max_write) and currently
->>>> "hwmon_power_max" is mapped to the PL1 limit. So "power_max" is used to
->>>> show that all these functions deal with the PL1 power limit.
->>>>
->>>> There is a comment in __uc_init_hw() explaining "power_max" means the PL1
->>>> power limit.
->>>>
->>>>>> +	__acquires(i915->hwmon->hwmon_lock)
->>>>>> +{
->>>>>> +	struct i915_hwmon *hwmon = i915->hwmon;
->>>>>> +	intel_wakeref_t wakeref;
->>>>>> +	u32 r;
->>>>>> +
->>>>>> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
->>>>>> +		return;
->>>>>> +
->>>>>> +	/* Take mutex to prevent concurrent hwm_power_max_write */
->>>>>> +	mutex_lock(&hwmon->hwmon_lock);
->>>>>> +
->>>>>> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
->>>>>> +		r = intel_uncore_rmw(hwmon->ddat.uncore,
->>>>>> +				     hwmon->rg.pkg_rapl_limit,
->>>>>> +				     PKG_PWR_LIM_1_EN, 0);
->>>>> Most of this code (lock and rmw parts) is already inside static void
->>>>> hwm_locked_with_pm_intel_uncore_rmw() , can we reuse that here?
->>>>
->>>> This was the case in v1 of the patch:
->>>>
->>>> https://patchwork.freedesktop.org/patch/526393/?series=115003&rev=1
->>>>
->>>> But now this cannot be done because if you notice we acquire the mutex in
->>>> i915_hwmon_power_max_disable() and release the mutex in
->>>> i915_hwmon_power_max_restore().
->>>>
->>>> I explained the reason why this the mutex is handled this way in my reply
->>>> to Jani Nikula here:
->>>>
->>>> https://patchwork.freedesktop.org/patch/526598/?series=115003&rev=2
->>>>
->>>> Quoting below:
->>>>
->>>> ```
->>>>>> +	/* hwmon_lock mutex is unlocked in hwm_power_max_restore */
->>>>>
->>>>> Not too happy about that... any better ideas?
->>>>
->>>> Afais, taking the mutex is the only fully correct solution (when we disable
->>>> the power limit, userspace can go re-enable it). Examples of partly
->>>> incorrect solutions (which don't take the mutex) include:
->>>>
->>>> a. Don't take the mutex, don't do anything, ignore any changes to the value
->>>>     if it has changed during GuC reset/fw load (just overwrite the changed
->>>>     value). Con: changed value is lost.
->>>>
->>>> b. Detect if the value has changed (the limit has been re-enabled) after we
->>>>     have disabled the limit and in that case skip restoring the value. But
->>>>     then someone can say why do we allow enabling the PL1 limit since we
->>>>     want to disable it.
->>>>
->>>> Both these are very unlikely scenarios so they might work. But I would
->>>> first like to explore if holding a mutex across GuC reset is prolebmatic
->>>> since that is /the/ correct solution. But if anyone comes up with a reason
->>>> why that cannot be done we can look at these other not completely correct
->>>> options.
->>>
->>> I see what you are doing and it looks indeed a very safe approach to ensure
->>> the pl1 won't be toggled by other paths while we need some guaranteed state
->>> here, or hw init fails badly.
->>>
->>> But in the end you are making your lock to protect the code from another path
->>> and not protecting the data itself. The data was already protected in the
->>> first version with the lock in the rmw.
->>
->> Sorry I am not really following. Daniel had mentioned this "protecting code
->> vs protecting data" but I am wondering how it is applicable in this
->> case. IMO here the data we are protecting is the register which we don't
->> want written to by userland while GuC load is in progress. To do that we
->> need to block the code path writing to register. So what we have here seems
->> to me to be the simplest and cleanest approach for solving this issue.
-> 
-> I believe your cases here is exactly what Daniel had mentioned as protecting
-> code and not data. Well, in the end we are of course protecting data to be
-> modified, but in your case you use that mutex to also protect the code path
-> and avoid other calls while you are in this guc_init_path...
-> 
-> Please Daniel, correct me here if I got it wrong.
-> 
-> What I don't like here is that we lock from one function and keep that for a
-> while and unlock from the other function. To protect the data itself in general
-> we just need for a very minimal time while we are modifying the data itself.
-> 
->>
->>> maybe we need to have some kind of a state check with other state-lock and
->>> then if we are in this forced state for init path, the request for the normal path
->>> ignores and move one,
->>
->> I don't see how this will *not* be racy...
-> 
-> maybe something like this?:
-> 
-> at power_max_disable:
-> mutex_lock(data_lock);
-> 
-> mutex_lock(state_lock);
-> state = in_use;
-> mutex_unlock(state_lock);
-> 
-> mmio_rmw();
-> mutex_unlock(data_lock);
-> 
-> 
-> at power_max_restoration:
-> 
-> at power_max_disable:
-> mutex_lock(data_lock);
-> 
-> mutex_lock(state_lock);
-> state = available;
-> mutex_unlock(state_lock);
-> 
-> mmio_rmw();
-> mutex_unlock(data_lock);
-> 
-> at sysfs fn:
-> 
-> mutex_lock(data_lock);
-> mutex_lock(state_lock);
-> if (state == in_use) {
->     ret = -EAGAIN
->     goto out;
-> }
-> mutex_unlock(state_lock);
-> 
-> ....
-> 
-> out:
-> 
-> mutex_unlock(data_lock);
+== Series Details ==
 
-I agree holding the mutex across functions to cover the GuC init path is 
-not the nicest pattern. Above looks a plausible improvement, although I 
-don't know if EAGAIN is correct for hwmon, or if blocking is. Is 
-something expected to be configuring those fields during boot and can it 
-even handle EAGAIN?
+Series: drm/i915/mtl: Fix MTL stolen memory GGTT mapping
+URL   : https://patchwork.freedesktop.org/series/115695/
+State : success
 
-One advantage of the solution from this patch I can see though is that I 
-think it eliminates data races (restoring the stale value) with fw 
-reload triggered by a potential full GPU reset happening in parallel to 
-sysfs writes.
+== Summary ==
 
-Another thing to check would be if the inversions between 
-hwmon_lock->rpm_get and rpm_get->hwmon_lock are okay.
+CI Bug Log - changes from CI_DRM_12923_full -> Patchwork_115695v1_full
+====================================================
 
-In fact, I am not sure rpm_get in this patch is needed? Seems to be 
-running under paths which guarantee holding it already, if I am not 
-missing something. If not needed then there is obviously no inversion in 
-any way.
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Tvrtko
+  No regressions found.
 
-P.S.
-Do some of the exiting mutex_lock need actually be 
-mutex_lock_interruptible so sysfs reads/write can Ctrl-C, in theory at 
-least.
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_115695v1_full:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1:
+    - {shard-tglu}:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-tglu-10/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-tglu-7/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115695v1_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-apl:          [PASS][3] -> [FAIL][4] ([i915#2346]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-apl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1:
+    - shard-glk:          [PASS][5] -> [FAIL][6] ([i915#2122])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk4/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk8/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html
+
+  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-cpu:
+    - shard-snb:          NOTRUN -> [SKIP][7] ([fdo#109271]) +62 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-snb2/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-cpu.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [FAIL][8] ([i915#2846]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk6/igt@gem_exec_fair@basic-deadline.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk2/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-pace-share@rcs0:
+    - {shard-tglu}:       [FAIL][10] ([i915#2842]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-tglu-7/igt@gem_exec_fair@basic-pace-share@rcs0.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-tglu-2/igt@gem_exec_fair@basic-pace-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-apl:          [FAIL][12] ([i915#2842]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@i915_pm_rps@reset:
+    - shard-snb:          [INCOMPLETE][14] ([i915#7790]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-snb4/igt@i915_pm_rps@reset.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-snb2/igt@i915_pm_rps@reset.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-glk:          [FAIL][16] ([i915#2346]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_cursor_legacy@forked-move@pipe-b:
+    - {shard-dg1}:        [INCOMPLETE][18] ([i915#8011]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-dg1-14/igt@kms_cursor_legacy@forked-move@pipe-b.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-dg1-15/igt@kms_cursor_legacy@forked-move@pipe-b.html
+
+  * igt@sysfs_timeslice_duration@timeout@bcs0:
+    - {shard-dg1}:        [FAIL][20] ([i915#1755]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-dg1-15/igt@sysfs_timeslice_duration@timeout@bcs0.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-dg1-17/igt@sysfs_timeslice_duration@timeout@bcs0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109303]: https://bugs.freedesktop.org/show_bug.cgi?id=109303
+  [fdo#109307]: https://bugs.freedesktop.org/show_bug.cgi?id=109307
+  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1755]: https://gitlab.freedesktop.org/drm/intel/issues/1755
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
+  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
+  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
+  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
+  [i915#3469]: https://gitlab.freedesktop.org/drm/intel/issues/3469
+  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3938]: https://gitlab.freedesktop.org/drm/intel/issues/3938
+  [i915#3952]: https://gitlab.freedesktop.org/drm/intel/issues/3952
+  [i915#4036]: https://gitlab.freedesktop.org/drm/intel/issues/4036
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#426]: https://gitlab.freedesktop.org/drm/intel/issues/426
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
+  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
+  [i915#4818]: https://gitlab.freedesktop.org/drm/intel/issues/4818
+  [i915#4833]: https://gitlab.freedesktop.org/drm/intel/issues/4833
+  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
+  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
+  [i915#4880]: https://gitlab.freedesktop.org/drm/intel/issues/4880
+  [i915#4936]: https://gitlab.freedesktop.org/drm/intel/issues/4936
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
+  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
+  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
+  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
+  [i915#5563]: https://gitlab.freedesktop.org/drm/intel/issues/5563
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
+  [i915#6230]: https://gitlab.freedesktop.org/drm/intel/issues/6230
+  [i915#6301]: https://gitlab.freedesktop.org/drm/intel/issues/6301
+  [i915#6433]: https://gitlab.freedesktop.org/drm/intel/issues/6433
+  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#6953]: https://gitlab.freedesktop.org/drm/intel/issues/6953
+  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7790]: https://gitlab.freedesktop.org/drm/intel/issues/7790
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8150]: https://gitlab.freedesktop.org/drm/intel/issues/8150
+  [i915#8229]: https://gitlab.freedesktop.org/drm/intel/issues/8229
+  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
 
 
->>> or maybe we queue some request...
->>
->> Queuing a request will not be enough (even if this is possible), the
->> request will need to wait to complete till GuC load completes. So we'll
->> have to complete the request when GuC load completes, similar to releasing
->> the mutex in the current patch. Looks like a much more complicated way of
->> doing what the mutex does very simply.
-> 
-> The wq would sleep/delay while state == in_use, then process the next request...
-> 
->>
->> So:
->>
->> a. What is the real problem with the current implementation?
-> 
-> probably the big lock used to protect the state machinery...
-> 
-> but if other folks believe that we don't have an actual problem here
-> and this big lock is acceptable as long as it has the annotation for
-> the static analyzers, I'm okay to just let it go...
-> 
-> 
->>
->> b. What would be the correct solution for it? That is how, specifically,
->>     should we implement it?
-> 
-> state handling with separated lock from the data itself is my suggestion.
-> 
->>
->> Some more guidance will be helpful if you think this patch has issues.
-> 
-> I hope Daniel and/or other i915 maintainers can jump here. Specially if
-> I'm being to paranoid and the current patch is enough...
-> 
->>
->> Thanks.
->> --
->> Ashutosh
->>
->>>> ```
->>>>
->>>>>> +
->>>>>> +	*old = !!(r & PKG_PWR_LIM_1_EN);
->>>>>> +}
->>>>>> +
->>>>>> +void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old)
->>>>>> +	__releases(i915->hwmon->hwmon_lock)
->>>>> We can just call this i915_hwmon_power_max_enable() and call whenever the
->>>>> old value was actually enabled. That way, we have proper mirror functions.
->>>>
->>>> As I explained that would mean adding two checks in the main __uc_init_hw()
->>>> function which I am trying to avoid. So we have disable/restore pair.
->>>>
->>>>>> +{
->>>>>> +	struct i915_hwmon *hwmon = i915->hwmon;
->>>>>> +	intel_wakeref_t wakeref;
->>>>>> +
->>>>>> +	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
->>>>>> +		return;
->>>>>> +
->>>>>> +	with_intel_runtime_pm(hwmon->ddat.uncore->rpm, wakeref)
->>>>>> +		intel_uncore_rmw(hwmon->ddat.uncore,
->>>>>> +				 hwmon->rg.pkg_rapl_limit,
->>>>>> +				 PKG_PWR_LIM_1_EN,
->>>>>> +				 old ? PKG_PWR_LIM_1_EN : 0);
->>>>>
->>>>> 3rd param should be 0 here, else we will end up clearing other bits.
->>>>
->>>> No see intel_uncore_rmw(), it will only clear the PKG_PWR_LIM_1_EN bit, so
->>>> the code here is correct. intel_uncore_rmw() does:
->>>>
->>>>          val = (old & ~clear) | set;
->>>>
->>>> So for now I am not making any changes, if you feel strongly about
->>>> something one way or another let me know. Anyway these comments should help
->>>> you understand the patch better so take a look and we can go from there.
->>>>
->>>> Thanks.
->>>> --
->>>> Ashutosh
->>>>
->>>>>> +
->>>>>> +	mutex_unlock(&hwmon->hwmon_lock);
->>>>>> +}
->>>>>> +
->>>>>>    static umode_t
->>>>>>    hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
->>>>>>    {
->>>>>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i915_hwmon.h
->>>>>> index 7ca9cf2c34c96..0fcb7de844061 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_hwmon.h
->>>>>> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
->>>>>> @@ -7,14 +7,21 @@
->>>>>>    #ifndef __I915_HWMON_H__
->>>>>>    #define __I915_HWMON_H__
->>>>>>    +#include <linux/types.h>
->>>>>> +
->>>>>>    struct drm_i915_private;
->>>>>> +struct intel_gt;
->>>>>>      #if IS_REACHABLE(CONFIG_HWMON)
->>>>>>    void i915_hwmon_register(struct drm_i915_private *i915);
->>>>>>    void i915_hwmon_unregister(struct drm_i915_private *i915);
->>>>>> +void i915_hwmon_power_max_disable(struct drm_i915_private *i915, bool *old);
->>>>>> +void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old);
->>>>>>    #else
->>>>>>    static inline void i915_hwmon_register(struct drm_i915_private *i915) { };
->>>>>>    static inline void i915_hwmon_unregister(struct drm_i915_private *i915) { };
->>>>>> +static inline void i915_hwmon_power_max_disable(struct drm_i915_private *i915, bool *old) { };
->>>>>> +static inline void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old) { };
->>>>>>    #endif
->>>>>>      #endif /* __I915_HWMON_H__ */
+Build changes
+-------------
+
+  * Linux: CI_DRM_12923 -> Patchwork_115695v1
+
+  CI-20190529: 20190529
+  CI_DRM_12923: cdd32ac83137835a85bad4ca4b4751ea90960e72 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115695v1: cdd32ac83137835a85bad4ca4b4751ea90960e72 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/index.html
+
+--===============2235278190445824134==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: Fix MTL stolen memory GGTT mapping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115695/">https://patchwork.freedesktop.org/series/115695/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12923_full -&gt; Patchwork_115695v1_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_115695v1_full:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1:<ul>
+<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-tglu-10/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-tglu-7/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115695v1_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-apl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk4/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk8/igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-cpu:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-snb2/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-cpu.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +62 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk6/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk2/igt@gem_exec_fair@basic-deadline.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-share@rcs0:</p>
+<ul>
+<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-tglu-7/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-tglu-2/igt@gem_exec_fair@basic-pace-share@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@reset:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-snb4/igt@i915_pm_rps@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7790">i915#7790</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-snb2/igt@i915_pm_rps@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@forked-move@pipe-b:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-dg1-14/igt@kms_cursor_legacy@forked-move@pipe-b.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8011">i915#8011</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-dg1-15/igt@kms_cursor_legacy@forked-move@pipe-b.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@sysfs_timeslice_duration@timeout@bcs0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12923/shard-dg1-15/igt@sysfs_timeslice_duration@timeout@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1755">i915#1755</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115695v1/shard-dg1-17/igt@sysfs_timeslice_duration@timeout@bcs0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12923 -&gt; Patchwork_115695v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12923: cdd32ac83137835a85bad4ca4b4751ea90960e72 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7221: 4b77c6d85024d22ca521d510f8eee574128fe04f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115695v1: cdd32ac83137835a85bad4ca4b4751ea90960e72 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============2235278190445824134==--
