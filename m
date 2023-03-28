@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 941486CCBB7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 22:58:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3006CCBE9
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 23:08:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFBC810E4AA;
-	Tue, 28 Mar 2023 20:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 360F810E49C;
+	Tue, 28 Mar 2023 21:08:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C37F610E482;
- Tue, 28 Mar 2023 20:58:02 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6B5C10E48E;
+ Tue, 28 Mar 2023 21:08:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680037082; x=1711573082;
+ t=1680037718; x=1711573718;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=BfVPOYVp2pmPvssW/9f7r7P90C48/4ru1Ch9FixAMO8=;
- b=GEeDnHCtmCLB+IcFmJ5iNzmg0jlCE5IVH49qZzMMnsr23NyM1RZEWu4c
- 5k9bCxWoCrXlLiUG2kYvJg9rYCLz0e/ai/o28dglarNkru1Zc1jWbJZDQ
- zqFDzyhUH8Pi/oeZdNlHsCJ52iDzz5WCzRKcOZeg/CXOEP4oyzJyAzJcv
- +mXWi2Z3mY9XXLiL7aOge8QVML06RqDyZC91cYEAJtJf/POa2EbnEGBHt
- 1wHWxPXYs4qGZseuLmyxChvW7vDE7DOf0t3Jh6ZbWEKAx1KQi31g5dP+J
- d+0SO7PIfjEbHAAt4V4omkGQ6G7qu/E0EWvhfoo9Xy+a3BsUwfTUP7t9c A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="426964413"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="426964413"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 13:58:01 -0700
+ bh=6GLo3d35oVtHdFhb6UNpuguyDFJRdNOuxUvgwUhlmnY=;
+ b=LglhwN39RVgEo5FLlQyQGAK7E30JKuG6QDcXLAacgGymVQqdiPyM9BsR
+ PktPGUQtOjjF+E9K7+bhDXyds1N41adi2+hJ+URoTDczRt1nyf2HfXu9c
+ VKXxaTb6EWB3IoGbaTMokBgLTqN2h3QtU2NZGHGsSWlQCc8ciB5r4OP8w
+ ovFBAEz9OkSGFT24L602Kk3rloMh1zso3/DQcrU/Ce8AgNKUHgXLyZLWB
+ DV9L2v1qD9FpjwpnrJNLFjoBkmNbM2S9P1JR3Mcfl5gX0DD7vHum0dfVl
+ xnEZd8Qm1wxv/atGHEvT9cggufuivuepzgqofbUPRr4oC+NU1Hw5O+e4J g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="338193558"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="338193558"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 14:08:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="634197652"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="634197652"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="827628736"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="827628736"
 Received: from fhannebi-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.50.224])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 13:57:58 -0700
-Date: Tue, 28 Mar 2023 22:57:32 +0200
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 14:08:36 -0700
+Date: Tue, 28 Mar 2023 23:08:11 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Min Li <lm0963hack@gmail.com>
-Message-ID: <ZCNUvAiPt8BlQ1nc@ashyti-mobl2.lan>
+Message-ID: <ZCNXO/NJecxaGwep@ashyti-mobl2.lan>
 References: <20230328093627.5067-1-lm0963hack@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -61,11 +61,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- airlied@gmail.com
+ stable@vger.kernel.org, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-Hi Min,
 
 On Tue, Mar 28, 2023 at 05:36:27PM +0800, Min Li wrote:
 > Userspace can guess the id value and try to race oa_config object creation
@@ -75,9 +73,10 @@ On Tue, Mar 28, 2023 at 05:36:27PM +0800, Min Li wrote:
 > 
 > Signed-off-by: Min Li <lm0963hack@gmail.com>
 
-Thank you for your patch!
+I think we should also add
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Fixes: f89823c21224 ("drm/i915/perf: Implement I915_PERF_ADD/REMOVE_CONFIG interface")
+Cc: <stable@vger.kernel.org> # v4.14+
 
 Andi
 
