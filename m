@@ -1,51 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0186CC742
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 17:59:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E52026CC74A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Mar 2023 18:00:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5F210E28B;
-	Tue, 28 Mar 2023 15:59:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBFA10E475;
+	Tue, 28 Mar 2023 16:00:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E200E10E28B
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:59:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680019153; x=1711555153;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Mqhxr04d3eR/WEiBk8GiQkLHWBg37VElKCUYXF7axx0=;
- b=a2JtFqDaI0vYXy21rBNXCK8Xkt5017d78ff2bG4B1vOQhk4Q44g73AWQ
- ZN2F07mrGU+p0fDdOpjYrHDRSUq8nZvFDF0TUvyAhlgn18KTsHoI8Z6mL
- VXt/il86oekikopTW1hG7ZqKKPRqhtxpNk+p76fDofZIPmar3QWFjiYP3
- YJQ9GrFMyiUyPUhHdKEUYdOgN+VONVa78R/O1CF5Nij1T5nKmLbd0AgFM
- QRnTgxdVS/aGRTd90WkRRkTjgeWfPMOfvShZjend+zbjPH2PBBc2j4LtM
- uMDFtn0Pm6es8Ot1RLDFd4OWyFgBfs81ovLcYi7EIianVTliqWhoa6/RS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339331370"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="339331370"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 08:59:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="858148070"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="858148070"
-Received: from mmetzger-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.49.159])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 08:59:11 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230327121116.1785979-1-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230327121116.1785979-1-imre.deak@intel.com>
-Date: Tue, 28 Mar 2023 18:59:08 +0300
-Message-ID: <87wn3050kz.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D296B10E487
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 16:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680019231;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pGWTXe/Y/6zoO+A04kWwYlmN3UtXIimDh91MAwfJa2k=;
+ b=JpvSXLaV/NiRBHqHYbKPZq82Esa1b/zYJ+8DgLMZxJgL9/cWExENXFjxl2qFoVUPnJjcqm
+ iWG9ACL0Xmtpyv9pjGnRZzBVL5zU+FriduvuklodDJy2N8C63cagM431hTXfC5bM93Q0+O
+ EnO+4VxZHHuyseSeoMSlvqCNaaSr6Lk=
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-614-WlArtdLBPMuYOKdxh6R9wg-1; Tue, 28 Mar 2023 12:00:30 -0400
+X-MC-Unique: WlArtdLBPMuYOKdxh6R9wg-1
+Received: by mail-io1-f70.google.com with SMTP id
+ a21-20020a5d9595000000b0074c9dc19e16so7737274ioo.15
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 09:00:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680019229;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pGWTXe/Y/6zoO+A04kWwYlmN3UtXIimDh91MAwfJa2k=;
+ b=KYOxXH97HrDgHNL4KOpKnALx+5DrtJpd/oPRmnU7ZmqPksExBTtYmiIl8eUUu/6a+1
+ NMsZ4JTXPLbUS9XbZy+x8j+e8jimnV2lSp1Gj/BYh4PGVjQ8fxDxgUn5LMiZZmtTHRi+
+ 9Gx2JKWXFzPnScAUmPADW1kHsGiDa1ub1K7K7O6yjtzc8ieWgdbE1zAjG5lP7gctARIB
+ DIuSHinRPVGzf/hNkGPAJED1QnSMouF0uaejQVgPoy9bbPsRHECs+lX3ayMvv+aszIDm
+ xJ7WofdSbstHlfpaGpYsWMXQKBeb8sSJstrl4sDLhPr4NMNUyh0iPC7kjArACis3tCrd
+ lP0w==
+X-Gm-Message-State: AAQBX9eE2DOnjZ+o//hSWUfIsmayjexFU+nYH8mVzCylzOchwod8FVKw
+ K3UhB/iPtQECWxnMUDbUMihrCNg1+jnvayz+aopMlrC2Md0yRQuyq+BYjiOh8WxBANzw8tTF9Qr
+ eMnLZ4JPqrS3Sxu3wCMMXTUnpJzT5
+X-Received: by 2002:a92:ce85:0:b0:323:aa7:befb with SMTP id
+ r5-20020a92ce85000000b003230aa7befbmr13069019ilo.6.1680019229400; 
+ Tue, 28 Mar 2023 09:00:29 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZC5pF5GWrzbxeyfPtY76kDSnUakr6oghU09O72N92uDo+Yuu2WJSvvHvtKeJ0qWe00iLP8Mw==
+X-Received: by 2002:a92:ce85:0:b0:323:aa7:befb with SMTP id
+ r5-20020a92ce85000000b003230aa7befbmr13068996ilo.6.1680019229156; 
+ Tue, 28 Mar 2023 09:00:29 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ y20-20020a056638229400b00404d129c1ecsm9543205jas.138.2023.03.28.09.00.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Mar 2023 09:00:28 -0700 (PDT)
+Date: Tue, 28 Mar 2023 10:00:27 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <20230328100027.3b843b91.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB752903CE3D5906FE21146364C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <20230327093458.44939-11-yi.l.liu@intel.com>
+ <20230327132619.5ab15440.alex.williamson@redhat.com>
+ <DS0PR11MB7529E969C27995D535A24EC0C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BL1PR11MB52717FB9E6D5C10BF4B7DA0A8C889@BL1PR11MB5271.namprd11.prod.outlook.com>
+ <20230328082536.5400da67.alex.williamson@redhat.com>
+ <DS0PR11MB7529B6782565BE8489D922F9C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328084616.3361a293.alex.williamson@redhat.com>
+ <DS0PR11MB75290B84D334FC726A8BBA95C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328091801.13de042a.alex.williamson@redhat.com>
+ <DS0PR11MB752903CE3D5906FE21146364C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [core-for-CI] x86/topology: fix erroneous
- smp_num_siblings on Intel Hybrid platform
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,95 +93,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Mar 2023, Imre Deak <imre.deak@intel.com> wrote:
-> From: Zhang Rui <rui.zhang@intel.com>
->
-> The SMT siblings value returned by CPUID.1F SMT level EBX differs
-> among CPUs on Intel Hybrid platforms like AlderLake and MeteorLake.
-> It returns 2 for Pcore CPUs which have SMT siblings and returns 1 for
-> Ecore CPUs which do not have SMT siblings.
->
-> Today, the CPU boot code sets the global variable smp_num_siblings when
-> every CPU thread is brought up. The last thread to boot will overwrite
-> it with the number of siblings of *that* thread. That last thread to
-> boot will "win". If the thread is a Pcore, smp_num_siblings == 2.  If it
-> is an Ecore, smp_num_siblings == 1.
->
-> smp_num_siblings describes if the *system* supports SMT.  It should
-> specify the maximum number of SMT threads among all cores.
->
-> Ensure that smp_num_siblings represents the system-wide maximum number
-> of siblings by always increasing its value. Never allow it to decrease.
->
-> On MeteorLake-P platform, this fixes a problem that the Ecore CPUs are
-> not updated in any cpu sibling map because the system is treated as an
-> UP system when probing Ecore CPUs.
->
-> Below shows part of the CPU topology information before and after the
-> fix, for both Pcore and Ecore CPU (cpu0 is Pcore, cpu 12 is Ecore).
-> ...
-> -/sys/devices/system/cpu/cpu0/topology/package_cpus:000fff
-> -/sys/devices/system/cpu/cpu0/topology/package_cpus_list:0-11
-> +/sys/devices/system/cpu/cpu0/topology/package_cpus:3fffff
-> +/sys/devices/system/cpu/cpu0/topology/package_cpus_list:0-21
-> ...
-> -/sys/devices/system/cpu/cpu12/topology/package_cpus:001000
-> -/sys/devices/system/cpu/cpu12/topology/package_cpus_list:12
-> +/sys/devices/system/cpu/cpu12/topology/package_cpus:3fffff
-> +/sys/devices/system/cpu/cpu12/topology/package_cpus_list:0-21
->
-> And this also breaks userspace tools like lscpu
-> -Core(s) per socket:  1
-> -Socket(s):           11
-> +Core(s) per socket:  16
-> +Socket(s):           1
->
-> CC: stable@kernel.org
-> Fixes: bbb65d2d365e ("x86: use cpuid vector 0xb when available for detecting cpu topology")
-> Fixes: 95f3d39ccf7a ("x86/cpu/topology: Provide detect_extended_topology_early()")
-> Suggested-by: Len Brown <len.brown@intel.com>
-> Signed-off-by: Zhang Rui <rui.zhang@intel.com>
-> Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
-> [Imre: resend for core-for-CI]
-> References: https://lore.kernel.org/lkml/20230323015640.27906-1-rui.zhang@intel.com
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8317
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+On Tue, 28 Mar 2023 15:45:38 +0000
+"Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
-Pushed to topic/core-for-CI as a stopgap measure.
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Tuesday, March 28, 2023 11:18 PM
+> > 
+> > On Tue, 28 Mar 2023 15:00:42 +0000
+> > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+> >   
+> > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > Sent: Tuesday, March 28, 2023 10:46 PM
+> > > >
+> > > > On Tue, 28 Mar 2023 14:38:12 +0000
+> > > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+> > > >  
+> > > > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > > > Sent: Tuesday, March 28, 2023 10:26 PM
+> > > > > >
+> > > > > > On Tue, 28 Mar 2023 06:19:06 +0000
+> > > > > > "Tian, Kevin" <kevin.tian@intel.com> wrote:
+> > > > > >  
+> > > > > > > > From: Liu, Yi L <yi.l.liu@intel.com>
+> > > > > > > > Sent: Tuesday, March 28, 2023 11:32 AM
+> > > > > > > >  
+> > > > > > > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > > > > > > Sent: Tuesday, March 28, 2023 3:26 AM
+> > > > > > > > >
+> > > > > > > > > Additionally, VFIO_DEVICE_GET_PCI_HOT_RESET_INFO has a  
+> > flags  
+> > > > arg  
+> > > > > > that  
+> > > > > > > > > isn't used, why do we need a new ioctl vs defining
+> > > > > > > > > VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID.  
+> > > > > > > >
+> > > > > > > > Sure. I can follow this suggestion. BTW. I have a doubt here. This  
+> > > > new  
+> > > > > > flag  
+> > > > > > > > is set by user. What if in the future kernel has new extensions and  
+> > > > needs  
+> > > > > > > > to report something new to the user and add new flags to tell  
+> > user?  
+> > > > Such  
+> > > > > > > > flag is set by kernel. Then the flags field may have two kinds of  
+> > flags  
+> > > > > > (some  
+> > > > > > > > set by user while some set by kernel). Will it mess up the flags  
+> > space?  
+> > > > > > > >  
+> > > > > > >
+> > > > > > > flags in a GET_INFO ioctl is for output.
+> > > > > > >
+> > > > > > > if user needs to use flags as input to select different type of info  
+> > then it  
+> > > > > > should  
+> > > > > > > be split into multiple GET_INFO cmds.  
+> > > > > >
+> > > > > > I don't know that that's actually a rule, however we don't currently
+> > > > > > test flags is zero for input, so in this case I think we are stuck with
+> > > > > > it only being for output.
+> > > > > >
+> > > > > > Alternatively, should VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+> > > > > > automatically
+> > > > > > return the dev_id variant of the output and set a flag to indicate this
+> > > > > > is the case when called on a device fd opened as a cdev?  Thanks,  
+> > > > >
+> > > > > Personally I prefer that user asks for dev_id info explicitly. The major  
+> > > > reason  
+> > > > > that we return dev_id is that the group/bdf info is not enough for the  
+> > > > device  
+> > > > > fd passing case. But if qemu opens device by itself, the group/bdf info  
+> > is  
+> > > > still  
+> > > > > enough. So a device opened as a cdev doesn't mean it should return  
+> > > > dev_id,  
+> > > > > it depends on if user has the bdf knowledge.  
+> > > >
+> > > > But if QEMU opens the cdev, vs getting it from the group, does it make
+> > > > any sense to return a set of group-ids + bdf in the host-reset info?
+> > > > I'm inclined to think the answer is no.
+> > > >
+> > > > Per my previous suggestion, I think we should always return the bdf. We
+> > > > can't know if the user is accessing through an fd they opened
+> > > > themselves or were passed,  
+> > >
+> > > Oh, yes. I'm convinced by this reason since only cdev mode supports  
+> > device fd  
+> > > passing. So I'll reuse the existing _INFO and let kernel set a flag to mark  
+> > the returned  
+> > > info is dev_id+bdf.
+> > >
+> > > A check. If the device that the _INFIO is invoked is opened via cdev, but  
+> > there  
+> > > are devices in the dev_set that are got via VFIO_GROUP_GET_DEVICE_FD,  
+> > should  
+> > > I fail it or allow it?  
+> > 
+> > It's a niche case, but I think it needs to be allowed.   
+> 
+> I'm also wondering if it is common in the future. Actually, a user should be
+> preferred to either use the group or cdev, but not both. Otherwise, it looks
+> to be bad programming.:-)
+> 
+> Also, as an earlier remark from Jason. If there are affected devices that are
+> opened by other users, the new _INFO should fail with -EPERM. I know this
+> remark was for the new _INFO ioctl. But now, we are going to reuse the
+> existing _INFO, so I'd also want to check if we still need this policy? If yes,
+> then it is a problem to check the owner of the devices that are opened by
+> the group path.
+> 
+> https://lore.kernel.org/kvm/ZBsF950laMs2ldFc@nvidia.com/
 
-BR,
-Jani.
+Personally I don't like the suggestion to fail with -EPERM if the user
+doesn't own all the affected devices.  This isn't a "probe if I can do
+a reset" ioctl, it's a "provide information about the devices affected
+by a reset to know how to call the hot-reset ioctl".  We're returning
+the bdf to the cdev version of this ioctl for exactly this debugging
+purpose when the devices are not owned, that becomes useless if we give
+up an return -EPERM if ownership doesn't align.
 
-> ---
->  arch/x86/kernel/cpu/topology.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/x86/kernel/cpu/topology.c b/arch/x86/kernel/cpu/topology.c
-> index 5e868b62a7c4e..0270925fe013b 100644
-> --- a/arch/x86/kernel/cpu/topology.c
-> +++ b/arch/x86/kernel/cpu/topology.c
-> @@ -79,7 +79,7 @@ int detect_extended_topology_early(struct cpuinfo_x86 *c)
->  	 * initial apic id, which also represents 32-bit extended x2apic id.
->  	 */
->  	c->initial_apicid = edx;
-> -	smp_num_siblings = LEVEL_MAX_SIBLINGS(ebx);
-> +	smp_num_siblings = max_t(int, smp_num_siblings, LEVEL_MAX_SIBLINGS(ebx));
->  #endif
->  	return 0;
->  }
-> @@ -109,7 +109,8 @@ int detect_extended_topology(struct cpuinfo_x86 *c)
->  	 */
->  	cpuid_count(leaf, SMT_LEVEL, &eax, &ebx, &ecx, &edx);
->  	c->initial_apicid = edx;
-> -	core_level_siblings = smp_num_siblings = LEVEL_MAX_SIBLINGS(ebx);
-> +	core_level_siblings = LEVEL_MAX_SIBLINGS(ebx);
-> +	smp_num_siblings = max_t(int, smp_num_siblings, LEVEL_MAX_SIBLINGS(ebx));
->  	core_plus_mask_width = ht_mask_width = BITS_SHIFT_NEXT_LEVEL(eax);
->  	die_level_siblings = LEVEL_MAX_SIBLINGS(ebx);
->  	pkg_mask_width = die_plus_mask_width = BITS_SHIFT_NEXT_LEVEL(eax);
+> > We'd still
+> > report the bdf for those devices, but make use of the invalid/null
+> > dev-id.  I think this empowers userspace that they could make the same
+> > call on a group opened fd if necessary.  
+> 
+> For the devices opened via group path, it should have an entry that
+> includes invalid_dev_id+bdf. So user can map it to the device. But
+> there is no group_id, this may be fine since group is just a shortcut
+> to find the device. Is it?
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Yes, it could be argued that the group-id itself is superfluous, the
+user can determine the group via the bdf, but it also aligns with the
+hot-reset ioctl, which currently requires the group fd.  Thanks,
+
+Alex
+
