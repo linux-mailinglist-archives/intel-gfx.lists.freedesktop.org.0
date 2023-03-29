@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 912566CEC6E
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 17:11:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB2D6CEC71
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 17:11:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A886C10E19A;
-	Wed, 29 Mar 2023 15:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19A0A10EB22;
+	Wed, 29 Mar 2023 15:11:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7963A10E19A
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 15:11:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B438910E19A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 15:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680102667; x=1711638667;
+ t=1680102669; x=1711638669;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ODnrb9aU8GH/krua95OW8dr4qt/Nrld+/n5Oo+46GBg=;
- b=DJltvfihJyJ7/GUkh1NNYA37FcqdpxxDEpaVpjkFtXAIrf+Uqyh9L+Z1
- aMPucWCauw+YCq3hyurQuS7le3t7lKkTyhsAIMljvBuZnZ3zepoyrlGFW
- KSIEDs7FL22ejoaVcrChQAvoMDYQluKynSQQYCvfVnq7vmqd6JplK2jAq
- X4XKgakDO+XzZ+YE4GdppU0OrQzTzv16A2+5ikOgVaunX+Uociu/gQ740
- QFlNrMHJGz6fiVhcgbYKffLYDtpHknC7Z/psjtZg9BqDwJpEUzBiag1X2
- vFuL0gIZ1C1z4Vpmby0j1z3Mp7LRIIQp6lSpTbIoBbUR1j5AUY0GerzJz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368672877"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="368672877"
+ bh=4//gi2RvKs6gHNJOROpAkRiD4C7u8cjljpjMo2285yU=;
+ b=OOfGX5BWVyi341M6DhjbgXReZJs7FODg+/87BsX5711WpzXQPyPVhtCg
+ izGrddv4yhNfWwwForeRvrQHLRH3iwZxlQBHyMumS8mBIbuwePrkqMkK4
+ Wyss7uZPASaXJjaR4dqi910B9CjOGqLbze4xpAshijPLaiY5e231XIxwK
+ WaxikpXeEJGbCrx7rT234VDKJkEqu2Et61hkrPj3KlcmgC/Duq2zHeDqM
+ MqzrHeB4dhyVc+vkxFQiZbcfXFNrBa2EJw5QBNWxVaCu1Vnww+SO0+l7f
+ dX7fk/tZmjPip4lx3sb7pFTM4seH0SzP2tFFEC8caoPWlT3Fhw8kdPRD/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368672902"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="368672902"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 08:07:44 -0700
+ 29 Mar 2023 08:07:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753626002"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="753626002"
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753626019"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="753626019"
 Received: from pgarraul-mobl2.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.251.223.204])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 08:07:42 -0700
+ 29 Mar 2023 08:07:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 18:06:59 +0300
-Message-Id: <20230329150703.432072-3-jouni.hogander@intel.com>
+Date: Wed, 29 Mar 2023 18:07:00 +0300
+Message-Id: <20230329150703.432072-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230329150703.432072-1-jouni.hogander@intel.com>
 References: <20230329150703.432072-1-jouni.hogander@intel.com>
@@ -47,8 +47,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 2/6] drm/i915/psr: Modify/Fix Wa_16013835468
- and prepare for Wa_14015648006
+Subject: [Intel-gfx] [PATCH v7 3/6] drm/i915/psr: Implement Wa_14015648006
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,88 +63,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wa_16013835468 is a separate from Wa_14015648006 and needs to be
-applied for display version 12. Fix this by removing all the
-references to Wa_14015648006 and apply Wa_16013835468 according to
-Bspec.
+PSR WM optimization should be disabled based on any wm level being
+disabled. Also same WA should be applied for ICL as well.
 
-Also move workaround into separate function as a preparation for
-Wa_14015648006 implementation.
+Bspec: 71580
 
-Bspec: 55378
-
+v5:
+ - Set in pre plane hook and clear in post plane hook
+v4:
+ - Handle mode change in psr enable/disable
+ - Handle wm_level_disable changes separately in pre plane hook
 v3:
- - apply for display version 12 only
+ - Split patch
 v2:
- - keep applying the wa in intel_psr_enable_source
+ - set/clear chicken bit in post_plane_update
+ - apply for ICL as well
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 35 ++++++++++++++++--------
- 1 file changed, 24 insertions(+), 11 deletions(-)
+ .../gpu/drm/i915/display/intel_display_types.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c         | 16 +++++++++++++++-
+ drivers/gpu/drm/i915/display/skl_watermark.c     |  7 +++++--
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index ab146b5b68bd..4236ad751c2c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1157,6 +1157,7 @@ struct intel_crtc_state {
+ 	bool has_psr2;
+ 	bool enable_psr2_sel_fetch;
+ 	bool req_psr2_sdp_prior_scanline;
++	bool wm_level_disabled;
+ 	u32 dc3co_exitline;
+ 	u16 su_y_granularity;
+ 	struct drm_dp_vsc_sdp psr_vsc;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8dbf452d63c2..770f6fea5499 100644
+index 770f6fea5499..98f48eb10c44 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1134,6 +1134,28 @@ static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
- 	}
- }
+@@ -1136,6 +1136,7 @@ static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
  
-+/*
-+ * Wa_16013835468
-+ */
-+static void wm_optimization_wa(struct intel_dp *intel_dp,
-+			       const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+	bool set_wa_bit = false;
+ /*
+  * Wa_16013835468
++ * Wa_14015648006
+  */
+ static void wm_optimization_wa(struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
+@@ -1143,6 +1144,11 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	bool set_wa_bit = false;
+ 
++	/* Wa_14015648006 */
++	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
++	    IS_DISPLAY_VER(dev_priv, 11, 13))
++		set_wa_bit |= crtc_state->wm_level_disabled;
 +
-+	/* Wa_16013835468 */
-+	if (DISPLAY_VER(dev_priv) == 12)
-+		set_wa_bit |= crtc_state->hw.adjusted_mode.crtc_vblank_start !=
-+			crtc_state->hw.adjusted_mode.crtc_vdisplay;
-+
-+	if (set_wa_bit)
-+		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+			     0, wa_16013835468_bit_get(intel_dp));
-+	else
-+		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+			     wa_16013835468_bit_get(intel_dp), 0);
-+}
-+
- static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 				    const struct intel_crtc_state *crtc_state)
- {
-@@ -1175,15 +1197,8 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	/* Wa_16013835468 */
+ 	if (DISPLAY_VER(dev_priv) == 12)
+ 		set_wa_bit |= crtc_state->hw.adjusted_mode.crtc_vblank_start !=
+@@ -1197,6 +1203,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
  
  	/*
  	 * Wa_16013835468
--	 * Wa_14015648006
++	 * Wa_14015648006
  	 */
--	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
--	    IS_DISPLAY_VER(dev_priv, 12, 13)) {
--		if (crtc_state->hw.adjusted_mode.crtc_vblank_start !=
--		    crtc_state->hw.adjusted_mode.crtc_vdisplay)
--			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
--				     wa_16013835468_bit_get(intel_dp));
--	}
-+	wm_optimization_wa(intel_dp, crtc_state);
+ 	wm_optimization_wa(intel_dp, crtc_state);
  
- 	if (intel_dp->psr.psr2_enabled) {
- 		if (DISPLAY_VER(dev_priv) == 9)
-@@ -1359,10 +1374,8 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+@@ -1374,8 +1381,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
  
  	/*
  	 * Wa_16013835468
--	 * Wa_14015648006
++	 * Wa_14015648006
  	 */
--	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
--	    IS_DISPLAY_VER(dev_priv, 12, 13))
-+	if (DISPLAY_VER(dev_priv) == 12)
+-	if (DISPLAY_VER(dev_priv) == 12)
++	if (DISPLAY_VER(dev_priv) >= 11)
  		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
  			     wa_16013835468_bit_get(intel_dp), 0);
  
+@@ -1949,6 +1957,9 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 
+ 		if (psr->enabled && needs_to_disable)
+ 			intel_psr_disable_locked(intel_dp);
++		else if (psr->enabled && new_crtc_state->wm_level_disabled)
++			/* Wa_14015648006 */
++			wm_optimization_wa(intel_dp, new_crtc_state);
+ 
+ 		mutex_unlock(&psr->lock);
+ 	}
+@@ -1978,6 +1989,9 @@ static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
+ 
+ 		if (!psr->enabled && !keep_disabled)
+ 			intel_psr_enable_locked(intel_dp, crtc_state);
++		else if (psr->enabled && !crtc_state->wm_level_disabled)
++			/* Wa_14015648006 */
++			wm_optimization_wa(intel_dp, crtc_state);
+ 
+ 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
+ 		if (crtc_state->crc_enabled && psr->enabled)
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index ff70225c0263..7e2e76afbf2a 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2276,9 +2276,12 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
+ 		return level;
+ 
+ 	/*
+-	 * FIXME PSR needs to toggle LATENCY_REPORTING_REMOVED_PIPE_*
++	 * PSR needs to toggle LATENCY_REPORTING_REMOVED_PIPE_*
+ 	 * based on whether we're limited by the vblank duration.
+-	 *
++	 */
++	crtc_state->wm_level_disabled = level < i915->display.wm.num_levels - 1;
++
++	/*
+ 	 * FIXME also related to skl+ w/a 1136 (also unimplemented as of
+ 	 * now) perhaps?
+ 	 */
 -- 
 2.34.1
 
