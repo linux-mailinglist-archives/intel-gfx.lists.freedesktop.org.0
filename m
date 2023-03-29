@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D436D6CD8B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 13:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0A56CD8FE
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 13:59:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D367410E521;
-	Wed, 29 Mar 2023 11:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18DF110E52F;
+	Wed, 29 Mar 2023 11:59:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B429710E521
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 11:44:42 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2CDF10E52F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 11:59:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680090282; x=1711626282;
+ t=1680091177; x=1711627177;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=RaKwWJhcxAlBsrVMoaNw5RXsqymUOTChVZYPMlx2ZYk=;
- b=Tr8nbcb4kMarvkOJsbAi5BBLB63n7RWT9X22l3HDOW49BgJsHiHkIjN+
- /ojkLx8vmPF9TI2zfUg9BYrYMqNXruJD454y86R4X1vugybxNyYWmfpBQ
- bEmOJvKkjc0/mNflR8g6L116PIALZvPuIHe6i7itPLxMeBnsfZARngOAx
- A/7tMML4W0tUTRiWWcFl4Z/mZJ0lRTtm20GBtQbOT5IPov3B+XLMiupB7
- +Ds6tsYraxg6u6bQLmzjCYfQpyGayX3UzgM2v3mc8l58S1o6EuLH52oKq
- jufOkPIGgx6gIE+RZcayz5Ia2saLyl8xLXZmVdPUIwvslqnErDIWs05aq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="427127075"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="427127075"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 04:44:42 -0700
+ bh=Wq/jNOCD1zmJDKCcPzKnm5uuA59TW66Ge45PDvHlYs8=;
+ b=ILt1XM1lIVwP25xHkFDbfxO7TAzFurlzfbaV9qu060vSzyWbjV8fUU5s
+ byU/c+40PjXI1KLBGkrvCaQKlX6tGqjthqgHRPf0dlofCzH3cyN/BYkYt
+ wPIR11DFkbSp+IdqYReJ7V//ynmLKeZO18WnMcsDQjb4JD5uJGeCLnyx9
+ jIIHYP4ksGCysbjghoxQyW63jnpRXQhHdKy3uTMxnxicDA127xZf2mvb0
+ xzxo8xHX1TK3XVpBgIDT/918Dvtqj6WCShnRLbRkqOnzjLgd/EctfTddV
+ LqjAJ4e4iSYB60YBFWAcpbJg7Nl2HEWtfD5StJmJiAM4CmtfB5VDbbXsI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339580453"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="339580453"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 04:59:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="827860401"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="827860401"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="716849889"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="716849889"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga001.fm.intel.com with SMTP; 29 Mar 2023 04:44:39 -0700
+ by orsmga001.jf.intel.com with SMTP; 29 Mar 2023 04:59:34 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 14:44:36 +0300
-Date: Wed, 29 Mar 2023 14:44:36 +0300
+ Wed, 29 Mar 2023 14:59:33 +0300
+Date: Wed, 29 Mar 2023 14:59:33 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Message-ID: <ZCQkpHc0gRzWRm5r@intel.com>
-References: <20230329094532.221450-1-jouni.hogander@intel.com>
- <20230329094532.221450-4-jouni.hogander@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <ZCQoJd06J8fwIG9P@intel.com>
+References: <20230329084449.717954-2-ankit.k.nautiyal@intel.com>
+ <20230329090745.719672-1-ankit.k.nautiyal@intel.com>
+ <ZCQY7n2Le5GDvLSK@intel.com>
+ <abba986c-3626-2cc6-6d94-744e94d4ba89@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230329094532.221450-4-jouni.hogander@intel.com>
+In-Reply-To: <abba986c-3626-2cc6-6d94-744e94d4ba89@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v6 3/6] drm/i915/psr: Implement
- Wa_14015648006
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Update Bigjoiner
+ interface bits for computing compressed bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,119 +68,49 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 29, 2023 at 12:45:29PM +0300, Jouni Högander wrote:
-> PSR WM optimization should be disabled based on any wm level being
-> disabled. Also same WA should be applied for ICL as well.
+On Wed, Mar 29, 2023 at 04:53:13PM +0530, Nautiyal, Ankit K wrote:
 > 
-> Bspec: 71580
+> On 3/29/2023 4:24 PM, Ville Syrjälä wrote:
+> > On Wed, Mar 29, 2023 at 02:37:45PM +0530, Ankit Nautiyal wrote:
+> >> In Bigjoiner check for DSC, bigjoiner interface bits for DP for
+> >> DISPLAY > 13 is 36 (Bspec: 49259).
+> >>
+> >> v2: Corrected Display ver to 13.
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+> >>   1 file changed, 2 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> index da1c00ee92fb..0b59c1e53678 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> @@ -756,8 +756,9 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+> >>   	bits_per_pixel = min(bits_per_pixel, max_bpp_small_joiner_ram);
+> >>   
+> >>   	if (bigjoiner) {
+> >> +		int bigjoiner_interface_bits = DISPLAY_VER(i915) <= 13 ? 24 : 36;
+> > We generally prefer "new -> old" order. So please flip that around.
 > 
-> v4:
->  - Handle mode change in psr enable/disable
->  - Handle wm_level_disable changes separately in pre plane hook
-> v3:
->  - Split patch
-> v2:
->  - set/clear chicken bit in post_plane_update
->  - apply for ICL as well
+> Noted. Will do this in next version.
 > 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
->  drivers/gpu/drm/i915/display/intel_psr.c           | 14 +++++++++++++-
->  drivers/gpu/drm/i915/display/skl_watermark.c       |  7 +++++--
->  3 files changed, 19 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index ab146b5b68bd..4236ad751c2c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1157,6 +1157,7 @@ struct intel_crtc_state {
->  	bool has_psr2;
->  	bool enable_psr2_sel_fetch;
->  	bool req_psr2_sdp_prior_scanline;
-> +	bool wm_level_disabled;
->  	u32 dc3co_exitline;
->  	u16 su_y_granularity;
->  	struct drm_dp_vsc_sdp psr_vsc;
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 26ad4365960f..9c416b301555 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1136,6 +1136,7 @@ static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
->  
->  /*
->   * Wa_16013835468
-> + * Wa_14015648006
->   */
->  static void wm_optimization_wa(struct intel_dp *intel_dp,
->  			       const struct intel_crtc_state *crtc_state)
-> @@ -1143,6 +1144,11 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	bool set_wa_bit = false;
->  
-> +	/* Wa_14015648006 */
-> +	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-> +	    IS_DISPLAY_VER(dev_priv, 11, 13))
-> +		set_wa_bit |= crtc_state->wm_level_disabled;
-> +
->  	/* Wa_16013835468 */
->  	if (DISPLAY_VER(dev_priv) >= 12)
->  		set_wa_bit |= crtc_state->hw.adjusted_mode.crtc_vblank_start !=
-> @@ -1197,6 +1203,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
->  
->  	/*
->  	 * Wa_16013835468
-> +	 * Wa_14015648006
->  	 */
->  	wm_optimization_wa(intel_dp, crtc_state);
->  
-> @@ -1374,8 +1381,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
->  
->  	/*
->  	 * Wa_16013835468
-> +	 * Wa_14015648006
->  	 */
-> -	if (DISPLAY_VER(dev_priv) >= 12)
-> +	if (DISPLAY_VER(dev_priv) >= 11)
->  		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
->  			     wa_16013835468_bit_get(intel_dp), 0);
->  
-> @@ -1949,6 +1957,10 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
->  
->  		if (psr->enabled && needs_to_disable)
->  			intel_psr_disable_locked(intel_dp);
-> +		else if (psr->enabled && old_crtc_state->wm_level_disabled !=
-> +			 new_crtc_state->wm_level_disabled)
-> +			/* Wa_14015648006 */
-> +			wm_optimization_wa(intel_dp, new_crtc_state);
+> >
+> >>   		u32 max_bpp_bigjoiner =
+> >> -			i915->display.cdclk.max_cdclk_freq * 48 /
+> >> +			i915->display.cdclk.max_cdclk_freq * 2 * bigjoiner_interface_bits /
+> >>   			intel_dp_mode_to_fec_clock(mode_clock);
+> > Hmm. Why is this using the FEC adjusted clock here?
+> 
+> AFAIU we always use FEC for DP when DSC is enabled, provided sink and 
+> source both support FEC.
+> 
+> Bspec mentions : For cases where FEC is enabled, pixel clock is replaced 
+> by pixel clock/0.972261 in the above calculations.
 
-This can now also clear the bit, which is the wrong thing
-to do in pre_plane_update().
-
->  
->  		mutex_unlock(&psr->lock);
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index ff70225c0263..7e2e76afbf2a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -2276,9 +2276,12 @@ static int skl_wm_check_vblank(struct intel_crtc_state *crtc_state)
->  		return level;
->  
->  	/*
-> -	 * FIXME PSR needs to toggle LATENCY_REPORTING_REMOVED_PIPE_*
-> +	 * PSR needs to toggle LATENCY_REPORTING_REMOVED_PIPE_*
->  	 * based on whether we're limited by the vblank duration.
-> -	 *
-> +	 */
-> +	crtc_state->wm_level_disabled = level < i915->display.wm.num_levels - 1;
-> +
-> +	/*
->  	 * FIXME also related to skl+ w/a 1136 (also unimplemented as of
->  	 * now) perhaps?
->  	 */
-> -- 
-> 2.34.1
+That doesn't make sense to me. FEC happens in the PHY
+layer, DSC compression happens earlier.
 
 -- 
 Ville Syrjälä
