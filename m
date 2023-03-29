@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BF26CF0FE
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 19:24:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95976CF10B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 19:29:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7CA10EBC9;
-	Wed, 29 Mar 2023 17:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2AA10EBC9;
+	Wed, 29 Mar 2023 17:29:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6925210EBC9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 17:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680110682; x=1711646682;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MMmq6jmQTuctr3beEXna7x4j4klDSi9Wb/JQAn/d/+Q=;
- b=IMM2kybPUvAbq77wjGxwD9kJoNOmX1Ld1MDTUfSTRBnvX8fGdMKMkqip
- sCgUTE+s57iFklp3yJRQTNBr0X47VaaXWRMA2dm3QXC3rnXc5ODLsQI+B
- fZjdbmYGElULNjgj9gx99DffEnw9B/Bk0/G31M1QYfxzcGtfeYEpRnNGA
- WcX7nViPByp6afzT7p7yCeDSgpehqMiUJNYXjtDCsSRzHeo+UaWB4gzp1
- 2sAB7Opwn4YukDh4NHEVu/1EM5nDko/8etVTpOfog+V++4v8/SfqggeUs
- ZgUHvDIkf/LbqwymoRtFMCXpTBnFs/wjdSDgNLVsp5nWeOJ36MTZF7Ifr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="427221182"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="427221182"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 10:24:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="773652648"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="773652648"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by FMSMGA003.fm.intel.com with SMTP; 29 Mar 2023 10:24:38 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 20:24:38 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 20:24:34 +0300
-Message-Id: <20230329172434.18744-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230329172434.18744-1-ville.syrjala@linux.intel.com>
-References: <20230329172434.18744-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A358710EBC9;
+ Wed, 29 Mar 2023 17:29:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 996EDAA0ED;
+ Wed, 29 Mar 2023 17:29:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6431333434897216224=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Explain the magic numbers for AUX
- SYNC/precharge length
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 29 Mar 2023 17:29:18 -0000
+Message-ID: <168011095862.23898.6620849265095633350@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Make_utility_pin_asserts_more_accurate_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,80 +40,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============6431333434897216224==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Replace the hardcoded final numbers in the AUX SYNC/precharge
-setup, and derive those from numbers from the (e)DP specs.
+== Series Details ==
 
-The new functions can serve as the single point of truth for
-the number of SYNC pulses we use.
+Series: drm/i915: Make utility pin asserts more accurate (rev2)
+URL   : https://patchwork.freedesktop.org/series/115741/
+State : success
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 32 +++++++++++++++++++--
- 1 file changed, 29 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index ad0aac707219..374492293392 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -118,6 +118,32 @@ static u32 skl_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- 	return index ? 0 : 1;
- }
- 
-+static int intel_dp_aux_sync_len(void)
-+{
-+	int precharge = 16; /* 10-16 */
-+	int preamble = 16;
-+
-+	return precharge + preamble;
-+}
-+
-+static int intel_dp_aux_fw_sync_len(void)
-+{
-+	int precharge = 16; /* 10-16 */
-+	int preamble = 8;
-+
-+	return precharge + preamble;
-+}
-+
-+static int g4x_dp_aux_precharge_len(void)
-+{
-+	int precharge_min = 10;
-+	int preamble = 16;
-+
-+	/* HW wants the length of the extra precharge in 2us units */
-+	return (intel_dp_aux_sync_len() -
-+		precharge_min - preamble) / 2;
-+}
-+
- static u32 g4x_get_aux_send_ctl(struct intel_dp *intel_dp,
- 				int send_bytes,
- 				u32 aux_clock_divider)
-@@ -140,7 +166,7 @@ static u32 g4x_get_aux_send_ctl(struct intel_dp *intel_dp,
- 	       timeout |
- 	       DP_AUX_CH_CTL_RECEIVE_ERROR |
- 	       (send_bytes << DP_AUX_CH_CTL_MESSAGE_SIZE_SHIFT) |
--	       (3 << DP_AUX_CH_CTL_PRECHARGE_2US_SHIFT) |
-+	       (g4x_dp_aux_precharge_len() << DP_AUX_CH_CTL_PRECHARGE_2US_SHIFT) |
- 	       (aux_clock_divider << DP_AUX_CH_CTL_BIT_CLOCK_2X_SHIFT);
- }
- 
-@@ -164,8 +190,8 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
- 	      DP_AUX_CH_CTL_TIME_OUT_MAX |
- 	      DP_AUX_CH_CTL_RECEIVE_ERROR |
- 	      (send_bytes << DP_AUX_CH_CTL_MESSAGE_SIZE_SHIFT) |
--	      DP_AUX_CH_CTL_FW_SYNC_PULSE_SKL(24) |
--	      DP_AUX_CH_CTL_SYNC_PULSE_SKL(32);
-+	      DP_AUX_CH_CTL_FW_SYNC_PULSE_SKL(intel_dp_aux_fw_sync_len()) |
-+	      DP_AUX_CH_CTL_SYNC_PULSE_SKL(intel_dp_aux_sync_len());
- 
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		ret |= DP_AUX_CH_CTL_TBT_IO;
--- 
-2.39.2
+CI Bug Log - changes from CI_DRM_12936 -> Patchwork_115741v2
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115741v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0@lmem0:
+    - bat-dg2-11:         [PASS][1] -> [INCOMPLETE][2] ([i915#6311])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@gem_exec_suspend@basic-s0@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@gem_exec_suspend@basic-s0@lmem0.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-11:         [PASS][3] -> [FAIL][4] ([i915#8308])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][6] ([i915#5354])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
+    - bat-dg2-8:          [PASS][7] -> [FAIL][8] ([i915#7932])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-adlp-9:         NOTRUN -> [SKIP][9] ([i915#3546]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][10] ([i915#7911] / [i915#7913]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-dg2-11:         [DMESG-WARN][12] ([i915#7699]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rplp-1:         [DMESG-FAIL][14] ([i915#6367] / [i915#7913]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rplp-1/igt@i915_selftest@live@slpc.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-rplp-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:
+    - bat-dg2-8:          [FAIL][16] ([i915#7932]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12936 -> Patchwork_115741v2
+
+  CI-20190529: 20190529
+  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115741v2: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6a3f0059974c drm/i915: Make utility pin asserts more accurate
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html
+
+--===============6431333434897216224==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Make utility pin asserts more accurate (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115741/">https://patchwork.freedesktop.org/series/115741/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12936 -&gt; Patchwork_115741v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115741v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12936 -&gt; Patchwork_115741v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115741v2: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6a3f0059974c drm/i915: Make utility pin asserts more accurate</p>
+
+</body>
+</html>
+
+--===============6431333434897216224==--
