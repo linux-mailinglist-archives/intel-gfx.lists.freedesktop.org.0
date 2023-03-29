@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60926CDB33
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 15:50:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AE76CDB30
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 15:50:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4640A10EAEC;
-	Wed, 29 Mar 2023 13:50:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E574910EAF9;
+	Wed, 29 Mar 2023 13:50:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C76A10EAED
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 13:50:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBF7D10EAFE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 13:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680097834; x=1711633834;
+ t=1680097836; x=1711633836;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=oLtp7wdCw5tByCl8YUETiU1Mj1aZC5evCelisXHv2MI=;
- b=DvcTSL5cXefD14Zhldx0fwg1+ZRuQ2gGzdboPCcLJMGfS8R2NPtfXhB8
- 0zae2L1NG9/ARffaswuX02cOObX/4YsJbzTYfhyHFPD1UguN0BA78nsK2
- TZknNj5NyQuwdz6B3zzpUqcZ9B3X6v6j1PUeHP2WnFPeQAvZ5pUJTCEO9
- CmFVJkXOdRM2Mif6SS1p9uXatiOSRLFnXxTO87DOKA0lP8aKYIQpMXVIU
- XJE8N+yr2rwqCJW95E+qfa9GQBQpUmrmAQy9S3fhQmx2NEKNM5sTMUUyg
- GSTvbD1I9JASxzpYIeeQiE4C23uEOvF94gv1kpdSObCoYbVpvfEwxfsZ0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="338379084"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="338379084"
+ bh=Q5urDJsskuWWNG3pStiOS5fJAlxFiNbgrJo6PFqPX/U=;
+ b=FDETCv9yj/PtrdsRewvj5SJWOlyJ0U9ynp4CltmkvgpR9MuIjMcoWrBu
+ hbU16p085SD2l1jwTvnWsG6m2yG4wC9fRzDzrMmu+6EIbIeuLpxP6f9w0
+ YUKPvjux9d55CU7g7ztdTBg6d7fEw2gREflBFgHFo7cNoHqBiQ3jERm2Y
+ WL9HJZ6FLZLzqyJqRVxs4gxQ/NNRHR7UbK/RCPbVw/VGgd+kDR9GHI6yv
+ c5bEOV4DpKoGjzlg1mmBpeQHl3m7xMzHaZ2w1bikUgUZayXcM1AJYesOo
+ udMq4Py55CRhQ1UFmPs9whIZhykQEnnjv2Im13gAd4l4+7usTpL9bkQnC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="338379100"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="338379100"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 06:50:33 -0700
+ 29 Mar 2023 06:50:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="1014029501"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="1014029501"
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="1014029509"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="1014029509"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga005.fm.intel.com with SMTP; 29 Mar 2023 06:50:32 -0700
+ by fmsmga005.fm.intel.com with SMTP; 29 Mar 2023 06:50:34 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 16:50:31 +0300
+ Wed, 29 Mar 2023 16:50:34 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 16:50:00 +0300
-Message-Id: <20230329135002.3096-11-ville.syrjala@linux.intel.com>
+Date: Wed, 29 Mar 2023 16:50:01 +0300
+Message-Id: <20230329135002.3096-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
 References: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/12] drm/i915: Include the csc matrices in the
- crtc state dump
+Subject: [Intel-gfx] [PATCH 11/12] drm/i915: Hook up csc into state checker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,77 +64,53 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Include the csc matrices in the state dump. The format being
-hardware specific we just dump as hex for now. Might have
-to think of some way to get a bit more human readable
-output...
+Have the state checker validate that the csc matrices
+look correct when read back from the hardware.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_crtc_state_dump.c  | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 766633566fd6..2c410ad53ccd 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -158,6 +158,41 @@ static void intel_dump_plane_state(const struct intel_plane_state *plane_state)
- 			    DRM_RECT_ARG(&plane_state->uapi.dst));
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index aa22241c971c..763f7fdfb27c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5643,6 +5643,24 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	} \
+ } while (0)
  
-+static void
-+ilk_dump_csc(struct drm_i915_private *i915, const char *name,
-+	     const struct intel_csc_matrix *csc)
-+{
-+	int i;
++#define PIPE_CONF_CHECK_CSC(name) do { \
++	PIPE_CONF_CHECK_X(name.preoff[0]); \
++	PIPE_CONF_CHECK_X(name.preoff[1]); \
++	PIPE_CONF_CHECK_X(name.preoff[2]); \
++	PIPE_CONF_CHECK_X(name.coeff[0]); \
++	PIPE_CONF_CHECK_X(name.coeff[1]); \
++	PIPE_CONF_CHECK_X(name.coeff[2]); \
++	PIPE_CONF_CHECK_X(name.coeff[3]); \
++	PIPE_CONF_CHECK_X(name.coeff[4]); \
++	PIPE_CONF_CHECK_X(name.coeff[5]); \
++	PIPE_CONF_CHECK_X(name.coeff[6]); \
++	PIPE_CONF_CHECK_X(name.coeff[7]); \
++	PIPE_CONF_CHECK_X(name.coeff[8]); \
++	PIPE_CONF_CHECK_X(name.postoff[0]); \
++	PIPE_CONF_CHECK_X(name.postoff[1]); \
++	PIPE_CONF_CHECK_X(name.postoff[2]); \
++} while (0)
 +
-+	drm_dbg_kms(&i915->drm,
-+		    "%s: pre offsets: 0x%04x 0x%04x 0x%04x\n", name,
-+		    csc->preoff[0], csc->preoff[1], csc->preoff[2]);
-+
-+	for (i = 0; i < 3; i++)
-+		drm_dbg_kms(&i915->drm,
-+			    "%s: coefficients: 0x%04x 0x%04x 0x%04x\n", name,
-+			    csc->coeff[3*i+0], csc->coeff[3*i+1], csc->coeff[3*i+2]);
-+
-+	if (DISPLAY_VER(i915) < 7)
-+		return;
-+
-+	drm_dbg_kms(&i915->drm,
-+		    "%s: post offsets: 0x%04x 0x%04x 0x%04x\n", name,
-+		    csc->postoff[0], csc->postoff[1], csc->postoff[2]);
-+}
-+
-+static void
-+chv_dump_csc(struct drm_i915_private *i915, const char *name,
-+	     const struct intel_csc_matrix *csc)
-+{
-+	int i;
-+
-+	for (i = 0; i < 3; i++)
-+		drm_dbg_kms(&i915->drm,
-+			    "%s: coefficients: 0x%04x 0x%04x 0x%04x\n", name,
-+			    csc->coeff[3*i+0], csc->coeff[3*i+1], csc->coeff[3*i+2]);
-+}
-+
- void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   struct intel_atomic_state *state,
- 			   const char *context)
-@@ -325,6 +360,14 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		    pipe_config->post_csc_lut ?
- 		    drm_color_lut_size(pipe_config->post_csc_lut) : 0);
+ #define PIPE_CONF_QUIRK(quirk) \
+ 	((current_config->quirks | pipe_config->quirks) & (quirk))
  
-+	if (DISPLAY_VER(i915) >= 11)
-+		ilk_dump_csc(i915, "output csc", &pipe_config->output_csc);
+@@ -5740,6 +5758,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		PIPE_CONF_CHECK_COLOR_LUT(pre_csc_lut, true);
+ 		PIPE_CONF_CHECK_COLOR_LUT(post_csc_lut, false);
+ 
++		PIPE_CONF_CHECK_CSC(csc);
++		PIPE_CONF_CHECK_CSC(output_csc);
 +
-+	if (!HAS_GMCH(i915))
-+		ilk_dump_csc(i915, "pipe csc", &pipe_config->csc);
-+	else if (IS_CHERRYVIEW(i915))
-+		chv_dump_csc(i915, "cgm csc", &pipe_config->csc);
-+
- dump_planes:
- 	if (!state)
- 		return;
+ 		if (current_config->active_planes) {
+ 			PIPE_CONF_CHECK_BOOL(has_psr);
+ 			PIPE_CONF_CHECK_BOOL(has_psr2);
 -- 
 2.39.2
 
