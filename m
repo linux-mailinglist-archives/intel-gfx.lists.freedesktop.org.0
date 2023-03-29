@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2D76CECAB
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 17:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 158D66CEC6D
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 17:11:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80DF110E19A;
-	Wed, 29 Mar 2023 15:19:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA1910E173;
+	Wed, 29 Mar 2023 15:11:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 964 seconds by postgrey-1.36 at gabe;
- Wed, 29 Mar 2023 15:19:40 UTC
-Received: from mailrelay1-1.pub.mailoutpod2-cph3.one.com
- (mailrelay1-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:400::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3398410E19A
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 15:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa2;
- h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
- from:date:from;
- bh=KFNxHE0QXa2PWKJfN5y9uL4Qs71FXfuJ+fonDr5o8kI=;
- b=itk4HvEbpN8zUXdBdxPPXbN92iWD8GSnQgkIfAqb3sM/7L60UqYkid2BXrGGJOHgeuaenweaJ/yBu
- nAcLZ9R3d0SOZrZ6+h0WqAPrWj/YXELR6/lR1OzP91uE90slqIaVbjnkGMBzv1yRZK3a2OZcozeh1B
- RokVSMlaEr+28zZfHPeDpz6KVoO591VsW840uN+Z75m6c37faX7IwI6GU/BtDN414AfJrQuOxHJBuV
- t6H+CSZwNcQyH0zrKlWv7kXHiU9emWOOzoB5A+DDjJgarPRah7JiQhn3a3197byX7U4eLWQT2VsgD4
- t9+rFLHJWOlG29I+lnJHuR+gvGnrs0A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
- d=ravnborg.org; s=ed2;
- h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
- from:date:from;
- bh=KFNxHE0QXa2PWKJfN5y9uL4Qs71FXfuJ+fonDr5o8kI=;
- b=Sb+klSISZzKyB9yU2nHp9Pg7csbh7hCXm/seICmhlZgRhgXx2N+7Gk9VeuDPUAZoL6qUaCR37Bce8
- MFK7UOYBw==
-X-HalOne-ID: de3d27f9-ce42-11ed-9a1a-99461c6a3fe8
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
- by mailrelay1 (Halon) with ESMTPSA
- id de3d27f9-ce42-11ed-9a1a-99461c6a3fe8;
- Wed, 29 Mar 2023 15:03:34 +0000 (UTC)
-Date: Wed, 29 Mar 2023 17:03:32 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20230329150332.GA1201392@ravnborg.org>
-References: <20230328111422.23986-1-tzimmermann@suse.de>
- <20230328111422.23986-3-tzimmermann@suse.de>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F54E10E173
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 15:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680102662; x=1711638662;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=50vSkl75BcBFm9M0f1Y77+ceB4jpoSlN7OF0vVnqNfY=;
+ b=A5OnXIYnrVRciTkatTiu5VXKlIUuoMbjpSQeXT4w/q+YDaHiL8wu+yok
+ KWCSXWRLaf29Ytvny/3XJ0szfTwFwWIGELwYjeOM4WnIBF5dPBQ+kyHYj
+ Go5lJgmYvZ1T1PKM+9YL+tpKDfTQ9zkeoUHUd1Pf+NckhmqHC5VQdS1WU
+ DcFsNaAo8yOhijqycmCAof514gDduOqHcRWIvxOWp+aOhaE0FG2OLxj4d
+ teRRoxbp1NuiBGE72XzBaQeTh3JXTKkCTz8j+YnKOiweqPDeYCqXX2aTn
+ cSjCXtKe/PUZigloPIpjmgD6wVSzSzCUEc4jejlNTFuc03cHW30BMhz65 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368672822"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="368672822"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 08:07:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753625928"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="753625928"
+Received: from pgarraul-mobl2.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.251.223.204])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 08:07:36 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Mar 2023 18:06:57 +0300
+Message-Id: <20230329150703.432072-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328111422.23986-3-tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Initialize fbdev DRM client
- with callback functions
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v7 0/6]  High refresh rate PSR fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,16 +58,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: javierm@redhat.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, airlied@gmail.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+Fix/adjust Wa_16013835468 and implement Wa_14015648006. Implement Wa_1136 and
+check for vblank being long enough for psr2.
 
-On Tue, Mar 28, 2023 at 01:14:20PM +0200, Thomas Zimmermann wrote:
-> Initialize i915's fbdev client by giving an instance of struct
-> drm_client_funcsi to drm_client_init(). Also clean up with
-An extra i had sneaked in here
+v7:
+ - Apply  Wa_14015648006 for display version 12 only
+ - Disable WM optimization in pre plane hook allow in post plane hook
+v6:
+ - Handle mode change in psr enable/disable
+ - Handle wm_level_disable changes separately in pre plane hook
+ - Handle WA #1136 in pre/post plane hooks
+v5:
+ - Add missing patch
+v4:
+ - Keep/fix Wa_16013835468
+ - Use calculated block count number instead of fixed 12
+v3:
+ - apply Wa_16013835468 for icl as well
+ - set/clear chicken bit in post plane update
+ - Unify pre/post hooks
+v2: Implement Wa_1136
 
-	Sam
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>
+
+Jouni Högander (6):
+  drm/i915/psr: Unify pre/post hooks
+  drm/i915/psr: Modify/Fix Wa_16013835468 and prepare for Wa_14015648006
+  drm/i915/psr: Implement Wa_14015648006
+  drm/i915/psr: Add helpers for block count number handling
+  drm/i915/psr: Check that vblank is long enough for psr2
+  drm/i915/psr: Implement Display WA #1136
+
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 90 +++++++++++++++----
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  6 +-
+ 3 files changed, 74 insertions(+), 23 deletions(-)
+
+-- 
+2.34.1
+
