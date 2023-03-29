@@ -1,64 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757D66CD380
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 09:43:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCF326CD38C
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 09:46:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0773510E4D5;
-	Wed, 29 Mar 2023 07:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B23D10E0CB;
+	Wed, 29 Mar 2023 07:46:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B9810E4D5;
- Wed, 29 Mar 2023 07:43:38 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF4F10E0CB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 07:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680075818; x=1711611818;
+ t=1680075987; x=1711611987;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=teJX4UjNTy0Lep0ahaCy0XDVc43fT1FYcbF85MQWYN8=;
- b=WPz85PrC4HyyJU9tvxY3LrhTI0/PlOuGaBF4YfhRsEexM45hgx6YKzaa
- xzV4pSl9tcXGf3o8K+UVB/fc61j0R+qoSim8Wn/2ZC/wHh5CDK+QnA6ic
- ciRIenbGtczvQXJynwDhzOsmklPmUWYPdxrr3mOsoYXp4Bh87XYg+Nrpt
- 7UDGSI92akZADw/rIv4aV9tDQ3btcdW8vCAIkPa7Qv9rAuWQ9qqNJIEQp
- Gd0OZQMrtX+naJzW4+h3DTLtaMKm99sxmesnRUuDddH80zJX4rHpvDjzf
- Tv6uPhsEl4u5JiimA8aCLZ8xZ5cKqW7zrk3YbSA4dCyxMGnewghI9w8dB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="329272070"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="329272070"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 00:43:37 -0700
+ bh=3PXbEkjZ310myfdoyAiD89n0XtfNspe+THOU5qPG9J4=;
+ b=em3SbhxwjsZvwcq8XMYz6JrDpHak0s3c474gebjZ4QPDGT0GDA7Z6Rtr
+ l2QOewcI1b4DJHIxBerDACnLQObqIZFUZJqgFoqQHzdb9yZGfGEfbq1/b
+ rXaM5J97ONiLgr6t5JlVWNrdZ3sW6bLYozKDlBBYZt++ORux1E2SLM8gP
+ ur8zyVghyyPLNLFQySvfLu0GRAeXlMPL/rEY/s4pqYkl1NllDaj0acPSv
+ +O6OWJWY+KSq6ro0il3622KKYA6NH4dV2F4u77qEFKhDQxe/V63h3Fc2B
+ E8E+mboIlnpt9/WxFmSepWG/OZt8mcmYsI2nMEsDQJYd8gtq7ckmF409p A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="405750253"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="405750253"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 00:46:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="686734053"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="686734053"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="684166548"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="684166548"
 Received: from jabolger-mobl2.ger.corp.intel.com (HELO [10.213.199.158])
  ([10.213.199.158])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 00:43:25 -0700
-Message-ID: <118981ef-260d-4c1a-5ca5-ad435d5edbc7@linux.intel.com>
-Date: Wed, 29 Mar 2023 08:43:23 +0100
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 00:46:25 -0700
+Message-ID: <836043eb-3b19-ed9a-ded5-9df624428a6a@linux.intel.com>
+Date: Wed, 29 Mar 2023 08:46:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-References: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
- <20230228022150.1657843-6-alan.previn.teres.alexis@intel.com>
- <fabe4123-53cc-005e-e0af-7683e0d45896@intel.com>
- <3b8091c51677878b968d1d275b9b16e5088d913d.camel@intel.com>
- <ZCAqDlUIp0YmCkyu@intel.com> <fef256a6-3027-8beb-0ef8-fddf972db441@intel.com>
- <cf63d62b-3e2d-f8fe-82b6-95e71e376cc2@linux.intel.com>
- <3359c9d371a25710891352061693637b37679734.camel@intel.com>
- <ZCMpXMj7GwDIp6Ll@intel.com>
+To: Dan Carpenter <error27@gmail.com>, ashutosh.dixit@intel.com
+References: <fada1328-2c58-4e06-bd36-1514ddc2d567@kili.mountain>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <ZCMpXMj7GwDIp6Ll@intel.com>
+In-Reply-To: <fada1328-2c58-4e06-bd36-1514ddc2d567@kili.mountain>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 5/8] drm/i915/pxp: Add ARB session
- creation and cleanup
+Subject: Re: [Intel-gfx] [bug report] drm/i915/pmu: Use functions common
+ with sysfs to read actual freq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,49 +63,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Lahtinen,
- Joonas" <joonas.lahtinen@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 28/03/2023 18:52, Rodrigo Vivi wrote:
-> On Tue, Mar 28, 2023 at 05:01:36PM +0000, Teres Alexis, Alan Previn wrote:
->> On Mon, 2023-03-27 at 17:15 +0100, Tvrtko Ursulin wrote:
->>> These two:
->>> e6177ec586d1 ("drm/i915/huc: stall media submission until HuC is loaded")
->>> b76c14c8fb2a ("drm/i915/huc: better define HuC status getparam possible return values.")
->>> They do not help here? It is not possible to use or extend the refined I915_PARAM_HUC_STATUS return values combined with huc load fence for this all to keep working?
->> Checking is-huc-loaded won't reflect is-pxp-available (in case fw/fusing isn't allowing it). But the connection between them is hw-internal so i915 asking PXP-fw to attempt a PXP
->> session depends on HuC (and the 3 other things i mentioned). However, Tvrtko's point on using fences-or-equivalent is the same thing John Harrison brought up offline with Daniele
->> as the proper kernel way to do this type of dependency checking. However, any form of dependency-checking won't improve UMD's experience. We still need to decide if i915-PXP should
->> wait-in-kernel or return some-new-spec-error. A useful data point: we are debugging a related issue on actual customer stack. The compositor using mesa is hitting this code path
->> very early.. even before gsc-proxy component is loaded and we are trying to figure out why delaying inside intel_pxp_start is not helping (more delays causes the gsc-proxy
->> component to also get delayed) but that is a different conversation. I'm only mentioning this because we have a strict requirement to get the desktop login window up within 1-2
->> seconds of bootloader->kernel handoff. That said, if use -EAGAIN, I'm not sure if that would work as it would delay the compositor startup beyond the typical end user experience
->> unless MESA has a timeout to give up on a cap-testing when seeing repeated -EAGAIN (doubt mesa folks like this?). Perhaps we could just immediately return with a different error
->> (instead of current PXP-UAPI spec of -EINVAL or -ENODEV)... perhaps use -ENXIO which apparently is already part of the original pxp code but was never mentioned in UAPI - but we
->> return this immediately and document it in UAPI as "hw/fw insfratructure is not yet ready to create pxp arb session, user space can retry but may need delays of up to x-seconds on
->> ADl/TGL or y-seconds on MTL, before getting a SUCCESS or one of the other errors).
+Hi Dan,
+
+I feared this might happened while reviewing this patch.. I believe it 
+is a false positive, see below:
+
+On 29/03/2023 07:24, Dan Carpenter wrote:
+> Hello Ashutosh Dixit,
 > 
-> fair enough. It looks like we need a new get_param! :)
+> The patch 12d4eb20d9d8: "drm/i915/pmu: Use functions common with
+> sysfs to read actual freq" from Mar 15, 2023, leads to the following
+> Smatch static checker warning:
+> 
+> 	drivers/gpu/drm/i915/gt/intel_rps.c:2110 __read_cagf()
+> 	error: uninitialized symbol 'freq'.
+> 
+> drivers/gpu/drm/i915/gt/intel_rps.c
+>      2082 static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
+>      2083 {
+>      2084         struct drm_i915_private *i915 = rps_to_i915(rps);
+>      2085         struct intel_uncore *uncore = rps_to_uncore(rps);
+>      2086         i915_reg_t r = INVALID_MMIO_REG;
+>      2087         u32 freq;
+>                   ^^^^^^^^
+> 
+>      2088
+>      2089         /*
+>      2090          * For Gen12+ reading freq from HW does not need a forcewake and
+>      2091          * registers will return 0 freq when GT is in RC6
+>      2092          */
+>      2093         if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+>      2094                 r = MTL_MIRROR_TARGET_WP1;
+>      2095         } else if (GRAPHICS_VER(i915) >= 12) {
+>      2096                 r = GEN12_RPSTAT1;
+>      2097         } else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+>      2098                 vlv_punit_get(i915);
+>      2099                 freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+>                           ^^^^^^^
+> Set here.
+> 
+>      2100                 vlv_punit_put(i915);
+>      2101         } else if (GRAPHICS_VER(i915) >= 6) {
+>      2102                 r = GEN6_RPSTAT1;
+>      2103         } else {
+>      2104                 r = MEMSTAT_ILK;
+>      2105         }
 
-To check I understood this - new parameter would be like "is pxp support 
-present"?
+On all but the IS_VALLEVIEW branch, where freq itself is set, r is set 
+instead...
 
-And then later it can still fail to initialize due some parameters not 
-easily detectable during boot/probe?
+>      2106
+>      2107         if (i915_mmio_reg_valid(r))
+>      2108                 freq = take_fw ? intel_uncore_read(uncore, r) : intel_uncore_read_fw(uncore, r);
+>                           ^^^^^^
+> And here...
 
-How will the context create path look like on those platforms:
+...therefore freq will be initialized here in all cases.
 
-1. Block, then potentially error out if the full initialization failed.
+> 
+>      2109
+> --> 2110         return intel_rps_get_cagf(rps, freq);
+>                                                  ^^^^
+> Warning.
 
-2. Error out "in progress" while initializing, error out "something 
-else" if initialization failed.
-
-?
+So no problem here.
 
 Regards,
 
 Tvrtko
+
+> 
+>      2111 }
+> 
+> regards,
+> dan carpenter
