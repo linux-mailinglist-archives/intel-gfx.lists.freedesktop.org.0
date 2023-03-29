@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF326CD38C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 09:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A20D36CD457
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 10:18:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B23D10E0CB;
-	Wed, 29 Mar 2023 07:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C9B210E083;
+	Wed, 29 Mar 2023 08:18:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF4F10E0CB
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 07:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680075987; x=1711611987;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3PXbEkjZ310myfdoyAiD89n0XtfNspe+THOU5qPG9J4=;
- b=em3SbhxwjsZvwcq8XMYz6JrDpHak0s3c474gebjZ4QPDGT0GDA7Z6Rtr
- l2QOewcI1b4DJHIxBerDACnLQObqIZFUZJqgFoqQHzdb9yZGfGEfbq1/b
- rXaM5J97ONiLgr6t5JlVWNrdZ3sW6bLYozKDlBBYZt++ORux1E2SLM8gP
- ur8zyVghyyPLNLFQySvfLu0GRAeXlMPL/rEY/s4pqYkl1NllDaj0acPSv
- +O6OWJWY+KSq6ro0il3622KKYA6NH4dV2F4u77qEFKhDQxe/V63h3Fc2B
- E8E+mboIlnpt9/WxFmSepWG/OZt8mcmYsI2nMEsDQJYd8gtq7ckmF409p A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="405750253"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="405750253"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 00:46:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="684166548"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="684166548"
-Received: from jabolger-mobl2.ger.corp.intel.com (HELO [10.213.199.158])
- ([10.213.199.158])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 00:46:25 -0700
-Message-ID: <836043eb-3b19-ed9a-ded5-9df624428a6a@linux.intel.com>
-Date: Wed, 29 Mar 2023 08:46:23 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A09F110E083;
+ Wed, 29 Mar 2023 08:17:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 96DB8AADD6;
+ Wed, 29 Mar 2023 08:17:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Dan Carpenter <error27@gmail.com>, ashutosh.dixit@intel.com
-References: <fada1328-2c58-4e06-bd36-1514ddc2d567@kili.mountain>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <fada1328-2c58-4e06-bd36-1514ddc2d567@kili.mountain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [bug report] drm/i915/pmu: Use functions common
- with sysfs to read actual freq
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhao Liu" <zhao1.liu@linux.intel.com>
+Date: Wed, 29 Mar 2023 08:17:59 -0000
+Message-ID: <168007787958.23903.9145655375067765557@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230329073220.3982460-1-zhao1.liu@linux.intel.com>
+In-Reply-To: <20230329073220.3982460-1-zhao1.liu@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Replace_kmap=5Fatomic=28=29_with_kmap=5Flocal?=
+ =?utf-8?b?X3BhZ2UoKQ==?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,82 +41,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Dan,
+Series: drm/i915: Replace kmap_atomic() with kmap_local_page()
+URL   : https://patchwork.freedesktop.org/series/115769/
+State : warning
 
-I feared this might happened while reviewing this patch.. I believe it 
-is a false positive, see below:
+== Summary ==
 
-On 29/03/2023 07:24, Dan Carpenter wrote:
-> Hello Ashutosh Dixit,
-> 
-> The patch 12d4eb20d9d8: "drm/i915/pmu: Use functions common with
-> sysfs to read actual freq" from Mar 15, 2023, leads to the following
-> Smatch static checker warning:
-> 
-> 	drivers/gpu/drm/i915/gt/intel_rps.c:2110 __read_cagf()
-> 	error: uninitialized symbol 'freq'.
-> 
-> drivers/gpu/drm/i915/gt/intel_rps.c
->      2082 static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
->      2083 {
->      2084         struct drm_i915_private *i915 = rps_to_i915(rps);
->      2085         struct intel_uncore *uncore = rps_to_uncore(rps);
->      2086         i915_reg_t r = INVALID_MMIO_REG;
->      2087         u32 freq;
->                   ^^^^^^^^
-> 
->      2088
->      2089         /*
->      2090          * For Gen12+ reading freq from HW does not need a forcewake and
->      2091          * registers will return 0 freq when GT is in RC6
->      2092          */
->      2093         if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
->      2094                 r = MTL_MIRROR_TARGET_WP1;
->      2095         } else if (GRAPHICS_VER(i915) >= 12) {
->      2096                 r = GEN12_RPSTAT1;
->      2097         } else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
->      2098                 vlv_punit_get(i915);
->      2099                 freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
->                           ^^^^^^^
-> Set here.
-> 
->      2100                 vlv_punit_put(i915);
->      2101         } else if (GRAPHICS_VER(i915) >= 6) {
->      2102                 r = GEN6_RPSTAT1;
->      2103         } else {
->      2104                 r = MEMSTAT_ILK;
->      2105         }
+Error: dim checkpatch failed
+9bed0825b968 drm/i915: Use kmap_local_page() in gem/i915_gem_object.c
+-:39: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#39: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-On all but the IS_VALLEVIEW branch, where freq itself is set, r is set 
-instead...
+-:68: ERROR:CODE_INDENT: code indent should use tabs where possible
+#68: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:434:
++^I          + offset_in_page(offset);$
 
->      2106
->      2107         if (i915_mmio_reg_valid(r))
->      2108                 freq = take_fw ? intel_uncore_read(uncore, r) : intel_uncore_read_fw(uncore, r);
->                           ^^^^^^
-> And here...
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+d3723eb0a5a9 drm/i915: Use memcpy_[from/to]_page() in gem/i915_gem_pyhs.c
+-:39: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#39: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-...therefore freq will be initialized here in all cases.
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+a6ad1bedd102 drm/i915: Use kmap_local_page() in gem/i915_gem_shmem.c
+-:24: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#24: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-> 
->      2109
-> --> 2110         return intel_rps_get_cagf(rps, freq);
->                                                  ^^^^
-> Warning.
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+140ac9e589f6 drm/i915: Use kmap_local_page() in gem/selftests/huge_pages.c
+-:36: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#36: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-So no problem here.
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+8ca8fe8829f9 drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_coherency.c
+-:37: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#37: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+3fe0f41f6073 drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_context.c
+-:38: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#38: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-Tvrtko
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+1a1713ebe97f drm/i915: Use memcpy_from_page() in gt/uc/intel_uc_fw.c
+-:29: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#29: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com/T/#u
 
-> 
->      2111 }
-> 
-> regards,
-> dan carpenter
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+9cc672fadd3c drm/i915: Use kmap_local_page() in i915_cmd_parser.c
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#34: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 13 lines checked
+69cab3363bd2 drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#34: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+
+
