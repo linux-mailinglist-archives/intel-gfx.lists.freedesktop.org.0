@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265FD6CF2B1
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 21:04:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6936CF2B2
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 21:04:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A25110E55A;
-	Wed, 29 Mar 2023 19:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2501310EBA8;
+	Wed, 29 Mar 2023 19:04:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8136C10E55A
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 19:04:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0797D10E55A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 19:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680116688; x=1711652688;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v4NkpYo6ow2ZIgyvPKbuK3HQU/q1NAchZIstKshxuuQ=;
- b=dFGCgvNE1xEsHx5w9X+nHDt+NjdwN9kcZ5tKvhh9huSI/gQ+xuKmKzYO
- 80Pm+TDxCPqzqSuZFrNyUrBXSXxBBPL/BkEKflzNLQnTZ71/GksRLTJso
- PGTWfPSOxZaqIqyWV4D+w0LKdcasWuGLOJ880pHfrBd43voVKGtXXFlBn
- aWd8Zc7LdWqTGx3ZKMo1PTnw6FC6fxwKr9crkPItX0KOKt6P6ikSUPpbe
- FWePXhtDS/Rf0kb7jxSVC9hF96/63JzJA5jvrna7yALxOqNDlMYnKTlMo
- 0itL4CPpUVdTtPwZnDCq095HKqWWp+yVwKbYknNZUJclz2MG+QVvXMPL9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="340995470"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="340995470"
+ t=1680116690; x=1711652690;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=7pWCgZMvfkdIPTbTzEHHtM/ify/OQvRa+VTn5mMGyV8=;
+ b=Albz2A4o3kecW2wqsyQtbXRzTtPUPC58K8tffe+JhcKXWAkPiQHa5Xhc
+ XCdmNmv2fd1ebQivf13aOqt+6oEt/O9QMtIJK54OdTuRsRmQAgKdUh/zX
+ f9m8HlYffVukqprvCZXXLassT+Aay8qDDdYToLUTZeDlUyB2MJwlncBw2
+ 4pygJUQTePOgVxq2J6TQXG2ZHi51URIOKSBgP0lrfIV8nSo/TDKmgum7l
+ 94jg4Xelz/MC1wVMH7Uy54zMGpecfmDRKXKmHjKwhO/wejKLmdqsxCxSz
+ wJ1jp5SozqxajaeLdXYVhn91lQ0jw583mocyKyFa0ZP6grbh3o6kzp0Uf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="340995485"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="340995485"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 12:04:48 -0700
+ 29 Mar 2023 12:04:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="828005875"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="828005875"
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="828005877"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="828005877"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga001.fm.intel.com with SMTP; 29 Mar 2023 12:04:46 -0700
+ by fmsmga001.fm.intel.com with SMTP; 29 Mar 2023 12:04:49 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 22:04:45 +0300
+ Wed, 29 Mar 2023 22:04:48 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 22:04:43 +0300
-Message-Id: <20230329190445.13456-1-ville.syrjala@linux.intel.com>
+Date: Wed, 29 Mar 2023 22:04:44 +0300
+Message-Id: <20230329190445.13456-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230329190445.13456-1-ville.syrjala@linux.intel.com>
+References: <20230329190445.13456-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Skip cursor when writing
- PLANE_CHICKEN
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Document that PLANE_CHICKEN are
+ for tgl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,35 +65,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Cursor is not a universal plane and thus doesn't have the
-PLANE_CHICKEN register. Skip it.
+Add tgl+ comments to the PLANE_CHICKEN registers which
+I apparently forgot to add when defining the registers.
 
-Fixes: c5de248484af ("drm/i915/dpt: Add a modparam to disable DPT via the chicken bit")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpt.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_reg.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index 2bf5cce232d5..b8027392144d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -324,10 +324,14 @@ void intel_dpt_configure(struct intel_crtc *crtc)
- 		enum pipe pipe = crtc->pipe;
- 		enum plane_id plane_id;
- 
--		for_each_plane_id_on_crtc(crtc, plane_id)
-+		for_each_plane_id_on_crtc(crtc, plane_id) {
-+			if (plane_id == PLANE_CURSOR)
-+				continue;
-+
- 			intel_de_rmw(i915, PLANE_CHICKEN(pipe, plane_id),
- 				     PLANE_CHICKEN_DISABLE_DPT,
- 				     i915->params.enable_dpt ? 0 : PLANE_CHICKEN_DISABLE_DPT);
-+		}
- 	} else if (DISPLAY_VER(i915) == 13) {
- 		intel_de_rmw(i915, CHICKEN_MISC_2,
- 			     CHICKEN_MISC_DISABLE_DPT,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8e4aca888b7a..275ec891468c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4655,8 +4655,8 @@
+ #define   PLANE_COLOR_ALPHA_DISABLE			REG_FIELD_PREP(PLANE_COLOR_ALPHA_MASK, 0)
+ #define   PLANE_COLOR_ALPHA_SW_PREMULTIPLY		REG_FIELD_PREP(PLANE_COLOR_ALPHA_MASK, 2)
+ #define   PLANE_COLOR_ALPHA_HW_PREMULTIPLY		REG_FIELD_PREP(PLANE_COLOR_ALPHA_MASK, 3)
+-#define _PLANE_CHICKEN_1_A			0x7026C
+-#define _PLANE_CHICKEN_2_A			0x7036C
++#define _PLANE_CHICKEN_1_A			0x7026C /* tgl+ */
++#define _PLANE_CHICKEN_2_A			0x7036C /* tgl+ */
+ #define   PLANE_CHICKEN_DISABLE_DPT		REG_BIT(19) /* mtl+ */
+ #define _PLANE_BUF_CFG_1_A			0x7027c
+ #define _PLANE_BUF_CFG_2_A			0x7037c
 -- 
 2.39.2
 
