@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDCA86CF285
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 20:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A92C6CF29B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 20:59:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5278A10E185;
-	Wed, 29 Mar 2023 18:54:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A729210E542;
+	Wed, 29 Mar 2023 18:59:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F7210E185
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 18:54:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680116063; x=1711652063;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=kzZ54ljR25kuOUEroDqzP1/7+9HLkgmSzuIfhQXpCHE=;
- b=M7p/86uYE0hq8EMeat4NCmh0+I19gP7dAsQIbcIXn9J6FnMNbg0alw8m
- fNojmFy+w9SBspVkFK+zKlHlIRS/EaLfQDo7fRG42rIRqU10pE5K/pafv
- 6ThiSEut7KCCJsdWJxKUvWtwd147vualp768KmH2EqnC9O5JFFSZGwPlU
- CNzeUBIjRKmpp5Tgce7SA3XcT3BNXEph1Ggl+TTLxerjRxZlDb6bO9dj4
- vkVijq4TOtCIrcYbzfcyRwBo/PNK0dyPBzY+dLxqvmeQu9xYH0GgQHQuG
- 71eSheMCan2GAF6tSsAyBXV8VeMwMeWMNxbI/YIUFMgm+pc1uHcIAAWCN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="339698039"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="339698039"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 11:54:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="661729132"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="661729132"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga006.jf.intel.com with SMTP; 29 Mar 2023 11:54:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 21:54:19 +0300
-Date: Wed, 29 Mar 2023 21:54:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <ZCSJW8GUB9IgdP9z@intel.com>
-References: <20230328093042.7469-1-ville.syrjala@linux.intel.com>
- <20230328093042.7469-6-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A2C2610E542;
+ Wed, 29 Mar 2023 18:59:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 97D08A02F0;
+ Wed, 29 Mar 2023 18:59:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5203127292786396308=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230328093042.7469-6-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/psr: Define more PSR mask bits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 29 Mar 2023 18:59:55 -0000
+Message-ID: <168011639561.23904.167300411132954035@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_CSC_state_readout/check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,124 +40,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 28, 2023 at 12:30:39PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Define more of the PSR mask bits, and describe in detail
-> what some of them do. Even if we don't set them all from
-> the driver they can be very useful during PSR debugging.
-> Having to trawl through bspec every time to find them is
-> not fun, and re-reverse engineering the behaviour every
-> time is time consuming (even if a bit more fun than spec
-> trawling).
-> 
-> v2: Moar bits
->     Put the description into a comment to be easily available
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 85 ++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h          | 27 ++++++--
->  drivers/gpu/drm/i915/intel_pm.c          |  4 +-
->  3 files changed, 109 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 9e5ffe4eac6f..142cd174475e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -84,6 +84,91 @@
->   * use page flips.
->   */
->  
-> +/*
-> + * Description of PSR mask bits:
-> + *
-> + * EDP_PSR_DEBUG[16]/EDP_PSR_DEBUG_MASK_DISP_REG_WRITE (hsw-skl):
-> + *
-> + *  When unmasked (nearly) all display register writes (eg. even
-> + *  SWF) trigger a PSR exit. Some registers are excluded from this
-> + *  and they have a more specific mask (described below). On icl+
-> + *  this bit no longer exists and is effectively always set.
-> + *
-> + * PIPE_MISC[21]/PIPE_MISC_PSR_MASK_PIPE_REG_WRITE (skl+):
-> + *
-> + *  When unmasked (nearly) all pipe/plane register writes
-> + *  trigger a PSR exit. Some plane registers are excluded from this
-> + *  and they have a more specific mask (described below).
-> + *
-> + * CHICKEN_PIPESL_1[11]/SKL_PSR_MASK_PLANE_FLIP (skl+):
-> + * PIPE_MISC[23]/PIPE_MISC_PSR_MASK_PRIMARY_FLIP (bdw):
-> + * EDP_PSR_DEBUG[23]/EDP_PSR_DEBUG_MASK_PRIMARY_FLIP (hsw):
-> + *
-> + *  When unmasked PRI_SURF/PLANE_SURF writes trigger a PSR exit.
-> + *  SPR_SURF/CURBASE are not included in this and instead are
-> + *  controlled by PIPE_MISC_PSR_MASK_PIPE_REG_WRITE (skl+) or
-> + *  EDP_PSR_DEBUG_MASK_DISP_REG_WRITE (hsw/bdw).
-> + *
-> + * PIPE_MISC[22]/PIPE_MISC_PSR_MASK_SPRITE_ENABLE (bdw):
-> + * EDP_PSR_DEBUG[21]/EDP_PSR_DEBUG_MASK_SPRITE_ENABLE (hsw):
-> + *
-> + *  When unmasked PSR is blocked as long as the sprite
-> + *  plane is enabled. skl+ with their universal planes no
-> + *  longer have a mask bit like this, and no plane being
-> + *  enabledb blocks PSR.
-> + *
-> + * PIPE_MISC[21]/PIPE_MISC_PSR_MASK_CURSOR_MOVE (bdw):
-> + * EDP_PSR_DEBUG[20]/EDP_PSR_DEBUG_MASK_CURSOR_MOVE (hsw):
-> + *
-> + *  When umasked CURPOS writes trigger a PSR exit. On skl+
-> + *  this doesn't exit but CURPOS is included in the
-> + *  PIPE_MISC_PSR_MASK_PIPE_REG_WRITE mask.
-> + *
-> + * PIPE_MISC[20]/PIPE_MISC_PSR_MASK_VBLANK_VSYNC_INT (bdw+):
-> + * EDP_PSR_DEBUG[19]/EDP_PSR_DEBUG_MASK_VBLANK_VSYNC_INT (hsw):
-> + *
-> + *  When unmasked PSR is blocked as long as vblank and/or vsync
-> + *  interrupt is unmasked in IMR *and* enabled in IER.
-> + *
-> + * CHICKEN_TRANS[30]/SKL_UNMASK_VBL_TO_PIPE_IN_SRD (skl+):
-> + * CHICKEN_PAR1_1[15]/HSW_MASK_VBL_TO_PIPE_IN_SRD (hsw/bdw):
-> + *
-> + *  Selectcs whether PSR exit generates an extra vblank before
-> + *  the first frame is transmitted. Also note the opposite polarity
-> + *  if the bit on hsw/bdw vs. skl+ (masked==generate the extra vblank,
-> + *  unmasked==do not generate the extra vblank).
-> + *
-> + *  With DC states enabled the extra vblank happens after link training,
-> + *  with DC states disabled it happens immediately upuon PSR exit trigger.
-> + *  No idea as of now why there is a difference. HSW/BDW (which don't
-> + *  even have DMC) always generate it after link training. Go figure.
-> + *
-> + *  Unfortunately CHICKEN_TRANS itself seems to be double buffered
-> + *  and thus won't latch until the first vblank. So with DC states
-> + *  enabled the register effctively uses the reset value during DC5
-> + *  exit+PSR exit sequence, and thus the bit does nothing until
-> + *  latched by the vblank that it was trying to prevent from being
-> + *  generated in the first place. So we should probably call this
-> + *  one a chicken/egg bit instead on skl+.
-> + *
-> + *  In standby mode (as opposed to link-off) this makes no difference
-> + *  as the timing generator keeps running the whole time generating
-> + *  normal periodic vblanks.
-> + *
-> + *  WaPsrDPAMaskVBlankInSRD asks us to set the bit on hsw/bdw,
-> + *  and doing so makes the behaviour match the skl+ reset value.
-> + *
-> + * CHICKEN_PIPESL_1[0]/BDW_UNMASK_VBL_TO_REGS_IN_SRD (bdw):
-> + * CHICKEN_PIPESL_1[15]/HSW_UNMASK_VBL_TO_REGS_IN_SRD (hsw):
-> + *
-> + *  Effect unknown. WaPsrDPRSUnmaskVBlankInSRD says to set the
-> + *  bit, but not apparent change in hardware behaviour either
-> + *  way.
+--===============5203127292786396308==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Actually there is a very clear effect on BDW; no vblanks whatsoever
-after PSR exit if the bit is not set. Only noticed when I tested
-after allowing the machine to enter PC8+ (which apparently clobbers
-a lot of chicken bits, including this one).
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: drm/i915: Add CSC state readout/check
+URL   : https://patchwork.freedesktop.org/series/115794/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12936 -> Patchwork_115794v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/index.html
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115794v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-dg2-11:         [PASS][1] -> [INCOMPLETE][2] ([i915#7609] / [i915#7913])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][3] ([i915#6367] / [i915#7996])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][4] ([fdo#109271]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#5354]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
+    - bat-dg2-8:          [PASS][6] -> [FAIL][7] ([i915#7932])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][8] ([i915#7911] / [i915#7913]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-rpls-1:         [TIMEOUT][10] ([i915#6794]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rpls-1/igt@i915_selftest@live@mman.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rpls-1/igt@i915_selftest@live@mman.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rplp-1:         [DMESG-FAIL][12] ([i915#6367] / [i915#7913]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rplp-1/igt@i915_selftest@live@slpc.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rplp-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:
+    - bat-dg2-8:          [FAIL][14] ([i915#7932]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
+  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12936 -> Patchwork_115794v1
+
+  CI-20190529: 20190529
+  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115794v1: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b3184fd06e30 drm/i915: Do state check for color management changes
+670191884f23 drm/i915: Hook up csc into state checker
+6bcfe201fd6c drm/i915: Include the csc matrices in the crtc state dump
+e93adc454104 drm/i915: Implement chv cgm csc readout
+11bbed66d0e6 drm/i915: Add hardware csc readout for ilk+
+eb49122bdeb3 drm/i915: Sprinke a few sanity check WARNS during csc assignment
+1ac6f347d1ac drm/i915: Utilize crtc_state->csc on chv
+43ebad2e56f7 drm/i915: Store ilk+ csc matrices in the crtc state
+bf5914ca5a02 drm/i915: Start using struct intel_csc_matrix for chv cgm csc
+f5a81829efbf drm/i915: Split chv_load_cgm_csc() into pieces
+d5e6b118a522 drm/i915: Introduce intel_csc_matrix struct
+828a87093753 drm/i915: Fix limited range csc matrix
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/index.html
+
+--===============5203127292786396308==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add CSC state readout/check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115794/">https://patchwork.freedesktop.org/series/115794/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12936 -&gt; Patchwork_115794v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115794v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rpls-1/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rpls-1/igt@i915_selftest@live@mman.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115794v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12936 -&gt; Patchwork_115794v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115794v1: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b3184fd06e30 drm/i915: Do state check for color management changes<br />
+670191884f23 drm/i915: Hook up csc into state checker<br />
+6bcfe201fd6c drm/i915: Include the csc matrices in the crtc state dump<br />
+e93adc454104 drm/i915: Implement chv cgm csc readout<br />
+11bbed66d0e6 drm/i915: Add hardware csc readout for ilk+<br />
+eb49122bdeb3 drm/i915: Sprinke a few sanity check WARNS during csc assignment<br />
+1ac6f347d1ac drm/i915: Utilize crtc_state-&gt;csc on chv<br />
+43ebad2e56f7 drm/i915: Store ilk+ csc matrices in the crtc state<br />
+bf5914ca5a02 drm/i915: Start using struct intel_csc_matrix for chv cgm csc<br />
+f5a81829efbf drm/i915: Split chv_load_cgm_csc() into pieces<br />
+d5e6b118a522 drm/i915: Introduce intel_csc_matrix struct<br />
+828a87093753 drm/i915: Fix limited range csc matrix</p>
+
+</body>
+</html>
+
+--===============5203127292786396308==--
