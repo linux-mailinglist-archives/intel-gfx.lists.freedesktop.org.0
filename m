@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAFE6CDB34
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 15:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E5F6CDB73
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 16:03:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3508610EAFA;
-	Wed, 29 Mar 2023 13:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A0210EADD;
+	Wed, 29 Mar 2023 14:03:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E17A710EAF1
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 13:50:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680097839; x=1711633839;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=utq7zjFIZnTbI517Po7IKHQ7PiuadAtLPEgHNn3pZ1c=;
- b=cA14uvtX91HbUHMOPRWIv/9gUO61AVjzRjNm70e+aTKVtyIyB9nbTGkU
- lCYEVsj4L7yOvw9S3Ka8lKNhbrUb6/Xio++me3xb26Is8bLxfv7+uoyUL
- hSSHp6HJGh6l5pUcY6d+hOM+wpEi5f03Z/6hu4kEAvAXkMvL4aiYSZtup
- CeNeAiFLygnFhUpHop9kFlq7XCWphLXxQ8fTjilLTYjD2UxxYIpgXKIiq
- NCQNRnvAN/NyEKJD3BEZZUZNfBUhaGRQqvtQ+CClAF4wWHfjX9d10W91+
- +pZv5CnPOOawhDaCtuUfQlTYaiXIBFGwse9A8u+9laEz5bG0GeX8OesVh g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="338379105"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="338379105"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 06:50:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="1014029527"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="1014029527"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga005.fm.intel.com with SMTP; 29 Mar 2023 06:50:37 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Mar 2023 16:50:37 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 16:50:02 +0300
-Message-Id: <20230329135002.3096-13-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
-References: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 24E8310EA90;
+ Wed, 29 Mar 2023 14:03:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 19AACAA917;
+ Wed, 29 Mar 2023 14:03:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915: Do state check for color
- management changes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Wed, 29 Mar 2023 14:03:24 -0000
+Message-ID: <168009860407.23905.7590948848543310839@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230224-track_gt-v6-0-0dc8601fd02f@intel.com>
+In-Reply-To: <20230224-track_gt-v6-0-0dc8601fd02f@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_use_ref=5Ftracker_library_for_tracking_wakerefs?=
+ =?utf-8?q?_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +41,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-In order to validate LUT programming more thoroughly let's
-do a state check for all color management updates as well.
+Series: drm/i915: use ref_tracker library for tracking wakerefs (rev7)
+URL   : https://patchwork.freedesktop.org/series/100327/
+State : warning
 
-Not sure we really want this outside CI. It is rather heavy
-and color management updates could become rather common
-with all the HDR/etc. stuff happening. Maybe we should have
-an extra knob for this that we could enable in CI?
+== Summary ==
 
-v2: Skip for initial_commit to avoid FDI dotclock
-    sanity checks/etc. tripping up
+Error: dim checkpatch failed
+a48ff8d4bbf3 lib/ref_tracker: add unlocked leak print helper
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+To have reliable detection of leaks, caller must be able to check under the same
 
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_modeset_verify.c | 2 ++
- 1 file changed, 2 insertions(+)
+total: 0 errors, 1 warnings, 0 checks, 105 lines checked
+996793d734ce lib/ref_tracker: improve printing stats
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: include/linux/ref_tracker.h:31:
++static inline void __ref_tracker_dir_init(struct ref_tracker_dir *dir,
++					unsigned int quarantine_count,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 842d70f0dfd2..9e4767e1b900 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -228,6 +228,8 @@ void intel_modeset_verify_crtc(struct intel_crtc *crtc,
- 			       struct intel_crtc_state *new_crtc_state)
- {
- 	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-+	    (!intel_crtc_needs_color_update(new_crtc_state) ||
-+	     new_crtc_state->inherited) &&
- 	    !intel_crtc_needs_fastset(new_crtc_state))
- 		return;
- 
--- 
-2.39.2
+-:49: WARNING:STRLCPY: Prefer strscpy over strlcpy - see: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
+#49: FILE: include/linux/ref_tracker.h:41:
++	strlcpy(dir->name, name, sizeof(dir->name));
+
+total: 0 errors, 1 warnings, 1 checks, 151 lines checked
+56912d5da2d2 lib/ref_tracker: add printing to memory buffer
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#54: FILE: lib/ref_tracker.c:70:
++#define pr_ostream(stream, fmt, args...) \
++({ \
++	struct ostream *_s = (stream); \
++\
++	if (!_s->buf) { \
++		pr_err(fmt, ##args); \
++	} else { \
++		int ret, len = _s->size - _s->used; \
++		ret = snprintf(_s->buf + _s->used, len, pr_fmt(fmt), ##args); \
++		_s->used += min(ret, len); \
++	} \
++})
+
+total: 0 errors, 0 warnings, 1 checks, 109 lines checked
+8a5c4020d1b0 lib/ref_tracker: remove warnings in case of allocation failure
+da506567d133 drm/i915: Correct type of wakeref variable
+fe7edc6eb029 drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+-:404: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#404: FILE: drivers/gpu/drm/i915/intel_wakeref.h:24:
++typedef unsigned long intel_wakeref_t;
+
+total: 0 errors, 1 warnings, 0 checks, 426 lines checked
+28b072da3355 drm/i915: track gt pm wakerefs
+-:464: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#464: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:464: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
+#464: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:795: ERROR:ASSIGN_IN_IF: do not use assignment in if condition
+#795: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1328:
++	if (!in_reset && (wakeref = intel_gt_pm_get_if_awake(gt))) {
+
+total: 1 errors, 0 warnings, 2 checks, 789 lines checked
+d3633524d9af drm/i915/gt: Hold a wakeref for the active VM
+-:81: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#81: FILE: drivers/gpu/drm/i915/gt/intel_engine_pm.c:117:
++	GEM_BUG_ON(rq->context->active_count != 1);
+
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+
 
