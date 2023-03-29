@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B256CD20A
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 08:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC8A6CD2D2
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 09:19:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2495210E257;
-	Wed, 29 Mar 2023 06:24:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E59E10E257;
+	Wed, 29 Mar 2023 07:18:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6952B10E257
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 06:24:23 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id j24so14509832wrd.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 23:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680071062;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=ctFyhkJvlxmaZ+FFFbtx3qdTt3k64KNBKDO7V/l4T60=;
- b=LbSYJ663s1IFxrBt/WMyOWJkwPdmFDSo/+oAiQMONKHSUpwFfLkVn6JfPsKnDvw/p7
- 6GD1fwNr6WcSmrHePWqYIvR1cToxN1n7k42a2pqwlA1SuoHNpzcBeLxi5HTCP/5klUmR
- 1Q3CTofwolF5PhHjW7g2hfFMLA5zZ9VcAs0ARNNTBW5pBBFCqqg/zDWCKgl0uj71fi0/
- lkWX3rv5rLajXpv2pik/6FhL5cg83U9O40FboH1ztPII6a+ipzsAY7ckAJ8UvuutigT9
- HdOkdbnND7WJJKQ+kmWh56qo5wjt1D7qv89xQPgdNrER9TCSYWBXEQTDSj7ql506tOVe
- 88CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680071062;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ctFyhkJvlxmaZ+FFFbtx3qdTt3k64KNBKDO7V/l4T60=;
- b=dz8RHRJw3rthwqj3YYRapbF6r5P2nDAgSWmsYDfnvf3vuAl7nFvIlinEgkFSXVmS9Q
- HIrsEsWhjUSic3HYzMxGo3YhOyXi5dR1wm2EeW72lIQQvAbfRWMyeo5nh+ZBQfUMoFUu
- DXpcIwoukkXLz2Rze2cGuuEkHcF+SxLhhr9+GTouC8KPdhNAz+JAp4Pcx1zwr2SL1Pcw
- 5fibbUqswajBfW1haoyj46USdn4KdOT1I8aV5DWKfq9SzhNECqwMLsEz/wYhh9ZE0uhf
- /1gKKobqQ0IJ0vEFfXsBWDmKswq783omw/WwpDfsKaBik6MeHwk6WxxJSCjcydrsxD5N
- DETA==
-X-Gm-Message-State: AAQBX9dDlRnEDovkUEUP/ftF7quAhM6g2fd0iv5OWPTOWer7EpGxa0OP
- EzAGWOrIFPGeiT9llFV14STcsy4lglkWq8Le
-X-Google-Smtp-Source: AKy350a5aQtXogKfAodgzmLNin36jCVE4QIqSOxne/I9g3AHKya5fxl3xaT1OvdyEvaPK9cR6cGyxg==
-X-Received: by 2002:adf:e882:0:b0:2ce:a8f4:2b01 with SMTP id
- d2-20020adfe882000000b002cea8f42b01mr857046wrm.32.1680071061577; 
- Tue, 28 Mar 2023 23:24:21 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- u13-20020adfdb8d000000b002d2b117a6a6sm29331369wri.41.2023.03.28.23.24.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Mar 2023 23:24:21 -0700 (PDT)
-Date: Wed, 29 Mar 2023 09:24:12 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: ashutosh.dixit@intel.com
-Message-ID: <fada1328-2c58-4e06-bd36-1514ddc2d567@kili.mountain>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425FF10E257
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 07:18:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680074335; x=1711610335;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=HytrNlUpcTXma0LA1JBLs3w+5i+5ZTS/IWYnuRMBFwY=;
+ b=YL7IpkCBTQpUv5H83ypBKs0PWS4tvQVN18v7PcAE5Yvp1x17EDEX3zc/
+ nb3Z2lD7tGxPhbhAkdd+K2aBtXtuRwf6MNVBf7NziycDPRa3C4ddkkkGk
+ PWspsD7zlC0g5cIdxBG7ebICa/YY5Xj6MVgp+kEON+JPVtVs3/x2Jt2CH
+ QyxdbAAUXbC0ngW/MaKZsz4uq2PqKcqxoeQOXtXchlsL+XMV4Q3d+pI/n
+ ptUw/iNwZZFAlo+Z6u1BK+I+fvGoLrrmmYiHqQVWbaFDax8vDCY4bizIo
+ dn3c5sq5PAR//pOLEmpfDFBgdXkIGNaCPS2TksSm1kilGmUFHNkgG+G+R A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339528085"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="339528085"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 00:18:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="677675685"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="677675685"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.27.52])
+ ([10.213.27.52])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 00:18:53 -0700
+Message-ID: <5f845aa2-30ec-cf90-59e8-70664bd3d73b@intel.com>
+Date: Wed, 29 Mar 2023 09:18:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [bug report] drm/i915/pmu: Use functions common with
- sysfs to read actual freq
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+References: <20230224-track_gt-v5-0-77be86f2c872@intel.com>
+ <168004589720.29056.1047692060430299041@emeril.freedesktop.org>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <168004589720.29056.1047692060430299041@emeril.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_use_ref=5Ftracker_library_for_tracking_wakerefs_=28r?=
+ =?utf-8?q?ev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,61 +67,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Ashutosh Dixit,
+On 29.03.2023 01:24, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: use ref_tracker library for tracking wakerefs (rev6)
+> URL   : https://patchwork.freedesktop.org/series/100327/
+> State : failure
+> 
+> == Summary ==
+> 
+> Error: patch https://patchwork.freedesktop.org/api/1.0/series/100327/revisions/6/mbox/ not applied
+> Applying: lib/ref_tracker: add unlocked leak print helper
+> Applying: lib/ref_tracker: improve printing stats
+> Applying: lib/ref_tracker: add printing to memory buffer
+> Applying: lib/ref_tracker: remove warnings in case of allocation failure
+> Applying: drm/i915: Correct type of wakeref variable
+> Applying: drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+> Applying: drm/i915: track gt pm wakerefs
+> error: sha1 information is lacking or useless (drivers/gpu/drm/i915/Kconfig.debug).
+> error: could not build fake ancestor
+> hint: Use 'git am --show-current-patch=diff' to see the failed patch
+> Patch failed at 0007 drm/i915: track gt pm wakerefs
 
-The patch 12d4eb20d9d8: "drm/i915/pmu: Use functions common with
-sysfs to read actual freq" from Mar 15, 2023, leads to the following
-Smatch static checker warning:
+I will rebase on the latest drm-tip.
 
-	drivers/gpu/drm/i915/gt/intel_rps.c:2110 __read_cagf()
-	error: uninitialized symbol 'freq'.
+Regards
+Andrzej
 
-drivers/gpu/drm/i915/gt/intel_rps.c
-    2082 static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
-    2083 {
-    2084         struct drm_i915_private *i915 = rps_to_i915(rps);
-    2085         struct intel_uncore *uncore = rps_to_uncore(rps);
-    2086         i915_reg_t r = INVALID_MMIO_REG;
-    2087         u32 freq;
-                 ^^^^^^^^
 
-    2088 
-    2089         /*
-    2090          * For Gen12+ reading freq from HW does not need a forcewake and
-    2091          * registers will return 0 freq when GT is in RC6
-    2092          */
-    2093         if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
-    2094                 r = MTL_MIRROR_TARGET_WP1;
-    2095         } else if (GRAPHICS_VER(i915) >= 12) {
-    2096                 r = GEN12_RPSTAT1;
-    2097         } else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-    2098                 vlv_punit_get(i915);
-    2099                 freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-                         ^^^^^^^
-Set here.
+> When you have resolved this problem, run "git am --continue".
+> If you prefer to skip this patch, run "git am --skip" instead.
+> To restore the original branch and stop patching, run "git am --abort".
+> Build failed, no error log produced
+> 
+> 
 
-    2100                 vlv_punit_put(i915);
-    2101         } else if (GRAPHICS_VER(i915) >= 6) {
-    2102                 r = GEN6_RPSTAT1;
-    2103         } else {
-    2104                 r = MEMSTAT_ILK;
-    2105         }
-    2106 
-    2107         if (i915_mmio_reg_valid(r))
-    2108                 freq = take_fw ? intel_uncore_read(uncore, r) : intel_uncore_read_fw(uncore, r);
-                         ^^^^^^
-And here...
-
-    2109 
---> 2110         return intel_rps_get_cagf(rps, freq);
-                                                ^^^^
-Warning.
-
-    2111 }
-
-regards,
-dan carpenter
