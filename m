@@ -1,51 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403D66CD5FE
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 11:10:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C03C36CD63F
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Mar 2023 11:20:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86C0E10E516;
-	Wed, 29 Mar 2023 09:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757D210E52B;
+	Wed, 29 Mar 2023 09:20:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C915810E516
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 09:10:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90B9E10E52B;
+ Wed, 29 Mar 2023 09:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680081002; x=1711617002;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xXYQ3mPcDmWW+4nDBnZTzP/d8oeg0KPK65G3A2UmgnU=;
- b=Lk+uwaxrq8us/pJGf4qiENJmDgjEvmCyVzeWW9CyeqKk5ib+ADw9zu7J
- gLrDHA1I68NhyxjWsJ66DVP89LJBFXr1m1Zeafmx1c0e+pkhlYc1ZhX9f
- BLJSA6FcKVzRHfSZlyRyXL+EIr7CUmOg0kuJMd/AoTc2287D8i7pZtKCs
- tYapc40HUlX0dF7AabBzKIXyct8NvatdMQu8uLrw6ty9VPRrt0nyUgM/4
- HDaeNj+FFibVFK2QnMC6tsRMACCXrRrCYC8WL1JZEb5+Cw2ou6e51SqZi
- LPnozwEnUklDm9VCqB32j8GZysO377bsSy2E+yPOA5NGXh8FXh9iXPPPz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="320478087"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="320478087"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 02:09:59 -0700
+ t=1680081638; x=1711617638;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6P6pcEtEes8ruh+DwU2GE43Pr4b3BbuPa3FdWkhb1Dk=;
+ b=HqaxUq5BR4mjttQLlN7gMAZl71Li1FcaBogFcyU2bJKazuJfIrSwZl5+
+ kr40yApAvv30RWbdryFPDHV4VISyNrKw6WRwPKgK24W7XGWxeuJy1o+0u
+ 3lhM8ryOsktE3Tx8TQfFdjczXYeUCLUSYTnT2zF7UyaH/86QSHvdAHSfl
+ 9lJl1kakbkiap6tBpogNJ/wwuhNURw4/vcGGl2qj6ab8cJum6ocizXPRv
+ aAq1l/RaXAbLaz3lVEsDMmrQht6m9G31Ruk5Eo6Thcrrs8fFcX2LyIMb4
+ opKFiHzjeCNSm8JhCd8RDz5B0ve3xK8yMr29fRc4Ze14leKsDHP2vy5sh g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="403448632"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="403448632"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 02:20:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="684188026"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="684188026"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 02:09:55 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 14:37:45 +0530
-Message-Id: <20230329090745.719672-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230329084449.717954-2-ankit.k.nautiyal@intel.com>
-References: <20230329084449.717954-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="773502427"
+X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; d="scan'208";a="773502427"
+Received: from jabolger-mobl2.ger.corp.intel.com (HELO [10.213.199.158])
+ ([10.213.199.158])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 02:20:34 -0700
+Message-ID: <85cc3d07-0a7f-9ba4-45f2-dc6e7befefaf@linux.intel.com>
+Date: Wed, 29 Mar 2023 10:20:32 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20230328093627.5067-1-lm0963hack@gmail.com>
+ <e7541f73-f100-3b1f-de80-376fa55f2479@linux.intel.com>
+ <ZCOKz62qE7jASyg1@orsosgc001.jf.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZCOKz62qE7jASyg1@orsosgc001.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Update Bigjoiner interface
- bits for computing compressed bpp
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: fix race condition UAF in
+ i915_perf_add_config_ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +65,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, Min Li <lm0963hack@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In Bigjoiner check for DSC, bigjoiner interface bits for DP for
-DISPLAY > 13 is 36 (Bspec: 49259).
 
-v2: Corrected Display ver to 13.
+On 29/03/2023 01:48, Umesh Nerlige Ramappa wrote:
+> On Tue, Mar 28, 2023 at 02:08:47PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 28/03/2023 10:36, Min Li wrote:
+>>> Userspace can guess the id value and try to race oa_config object 
+>>> creation
+>>> with config remove, resulting in a use-after-free if we dereference the
+>>> object after unlocking the metrics_lock.  For that reason, unlocking the
+>>> metrics_lock must be done after we are done dereferencing the object.
+>>>
+>>> Signed-off-by: Min Li <lm0963hack@gmail.com>
+>>
+>> Fixes: f89823c21224 ("drm/i915/perf: Implement 
+>> I915_PERF_ADD/REMOVE_CONFIG interface")
+>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> Cc: <stable@vger.kernel.org> # v4.14+
+>>
+>>> ---
+>>>  drivers/gpu/drm/i915/i915_perf.c | 6 +++---
+>>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_perf.c 
+>>> b/drivers/gpu/drm/i915/i915_perf.c
+>>> index 824a34ec0b83..93748ca2c5da 100644
+>>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>>> @@ -4634,13 +4634,13 @@ int i915_perf_add_config_ioctl(struct 
+>>> drm_device *dev, void *data,
+>>>          err = oa_config->id;
+>>>          goto sysfs_err;
+>>>      }
+>>> -
+>>> -    mutex_unlock(&perf->metrics_lock);
+>>> +    id = oa_config->id;
+>>>      drm_dbg(&perf->i915->drm,
+>>>          "Added config %s id=%i\n", oa_config->uuid, oa_config->id);
+>>> +    mutex_unlock(&perf->metrics_lock);
+>>> -    return oa_config->id;
+>>> +    return id;
+>>>  sysfs_err:
+>>>      mutex_unlock(&perf->metrics_lock);
+>>
+>> LGTM.
+>>
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Umesh or Lionel could you please double check? I can merge if 
+>> confirmed okay.
+> 
+> LGTM,
+> 
+> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Pushed to drm-intel-gt-next, thanks for the fix and reviews!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index da1c00ee92fb..0b59c1e53678 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -756,8 +756,9 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	bits_per_pixel = min(bits_per_pixel, max_bpp_small_joiner_ram);
- 
- 	if (bigjoiner) {
-+		int bigjoiner_interface_bits = DISPLAY_VER(i915) <= 13 ? 24 : 36;
- 		u32 max_bpp_bigjoiner =
--			i915->display.cdclk.max_cdclk_freq * 48 /
-+			i915->display.cdclk.max_cdclk_freq * 2 * bigjoiner_interface_bits /
- 			intel_dp_mode_to_fec_clock(mode_clock);
- 
- 		bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
--- 
-2.25.1
+Regards,
 
+Tvrtko
