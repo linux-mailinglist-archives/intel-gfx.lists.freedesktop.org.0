@@ -1,33 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2DF46CFFB1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 11:19:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1E86D0137
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 12:30:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C1910ED64;
-	Thu, 30 Mar 2023 09:19:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182A310EDA3;
+	Thu, 30 Mar 2023 10:30:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9895E10ED64;
- Thu, 30 Mar 2023 09:19:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9040EA0BA8;
- Thu, 30 Mar 2023 09:19:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2129927629161540431=="
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA61510EDA1;
+ Thu, 30 Mar 2023 10:29:59 +0000 (UTC)
+Received: from eldfell (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested) (Authenticated sender: pq)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 254436603183;
+ Thu, 30 Mar 2023 11:29:58 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1680172198;
+ bh=vhjPj2kbm5Y+A7eBhdKagL7l5yP2aUIRVOpwAuAvMkU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=a+QEpWKjQf2mBR45mYJW5s5DVqXq36DpFolUyyDsF/NrifWl2ZnkgDh06z0z7RkMR
+ SiGpykaCFzIEqZEv+tx+Dl04w6wBgzIIJ974o7korEgCBWbdNBIuehSdfhy1ZO8r5k
+ OqARfU/dshCd89B6mWhw4+UOs9qmrqkz7igarMXXoWX5CtSOZ7DFTeqvqJDGm4O2GN
+ Llh2R9XfQoEyYpQ+uGjJwovGISy47SwdcNw/qTFvD3XK5mjwtJlYJT0gpaXC5jP4jP
+ oEat5Cb5MVb/plkG88EaVxQHUQCQ+K3+2nKKR+1PgmX8g619YpB5NV096gJVDc3i3M
+ k8xmY5iVAzriQ==
+Date: Thu, 30 Mar 2023 13:29:54 +0300
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20230330132954.42b1db21.pekka.paalanen@collabora.com>
+In-Reply-To: <20230321143643.26676-2-ville.syrjala@linux.intel.com>
+References: <20230321143643.26676-1-ville.syrjala@linux.intel.com>
+ <20230321143643.26676-2-ville.syrjala@linux.intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 30 Mar 2023 09:19:42 -0000
-Message-ID: <168016798255.18827.14153011919418796720@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230328164938.8193-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Make_utility_pin_asserts_more_accurate_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC][PATCH v2 1/3] drm: Introduce plane SIZE_HINTS
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,434 +54,292 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniel@fooishbar.org>,
+ Jonas =?UTF-8?B?w4VkYWhs?= <jadahl@redhat.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2129927629161540431==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 21 Mar 2023 16:36:41 +0200
+Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 
-== Series Details ==
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Add a new immutable plane property by which a plane can advertise
+> a handful of recommended plane sizes. This would be mostly exposed
+> by cursor planes as a slightly more capable replacement for
+> the DRM_CAP_CURSOR_WIDTH/HEIGHT caps, which can only declare
+> a one size fits all limit for the whole device.
+>=20
+> Currently eg. amdgpu/i915/nouveau just advertize the max cursor
+> size via the cursor size caps. But always using the max sized
+> cursor can waste a surprising amount of power, so a better
+> stragey is desirable.
+>=20
+> Most other drivers don't specify any cursor size at all, in
+> which case the ioctl code just claims that 64x64 is a great
+> choice. Whether that is actually true is debatable.
+>=20
+> A poll of various compositor developers informs us that
+> blindly probing with setcursor/atomic ioctl to determine
+> suitable cursor sizes is not acceptable, thus the
+> introduction of the new property to supplant the cursor
+> size caps. The compositor will now be free to select a
+> more optimal cursor size from the short list of options.
+>=20
+> The blob contains explicit min and max plane sizes, as
+> well as a 2D bitmap representing all the square and non-square
+> power of two sizes between the min and max.
+>=20
+> Note that the reported sizes (either via the property or the
+> caps) make no claims about things such as plane scaling. So
+> these things should only really be consulted for simple
+> "cursor like" use cases.
+>=20
+> v2: Try to add some docs
+> v3: Specify that value 0 is reserved for future use (basic idea from Jona=
+s)
+>     Drop the note about typical hardware (Pekka)
+> v4: Total redesign to include the 2D bitmap
+>=20
+> Cc: Simon Ser <contact@emersion.fr>
+> Cc: Jonas =C3=85dahl <jadahl@redhat.com>
+> Cc: Daniel Stone <daniel@fooishbar.org>
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/drm_mode_config.c |  7 +++
+>  drivers/gpu/drm/drm_plane.c       | 96 +++++++++++++++++++++++++++++++
+>  include/drm/drm_mode_config.h     |  5 ++
+>  include/drm/drm_plane.h           |  6 ++
+>  include/uapi/drm/drm_mode.h       | 29 ++++++++++
+>  5 files changed, 143 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode=
+_config.c
+> index 87eb591fe9b5..21860f94a18c 100644
+> --- a/drivers/gpu/drm/drm_mode_config.c
+> +++ b/drivers/gpu/drm/drm_mode_config.c
+> @@ -374,6 +374,13 @@ static int drm_mode_create_standard_properties(struc=
+t drm_device *dev)
+>  		return -ENOMEM;
+>  	dev->mode_config.modifiers_property =3D prop;
+> =20
+> +	prop =3D drm_property_create(dev,
+> +				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
+> +				   "SIZE_HINTS", 0);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +	dev->mode_config.size_hints_property =3D prop;
+> +
+>  	return 0;
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> index 24e7998d1731..fb9cee504767 100644
+> --- a/drivers/gpu/drm/drm_plane.c
+> +++ b/drivers/gpu/drm/drm_plane.c
+> @@ -140,6 +140,27 @@
+>   *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there hav=
+e been
+>   *     various bugs in this area with inconsistencies between the capabi=
+lity
+>   *     flag and per-plane properties.
+> + *
+> + * SIZE_HINTS:
+> + *     Blob property which contains the set of recommended plane size
+> + *     which can used for simple "cursor like" use cases (eg. no scaling=
+).
+> + *     Using these hints frees userspace from extensive probing of
+> + *     supported plane sizes through atomic/setcursor ioctls.
+> + *
+> + *     For optimal usage userspace should pick the smallest size
+> + *     that satisfies its own requirements.
+> + *
+> + *     The blob contains explicit min/max sizes, as well as a 2D bitmap
+> + *     representign all square and non-square POT sizes between.
+> + *
+> + *     Drivers should only attach this property to planes that
+> + *     support a very limited set of sizes.
+> + *
+> + *     Note that property value 0 (ie. no blob) is reserved for potential
+> + *     future use. Current userspace is expected to ignore the property
+> + *     if the value is 0, and fall back to some other means (eg.
+> + *     &DRM_CAP_CURSOR_WIDTH and &DRM_CAP_CURSOR_HEIGHT) to determine
+> + *     the appropriate plane size to use.
+>   */
+> =20
+>  static unsigned int drm_num_planes(struct drm_device *dev)
+> @@ -1582,3 +1603,78 @@ int drm_plane_create_scaling_filter_property(struc=
+t drm_plane *plane,
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_plane_create_scaling_filter_property);
+> +
+> +static int hint_dim(int x, int x0, int w, int min, int max)
+> +{
+> +	if (x =3D=3D 0)
+> +		return min;
+> +	else if (x =3D=3D w - 1)
+> +		return max;
+> +	else
+> +		return 1 << (x0 + x);
+> +}
+> +
+> +/**
+> + * drm_plane_add_size_hint_property - create a size hint property
+> + *
+> + * @plane: drm plane
+> + * @min_width: minimum width
+> + * @min_height: minimum height
+> + * @max_width: maximum width
+> + * @max_height: maximum height
+> + * @cursor_size_ok: function to check if specified size is ok
+> + *
+> + * Create a size hints property for the plane.
+> + *
+> + * RETURNS:
+> + * Zero for success or -errno
+> + */
+> +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> +				      int min_width, int min_height,
+> +				      int max_width, int max_height,
+> +				      bool (*size_ok)(struct drm_plane *plane,
+> +						      int width, int height))
+> +{
+> +	struct drm_device *dev =3D plane->dev;
+> +	struct drm_mode_config *config =3D &dev->mode_config;
+> +	struct drm_property_blob *blob;
+> +	struct drm_plane_size_hint *hints;
+> +	int x, y, x0, y0, w, h;
+> +
+> +	x0 =3D fls(min_width) - 1;
+> +	y0 =3D fls(min_height) - 1;
+> +	w =3D fls(2 * max_width - 1) - x0;
+> +	h =3D fls(2 * max_height - 1) - y0;
+> +
+> +	blob =3D drm_property_create_blob(dev,
+> +					struct_size(hints, bitmap,
+> +						    DIV_ROUND_UP(w * h, 32)),
+> +					NULL);
+> +	if (IS_ERR(blob))
+> +		return PTR_ERR(blob);
+> +
+> +	hints =3D blob->data;
+> +
+> +	hints->min_width =3D min_width;
+> +	hints->min_height =3D min_height;
+> +	hints->max_width =3D max_width;
+> +	hints->max_height =3D max_height;
+> +
+> +	for (y =3D 0; y < h; y++) {
+> +		int height =3D hint_dim(y, y0, h, min_height, max_height);
+> +
+> +		for (x =3D 0; x < w; x++) {
+> +			int width =3D hint_dim(x, x0, w, min_width, max_width);
+> +			unsigned int bit =3D y * w + x;
+> +
+> +			if (size_ok(plane, width, height))
+> +				hints->bitmap[bit/32] |=3D 1 << (bit & 31);
+> +		}
+> +	}
+> +
+> +	drm_object_attach_property(&plane->base, config->size_hints_property,
+> +				   blob->base.id);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_plane_add_size_hints_property);
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index e5b053001d22..d5495c0804c5 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -949,6 +949,11 @@ struct drm_mode_config {
+>  	 */
+>  	struct drm_property *modifiers_property;
+> =20
+> +	/**
+> +	 * @size_hints_propertty: Plane size hints property.
+> +	 */
+> +	struct drm_property *size_hints_property;
+> +
+>  	/* cursor size */
+>  	uint32_t cursor_width, cursor_height;
+> =20
+> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> index 51291983ea44..6d7326f15761 100644
+> --- a/include/drm/drm_plane.h
+> +++ b/include/drm/drm_plane.h
+> @@ -32,6 +32,7 @@
+>  #include <drm/drm_util.h>
+> =20
+>  struct drm_crtc;
+> +struct drm_plane_size_hint;
+>  struct drm_printer;
+>  struct drm_modeset_acquire_ctx;
+> =20
+> @@ -945,5 +946,10 @@ drm_plane_get_damage_clips(const struct drm_plane_st=
+ate *state);
+> =20
+>  int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
+>  					     unsigned int supported_filters);
+> +int drm_plane_add_size_hints_property(struct drm_plane *plane,
+> +				      int min_width, int min_height,
+> +				      int max_width, int max_height,
+> +				      bool (*size_ok)(struct drm_plane *plane,
+> +						      int width, int height));
+> =20
+>  #endif
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 46becedf5b2f..5a1de6bd80dd 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -849,6 +849,35 @@ struct drm_color_lut {
+>  	__u16 reserved;
+>  };
+> =20
+> +/**
+> + * struct drm_plane_size_hint - Plane size hints
+> + *
+> + * Includes a 2D bitmap in row major order of one bit per plane
+> + * size (WxH). The colums represent the possible plane widths as
+> + * <min>,<power of two values between min-max>,<max>
+> + * the rows do the same for plane heights. The minimums and
+> + * maximums need not be power of two themselves. The bits
+> + * are walked in lsb->msb order.
+> + *
+> + * Example:
+> + * min_width =3D 33, min_height =3D 16
+> + * max_width =3D 128, max_height =3D 127
+> + * bitmap[0] =3D 0b100111011001
+> + *     33 64 128
+> + * 16   *
+> + * 32   *  *
+> + * 64   *  *   *
+> + * 127         *
+> + *
+> + * Indicating support for 33x16,33xx32,
+> + * 64x32,64x64,128x64,128x127 sizes.
+> + */
+> +struct drm_plane_size_hint {
+> +	__u16 min_width, min_height;
+> +	__u16 max_width, max_height;
+> +	__u32 bitmap[];
+> +};
 
-Series: drm/i915: Make utility pin asserts more accurate (rev2)
-URL   : https://patchwork.freedesktop.org/series/115741/
-State : failure
+Hi,
 
-== Summary ==
+as a compositor developer, I believe I could make use of this somehow.
+I would probably pose the optimization problem as "what dimensions
+result in the smallest area" in a compositor, iterating over the
+possible and allowed widths and checking the smallest possible and
+allowed height.
 
-CI Bug Log - changes from CI_DRM_12936_full -> Patchwork_115741v2_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_115741v2_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_115741v2_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_115741v2_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:
-    - shard-glk:          NOTRUN -> [TIMEOUT][1] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html
-
-  
-#### Warnings ####
-
-  * igt@kms_big_fb@linear-16bpp-rotate-90:
-    - shard-glk:          [SKIP][2] ([fdo#109271]) -> [TIMEOUT][3] +3 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@kms_big_fb@linear-16bpp-rotate-90.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_big_fb@linear-16bpp-rotate-90.html
-
-  * igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs:
-    - shard-glk:          [SKIP][4] ([fdo#109271] / [i915#3886]) -> [TIMEOUT][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@perf@enable-disable@0-rcs0}:
-    - shard-glk:          [PASS][6] -> [TIMEOUT][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@perf@enable-disable@0-rcs0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@perf@enable-disable@0-rcs0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115741v2_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1:
-    - shard-glk:          [PASS][8] -> [FAIL][9] ([i915#2122])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk2/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1.html
-
-  * igt@kms_flip@flip-vs-suspend@c-dp1:
-    - shard-apl:          [PASS][10] -> [ABORT][11] ([i915#180]) +1 similar issue
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl4/igt@kms_flip@flip-vs-suspend@c-dp1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl7/igt@kms_flip@flip-vs-suspend@c-dp1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt:
-    - shard-apl:          NOTRUN -> [SKIP][12] ([fdo#109271]) +4 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html
-
-  * igt@kms_vblank@pipe-c-accuracy-idle:
-    - shard-glk:          [PASS][13] -> [FAIL][14] ([i915#43])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk4/igt@kms_vblank@pipe-c-accuracy-idle.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk6/igt@kms_vblank@pipe-c-accuracy-idle.html
-
-  
-#### Possible fixes ####
-
-  * {igt@gem_barrier_race@remote-request@rcs0}:
-    - shard-apl:          [ABORT][15] ([i915#8211] / [i915#8234]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl7/igt@gem_barrier_race@remote-request@rcs0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@gem_barrier_race@remote-request@rcs0.html
-
-  * igt@gem_exec_endless@dispatch@vecs0:
-    - {shard-tglu}:       [TIMEOUT][17] ([i915#3778]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-tglu-10/igt@gem_exec_endless@dispatch@vecs0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-tglu-5/igt@gem_exec_endless@dispatch@vecs0.html
-
-  * igt@gem_exec_fair@basic-deadline:
-    - shard-apl:          [FAIL][19] ([i915#2846]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl1/igt@gem_exec_fair@basic-deadline.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl7/igt@gem_exec_fair@basic-deadline.html
-
-  * igt@gem_exec_fair@basic-none-solo@rcs0:
-    - shard-apl:          [FAIL][21] ([i915#2842]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl7/igt@gem_exec_fair@basic-none-solo@rcs0.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@gem_exec_fair@basic-none-solo@rcs0.html
-
-  * {igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1}:
-    - shard-glk:          [DMESG-FAIL][23] ([i915#118]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk7/igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk5/igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-glk:          [FAIL][25] ([i915#2346]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  * {igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled}:
-    - shard-glk:          [DMESG-WARN][27] -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk7/igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk1/igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - {shard-tglu}:       [FAIL][29] ([i915#4767]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-tglu-10/igt@kms_fbcon_fbt@fbc-suspend.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-tglu-5/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109283]: https://bugs.freedesktop.org/show_bug.cgi?id=109283
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
-  [fdo#109302]: https://bugs.freedesktop.org/show_bug.cgi?id=109302
-  [fdo#109303]: https://bugs.freedesktop.org/show_bug.cgi?id=109303
-  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112283]: https://bugs.freedesktop.org/show_bug.cgi?id=112283
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1755]: https://gitlab.freedesktop.org/drm/intel/issues/1755
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
-  [i915#1902]: https://gitlab.freedesktop.org/drm/intel/issues/1902
-  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2433]: https://gitlab.freedesktop.org/drm/intel/issues/2433
-  [i915#2434]: https://gitlab.freedesktop.org/drm/intel/issues/2434
-  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
-  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
-  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
-  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
-  [i915#3318]: https://gitlab.freedesktop.org/drm/intel/issues/3318
-  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3528]: https://gitlab.freedesktop.org/drm/intel/issues/3528
-  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3778]: https://gitlab.freedesktop.org/drm/intel/issues/3778
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
-  [i915#3936]: https://gitlab.freedesktop.org/drm/intel/issues/3936
-  [i915#3938]: https://gitlab.freedesktop.org/drm/intel/issues/3938
-  [i915#3952]: https://gitlab.freedesktop.org/drm/intel/issues/3952
-  [i915#404]: https://gitlab.freedesktop.org/drm/intel/issues/404
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#43]: https://gitlab.freedesktop.org/drm/intel/issues/43
-  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
-  [i915#4565]: https://gitlab.freedesktop.org/drm/intel/issues/4565
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4767]: https://gitlab.freedesktop.org/drm/intel/issues/4767
-  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
-  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
-  [i915#4833]: https://gitlab.freedesktop.org/drm/intel/issues/4833
-  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
-  [i915#4859]: https://gitlab.freedesktop.org/drm/intel/issues/4859
-  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
-  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
-  [i915#5563]: https://gitlab.freedesktop.org/drm/intel/issues/5563
-  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7697]: https://gitlab.freedesktop.org/drm/intel/issues/7697
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#8211]: https://gitlab.freedesktop.org/drm/intel/issues/8211
-  [i915#8234]: https://gitlab.freedesktop.org/drm/intel/issues/8234
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12936 -> Patchwork_115741v2
-
-  CI-20190529: 20190529
-  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115741v2: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html
-
---===============2129927629161540431==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Make utility pin asserts more accurate (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115741/">https://patchwork.freedesktop.org/series/115741/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/index.html</a></td></tr>
-
-</table>
+If you think this is a good match to hardware capabilities, it's fine
+by me. The power-of-two is a pretty fundamental built-in assumption and
+I have no idea how good it is.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_12936_full -&gt; Patchwork_115741v2_full</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_115741v2_full absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_115741v2_full, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_115741v2_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html">TIMEOUT</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-90:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@kms_big_fb@linear-16bpp-rotate-90.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_big_fb@linear-16bpp-rotate-90.html">TIMEOUT</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs.html">TIMEOUT</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@perf@enable-disable@0-rcs0}:<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk5/igt@perf@enable-disable@0-rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@perf@enable-disable@0-rcs0.html">TIMEOUT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115741v2_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk2/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend@c-dp1:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl4/igt@kms_flip@flip-vs-suspend@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl7/igt@kms_flip@flip-vs-suspend@c-dp1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-c-accuracy-idle:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk4/igt@kms_vblank@pipe-c-accuracy-idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk6/igt@kms_vblank@pipe-c-accuracy-idle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/43">i915#43</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>{igt@gem_barrier_race@remote-request@rcs0}:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl7/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8211">i915#8211</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8234">i915#8234</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@gem_barrier_race@remote-request@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_endless@dispatch@vecs0:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-tglu-10/igt@gem_exec_endless@dispatch@vecs0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3778">i915#3778</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-tglu-5/igt@gem_exec_endless@dispatch@vecs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-deadline:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl1/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl7/igt@gem_exec_fair@basic-deadline.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none-solo@rcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-apl7/igt@gem_exec_fair@basic-none-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-apl4/igt@gem_exec_fair@basic-none-solo@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1}:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk7/igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk5/igt@kms_cursor_edge_walk@256x256-top-edge@pipe-a-hdmi-a-1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled}:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-glk7/igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-glk1/igt@kms_draw_crc@draw-method-blt@xrgb2101010-ytiled.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12936/shard-tglu-10/igt@kms_fbcon_fbt@fbc-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4767">i915#4767</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115741v2/shard-tglu-5/igt@kms_fbcon_fbt@fbc-suspend.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12936 -&gt; Patchwork_115741v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12936: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7226: 41be8b4ab86f9e11388c10366dfd71e5032589c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115741v2: 906438caae695f109636f82e2d1845a258f57d8b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============2129927629161540431==--
+Thanks,
+pq
