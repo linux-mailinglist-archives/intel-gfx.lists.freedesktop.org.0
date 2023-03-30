@@ -2,48 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C786D0330
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 13:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F10D6D03A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 13:45:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEDEF10EDDB;
-	Thu, 30 Mar 2023 11:30:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2874910E277;
+	Thu, 30 Mar 2023 11:45:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B0010EDD6;
- Thu, 30 Mar 2023 11:30:35 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27E2B10E25A;
+ Thu, 30 Mar 2023 11:45:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680175836; x=1711711836;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9C852zKIffDwA5pItVl/7+d0XEbihSnDZhWoKGzGhY8=;
- b=cfXNnlGTrEV0BrHC5BGxaj2gwpZs/+4tYOnzrMc+wsQzg1hT664k+ByI
- VM1IxdOK7QNZcOhamh+y9xbxakXJsX7/tiY3sa6jxN+E3Cme3XcdIZdZT
- IyX0Nu4c7CPjy1SYPxhbvgWqecqzWGYa2Tlsp8OHHF32qLsSuRxGli6LV
- Yn4G+Bc19EZxQLgchSdLa6E3uJy85WS/Ye+xlrJtp4P8ODLGC5AIZddIZ
- vfH6G/jLn1vVAIWTM0aI5LDsj2zbb7Q9aGRS/qqrnV0zZ6wgG5xT8RyFH
- j6gfJd7I6taU/a2Glz3HmoQd50iOAj3tpvTEVouM5YcLqK/qwtMkkW0xL Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368920557"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="368920557"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 04:30:35 -0700
+ t=1680176709; x=1711712709;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=k/mv4rPn58080aiy/VkVwoYKI4gFKfYIxJEtnNThHLM=;
+ b=bz0lNSO6gt5v9OpPsPbebv2rnEl333OB3/++5m6Oj/oDJcCnm7bZzYKY
+ DTRTLNBIaIqfa419Gdu9mCLcOu06x4RcZn74n8VWuBVPi+JQB3C3Gs9Hu
+ JHlpzqqExglRg5csnhVy0a6ABuXtkL7f3gk/+dLN+e787gG5Q7dBugHL8
+ fDjjdNvz53XwW5L/NOHI3XFm6h8CbbEeG0licbdWpeSH7SU+JZPRAD3mh
+ E7EjODGnHyFYfCfmFaRVCoca135b1BrKlLEa/AT10guJqOWm+xc5Tu1f/
+ IAmKScn8EEycO1/EGcUEw7vTshJf5JqUat9CNTb0Xi/9D/BmsHFhJkduT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="427419849"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="427419849"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 04:45:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="1014398526"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="1014398526"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 04:30:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 30 Mar 2023 14:30:29 +0300
-Message-ID: <87355m4gtm.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="858890300"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="858890300"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga005.jf.intel.com with SMTP; 30 Mar 2023 04:45:03 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Mar 2023 14:45:02 +0300
+Date: Thu, 30 Mar 2023 14:45:02 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Message-ID: <ZCV2Pge2+wdB5HEI@intel.com>
+References: <20230329171402.2772-1-ville.syrjala@linux.intel.com>
+ <20230330084404.5uku6p42rorcuhv2@penduick>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230330084404.5uku6p42rorcuhv2@penduick>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/scdc-helper: Pimp SCDC debugs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,84 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Robert Foss <rfoss@kernel.org>,
+ Emma Anholt <emma@anholt.net>, Jonas Karlman <jonas@kwiboo.se>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, linux-tegra@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Mar 30, 2023 at 10:44:04AM +0200, Maxime Ripard wrote:
+> Hi,
+> 
+> On Wed, Mar 29, 2023 at 08:14:02PM +0300, Ville Syrjala wrote:
+> > diff --git a/drivers/gpu/drm/display/drm_scdc_helper.c b/drivers/gpu/drm/display/drm_scdc_helper.c
+> > index c3ad4ab2b456..2b124152384c 100644
+> > --- a/drivers/gpu/drm/display/drm_scdc_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_scdc_helper.c
+> > @@ -26,6 +26,8 @@
+> >  #include <linux/delay.h>
+> >  
+> >  #include <drm/display/drm_scdc_helper.h>
+> > +#include <drm/drm_connector.h>
+> > +#include <drm/drm_device.h>
+> >  #include <drm/drm_print.h>
+> >  
+> >  /**
+> > @@ -140,6 +142,7 @@ EXPORT_SYMBOL(drm_scdc_write);
+> >  
+> >  /**
+> >   * drm_scdc_get_scrambling_status - what is status of scrambling?
+> > + * @connector: connector
+> >   * @adapter: I2C adapter for DDC channel
+> >   *
+> >   * Reads the scrambler status over SCDC, and checks the
+> > @@ -148,14 +151,17 @@ EXPORT_SYMBOL(drm_scdc_write);
+> >   * Returns:
+> >   * True if the scrambling is enabled, false otherwise.
+> >   */
+> > -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter)
+> > +bool drm_scdc_get_scrambling_status(struct drm_connector *connector,
+> > +				    struct i2c_adapter *adapter)
+> 
+> Is there any driver where adapter isn't equal to connector->ddc?
 
-Hi Dave & Daniel -
+I figured most of them since they all maintain their own ddc
+pointer elsewhere. But looks like the drivers using the scdc
+helper might all be setting connector->ddc for their HDMI
+connectors despite that.
 
-drm-intel-fixes-2023-03-30:
-drm/i915 fixes for v6.3-rc5:
-- Fix PMU support by reusing functions with sysfs
-- Fix a number of issues related to color, PSR and arm/noarm
-- Fix state check related to ICL PHY ownership check in TC-cold state
-- Flush lmem contents after construction
-- Fix hibernate oops related to DPT BO
-- Fix perf stream error path wakeref balance
+Even i915 does that apparently. My recollection was otherwise
+since I have a branch waiting somewhere that changes the whole
+driver to use connector->ddc.
 
-BR,
-Jani.
+I guess someone took a bunch of shortcuts to get connector->ddc
+populated but then didn't finish the job by clearing out the
+old pointers.
 
-The following changes since commit 197b6b60ae7bc51dd0814953c562833143b292aa:
+> 
+> If not, there's no reason to pass both
 
-  Linux 6.3-rc4 (2023-03-26 14:40:20 -0700)
+Yeah, that did cross my mind. But left it out with in
+the belief that it can't be done yet.
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-03-=
-30
-
-for you to fetch changes up to 5c95b2d5d44fa250ce8aeee27bdb39b381d03857:
-
-  drm/i915/perf: Drop wakeref on GuC RC error (2023-03-27 13:22:24 +0300)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.3-rc5:
-- Fix PMU support by reusing functions with sysfs
-- Fix a number of issues related to color, PSR and arm/noarm
-- Fix state check related to ICL PHY ownership check in TC-cold state
-- Flush lmem contents after construction
-- Fix hibernate oops related to DPT BO
-- Fix perf stream error path wakeref balance
-
-----------------------------------------------------------------
-Ashutosh Dixit (1):
-      drm/i915/pmu: Use functions common with sysfs to read actual freq
-
-Chris Wilson (2):
-      drm/i915/gem: Flush lmem contents after construction
-      drm/i915/perf: Drop wakeref on GuC RC error
-
-Imre Deak (1):
-      drm/i915/tc: Fix the ICL PHY ownership check in TC-cold state
-
-Ville Syrj=C3=A4l=C3=A4 (6):
-      drm/i915: Split icl_color_commit_noarm() from skl_color_commit_noarm()
-      drm/i915: Move CSC load back into .color_commit_arm() when PSR is ena=
-bled on skl/glk
-      drm/i915: Add a .color_post_update() hook
-      drm/i915: Workaround ICL CSC_MODE sticky arming
-      drm/i915: Disable DC states for all commits
-      drm/i915/dpt: Treat the DPT BO as a framebuffer
-
- drivers/gpu/drm/i915/display/intel_color.c       | 101 +++++++++++++++++++=
-+++-
- drivers/gpu/drm/i915/display/intel_color.h       |   1 +
- drivers/gpu/drm/i915/display/intel_display.c     |  31 ++++++-
- drivers/gpu/drm/i915/display/intel_dpt.c         |   2 +
- drivers/gpu/drm/i915/display/intel_tc.c          |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_lmem.c         |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h       |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h |   3 +
- drivers/gpu/drm/i915/gt/intel_rps.c              |  38 +++++----
- drivers/gpu/drm/i915/gt/intel_rps.h              |   4 +-
- drivers/gpu/drm/i915/i915_perf.c                 |  14 ++--
- drivers/gpu/drm/i915/i915_perf_types.h           |   6 ++
- drivers/gpu/drm/i915/i915_pmu.c                  |  10 +--
- 13 files changed, 177 insertions(+), 42 deletions(-)
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
