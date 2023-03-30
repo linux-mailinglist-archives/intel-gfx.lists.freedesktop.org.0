@@ -1,51 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A40A6CF850
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 02:41:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321B96CF87B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 03:10:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F01F10ECAC;
-	Thu, 30 Mar 2023 00:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA48110E1C4;
+	Thu, 30 Mar 2023 01:10:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73DA910ECA2
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 00:41:05 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71FD510ECAC;
+ Thu, 30 Mar 2023 01:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680136865; x=1711672865;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UjbXSdzSG9mpHdVpUCXOsCof6Z27giUadqbQbdH4IR0=;
- b=JyiVbEU3WnjuTKdC/7dJJTNS8E2qXJyXN5k+H93h4pEOTwXS/nYXTqrr
- 0RWrRzaPgiPFuwyBSuFDJ0iQxvy+d8/4b2B7KalIKk5lCaDUy51iteqXH
- f8p01iSFvIbXcG9jcc8uRSfA0r/WfcKh6RZcLpBMjLP4Yyxrf5JbOGT4Q
- 1gxkHUlqBhp8sukcWEUJ493aC2VEJUZ6ZBWLnNY4/tOiSbN1Pfe3sobfn
- PolUaHkNerAPzqw/1RHqkaeAzCU9Z7nV6nlMQ4qscwkQZyleCqjXjmSTL
- PKNYB7ORZ4TNt/fAnrOrhdBN1POEUtSE+CeICqvc5jZ2jWN8kOAGzQ4wm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="427310378"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="427310378"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 17:41:05 -0700
+ t=1680138616; x=1711674616;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=fL5ddEXyKnr2OCANZAdI14G2NmaZfc+AZzn4MFXtYfQ=;
+ b=HOl5ZzkiRKC6DkJ/6Y5eHv5eTFV+D/no0kvVDQEJRhcFqrjc0PE0xMdI
+ rcmAsGiX3yTaUQhoySUpWRW46lhWbiwNjrAKzH6BDwUfBIHO9fgMV644/
+ VUu74n4rtEUfbQ2AUB9SQbsT24opdD9H6ShpZLSgedpa7vzb1QBeqF55p
+ GErXkyqlx7wWLKxWE6cqCqlXmBrvKlaO730Wen5dy/Hc07EPSJt+L3RF5
+ i8owCS5kZkzwug1iEGysHnzjgLdrg12mABEZBt6kI/VkoF7hDQXuGlAj2
+ 8gF4EJbM8YHNIEQN4KPHC78rGLWrD0jq/UEKo5IAiwLfLXGbBEeNN6Ohs Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="405994689"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="405994689"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 18:10:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="634668690"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="634668690"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 17:41:03 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 17:41:03 -0700
-Message-Id: <20230330004103.1295413-10-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
-References: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="858713101"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="858713101"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 29 Mar 2023 18:10:13 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 29 Mar 2023 18:10:13 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 29 Mar 2023 18:10:13 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Wed, 29 Mar 2023 18:10:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iXARKTrpHGUKmn9I+OzfNBmBEU7Rva8vRAXO3TcVuiV2WfGR+GvPtAI6hhqVe9Ptr3+lhG4FdF0Gbrg6d+6QO9dKa1oDMJqq6mqPq11AmQO7TBdfmYrp5rpnsWAaAjo0ManX7ba1CIrz1fsEOoueNSNjNkQ4DUgakn08Y33NpnHAvXc1DluqJ2atL+xEC5/qDE+4D1zQELi2Gl3MGj6XHD4fBBI74roPnxfNiZszgUeQohydYE8GnsjJGOOBMh7pGQBF2k3gFHQYKkF+3z+QF78KLzE5R5LEYuOmHKVKthUQszVQIFkS1MKTlKK3kkmTkiyI534hRkmYVSwCX8dGvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fL5ddEXyKnr2OCANZAdI14G2NmaZfc+AZzn4MFXtYfQ=;
+ b=TASJWXBYqSG6A67b3j7JxIZIVU70jiQFI1orpqqmOZlxuN61wevmEPSa/IY6arWAsabzfvp0j222obry4Ph0hCYj9aXjJgJbzQVOOQNg1lagey+Zke8xBw9GKHhWiNgJJahVmoFhRrZnyCgoqfBtTKbS5fg/uZ+J/jDTodp2gIhDj92pW7Vxd4T50sp3ZA9ZdUeo3R15lmOf4zOla47EyhC1b3hj+TiVZl/ZXif8xbArG16Pf0QhHPlt+3Qw2x5H8pxBZuQGt4geWPIfHlt1jhRQUEIas1sYoPVkX70Gvl4ivcn7vtask2FBhZ1GvYtYxyXOieeFD90+Omwg7hDQXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by SJ0PR11MB5770.namprd11.prod.outlook.com (2603:10b6:a03:421::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Thu, 30 Mar
+ 2023 01:10:09 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174%7]) with mapi id 15.20.6222.033; Thu, 30 Mar 2023
+ 01:10:09 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
+Thread-Index: AQHZYI92YoejP8gsuUepwiqB47+8d68PAuSAgACHvgCAAC35QIAAiJkAgAADhQCAAAJBAIAABAgAgAAE14CAAAe3AIAABCSAgAC8HoCAAGkTAIAAak2AgACbrXA=
+Date: Thu, 30 Mar 2023 01:10:08 +0000
+Message-ID: <BN9PR11MB527652CC7ABD6AE2908A9A1F8C8E9@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <BL1PR11MB52717FB9E6D5C10BF4B7DA0A8C889@BL1PR11MB5271.namprd11.prod.outlook.com>
+ <20230328082536.5400da67.alex.williamson@redhat.com>
+ <DS0PR11MB7529B6782565BE8489D922F9C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328084616.3361a293.alex.williamson@redhat.com>
+ <DS0PR11MB75290B84D334FC726A8BBA95C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328091801.13de042a.alex.williamson@redhat.com>
+ <DS0PR11MB752903CE3D5906FE21146364C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328100027.3b843b91.alex.williamson@redhat.com>
+ <DS0PR11MB7529C12E086DAB619FF9AFF0C3899@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BN9PR11MB52762E789B9C1D8021F54ECC8C899@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZCReOXsLsuS/J8TC@nvidia.com>
+In-Reply-To: <ZCReOXsLsuS/J8TC@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|SJ0PR11MB5770:EE_
+x-ms-office365-filtering-correlation-id: 8838578e-9ae9-42e5-8a90-08db30bb8154
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RYAI3Rqjl9LtmmQTgT2bhSO3WniYg8dl3MsVkiZnQdA+fBqjySodIPZdA3WNXPao9HPZaf7iQQXqesjT/Ap0IbwmBOmo2aCLLWIn4Ng8oV5Xmt2ml3U1ESP82cJIeliSmhggUUkwU4lZYuQQXNIxKAdEKam9ggnE9k7SqXCHCgaUVFgy2NreiTdkwtKv2oshQWFrci1aC5cp1w3PdRd4fy6XdnYUaac2vjEW0EMut47wIqBaV0eKvjq2tVPYZiapCY1BFZh2E3Wt5KncyLKQbAQQwolAn8IGQ260G5Y5pIcwIsyrOFT8qOgFiYrs6F96aBaL38VWbDEg2cZ++IgpFiER2JqHqUpWnKViKCHl+/DJm1odfars9V8UtOmGDwP7Tmd2S1TCGQLmjNFyz+GwMAcuv1UaBbw+ueH5VEljJNj1mEZ8AqhCyliZ3EnALyo7oD69hdOPmuDUgLqc28wOWuEMDz8t5UWAn53pB1Ded3onlA+MQlwjjTmYAhf8lmuoJMyHdyf7E6ufuKH1/mi89ng1s/Uw301XKEbXcw8Qcjg/LKoq6sq5LJXu/iuJ5wGdN/ol65ArWO5N3oRdX6KLhir+N+phAv0ZoHqTq2PZ4ovvz6DbeMY2pYIsb7un6PP4
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(366004)(39860400002)(396003)(376002)(136003)(451199021)(4744005)(2906002)(41300700001)(316002)(66556008)(71200400001)(7416002)(52536014)(8936002)(54906003)(4326008)(66446008)(64756008)(8676002)(66476007)(6916009)(55016003)(7696005)(66946007)(478600001)(76116006)(33656002)(122000001)(186003)(86362001)(82960400001)(9686003)(6506007)(26005)(5660300002)(38070700005)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?k5vcmQ3QAcGo7X3v8ZqR73tF2gZKlAXxPnQglfhQjgWwZNWSYsAClFZhUasA?=
+ =?us-ascii?Q?QQtlplLWrVo3sVG1fQvZB+akWlatESHdWTaj9BVNIj42WC+nckDBgsohSWQ2?=
+ =?us-ascii?Q?CwqtSL0OeVnRe1zfWJ8O7nQR89mqIFxKj+TRzUmHaiCfUOANIvaSc2GwEZXt?=
+ =?us-ascii?Q?MQQZKASqBuoMvi5/OT+dUHr1BCiuk5467GkoUtsDMJU8KpkxM0R9KFPT3ahQ?=
+ =?us-ascii?Q?aiqSuGgppRi72jTMdNXRuDeOWt3EiSSNPabvmew8JP2QTmGYyF6JUA+aK5QC?=
+ =?us-ascii?Q?PoU85KdP7V6AtWCuhLY0BEouP2LHMZAbArS6v24xmg4aKtGxgq73b5WpS5LE?=
+ =?us-ascii?Q?audksxj9vrkOwVNTZe6ZAC/GvhDvaFoancYzGSsY4cij7tOj4pH0HlPC2u1Q?=
+ =?us-ascii?Q?ZEmr1LjjkQSSqjdj6KCQwuYOL+6qhZgX7Br9BZH2Zvgrc78tTQPct240STJx?=
+ =?us-ascii?Q?GqEOuR7FLamo3oODTAbKyy8TJwLrJmX776QcgguocRHSlEV3NYad6CeHO3H3?=
+ =?us-ascii?Q?pSdDEM3jZMGF3/zkl3FMss/2kqoFfErQQAUvHI8QaDDVQgAiDHNmG1ozoLd2?=
+ =?us-ascii?Q?iW21hx/LruRep71EAEj63eciod8mw4BjdqEFPsbUYk3vQGBRKmflV9DQyu0d?=
+ =?us-ascii?Q?Xfxd5sAKCzJfcBiSHJnPeyR98G5zg18VfB9p5ptreWRNU0HN64xxciuosc9b?=
+ =?us-ascii?Q?BXMnGTkNMmG7ZXYSGj7m+2wlYejYDpc7g7jbIcS4HjrMG2LO8AOw0LOcEdaE?=
+ =?us-ascii?Q?XZh30VzKTQnraFCzyIPuEpaGq7yW0ufIqtCZ0ZCd85t8/YsRIHiraGRWQGX3?=
+ =?us-ascii?Q?BgNGn1yBYvnqF5/LLDRtRugETK0yu/pN5AV5MGATctAF1mKDU+yVzjOsF8Yo?=
+ =?us-ascii?Q?3Q7CS9Yz7mVwrJ8QxupIs3ZQkaXNf5U3qiYneWRa8TXzU+3jkwFDo25/zgbk?=
+ =?us-ascii?Q?9GX0ypf67OThXoZGuBR6zl3T4nim5olsW9SnCqck/mKBOtApC/4gMD0E71P/?=
+ =?us-ascii?Q?KAbAnwBeDlfoiO6ICfScdUH3PAGZyaIBKz8rcClqVO0V7wDhWfWY8GQy/NO7?=
+ =?us-ascii?Q?LjqiY5/Uau+jNw3zqxoDhjhDEEc+dQGgm+OljFEOitNAjLU1YyR4Crn6PYbC?=
+ =?us-ascii?Q?VSrNeGCkmia5TkZHK3W+qeeZCtj6kOTjuIQRIdAwbKJ+Uz+8Q2b7uTP8BOes?=
+ =?us-ascii?Q?kFKGBNJaU6XkECDeq2OxhCHBaU9hyCV4RfJTNeZcEeWbswMNlbXYxgLZlU9b?=
+ =?us-ascii?Q?Y8PB3U14YBzOlGxPTlGD9USL+X4TtBuaWktgMMaRGBjK67W+LFmDoJVR81u0?=
+ =?us-ascii?Q?zUYohk+WNYtTMvqOCSoF5cT8JXa14WPHORsOUiaa4gyk3ODtaGMhs0VSTlxK?=
+ =?us-ascii?Q?w2lbPZZ3rpeGWWDKa2xhFdjItMhI9fcrQuFq57eOsHEJaxnqNLlw3mA6Ekw8?=
+ =?us-ascii?Q?nFgdzcBC3483IBCIa4Ix1/VSri95mtIF//QQ3eViT7g/D7jrwc3bL45yeN4Z?=
+ =?us-ascii?Q?BryYcM+dNfroQhLsV3/rnnllR1IHzKPPnc083zn5mn7odeNvznAldpgsKjQ6?=
+ =?us-ascii?Q?pHIT8VQXl7/I2lA5+iU5FdMY2/Z2MieluSaBDfN5?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915/pmu: Enable legacy PMU events for
- MTL
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8838578e-9ae9-42e5-8a90-08db30bb8154
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Mar 2023 01:10:08.9681 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Od0bT8FE8R0UVDzaeL4z4acxu8aMM6sXi8NcIk76abyMNyoYKMuE85LmDhci8itC0xJlrsl6EYcYbhtNTyvYMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5770
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,370 +156,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL introduces separate GTs for render and media. This complicates the
-definition of frequency and rc6 counters for the GPU as a whole since
-each GT has an independent counter. The best way to support this change
-is to deprecate the GPU-specific counters and create GT-specific
-counters, however that just breaks ABI. Since perf tools and scripts may
-be decentralized with probably many users, it's hard to deprecate the
-legacy counters and have all the users on board with that.
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Wednesday, March 29, 2023 11:50 PM
+>=20
+> On Wed, Mar 29, 2023 at 09:41:26AM +0000, Tian, Kevin wrote:
+>=20
+> > We could extend bind_iommufd to return the group id or introduce a
+> > new ioctl to query it per dev_id.
+>=20
+> > Once that is in place looks we don't need a new _INFO ioctl?
+>=20
+> The iommu_group and the reset group are different things
+>=20
+> The issue is processing the BDF strings, not the group ID.
+>=20
+> Probably we should have some way for iommufd to report the group_id
+> from the dev_id?
+>=20
 
-Re-introduce the legacy counters and support them as min/max of
-GT-specific counters as necessary to ensure backwards compatibility.
-
-I915_PMU_ACTUAL_FREQUENCY - will show max of GT-specific counters
-I915_PMU_REQUESTED_FREQUENCY - will show max of GT-specific counters
-I915_PMU_INTERRUPTS - no changes since it is GPU specific on all platforms
-I915_PMU_RC6_RESIDENCY - will show min of GT-specific counters
-I915_PMU_SOFTWARE_GT_AWAKE_TIME - will show max of GT-specific counters
-
-Note:
-- For deeper debugging of performance issues, tools must be upgraded to
-  read the GT-specific counters.
-- This patch deserves to be separate from the other PMU features so that
-  it can be easily dropped if legacy events are ever deprecated.
-- Internal implementation relies on creating an extra entry in the
-  arrays used for GT specific counters. Index 0 is empty.
-  Index 1 through N are mapped to GTs 0 through N - 1.
-- User interface will use GT numbers indexed from 0 to specify the GT of
-  interest.
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 134 +++++++++++++++++++++++++++-----
- drivers/gpu/drm/i915/i915_pmu.h |   2 +-
- include/uapi/drm/i915_drm.h     |  14 ++--
- 3 files changed, 125 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 9bd9605d2662..0dc7711c3b4b 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -221,7 +221,7 @@ add_sample_mult(struct i915_pmu *pmu, unsigned int gt_id, int sample, u32 val,
- static u64 get_rc6(struct intel_gt *gt)
- {
- 	struct drm_i915_private *i915 = gt->i915;
--	const unsigned int gt_id = gt->info.id;
-+	const unsigned int gt_id = gt->info.id + 1;
- 	struct i915_pmu *pmu = &i915->pmu;
- 	unsigned long flags;
- 	bool awake = false;
-@@ -267,24 +267,26 @@ static void init_rc6(struct i915_pmu *pmu)
- 
- 	for_each_gt(gt, i915, i) {
- 		intel_wakeref_t wakeref;
-+		const unsigned int gt_id = i + 1;
- 
- 		with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
- 			u64 val = __get_rc6(gt);
- 
--			store_sample(pmu, i, __I915_SAMPLE_RC6, val);
--			store_sample(pmu, i, __I915_SAMPLE_RC6_LAST_REPORTED,
-+			store_sample(pmu, gt_id, __I915_SAMPLE_RC6, val);
-+			store_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED,
- 				     val);
--			pmu->sleep_last[i] = ktime_get_raw();
-+			pmu->sleep_last[gt_id] = ktime_get_raw();
- 		}
- 	}
- }
- 
- static void park_rc6(struct intel_gt *gt)
- {
-+	const unsigned int gt_id = gt->info.id + 1;
- 	struct i915_pmu *pmu = &gt->i915->pmu;
- 
--	store_sample(pmu, gt->info.id, __I915_SAMPLE_RC6, __get_rc6(gt));
--	pmu->sleep_last[gt->info.id] = ktime_get_raw();
-+	store_sample(pmu, gt_id, __I915_SAMPLE_RC6, __get_rc6(gt));
-+	pmu->sleep_last[gt_id] = ktime_get_raw();
- }
- 
- static void __i915_pmu_maybe_start_timer(struct i915_pmu *pmu)
-@@ -436,18 +438,18 @@ static void
- frequency_sample(struct intel_gt *gt, unsigned int period_ns)
- {
- 	struct drm_i915_private *i915 = gt->i915;
--	const unsigned int gt_id = gt->info.id;
-+	const unsigned int gt_id = gt->info.id + 1;
- 	struct i915_pmu *pmu = &i915->pmu;
- 	struct intel_rps *rps = &gt->rps;
- 
--	if (!frequency_sampling_enabled(pmu, gt_id))
-+	if (!frequency_sampling_enabled(pmu, gt->info.id))
- 		return;
- 
- 	/* Report 0/0 (actual/requested) frequency while parked. */
- 	if (!intel_gt_pm_get_if_awake(gt))
- 		return;
- 
--	if (pmu->enable & config_mask(__I915_PMU_ACTUAL_FREQUENCY(gt_id))) {
-+	if (pmu->enable & config_mask(__I915_PMU_ACTUAL_FREQUENCY(gt->info.id))) {
- 		u32 val;
- 
- 		/*
-@@ -467,7 +469,7 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
- 				val, period_ns / 1000);
- 	}
- 
--	if (pmu->enable & config_mask(__I915_PMU_REQUESTED_FREQUENCY(gt_id))) {
-+	if (pmu->enable & config_mask(__I915_PMU_REQUESTED_FREQUENCY(gt->info.id))) {
- 		add_sample_mult(pmu, gt_id, __I915_SAMPLE_FREQ_REQ,
- 				intel_rps_get_requested_frequency(rps),
- 				period_ns / 1000);
-@@ -545,14 +547,15 @@ engine_event_status(struct intel_engine_cs *engine,
- static int
- config_status(struct drm_i915_private *i915, u64 config)
- {
--	struct intel_gt *gt = to_gt(i915);
--
- 	unsigned int gt_id = config_gt_id(config);
--	unsigned int max_gt_id = HAS_EXTRA_GT_LIST(i915) ? 1 : 0;
-+	unsigned int max_gt_id = HAS_EXTRA_GT_LIST(i915) ? 2 : 1;
-+	struct intel_gt *gt;
- 
- 	if (gt_id > max_gt_id)
- 		return -ENOENT;
- 
-+	gt = !gt_id ? to_gt(i915) : i915->gt[gt_id - 1];
-+
- 	switch (config_counter(config)) {
- 	case I915_PMU_ACTUAL_FREQUENCY:
- 		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-@@ -673,23 +676,58 @@ static u64 __i915_pmu_event_read_other(struct perf_event *event)
- 	const unsigned int gt_id = config_gt_id(event->attr.config);
- 	const u64 config = config_counter(event->attr.config);
- 	struct i915_pmu *pmu = &i915->pmu;
-+	struct intel_gt *gt;
- 	u64 val = 0;
-+	int i;
- 
- 	switch (config) {
- 	case I915_PMU_ACTUAL_FREQUENCY:
--		val = read_sample_us(pmu, gt_id, __I915_SAMPLE_FREQ_ACT);
-+		if (gt_id)
-+			return read_sample_us(pmu, gt_id, __I915_SAMPLE_FREQ_ACT);
-+
-+		if (!HAS_EXTRA_GT_LIST(i915))
-+			return read_sample_us(pmu, 1, __I915_SAMPLE_FREQ_ACT);
-+
-+		for_each_gt(gt, i915, i)
-+			val = max(val, read_sample_us(pmu, i + 1, __I915_SAMPLE_FREQ_ACT));
-+
- 		break;
- 	case I915_PMU_REQUESTED_FREQUENCY:
--		val = read_sample_us(pmu, gt_id, __I915_SAMPLE_FREQ_REQ);
-+		if (gt_id)
-+			return read_sample_us(pmu, gt_id, __I915_SAMPLE_FREQ_REQ);
-+
-+		if (!HAS_EXTRA_GT_LIST(i915))
-+			return read_sample_us(pmu, 1, __I915_SAMPLE_FREQ_REQ);
-+
-+		for_each_gt(gt, i915, i)
-+			val = max(val, read_sample_us(pmu, i + 1, __I915_SAMPLE_FREQ_REQ));
-+
- 		break;
- 	case I915_PMU_INTERRUPTS:
- 		val = READ_ONCE(pmu->irq_count);
- 		break;
- 	case I915_PMU_RC6_RESIDENCY:
--		val = get_rc6(i915->gt[gt_id]);
-+		if (gt_id)
-+			return get_rc6(i915->gt[gt_id - 1]);
-+
-+		if (!HAS_EXTRA_GT_LIST(i915))
-+			return get_rc6(i915->gt[0]);
-+
-+		val = U64_MAX;
-+		for_each_gt(gt, i915, i)
-+			val = min(val, get_rc6(gt));
-+
- 		break;
- 	case I915_PMU_SOFTWARE_GT_AWAKE_TIME:
--		val = ktime_to_ns(intel_gt_get_awake_time(to_gt(i915)));
-+		if (gt_id)
-+			return ktime_to_ns(intel_gt_get_awake_time(i915->gt[gt_id - 1]));
-+
-+		if (!HAS_EXTRA_GT_LIST(i915))
-+			return ktime_to_ns(intel_gt_get_awake_time(i915->gt[0]));
-+
-+		val = 0;
-+		for_each_gt(gt, i915, i)
-+			val = max((s64)val, ktime_to_ns(intel_gt_get_awake_time(gt)));
- 		break;
- 	}
- 
-@@ -728,11 +766,14 @@ static void i915_pmu_event_read(struct perf_event *event)
- 
- static void i915_pmu_enable(struct perf_event *event)
- {
-+	const unsigned int gt_id = config_gt_id(event->attr.config);
- 	struct drm_i915_private *i915 =
- 		container_of(event->pmu, typeof(*i915), pmu.base);
- 	struct i915_pmu *pmu = &i915->pmu;
-+	struct intel_gt *gt;
- 	unsigned long flags;
- 	unsigned int bit;
-+	u64 i;
- 
- 	bit = event_bit(event);
- 	if (bit == -1)
-@@ -745,12 +786,42 @@ static void i915_pmu_enable(struct perf_event *event)
- 	 * the event reference counter.
- 	 */
- 	BUILD_BUG_ON(ARRAY_SIZE(pmu->enable_count) != I915_PMU_MASK_BITS);
-+	BUILD_BUG_ON(BITS_PER_TYPE(pmu->enable) < I915_PMU_MASK_BITS);
- 	GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
- 	GEM_BUG_ON(pmu->enable_count[bit] == ~0);
- 
- 	pmu->enable |= BIT_ULL(bit);
- 	pmu->enable_count[bit]++;
- 
-+	/*
-+	 * The arrays that i915_pmu maintains are now indexed as
-+	 *
-+	 * 0 - aggregate events (a.k.a !gt_id)
-+	 * 1 - gt0
-+	 * 2 - gt1
-+	 *
-+	 * The same logic applies to event_bit masks. The first set of mask are
-+	 * for aggregate, followed by gt0 and gt1 masks. The idea here is to
-+	 * enable the event on all gts if the aggregate event bit is set. This
-+	 * applies only to the non-engine-events.
-+	 */
-+	if (!gt_id && !is_engine_event(event)) {
-+		for_each_gt(gt, i915, i) {
-+			u64 counter = config_counter(event->attr.config);
-+			u64 config = ((i + 1) << __I915_PMU_GT_SHIFT) | counter;
-+			unsigned int bit = config_bit(config);
-+
-+			if (bit == -1)
-+				continue;
-+
-+			GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
-+			GEM_BUG_ON(pmu->enable_count[bit] == ~0);
-+
-+			pmu->enable |= BIT_ULL(bit);
-+			pmu->enable_count[bit]++;
-+		}
-+	}
-+
- 	/*
- 	 * Start the sampling timer if needed and not already enabled.
- 	 */
-@@ -793,6 +864,7 @@ static void i915_pmu_enable(struct perf_event *event)
- 
- static void i915_pmu_disable(struct perf_event *event)
- {
-+	const unsigned int gt_id = config_gt_id(event->attr.config);
- 	struct drm_i915_private *i915 =
- 		container_of(event->pmu, typeof(*i915), pmu.base);
- 	unsigned int bit = event_bit(event);
-@@ -822,6 +894,26 @@ static void i915_pmu_disable(struct perf_event *event)
- 		 */
- 		if (--engine->pmu.enable_count[sample] == 0)
- 			engine->pmu.enable &= ~BIT(sample);
-+	} else if (!gt_id) {
-+		struct intel_gt *gt;
-+		u64 i;
-+
-+		for_each_gt(gt, i915, i) {
-+			u64 counter = config_counter(event->attr.config);
-+			u64 config = ((i + 1) << __I915_PMU_GT_SHIFT) | counter;
-+			unsigned int bit = config_bit(config);
-+
-+			if (bit == -1)
-+				continue;
-+
-+			GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
-+			GEM_BUG_ON(pmu->enable_count[bit] == 0);
-+
-+			if (--pmu->enable_count[bit] == 0) {
-+				pmu->enable &= ~BIT_ULL(bit);
-+				pmu->timer_enabled &= pmu_needs_timer(pmu, true);
-+			}
-+		}
- 	}
- 
- 	GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
-@@ -1002,7 +1094,11 @@ create_event_attributes(struct i915_pmu *pmu)
- 		const char *name;
- 		const char *unit;
- 	} global_events[] = {
-+		__event(0, "actual-frequency", "M"),
-+		__event(1, "requested-frequency", "M"),
- 		__event(2, "interrupts", NULL),
-+		__event(3, "rc6-residency", "ns"),
-+		__event(4, "software-gt-awake-time", "ns"),
- 	};
- 	static const struct {
- 		enum drm_i915_pmu_engine_sample sample;
-@@ -1024,7 +1120,7 @@ create_event_attributes(struct i915_pmu *pmu)
- 	/* per gt counters */
- 	for_each_gt(gt, i915, j) {
- 		for (i = 0; i < ARRAY_SIZE(events); i++) {
--			u64 config = ___I915_PMU_OTHER(j, events[i].counter);
-+			u64 config = ___I915_PMU_OTHER(j + 1, events[i].counter);
- 
- 			if (!config_status(i915, config))
- 				count++;
-@@ -1070,7 +1166,7 @@ create_event_attributes(struct i915_pmu *pmu)
- 	/* per gt counters */
- 	for_each_gt(gt, i915, j) {
- 		for (i = 0; i < ARRAY_SIZE(events); i++) {
--			u64 config = ___I915_PMU_OTHER(j, events[i].counter);
-+			u64 config = ___I915_PMU_OTHER(j + 1, events[i].counter);
- 			char *str;
- 
- 			if (config_status(i915, config))
-diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-index a708e44a227e..a4cc1eb218fc 100644
---- a/drivers/gpu/drm/i915/i915_pmu.h
-+++ b/drivers/gpu/drm/i915/i915_pmu.h
-@@ -38,7 +38,7 @@ enum {
- 	__I915_NUM_PMU_SAMPLERS
- };
- 
--#define I915_PMU_MAX_GTS (4) /* FIXME */
-+#define I915_PMU_MAX_GTS (4 + 1) /* FIXME */
- 
- /**
-  * How many different events we track in the global PMU mask.
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index bbab7f3dbeb4..18794c30027f 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -290,6 +290,7 @@ enum drm_i915_pmu_engine_sample {
- 	(((__u64)__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x)) | \
- 	((__u64)(gt) << __I915_PMU_GT_SHIFT))
- 
-+/* Aggregate from all gts */
- #define __I915_PMU_OTHER(x) ___I915_PMU_OTHER(0, x)
- 
- #define I915_PMU_ACTUAL_FREQUENCY	__I915_PMU_OTHER(0)
-@@ -300,11 +301,14 @@ enum drm_i915_pmu_engine_sample {
- 
- #define I915_PMU_LAST /* Deprecated - do not use */ I915_PMU_RC6_RESIDENCY
- 
--#define __I915_PMU_ACTUAL_FREQUENCY(gt)		___I915_PMU_OTHER(gt, 0)
--#define __I915_PMU_REQUESTED_FREQUENCY(gt)	___I915_PMU_OTHER(gt, 1)
--#define __I915_PMU_INTERRUPTS(gt)		___I915_PMU_OTHER(gt, 2)
--#define __I915_PMU_RC6_RESIDENCY(gt)		___I915_PMU_OTHER(gt, 3)
--#define __I915_PMU_SOFTWARE_GT_AWAKE_TIME(gt)	___I915_PMU_OTHER(gt, 4)
-+/* GT specific counters */
-+#define ____I915_PMU_OTHER(gt, x) ___I915_PMU_OTHER(((gt) + 1), x)
-+
-+#define __I915_PMU_ACTUAL_FREQUENCY(gt)		____I915_PMU_OTHER(gt, 0)
-+#define __I915_PMU_REQUESTED_FREQUENCY(gt)	____I915_PMU_OTHER(gt, 1)
-+#define __I915_PMU_INTERRUPTS(gt)		____I915_PMU_OTHER(gt, 2)
-+#define __I915_PMU_RC6_RESIDENCY(gt)		____I915_PMU_OTHER(gt, 3)
-+#define __I915_PMU_SOFTWARE_GT_AWAKE_TIME(gt)	____I915_PMU_OTHER(gt, 4)
- 
- /* Each region is a minimum of 16k, and there are at most 255 of them.
-  */
--- 
-2.36.1
-
+Yes, that is my thought. Though iommu_group and reset group are
+different things we could still leverage existing _INFO ioctl once there
+is a way to associated dev_id to group_id.
