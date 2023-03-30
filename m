@@ -2,57 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3217D6D04F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 14:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E656D0538
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 14:48:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B97E10E303;
-	Thu, 30 Mar 2023 12:39:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD1910E2DB;
+	Thu, 30 Mar 2023 12:48:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA13810E2EB
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 12:39:08 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFBA10E2DB;
+ Thu, 30 Mar 2023 12:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680179948; x=1711715948;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=YhCmAXZZ3Er2u5OnDT2zwZ1hhEGWbF8Vs3UUUydml+Q=;
- b=oDrvY8pxVVDnc0rDKGs+gcboN5kU3e79Faoj30uRa4cH1XPGsbaiPbnA
- 1dQjvupaB9RMo2e4ZV/mUdgqwoyKuotLBFgEmf8vAnjBWKBz9WYKYfm6w
- NIozP1LN7yp3GRS6RxR76s2kxhv47FBKmLq2dZjdOfJQAPRP/MtGdG7b/
- +RH+sXppx2neKkN9OZeDHEh3T2T7Wy8Hpyirhje9NQHJ5NZBa77rNwNA/
- TPwwPiL9nLeKQhyj1GpkvBUKRFC1Vkrut0JG0a3YATLmwvzGi71iRkBXt
- ZVwVPJuI+ous6FkA2dVHCHrOtgVY8EU6oTl8VnyV5VvqT0M+5pj5LPjF8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368935027"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="368935027"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 05:39:08 -0700
+ t=1680180487; x=1711716487;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=G93lNDew61ZQcH6tKnLIktOuNeb35yNTPWhtJSujqRw=;
+ b=Ht14fRcAr23yHsb42cFQF9246psKYLR0Bmhc3ajUz4kliTUPmxkAeTvF
+ IEbEvIvGx7k2a/Fp0pNc7VRYTMEWosPkBy4mNt9Dm+rIC/kQ14nX5ce0R
+ I4tSr22FhMtY2WHq7xW++XEA3MNlBThDbNWAd0eKzz7QdAv4q765Ca7M4
+ flyPj6A1TxVD3SEgXbvS/6KCSKgJnBTlfK0i+zjAvFzXxeUJrEvEz/5L4
+ LE4KKr9WAGFFLbi7oPLRc42ouESTV4ejfQR9F4VwiC59n/1mK7gLn5fgq
+ iOGWub3uIn6uwGiWEsJqb1T/P0Qo/rAp+DFSZMNgMYkSnoySpxlEEGSAb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="338655972"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="338655972"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 05:48:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="773968825"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="773968825"
-Received: from bjmcgrat-mobl.amr.corp.intel.com (HELO [10.213.215.205])
- ([10.213.215.205])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 05:39:06 -0700
-Message-ID: <1036f396-f5d6-82bd-27ff-66146b115184@linux.intel.com>
-Date: Thu, 30 Mar 2023 13:39:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="930718677"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="930718677"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga006.fm.intel.com with ESMTP; 30 Mar 2023 05:48:06 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 30 Mar 2023 05:48:06 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 30 Mar 2023 05:48:06 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Thu, 30 Mar 2023 05:48:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NxeOWxlgCxeWllE+BftZtuxR53FWflt2Fv3ru5W0M6ufOsVUrjA+QIRWaCByye6TaJpJBuA78CL33+vgEfDxrP8cd0TsW11pDbf4NEsQ1sJjlcjO7KL1BH+WrE0//sukuTLUAY29xUu9h85M8KBgB9XV057w02b+k9aH7KCOIKS1+O3uq9k76PvUTdznhzt/e3Y/do09ov8lmk4hS23Pg8guFG7F9PVV13Tvtc0EPVdLOmi53L95KDSmUHKvjxr8IJ2I2gbIyM3fDh3cCWQnbqavS9lRbIaN3KRFvYslDgBed49EaRl7zKu33TZtSN0exi25Evpx8QkNyDjUsmjhaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6cffpSIOtRm6Alv95ECXBpD52SXYlwIt+6MXTKmKPmg=;
+ b=WbMnZMsensNDtyPnEoKAq+hANyJbcx3QahLBhMzjZEsyrvPkgI28/EmMNmrTNv011AYC0HzFr9Y1I4E2LSFa8Qv2r2FqI9lQsqURLqMZvVQS2+EI4VUFi9GYH82lqfQQtfFk9oQ7mBBBp59PnHWnaUWgLEkMucqQwVJdSkczDkXpHhbtqxRiGId+RoBFSdeNBMlheZsJEL47u4Ybk7nYujx6mPo6Nxz/xpSDtFS0IFR9htY/IbqJfhrxJW46WkjZhqKOmQ7lwi7Q/VYLBUSDlBXKXBSfpbCJpf2MYxhS+MpQVNNwX5DZaJVwRTW2UTg69Nm07ITGxL8Fd8xV4hsSbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by CY5PR11MB6161.namprd11.prod.outlook.com (2603:10b6:930:2a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Thu, 30 Mar
+ 2023 12:48:04 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::ca24:b399:b445:a3de]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::ca24:b399:b445:a3de%4]) with mapi id 15.20.6254.020; Thu, 30 Mar 2023
+ 12:48:04 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Alex Williamson <alex.williamson@redhat.com>, "Tian, Kevin"
+ <kevin.tian@intel.com>
+Thread-Topic: [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
+Thread-Index: AQHZYI92Dc+A7iEOnEaMeK3O2ipWfK8PAuSAgACBxlCAADScAIAAh+4AgAABaZCAAARdAIAAAahggAAHN4CAAAKPcIAACUyAgAC3rPCAAHDDAIAAZucAgAFd2IA=
+Date: Thu, 30 Mar 2023 12:48:03 +0000
+Message-ID: <DS0PR11MB75298AF9A9ACAEBDD5D445ECC38E9@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <20230327093458.44939-11-yi.l.liu@intel.com>
+ <20230327132619.5ab15440.alex.williamson@redhat.com>
+ <DS0PR11MB7529E969C27995D535A24EC0C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BL1PR11MB52717FB9E6D5C10BF4B7DA0A8C889@BL1PR11MB5271.namprd11.prod.outlook.com>
+ <20230328082536.5400da67.alex.williamson@redhat.com>
+ <DS0PR11MB7529B6782565BE8489D922F9C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328084616.3361a293.alex.williamson@redhat.com>
+ <DS0PR11MB75290B84D334FC726A8BBA95C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328091801.13de042a.alex.williamson@redhat.com>
+ <DS0PR11MB752903CE3D5906FE21146364C3889@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230328100027.3b843b91.alex.williamson@redhat.com>
+ <DS0PR11MB7529C12E086DAB619FF9AFF0C3899@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <BN9PR11MB52762E789B9C1D8021F54ECC8C899@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20230329094944.50abde4e.alex.williamson@redhat.com>
+In-Reply-To: <20230329094944.50abde4e.alex.williamson@redhat.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
- <20230330004103.1295413-6-umesh.nerlige.ramappa@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230330004103.1295413-6-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/pmu: Prepare for multi-tile
- non-engine counters
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|CY5PR11MB6161:EE_
+x-ms-office365-filtering-correlation-id: 59801f66-a69b-444e-93c3-08db311d007b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6eqoeCq2LNLyyF1UYfB1RAzBuBtSKefIMNlo1wQ65VuxXRZ++w1OSw3TKlbKXmsAInlcMHWeDgf8J24f/8aBHnIecr/GlYwyoEdUVyKIWCGjTO83BX+gQb8ntpK3xeGVeKAPqKItBfgx/dJpjkTsjXC6ayW+0rKp9mIM18O2BL8lvyj5Ql99DIlYJWiTBpIVQAuB7T3qnH9oX28jjZhlsxWFlal72l89Z6hrPqQD59gS+etSGgOvakj1P5TuxM8FRwwM3k2NnevIJzAq0jWurV7ZYUyN1+JzG8CrCHhrmVfbsWCKjXEF7MOVb5a7i/WecKGRCfyrnvCg5ShtTxQJXHfHcmCYBwnr3fPyXKq/m+y/6XmGxRNPU6FQj55ti5+HB5KaIGnwRzchkzjWHVihMUhNEaXgw47rjfhhst6I56Tljcd25yjjlYX+6/iM8mKV7mmkjpxgnVzf0f2A8Gr4iPRvhL5koskrVYx3KQTyg+shQpfymV+qGRYDcK/tNo1B6mCdP2UFCo+i6d1S94yEyK5T/lVYR+tlU8fbhHblW5YEYgQIKq3zvzjWbAg/nPa+QxdxfkdHqEqMAbY1+FhOu/sIiKYFXDdQdr/g3owpCKWUr/byszpA0JevDfzAPddP
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(136003)(396003)(39860400002)(366004)(451199021)(2906002)(38100700002)(4326008)(41300700001)(8936002)(122000001)(5660300002)(7416002)(52536014)(33656002)(86362001)(55016003)(38070700005)(82960400001)(478600001)(316002)(71200400001)(6636002)(110136005)(54906003)(7696005)(26005)(53546011)(6506007)(66476007)(66446008)(83380400001)(8676002)(66946007)(64756008)(66556008)(186003)(76116006)(9686003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bYqH2LIIHUwnnJCBDHt9/jNnMUZSoOsokIszPuE7SAXnRgIcev9IwrtlUaXn?=
+ =?us-ascii?Q?0mnAzmv6Jbi/DyWs0WXBtN2IGRVL4qEoA69tyb3jVseV5VegiNgetFE2IoKD?=
+ =?us-ascii?Q?n5P1lsyH2sWd6CEowpDi/ykwWwVdJDNNQ+m/vHWUD4tppiGOEUHZgEzVIbVF?=
+ =?us-ascii?Q?xrhKGjCaIuV5TNxf5B1XC4xUMVxew467LMe9eXTTdK/Vcfl1LBtDQePZLeu5?=
+ =?us-ascii?Q?fOXsbv7cKaqhlHm9/AOGFjJH+bhJVJUadC7jn9cgqGI12beotJDC2SPmSxQG?=
+ =?us-ascii?Q?28Wx/4MFYLtvYdSFyDWEHtFaWlgZjJl1HiCLh2DiPnJgA37sCN3ZuWfT1iL+?=
+ =?us-ascii?Q?VaXG2B/ZV2wA0TnzLLymPWeZDqMyxGEPqp8MoF1k+Y4HHSnna5nkUOahYKnC?=
+ =?us-ascii?Q?ynUvmUs0GQJ4sOc4iMvkF8JRYEJAadYGGIf5vzR95IIRpoFm7mJyzPvKoMN1?=
+ =?us-ascii?Q?lVFTpwRQ/5OWhh+BfSAV8tdXrAFxz/1Q8wMFpKTabxcbBMrVT/N5L5JjdGqb?=
+ =?us-ascii?Q?PjBSFgJYgghdB6Ul8Dp6DnG+QjBH8IVJnuJYlpdKCR8weMc+3zkRLaLgZStb?=
+ =?us-ascii?Q?UANxEb9RFZqllu8XYqP/ljyFK73xa8fMkEb1GtBqDKvFN6GEYKkooONuH4y2?=
+ =?us-ascii?Q?TGwnPit9aCJNY2jO3EepcIO4AS40/hiroR8imlRiW4b1cYOw9P4H5sDgFqij?=
+ =?us-ascii?Q?ubuPQU4x/iPc03ox9+JEqlscqyCNrNSlQ1GcoSgmeTp11gUvF93chIuszbWF?=
+ =?us-ascii?Q?+1NZlEq1YBogxf3s31a7hcTV5y0DWhCy/0RVNrkT0+H4bZSeqXTWngsRwPBS?=
+ =?us-ascii?Q?YySrijhI5NkAagRnlz1qSv1WCgeiA9IOI3v5g1soozrgOXBqNeozFMChFUhH?=
+ =?us-ascii?Q?IY+NUrt4giYldTKRd1JDk1/ihAPth/ZNzANcz3VwIu+YSI2jCQp5MDI/KpUN?=
+ =?us-ascii?Q?d4MJfallpbL5TtAm1HYBoIglyvV2nqmrcvm5KqAVy+VQUE34bB5ym8QWsTH5?=
+ =?us-ascii?Q?8NendMdD7PfNk1vn2btCnmYLiN28EzHwPGTXSvN1KHvcSdUNLtzJSRIVPT3a?=
+ =?us-ascii?Q?nxiIZCpcf0dzGFbmscwUVnpjIzybxtZdKRxyoGncQzD0Nj/uK/0zkWb5w4m7?=
+ =?us-ascii?Q?o57VGslKp0QZv+yX3nt3DcptTnSUEltGyPu29/MgsB/+p/K/yMX1Qpp2FIsO?=
+ =?us-ascii?Q?2VYYXCOn1wx1OQM0j1IBN5+oTMW5zaC9ombC6imoUIZ7GDsrYzz2G0hGq8eh?=
+ =?us-ascii?Q?+bdiycuj5q0B7YigCQhnjxzxQSi4FLxzrFoHn3V24jojKmsMUFVBVFc2fALP?=
+ =?us-ascii?Q?NshD5XzeAr9ZyC0qsSp3xf1r2IKOL+U1AXOmhjdw08Al6jidI0jyaZ51f33k?=
+ =?us-ascii?Q?O/TD/yt2FfVgSOsfEqBZhEaC98T3wxxf9hw5H75xq046jV1CLnFdyoCQkJQ/?=
+ =?us-ascii?Q?M43HhR9SZUKdTs2hXKl/xX/xmlC8HLsk+2ZL2jnX3QtKgI5ADopZpL4FlpKF?=
+ =?us-ascii?Q?skkXCpT7yi1whgoN3JXqVTSsq0o+J9/hwuIDgdiwuYw+1nTKC/DTfHzHwR+f?=
+ =?us-ascii?Q?rIfrHovQGrgnPo5V8368mEmh2X0lz2abjRExhfbK?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59801f66-a69b-444e-93c3-08db311d007b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Mar 2023 12:48:03.4677 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WIu8o6VQjFDo5uxJ1uLgbE4U5l5+wJ4zyuJzvDXIXHonpBBI/AJxCy6CvzWJT//NyLxwWOqNUYmOKA5xwjaA3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6161
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] vfio/pci: Add
+ VFIO_DEVICE_GET_PCI_HOT_RESET_GROUP_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,412 +161,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+> From: Alex Williamson <alex.williamson@redhat.com>
+> Sent: Wednesday, March 29, 2023 11:50 PM
+>=20
+> On Wed, 29 Mar 2023 09:41:26 +0000
+> "Tian, Kevin" <kevin.tian@intel.com> wrote:
+>=20
+> > > From: Liu, Yi L <yi.l.liu@intel.com>
+> > > Sent: Wednesday, March 29, 2023 11:14 AM
+> > >
+> > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > Sent: Wednesday, March 29, 2023 12:00 AM
+> > > >
+> > > >
+> > > > Personally I don't like the suggestion to fail with -EPERM if the u=
+ser
+> > > > doesn't own all the affected devices.  This isn't a "probe if I can=
+ do
+> > > > a reset" ioctl, it's a "provide information about the devices affec=
+ted
+> > > > by a reset to know how to call the hot-reset ioctl".  We're returni=
+ng
+> > > > the bdf to the cdev version of this ioctl for exactly this debuggin=
+g
+> > > > purpose when the devices are not owned, that becomes useless if we =
+give
+> > > > up an return -EPERM if ownership doesn't align.
+> > >
+> > > Jason's suggestion makes sense for returning the case of returning de=
+v_id
+> > > as dev_id is local to iommufd. If there are devices in the same dev_s=
+et are
+> > > opened by multiple users, multiple iommufd would be used. Then the
+> > > dev_id would have overlap. e.g. a dev_set has three devices. Device A=
+ and
+> > > B are opened by the current user as cdev, dev_id #1 and #2 are genera=
+ted.
+> > > While device C opened by another user as cdev, dev_id #n is generated=
+ for
+> > > it. If dev_id #n happens to be #1, then user gets two info entries th=
+at have
+> > > the same dev_id.
+> > >
+> >
+> > In Alex's proposal you'll set a invalid dev_id for device C so the user=
+ can
+> > still get the info for diagnostic purpose instead of seeing an -EPERM e=
+rror.
+>=20
+> Yes, we shouldn't be reporting dev_ids outside of the user's iommufd
+> context.
 
-On 30/03/2023 01:40, Umesh Nerlige Ramappa wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Reserve some bits in the counter config namespace which will carry the
-> tile id and prepare the code to handle this.
-> 
-> No per tile counters have been added yet.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_pmu.c | 153 +++++++++++++++++++++++---------
->   drivers/gpu/drm/i915/i915_pmu.h |   9 +-
->   include/uapi/drm/i915_drm.h     |  18 +++-
->   3 files changed, 132 insertions(+), 48 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index c00b94c7f509..5d1de98d86b4 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -56,11 +56,21 @@ static bool is_engine_config(u64 config)
->   	return config < __I915_PMU_OTHER(0);
->   }
->   
-> +static unsigned int config_gt_id(const u64 config)
-> +{
-> +	return config >> __I915_PMU_GT_SHIFT;
-> +}
-> +
-> +static u64 config_counter(const u64 config)
-> +{
-> +	return config & ~(~0ULL << __I915_PMU_GT_SHIFT);
-> +}
-> +
->   static unsigned int other_bit(const u64 config)
->   {
->   	unsigned int val;
->   
-> -	switch (config) {
-> +	switch (config_counter(config)) {
->   	case I915_PMU_ACTUAL_FREQUENCY:
->   		val =  __I915_PMU_ACTUAL_FREQUENCY_ENABLED;
->   		break;
-> @@ -78,15 +88,20 @@ static unsigned int other_bit(const u64 config)
->   		return -1;
->   	}
->   
-> -	return I915_ENGINE_SAMPLE_COUNT + val;
-> +	return I915_ENGINE_SAMPLE_COUNT +
-> +	       config_gt_id(config) * __I915_PMU_TRACKED_EVENT_COUNT +
-> +	       val;
->   }
->   
->   static unsigned int config_bit(const u64 config)
->   {
-> -	if (is_engine_config(config))
-> +	if (is_engine_config(config)) {
-> +		GEM_BUG_ON(config_gt_id(config));
-> +
->   		return engine_config_sample(config);
-> -	else
-> +	} else {
->   		return other_bit(config);
-> +	}
->   }
->   
->   static u64 config_mask(u64 config)
-> @@ -104,6 +119,18 @@ static unsigned int event_bit(struct perf_event *event)
->   	return config_bit(event->attr.config);
->   }
->   
-> +static u64 frequency_enabled_mask(void)
-> +{
-> +	unsigned int i;
-> +	u64 mask = 0;
-> +
-> +	for (i = 0; i < I915_PMU_MAX_GTS; i++)
-> +		mask |= config_mask(__I915_PMU_ACTUAL_FREQUENCY(i)) |
-> +			config_mask(__I915_PMU_REQUESTED_FREQUENCY(i));
-> +
-> +	return mask;
-> +}
-> +
->   static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
->   {
->   	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
-> @@ -120,9 +147,7 @@ static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
->   	 * Mask out all the ones which do not need the timer, or in
->   	 * other words keep all the ones that could need the timer.
->   	 */
-> -	enable &= config_mask(I915_PMU_ACTUAL_FREQUENCY) |
-> -		  config_mask(I915_PMU_REQUESTED_FREQUENCY) |
-> -		  ENGINE_SAMPLE_MASK;
-> +	enable &= frequency_enabled_mask() | ENGINE_SAMPLE_MASK;
->   
->   	/*
->   	 * When the GPU is idle per-engine counters do not need to be
-> @@ -164,9 +189,39 @@ static inline s64 ktime_since_raw(const ktime_t kt)
->   	return ktime_to_ns(ktime_sub(ktime_get_raw(), kt));
->   }
->   
-> +static unsigned int
-> +__sample_idx(struct i915_pmu *pmu, unsigned int gt_id, int sample)
-> +{
-> +	unsigned int idx = gt_id * __I915_NUM_PMU_SAMPLERS + sample;
-> +
-> +	GEM_BUG_ON(idx >= ARRAY_SIZE(pmu->sample));
-> +
-> +	return idx;
-> +}
-> +
-> +static u64 read_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample)
-> +{
-> +	return pmu->sample[__sample_idx(pmu, gt_id, sample)].cur;
-> +}
-> +
-> +static void
-> +store_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample, u64 val)
-> +{
-> +	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur = val;
-> +}
-> +
-> +static void
-> +add_sample_mult(struct i915_pmu *pmu, unsigned int gt_id, int sample, u32 val,
-> +		u32 mul)
-> +{
-> +	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur +=
-> +							mul_u32_u32(val, mul);
-> +}
-> +
->   static u64 get_rc6(struct intel_gt *gt)
->   {
->   	struct drm_i915_private *i915 = gt->i915;
-> +	const unsigned int gt_id = gt->info.id;
->   	struct i915_pmu *pmu = &i915->pmu;
->   	unsigned long flags;
->   	bool awake = false;
-> @@ -181,7 +236,7 @@ static u64 get_rc6(struct intel_gt *gt)
->   	spin_lock_irqsave(&pmu->lock, flags);
->   
->   	if (awake) {
-> -		pmu->sample[__I915_SAMPLE_RC6].cur = val;
-> +		store_sample(pmu, gt_id, __I915_SAMPLE_RC6, val);
->   	} else {
->   		/*
->   		 * We think we are runtime suspended.
-> @@ -190,14 +245,14 @@ static u64 get_rc6(struct intel_gt *gt)
->   		 * on top of the last known real value, as the approximated RC6
->   		 * counter value.
->   		 */
-> -		val = ktime_since_raw(pmu->sleep_last);
-> -		val += pmu->sample[__I915_SAMPLE_RC6].cur;
-> +		val = ktime_since_raw(pmu->sleep_last[gt_id]);
-> +		val += read_sample(pmu, gt_id, __I915_SAMPLE_RC6);
->   	}
->   
-> -	if (val < pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur)
-> -		val = pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur;
-> +	if (val < read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED))
-> +		val = read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED);
->   	else
-> -		pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur = val;
-> +		store_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED, val);
->   
->   	spin_unlock_irqrestore(&pmu->lock, flags);
->   
-> @@ -207,13 +262,20 @@ static u64 get_rc6(struct intel_gt *gt)
->   static void init_rc6(struct i915_pmu *pmu)
->   {
->   	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
-> -	intel_wakeref_t wakeref;
-> +	struct intel_gt *gt;
-> +	unsigned int i;
-> +
-> +	for_each_gt(gt, i915, i) {
-> +		intel_wakeref_t wakeref;
->   
-> -	with_intel_runtime_pm(to_gt(i915)->uncore->rpm, wakeref) {
-> -		pmu->sample[__I915_SAMPLE_RC6].cur = __get_rc6(to_gt(i915));
-> -		pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur =
-> -					pmu->sample[__I915_SAMPLE_RC6].cur;
-> -		pmu->sleep_last = ktime_get_raw();
-> +		with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
-> +			u64 val = __get_rc6(gt);
-> +
-> +			store_sample(pmu, i, __I915_SAMPLE_RC6, val);
-> +			store_sample(pmu, i, __I915_SAMPLE_RC6_LAST_REPORTED,
-> +				     val);
-> +			pmu->sleep_last[i] = ktime_get_raw();
-> +		}
->   	}
->   }
->   
-> @@ -221,8 +283,8 @@ static void park_rc6(struct intel_gt *gt)
->   {
->   	struct i915_pmu *pmu = &gt->i915->pmu;
->   
-> -	pmu->sample[__I915_SAMPLE_RC6].cur = __get_rc6(gt);
-> -	pmu->sleep_last = ktime_get_raw();
-> +	store_sample(pmu, gt->info.id, __I915_SAMPLE_RC6, __get_rc6(gt));
-> +	pmu->sleep_last[gt->info.id] = ktime_get_raw();
->   }
->   
->   static void __i915_pmu_maybe_start_timer(struct i915_pmu *pmu)
-> @@ -362,34 +424,30 @@ engines_sample(struct intel_gt *gt, unsigned int period_ns)
->   	}
->   }
->   
-> -static void
-> -add_sample_mult(struct i915_pmu_sample *sample, u32 val, u32 mul)
-> -{
-> -	sample->cur += mul_u32_u32(val, mul);
-> -}
-> -
-> -static bool frequency_sampling_enabled(struct i915_pmu *pmu)
-> +static bool
-> +frequency_sampling_enabled(struct i915_pmu *pmu, unsigned int gt)
->   {
->   	return pmu->enable &
-> -	       (config_mask(I915_PMU_ACTUAL_FREQUENCY) |
-> -		config_mask(I915_PMU_REQUESTED_FREQUENCY));
-> +	       (config_mask(__I915_PMU_ACTUAL_FREQUENCY(gt)) |
-> +		config_mask(__I915_PMU_REQUESTED_FREQUENCY(gt)));
->   }
->   
->   static void
->   frequency_sample(struct intel_gt *gt, unsigned int period_ns)
->   {
->   	struct drm_i915_private *i915 = gt->i915;
-> +	const unsigned int gt_id = gt->info.id;
->   	struct i915_pmu *pmu = &i915->pmu;
->   	struct intel_rps *rps = &gt->rps;
->   
-> -	if (!frequency_sampling_enabled(pmu))
-> +	if (!frequency_sampling_enabled(pmu, gt_id))
->   		return;
->   
->   	/* Report 0/0 (actual/requested) frequency while parked. */
->   	if (!intel_gt_pm_get_if_awake(gt))
->   		return;
->   
-> -	if (pmu->enable & config_mask(I915_PMU_ACTUAL_FREQUENCY)) {
-> +	if (pmu->enable & config_mask(__I915_PMU_ACTUAL_FREQUENCY(gt_id))) {
->   		u32 val;
->   
->   		/*
-> @@ -405,12 +463,12 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
->   		if (!val)
->   			val = intel_gpu_freq(rps, rps->cur_freq);
->   
-> -		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_ACT],
-> +		add_sample_mult(pmu, gt_id, __I915_SAMPLE_FREQ_ACT,
->   				val, period_ns / 1000);
->   	}
->   
-> -	if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
-> -		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_REQ],
-> +	if (pmu->enable & config_mask(__I915_PMU_REQUESTED_FREQUENCY(gt_id))) {
-> +		add_sample_mult(pmu, gt_id, __I915_SAMPLE_FREQ_REQ,
->   				intel_rps_get_requested_frequency(rps),
->   				period_ns / 1000);
->   	}
-> @@ -447,10 +505,7 @@ static enum hrtimer_restart i915_sample(struct hrtimer *hrtimer)
->   			continue;
->   
->   		engines_sample(gt, period_ns);
-> -
-> -		/* Sample only gt0 until gt support is added for frequency */
-> -		if (i == 0)
-> -			frequency_sample(gt, period_ns);
-> +		frequency_sample(gt, period_ns);
->   	}
->   
->   	hrtimer_forward(hrtimer, now, ns_to_ktime(PERIOD));
-> @@ -492,7 +547,12 @@ config_status(struct drm_i915_private *i915, u64 config)
->   {
->   	struct intel_gt *gt = to_gt(i915);
->   
-> -	switch (config) {
-> +	unsigned int gt_id = config_gt_id(config);
-> +
-> +	if (gt_id)
-> +		return -ENOENT;
-> +
-> +	switch (config_counter(config)) {
->   	case I915_PMU_ACTUAL_FREQUENCY:
->   		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
->   			/* Requires a mutex for sampling! */
-> @@ -600,22 +660,27 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
->   			val = engine->pmu.sample[sample].cur;
->   		}
->   	} else {
-> -		switch (event->attr.config) {
-> +		const unsigned int gt_id = config_gt_id(event->attr.config);
-> +		const u64 config = config_counter(event->attr.config);
-> +
-> +		switch (config) {
->   		case I915_PMU_ACTUAL_FREQUENCY:
->   			val =
-> -			   div_u64(pmu->sample[__I915_SAMPLE_FREQ_ACT].cur,
-> +			   div_u64(read_sample(pmu, gt_id,
-> +					       __I915_SAMPLE_FREQ_ACT),
->   				   USEC_PER_SEC /* to MHz */);
->   			break;
->   		case I915_PMU_REQUESTED_FREQUENCY:
->   			val =
-> -			   div_u64(pmu->sample[__I915_SAMPLE_FREQ_REQ].cur,
-> +			   div_u64(read_sample(pmu, gt_id,
-> +					       __I915_SAMPLE_FREQ_REQ),
->   				   USEC_PER_SEC /* to MHz */);
->   			break;
->   		case I915_PMU_INTERRUPTS:
->   			val = READ_ONCE(pmu->irq_count);
->   			break;
->   		case I915_PMU_RC6_RESIDENCY:
-> -			val = get_rc6(to_gt(i915));
-> +			val = get_rc6(i915->gt[gt_id]);
->   			break;
->   		case I915_PMU_SOFTWARE_GT_AWAKE_TIME:
->   			val = ktime_to_ns(intel_gt_get_awake_time(to_gt(i915)));
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 1b04c79907e8..a708e44a227e 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -38,13 +38,16 @@ enum {
->   	__I915_NUM_PMU_SAMPLERS
->   };
->   
-> +#define I915_PMU_MAX_GTS (4) /* FIXME */
+Following Alex's suggestion, here are two commits to extend existing _INFO
+to report dev_id.
 
-3-4 years since writing this I have no idea what I meant by this FIXME. 
-Should have put a better comment.. :( It was early platform enablement 
-times so it was somewhat passable, but now I think we need to figure out 
-what I actually meant. Maybe removing the comment is fine.
+From ad5c81366813c5effd707a0b5f5e797f5fdb3115 Mon Sep 17 00:00:00 2001
+From: Yi Liu <yi.l.liu@intel.com>
+Date: Thu, 30 Mar 2023 05:29:36 -0700
+Subject: [PATCH] vfio: Mark cdev usage in vfio_device
 
-> +
->   /**
->    * How many different events we track in the global PMU mask.
->    *
->    * It is also used to know to needed number of event reference counters.
->    */
->   #define I915_PMU_MASK_BITS \
-> -	(I915_ENGINE_SAMPLE_COUNT + __I915_PMU_TRACKED_EVENT_COUNT)
-> +	(I915_ENGINE_SAMPLE_COUNT + \
-> +	 I915_PMU_MAX_GTS * __I915_PMU_TRACKED_EVENT_COUNT)
->   
->   #define I915_ENGINE_SAMPLE_COUNT (I915_SAMPLE_SEMA + 1)
->   
-> @@ -124,11 +127,11 @@ struct i915_pmu {
->   	 * Only global counters are held here, while the per-engine ones are in
->   	 * struct intel_engine_cs.
->   	 */
-> -	struct i915_pmu_sample sample[__I915_NUM_PMU_SAMPLERS];
-> +	struct i915_pmu_sample sample[I915_PMU_MAX_GTS * __I915_NUM_PMU_SAMPLERS];
->   	/**
->   	 * @sleep_last: Last time GT parked for RC6 estimation.
->   	 */
-> -	ktime_t sleep_last;
-> +	ktime_t sleep_last[I915_PMU_MAX_GTS];
->   	/**
->   	 * @irq_count: Number of interrupts
->   	 *
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index dba7c5a5b25e..bbab7f3dbeb4 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -280,7 +280,17 @@ enum drm_i915_pmu_engine_sample {
->   #define I915_PMU_ENGINE_SEMA(class, instance) \
->   	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
->   
-> -#define __I915_PMU_OTHER(x) (__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x))
-> +/*
-> + * Top 8 bits of every non-engine counter are GT id.
-> + * FIXME: __I915_PMU_GT_SHIFT will be changed to 56
-> + */
+There are users that needs to check if vfio_device is opened as cdev.
+e.g. vfio-pci.
 
-I asked before and don't think I got an answer: Why is 4 bits not enough 
-for gt id? The comment is not my code I am pretty sure.
+Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+---
+ drivers/vfio/device_cdev.c |  2 ++
+ include/linux/vfio.h       | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+)
+
+diff --git a/drivers/vfio/device_cdev.c b/drivers/vfio/device_cdev.c
+index b5de997bff6d..56f3bbe34680 100644
+--- a/drivers/vfio/device_cdev.c
++++ b/drivers/vfio/device_cdev.c
+@@ -66,6 +66,7 @@ void vfio_device_cdev_close(struct vfio_device_file *df)
+ 		return;
+=20
+ 	mutex_lock(&device->dev_set->lock);
++	device->cdev_opened =3D false;
+ 	vfio_device_close(df);
+ 	vfio_device_put_kvm(device);
+ 	if (df->iommufd)
+@@ -180,6 +181,7 @@ long vfio_device_ioctl_bind_iommufd(struct vfio_device_=
+file *df,
+ 	 * read/write/mmap
+ 	 */
+ 	smp_store_release(&df->access_granted, true);
++	device->cdev_opened =3D true;
+ 	mutex_unlock(&device->dev_set->lock);
+=20
+ 	return 0;
+diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+index 1367605d617c..86efc1640940 100644
+--- a/include/linux/vfio.h
++++ b/include/linux/vfio.h
+@@ -58,6 +58,7 @@ struct vfio_device {
+ 	struct device device;	/* device.kref covers object life circle */
+ #if IS_ENABLED(CONFIG_VFIO_DEVICE_CDEV)
+ 	struct cdev cdev;
++	bool cdev_opened;
+ #endif
+ 	refcount_t refcount;	/* user count on registered device*/
+ 	unsigned int open_count;
+@@ -167,6 +168,19 @@ static inline int vfio_iommufd_physical_devid(struct v=
+fio_device *vdev, u32 *id)
+ 	((void (*)(struct vfio_device *vdev)) NULL)
+ #endif
+=20
++#if IS_ENABLED(CONFIG_VFIO_DEVICE_CDEV)
++static inline bool vfio_device_cdev_opened(struct vfio_device *device)
++{
++	lockdep_assert_held(&device->dev_set->lock);
++	return device->cdev_opened;
++}
++#else
++static inline bool vfio_device_cdev_opened(struct vfio_device *device)
++{
++	return false;
++}
++#endif
++
+ /**
+  * @migration_set_state: Optional callback to change the migration state f=
+or
+  *         devices that support migration. It's mandatory for
+--=20
+2.34.1
+
+
+From f796cafd6c51e49adcf76352dc1daf14712c3a48 Mon Sep 17 00:00:00 2001
+From: Yi Liu <yi.l.liu@intel.com>
+Date: Thu, 30 Mar 2023 05:44:45 -0700
+Subject: [PATCH] vfio/pci: Report dev_id in VFIO_DEVICE_GET_PCI_HOT_RESET_I=
+NFO
+
+for the devices opened as cdev.
+
+Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+---
+ drivers/vfio/pci/vfio_pci_core.c | 59 ++++++++++++++++++++++++++++----
+ include/uapi/linux/vfio.h        |  6 +++-
+ 2 files changed, 57 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_c=
+ore.c
+index 19f5b075d70a..49e0981037f7 100644
+--- a/drivers/vfio/pci/vfio_pci_core.c
++++ b/drivers/vfio/pci/vfio_pci_core.c
+@@ -767,6 +767,20 @@ static int vfio_pci_get_irq_count(struct vfio_pci_core=
+_device *vdev, int irq_typ
+ 	return 0;
+ }
+=20
++static struct vfio_device *
++vfio_pci_find_device_in_devset(struct vfio_device_set *dev_set,
++			       struct pci_dev *pdev)
++{
++	struct vfio_device *cur;
++
++	lockdep_assert_held(&dev_set->lock);
++
++	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
++		if (cur->dev =3D=3D &pdev->dev)
++			return cur;
++	return NULL;
++}
++
+ static int vfio_pci_count_devs(struct pci_dev *pdev, void *data)
+ {
+ 	(*(int *)data)++;
+@@ -776,13 +790,20 @@ static int vfio_pci_count_devs(struct pci_dev *pdev, =
+void *data)
+ struct vfio_pci_fill_info {
+ 	int max;
+ 	int cur;
++	bool require_devid;
++	struct iommufd_ctx *iommufd;
++	struct vfio_device_set *dev_set;
+ 	struct vfio_pci_dependent_device *devices;
+ };
+=20
+ static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+ {
+ 	struct vfio_pci_fill_info *fill =3D data;
++	struct vfio_device_set *dev_set =3D fill->dev_set;
+ 	struct iommu_group *iommu_group;
++	struct vfio_device *vdev;
++
++	lockdep_assert_held(&dev_set->lock);
+=20
+ 	if (fill->cur =3D=3D fill->max)
+ 		return -EAGAIN; /* Something changed, try again */
+@@ -791,7 +812,24 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev, vo=
+id *data)
+ 	if (!iommu_group)
+ 		return -EPERM; /* Cannot reset non-isolated devices */
+=20
+-	fill->devices[fill->cur].group_id =3D iommu_group_id(iommu_group);
++	/*
++	 * If dev_id is needed, fill in the dev_id field, otherwise
++	 * fill in group_id.
++	 */
++	if (fill->require_devid) {
++		/*
++		 * Report the devices that are opened as cdev and have
++		 * the same iommufd with the fill->iommufd.  Otherwise,
++		 * just fill in an IOMMUFD_INVALID_ID.
++		 */
++		vdev =3D vfio_pci_find_device_in_devset(dev_set, pdev);
++		if (vdev && !vfio_device_cdev_opened(vdev) &&
++		    fill->iommufd =3D=3D vfio_iommufd_physical_ictx(vdev))
++			vfio_iommufd_physical_devid(vdev, &fill->devices[fill->cur].dev_id);
++		fill->devices[fill->cur].dev_id =3D IOMMUFD_INVALID_ID;
++	} else {
++		fill->devices[fill->cur].group_id =3D iommu_group_id(iommu_group);
++	}
+ 	fill->devices[fill->cur].segment =3D pci_domain_nr(pdev->bus);
+ 	fill->devices[fill->cur].bus =3D pdev->bus->number;
+ 	fill->devices[fill->cur].devfn =3D pdev->devfn;
+@@ -1230,17 +1269,25 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
+ 		return -ENOMEM;
+=20
+ 	fill.devices =3D devices;
++	fill.dev_set =3D vdev->vdev.dev_set;
+=20
++	mutex_lock(&vdev->vdev.dev_set->lock);
++	if (vfio_device_cdev_opened(&vdev->vdev))
++		fill.require_devid =3D true;
+ 	ret =3D vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_devs,
+ 					    &fill, slot);
++	mutex_unlock(&vdev->vdev.dev_set->lock);
+=20
+ 	/*
+ 	 * If a device was removed between counting and filling, we may come up
+ 	 * short of fill.max.  If a device was added, we'll have a return of
+ 	 * -EAGAIN above.
+ 	 */
+-	if (!ret)
++	if (!ret) {
+ 		hdr.count =3D fill.cur;
++		if (fill.require_devid)
++			hdr.flags =3D VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID;
++	}
+=20
+ reset_info_exit:
+ 	if (copy_to_user(arg, &hdr, minsz))
+@@ -2346,12 +2393,10 @@ static bool vfio_dev_in_files(struct vfio_pci_core_=
+device *vdev,
+ static int vfio_pci_is_device_in_set(struct pci_dev *pdev, void *data)
+ {
+ 	struct vfio_device_set *dev_set =3D data;
+-	struct vfio_device *cur;
+=20
+-	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+-		if (cur->dev =3D=3D &pdev->dev)
+-			return 0;
+-	return -EBUSY;
++	lockdep_assert_held(&dev_set->lock);
++
++	return vfio_pci_find_device_in_devset(dev_set, pdev) ? 0 : -EBUSY;
+ }
+=20
+ /*
+diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+index 53c72e26ecd3..3fcbc84d51ba 100644
+--- a/include/uapi/linux/vfio.h
++++ b/include/uapi/linux/vfio.h
+@@ -743,7 +743,10 @@ enum {
+  *	-enospc =3D insufficient buffer, -enodev =3D unsupported for device.
+  */
+ struct vfio_pci_dependent_device {
+-	__u32	group_id;
++	union {
++		__u32   group_id;
++		__u32	dev_id;
++	};
+ 	__u16	segment;
+ 	__u8	bus;
+ 	__u8	devfn; /* Use PCI_SLOT/PCI_FUNC */
+@@ -752,6 +755,7 @@ struct vfio_pci_dependent_device {
+ struct vfio_pci_hot_reset_info {
+ 	__u32	argsz;
+ 	__u32	flags;
++#define VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID	(1 << 0)
+ 	__u32	count;
+ 	struct vfio_pci_dependent_device	devices[];
+ };
+--=20
+2.34.1
 
 Regards,
-
-Tvrtko
-
-> +#define __I915_PMU_GT_SHIFT (60)
-> +
-> +#define ___I915_PMU_OTHER(gt, x) \
-> +	(((__u64)__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x)) | \
-> +	((__u64)(gt) << __I915_PMU_GT_SHIFT))
-> +
-> +#define __I915_PMU_OTHER(x) ___I915_PMU_OTHER(0, x)
->   
->   #define I915_PMU_ACTUAL_FREQUENCY	__I915_PMU_OTHER(0)
->   #define I915_PMU_REQUESTED_FREQUENCY	__I915_PMU_OTHER(1)
-> @@ -290,6 +300,12 @@ enum drm_i915_pmu_engine_sample {
->   
->   #define I915_PMU_LAST /* Deprecated - do not use */ I915_PMU_RC6_RESIDENCY
->   
-> +#define __I915_PMU_ACTUAL_FREQUENCY(gt)		___I915_PMU_OTHER(gt, 0)
-> +#define __I915_PMU_REQUESTED_FREQUENCY(gt)	___I915_PMU_OTHER(gt, 1)
-> +#define __I915_PMU_INTERRUPTS(gt)		___I915_PMU_OTHER(gt, 2)
-> +#define __I915_PMU_RC6_RESIDENCY(gt)		___I915_PMU_OTHER(gt, 3)
-> +#define __I915_PMU_SOFTWARE_GT_AWAKE_TIME(gt)	___I915_PMU_OTHER(gt, 4)
-> +
->   /* Each region is a minimum of 16k, and there are at most 255 of them.
->    */
->   #define I915_NR_TEX_REGIONS 255	/* table size 2k - maximum due to use
+Yi Liu
