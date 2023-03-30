@@ -1,110 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4AB6D0596
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 14:59:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F4E6D05AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 15:01:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D93C610E322;
-	Thu, 30 Mar 2023 12:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBDDD10E322;
+	Thu, 30 Mar 2023 13:01:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 968E310E348;
- Thu, 30 Mar 2023 12:59:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hf4gHKofzDtXkaNlaESGxh9CtvVrKwNaSA1NK4J04zvaG3FJOcsCZ6X18b3SRmQcoPA9U3WJOAQulJY7bsqlU/EhFSeX9dRuEic1aSjKPiZK562tpUwEJ8ZwyaL63FWW0A/aUAEOS46gf7U1/xA/ul1hZvD4ye1IY6A0tDYuuslvEhsMjqHl0qwtXq5XrlWdgCntgYKC44oKfyQhXW7/15KS7zvWnwoNQAvZML278aRovWk+QlmZ4GLtHplkHjvTxWYJ3RbJQBEcEkWW+haCAhy/HuXvWZye5H9aiF6I8p4OA/FqLMYJxl+Q/B8tzC48cAr4HK3EMKe+ZyJ0jhxiaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2sS/CjeVYEPGi1z991Xigr32idHxB0qyTSalMZXfl/8=;
- b=Fk8BwZnkagjIvvZZCBNqPqR6oCSNLTtSZMXuwSynoR7g5HcJlfY2IUATMubHnOYuEY8vCTK4lhtLIKZ4X12LzoWa1bpM7rNo17j5LAbTDOnuA7SGiwYfk+aflxtAf+SKwc9rxYTHIq0YYpVcSSanJ3ZPZfOLQ6EjAohY3KXatwbKPJUBx4UoO8OZ4M+/NAbyIXrh5OmUkYBNKjXn9hCN9R+keNsOBnLz9qgsGM2JG7UfDk9XVmp8wintZSTQEncXx7hy/zeBYm86iLebUru0SFfxpvjV+s82USE5OfzYfIn2v8kCs4d+qnZv5AzyZozT02716raQZQa7yCUM6Vi0UQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2sS/CjeVYEPGi1z991Xigr32idHxB0qyTSalMZXfl/8=;
- b=n2aBYBpMcnIhkexfgDo2Fnk6bhEAl4KRGjxKNL97cDPj/xGiwVShaPFRnkvhFJD7KpTuvxwKiq6Ye800TWPt3VGyhqRMowKZaIkKMDWxn0o0fvFUHOZTcjrtYsSsYSvE7VlXa7tsHb6IEBu3ydjN5we9Y0mXbbLIzDO3Hh2mVqGeE5+yNP9XQNpE8BTm7rM8TqSXSGeDJlsWvqhjwkXaQZmrHp1jSTVs650lgiUEdroiKzxSq4+45bFK8kvs9KbtG+qXtrV1Nq45vb1cD1+1FVAKN5SZBmseF3Sd+Nc0r3NlNrUIDogVtUCm4EJjkIpOcJwUDPksnLI9sVd5bDJnRQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by SN7PR12MB7786.namprd12.prod.outlook.com (2603:10b6:806:349::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22; Thu, 30 Mar
- 2023 12:59:39 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Thu, 30 Mar 2023
- 12:59:38 +0000
-Date: Thu, 30 Mar 2023 09:59:37 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZCWHufuxjxvGsWFa@nvidia.com>
-References: <20230327094047.47215-1-yi.l.liu@intel.com>
- <20230327094047.47215-22-yi.l.liu@intel.com>
- <20230329150055.3dee2476.alex.williamson@redhat.com>
- <ZCTIJScfgbWWguD5@nvidia.com>
- <DS0PR11MB7529B03CED8FE7BCA284F789C38E9@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529B03CED8FE7BCA284F789C38E9@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MN2PR15CA0031.namprd15.prod.outlook.com
- (2603:10b6:208:1b4::44) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BF510E322
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 13:01:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680181309; x=1711717309;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dlHBGWnYdE0R2yw+08jfLMAzeSF0OdAbkrmrhQmA8zc=;
+ b=Xzf4NgT3mfNCp1jS5z5B2X10zo/Hj2R0rk/g3qV4pgBgJTNA+XJBGmjD
+ dhjka2YQK2YRdW6Lt6To5gPKS4xrhIZQRUT/oKos9/t38+BBtl3ssiW+Z
+ QtMRkdyijvXl99ICJh+BomT6TSawUYVFxF1HVRAV3yrKYoTv+XtD32ilD
+ 0ZKWVUJkN9riszoJ6gesbyOW82CySFZUtpvBViFw31n14AZHvd92XFhUf
+ m9FWSbhQ8ec2Kg/x3xM5RosXMbaFr5WEtyKbrXpE3zEcJsoqGBE1KZyYt
+ 5gET780H1qCzQT6bZGuJlbe5VxU8tqCUzq7iNaSvPhGvwILmcpTP9IwoH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="406125179"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="406125179"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 06:01:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="749183641"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="749183641"
+Received: from bjmcgrat-mobl.amr.corp.intel.com (HELO [10.213.215.205])
+ ([10.213.215.205])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 06:01:44 -0700
+Message-ID: <7f065f72-bc53-501d-744c-c242eaa6a604@linux.intel.com>
+Date: Thu, 30 Mar 2023 14:01:42 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SN7PR12MB7786:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0add40bb-fdb8-4fce-e1af-08db311e9eae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xlwjmnazt5MDAvBcqe/nqAz3Y1V8d4n8Oza5+ogrmet5qZAdXmuBze09KlRILLYZkcqsEglnNwYSuAlq14qW8XvKHzverLXoRwze0kbFOvDHx2ti7EgCW5mJnOvaxIrGkDOWi0ZR2PB5we5Ukzu7/VHqaGM0XKsTHLzUhv4AkFaUhgZ968GSaK1iyOAAX3BKzv+sNjHS1lT+yoe0W9KdtlzIKz9s7M1UXLSA9TmJYejMSmuzY4GEh7sdp+wTiXrV34XXW8xpfCSgtWLEcuFwTc9Da/vygh2969tV9TJ55hSVbHqis/9cwtfC8pVnep7Y3lhAdcpkDRkOl+SLStKPD8IB/0qMLiBrABRtnyVmGqxXt4REF4Ay8Chc3UqIK424kFNx5JW6UqKrhQp6ndARzXP/WmsJUpNn98+CcXHayXk8PZysX4tbP+lhpIfaQcytt4lbpBLdeYj63b9TB8WOTFijjMya/7oviOcbX4rArTWB37qz/UXRB+hR+9CcTT4sCXh+Np3Y7IJb+1o1558EvntoQsC2+bXgOhEGsUaXLYHeb30KcQxb+y2a5dWkJ5Ty
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(136003)(376002)(39860400002)(346002)(396003)(451199021)(38100700002)(36756003)(6916009)(4744005)(5660300002)(8936002)(7416002)(4326008)(86362001)(66946007)(41300700001)(66556008)(66476007)(8676002)(6486002)(54906003)(2616005)(6512007)(6506007)(2906002)(26005)(478600001)(186003)(316002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IVQRc3c4XUtZo/kuOzUZEDphFL+TuUDauJKwxMPNiaEixmB5s/kyUODikif4?=
- =?us-ascii?Q?upD8OqolGdWh5j4q+RyRH4POhK974e1teE+VzyABFjAVupbXULYgHMXK8eyV?=
- =?us-ascii?Q?Q1cN/U9SW7umHZxqD6rLLYsZxOht6L+0PE+t0+JchGtWtuG83KrBw5nzhaC/?=
- =?us-ascii?Q?z6Q15Ik3cSlsjgKMdQzEcEziDG0yYYDmVg8TW9WfYQb+uFL1WOiTBOvvcH2L?=
- =?us-ascii?Q?868kDsAnlGnc1svdVNScIekj+pbkPmkbsd+scWzkDUYG4IWYojar4brLLF67?=
- =?us-ascii?Q?nzgL1KfJpwSRSJyIK6ESsla0/OEgz5LxCRbAiGbhbNbTEllo1bkL7+Wq7cqO?=
- =?us-ascii?Q?/9+frCvTQr7Mm5BisMUndW+x7+Zyl1vVNcMnE/ADjBIuuv7ihlqJVqhiV3Sv?=
- =?us-ascii?Q?J75HXIaFJOTUExwsxQ9Lo6wHCjQZYWBNaAUJbcsurOjuWjuizrTPXOss9LU2?=
- =?us-ascii?Q?RTIaVABH2X5x2L/LU32PBev+ORcHeaPcIfecZ4R1ixqrOLPPswT9tkPmQcx7?=
- =?us-ascii?Q?FtS+q6wuKDas1Faeyqu7zPWp/Ubvf/BiF9s+v/TSTHuBsaOuunOQ/LLZf4WW?=
- =?us-ascii?Q?sJgPDw2pqTbM34nH/NUj7nW6+Z36KD0FhmA60Eq106TSulLzfESz6YXvnWBs?=
- =?us-ascii?Q?kWNcCXcY+SOpTCkLEaqMRtRKqpa2Dj2N3ZjscxwaXC1Ccgs6mII9Do/PEFyJ?=
- =?us-ascii?Q?Fy+XXdCEhcnH+jbkX9sxy8P+jK8pqcMBpjMkNu0Y3v4U19PCzVc3PmHbocze?=
- =?us-ascii?Q?V6BR60j/2Ws2uPpgXoSiQ4TB8Xf8v1Mln9A66Owcn6p5HmbsXubFcgRZVzPI?=
- =?us-ascii?Q?rHpfc40HO8b6v31OqPpWcKxvv14dIl4Kohx8Anjxl7L6Vl5+Tg7Vpt+z7c1U?=
- =?us-ascii?Q?+tFIso5GnjMl/z5Y6mKZOvd4O8dndoi4n+TiHCLfceKXCEfl0WuqbJY16fax?=
- =?us-ascii?Q?9W3e1KtVloFD2NJ9onU7f0/dlyoGmg2lZ76Ky9qdSnv4Ti/NyTSABhprrCkr?=
- =?us-ascii?Q?bcgAcUZuztZxF9/FWqyEFyI20dKzH0T7bJoui4kDWzGsRNy9oo0F0YGzXkrZ?=
- =?us-ascii?Q?sk1OhA1o9IE7C8sI7bCruUcRT2WibNY4NLFMx3eT4eVpSvITBNyeAu4TrGK2?=
- =?us-ascii?Q?2gNRgZ/0zzTwecEpoTRK4pjOXp757ALHs4+8mdM43X00AvO5N6EdjtJCiilO?=
- =?us-ascii?Q?444W5+pcNOqCCaGnRpI68eaOB3GG12RNqsfwsvWB5dTLe1u+UeT4WnCeQQUP?=
- =?us-ascii?Q?hf+aGatiRFy8+aXvdsw2Ffoi41jFIHzj1vGbycsSvKmURpV+9lo9w5VfW+44?=
- =?us-ascii?Q?qfiJKfBmjzCcFsl29O8OPSdbPq9xYxeeXc6u8JN7+QE4VM926r4QnOGiw9cw?=
- =?us-ascii?Q?3quzmOV0N8mX88HoIce4CYHoR0YVaV7yoPjVzE7ikgPSEmkWkbptbEUDNWVq?=
- =?us-ascii?Q?wKv3F2Btze768hyJkRWL3Vus7cesiLyhpqocn4hmIz8jnirCVizjagAQZrnF?=
- =?us-ascii?Q?ACG/VHv/5gqNL6MA5ESbiZvHh3EYstcjZE6ms2ia9olemAFGJNf/kjO2C60Y?=
- =?us-ascii?Q?Hm/itG3lERcNhLIkBKK2pnD+L+qeIP+IVa1FYaiG?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0add40bb-fdb8-4fce-e1af-08db311e9eae
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 12:59:38.5816 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8wkhzifwZ1JENcKMeQC8ETDd6hnCYKSVV05JzK/gfAze+jqhv+2pwRR2+50DQ7UL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7786
-Subject: Re: [Intel-gfx] [PATCH v8 21/24] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
+ <20230330004103.1295413-7-umesh.nerlige.ramappa@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230330004103.1295413-7-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/pmu: Export counters from all
+ tiles
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,39 +65,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 30, 2023 at 12:52:39PM +0000, Liu, Yi L wrote:
 
-> > > "Use a negative value for no-iommu, where supported", or better, should
-> > > we define this explicitly as -1, or why not use a flag bit to specify
-> > > no-iommu?  Maybe minsz is only through flags for the noiommu use case.
-> > 
-> > I was happy enough for this to be defined as -1. We could give it a
-> > formal sounding constant too
+On 30/03/2023 01:41, Umesh Nerlige Ramappa wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> are you suggesting having something like "#define VFIO_NOIOMMU_FD	-1"?
+> Start exporting frequency and RC6 counters from all tiles.
+> 
+> Existing counters keep their names and config values and new one use the
+> namespace added in the previous patch, with the "-gtN" added to their
+> names.
 
-Yeah something like that
+The part about keeping the names is not in the code any more. So something will have to give, either the commit text or the code.
 
-Jason
+Even without that detail, I suspect someone might want to add them Co-developed-by since I *think* someone did some changes.
+  
+> Interrupts counter is an odd one off. Because it is the global device
+> counters (not only GT) we choose not to add per tile versions for now.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_pmu.c | 96 ++++++++++++++++++++++++++-------
+>   1 file changed, 77 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 5d1de98d86b4..2a5deabff088 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -548,8 +548,9 @@ config_status(struct drm_i915_private *i915, u64 config)
+>   	struct intel_gt *gt = to_gt(i915);
+>   
+>   	unsigned int gt_id = config_gt_id(config);
+> +	unsigned int max_gt_id = HAS_EXTRA_GT_LIST(i915) ? 1 : 0;
+>   
+> -	if (gt_id)
+> +	if (gt_id > max_gt_id)
+>   		return -ENOENT;
+>   
+>   	switch (config_counter(config)) {
+> @@ -563,6 +564,8 @@ config_status(struct drm_i915_private *i915, u64 config)
+>   			return -ENODEV;
+>   		break;
+>   	case I915_PMU_INTERRUPTS:
+> +		if (gt_id)
+> +			return -ENOENT;
+>   		break;
+>   	case I915_PMU_RC6_RESIDENCY:
+>   		if (!gt->rc6.supported)
+> @@ -932,9 +935,9 @@ static const struct attribute_group i915_pmu_cpumask_attr_group = {
+>   	.attrs = i915_cpumask_attrs,
+>   };
+>   
+> -#define __event(__config, __name, __unit) \
+> +#define __event(__counter, __name, __unit) \
+>   { \
+> -	.config = (__config), \
+> +	.counter = (__counter), \
+>   	.name = (__name), \
+>   	.unit = (__unit), \
+>   }
+> @@ -975,15 +978,21 @@ create_event_attributes(struct i915_pmu *pmu)
+>   {
+>   	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
+>   	static const struct {
+> -		u64 config;
+> +		unsigned int counter;
+>   		const char *name;
+>   		const char *unit;
+>   	} events[] = {
+> -		__event(I915_PMU_ACTUAL_FREQUENCY, "actual-frequency", "M"),
+> -		__event(I915_PMU_REQUESTED_FREQUENCY, "requested-frequency", "M"),
+> -		__event(I915_PMU_INTERRUPTS, "interrupts", NULL),
+> -		__event(I915_PMU_RC6_RESIDENCY, "rc6-residency", "ns"),
+> -		__event(I915_PMU_SOFTWARE_GT_AWAKE_TIME, "software-gt-awake-time", "ns"),
+> +		__event(0, "actual-frequency", "M"),
+> +		__event(1, "requested-frequency", "M"),
+> +		__event(3, "rc6-residency", "ns"),
+> +		__event(4, "software-gt-awake-time", "ns"),
+> +	};
+> +	static const struct {
+> +		unsigned int counter;
+> +		const char *name;
+> +		const char *unit;
+> +	} global_events[] = {
+> +		__event(2, "interrupts", NULL),
+>   	};
+>   	static const struct {
+>   		enum drm_i915_pmu_engine_sample sample;
+> @@ -998,14 +1007,29 @@ create_event_attributes(struct i915_pmu *pmu)
+>   	struct i915_ext_attribute *i915_attr = NULL, *i915_iter;
+>   	struct attribute **attr = NULL, **attr_iter;
+>   	struct intel_engine_cs *engine;
+> -	unsigned int i;
+> +	struct intel_gt *gt;
+> +	unsigned int i, j;
+>   
+>   	/* Count how many counters we will be exposing. */
+> -	for (i = 0; i < ARRAY_SIZE(events); i++) {
+> -		if (!config_status(i915, events[i].config))
+> +	/* per gt counters */
+
+Two comments one by another, two styles - the inconsistency hurts.
+
+Not sure why global events needed to be split out into a separate array? Like this below two loops are needed for each stage instead of one. AFAIR one array and one loop would just work because config_status wold report global ones as unsupported for gt > 0.
+
+[Comes back later. It looked like this in my code:
+
+         static const struct {
+-               u64 config;
++               unsigned int counter;
+                 const char *name;
+                 const char *unit;
++               bool global;
+         } events[] = {
+-               __event(I915_PMU_ACTUAL_FREQUENCY, "actual-frequency", "M"),
+-               __event(I915_PMU_REQUESTED_FREQUENCY, "requested-frequency", "M"),
+-               __event(I915_PMU_INTERRUPTS, "interrupts", NULL),
+-               __event(I915_PMU_RC6_RESIDENCY, "rc6-residency", "ns"),
++               /*
++                * #define __I915_PMU_ACTUAL_FREQUENCY(gt)    ___I915_PMU_OTHER(gt, 0)
++                * #define __I915_PMU_REQUESTED_FREQUENCY(gt) ___I915_PMU_OTHER(gt, 1)
++                * #define __I915_PMU_INTERRUPTS(gt)          ___I915_PMU_OTHER(gt, 2)
++                * #define __I915_PMU_RC6_RESIDENCY(gt)       ___I915_PMU_OTHER(gt, 3)
++                */
++               __event(0, "actual-frequency", "M"),
++               __event(1, "requested-frequency", "M"),
++               __global_event(2, "interrupts", NULL),
++               __event(3, "rc6-residency", "ns"),
+
+...
+
+         /* Count how many counters we will be exposing. */
+-       for (i = 0; i < ARRAY_SIZE(events); i++) {
+-               if (!config_status(i915, events[i].config))
+-                       count++;
++       for_each_gt(i915, j, gt) {
++               for (i = 0; i < ARRAY_SIZE(events); i++) {
++                       u64 config = ___I915_PMU_OTHER(j, events[i].counter);
++
++                       if (!config_status(i915, config))
++                               count++;
++               }
+
+So AFAICT it just worked.
+
+]
+
+> +	for_each_gt(gt, i915, j) {
+> +		for (i = 0; i < ARRAY_SIZE(events); i++) {
+> +			u64 config = ___I915_PMU_OTHER(j, events[i].counter);
+> +
+> +			if (!config_status(i915, config))
+> +				count++;
+> +		}
+> +	}
+> +
+> +	/* global (per GPU) counters */
+> +	for (i = 0; i < ARRAY_SIZE(global_events); i++) {
+> +		u64 config = ___I915_PMU_OTHER(0, global_events[i].counter);
+> +
+> +		if (!config_status(i915, config))
+>   			count++;
+>   	}
+>   
+> +	/* per engine counters */
+>   	for_each_uabi_engine(engine, i915) {
+>   		for (i = 0; i < ARRAY_SIZE(engine_events); i++) {
+>   			if (!engine_event_status(engine,
+> @@ -1033,26 +1057,60 @@ create_event_attributes(struct i915_pmu *pmu)
+>   	attr_iter = attr;
+>   
+>   	/* Initialize supported non-engine counters. */
+> -	for (i = 0; i < ARRAY_SIZE(events); i++) {
+> +	/* per gt counters */
+> +	for_each_gt(gt, i915, j) {
+> +		for (i = 0; i < ARRAY_SIZE(events); i++) {
+> +			u64 config = ___I915_PMU_OTHER(j, events[i].counter);
+> +			char *str;
+> +
+> +			if (config_status(i915, config))
+> +				continue;
+> +
+> +			str = kasprintf(GFP_KERNEL, "%s-gt%u",
+> +					events[i].name, j);
+
+So with this patch all old platforms change the event names. This is not how I wrote it, and more importantly, it breaks userspace. Why would we do it?
+
+For reference I dug out my code from 2020 and it looked like this:
+
++                       if (events[i].global || !i915->remote_tiles)
++                               str = kstrdup(events[i].name, GFP_KERNEL);
++                       else
++                               str = kasprintf(GFP_KERNEL, "%s-gt%u",
++                                               events[i].name, j);
+
+So on single tile platforms names remain the same.
+
+Regards,
+
+Tvrtko
+
+> +			if (!str)
+> +				goto err;
+> +
+> +			*attr_iter++ = &i915_iter->attr.attr;
+> +			i915_iter = add_i915_attr(i915_iter, str, config);
+> +
+> +			if (events[i].unit) {
+> +				str = kasprintf(GFP_KERNEL, "%s-gt%u.unit",
+> +						events[i].name, j);
+> +				if (!str)
+> +					goto err;
+> +
+> +				*attr_iter++ = &pmu_iter->attr.attr;
+> +				pmu_iter = add_pmu_attr(pmu_iter, str,
+> +							events[i].unit);
+> +			}
+> +		}
+> +	}
+> +
+> +	/* global (per GPU) counters */
+> +	for (i = 0; i < ARRAY_SIZE(global_events); i++) {
+> +		u64 config = ___I915_PMU_OTHER(0, global_events[i].counter);
+>   		char *str;
+>   
+> -		if (config_status(i915, events[i].config))
+> +		if (config_status(i915, config))
+>   			continue;
+>   
+> -		str = kstrdup(events[i].name, GFP_KERNEL);
+> +		str = kstrdup(global_events[i].name, GFP_KERNEL);
+>   		if (!str)
+>   			goto err;
+>   
+>   		*attr_iter++ = &i915_iter->attr.attr;
+> -		i915_iter = add_i915_attr(i915_iter, str, events[i].config);
+> +		i915_iter = add_i915_attr(i915_iter, str, config);
+>   
+> -		if (events[i].unit) {
+> -			str = kasprintf(GFP_KERNEL, "%s.unit", events[i].name);
+> +		if (global_events[i].unit) {
+> +			str = kasprintf(GFP_KERNEL, "%s.unit",
+> +					global_events[i].name);
+>   			if (!str)
+>   				goto err;
+>   
+>   			*attr_iter++ = &pmu_iter->attr.attr;
+> -			pmu_iter = add_pmu_attr(pmu_iter, str, events[i].unit);
+> +			pmu_iter = add_pmu_attr(pmu_iter, str,
+> +						global_events[i].unit);
+>   		}
+>   	}
+>   
