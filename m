@@ -2,90 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEFC6D1624
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 05:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40296D0FEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 22:21:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7B6410F0DB;
-	Fri, 31 Mar 2023 03:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF1910F019;
+	Thu, 30 Mar 2023 20:21:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Fri, 31 Mar 2023 03:51:27 UTC
-Received: from omta39.uswest2.a.cloudfilter.net
- (omta39.uswest2.a.cloudfilter.net [35.89.44.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C97C10F0DB;
- Fri, 31 Mar 2023 03:51:27 +0000 (UTC)
-Received: from eig-obgw-5001a.ext.cloudfilter.net ([10.0.29.139])
- by cmsmtp with ESMTP
- id i4znpsbdvCarni5gZpi4FX; Fri, 31 Mar 2023 03:44:20 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTP
- id i5gYpWA01Tmcdi5gYpuxEN; Fri, 31 Mar 2023 03:44:19 +0000
-X-Authority-Analysis: v=2.4 cv=EePb/dqC c=1 sm=1 tr=0 ts=64265713
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=wTog8WU66it3cfrESHnF4A==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=k__wU0fu6RkA:10
- a=wYkD_t78qR0A:10 a=NEAV23lmAAAA:8 a=mDV3o1hIAAAA:8 a=VwQbUJbxAAAA:8
- a=mvvmVGHGh8sE2eZWOBoA:9 a=QEXdDO2ut3YA:10 a=3IOs8h2EC4YA:10
- a=_FVE-zBwftR9WsbkzFJk:22 a=AjGcO6oz07-iQ99wixmX:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5eXprcIlSCmNP0+hXkCotLeio81d6PPi52X+rolr6Bs=; b=x5tY3CALKqh0FtZknddMXTC50W
- m1K4lxEWe1p11l++HQJ+fNplppv50prQ5m2JM7gpVe5/SUGR1yw44c99RrLGNxMk4Bhc9LnxkSBkN
- yOIZcXiwHkNGQcJZxr7ZB4F/8Lfg+k9Eo50GRaqjYQcE8IeHWpt4Sl4nARkXwYCudsAPPbgsc+MD7
- KR20RZbQ0K303ZW0xyvhPT9lipNa93CjRo4gWhcLHPwb+nEqfJG4puxhGxVn130P5ODP3SLEWiXwP
- w8ZxTIh5Jv5DzrNlrcMY+qiPaVRsvtYGVqT7kpZR3qtlNTPJRJ5EighAursOyrapN8B8BsNsy7341
- nsCY6FBw==;
-Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:36470
- helo=[192.168.15.7])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.95)
- (envelope-from <gustavo@embeddedor.com>) id 1phydu-002oqq-Ra;
- Thu, 30 Mar 2023 15:13:06 -0500
-Message-ID: <ef8d083a-a82b-669c-0b0a-959e0f120a26@embeddedor.com>
-Date: Thu, 30 Mar 2023 14:13:41 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D88F810F019
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 20:21:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680207695; x=1711743695;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=o4rGkzzjRL4JKtXiNz9KIRbR1dswCnFT6Kgpzb88G8o=;
+ b=Btn15rrHHbbWlC0VA6KrvwQQd27rQVbONBSsnazOc2n6Il+Oj9+HHKeP
+ WviBVKZm69zWOzlF8chXpIVmqiV8mXPx/F8jKCB00l0YspGLgGESyAXXY
+ 4qJOuVcKCo7EEo7IOuHPmgEzJ19TmD8enq/YoiNzCPQta63Rlrh42Zq3D
+ 1zTa75JdGBDVTeBK9/0pz00LUsxk6Ngs5dcOrGCR8BxT38UVFVCwwBkcK
+ zFoCgvZzzybA2a/LeF4Fkri2cWgVBu8GoVd1xR2yeBLhla2Yc6dIK0dO3
+ xlWmEQAEKiP5Ubyqonjh+qgn9zHFqd3bmwPVvkRdNJft8hqXTYJwyfdRn Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="403975426"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="403975426"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 13:21:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="808772519"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="808772519"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 30 Mar 2023 13:21:35 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 30 Mar 2023 13:21:34 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 30 Mar 2023 13:21:34 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 30 Mar 2023 13:21:34 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Thu, 30 Mar 2023 13:21:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AzgfVEZ+helnLW7id32snsTqJL2P4by9lt2+PUF3AQ5pXo+GaS9s7LG3J6Usd84uJw1SGE9VAPPeiLtMAjiwdgCXoeG1KZpPWE57CHOOFGgvLOhtMs/7avIoc3I9b6i9yjLJYtbv36lbRRid16keVdvNCXc9iAtebsuZHDt+o43SRrGCSgwqf7cLU0mKCYy7pVjXRtTs31CB91liL9noSYYaTUcGj5vsrmzOv5uB12cDmCZFi3H22RzEnz9kYFCq7Cmw9elclwk+HwuiIjDqYJLN0kwhrKC54ZatnPqC+9kRtmCW+W9W7bmmP+pEpgUXV0gMszpuQOwkW8QL5gGAzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v2L3q9YMf6sucD/fiZHoAMlyGd4msElbdGTmKCan3o4=;
+ b=HZGDLLFPjsAknMvGdtqyBVOcWYs/08YNp8gl+93BMMy25rweZC66ih7ERw0tEY50AMG6YrYiD27cEBMobv/alNO0sxxrfTZMhGGzV5jEUB8NqzLGUiUgGyLLrfjUuHAdCM/kLHEldYKBy3M+HfRYV4So+2pHxT44fBNxMLVdeqYKVsdKlCVuTZ2ZiuOPJT4za7SMU7ajMQHQXeMgqXQACkuAxhXThkr3+zirOlV+erI+RaAQJ2mPH0opUszA040+s4vvMgJOMfvncbwwXvvJs4KsnonmJL61B65CS0zn/GBlk9UzdzPyQcbNkuVuzI6v/gxLsgUlrWReGWyfJgUPzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ CY8PR11MB7194.namprd11.prod.outlook.com (2603:10b6:930:92::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.33; Thu, 30 Mar 2023 20:21:32 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::a77e:fdd7:ee30:aea0]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::a77e:fdd7:ee30:aea0%4]) with mapi id 15.20.6222.032; Thu, 30 Mar 2023
+ 20:21:32 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/color: Fix typo for Plane CSC indexes
+Thread-Index: AQHZYxifklyIShsBPEO9x6h1q0svM68Tw8Xw
+Date: Thu, 30 Mar 2023 20:21:32 +0000
+Message-ID: <DM4PR11MB6360E30EB49BB7C77C146B14F48E9@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20230330150104.2923519-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20230330150104.2923519-1-chaitanya.kumar.borah@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <ZBSu2QsUJy31kjSE@work>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <ZBSu2QsUJy31kjSE@work>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.31.110
-X-Source-L: No
-X-Exim-ID: 1phydu-002oqq-Ra
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.7])
- [187.162.31.110]:36470
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 0
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfDMMmW1J6LWW73TJEsEL7rpYhjhxWo4C6kZHI/lJ2OSVMr/4I7L7wNuQfuUK1/Vum76Sy/awGk8HrtFPqwwEkj4xASLXJ4/40HiEOwFUeoHBhh1ZmfVZ
- xKdW2ynbIqkKIOPkQJohmHiVynPSkl52ZmqTJfdIgQ5TYzcCYItMMPq+PxS6JGBFdjMGW/objjusRG78X/diu0lqufi33WTs3pcnf6lwfUr2bwDNO+b0rzv+
- BZKtSr35YCO9WCz9YhavhuPG9GDNJb4vuBENK45Py9k=
-Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/uapi: Replace fake
- flex-array with flexible-array member
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CY8PR11MB7194:EE_
+x-ms-office365-filtering-correlation-id: 8797dc9a-adfc-453c-c49e-08db315c5a64
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vRwnyRuU/FT/u+hEf9tRBpTVBHLfWCZHTBkr32Pvsv3cXSK3C5S5SN3yAFca238fLEN4aCIepY+aZ4EDhySeWvWeAsbOpsK/ZQEByV/vyU+JqGUfMsDESlvrhysFUJGmyzT83HCtEndUVxZ1Ag7jRRHtXNHLR5Q/MXvwiyoVmEzT5F6rdH1wsoON8nCx2FowJ3P7cNNNnYuQESpYmqPKrjdk2p4Al3Hh5uv4fK5wAYU5u6w4vYNntfvoEUe4v7JYfGnFOoCH0JlUKoGa7JT3FOHVmDAuMyeqtYBPaCcWp/zERVP12dwUB79fNR/S7OqjtVWOdg5rWoP7ah8muhuFFJ9u42/aa5s6QYOsZber54JmYIF6LiCdVQPNLhwCbaVmSbjR30oSHhl4LKJRAYpYBKtB5SI05XC30Bb1H6ztNQgnDlatgkkapeTJSAiU0UKA4K+LIeHzUoZK97eGzXLuQ29fuvuLqnUQPCd/dsHxy8VCQhZhdzw6r6sbYMmi0ysTH4K5pvM7Wu/8AeGfYcf4E3FloOXeYnlCw0DZCtYsA7yF3kki9w24vuAGUbHKxv2X6oRut+YKb/NMIL2j9swyh2NHVsXkFxptrLUdHtjphYuZ9805B56PaaF/3wCHBjR+
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(396003)(346002)(366004)(376002)(136003)(451199021)(52536014)(8936002)(41300700001)(76116006)(6506007)(5660300002)(82960400001)(122000001)(38100700002)(86362001)(55016003)(66476007)(38070700005)(110136005)(66446008)(8676002)(4326008)(26005)(66556008)(7696005)(66946007)(316002)(478600001)(71200400001)(83380400001)(33656002)(53546011)(186003)(9686003)(64756008)(2906002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mov3JdGFMSGt7mCdAKo1Gr685JBMQzBnsZnx//1xC9cnFhhAfJjtEkbY97Bl?=
+ =?us-ascii?Q?ZRa9CPLMaWcg6qDhBNZRfFciPWMMizSDrqlFjwfGp1PSlGZTaLHgrobyNptc?=
+ =?us-ascii?Q?1of50enbb4BbAtElLkBnqDGy0+8kxE+LMHFUG6XStfLRvyTL5loVSzqNMPiS?=
+ =?us-ascii?Q?cj/56CCo+HmaEWc9BFNuWJQ0020sapLcXe0TmtJ8GxtbIBf//p3xKhPgmG2z?=
+ =?us-ascii?Q?lWnOrPfjf1SYlVQ34g8cBvBAYwnWHkRLlq+svvjwobMkibCePFzDelubtCHE?=
+ =?us-ascii?Q?o/K0K/3YNGgApNM7nZaTsOtEYXQkfQpZhrqXFUBzjZBb3psfQLPhLLuxouML?=
+ =?us-ascii?Q?8kMkbiQ+tB7o8CFiQgo5QaeO7AHRZ2TnWS/8v7LDtAdtmPhyLXy6AdiOukBB?=
+ =?us-ascii?Q?hQM6bniCKV2z42BfJWfUNLXgqXzLRFGzF14yLid4gd1BZ1h6C4yGnKHxCOOP?=
+ =?us-ascii?Q?ge98olkWVyFpeosNhskev/Qneh6C5NJAHp2Ahx7xuC1V0fk/t3/c/Ao8+Jx1?=
+ =?us-ascii?Q?+7U+Gp924d+kNuN1t12Z2+6UskMoCQVschvoAbMMugHZ1O9nElV36xlqiPs7?=
+ =?us-ascii?Q?J32SJ5EPnRQ5ujnSVJxcaSURhG9HINh0nWqk+0VzgidRTWUJDnE92QULI4/A?=
+ =?us-ascii?Q?tJ08jqOyO0RL7Xxy5UCurplemQd/D/6be+xeZYCnQFjT0LcwOXbc35B7cyRC?=
+ =?us-ascii?Q?TMC2OwoCfYBjjTiYpa81NEv4R8aDzoPOkYtgv5uC/Ghwgjw1D2W0OjXkZ/2t?=
+ =?us-ascii?Q?4OdLwHU6QAJVis6QhFGnzIElpp6oYXOeu1Dh7mUfp+N7OAEGSw0eaKu5niEA?=
+ =?us-ascii?Q?jQO/XHiLUG/pj9EjzQyAoyCOT3EfDMsb4cpmHKKqTFAxfb/SwK1NccD1hBIy?=
+ =?us-ascii?Q?Z5rHneagrXsLprQ+CS3imJfDfQT3xMLOhPxMQFsPItIAcQ9Qy1gTLmdhjtcP?=
+ =?us-ascii?Q?PYxDBt3gdAB7pT+51ITpnoLRgEN7s4xtowSpDUhyQ3XHrDIjyZt9EhIqa/a1?=
+ =?us-ascii?Q?rUOCvftRpDtM8BnQmFapz1Tpkebhxg4iWxexXyqMRUWSgFL7tWFl6qn4c5f+?=
+ =?us-ascii?Q?E1HFI24AqBE5kqR+HFgqcbvoqmVwfQU1EgNRH/DYupHTscvdNdqKpVx3dlGV?=
+ =?us-ascii?Q?gT7EES5R50THzPDRcUYajSRYlmcyHvp/5hIoujxooRNErj1oW4DFp45Tm6AT?=
+ =?us-ascii?Q?IZvfOA1MqmdX90l8T73rbccTDES9X54FLgVBca6pr8rEKWNX7L5cF+nK5T7Z?=
+ =?us-ascii?Q?y5py7Up8mmaiSVsxQ3XzdrO9VJrbOYkI1KIb7kNtEnI/3iltg3Mt5uuOixIc?=
+ =?us-ascii?Q?FgOwkYDYmRDG9sSVh4Unuv4y+tkMyPSJ7cPKSAZeY5rN3jfanD0oggULcQjn?=
+ =?us-ascii?Q?fQ/UHRK4hd7Pq0zUn+gzssn8R41IEumB7cmd9d1oRMp1sb3cwnq2uR2pK0EM?=
+ =?us-ascii?Q?fOYldAcuGp1m84qyWT9rg6WN1Em/PvDbplnrVZypl+ExlCjyC1584NDfhOOL?=
+ =?us-ascii?Q?uYULuJq92y2L5JhO7ULuGDFKxR3bTcfxwJRx5H2vcaI4Ox6jT/YyM56wXnN+?=
+ =?us-ascii?Q?MWbU0EsMTgtdpZku4+I+fcqjwDBvDl1/lFUrE/UR?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8797dc9a-adfc-453c-c49e-08db315c5a64
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Mar 2023 20:21:32.5996 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OGPdA5YHNW2HMAryvDwWhMnGddgNXAxA5HfIjBuaWLJoAWcacDSwlpQ/W/R/ujhmbVzjyei4GADz+uU9mrvhuA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7194
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/color: Fix typo for Plane CSC
+ indexes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,54 +150,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
 
-Friendly ping: who can take this, please? 😄
 
-Thanks
--- 
-Gustavo
+> -----Original Message-----
+> From: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+> Sent: Thursday, March 30, 2023 8:31 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Shankar, Uma <uma.shankar@intel.com>; Borah, Chaitanya Kumar
+> <chaitanya.kumar.borah@intel.com>; stable@vger.kernel.org
+> Subject: [PATCH] drm/i915/color: Fix typo for Plane CSC indexes
+>=20
+> Replace _PLANE_INPUT_CSC_RY_GY_2_* with _PLANE_CSC_RY_GY_2_* for
+> Plane CSC
+>=20
+> Fixes: 6eba56f64d5d ("drm/i915/pxp: black pixels on pxp disabled")
 
-On 3/17/23 12:18, Gustavo A. R. Silva wrote:
-> Zero-length arrays as fake flexible arrays are deprecated and we are
-> moving towards adopting C99 flexible-array members instead.
-> 
-> Address the following warning found with GCC-13 and
-> -fstrict-flex-arrays=3 enabled:
-> drivers/gpu/drm/i915/gem/i915_gem_context.c: In function ‘set_proto_ctx_engines.isra’:
-> drivers/gpu/drm/i915/gem/i915_gem_context.c:769:41: warning: array subscript n is outside array bounds of ‘struct i915_engine_class_instance[0]’ [-Warray-bounds=]
->    769 |                 if (copy_from_user(&ci, &user->engines[n], sizeof(ci))) {
->        |                                         ^~~~~~~~~~~~~~~~~
-> ./include/uapi/drm/i915_drm.h:2494:43: note: while referencing ‘engines’
->   2494 |         struct i915_engine_class_instance engines[0];
-> 
-> This helps with the ongoing efforts to tighten the FORTIFY_SOURCE
-> routines on memcpy() and help us make progress towards globally
-> enabling -fstrict-flex-arrays=3 [1].
-> 
-> Link: https://github.com/KSPP/linux/issues/21
-> Link: https://github.com/KSPP/linux/issues/271
-> Link: https://gcc.gnu.org/pipermail/gcc-patches/2022-October/602902.html [1]
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+Looks Good, thanks for catching it.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+> Cc: <stable@vger.kernel.org>
+>=20
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->   include/uapi/drm/i915_drm.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 8df261c5ab9b..5e458d6f2895 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2491,7 +2491,7 @@ struct i915_context_param_engines {
->   #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
->   #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
->   #define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
-> -	struct i915_engine_class_instance engines[0];
-> +	struct i915_engine_class_instance engines[];
->   } __attribute__((packed));
->   
->   #define I915_DEFINE_CONTEXT_PARAM_ENGINES(name__, N__) struct { \
+>  drivers/gpu/drm/i915/i915_reg.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 8e4aca888b7a..85885b01e6ac 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7496,8 +7496,8 @@ enum skl_power_gate {
+>=20
+>  #define _PLANE_CSC_RY_GY_1(pipe)	_PIPE(pipe, _PLANE_CSC_RY_GY_1_A, \
+>  					      _PLANE_CSC_RY_GY_1_B)
+> -#define _PLANE_CSC_RY_GY_2(pipe)	_PIPE(pipe,
+> _PLANE_INPUT_CSC_RY_GY_2_A, \
+> -					      _PLANE_INPUT_CSC_RY_GY_2_B)
+> +#define _PLANE_CSC_RY_GY_2(pipe)	_PIPE(pipe, _PLANE_CSC_RY_GY_2_A, \
+> +					      _PLANE_CSC_RY_GY_2_B)
+>  #define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
+>=20
+> _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
+>=20
+> _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+> --
+> 2.25.1
+
