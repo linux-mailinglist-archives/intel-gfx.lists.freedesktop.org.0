@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6E96D09FD
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 17:40:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3551F6D0A09
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 17:41:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39EDC10EEEE;
-	Thu, 30 Mar 2023 15:40:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE7810EEEB;
+	Thu, 30 Mar 2023 15:41:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC7A10EEE9;
- Thu, 30 Mar 2023 15:40:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7908810EEF1;
+ Thu, 30 Mar 2023 15:41:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680190834; x=1711726834;
+ t=1680190861; x=1711726861;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m23aC6vFNqpc7xyehOYmC7+fYBDlP7sazWsbxwAxVsk=;
- b=SR9SItyJmJoVgCgYlpI8gbUGbOHB3neSzsgI92cZ39C4yN2jfAMcIvj7
- lDTM4r8qiYwDn7kGRiEn+NQSe24VvlW3ayu0M+Dz6gUszIJIE/hejl1i6
- sIXMOM3yoqwkQv8u+L33h2Tch+hOu9fjWeYIwSuo4AXm15Ry3dsThS3Go
- rhpfiAkXobAoF8+M7WJVTfLPNnyl33GRCTszFxhAGWrrdaonjaKRAXvEY
- MItULFzAYE181mjYvf3UBhEBE5DiCbDZ0dNN0yWMz6hUASK87QD3SSbC6
- 2ds1QLQpBrCH2YxifV+Gw+1ri4b96Bwu5LQ8j9jefoMY9OfbZlwV+gLlG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329722231"
-X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="329722231"
+ bh=jQfWFGXWHZ1emnDeGzJ1uC/IAi8OVEg8cfo2NVHHcsA=;
+ b=FHeW1ckHgtHgiuz4/LA9xvseRav0YWD0hNFyDc4Ef61q+JYwHco2V9qO
+ f0uVr+3RhhUfT5LDWCD39KI0WUHCJnyTvcUTtWgQ8nyq+GWccQ55mwb7L
+ khI6ZAzeMGRPooSg6BDhOg7uXYG0u12nptzBnFA+Y8I1HTrEOkDRJRE9k
+ 9F0SVWMQTYdKpAUe0Fldqru5pvZTE6Tw4hnt2Nk3WeEniZM8w3hVVjH2+
+ SroeH8fOlq8JDQyDd+wEoMgba8FjJ1SOhvQXuRiXf1/TfD/InZ6VgEDrf
+ LLW48vBEBdMwWI7Fn38o6ZcpSJDDbs6yL9/4UNeRxsBQA1pcu/VyH/yc7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329722255"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="329722255"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 08:40:34 -0700
+ 30 Mar 2023 08:40:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="687294922"
-X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="687294922"
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="687294930"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="687294930"
 Received: from unknown (HELO localhost) ([10.237.66.160])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 08:40:33 -0700
+ 30 Mar 2023 08:40:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org
-Date: Thu, 30 Mar 2023 18:39:45 +0300
-Message-Id: <310eac1a1128180240272115fe3f4b68f8999151.1680190534.git.jani.nikula@intel.com>
+Date: Thu, 30 Mar 2023 18:39:46 +0300
+Message-Id: <932c52a915d08ebbe14f148806e6d61fe23e92d5.1680190534.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1680190534.git.jani.nikula@intel.com>
 References: <cover.1680190534.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 08/12] drm/i2c/tda998x: convert to using
- has_audio from display_info
+Subject: [Intel-gfx] [PATCH 09/12] drm/sti/sti_hdmi: convert to using
+ is_hdmi from display info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,33 +59,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- Russell King <linux@armlinux.org.uk>
+Cc: jani.nikula@intel.com, Alain Volmat <alain.volmat@foss.st.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prefer the parsed results for has_audio in display info over calling
-drm_detect_monitor_audio().
+Prefer the parsed results for is_hdmi in display info over calling
+drm_detect_hdmi_monitor(). Remove the now redundant hdmi_monitor member
+from struct sti_hdmi.
 
-Cc: Russell King <linux@armlinux.org.uk>
+Cc: Alain Volmat <alain.volmat@foss.st.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i2c/tda998x_drv.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/sti/sti_hdmi.c | 11 ++++++-----
+ drivers/gpu/drm/sti/sti_hdmi.h |  2 --
+ 2 files changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i2c/tda998x_drv.c b/drivers/gpu/drm/i2c/tda998x_drv.c
-index db5c9343a3d2..3ec2ead567fb 100644
---- a/drivers/gpu/drm/i2c/tda998x_drv.c
-+++ b/drivers/gpu/drm/i2c/tda998x_drv.c
-@@ -1312,7 +1312,7 @@ static int tda998x_connector_get_modes(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/sti/sti_hdmi.c b/drivers/gpu/drm/sti/sti_hdmi.c
+index 8539fe1fedc4..dc1562f14ceb 100644
+--- a/drivers/gpu/drm/sti/sti_hdmi.c
++++ b/drivers/gpu/drm/sti/sti_hdmi.c
+@@ -266,6 +266,7 @@ static void hdmi_active_area(struct sti_hdmi *hdmi)
+  */
+ static void hdmi_config(struct sti_hdmi *hdmi)
+ {
++	struct drm_connector *connector = hdmi->drm_connector;
+ 	u32 conf;
  
- 	mutex_lock(&priv->audio_mutex);
- 	n = drm_add_edid_modes(connector, edid);
--	priv->sink_has_audio = drm_detect_monitor_audio(edid);
-+	priv->sink_has_audio = connector->display_info.has_audio;
- 	mutex_unlock(&priv->audio_mutex);
+ 	DRM_DEBUG_DRIVER("\n");
+@@ -275,7 +276,7 @@ static void hdmi_config(struct sti_hdmi *hdmi)
  
+ 	/* Select encryption type and the framing mode */
+ 	conf |= HDMI_CFG_ESS_NOT_OESS;
+-	if (hdmi->hdmi_monitor)
++	if (connector->display_info.is_hdmi)
+ 		conf |= HDMI_CFG_HDMI_NOT_DVI;
+ 
+ 	/* Set Hsync polarity */
+@@ -985,15 +986,15 @@ static int sti_hdmi_connector_get_modes(struct drm_connector *connector)
+ 	if (!edid)
+ 		goto fail;
+ 
+-	hdmi->hdmi_monitor = drm_detect_hdmi_monitor(edid);
+-	DRM_DEBUG_KMS("%s : %dx%d cm\n",
+-		      (hdmi->hdmi_monitor ? "hdmi monitor" : "dvi monitor"),
+-		      edid->width_cm, edid->height_cm);
+ 	cec_notifier_set_phys_addr_from_edid(hdmi->notifier, edid);
+ 
+ 	count = drm_add_edid_modes(connector, edid);
+ 	drm_connector_update_edid_property(connector, edid);
+ 
++	DRM_DEBUG_KMS("%s : %dx%d cm\n",
++		      (connector->display_info.is_hdmi ? "hdmi monitor" : "dvi monitor"),
++		      edid->width_cm, edid->height_cm);
++
  	kfree(edid);
+ 	return count;
+ 
+diff --git a/drivers/gpu/drm/sti/sti_hdmi.h b/drivers/gpu/drm/sti/sti_hdmi.h
+index 05b2f3d0d48d..6d4c3f57bc46 100644
+--- a/drivers/gpu/drm/sti/sti_hdmi.h
++++ b/drivers/gpu/drm/sti/sti_hdmi.h
+@@ -57,7 +57,6 @@ struct hdmi_audio_params {
+  * @reset: reset control of the hdmi phy
+  * @ddc_adapt: i2c ddc adapter
+  * @colorspace: current colorspace selected
+- * @hdmi_monitor: true if HDMI monitor detected else DVI monitor assumed
+  * @audio_pdev: ASoC hdmi-codec platform device
+  * @audio: hdmi audio parameters.
+  * @drm_connector: hdmi connector
+@@ -83,7 +82,6 @@ struct sti_hdmi {
+ 	struct reset_control *reset;
+ 	struct i2c_adapter *ddc_adapt;
+ 	enum hdmi_colorspace colorspace;
+-	bool hdmi_monitor;
+ 	struct platform_device *audio_pdev;
+ 	struct hdmi_audio_params audio;
+ 	struct drm_connector *drm_connector;
 -- 
 2.39.2
 
