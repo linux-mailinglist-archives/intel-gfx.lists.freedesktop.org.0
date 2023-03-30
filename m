@@ -2,53 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F10D6D03A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 13:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9906D03F8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Mar 2023 13:52:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2874910E277;
-	Thu, 30 Mar 2023 11:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284B710E283;
+	Thu, 30 Mar 2023 11:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27E2B10E25A;
- Thu, 30 Mar 2023 11:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680176709; x=1711712709;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=k/mv4rPn58080aiy/VkVwoYKI4gFKfYIxJEtnNThHLM=;
- b=bz0lNSO6gt5v9OpPsPbebv2rnEl333OB3/++5m6Oj/oDJcCnm7bZzYKY
- DTRTLNBIaIqfa419Gdu9mCLcOu06x4RcZn74n8VWuBVPi+JQB3C3Gs9Hu
- JHlpzqqExglRg5csnhVy0a6ABuXtkL7f3gk/+dLN+e787gG5Q7dBugHL8
- fDjjdNvz53XwW5L/NOHI3XFm6h8CbbEeG0licbdWpeSH7SU+JZPRAD3mh
- E7EjODGnHyFYfCfmFaRVCoca135b1BrKlLEa/AT10guJqOWm+xc5Tu1f/
- IAmKScn8EEycO1/EGcUEw7vTshJf5JqUat9CNTb0Xi/9D/BmsHFhJkduT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="427419849"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="427419849"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 04:45:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="858890300"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; d="scan'208";a="858890300"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga005.jf.intel.com with SMTP; 30 Mar 2023 04:45:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Mar 2023 14:45:02 +0300
-Date: Thu, 30 Mar 2023 14:45:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Message-ID: <ZCV2Pge2+wdB5HEI@intel.com>
-References: <20230329171402.2772-1-ville.syrjala@linux.intel.com>
- <20230330084404.5uku6p42rorcuhv2@penduick>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9930A10E277;
+ Thu, 30 Mar 2023 11:52:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Of/J4Nmoc5ORK4uTlxDhyB0q0HsJsew/qFOmevO2YlKKHtqgTgtzAZq/70wVXDjnM9dA1n7j4s8E5XiwJoJBMt4bMkXUoaFUfKhOTVAzP+HncB0tzLfj52Plw4nLn3JANj4Zaoji8bwQGJoYJdOWlIhkU2wR6n2Q5TlVRoek1cK+f2He8PyYpiOQPgm06rdfN7lKlaBj3sDIHzq8azYB++ewhxjmKeJhqN0Rb/mc9FjP+dpuLJbJgxSJRSXUgk7EBbaROB/99Dpq/02yMi6l4RL7IWBvSl+dpXcdj0jo06DpHt/F1F+i0ETjE4hR45QJIVQICW0mDN/iAS+RAQVAbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pDiWNIhyeYLrYny55TvdPFac9v3rMAXRtk3dNuw1Eik=;
+ b=DVHzSwwUJfo38/rwU8vJ8O7AE4Lie9V0fN25tcUnVNEnce+Upmwn+4l1IMwV9QGMZjc8JfxLxnB0bW+y36MkTKsSk6Ftau1ypGs2H4tdgJQn/nVukFonnMpvtOJH3ZIz7ozI8m4RqX2yG27vcT3L0yeqTY5qbbDGNvwcyVn2FlVuoYhP/vU1S6kUpGZFSUdL7SmYJKc2tpzvNEy1RqeUBQWR+FsNRmFtrmdNB3tsBRf//DYerOXtjB3EAku1vWza6QYNs+FcQi/tpA/NaKHR0460D5zrsyVcn5ZT6OCLL9Mr5wqCxNwQSMTd/kiOAa2kdpVmGhHzFJq6vALgqWwD6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pDiWNIhyeYLrYny55TvdPFac9v3rMAXRtk3dNuw1Eik=;
+ b=bBjYtaT3TS+JfuPlMy9noC2WcH8PLBMZ5Pwli3drlclE9JXA75Mf1Da3S2kQqIFEH+ETis2/8aOsGs+u0psEukctB8uEWNkrOOn0E9EI2k+spwN7JZBDKqmTKTM+pVFQ8BfUDGVWNfuH4Er7W3X6zuwLSGlucjITgX4NLY2p2vR1LxhjO7MWlRU+u4bxlGKxXYMa3ixmmbZeCJOqlfNKufrtLEEBM/j1CZGUHVJLvSbL7dTmgoWTEIzx6Zf9ySVesQWVT10GzZEdMhFh7PE7AZML91g5KGNskZriIierqdt3U7Kh+W0BucGC3GmktP3War/0Z+1BLhdLLJxw/Bzgsg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MW6PR12MB8664.namprd12.prod.outlook.com (2603:10b6:303:23c::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.21; Thu, 30 Mar
+ 2023 11:52:21 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::ef6d:fdf6:352f:efd1%3]) with mapi id 15.20.6178.037; Thu, 30 Mar 2023
+ 11:52:20 +0000
+Date: Thu, 30 Mar 2023 08:52:19 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <ZCV38yPbzSRQcsRl@nvidia.com>
+References: <20230327094047.47215-1-yi.l.liu@intel.com>
+ <20230327094047.47215-22-yi.l.liu@intel.com>
+ <20230329150055.3dee2476.alex.williamson@redhat.com>
+ <DS0PR11MB7529A19B0368DA4769444B84C38E9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230330084404.5uku6p42rorcuhv2@penduick>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/scdc-helper: Pimp SCDC debugs
+In-Reply-To: <DS0PR11MB7529A19B0368DA4769444B84C38E9@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-ClientProxiedBy: MN2PR10CA0019.namprd10.prod.outlook.com
+ (2603:10b6:208:120::32) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW6PR12MB8664:EE_
+X-MS-Office365-Filtering-Correlation-Id: e52ca783-b02d-467b-7f1d-08db311537fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YDYUJeBJrsCloAIP9VgElZ2REQvc2SYFlj0AVoiBFp4OwN7sC20RaTJmhalGvfmA/N1LpsPg2XChFB6yjEtnUBTHOY3xDQrdHLSTTPtReGBbTg0oBXi1tiwDhOCjlZvXF2wh1Zj9QyInZstjri8h+Hn51/XU18gnIUYfMoLyJVVBCNcNcvV8uMzQthJALqBGK6JyxT6A+xNJyEEhCLhzA/CXVz+vhHVgs47HPy/3jrYmnxjsIjEjX+ZfX44N3i0sdpAqMzlYcdOxPbmzhHWBkhxqkXTackBe+vemZM8+ZSm77g0vvg8m28HSc/t6IU/dZc7e6uN0U3HJSV/kvz9Pzx1T0M1rwCjl47Ma795YTzizZE2ySI+1QOYw/Qv3KeeqhIRXVAAwZV7ySEOUpXjE88LDucTfX/NdWRMDZ3QyLtyltxhzml9Em1k7S0mbMh/6JXVVojimr82xXD3YHnyF7BsgwZ316/RLgeYNDZIuN9AaBC6PYktKj4VHcRyxVGsPhFTJZzQGRmTHPtojTIfBFazT0wjo1iwEFr34Z/PNQ6egB50eAqMTm+k+rt47wkEx
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(39860400002)(346002)(136003)(366004)(396003)(451199021)(36756003)(6916009)(38100700002)(66556008)(8936002)(5660300002)(7416002)(4326008)(66946007)(86362001)(4744005)(8676002)(66476007)(41300700001)(6506007)(6486002)(2616005)(26005)(6512007)(54906003)(2906002)(478600001)(186003)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?I7gonf0cbXvTnt7T3euxzyyHO5wMgSES6+EFJhCuO/cA67aASB6sJx6FXjd6?=
+ =?us-ascii?Q?nv3LntPYKJN6oNb5NBkZXQLh+q6zG8IZPjiRjubk+471lUack9k0LpIw+idW?=
+ =?us-ascii?Q?qpfqMnfiOPtxKc7ZXxGF5sAkKZ4P1Vb+40qgkDRlGChUB9sNXBwmVeeyinMc?=
+ =?us-ascii?Q?LtUdXecMtKpEqS5bEyQ3eg1zMrbPJgE7Kyi8LtjSnU8G97Y3saKmRNZJr7Xl?=
+ =?us-ascii?Q?kOppzcI1RrZ3XJDMkS32hZabl/VMR1hMG38XehW6fMJhDGrgFCTAJ/3BJo3l?=
+ =?us-ascii?Q?DOyf74ZTObu1ybcK+jfcUbTLDWIu7WCwihBAgUUBwHgk740+eEhH/cM7XbHj?=
+ =?us-ascii?Q?2gcxZO0nV9U5aVccCT+Y495LJQOj219VRwClE5gmI/AcbCYKmXAjK6H1y8zA?=
+ =?us-ascii?Q?TpijGBCn1A88zXQBJt5Tqzg8GJVX+tWbrGrp09W7OjJC/JxiQUEZEattYc1j?=
+ =?us-ascii?Q?3F4c51YwkeMFF7PS7b3vI54gPGxk5l93ottnRaOfoqmEiuW3lNMvl/nFUbz2?=
+ =?us-ascii?Q?d+9CHTXdxqpDnjJ/FmuVMFc9/UuYMdS63OJzNbCr1rzfJsZhlh+N7+UPR/iy?=
+ =?us-ascii?Q?m9AlotcIndkr+2V/hcrWDPtbpvOMv4Ded5G4dvUXNouQJMfYd51v4ypmdVle?=
+ =?us-ascii?Q?xLWYRuHFBJ3Tit/hMhyPnf/NAkeoYMWw5FqWqcUdM3oS8UJs/QKuKAPGPVQK?=
+ =?us-ascii?Q?iETC80qibvNilWJUzh+gdFb7SPKndcx8popsjX0pwbba4PKhUtLxFE5oqxVN?=
+ =?us-ascii?Q?oH6nbb1/osRW5/Z1vaWUrdKPEnRjr2qG9QIZIG4e6DKyhIYHk6ze6Tz1LlRj?=
+ =?us-ascii?Q?WHqH6j/YgL+xO3MflceCe1nICcUwJCs4I7a7p+lpwgaXWM2UPeTNr7Ki8CXF?=
+ =?us-ascii?Q?bZiOIVpldBtCclhzKSscLqftEqYEZGoFKies5tyi9ZmPE30TyLHXTRcxJCKf?=
+ =?us-ascii?Q?0fUQRML17BKys8fYkrwJe+V6xmL7NirkNSWnJ4ReVm8UJ9cONB27Qj+veOVC?=
+ =?us-ascii?Q?Kpb9dwNam1W/LVmva5MZNh1w+eQ+wotl8m8gZk6SXkKLX4C4flQcftJ6GWt5?=
+ =?us-ascii?Q?yNWXHWEQce4mfJy3FN1BZ8emeM1YyldBO6SHQaojGV8KjOakguq1vtMHUCW/?=
+ =?us-ascii?Q?I1ZGXyTrR64HP2nilsGtzNqIGWBuhz4fUjRW7MPxjS+FdTVJHR0UIq3/+Cuz?=
+ =?us-ascii?Q?MT5rn1X+vgFhhvgT8IQEc3rrtepqs1Ez95QAPljPT8je06zbLX9vw4gh6Ef1?=
+ =?us-ascii?Q?I7P3+3QIX7x69xomf3yPWcVV0GF72CGOaVFpJ4c9o6LyN1CmSyyRPwG5vanz?=
+ =?us-ascii?Q?apK06t61l3Ml2zXN1bPqdl5XYUbt/oistEzeq7IklSQ/tRnIMhnefrgf+qoy?=
+ =?us-ascii?Q?4VqzlTFpFtLARhZseTIFhCqdwsL2UxK9Ljxlzd+XBGcPQ9CdfgrQMjP6IHKu?=
+ =?us-ascii?Q?l5EB4rWWbaPYRlToFcXz7QCioeoGUJL1csl+4FswoU3dCrlJt8ulOrdqohuT?=
+ =?us-ascii?Q?8gqILmIjmesv/5ROlZ3bYwQyAEWsRxrI94MDnwVrlz80PbXuIU5qQOjC9+0F?=
+ =?us-ascii?Q?wW3MV3kw9yNW+2/qtfBfRUiMLTiPjGSvYuqMU9cz?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e52ca783-b02d-467b-7f1d-08db311537fd
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 11:52:20.8053 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1YtrdKO2x/kPdZDoCEghDzwCGtaNNOzZSiZgD6tqk3OqcAGKd7/S68hftGEvxgCR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8664
+Subject: Re: [Intel-gfx] [PATCH v8 21/24] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,69 +116,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Robert Foss <rfoss@kernel.org>,
- Emma Anholt <emma@anholt.net>, Jonas Karlman <jonas@kwiboo.se>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, linux-tegra@vger.kernel.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 30, 2023 at 10:44:04AM +0200, Maxime Ripard wrote:
-> Hi,
+On Thu, Mar 30, 2023 at 07:09:31AM +0000, Liu, Yi L wrote:
+
+> > > +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+> > > +				    struct vfio_device_bind_iommufd __user *arg)
+> > > +{
+> > > +	struct vfio_device *device = df->device;
+> > > +	struct vfio_device_bind_iommufd bind;
+> > > +	struct iommufd_ctx *iommufd = NULL;
+> > > +	unsigned long minsz;
+> > > +	int ret;
+> > > +
+> > > +	static_assert(__same_type(arg->out_devid, bind.out_devid));
+> > 
+> > They're the same field in the same structure, how could they be
+> > otherwise?
 > 
-> On Wed, Mar 29, 2023 at 08:14:02PM +0300, Ville Syrjala wrote:
-> > diff --git a/drivers/gpu/drm/display/drm_scdc_helper.c b/drivers/gpu/drm/display/drm_scdc_helper.c
-> > index c3ad4ab2b456..2b124152384c 100644
-> > --- a/drivers/gpu/drm/display/drm_scdc_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_scdc_helper.c
-> > @@ -26,6 +26,8 @@
-> >  #include <linux/delay.h>
-> >  
-> >  #include <drm/display/drm_scdc_helper.h>
-> > +#include <drm/drm_connector.h>
-> > +#include <drm/drm_device.h>
-> >  #include <drm/drm_print.h>
-> >  
-> >  /**
-> > @@ -140,6 +142,7 @@ EXPORT_SYMBOL(drm_scdc_write);
-> >  
-> >  /**
-> >   * drm_scdc_get_scrambling_status - what is status of scrambling?
-> > + * @connector: connector
-> >   * @adapter: I2C adapter for DDC channel
-> >   *
-> >   * Reads the scrambler status over SCDC, and checks the
-> > @@ -148,14 +151,17 @@ EXPORT_SYMBOL(drm_scdc_write);
-> >   * Returns:
-> >   * True if the scrambling is enabled, false otherwise.
-> >   */
-> > -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter)
-> > +bool drm_scdc_get_scrambling_status(struct drm_connector *connector,
-> > +				    struct i2c_adapter *adapter)
-> 
-> Is there any driver where adapter isn't equal to connector->ddc?
+> @Jason, should I remove this check?
 
-I figured most of them since they all maintain their own ddc
-pointer elsewhere. But looks like the drivers using the scdc
-helper might all be setting connector->ddc for their HDMI
-connectors despite that.
+Yes, it was from something that looked very different from this
 
-Even i915 does that apparently. My recollection was otherwise
-since I have a branch waiting somewhere that changes the whole
-driver to use connector->ddc.
-
-I guess someone took a bunch of shortcuts to get connector->ddc
-populated but then didn't finish the job by clearing out the
-old pointers.
-
-> 
-> If not, there's no reason to pass both
-
-Yeah, that did cross my mind. But left it out with in
-the belief that it can't be done yet.
-
--- 
-Ville Syrjälä
-Intel
+Jason
