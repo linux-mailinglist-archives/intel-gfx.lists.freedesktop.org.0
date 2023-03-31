@@ -2,46 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5876D23D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 17:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55D326D23DD
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 17:19:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F9810F29D;
-	Fri, 31 Mar 2023 15:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C024710F29F;
+	Fri, 31 Mar 2023 15:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0DD10F29D
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 15:18:11 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F8610F29E;
+ Fri, 31 Mar 2023 15:19:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680275891; x=1711811891;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lf3A7lZC/DpKX3vf+FqfMDfoXVcGDeF7smWtyKtuEjg=;
- b=R74M57S1ksflcPtKVZzoC34eSJYhGtZyhFBUKXSak8IcOWuTuwS2WWVz
- 0tC2dXthvQG8hyWtB1itAAnRpgx4LrHYFReO546hFrwV7JguRus9PWeBS
- DTo824Kpg7tRdrIM0GhBle6ZwHnsQJT2ygXGq7LGr4dMxHXovhjwVhQNN
- kVCZqkOjoqPGQkkG5epINaqKGN1eyMilMMHVsL3oavMrjV0ne0PywqK3Z
- HlDO3L0TbLXzWWtlvTTVLUWSFAkofuu9s/F/utet3sIqEsqoypT323MZ2
- 0SSjdYWZ7lH2DXn2+8IkRQJmJp2wOQmpj1aKr19ipteHrE03JJ3oD0ZsD Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="325448787"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="325448787"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 08:18:10 -0700
+ t=1680275986; x=1711811986;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6DYU9YNmKUr0TE/DUc3vf67LbYHXMXPhNj+QtfqCNPI=;
+ b=ScqPLaj/4ogiH7FLZB+nXZt8Sm0Hlmc7be/kv4OVokPFNIbRK3dCCk5I
+ 3KSUWUh1YH2JrSeCAw0PqJlUhQEGgJw5ehmXRFiHQfYRAUk1/4rolxFhQ
+ qBv7TDyuO8XkUcSi+y15xZS+p7LNbR403prjEgc+MEkyN8oSAEQm4m4V8
+ 7sYJFkfDn7b1fER9XhLhXT7OPxHdgLLUH2i9yBf8Q4Oiw4ZiRHZn8OI2F
+ 95yyuO+HKjD+8bfQuA2InUCfRJ6Pr4a5++b4wunbvrD/1jnnxaDNCNg3a
+ nQHlSzbkdG6sN76z15GTsIGAhuavFKclcl9m8HWd3iQNfgbPJum3DWKXM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="340201927"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="340201927"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 08:19:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="687697178"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="687697178"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga007.fm.intel.com with ESMTP; 31 Mar 2023 08:18:10 -0700
-From: John.C.Harrison@Intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 08:17:37 -0700
-Message-Id: <20230331151737.3083271-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="796160263"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="796160263"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by fmsmga002.fm.intel.com with ESMTP; 31 Mar 2023 08:19:43 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1piGXX-000Lu3-03;
+ Fri, 31 Mar 2023 15:19:43 +0000
+Date: Fri, 31 Mar 2023 23:18:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lee Jones <lee@kernel.org>
+Message-ID: <202303312304.LMo1KsTB-lkp@intel.com>
+References: <20230331092607.700644-8-lee@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for new GuC v70.6.5 for MTL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230331092607.700644-8-lee@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH 07/19] drm/i915/gem/i915_gem_create: Provide
+ the function names for proper kerneldoc headers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,26 +60,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit bcdcfbcf0a8f24a914b8c163906e6ce93d7f8897:
+Hi Lee,
 
-  linux-firmware: Update firmware file for Intel Bluetooth AX101 (2023-03-20 08:34:27 -0400)
+I love your patch! Perhaps something to improve:
 
-are available in the Git repository at:
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-misc/drm-misc-next next-20230331]
+[cannot apply to drm-intel/for-linux-next-fixes lee-leds/for-leds-next linus/master v6.3-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_guc_70.6.5
+url:    https://github.com/intel-lab-lkp/linux/commits/Lee-Jones/drm-i915-i915_scatterlist-Fix-kerneldoc-formatting-issue-missing/20230331-173046
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20230331092607.700644-8-lee%40kernel.org
+patch subject: [PATCH 07/19] drm/i915/gem/i915_gem_create: Provide the function names for proper kerneldoc headers
+config: i386-defconfig (https://download.01.org/0day-ci/archive/20230331/202303312304.LMo1KsTB-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/7c87f97c7f11c1a2b3931d46ae1382c5ee0c14f7
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lee-Jones/drm-i915-i915_scatterlist-Fix-kerneldoc-formatting-issue-missing/20230331-173046
+        git checkout 7c87f97c7f11c1a2b3931d46ae1382c5ee0c14f7
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
 
-for you to fetch changes up to d75acfcd61e44418651c7cb859d79a7ad3e147b7:
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303312304.LMo1KsTB-lkp@intel.com/
 
-  i915: Add GuC v70.6.5 for MTL (2023-03-31 08:02:48 -0700)
+All warnings (new ones prefixed by >>):
 
-----------------------------------------------------------------
-John Harrison (1):
-      i915: Add GuC v70.6.5 for MTL
+>> drivers/gpu/drm/i915/gem/i915_gem_create.c:411: warning: expecting prototype for i915_gem_create_ext_ioct(). Prototype was for i915_gem_create_ext_ioctl() instead
 
- WHENCE                  |   3 +++
- i915/mtl_guc_70.6.5.bin | Bin 0 -> 308032 bytes
- 2 files changed, 3 insertions(+)
- create mode 100644 i915/mtl_guc_70.6.5.bin
+
+vim +411 drivers/gpu/drm/i915/gem/i915_gem_create.c
+
+ebcb40298947bdb Matthew Auld 2021-04-29  401  
+ebcb40298947bdb Matthew Auld 2021-04-29  402  /**
+7c87f97c7f11c1a Lee Jones    2023-03-31  403   * i915_gem_create_ext_ioct - Creates a new mm object and returns a handle to it.
+ebcb40298947bdb Matthew Auld 2021-04-29  404   * @dev: drm device pointer
+ebcb40298947bdb Matthew Auld 2021-04-29  405   * @data: ioctl data blob
+ebcb40298947bdb Matthew Auld 2021-04-29  406   * @file: drm file pointer
+ebcb40298947bdb Matthew Auld 2021-04-29  407   */
+ebcb40298947bdb Matthew Auld 2021-04-29  408  int
+ebcb40298947bdb Matthew Auld 2021-04-29  409  i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
+ebcb40298947bdb Matthew Auld 2021-04-29  410  			  struct drm_file *file)
+ebcb40298947bdb Matthew Auld 2021-04-29 @411  {
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
