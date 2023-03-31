@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4616D290F
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 22:01:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9898A6D2919
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 22:03:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E45D010F2F5;
-	Fri, 31 Mar 2023 20:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E735310F2FC;
+	Fri, 31 Mar 2023 20:02:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4EC310E569
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 20:01:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7ECC10F2FC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 20:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680292891; x=1711828891;
+ t=1680292974; x=1711828974;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Cei3VrE9UWDNlhW6Ni6AMveChFqzffmdyzLsLxuAASE=;
- b=f9Ubp1/YEm+cPsJ+JlUNu0VfNt5YTeNG0F1I/h0nv5zGK/iuFkOw2fkr
- kBpJfwf7XW8KS1OccWmr7NbJLNv7UgZE1pJ9MZ1ulr/8sVgc+jp9lrRSw
- N+Qd5gxotTrS1Y9P7B7CWUTzz5dKIa4YsBU3wUQgiFmUHfCQm2gtwP8NJ
- FR8Xm6Etr8KkzUfN1o2RXGJ5BZrKyEDvqRTW3e3y2tSFndo5EbJ+GvteB
- PsR29nDfyDOLNyP5cNakDDFpcuWRESfoABW4wPYavTBSL2VC4TUPKmClQ
- MaKiLU1AkC7UjDKYeIsqOAVkh5zV8z2nDeYeNRXEkKe+XBnZLHhMfKN17 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="427827017"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="427827017"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 13:01:31 -0700
+ bh=ESeEkS4jku4MZm0ihzNu/JgHHyGhG9cIKp535PU1rCw=;
+ b=MIkljOg12bjuQagm0R0Brl3SZR5Jxl5yD2AX0algvAiBirCiZgz33Wpu
+ rGyjLPPC2bRqApphzIIhB1XwYzppy+9c7YuK5dFjDzFcSEBIsmOh+oC/f
+ QzPjthAGyjvmqcbJE7X7dlHDTp8Vpo2bfVvjApffI3cwjhTBAT50J0pmx
+ ODcI/mnl2Wv//5ga/+75cj3/cbb4PBq68tm49Eshj+1JjfhnqpkDyiBgy
+ xc7dLBrFEFkmCcySEUQ1qSG30RJUihZcLgatz3GVLfAuqxlODLrNcoH3t
+ MDf5BxvmedKFjxzP/dAyHdHgKnAllrgeGfdN+YPqo7DP5hDGVTkg+Fgw1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="321941132"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="321941132"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 13:02:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="635409213"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="635409213"
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="749749025"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="749749025"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 13:01:31 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 13:02:53 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 13:01:26 -0700
-Message-Id: <20230331200126.1435110-1-umesh.nerlige.ramappa@intel.com>
+Date: Fri, 31 Mar 2023 13:02:53 -0700
+Message-Id: <20230331200253.1435236-1-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -79,6 +79,7 @@ This reverts commit 8d0e3decf26bc423d8b1c42c05636ccc05ea6b17.
 
 Resolves: https://gitlab.freedesktop.org/drm/intel/issues/8303
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Test-with: 20230331195915.5839-1-umesh.nerlige.ramappa@intel.com
 ---
  drivers/gpu/drm/i915/i915_drm_client.c | 6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)
