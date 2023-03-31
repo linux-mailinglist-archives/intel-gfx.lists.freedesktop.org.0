@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B00D6D141C
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 02:34:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A360F6D14F4
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 03:22:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D4F10F0C4;
-	Fri, 31 Mar 2023 00:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0878A10E067;
+	Fri, 31 Mar 2023 01:22:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B18E510F0BE;
- Fri, 31 Mar 2023 00:34:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680222881; x=1711758881;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZQo7yknP25SitbuRWTk343nJSYVGcL363xY0j1/aQPU=;
- b=VLJrFUigcvAMZBE1xX/KaRj0ChJOgF9JV50l4N/AWb45yUaCVtuTijv7
- KrWLOM+tHtWIpkIw9CHvhqQwMdUomS8yrP858QGwyDt3uMdA6JcVG28iV
- f57HDcZdcNLp3jXG4AUxMZRfsLPVWF+uDHAUoL99tWmlvfvW/3mOdmN20
- sRt9mTvjCH/m5+kQdLg5AmWXtdoYlbvCKmgUaDxBbQeeSqEbb5+nPH1i0
- Thbw4oggXJYon+4Gs7RhyTHqrESp1FPxE8f6GLW/7DMx2b+30m3hVkM/f
- b/6VvOGgt1tacLY6vCaLGra9NNe/pPlpoahV4s4wPITJkEtaTNqFnTI8J Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329844459"
-X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; d="scan'208";a="329844459"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 17:34:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="715220769"
-X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; d="scan'208";a="715220769"
-Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 17:34:40 -0700
-From: fei.yang@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Mar 2023 17:36:11 -0700
-Message-Id: <20230331003611.107011-3-fei.yang@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230331003611.107011-1-fei.yang@intel.com>
-References: <20230331003611.107011-1-fei.yang@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 90F4A10E067;
+ Fri, 31 Mar 2023 01:22:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66E7CAADEC;
+ Fri, 31 Mar 2023 01:22:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/mtl: end support for set caching
- ioctl
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Date: Fri, 31 Mar 2023 01:22:25 -0000
+Message-ID: <168022574538.14987.3071518159784381683@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230331003611.107011-1-fei.yang@intel.com>
+In-Reply-To: <20230331003611.107011-1-fei.yang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/mtl=3A_Define_MOCS_?=
+ =?utf-8?q?and_PAT_tables_for_MTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,58 +41,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+== Series Details ==
 
-The design is to keep Buffer Object's caching policy immutable through
-out its life cycle. This patch ends the support for set caching ioctl
-from MTL onward. While doing that we also set BO's to be 1-way coherent
-at creation time because GPU is no longer automatically snooping CPU
-cache.
+Series: series starting with [1/3] drm/i915/mtl: Define MOCS and PAT tables for MTL
+URL   : https://patchwork.freedesktop.org/series/115906/
+State : warning
 
-Signed-off-by: Fei Yang <fei.yang@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_domain.c | 3 +++
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 9 ++++++++-
- 2 files changed, 11 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 497de40b8e68..33b73bea1e08 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -335,6 +335,9 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
- 	if (IS_DGFX(i915))
- 		return -ENODEV;
- 
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-+		return -EOPNOTSUPP;
-+
- 	switch (args->caching) {
- 	case I915_CACHING_NONE:
- 		level = I915_CACHE_NONE;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 37d1efcd3ca6..e602c323896b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -601,7 +601,14 @@ static int shmem_object_init(struct intel_memory_region *mem,
- 	obj->write_domain = I915_GEM_DOMAIN_CPU;
- 	obj->read_domains = I915_GEM_DOMAIN_CPU;
- 
--	if (HAS_LLC(i915))
-+	/*
-+	 * MTL doesn't snooping CPU cache by default for GPU access (namely
-+	 * 1-way coherency). However some UMD's are currently depending on
-+	 * that. Make 1-way coherent the default setting for MTL. A follow
-+	 * up patch will extend the GEM_CREATE uAPI to allow UMD's specify
-+	 * caching mode at BO creation time
-+	 */
-+	if (HAS_LLC(i915) || (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)))
- 		/* On some devices, we can have the GPU use the LLC (the CPU
- 		 * cache) for about a 10% performance improvement
- 		 * compared to uncached.  Graphics requests other than
--- 
-2.25.1
+Error: dim checkpatch failed
+0ba061e0e1f8 drm/i915/mtl: Define MOCS and PAT tables for MTL
+-:156: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#156: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:229:
++	GEM_BUG_ON(addr & ~GEN12_GGTT_PTE_ADDR_MASK);
+
+total: 0 errors, 1 warnings, 0 checks, 365 lines checked
+943df95249ca drm/i915/mtl: workaround coherency issue for Media
+890e4ea3ef7c drm/i915/mtl: end support for set caching ioctl
+
 
