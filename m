@@ -1,69 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E39D6D1F09
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 13:30:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2BA6D1F4A
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 13:39:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E16710F1E7;
-	Fri, 31 Mar 2023 11:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 647BC10F1F3;
+	Fri, 31 Mar 2023 11:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD8C610F1E7;
- Fri, 31 Mar 2023 11:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680262242; x=1711798242;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=gy2iUMMoAkiXA84t4PlX410aMEkTzJ8H2TfoEMCYKy8=;
- b=BzlcctFugXgb7lvFEJj2X46lpCRqQPC4SdwYpSKazrQGgAzs7ntd8aE1
- VkgGOIM01ky/wITpA2ICWu0S7YwsGoeV97TDoDKEwctLdQ5cxmn9Eo8pP
- /NnLrc2EnnHhj/nOZSiaGk/46CnlEmmP0DbJhIuSJbA3b01SWeMYziADd
- N3APLgoU8VH159Q1XNN7E4z4jql1M8rhaW7mhjhoTmIXnhO/fIAUuxw5a
- dsJFrBB3XNdzsR8bSJwjPmLfmRvPDzfG45IshNejX3LOtKYIQS3zdKipU
- b+TJ8zn+3aU+TX8sh/aX3z/eIHpKUQYAmdNYzOBYnmpRuYqWEZeDZwxPE g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="321082197"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="321082197"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 04:30:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="687623165"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="687623165"
-Received: from bpower-mobl3.ger.corp.intel.com (HELO [10.213.225.27])
- ([10.213.225.27])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 04:30:22 -0700
-Message-ID: <fdc8a470-1e6b-815d-e367-a9df1b0b14dd@linux.intel.com>
-Date: Fri, 31 Mar 2023 12:30:20 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B534A10F1F3;
+ Fri, 31 Mar 2023 11:39:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD1F0A00E6;
+ Fri, 31 Mar 2023 11:39:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Ira Weiny <ira.weiny@intel.com>, Zhao Liu <zhao1.liu@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20230329073220.3982460-1-zhao1.liu@linux.intel.com>
- <20230329073220.3982460-10-zhao1.liu@linux.intel.com>
- <64265ef8725fe_375f7e294a@iweiny-mobl.notmuch>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <64265ef8725fe_375f7e294a@iweiny-mobl.notmuch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 9/9] drm/i915: Use kmap_local_page() in
- gem/i915_gem_execbuffer.c
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Fri, 31 Mar 2023 11:39:39 -0000
+Message-ID: <168026277967.14986.9688787174541968289@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230331090729.2183-1-christian.koenig@amd.com>
+In-Reply-To: <20230331090729.2183-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/debugfs=3A_drop_debugfs?=
+ =?utf-8?q?=5Finit=28=29_for_the_render_and_accel_node_v2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,178 +41,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Fabio M . De Francesco" <fmdefrancesco@gmail.com>,
- Zhao Liu <zhao1.liu@intel.com>, Zhenyu Wang <zhenyu.z.wang@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 31/03/2023 05:18, Ira Weiny wrote:
-> Zhao Liu wrote:
->> From: Zhao Liu <zhao1.liu@intel.com>
->>
->> The use of kmap_atomic() is being deprecated in favor of
->> kmap_local_page()[1], and this patch converts the calls from
->> kmap_atomic() to kmap_local_page().
->>
->> The main difference between atomic and local mappings is that local
->> mappings doesn't disable page faults or preemption (the preemption is
->> disabled for !PREEMPT_RT case, otherwise it only disables migration).
->>
->> With kmap_local_page(), we can avoid the often unwanted side effect of
->> unnecessary page faults and preemption disables.
->>
->> In i915_gem_execbuffer.c, eb->reloc_cache.vaddr is mapped by
->> kmap_atomic() in eb_relocate_entry(), and is unmapped by
->> kunmap_atomic() in reloc_cache_reset().
-> 
-> First off thanks for the series and sticking with this.  That said this
-> patch kind of threw me for a loop because tracing the map/unmap calls did
-> not make sense to me.  See below.
-> 
->>
->> And this mapping/unmapping occurs in two places: one is in
->> eb_relocate_vma(), and another is in eb_relocate_vma_slow().
->>
->> The function eb_relocate_vma() or eb_relocate_vma_slow() doesn't
->> need to disable pagefaults and preemption during the above mapping/
->> unmapping.
->>
->> So it can simply use kmap_local_page() / kunmap_local() that can
->> instead do the mapping / unmapping regardless of the context.
->>
->> Convert the calls of kmap_atomic() / kunmap_atomic() to
->> kmap_local_page() / kunmap_local().
->>
->> [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
->>
->> v2: No code change since v1. Added description of the motivation of
->>      using kmap_local_page() and "Suggested-by" tag of Fabio.
->>
->> Suggested-by: Ira Weiny <ira.weiny@intel.com>
->> Suggested-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
->> Signed-off-by: Zhao Liu <zhao1.liu@intel.com>
->> ---
->> Suggested by credits:
->>    Ira: Referred to his task document, review comments.
->>    Fabio: Referred to his boiler plate commit message and his description
->>           about why kmap_local_page() should be preferred.
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 10 +++++-----
->>   1 file changed, 5 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index 9dce2957b4e5..805565edd148 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -1151,7 +1151,7 @@ static void reloc_cache_unmap(struct reloc_cache *cache)
->>   
->>   	vaddr = unmask_page(cache->vaddr);
->>   	if (cache->vaddr & KMAP)
->> -		kunmap_atomic(vaddr);
->> +		kunmap_local(vaddr);
-> 
-> In the cover letter you don't mention this unmap path.  Rather you mention
-> only reloc_cache_reset().
-> 
-> After digging into this and considering these are kmap_atomic() calls I
-> _think_ what you have is ok.  But I think I'd like to see the call paths
-> documented a bit more clearly.  Or perhaps cleaned up a lot.
-> 
-> For example I see the following call possibility from a user ioctl.  In
-> this trace I see 2 examples where something is unmapped first.  I don't
-> understand why that is required?  I would assume reloc_cache_unmap() and
-> reloc_kmap() are helpers called from somewhere else requiring a remapping
-> of the cache but I don't see it.
+Series: series starting with [1/5] drm/debugfs: drop debugfs_init() for the render and accel node v2
+URL   : https://patchwork.freedesktop.org/series/115920/
+State : warning
 
-Reloc_cache_unmap is called from eb_relocate_entry.
+== Summary ==
 
-The confusing part unmap appears first is just because reloc_cache is a 
-stateful setup. The previous mapping is kept around until reset (callers 
-moves to a different parent object), and unampped/remapped once moved to 
-a different page within that object.
+Error: dim checkpatch failed
+812a5adda093 drm/debugfs: drop debugfs_init() for the render and accel node v2
+-:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-However I am unsure if disabling pagefaulting is needed or not. Thomas, 
-Matt, being the last to touch this area, perhaps you could have a look? 
-Because I notice we have a fallback iomap path which still uses 
-io_mapping_map_atomic_wc. So if kmap_atomic to kmap_local conversion is 
-safe, does the iomap side also needs converting to 
-io_mapping_map_local_wc? Or they have separate requirements?
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+625098a6a955 drm/debugfs: rework debugfs directory creation v3
+-:419: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 321 lines checked
+3724df6e1bab drm/debugfs: remove dev->debugfs_list and debugfs_mutex v2
+-:165: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Tvrtko
+total: 0 errors, 1 warnings, 0 checks, 115 lines checked
+6693df345d8a drm/debugfs: rework drm_debugfs_create_files implementation
+-:271: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-> 
-> i915_gem_execbuffer2_ioctl()
-> eb_relocate_parse()
-> eb_relocate_parse_slow()
-> eb_relocate_vma_slow()
-> 	eb_relocate_entry()
-> 		reloc_cache_unmap()
-> 			kunmap_atomic()  <=== HERE!
-> 		reloc_cache_remap()
-> 			kmap_atomic()
-> 		relocate_entry()
-> 			reloc_vaddr()
-> 				reloc_kmap()
-> 					kunmap_atomic() <== HERE!
-> 					kmap_atomic()
-> 
-> 	reloc_cache_reset()
-> 		kunmap_atomic()
-> 
-> Could these mappings be cleaned up a lot more?  Perhaps by removing some
-> of the helper functions which AFAICT are left over from older versions of
-> the code?
-> 
-> Also as an aside I think it is really bad that eb_relocate_entry() returns
-> negative errors in a u64.  Better to get the types right IMO.
-> 
-> Thanks for the series!
-> Ira
-> 
->>   	else
->>   		io_mapping_unmap_atomic((void __iomem *)vaddr);
->>   }
->> @@ -1167,7 +1167,7 @@ static void reloc_cache_remap(struct reloc_cache *cache,
->>   	if (cache->vaddr & KMAP) {
->>   		struct page *page = i915_gem_object_get_page(obj, cache->page);
->>   
->> -		vaddr = kmap_atomic(page);
->> +		vaddr = kmap_local_page(page);
->>   		cache->vaddr = unmask_flags(cache->vaddr) |
->>   			(unsigned long)vaddr;
->>   	} else {
->> @@ -1197,7 +1197,7 @@ static void reloc_cache_reset(struct reloc_cache *cache, struct i915_execbuffer
->>   		if (cache->vaddr & CLFLUSH_AFTER)
->>   			mb();
->>   
->> -		kunmap_atomic(vaddr);
->> +		kunmap_local(vaddr);
->>   		i915_gem_object_finish_access(obj);
->>   	} else {
->>   		struct i915_ggtt *ggtt = cache_to_ggtt(cache);
->> @@ -1229,7 +1229,7 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
->>   	struct page *page;
->>   
->>   	if (cache->vaddr) {
->> -		kunmap_atomic(unmask_page(cache->vaddr));
->> +		kunmap_local(unmask_page(cache->vaddr));
->>   	} else {
->>   		unsigned int flushes;
->>   		int err;
->> @@ -1251,7 +1251,7 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
->>   	if (!obj->mm.dirty)
->>   		set_page_dirty(page);
->>   
->> -	vaddr = kmap_atomic(page);
->> +	vaddr = kmap_local_page(page);
->>   	cache->vaddr = unmask_flags(cache->vaddr) | (unsigned long)vaddr;
->>   	cache->page = pageno;
->>   
->> -- 
->> 2.34.1
->>
-> 
-> 
+total: 0 errors, 1 warnings, 0 checks, 203 lines checked
+93e7e1f6dffd drm/debugfs: remove debugfs_root pointer from minor
+-:153: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IWUSR' are not preferred. Consider using octal permissions '0200'.
+#153: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c:125:
++	debugfs_create_file("rap_test", S_IWUSR, root, adev,
+
+-:198: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IWUSR' are not preferred. Consider using octal permissions '0200'.
+#198: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c:180:
++	debugfs_create_file("securedisplay_test", S_IWUSR, adev_to_drm(adev)->debugfs_root,
+
+-:199: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#199: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c:181:
++	debugfs_create_file("securedisplay_test", S_IWUSR, adev_to_drm(adev)->debugfs_root,
+ 				adev, &amdgpu_securedisplay_debugfs_ops);
+
+-:279: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO | S_IWUSR' are not preferred. Consider using octal permissions '0644'.
+#279: FILE: drivers/gpu/drm/arm/malidp_drv.c:555:
++	debugfs_create_file("debug", S_IRUGO | S_IWUSR, minor->dev->debugfs_root,
+
+-:521: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
+#521: FILE: drivers/gpu/drm/i915/i915_debugfs.c:814:
++	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->dev->debugfs_root,
+
+-:579: WARNING:EXPORTED_WORLD_WRITABLE: Exporting world writable files is usually an error. Consider more restrictive permissions.
+#579: FILE: drivers/gpu/drm/msm/adreno/a5xx_debugfs.c:157:
++	debugfs_create_file_unsafe("reset", S_IWUGO, minor->dev->debugfs_root, dev,
+
+-:579: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IWUGO' are not preferred. Consider using octal permissions '0222'.
+#579: FILE: drivers/gpu/drm/msm/adreno/a5xx_debugfs.c:157:
++	debugfs_create_file_unsafe("reset", S_IWUGO, minor->dev->debugfs_root, dev,
+
+-:580: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#580: FILE: drivers/gpu/drm/msm/adreno/a5xx_debugfs.c:158:
++	debugfs_create_file_unsafe("reset", S_IWUGO, minor->dev->debugfs_root, dev,
+ 				&reset_fops);
+
+-:646: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
+#646: FILE: drivers/gpu/drm/msm/msm_debugfs.c:314:
++	debugfs_create_file("gpu", S_IRUSR, minor->dev->debugfs_root,
+
+-:647: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#647: FILE: drivers/gpu/drm/msm/msm_debugfs.c:315:
++	debugfs_create_file("gpu", S_IRUSR, minor->dev->debugfs_root,
+ 		dev, &msm_gpu_fops);
+
+-:650: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
+#650: FILE: drivers/gpu/drm/msm/msm_debugfs.c:317:
++	debugfs_create_file("kms", S_IRUSR, minor->dev->debugfs_root,
+
+-:651: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#651: FILE: drivers/gpu/drm/msm/msm_debugfs.c:318:
++	debugfs_create_file("kms", S_IRUSR, minor->dev->debugfs_root,
+ 		dev, &msm_kms_fops);
+
+-:655: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#655: FILE: drivers/gpu/drm/msm/msm_debugfs.c:321:
++	debugfs_create_u32("hangcheck_period_ms", 0600, minor->dev->debugfs_root,
+ 		&priv->hangcheck_period);
+
+-:659: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#659: FILE: drivers/gpu/drm/msm/msm_debugfs.c:324:
++	debugfs_create_bool("disable_err_irq", 0600, minor->dev->debugfs_root,
+ 		&priv->disable_err_irq);
+
+-:662: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRWXU' are not preferred. Consider using octal permissions '0700'.
+#662: FILE: drivers/gpu/drm/msm/msm_debugfs.c:326:
++	debugfs_create_file("shrink", S_IRWXU, minor->dev->debugfs_root,
+
+-:663: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#663: FILE: drivers/gpu/drm/msm/msm_debugfs.c:327:
++	debugfs_create_file("shrink", S_IRWXU, minor->dev->debugfs_root,
+ 		dev, &shrink_fops);
+
+-:691: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
+#691: FILE: drivers/gpu/drm/msm/msm_perf.c:217:
++	debugfs_create_file("perf", S_IFREG | S_IRUGO, minor->dev->debugfs_root,
+
+-:704: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
+#704: FILE: drivers/gpu/drm/msm/msm_rd.c:264:
++	debugfs_create_file(name, S_IFREG | S_IRUGO, minor->dev->debugfs_root, rd,
+
+-:1001: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO | S_IWUSR' are not preferred. Consider using octal permissions '0644'.
+#1001: FILE: drivers/gpu/drm/sti/sti_drv.c:100:
++	debugfs_create_file("fps_show", S_IRUGO | S_IWUSR, minor->dev->debugfs_root,
+
+-:1210: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 13 warnings, 7 checks, 805 lines checked
+
+
