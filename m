@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2868F6D19B2
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 10:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5EC6D19E4
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 10:32:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F263110F133;
-	Fri, 31 Mar 2023 08:23:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BD410E31B;
+	Fri, 31 Mar 2023 08:32:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92FF110F11A
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 08:23:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8792610E31B;
+ Fri, 31 Mar 2023 08:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680250982; x=1711786982;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=fuY1MioiqKgIYu/vt88Ei03JgeNdiouN4+cYKtaWhNU=;
- b=ARHZGOsfZQa0MoOCeiy4qm1u0EOI9+6eC/USrs9LqJiE/5O5G70hDQN+
- Ik2Hntb4ZdrFjuNc7eqjZyIYrD4SORBpCCbiAwPeXsReRNIBN1oB2mziE
- caugmr1eLW8Nj/r9787/BPcW9cMmVby1szQ/aNJ3GsJOaqxZoqWjVRXpP
- 8c27Diq53MGF6aX9WJbFkZka1xCu7je4RqpfgOH3arDGL8ylNRYaEZG8G
- VT2WqevFuU7pZTPJg4UbjFTcbvocMmqD104SsBH7ZOUigkdCNb6kN9bdJ
- +NHyOUmnMlzG4SolRoKLCIJlnzgJYaObdqsNXEN6KtwWqYlOQ7HMBW3Zy g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="406405609"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="406405609"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ t=1680251537; x=1711787537;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Qx/8ilf/NfkTHLO6+8bPMQwvEosBPGBjQoeaUWFsQWY=;
+ b=NsBZW6F+suHES7lY+wVwSyxjjbUiCHArAK/NpG1Zsk9zbxJTn4fvCtVQ
+ xYkgRjAyPXPiU1HKAy74lbvCHf52i4GhIMMFslSbI1wqPWBweA40UNMNb
+ QsppsGNWWJOT6utsaIv3EgMCf7G5opUKbgYTgHbi/1m5tJQ9bHNrmXg3K
+ SbhfONONEJybLaa0RnEKAQxSaAt0GWU07e1gfghr+bXNxkKh8/zwqqWf0
+ sCIf7sqzf0cyzV4liM9ZINuloCrUwPoYVxEM6+IxqLhh7lRjV0+MlwnPk
+ cIoRblXVbYKaRMc3V+NXlNXdnkYK+5zpaxa5p7SquLhaj230QUGGEctZT A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="406407923"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="406407923"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 01:23:02 -0700
+ 31 Mar 2023 01:31:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="754330336"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="754330336"
-Received: from bpower-mobl3.ger.corp.intel.com (HELO [10.213.225.27])
- ([10.213.225.27])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 01:23:00 -0700
-Message-ID: <bfe8d7ab-b327-39e8-cdd0-3aad0cd437e4@linux.intel.com>
-Date: Fri, 31 Mar 2023 09:22:58 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="828638010"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="828638010"
+Received: from slabertx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.150])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 01:31:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>, David Laight
+ <David.Laight@ACULAB.COM>
+In-Reply-To: <20230330151846.fdbc8edbfbaa6eaddb056dc7@linux-foundation.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230330104243.2120761-1-jani.nikula@intel.com>
+ <20230330125041.83b0f39fa3a4ec1a42dfd95f@linux-foundation.org>
+ <549987e4967d45159573901d330c96a0@AcuMS.aculab.com>
+ <20230330151846.fdbc8edbfbaa6eaddb056dc7@linux-foundation.org>
+Date: Fri, 31 Mar 2023 11:31:43 +0300
+Message-ID: <87edp52ufk.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
- <20230330004103.1295413-6-umesh.nerlige.ramappa@intel.com>
- <1036f396-f5d6-82bd-27ff-66146b115184@linux.intel.com>
- <87r0t5dgc5.wl-ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87r0t5dgc5.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/pmu: Prepare for multi-tile
- non-engine counters
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 0/4] log2: make is_power_of_2() more generic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +63,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Gow <davidgow@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 30 Mar 2023, Andrew Morton <akpm@linux-foundation.org> wrote:
+> On Thu, 30 Mar 2023 21:53:03 +0000 David Laight <David.Laight@ACULAB.COM>=
+ wrote:
+>
+>> > But wouldn't all these issues be addressed by simply doing
+>> >=20
+>> > #define is_power_of_2(n) (n !=3D 0 && ((n & (n - 1)) =3D=3D 0))
+>> >=20
+>> > ?
+>> >=20
+>> > (With suitable tweaks to avoid evaluating `n' more than once)
+>>=20
+>> I think you need to use the 'horrid tricks' from min() to get
+>> a constant expression from constant inputs.
+>
+> This
+>
+> --- a/include/linux/log2.h~a
+> +++ a/include/linux/log2.h
+> @@ -41,11 +41,11 @@ int __ilog2_u64(u64 n)
+>   * *not* considered a power of two.
+>   * Return: true if @n is a power of 2, otherwise false.
+>   */
+> -static inline __attribute__((const))
+> -bool is_power_of_2(unsigned long n)
+> -{
+> -	return (n !=3D 0 && ((n & (n - 1)) =3D=3D 0));
+> -}
+> +#define is_power_of_2(_n)				\
+> +	({						\
+> +		typeof(_n) n =3D (_n);			\
+> +		n !=3D 0 && ((n & (n - 1)) =3D=3D 0);		\
+> +	})
+>=20=20
+>  /**
+>   * __roundup_pow_of_two() - round up to nearest power of two
+> _
+>
+> worked for me in a simple test.
+>
+> --- a/fs/open.c~b
+> +++ a/fs/open.c
+> @@ -1564,3 +1564,10 @@ int stream_open(struct inode *inode, str
+>  }
+>=20=20
+>  EXPORT_SYMBOL(stream_open);
+> +
+> +#include <linux/log2.h>
+> +
+> +int foo(void)
+> +{
+> +	return is_power_of_2(43);
+> +}
+> _
+>
+>
+> foo:
+> # fs/open.c:1573: }
+> 	xorl	%eax, %eax	#
+> 	ret=09
+>
+>
+> Is there some more tricky situation where it breaks?
 
-On 30/03/2023 23:28, Dixit, Ashutosh wrote:
-> On Thu, 30 Mar 2023 05:39:04 -0700, Tvrtko Ursulin wrote:
->>
-> 
-> Hi Tvrtko,
-> 
->>> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
->>> index 1b04c79907e8..a708e44a227e 100644
->>> --- a/drivers/gpu/drm/i915/i915_pmu.h
->>> +++ b/drivers/gpu/drm/i915/i915_pmu.h
->>> @@ -38,13 +38,16 @@ enum {
->>> 	__I915_NUM_PMU_SAMPLERS
->>>    };
->>>    +#define I915_PMU_MAX_GTS (4) /* FIXME */
->>
->> 3-4 years since writing this I have no idea what I meant by this
->> FIXME. Should have put a better comment.. :( It was early platform
->> enablement times so it was somewhat passable, but now I think we need to
->> figure out what I actually meant. Maybe removing the comment is fine.
->>
->>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>> index dba7c5a5b25e..bbab7f3dbeb4 100644
->>> --- a/include/uapi/drm/i915_drm.h
->>> +++ b/include/uapi/drm/i915_drm.h
->>> @@ -280,7 +280,17 @@ enum drm_i915_pmu_engine_sample {
->>>    #define I915_PMU_ENGINE_SEMA(class, instance) \
->>> 	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
->>>    -#define __I915_PMU_OTHER(x) (__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 +
->>> (x))
->>> +/*
->>> + * Top 8 bits of every non-engine counter are GT id.
->>> + * FIXME: __I915_PMU_GT_SHIFT will be changed to 56
->>> + */
->>
->> I asked before and don't think I got an answer: Why is 4 bits not enough
->> for gt id? The comment is not my code I am pretty sure.
-> 
-> Both of the above FIXME's are the work of yours truly :-) (added during
-> PRELIM work).
+It doesn't work with BUILD_BUG_ON_ZERO().
 
-Very kind of you but I think first one is mine. ;) I can find it in my 
-local branch dating from at least June 2020.
+test.c:
+#define IS_POWER_OF_2(_n)				\
+	({						\
+		typeof(_n) n =3D (_n);			\
+		n !=3D 0 && ((n & (n - 1)) =3D=3D 0);		\
+	})
 
-I had an idea that maybe it was supposed to mean I wanted to results the 
-I915_MAX_GT define and not duplicate a '4' here. Perhaps there was some 
-header mess which made me give up at the time.
+#define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
 
-I think it is worth trying that now, maybe something changed.
+#define FOO(n) ((n) + BUILD_BUG_ON_ZERO(!IS_POWER_OF_2(n)))
 
-> Anyway given that now i915 will not support new product generations I think
-> we can just drop the FIXME's. Otherwise I was saying since we are only
-> using a few bottom bits, why not future proof things a bit and allow for
-> num_gt's to expand beyond 16.
+int main(void)
+{
+	return FOO(2);
+}
 
-Oh right.. I thought 16 gts will be enough but I also don't think I mind 
-if it is 4 or 8 bits. Possibly at the time, as I was seeing more and 
-more counters getting added, or better say classes of counters, I was 
-starting to get wary of getting out of bits for future expansion. All of 
-those were done by segmenting the numerical space, not bit wise, so 
-perhaps the concern shouldn't have been there and 8 is also fine. Don't 
-know really, don't think I have a strong opinion. Lets pick one and drop 
-the FIXME comment.
-
-Regards,
-
-Tvrtko
-
-> 
-> So for now just drop the FIXME's for i915, revisit if needed with xe.
+$ gcc test.c
+test.c: In function =E2=80=98main=E2=80=99:
+test.c:16:51: error: bit-field =E2=80=98<anonymous>=E2=80=99 width not an i=
+nteger constant
+   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
+)))
+      |                                                   ^
+test.c:18:23: note: in expansion of macro =E2=80=98BUILD_BUG_ON_ZERO=E2=80=
+=99
+   18 | #define FOO(n) ((n) + BUILD_BUG_ON_ZERO(!IS_POWER_OF_2(n)))
+      |                       ^~~~~~~~~~~~~~~~~
+test.c:22:9: note: in expansion of macro =E2=80=98FOO=E2=80=99
+   22 |  return FOO(2);
+      |         ^~~
 
 
+BR,
+Jani.
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
