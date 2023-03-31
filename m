@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F3F6D175A
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 08:25:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 820E76D17EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 09:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0BE10F0F2;
-	Fri, 31 Mar 2023 06:25:42 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6212110E02B;
- Fri, 31 Mar 2023 06:25:40 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id y20so27616846lfj.2;
- Thu, 30 Mar 2023 23:25:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680243938;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=hgtInxHR98O+yLhpVW2/mvrEUc6/7NQut93JIoqVYmE=;
- b=Ur92w2KF9CB99Lo/wFgVxmv6E2bnDa9tbVh9f+8jTkkUYSL2bJIAlXLVF4upb7DbpQ
- Dkbs5WDpJIR+JB1bWUURd64whGvU1sMc68qg/Bnzst76wnQ03fAadppWA6WxWyZkxUCr
- AHMniH3uh2ShwL0Xyaz+s+tKFZvjIHdC3FMO17nueJ0bAGWSpszJVOdOFQDOTNbxkvCK
- e3VZGKErOyRhxi+y1c26uT5hnTjw1uHo8Nwcf6KZIJKKwnWPNUu1uEw9lDjgzMw/Un0O
- Tne9fDd6OxT/MAUEDSK1glsdVEaYqnMyEeV8tMDF8XrTLgQWGNyDfzTIEomFzLe9zRYb
- yi2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680243938;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=hgtInxHR98O+yLhpVW2/mvrEUc6/7NQut93JIoqVYmE=;
- b=R7Bcow6UQFD2TQ/LwcXgwLoQoRZ3Pjn7gzsiI/OFlAHprlX6oTH3q0h7XqzcMjZoez
- ttmmJ/3EU4ClqGPfbuZqJ/XXgYV2hYhBzgWs+rJSgLadXqP/9OK355MT8ew6SipJeDLH
- J2A0EWZBs66YuQDyDAbVZvnLpLxnFKF7ljNYUcDnh/0aEuiVga2/55qBNaOTOK8eSQTm
- Ihix4uE+b6CInCSwSvZ89JFHStyzu5Y6DYGbxNXkOQbw1pVG/Ba0smKWNTwgG7njm05x
- fhm5DvT/ULbdBCTLgwyTj1731NYJ7Y9ThSiJHtiwpmwIHpL0tyfReorRnVt0S3e8biAr
- J13g==
-X-Gm-Message-State: AAQBX9ciFp4AXTHhxkNFxhjvG/Dwlu+ROBPdvPNBvbmlMRtGy+lPDulq
- K0jJSRC9HGkkVR30ZMwHYHg7+xpNc5LMihNH12il8qxixeM=
-X-Google-Smtp-Source: AKy350Z1pHMdHOwDLajGCN+NxBSZWAFI2Ep7D9no6OYbptZeuDBw6+xKPvq14eDGaAfTewVNcAnpLZQRLm8Iip640Rs=
-X-Received: by 2002:ac2:519c:0:b0:4d5:ca43:7047 with SMTP id
- u28-20020ac2519c000000b004d5ca437047mr7735343lfi.10.1680243938346; Thu, 30
- Mar 2023 23:25:38 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4353110F108;
+	Fri, 31 Mar 2023 07:02:25 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 177BA10F104;
+ Fri, 31 Mar 2023 07:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680246142; x=1711782142;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=yHMOEUPKsjHNBby8lcaub9KEv8oA6ClqWvka4yCdPFo=;
+ b=BpmtrWsIKVPtYdeRbUh+TW/g8L4lBhowhgbaGIEXxYxRv+mRl5AGwZxA
+ Jse5fJr7e1CbJLowF9V22Dd76edRhDM3PT+O8BYzuWMRJG5wgTPiFCa1F
+ xbOhpLBQnZ84gcYcG44nA2BC561eOkVFkgL5EZI93kj18yT+blImI0jQT
+ awpEgi3n3Fcf315xMvso8aSjmDpTVHj7pxuBcliS5VSDwzD4Xl+Lts68s
+ 5K9gQnQUwT+AMNsjYYEPBqbzPzRr4STRmrhQkrsZdoo3oxmFRf4y4WXSs
+ DLyFtO1E9lvCHl8Jb/QLUbf8L1Oz1Z6vmr/7Y4HwU4ped3GnKjLcn+O78 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="321766921"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="321766921"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 00:02:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="715347402"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="715347402"
+Received: from colintro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.4])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 00:02:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>, "Gustavo A. R. Silva"
+ <gustavoars@kernel.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <ef8d083a-a82b-669c-0b0a-959e0f120a26@embeddedor.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <ZBSu2QsUJy31kjSE@work>
+ <ef8d083a-a82b-669c-0b0a-959e0f120a26@embeddedor.com>
+Date: Fri, 31 Mar 2023 10:02:05 +0300
+Message-ID: <87ileh2yky.fsf@intel.com>
 MIME-Version: 1.0
-References: <20230320151423.1708436-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230320151423.1708436-1-tvrtko.ursulin@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 31 Mar 2023 07:25:11 +0100
-Message-ID: <CAM0jSHMFF7VeRFMqRwfbvVtRdc6-6RXipe3nvLijrCtTNdKweQ@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix context runtime accounting
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/uapi: Replace fake
+ flex-array with flexible-array member
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,29 +65,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Mar 2023 at 15:14, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> When considering whether to mark one context as stopped and another as
-> started we need to look at whether the previous and new _contexts_ are
-> different and not just requests. Otherwise the software tracked context
-> start time was incorrectly updated to the most recent lite-restore time-
-> stamp, which was in some cases resulting in active time going backward,
-> until the context switch (typically the hearbeat pulse) would synchronise
-> with the hardware tracked context runtime. Easiest use case to observe
-> this behaviour was with a full screen clients with close to 100% engine
-> load.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: bb6287cb1886 ("drm/i915: Track context current active time")
-> Cc: <stable@vger.kernel.org> # v5.19+
+On Thu, 30 Mar 2023, "Gustavo A. R. Silva" <gustavo@embeddedor.com> wrote:
+> Friendly ping: who can take this, please? =F0=9F=98=84
 
-Seems reasonable to me, fwiw,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+It's in drm-intel-gt-next.
+
+commit 02abecdeebfcd3848b26b70778dd7f6eb0db65e1
+Author:     Gustavo A. R. Silva <gustavoars@kernel.org>
+AuthorDate: Fri Mar 17 12:18:01 2023 -0600
+Commit:     Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+CommitDate: Tue Mar 21 08:41:18 2023 +0000
+
+    drm/i915/uapi: Replace fake flex-array with flexible-array member
+
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
