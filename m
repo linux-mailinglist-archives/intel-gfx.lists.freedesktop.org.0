@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873E86D1FBD
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:10:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8E66D2051
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:32:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAE8410E080;
-	Fri, 31 Mar 2023 12:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4468710E101;
+	Fri, 31 Mar 2023 12:32:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EBD5D10F226;
- Fri, 31 Mar 2023 12:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F1AF410E09F;
+ Fri, 31 Mar 2023 12:32:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E386AA0BA8;
- Fri, 31 Mar 2023 12:10:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id E8D2AAADE0;
+ Fri, 31 Mar 2023 12:32:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0977466225481505105=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 31 Mar 2023 12:10:46 -0000
-Message-ID: <168026464692.14985.12117524828413474043@emeril.freedesktop.org>
+Date: Fri, 31 Mar 2023 12:32:00 -0000
+Message-ID: <168026592092.14985.4564092555143097564@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230331090949.2858951-1-jani.nikula@intel.com>
 In-Reply-To: <20230331090949.2858951-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/wm=3A_split_out_SKL?=
- =?utf-8?q?+_watermark_regs_to_a_separate_file?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/wm=3A_split_out_SKL+_water?=
+ =?utf-8?q?mark_regs_to_a_separate_file?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,121 +46,223 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0977466225481505105==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [1/2] drm/i915/wm: split out SKL+ watermark regs to a separate file
 URL   : https://patchwork.freedesktop.org/series/115921/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-e5197a49e7e5 drm/i915/wm: split out SKL+ watermark regs to a separate file
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:43: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#43: 
-new file mode 100644
+CI Bug Log - changes from CI_DRM_12950 -> Patchwork_115921v1
+====================================================
 
--:63: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#63: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:16:
-+#define MBUS_DBOX_B2B_TRANSACTIONS_MAX(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_MAX_MASK, x)
+Summary
+-------
 
--:65: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#65: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:18:
-+#define MBUS_DBOX_B2B_TRANSACTIONS_DELAY(x)	REG_FIELD_PREP(MBUS_DBOX_B2B_TRANSACTIONS_DELAY_MASK, x)
+  **SUCCESS**
 
--:128: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#128: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:81:
-+#define _PLANE_WM_BASE(pipe, plane) \
-+	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
+  No regressions found.
 
--:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#136: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:89:
-+#define PLANE_WM_SAGV(pipe, plane) \
-+	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html
 
--:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#142: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:95:
-+#define PLANE_WM_SAGV_TRANS(pipe, plane) \
-+	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_2(pipe)))
+Participating hosts (37 -> 37)
+------------------------------
 
--:148: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#148: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:101:
-+#define PLANE_WM_TRANS(pipe, plane) \
-+	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
 
--:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#157: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:110:
-+#define PLANE_BUF_CFG(pipe, plane)	\
-+	_MMIO_PLANE(plane, _PLANE_BUF_CFG_1(pipe), _PLANE_BUF_CFG_2(pipe))
+Known issues
+------------
 
--:166: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#166: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:119:
-+#define PLANE_NV12_BUF_CFG(pipe, plane)	\
-+	_MMIO_PLANE(plane, _PLANE_NV12_BUF_CFG_1(pipe), _PLANE_NV12_BUF_CFG_2(pipe))
+  Here are the changes found in Patchwork_115921v1 that come from known issues:
 
--:196: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#196: FILE: drivers/gpu/drm/i915/display/skl_watermark_regs.h:149:
-+#define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRACKER_STATE_SERVICE_MASK, x) /* ADL-P+ */
+### IGT changes ###
 
-total: 0 errors, 4 warnings, 6 checks, 373 lines checked
-35fe8767c0b7 drm/i915/psr: split out PSR regs to a separate file
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:41: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#41: 
-new file mode 100644
+#### Issues hit ####
 
--:106: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'trans' - possible side-effects?
-#106: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:61:
-+#define   _EDP_PSR_TRANS_SHIFT(trans)		((trans) == TRANSCODER_EDP ? \
-+						 0 : ((trans) - TRANSCODER_A + 1) * 8)
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
 
--:123: WARNING:LONG_LINE_COMMENT: line length of 111 exceeds 100 columns
-#123: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:78:
-+#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(tran, _SRD_AUX_DATA_A + (i) + 4) /* 5 registers */
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
 
--:180: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#180: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:135:
-+#define   EDP_PSR2_IO_BUFFER_WAKE(lines)	((EDP_PSR2_IO_BUFFER_WAKE_MAX_LINES - (lines)) << 13)
+  * igt@i915_module_load@reload:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][3] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_module_load@reload.html
 
--:184: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
-#184: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:139:
-+#define   TGL_EDP_PSR2_IO_BUFFER_WAKE(lines)	(((lines) - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES) << TGL_EDP_PSR2_IO_BUFFER_WAKE_SHIFT)
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
 
--:191: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#191: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:146:
-+#define   TGL_EDP_PSR2_FAST_WAKE(lines)		(((lines) - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES) << TGL_EDP_PSR2_FAST_WAKE_MIN_SHIFT)
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-2:         [PASS][5] -> [ABORT][6] ([i915#7913] / [i915#7982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-rpls-2/igt@i915_selftest@live@requests.html
 
--:243: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#243: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:198:
-+#define PSR2_MAN_TRK_CTL(tran)					_MMIO_TRANS2(tran, _PSR2_MAN_TRK_CTL_A)
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271]) +16 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
 
--:246: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
-#246: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:201:
-+#define  PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)		REG_FIELD_PREP(PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
+  
+#### Possible fixes ####
 
--:248: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
-#248: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:203:
-+#define  PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(val)		REG_FIELD_PREP(PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK, val)
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-11:         [FAIL][8] ([i915#8308]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
 
--:253: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#253: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:208:
-+#define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)	REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
+    - bat-dg2-8:          [FAIL][10] ([i915#7932]) -> [PASS][11] +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
 
--:255: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#255: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:210:
-+#define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(val)		REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK, val)
-
--:279: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#279: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:234:
-+#define _SEL_FETCH_PLANE_BASE_1(pipe) _PIPE(pipe, _SEL_FETCH_PLANE_BASE_1_A, _SEL_FETCH_PLANE_BASE_1_B)
-
-total: 0 errors, 11 warnings, 1 checks, 562 lines checked
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12950 -> Patchwork_115921v1
+
+  CI-20190529: 20190529
+  CI_DRM_12950: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7230: f0485204004305dd3ee8f8bbbb9c552e53a4e050 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115921v1: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+bcf0849a4622 drm/i915/psr: split out PSR regs to a separate file
+92061fe652e9 drm/i915/wm: split out SKL+ watermark regs to a separate file
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html
+
+--===============0977466225481505105==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/wm: split out SKL+ watermark regs to a separate file</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115921/">https://patchwork.freedesktop.org/series/115921/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12950 -&gt; Patchwork_115921v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 37)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115921v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12950 -&gt; Patchwork_115921v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12950: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7230: f0485204004305dd3ee8f8bbbb9c552e53a4e050 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115921v1: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bcf0849a4622 drm/i915/psr: split out PSR regs to a separate file<br />
+92061fe652e9 drm/i915/wm: split out SKL+ watermark regs to a separate file</p>
+
+</body>
+</html>
+
+--===============0977466225481505105==--
