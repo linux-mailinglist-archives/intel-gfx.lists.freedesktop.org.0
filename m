@@ -2,33 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A8E66D2051
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD6A6D20BD
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:46:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4468710E101;
-	Fri, 31 Mar 2023 12:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C800510F21F;
+	Fri, 31 Mar 2023 12:46:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F1AF410E09F;
- Fri, 31 Mar 2023 12:32:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8D2AAADE0;
- Fri, 31 Mar 2023 12:32:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0977466225481505105=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA5B10E0BD;
+ Fri, 31 Mar 2023 12:46:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680266795; x=1711802795;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DNBTgkydAKy9RgdwAafCwZyOU0pinYOIVpjAN5c+Lfw=;
+ b=ZOGb9d4WnyFNZC9ssalUpi+3SfLfYjLj4nbuU6+tj1ootbVGfoihdFFa
+ NzcTzjcHsYrA9+/wM2ykEWVg1ilbdf1h+BbglIvLJiLNHXrnW0TsriUSs
+ 4EPd8GjOfMwumWRo953Gjf6cejM8BZGEnZqEgUVQXudn/OuoPfmTQTwoV
+ MDLw44hGIyVYi6Pxapuyc1TXbydNSvKEKZbtKb9XMxejfhyPBbZnPDtC0
+ cge5TXJwtrI3XURKHBL7g0JN8xzSGowrMIEw4Zyg0wPPd4A8ltFFuTDPR
+ bBFVvf9x++6uaJQG6eR1u8Dtghz7bILcIjVloPMSZrlztMn3Gfo5+Hm15 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="325408594"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="325408594"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 05:46:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="809024958"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="809024958"
+Received: from bpower-mobl3.ger.corp.intel.com (HELO [10.213.225.27])
+ ([10.213.225.27])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 05:46:25 -0700
+Message-ID: <3722f24b-0bad-ad35-5f24-66c1b17f8e71@linux.intel.com>
+Date: Fri, 31 Mar 2023 13:46:22 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 31 Mar 2023 12:32:00 -0000
-Message-ID: <168026592092.14985.4564092555143097564@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230331090949.2858951-1-jani.nikula@intel.com>
-In-Reply-To: <20230331090949.2858951-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/wm=3A_split_out_SKL+_water?=
- =?utf-8?q?mark_regs_to_a_separate_file?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+References: <20230228022150.1657843-1-alan.previn.teres.alexis@intel.com>
+ <20230228022150.1657843-6-alan.previn.teres.alexis@intel.com>
+ <fabe4123-53cc-005e-e0af-7683e0d45896@intel.com>
+ <3b8091c51677878b968d1d275b9b16e5088d913d.camel@intel.com>
+ <ZCAqDlUIp0YmCkyu@intel.com> <fef256a6-3027-8beb-0ef8-fddf972db441@intel.com>
+ <cf63d62b-3e2d-f8fe-82b6-95e71e376cc2@linux.intel.com>
+ <3359c9d371a25710891352061693637b37679734.camel@intel.com>
+ <ZCMpXMj7GwDIp6Ll@intel.com>
+ <118981ef-260d-4c1a-5ca5-ad435d5edbc7@linux.intel.com>
+ <f87c39a243d84e53d6c292c63d032b30c89adb3e.camel@intel.com>
+ <36548877-5352-8ff3-6e87-410089470a4b@linux.intel.com>
+ <4ad872f1366802a717e13140d1da467ace1ae36f.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <4ad872f1366802a717e13140d1da467ace1ae36f.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v6 5/8] drm/i915/pxp: Add ARB session
+ creation and cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,228 +75,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Lahtinen, Joonas" <joonas.lahtinen@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0977466225481505105==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 30/03/2023 20:44, Teres Alexis, Alan Previn wrote:
+> On Thu, 2023-03-30 at 13:25 +0100, Tvrtko Ursulin wrote:
+>> On 30/03/2023 01:10, Teres Alexis, Alan Previn wrote:
+>>> On Wed, 2023-03-29 at 08:43 +0100, Tvrtko Ursulin wrote:
+>>>> On 28/03/2023 18:52, Rodrigo Vivi wrote:
+>>>>> On Tue, Mar 28, 2023 at 05:01:36PM +0000, Teres Alexis, Alan Previn wrote:
+>>>>>> On Mon, 2023-03-27 at 17:15 +0100, Tvrtko Ursulin wrote:
+> alan:snip (excuse my snips - my evolution keeps inserting CRs - still looking for solution)
+>> But intuitively I thought that what Mesa wants is a no-cost getparam
+>> which would somewhat reliably tell it if the feature is supposed to be
+>> there and context create at a later stage, with the protected flag set,
+>> is supposed to work. AFAIU it can still fail at that point or probably
+>> block until the required setup is done.
+> Yes - that's right - i had another round of discussions with Daniele about a cleaner approach - below..
+> alan:snip
+>> Even 200ms is possibly not good enough since boot time targets (to UI
+>> AFAIR) are pretty tight. Don't know... Maybe I'd need a timeline diagram
+>> showing the involved components to understand this properly.
+> Absolutely, my experiences in i915 on embedded products even had PORs of <1000milisec to first-fully-renderered-display from cold-boot so yes, we need to work with this requirement
+> in mind and do testing on real customer stack.
+> 
+> I spoke to Daniele and we have another idea - but would also impact mesa, for the better:
+> 
+> 1. Introduce get-param (is_PXP_avail)
+> 	- will return a simple yes or no
+> 		- yes means : i915-device-info supports it, kernel configs supports it and required-firmwares were found (not necessarily loaded/init yet).
+> 			(NOTE: this would be made to hook up to pxp helpers such as intel_pxp_is_supported)
+> 2. Gem-pxp-context-creation continues blocking like today with minor tweak:
+> 	(same)- success = all dependencies are in place, all firmware init completed, pxp arb session successfully completed.
+> 	(same)- non-success -ENODEV = if any dependency wasnt available or fw failed to create arb-session due to fw-init-failure/BIOS/platform config.
+> 	(tweak)- non-success -ENXIO (or some other -E'FOO') if component-driver-init or firmware-init is still pending after brief timeout.
+> 		- on timeout - TBD - need testing/debug on real world stack.
+> 		- UAPI spec needs update but pxp implementation currently uses -ENXIO for similiar reason inheritted first merge.
+> 
+> Thus, with this: Get param would always be immediate. Pxp-context-creation would only block when all dependencies are in place and we attempt to create the pxp arb session.
+> (firmware can take up to 200-milisecs, according to MTL spec, so I'd say ~210 given other overheads between i915 and fw and back).
+> We would need to change MESA-get-caps to use get-param (and not pxp-context-creation) as it would always return immediately with kernel side support.
+> And if application explicitly requires PXP support, then it needs to call pxp-context-creation that may block or require retry.
 
-Series: series starting with [1/2] drm/i915/wm: split out SKL+ watermark regs to a separate file
-URL   : https://patchwork.freedesktop.org/series/115921/
-State : success
+The above sounds good to me.
 
-== Summary ==
+I am only not 100% clear on the ENODEV option from context create, does 
+it include even things which can be detected without any timeouts at 
+probe time, or just failures which take time to learn about.
 
-CI Bug Log - changes from CI_DRM_12950 -> Patchwork_115921v1
-====================================================
+> WRT to fast-boot-to-first-frame, I am hoping real customer stack doesn't require PXP on the compositor and first mesa instance works fine without PXP caps.
+> And when customer apps that needs PXP starts, it would create pxp context which would block but the app would not have a choice.
 
-Summary
--------
+Yeah that sounds like an unlikely use case and one that we cannot 
+improve on the kernel or uapi side.
 
-  **SUCCESS**
+(I can imagine resuming directly into a full screen video playback post 
+suspend, but a cold boot into it is a stretch.)
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115921v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][3] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-2:         [PASS][5] -> [ABORT][6] ([i915#7913] / [i915#7982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271]) +16 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [FAIL][8] ([i915#8308]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [FAIL][10] ([i915#7932]) -> [PASS][11] +1 similar issue
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12950 -> Patchwork_115921v1
-
-  CI-20190529: 20190529
-  CI_DRM_12950: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7230: f0485204004305dd3ee8f8bbbb9c552e53a4e050 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115921v1: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bcf0849a4622 drm/i915/psr: split out PSR regs to a separate file
-92061fe652e9 drm/i915/wm: split out SKL+ watermark regs to a separate file
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html
-
---===============0977466225481505105==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/wm: split out SKL+ watermark regs to a separate file</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115921/">https://patchwork.freedesktop.org/series/115921/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12950 -&gt; Patchwork_115921v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115921v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12950/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115921v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12950 -&gt; Patchwork_115921v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12950: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7230: f0485204004305dd3ee8f8bbbb9c552e53a4e050 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115921v1: 47c4ceabb0ff38d88aed06b1c3ca5196b6659189 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bcf0849a4622 drm/i915/psr: split out PSR regs to a separate file<br />
-92061fe652e9 drm/i915/wm: split out SKL+ watermark regs to a separate file</p>
-
-</body>
-</html>
-
---===============0977466225481505105==--
+Tvrtko
