@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682CC6D1FB9
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 349806D1FAB
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 14:10:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EFD410F221;
-	Fri, 31 Mar 2023 12:10:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F06410E136;
+	Fri, 31 Mar 2023 12:10:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D1E10F14C;
- Fri, 31 Mar 2023 09:26:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA6510F14C;
+ Fri, 31 Mar 2023 09:26:25 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CFD1762654;
- Fri, 31 Mar 2023 09:26:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1833FC4339E;
- Fri, 31 Mar 2023 09:26:16 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A18B262660;
+ Fri, 31 Mar 2023 09:26:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 514EEC433EF;
+ Fri, 31 Mar 2023 09:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1680254779;
- bh=JNGe4Stkfx4U8PEelqzPaQWET75d/oi6wGG9GBuzGjg=;
+ s=k20201202; t=1680254784;
+ bh=TRYSMYkXks9q3GSP+rY54wBe6rlqoIbNXHmoR55KP+A=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=nxD+CR5W+M4FMA4u7Hve2K2JQHHfpYrFTxcrzo1+D3s9MFvxrft5XY2qstmWV0U9b
- Dcihw64MldAHjYk5Nu4uAVf1bD0M+vHq8MjU9fFglHhvT3juY9hxLJP6J1mNK+Lpiq
- bRYgOkTu73CBFuOtEJKjmVsZTQfaJuaap1FntnI8LO14tvm9hxT/e4r9YDeBmRGSb+
- tdXfN3XV/IZVyIYAXTp4UEVQgqHuRrP9KOFV8uEbsgKZ8zeoKRZ0f7Knn7Sgyr+6a/
- tIyR7WqeSSP+Asl/BYPWoGv60k9WGCg/Aeak+jN7+o5Mer9rfEVJLgX/HOAs4Ck4o+
- Re9zsLs21/OgQ==
+ b=QfTjoBeSVRz6N27mcOkAv5LA/MVWqsH0d1zmQmcsuuwyb4YU9RGjd31eVeQB/YAfB
+ +6FK9GNc2T3I4jj510Nx1R+EFu7iKO+HFBJd/Tcndv3C3ns+K2EhZbj8VEgAfiyDFr
+ h7QzGIZHIBP7JDINi7BJlg5Ij4UMemIeOqkgH9SQLMUzYiBO/IHQPG6TxuffMIaywB
+ 8ziNYiQxweDizvG0jBB47zAgCrI1ROgNsgp7AYDcSMr9pwQ4b+H4wkCj9iS/KLbR4F
+ 7lEfCR3WYqlYR60BXPSZ7LxYt//kkFFoMyTTC4ZyYq4BPQrsOugK3OPicOHUykXjLN
+ NIeywdUEbvJJw==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org
-Date: Fri, 31 Mar 2023 10:25:50 +0100
-Message-Id: <20230331092607.700644-3-lee@kernel.org>
+Date: Fri, 31 Mar 2023 10:25:52 +0100
+Message-Id: <20230331092607.700644-5-lee@kernel.org>
 X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
 In-Reply-To: <20230331092607.700644-1-lee@kernel.org>
 References: <20230331092607.700644-1-lee@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 31 Mar 2023 12:10:00 +0000
-Subject: [Intel-gfx] [PATCH 02/19] drm/i915/intel_region_ttm: Provide
- missing description for 'offset' param
+Subject: [Intel-gfx] [PATCH 04/19] drm/i915/display/intel_display_debugfs:
+ Fix incorrect param naming for 'intel_connector'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,7 +61,8 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/gpu/drm/i915/intel_region_ttm.c:201: warning: Function parameter or member 'offset' not described in 'intel_region_ttm_resource_alloc'
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c:1668: warning: Function parameter or member 'intel_connector' not described in 'intel_connector_debugfs_add'
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c:1668: warning: Excess function parameter 'connector' description in 'intel_connector_debugfs_add'
 
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
@@ -73,21 +74,22 @@ Cc: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/gpu/drm/i915/intel_region_ttm.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
-index b7fbd5abb42a5..bf6097e7433d5 100644
---- a/drivers/gpu/drm/i915/intel_region_ttm.c
-+++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-@@ -181,6 +181,7 @@ intel_region_ttm_resource_to_rsgt(struct intel_memory_region *mem,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index d5715ccc37f0e..195b6cb379ad1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1395,7 +1395,7 @@ DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
+ 
  /**
-  * intel_region_ttm_resource_alloc - Allocate memory resources from a region
-  * @mem: The memory region,
-+ * @offset: BO offset
-  * @size: The requested size in bytes
-  * @flags: Allocation flags
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+- * @connector: pointer to a registered drm_connector
++ * @intel_connector: pointer to a registered drm_connector
   *
+  * Cleanup will be done by drm_connector_unregister() through a call to
+  * drm_debugfs_connector_remove().
 -- 
 2.40.0.348.gf938b09366-goog
 
