@@ -1,52 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF596D1DE4
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 12:22:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0EC6D1DF3
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 12:23:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE0D10F1C3;
-	Fri, 31 Mar 2023 10:22:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4D110F1C4;
+	Fri, 31 Mar 2023 10:23:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B6610F1C3
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 10:22:10 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6490010F1C4;
+ Fri, 31 Mar 2023 10:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680258130; x=1711794130;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tNWKjg0Po6/7cNwy3cS53dfOaYQTt83TAenOMaX5lJw=;
- b=l03KFi1ME55EfBE1wR++luilkr4oujCKAe22D50PRfN1v0pnWwROhq2B
- CH+H302LKzA4DvClXk3v0kz1BxOiKq7E1NL9VwlQJpNWO/zREka1l+EwA
- NAe5dHooxYA7nXDf8ok58CTpAn3/0zj6HkbhQnytWUAM3Aw2voWr51hE8
- j+TRJ2PkTqjPiNQmZv2XFsSmSbvY3/cICzTNcjY167AWEiL5N/XQxDu6I
- AfnuyMBKCoOld2jnGg3HYYlyoX/UzKUQg7vIjhDijVnP9g1ja9eWAnG0/
- 5+LCsI+WbH/eLvH5P/n3UsBXj+1kczJWv2d57v4r3hkpGKS4AfdgM1OIx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="325382845"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="325382845"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 03:22:10 -0700
+ t=1680258218; x=1711794218;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yS26JeytgEYyImsek/Ui/aDWMFc9qIP8nNxcy0v3hS8=;
+ b=gZIwS5pSc0bJ6gutaPwY8c8ai9LzjrUgNhKLoT/ShJ+ic53c0Ng1tNkT
+ 7+fgTlkzobiokm/oKK66fkpQby9NAeDPP93kw+uTy2ymdk9w+E1C37MNv
+ PGw/6/KQdUMVjFNexfAb+zqfGQ641z3j3tzxn6dduShOT6L+yvqUx6hn7
+ QLq8YcRtuiZtpSHtZV6E2DdSADIZPeu263Cq17QCWHDCFX6xQ/e4SBR5H
+ 54r+zzKxZBpwVEvXrFjg7cXendQ0TgtLrSiCPZfXIxlZI6foTyRKAp8ER
+ K+G5n5sYnvuPQx9r0mkdAYhVqau3rk/ROJ4UHSC/YfrHrlYjx7HMKAZSf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="340142851"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="340142851"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 03:23:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="931100851"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="931100851"
-Received: from bachaue1-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.41.110])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 03:22:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230331101539.2893797-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230331101539.2893797-1-jani.nikula@intel.com>
-Date: Fri, 31 Mar 2023 13:22:05 +0300
-Message-ID: <877cux2pbm.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="796069382"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="796069382"
+Received: from bpower-mobl3.ger.corp.intel.com (HELO [10.213.225.27])
+ ([10.213.225.27])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 03:23:35 -0700
+Message-ID: <3efd6c5d-cd3a-f562-fc61-a43e9bf003cb@linux.intel.com>
+Date: Fri, 31 Mar 2023 11:23:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: enable kernel-doc warnings for
- CONFIG_DRM_I915_WERROR=y
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230331022632.1388175-1-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230331022632.1388175-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hwmon: Use 0 to designate
+ disabled PL1 power limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,72 +63,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Masahiro Yamada <masahiroy@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 31 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> Increase awareness of kernel-doc issues by enabling doc check locally
-> when W= is *not* specified on the make command-line, but
-> CONFIG_DRM_I915_WERROR=y is enabled.
->
-> Once the warnings have been fixed, we can pass -Werror to kernel-doc
-> locally, and fail the build when there are kernel-doc warnings in i915.
->
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
+
+On 31/03/2023 03:26, Ashutosh Dixit wrote:
+> On ATSM the PL1 limit is disabled at power up. The previous uapi assumed
+> that the PL1 limit is always enabled and therefore did not have a notion of
+> a disabled PL1 limit. This results in erroneous PL1 limit values when the
+> PL1 limit is disabled. For example at power up, the disabled ATSM PL1 limit
+> was previously shown as 0 which means a low PL1 limit whereas the limit
+> being disabled actually implies a high effective PL1 limit value.
+> 
+> To get round this problem, the PL1 limit uapi is expanded to include a
+> special value 0 to designate a disabled PL1 limit. A read value of 0 means
+> that the PL1 power limit is disabled, writing 0 disables the limit.
+> 
+> The link between this patch and the bugs mentioned below is as follows:
+> * Because on ATSM the PL1 power limit is disabled on power up and there
+>    were no means to enable it, we previously implemented the means to
+>    enable the limit when the PL1 hwmon entry (power1_max) was written to.
+> * Now there is a IGT igt@i915_hwmon@hwmon_write which (a) reads orig value
+>    from all hwmon sysfs  (b) does a bunch of random writes and finally (c)
+>    restores the orig value read. On ATSM since the orig value is 0, when
+>    the IGT restores the 0 value, the PL1 limit is now enabled with a value
+>    of 0.
+> * PL1 limit of 0 implies a low PL1 limit which causes GPU freq to fall to
+>    100 MHz. This causes GuC FW load and several IGT's to start timing out
+>    and gives rise to these Intel CI bugs. After this patch, writing 0 would
+>    disable the PL1 limit instead of enabling it, avoiding the freq drop
+>    issue.
+> 
+> v2: Add explanation for bugs mentioned below (Rodrigo)
+> 
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8060
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->
-> Masahiro, is this an awful hack to do in our local Makefile?
->
-> Note that we do try to avoid anyone outside of i915 developers enabling
-> CONFIG_DRM_I915_WERROR=y.
->
-> Any other and cleaner ways of achieving this, without using W= on the
-> entire kernel?
->
-> On that note, it would be nice to be able to enable W= on a subdir
-> alone.
-
-To elaborate, we add a bunch of W=1 style warnings in our local
-Makefile, and try to maintain a high standard with them, but it's a bit
-tedious to duplicate what's in scripts/Makefile.extrawarn. However that
-doesn't seem to be easily reusable for subdir-ccflags-y.
-
-We also add -Werror for CONFIG_DRM_I915_WERROR=y, and have our
-developers and CI use that so we don't slip.
-
-As to this patch, we'd like to do the same for kernel-doc. And,
-hopefully, also enable -Werror for kernel-doc.
-
-BR,
-Jani.
-
-
-> ---
->  drivers/gpu/drm/i915/Makefile | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 057ef22fa9c6..13d7040801bf 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -369,6 +369,14 @@ include $(src)/gvt/Makefile
->  obj-$(CONFIG_DRM_I915) += i915.o
->  obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
->  
-> +# kernel-doc test
-> +#
-> +# Enable locally for CONFIG_DRM_I915_WERROR=y if not already enabled.
-> +# See scripts/Makefile.build
-> +ifeq ($(KBUILD_EXTRA_WARN)$(CONFIG_DRM_I915_WERROR),y)
-> +    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none $<
-> +endif
+>   .../ABI/testing/sysfs-driver-intel-i915-hwmon |  4 +++-
+>   drivers/gpu/drm/i915/i915_hwmon.c             | 24 +++++++++++++++++++
+>   2 files changed, 27 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> index 2d6a472eef885..8d7d8f05f6cd0 100644
+> --- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> +++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> @@ -14,7 +14,9 @@ Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
+>   
+>   		The power controller will throttle the operating frequency
+>   		if the power averaged over a window (typically seconds)
+> -		exceeds this limit.
+> +		exceeds this limit. A read value of 0 means that the PL1
+> +		power limit is disabled, writing 0 disables the
+> +		limit. Writing values > 0 will enable the power limit.
+>   
+>   		Only supported for particular Intel i915 graphics platforms.
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> index 596dd2c070106..c099057888914 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -349,6 +349,8 @@ hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
+>   	}
+>   }
+>   
+> +#define PL1_DISABLE 0
 > +
->  # header test
->  
->  # exclude some broken headers from the test coverage
+>   /*
+>    * HW allows arbitrary PL1 limits to be set but silently clamps these values to
+>    * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
+> @@ -362,6 +364,14 @@ hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
+>   	intel_wakeref_t wakeref;
+>   	u64 r, min, max;
+>   
+> +	/* Check if PL1 limit is disabled */
+> +	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
+> +		r = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
+> +	if (!(r & PKG_PWR_LIM_1_EN)) {
+> +		*val = PL1_DISABLE;
+> +		return 0;
+> +	}
+> +
+>   	*val = hwm_field_read_and_scale(ddat,
+>   					hwmon->rg.pkg_rapl_limit,
+>   					PKG_PWR_LIM_1,
+> @@ -385,8 +395,22 @@ static int
+>   hwm_power_max_write(struct hwm_drvdata *ddat, long val)
+>   {
+>   	struct i915_hwmon *hwmon = ddat->hwmon;
+> +	intel_wakeref_t wakeref;
+>   	u32 nval;
+>   
+> +	if (val == PL1_DISABLE) {
+> +		/* Disable PL1 limit */
+> +		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
+> +						    PKG_PWR_LIM_1_EN, 0);
+> +
+> +		/* Verify, because PL1 limit cannot be disabled on all platforms */
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I think there is a race right here, since above grabbed and released the 
+hwmon_lock, anyone can modify it at this point before the verification 
+below. Not sure if any consequences worse than a wrong -EPERM are 
+possible though.
+
+Also, is EPERM correct for something hardware does not support? We 
+usually say ENODEV for such things, IIRC at least.
+
+Anyway, race looks easily solvable by holding the existing mutex and a 
+single rpm ref for the whole rmw-r cycle.
+
+Regards,
+
+Tvrtko
+
+> +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
+> +			nval = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
+> +		if (nval & PKG_PWR_LIM_1_EN)
+> +			return -EPERM;
+> +		return 0;
+> +	}
+> +
+>   	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+>   	nval = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_power, SF_POWER);
+>   	nval = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
