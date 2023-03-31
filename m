@@ -1,144 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DE66D1994
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 10:16:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2868F6D19B2
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 10:23:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE68710E31B;
-	Fri, 31 Mar 2023 08:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F263110F133;
+	Fri, 31 Mar 2023 08:23:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771BE10E31B;
- Fri, 31 Mar 2023 08:16:27 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92FF110F11A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 08:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680250587; x=1711786587;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=v3ZcV9GYwuy5k5VcQ/8JsrOY/gK3IH8AVIVGRKqE988=;
- b=KRBdY65jxllluz06SzkmxQ5bUH1ZDuQb82X1o9yi25ofGrZl/AU9hQFm
- 3EINQuAmeB9mG6hgI9mu1ygsYcmZPF5LXURUBVuARuIA1oupVv4nmjjTQ
- 3iK/Znj7Nhg60vF+yc1AcPBAaX8P4brmrAC0715hD1KJImWvdqQ/fCf6E
- n1Q9odVV5WZnsw+nkO8kCUX5qblrmSDMBtyJ9sMQuGm/iTNOKrcHM9JH8
- WDJeV73B/TN6RlgUGgkdjYWZEgMyJPslTMdUJcSDExDaAMFJitmjycrt7
- Z1oSVlITbGBG8qPeINkw9tHQ4hpg1b6yya6Z+/XSl/B0QT5rPJ2Jlvfe9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="427673710"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="427673710"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 01:16:24 -0700
+ t=1680250982; x=1711786982;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fuY1MioiqKgIYu/vt88Ei03JgeNdiouN4+cYKtaWhNU=;
+ b=ARHZGOsfZQa0MoOCeiy4qm1u0EOI9+6eC/USrs9LqJiE/5O5G70hDQN+
+ Ik2Hntb4ZdrFjuNc7eqjZyIYrD4SORBpCCbiAwPeXsReRNIBN1oB2mziE
+ caugmr1eLW8Nj/r9787/BPcW9cMmVby1szQ/aNJ3GsJOaqxZoqWjVRXpP
+ 8c27Diq53MGF6aX9WJbFkZka1xCu7je4RqpfgOH3arDGL8ylNRYaEZG8G
+ VT2WqevFuU7pZTPJg4UbjFTcbvocMmqD104SsBH7ZOUigkdCNb6kN9bdJ
+ +NHyOUmnMlzG4SolRoKLCIJlnzgJYaObdqsNXEN6KtwWqYlOQ7HMBW3Zy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="406405609"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="406405609"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 01:23:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="774284821"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="774284821"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by FMSMGA003.fm.intel.com with ESMTP; 31 Mar 2023 01:16:24 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 31 Mar 2023 01:16:24 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 31 Mar 2023 01:16:23 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 31 Mar 2023 01:16:23 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 31 Mar 2023 01:16:23 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ktZ0JzzSfMaWtnH3w/uNZxOuMWGHWHlBH4Pv2YW3d8ZS0sa4k7Sv8MAB2Cqk8ds9muQ6fuCmfvoxbK61LuduABd9r0X9botdowV3S0sn858y+d7VDacgwJC4M+BoMJX07iORXGSv7at0LlPDQR6vLjl6iGwuRNUO54BAP0msfYLQKqohAk0EYzihw8t2n36YKzjztz3XtHL1SKMIlS5+hkCUwco/U1o18Z0HHxuNp6FJTKWej6sVL3WETSNgjbRsGEVOxNs70MP7g9g27a4TLPo5DxK3SghTPkdtXzsAagsLUJnV2GsuwoJH7cNBoijW6h0sSxVMOuScY0w84Iy3DA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RDarEzxwvNILH2164epRldDPstKxBXOyzNxco7qX/WA=;
- b=MTZGaFP1o8PPkFFTT0T6qX9TtbZ8kdqmeoi6ijI5tbEGnPDredoji8CxY/n0C7uNaUOb/DENps8th7gs5iwr49AWH34qP9kB8nqhsIidHHLu09ssFrywsEjgybXhyZY98MlIKVsOtXR2YApB4URVeQLmVtcXA8od4s3dFaT+D7J1y/4LIc47fx9UzaafU6RJZeHvNNopAVSce5UrrGsHulM72NIUouZfSG1mkf04oA3oTjjB8z70VrCshDpyLEXSDh8W17deE6hmp91LY2X7xi/JkF5Eo++QG+tYfGcPril2iu0V5VVQPJ/FB5D4HDkCHJZhTs1DPnHtrP4xd2Qg5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
- by MN6PR11MB8244.namprd11.prod.outlook.com (2603:10b6:208:470::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Fri, 31 Mar
- 2023 08:16:16 +0000
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::73e9:b405:2cae:9174]) by BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::73e9:b405:2cae:9174%8]) with mapi id 15.20.6254.023; Fri, 31 Mar 2023
- 08:16:16 +0000
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, "Liu, Yi L" <yi.l.liu@intel.com>
-Thread-Topic: [PATCH v3 2/6] iommufd: Create access in
- vfio_iommufd_emulated_bind()
-Thread-Index: AQHZYI9Fb3LKkYOj20aMOMUTtKdKla8SMNoAgAJfHFA=
-Date: Fri, 31 Mar 2023 08:16:16 +0000
-Message-ID: <BN9PR11MB5276BB3F0494E0CAC07AF4918C8F9@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <20230327093351.44505-1-yi.l.liu@intel.com>
- <20230327093351.44505-3-yi.l.liu@intel.com> <ZCSYqHIo/QrFL70C@nvidia.com>
-In-Reply-To: <ZCSYqHIo/QrFL70C@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|MN6PR11MB8244:EE_
-x-ms-office365-filtering-correlation-id: c5d5f1f8-5852-45d9-fc2e-08db31c0331b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 00FZf710fPQSzFTBpV538qCPsYkYp3DzeS7dInQGte73helZ94WtKvjNhasSjsuINJkHLKasruZmxmfuTqtE/ypU8aJgdSRnHMUNe3lkMg2qEhhBfALjem6DyDNpS1H5WXSwN351zgUmmTPrNAh3mVlCivC7iIEqfTcOLwKSWavefgR5jfp0YJx74goQjT3Rpt6EboNNXLuM/GB05d8WhdMxQMJDbIBQhLVigVw86h7nssSWvEjWOPI2nlmSVrklvMD6zNU5zuVN4ZoWH0ZW90LGWGQJDmF4I1YayMzx+Kx/OMi3Lw/ZluDiJiHLFXf7lFgDJLVtNHhSG9WNvje9JdLdNoNnluTIXKlgO4k7bn/pvJdAy/XKEDxubHfFdencffMsUWw7L5WerBDv1fGB0zVbVR8GboYzOGeX/JbQKkOvUwM3X34YJhx5oKPV+4AApyjL1xOuUgrXhVVHT6CXqjO6415/Re1T3Zg2SCEUHEmHkaICrjJJ8TH8SWJchHl6DFmBmGjU9M3CMO8xi0x/0HkaKfC6pa7V6qL9BHFVKlMEVunIot89GJ/0drG9R+P5pVURKL/+DwdOv6gAaAHAfjY7qh6tM5kXeWib2ZHTE7Q=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(376002)(136003)(396003)(39860400002)(451199021)(2906002)(4744005)(33656002)(6636002)(83380400001)(41300700001)(6506007)(66556008)(7416002)(71200400001)(5660300002)(64756008)(478600001)(55016003)(8676002)(110136005)(52536014)(8936002)(54906003)(66476007)(4326008)(316002)(66446008)(76116006)(66946007)(7696005)(9686003)(186003)(82960400001)(26005)(122000001)(86362001)(38070700005)(38100700002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nppzlg0PG+tt7ILgk0l0Jfi6yFgWM0AOOXPA9IWB06kYmuRDNrJ386aITsEf?=
- =?us-ascii?Q?0IjFRRvogAs8SdfXWiTLf1q0Imit1V1LAsetfCvsm187yiIh+9xbRwh8jlFQ?=
- =?us-ascii?Q?SGDNF3eNnY8g06gL7mDRFHdVLHBBLLwlxOebwYgt83Mjy3/+FhAdpNPVX1lF?=
- =?us-ascii?Q?u3yKG6IPHzHhlnEVcpQEKnufxMp9bwTvi4NSYf+mc139VU/ykmOG7dwWRnH/?=
- =?us-ascii?Q?FqPp1u6xRXm0tjdxnN7dgfiClPHWhhjKYp8/2hJZEHvZHctWcyNAZch0yuWE?=
- =?us-ascii?Q?Qn7rH2AHwYT09NZIpWHkHql9iho+Dd2i7JbzkdrYM18AdhE6+z5jhsxF3JtA?=
- =?us-ascii?Q?Tvbh9iGcJqsc4n2Xz+IOtGlaaRbeUMx3ClPsu3/7nrcNw/2okqX5RVJX2Uwd?=
- =?us-ascii?Q?sU9OK92+7j2pOYcFgptGoEahUcV/jlQDr9FPJcnsjY96B6E2bzPZASr9HmJo?=
- =?us-ascii?Q?CWV+hcco1cqJKWslGU6rn86PXBZW00A7ulbK3da31gmZw/5zepgZXa9F+lYv?=
- =?us-ascii?Q?EHwdB+vSVrDsk/dl4FpK4qdaf0TZV12E+lxWzvyNajK3tbmuX1Xx6yCT6DOi?=
- =?us-ascii?Q?05UlvoBwkVR8i077BISxrYHXDHyLKo7bE1FqsM96bRgUcOEGJoZEqFolTuPu?=
- =?us-ascii?Q?+8HprNq8oZMGyyXDMN8wzBqQZx2VFjL04m3g4RAgc39Q0B8vEK6BRHPA4lHm?=
- =?us-ascii?Q?hAIxL/aXGruV6gOFps2zanbJ/OX4AT05DwXXvjjad4kE5qmM/xw57EFvY2DT?=
- =?us-ascii?Q?V4IdJxSDueiFNm+BeV7SkZ39RvBb8gfD0eAH3VFhCmQ9wibSOI+dVAbAHJ2p?=
- =?us-ascii?Q?kDUqZfYxbYl4TAuoFOcqn8ND/zcQzMrRLLTpSiHrs6sk4xr7FCZUvt/QLDh6?=
- =?us-ascii?Q?1xHROskPw59VwejMitoiZiC8YoPl85T9JgGQmusKZrnCWsdG6bBChDniiOsn?=
- =?us-ascii?Q?OqpK+KTnI0OKbIy8SqE5AW2GKN+zsCUQu4XnysWZIlp5vYuSHZEbTbG8PMeA?=
- =?us-ascii?Q?QvbZrCtNScOCIwYuEXoUqBcV+I0jtI9JZHN64Y3KLXW5DbDxFyJUwcM4MPoj?=
- =?us-ascii?Q?K+0dY9C+84X8hpSwoikrRI86jxGR2CDfNdzdcuDjVGlFCBMlkawWo8mVw4M4?=
- =?us-ascii?Q?Bs4K9fSUpM+SBUzoN00PwaxzRe9xtYx7VHto5vPhCfmdQhbq277wip1UTp7L?=
- =?us-ascii?Q?A3prvxYuHZ/eazXQ2vF7NRa22TtS5MHZu/W9xH7cm44lZvXC1Edr2+FxKhWS?=
- =?us-ascii?Q?/k9qX0BkzXlD/CyiE22qxbxIK/07AhkIvbUcDtnwpRZLmhbW7zyXh+9s0hCN?=
- =?us-ascii?Q?hRpViTW51wZ6GnvaywD0zJSe+p57XeI7lGidLvFBavH61gFagZh01PT0W3eP?=
- =?us-ascii?Q?XlLH/4jlA55o5cTVIf1WOhgnbHnsg9/W595Yf3jsNRaPktXHuMxg1Eb6YTWl?=
- =?us-ascii?Q?wqUdJuVo705lI5ssJSlrwxdIIV0mPRWjO+8DZ1JmrTpfwDKX8F20gkU2MeXl?=
- =?us-ascii?Q?hgnGAkXrgXT/37nBz4Hg+d5Ay9zExGn51VU7Zd9ppf7sw8AZerGvnYMW5k6z?=
- =?us-ascii?Q?NVKRrh6BNmmAN0ICjfulDlwLM2WSekLdwoXH8XGQ?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="754330336"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="754330336"
+Received: from bpower-mobl3.ger.corp.intel.com (HELO [10.213.225.27])
+ ([10.213.225.27])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 01:23:00 -0700
+Message-ID: <bfe8d7ab-b327-39e8-cdd0-3aad0cd437e4@linux.intel.com>
+Date: Fri, 31 Mar 2023 09:22:58 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5d5f1f8-5852-45d9-fc2e-08db31c0331b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2023 08:16:16.3398 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: q+qt5Q3XW3sv//P5ojwno/bfNlhpcuYYOcInsu5snC6MhLwpSEn6C1XiSNYj808x9L1g1a66NU9AYIxB0Asj6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8244
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 2/6] iommufd: Create access in
- vfio_iommufd_emulated_bind()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230330004103.1295413-1-umesh.nerlige.ramappa@intel.com>
+ <20230330004103.1295413-6-umesh.nerlige.ramappa@intel.com>
+ <1036f396-f5d6-82bd-27ff-66146b115184@linux.intel.com>
+ <87r0t5dgc5.wl-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87r0t5dgc5.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/pmu: Prepare for multi-tile
+ non-engine counters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,55 +66,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Thursday, March 30, 2023 4:00 AM
->=20
-> On Mon, Mar 27, 2023 at 02:33:47AM -0700, Yi Liu wrote:
-> > @@ -494,6 +479,30 @@ void iommufd_access_destroy(struct
-> iommufd_access *access)
-> >  }
-> >  EXPORT_SYMBOL_NS_GPL(iommufd_access_destroy, IOMMUFD);
-> >
-> > +int iommufd_access_attach(struct iommufd_access *access, u32 ioas_id)
-> > +{
-> > +	struct iommufd_ioas *new_ioas;
-> > +	int rc =3D 0;
-> > +
-> > +	if (access->ioas !=3D NULL && access->ioas->obj.id !=3D ioas_id)
-> > +		return -EINVAL;
->=20
-> This should just be
->=20
->    if (access->ioas)
->         return -EINVAL;
 
-the physical path has the same check:
+On 30/03/2023 23:28, Dixit, Ashutosh wrote:
+> On Thu, 30 Mar 2023 05:39:04 -0700, Tvrtko Ursulin wrote:
+>>
+> 
+> Hi Tvrtko,
+> 
+>>> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+>>> index 1b04c79907e8..a708e44a227e 100644
+>>> --- a/drivers/gpu/drm/i915/i915_pmu.h
+>>> +++ b/drivers/gpu/drm/i915/i915_pmu.h
+>>> @@ -38,13 +38,16 @@ enum {
+>>> 	__I915_NUM_PMU_SAMPLERS
+>>>    };
+>>>    +#define I915_PMU_MAX_GTS (4) /* FIXME */
+>>
+>> 3-4 years since writing this I have no idea what I meant by this
+>> FIXME. Should have put a better comment.. :( It was early platform
+>> enablement times so it was somewhat passable, but now I think we need to
+>> figure out what I actually meant. Maybe removing the comment is fine.
+>>
+>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>>> index dba7c5a5b25e..bbab7f3dbeb4 100644
+>>> --- a/include/uapi/drm/i915_drm.h
+>>> +++ b/include/uapi/drm/i915_drm.h
+>>> @@ -280,7 +280,17 @@ enum drm_i915_pmu_engine_sample {
+>>>    #define I915_PMU_ENGINE_SEMA(class, instance) \
+>>> 	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
+>>>    -#define __I915_PMU_OTHER(x) (__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 +
+>>> (x))
+>>> +/*
+>>> + * Top 8 bits of every non-engine counter are GT id.
+>>> + * FIXME: __I915_PMU_GT_SHIFT will be changed to 56
+>>> + */
+>>
+>> I asked before and don't think I got an answer: Why is 4 bits not enough
+>> for gt id? The comment is not my code I am pretty sure.
+> 
+> Both of the above FIXME's are the work of yours truly :-) (added during
+> PRELIM work).
 
-	if (idev->igroup->hwpt !=3D NULL && idev->igroup->hwpt !=3D hwpt) {
-		rc =3D -EINVAL;
-		goto err_unlock;
-	}
+Very kind of you but I think first one is mine. ;) I can find it in my 
+local branch dating from at least June 2020.
 
-If we change here then that one should be changed too.
+I had an idea that maybe it was supposed to mean I wanted to results the 
+I915_MAX_GT define and not duplicate a '4' here. Perhaps there was some 
+header mess which made me give up at the time.
+
+I think it is worth trying that now, maybe something changed.
+
+> Anyway given that now i915 will not support new product generations I think
+> we can just drop the FIXME's. Otherwise I was saying since we are only
+> using a few bottom bits, why not future proof things a bit and allow for
+> num_gt's to expand beyond 16.
+
+Oh right.. I thought 16 gts will be enough but I also don't think I mind 
+if it is 4 or 8 bits. Possibly at the time, as I was seeing more and 
+more counters getting added, or better say classes of counters, I was 
+starting to get wary of getting out of bits for future expansion. All of 
+those were done by segmenting the numerical space, not bit wise, so 
+perhaps the concern shouldn't have been there and 8 is also fine. Don't 
+know really, don't think I have a strong opinion. Lets pick one and drop 
+the FIXME comment.
+
+Regards,
+
+Tvrtko
+
+> 
+> So for now just drop the FIXME's for i915, revisit if needed with xe.
+
+
