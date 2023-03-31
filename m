@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDE06D1DC7
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 12:18:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FEA6D1DCA
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Mar 2023 12:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 682F310F1B9;
-	Fri, 31 Mar 2023 10:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 240D510F1BB;
+	Fri, 31 Mar 2023 10:18:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4767910F1B7
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 10:18:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C99A110F1B7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 10:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680257911; x=1711793911;
+ t=1680257912; x=1711793912;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AsLYXe1/DmBi0aGY20Tc1UwRzZi7Alhg3QBg4yUt1bs=;
- b=Oc7oRik9c6mho0BXoGUz3Y+oWm/QqvmcRzaoqdTN1X1t0cF8fp4g13XF
- msSIixQDzjSiU1inDRjoSTA/YXfK2XLQC/MaUFzpPbXphLXTjgkG1QqnM
- n9PEkGNFKYSYTDSZOJM82eyKjZ8z/9pxLHOjqJI653bpLTIfBW8pdNr+v
- VIYoo1waON+JouJtbDtnjDthl1vKBpEYOxObYlBb4zyBSoyR8wqFqY2Fu
- IaHEUuVRpXuh1h+LEeCRGHefqoHVdVEemsDKyF3eaFSP4OsYvF7KEsFT6
- dpl2pUypYcnoTq/fHNn9imyM/Dl7o9uBKvsYx9K4TdAF86EWoey36BprZ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="340141765"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="340141765"
+ bh=sRLjjURvByh6xZVnMLvAPJ9cVvHyvkFBvA0Y8S+hsls=;
+ b=f8OniFb5UZlZYkxdN9/0ugklt0f6wO218oZVwc/PulVXeg5cMUuaREfn
+ USXPDcJcew4FFmEzmWMYGsMyEst2s/OvKe5BoylLdfdYfQxndcwSlZgfX
+ 1S78EzekT65MTYDNDNYotMINVSoVUOL1OcKm/fjSFkFlLc+3dR1pB0joO
+ nFS9MwSw90zNkN1wx8ulX6S0Dovd1z9Kk/PabF2uikiGshZBjaaxMnsBm
+ swekDxskuovGq5R/uiGI/f6Ln4FuQBKD8HbHGAVbce4wJDhjMFiH/iskp
+ oP1wUFHBxDg7phue84qqLNrTup/zDTdNOP12BLvFNBA7PZnWSn8Abau2O g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="340141774"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="340141774"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 03:18:31 -0700
+ 31 Mar 2023 03:18:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="796068341"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="796068341"
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="796068344"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="796068344"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 03:18:29 -0700
+ 31 Mar 2023 03:18:31 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 15:46:06 +0530
-Message-Id: <20230331101613.936776-7-ankit.k.nautiyal@intel.com>
+Date: Fri, 31 Mar 2023 15:46:07 +0530
+Message-Id: <20230331101613.936776-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230331101613.936776-1-ankit.k.nautiyal@intel.com>
 References: <20230331101613.936776-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/13] drm/i915/dp: Add helper to get sink_format
+Subject: [Intel-gfx] [PATCH 07/13] drm/i915/dp: Rearrange check for illegal
+ mode and comments in mode_valid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,82 +62,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Common function to get the sink format for a given mode for DP.
+Check for MODE_H_ILLEGAL before calculating max rates, lanes etc.
+Move comments about compressed bpp U6.4 format closer to where it is used.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 30 ++++++++++++-------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ce9384a0d153..352b5fbd805a 100644
+index 352b5fbd805a..4d5c74a1bd29 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -936,17 +936,25 @@ static int intel_dp_output_bpp(enum intel_output_format output_format, int bpp)
- 	return bpp;
- }
- 
-+static enum intel_output_format
-+intel_dp_sink_format(struct intel_connector *connector,
-+		     const struct drm_display_mode *mode)
-+{
-+	const struct drm_display_info *info = &connector->base.display_info;
-+
-+	if (drm_mode_is_420_only(info, mode))
-+		return INTEL_OUTPUT_FORMAT_YCBCR420;
-+
-+	return INTEL_OUTPUT_FORMAT_RGB;
-+}
-+
- static int
- intel_dp_mode_min_output_bpp(struct intel_connector *connector,
- 			     const struct drm_display_mode *mode)
- {
--	const struct drm_display_info *info = &connector->base.display_info;
- 	enum intel_output_format output_format, sink_format;
- 
--	if (drm_mode_is_420_only(info, mode))
--		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--	else
--		sink_format = INTEL_OUTPUT_FORMAT_RGB;
-+	sink_format = intel_dp_sink_format(connector, mode);
- 
- 	output_format = intel_dp_output_format(connector, sink_format);
- 
-@@ -1018,7 +1026,6 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	enum drm_mode_status status;
--	bool ycbcr_420_only;
- 	enum intel_output_format sink_format;
- 
- 	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
-@@ -1044,12 +1051,7 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	    target_clock > intel_dp->dfp.max_dotclock)
+@@ -1121,6 +1121,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	if (target_clock > max_dotclk)
  		return MODE_CLOCK_HIGH;
  
--	ycbcr_420_only = drm_mode_is_420_only(info, mode);
++	if (intel_dp_hdisplay_bad(dev_priv, mode->hdisplay))
++		return MODE_H_ILLEGAL;
++
+ 	max_link_clock = intel_dp_max_link_rate(intel_dp);
+ 	max_lanes = intel_dp_max_lane_count(intel_dp);
+ 
+@@ -1128,13 +1131,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	mode_rate = intel_dp_link_required(target_clock,
+ 					   intel_dp_mode_min_output_bpp(connector, mode));
+ 
+-	if (intel_dp_hdisplay_bad(dev_priv, mode->hdisplay))
+-		return MODE_H_ILLEGAL;
 -
--	if (ycbcr_420_only)
--		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--	else
--		sink_format = INTEL_OUTPUT_FORMAT_RGB;
-+	sink_format = intel_dp_sink_format(connector, mode);
+-	/*
+-	 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+-	 * integer value since we support only integer values of bpp.
+-	 */
+ 	if (HAS_DSC(dev_priv) &&
+ 	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
+ 		/*
+@@ -1143,6 +1139,10 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 		 */
+ 		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
  
- 	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
- 	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
-@@ -2127,10 +2129,8 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 		drm_dbg_kms(&i915->drm,
- 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
- 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
--	} else if (ycbcr_420_only) {
--		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
- 	} else {
--		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-+		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
- 	}
- 
- 	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
++		/*
++		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
++		 * integer value since we support only integer values of bpp.
++		 */
+ 		if (intel_dp_is_edp(intel_dp)) {
+ 			dsc_max_output_bpp =
+ 				drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4;
 -- 
 2.25.1
 
