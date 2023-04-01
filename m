@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBDC6D2DBE
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Apr 2023 04:39:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AA06D2DC1
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Apr 2023 04:42:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F2910E1BE;
-	Sat,  1 Apr 2023 02:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB93C10F379;
+	Sat,  1 Apr 2023 02:41:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 360E010E1BE;
- Sat,  1 Apr 2023 02:39:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25269A0169;
- Sat,  1 Apr 2023 02:39:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1859979443545389481=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6747E10E23E;
+ Sat,  1 Apr 2023 02:41:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680316912; x=1711852912;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4TEJFtEfi0glO/PxL6oYOHpdzwENT5gu4fOpcqV4ZF4=;
+ b=INqt47yaAmDAbOIEAs8LPtEbYN80di3p7mieWU88YIZs4+hEGSuWt9bE
+ 4OsLoApGRPnBwXTNnCFchaDm2LMnmD4oA6v6JYIGwfiDsUfCoDlqTChVX
+ USfKPd8qL9b4Z7JnuUvHN8hF6H69SIrwR/jXRmAkoflVyMlhdrwxuINTy
+ GNHUYiT8fbwC0fb2PQDpDq0TR7zoOJfAut/tTCTD7agu6bgu/lqWT6Ks5
+ R0eTTntU/01+DIPfqqxLWY0HiR7nYCXmLT3RUHNr6CEzhyLTomFZdQy6P
+ UtgAfAmRoQ/MxU/AGxRRexz9O3z/WfZ9eFBmjZ+Vh5odUDZfiz6+6BNKe A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="404346523"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="404346523"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 19:41:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="859545224"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="859545224"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 19:41:51 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Mar 2023 19:41:46 -0700
+Message-Id: <20230401024146.1826092-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Date: Sat, 01 Apr 2023 02:39:18 -0000
-Message-ID: <168031675811.8633.17165786037261035699@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230401020049.3843873-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20230401020049.3843873-1-vinay.belgaumkar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5/guc/slpc=3A_Provide_sysfs_for_efficient_freq?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/hwmon: Use 0 to designate disabled
+ PL1 power limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,232 +56,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1859979443545389481==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On ATSM the PL1 limit is disabled at power up. The previous uapi assumed
+that the PL1 limit is always enabled and therefore did not have a notion of
+a disabled PL1 limit. This results in erroneous PL1 limit values when the
+PL1 limit is disabled. For example at power up, the disabled ATSM PL1 limit
+was previously shown as 0 which means a low PL1 limit whereas the limit
+being disabled actually implies a high effective PL1 limit value.
 
-== Series Details ==
+To get round this problem, the PL1 limit uapi is expanded to include a
+special value 0 to designate a disabled PL1 limit. A read value of 0 means
+that the PL1 power limit is disabled, writing 0 disables the limit.
 
-Series: i915/guc/slpc: Provide sysfs for efficient freq
-URL   : https://patchwork.freedesktop.org/series/115975/
-State : success
+The link between this patch and the bugs mentioned below is as follows:
+* Because on ATSM the PL1 power limit is disabled on power up and there
+  were no means to enable it, we previously implemented the means to
+  enable the limit when the PL1 hwmon entry (power1_max) was written to.
+* Now there is a IGT igt@i915_hwmon@hwmon_write which (a) reads orig value
+  from all hwmon sysfs  (b) does a bunch of random writes and finally (c)
+  restores the orig value read. On ATSM since the orig value is 0, when
+  the IGT restores the 0 value, the PL1 limit is now enabled with a value
+  of 0.
+* PL1 limit of 0 implies a low PL1 limit which causes GPU freq to fall to
+  100 MHz. This causes GuC FW load and several IGT's to start timing out
+  and gives rise to these Intel CI bugs. After this patch, writing 0 would
+  disable the PL1 limit instead of enabling it, avoiding the freq drop
+  issue.
 
-== Summary ==
+v2: Add explanation for bugs mentioned below (Rodrigo)
+v3: Eliminate race during PL1 disable and verify (Tvrtko)
+    Change return to -ENODEV if verify fails (Tvrtko)
 
-CI Bug Log - changes from CI_DRM_12952 -> Patchwork_115975v1
-====================================================
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8062
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8060
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |  4 ++-
+ drivers/gpu/drm/i915/i915_hwmon.c             | 26 +++++++++++++++++++
+ 2 files changed, 29 insertions(+), 1 deletion(-)
 
-Summary
--------
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+index 2d6a472eef885..8d7d8f05f6cd0 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+@@ -14,7 +14,9 @@ Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
+ 
+ 		The power controller will throttle the operating frequency
+ 		if the power averaged over a window (typically seconds)
+-		exceeds this limit.
++		exceeds this limit. A read value of 0 means that the PL1
++		power limit is disabled, writing 0 disables the
++		limit. Writing values > 0 will enable the power limit.
+ 
+ 		Only supported for particular Intel i915 graphics platforms.
+ 
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 596dd2c070106..8e7dccc8d3a0e 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -349,6 +349,8 @@ hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
+ 	}
+ }
+ 
++#define PL1_DISABLE 0
++
+ /*
+  * HW allows arbitrary PL1 limits to be set but silently clamps these values to
+  * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
+@@ -362,6 +364,14 @@ hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
+ 	intel_wakeref_t wakeref;
+ 	u64 r, min, max;
+ 
++	/* Check if PL1 limit is disabled */
++	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
++		r = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
++	if (!(r & PKG_PWR_LIM_1_EN)) {
++		*val = PL1_DISABLE;
++		return 0;
++	}
++
+ 	*val = hwm_field_read_and_scale(ddat,
+ 					hwmon->rg.pkg_rapl_limit,
+ 					PKG_PWR_LIM_1,
+@@ -385,8 +395,24 @@ static int
+ hwm_power_max_write(struct hwm_drvdata *ddat, long val)
+ {
+ 	struct i915_hwmon *hwmon = ddat->hwmon;
++	intel_wakeref_t wakeref;
+ 	u32 nval;
+ 
++	/* Disable PL1 limit and verify, because the limit cannot be disabled on all platforms */
++	if (val == PL1_DISABLE) {
++		mutex_lock(&hwmon->hwmon_lock);
++		with_intel_runtime_pm(ddat->uncore->rpm, wakeref) {
++			intel_uncore_rmw(ddat->uncore, hwmon->rg.pkg_rapl_limit,
++					 PKG_PWR_LIM_1_EN, 0);
++			nval = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
++		}
++		mutex_unlock(&hwmon->hwmon_lock);
++
++		if (nval & PKG_PWR_LIM_1_EN)
++			return -ENODEV;
++		return 0;
++	}
++
+ 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+ 	nval = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_power, SF_POWER);
+ 	nval = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
+-- 
+2.38.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115975v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-adln-1:         NOTRUN -> [DMESG-FAIL][1] ([i915#6997])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-adln-1:         NOTRUN -> [SKIP][2] ([i915#7828])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [PASS][3] -> [FAIL][4] ([i915#7932])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [FAIL][5] ([i915#8308]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][7] ([i915#5334]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adln-1:         [INCOMPLETE][9] ([i915#4983] / [i915#7609]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-FAIL][11] ([i915#6367]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][13] ([i915#6367] / [i915#7913] / [i915#7996]) -> [DMESG-FAIL][14] ([i915#6367] / [i915#7913])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12952 -> Patchwork_115975v1
-
-  CI-20190529: 20190529
-  CI_DRM_12952: 51cf6fb5e846c1adbe92debb7282d0dcc3934ecb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7231: 94188a1dc91b6ef1cf3e9df1440ff00b6ff25935 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115975v1: 51cf6fb5e846c1adbe92debb7282d0dcc3934ecb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4528960efd95 i915/guc/slpc: Provide sysfs for efficient freq
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/index.html
-
---===============1859979443545389481==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915/guc/slpc: Provide sysfs for efficient freq</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115975/">https://patchwork.freedesktop.org/series/115975/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12952 -&gt; Patchwork_115975v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115975v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-adln-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12952/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115975v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12952 -&gt; Patchwork_115975v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12952: 51cf6fb5e846c1adbe92debb7282d0dcc3934ecb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7231: 94188a1dc91b6ef1cf3e9df1440ff00b6ff25935 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115975v1: 51cf6fb5e846c1adbe92debb7282d0dcc3934ecb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4528960efd95 i915/guc/slpc: Provide sysfs for efficient freq</p>
-
-</body>
-</html>
-
---===============1859979443545389481==--
