@@ -1,57 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3EA6D3EC4
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 10:16:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9CCF6D2E9B
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Apr 2023 08:37:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C3810E371;
-	Mon,  3 Apr 2023 08:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DEE510E04A;
+	Sat,  1 Apr 2023 06:37:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 579E810F38A
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Apr 2023 05:00:23 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id BAC356090C
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Apr 2023 05:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BE4EC433D2
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Apr 2023 05:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1680325222;
- bh=Qqa+qdeRX2675cpL9NukYFzqHr9vtWyZ+7rgq1ihyp0=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=ucGWN4G9KDkm+a5RjX6OX1F39ceMuy5HLDhV2l5STSfR1w96hC6rYUTw7IJwnlYyR
- VjWlwgdY3S8+B5xJn3jssttv6lCxUa6O6C5dNshO6djMXKTKGqnMlLAxSIDSzWfKVy
- w3Id7pfw8YFIDIk6KxRqtDvrsQfozKa6p51inDXOT6hnFt2s3ZFXBGOX8tKyaoM600
- SSICrVGKXfP75NXPqPtblStp58L8byAb/Nb7VwgYzp3tEPGWHh9EEvsOrwPYfj26KT
- dnWsr+BxJEsnq/yQ6pO5NL1mTZMbDSAq6abmTjV14K582SlNJTZFnZyYmbAoAIcBmB
- Fvydwg6NFgr3w==
-Received: by mail-oo1-f46.google.com with SMTP id
- l7-20020a4abe07000000b0053e1205c84bso3474744oop.9
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 22:00:22 -0700 (PDT)
-X-Gm-Message-State: AAQBX9dTvmcQVqZ7hlaXA2J1sO4dM0WsbByynw44qRDRAitUUrkw+z93
- 0nu46tENqQDBpyIZ6QnJbvQJpeSQzHsSqJg/EB4=
-X-Google-Smtp-Source: AKy350b7t2SoJ14CAS6Jq7RdkfvaJjNAtbnnGsiPJO/lHa11WSC6g2WDK+pQBHWZivHfvGwutNqspuoQW6kYpGlSGnE=
-X-Received: by 2002:a4a:d10c:0:b0:538:d154:cbc2 with SMTP id
- k12-20020a4ad10c000000b00538d154cbc2mr3986030oor.1.1680325221474; Fri, 31 Mar
- 2023 22:00:21 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A130010E04A;
+ Sat,  1 Apr 2023 06:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680331021; x=1711867021;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/kAlfC9k+PLdshUGMM0GnNYUulmjKHmdT3mpko4ndNM=;
+ b=G1vfxIUK6uZg5a5SIvpFpuI3hmPBEYjiuq7R+eCgvVatIdqAHYoS921w
+ XeU+HNSlEdqjgcO6C8p2TrA2b7paUAAztw/wBo1gR32u1aL7u1yetNdB5
+ hDWBGtUmcn3BAIFwh/iiBdcwbpGFGda/K4X+7NF49Y3dcpeDAr1lahTXe
+ nhjPTtPIspGxY+MbTTK1uZez14xL3taCs/xr7AlxU74s1eTyz+/K/t+DT
+ /pVrLw0T13BhOmy6z7StJ/AguQs3iH+ovyE84cX1PM88PQ0lZgEpoM8lZ
+ usY+CousNE/w9Ml3Qvz1mVsUyGefij9xVwdVVg50SMpXSjdQjKC1vvAgo w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="340349505"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="340349505"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 23:37:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="635539617"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="635539617"
+Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 23:37:00 -0700
+From: fei.yang@intel.com
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Mar 2023 23:38:23 -0700
+Message-Id: <20230401063830.438127-1-fei.yang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230331101539.2893797-1-jani.nikula@intel.com>
-In-Reply-To: <20230331101539.2893797-1-jani.nikula@intel.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sat, 1 Apr 2023 13:59:44 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARQvR02QQBsbKxWt=CGQzacwJy=tz73ManvQ8fjAMWy+A@mail.gmail.com>
-Message-ID: <CAK7LNARQvR02QQBsbKxWt=CGQzacwJy=tz73ManvQ8fjAMWy+A@mail.gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 03 Apr 2023 08:16:51 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: enable kernel-doc warnings for
- CONFIG_DRM_I915_WERROR=y
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/7] drm/i915/mtl: Define MOCS and PAT tables
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +56,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 31, 2023 at 7:15=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
- wrote:
->
-> Increase awareness of kernel-doc issues by enabling doc check locally
-> when W=3D is *not* specified on the make command-line, but
-> CONFIG_DRM_I915_WERROR=3Dy is enabled.
->
-> Once the warnings have been fixed, we can pass -Werror to kernel-doc
-> locally, and fail the build when there are kernel-doc warnings in i915.
->
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ---
->
-> Masahiro, is this an awful hack to do in our local Makefile?
->
-> Note that we do try to avoid anyone outside of i915 developers enabling
-> CONFIG_DRM_I915_WERROR=3Dy.
->
-> Any other and cleaner ways of achieving this, without using W=3D on the
-> entire kernel?
->
-> On that note, it would be nice to be able to enable W=3D on a subdir
-> alone.
-> ---
->  drivers/gpu/drm/i915/Makefile | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefil=
-e
-> index 057ef22fa9c6..13d7040801bf 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -369,6 +369,14 @@ include $(src)/gvt/Makefile
->  obj-$(CONFIG_DRM_I915) +=3D i915.o
->  obj-$(CONFIG_DRM_I915_GVT_KVMGT) +=3D kvmgt.o
->
-> +# kernel-doc test
-> +#
-> +# Enable locally for CONFIG_DRM_I915_WERROR=3Dy if not already enabled.
-> +# See scripts/Makefile.build
-> +ifeq ($(KBUILD_EXTRA_WARN)$(CONFIG_DRM_I915_WERROR),y)
-> +    cmd_checkdoc =3D $(srctree)/scripts/kernel-doc -none $<
-> +endif
->
+From: Fei Yang <fei.yang@intel.com>
 
+The series includes patches needed to enable MTL.
+Also add new extension for GEM_CREATE uAPI to let
+user space set cache policy for buffer objects.
 
-I do not mind this, but I do not think you need to
-check $(KBUILD_EXTRA_WARN).
+Fei Yang (7):
+  drm/i915/mtl: Define MOCS and PAT tables for MTL
+  drm/i915/mtl: workaround coherency issue for Media
+  drm/i915/mtl: end support for set caching ioctl
+  drm/i915: preparation for using PAT index
+  drm/i915: use pat_index instead of cache_level
+  drm/i915: make sure correct pte encode is used
+  drm/i915: Allow user to set cache at BO creation
 
+ drivers/gpu/drm/i915/display/intel_dpt.c      | 14 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    | 33 ++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 30 +++----
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 48 ++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  | 19 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 81 +++++++++++++-----
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  6 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 84 +++++++++++++------
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 23 ++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           | 38 ++++++---
+ drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
+ drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
+ drivers/gpu/drm/i915/gt/intel_mocs.c          | 76 ++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 ++++++-----
+ drivers/gpu/drm/i915/gt/selftest_mocs.c       |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c     | 13 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  7 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 18 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
+ drivers/gpu/drm/i915/i915_debugfs.c           | 55 +++++++++---
+ drivers/gpu/drm/i915/i915_gem.c               | 16 +++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 76 +++++++++++++++--
+ drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
+ drivers/gpu/drm/i915/i915_vma.h               |  2 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
+ drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
+ .../drm/i915/selftests/intel_memory_region.c  |  4 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  6 ++
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
+ include/uapi/drm/i915_drm.h                   | 36 ++++++++
+ tools/include/uapi/drm/i915_drm.h             | 36 ++++++++
+ 51 files changed, 763 insertions(+), 233 deletions(-)
 
+-- 
+2.25.1
 
-ifdef CONFIG_DRM_I915_WERROR
-    cmd_checkdoc =3D $(srctree)/scripts/kernel-doc -none $<
-endif
-
-
-
-
---=20
-Best Regards
-Masahiro Yamada
