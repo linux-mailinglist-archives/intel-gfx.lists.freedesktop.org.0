@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C566D3819
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Apr 2023 15:28:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 602AA6D3899
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Apr 2023 16:55:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5513210E010;
-	Sun,  2 Apr 2023 13:28:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0C010E097;
+	Sun,  2 Apr 2023 14:55:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1AFC10E010;
- Sun,  2 Apr 2023 13:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680442083; x=1711978083;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=gyLCwp1IcrTr0vfIdlSvIdhNokyLOMV8UHxyo8m3sSU=;
- b=OeBcc8s+ZUn1adwGHrxYXMjqAjzjSRYShiu0aUKztp+VXUIF+c23/HDi
- 1H9XgEA6Co2IO4ISZg6KTDdMPEOJi8LbAuedqH8e2Sb/CziLxobe9dgmO
- jgbTh+hmksYybS3bfmR034aGtWqK9EoBHdkL/Ex9TveOsu6NCvEyGOOh/
- OjMJh5Q+CsoKXTw2M+6vbyCxKXh/rRzFrIeetkEP1lbc52hiAeQPJ7xIO
- 5EqjSW4zSAIRmGzrvXUGHIZ6zVCeMOkC1dvsJwHg/pFWvdOfeWxkrC3xC
- fOLCQBWQTvLET7B3IXVxk45OVMc5xqhlwndxrH2miuzfBeCnHczcemLa5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="322125706"
-X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="322125706"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2023 06:28:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="688229111"
-X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="688229111"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga007.fm.intel.com with ESMTP; 02 Apr 2023 06:28:01 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pixkW-000NPt-37;
- Sun, 02 Apr 2023 13:28:00 +0000
-Date: Sun, 2 Apr 2023 21:27:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Qiang Yu <yuq825@gmail.com>
-Message-ID: <202304022108.kFqa3PUI-lkp@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE56E10E097;
+ Sun,  2 Apr 2023 14:55:01 +0000 (UTC)
+Received: from [192.168.2.163] (unknown [109.252.124.32])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id AB315660212B;
+ Sun,  2 Apr 2023 15:54:56 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1680447298;
+ bh=PNLOiQz44h5E3O/8HvWEl9u5VjS2kdzOQ4M+EXBh5n8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ZXuhqZ86reOnfGEy0Mty0wUnDCXbuvIExjuJWhxCTp6O6dpKOekf4Ys9c521ZJHzb
+ wOE4By0iKXj4WRnG7ljmeeQ8uqi5nxCFkr257nGfWhRVFgpdbXLWUWZofPsPgzBGkw
+ UcZkBe/XbI5h+xawmM5/OOBreHZKS1aKGLqHqwPVje8tY00XFpqJ+52NQeDZ5z4Rtg
+ qBxrXvzYV0s3vvoAsG5I2Yv+96x5x9h++ykPlw3Advot/f2PpXzOA9yFQFRxJ6Awkb
+ Bw+ujXOzOhDaaAnFTDoKGod51q/nnfaH4/EFFAoDEikDVUDL17oJm/ToX8Y92z+tN4
+ msCE9jc+hKyaQ==
+Message-ID: <90c71a10-9791-1cd5-b7af-badac24bf5c2@collabora.com>
+Date: Sun, 2 Apr 2023 17:54:53 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [drm-tip:drm-tip 3/7]
- drivers/gpu/drm/lima/lima_ctx.c:53:45: error: 'struct drm_sched_entity' has
- no member named 'elapsed_ns'
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+References: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
+ <20230314022659.1816246-2-dmitry.osipenko@collabora.com>
+ <6b5644cf-6229-f99b-d429-a45d724493ee@collabora.com>
+ <20c88807-8513-a816-aed9-5cd67eb5c1ed@collabora.com>
+ <2631edac-a57e-638d-226c-08ea3d9b6b8d@gmail.com>
+Content-Language: en-US
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <2631edac-a57e-638d-226c-08ea3d9b6b8d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v13 01/10] drm/shmem-helper: Switch to
+ reservation lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,70 +60,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- oe-kbuild-all@lists.linux.dev
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
+ David Airlie <airlied@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Rob Herring <robh@kernel.org>, Daniel Stone <daniel@fooishbar.org>,
+ Steven Price <steven.price@arm.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, linux-kernel@vger.kernel.org,
+ Qiang Yu <yuq825@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-head:   25abf2df726cac2701780b068df74a9c36d60655
-commit: 6e744f4032e55f6ea113d5b10906aebbd626e5b7 [3/7] Merge remote-tracking branch 'drm-misc/drm-misc-next' into drm-tip
-config: arm64-buildonly-randconfig-r001-20230402 (https://download.01.org/0day-ci/archive/20230402/202304022108.kFqa3PUI-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add drm-tip git://anongit.freedesktop.org/drm/drm-tip
-        git fetch --no-tags drm-tip drm-tip
-        git checkout 6e744f4032e55f6ea113d5b10906aebbd626e5b7
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/lima/
+On 3/26/23 12:19, Christian König wrote:
+> Am 25.03.23 um 15:58 schrieb Dmitry Osipenko:
+>> On 3/15/23 16:46, Dmitry Osipenko wrote:
+>>> On 3/14/23 05:26, Dmitry Osipenko wrote:
+>>>> @@ -633,7 +605,10 @@ int drm_gem_shmem_mmap(struct
+>>>> drm_gem_shmem_object *shmem, struct vm_area_struct
+>>>>           return ret;
+>>>>       }
+>>>>   +    dma_resv_lock(shmem->base.resv, NULL);
+>>>>       ret = drm_gem_shmem_get_pages(shmem);
+>>>> +    dma_resv_unlock(shmem->base.resv);
+>>> Intel CI reported locking problem [1] here. It actually was also
+>>> reported for v12, but I missed that report because of the other noisy
+>>> reports.
+>>>
+>>> [1]
+>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114671v2/shard-snb5/igt@prime_vgem@sync@rcs0.html
+>>>
+>>> The test does the following:
+>>>
+>>> 1. creates vgem
+>>> 2. export it do dmabuf
+>>> 3. mmaps dmabuf
+>>>
+>>> There is an obvious deadlock there. The DRM code assumes that mmap() is
+>>> unlocked, while for dma-buf it's locked. I'll see how to fix it for v14.
+>>>
+>> Christian, there is a deadlock problem in drm_gem_shmem_mmap() once we
+>> move drm-shmem to use resv lock. The current dma-buf locking policy
+>> claims that importer holds the lock for mmap(), but DRM code assumes
+>> that obj->mmap() handles the locking itself and then the same
+>> obj->mmap() code path is used by both dma-buf DRM and a usual DRM object
+>> paths. Hence importer -> dma_buf_mmap_internal()[takes the lock] ->
+>> exporter -> drm_gem_shmem_mmap()[takes the lock] deadlocks.
+>>
+>> I was looking at how to fix it and to me the best option is to change
+>> the dma-buf locking policy, making exporter responsible for handling the
+>> resv lock. Changing DRM code mmap lockings might be possible too [moving
+>> locking to drm_gem_mmap_obj()], but will be very messy and doesn't feel
+>> intuitive.
+>>
+>> Want to get yours thoughts on this before sending out the dma-buf mmap()
+>> policy-change patch. Does the new mmap() locking policy sound good to
+>> you? Thanks!
+> 
+> 
+> IIRC we tried that before and ran into problems.
+> 
+> dma_buf_mmap() needs to swap the backing file of the VMA and for this
+> calls fput() on the old file.
+> 
+> This fput() in turn could (in theory) grab the resv lock as well and
+> there isn't anything we could do about that.
+> 
+> Just information from the back of my memory, probably best if you double
+> check that.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304022108.kFqa3PUI-lkp@intel.com/
+Thanks, Christian! The fput() code path will be unlocked with updated
+locking policy, like it was before. The new locking policy looks goods
+on my side, don't see anything that needs locking protection from the
+importer side for mmap().
 
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/lima/lima_ctx.c: In function 'lima_ctx_do_release':
->> drivers/gpu/drm/lima/lima_ctx.c:53:45: error: 'struct drm_sched_entity' has no member named 'elapsed_ns'
-      53 |                 mgr->elapsed_ns[i] += entity->elapsed_ns;
-         |                                             ^~
-   drivers/gpu/drm/lima/lima_ctx.c: In function 'lima_ctx_mgr_usage':
-   drivers/gpu/drm/lima/lima_ctx.c:125:43: error: 'struct drm_sched_entity' has no member named 'elapsed_ns'
-     125 |                         usage[i] += entity->elapsed_ns;
-         |                                           ^~
-
-
-vim +53 drivers/gpu/drm/lima/lima_ctx.c
-
-a1d2a6339961ef Qiang Yu    2019-03-09  42  
-a1d2a6339961ef Qiang Yu    2019-03-09  43  static void lima_ctx_do_release(struct kref *ref)
-a1d2a6339961ef Qiang Yu    2019-03-09  44  {
-a1d2a6339961ef Qiang Yu    2019-03-09  45  	struct lima_ctx *ctx = container_of(ref, struct lima_ctx, refcnt);
-bccafec957a5c4 Erico Nunes 2023-03-13  46  	struct lima_ctx_mgr *mgr = ctx->mgr;
-a1d2a6339961ef Qiang Yu    2019-03-09  47  	int i;
-a1d2a6339961ef Qiang Yu    2019-03-09  48  
-bccafec957a5c4 Erico Nunes 2023-03-13  49  	for (i = 0; i < lima_pipe_num; i++) {
-bccafec957a5c4 Erico Nunes 2023-03-13  50  		struct lima_sched_context *context = &ctx->context[i];
-bccafec957a5c4 Erico Nunes 2023-03-13  51  		struct drm_sched_entity *entity = &context->base;
-bccafec957a5c4 Erico Nunes 2023-03-13  52  
-bccafec957a5c4 Erico Nunes 2023-03-13 @53  		mgr->elapsed_ns[i] += entity->elapsed_ns;
-bccafec957a5c4 Erico Nunes 2023-03-13  54  
-a1d2a6339961ef Qiang Yu    2019-03-09  55  		lima_sched_context_fini(ctx->dev->pipe + i, ctx->context + i);
-bccafec957a5c4 Erico Nunes 2023-03-13  56  	}
-a1d2a6339961ef Qiang Yu    2019-03-09  57  	kfree(ctx);
-a1d2a6339961ef Qiang Yu    2019-03-09  58  }
-a1d2a6339961ef Qiang Yu    2019-03-09  59  
-
-:::::: The code at line 53 was first introduced by commit
-:::::: bccafec957a5c4b22ac29e53a39e82d0a0008348 drm/lima: add usage counting method to ctx_mgr
-
-:::::: TO: Erico Nunes <nunes.erico@gmail.com>
-:::::: CC: Qiang Yu <yuq825@gmail.com>
+I'll send the patches, letting intel-ci test them. Will be also easier
+to discuss it there with the code.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Best regards,
+Dmitry
+
