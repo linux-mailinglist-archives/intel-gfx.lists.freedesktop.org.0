@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C8C96D4689
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7B06D4857
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:27:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB7E10E49A;
-	Mon,  3 Apr 2023 14:09:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECA9110E126;
+	Mon,  3 Apr 2023 14:27:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07C1F10E49E
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 14:09:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680530975; x=1712066975;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=V4VxsIApZPFm/ACSOvilOac86ah1+fTzOw/9riSte3w=;
- b=Cu52KikVxNxb45UOK5+vxFeoZgkPEkwXWhcMEYoqkj4fAKdJdF7ye5Mm
- 6jZipvIS+8hXx897j70S4RHrbrQ1v872EIUITTfV2xIgsy32bMIpdWu/P
- 7dQUZ6R2ZYAq5TztAjG+FRJ+4dBR/3No3Tz7YYIsvsFjmZbYEmJQheUr2
- PY7d4jSxOO2z0wHiXFk+Q5J1GvKeWM+YTPRKrIXF597/ruvo4Znf8X1uo
- 6kaJc0GUfBauP1wVMDuZlfNnMVlJCYxsl0ZKVLhofWzls/NGeiY7iHtcn
- Tc8cmoGi+rNndhFEqXidJ0yq6Ja5NtMYTgl9M74lObvZfPokv38JuEmDG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="321568836"
-X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="321568836"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 07:09:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="685986288"
-X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="685986288"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 03 Apr 2023 07:09:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Apr 2023 17:09:24 +0300
-Date: Mon, 3 Apr 2023 17:09:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Message-ID: <ZCreFMId3fKGjOYx@intel.com>
-References: <20230403070125.1127830-1-suraj.kandpal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0E7FE10E4A4;
+ Mon,  3 Apr 2023 14:27:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06DBEAADE3;
+ Mon,  3 Apr 2023 14:27:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4029335158955117467=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Mon, 03 Apr 2023 14:27:50 -0000
+Message-ID: <168053207002.24308.6116882606617852099@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230403070125.1127830-1-suraj.kandpal@intel.com>
 In-Reply-To: <20230403070125.1127830-1-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Remove drm_modeset_lock
- in intel_conn_to_vcpi
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_Remove_drm=5Fmodeset=5Flock_in_intel=5Fconn=5Fto?=
+ =?utf-8?b?X3ZjcGkgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,63 +41,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 12:31:25PM +0530, Suraj Kandpal wrote:
-> Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
-> anymore since all the required locks are taken in atomic check and
-> prepare phases.
-> 
-> --v2
-> -take lock if hdcp function is called from legacy path [Ville]
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 650232c4892b..65cfc4afbcaa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -36,13 +36,16 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  	struct drm_dp_mst_atomic_payload *payload;
->  	struct drm_dp_mst_topology_state *mst_state;
->  	int vcpi = 0;
-> +	bool is_locked;
->  
->  	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
->  	if (!connector->port)
->  		return 0;
->  	mgr = connector->port->mgr;
-> +	is_locked = drm_modeset_is_locked(&mgr->base.lock);
+--===============4029335158955117467==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The fact that *someone* is holding the lock doesn't mean you
-can just skip taking it yourself.
+== Series Details ==
 
-> +	if (!is_locked)
-> +		drm_modeset_lock(&mgr->base.lock, NULL);
->  
-> -	drm_modeset_lock(&mgr->base.lock, NULL);
->  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
->  	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
->  	if (drm_WARN_ON(mgr->dev, !payload))
-> @@ -54,7 +57,9 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  		goto out;
->  	}
->  out:
-> -	drm_modeset_unlock(&mgr->base.lock);
-> +	if (!is_locked)
-> +		drm_modeset_unlock(&mgr->base.lock);
-> +
->  	return vcpi;
->  }
->  
-> -- 
-> 2.25.1
+Series: drm/i915/hdcp: Remove drm_modeset_lock in intel_conn_to_vcpi (rev2)
+URL   : https://patchwork.freedesktop.org/series/115240/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12958 -> Patchwork_115240v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/index.html
+
+Participating hosts (37 -> 37)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_115240v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-rpls-1:         [PASS][4] -> [TIMEOUT][5] ([i915#6794])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-rpls-1/igt@i915_selftest@live@mman.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-rpls-1/igt@i915_selftest@live@mman.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271]) +16 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][7] ([fdo#109271]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-11:         [FAIL][8] ([i915#8308]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bsw-nick:        [ABORT][10] ([i915#7913]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/fi-bsw-nick/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-bsw-nick/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
+    - bat-dg2-8:          [FAIL][12] ([i915#7932]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@load:
+    - bat-atsm-1:         [ABORT][14] ([i915#8219]) -> [ABORT][15] ([i915#8326])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-atsm-1/igt@i915_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-atsm-1/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-2:         [DMESG-FAIL][16] ([i915#6367] / [i915#7913] / [i915#7996]) -> [DMESG-FAIL][17] ([i915#6367] / [i915#7913])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-rpls-2/igt@i915_selftest@live@slpc.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+  [i915#8219]: https://gitlab.freedesktop.org/drm/intel/issues/8219
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+  [i915#8326]: https://gitlab.freedesktop.org/drm/intel/issues/8326
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12958 -> Patchwork_115240v2
+
+  CI-20190529: 20190529
+  CI_DRM_12958: f09f557ecb751519378d6d153a5b77afb14f7b43 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_115240v2: f09f557ecb751519378d6d153a5b77afb14f7b43 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+c923b6f4cc97 drm/i915/hdcp: Remove drm_modeset_lock in intel_conn_to_vcpi
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/index.html
+
+--===============4029335158955117467==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Remove drm_modeset_lock in intel_conn_to_vcpi (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115240/">https://patchwork.freedesktop.org/series/115240/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12958 -&gt; Patchwork_115240v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/index.html</p>
+<h2>Participating hosts (37 -&gt; 37)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_115240v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-rpls-1/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-rpls-1/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-bsw-nick/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/fi-bsw-nick/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/fi-bsw-nick/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-atsm-1/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8219">i915#8219</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-atsm-1/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8326">i915#8326</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12958/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115240v2/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12958 -&gt; Patchwork_115240v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12958: f09f557ecb751519378d6d153a5b77afb14f7b43 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_115240v2: f09f557ecb751519378d6d153a5b77afb14f7b43 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>c923b6f4cc97 drm/i915/hdcp: Remove drm_modeset_lock in intel_conn_to_vcpi</p>
+
+</body>
+</html>
+
+--===============4029335158955117467==--
