@@ -1,56 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8BC96D52D3
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 22:48:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4916D5385
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 23:33:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D44610E19C;
-	Mon,  3 Apr 2023 20:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B795A10E57E;
+	Mon,  3 Apr 2023 21:33:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D8D10E19C;
- Mon,  3 Apr 2023 20:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680554893; x=1712090893;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lDwF+FfaxGLD/0JpZWgKwY6x0BDxuM6upEiP540fAq4=;
- b=QF0cFzkhDBp9pS7juBoGYyogSBRPdhpKLYeC2gIVKMMJ7jctZ0Uk81o9
- 0Gzyfnz81T9S9enwao4KRLhYfYaurIEtN+FoA9VUSb2henGDoVf210uSX
- jQb1sl1rzTPxN9/S+S361swxVpM/1/13v6+fTP9g6uwtJqU1mQhNjsUAM
- 8zVBHqhk8TrgqMsUjGk7Zpx1x85K2mKo/Xkawt6ioxux0CjKbf4EA+ZGE
- l+OAT/UGCnliKN0q8/y+0D2WoyhLMhwwhzOTCvd4K1Fk4aTIYgibg0F7S
- svDxUed1VLAFxsrgfCmPyaPCBoeNRp4Qmr2WIKUvEatg2pQlGcfolK5AU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="330586646"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="330586646"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 13:48:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="797206591"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="797206591"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 03 Apr 2023 13:48:09 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Apr 2023 23:48:08 +0300
-Date: Mon, 3 Apr 2023 23:48:08 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZCs7iG0gbMWD2hoA@intel.com>
-References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
- <20230331102419.521392-4-maarten.lankhorst@linux.intel.com>
- <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
+ [IPv6:2607:f8b0:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14E64882AF
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 21:33:15 +0000 (UTC)
+Received: by mail-pf1-x42e.google.com with SMTP id u20so20125571pfk.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 Apr 2023 14:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20210112; t=1680557595;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=PQQJsuko2gHpFenAXAsG9MEwhQEtgc80DeeRepLWAPo=;
+ b=bNVGiEo2JUT+uywK86ze/pXgeD7YiytFxJABnIhr4tZOKY2m8Hp7WsrXTocOz9OozK
+ 28+xqkUVostMIeu6PDsCFtrFPl0UsF4TIGu4b3LEAOfCpkY8gofljTiYyiIqNc3I+CGD
+ afktAqYo00dq9kzbOnywC7JoXgwpvJj85KDJQUSoSnng1spoaqQKBu1pGwUZZtwTOnjN
+ lgZzmJEuRBNC39lPHS0Gn3zHVX1yQ/nJiZ6jr4MSOWUqLxdd7LSi/cYgllPYh780hZpa
+ diJTKLXhTCaPxh/pCaf6W+B7+krmJqnS8Y+Brafxz0nu5CSpwa4oP20qu7vu8aUoIF7i
+ FufA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680557595;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PQQJsuko2gHpFenAXAsG9MEwhQEtgc80DeeRepLWAPo=;
+ b=EM2DPmX1ZjYh1UXOo45Wuw/7mVt86Y5E+g63zT0Sl3HjZctrf8gei6bmm1mSGZCMrS
+ dffhoqGbnftcIOgOlzuxwCPAR0K0yv2TLTfV22jPiRtBqLT8w6EP2x4ldSQxTfX5aArn
+ /Bel88zKnrIzdxLGfv0CR9ls5604kfTd2QcffTcu4zuaQKhChI0Cru8n9skbwTPxYY3Y
+ 0CltYbLkKpMOf6g/hH4JWdpTESl11mqpUoewdNr1P8PnNWMl2j8kvKJa8s0bgA0jQ3HE
+ zowNRpzHJqLJE5CNq6X9w5fpj6o+zKvdazy7WGsb7v/wEfnUaZilJrZxamD7uXilYWea
+ fO8w==
+X-Gm-Message-State: AAQBX9fBMLX35z5g6dhSSARhkKIAfooG/fdfXUxiROyqt/HqwxA2/a9H
+ jbHBJ7+7QWgNKTaunckwW2gLgXInRItdKdbM2dLPHA==
+X-Google-Smtp-Source: AKy350aybhLcXgtFM1Q1SFCQqYhRKy2TUgUXEp92dct2LOFrcWuvs6ojlbULoYYIsLQJNyijE5PYqqcmHtcu2PrDdCg=
+X-Received: by 2002:a05:6a00:a1c:b0:62d:e8f1:edbf with SMTP id
+ p28-20020a056a000a1c00b0062de8f1edbfmr42312pfh.5.1680557595129; Mon, 03 Apr
+ 2023 14:33:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 3/6] drm/i915: Fix comparison in
- intel_dram.
+References: <20230329084449.717954-1-ankit.k.nautiyal@intel.com>
+ <20230329084449.717954-3-ankit.k.nautiyal@intel.com>
+ <ZCQLhkwNGRnZkD4k@intel.com>
+ <f62f54f4-b42f-dc23-2ae9-2be450854bb1@intel.com> <ZCQYkQHDnPLX0Ee2@intel.com>
+ <32039884-4045-478a-e03b-09afba2b15a3@intel.com> <ZCQiijNDxTqT98bw@intel.com>
+ <fbf095f7-a222-8763-5624-7440b645c5e7@intel.com>
+In-Reply-To: <fbf095f7-a222-8763-5624-7440b645c5e7@intel.com>
+From: Manasi Navare <navaremanasi@google.com>
+Date: Mon, 3 Apr 2023 14:33:03 -0700
+Message-ID: <CAMNLLoTFyGOP2Oj2BtW4PXXcE1EFC05qNUEjqwhfS+SZaKjYeQ@mail.gmail.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Use current cdclk for DSC
+ Bigjoiner BW check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,67 +73,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 01:35:40PM -0700, Matt Roper wrote:
-> On Fri, Mar 31, 2023 at 12:24:16PM +0200, Maarten Lankhorst wrote:
-> > Gen13 should probably be the same as gen12, not gen11.
-> > 
-> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > ---
-> >  drivers/gpu/drm/i915/soc/intel_dram.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> > index 9f0651d48d41..9649051ed8ed 100644
-> > --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> > +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> > @@ -548,7 +548,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
-> 
-> I don't think we need this change.  We were only reading the this pcode
-> mailbox for display purposes, and even on the latest graphics version 12
-> platforms we shouldn't make it into this function anymore.  Instead the
-> display IP now provides this information itself so there's no need to go
-> through the GT's pcode mailbox; we read it directly from display
-> registers in xelpdp_get_dram_info().  It looks like this condition here
-> would only matter if we had a future platform with graphics version
-> higher than 12, but display version lower than 14, which seems very
-> unlikely.
-> 
-> 
-> Matt
-> 
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	if (GRAPHICS_VER(dev_priv) == 12) {
-> > +	if (GRAPHICS_VER(dev_priv) >= 12) {
+On Thu, Mar 30, 2023 at 4:11=E2=80=AFAM Nautiyal, Ankit K
+<ankit.k.nautiyal@intel.com> wrote:
+>
+>
+> On 3/29/2023 5:05 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > On Wed, Mar 29, 2023 at 05:00:55PM +0530, Nautiyal, Ankit K wrote:
+> >> On 3/29/2023 4:23 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> >>> On Wed, Mar 29, 2023 at 04:06:21PM +0530, Nautiyal, Ankit K wrote:
+> >>>> On 3/29/2023 3:27 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> >>>>> On Wed, Mar 29, 2023 at 02:14:49PM +0530, Ankit Nautiyal wrote:
+> >>>>>> As per Bspec, Big Joiner BW check is:
+> >>>>>> Output bpp <=3D PPC * CDCLK frequency * Big joiner interface bits =
+/
+> >>>>>> Pixel clock
+> >>>>>>
+> >>>>>> Currently we always use max_cdclk in the check for both modevalid
+> >>>>>> and compute config steps.
+> >>>>>>
+> >>>>>> During modevalid use max_cdclk_freq for the check.
+> >>>>>> During compute config step use current cdclk for the check.
+> >>>>> Nak. cdclk is computed much later based on what is actually needed.
+> >>>>> The cdclk freq you are using here is essentially a random number.
+> >>>> Oh I didn't realise that, perhaps I was lucky when I tested this.
+> >>>>
+> >>>> So this check where CDCLK is mentioned, actually expects max_cdclk_f=
+req?
+> >>>>
+> >>>> If it doesnt then, we might have a compressed_bpp value, that might =
+be
+> >>>> violating the big joiner bw check.
+> >>>>
+> >>>> Should this be handled while computing cdclk?
+> >>> Yes. I suggest adding something like intel_vdsc_min_cdclk() that
+> >>> handles all of it.
+> >>
+> >> I can try that out.
+> >>
+> >> Will also add *Pipe BW check*: Pixel clock < PPC * CDCLK frequency *
+> >> Number of pipes joined, which seems to be missing.
+> > That is already accounted for in the pixel rate.
+>
+> Indeed, will club this check and the other bigjoiner_bw check in
+> intel_vdsc_min_cdclk, if the approach mentioned in the other mail is
+> acceptable.
+>
+> Regards,
+>
+> Ankit
 
-We should perhaps change all the checks here to DISPLAY_VER
-since it's the display code that needs this information.
+Hi Ankit,
 
-Though I suppose technically neither DISPLAY_VER nor
-GRAPHICS_VER is entirely correct since it's really SoC
-level stuff that we're looking at here. But the current 
-mismash of GRAPHICS_VER and DISPLAY_VER is certainly not
-helping reduce the confusion.
+Yes I think it makes sense to add the vdsc_min_cdclk check while
+computing the min cdclk.
+This will hopefully let us exercise all allowed compressed bpps all
+the way to 27, which have caused failures earlier
+possibly due to the cdcclk being reduced beyond the pipe bw required
+with the max compressed bpp that we use.
+So best would be to check against vdsc_mind_cdclk required if dsc is
+enabled for that configuration, if not then skip
+the check
 
-> >  		switch (val & 0xf) {
-> >  		case 0:
-> >  			dram_info->type = INTEL_DRAM_DDR4;
-> > -- 
-> > 2.34.1
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
-
--- 
-Ville Syrjälä
-Intel
+Regards
+Manasi
+>
+> >
+> >> So with pipe bw_check cdclk should be >  Pixel clock / (PPC * Number o=
+f
+> >> pipes joined)
+> >>
+> >> In addition, as per bigjoiner check it should be >=3D compressed_bpp /
+> >> (PPC * bigjoiner interface bits).
+> >>
+> >> Regards,
+> >>
+> >> Ankit
+> >>
+> >>>> Regards,
+> >>>>
+> >>>> Ankit
+> >>>>
+> >>>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >>>>>> ---
+> >>>>>>     drivers/gpu/drm/i915/display/intel_dp.c     | 9 ++++++---
+> >>>>>>     drivers/gpu/drm/i915/display/intel_dp.h     | 1 +
+> >>>>>>     drivers/gpu/drm/i915/display/intel_dp_mst.c | 1 +
+> >>>>>>     3 files changed, 8 insertions(+), 3 deletions(-)
+> >>>>>>
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu=
+/drm/i915/display/intel_dp.c
+> >>>>>> index 3fe651a8f5d0..d6600de1ab49 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >>>>>> @@ -711,6 +711,7 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_=
+i915_private *i915, u32 bpp, u32 p
+> >>>>>>     u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+> >>>>>>                                  u32 link_clock, u32 lane_count,
+> >>>>>>                                  u32 mode_clock, u32 mode_hdisplay=
+,
+> >>>>>> +                                unsigned int cdclk,
+> >>>>>>                                  bool bigjoiner,
+> >>>>>>                                  u32 pipe_bpp,
+> >>>>>>                                  u32 timeslots)
+> >>>>>> @@ -757,9 +758,9 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i91=
+5_private *i915,
+> >>>>>>
+> >>>>>>          if (bigjoiner) {
+> >>>>>>                  int bigjoiner_interface_bits =3D DISPLAY_VER(i915=
+) <=3D 12 ? 24 : 36;
+> >>>>>> -                u32 max_bpp_bigjoiner =3D
+> >>>>>> -                        i915->display.cdclk.max_cdclk_freq * 2 * =
+bigjoiner_interface_bits /
+> >>>>>> -                        intel_dp_mode_to_fec_clock(mode_clock);
+> >>>>>> +
+> >>>>>> +                u32 max_bpp_bigjoiner =3D cdclk * 2 * bigjoiner_i=
+nterface_bits /
+> >>>>>> +                                        intel_dp_mode_to_fec_cloc=
+k(mode_clock);
+> >>>>>>
+> >>>>>>                  bits_per_pixel =3D min(bits_per_pixel, max_bpp_bi=
+gjoiner);
+> >>>>>>          }
+> >>>>>> @@ -1073,6 +1074,7 @@ intel_dp_mode_valid(struct drm_connector *_c=
+onnector,
+> >>>>>>                                                              max_l=
+anes,
+> >>>>>>                                                              targe=
+t_clock,
+> >>>>>>                                                              mode-=
+>hdisplay,
+> >>>>>> +                                                            dev_p=
+riv->display.cdclk.max_cdclk_freq,
+> >>>>>>                                                              bigjo=
+iner,
+> >>>>>>                                                              pipe_=
+bpp, 64) >> 4;
+> >>>>>>                          dsc_slice_count =3D
+> >>>>>> @@ -1580,6 +1582,7 @@ int intel_dp_dsc_compute_config(struct intel=
+_dp *intel_dp,
+> >>>>>>                                                              pipe_=
+config->lane_count,
+> >>>>>>                                                              adjus=
+ted_mode->crtc_clock,
+> >>>>>>                                                              adjus=
+ted_mode->crtc_hdisplay,
+> >>>>>> +                                                            dev_p=
+riv->display.cdclk.hw.cdclk,
+> >>>>>>                                                              pipe_=
+config->bigjoiner_pipes,
+> >>>>>>                                                              pipe_=
+bpp,
+> >>>>>>                                                              times=
+lots);
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu=
+/drm/i915/display/intel_dp.h
+> >>>>>> index ef39e4f7a329..d150bfe8abf4 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> >>>>>> @@ -106,6 +106,7 @@ int intel_dp_dsc_compute_bpp(struct intel_dp *=
+intel_dp, u8 dsc_max_bpc);
+> >>>>>>     u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+> >>>>>>                                  u32 link_clock, u32 lane_count,
+> >>>>>>                                  u32 mode_clock, u32 mode_hdisplay=
+,
+> >>>>>> +                                unsigned int cdclk,
+> >>>>>>                                  bool bigjoiner,
+> >>>>>>                                  u32 pipe_bpp,
+> >>>>>>                                  u32 timeslots);
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers=
+/gpu/drm/i915/display/intel_dp_mst.c
+> >>>>>> index a860cbc5dbea..266e31b78729 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >>>>>> @@ -925,6 +925,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connect=
+or *connector,
+> >>>>>>                                                              max_l=
+anes,
+> >>>>>>                                                              targe=
+t_clock,
+> >>>>>>                                                              mode-=
+>hdisplay,
+> >>>>>> +                                                            dev_p=
+riv->display.cdclk.max_cdclk_freq,
+> >>>>>>                                                              bigjo=
+iner,
+> >>>>>>                                                              pipe_=
+bpp, 64) >> 4;
+> >>>>>>                          dsc_slice_count =3D
+> >>>>>> --
+> >>>>>> 2.25.1
