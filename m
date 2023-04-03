@@ -1,60 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D082C6D465E
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:02:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E1D6D483A
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:26:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A0B10E49A;
-	Mon,  3 Apr 2023 14:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0622310E4A4;
+	Mon,  3 Apr 2023 14:26:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
- [IPv6:2607:f8b0:4864:20::b33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A79D210E49A;
- Mon,  3 Apr 2023 14:02:09 +0000 (UTC)
-Received: by mail-yb1-xb33.google.com with SMTP id i6so34888836ybu.8;
- Mon, 03 Apr 2023 07:02:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680530528;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Lcw7CsrgJYECAzGsrUJFDPn/CnlU4ZU6smKnWO17Ae0=;
- b=mQkUbNiW0esw3jO4JiIlQGq18gSiAY8UYiaxcqykrSwc0GcoaqBnZZu81I2uh9b0A1
- W6RjLKVl30VbyvmM/i2idv4uDHjf5FsqWULm9+rm3Udncrc7RYR9sp4j0tZI9B5C0IeM
- KJ6dIETWJXYUssvxdq7zIlxWYs6U8PNgxsMnWgN1GeHA35xgTsIgpY/M/wt5uVyYIUTO
- 1veRDy7QiJ266iCrtchYEjv/qrTEZGxr+Taia7wTuyk8xUV4ZxqlRoIhCQbw5PKoCN8Z
- Q0p/8+oh/fauIXLqwmbEL27+SsDuOGh54qu2EJI8cbIlYbOVNcXPsmzRsEnUX/ScLG1P
- 3rbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680530528;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Lcw7CsrgJYECAzGsrUJFDPn/CnlU4ZU6smKnWO17Ae0=;
- b=0vPcc0zFSJVdBQgR4t1AL/vaAM3kHc/6RXKYhgHgBawYbc30SYdnWl9wH0mWwZsc1J
- vV4AjPLg2Y4AfDdfcWSWhr3G0ueXJhfEcG3egiIEJMdzHXubGlAMwGcJG9TMQeiAWp4c
- /Yux6+SW7VtYE6nP0DaAuVevEzAGsC4Va4luHI7EkTqxCd5kyixfE2Vckj/DPJ9rwruh
- KwvXV3XtvlteLju+lSi4W2cGRCSXtlYR0cHBufeU/3kqPCHW8i3SW8O5ng2tQS/qO5ll
- 8vqIIoh4LOiYB8UqpkBJm8ck5XaTCNLjaLqrbWkPCv5tbQiYRMPOOAtOoQDyk46h0Ces
- fg/A==
-X-Gm-Message-State: AAQBX9cTjnyappVq4tts9OumO2SP6y332dKhWngL/FygDIsFTwHjMcm4
- 4rYZj9XdqzlmvHU+jJXBXB/dQ7v2uw7XPebjrn8=
-X-Google-Smtp-Source: AKy350YKHmOqiL7IpC/Sx2Cu1gKrbtmOye3W2UwR6MNJrI4YJ78lzeG0UeVfyco2byZJzLJuVgOf3PGgek6XPCmFY1c=
-X-Received: by 2002:a05:6902:1247:b0:b78:4b00:7772 with SMTP id
- t7-20020a056902124700b00b784b007772mr22643916ybu.5.1680530528529; Mon, 03 Apr
- 2023 07:02:08 -0700 (PDT)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB2F10E15C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 14:26:46 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 9B0D4B81C0E;
+ Mon,  3 Apr 2023 14:26:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E37C4C433EF;
+ Mon,  3 Apr 2023 14:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1680532003;
+ bh=n7TtcujSaA0jzwWoGjoSoT0wDjWYaBUPyji86BFmLJs=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=q0GDu3fxnGRo1rHS5GSA4lWMxEhn1PNWzPRY4mROj1Spx5EYbjAUbkxfEBp30EJ/X
+ BroP3wdYbbUhrGrCiF3UqhCksrKJq5eWkgoNrDIQ6/pEixK+0xNl/29uhtsAr2YEmg
+ q9bqygtkA6Hf+almOalFYnFcHQfJmN7MknOjtPko=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Date: Mon,  3 Apr 2023 16:08:25 +0200
+Message-Id: <20230403140417.351683580@linuxfoundation.org>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230403140414.174516815@linuxfoundation.org>
+References: <20230403140414.174516815@linuxfoundation.org>
+User-Agent: quilt/0.67
 MIME-Version: 1.0
-References: <20230402164826.752842-1-dmitry.osipenko@collabora.com>
- <20230402164826.752842-8-dmitry.osipenko@collabora.com>
-In-Reply-To: <20230402164826.752842-8-dmitry.osipenko@collabora.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 3 Apr 2023 15:01:57 +0100
-Message-ID: <CACvgo529Rji9oVdSX81NJhXf9bF6jq1OTLhDff9CjHvfKLS4tA@mail.gmail.com>
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v1 7/7] drm/shmem-helper: Switch to
- reservation lock
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 5.10 090/173] drm/i915/active: Fix missing debug
+ object activation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,64 +51,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
- Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Tomi Valkeinen <tomba@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- Liam Mark <lmark@codeaurora.org>, Tomasz Figa <tfiga@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, patches@lists.linux.dev,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-On Sun, 2 Apr 2023 at 17:49, Dmitry Osipenko
-<dmitry.osipenko@collabora.com> wrote:
+commit e92eb246feb9019b0b137706c934b8891cdfe3c2 upstream.
 
-> -void drm_gem_shmem_put_pages(struct drm_gem_shmem_object *shmem)
-> +static int drm_gem_shmem_pin_locked(struct drm_gem_shmem_object *shmem)
->  {
-> -       mutex_lock(&shmem->pages_lock);
-> -       drm_gem_shmem_put_pages_locked(shmem);
-> -       mutex_unlock(&shmem->pages_lock);
-> +       struct drm_gem_object *obj = &shmem->base;
-> +       int ret;
-> +
-> +       dma_resv_assert_held(shmem->base.resv);
-> +
-> +       drm_WARN_ON(obj->dev, obj->import_attach);
-> +
+debug_active_activate() expected ref->count to be zero
+which is not true anymore as __i915_active_activate() calls
+debug_active_activate() after incrementing the count.
 
-We don't need this WARN_ON to happen with a reservation lock, do we?
-If so, let's leave that in the caller.
+v2: No need to check for "ref->count == 1" as __i915_active_activate()
+already make sure of that(Janusz).
 
-> +       ret = drm_gem_shmem_get_pages(shmem);
-> +
-> +       return ret;
-> +}
-> +
-> +static void drm_gem_shmem_unpin_locked(struct drm_gem_shmem_object *shmem)
-> +{
-> +       struct drm_gem_object *obj = &shmem->base;
-> +
-> +       dma_resv_assert_held(shmem->base.resv);
-> +
-> +       drm_WARN_ON(obj->dev, obj->import_attach);
-> +
+Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active callback")
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.10+
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230313114613.9874-1-nirmoy.das@intel.com
+(cherry picked from commit bfad380c542438a9b642f8190b7fd37bc77e2723)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/i915/i915_active.c |    3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Ditto.
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -96,8 +96,7 @@ static void debug_active_init(struct i91
+ static void debug_active_activate(struct i915_active *ref)
+ {
+ 	lockdep_assert_held(&ref->tree_lock);
+-	if (!atomic_read(&ref->count)) /* before the first inc */
+-		debug_object_activate(ref, &active_debug_desc);
++	debug_object_activate(ref, &active_debug_desc);
+ }
+ 
+ static void debug_active_deactivate(struct i915_active *ref)
 
-With that the series is:
-Reviewed-by; Emil Velikov <emil.l.velikov@gmail.com>
 
-HTH
--Emil
