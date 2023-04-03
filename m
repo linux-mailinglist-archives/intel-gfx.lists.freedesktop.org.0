@@ -1,44 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E1D6D483A
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:26:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8C96D4689
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 16:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0622310E4A4;
-	Mon,  3 Apr 2023 14:26:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEB7E10E49A;
+	Mon,  3 Apr 2023 14:09:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB2F10E15C
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 14:26:46 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 9B0D4B81C0E;
- Mon,  3 Apr 2023 14:26:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E37C4C433EF;
- Mon,  3 Apr 2023 14:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1680532003;
- bh=n7TtcujSaA0jzwWoGjoSoT0wDjWYaBUPyji86BFmLJs=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=q0GDu3fxnGRo1rHS5GSA4lWMxEhn1PNWzPRY4mROj1Spx5EYbjAUbkxfEBp30EJ/X
- BroP3wdYbbUhrGrCiF3UqhCksrKJq5eWkgoNrDIQ6/pEixK+0xNl/29uhtsAr2YEmg
- q9bqygtkA6Hf+almOalFYnFcHQfJmN7MknOjtPko=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Date: Mon,  3 Apr 2023 16:08:25 +0200
-Message-Id: <20230403140417.351683580@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230403140414.174516815@linuxfoundation.org>
-References: <20230403140414.174516815@linuxfoundation.org>
-User-Agent: quilt/0.67
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C1F10E49E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 14:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680530975; x=1712066975;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=V4VxsIApZPFm/ACSOvilOac86ah1+fTzOw/9riSte3w=;
+ b=Cu52KikVxNxb45UOK5+vxFeoZgkPEkwXWhcMEYoqkj4fAKdJdF7ye5Mm
+ 6jZipvIS+8hXx897j70S4RHrbrQ1v872EIUITTfV2xIgsy32bMIpdWu/P
+ 7dQUZ6R2ZYAq5TztAjG+FRJ+4dBR/3No3Tz7YYIsvsFjmZbYEmJQheUr2
+ PY7d4jSxOO2z0wHiXFk+Q5J1GvKeWM+YTPRKrIXF597/ruvo4Znf8X1uo
+ 6kaJc0GUfBauP1wVMDuZlfNnMVlJCYxsl0ZKVLhofWzls/NGeiY7iHtcn
+ Tc8cmoGi+rNndhFEqXidJ0yq6Ja5NtMYTgl9M74lObvZfPokv38JuEmDG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="321568836"
+X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="321568836"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 07:09:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="685986288"
+X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="685986288"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga002.jf.intel.com with SMTP; 03 Apr 2023 07:09:24 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 03 Apr 2023 17:09:24 +0300
+Date: Mon, 3 Apr 2023 17:09:24 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Message-ID: <ZCreFMId3fKGjOYx@intel.com>
+References: <20230403070125.1127830-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.10 090/173] drm/i915/active: Fix missing debug
- object activation
+In-Reply-To: <20230403070125.1127830-1-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Remove drm_modeset_lock
+ in intel_conn_to_vcpi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,57 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, patches@lists.linux.dev,
- Chris Wilson <chris@chris-wilson.co.uk>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Nirmoy Das <nirmoy.das@intel.com>
+On Mon, Apr 03, 2023 at 12:31:25PM +0530, Suraj Kandpal wrote:
+> Remove drm_modeset_lock in intel_conn_to_vcpi as we don't need it
+> anymore since all the required locks are taken in atomic check and
+> prepare phases.
+> 
+> --v2
+> -take lock if hdcp function is called from legacy path [Ville]
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 650232c4892b..65cfc4afbcaa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -36,13 +36,16 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+>  	struct drm_dp_mst_atomic_payload *payload;
+>  	struct drm_dp_mst_topology_state *mst_state;
+>  	int vcpi = 0;
+> +	bool is_locked;
+>  
+>  	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
+>  	if (!connector->port)
+>  		return 0;
+>  	mgr = connector->port->mgr;
+> +	is_locked = drm_modeset_is_locked(&mgr->base.lock);
 
-commit e92eb246feb9019b0b137706c934b8891cdfe3c2 upstream.
+The fact that *someone* is holding the lock doesn't mean you
+can just skip taking it yourself.
 
-debug_active_activate() expected ref->count to be zero
-which is not true anymore as __i915_active_activate() calls
-debug_active_activate() after incrementing the count.
+> +	if (!is_locked)
+> +		drm_modeset_lock(&mgr->base.lock, NULL);
+>  
+> -	drm_modeset_lock(&mgr->base.lock, NULL);
+>  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
+>  	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
+>  	if (drm_WARN_ON(mgr->dev, !payload))
+> @@ -54,7 +57,9 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+>  		goto out;
+>  	}
+>  out:
+> -	drm_modeset_unlock(&mgr->base.lock);
+> +	if (!is_locked)
+> +		drm_modeset_unlock(&mgr->base.lock);
+> +
+>  	return vcpi;
+>  }
+>  
+> -- 
+> 2.25.1
 
-v2: No need to check for "ref->count == 1" as __i915_active_activate()
-already make sure of that(Janusz).
-
-Fixes: 04240e30ed06 ("drm/i915: Skip taking acquire mutex for no ref->active callback")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Thomas Hellstr√∂m <thomas.hellstrom@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.10+
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230313114613.9874-1-nirmoy.das@intel.com
-(cherry picked from commit bfad380c542438a9b642f8190b7fd37bc77e2723)
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/i915_active.c |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -96,8 +96,7 @@ static void debug_active_init(struct i91
- static void debug_active_activate(struct i915_active *ref)
- {
- 	lockdep_assert_held(&ref->tree_lock);
--	if (!atomic_read(&ref->count)) /* before the first inc */
--		debug_object_activate(ref, &active_debug_desc);
-+	debug_object_activate(ref, &active_debug_desc);
- }
- 
- static void debug_active_deactivate(struct i915_active *ref)
-
-
+-- 
+Ville Syrj‰l‰
+Intel
