@@ -1,42 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C3E6D3A4F
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Apr 2023 22:43:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EEF6D3BA8
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 04:04:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD8910E058;
-	Sun,  2 Apr 2023 20:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3636110E0CC;
+	Mon,  3 Apr 2023 02:04:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eggs.gnu.org (eggs.gnu.org [IPv6:2001:470:142:3::10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AAA810E058
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Apr 2023 20:43:16 +0000 (UTC)
-Received: from linux-libre.fsfla.org ([209.51.188.54] helo=free.home)
- by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.90_1) (envelope-from <oliva@gnu.org>)
- id 1pj4Xd-0005vk-5z; Sun, 02 Apr 2023 16:43:09 -0400
-Received: from livre (livre.home [172.31.160.2])
- by free.home (8.15.2/8.15.2) with ESMTPS id 332Kgstx1652492
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Sun, 2 Apr 2023 17:42:55 -0300
-From: Alexandre Oliva <oliva@gnu.org>
-To: John Harrison <john.c.harrison@intel.com>
-Organization: Free thinker, not speaking for the GNU Project
-References: <orjzzlhhg8.fsf@lxoliva.fsfla.org>
- <b9a2746f-bace-3a1e-eb82-8e8eecddb6ae@intel.com>
- <or1qlbvo9b.fsf@lxoliva.fsfla.org>
- <ba2e49ea-d1a4-bf77-dde5-f92c6600cb4f@intel.com>
-Date: Sun, 02 Apr 2023 17:42:54 -0300
-In-Reply-To: <ba2e49ea-d1a4-bf77-dde5-f92c6600cb4f@intel.com> (John Harrison's
- message of "Fri, 31 Mar 2023 12:14:47 -0700")
-Message-ID: <orjzyu10dt.fsf@lxoliva.fsfla.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7940310E0CA;
+ Mon,  3 Apr 2023 02:04:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680487448; x=1712023448;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=0O5qum0Tt7GK+tn7H3s5RfqQ/Ob5lYZ5UHJ1No4uYeA=;
+ b=ko9AIV/Dcy58pX6w1apy2QKWYywLBqHPnf+8zd5hg3iIx05jS5Yqw5zI
+ cWtTy0J5OeC/wClLswMj7E4b4iI5Jcl69KPfEkuf+WkpMcvJFmJE51Oby
+ 6Yebienhk0Go4VboZoAKn54f4j17C1rh9wtWw0xobi2IReVGGoLIPS3qz
+ 0RoYB4hqKgUM0YBMpa+cdJf2cu2ggCILEW1KUWAj8PAjy6BTYYRP1lVsf
+ Z1Y9qzLiGNurNqX2uoRAWzdpGPqnn3UJ3pO6Shg+8UjSBvScXQM2HF9Af
+ 9EdnqHaa2U2RhX9qv5YLLjwQEw8criyM2x5hA7YdTCjxsrFSUm0ZK6RRb g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="321449240"
+X-IronPort-AV: E=Sophos;i="5.98,313,1673942400"; d="scan'208";a="321449240"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2023 19:04:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="1015526900"
+X-IronPort-AV: E=Sophos;i="5.98,313,1673942400"; d="scan'208";a="1015526900"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP; 02 Apr 2023 19:04:06 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Sun, 2 Apr 2023 19:04:06 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Sun, 2 Apr 2023 19:04:06 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.44) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Sun, 2 Apr 2023 19:04:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g+HXev5i+9ZQsnpOVjibAIaaTAOVjup9771MfWix/0YRAcsKE6nwihAhccIb6lPbIF5Oxo/3yVKJIFkvOxWjIlRNzsJAXWptC0jMP4UvQ4kJmzbd5o1szNv73IUr/t9EQHWaVqxTA+V53kRVOhxr1IqG3NDS8CeO4EtZ6uru6daryKp12T2W/lOlooxsPnc1IjheIaSh1egH5ZUnSg4VLsBa/xip8nEDjrBmc1jDkOZ91b1e7o3hjaYOWgjj1HLs/Dq3uGu7zTQq9X/iloIxRD6dtqFsPBvfvvyJ24VGfRGIZbF62QiV5oMTQNhlSpu2g2w+JWoNzbOfRB2n6sRL0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y5WfTxaxTPK0E9v6IGmG/SHvfbkLnjetTuP9u4h0vOQ=;
+ b=Ko9poxpQhP9mv/BCZzPgJ71V5bCJVwf5qDsFV4KkGZISmgjo9mwz9IISKN9JKs96vfLKDwTyt9iUZPRDpyy2MgCDsFgH2/mINepPEvCtdTpZOa8aORwrBbxVM/7GnkbnJYXJFqAft1BxieNTlZgo6j6of3lzOXQ7e5ww/lAKfcFaXvYtyMAlXao6f/G1uxQ+efWvLOO4z7rfpGtOwRbs/NjzeD4qyJsQTa8YQRwysqmZ3tTgnrG3DLIQYzMvf2olCdg677Mb4+cdrfA6JEteomELnb35h2MGPjJa+btxF5w15b6aTS3VOfC/FmmeVmKMQt5Q6ssKPm9o7cZg/zJKIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MW4PR11MB6763.namprd11.prod.outlook.com (2603:10b6:303:20b::7)
+ by CH0PR11MB5364.namprd11.prod.outlook.com (2603:10b6:610:bb::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.30; Mon, 3 Apr
+ 2023 02:04:04 +0000
+Received: from MW4PR11MB6763.namprd11.prod.outlook.com
+ ([fe80::c4e:6c7:e9f7:7222]) by MW4PR11MB6763.namprd11.prod.outlook.com
+ ([fe80::c4e:6c7:e9f7:7222%6]) with mapi id 15.20.6254.030; Mon, 3 Apr 2023
+ 02:04:01 +0000
+From: "Jiang, Yanting" <yanting.jiang@intel.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Thread-Topic: [PATCH v2 00/10] Introduce new methods for verifying ownership
+ in vfio PCI hot reset
+Thread-Index: AQHZYI9oL669gEM9E0+QMvpJm73ZX68UPIhwgACqogCAA/ez0A==
+Date: Mon, 3 Apr 2023 02:04:00 +0000
+Message-ID: <MW4PR11MB6763D53D27521AE33B2FD42FE8929@MW4PR11MB6763.namprd11.prod.outlook.com>
+References: <20230327093458.44939-1-yi.l.liu@intel.com>
+ <MW4PR11MB6763D4F64127A5205D3B6567E88F9@MW4PR11MB6763.namprd11.prod.outlook.com>
+ <20230331072438.21c9243b.alex.williamson@redhat.com>
+In-Reply-To: <20230331072438.21c9243b.alex.williamson@redhat.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR11MB6763:EE_|CH0PR11MB5364:EE_
+x-ms-office365-filtering-correlation-id: e4c8ea8c-6ffa-468b-28d6-08db33e7b152
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: knGuizA3enTZgY0RhCeWT3ZYMOquPe7DMFibc0yhEZRwcIA1jdVgWbtx58XJe48h2RAG7gaRTqaPT6nOpqhZI99pEcqKJMn9ecKcOg77DBiRJ9ck2HJwsDBP9kndt4U2cO+kCHitk2nugNiXlHJRtpIKX3K9ZWGv32L7NMcrfon6MNzm7h2zXfynQu5jxluiMqY3CGJTcBSf5q9JKY5yq44qqNOLVjMpHRhY4JPHTAxv2WOscemcKp8iPo1qm8uLS/6kLcgQtNTGbTwrVmkZjGRAh02fpw8oH9+6Jrblc8PIT77mYwcBrcKvSn60wgzVAHS9nABaNYgnNhimsN9vyvkHxhMg+re1UJZgzhApvFXdVJbM24mV9n6mu2acL4kexu/kYMkj8Womt/ezcYIhlrosvPBEE2mRwPuJB3mx3zBqFTiRvhQJMjNfeGi+/AxPfAAL45xp6KgTvIHJqu5ss6q8tGlS52KR86uJAh2OYzwN5Z0QBrgN8CqUKEgx+XCT8iUDVnmem7lqfWm+wt5A5lDoTEB/GjuRNMMGTxM+53JRD6BFXYj4+HseSDcD+TrvGniB1Sb96qNYNzZmPQgfpop/VKAM1SqDdz9b1iQCxcyQTdvWEVuflLu9MBEWCbod
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB6763.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(346002)(136003)(376002)(366004)(39860400002)(451199021)(53546011)(26005)(6506007)(6916009)(9686003)(186003)(83380400001)(52536014)(7416002)(8936002)(5660300002)(4326008)(8676002)(64756008)(41300700001)(66446008)(66476007)(66556008)(76116006)(66946007)(71200400001)(15650500001)(2906002)(7696005)(478600001)(54906003)(316002)(55016003)(82960400001)(122000001)(38070700005)(33656002)(86362001)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?q2YQWlRZtfzCfr8N/EYZHk17Yo9YA5Q/ir2A+BGWZpIsinG4wgPsxca+K03m?=
+ =?us-ascii?Q?3oZKzWF96AGVJNaXQCkOnPp9r5vDRJy0enZmMhM+LniA9xUSlDkIq3MTdKRG?=
+ =?us-ascii?Q?z+GetQR5C6Bc8EXbohXUsGATMTJGMMC0XGwcneKW8kho19qtL3LeR2RXBGJG?=
+ =?us-ascii?Q?ubH+VB7x4teOrrlulyv9M44tZSJ6srLjUGCqk5MN+fnLhVsOmTctPjYlQ5qo?=
+ =?us-ascii?Q?94fb9MDF7pIoG/x6otFcHCI9hCYNhmglXWLOlbqZ6BzDDEFPUUy//QFSKnCD?=
+ =?us-ascii?Q?/5h16H+VSi5d7X74LzA+IHcuNykc22UjSDQsdQeZIgcule/V7l61xr6CTexj?=
+ =?us-ascii?Q?vXpG6W3ZQwQGmF1ZA1emNFJrAP0xMNPoivfNHFFlKe2grkgt8T8tDNfRnKVc?=
+ =?us-ascii?Q?hBILGq26yacwFtrOATW4jBIEsSFv7VtTuUWsftvbZEKv7hZTbRUhQWWKrjd6?=
+ =?us-ascii?Q?+3t6qyvUB8gRly+DDPtO2Aqqqympd9fyG1RX46YqjzDudJXyIsSYLKk4WoA1?=
+ =?us-ascii?Q?awi+Ams5tVWCogRH/DSOJD1ajcDXme0v3nbXN3+lU1lDKUVgFNs7fGEcJyN8?=
+ =?us-ascii?Q?18x8Go36E3Kur5EkpKc2VPVje2n1TJucrK9fkqSx/2cneniHATxS3rRFgKNE?=
+ =?us-ascii?Q?0QiKkRuqPBbAShPjKDQm1TSwpswlzLtSBc7oLq1G8CvEVZAhf//CcaNR+hlW?=
+ =?us-ascii?Q?Weva4LT2Ecu+E7aiGAE+oHFwfijN5Wayy09bK7HDVkELMQR5U5zYFRASmIj7?=
+ =?us-ascii?Q?6gnsT+uP+kOhzz0zHY1u6dfIaTRQ2ePpnAo4O+7PKlM4YcYCav+8PoJmizvM?=
+ =?us-ascii?Q?ycoS/NkJ+OiEQw1EkDmwUNaFQ1f+NHM1FkXuerpY0X1yQx13i3YJLTjjIsIW?=
+ =?us-ascii?Q?inwB4+rxdfxawwh+DSLm03UT7gixYOQ5xEF6X87GmP5OaYvSqYGLmB8q6yJB?=
+ =?us-ascii?Q?3XdPplK7kRRmQ0Iws9rtP+p2hChP/35EEsmm7MV8MLSbVIrghXHcgyqV8QmB?=
+ =?us-ascii?Q?cho32nSu959/aMcOAbhiGzbI5my1dcJzHa+TFWW6g8urfkdFRVzTiIZCFWnU?=
+ =?us-ascii?Q?ZSxz87L43DND9qC2PZsdn86tSzklYaIRgB0BinZOdIeQXWdOpOTYUeLq8KJG?=
+ =?us-ascii?Q?7UAm1FLiIEBLLI6dvNcIbtq8/azn8wPxjbafF8PzPxV7xqZVCCC7SuvkuX85?=
+ =?us-ascii?Q?8y2elECG+KHJQ19SsoXiBzP/nEqU9+pn/j6w9xszDs9ogatlO30bDAdk2QVp?=
+ =?us-ascii?Q?nH6V6fercZYAXeoPZLZg79OXzwxOs0Y07bGXjNbY1+UxR+dthSTq5roYqG6s?=
+ =?us-ascii?Q?escgIurYFKllpMLsw9UMw7Eg0NHeBVGK+YN7Gc1QeNj8tFnHmrmhITvPAwWX?=
+ =?us-ascii?Q?0ucoiOsVkI1xxwZLMswhsQoSVwkz2f29dGgtTxdc39gbcjKViOsNGJd0VjsC?=
+ =?us-ascii?Q?kvGxlUIwKg2YbMjOHkblTML+W/mWnPaVTvFMhVmCNsgykRoPsBNh4tcNqQpA?=
+ =?us-ascii?Q?JVTIjsfLSXVhs6JUGujK7sG3YSz1C6lHuE0wT+CC9r5yJF2VKCohfEXRjiFo?=
+ =?us-ascii?Q?PyCHUDx8GcFobGh++8RmUGjw9DNEAC/X9aGNpf4N?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Scanned-By: MIMEDefang 2.84
-Subject: Re: [Intel-gfx] [PATCH] [i915] avoid infinite retries in GuC/HuC
- loading
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6763.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4c8ea8c-6ffa-468b-28d6-08db33e7b152
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 02:04:00.8234 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NkK873Yct5kxK5dYNFg+M/TPbP3oEdeBrs6jMGIZXmJ+Lw4x1wfDRdOwMn6lD7uLcnCS+NxgVMTP06kNOto8pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5364
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 00/10] Introduce new methods for
+ verifying ownership in vfio PCI hot reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,69 +148,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mar 31, 2023, John Harrison <john.c.harrison@intel.com> wrote:
-
->>> I'm not sure that is really a valid use case that the driver code
->>> should be expected to support.
-
->> It's most certainly not.  As I wrote, I'd be happy to keep on carrying
->> the patch that adjusts the code to cope with our changes.  I just
->> thought the same issue could come up by, say, mistakenly applying a
->> patch twice to add support for a new card, a circumstance in which one
->> might not have the card readily available to try it out.
-
-> Not following this argument.
-
-I was talking about downstream backporting, e.g. random users or
-small-distro maintainers attempting to backport support for certain
-cards without realizing it's already there.
-
->> Oh, no, the driver loads just fine even without those blobs, and that's
->> much nicer of you than other drivers for hardware that doesn't really
->> require blobs, but that insist on bailing out if the firmware can't be
->> loaded.  i915 hasn't been hostile like that.
-> That situation won't last...
-
-:-(
-
-> I would consider that a bug that should never make it past either
-> pre-merge CI or code review.
-
-Agreed.
-
-> And if you really do need to remove the firmware files from the
-> compiled binary completely, then replacing them with unique names
-> would also work - '/*(DEBLOBBED_1)*/', '/*(DEBLOBBED_2)*/', etc.
-
-That is not doable with our current deblob-check implementation,
-unfortunately.  There are long-term plans to switch to a different
-approach, but we're not there yet.  So I guess we'll have to use custom
-code to disable blob loading on i915, while that's still possible, when
-the stricter table checking hits.
-
->>> Also, is this string unification thing a part of the current gcc
->>> toolchain?
->> Yeah, compilers and linkers have been unifying (read-only) string
->> literals for a very long time.
-> That's what I would have assumed. Which is why I was confused that you
-> were saying 'if you use a toolchain that does this'. It seemed that
-> you were implying that most don't and this was a special situation.
-
-Oh, no, sorry, it's just that compilers can't be dependent on for string
-literal unification.  It's an optimization, not a language-imposed
-requirement.
 
 
-Thanks for considering the patch, and for the heads up about darker days
-coming for users of Intel video cards! :-(
+> -----Original Message-----
+> From: Alex Williamson <alex.williamson@redhat.com>
+> Sent: Friday, March 31, 2023 9:25 PM
+> To: Jiang, Yanting <yanting.jiang@intel.com>
+> Cc: Liu, Yi L <yi.l.liu@intel.com>; jgg@nvidia.com; Tian, Kevin
+> <kevin.tian@intel.com>; joro@8bytes.org; robin.murphy@arm.com;
+> cohuck@redhat.com; eric.auger@redhat.com; nicolinc@nvidia.com;
+> kvm@vger.kernel.org; mjrosato@linux.ibm.com; chao.p.peng@linux.intel.com;
+> yi.y.sun@linux.intel.com; peterx@redhat.com; jasowang@redhat.com;
+> shameerali.kolothum.thodi@huawei.com; lulu@redhat.com;
+> suravee.suthikulpanit@amd.com; intel-gvt-dev@lists.freedesktop.org; intel=
+-
+> gfx@lists.freedesktop.org; linux-s390@vger.kernel.org; Hao, Xudong
+> <xudong.hao@intel.com>; Zhao, Yan Y <yan.y.zhao@intel.com>; Xu, Terrence
+> <terrence.xu@intel.com>
+> Subject: Re: [PATCH v2 00/10] Introduce new methods for verifying ownersh=
+ip in
+> vfio PCI hot reset
+>=20
+> On Fri, 31 Mar 2023 03:14:23 +0000
+> "Jiang, Yanting" <yanting.jiang@intel.com> wrote:
+>=20
+> > >
+> > > VFIO_DEVICE_PCI_HOT_RESET requires user to pass an array of group
+> > > fds to prove that it owns all devices affected by resetting the
+> > > calling device. This series introduces several extensions to allow
+> > > the ownership check better aligned with iommufd and coming vfio devic=
+e
+> cdev support.
+> > >
+> > > First, resetting an unopened device is always safe given nobody is
+> > > using it. So relax the check to allow such devices not covered by
+> > > group fd array. [1]
+> > >
+> > > When iommufd is used we can simply verify that all affected devices
+> > > are bound to a same iommufd then no need for the user to provide extr=
+a fd
+> information.
+> > > This is enabled by the user passing a zero-length fd array and
+> > > moving forward this should be the preferred way for hot reset. [2]
+> > >
+> > > However the iommufd method has difficulty working with noiommu
+> > > devices since those devices don't have a valid iommufd, unless the
+> > > noiommu device is in a singleton dev_set hence no ownership check is
+> > > required. [3]
+> > >
+> > > For noiommu backward compatibility a 3rd method is introduced by
+> > > allowing the user to pass an array of device fds to prove ownership.
+> > > [4]
+> > >
+> > > As suggested by Jason [5], we have this series to introduce the
+> > > above stuffs to the vfio PCI hot reset. Per the dicussion in [6],
+> > > this series also adds a new _INFO ioctl to get hot reset scope for gi=
+ven
+> device.
+> > >
+> > Tested NIC passthrough on Intel platform.
+> > Result looks good hence,
+> > Tested by: Jiang, Yanting <yanting.jiang@intel.com>
+>=20
+> I'm not aware of any userspace that exercises this reset ioctl in cdev mo=
+de.  Is
+> this regression testing only?  Thanks,
+>=20
+> Alex
+
+Hi Alex,=20
+
+Yes, only regression testing and some negative testing for NIC passthrough =
+with legacy vfio mode, vfio iommufd compat mode, and cdev mode.
+
+Thanks,
+Yanting
 
 
--- 
-Alexandre Oliva, happy hacker                https://FSFLA.org/blogs/lxo/
-   Free Software Activist                       GNU Toolchain Engineer
-Disinformation flourishes because many people care deeply about injustice
-but very few check the facts.  Ask me about <https://stallmansupport.org>
