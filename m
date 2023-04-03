@@ -2,141 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CEB6D5171
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 21:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 567586D517F
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 21:41:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E095410E07B;
-	Mon,  3 Apr 2023 19:39:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 855C510E1D4;
+	Mon,  3 Apr 2023 19:41:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C93510E07B;
- Mon,  3 Apr 2023 19:39:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680550781; x=1712086781;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9igI0hshVJtcHdQwv8eL3yy3Dsu1fvCPgqrX9suUOUk=;
- b=g/J6BH+wO1dz8B7F8SsBNS3OWipcFxdP34kzVRThL572R6bx6hQgGu7z
- rNeXWEskCPPd4iGf6A99ociFVyPIXS5Gu8zC/+yGOMgrtbe8rlupHiTfH
- +sq+Ajmj/3A5fYC22cHcDHC/xa5BsgLpuXTIb1c4EblYQS8Hp0QDy33ST
- QoWradIRjAEXZn4b0LjL0rF+LQ/Q1o7jmHBFKhZ4h+LeAoAmdHi1otg1W
- kAtHaECwDGWEMN0fua47TyrDtfyyJLFHJ6/tmQJ4iPJyQeRsE0mNkvEIB
- vfyawexqDjISWAyjVkqDw/q/47rD0d3ByngqfjARsjGCPbN1kqSs0jxZ6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="340729792"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="340729792"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 12:39:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="932165127"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="932165127"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga006.fm.intel.com with ESMTP; 03 Apr 2023 12:39:40 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 3 Apr 2023 12:39:39 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 12:39:39 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Mon, 3 Apr 2023 12:39:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KySVQF/GeVj6TLSXk5xHlLV/+haRZc78nJcMEyys5IEAE7BojqLBasLJ3bia+Cq36DRA7p8SA/B4xmpCDH0FKZhCbWRfGdn1fTXNzOucMgzooDAS0kuifzvZA2nz3UA5LQ40morhMqXQVeISRCj2PUwRAIN24jbxlperDSV08pYNtYEMwCaHD3gLMWH4tca1ExcCEw2A1pjlq+DCqKzsiuoEhx6uF7gBiEey7D/HTNEfrOp86x+KswP+CG1fOg+HMGDg8D7nYIA1EX8UKePC78kWtd0UqDtFFWHb8hoMze2lu6FTjhlfDwCjiCF5ym+aGCyeumyUIZfk4Vp0wIeLww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9igI0hshVJtcHdQwv8eL3yy3Dsu1fvCPgqrX9suUOUk=;
- b=UcFaWRoDk/LxWKEZL2oIFKvt9vdSgn5XRf8JpPq5hQPdOUp4eG8sG4wbGI2NV6tCgFTfNHwFlUSR/KxRULo7kAT9PZCHMYmdV1xURWaH7MldfH8TF7bGaHpfbAVHV/7Bf/HiuabNXtzki6b00v3n87078XAd8+LX4BqYo6kQKvpx/3N9kki4B4SRY/QFm1dW+bxhfNLxzUqZgzAS/aa2er93dzH4VRgmLQ8s3EVJ+h2bElP2iiBB3xHpMLSMzsQ6RMOzyjTHasXwQPu+8s9Ah8DH8Du5F1gLBQIXK4TRyo6jszuRTs9dVKfB4DuCvtMHuRL/LlI49Btol7zrZsc4Aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
- by PH7PR11MB6521.namprd11.prod.outlook.com (2603:10b6:510:213::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.29; Mon, 3 Apr
- 2023 19:39:37 +0000
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::12b1:c9af:ed85:e3ee]) by BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::12b1:c9af:ed85:e3ee%6]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
- 19:39:37 +0000
-From: "Yang, Fei" <fei.yang@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH 5/7] drm/i915: use pat_index instead of cache_level
-Thread-Index: AQHZZGRhzCzjM8mcJUyzrl8CnRb2/a8ZrnkAgAAix+CAAAWDAIAAJWug
-Date: Mon, 3 Apr 2023 19:39:37 +0000
-Message-ID: <BYAPR11MB2567738B001C8830D130C8279A929@BYAPR11MB2567.namprd11.prod.outlook.com>
-References: <20230401063830.438127-1-fei.yang@intel.com>
- <20230401063830.438127-6-fei.yang@intel.com> <ZCrntC9f1E0MZlXa@intel.com>
- <BYAPR11MB25675C7C3491973BB79379E29A929@BYAPR11MB2567.namprd11.prod.outlook.com>
- <ZCsJgNB1XY1yuq7Y@intel.com>
-In-Reply-To: <ZCsJgNB1XY1yuq7Y@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|PH7PR11MB6521:EE_
-x-ms-office365-filtering-correlation-id: 095c54de-62fe-47f7-6914-08db347b28f2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Hrg465UfcfMxJWMUcWsj4+8wS6bdfjTn8cZUTwefuK+TaBTf6xdwpi6LRFG+qyXnLLf+YGZSrL2sV8JmWAAfrLxxWprOXBBqz4NJg7BT5Sle3I95iiLjuJ+JfSIo9yYx0mgDLxagqrOBsRaYbuiWdnf7uqGYawkby0iW1ZpCScjkFJ6duYYI2nYp8to7lSZsEweZHFbO4Dza2HyyOUNJkScuyFMkrif001X7c9fXwC6yJMA79GoSWYu2NWEyiqp7OB4YZXtKaJnDshWNT+JGFPtURBDmQsYW3q9AuQGCsssdJzdpTzfxce+Oqt1lHK+XnsrRBwy4g6sCkPCvrTQNYPIYVeUWTNoO/mNNHDRMmc+/l+HqY8LrRxtO1tRxppbMPj3ttXTSfEoev6O5jfQXKdLpeezRYtVrnT3A4TVXG2dsP8ClpxFX2faE2TYGUXRw4jg10+CQjqX/YpCNNUnALoE5h4eCvsg9Ev/pbnJr6SXWUIGuC+vywtq52iapYAy16v7hC34gMS9Ig0A2mqzCumRK7S2KkiizXMeXBZwhQbAEabaWxtEesFSFR30go9xYd4r0Prh7hdbTPcVSXGIMha4gRouofjmLsB+dxQfHAkkTUcuIY0OAOnRTHxx9RKWI
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(346002)(39860400002)(366004)(396003)(136003)(451199021)(6916009)(4326008)(33656002)(8676002)(66946007)(54906003)(66446008)(316002)(76116006)(66476007)(64756008)(66556008)(71200400001)(478600001)(7696005)(41300700001)(8936002)(2906002)(55016003)(82960400001)(52536014)(5660300002)(86362001)(38070700005)(122000001)(38100700002)(6506007)(186003)(83380400001)(66574015)(9686003)(26005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?i4AppBWRGtzp40RPmKEGCorTkkaOpHoHf7y44pkzJXGuxYShZFRalOCZPo?=
- =?iso-8859-1?Q?32JlnlFmjFBfDr2ZBhCDeaCml8N2Jq0OHIxfE5O+qx1NRW9KxZVP9L8TrB?=
- =?iso-8859-1?Q?M5Q9UmACLrHfzBDM6UTInrgpJZNBBv/FyOIaHohrwa4F873n9NY2rayKiQ?=
- =?iso-8859-1?Q?+vjMEBGrHzTlwQhp7Zpf68gx0vhCFUiNjDGfHtX3HY8J92yb1f+qud0Mqv?=
- =?iso-8859-1?Q?jgZVFLqMwKE3fMINeBbOPWriYwsl9X/LXOYtMLZ1hOe3sUcUcSAfUo3MaE?=
- =?iso-8859-1?Q?ZneH97DmUbM0Fa7tN6YI3YN1TRIqu4qM6jxK9ULwSQGHs7SSvJXpzv8bGU?=
- =?iso-8859-1?Q?6HdGaSE2MrdpeUvWIuL/I05T3+tl9mAjPE8p3K+gfwAb2rOR2itYbMPeUR?=
- =?iso-8859-1?Q?zTyBhH/LGO6C2gaxKtU6gJB+vrY7S0GDLkwaqH/+xBTGZJ6GVubqYKmTUY?=
- =?iso-8859-1?Q?qxo9Bx0KeobCG5KRJEPNsFUpc01n5RI9jrBDo6p9g91p3W87TktCgz6Ku5?=
- =?iso-8859-1?Q?qb2Lkk5nEFjJXIAtqymd8lb0I3hSGUSmX/iLyUQvjzucq+Ss9YNbGIras4?=
- =?iso-8859-1?Q?SxtE+G/deVB5Yz02ltisqU5QNqWkAJosG0IGg0WPxlFzEZhqdaMGM5AyTA?=
- =?iso-8859-1?Q?d+7ZE+I5KROIr4/DV1+sYhP35Q64lKME3TJiQ2ojUsVBk/NFkX6f8Aalxa?=
- =?iso-8859-1?Q?FZNYvmrUwXNLAiZtbc9Z53GKU8atxJ0BmjGtMKGNsFDb35arYjVb3Kyzxe?=
- =?iso-8859-1?Q?LT02HIVOqVYcfsFqh8fJVCwzvxtN3xAm2ESC1Ys/7GflRGwp7ncuPM9+HS?=
- =?iso-8859-1?Q?ZjPIQe9RUXqXZgP4+R8KWCBxOHlowum4AeU1BWATvQZ7Er7hLPsDJ+qCff?=
- =?iso-8859-1?Q?ns+8kRPZbjgNfH4zNY5ermZVPOq5zX1ZYD/zycqOHIdMvGrEP3E8toiWHM?=
- =?iso-8859-1?Q?rusitih9TbryBWB2uFG0sFr/d9J0oXDzRaAJ319Ctn4veYFouyaprOZqTB?=
- =?iso-8859-1?Q?ciMSz2jom1orHOTw6cPAKYimg/G+OJb5nYGyVQwte5lIRe0JC4wIS/iwen?=
- =?iso-8859-1?Q?7tnVwfjTSm/+YFg3K1b87dp+2g5A95qBzwsdRhUk/J4sQkzsSR7xBG468L?=
- =?iso-8859-1?Q?JtgZ0cHZpOWGjL8Yu2gLuz722spd4h+fNxq6fUZ2R0cyuu+5iPEd5y68sJ?=
- =?iso-8859-1?Q?UiEdcHzwzzVM1vbfCUOMgNj8qEWBryrXvgogqRi5iljgGTYMsaYvy2cux3?=
- =?iso-8859-1?Q?qTwyPn5F77kyXA0oTIvL/H8wZ7Hlf8ZJZb4lLFn+W8XY7m9uKvvCYXHWsN?=
- =?iso-8859-1?Q?OZ4RdHrxdndUTqC2Yxus4/mqMGsk3Ip2uomNZVDyxGGdz89a4MXavuH8uN?=
- =?iso-8859-1?Q?ICxJFmgp+PS2iZcyjq/0Y2vgcO+DqIF8e7A4W0gL0g9y4zp/3eQiNNulBj?=
- =?iso-8859-1?Q?Cuxsf2HWQZZh409YkJCkxOB7cI/7JCUIpCxoKV+Z5PYrkQMo5mQ/mqDep3?=
- =?iso-8859-1?Q?yKCmfSDO1uAzGVttVEUmafKx1mBvhbxocBIh67PS3Q2pDBy7/vRUxFScrJ?=
- =?iso-8859-1?Q?jCnHEcC7TP+uqU17KSSREUeHHHIboDTuCeTYOqsuchQPyEV5/IxafotnPB?=
- =?iso-8859-1?Q?pFoC4l60XsHCU=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9E8ED10E1D4;
+ Mon,  3 Apr 2023 19:41:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95983A882E;
+ Mon,  3 Apr 2023 19:41:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7184320062302146770=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 095c54de-62fe-47f7-6914-08db347b28f2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 19:39:37.5493 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oj6FB3MBdDj0PsTw22KK3MU21+0sUacqZlnnJ7po02cXfLM8JEQ1x8oCh0LtCqIDWSG2wtJHhNmPeE6HmbGUSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6521
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: use pat_index instead of
- cache_level
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Date: Mon, 03 Apr 2023 19:41:53 -0000
+Message-ID: <168055091360.24310.6447296326879462528@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_move_DSC_RC_tables_to_drm=5Fdsc=5Fhelper=2Ec_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,83 +41,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->Subject: Re: [PATCH 5/7] drm/i915: use pat_index instead of cache_level
->
->On Mon, Apr 03, 2023 at 04:57:21PM +0000, Yang, Fei wrote:
->>> Subject: Re: [PATCH 5/7] drm/i915: use pat_index instead of
->>> cache_level
->>>
->>> On Fri, Mar 31, 2023 at 11:38:28PM -0700, fei.yang@intel.com wrote:
->>>> From: Fei Yang <fei.yang@intel.com>
->>>>
->>>> Currently the KMD is using enum i915_cache_level to set caching
->>>> policy for buffer objects. This is flaky because the PAT index
->>>> which really controls the caching behavior in PTE has far more
->>>> levels than what's defined in the enum.
->>>
->>> Then just add more enum values.
->>
->> That would be really messy because PAT index is platform dependent,
->> you would have to maintain many tables for the the translation.
->>
->>> 'pat_index' is absolutely meaningless to the reader, it's just an
->>> arbitrary number. Whereas 'cache_level' conveys how the thing is
->>> actually going to get used and thus how the caches should behave.
->>
->> By design UMD's understand PAT index. Both UMD and KMD should stand on
->> the same ground, the Bspec, to avoid any potential ambiguity.
->>
->>>> In addition, the PAT index is platform dependent, having to
->>>> translate between i915_cache_level and PAT index is not reliable,
->>>
->>> If it's not realiable then the code is clearly broken.
->>
->> Perhaps the word "reliable" is a bit confusing here. What I really
->> meant to say is 'difficult to maintain', or 'error-prone'.
->>
->>>> and makes the code more complicated.
->>>
->>> You have to translate somewhere anyway. Looks like you're now adding
->>> translations the other way (pat_index->cache_level). How is that better=
-?
->>
->> No, there is no pat_index->cache_level translation.
->
-> i915_gem_object_has_cache_level() is exactly that. And that one does look
-> actually fragile since it assumes only one PAT index maps to each cache
-> level. So if the user picks any other pat_index anything using
-> i915_gem_object_has_cache_level() is likely to do the wrong thing.
+--===============7184320062302146770==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-That is still one way transaltion, from cache_level to pat_index.
-The cache_level is only a KMD concept now. And inside the KMD, we have one
-table to translate between cache_level to pat_index. Only KMD would be able
-to trigger a comparison on pat_index for a KMD allocated BO.
-User is not allowed to set pat_index dynamically any more. By design the ca=
-hce
-setting for user space BO's should be immutable. That's why even the set ca=
-ching
-ioctl has been killed (from MTL onward).
+== Series Details ==
 
-> If we do switch to pat_index then I think cache_level should be made a
-> purely uapi concept,
+Series: drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)
+URL   : https://patchwork.freedesktop.org/series/114473/
+State : success
 
-UMD's directly use pat_index because they are supposed to follow the b-spec=
-.
-The abstracted cache_level is no longer exposed to user space.
+== Summary ==
 
--Fei
+CI Bug Log - changes from CI_DRM_12961 -> Patchwork_114473v5
+====================================================
 
-> and all the internal code should instead be made to
-> query various aspects of the caching behaviour of the current pat_index
-> (eg. is LLC caching enabled, and thus do I need to clflush?).
->
-> --
-> Ville Syrj=E4l=E4
-> Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html
+
+Participating hosts (36 -> 36)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114473v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - bat-dg2-9:          [PASS][1] -> [INCOMPLETE][2] ([i915#7873])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-dg2-9/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-9/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#5354])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +38 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#7873]: https://gitlab.freedesktop.org/drm/intel/issues/7873
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12961 -> Patchwork_114473v5
+
+  CI-20190529: 20190529
+  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+83911d686ecb drm/i915/dsc: make use of several params from drm_dsc_config
+ac02a07f037b drm/i915/dsc: use additional DSC helpers
+52c214085036 drm/display/dsc: Add flatness and initial scale value calculations
+c5d0d315b62a drm/display/dsc: add helper to set semi-const parameters
+4b721f84e4c7 drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters
+42b32a28ff61 drm/display/dsc: include the rest of pre-SCR parameters
+0d12f1915ad4 drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters
+4232eea5d6ae drm/display/dsc: use flat array for rc_parameters lookup
+c4bfa82efb59 drm/i915/dsc: stop using interim structure for calculated params
+d90f984880d3 drm/i915/dsc: move DSC tables to DRM DSC helper
+5b8935920201 drm/i915/dsc: move rc_buf_thresh values to common helper
+5377814e1ca0 drm/i915/dsc: change DSC param tables to follow the DSC model
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html
+
+--===============7184320062302146770==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114473/">https://patchwork.freedesktop.org/series/114473/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12961 -&gt; Patchwork_114473v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114473v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-dg2-9/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-9/igt@gem_exec_gttfill@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7873">i915#7873</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12961 -&gt; Patchwork_114473v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>83911d686ecb drm/i915/dsc: make use of several params from drm_dsc_config<br />
+ac02a07f037b drm/i915/dsc: use additional DSC helpers<br />
+52c214085036 drm/display/dsc: Add flatness and initial scale value calculations<br />
+c5d0d315b62a drm/display/dsc: add helper to set semi-const parameters<br />
+4b721f84e4c7 drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters<br />
+42b32a28ff61 drm/display/dsc: include the rest of pre-SCR parameters<br />
+0d12f1915ad4 drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters<br />
+4232eea5d6ae drm/display/dsc: use flat array for rc_parameters lookup<br />
+c4bfa82efb59 drm/i915/dsc: stop using interim structure for calculated params<br />
+d90f984880d3 drm/i915/dsc: move DSC tables to DRM DSC helper<br />
+5b8935920201 drm/i915/dsc: move rc_buf_thresh values to common helper<br />
+5377814e1ca0 drm/i915/dsc: change DSC param tables to follow the DSC model</p>
+
+</body>
+</html>
+
+--===============7184320062302146770==--
