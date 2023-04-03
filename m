@@ -1,34 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567586D517F
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 21:41:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F34A6D519B
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Apr 2023 21:52:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855C510E1D4;
-	Mon,  3 Apr 2023 19:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9166310E1D4;
+	Mon,  3 Apr 2023 19:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E8ED10E1D4;
- Mon,  3 Apr 2023 19:41:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 95983A882E;
- Mon,  3 Apr 2023 19:41:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7184320062302146770=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A792110E1D4;
+ Mon,  3 Apr 2023 19:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680551530; x=1712087530;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WxHyq9w8FC/USxnbTQBVnJrMWnXDeThBCBIJ1ktBJv8=;
+ b=F/KEtDQ2sFBXLGBsq0s3JuyxRaoLZ1YQ9NXXAQ/Md+HLKJpKsRtD3raK
+ CbKqK3XfPzYgYlpXNOT6344LiBLofd6wkQQIuPt+cAUjhZLD5eRjfi/qj
+ Q32f6EzIxOejOA5V1KZqT9CveIoY+XyYlcb/AGNZorW0eVmJXx+Wc8yiR
+ BODHvOLvSQVAJa0j5UyEGF66GJRMmteLQ/IYOQ5cjU6dZkn6Yd8JodaCL
+ JYz8SxjPnoyng9AKBdHs6yJYreZlTA0zjxXj89z1JP0hE338HE8H12DZN
+ e60tGWcCzAjVAO2qy4QNwbkeD2NPY7oL6xtFCJAFjk7qiza4MlMFymE0i w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="428289759"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="428289759"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 12:52:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="775335813"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="775335813"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by FMSMGA003.fm.intel.com with SMTP; 03 Apr 2023 12:52:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 03 Apr 2023 22:52:06 +0300
+Date: Mon, 3 Apr 2023 22:52:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Yang, Fei" <fei.yang@intel.com>
+Message-ID: <ZCsuZnNd7EtJHqim@intel.com>
+References: <20230401063830.438127-1-fei.yang@intel.com>
+ <20230401063830.438127-6-fei.yang@intel.com>
+ <ZCrntC9f1E0MZlXa@intel.com>
+ <BYAPR11MB25675C7C3491973BB79379E29A929@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <ZCsJgNB1XY1yuq7Y@intel.com>
+ <BYAPR11MB2567738B001C8830D130C8279A929@BYAPR11MB2567.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Date: Mon, 03 Apr 2023 19:41:53 -0000
-Message-ID: <168055091360.24310.6447296326879462528@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_move_DSC_RC_tables_to_drm=5Fdsc=5Fhelper=2Ec_=28rev5?=
- =?utf-8?q?=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BYAPR11MB2567738B001C8830D130C8279A929@BYAPR11MB2567.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: use pat_index instead of
+ cache_level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,196 +66,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7184320062302146770==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Apr 03, 2023 at 07:39:37PM +0000, Yang, Fei wrote:
+> >Subject: Re: [PATCH 5/7] drm/i915: use pat_index instead of cache_level
+> >
+> >On Mon, Apr 03, 2023 at 04:57:21PM +0000, Yang, Fei wrote:
+> >>> Subject: Re: [PATCH 5/7] drm/i915: use pat_index instead of
+> >>> cache_level
+> >>>
+> >>> On Fri, Mar 31, 2023 at 11:38:28PM -0700, fei.yang@intel.com wrote:
+> >>>> From: Fei Yang <fei.yang@intel.com>
+> >>>>
+> >>>> Currently the KMD is using enum i915_cache_level to set caching
+> >>>> policy for buffer objects. This is flaky because the PAT index
+> >>>> which really controls the caching behavior in PTE has far more
+> >>>> levels than what's defined in the enum.
+> >>>
+> >>> Then just add more enum values.
+> >>
+> >> That would be really messy because PAT index is platform dependent,
+> >> you would have to maintain many tables for the the translation.
+> >>
+> >>> 'pat_index' is absolutely meaningless to the reader, it's just an
+> >>> arbitrary number. Whereas 'cache_level' conveys how the thing is
+> >>> actually going to get used and thus how the caches should behave.
+> >>
+> >> By design UMD's understand PAT index. Both UMD and KMD should stand on
+> >> the same ground, the Bspec, to avoid any potential ambiguity.
+> >>
+> >>>> In addition, the PAT index is platform dependent, having to
+> >>>> translate between i915_cache_level and PAT index is not reliable,
+> >>>
+> >>> If it's not realiable then the code is clearly broken.
+> >>
+> >> Perhaps the word "reliable" is a bit confusing here. What I really
+> >> meant to say is 'difficult to maintain', or 'error-prone'.
+> >>
+> >>>> and makes the code more complicated.
+> >>>
+> >>> You have to translate somewhere anyway. Looks like you're now adding
+> >>> translations the other way (pat_index->cache_level). How is that better?
+> >>
+> >> No, there is no pat_index->cache_level translation.
+> >
+> > i915_gem_object_has_cache_level() is exactly that. And that one does look
+> > actually fragile since it assumes only one PAT index maps to each cache
+> > level. So if the user picks any other pat_index anything using
+> > i915_gem_object_has_cache_level() is likely to do the wrong thing.
+> 
+> That is still one way transaltion, from cache_level to pat_index.
 
-== Series Details ==
+Not really. The actual input to the thing is obj->pat_index.
+And as stated, the whole thing is simply broken whenever
+obj->pat_index isn't one of the magic numbers that you get
+back from i915_gem_get_pat_index().
 
-Series: drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)
-URL   : https://patchwork.freedesktop.org/series/114473/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12961 -> Patchwork_114473v5
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html
-
-Participating hosts (36 -> 36)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_114473v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - bat-dg2-9:          [PASS][1] -> [INCOMPLETE][2] ([i915#7873])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-dg2-9/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-9/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#5354])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +38 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#7873]: https://gitlab.freedesktop.org/drm/intel/issues/7873
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12961 -> Patchwork_114473v5
-
-  CI-20190529: 20190529
-  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-83911d686ecb drm/i915/dsc: make use of several params from drm_dsc_config
-ac02a07f037b drm/i915/dsc: use additional DSC helpers
-52c214085036 drm/display/dsc: Add flatness and initial scale value calculations
-c5d0d315b62a drm/display/dsc: add helper to set semi-const parameters
-4b721f84e4c7 drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters
-42b32a28ff61 drm/display/dsc: include the rest of pre-SCR parameters
-0d12f1915ad4 drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters
-4232eea5d6ae drm/display/dsc: use flat array for rc_parameters lookup
-c4bfa82efb59 drm/i915/dsc: stop using interim structure for calculated params
-d90f984880d3 drm/i915/dsc: move DSC tables to DRM DSC helper
-5b8935920201 drm/i915/dsc: move rc_buf_thresh values to common helper
-5377814e1ca0 drm/i915/dsc: change DSC param tables to follow the DSC model
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html
-
---===============7184320062302146770==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114473/">https://patchwork.freedesktop.org/series/114473/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12961 -&gt; Patchwork_114473v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html</p>
-<h2>Participating hosts (36 -&gt; 36)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114473v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-dg2-9/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-9/igt@gem_exec_gttfill@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7873">i915#7873</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12961 -&gt; Patchwork_114473v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>83911d686ecb drm/i915/dsc: make use of several params from drm_dsc_config<br />
-ac02a07f037b drm/i915/dsc: use additional DSC helpers<br />
-52c214085036 drm/display/dsc: Add flatness and initial scale value calculations<br />
-c5d0d315b62a drm/display/dsc: add helper to set semi-const parameters<br />
-4b721f84e4c7 drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters<br />
-42b32a28ff61 drm/display/dsc: include the rest of pre-SCR parameters<br />
-0d12f1915ad4 drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters<br />
-4232eea5d6ae drm/display/dsc: use flat array for rc_parameters lookup<br />
-c4bfa82efb59 drm/i915/dsc: stop using interim structure for calculated params<br />
-d90f984880d3 drm/i915/dsc: move DSC tables to DRM DSC helper<br />
-5b8935920201 drm/i915/dsc: move rc_buf_thresh values to common helper<br />
-5377814e1ca0 drm/i915/dsc: change DSC param tables to follow the DSC model</p>
-
-</body>
-</html>
-
---===============7184320062302146770==--
+-- 
+Ville Syrjälä
+Intel
