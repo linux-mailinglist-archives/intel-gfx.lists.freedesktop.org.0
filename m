@@ -1,146 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA786D6C07
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 20:29:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CB06D6D01
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 21:16:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB3710E748;
-	Tue,  4 Apr 2023 18:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F9810E3BC;
+	Tue,  4 Apr 2023 19:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9E110E748
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 18:29:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680632973; x=1712168973;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=q4syyZAMvlpphOpBrWDdMZtKjWaWdlzHwTNnBgwvq4k=;
- b=DmnWZSWNlnLAwXaAHllTBw9sSNlUwRmJdnqX191xLMs+7CVfO3Q4ZIK1
- P+7Tx9kEFxhvBus1gQVg5gkr4GjUAOuNiM4gUZi/ES4hjO52Dxda0ZHVA
- 53q471XlG94HCcnXIsextDwuppwwG+0tyQ5/pdI34hG1NrYk9tbz8goA2
- 8pvkhI/HvrdMwAR0LDb3JTU0hNcfPCp1LW6KojDNifb0oHh2/zOT4SLdW
- 4pS0ymqo4ech6j/oZ8CkzwigSJVOiV2YX5KDyDSjeuPPbKfJsp4rO+B0v
- E6CpC6gMWpl7iPT4cMzJTNrDROx8c3WB/ecj3T5llPi9qNTFuTSxNR1pD A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="405039309"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="405039309"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 11:29:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="860692395"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="860692395"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 04 Apr 2023 11:29:31 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 4 Apr 2023 11:29:31 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 4 Apr 2023 11:29:31 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.170)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 4 Apr 2023 11:29:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JRwiN8Zli1HxxjRsgrk8sVP9xN1HTvn/YDO2ZRbAMCqG5V5U6i91dgvtlGE9BcUJZcIF7WYHz+lHqGekK4jyc9QIdl/UsVla51JkMiHwURRor6YKNbB3H3MsnkYi0W3Vs7VGEQdNDrZl6gAvYe05HjYUI7jSisl7g2b+vA+g820qKS9fUcm2iN5PaBaDqLyT7St3R/fgUakGmC3qxBjRIy61K0iU0KrCQyFiY6RH0UiIslI1FIwnw1Hgo2iy9W6VD4ybyfcK+dJk02EJh86J8NWtDh1fN+sOkW6APDNVirBfgYMAcF6ytZlbz4uk+FaHMfnmSRswkOXT5259+jCrKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WW/DmGR/hEI1+TDxJYGdWmHPlUKvw1lkVVC+FtmtSds=;
- b=IGCeJlzZNh9S/Ckbch4Bvoyrb8tNNo51TXwJGD7m6E34UiFAxHHIFXJ1Rfmtc2il6uxrYvbgoNJ4yT+tVHDnPq5fUZFmTp+pEbtL7DsgTKGK6j5jO5j9ntHj+ToAvgJdrqxptSBBBPNYDzYIg+6xdZegRVbMav1KoJ6QW7cyZJUbfcr23ZkIZQdk1GCLQJnbLgIf9/SOrp+562pfRbzLsdBfOz/5YB82fN63swELj+6BRYYnsq2Q97wUDdehfYOD6N5Q/bU1Vfwh0PqlzMd3NzkME/p+8qagkepvgI5+3Jv4rE797tjYPeyP6ZbPhkbb/vWPZOU157x86WGU7OLAFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by CY8PR11MB7193.namprd11.prod.outlook.com (2603:10b6:930:91::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Tue, 4 Apr
- 2023 18:29:23 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::9e31:fa24:17e3:a69a]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::9e31:fa24:17e3:a69a%3]) with mapi id 15.20.6254.033; Tue, 4 Apr 2023
- 18:29:23 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230404173220.3175577-1-haridhar.kalvala@intel.com>
-References: <20230404173220.3175577-1-haridhar.kalvala@intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Haridhar Kalvala <haridhar.kalvala@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-Date: Tue, 4 Apr 2023 15:29:15 -0300
-Message-ID: <168063295542.5056.8712357609960573647@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR13CA0021.namprd13.prod.outlook.com
- (2603:10b6:a03:2c0::26) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
+ [IPv6:2a00:1450:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1137C10E3BC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 19:16:33 +0000 (UTC)
+Received: by mail-ed1-x52f.google.com with SMTP id i5so135045606eda.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 12:16:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680635792; x=1683227792;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Eworcs+FS5N7Z5pvybSDUFQM4vAotz4kjrv0Fz9G5CM=;
+ b=S8QVKvaZOxOP03YtvEVJ03LLMzBooHuMTOpd4C0KPfhoYLOtjw6atLKod+1mQM4aJD
+ 84bpfzxwLT7p4HX+wCCBDpCn4T6IZhbRSpgwjjtvvmcoepRtD7wSYZJ9DKkdLSUQTVap
+ ULQPyxhH/SGlpcgC6Rx1JqoqydLXdi+ftojIk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680635792; x=1683227792;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Eworcs+FS5N7Z5pvybSDUFQM4vAotz4kjrv0Fz9G5CM=;
+ b=AeQMfoyrlcZ9+hp1boVuVS2eRDVLlCeGWu26MgXkLANHMm8KDBO6hE9yFRdJWAQBpM
+ GQl+BpvggqIiTOMbxElBS0m4UgkMbiRFKYr5ZBEU/pzJ91nSisSO/mmbxORc1qYqAWVh
+ loXvDolLUTNtTk9f6Ow8oQ3nrsBRB9OnToWrofGm8+Dia1jYDHCDk0L5Sq7600P9/UYw
+ DG1RJ+xFCFzNeA/0TNJ45jFyRWZPRWfjVFBuY1SzXtXW6jCwguJx1ArC4zxIowgfLm6l
+ F0/YZGrQEf/omeqUzwvT8JA5bAmSGRz+Lzma3fT0zNwVzirlgPu/rDpq4QuFNncMl86X
+ mtbg==
+X-Gm-Message-State: AAQBX9e8LHK2EJQdZitJPWuwGFzZDRAoW4uyff4t9Lb8g+NgIi381TZi
+ QbBlCb2YKqWldJ91/reEKuxUEQ==
+X-Google-Smtp-Source: AKy350ZD7c6CgJzTRzTOviQ9uHhtRHgmNr38y4A17xt2b4GdR222T6lp1xKS6NPQaXKgwkercB2BHw==
+X-Received: by 2002:a17:906:51c6:b0:92e:f520:7762 with SMTP id
+ v6-20020a17090651c600b0092ef5207762mr708844ejk.6.1680635792149; 
+ Tue, 04 Apr 2023 12:16:32 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ n13-20020a170906688d00b0093210cf625bsm6311135ejr.187.2023.04.04.12.16.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Apr 2023 12:16:31 -0700 (PDT)
+Date: Tue, 4 Apr 2023 21:16:29 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <ZCx3jUJfC1vmbhI6@phenom.ffwll.local>
+Mail-Followup-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
+ Rob Clark <robdclark@chromium.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org,
+ open list <linux-kernel@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org
+References: <20230308155322.344664-1-robdclark@gmail.com>
+ <20230308155322.344664-12-robdclark@gmail.com>
+ <dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|CY8PR11MB7193:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb5febd6-61c5-49c7-bfa0-08db353a8353
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qd4FmY2u3sZX5CUOpBet7EuQUxe//ssNTVl1rRPRZ8gl4raauSRB8lXipHcgf81HXt22k29IN6e5Q0LsWLj0SaUBBR7oJIJE0goeumOX3S/ImBv4iOL9Ju5lkF0fxL0EXp19Q7oVus62ZlZ9yKVp+DTIYFGMbynOXNqsVJnzNu3DXYCdsQ04sIKJGqcciluUJLgYmf65u8TIHPVJBV7ZebgcOQdypKspNH7rwOhLf+4mrSNLBjP6dlFdneyh4Jc9wZCuI+sX2Y7v2pRgTM3+WrFrWBKYu2fIqtWRTAIvPLyjsleuHMDIO16+J/Vqf/J7lT1j+2c8un/IhNYZDCFC4fkuQ4aJgcgWB5+sJzs8DkhYsO32ukm9kwgHtC0Ct5BrM73TsBmHxpTuUg3yggbspIM1t7JXzFMI1Emi7uJ8ZgcywVuwqFAs4tCKZspV4JRtw0JKv+B7mPgT2jljkoajmEul/4CoacDKxDAoCSEuZOI4CEhpJkDasnIuOZUuUmE04WNc00d0QK1dlL+9WMlQTQJZH+AQD22RnZYUCPMMp8d/b0dX4raZfJ9vLxGjiDwI
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(396003)(39860400002)(376002)(346002)(136003)(366004)(451199021)(2906002)(44832011)(38100700002)(5660300002)(66556008)(66476007)(82960400001)(8936002)(66946007)(4326008)(41300700001)(8676002)(316002)(478600001)(86362001)(6512007)(33716001)(186003)(9686003)(6506007)(26005)(107886003)(6666004)(6486002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGRUaTlWdEk1U3hYMW5lMG1RYXgxK3REa2syRnFuejAwZjdOdFk4U3FDSGNC?=
- =?utf-8?B?a3BRbDA1NWJyeFFSdE4yampFUUM1czloTWl0bThnZWlBdGE4Z2Vjb0lBVCtr?=
- =?utf-8?B?UURkeDlTaG0vVVRvQ0t0ak1zMm9XY0V1UU9ZNW9ac1lhQmF3R3pDQjBjT21R?=
- =?utf-8?B?ckEzcWRON3Z2eUVVbUl3OXJkaTJyNStoeVIzak9STndRclpzUStwSzJqcFJt?=
- =?utf-8?B?cG9xUS9Yd2Q2R0dLRlpTcElDZ292ODVBcGtaWVJaOFlnRlN0eDRmMzgwb1VG?=
- =?utf-8?B?c0FhV3pYWGZaNTFaNFQzcWZGSXo4TitRbFV4eDF5RG5MaFJnVTFLZmtjTFNz?=
- =?utf-8?B?ZktZT0VkUGxOcmFmZmYzdmEreDZnVEh0NGpLS0xlWExuQm52MVQxRnZuWVdy?=
- =?utf-8?B?OE9UZ3daWUNlZTJ0Rzd2L0pjR3ZVMW0vdkoxaFgxeVJHYWNjQ2RFRDZQR1ZK?=
- =?utf-8?B?UGlGSWhFelZpVDIxelBWL2xsMWk1eVZTaDNNMys2eDdhVS9tRXNvb2RQcEk3?=
- =?utf-8?B?OUNtRUlHMjJUMWhVNUxGTFgyaTBrelBqNzNzcjJ6L3J3RDMzQjNlZ3BtQXFE?=
- =?utf-8?B?dFhIam1wcXpwemNuZHRTSkRsWmdUU0JjQ2hXK096Z0VxdEpUS1l3WlJlMmg1?=
- =?utf-8?B?RERja1IyaEFaWXdEWTQ3WXc2WXlOSjRBOU9hTnZiWDZpWUQ2NExpWlUyd2Vz?=
- =?utf-8?B?ZnFVaWVUUm1MMjZGQzV4MGRQcTA4OE9EM0Eva21CSTFIVE9mcDdUZER1UzFp?=
- =?utf-8?B?d2YveTFBTDRHeUJvVTdJNUc3MEpORG1jWlJNNmczTitSR0U0MmdHbExrQXFj?=
- =?utf-8?B?Kzh5cXhBaEE2aUNRVUt4eEt5VFNrcnVmZWdwTm5iL0tLRDVnbzBRZEJJeTVh?=
- =?utf-8?B?Vm1vUjFja0FoaEV6Y0RsaTdmY09kanNiNXpsL3BnVXllS0RGSFppb1pCRXZT?=
- =?utf-8?B?NENKZDh0TEozTXJLY01aT3RaOWZhdzZIZjlIaWZsdTVoSFhybWorRko5eERp?=
- =?utf-8?B?M0Z3UUtyaWJVVGtoMTVSSUZnaXZUanJFbzY2V0VZS1B1N1diQW5XR2NIT1My?=
- =?utf-8?B?UGVMQWNLWEVybktsNmxINVFPLzJJV3pHVTNJOFVLY0daWEtQYktIL2I1YzZB?=
- =?utf-8?B?clF0dnV5dUpOSUQ2QmpUTkM4TEFNYkF3Z2ZESHluWHExRFJiZlB1QTkwYWwz?=
- =?utf-8?B?Z0cwdm9QTUNzVkpvalh0S2pURFFBd3V2WnM1RkpYeDJSWENaa29TRWk2aTJV?=
- =?utf-8?B?aW81Y29makMwTUtNYXVxS1daY1ZsWFdia2Y1MC9SL3B2b2tGeHQyRy9qcSt0?=
- =?utf-8?B?WktuZ3J1QXpsMkVyUXkxd2p5UUJTbWlJQjRSUzFJZ2l2Um5pT2lGM2dXeUtQ?=
- =?utf-8?B?WGZCSHU5c0FTUUZEZGR0Sk8rcmF6cWorbDdPTm1ycjdvMkRFU0VIWk4yUytO?=
- =?utf-8?B?VC9rWEZUZTJHUUNPdldnQzZPeGoxNk8zQmlIVnFtU0N3WGtESFowTDVBTS9R?=
- =?utf-8?B?MXlndnlqSWlLQlF5MDVhc3FvaldseDJmaDdXODViUE53d0JqOVVtL3duSlY0?=
- =?utf-8?B?S3NjMnVCQURMNTRObFJXcG50RzNZdVVwemlIQ01ZeVRwV09TMGNvUzRnVkhJ?=
- =?utf-8?B?MXRDR1pzVXNNVldNODJjM1dEc0NONjIwV29pMEwwMW1qbTBPbUx5NGJ5Y0Vy?=
- =?utf-8?B?SWwwbzdQUmVlT3E2RGJjdWZqbTdUSi9UWUEwZ2VFOGVic0xaNTArTWNRZXll?=
- =?utf-8?B?N0xXYkhmU3czVmJxbDlOU00yNThLdGNRaXJmZFc1a05CNjhwbjdEajBxa0J0?=
- =?utf-8?B?ck9xVThRa2J0YW55MDV6Z1RrdFJhdzNoUitDeFVMUXdvc2hIdmttYjlCL3lx?=
- =?utf-8?B?WkNyWE5GU2g3ckhGYmJVQ2RNWko4Sm1vNU9PR091WEd5aWJGNDcxMFVsRmJ6?=
- =?utf-8?B?SXNEWXJsSFZXTEY5d3FNTzAyWGt5c2llaTR5MHIxZHV4QlZ4b0prTmVwaVc4?=
- =?utf-8?B?V0dCbHdkdGttNnp0VkRTWmdXNzBLQ3dTL0ZmcHJmSTErYU1od2FoTzlBSlRu?=
- =?utf-8?B?c0t2YTFYUkcrUGJ0YUlxRmIydXhGVWJ1bWI5YzhnTjVCSUcrbGxRSmVGd3pl?=
- =?utf-8?B?Q1diTUFaZHo1WUhXdkw5d09VNmFkWGhiV3NXNnhXTE1kN2YvZDgwenBGeHJL?=
- =?utf-8?B?c0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb5febd6-61c5-49c7-bfa0-08db353a8353
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 18:29:23.1968 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7FNcpj2CRjgxHvfKhsmX6Fl3/j2MwhRBY03O9u1u5alKAPzp7vV3oyxzHVl7nFGZujSj3jcj8UX1R9sx9ummJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7193
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add Wa_14017856879
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH v10 11/15] drm/atomic-helper: Set fence
+ deadline for vblank
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,59 +83,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, balasubramani.vivekanandan@intel.com
+Cc: Rob Clark <robdclark@chromium.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Matt Turner <mattst88@gmail.com>,
+ freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Haridhar Kalvala (2023-04-04 14:32:20)
-> Wa_14017856879 implementation for mtl.
->=20
-> Bspec: 46046
->=20
-> Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+On Tue, Apr 04, 2023 at 08:22:05PM +0300, Dmitry Baryshkov wrote:
+> On 08/03/2023 17:53, Rob Clark wrote:
+> > From: Rob Clark <robdclark@chromium.org>
+> > 
+> > For an atomic commit updating a single CRTC (ie. a pageflip) calculate
+> > the next vblank time, and inform the fence(s) of that deadline.
+> > 
+> > v2: Comment typo fix (danvet)
+> > v3: If there are multiple CRTCs, consider the time of the soonest vblank
+> > 
+> > Signed-off-by: Rob Clark <robdclark@chromium.org>
+> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Signed-off-by: Rob Clark <robdclark@chromium.org>
+> > ---
+> >   drivers/gpu/drm/drm_atomic_helper.c | 37 +++++++++++++++++++++++++++++
+> >   1 file changed, 37 insertions(+)
+> 
+> As I started playing with hotplug on RB5 (sm8250, DSI-HDMI bridge), I found
+> that this patch introduces the following backtrace on HDMI hotplug. Is there
+> anything that I can do to debug/fix the issue? The warning seems harmless,
+> but it would be probably be good to still fix it. With addresses decoded:
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Bit a shot in the dark, but does the below help?
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
->  2 files changed, 7 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i9=
-15/gt/intel_gt_regs.h
-> index 35a4cfac2d20..492b3de6678d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -1177,7 +1177,9 @@
->  #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP      REG_FIELD_PREP(THREAD_EX_=
-ARB_MODE, 0x2)
-> =20
->  #define HSW_ROW_CHICKEN3                       _MMIO(0xe49c)
-> +#define GEN9_ROW_CHICKEN3                      MCR_REG(0xe49c)
->  #define   HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE   (1 << 6)
-> +#define   MTL_DISABLE_FIX_FOR_EOT_FLUSH                REG_BIT(9)
-> =20
->  #define GEN8_ROW_CHICKEN                       MCR_REG(0xe4f0)
->  #define   FLOW_CONTROL_ENABLE                  REG_BIT(15)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
-m/i915/gt/intel_workarounds.c
-> index 1c8e0e91a2fe..6ea453ddd011 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -2971,6 +2971,11 @@ general_render_compute_wa_init(struct intel_engine=
-_cs *engine, struct i915_wa_li
-> =20
->         add_render_compute_tuning_settings(i915, wal);
-> =20
-> +       if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
-> +           IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
-> +               /* Wa_14017856879 */
-> +               wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_=
-FOR_EOT_FLUSH);
-> +
->         if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
->             IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
->                 /*
-> --=20
-> 2.25.1
->
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index f21b5a74176c..6640d80d84f3 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
+ 	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
+ 		ktime_t v;
+ 
++		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
++			continue;
++
+ 		if (drm_crtc_next_vblank_start(crtc, &v))
+ 			continue;
+ 
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 78a8c51a4abf..7ae38e8e27e8 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -1001,6 +1001,9 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime)
+ 	struct drm_display_mode *mode = &vblank->hwmode;
+ 	u64 vblank_start;
+ 
++	if (!drm_dev_has_vblank(crtc->dev))
++		return -EINVAL;
++
+ 	if (!vblank->framedur_ns || !vblank->linedur_ns)
+ 		return -EINVAL;
+ 
+
+> 
+> [   31.151348] ------------[ cut here ]------------
+> [   31.157043] msm_dpu ae01000.display-controller:
+> drm_WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev))
+> [   31.157177] WARNING: CPU: 0 PID: 13 at drivers/gpu/drm/drm_vblank.c:728
+> drm_crtc_vblank_helper_get_vblank_timestamp_internal
+> (drivers/gpu/drm/drm_vblank.c:728)
+> [   31.180629] Modules linked in:
+> [   31.184106] CPU: 0 PID: 13 Comm: kworker/0:1 Not tainted
+> 6.3.0-rc2-00008-gd39e48ca80c0 #542
+> [   31.193358] Hardware name: Qualcomm Technologies, Inc. Robotics RB5 (DT)
+> [   31.200796] Workqueue: events lt9611uxc_hpd_work
+> [   31.205990] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
+> BTYPE=--)
+> [   31.213722] pc : drm_crtc_vblank_helper_get_vblank_timestamp_internal
+> (drivers/gpu/drm/drm_vblank.c:728)
+> [   31.222032] lr : drm_crtc_vblank_helper_get_vblank_timestamp_internal
+> (drivers/gpu/drm/drm_vblank.c:728)
+> [   31.230341] sp : ffff8000080bb8d0
+> [   31.234061] x29: ffff8000080bb900 x28: 0000000000000038 x27:
+> ffff61a7956b8d60
+> [   31.242051] x26: 0000000000000000 x25: 0000000000000000 x24:
+> ffff8000080bb9c4
+> [   31.250038] x23: 0000000000000001 x22: ffffbf0033b94ef0 x21:
+> ffff61a7957901d0
+> [   31.258029] x20: ffff61a795710000 x19: ffff61a78128b000 x18:
+> fffffffffffec278
+> [   31.266014] x17: 0040000000000465 x16: 0000000000000020 x15:
+> 0000000000000060
+> [   31.274001] x14: 0000000000000001 x13: ffffbf00354550e0 x12:
+> 0000000000000825
+> [   31.281989] x11: 00000000000002b7 x10: ffffbf00354b1208 x9 :
+> ffffbf00354550e0
+> [   31.289976] x8 : 00000000ffffefff x7 : ffffbf00354ad0e0 x6 :
+> 00000000000002b7
+> [   31.297963] x5 : ffff61a8feebbe48 x4 : 40000000fffff2b7 x3 :
+> ffffa2a8c9f64000
+> [   31.305947] x2 : 0000000000000000 x1 : 0000000000000000 x0 :
+> ffff61a780283100
+> [   31.313934] Call trace:
+> [   31.316719] drm_crtc_vblank_helper_get_vblank_timestamp_internal
+> (drivers/gpu/drm/drm_vblank.c:728)
+> [   31.324646] drm_crtc_vblank_helper_get_vblank_timestamp
+> (drivers/gpu/drm/drm_vblank.c:843)
+> [   31.331528] drm_crtc_get_last_vbltimestamp
+> (drivers/gpu/drm/drm_vblank.c:884)
+> [   31.337170] drm_crtc_next_vblank_start
+> (drivers/gpu/drm/drm_vblank.c:1006)
+> [   31.342430] drm_atomic_helper_wait_for_fences
+> (drivers/gpu/drm/drm_atomic_helper.c:1531
+> drivers/gpu/drm/drm_atomic_helper.c:1578)
+> [   31.348561] drm_atomic_helper_commit
+> (drivers/gpu/drm/drm_atomic_helper.c:2007)
+> [   31.353724] drm_atomic_commit (drivers/gpu/drm/drm_atomic.c:1444)
+> [   31.358127] drm_client_modeset_commit_atomic
+> (drivers/gpu/drm/drm_client_modeset.c:1045)
+> [   31.364146] drm_client_modeset_commit_locked
+> (drivers/gpu/drm/drm_client_modeset.c:1148)
+> [   31.370071] drm_client_modeset_commit
+> (drivers/gpu/drm/drm_client_modeset.c:1174)
+> [   31.375233] drm_fb_helper_set_par (drivers/gpu/drm/drm_fb_helper.c:254
+> drivers/gpu/drm/drm_fb_helper.c:229 drivers/gpu/drm/drm_fb_helper.c:1644)
+> [   31.380108] drm_fb_helper_hotplug_event
+> (drivers/gpu/drm/drm_fb_helper.c:2302 (discriminator 4))
+> [   31.385456] drm_fb_helper_output_poll_changed
+> (drivers/gpu/drm/drm_fb_helper.c:2331)
+> [   31.391376] drm_kms_helper_hotplug_event
+> (drivers/gpu/drm/drm_probe_helper.c:697)
+> [   31.396825] drm_bridge_connector_hpd_cb
+> (drivers/gpu/drm/drm_bridge_connector.c:129)
+> [   31.402175] drm_bridge_hpd_notify (drivers/gpu/drm/drm_bridge.c:1315)
+> [   31.406954] lt9611uxc_hpd_work
+> (drivers/gpu/drm/bridge/lontium-lt9611uxc.c:185)
+> [   31.411450] process_one_work (kernel/workqueue.c:2395)
+> [   31.415949] worker_thread (include/linux/list.h:292
+> kernel/workqueue.c:2538)
+> [   31.426843] kthread (kernel/kthread.c:376)
+> [   31.437182] ret_from_fork (arch/arm64/kernel/entry.S:871)
+> [   31.447828] irq event stamp: 44642
+> [   31.458284] hardirqs last enabled at (44641): __up_console_sem
+> (arch/arm64/include/asm/irqflags.h:182 (discriminator 1)
+> arch/arm64/include/asm/irqflags.h:202 (discriminator 1)
+> kernel/printk/printk.c:345 (discriminator 1))
+> [   31.474540] hardirqs last disabled at (44642): el1_dbg
+> (arch/arm64/kernel/entry-common.c:335 arch/arm64/kernel/entry-common.c:406)
+> [   31.489882] softirqs last enabled at (42912): _stext
+> (arch/arm64/include/asm/current.h:19 arch/arm64/include/asm/preempt.h:13
+> kernel/softirq.c:415 kernel/softirq.c:600)
+> [   31.505256] softirqs last disabled at (42907): ____do_softirq
+> (arch/arm64/kernel/irq.c:81)
+> [   31.521139] ---[ end trace 0000000000000000 ]---
+> 
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
