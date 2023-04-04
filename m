@@ -1,78 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9795A6D6F40
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 23:49:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F056D6F4F
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 23:53:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED98610E7C6;
-	Tue,  4 Apr 2023 21:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D254B10E7CE;
+	Tue,  4 Apr 2023 21:53:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF5910E7C3
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 21:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680644941;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=BMOmz/hCD9hq0xa7lEyqqxxsKm/tr2tmPnHhHb56dRc=;
- b=Wl2FQKaclK3bIMwaPqw8tF0bHXkMeft5YD6XVT9SYhMVKcxhqXdgZLaSb/ineNNkG5oi9K
- 52UtyOBShBrbobrzl3XLqOl4ZLieB38C3Qzq2G9ZMv+ZY+u2kIxLmMJCrkj/aDhfprGDx8
- FyspkpU3qUnrxiuJIDp44/pJJdcS9WU=
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-502-AYn99MoLNG-uttZXOLDDgA-1; Tue, 04 Apr 2023 17:48:57 -0400
-X-MC-Unique: AYn99MoLNG-uttZXOLDDgA-1
-Received: by mail-io1-f69.google.com with SMTP id
- d204-20020a6bb4d5000000b00758cfdd36c3so20842549iof.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 14:48:57 -0700 (PDT)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D8F10E2F3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 21:53:32 +0000 (UTC)
+Received: by mail-lf1-x12a.google.com with SMTP id y20so44189415lfj.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 14:53:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1680645210;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=BjyCdbdrIgtVzeE064HRVfC+dqeD8aEJhXL7EKMRRNw=;
+ b=O7KiMCAemOpzbfaN1v6l/4nm0XFhuMDL7+rpePxiUd4gN9QQIDJAyorT3UV/Mdc+Tq
+ H3wBM3/9gSxNMn3GNTUN1pRtbxFUbZdsJjb9XzlXBVYgYD4NSZzxOdNxg6vVFAUbnXvT
+ nD/lH7RkAS4h0PKBeG4k8nXXoTKjbSnnUtbW7RreAR/zMFZgvePQyneGww5kxKjx7z7x
+ xcdi1yZqrFene0YwwAUXd22MFPAna4YOenbSsU9Nq0CC0l6FluckkULaAHsDoIm7ESLB
+ 0UGSV0wcFAM7/1ukz6BHcxCHY0G6hFWG2IFxf6ctYBtHhjrvUZMr40zJV3rJ67NRpKU3
+ mxGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680644937;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=BMOmz/hCD9hq0xa7lEyqqxxsKm/tr2tmPnHhHb56dRc=;
- b=t8RARBWYOLL8RGKrP2dvRRGbYB+9Aw9A9ESe36U05OAFIclqRSm+1+JeiNZ4Id+oJo
- hBrJaY8JwQE6hD+In2vjihZEg7fg+pFdy+HgFCrLvH6u1uxe/egdS7nJ5acSi2A9G5cB
- 5+nzCbOnmtaC23IVFD+hh4FzNzd1hwOifJprUNWAgT599n/3lPpq2BwIGnGbhdmXVkAf
- 3ZZyM3pbnejst1wJZVr6fwYN20dL/1X8I+Gsqo1e3emGU6DmXngyVOtItjmEM6slx3FQ
- qZXTWui51NffN43knIgrwS7fD/dmG+l+IQKOPaqUykMwkO2TIpnn16eAkPVfHYplyHlQ
- oYtg==
-X-Gm-Message-State: AAQBX9ck+BvbXEDIfoBeJjFWRzkRM3xMJfjUhqMznx5m7gVj5YUCE23K
- kZzraHbs38N/T+Kc26OLtUxmdpREyCmeesoUUitUED+I2+cCf/TdyykpBc6aBOYOMUBtAvP/V8h
- BkohUhjcqvxgtfafpIX76GNaYF/Lm
-X-Received: by 2002:a92:dac3:0:b0:325:fb39:8494 with SMTP id
- o3-20020a92dac3000000b00325fb398494mr3960313ilq.4.1680644937174; 
- Tue, 04 Apr 2023 14:48:57 -0700 (PDT)
-X-Google-Smtp-Source: AKy350b8lhguNnSPsqwDGg9DndWThvVQtcWBignwR7e7WGC5/A4W046vPbFQR7NCsx0PzkO+Dv+mIw==
-X-Received: by 2002:a92:dac3:0:b0:325:fb39:8494 with SMTP id
- o3-20020a92dac3000000b00325fb398494mr3960288ilq.4.1680644936898; 
- Tue, 04 Apr 2023 14:48:56 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- c13-20020a928e0d000000b00325df6679a7sm3456502ild.26.2023.04.04.14.48.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Apr 2023 14:48:55 -0700 (PDT)
-Date: Tue, 4 Apr 2023 15:48:54 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Eric Auger <eric.auger@redhat.com>
-Message-ID: <20230404154854.4d9a95f0.alex.williamson@redhat.com>
-In-Reply-To: <702c2883-1d51-b609-1e99-337295e6e307@redhat.com>
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-5-yi.l.liu@intel.com>
- <702c2883-1d51-b609-1e99-337295e6e307@redhat.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+ d=1e100.net; s=20210112; t=1680645210;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BjyCdbdrIgtVzeE064HRVfC+dqeD8aEJhXL7EKMRRNw=;
+ b=3wNEijJU7fn9088ui6yL/DORm8LAI/KOeFebhC2aZ3yTDHD5oq1GPIlX9/nFnNwd6i
+ IvDOY+2QVhtLiqGPmvtdicnPT7xYsSL+M7h/3Dn1YWIfaiQCDPAjprobF1hFCiPLdc3q
+ PRAvx2TDQSKUnX0+WbHpeO6j2dp7SLo3rFzYVQkXY1O50Prqcv9Mz1ANcCPDEesYAAsN
+ ycMA79PN8hXPdvxAOKtWI6n7HeRsZ/ltBGAzeN/RvX43hrHhRmFlOXnCkIARVsaVrNGf
+ IQrBdqGtGX3nnPDCZk7WfrqVrXBSKkCwzkFDxvDfBZDfxu1Toceou79s5RjqfTiXXPo6
+ MWjQ==
+X-Gm-Message-State: AAQBX9dWsuLddfNyoblEQwvYh9xBnPhLaBJJ6CTNPW34k4GQ7uqhciGf
+ L9SrBRJgYM1cx+0BTnZgp2Hg8Q==
+X-Google-Smtp-Source: AKy350ar8djmba+B8rotbdihiQrW0W2HJaIkzSRcoNtKTf53hAwMieT0OibccWGgJVIR9uGUTM/3PA==
+X-Received: by 2002:a05:6512:513:b0:4ea:f617:e994 with SMTP id
+ o19-20020a056512051300b004eaf617e994mr972175lfb.60.1680645210269; 
+ Tue, 04 Apr 2023 14:53:30 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ d7-20020ac25ec7000000b004dc4bb2f4bcsm2506521lfq.276.2023.04.04.14.53.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 04 Apr 2023 14:53:29 -0700 (PDT)
+Message-ID: <198c42ad-73de-9e9d-23d4-f36cb6840b5d@linaro.org>
+Date: Wed, 5 Apr 2023 00:53:29 +0300
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-GB
+To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
+ Rob Clark <robdclark@chromium.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org
+References: <20230308155322.344664-1-robdclark@gmail.com>
+ <20230308155322.344664-12-robdclark@gmail.com>
+ <dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org>
+ <ZCx3jUJfC1vmbhI6@phenom.ffwll.local>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <ZCx3jUJfC1vmbhI6@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 04/12] vfio-iommufd: Add helper to
- retrieve iommufd_ctx and devid for vfio_device
+Subject: Re: [Intel-gfx] [PATCH v10 11/15] drm/atomic-helper: Set fence
+ deadline for vblank
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,143 +86,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 4 Apr 2023 17:28:40 +0200
-Eric Auger <eric.auger@redhat.com> wrote:
-
-> Hi,
+On 04/04/2023 22:16, Daniel Vetter wrote:
+> On Tue, Apr 04, 2023 at 08:22:05PM +0300, Dmitry Baryshkov wrote:
+>> On 08/03/2023 17:53, Rob Clark wrote:
+>>> From: Rob Clark <robdclark@chromium.org>
+>>>
+>>> For an atomic commit updating a single CRTC (ie. a pageflip) calculate
+>>> the next vblank time, and inform the fence(s) of that deadline.
+>>>
+>>> v2: Comment typo fix (danvet)
+>>> v3: If there are multiple CRTCs, consider the time of the soonest vblank
+>>>
+>>> Signed-off-by: Rob Clark <robdclark@chromium.org>
+>>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>> Signed-off-by: Rob Clark <robdclark@chromium.org>
+>>> ---
+>>>    drivers/gpu/drm/drm_atomic_helper.c | 37 +++++++++++++++++++++++++++++
+>>>    1 file changed, 37 insertions(+)
+>>
+>> As I started playing with hotplug on RB5 (sm8250, DSI-HDMI bridge), I found
+>> that this patch introduces the following backtrace on HDMI hotplug. Is there
+>> anything that I can do to debug/fix the issue? The warning seems harmless,
+>> but it would be probably be good to still fix it. With addresses decoded:
 > 
-> On 4/1/23 16:44, Yi Liu wrote:
-> > This is needed by the vfio-pci driver to report affected devices in the
-> > hot reset for a given device.
-> >
-> > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> > Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > ---
-> >  drivers/iommu/iommufd/device.c | 12 ++++++++++++
-> >  drivers/vfio/iommufd.c         | 14 ++++++++++++++
-> >  include/linux/iommufd.h        |  3 +++
-> >  include/linux/vfio.h           | 13 +++++++++++++
-> >  4 files changed, 42 insertions(+)
-> >
-> > diff --git a/drivers/iommu/iommufd/device.c b/drivers/iommu/iommufd/device.c
-> > index 25115d401d8f..04a57aa1ae2c 100644
-> > --- a/drivers/iommu/iommufd/device.c
-> > +++ b/drivers/iommu/iommufd/device.c
-> > @@ -131,6 +131,18 @@ void iommufd_device_unbind(struct iommufd_device *idev)
-> >  }
-> >  EXPORT_SYMBOL_NS_GPL(iommufd_device_unbind, IOMMUFD);
-> >  
-> > +struct iommufd_ctx *iommufd_device_to_ictx(struct iommufd_device *idev)
-> > +{
-> > +	return idev->ictx;
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_ictx, IOMMUFD);
-> > +
-> > +u32 iommufd_device_to_id(struct iommufd_device *idev)
-> > +{
-> > +	return idev->obj.id;
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_id, IOMMUFD);
-> > +
-> >  static int iommufd_device_setup_msi(struct iommufd_device *idev,
-> >  				    struct iommufd_hw_pagetable *hwpt,
-> >  				    phys_addr_t sw_msi_start)
-> > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
-> > index 88b00c501015..809f2dd73b9e 100644
-> > --- a/drivers/vfio/iommufd.c
-> > +++ b/drivers/vfio/iommufd.c
-> > @@ -66,6 +66,20 @@ void vfio_iommufd_unbind(struct vfio_device *vdev)
-> >  		vdev->ops->unbind_iommufd(vdev);
-> >  }
-> >  
-> > +struct iommufd_ctx *vfio_iommufd_physical_ictx(struct vfio_device *vdev)
-> > +{
-> > +	if (!vdev->iommufd_device)
-> > +		return NULL;
-> > +	return iommufd_device_to_ictx(vdev->iommufd_device);
-> > +}
-> > +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_ictx);
-> > +
-> > +void vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id)
-> > +{
-> > +	if (vdev->iommufd_device)
-> > +		*id = iommufd_device_to_id(vdev->iommufd_device);  
-> since there is no return value, may be worth to add at least a WARN_ON
-> in case of !vdev->iommufd_device
+> Bit a shot in the dark, but does the below help?
 
-Yeah, this is bizarre and makes the one caller of this interface very
-awkward.  We later go on to define IOMMUFD_INVALID_ID, so this should
-simply return that in the case of no iommufd_device and skip this
-unnecessary pointer passing.  Thanks,
+This indeed seems to fix the issue. I'm not sure about the possible side 
+effects, but, if you were to send the patch:
 
-Alex
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> > +}
-> > +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_devid);
-> >  /*
-> >   * The physical standard ops mean that the iommufd_device is bound to the
-> >   * physical device vdev->dev that was provided to vfio_init_group_dev(). Drivers
-> > diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-> > index 1129a36a74c4..ac96df406833 100644
-> > --- a/include/linux/iommufd.h
-> > +++ b/include/linux/iommufd.h
-> > @@ -24,6 +24,9 @@ void iommufd_device_unbind(struct iommufd_device *idev);
-> >  int iommufd_device_attach(struct iommufd_device *idev, u32 *pt_id);
-> >  void iommufd_device_detach(struct iommufd_device *idev);
-> >  
-> > +struct iommufd_ctx *iommufd_device_to_ictx(struct iommufd_device *idev);
-> > +u32 iommufd_device_to_id(struct iommufd_device *idev);
-> > +
-> >  struct iommufd_access_ops {
-> >  	u8 needs_pin_pages : 1;
-> >  	void (*unmap)(void *data, unsigned long iova, unsigned long length);
-> > diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> > index 3188d8a374bd..97a1174b922f 100644
-> > --- a/include/linux/vfio.h
-> > +++ b/include/linux/vfio.h
-> > @@ -113,6 +113,8 @@ struct vfio_device_ops {
-> >  };
-> >  
-> >  #if IS_ENABLED(CONFIG_IOMMUFD)
-> > +struct iommufd_ctx *vfio_iommufd_physical_ictx(struct vfio_device *vdev);
-> > +void vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id);
-> >  int vfio_iommufd_physical_bind(struct vfio_device *vdev,
-> >  			       struct iommufd_ctx *ictx, u32 *out_device_id);
-> >  void vfio_iommufd_physical_unbind(struct vfio_device *vdev);
-> > @@ -122,6 +124,17 @@ int vfio_iommufd_emulated_bind(struct vfio_device *vdev,
-> >  void vfio_iommufd_emulated_unbind(struct vfio_device *vdev);
-> >  int vfio_iommufd_emulated_attach_ioas(struct vfio_device *vdev, u32 *pt_id);
-> >  #else
-> > +static inline struct iommufd_ctx *
-> > +vfio_iommufd_physical_ictx(struct vfio_device *vdev)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> > +static inline void
-> > +vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id)
-> > +{
-> > +}
-> > +
-> >  #define vfio_iommufd_physical_bind                                      \
-> >  	((int (*)(struct vfio_device *vdev, struct iommufd_ctx *ictx,   \
-> >  		  u32 *out_device_id)) NULL)  
-> besides
 > 
-> Reviewed-by: Eric Auger <eric.auger@redhat.com>
 > 
-> Eric
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index f21b5a74176c..6640d80d84f3 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
+>   	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
+>   		ktime_t v;
+>   
+> +		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
+> +			continue;
+> +
+>   		if (drm_crtc_next_vblank_start(crtc, &v))
+>   			continue;
+>   
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index 78a8c51a4abf..7ae38e8e27e8 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -1001,6 +1001,9 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime)
+>   	struct drm_display_mode *mode = &vblank->hwmode;
+>   	u64 vblank_start;
+>   
+> +	if (!drm_dev_has_vblank(crtc->dev))
+> +		return -EINVAL;
+> +
+>   	if (!vblank->framedur_ns || !vblank->linedur_ns)
+>   		return -EINVAL;
+>   
 > 
+>>
+>> [   31.151348] ------------[ cut here ]------------
+>> [   31.157043] msm_dpu ae01000.display-controller:
+>> drm_WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev))
+>> [   31.157177] WARNING: CPU: 0 PID: 13 at drivers/gpu/drm/drm_vblank.c:728
+>> drm_crtc_vblank_helper_get_vblank_timestamp_internal
+>> (drivers/gpu/drm/drm_vblank.c:728)
+>> [   31.180629] Modules linked in:
+>> [   31.184106] CPU: 0 PID: 13 Comm: kworker/0:1 Not tainted
+>> 6.3.0-rc2-00008-gd39e48ca80c0 #542
+>> [   31.193358] Hardware name: Qualcomm Technologies, Inc. Robotics RB5 (DT)
+>> [   31.200796] Workqueue: events lt9611uxc_hpd_work
+>> [   31.205990] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
+>> BTYPE=--)
+>> [   31.213722] pc : drm_crtc_vblank_helper_get_vblank_timestamp_internal
+>> (drivers/gpu/drm/drm_vblank.c:728)
+>> [   31.222032] lr : drm_crtc_vblank_helper_get_vblank_timestamp_internal
+>> (drivers/gpu/drm/drm_vblank.c:728)
+>> [   31.230341] sp : ffff8000080bb8d0
+>> [   31.234061] x29: ffff8000080bb900 x28: 0000000000000038 x27:
+>> ffff61a7956b8d60
+>> [   31.242051] x26: 0000000000000000 x25: 0000000000000000 x24:
+>> ffff8000080bb9c4
+>> [   31.250038] x23: 0000000000000001 x22: ffffbf0033b94ef0 x21:
+>> ffff61a7957901d0
+>> [   31.258029] x20: ffff61a795710000 x19: ffff61a78128b000 x18:
+>> fffffffffffec278
+>> [   31.266014] x17: 0040000000000465 x16: 0000000000000020 x15:
+>> 0000000000000060
+>> [   31.274001] x14: 0000000000000001 x13: ffffbf00354550e0 x12:
+>> 0000000000000825
+>> [   31.281989] x11: 00000000000002b7 x10: ffffbf00354b1208 x9 :
+>> ffffbf00354550e0
+>> [   31.289976] x8 : 00000000ffffefff x7 : ffffbf00354ad0e0 x6 :
+>> 00000000000002b7
+>> [   31.297963] x5 : ffff61a8feebbe48 x4 : 40000000fffff2b7 x3 :
+>> ffffa2a8c9f64000
+>> [   31.305947] x2 : 0000000000000000 x1 : 0000000000000000 x0 :
+>> ffff61a780283100
+>> [   31.313934] Call trace:
+>> [   31.316719] drm_crtc_vblank_helper_get_vblank_timestamp_internal
+>> (drivers/gpu/drm/drm_vblank.c:728)
+>> [   31.324646] drm_crtc_vblank_helper_get_vblank_timestamp
+>> (drivers/gpu/drm/drm_vblank.c:843)
+>> [   31.331528] drm_crtc_get_last_vbltimestamp
+>> (drivers/gpu/drm/drm_vblank.c:884)
+>> [   31.337170] drm_crtc_next_vblank_start
+>> (drivers/gpu/drm/drm_vblank.c:1006)
+>> [   31.342430] drm_atomic_helper_wait_for_fences
+>> (drivers/gpu/drm/drm_atomic_helper.c:1531
+>> drivers/gpu/drm/drm_atomic_helper.c:1578)
+>> [   31.348561] drm_atomic_helper_commit
+>> (drivers/gpu/drm/drm_atomic_helper.c:2007)
+>> [   31.353724] drm_atomic_commit (drivers/gpu/drm/drm_atomic.c:1444)
+>> [   31.358127] drm_client_modeset_commit_atomic
+>> (drivers/gpu/drm/drm_client_modeset.c:1045)
+>> [   31.364146] drm_client_modeset_commit_locked
+>> (drivers/gpu/drm/drm_client_modeset.c:1148)
+>> [   31.370071] drm_client_modeset_commit
+>> (drivers/gpu/drm/drm_client_modeset.c:1174)
+>> [   31.375233] drm_fb_helper_set_par (drivers/gpu/drm/drm_fb_helper.c:254
+>> drivers/gpu/drm/drm_fb_helper.c:229 drivers/gpu/drm/drm_fb_helper.c:1644)
+>> [   31.380108] drm_fb_helper_hotplug_event
+>> (drivers/gpu/drm/drm_fb_helper.c:2302 (discriminator 4))
+>> [   31.385456] drm_fb_helper_output_poll_changed
+>> (drivers/gpu/drm/drm_fb_helper.c:2331)
+>> [   31.391376] drm_kms_helper_hotplug_event
+>> (drivers/gpu/drm/drm_probe_helper.c:697)
+>> [   31.396825] drm_bridge_connector_hpd_cb
+>> (drivers/gpu/drm/drm_bridge_connector.c:129)
+>> [   31.402175] drm_bridge_hpd_notify (drivers/gpu/drm/drm_bridge.c:1315)
+>> [   31.406954] lt9611uxc_hpd_work
+>> (drivers/gpu/drm/bridge/lontium-lt9611uxc.c:185)
+>> [   31.411450] process_one_work (kernel/workqueue.c:2395)
+>> [   31.415949] worker_thread (include/linux/list.h:292
+>> kernel/workqueue.c:2538)
+>> [   31.426843] kthread (kernel/kthread.c:376)
+>> [   31.437182] ret_from_fork (arch/arm64/kernel/entry.S:871)
+>> [   31.447828] irq event stamp: 44642
+>> [   31.458284] hardirqs last enabled at (44641): __up_console_sem
+>> (arch/arm64/include/asm/irqflags.h:182 (discriminator 1)
+>> arch/arm64/include/asm/irqflags.h:202 (discriminator 1)
+>> kernel/printk/printk.c:345 (discriminator 1))
+>> [   31.474540] hardirqs last disabled at (44642): el1_dbg
+>> (arch/arm64/kernel/entry-common.c:335 arch/arm64/kernel/entry-common.c:406)
+>> [   31.489882] softirqs last enabled at (42912): _stext
+>> (arch/arm64/include/asm/current.h:19 arch/arm64/include/asm/preempt.h:13
+>> kernel/softirq.c:415 kernel/softirq.c:600)
+>> [   31.505256] softirqs last disabled at (42907): ____do_softirq
+>> (arch/arm64/kernel/irq.c:81)
+>> [   31.521139] ---[ end trace 0000000000000000 ]---
+>>
+>>
+>>
+>> -- 
+>> With best wishes
+>> Dmitry
+>>
+> 
+
+-- 
+With best wishes
+Dmitry
 
