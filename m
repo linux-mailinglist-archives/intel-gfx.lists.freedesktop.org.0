@@ -2,75 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CB06D6D01
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 21:16:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F38B6D6D0D
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 21:23:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31F9810E3BC;
-	Tue,  4 Apr 2023 19:16:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA47610E78D;
+	Tue,  4 Apr 2023 19:23:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1137C10E3BC
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 19:16:33 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id i5so135045606eda.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 12:16:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680635792; x=1683227792;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Eworcs+FS5N7Z5pvybSDUFQM4vAotz4kjrv0Fz9G5CM=;
- b=S8QVKvaZOxOP03YtvEVJ03LLMzBooHuMTOpd4C0KPfhoYLOtjw6atLKod+1mQM4aJD
- 84bpfzxwLT7p4HX+wCCBDpCn4T6IZhbRSpgwjjtvvmcoepRtD7wSYZJ9DKkdLSUQTVap
- ULQPyxhH/SGlpcgC6Rx1JqoqydLXdi+ftojIk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680635792; x=1683227792;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Eworcs+FS5N7Z5pvybSDUFQM4vAotz4kjrv0Fz9G5CM=;
- b=AeQMfoyrlcZ9+hp1boVuVS2eRDVLlCeGWu26MgXkLANHMm8KDBO6hE9yFRdJWAQBpM
- GQl+BpvggqIiTOMbxElBS0m4UgkMbiRFKYr5ZBEU/pzJ91nSisSO/mmbxORc1qYqAWVh
- loXvDolLUTNtTk9f6Ow8oQ3nrsBRB9OnToWrofGm8+Dia1jYDHCDk0L5Sq7600P9/UYw
- DG1RJ+xFCFzNeA/0TNJ45jFyRWZPRWfjVFBuY1SzXtXW6jCwguJx1ArC4zxIowgfLm6l
- F0/YZGrQEf/omeqUzwvT8JA5bAmSGRz+Lzma3fT0zNwVzirlgPu/rDpq4QuFNncMl86X
- mtbg==
-X-Gm-Message-State: AAQBX9e8LHK2EJQdZitJPWuwGFzZDRAoW4uyff4t9Lb8g+NgIi381TZi
- QbBlCb2YKqWldJ91/reEKuxUEQ==
-X-Google-Smtp-Source: AKy350ZD7c6CgJzTRzTOviQ9uHhtRHgmNr38y4A17xt2b4GdR222T6lp1xKS6NPQaXKgwkercB2BHw==
-X-Received: by 2002:a17:906:51c6:b0:92e:f520:7762 with SMTP id
- v6-20020a17090651c600b0092ef5207762mr708844ejk.6.1680635792149; 
- Tue, 04 Apr 2023 12:16:32 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- n13-20020a170906688d00b0093210cf625bsm6311135ejr.187.2023.04.04.12.16.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Apr 2023 12:16:31 -0700 (PDT)
-Date: Tue, 4 Apr 2023 21:16:29 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <ZCx3jUJfC1vmbhI6@phenom.ffwll.local>
-Mail-Followup-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
- Rob Clark <robdclark@chromium.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>,
- Luben Tuikov <luben.tuikov@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org
-References: <20230308155322.344664-1-robdclark@gmail.com>
- <20230308155322.344664-12-robdclark@gmail.com>
- <dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E20F10E791
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 19:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680636179; x=1712172179;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=r5FYt3XLzHdplS3yq9xENRBFNqoQEBcD4UypQcugQdY=;
+ b=aLhcQulaEcpyVZrCKOTmV1bPic67z2sGOf28r54St1kBw9u52tMC4Zzm
+ DcRwBO/y/UucMQjH2R/vkvVT49c0d9+vb3NGAxv6T0bOj3aSwRN3tnCb/
+ 1Y7X3QgYtzGsrdPRzMdmk+1bQN3KMbWjWMxEoARmSEPU5uOCR2iVQP4ON
+ KztZox3oZqrObnkd2FKDSm5c9/xM+kTM9jYkRX6NSa5SEUjae8jnVQ/Lx
+ hw+GBp3kHoM/PQf8UmFtD0S1I3cfgEqCs4TcOsITwvpm9cP7DddSOnYo5
+ mWQkuQHbnTOvCkVp9XPLUPDZlKk4A+gKSCfKNMrRM+UDzEkrLjM/7AFuJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="341009543"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="341009543"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 12:22:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="663741352"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="663741352"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP; 04 Apr 2023 12:22:55 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 4 Apr 2023 12:22:56 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 4 Apr 2023 12:22:56 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Tue, 4 Apr 2023 12:22:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YJP+4ysCHSyOEoX2pOHTLPRFhUntVMaI+u8AVlwhSz+3SINeSoZUI44AdFcV68n1ikeSP5dqYICGjirv6wxXDkzis7ca/PlS4pfxwvAzvTi0N7CpLKKzvUAg1vsXk2eC90EBmB0ObeOoYPG8+A+h+jFCWZkElxfdPIBvBj794x4HdpD9lzMIyeQCtJ55A4o5npjXHS2OQmTG+th+PCQMtrls12HvclDILn9FP+/4wjQBZyU+9WgHqapJrNOmsaNXaUMPRkz6GvTV9d0/ltT4bnbsiZB3BgxOvEeW4XSngBJgJCy/Jcf2bPGAWMIP1bifulK6F9whYvqJPEe6tqmsMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sGmXplfzZc86HndAFnnvj7TPV726qNN+XmAkEI3L2gI=;
+ b=lH0cQmGxMhNR5wDK8K8eGdT10OzzBNgQquIfTCOTS7Fk4qU4UmUQ3IMLA8uGUKeuw1lIE2FgWStx2g4+nW48Qu1jg62cyvBdQUnMMMrwxK1OiwsMOrkTrsEhZhIvQvUht4kuKzRmnV3FKcTX4x2xGgT/vx7oY/f7uu+roRQbHbrnF1PAab5ZyvYY/HjbhQ8TiU4J/DDaEVt5yzy3hnG4oVXt0Tyd4JSVar9GS/0hz5mp8Dabkh9mHS9jKRQ496U8zdG0LMSW8pgZEqJvVCoCRk4tDVUpx2ci30nIgbqLKvzAROgn3ewe+EklQ8XuxPF/XJ3zw3yVjezUvHCVFBnPKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
+ PH0PR11MB4872.namprd11.prod.outlook.com (2603:10b6:510:32::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6254.35; Tue, 4 Apr 2023 19:22:54 +0000
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::df8c:4a33:f53a:9a2e]) by DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::df8c:4a33:f53a:9a2e%9]) with mapi id 15.20.6254.030; Tue, 4 Apr 2023
+ 19:22:53 +0000
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY message bus
+ and pll programming
+Thread-Index: AQHZYKk8DcFq6QWoA0igrhsTJ2KwV68R6E2AgAka6wCAABHKAIAAFO6AgAAHKwCAADgv8IAAFNYAgAABARA=
+Date: Tue, 4 Apr 2023 19:22:53 +0000
+Message-ID: <DM4PR11MB59716C35EA12BEC64C1EDDE987939@DM4PR11MB5971.namprd11.prod.outlook.com>
+References: <20230327123433.896216-1-mika.kahola@intel.com>
+ <20230327123433.896216-5-mika.kahola@intel.com>
+ <ZCRb90HL81lTTIms@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054D6DBF09E04B3E89268DEEF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZCwONC/frYg8QqEJ@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054ABBA1564C3558AB67064EF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZCwlxrm4MCZU7cQD@ideak-desk.fi.intel.com>
+ <DM4PR11MB59717A07465A88779935469487939@DM4PR11MB5971.namprd11.prod.outlook.com>
+ <ZCxhtF/ttLTpXyIG@ideak-desk.fi.intel.com>
+In-Reply-To: <ZCxhtF/ttLTpXyIG@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5971:EE_|PH0PR11MB4872:EE_
+x-ms-office365-filtering-correlation-id: 564489b4-0134-4af7-bbbe-08db3541fd19
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OrD/NZfxNn1eYFDqSNdodN+hA2bc0wzD0NB8xb1SnQ7fkFcdcG9BKxbSDD2O0ZHO6ixgDPyL32rsH6S8Q2yLTx5YKlqGc4BXx198bulxpuy841z2in+esUp/JqCuKeCA0EG+DOTewW8xfHvnSlOLqIWsa9xCFBQVYLb9KroJdnaOXfmgIiHyxyaypGRkPUoAjyCZ7N+O2r5LYJfDldTGKK58G3NNC/NgzHOzvblIfLNDyaA//NI5FYQkXHd9lEd5RRLVs4YhBXDwHY2aV69d0qED96cNYb0aFFBOb4av7f0np9j9Wko2IX8UN5vqvPk6PQiBDqoLF31KRreplgJrbgQERRKyNfjfnOsmS+jgpQ3CrkA1Jroh6cs8tNGB73t7z7S/FdbDwEpA4zWaa1tuKldGebCz0mjnkjxFGNWonkKjiln8usD45VA4lUR7/1AjJiRalG1v+9/Jvw0zH2wIPWZCm/8Qg2ZgGphdP/50eoyft4GTiiHBZqDy0vTA4487fXdJaDxWAesB7hGKfZvoaX3YYo7Q0HJr8kWHBIarB+iBpIN69Hhqsiu3jglkeijVQsatDihOF0PH4l8c+qAdqlK2pL3sy+uIBAznWu1jUtQ88wfhQuNPHUCSRJ8r1fEQ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(376002)(136003)(396003)(346002)(366004)(451199021)(82960400001)(122000001)(33656002)(55016003)(38100700002)(86362001)(38070700005)(71200400001)(7696005)(15650500001)(316002)(6506007)(9686003)(26005)(53546011)(107886003)(66946007)(52536014)(76116006)(2906002)(66446008)(66556008)(4326008)(8676002)(66476007)(41300700001)(64756008)(5660300002)(478600001)(6636002)(54906003)(6862004)(8936002)(83380400001)(186003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sPOY0hqaWORq83eKRLjCA4ewqFYB7L4lnuvr6OsF8etMybXH2R+Hu+DyibsH?=
+ =?us-ascii?Q?pUXeaFyvgtzbm9qDkbiwdb6p8E1k4QfzOld6gC4cAyZTxRgmWa3sMk3c/q0Z?=
+ =?us-ascii?Q?u/lAKv66R7sUlehe8E1br+ta9zy2O2dvPmcHR8Umh8zeKtlchtbvzk2KmHl0?=
+ =?us-ascii?Q?Fv+YpFMfJ+029qGi83hOuZcb0dzFVWh9SOkTsYCFbKEXjzWjaTUKhjRfJDs2?=
+ =?us-ascii?Q?hV8XLn6lPs/KJaOVPkD7TJsCxssMVBNPMZU4Ly17HlcIwJ+WvE54P4viIBLV?=
+ =?us-ascii?Q?K2SOFoBbda86NjaR6YEhIA6WJpNLtKjTxuS/tMRWt4JPVbCr8Cy7tgi9PvXb?=
+ =?us-ascii?Q?iODem7seAgjlyKTZ79r1WO+odh6TKEsbxzbKJnfloFZK6rtYnyjpq3/zksuF?=
+ =?us-ascii?Q?QrbTD1RAMqM9t1fohxT+CDPh9TH+dG8uIr2YrZsPU9zQmQypV7I1poEDLXVx?=
+ =?us-ascii?Q?QVcQdBOjYp/JG2qP4qcDd4cSqwLbvVBBGo5gfWjqADPFE7WQJdG3MK3OTccv?=
+ =?us-ascii?Q?wR0IaJTfiu2Ilzh4gxMnAxsh5fPSy42mg6mNx/vq40f1sNCxgQvHeeovCmq9?=
+ =?us-ascii?Q?AyQrbByIf5NXb2QGwdrKC6MYllWCKel9UtskfTKvsZhtp04Llt/fZXvevhsh?=
+ =?us-ascii?Q?+JVfPzLl672B4/Zbbc6lPOdEfUl3VCBshv0zJ5kHkc4P7HJg1T5b9s8vALYZ?=
+ =?us-ascii?Q?M8I8mYteYHvaTZrjq3KU+jsg/KYYqg/fBaMX96DoH39glmmLF1cVd3t5Gj39?=
+ =?us-ascii?Q?sfqWmgHhMK9jdS1r0Ml0Svh60c1cx8MDJsP/dWKbsrlfWFRm97adsVs0aXjR?=
+ =?us-ascii?Q?eWr/moOB1O1kUZn+COSZXlOm3+hfU9z6iRnJyibVKioMbZ4LmTKFibGUB4CP?=
+ =?us-ascii?Q?2BcFC/TASsvD8KIX7b4d2hoKtdQG3z9NG0hqY+mSEQUaJEBavMpnQEL03JRh?=
+ =?us-ascii?Q?kwkT8jl2sZq58pIs9xLSLvHFFNAl+Jg5S8gHyh38HFnaCe5jumm1Crc4DiOP?=
+ =?us-ascii?Q?2nPMjz6QM20wLqvUYfLBiYhrQvrub523OU+YphAhGt+WTnkSfQ+kQv4kmVm7?=
+ =?us-ascii?Q?REPZwT++ulNua0ziEKCKeIqbtKwjiVx/k8LDonHa/tBgjEFmAMPYT/5dUxn+?=
+ =?us-ascii?Q?NOc5Lr+I3v14E1s5bd5UEnm8HIhVt0YKyNVjYxVC4//dhC3HECtMvtoqJgQh?=
+ =?us-ascii?Q?sRUoWT9P/VlHs2lU5GCXHjrCIzSSJlZ+dfaFT27s0dYqYh3uBdx9OPawgY3S?=
+ =?us-ascii?Q?PWkOd9sI8vLkXd+KRq8rRnV5/5YdVv4LK1poUcqSyFGbB3BGW70sRcr5hdTE?=
+ =?us-ascii?Q?jMiQzF1Bp6kkuyOH10GrvWF1RFGJ02SHm9hYA5HowBulNtzsVVF560S3N7r/?=
+ =?us-ascii?Q?ksjKCtsWkkbae26/BQHIqrbr7LfEtITk7TG6GUYPixXe9Ab2rD4jS6XtLE+j?=
+ =?us-ascii?Q?FsUhFRfTXSUVgGtd+RwarniFnfX2ocZL1aUrH/2tc/fHiA1LJz2PQIpc2Ese?=
+ =?us-ascii?Q?/FMyQpkdK6XyTsNjXA2MACQ3AC1G6Zb85KnfhqhRo/aAqSSxTEPgUvYXWvWi?=
+ =?us-ascii?Q?XhauiMyvBK6AymAuO0+FtMlzR4RygMK5+zK3GvKszNUHsYXOQXn5CfUs4HrT?=
+ =?us-ascii?Q?ag=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v10 11/15] drm/atomic-helper: Set fence
- deadline for vblank
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 564489b4-0134-4af7-bbbe-08db3541fd19
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Apr 2023 19:22:53.8384 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dAXB0Utg+RaXIFFbRzYYn1/0pVybNg3AXvHs/Tc1Sgd+vYtfogvr9XcPicZfcuRVcp89MySQPm8N5FREFBDpAlwXjn1pso9jovpsk8nzbUE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4872
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY
+ message bus and pll programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,170 +156,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Luben Tuikov <luben.tuikov@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Matt Turner <mattst88@gmail.com>,
- freedreno@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 04, 2023 at 08:22:05PM +0300, Dmitry Baryshkov wrote:
-> On 08/03/2023 17:53, Rob Clark wrote:
-> > From: Rob Clark <robdclark@chromium.org>
-> > 
-> > For an atomic commit updating a single CRTC (ie. a pageflip) calculate
-> > the next vblank time, and inform the fence(s) of that deadline.
-> > 
-> > v2: Comment typo fix (danvet)
-> > v3: If there are multiple CRTCs, consider the time of the soonest vblank
-> > 
-> > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > ---
-> >   drivers/gpu/drm/drm_atomic_helper.c | 37 +++++++++++++++++++++++++++++
-> >   1 file changed, 37 insertions(+)
-> 
-> As I started playing with hotplug on RB5 (sm8250, DSI-HDMI bridge), I found
-> that this patch introduces the following backtrace on HDMI hotplug. Is there
-> anything that I can do to debug/fix the issue? The warning seems harmless,
-> but it would be probably be good to still fix it. With addresses decoded:
-
-Bit a shot in the dark, but does the below help?
 
 
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index f21b5a74176c..6640d80d84f3 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
- 	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
- 		ktime_t v;
- 
-+		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
- 		if (drm_crtc_next_vblank_start(crtc, &v))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 78a8c51a4abf..7ae38e8e27e8 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1001,6 +1001,9 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime)
- 	struct drm_display_mode *mode = &vblank->hwmode;
- 	u64 vblank_start;
- 
-+	if (!drm_dev_has_vblank(crtc->dev))
-+		return -EINVAL;
-+
- 	if (!vblank->framedur_ns || !vblank->linedur_ns)
- 		return -EINVAL;
- 
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Tuesday, April 4, 2023 11:03 AM
+> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
+> Cc: Kahola, Mika <mika.kahola@intel.com>; intel-gfx@lists.freedesktop.org=
+;
+> Shankar, Uma <uma.shankar@intel.com>; Sousa, Gustavo
+> <gustavo.sousa@intel.com>
+> Subject: Re: [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY message bu=
+s
+> and pll programming
+>=20
+> On Tue, Apr 04, 2023 at 07:50:00PM +0300, Sripada, Radhakrishna wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Deak, Imre <imre.deak@intel.com>
+> > > Sent: Tuesday, April 4, 2023 6:28 AM
+> > > To: Kahola, Mika <mika.kahola@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Sripada, Radhakrishna
+> > > <radhakrishna.sripada@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>;
+> > > Sousa, Gustavo <gustavo.sousa@intel.com>
+> > > Subject: Re: [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY messag=
+e
+> bus
+> > > and pll programming
+> > >
+> > > On Tue, Apr 04, 2023 at 04:01:55PM +0300, Kahola, Mika wrote:
+> > > > [...]
+> > > > > >
+> > > > > > > > +void intel_c10mpllb_readout_hw_state(struct intel_encoder
+> *encoder,
+> > > > > > > > +                                struct intel_c10mpllb_stat=
+e pll_state) {
+> > > > > > > > +   struct drm_i915_private *i915 =3D to_i915(encoder->base=
+.dev);
+> > > > > > > > +   struct intel_digital_port *dig_port =3D enc_to_dig_port=
+(encoder);
+> > > > > > > > +   bool lane_reversal =3D dig_port->saved_port_bits &
+> DDI_BUF_PORT_REVERSAL;
+> > > > > > > > +   u8 lane =3D lane_reversal ? INTEL_CX0_LANE1 :
+> > > > > > > > +                             INTEL_CX0_LANE0;
+> > > > > > > > +   enum phy phy =3D intel_port_to_phy(i915, encoder->port)=
+;
+> > > > > > > > +   int i;
+> > > > > > > > +   u8 cmn, tx0;
+> > > > > > > > +
+> > > > > > > > +   /*
+> > > > > > > > +    * According to C10 VDR Register programming Sequence w=
+e
+> need
+> > > > > > > > +    * to do this to read PHY internal registers from MsgBu=
+s.
+> > > > > > > > +    */
+> > > > > > > > +   intel_cx0_rmw(i915, encoder->port, lane,
+> PHY_C10_VDR_CONTROL(1), 0,
+> > > > > > > > +                 C10_VDR_CTRL_MSGBUS_ACCESS,
+> MB_WRITE_COMMITTED);
+> > > > > > > > +
+> > > > > > > > +   for (i =3D 0; i < ARRAY_SIZE(pll_state->pll); i++)
+> > > > > > > > +           pll_state->pll[i] =3D intel_cx0_read(i915, enco=
+der->port, lane,
+> PHY_C10_VDR_PLL(i));
+> > > > > > > > +
+> > > > > > > > +   cmn =3D intel_cx0_read(i915, encoder->port, lane,
+> PHY_C10_VDR_CMN(0));
+> > > > > > > > +   tx0 =3D intel_cx0_read(i915, encoder->port, lane,
+> PHY_C10_VDR_TX(0));
+> > > > > > >
+> > > > > > > The driver programs these registers, so why aren't they also =
+stored
+> > > > > > > in the intell_c20pll_state struct?
+> > > > > >
+> > > > > > Maybe I'm not really following here but intel_c20pll_state has =
+its own
+> > > > > > tx, cmn and mplla/mpllb stored.
+> > > > >
+> > > > > Yes, just typoed that, I meant struct intel_c10mpllb_state which
+> > > > > doesn't include tx and cmn.
+> > > >
+> > > > Yes, for C10 tx and cmn is missing. Maybe we could add those here a=
+s
+> > > > well. It seems that currently these are not necessary required but =
+for
+> > > > the future use, these could be defined.
+> > >
+> > > These are needed already now to make the state computation / HW reado=
+ut
+> /
+> > > state checking work for these two params the same way they do for the
+> > > rest of PLL state.
+> >
+> > I believe C10 tx and cmn values are not changing across frequencies. Cm=
+n only
+> > Changes for DP and HDMI so does it make sense to include in the pll str=
+ucture?
+>=20
+> They should be part of the atomic state. To save the bytes in the
+> precomputed tables they could be added to intel_cx0pll_state, something
+> like:
+>=20
+> struct intel_cx0pll_state {
+>         union {
+>                 struct {
+>                         struct intel_c10mpllb_state pllb;
+>                         u8 cmn;
+>                         u8 tx;
+>                 } c10;
+>                 struct intel_c20pll_state c20pll_state;
+>         };
+> };
+>=20
+I am bit concerned about the mismatch in the names for c10 and c20 states,
+adding further complexity in the structure may look more ugly. Let us affor=
+d the
+extra space in the tables if they need to be part of the atomic state and m=
+aintain
+homogeneity across c10 and c20 structures.
 
-> 
-> [   31.151348] ------------[ cut here ]------------
-> [   31.157043] msm_dpu ae01000.display-controller:
-> drm_WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev))
-> [   31.157177] WARNING: CPU: 0 PID: 13 at drivers/gpu/drm/drm_vblank.c:728
-> drm_crtc_vblank_helper_get_vblank_timestamp_internal
-> (drivers/gpu/drm/drm_vblank.c:728)
-> [   31.180629] Modules linked in:
-> [   31.184106] CPU: 0 PID: 13 Comm: kworker/0:1 Not tainted
-> 6.3.0-rc2-00008-gd39e48ca80c0 #542
-> [   31.193358] Hardware name: Qualcomm Technologies, Inc. Robotics RB5 (DT)
-> [   31.200796] Workqueue: events lt9611uxc_hpd_work
-> [   31.205990] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
-> BTYPE=--)
-> [   31.213722] pc : drm_crtc_vblank_helper_get_vblank_timestamp_internal
-> (drivers/gpu/drm/drm_vblank.c:728)
-> [   31.222032] lr : drm_crtc_vblank_helper_get_vblank_timestamp_internal
-> (drivers/gpu/drm/drm_vblank.c:728)
-> [   31.230341] sp : ffff8000080bb8d0
-> [   31.234061] x29: ffff8000080bb900 x28: 0000000000000038 x27:
-> ffff61a7956b8d60
-> [   31.242051] x26: 0000000000000000 x25: 0000000000000000 x24:
-> ffff8000080bb9c4
-> [   31.250038] x23: 0000000000000001 x22: ffffbf0033b94ef0 x21:
-> ffff61a7957901d0
-> [   31.258029] x20: ffff61a795710000 x19: ffff61a78128b000 x18:
-> fffffffffffec278
-> [   31.266014] x17: 0040000000000465 x16: 0000000000000020 x15:
-> 0000000000000060
-> [   31.274001] x14: 0000000000000001 x13: ffffbf00354550e0 x12:
-> 0000000000000825
-> [   31.281989] x11: 00000000000002b7 x10: ffffbf00354b1208 x9 :
-> ffffbf00354550e0
-> [   31.289976] x8 : 00000000ffffefff x7 : ffffbf00354ad0e0 x6 :
-> 00000000000002b7
-> [   31.297963] x5 : ffff61a8feebbe48 x4 : 40000000fffff2b7 x3 :
-> ffffa2a8c9f64000
-> [   31.305947] x2 : 0000000000000000 x1 : 0000000000000000 x0 :
-> ffff61a780283100
-> [   31.313934] Call trace:
-> [   31.316719] drm_crtc_vblank_helper_get_vblank_timestamp_internal
-> (drivers/gpu/drm/drm_vblank.c:728)
-> [   31.324646] drm_crtc_vblank_helper_get_vblank_timestamp
-> (drivers/gpu/drm/drm_vblank.c:843)
-> [   31.331528] drm_crtc_get_last_vbltimestamp
-> (drivers/gpu/drm/drm_vblank.c:884)
-> [   31.337170] drm_crtc_next_vblank_start
-> (drivers/gpu/drm/drm_vblank.c:1006)
-> [   31.342430] drm_atomic_helper_wait_for_fences
-> (drivers/gpu/drm/drm_atomic_helper.c:1531
-> drivers/gpu/drm/drm_atomic_helper.c:1578)
-> [   31.348561] drm_atomic_helper_commit
-> (drivers/gpu/drm/drm_atomic_helper.c:2007)
-> [   31.353724] drm_atomic_commit (drivers/gpu/drm/drm_atomic.c:1444)
-> [   31.358127] drm_client_modeset_commit_atomic
-> (drivers/gpu/drm/drm_client_modeset.c:1045)
-> [   31.364146] drm_client_modeset_commit_locked
-> (drivers/gpu/drm/drm_client_modeset.c:1148)
-> [   31.370071] drm_client_modeset_commit
-> (drivers/gpu/drm/drm_client_modeset.c:1174)
-> [   31.375233] drm_fb_helper_set_par (drivers/gpu/drm/drm_fb_helper.c:254
-> drivers/gpu/drm/drm_fb_helper.c:229 drivers/gpu/drm/drm_fb_helper.c:1644)
-> [   31.380108] drm_fb_helper_hotplug_event
-> (drivers/gpu/drm/drm_fb_helper.c:2302 (discriminator 4))
-> [   31.385456] drm_fb_helper_output_poll_changed
-> (drivers/gpu/drm/drm_fb_helper.c:2331)
-> [   31.391376] drm_kms_helper_hotplug_event
-> (drivers/gpu/drm/drm_probe_helper.c:697)
-> [   31.396825] drm_bridge_connector_hpd_cb
-> (drivers/gpu/drm/drm_bridge_connector.c:129)
-> [   31.402175] drm_bridge_hpd_notify (drivers/gpu/drm/drm_bridge.c:1315)
-> [   31.406954] lt9611uxc_hpd_work
-> (drivers/gpu/drm/bridge/lontium-lt9611uxc.c:185)
-> [   31.411450] process_one_work (kernel/workqueue.c:2395)
-> [   31.415949] worker_thread (include/linux/list.h:292
-> kernel/workqueue.c:2538)
-> [   31.426843] kthread (kernel/kthread.c:376)
-> [   31.437182] ret_from_fork (arch/arm64/kernel/entry.S:871)
-> [   31.447828] irq event stamp: 44642
-> [   31.458284] hardirqs last enabled at (44641): __up_console_sem
-> (arch/arm64/include/asm/irqflags.h:182 (discriminator 1)
-> arch/arm64/include/asm/irqflags.h:202 (discriminator 1)
-> kernel/printk/printk.c:345 (discriminator 1))
-> [   31.474540] hardirqs last disabled at (44642): el1_dbg
-> (arch/arm64/kernel/entry-common.c:335 arch/arm64/kernel/entry-common.c:406)
-> [   31.489882] softirqs last enabled at (42912): _stext
-> (arch/arm64/include/asm/current.h:19 arch/arm64/include/asm/preempt.h:13
-> kernel/softirq.c:415 kernel/softirq.c:600)
-> [   31.505256] softirqs last disabled at (42907): ____do_softirq
-> (arch/arm64/kernel/irq.c:81)
-> [   31.521139] ---[ end trace 0000000000000000 ]---
-> 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+Thoughts?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+-RK
+> --Imre
