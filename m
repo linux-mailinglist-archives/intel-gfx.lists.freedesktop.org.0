@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CFB6D62A1
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 15:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC7C36D62C1
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 15:27:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91CFF10E140;
-	Tue,  4 Apr 2023 13:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4829D10E140;
+	Tue,  4 Apr 2023 13:27:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E174B10E079;
- Tue,  4 Apr 2023 13:19:26 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4153910E140
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 13:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680614366; x=1712150366;
- h=date:from:to:cc:subject:message-id:references:
+ t=1680614861; x=1712150861;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=B4vhp5dLY7DXUiBARJvrBwfUaKHvjm3yup5eN6yEpyw=;
- b=flIKSIO1MEZjeeUVxGXx0QD+yTE7li1/WJS7eLVa69qet35WFaZLvlsH
- Bhpxe6HcNPg9PzDrmAh+mKkM0XO0tJCC2kfcukXLrnFBrz55Le0pHvRiN
- A6LiNZwvv8wcQiCSMqOAlsud34wVbfXx0c9J8AKz9sNAHb8yKp2DjOMk4
- 0hFW+ErJ4w1ccXHiYTmi8jAj2fNFhnDZ4IojsdC6hD+yUXG2zLQVLjebd
- RlrdpewC0MI+jmMVI74pIHIJf1hBzjMVmbhsFQxLAwmgjVw0lYOhYDNit
- l6kMlMmqFP3vy+paTnxdT22bX7F5i+BQPSaosO/cDhaK74P85T2hJAB+4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="326195822"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="326195822"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 06:19:26 -0700
+ bh=TNJunf0tcawLz0mgJgmMc66rdOblCWhs18nwPw27n+M=;
+ b=lJYGVQCZFvyX6uyd7F2h8kT27rDa32BNTVMLdAwgnBlrb7pGoDWlYAE1
+ x0blemHaPCnxaTNW7euRVex3yy+2jFk/KRvVOW+mou6/jlRxWc+R9gkG4
+ vClkbI8GhH04fKyQ6arb62wJ5GmMhUQQSr2gRecliKKh+UwqwgHtlPT8U
+ vVgcCBYy4WCLiA38rDP4HMNpnDQwhvHPCkPPhwH2sgXejwM/yYGZQKfwj
+ +PGKbVe2BkX6HJR1xjgDPicy7cgX+M/gXWoCfR1yoqn+1qILnnMxnRbIg
+ cwwvfjAt/I36xxPgE+4MjLLBnNHt7TEneaaAp74LTDX4h3CeU7xc2TP+v g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="369997539"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="369997539"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 06:27:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="716646372"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="716646372"
-Received: from kchojnow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.14.97])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 06:19:24 -0700
-Date: Tue, 4 Apr 2023 15:19:22 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230404131922.onfjzmhrnc3bcw3z@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20230403202437.1816411-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="663592517"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="663592517"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 06:27:36 -0700
+Date: Tue, 4 Apr 2023 16:27:34 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Message-ID: <ZCwlxrm4MCZU7cQD@ideak-desk.fi.intel.com>
+References: <20230327123433.896216-1-mika.kahola@intel.com>
+ <20230327123433.896216-5-mika.kahola@intel.com>
+ <ZCRb90HL81lTTIms@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054D6DBF09E04B3E89268DEEF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZCwONC/frYg8QqEJ@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054ABBA1564C3558AB67064EF939@MW4PR11MB7054.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230403202437.1816411-1-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tools: Add tool to dump GuC/HuC CSS
- header
+In-Reply-To: <MW4PR11MB7054ABBA1564C3558AB67064EF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY
+ message bus and pll programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,203 +63,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-04-03 at 13:24:37 -0700, Lucas De Marchi wrote:
-> Since we are now using unversioned GuC/HuC, it's useful to be able to
-> dump the firmware blob and get that information from the CSS header.
-> Add a tool that decodes that information and dumps the raw header.
-> 
-> Example output:
-> 
-> 	$ tools/intel-gfx-fw-info /lib/firmware/i915/tgl_guc_70.bin
-> 	version: 70.5.1
-> 	date: 2022-09-09
-> 	raw dump:
-> 	00000000  06 00 00 00 a1 00 00 00  00 00 01 00 00 00 00 00   ................
-> 	00000010  86 80 00 00 09 09 22 20  71 17 01 00 40 00 00 00   ......" q...@...
-> 	00000020  40 00 00 00 01 00 00 00  09 21 45 00 73 79 73 5f   @........!E.sys_
-> 	00000030  67 62 73 62 50 43 2d 31  2e 30 2e 33 31 35 30 00   gbsbPC-1.0.3150.
-> 	00000040  01 05 46 00 00 00 00 00  00 00 00 00 00 00 00 00   ..F.............
-> 	00000050  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
-> 	00000060  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
-> 	00000070  00 00 00 00 00 00 00 00  00 10 80 00 00 01 40 00   ..............@.
-> 
-> 	struct uc_css_header:
-> 	- module_type: 0x6
-> 	- header_size_dw: 0xa1
-> 	- header_version: 0x10000
-> 	- module_id: 0x0
-> 	- module_vendor: 0x8086
-> 	- date: 0x20220909
-> 	- size_dw: 0x11771
-> 	- key_size_dw: 0x40
-> 	- modulus_size_dw: 0x40
-> 	- exponent_size_dw: 0x1
-> 	- time: 0x452109
-> 	- username: b'sys_gbsb'
-> 	- buildnumber: b'PC-1.0.3150\x00'
-> 	- sw_version: 0x460501
-> 	- vf_version: 0x0
-> 	- reserved0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-> 	- rsvd: <rsvd private_data_size=0x801000, reserved1=0x801000>
-> 	- header_info: 0x400100
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+On Tue, Apr 04, 2023 at 04:01:55PM +0300, Kahola, Mika wrote:
+> [...]
+> > >
+> > > > > +void intel_c10mpllb_readout_hw_state(struct intel_encoder *encoder,
+> > > > > +                                struct intel_c10mpllb_state
+> > > > > +*pll_state) {
+> > > > > +   struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > > > > +   struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> > > > > +   bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+> > > > > +   u8 lane = lane_reversal ? INTEL_CX0_LANE1 :
+> > > > > +                             INTEL_CX0_LANE0;
+> > > > > +   enum phy phy = intel_port_to_phy(i915, encoder->port);
+> > > > > +   int i;
+> > > > > +   u8 cmn, tx0;
+> > > > > +
+> > > > > +   /*
+> > > > > +    * According to C10 VDR Register programming Sequence we need
+> > > > > +    * to do this to read PHY internal registers from MsgBus.
+> > > > > +    */
+> > > > > +   intel_cx0_rmw(i915, encoder->port, lane, PHY_C10_VDR_CONTROL(1), 0,
+> > > > > +                 C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
+> > > > > +
+> > > > > +   for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
+> > > > > +           pll_state->pll[i] = intel_cx0_read(i915, encoder->port, lane, PHY_C10_VDR_PLL(i));
+> > > > > +
+> > > > > +   cmn = intel_cx0_read(i915, encoder->port, lane, PHY_C10_VDR_CMN(0));
+> > > > > +   tx0 = intel_cx0_read(i915, encoder->port, lane, PHY_C10_VDR_TX(0));
+> > > >
+> > > > The driver programs these registers, so why aren't they also stored
+> > > > in the intell_c20pll_state struct?
+> > >
+> > > Maybe I'm not really following here but intel_c20pll_state has its own
+> > > tx, cmn and mplla/mpllb stored.
+> >
+> > Yes, just typoed that, I meant struct intel_c10mpllb_state which
+> > doesn't include tx and cmn.
+>
+> Yes, for C10 tx and cmn is missing. Maybe we could add those here as
+> well. It seems that currently these are not necessary required but for
+> the future use, these could be defined.
 
-Acked-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+These are needed already now to make the state computation / HW readout /
+state checking work for these two params the same way they do for the
+rest of PLL state.
 
---
-Kamil
+> > > > > +
+> > > > > +   if (tx0 != C10_TX0_VAL || cmn != C10_CMN0_DP_VAL)
+> > > > > +           drm_warn(&i915->drm, "Unexpected tx: %x or cmn: %x for phy: %c.\n",
+> > > > > +                    tx0, cmn, phy_name(phy));
+> > > >
+> > > > Shouldn't PHY_C10_VDR_CONTROL(1)/C10_VDR_CTRL_MSGBUS_ACCESS be
+> > > > cleared here?
+> > >
+> > > Usually this means that we are not accessing these values from the
+> > > register. Was this in the spec that we would need to clear it?
+> >
+> > It does get cleared at the end of intel_c10_pll_program(), at least
+> > from one of the PHY lanes, so was wondering why things are done
+> > differently here. Yes, the spec doesn't require clearing it, but
+> > then it should not be cleared at other places either (has related
+> > comments on this in follow-up reviews).
+> 
+> To be consistent maybe we can clear this here as well.
 
-> ---
->  tools/intel-gfx-fw-info | 120 ++++++++++++++++++++++++++++++++++++++++
->  tools/meson.build       |   2 +-
->  2 files changed, 121 insertions(+), 1 deletion(-)
->  create mode 100755 tools/intel-gfx-fw-info
+If there is no need for it, let's follow the spec and not clear it at
+any other spot either.
+
 > 
-> diff --git a/tools/intel-gfx-fw-info b/tools/intel-gfx-fw-info
-> new file mode 100755
-> index 000000000..fc1fafdf5
-> --- /dev/null
-> +++ b/tools/intel-gfx-fw-info
-> @@ -0,0 +1,120 @@
-> +#!/usr/bin/env python3
-> +# pylint: disable=C0301
-> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +#
-> +# Copyright (C) 2023    Intel Corporation
-> +
-> +import argparse
-> +import logging
-> +import pprint
-> +import sys
-> +import typing
-> +
-> +from dissect import cstruct
-> +
-> +# struct definition below should match the one from i915
-> +# (drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h) and xe
-> +# (drivers/gpu/drm/xe/xe_uc_fw_abi.h).
-> +#
-> +# For compatibility reasons with dissect.cstruct python module, the following
-> +# things are changed from the original kernel definition:
-> +#
-> +#       1) Comments removed
-> +#       2) No anonymous union - not compatible with the
-> +#          dumpstruct(), give it a name
-> +
-> +CDEF = """
-> +typedef uint32 u32;
-> +
-> +struct uc_css_header {
-> +        u32 module_type;
-> +        u32 header_size_dw;
-> +        u32 header_version;
-> +        u32 module_id;
-> +        u32 module_vendor;
-> +        u32 date;
-> +        u32 size_dw;
-> +        u32 key_size_dw;
-> +        u32 modulus_size_dw;
-> +        u32 exponent_size_dw;
-> +        u32 time;
-> +        char username[8];
-> +        char buildnumber[12];
-> +        u32 sw_version;
-> +        u32 vf_version;
-> +        u32 reserved0[12];
-> +        union {
-> +                u32 private_data_size;
-> +                u32 reserved1;
-> +        } rsvd;
-> +        u32 header_info;
-> +};
-> +"""
-> +
-> +logger = logging.getLogger(__name__)
-> +
-> +
-> +def ffs(x: int) -> int:
-> +    """Returns the index, counting from 0, of the
-> +    least significant set bit in `x`.
-> +    """
-> +    return (x & -x).bit_length() - 1
-> +
-> +
-> +def FIELD_GET(mask: int, value: int) -> int:
-> +    return (value & mask) >> ffs(mask)
-> +
-> +
-> +def decode(fw) -> str:
-> +    data = []
-> +
-> +    CSS_SW_VERSION_UC_MAJOR = 0xFF << 16
-> +    CSS_SW_VERSION_UC_MINOR = 0xFF << 8
-> +    CSS_SW_VERSION_UC_PATCH = 0xFF
-> +    major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, fw.sw_version)
-> +    minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, fw.sw_version)
-> +    patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, fw.sw_version)
-> +    data += [f"version: {major}.{minor}.{patch}"]
-> +
-> +    CSS_DATE_DAY = 0xFF
-> +    CSS_DATE_MONTH = 0xFF << 8
-> +    CSS_DATE_YEAR = 0xFFFF << 16
-> +    day = FIELD_GET(CSS_DATE_DAY, fw.date)
-> +    month = FIELD_GET(CSS_DATE_MONTH, fw.date)
-> +    year = FIELD_GET(CSS_DATE_YEAR, fw.date)
-> +    data += [f"date: {year:02x}-{month:02x}-{day:02x}"]
-> +
-> +    return data
-> +
-> +
-> +def parse_args(argv: typing.List[str]) -> argparse.Namespace:
-> +    description = "Dump GuC/HuC firmware header"
-> +    parser = argparse.ArgumentParser(prog="intel-gfx-fw-info", description=description)
-> +
-> +    parser.add_argument("filename", help="GuC/HuC firmware file")
-> +
-> +    return parser.parse_args(argv)
-> +
-> +
-> +def main(argv: typing.List[str]) -> int:
-> +    args = parse_args(argv)
-> +
-> +    cparser = cstruct.cstruct()
-> +    cparser.load(CDEF)
-> +
-> +    try:
-> +        with open(args.filename, mode="rb") as f:
-> +            fw = cparser.uc_css_header(f)
-> +    except FileNotFoundError as e:
-> +        logger.fatal(e)
-> +        return 1
-> +
-> +    print(*decode(fw), sep="\n")
-> +    print("raw dump:", end="")
-> +    cstruct.dumpstruct(fw, color=sys.stdout.isatty())
-> +
-> +    return 0
-> +
-> +
-> +if __name__ == "__main__":
-> +    sys.exit(main(sys.argv[1:]))
-> diff --git a/tools/meson.build b/tools/meson.build
-> index 4c45f16b9..88c58adfe 100644
-> --- a/tools/meson.build
-> +++ b/tools/meson.build
-> @@ -81,7 +81,7 @@ executable('intel_reg', sources : intel_reg_src,
->  	     '-DIGT_DATADIR="@0@"'.format(join_paths(prefix, datadir)),
->  	   ])
->  
-> -install_data('intel_gpu_abrt', install_dir : bindir)
-> +install_data(['intel_gpu_abrt', 'intel-gfx-fw-info'], install_dir : bindir)
->  
->  install_subdir('registers', install_dir : datadir)
->  
-> -- 
-> 2.39.0
-> 
+> >
+> > > > > +}
+> > > > > +
