@@ -2,38 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D896D700F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 00:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A36056D700B
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 00:20:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6385010E7D6;
-	Tue,  4 Apr 2023 22:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3AD610E7DD;
+	Tue,  4 Apr 2023 22:20:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 401 seconds by postgrey-1.36 at gabe;
- Tue, 04 Apr 2023 22:21:50 UTC
-Received: from smtp97.iad3a.emailsrvr.com (smtp97.iad3a.emailsrvr.com
- [173.203.187.97])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1463510E7D6
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 22:21:49 +0000 (UTC)
-X-Auth-ID: kenneth@whitecape.org
-Received: by smtp29.relay.iad3a.emailsrvr.com (Authenticated sender:
- kenneth-AT-whitecape.org) with ESMTPSA id 93E0E23A6C; 
- Tue,  4 Apr 2023 18:15:07 -0400 (EDT)
-From: Kenneth Graunke <kenneth@whitecape.org>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Date: Tue, 04 Apr 2023 15:15:02 -0700
-Message-ID: <841291489.4Es8JzXQGL@mizzik>
-In-Reply-To: <ZCsDaDzyOyu9mYU3@intel.com>
-References: <20230401063830.438127-1-fei.yang@intel.com>
- <20230403163532.GT4085390@mdroper-desk1.amr.corp.intel.com>
- <ZCsDaDzyOyu9mYU3@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8399D10E7D6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 22:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680646848;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wtedyzqZlxnYrFGj+qXmrLzgKTFLw2c+Vuc4YDvBs9Y=;
+ b=UzOHpne7GntJwANdqJiIkMbRE592H7Tkg+YYwnSe8uXju1UBjDmSc0gsAvopDeS6wl2Cu9
+ clmyiIvLYmLmpVXNEy91GUCArM3Z+kY0Cerjke0VIXlDnegApQqX4r8t0JQC9IIszcj9F2
+ f5J3/c/poom9eqsrT6tLZ01IKyUK05E=
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-638-zKLzZEtFM-ajD6hYwhvPPw-1; Tue, 04 Apr 2023 18:20:47 -0400
+X-MC-Unique: zKLzZEtFM-ajD6hYwhvPPw-1
+Received: by mail-io1-f71.google.com with SMTP id
+ i189-20020a6b3bc6000000b00758a1ed99c2so20877494ioa.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 15:20:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680646846;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=wtedyzqZlxnYrFGj+qXmrLzgKTFLw2c+Vuc4YDvBs9Y=;
+ b=kumA5FjyvkjuWvkR+8TT3IFIGRf3SB+NM21sD/9KgIFDjb8v0DLkKjd4+66re+xen4
+ aKfmbB8stdx588XX7AyimCQh2iHbpTJkn2uBBQF9IzBSgUg0ABk7RlS9s2K0UsEOVluO
+ VaKbzyYDB8Nzg5YvnaR0V6ythVfJsJ3tUQd+XbAL+PDGqBw7uRhnmzttsdMWaMrFk5DT
+ QpUqw9VDX4ONK56gXFGbHhZN057N5/L8xfHiV2rWWaZHk/CmmdJq33fj40IZpu/EKMkV
+ 4RvjrL97k+cEkHfPWLN2I6pnpeIOVDfZl8y2XcSZsaEQ0e2d6o4DkZTpcQZXaTHFQJED
+ frMw==
+X-Gm-Message-State: AAQBX9f/Pu+XX6X5JkwHtZSmzQxIjJdYp1hecvYIWozKtbfwLN7GH677
+ q0yPWbrKDNAOamXxSan+DOoFRlwirQvAwxadoIhVMx7MqAfmahB2RcM/dRHznRb9BtU0++7Gn6Z
+ ogzgcnW2b9Uy2BgjBVakTzsRH9YK2
+X-Received: by 2002:a92:d987:0:b0:325:fe9f:b89e with SMTP id
+ r7-20020a92d987000000b00325fe9fb89emr2656647iln.30.1680646846638; 
+ Tue, 04 Apr 2023 15:20:46 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bG28gnLkRr7C9UJ/JFxsCc3vxT4/kcNZsJIuMjQPoAsqhmlGTrjKd2rtr7Dssvge/zd/DKMA==
+X-Received: by 2002:a92:d987:0:b0:325:fe9f:b89e with SMTP id
+ r7-20020a92d987000000b00325fe9fb89emr2656616iln.30.1680646846274; 
+ Tue, 04 Apr 2023 15:20:46 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ m17-20020a056638409100b004040f9898ebsm3653932jam.148.2023.04.04.15.20.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Apr 2023 15:20:45 -0700 (PDT)
+Date: Tue, 4 Apr 2023 16:20:44 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230404162044.25fb0f93.alex.williamson@redhat.com>
+In-Reply-To: <20230401144429.88673-13-yi.l.liu@intel.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-13-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6533292.K0ekAHHfTp";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Classification-ID: 43e8f2a4-730a-4a8d-b9b3-2a2d0a1f4921-1-1
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Allow user to set cache at BO
- creation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,122 +84,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com, jgg@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---nextPart6533292.K0ekAHHfTp
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Kenneth Graunke <kenneth@whitecape.org>
-Date: Tue, 04 Apr 2023 15:15:02 -0700
-Message-ID: <841291489.4Es8JzXQGL@mizzik>
-In-Reply-To: <ZCsDaDzyOyu9mYU3@intel.com>
-MIME-Version: 1.0
+On Sat,  1 Apr 2023 07:44:29 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-On Monday, April 3, 2023 9:48:40 AM PDT Ville Syrj=E4l=E4 wrote:
-> On Mon, Apr 03, 2023 at 09:35:32AM -0700, Matt Roper wrote:
-> > On Mon, Apr 03, 2023 at 07:02:08PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Fri, Mar 31, 2023 at 11:38:30PM -0700, fei.yang@intel.com wrote:
-> > > > From: Fei Yang <fei.yang@intel.com>
-> > > >=20
-> > > > To comply with the design that buffer objects shall have immutable
-> > > > cache setting through out its life cycle, {set, get}_caching ioctl's
-> > > > are no longer supported from MTL onward. With that change caching
-> > > > policy can only be set at object creation time. The current code
-> > > > applies a default (platform dependent) cache setting for all object=
-s.
-> > > > However this is not optimal for performance tuning. The patch exten=
-ds
-> > > > the existing gem_create uAPI to let user set PAT index for the obje=
-ct
-> > > > at creation time.
-> > >=20
-> > > This is missing the whole justification for the new uapi.
-> > > Why is MOCS not sufficient?
-> >=20
-> > PAT and MOCS are somewhat related, but they're not the same thing.  The
-> > general direction of the hardware architecture recently has been to
-> > slowly dumb down MOCS and move more of the important memory/cache
-> > control over to the PAT instead.  On current platforms there is some
-> > overlap (and MOCS has an "ignore PAT" setting that makes the MOCS "win"
-> > for the specific fields that both can control), but MOCS doesn't have a
-> > way to express things like snoop/coherency mode (on MTL), or class of
-> > service (on PVC).  And if you check some of the future platforms, the
-> > hardware design starts packing even more stuff into the PAT (not just
-> > cache behavior) which will never be handled by MOCS.
->=20
-> Sigh. So the hardware designers screwed up MOCS yet again and
-> instead of getting that fixed we are adding a new uapi to work
-> around it?
->=20
-> The IMO sane approach (which IIRC was the situation for a few
-> platform generations at least) is that you just shove the PAT
-> index into MOCS (or tell it to go look it up from the PTE).
-> Why the heck did they not just stick with that?
+> for the users that accept device fds passed from management stacks to be
+> able to figure out the host reset affected devices among the devices
+> opened by the user. This is needed as such users do not have BDF (bus,
+> devfn) knowledge about the devices it has opened, hence unable to use
+> the information reported by existing VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+> to figure out the affected devices.
+> 
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_core.c | 58 ++++++++++++++++++++++++++++----
+>  include/uapi/linux/vfio.h        | 24 ++++++++++++-
+>  2 files changed, 74 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 19f5b075d70a..a5a7e148dce1 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -30,6 +30,7 @@
+>  #if IS_ENABLED(CONFIG_EEH)
+>  #include <asm/eeh.h>
+>  #endif
+> +#include <uapi/linux/iommufd.h>
+>  
+>  #include "vfio_pci_priv.h"
+>  
+> @@ -767,6 +768,20 @@ static int vfio_pci_get_irq_count(struct vfio_pci_core_device *vdev, int irq_typ
+>  	return 0;
+>  }
+>  
+> +static struct vfio_device *
+> +vfio_pci_find_device_in_devset(struct vfio_device_set *dev_set,
+> +			       struct pci_dev *pdev)
+> +{
+> +	struct vfio_device *cur;
+> +
+> +	lockdep_assert_held(&dev_set->lock);
+> +
+> +	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+> +		if (cur->dev == &pdev->dev)
+> +			return cur;
+> +	return NULL;
+> +}
+> +
+>  static int vfio_pci_count_devs(struct pci_dev *pdev, void *data)
+>  {
+>  	(*(int *)data)++;
+> @@ -776,13 +791,20 @@ static int vfio_pci_count_devs(struct pci_dev *pdev, void *data)
+>  struct vfio_pci_fill_info {
+>  	int max;
+>  	int cur;
+> +	bool require_devid;
+> +	struct iommufd_ctx *iommufd;
+> +	struct vfio_device_set *dev_set;
+>  	struct vfio_pci_dependent_device *devices;
 
-There are actually some use cases in newer APIs where MOCS doesn't
-work well.  For example, VK_KHR_buffer_device_address in Vulkan 1.2:
+Poor structure packing, move the bool to the end.
 
-https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_bu=
-ffer_device_address.html
+Nit, maybe just name it @devid.
 
-It essentially adds "pointers to buffer memory in shaders", where apps
-can just get a 64-bit pointer, and use it with an address.  On our EUs,
-that turns into A64 data port messages which refer directly to memory.
-Notably, there's no descriptor (i.e. SURFACE_STATE) where you could
-stuff a MOCS value.  So, you get one single MOCS entry for all such
-buffers...which is specified in STATE_BASE_ADDRESS.  Hope you wanted
-all of them to have the same cache & coherency settings!
+>  };
+>  
+>  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+>  {
+>  	struct vfio_pci_fill_info *fill = data;
+> +	struct vfio_device_set *dev_set = fill->dev_set;
+>  	struct iommu_group *iommu_group;
+> +	struct vfio_device *vdev;
+> +
+> +	lockdep_assert_held(&dev_set->lock);
+>  
+>  	if (fill->cur == fill->max)
+>  		return -EAGAIN; /* Something changed, try again */
+> @@ -791,7 +813,21 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+>  	if (!iommu_group)
+>  		return -EPERM; /* Cannot reset non-isolated devices */
+>  
+> -	fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +	if (fill->require_devid) {
 
-With PAT/PTE, we can at least specify settings for each buffer, rather
-than one global setting.
+Nit, @vdev could be scoped here.
 
-Compression has also been moving towards virtual address-based solutions
-and handling in the caches and memory controller, rather than in e.g.
-the sampler reading SURFACE_STATE.  (It started evolving that way with
-Tigerlake, really, but continues.)
+> +		/*
+> +		 * Report dev_id of the devices that are opened as cdev
+> +		 * and have the same iommufd with the fill->iommufd.
+> +		 * Otherwise, just fill IOMMUFD_INVALID_ID.
+> +		 */
+> +		vdev = vfio_pci_find_device_in_devset(dev_set, pdev);
 
-> > Also keep in mind that MOCS generally applies at the GPU instruction
-> > level; although a lot of instructions have a field to provide a MOCS
-> > index, or can use a MOCS already associated with a surface state, there
-> > are still some that don't. PAT is the source of memory access
-> > characteristics for anything that can't provide a MOCS directly.
->=20
-> So what are the things that don't have MOCS and where we need
-> some custom cache behaviour, and we already know all that at
-> buffer creation time?
+I wish I had a better solution to this, but I don't.
 
-=46or Meteorlake...we have MOCS for cache settings.  We only need to use
-PAT for coherency settings; I believe we can get away with deciding that
-up-front at buffer creation time.  If we were doing full cacheability,
-I'd be very nervous about deciding performance tuning at creation time.
+> +		if (vdev && vfio_device_cdev_opened(vdev) &&
+> +		    fill->iommufd == vfio_iommufd_physical_ictx(vdev))
+> +			vfio_iommufd_physical_devid(vdev, &fill->devices[fill->cur].dev_id);
 
-=2D-Ken
+Long line, maybe a pointer to &fill->devices[fill->cur] would help.
 
---nextPart6533292.K0ekAHHfTp
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+> +		else
+> +			fill->devices[fill->cur].dev_id = IOMMUFD_INVALID_ID;
+> +	} else {
+> +		fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +	}
+>  	fill->devices[fill->cur].segment = pci_domain_nr(pdev->bus);
+>  	fill->devices[fill->cur].bus = pdev->bus->number;
+>  	fill->devices[fill->cur].devfn = pdev->devfn;
+> @@ -1230,17 +1266,27 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
+>  		return -ENOMEM;
+>  
+>  	fill.devices = devices;
+> +	fill.dev_set = vdev->vdev.dev_set;
+>  
+> +	mutex_lock(&vdev->vdev.dev_set->lock);
+> +	if (vfio_device_cdev_opened(&vdev->vdev)) {
+> +		fill.require_devid = true;
+> +		fill.iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
+> +	}
 
------BEGIN PGP SIGNATURE-----
+We can do this unconditionally:
 
-iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmQsoWYACgkQW1vaBx1J
-zDh7nw/+OdMoftQAugjEg3ahzqIEgMZYmgc6UKJYgyGu+Vuy9ipH+1CQJs0AsHGJ
-NBq07PvNAtPgNDQgCPB7unxrzXzGkokgfhJnTxpl+gd+nVimE9EQkku+L0k8eI9h
-1gXptoX0B//duToZgLIQnBSE2sT1In5mX2RcuGQ2ZHIXraVSsV2jvqM9zV4eTz8A
-CQAcmSDsggjhSF5jaciVaMa3wN38zscsF64xpVojMfuNl2Ra3Qc/QDzLlUtGwgu0
-0PxmV6qN5plViC3P2AXCVFmMiIwtvoFMnUmLrS+oicPk92SZaNxYwuVUCGZveMS1
-4bubTcFqq6dPcMf0KQ+qk1pRJK1AwDb9ncxlKxoRbaMVqdMY9Z91U8H2eiPp3cE2
-sDEptihFwnscTIVgr/NiNNTKK2FyDInZdF2Xkr0JZA/GWPf7EbCjyXA/yzAIqnF7
-J52XXOeYOGc3EIPLn8J53PTQ3dOV8i73CeWnKKaQIPeyvohR0ER6IBTdtZ9pxbNl
-zarROr78qInME3M582uHucxAR5QCfsQJ+zRa8iagmbsiYx3X2zeqNEkPl18f3IBR
-oh2LVGFNpf2gDglomsXQF5daB++pwKjtBAbF25tRksii+yf3pojs7BZGXCC+wUUW
-yOLhhwaH6MfHVJRLYfzy8hTY4EKTOZMac6P5ihVmofw68twwGNo=
-=bYu7
------END PGP SIGNATURE-----
+	fill.devid = vfio_device_cdev_opened(&vdev->vdev);
+	fill.iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
 
---nextPart6533292.K0ekAHHfTp--
+Thanks,
+Alex
 
-
+>  	ret = vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_devs,
+>  					    &fill, slot);
+> +	mutex_unlock(&vdev->vdev.dev_set->lock);
+>  
+>  	/*
+>  	 * If a device was removed between counting and filling, we may come up
+>  	 * short of fill.max.  If a device was added, we'll have a return of
+>  	 * -EAGAIN above.
+>  	 */
+> -	if (!ret)
+> +	if (!ret) {
+>  		hdr.count = fill.cur;
+> +		if (fill.require_devid)
+> +			hdr.flags = VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID;
+> +	}
+>  
+>  reset_info_exit:
+>  	if (copy_to_user(arg, &hdr, minsz))
+> @@ -2346,12 +2392,10 @@ static bool vfio_dev_in_files(struct vfio_pci_core_device *vdev,
+>  static int vfio_pci_is_device_in_set(struct pci_dev *pdev, void *data)
+>  {
+>  	struct vfio_device_set *dev_set = data;
+> -	struct vfio_device *cur;
+>  
+> -	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+> -		if (cur->dev == &pdev->dev)
+> -			return 0;
+> -	return -EBUSY;
+> +	lockdep_assert_held(&dev_set->lock);
+> +
+> +	return vfio_pci_find_device_in_devset(dev_set, pdev) ? 0 : -EBUSY;
+>  }
+>  
+>  /*
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 25432ef213ee..5a34364e3b94 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -650,11 +650,32 @@ enum {
+>   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 12,
+>   *					      struct vfio_pci_hot_reset_info)
+>   *
+> + * This command is used to query the affected devices in the hot reset for
+> + * a given device.  User could use the information reported by this command
+> + * to figure out the affected devices among the devices it has opened.
+> + * This command always reports the segment, bus and devfn information for
+> + * each affected device, and selectively report the group_id or the dev_id
+> + * per the way how the device being queried is opened.
+> + *	- If the device is opened via the traditional group/container manner,
+> + *	  this command reports the group_id for each affected device.
+> + *
+> + *	- If the device is opened as a cdev, this command needs to report
+> + *	  dev_id for each affected device and set the
+> + *	  VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID flag.  For the affected
+> + *	  devices that are not opened as cdev or bound to different iommufds
+> + *	  with the device that is queried, report an invalid dev_id to avoid
+> + *	  potential dev_id conflict as dev_id is local to iommufd.  For such
+> + *	  affected devices, user shall fall back to use the segment, bus and
+> + *	  devfn info to map it to opened device.
+> + *
+>   * Return: 0 on success, -errno on failure:
+>   *	-enospc = insufficient buffer, -enodev = unsupported for device.
+>   */
+>  struct vfio_pci_dependent_device {
+> -	__u32	group_id;
+> +	union {
+> +		__u32   group_id;
+> +		__u32	dev_id;
+> +	};
+>  	__u16	segment;
+>  	__u8	bus;
+>  	__u8	devfn; /* Use PCI_SLOT/PCI_FUNC */
+> @@ -663,6 +684,7 @@ struct vfio_pci_dependent_device {
+>  struct vfio_pci_hot_reset_info {
+>  	__u32	argsz;
+>  	__u32	flags;
+> +#define VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID	(1 << 0)
+>  	__u32	count;
+>  	struct vfio_pci_dependent_device	devices[];
+>  };
 
