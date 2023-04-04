@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 668C46D6EEE
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 23:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D47A6D6EF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 23:28:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBC210E1FD;
-	Tue,  4 Apr 2023 21:26:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7935E10E1F3;
+	Tue,  4 Apr 2023 21:28:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8D4310E1FD;
- Tue,  4 Apr 2023 21:26:44 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF61510E1F3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 21:28:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680643604; x=1712179604;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Gq6CQFen4e2ff9QTttmNRt+fEJhdfSq2wiYPiT/2pNg=;
- b=cUC3GMmr/C8t93P4Jo4nRMQ8bdSd0d4h4rYu3q6PBzbug5aFt2KvkDcN
- JMOm9D7/kzIqO/gzt/eEeriyr591lyGtwEWjSTCfQbif/0DU080p9K56y
- d68P/6xBHe0XkV3QngqArG6O2Us/NGoHFDmHAd3UBApFqGmbroiNrsdk0
- yZlBz9a4MX1keLzesgelvL+lO5fFXm+CwAHq1R3Gduf64Gpb7f4tDi3P7
- P+UWtlH23xLilG5CRQNaCIkqvmsT+inRdiquwyYsU3vIRVrkKbOs9oZtJ
- TD3ClISIm5fBr10M7/QEMQLTzRHtt344/DPoZutdFCLG0w23Xlrm5rIQE g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="321967876"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="321967876"
+ t=1680643722; x=1712179722;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=GuARVHDfNxfBaGJSZVe4DDoSzsUG1X8PYu8bjbFQb78=;
+ b=R/U7WwnxoOq44uVTYTMEu41Ctrbg4ViEKf7j8Cu8ngrwTQX2mn7kSrmp
+ Oiq3dVICs12ywp9vuJpMJ+70PiPXlaV0/n2v0rU0EnjPbykdwUx9davAP
+ EX5BNtfx7tTz125P4TOtay6EGBG29gZFfe08JEbQ/TZEZdpGG6UoTbrL6
+ ysJEdgrvSebGSpzxQ5qRwHHIwu2MTN1bCvDpaW7nt8+Cd+i+whPHSYoV/
+ rSgLC/DAtQOfv2BdN89VImp0LtKFVzSdblOtlm4tpK/48XH4tVXTle5Hi
+ Tckz+XzyuHfbBzctXfZBZ1K3HcJxZFIquAYColOUPOUSEBFz5xG94nfcj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="405082760"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="405082760"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 14:26:42 -0700
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 14:28:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="716790545"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="716790545"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.33.159])
- ([10.249.33.159])
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="716791090"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="716791090"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 14:26:40 -0700
-Message-ID: <11c408fd-e9be-5764-a847-defbeec2de9d@linux.intel.com>
-Date: Tue, 4 Apr 2023 23:26:37 +0200
+ 04 Apr 2023 14:28:37 -0700
+Date: Wed, 5 Apr 2023 00:28:34 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+Message-ID: <ZCyWgmj8GNkXXOUR@ideak-desk.fi.intel.com>
+References: <20230327123433.896216-1-mika.kahola@intel.com>
+ <20230327123433.896216-5-mika.kahola@intel.com>
+ <ZCRb90HL81lTTIms@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054D6DBF09E04B3E89268DEEF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZCwONC/frYg8QqEJ@ideak-desk.fi.intel.com>
+ <MW4PR11MB7054ABBA1564C3558AB67064EF939@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZCwlxrm4MCZU7cQD@ideak-desk.fi.intel.com>
+ <DM4PR11MB59717A07465A88779935469487939@DM4PR11MB5971.namprd11.prod.outlook.com>
+ <ZCxhtF/ttLTpXyIG@ideak-desk.fi.intel.com>
+ <DM4PR11MB59716C35EA12BEC64C1EDDE987939@DM4PR11MB5971.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, jouni.hogander@intel.com
-References: <20230404181342.23362-1-nirmoy.das@intel.com>
- <ZCxsDA86FrHzL7Rk@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZCxsDA86FrHzL7Rk@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/mtl: Disable stolen memory
- backed FB for A0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM4PR11MB59716C35EA12BEC64C1EDDE987939@DM4PR11MB5971.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY
+ message bus and pll programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +67,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Apr 04, 2023 at 10:22:53PM +0300, Sripada, Radhakrishna wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Deak, Imre <imre.deak@intel.com>
+> > Sent: Tuesday, April 4, 2023 11:03 AM
+> > To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
+> > Cc: Kahola, Mika <mika.kahola@intel.com>; intel-gfx@lists.freedesktop.org;
+> > Shankar, Uma <uma.shankar@intel.com>; Sousa, Gustavo
+> > <gustavo.sousa@intel.com>
+> > Subject: Re: [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY message bus
+> > and pll programming
+> >
+> > On Tue, Apr 04, 2023 at 07:50:00PM +0300, Sripada, Radhakrishna wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Deak, Imre <imre.deak@intel.com>
+> > > > Sent: Tuesday, April 4, 2023 6:28 AM
+> > > > To: Kahola, Mika <mika.kahola@intel.com>
+> > > > Cc: intel-gfx@lists.freedesktop.org; Sripada, Radhakrishna
+> > > > <radhakrishna.sripada@intel.com>; Shankar, Uma
+> > <uma.shankar@intel.com>;
+> > > > Sousa, Gustavo <gustavo.sousa@intel.com>
+> > > > Subject: Re: [PATCH 4/7] drm/i915/mtl: Add Support for C10 PHY message
+> > bus
+> > > > and pll programming
+> > > >
+> > > > On Tue, Apr 04, 2023 at 04:01:55PM +0300, Kahola, Mika wrote:
+> > > > > [...]
+> > > > > > >
+> > > > > > > > > +void intel_c10mpllb_readout_hw_state(struct intel_encoder
+> > *encoder,
+> > > > > > > > > +                                struct intel_c10mpllb_state pll_state) {
+> > > > > > > > > +   struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > > > > > > > > +   struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> > > > > > > > > +   bool lane_reversal = dig_port->saved_port_bits &
+> > DDI_BUF_PORT_REVERSAL;
+> > > > > > > > > +   u8 lane = lane_reversal ? INTEL_CX0_LANE1 :
+> > > > > > > > > +                             INTEL_CX0_LANE0;
+> > > > > > > > > +   enum phy phy = intel_port_to_phy(i915, encoder->port);
+> > > > > > > > > +   int i;
+> > > > > > > > > +   u8 cmn, tx0;
+> > > > > > > > > +
+> > > > > > > > > +   /*
+> > > > > > > > > +    * According to C10 VDR Register programming Sequence we
+> > need
+> > > > > > > > > +    * to do this to read PHY internal registers from MsgBus.
+> > > > > > > > > +    */
+> > > > > > > > > +   intel_cx0_rmw(i915, encoder->port, lane,
+> > PHY_C10_VDR_CONTROL(1), 0,
+> > > > > > > > > +                 C10_VDR_CTRL_MSGBUS_ACCESS,
+> > MB_WRITE_COMMITTED);
+> > > > > > > > > +
+> > > > > > > > > +   for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
+> > > > > > > > > +           pll_state->pll[i] = intel_cx0_read(i915, encoder->port, lane,
+> > PHY_C10_VDR_PLL(i));
+> > > > > > > > > +
+> > > > > > > > > +   cmn = intel_cx0_read(i915, encoder->port, lane,
+> > PHY_C10_VDR_CMN(0));
+> > > > > > > > > +   tx0 = intel_cx0_read(i915, encoder->port, lane,
+> > PHY_C10_VDR_TX(0));
+> > > > > > > >
+> > > > > > > > The driver programs these registers, so why aren't they also stored
+> > > > > > > > in the intell_c20pll_state struct?
+> > > > > > >
+> > > > > > > Maybe I'm not really following here but intel_c20pll_state has its own
+> > > > > > > tx, cmn and mplla/mpllb stored.
+> > > > > >
+> > > > > > Yes, just typoed that, I meant struct intel_c10mpllb_state which
+> > > > > > doesn't include tx and cmn.
+> > > > >
+> > > > > Yes, for C10 tx and cmn is missing. Maybe we could add those here as
+> > > > > well. It seems that currently these are not necessary required but for
+> > > > > the future use, these could be defined.
+> > > >
+> > > > These are needed already now to make the state computation / HW readout
+> > /
+> > > > state checking work for these two params the same way they do for the
+> > > > rest of PLL state.
+> > >
+> > > I believe C10 tx and cmn values are not changing across frequencies. Cmn only
+> > > Changes for DP and HDMI so does it make sense to include in the pll structure?
+> >
+> > They should be part of the atomic state. To save the bytes in the
+> > precomputed tables they could be added to intel_cx0pll_state, something
+> > like:
+> >
+> > struct intel_cx0pll_state {
+> >         union {
+> >                 struct {
+> >                         struct intel_c10mpllb_state pllb;
+> >                         u8 cmn;
+> >                         u8 tx;
+> >                 } c10;
+> >                 struct intel_c20pll_state c20pll_state;
+> >         };
+> > };
+> >
+> I am bit concerned about the mismatch in the names for c10 and c20 states,
+> adding further complexity in the structure may look more ugly. Let us afford the
+> extra space in the tables if they need to be part of the atomic state and maintain
+> homogeneity across c10 and c20 structures.
 
-On 4/4/2023 8:27 PM, Ville Syrjälä wrote:
-> On Tue, Apr 04, 2023 at 08:13:42PM +0200, Nirmoy Das wrote:
->> Stolen memory is not usable for MTL A0 stepping beyond
->> certain access size and we have no control over userspace
->> access size of /dev/fb which can be backed by stolen memory.
->> So disable stolen memory backed fb by setting i915->dsm.usable_size
->> to zero.
->>
->> v2: remove hsdes reference and fix commit message(Andi)
->> v3: use revid as we want to target SOC stepping(Radhakrishna)
->>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
->> index 8ac376c24aa2..ee492d823f1b 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
->> @@ -535,6 +535,14 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
->>   	/* Basic memrange allocator for stolen space. */
->>   	drm_mm_init(&i915->mm.stolen, 0, i915->dsm.usable_size);
->>   
->> +	/*
->> +	 * Access to stolen lmem beyond certain size for MTL A0 stepping
->> +	 * would crash the machine. Disable stolen lmem for userspace access
->> +	 * by setting usable_size to zero.
->> +	 */
->> +	if (IS_METEORLAKE(i915) && INTEL_REVID(i915) == 0x0)
->> +		i915->dsm.usable_size = 0;
-> That certainly won't prevent FBC from using stolen.
-> Are we sure that FBC accesses are fine?
+Both ways are better than the current way and fine by me.
 
-I think so. I remember Jouni tested this patch internally to unblock a 
-FBC test.
-
-Jouni, could you please share your thoughts. I can't seem to find the 
-internal JIRA reference right now.
-
-
-Regards,
-
-Nirmoy
-
->
->> +
->>   	return 0;
->>   }
->>   
->> -- 
->> 2.39.0
+> 
+> Thoughts?
+> 
+> -RK
+> > --Imre
