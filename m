@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FEA6D6DE2
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4514A6D6DE3
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:19:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 030C710E7B8;
-	Tue,  4 Apr 2023 20:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90F910E7B7;
+	Tue,  4 Apr 2023 20:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5570010E7B0
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:18:51 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id eh3so135449098edb.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:18:51 -0700 (PDT)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39DDE10E7B0
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:18:52 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id
+ a640c23a62f3a-947a47eb908so44362566b.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:18:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680639530; x=1683231530;
+ d=ffwll.ch; s=google; t=1680639532;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WSDlWgg4ingjdHiQtrqp7fyydG+cf1eYuIpjxsoT8KE=;
- b=BZMfJkDernfSAFgiG2D1K/OJlBO0sGpNgbSqRX/wFoyu1ANUN61Asrv+zOmfVAmief
- T/99u4DDTQsofV3mKbT52gDDKT+kPNNBBGFmHmzW3alte7c+OCAecZWi8QcnLU1kTlP0
- ZXJ5HQfdKmhJtwFIx0MTaZQaTRg2Eh8sozT+4=
+ bh=QlY94eJGzERU4oUesbYD/lkDdpKfub3Yg7YVPlvvBP0=;
+ b=AZI2xSb2K8MrZbOGF4h/d8m9DbQRt1EgcA9EkvMp85yMrcT7Pdt8rAGXD71j0Gi5u8
+ g2RFidTCOJ8c/3O4bUSnNKYFdY88s5ZkdeNo5pKd7VvERW3Ao7VrwluvV+8nkl8bgnlh
+ oeLL7rgG+6iQhqREsKQJgDMROHMIcMPlDVhoE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680639530; x=1683231530;
+ d=1e100.net; s=20210112; t=1680639532;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WSDlWgg4ingjdHiQtrqp7fyydG+cf1eYuIpjxsoT8KE=;
- b=TIY5CxZigp+u4s2Zoyu1jlIA1/i1SFUAvu9f+dg7c4pGhM4Ubv4b5X35y8NjzQBLQ4
- dAszqGXnjkOyDIh9va0b7qXKhBpm/MAgWKxVw5VVFwCXR+c4vp7FMCWVRt07ouJL/IOj
- l0wVLMEN0RVQUUyzMxVnow6ck5evp1EpbWacPiwFyIZ9B41jPwsJ7mMnLSKKhALWtzV0
- imiBSi70cwy1HAdmMZcmxINhljLtE6i5BEzt6o3uTUr8lfV1sJ9MwQSjtHTsZWJW+gTv
- 6ejpSMPAEMrJo25Kf/q2Gub0SlKf7I1DXh39EY0T5l+ajcUDKULLPFoL5uGJY41hNlh3
- ABkg==
-X-Gm-Message-State: AAQBX9eI4W31hUhoMzzAzXqpoLxc5rezwB/rRT+Tk3ESUJ/AyI/cYGwF
- 35MjTi4nTj3xzedNLN+CnLFtiw==
-X-Google-Smtp-Source: AKy350bwR7CNufOWdbV4piMo4MTC9qKIpfr0yQ4Go3etFT7ffNsUzWgAiLsXpgKelDApaaRd1+W/ZA==
-X-Received: by 2002:a05:6402:4413:b0:502:92d:4f50 with SMTP id
- y19-20020a056402441300b00502092d4f50mr872075eda.1.1680639530588; 
- Tue, 04 Apr 2023 13:18:50 -0700 (PDT)
+ bh=QlY94eJGzERU4oUesbYD/lkDdpKfub3Yg7YVPlvvBP0=;
+ b=sBm5yraSQPQqsuJvzXKT9Yol40NyFnn0XzylBIwVMgsk5YF3AXJwQfJigk8n30IBwM
+ qppwn14GA2ew8HOcA1zbUgKKde+MC3cqA2EFr0p6sqfuvM1VprpDemkmSdZye+4VmTlG
+ 5VEDNwP24u90vAa3cPRQTCzTUUFiw8RKstZYv2KszzQV0DLAYuI1pGs0V3rvtcGdiO2W
+ kHwDogZr02p42fOb7EljCcae6l7LADcap1a6t2QI0A2PuRk9REeM9nSOZd71bbFSRmym
+ Aqt9yqWobLj29HZNCHxuij5N8PpEzVS4hB+JVL+/xqSRNF9iPwNk44ekYfg9+HYocsPb
+ uA/Q==
+X-Gm-Message-State: AAQBX9fkHIfleZdmes4LXV48O1PTTwognPINO7I5qpNVf1EazPnaggDl
+ Dyuvk2NZZKxfuHPVU3ar2yW4Xw==
+X-Google-Smtp-Source: AKy350YanfUhiHjwTsc1xtvi9ots5upvcGMA134pnXkh15kLAx/purO9zv6dn1R8K6Vg9tmhARyCmA==
+X-Received: by 2002:a05:6402:524e:b0:500:3fd0:25a8 with SMTP id
+ t14-20020a056402524e00b005003fd025a8mr660799edd.0.1680639531676; 
+ Tue, 04 Apr 2023 13:18:51 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- u12-20020a50c04c000000b004d8d2735251sm6367986edd.43.2023.04.04.13.18.49
+ u12-20020a50c04c000000b004d8d2735251sm6367986edd.43.2023.04.04.13.18.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Apr 2023 13:18:50 -0700 (PDT)
+ Tue, 04 Apr 2023 13:18:51 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  4 Apr 2023 22:18:41 +0200
-Message-Id: <20230404201842.567344-7-daniel.vetter@ffwll.ch>
+Date: Tue,  4 Apr 2023 22:18:42 +0200
+Message-Id: <20230404201842.567344-8-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
 References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/8] video/aperture: Only remove sysfb on the
- default vga pci device
+Subject: [Intel-gfx] [PATCH 8/8] fbdev: Simplify fb_is_primary_device for x86
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,97 +70,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aaron Plattner <aplattner@nvidia.com>,
+Cc: x86@kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>, stable@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Daniel Vetter <daniel@ffwll.ch>,
+ "H. Peter Anvin" <hpa@zytor.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of calling aperture_remove_conflicting_devices() to remove the
-conflicting devices, just call to aperture_detach_devices() to detach
-the device that matches the same PCI BAR / aperture range. Since the
-former is just a wrapper of the latter plus a sysfb_disable() call,
-and now that's done in this function but only for the primary devices.
+vga_default_device really is supposed to cover all corners, at least
+for x86. Additionally checking for rom shadowing should be redundant,
+because the bios/fw only does that for the boot vga device.
 
-This fixes a regression introduced by ee7a69aa38d8 ("fbdev: Disable
-sysfb device registration when removing conflicting FBs"), where we
-remove the sysfb when loading a driver for an unrelated pci device,
-resulting in the user loosing their efifb console or similar.
+If this turns out to be wrong, then most likely that's a special case
+which should be added to the vgaarb code, not replicated all over.
 
-Note that in practice this only is a problem with the nvidia blob,
-because that's the only gpu driver people might install which does not
-come with an fbdev driver of it's own. For everyone else the real gpu
-driver will restore a working console.
+Patch motived by changes to the aperture helpers, which also have this
+open code in a bunch of places, and which are all removed in a
+clean-up series. This function here is just for selecting the default
+fbdev device for fbcon, but I figured for consistency it might be good
+to throw this patch in on top.
 
-Also note that in the referenced bug there's confusion that this same
-bug also happens on amdgpu. But that was just another amdgpu specific
-regression, which just happened to happen at roughly the same time and
-with the same user-observable symptoms. That bug is fixed now, see
-https://bugzilla.kernel.org/show_bug.cgi?id=216331#c15
+Note that the shadow rom check predates vgaarb, which was only wired
+up in 88674088d10c ("x86: Use vga_default_device() when determining
+whether an fb is primary"). That patch doesn't explain why we still
+fall back to the shadow rom check.
 
-Note that we should not have any such issues on non-pci multi-gpu
-issues, because I could only find two such cases:
-- SoC with some external panel over spi or similar. These panel
-  drivers do not use drm_aperture_remove_conflicting_framebuffers(),
-  so no problem.
-- vga+mga, which is a direct console driver and entirely bypasses all
-  this.
-
-For the above reasons the cc: stable is just notionally, this patch
-will need a backport and that's up to nvidia if they care enough.
-
-v2:
-- Explain a bit better why other multi-gpu that aren't pci shouldn't
-  have any issues with making all this fully pci specific.
-
-v3
-- polish commit message (Javier)
-
-Fixes: ee7a69aa38d8 ("fbdev: Disable sysfb device registration when removing conflicting FBs")
-Tested-by: Aaron Plattner <aplattner@nvidia.com>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-References: https://bugzilla.kernel.org/show_bug.cgi?id=216303#c28
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Aaron Plattner <aplattner@nvidia.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Helge Deller <deller@gmx.de>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Javier Martinez Canillas <javierm@redhat.com>
 Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Helge Deller <deller@gmx.de>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: <stable@vger.kernel.org> # v5.19+ (if someone else does the backport)
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
 ---
- drivers/video/aperture.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ arch/x86/video/fbdev.c | 13 +------------
+ 1 file changed, 1 insertion(+), 12 deletions(-)
 
-diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-index 8f1437339e49..2394c2d310f8 100644
---- a/drivers/video/aperture.c
-+++ b/drivers/video/aperture.c
-@@ -321,15 +321,16 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
+diff --git a/arch/x86/video/fbdev.c b/arch/x86/video/fbdev.c
+index 9fd24846d094..5ec4eafbb981 100644
+--- a/arch/x86/video/fbdev.c
++++ b/arch/x86/video/fbdev.c
+@@ -14,26 +14,15 @@
+ int fb_is_primary_device(struct fb_info *info)
+ {
+ 	struct device *device = info->device;
+-	struct pci_dev *default_device = vga_default_device();
+ 	struct pci_dev *pci_dev;
+-	struct resource *res;
  
- 	primary = pdev == vga_default_device();
+ 	if (!device || !dev_is_pci(device))
+ 		return 0;
  
-+	if (primary)
-+		sysfb_disable();
-+
- 	for (bar = 0; bar < PCI_STD_NUM_BARS; ++bar) {
- 		if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
- 			continue;
+ 	pci_dev = to_pci_dev(device);
  
- 		base = pci_resource_start(pdev, bar);
- 		size = pci_resource_len(pdev, bar);
--		ret = aperture_remove_conflicting_devices(base, size, name);
--		if (ret)
--			return ret;
-+		aperture_detach_devices(base, size);
- 	}
- 
- 	if (primary) {
+-	if (default_device) {
+-		if (pci_dev == default_device)
+-			return 1;
+-		return 0;
+-	}
+-
+-	res = pci_dev->resource + PCI_ROM_RESOURCE;
+-
+-	if (res->flags & IORESOURCE_ROM_SHADOW)
++	if (pci_dev == vga_default_device())
+ 		return 1;
+-
+ 	return 0;
+ }
+ EXPORT_SYMBOL(fb_is_primary_device);
 -- 
 2.40.0
 
