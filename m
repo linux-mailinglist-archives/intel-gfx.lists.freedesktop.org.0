@@ -1,63 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4514A6D6DE3
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:19:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9606D6E14
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:31:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C90F910E7B7;
-	Tue,  4 Apr 2023 20:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9343010E057;
+	Tue,  4 Apr 2023 20:31:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39DDE10E7B0
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:18:52 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id
- a640c23a62f3a-947a47eb908so44362566b.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680639532;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QlY94eJGzERU4oUesbYD/lkDdpKfub3Yg7YVPlvvBP0=;
- b=AZI2xSb2K8MrZbOGF4h/d8m9DbQRt1EgcA9EkvMp85yMrcT7Pdt8rAGXD71j0Gi5u8
- g2RFidTCOJ8c/3O4bUSnNKYFdY88s5ZkdeNo5pKd7VvERW3Ao7VrwluvV+8nkl8bgnlh
- oeLL7rgG+6iQhqREsKQJgDMROHMIcMPlDVhoE=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE14610E057
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:31:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680640292;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XqS1tmmJr7PAF8X4LNYoZBpPsb/UgoghZYeXc9m09Fg=;
+ b=V8EbIa6p494NRQllx1l36DRDHMMsORtz62l0HzqDIVteUQ0ln+cDxwHBIyOng1tH6T5UMO
+ WuzOVo4S/LH6VGkC0QW6cXX8NBXHJWxINKsUmst2MayvGngXP+hZwDo+TGhzLmu3GaSwYh
+ yKJmADWJ8qqSQth+BV7l+RP/x8l1Z3k=
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-510-qmkN3VfqPOSM6ufMTBL16Q-1; Tue, 04 Apr 2023 16:31:31 -0400
+X-MC-Unique: qmkN3VfqPOSM6ufMTBL16Q-1
+Received: by mail-io1-f69.google.com with SMTP id
+ c83-20020a6bb356000000b00758333e1ddfso20940849iof.14
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:31:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680639532;
+ d=1e100.net; s=20210112; t=1680640291;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QlY94eJGzERU4oUesbYD/lkDdpKfub3Yg7YVPlvvBP0=;
- b=sBm5yraSQPQqsuJvzXKT9Yol40NyFnn0XzylBIwVMgsk5YF3AXJwQfJigk8n30IBwM
- qppwn14GA2ew8HOcA1zbUgKKde+MC3cqA2EFr0p6sqfuvM1VprpDemkmSdZye+4VmTlG
- 5VEDNwP24u90vAa3cPRQTCzTUUFiw8RKstZYv2KszzQV0DLAYuI1pGs0V3rvtcGdiO2W
- kHwDogZr02p42fOb7EljCcae6l7LADcap1a6t2QI0A2PuRk9REeM9nSOZd71bbFSRmym
- Aqt9yqWobLj29HZNCHxuij5N8PpEzVS4hB+JVL+/xqSRNF9iPwNk44ekYfg9+HYocsPb
- uA/Q==
-X-Gm-Message-State: AAQBX9fkHIfleZdmes4LXV48O1PTTwognPINO7I5qpNVf1EazPnaggDl
- Dyuvk2NZZKxfuHPVU3ar2yW4Xw==
-X-Google-Smtp-Source: AKy350YanfUhiHjwTsc1xtvi9ots5upvcGMA134pnXkh15kLAx/purO9zv6dn1R8K6Vg9tmhARyCmA==
-X-Received: by 2002:a05:6402:524e:b0:500:3fd0:25a8 with SMTP id
- t14-20020a056402524e00b005003fd025a8mr660799edd.0.1680639531676; 
- Tue, 04 Apr 2023 13:18:51 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- u12-20020a50c04c000000b004d8d2735251sm6367986edd.43.2023.04.04.13.18.50
+ bh=XqS1tmmJr7PAF8X4LNYoZBpPsb/UgoghZYeXc9m09Fg=;
+ b=mhdQbx+ktwR4FNMH1cyfl/55QeRKNIhRP1dyEKa259WB/+z7vE1rTpbLsMCyHKhdFt
+ WjdSPmv0ztjHuw5u988jAxthCNzVsrTj97D2fot3RoazuBT3Hdnu8TtF4JxOPZciglv5
+ 1sYm2VmY/EN5pHBesYJ5W5VMiwWDpNgFOom5EdNVTADi4H6zgNjLW9fE6t7AuSpw2GAq
+ lo7ylsJeD/ZtGkBinPhUvjGAjkzE126rENxsG6gi5u1XbkZVL2/BZfA8APlwYMdKMaLd
+ 9VYO7seQFwN66SkBxwSIMwSuSHILPy7DhR2cCSIP5UX2ufda4uaS/e3sBK6xQb1nS93K
+ Em4Q==
+X-Gm-Message-State: AAQBX9ccIQJZPuegbB8/PlK+VjXphmzxgxofRHSEMR0KU4h/0jKZX5Lf
+ 6sSaIRwVEO9LHBXh1MtXSel7w+kZ+miPI4LU5gHFbYExFhCzVysnIXry4hIZnZlsMuy8aFNlnSE
+ qt24saQez1NcnwmXVuuh7B8GrK22w
+X-Received: by 2002:a5d:818e:0:b0:75c:8ca2:c9dd with SMTP id
+ u14-20020a5d818e000000b0075c8ca2c9ddmr3054661ion.13.1680640290847; 
+ Tue, 04 Apr 2023 13:31:30 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZjUtpAYCx6yaQp4dhQD6EMAb3LqUkY7lWvfjoqBYl2aC4WHyIt9JLMzzeXtpK9Oh7S0irxFA==
+X-Received: by 2002:a5d:818e:0:b0:75c:8ca2:c9dd with SMTP id
+ u14-20020a5d818e000000b0075c8ca2c9ddmr3054643ion.13.1680640290625; 
+ Tue, 04 Apr 2023 13:31:30 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ j195-20020a0263cc000000b003b331f0bbdfsm3476000jac.97.2023.04.04.13.31.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Apr 2023 13:18:51 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  4 Apr 2023 22:18:42 +0200
-Message-Id: <20230404201842.567344-8-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ Tue, 04 Apr 2023 13:31:30 -0700 (PDT)
+Date: Tue, 4 Apr 2023 14:31:28 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230404143128.52d8a256.alex.williamson@redhat.com>
+In-Reply-To: <20230401144429.88673-8-yi.l.liu@intel.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-8-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] fbdev: Simplify fb_is_primary_device for x86
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 07/12] vfio: Accpet device file from vfio
+ PCI hot reset path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,83 +84,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Daniel Vetter <daniel@ffwll.ch>,
- "H. Peter Anvin" <hpa@zytor.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Helge Deller <deller@gmx.de>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com, jgg@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-vga_default_device really is supposed to cover all corners, at least
-for x86. Additionally checking for rom shadowing should be redundant,
-because the bios/fw only does that for the boot vga device.
+On Sat,  1 Apr 2023 07:44:24 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-If this turns out to be wrong, then most likely that's a special case
-which should be added to the vgaarb code, not replicated all over.
+> This extends both vfio_file_is_valid() and vfio_file_has_dev() to accept
+> device file from the vfio PCI hot reset.
+> 
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index fe7446805afd..ebbb6b91a498 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops = {
+>  	.mmap		= vfio_device_fops_mmap,
+>  };
+>  
+> +static struct vfio_device *vfio_device_from_file(struct file *file)
+> +{
+> +	struct vfio_device *device = file->private_data;
+> +
+> +	if (file->f_op != &vfio_device_fops)
+> +		return NULL;
+> +	return device;
+> +}
+> +
+>  /**
+>   * vfio_file_is_valid - True if the file is valid vfio file
+>   * @file: VFIO group file or VFIO device file
+>   */
+>  bool vfio_file_is_valid(struct file *file)
+>  {
+> -	return vfio_group_from_file(file);
+> +	return vfio_group_from_file(file) ||
+> +	       vfio_device_from_file(file);
+>  }
+>  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
+>  
+> @@ -1174,12 +1184,17 @@ EXPORT_SYMBOL_GPL(vfio_file_is_valid);
+>  bool vfio_file_has_dev(struct file *file, struct vfio_device *device)
+>  {
+>  	struct vfio_group *group;
+> +	struct vfio_device *vdev;
+>  
+>  	group = vfio_group_from_file(file);
+> -	if (!group)
+> -		return false;
+> +	if (group)
+> +		return vfio_group_has_dev(group, device);
+> +
+> +	vdev = vfio_device_from_file(file);
+> +	if (vdev)
+> +		return vdev == device;
+>  
+> -	return vfio_group_has_dev(group, device);
+> +	return false;
 
-Patch motived by changes to the aperture helpers, which also have this
-open code in a bunch of places, and which are all removed in a
-clean-up series. This function here is just for selecting the default
-fbdev device for fbcon, but I figured for consistency it might be good
-to throw this patch in on top.
+Nit, unless we expect to be testing against NULL devices, this could
+just be:
 
-Note that the shadow rom check predates vgaarb, which was only wired
-up in 88674088d10c ("x86: Use vga_default_device() when determining
-whether an fb is primary"). That patch doesn't explain why we still
-fall back to the shadow rom check.
+	return device == vfio_device_from_file(file);
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Helge Deller <deller@gmx.de>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>
-Cc: x86@kernel.org
-Cc: "H. Peter Anvin" <hpa@zytor.com>
----
- arch/x86/video/fbdev.c | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
-
-diff --git a/arch/x86/video/fbdev.c b/arch/x86/video/fbdev.c
-index 9fd24846d094..5ec4eafbb981 100644
---- a/arch/x86/video/fbdev.c
-+++ b/arch/x86/video/fbdev.c
-@@ -14,26 +14,15 @@
- int fb_is_primary_device(struct fb_info *info)
- {
- 	struct device *device = info->device;
--	struct pci_dev *default_device = vga_default_device();
- 	struct pci_dev *pci_dev;
--	struct resource *res;
- 
- 	if (!device || !dev_is_pci(device))
- 		return 0;
- 
- 	pci_dev = to_pci_dev(device);
- 
--	if (default_device) {
--		if (pci_dev == default_device)
--			return 1;
--		return 0;
--	}
--
--	res = pci_dev->resource + PCI_ROM_RESOURCE;
--
--	if (res->flags & IORESOURCE_ROM_SHADOW)
-+	if (pci_dev == vga_default_device())
- 		return 1;
--
- 	return 0;
- }
- EXPORT_SYMBOL(fb_is_primary_device);
--- 
-2.40.0
+Thanks,
+Alex
 
