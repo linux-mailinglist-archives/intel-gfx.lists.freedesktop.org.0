@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93B36D679C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 17:39:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 899AB6D67D4
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 17:47:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281B010E6D3;
-	Tue,  4 Apr 2023 15:39:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B514E10E1E5;
+	Tue,  4 Apr 2023 15:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB65410E3AD;
- Tue,  4 Apr 2023 15:39:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680622786; x=1712158786;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=1E4eQJ2R8I5+t5D+4d5CSh9PlLTGMtzXUU+KR/WKjYk=;
- b=hFCaSJI2dppxmTCrTFau1L+DnyhIQcGmJGX19cEh+dClrU/N0oe+LZTU
- SJOqgeTbDeJ99/8PZEZE/P9Xw1A30vnyDh2ayxX9R4VAUDwiyHtvDJ9DO
- WHSIKqwxYDk0C+t+69L7fzgLNWDnedlCslLcwWYloHj4RipO38eqNDs4v
- H2Q8vPgjTsjXnQR0tIXld8G5ZmdxV2DosKkwl4NqFHBkVbzxhRQoE1JVY
- vnyZ41x3OiKK9vY1eqVoEA+RqI9FjUOZvG/JUDKasIrEZBjN7eUmsvnIS
- oJS6mf0vDYyVesTwDCZMDS9jbEnKdoj9ev2frLv2ivhMFU0gskzrS3XdD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="370039757"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="370039757"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 08:39:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="1016148383"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="1016148383"
-Received: from vferra-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.53.196])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 08:39:40 -0700
-Date: Tue, 4 Apr 2023 17:39:13 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZCxEoelnOSpRiy6A@ashyti-mobl2.lan>
-References: <20230330-hold_wakeref_for_active_vm-v2-1-724d201499c2@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B939610E6DA;
+ Tue,  4 Apr 2023 15:47:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AFEA3A0078;
+ Tue,  4 Apr 2023 15:47:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330-hold_wakeref_for_active_vm-v2-1-724d201499c2@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Hold a wakeref for the
- active VM
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Tue, 04 Apr 2023 15:47:52 -0000
+Message-ID: <168062327271.18900.11617567254763009421@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230404143100.10452-1-nirmoy.das@intel.com>
+In-Reply-To: <20230404143100.10452-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/i915/ttm=3A_Add_I915=5FB?=
+ =?utf-8?q?O=5FPREALLOC?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,90 +41,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej,
+== Series Details ==
 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> index 0a8d553da3f439..48f888c3da083b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> @@ -14,6 +14,7 @@
->  #include "i915_drv.h"
->  #include "intel_context_types.h"
->  #include "intel_engine_types.h"
-> +#include "intel_gt_pm.h"
->  #include "intel_ring_types.h"
->  #include "intel_timeline_types.h"
->  #include "i915_trace.h"
-> @@ -207,8 +208,11 @@ void intel_context_exit_engine(struct intel_context *ce);
->  static inline void intel_context_enter(struct intel_context *ce)
->  {
->  	lockdep_assert_held(&ce->timeline->mutex);
-> -	if (!ce->active_count++)
-> -		ce->ops->enter(ce);
-> +	if (ce->active_count++)
-> +		return;
-> +
-> +	ce->ops->enter(ce);
-> +	intel_gt_pm_get(ce->vm->gt);
->  }
->  
->  static inline void intel_context_mark_active(struct intel_context *ce)
-> @@ -222,8 +226,11 @@ static inline void intel_context_exit(struct intel_context *ce)
->  {
->  	lockdep_assert_held(&ce->timeline->mutex);
->  	GEM_BUG_ON(!ce->active_count);
-> -	if (!--ce->active_count)
-> -		ce->ops->exit(ce);
-> +	if (--ce->active_count)
-> +		return;
-> +
-> +	intel_gt_pm_put_async(ce->vm->gt);
-> +	ce->ops->exit(ce);
+Series: series starting with [1/5] drm/i915/ttm: Add I915_BO_PREALLOC
+URL   : https://patchwork.freedesktop.org/series/116093/
+State : warning
 
-shouldn't these two be swapped?
+== Summary ==
 
->  }
->  
->  static inline struct intel_context *intel_context_get(struct intel_context *ce)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> index e971b153fda976..ee531a5c142c77 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> @@ -114,6 +114,15 @@ __queue_and_release_pm(struct i915_request *rq,
->  
->  	ENGINE_TRACE(engine, "parking\n");
->  
-> +	/*
-> +	 * Open coded one half of intel_context_enter, which we have to omit
-> +	 * here (see the large comment below) and because the other part must
-> +	 * not be called due constructing directly with __i915_request_create
-> +	 * which increments active count via intel_context_mark_active.
-> +	 */
-> +	GEM_BUG_ON(rq->context->active_count != 1);
-> +	__intel_gt_pm_get(engine->gt);
+Error: dim checkpatch failed
+6d227bf78d21 drm/i915/ttm: Add I915_BO_PREALLOC
+0afb53513af0 drm/i915/display: Set I915_BO_ALLOC_USER for fb
+238ea32be324 drm/i915: Add a function to mmap framebuffer obj
+-:131: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#131: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:1040:
++			GEM_BUG_ON(obj && obj->ops->mmap_ops);
 
-where is it's brother "put"?
+-:137: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#137: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:1046:
++			GEM_BUG_ON(obj && !obj->ops->mmap_ops);
 
-Thanks,
-Andi
+total: 0 errors, 2 warnings, 0 checks, 164 lines checked
+ee0620d0ce67 drm/i915/display: Add helper func to get intel_fbdev from drm_fb_helper
+062c04b1867c drm/i915/display: Implement fb_mmap callback function
 
-> +
->  	/*
->  	 * We have to serialise all potential retirement paths with our
->  	 * submission, as we don't want to underflow either the
-> 
-> ---
-> base-commit: 3385d6482cd60f2a0bbb0fa97b70ae7dbba4f95c
-> change-id: 20230330-hold_wakeref_for_active_vm-7f013a449ef3
-> 
-> Best regards,
-> -- 
-> Andrzej Hajda <andrzej.hajda@intel.com>
+
