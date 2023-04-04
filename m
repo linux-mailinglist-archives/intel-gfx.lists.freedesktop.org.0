@@ -1,63 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185C46D6DDA
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:18:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C526D6DCD
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 22:18:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 644DF10E7AA;
-	Tue,  4 Apr 2023 20:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB15310E797;
+	Tue,  4 Apr 2023 20:18:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE4310E7AB
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:18:49 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id
- a640c23a62f3a-947a47eb908so44361266b.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:18:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680639527;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ACDF47NjX/PbaEnShM8U5GURZxGYjBTw2NQeYznN0pY=;
- b=gT5lEL2OOmiZ0KBVkdq5FjmPIe2AsR/efdQgYXs4tGps1LpBvaPX9HxyY9hTqj20II
- W+eL+MuRuxdX0hgnXu1LJ0OR8I2NIA1sQlI6jbHlyjCe+q2gIMm94gP0SXrYBzZhlrqF
- GqN33zrvluDekjA369ecMvVU6LtCatJDNueu8=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F33DA10E79F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 20:18:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680639523;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UQkB+/g6+kZ8Dd7MXF9242hej0yLBl/S8rsqAXLmve4=;
+ b=G0NG/FE5H3QatLkZ2dUf56gQcjwjwpEBL5TeARArZqEwwknY23g9dxjgQPWL5Co0QpIYCz
+ WkMrLLcrT6FkQoRBDxj+1QC2ruuwEIkUaiKwXdoJGcvAFPsWEjbtvUhO5G/Y688EFe+abh
+ Su1UqvR/bQz054fJ5O66jCruyprJdc4=
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-244-FYbhNhvENpKZNOF1C-QAxg-1; Tue, 04 Apr 2023 16:18:42 -0400
+X-MC-Unique: FYbhNhvENpKZNOF1C-QAxg-1
+Received: by mail-io1-f70.google.com with SMTP id
+ v126-20020a6bac84000000b007587234a54cso20714648ioe.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 13:18:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680639527;
+ d=1e100.net; s=20210112; t=1680639522;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ACDF47NjX/PbaEnShM8U5GURZxGYjBTw2NQeYznN0pY=;
- b=JYpDX0IpIrd62uKmc1OOh30LakWhmV+fhYMRsD2SnVGVDvv1BtcUEJMiUEb4WzfZyy
- vGoWGgeMi204l1pPdtrAnfHZnUt1B9ZLicLAosDMukJuGaqsTN2gP6btNMCQZfyCN2or
- Xp3IbftQUSTlXqSmYZtrWYdor7QpqzeW6HU+9wtM1ig+eeLRD5e/t0XtQqGXAfJgnCps
- 6YC9UX781nF6+YBSgp2XHMm60z4FKO4VxlGFdxxYXotdU4iSVtICCnvsUE/lK9WaS7zJ
- oDGpXm5cVZaUCRQN9ZJKW+7yx5VIAHDgkFFUJWGlVbRJkpmR0IuVzsUePR+jm/19Uhgl
- OpSQ==
-X-Gm-Message-State: AAQBX9csdgVeR7blEhZ2vgj/fS1kjWMLQxuDerKTamVrtPKpB90V49FB
- tKhAZX0vfdI/ha9Hou3YzPy3hw==
-X-Google-Smtp-Source: AKy350aaGhrFD90BGSCUNxW/AmcPC/8PvXxI6/QJ6/HB99BtUbTqlTVNkz12X8+BXdpVDSQZZtYnHw==
-X-Received: by 2002:a05:6402:27cc:b0:4bb:afe3:e0a with SMTP id
- c12-20020a05640227cc00b004bbafe30e0amr767839ede.3.1680639527344; 
- Tue, 04 Apr 2023 13:18:47 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- u12-20020a50c04c000000b004d8d2735251sm6367986edd.43.2023.04.04.13.18.46
+ bh=UQkB+/g6+kZ8Dd7MXF9242hej0yLBl/S8rsqAXLmve4=;
+ b=zYpjjH++U9hWmCiyXzzIxtsCmPLrzhAQyGEBklijAgQYaHJsiYy5E5kiDOGA9s6qsK
+ OHqZP4Qvf8Jk4wf0J8qfhDdJ2N4slJMpkLCrZCqBmJkqMINuVFAURylBvrR2o3gvVxDv
+ YzDdw8UXk/krtCFz06X7SSPM5Ge+fnLRSQP5kpcbJoOrc2kZsY84fFPXohHEvgtnrjwT
+ FyvmWuPwnIJh0y0TN8I6ephUAxS/mUdMEx7DUCjWulvQwUVwJU+jPWdecs6/UzEMp7Ky
+ 5rZd37PqMORRGQ6FOPGG0S3Nv0pykImgW5pS/tw2+poKJvGHbsrNIhFnasrYvQJmoUAf
+ EXrg==
+X-Gm-Message-State: AAQBX9cGzZ/CxlYwEFtKgUZMuYDQIlE/wEbPqwLy7oaiC5oiynkxrPVw
+ QWnVyvmv79P0NRrm9Aqke/+eKU0INU96R0dKTzsPzdFTQ9QicoeLwunDnJjPrxuj6Rrv+GNoG1B
+ 7COWORv+DFMchaB3FlEaDnVV05Z0+
+X-Received: by 2002:a5d:8459:0:b0:75c:f4d8:95a4 with SMTP id
+ w25-20020a5d8459000000b0075cf4d895a4mr4416641ior.7.1680639521782; 
+ Tue, 04 Apr 2023 13:18:41 -0700 (PDT)
+X-Google-Smtp-Source: AKy350aweeLcxWW2qhgQDsJtGDwAV0eYpiJclHZtxi4zQqsYv7ev1oJCy+EHkuk7CSmTo+6lhPnpgw==
+X-Received: by 2002:a5d:8459:0:b0:75c:f4d8:95a4 with SMTP id
+ w25-20020a5d8459000000b0075cf4d895a4mr4416609ior.7.1680639521418; 
+ Tue, 04 Apr 2023 13:18:41 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ c20-20020a023f54000000b003c2b67fac92sm3591510jaf.81.2023.04.04.13.18.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Apr 2023 13:18:46 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  4 Apr 2023 22:18:37 +0200
-Message-Id: <20230404201842.567344-3-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ Tue, 04 Apr 2023 13:18:40 -0700 (PDT)
+Date: Tue, 4 Apr 2023 14:18:38 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230404141838.6a4efdd4.alex.williamson@redhat.com>
+In-Reply-To: <20230401144429.88673-6-yi.l.liu@intel.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-6-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/8] drm/aperture: Remove primary argument
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 05/12] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,287 +84,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, Emma Anholt <emma@anholt.net>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-fbdev@vger.kernel.org,
- Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Helge Deller <deller@gmx.de>, Javier Martinez Canillas <javierm@redhat.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>, Daniel Vetter <daniel@ffwll.ch>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
+ yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com, jgg@nvidia.com,
+ yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only really pci devices have a business setting this - it's for
-figuring out whether the legacy vga stuff should be nuked too. And
-with the preceeding two patches those are all using the pci version of
-this.
+On Sat,  1 Apr 2023 07:44:22 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-Which means for all other callers primary == false and we can remove
-it now.
+> as an alternative method for ownership check when iommufd is used. In
+> this case all opened devices in the affected dev_set are verified to
+> be bound to a same valid iommufd value to allow reset. It's simpler
+> and faster as user does not need to pass a set of fds and kernel no
+> need to search the device within the given fds.
+> 
+> a device in noiommu mode doesn't have a valid iommufd, so this method
+> should not be used in a dev_set which contains multiple devices and one
+> of them is in noiommu. The only allowed noiommu scenario is that the
+> calling device is noiommu and it's in a singleton dev_set.
+> 
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_core.c | 42 +++++++++++++++++++++++++++-----
+>  include/uapi/linux/vfio.h        |  9 ++++++-
+>  2 files changed, 44 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 3696b8e58445..b68fcba67a4b 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -180,7 +180,8 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_core_device *vdev)
+>  struct vfio_pci_group_info;
+>  static void vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
+>  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+> -				      struct vfio_pci_group_info *groups);
+> +				      struct vfio_pci_group_info *groups,
+> +				      struct iommufd_ctx *iommufd_ctx);
+>  
+>  /*
+>   * INTx masking requires the ability to disable INTx signaling via PCI_COMMAND
+> @@ -1277,7 +1278,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
+>  		return ret;
+>  
+>  	/* Somewhere between 1 and count is OK */
+> -	if (!hdr->count || hdr->count > count)
+> +	if (hdr->count > count)
+>  		return -EINVAL;
+>  
+>  	group_fds = kcalloc(hdr->count, sizeof(*group_fds), GFP_KERNEL);
+> @@ -1326,7 +1327,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
+>  	info.count = hdr->count;
+>  	info.files = files;
+>  
+> -	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info);
+> +	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info, NULL);
+>  
+>  hot_reset_release:
+>  	for (file_idx--; file_idx >= 0; file_idx--)
+> @@ -1341,6 +1342,7 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
+>  {
+>  	unsigned long minsz = offsetofend(struct vfio_pci_hot_reset, count);
+>  	struct vfio_pci_hot_reset hdr;
+> +	struct iommufd_ctx *iommufd;
+>  	bool slot = false;
+>  
+>  	if (copy_from_user(&hdr, arg, minsz))
+> @@ -1355,7 +1357,12 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
+>  	else if (pci_probe_reset_bus(vdev->pdev->bus))
+>  		return -ENODEV;
+>  
+> -	return vfio_pci_ioctl_pci_hot_reset_groups(vdev, &hdr, slot, arg);
+> +	if (hdr.count)
+> +		return vfio_pci_ioctl_pci_hot_reset_groups(vdev, &hdr, slot, arg);
+> +
+> +	iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
+> +
+> +	return vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, NULL, iommufd);
+>  }
+>  
+>  static int vfio_pci_ioctl_ioeventfd(struct vfio_pci_core_device *vdev,
+> @@ -2327,6 +2334,9 @@ static bool vfio_dev_in_groups(struct vfio_pci_core_device *vdev,
+>  {
+>  	unsigned int i;
+>  
+> +	if (!groups)
+> +		return false;
+> +
+>  	for (i = 0; i < groups->count; i++)
+>  		if (vfio_file_has_dev(groups->files[i], &vdev->vdev))
+>  			return true;
+> @@ -2402,13 +2412,25 @@ static int vfio_pci_dev_set_pm_runtime_get(struct vfio_device_set *dev_set)
+>  	return ret;
+>  }
+>  
+> +static bool vfio_dev_in_iommufd_ctx(struct vfio_pci_core_device *vdev,
+> +				    struct iommufd_ctx *iommufd_ctx)
+> +{
+> +	struct iommufd_ctx *iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
+> +
+> +	if (!iommufd)
+> +		return false;
+> +
+> +	return iommufd == iommufd_ctx;
+> +}
+> +
+>  /*
+>   * We need to get memory_lock for each device, but devices can share mmap_lock,
+>   * therefore we need to zap and hold the vma_lock for each device, and only then
+>   * get each memory_lock.
+>   */
+>  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+> -				      struct vfio_pci_group_info *groups)
+> +				      struct vfio_pci_group_info *groups,
+> +				      struct iommufd_ctx *iommufd_ctx)
+>  {
+>  	struct vfio_pci_core_device *cur_mem;
+>  	struct vfio_pci_core_device *cur_vma;
+> @@ -2448,9 +2470,17 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+>  		 *
+>  		 * Otherwise all opened devices in the dev_set must be
+>  		 * contained by the set of groups provided by the user.
+> +		 *
+> +		 * If user provides a zero-length array, then all the
+> +		 * opened devices must be bound to a same iommufd_ctx.
+> +		 *
+> +		 * If all above checks are failed, reset is allowed only if
+> +		 * the calling device is in a singleton dev_set.
+>  		 */
+>  		if (cur_vma->vdev.open_count &&
+> -		    !vfio_dev_in_groups(cur_vma, groups)) {
+> +		    !vfio_dev_in_groups(cur_vma, groups) &&
+> +		    !vfio_dev_in_iommufd_ctx(cur_vma, iommufd_ctx) &&
+> +		    (dev_set->device_count > 1)) {
 
-v2:
-- Reorder to avoid compile fail (Thomas)
-- Include gma500, which retained it's called to the non-pci version.
+This last condition looks buggy to me, we need all conditions to be
+true to generate an error here, which means that for a singleton
+dev_set, it doesn't matter what group fds are passed, if any, or whether
+the iommufd context matches.  I think in fact this means that the empty
+array path is equally available for group use cases with a singleton
+dev_set, but we don't enable it for multiple device dev_sets like we do
+iommufd.
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Deepak Rawat <drawat.floss@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Emma Anholt <emma@anholt.net>
-Cc: Helge Deller <deller@gmx.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: linux-hyperv@vger.kernel.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-tegra@vger.kernel.org
-Cc: linux-fbdev@vger.kernel.org
----
- drivers/gpu/drm/arm/hdlcd_drv.c             |  2 +-
- drivers/gpu/drm/armada/armada_drv.c         |  2 +-
- drivers/gpu/drm/drm_aperture.c              | 11 +++--------
- drivers/gpu/drm/gma500/psb_drv.c            |  2 +-
- drivers/gpu/drm/hyperv/hyperv_drm_drv.c     |  1 -
- drivers/gpu/drm/meson/meson_drv.c           |  2 +-
- drivers/gpu/drm/msm/msm_fbdev.c             |  2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c |  2 +-
- drivers/gpu/drm/stm/drv.c                   |  2 +-
- drivers/gpu/drm/sun4i/sun4i_drv.c           |  2 +-
- drivers/gpu/drm/tegra/drm.c                 |  2 +-
- drivers/gpu/drm/vc4/vc4_drv.c               |  2 +-
- include/drm/drm_aperture.h                  |  7 +++----
- 13 files changed, 16 insertions(+), 23 deletions(-)
+You pointed out a previous issue with hot-reset info and no-iommu where
+if other affected devices are not bound to vfio-pci the info ioctl
+returns error.  That's handled in the hot-reset ioctl by the fact that
+all affected devices must be in the dev_set and therefore bound to
+vfio-pci drivers.  So it seems to me that aside from the spurious error
+because we can't report an iommu group when none exists, and didn't
+spot it to invent an invalid group for debugging, hot-reset otherwise
+works with no-iommu just like it does for iommu backed devices.  We
+don't currently require singleton no-iommu dev_sets afaict.
 
-diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
-index 9020bf820bc8..12f5a2c7f03d 100644
---- a/drivers/gpu/drm/arm/hdlcd_drv.c
-+++ b/drivers/gpu/drm/arm/hdlcd_drv.c
-@@ -285,7 +285,7 @@ static int hdlcd_drm_bind(struct device *dev)
- 	 */
- 	if (hdlcd_read(hdlcd, HDLCD_REG_COMMAND)) {
- 		hdlcd_write(hdlcd, HDLCD_REG_COMMAND, 0);
--		drm_aperture_remove_framebuffers(false, &hdlcd_driver);
-+		drm_aperture_remove_framebuffers(&hdlcd_driver);
- 	}
- 
- 	drm_mode_config_reset(drm);
-diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-index 0643887800b4..c99ec7078301 100644
---- a/drivers/gpu/drm/armada/armada_drv.c
-+++ b/drivers/gpu/drm/armada/armada_drv.c
-@@ -95,7 +95,7 @@ static int armada_drm_bind(struct device *dev)
- 	}
- 
- 	/* Remove early framebuffers */
--	ret = drm_aperture_remove_framebuffers(false, &armada_drm_driver);
-+	ret = drm_aperture_remove_framebuffers(&armada_drm_driver);
- 	if (ret) {
- 		dev_err(dev, "[" DRM_NAME ":%s] can't kick out simple-fb: %d\n",
- 			__func__, ret);
-diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_aperture.c
-index 3b8fdeeafd53..697cffbfd603 100644
---- a/drivers/gpu/drm/drm_aperture.c
-+++ b/drivers/gpu/drm/drm_aperture.c
-@@ -32,17 +32,13 @@
-  *
-  *	static int remove_conflicting_framebuffers(struct pci_dev *pdev)
-  *	{
-- *		bool primary = false;
-  *		resource_size_t base, size;
-  *		int ret;
-  *
-  *		base = pci_resource_start(pdev, 0);
-  *		size = pci_resource_len(pdev, 0);
-- *	#ifdef CONFIG_X86
-- *		primary = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
-- *	#endif
-  *
-- *		return drm_aperture_remove_conflicting_framebuffers(base, size, primary,
-+ *		return drm_aperture_remove_conflicting_framebuffers(base, size,
-  *		                                                    &example_driver);
-  *	}
-  *
-@@ -161,7 +157,6 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
-  * drm_aperture_remove_conflicting_framebuffers - remove existing framebuffers in the given range
-  * @base: the aperture's base address in physical memory
-  * @size: aperture size in bytes
-- * @primary: also kick vga16fb if present
-  * @req_driver: requesting DRM driver
-  *
-  * This function removes graphics device drivers which use the memory range described by
-@@ -171,9 +166,9 @@ EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
-  * 0 on success, or a negative errno code otherwise
-  */
- int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
--						 bool primary, const struct drm_driver *req_driver)
-+						 const struct drm_driver *req_driver)
- {
--	return aperture_remove_conflicting_devices(base, size, primary, req_driver->name);
-+	return aperture_remove_conflicting_devices(base, size, false, req_driver->name);
- }
- EXPORT_SYMBOL(drm_aperture_remove_conflicting_framebuffers);
- 
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index f1e0eed8fea4..4bb06a89e48d 100644
---- a/drivers/gpu/drm/gma500/psb_drv.c
-+++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -428,7 +428,7 @@ static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	 * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then we
- 	 *       might be able to read the framebuffer range from the device.
- 	 */
--	ret = drm_aperture_remove_framebuffers(false, &driver);
-+	ret = drm_aperture_remove_framebuffers(&driver);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
-index f830d62a5ce6..a7d2c92d6c6a 100644
---- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
-+++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
-@@ -74,7 +74,6 @@ static int hyperv_setup_vram(struct hyperv_drm_device *hv,
- 
- 	drm_aperture_remove_conflicting_framebuffers(screen_info.lfb_base,
- 						     screen_info.lfb_size,
--						     false,
- 						     &hyperv_driver);
- 
- 	hv->fb_size = (unsigned long)hv->mmio_megabytes * 1024 * 1024;
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index bb72fda9106d..ca6d1e59e5d9 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -285,7 +285,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
- 	 * located anywhere in RAM
- 	 */
--	ret = drm_aperture_remove_framebuffers(false, &meson_driver);
-+	ret = drm_aperture_remove_framebuffers(&meson_driver);
- 	if (ret)
- 		goto free_drm;
- 
-diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
-index d26aa52217ce..16652a5a7018 100644
---- a/drivers/gpu/drm/msm/msm_fbdev.c
-+++ b/drivers/gpu/drm/msm/msm_fbdev.c
-@@ -155,7 +155,7 @@ struct drm_fb_helper *msm_fbdev_init(struct drm_device *dev)
- 	}
- 
- 	/* the fw fb could be anywhere in memory */
--	ret = drm_aperture_remove_framebuffers(false, dev->driver);
-+	ret = drm_aperture_remove_framebuffers(dev->driver);
- 	if (ret)
- 		goto fini;
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-index 6e0788d14c10..d97f2edc646b 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-@@ -140,7 +140,7 @@ static int rockchip_drm_bind(struct device *dev)
- 	int ret;
- 
- 	/* Remove existing drivers that may own the framebuffer memory. */
--	ret = drm_aperture_remove_framebuffers(false, &rockchip_drm_driver);
-+	ret = drm_aperture_remove_framebuffers(&rockchip_drm_driver);
- 	if (ret) {
- 		DRM_DEV_ERROR(dev,
- 			      "Failed to remove existing framebuffers - %d.\n",
-diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
-index 422220df7d8c..cb4404b3ce62 100644
---- a/drivers/gpu/drm/stm/drv.c
-+++ b/drivers/gpu/drm/stm/drv.c
-@@ -185,7 +185,7 @@ static int stm_drm_platform_probe(struct platform_device *pdev)
- 
- 	DRM_DEBUG("%s\n", __func__);
- 
--	ret = drm_aperture_remove_framebuffers(false, &drv_driver);
-+	ret = drm_aperture_remove_framebuffers(&drv_driver);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4i/sun4i_drv.c
-index e49f78a6a8cf..daa7faf72a4b 100644
---- a/drivers/gpu/drm/sun4i/sun4i_drv.c
-+++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
-@@ -98,7 +98,7 @@ static int sun4i_drv_bind(struct device *dev)
- 		goto unbind_all;
- 
- 	/* Remove early framebuffers (ie. simplefb) */
--	ret = drm_aperture_remove_framebuffers(false, &sun4i_drv_driver);
-+	ret = drm_aperture_remove_framebuffers(&sun4i_drv_driver);
- 	if (ret)
- 		goto unbind_all;
- 
-diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-index 6ca9f396e55b..d11d259f9399 100644
---- a/drivers/gpu/drm/tegra/drm.c
-+++ b/drivers/gpu/drm/tegra/drm.c
-@@ -1252,7 +1252,7 @@ static int host1x_drm_probe(struct host1x_device *dev)
- 
- 	drm_mode_config_reset(drm);
- 
--	err = drm_aperture_remove_framebuffers(false, &tegra_drm_driver);
-+	err = drm_aperture_remove_framebuffers(&tegra_drm_driver);
- 	if (err < 0)
- 		goto hub;
- 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index c8bf954042e0..823395c23cc3 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -350,7 +350,7 @@ static int vc4_drm_bind(struct device *dev)
- 			return -EPROBE_DEFER;
- 	}
- 
--	ret = drm_aperture_remove_framebuffers(false, driver);
-+	ret = drm_aperture_remove_framebuffers(driver);
- 	if (ret)
- 		return ret;
- 
-diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h
-index 7096703c3949..cbe33b49fd5d 100644
---- a/include/drm/drm_aperture.h
-+++ b/include/drm/drm_aperture.h
-@@ -13,14 +13,13 @@ int devm_aperture_acquire_from_firmware(struct drm_device *dev, resource_size_t
- 					resource_size_t size);
- 
- int drm_aperture_remove_conflicting_framebuffers(resource_size_t base, resource_size_t size,
--						 bool primary, const struct drm_driver *req_driver);
-+						 const struct drm_driver *req_driver);
- 
- int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
- 						     const struct drm_driver *req_driver);
- 
- /**
-  * drm_aperture_remove_framebuffers - remove all existing framebuffers
-- * @primary: also kick vga16fb if present
-  * @req_driver: requesting DRM driver
-  *
-  * This function removes all graphics device drivers. Use this function on systems
-@@ -30,9 +29,9 @@ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
-  * 0 on success, or a negative errno code otherwise
-  */
- static inline int
--drm_aperture_remove_framebuffers(bool primary, const struct drm_driver *req_driver)
-+drm_aperture_remove_framebuffers(const struct drm_driver *req_driver)
- {
--	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1, primary,
-+	return drm_aperture_remove_conflicting_framebuffers(0, (resource_size_t)-1,
- 							    req_driver);
- }
- 
--- 
-2.40.0
+I'll also note that if the dev_set is singleton, this suggests that
+pci_reset_function() can make use of bus reset, so a hot-reset is
+accessible via VFIO_DEVICE_RESET if the appropriate reset method is
+selected.
+
+Therefore, I think as written, the singleton dev_set hot-reset is
+enabled for iommufd and (unintentionally?) for the group path, while
+also negating a requirement for a group fd or that a provided group fd
+actually matches the device in this latter case.  The null-array
+approach is not however extended to groups for more general use.
+Additionally, limiting no-iommu hot-reset to singleton dev_sets
+provides only a marginal functional difference vs VFIO_DEVICE_RESET.
+Thanks,
+
+Alex
+
+>  			ret = -EINVAL;
+>  			goto err_undo;
+>  		}
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index f96e5689cffc..17aa5d09db41 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -679,7 +679,14 @@ struct vfio_pci_hot_reset_info {
+>   * the calling user must ensure all affected devices, if opened, are
+>   * owned by itself.
+>   *
+> - * The ownership is proved by an array of group fds.
+> + * The ownership can be proved by:
+> + *   - An array of group fds
+> + *   - A zero-length array
+> + *
+> + * In the last case all affected devices which are opened by this user
+> + * must have been bound to a same iommufd. If the calling device is in
+> + * noiommu mode (no valid iommufd) then it can be reset only if the reset
+> + * doesn't affect other devices.
+>   *
+>   * Return: 0 on success, -errno on failure.
+>   */
 
