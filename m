@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDE46D5C3C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 11:44:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443E66D5CD7
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 12:15:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A83710E023;
-	Tue,  4 Apr 2023 09:44:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62DDE10E029;
+	Tue,  4 Apr 2023 10:15:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6CC210E023;
- Tue,  4 Apr 2023 09:44:38 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E5D10E63E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 10:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680601478; x=1712137478;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=evwuNJoFJzh7/WRai7GmJeBqO2kip9yckbdJm/jV9u0=;
- b=jpHV4ZpkeSs+cs45SYNu5sO+4q5zArmUkk6kUHrBiCupiU2O5eaO4bkF
- QowNEhACmjm/7wBYI1jTA+kAIxVd7DwxBfU5cnDimcR9I4uJC6iliyZi9
- 8zCuC5sq9fCVSH1AY92X/GAJtZfSMCSvC7YwhbMe1mBmjbl2+RFZ4m+Y5
- 1qSo5VOC0FZCanKt3TlFyWRoflTeIJa+0I24Fl/XZLxDfMCoiBsdO5lXC
- 0LYUbPJkYmVrs+2ExF55rULS22/7Af5EvREVCX64J2WpSNV6CGyrt+l89
- ak0X2MG5sAMEpBV0YH7AhsPi33z+nOBb2ReA6y6v8s7Rof+twxdBfceQo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="330720192"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="330720192"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 02:44:37 -0700
+ t=1680603310; x=1712139310;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dnVlIVRoGbmir80fpBVTdDdmqPDrMJ5xDSSjUy+VZ60=;
+ b=TN00/1X87opWGgsIr7gdk3CXVXLFXjyK5XpgKW+/4UJ9aCeqd8dZOdlO
+ w/2T387cp5p4TpGFOpEb5sk6tCOQVouHn5bfsaMjd386Wg3V7eyDrmcm/
+ Ii8/AfwSHzESCD8tWaCH5fLzKr9frgjcHaASGp03n/ok0Y0cyMsgSEJoG
+ j5+n5PBSNLkortKscfY6M9lbvh4YJSWThjXj3aEjv7hZHbN9680gHtnpW
+ tXngnIGcwk2ePgmipqjN9rE+4OQEFnBMmeMgLfqLeD6MFcMqA66buz1P2
+ /BndxEptEdDoxdlzZpuUemHtKI7nCfKo75oaoIKbpfXUwfjmDZNgzMj3W A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="340872802"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="340872802"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 03:15:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="775576241"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="775576241"
-Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.43.58])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 02:44:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lee Jones <lee@kernel.org>
-In-Reply-To: <20230403162059.GC8371@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230331092607.700644-1-lee@kernel.org>
- <20230331092607.700644-2-lee@kernel.org> <87jzyt0yil.fsf@intel.com>
- <20230403162059.GC8371@google.com>
-Date: Tue, 04 Apr 2023 12:44:32 +0300
-Message-ID: <878rf80ynz.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="860544742"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="860544742"
+Received: from haridhar-ms-7d25.iind.intel.com ([10.190.238.92])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 03:15:08 -0700
+From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Apr 2023 15:43:10 +0530
+Message-Id: <20230404101310.3143519-1-haridhar.kalvala@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 01/19] drm/i915/i915_scatterlist: Fix
- kerneldoc formatting issue - missing '@'
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH dii-client] drm/i915/mtl: Add Wa_14017856879 for
+ mtl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
+Cc: matthew.d.roper@intel.com, balasubramani.vivekanandan@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 03 Apr 2023, Lee Jones <lee@kernel.org> wrote:
-> On Mon, 03 Apr 2023, Jani Nikula wrote:
->
->> On Fri, 31 Mar 2023, Lee Jones <lee@kernel.org> wrote:
->> > Fixes the following W=1 kernel build warning(s):
->> >
->> >  drivers/gpu/drm/i915/i915_scatterlist.c:62: warning: Function parameter or member 'size' not described in 'i915_refct_sgt_init'
->> >
->> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> > Cc: David Airlie <airlied@gmail.com>
->> > Cc: Daniel Vetter <daniel@ffwll.ch>
->> > Cc: intel-gfx@lists.freedesktop.org
->> > Cc: dri-devel@lists.freedesktop.org
->> > Signed-off-by: Lee Jones <lee@kernel.org>
->>
->> Thanks for the patches!
->>
->> Applied all but one of the drm/i915 patches to drm-intel-next or
->> drm-intel-gt-next depending on the area. There were a couple of issues
->> that I fixed while applying. There was a conflict with patch 5/19
->> against drm-intel-gt-next so I left that one out.
->
-> Thanks Jani.  I'll rebase and see what's left.
+Wa_14017856879 implementation for mtl.
 
-We also took notice and aim to track this more aggressively [1].
+Bspec: 46046
 
-BR,
-Jani.
+Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+ 2 files changed, 7 insertions(+)
 
-
-[1] https://gitlab.freedesktop.org/drm/intel/-/issues/8335
-
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 35a4cfac2d20..492b3de6678d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1177,7 +1177,9 @@
+ #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP	REG_FIELD_PREP(THREAD_EX_ARB_MODE, 0x2)
+ 
+ #define HSW_ROW_CHICKEN3			_MMIO(0xe49c)
++#define GEN9_ROW_CHICKEN3			MCR_REG(0xe49c)
+ #define   HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE	(1 << 6)
++#define   MTL_DISABLE_FIX_FOR_EOT_FLUSH		REG_BIT(9)
+ 
+ #define GEN8_ROW_CHICKEN			MCR_REG(0xe4f0)
+ #define   FLOW_CONTROL_ENABLE			REG_BIT(15)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 1c8e0e91a2fe..6ea453ddd011 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2971,6 +2971,11 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 
+ 	add_render_compute_tuning_settings(i915, wal);
+ 
++	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
++	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
++		/* Wa_14017856879 */
++		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH);
++
+ 	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+ 	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+ 		/*
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
