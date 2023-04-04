@@ -2,40 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B57C6D56A9
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 04:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A296D56B2
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 04:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E6A210E54C;
-	Tue,  4 Apr 2023 02:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC0010E0AB;
+	Tue,  4 Apr 2023 02:24:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 492FE10E339;
- Tue,  4 Apr 2023 02:21:20 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (fp76f193f3.tkyc206.ap.nuro.jp
- [118.241.147.243])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 043247F8;
- Tue,  4 Apr 2023 04:21:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1680574878;
- bh=co7C8OHo7qjDYFifvepzDVKH4rzL3E7SZ1+BOZjM3I8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OMr+iM0JRysXq7faovH+ve1EiPFeg6zIXqopvU/p2RgPdhayW0girxbPjrm7PDqoR
- smbbuz8FtSp/AwPAzrZTrBjPBopJsbldPfnwIMeI8FEf0Z3FZQDiiCUHvR1Ny+krwd
- cHyjZERTYSM1QKNoB3oYPgrWwdec5NdZSephZx3Y=
-Date: Tue, 4 Apr 2023 05:21:25 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20230404022125.GA16648@pendragon.ideasonboard.com>
-References: <20230329171402.2772-1-ville.syrjala@linux.intel.com>
- <20230403223652.18848-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9BCC610E04F;
+ Tue,  4 Apr 2023 02:24:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 675CDAADDC;
+ Tue,  4 Apr 2023 02:24:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1409121173744360283=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230403223652.18848-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/scdc-helper: Pimp SCDC debugs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Date: Tue, 04 Apr 2023 02:24:42 -0000
+Message-ID: <168057508238.18899.15326140735874610856@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_move_DSC_RC_tables_to_drm=5Fdsc=5Fhelper=2Ec_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,390 +41,312 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Emma Anholt <emma@anholt.net>, Jonas Karlman <jonas@kwiboo.se>,
- intel-gfx@lists.freedesktop.org, Jernej Skrabec <jernej.skrabec@gmail.com>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- linux-tegra@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+--===============1409121173744360283==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch.
+== Series Details ==
 
-On Tue, Apr 04, 2023 at 01:36:52AM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Include the device and connector information in the SCDC
-> debugs. Makes it easier to figure out who did what.
-> 
-> v2: Rely on connector->ddc (Maxime)
-> 
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Emma Anholt <emma@anholt.net>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: linux-tegra@vger.kernel.org
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)
+URL   : https://patchwork.freedesktop.org/series/114473/
+State : success
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c |  8 ++--
->  drivers/gpu/drm/display/drm_scdc_helper.c | 46 +++++++++++++++--------
->  drivers/gpu/drm/i915/display/intel_ddi.c  |  4 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c |  8 +---
->  drivers/gpu/drm/tegra/sor.c               | 15 +++-----
->  drivers/gpu/drm/vc4/vc4_hdmi.c            | 21 ++++++-----
->  include/drm/display/drm_scdc_helper.h     |  7 ++--
->  7 files changed, 59 insertions(+), 50 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index aa51c61a78c7..603bb3c51027 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -1426,9 +1426,9 @@ void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi,
->  	/* Control for TMDS Bit Period/TMDS Clock-Period Ratio */
->  	if (dw_hdmi_support_scdc(hdmi, display)) {
->  		if (mtmdsclock > HDMI14_MAX_TMDSCLK)
-> -			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 1);
-> +			drm_scdc_set_high_tmds_clock_ratio(&hdmi->connector, 1);
->  		else
-> -			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 0);
-> +			drm_scdc_set_high_tmds_clock_ratio(&hdmi->connector, 0);
->  	}
->  }
->  EXPORT_SYMBOL_GPL(dw_hdmi_set_high_tmds_clock_ratio);
-> @@ -2116,7 +2116,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
->  				min_t(u8, bytes, SCDC_MIN_SOURCE_VERSION));
->  
->  			/* Enabled Scrambling in the Sink */
-> -			drm_scdc_set_scrambling(hdmi->ddc, 1);
-> +			drm_scdc_set_scrambling(&hdmi->connector, 1);
->  
->  			/*
->  			 * To activate the scrambler feature, you must ensure
-> @@ -2132,7 +2132,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
->  			hdmi_writeb(hdmi, 0, HDMI_FC_SCRAMBLER_CTRL);
->  			hdmi_writeb(hdmi, (u8)~HDMI_MC_SWRSTZ_TMDSSWRST_REQ,
->  				    HDMI_MC_SWRSTZ);
-> -			drm_scdc_set_scrambling(hdmi->ddc, 0);
-> +			drm_scdc_set_scrambling(&hdmi->connector, 0);
->  		}
->  	}
->  
-> diff --git a/drivers/gpu/drm/display/drm_scdc_helper.c b/drivers/gpu/drm/display/drm_scdc_helper.c
-> index c3ad4ab2b456..6d2f244e5830 100644
-> --- a/drivers/gpu/drm/display/drm_scdc_helper.c
-> +++ b/drivers/gpu/drm/display/drm_scdc_helper.c
-> @@ -26,6 +26,8 @@
->  #include <linux/delay.h>
->  
->  #include <drm/display/drm_scdc_helper.h>
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_device.h>
->  #include <drm/drm_print.h>
->  
->  /**
-> @@ -140,7 +142,7 @@ EXPORT_SYMBOL(drm_scdc_write);
->  
->  /**
->   * drm_scdc_get_scrambling_status - what is status of scrambling?
-> - * @adapter: I2C adapter for DDC channel
-> + * @connector: connector
->   *
->   * Reads the scrambler status over SCDC, and checks the
->   * scrambling status.
-> @@ -148,14 +150,16 @@ EXPORT_SYMBOL(drm_scdc_write);
->   * Returns:
->   * True if the scrambling is enabled, false otherwise.
->   */
-> -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter)
-> +bool drm_scdc_get_scrambling_status(struct drm_connector *connector)
->  {
->  	u8 status;
->  	int ret;
->  
-> -	ret = drm_scdc_readb(adapter, SCDC_SCRAMBLER_STATUS, &status);
-> +	ret = drm_scdc_readb(connector->ddc, SCDC_SCRAMBLER_STATUS, &status);
->  	if (ret < 0) {
-> -		DRM_DEBUG_KMS("Failed to read scrambling status: %d\n", ret);
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] Failed to read scrambling status: %d\n",
-> +			    connector->base.id, connector->name, ret);
->  		return false;
->  	}
->  
-> @@ -165,7 +169,7 @@ EXPORT_SYMBOL(drm_scdc_get_scrambling_status);
->  
->  /**
->   * drm_scdc_set_scrambling - enable scrambling
-> - * @adapter: I2C adapter for DDC channel
-> + * @connector: connector
->   * @enable: bool to indicate if scrambling is to be enabled/disabled
->   *
->   * Writes the TMDS config register over SCDC channel, and:
-> @@ -175,14 +179,17 @@ EXPORT_SYMBOL(drm_scdc_get_scrambling_status);
->   * Returns:
->   * True if scrambling is set/reset successfully, false otherwise.
->   */
-> -bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable)
-> +bool drm_scdc_set_scrambling(struct drm_connector *connector,
-> +			     bool enable)
->  {
->  	u8 config;
->  	int ret;
->  
-> -	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
-> +	ret = drm_scdc_readb(connector->ddc, SCDC_TMDS_CONFIG, &config);
->  	if (ret < 0) {
-> -		DRM_DEBUG_KMS("Failed to read TMDS config: %d\n", ret);
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
-> +			    connector->base.id, connector->name, ret);
->  		return false;
->  	}
->  
-> @@ -191,9 +198,11 @@ bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable)
->  	else
->  		config &= ~SCDC_SCRAMBLING_ENABLE;
->  
-> -	ret = drm_scdc_writeb(adapter, SCDC_TMDS_CONFIG, config);
-> +	ret = drm_scdc_writeb(connector->ddc, SCDC_TMDS_CONFIG, config);
->  	if (ret < 0) {
-> -		DRM_DEBUG_KMS("Failed to enable scrambling: %d\n", ret);
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] Failed to enable scrambling: %d\n",
-> +			    connector->base.id, connector->name, ret);
->  		return false;
->  	}
->  
-> @@ -203,7 +212,7 @@ EXPORT_SYMBOL(drm_scdc_set_scrambling);
->  
->  /**
->   * drm_scdc_set_high_tmds_clock_ratio - set TMDS clock ratio
-> - * @adapter: I2C adapter for DDC channel
-> + * @connector: connector
->   * @set: ret or reset the high clock ratio
->   *
->   *
-> @@ -230,14 +239,17 @@ EXPORT_SYMBOL(drm_scdc_set_scrambling);
->   * Returns:
->   * True if write is successful, false otherwise.
->   */
-> -bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set)
-> +bool drm_scdc_set_high_tmds_clock_ratio(struct drm_connector *connector,
-> +					bool set)
->  {
->  	u8 config;
->  	int ret;
->  
-> -	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
-> +	ret = drm_scdc_readb(connector->ddc, SCDC_TMDS_CONFIG, &config);
->  	if (ret < 0) {
-> -		DRM_DEBUG_KMS("Failed to read TMDS config: %d\n", ret);
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
-> +			    connector->base.id, connector->name, ret);
->  		return false;
->  	}
->  
-> @@ -246,9 +258,11 @@ bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set)
->  	else
->  		config &= ~SCDC_TMDS_BIT_CLOCK_RATIO_BY_40;
->  
-> -	ret = drm_scdc_writeb(adapter, SCDC_TMDS_CONFIG, config);
-> +	ret = drm_scdc_writeb(connector->ddc, SCDC_TMDS_CONFIG, config);
->  	if (ret < 0) {
-> -		DRM_DEBUG_KMS("Failed to set TMDS clock ratio: %d\n", ret);
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] Failed to set TMDS clock ratio: %d\n",
-> +			    connector->base.id, connector->name, ret);
->  		return false;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index dc294717bcdf..d0bb3a52ae5c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3974,8 +3974,8 @@ static int intel_hdmi_reset_link(struct intel_encoder *encoder,
->  
->  	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
->  	if (ret < 0) {
-> -		drm_err(&dev_priv->drm, "Failed to read TMDS config: %d\n",
-> -			ret);
-> +		drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
-> +			connector->base.base.id, connector->base.name, ret);
->  		return 0;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index c7e9e1fbed37..a690a5616506 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2646,11 +2646,8 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
->  				       bool scrambling)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->  	struct drm_scrambling *sink_scrambling =
->  		&connector->display_info.hdmi.scdc.scrambling;
-> -	struct i2c_adapter *adapter =
-> -		intel_gmbus_get_adapter(dev_priv, intel_hdmi->ddc_bus);
->  
->  	if (!sink_scrambling->supported)
->  		return true;
-> @@ -2661,9 +2658,8 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
->  		    str_yes_no(scrambling), high_tmds_clock_ratio ? 40 : 10);
->  
->  	/* Set TMDS bit clock ratio to 1/40 or 1/10, and enable/disable scrambling */
-> -	return drm_scdc_set_high_tmds_clock_ratio(adapter,
-> -						  high_tmds_clock_ratio) &&
-> -		drm_scdc_set_scrambling(adapter, scrambling);
-> +	return drm_scdc_set_high_tmds_clock_ratio(connector, high_tmds_clock_ratio) &&
-> +		drm_scdc_set_scrambling(connector, scrambling);
->  }
->  
->  static u8 chv_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
-> diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
-> index 8af632740673..34af6724914f 100644
-> --- a/drivers/gpu/drm/tegra/sor.c
-> +++ b/drivers/gpu/drm/tegra/sor.c
-> @@ -2140,10 +2140,8 @@ static void tegra_sor_hdmi_disable_scrambling(struct tegra_sor *sor)
->  
->  static void tegra_sor_hdmi_scdc_disable(struct tegra_sor *sor)
->  {
-> -	struct i2c_adapter *ddc = sor->output.ddc;
-> -
-> -	drm_scdc_set_high_tmds_clock_ratio(ddc, false);
-> -	drm_scdc_set_scrambling(ddc, false);
-> +	drm_scdc_set_high_tmds_clock_ratio(&sor->output.connector, false);
-> +	drm_scdc_set_scrambling(&sor->output.connector, false);
->  
->  	tegra_sor_hdmi_disable_scrambling(sor);
->  }
-> @@ -2168,10 +2166,8 @@ static void tegra_sor_hdmi_enable_scrambling(struct tegra_sor *sor)
->  
->  static void tegra_sor_hdmi_scdc_enable(struct tegra_sor *sor)
->  {
-> -	struct i2c_adapter *ddc = sor->output.ddc;
-> -
-> -	drm_scdc_set_high_tmds_clock_ratio(ddc, true);
-> -	drm_scdc_set_scrambling(ddc, true);
-> +	drm_scdc_set_high_tmds_clock_ratio(&sor->output.connector, true);
-> +	drm_scdc_set_scrambling(&sor->output.connector, true);
->  
->  	tegra_sor_hdmi_enable_scrambling(sor);
->  }
-> @@ -2179,9 +2175,8 @@ static void tegra_sor_hdmi_scdc_enable(struct tegra_sor *sor)
->  static void tegra_sor_hdmi_scdc_work(struct work_struct *work)
->  {
->  	struct tegra_sor *sor = container_of(work, struct tegra_sor, scdc.work);
-> -	struct i2c_adapter *ddc = sor->output.ddc;
->  
-> -	if (!drm_scdc_get_scrambling_status(ddc)) {
-> +	if (!drm_scdc_get_scrambling_status(&sor->output.connector)) {
->  		DRM_DEBUG_KMS("SCDC not scrambled\n");
->  		tegra_sor_hdmi_scdc_enable(sor);
->  	}
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> index 464c3cc8e6fb..06713d8b82b5 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> @@ -885,7 +885,8 @@ static void vc4_hdmi_set_infoframes(struct drm_encoder *encoder)
->  static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
->  {
->  	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
-> -	struct drm_device *drm = vc4_hdmi->connector.dev;
-> +	struct drm_connector *connector = &vc4_hdmi->connector;
-> +	struct drm_device *drm = connector->dev;
->  	const struct drm_display_mode *mode = &vc4_hdmi->saved_adjusted_mode;
->  	unsigned long flags;
->  	int idx;
-> @@ -903,8 +904,8 @@ static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
->  	if (!drm_dev_enter(drm, &idx))
->  		return;
->  
-> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, true);
-> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, true);
-> +	drm_scdc_set_high_tmds_clock_ratio(connector, true);
-> +	drm_scdc_set_scrambling(connector, true);
->  
->  	spin_lock_irqsave(&vc4_hdmi->hw_lock, flags);
->  	HDMI_WRITE(HDMI_SCRAMBLER_CTL, HDMI_READ(HDMI_SCRAMBLER_CTL) |
-> @@ -922,7 +923,8 @@ static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
->  static void vc4_hdmi_disable_scrambling(struct drm_encoder *encoder)
->  {
->  	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
-> -	struct drm_device *drm = vc4_hdmi->connector.dev;
-> +	struct drm_connector *connector = &vc4_hdmi->connector;
-> +	struct drm_device *drm = connector->dev;
->  	unsigned long flags;
->  	int idx;
->  
-> @@ -944,8 +946,8 @@ static void vc4_hdmi_disable_scrambling(struct drm_encoder *encoder)
->  		   ~VC5_HDMI_SCRAMBLER_CTL_ENABLE);
->  	spin_unlock_irqrestore(&vc4_hdmi->hw_lock, flags);
->  
-> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, false);
-> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, false);
-> +	drm_scdc_set_scrambling(connector, false);
-> +	drm_scdc_set_high_tmds_clock_ratio(connector, false);
->  
->  	drm_dev_exit(idx);
->  }
-> @@ -955,12 +957,13 @@ static void vc4_hdmi_scrambling_wq(struct work_struct *work)
->  	struct vc4_hdmi *vc4_hdmi = container_of(to_delayed_work(work),
->  						 struct vc4_hdmi,
->  						 scrambling_work);
-> +	struct drm_connector *connector = &vc4_hdmi->connector;
->  
-> -	if (drm_scdc_get_scrambling_status(vc4_hdmi->ddc))
-> +	if (drm_scdc_get_scrambling_status(connector))
->  		return;
->  
-> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, true);
-> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, true);
-> +	drm_scdc_set_high_tmds_clock_ratio(connector, true);
-> +	drm_scdc_set_scrambling(connector, true);
->  
->  	queue_delayed_work(system_wq, &vc4_hdmi->scrambling_work,
->  			   msecs_to_jiffies(SCRAMBLING_POLLING_DELAY_MS));
-> diff --git a/include/drm/display/drm_scdc_helper.h b/include/drm/display/drm_scdc_helper.h
-> index ded01fd948b4..34600476a1b9 100644
-> --- a/include/drm/display/drm_scdc_helper.h
-> +++ b/include/drm/display/drm_scdc_helper.h
-> @@ -28,6 +28,7 @@
->  
->  #include <drm/display/drm_scdc.h>
->  
-> +struct drm_connector;
->  struct i2c_adapter;
->  
->  ssize_t drm_scdc_read(struct i2c_adapter *adapter, u8 offset, void *buffer,
-> @@ -71,9 +72,9 @@ static inline int drm_scdc_writeb(struct i2c_adapter *adapter, u8 offset,
->  	return drm_scdc_write(adapter, offset, &value, sizeof(value));
->  }
->  
-> -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter);
-> +bool drm_scdc_get_scrambling_status(struct drm_connector *connector);
->  
-> -bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable);
-> -bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set);
-> +bool drm_scdc_set_scrambling(struct drm_connector *connector, bool enable);
-> +bool drm_scdc_set_high_tmds_clock_ratio(struct drm_connector *connector, bool set);
->  
->  #endif
+CI Bug Log - changes from CI_DRM_12961_full -> Patchwork_114473v5_full
+====================================================
 
--- 
-Regards,
+Summary
+-------
 
-Laurent Pinchart
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 7)
+------------------------------
+
+  Missing    (1): shard-rkl0 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_114473v5_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [PASS][1] -> [FAIL][2] ([i915#2846])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk1/igt@gem_exec_fair@basic-deadline.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk6/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-glk:          [PASS][3] -> [FAIL][4] ([i915#2842])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk3/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-glk:          [PASS][5] -> [FAIL][6] ([i915#2346])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  
+#### Possible fixes ####
+
+  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
+    - {shard-rkl}:        [FAIL][7] ([i915#7742]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
+
+  * igt@gem_exec_fair@basic-none@bcs0:
+    - {shard-rkl}:        [FAIL][9] ([i915#2842]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-rkl-1/igt@gem_exec_fair@basic-none@bcs0.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-rkl-4/igt@gem_exec_fair@basic-none@bcs0.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-apl:          [FAIL][11] ([i915#2842]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-apl6/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@gem_exec_suspend@basic-s4-devices@lmem0:
+    - {shard-dg1}:        [ABORT][13] ([i915#7975]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-dg1-14/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-dg1-17/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
+
+  * igt@i915_pm_rpm@dpms-mode-unset-lpsp:
+    - {shard-dg1}:        [SKIP][15] ([i915#1397]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-dg1-18/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-dg1-14/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109314]: https://bugs.freedesktop.org/show_bug.cgi?id=109314
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#110723]: https://bugs.freedesktop.org/show_bug.cgi?id=110723
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
+  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
+  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2433]: https://gitlab.freedesktop.org/drm/intel/issues/2433
+  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
+  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
+  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
+  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
+  [i915#3023]: https://gitlab.freedesktop.org/drm/intel/issues/3023
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
+  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
+  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3734]: https://gitlab.freedesktop.org/drm/intel/issues/3734
+  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3936]: https://gitlab.freedesktop.org/drm/intel/issues/3936
+  [i915#3952]: https://gitlab.freedesktop.org/drm/intel/issues/3952
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
+  [i915#4565]: https://gitlab.freedesktop.org/drm/intel/issues/4565
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
+  [i915#4833]: https://gitlab.freedesktop.org/drm/intel/issues/4833
+  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
+  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
+  [i915#4879]: https://gitlab.freedesktop.org/drm/intel/issues/4879
+  [i915#4880]: https://gitlab.freedesktop.org/drm/intel/issues/4880
+  [i915#4881]: https://gitlab.freedesktop.org/drm/intel/issues/4881
+  [i915#4884]: https://gitlab.freedesktop.org/drm/intel/issues/4884
+  [i915#4885]: https://gitlab.freedesktop.org/drm/intel/issues/4885
+  [i915#4958]: https://gitlab.freedesktop.org/drm/intel/issues/4958
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
+  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
+  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
+  [i915#5563]: https://gitlab.freedesktop.org/drm/intel/issues/5563
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
+  [i915#6301]: https://gitlab.freedesktop.org/drm/intel/issues/6301
+  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#6590]: https://gitlab.freedesktop.org/drm/intel/issues/6590
+  [i915#6946]: https://gitlab.freedesktop.org/drm/intel/issues/6946
+  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
+  [i915#7178]: https://gitlab.freedesktop.org/drm/intel/issues/7178
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12961 -> Patchwork_114473v5
+
+  CI-20190529: 20190529
+  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html
+
+--===============1409121173744360283==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: move DSC RC tables to drm_dsc_helper.c (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114473/">https://patchwork.freedesktop.org/series/114473/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12961_full -&gt; Patchwork_114473v5_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): shard-rkl0 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_114473v5_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk1/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk6/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk3/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-glk6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none@bcs0:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-rkl-1/igt@gem_exec_fair@basic-none@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-rkl-4/igt@gem_exec_fair@basic-none@bcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-apl6/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s4-devices@lmem0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-dg1-14/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-dg1-17/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@dpms-mode-unset-lpsp:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12961/shard-dg1-18/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114473v5/shard-dg1-14/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12961 -&gt; Patchwork_114473v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12961: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7233: 716520b469a2745e1882780f2aabbc88eb19332c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_114473v5: 82f1e99798a184af2c21c9c8748f3fba4bdc4556 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============1409121173744360283==--
