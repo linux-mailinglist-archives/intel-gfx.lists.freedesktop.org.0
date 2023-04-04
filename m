@@ -2,78 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D466C6D5A89
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 10:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE606D5A80
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 10:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB6910E617;
-	Tue,  4 Apr 2023 08:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D42B810E618;
+	Tue,  4 Apr 2023 08:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 565 seconds by postgrey-1.36 at gabe;
- Tue, 04 Apr 2023 08:15:46 UTC
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
- [66.111.4.224])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3BC710E617
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 08:15:46 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 0B063581E42;
- Tue,  4 Apr 2023 04:06:18 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Tue, 04 Apr 2023 04:06:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1680595577; x=1680602777; bh=wvCuyZAuwEh94yyPjnRpCKIdQGJiyQn4/4B
- DEJQFbU0=; b=AtkH6rvUj5U5huHejp3uB3Zz5g/hfaZcg4lsnDaWzOdc/s6GMft
- NwOliXjFRM9vVv/5coyHFJSjD5zmTN/T37LeiJs0b2AZvqX/rt4tsMCrt/N/mUKn
- zRYtB4SI2VlvljEIKLsNOMgFgM6qyxGJDGJPN0945PL9ga3Ca/7lyRfVSG32mbeN
- LyeAFhMO7GP0Qj/HN/9Vez66bmAZNzuq0Q4iE8Wh1SaaaCaGIyR1YfW+Wuoivgzr
- /K48Uzq20/2G8SU91+mJb7xFLPNS7sY1U+r9OYBjgGGCWyxVevi31hiFgyJ3JIeS
- 0XXwam1+YzQ9WmyBH56dK3lhq0DPrrvXMzg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1680595577; x=1680602777; bh=wvCuyZAuwEh94yyPjnRpCKIdQGJiyQn4/4B
- DEJQFbU0=; b=UaMS3EDcjVFS4oxlGIxcvqHEj0KmZmkMx1ngoKgbdfNCdsqPX+l
- iqLDWwLjLB0rpf+Ve7rB2O4d4xQicHN2vw6D+Q7JB4R2qBHP3aWVEYjXwJZT4nG6
- Q9tEMq3jw28REojZB3Vhj7GSZ3b4x8ItQlK9nxgs77UR+uiXU1jWjH0XPom35e9e
- 7JjotqVoOu5S7nndrLkQ9/28cmv95coqNcScMuksL7V8NuS/li3XMoRCdAspyM/2
- hnhiWenn5ndLvQh4BHZZiq5zTucX1DhUayFte6tbFRfJAD799vNFlnFT8jkcxZN0
- FRy2ZIekTz5ZU6GGZYXol2pqjVipgsKy7Hg==
-X-ME-Sender: <xms:edorZHIIqODZo1ouiFGUdwEfH5urh1EIj0JkdajfjuRlvdvRs039SQ>
- <xme:edorZLIgMIyLPRMpb66mIZt06QdaBBMEuuNbk0r_DDNIBz0HcQD1V61hjniM3zcQF
- HhreuYgxcKdovAMXEA>
-X-ME-Received: <xmr:edorZPsvVmVs6jpuUnK5ghI97GyKWkpiB0SO0kXc_7VImZXehAfR201wB8M0zovQsenzlIc6mmnxCd16rbn0ztyMNt1I5gE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeikedgudduvdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtudenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeelleefieelleetteefvdeikeeffeffvefhtdevgfehveduveehjedv
- vdeiledtieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:edorZAZcFb_guoENutFxYld2KfQ381xhFJ-Z-w0jCc_rcxw-HlztJQ>
- <xmx:edorZOZWkdIO5ImT_hOE3FG8G4LsDz_sZ6DCxNM2E5KgFcP0ncmQ6g>
- <xmx:edorZEBA40wmGZl3MFznaF1dW2twdxRLJ1IHsvCRgI9ZIBTCKhhM1A>
- <xmx:edorZLJD1KYskIfRNoT51A9Zhc-Mk2yGgI6jyzWZrXY3Q9hLaZiJKw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 4 Apr 2023 04:06:16 -0400 (EDT)
-Date: Tue, 4 Apr 2023 10:06:14 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20230404080614.zhfm5cq5uzx26ha5@houat>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C80AA10E60C;
+ Tue,  4 Apr 2023 08:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680596045; x=1712132045;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zrygwt3wKMmLgPQimfIE38uApFmegdAKVhuBYjqjTUA=;
+ b=OXb49rQ7Fdmebz62qHn/1vitU+4xuLWDIqnPpjNE+znYly3kvqkQj+h1
+ cjlUKwJCpfjoAl+KL/H4OWPZBit31fGQO0wfmtRLhL9F7WrsYFNY0I5N/
+ Kwbemu/zbdgsfLmQU7gq3IIiwAf/TOrw5vuxtJ91x9pW2ovAqsV5J3vh5
+ aNZutxzQJNjPso9JUJ+hTC7lRWPiD12tc6GEMRd6ZjyLbjVYnL15NgStT
+ IZvZ2WgqR2uxaOr+Y/MW/i/xWNQuQqwvDvXDRc358LkD7cX31frTnG9Qz
+ uSYaXw/JOtTqFTWnTrU3jox7fi5cHD8BIPYVyIktgzbqounEOYq+Q7LPW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="326139661"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="326139661"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 01:14:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="636431974"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="636431974"
+Received: from ptusk-mobl.ger.corp.intel.com (HELO [10.213.30.195])
+ ([10.213.30.195])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 01:14:01 -0700
+Message-ID: <792a3e8f-9524-2b52-52d1-97121ad2f159@intel.com>
+Date: Tue, 4 Apr 2023 10:13:58 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.1
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 References: <20230329171402.2772-1-ville.syrjala@linux.intel.com>
  <20230403223652.18848-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
 In-Reply-To: <20230403223652.18848-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-gfx] [PATCH v2] drm/scdc-helper: Pimp SCDC debugs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,23 +65,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Robert Foss <rfoss@kernel.org>,
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Emma Anholt <emma@anholt.net>, Jonas Karlman <jonas@kwiboo.se>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Jernej Skrabec <jernej.skrabec@gmail.com>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, linux-tegra@vger.kernel.org
+ linux-tegra@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 04, 2023 at 01:36:52AM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->=20
+
+
+On 04.04.2023 00:36, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
 > Include the device and connector information in the SCDC
 > debugs. Makes it easier to figure out who did what.
->=20
+>
 > v2: Rely on connector->ddc (Maxime)
->=20
+>
 > Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 > Cc: Neil Armstrong <neil.armstrong@linaro.org>
 > Cc: Robert Foss <rfoss@kernel.org>
@@ -115,9 +95,356 @@ On Tue, Apr 04, 2023 at 01:36:52AM +0300, Ville Syrjala wrote:
 > Cc: Maxime Ripard <mripard@kernel.org>
 > Cc: intel-gfx@lists.freedesktop.org
 > Cc: linux-tegra@vger.kernel.org
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Acked-by: Maxime Ripard <maxime@cerno.tech>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Thanks!
-Maxime
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c |  8 ++--
+>   drivers/gpu/drm/display/drm_scdc_helper.c | 46 +++++++++++++++--------
+>   drivers/gpu/drm/i915/display/intel_ddi.c  |  4 +-
+>   drivers/gpu/drm/i915/display/intel_hdmi.c |  8 +---
+>   drivers/gpu/drm/tegra/sor.c               | 15 +++-----
+>   drivers/gpu/drm/vc4/vc4_hdmi.c            | 21 ++++++-----
+>   include/drm/display/drm_scdc_helper.h     |  7 ++--
+>   7 files changed, 59 insertions(+), 50 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index aa51c61a78c7..603bb3c51027 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -1426,9 +1426,9 @@ void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi,
+>   	/* Control for TMDS Bit Period/TMDS Clock-Period Ratio */
+>   	if (dw_hdmi_support_scdc(hdmi, display)) {
+>   		if (mtmdsclock > HDMI14_MAX_TMDSCLK)
+> -			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 1);
+> +			drm_scdc_set_high_tmds_clock_ratio(&hdmi->connector, 1);
+>   		else
+> -			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 0);
+> +			drm_scdc_set_high_tmds_clock_ratio(&hdmi->connector, 0);
+>   	}
+>   }
+>   EXPORT_SYMBOL_GPL(dw_hdmi_set_high_tmds_clock_ratio);
+> @@ -2116,7 +2116,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
+>   				min_t(u8, bytes, SCDC_MIN_SOURCE_VERSION));
+>   
+>   			/* Enabled Scrambling in the Sink */
+> -			drm_scdc_set_scrambling(hdmi->ddc, 1);
+> +			drm_scdc_set_scrambling(&hdmi->connector, 1);
+>   
+>   			/*
+>   			 * To activate the scrambler feature, you must ensure
+> @@ -2132,7 +2132,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
+>   			hdmi_writeb(hdmi, 0, HDMI_FC_SCRAMBLER_CTRL);
+>   			hdmi_writeb(hdmi, (u8)~HDMI_MC_SWRSTZ_TMDSSWRST_REQ,
+>   				    HDMI_MC_SWRSTZ);
+> -			drm_scdc_set_scrambling(hdmi->ddc, 0);
+> +			drm_scdc_set_scrambling(&hdmi->connector, 0);
+>   		}
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/display/drm_scdc_helper.c b/drivers/gpu/drm/display/drm_scdc_helper.c
+> index c3ad4ab2b456..6d2f244e5830 100644
+> --- a/drivers/gpu/drm/display/drm_scdc_helper.c
+> +++ b/drivers/gpu/drm/display/drm_scdc_helper.c
+> @@ -26,6 +26,8 @@
+>   #include <linux/delay.h>
+>   
+>   #include <drm/display/drm_scdc_helper.h>
+> +#include <drm/drm_connector.h>
+> +#include <drm/drm_device.h>
+>   #include <drm/drm_print.h>
+>   
+>   /**
+> @@ -140,7 +142,7 @@ EXPORT_SYMBOL(drm_scdc_write);
+>   
+>   /**
+>    * drm_scdc_get_scrambling_status - what is status of scrambling?
+> - * @adapter: I2C adapter for DDC channel
+> + * @connector: connector
+>    *
+>    * Reads the scrambler status over SCDC, and checks the
+>    * scrambling status.
+> @@ -148,14 +150,16 @@ EXPORT_SYMBOL(drm_scdc_write);
+>    * Returns:
+>    * True if the scrambling is enabled, false otherwise.
+>    */
+> -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter)
+> +bool drm_scdc_get_scrambling_status(struct drm_connector *connector)
+>   {
+>   	u8 status;
+>   	int ret;
+>   
+> -	ret = drm_scdc_readb(adapter, SCDC_SCRAMBLER_STATUS, &status);
+> +	ret = drm_scdc_readb(connector->ddc, SCDC_SCRAMBLER_STATUS, &status);
+>   	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Failed to read scrambling status: %d\n", ret);
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] Failed to read scrambling status: %d\n",
+> +			    connector->base.id, connector->name, ret);
+>   		return false;
+>   	}
+>   
+> @@ -165,7 +169,7 @@ EXPORT_SYMBOL(drm_scdc_get_scrambling_status);
+>   
+>   /**
+>    * drm_scdc_set_scrambling - enable scrambling
+> - * @adapter: I2C adapter for DDC channel
+> + * @connector: connector
+>    * @enable: bool to indicate if scrambling is to be enabled/disabled
+>    *
+>    * Writes the TMDS config register over SCDC channel, and:
+> @@ -175,14 +179,17 @@ EXPORT_SYMBOL(drm_scdc_get_scrambling_status);
+>    * Returns:
+>    * True if scrambling is set/reset successfully, false otherwise.
+>    */
+> -bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable)
+> +bool drm_scdc_set_scrambling(struct drm_connector *connector,
+> +			     bool enable)
+>   {
+>   	u8 config;
+>   	int ret;
+>   
+> -	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
+> +	ret = drm_scdc_readb(connector->ddc, SCDC_TMDS_CONFIG, &config);
+>   	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Failed to read TMDS config: %d\n", ret);
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
+> +			    connector->base.id, connector->name, ret);
+>   		return false;
+>   	}
+>   
+> @@ -191,9 +198,11 @@ bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable)
+>   	else
+>   		config &= ~SCDC_SCRAMBLING_ENABLE;
+>   
+> -	ret = drm_scdc_writeb(adapter, SCDC_TMDS_CONFIG, config);
+> +	ret = drm_scdc_writeb(connector->ddc, SCDC_TMDS_CONFIG, config);
+>   	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Failed to enable scrambling: %d\n", ret);
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] Failed to enable scrambling: %d\n",
+> +			    connector->base.id, connector->name, ret);
+>   		return false;
+>   	}
+>   
+> @@ -203,7 +212,7 @@ EXPORT_SYMBOL(drm_scdc_set_scrambling);
+>   
+>   /**
+>    * drm_scdc_set_high_tmds_clock_ratio - set TMDS clock ratio
+> - * @adapter: I2C adapter for DDC channel
+> + * @connector: connector
+>    * @set: ret or reset the high clock ratio
+>    *
+>    *
+> @@ -230,14 +239,17 @@ EXPORT_SYMBOL(drm_scdc_set_scrambling);
+>    * Returns:
+>    * True if write is successful, false otherwise.
+>    */
+> -bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set)
+> +bool drm_scdc_set_high_tmds_clock_ratio(struct drm_connector *connector,
+> +					bool set)
+>   {
+>   	u8 config;
+>   	int ret;
+>   
+> -	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
+> +	ret = drm_scdc_readb(connector->ddc, SCDC_TMDS_CONFIG, &config);
+>   	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Failed to read TMDS config: %d\n", ret);
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
+> +			    connector->base.id, connector->name, ret);
+>   		return false;
+>   	}
+>   
+> @@ -246,9 +258,11 @@ bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set)
+>   	else
+>   		config &= ~SCDC_TMDS_BIT_CLOCK_RATIO_BY_40;
+>   
+> -	ret = drm_scdc_writeb(adapter, SCDC_TMDS_CONFIG, config);
+> +	ret = drm_scdc_writeb(connector->ddc, SCDC_TMDS_CONFIG, config);
+>   	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Failed to set TMDS clock ratio: %d\n", ret);
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] Failed to set TMDS clock ratio: %d\n",
+> +			    connector->base.id, connector->name, ret);
+>   		return false;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index dc294717bcdf..d0bb3a52ae5c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3974,8 +3974,8 @@ static int intel_hdmi_reset_link(struct intel_encoder *encoder,
+>   
+>   	ret = drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
+>   	if (ret < 0) {
+> -		drm_err(&dev_priv->drm, "Failed to read TMDS config: %d\n",
+> -			ret);
+> +		drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to read TMDS config: %d\n",
+> +			connector->base.base.id, connector->base.name, ret);
+>   		return 0;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index c7e9e1fbed37..a690a5616506 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2646,11 +2646,8 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
+>   				       bool scrambling)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+>   	struct drm_scrambling *sink_scrambling =
+>   		&connector->display_info.hdmi.scdc.scrambling;
+> -	struct i2c_adapter *adapter =
+> -		intel_gmbus_get_adapter(dev_priv, intel_hdmi->ddc_bus);
+>   
+>   	if (!sink_scrambling->supported)
+>   		return true;
+> @@ -2661,9 +2658,8 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
+>   		    str_yes_no(scrambling), high_tmds_clock_ratio ? 40 : 10);
+>   
+>   	/* Set TMDS bit clock ratio to 1/40 or 1/10, and enable/disable scrambling */
+> -	return drm_scdc_set_high_tmds_clock_ratio(adapter,
+> -						  high_tmds_clock_ratio) &&
+> -		drm_scdc_set_scrambling(adapter, scrambling);
+> +	return drm_scdc_set_high_tmds_clock_ratio(connector, high_tmds_clock_ratio) &&
+> +		drm_scdc_set_scrambling(connector, scrambling);
+>   }
+>   
+>   static u8 chv_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
+> diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+> index 8af632740673..34af6724914f 100644
+> --- a/drivers/gpu/drm/tegra/sor.c
+> +++ b/drivers/gpu/drm/tegra/sor.c
+> @@ -2140,10 +2140,8 @@ static void tegra_sor_hdmi_disable_scrambling(struct tegra_sor *sor)
+>   
+>   static void tegra_sor_hdmi_scdc_disable(struct tegra_sor *sor)
+>   {
+> -	struct i2c_adapter *ddc = sor->output.ddc;
+> -
+> -	drm_scdc_set_high_tmds_clock_ratio(ddc, false);
+> -	drm_scdc_set_scrambling(ddc, false);
+> +	drm_scdc_set_high_tmds_clock_ratio(&sor->output.connector, false);
+> +	drm_scdc_set_scrambling(&sor->output.connector, false);
+>   
+>   	tegra_sor_hdmi_disable_scrambling(sor);
+>   }
+> @@ -2168,10 +2166,8 @@ static void tegra_sor_hdmi_enable_scrambling(struct tegra_sor *sor)
+>   
+>   static void tegra_sor_hdmi_scdc_enable(struct tegra_sor *sor)
+>   {
+> -	struct i2c_adapter *ddc = sor->output.ddc;
+> -
+> -	drm_scdc_set_high_tmds_clock_ratio(ddc, true);
+> -	drm_scdc_set_scrambling(ddc, true);
+> +	drm_scdc_set_high_tmds_clock_ratio(&sor->output.connector, true);
+> +	drm_scdc_set_scrambling(&sor->output.connector, true);
+>   
+>   	tegra_sor_hdmi_enable_scrambling(sor);
+>   }
+> @@ -2179,9 +2175,8 @@ static void tegra_sor_hdmi_scdc_enable(struct tegra_sor *sor)
+>   static void tegra_sor_hdmi_scdc_work(struct work_struct *work)
+>   {
+>   	struct tegra_sor *sor = container_of(work, struct tegra_sor, scdc.work);
+> -	struct i2c_adapter *ddc = sor->output.ddc;
+>   
+> -	if (!drm_scdc_get_scrambling_status(ddc)) {
+> +	if (!drm_scdc_get_scrambling_status(&sor->output.connector)) {
+>   		DRM_DEBUG_KMS("SCDC not scrambled\n");
+>   		tegra_sor_hdmi_scdc_enable(sor);
+>   	}
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> index 464c3cc8e6fb..06713d8b82b5 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -885,7 +885,8 @@ static void vc4_hdmi_set_infoframes(struct drm_encoder *encoder)
+>   static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
+>   {
+>   	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
+> -	struct drm_device *drm = vc4_hdmi->connector.dev;
+> +	struct drm_connector *connector = &vc4_hdmi->connector;
+> +	struct drm_device *drm = connector->dev;
+>   	const struct drm_display_mode *mode = &vc4_hdmi->saved_adjusted_mode;
+>   	unsigned long flags;
+>   	int idx;
+> @@ -903,8 +904,8 @@ static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
+>   	if (!drm_dev_enter(drm, &idx))
+>   		return;
+>   
+> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, true);
+> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, true);
+> +	drm_scdc_set_high_tmds_clock_ratio(connector, true);
+> +	drm_scdc_set_scrambling(connector, true);
+>   
+>   	spin_lock_irqsave(&vc4_hdmi->hw_lock, flags);
+>   	HDMI_WRITE(HDMI_SCRAMBLER_CTL, HDMI_READ(HDMI_SCRAMBLER_CTL) |
+> @@ -922,7 +923,8 @@ static void vc4_hdmi_enable_scrambling(struct drm_encoder *encoder)
+>   static void vc4_hdmi_disable_scrambling(struct drm_encoder *encoder)
+>   {
+>   	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
+> -	struct drm_device *drm = vc4_hdmi->connector.dev;
+> +	struct drm_connector *connector = &vc4_hdmi->connector;
+> +	struct drm_device *drm = connector->dev;
+>   	unsigned long flags;
+>   	int idx;
+>   
+> @@ -944,8 +946,8 @@ static void vc4_hdmi_disable_scrambling(struct drm_encoder *encoder)
+>   		   ~VC5_HDMI_SCRAMBLER_CTL_ENABLE);
+>   	spin_unlock_irqrestore(&vc4_hdmi->hw_lock, flags);
+>   
+> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, false);
+> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, false);
+> +	drm_scdc_set_scrambling(connector, false);
+> +	drm_scdc_set_high_tmds_clock_ratio(connector, false);
+>   
+>   	drm_dev_exit(idx);
+>   }
+> @@ -955,12 +957,13 @@ static void vc4_hdmi_scrambling_wq(struct work_struct *work)
+>   	struct vc4_hdmi *vc4_hdmi = container_of(to_delayed_work(work),
+>   						 struct vc4_hdmi,
+>   						 scrambling_work);
+> +	struct drm_connector *connector = &vc4_hdmi->connector;
+>   
+> -	if (drm_scdc_get_scrambling_status(vc4_hdmi->ddc))
+> +	if (drm_scdc_get_scrambling_status(connector))
+>   		return;
+>   
+> -	drm_scdc_set_high_tmds_clock_ratio(vc4_hdmi->ddc, true);
+> -	drm_scdc_set_scrambling(vc4_hdmi->ddc, true);
+> +	drm_scdc_set_high_tmds_clock_ratio(connector, true);
+> +	drm_scdc_set_scrambling(connector, true);
+>   
+>   	queue_delayed_work(system_wq, &vc4_hdmi->scrambling_work,
+>   			   msecs_to_jiffies(SCRAMBLING_POLLING_DELAY_MS));
+> diff --git a/include/drm/display/drm_scdc_helper.h b/include/drm/display/drm_scdc_helper.h
+> index ded01fd948b4..34600476a1b9 100644
+> --- a/include/drm/display/drm_scdc_helper.h
+> +++ b/include/drm/display/drm_scdc_helper.h
+> @@ -28,6 +28,7 @@
+>   
+>   #include <drm/display/drm_scdc.h>
+>   
+> +struct drm_connector;
+>   struct i2c_adapter;
+>   
+>   ssize_t drm_scdc_read(struct i2c_adapter *adapter, u8 offset, void *buffer,
+> @@ -71,9 +72,9 @@ static inline int drm_scdc_writeb(struct i2c_adapter *adapter, u8 offset,
+>   	return drm_scdc_write(adapter, offset, &value, sizeof(value));
+>   }
+>   
+> -bool drm_scdc_get_scrambling_status(struct i2c_adapter *adapter);
+> +bool drm_scdc_get_scrambling_status(struct drm_connector *connector);
+>   
+> -bool drm_scdc_set_scrambling(struct i2c_adapter *adapter, bool enable);
+> -bool drm_scdc_set_high_tmds_clock_ratio(struct i2c_adapter *adapter, bool set);
+> +bool drm_scdc_set_scrambling(struct drm_connector *connector, bool enable);
+> +bool drm_scdc_set_high_tmds_clock_ratio(struct drm_connector *connector, bool set);
+>   
+>   #endif
+
