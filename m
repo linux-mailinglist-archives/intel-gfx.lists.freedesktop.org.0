@@ -1,62 +1,84 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7316D671A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 17:20:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 548336D6749
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Apr 2023 17:29:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6C0110E6D3;
-	Tue,  4 Apr 2023 15:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2FB610E1E5;
+	Tue,  4 Apr 2023 15:29:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com
- [209.85.219.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E461F10E6D3;
- Tue,  4 Apr 2023 15:20:48 +0000 (UTC)
-Received: by mail-yb1-f172.google.com with SMTP id p203so39079423ybb.13;
- Tue, 04 Apr 2023 08:20:48 -0700 (PDT)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A95B10E1E5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Apr 2023 15:29:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680622152;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=2+Wv7W8fsHHIewyLSZIiChbsaRykHPVOAna76qbG3Ps=;
+ b=EPBNbtvRIKmHnt9PwsbAtPPiTiiHtQdJs02XjhZFczWpyI+IlyDWAVQnGJJFN2v4mGO5ZQ
+ 3P1unWX3ljwLc7blAl6kt98QElQOZgEW2XobeZrF9poXFmW2+Rb/ZcKhLH1fCqcFqngqt1
+ ThLut/afjg7h5RJwbuSeDD4N2UeLgBQ=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-216-cqODMBzCMqqx9jnnf3-dQw-1; Tue, 04 Apr 2023 11:29:11 -0400
+X-MC-Unique: cqODMBzCMqqx9jnnf3-dQw-1
+Received: by mail-qt1-f199.google.com with SMTP id
+ h6-20020ac85846000000b003e3c23d562aso22353439qth.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Apr 2023 08:29:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680621648;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=RwpxyD/L/JdRbsDbYgifY/Bzo8+RV7g8PvhEjly15kU=;
- b=PeKeVB2L3UJchQuV1JI/rmnwfajpGfKHYo4DM6LfvCSfFEYb8T9X2qMwGEdJ0Bq8zU
- ygpHApz9xgyl5FjMAUrT+xJI3mlv3JOCf0N2HpA5mMQwBdgOFIEmaEw3MOFmTAWRCvKa
- ELbe7JY1xUdUJVhb6OdCTmyr6SuJA35weJwWQMmxp1ImMgrv7uUERKWDnKYAnwHSb8U6
- NUpsxz3oAuXit1r2b3kRSPnZ1FbIJXh6cKJ5jiMJxPrVi0FBgQQXOSradDfEXV4C/CyA
- oeaC4ScLBLc5LhMSe+FsIfk/FtkKrjw9ZCwOEoeynwmcCIoAPR5D3yOLtl6EuAdPsfkE
- luMw==
-X-Gm-Message-State: AAQBX9dIBASRry00TBjwArDgDVaFLWE5ibc0Y9ia/RmmejiuC6XCXm4o
- 8dPfs3BeCY++k0K69edNHD4WfmRjQJfv+bnP
-X-Google-Smtp-Source: AKy350bXukHbZMpJD1lcUKipPytDaDrHORb5cOOFMkan2QstmLY7w9k3y86BMF/VD/eNznhKTOodhQ==
-X-Received: by 2002:a25:cdc9:0:b0:b87:4ba5:d588 with SMTP id
- d192-20020a25cdc9000000b00b874ba5d588mr2623320ybf.63.1680621647659; 
- Tue, 04 Apr 2023 08:20:47 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com.
- [209.85.219.175]) by smtp.gmail.com with ESMTPSA id
- o78-20020a25d751000000b00b7767ca748fsm3357288ybg.44.2023.04.04.08.20.47
+ d=1e100.net; s=20210112; t=1680622149;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=2+Wv7W8fsHHIewyLSZIiChbsaRykHPVOAna76qbG3Ps=;
+ b=MSefjszd+u8Nl2dOodt93koyrFZ913gnCXeMv3agddRRNlvzcqhW0myTc3oZFCDHMZ
+ xCdPm2i1k1/QDYw+w6QDo4zqdcFVajD1SD2szWWxPfnAEMnaJUy9V3UCF9SCP+7KCYSe
+ aYEADBJTYsxddfyjrwDdJXcGrHdBMoG5W9yDoVa32qs/xwMZaAYhsdxlMse/rWfQiWSv
+ bQiSw/mg1Gi0XKbQ0yq9XFLCkIB0XhJotAmkUuzJnI/omt0obsZ4fOksf4e+JUEImujU
+ 7YO9orlQBRGYV5abwAGXMAfCfgeg1mnk9zrpSfV9ymi1OSD+2y5JzfLr9JjL/a7iGPVK
+ XgqQ==
+X-Gm-Message-State: AAQBX9fJsT83JOA1CMPZuGCVwwsARjoF44XlCEQ0sL1QFOtl0rHt62JT
+ J8RIYJpH5XdJ9y1PKTuG59AZOnEIgdQMgIAisIBeiceBsz1QLqOMR7IUh0tgdEA2g4LvZIvw4qY
+ yyGGtqTEPNgmMNsk2Grj/pJslh3qCh73IJbkh
+X-Received: by 2002:ad4:5d68:0:b0:5d1:acb8:f126 with SMTP id
+ fn8-20020ad45d68000000b005d1acb8f126mr4995789qvb.38.1680622149448; 
+ Tue, 04 Apr 2023 08:29:09 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YML0mMqHUHs1k3HMJkmmzOZKlEQzKI6fPsfnsSdnmZ4ori6n+2YUk0zwT+gzhWL3EpVBiXSg==
+X-Received: by 2002:ad4:5d68:0:b0:5d1:acb8:f126 with SMTP id
+ fn8-20020ad45d68000000b005d1acb8f126mr4995753qvb.38.1680622149123; 
+ Tue, 04 Apr 2023 08:29:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ cv2-20020ad44d82000000b005dd8b9345f3sm3450439qvb.139.2023.04.04.08.28.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 04 Apr 2023 08:20:47 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id i6so39148404ybu.8;
- Tue, 04 Apr 2023 08:20:47 -0700 (PDT)
-X-Received: by 2002:a25:734d:0:b0:b67:d295:d614 with SMTP id
- o74-20020a25734d000000b00b67d295d614mr1786237ybc.12.1680621646854; Tue, 04
- Apr 2023 08:20:46 -0700 (PDT)
+ Tue, 04 Apr 2023 08:29:00 -0700 (PDT)
+Message-ID: <702c2883-1d51-b609-1e99-337295e6e307@redhat.com>
+Date: Tue, 4 Apr 2023 17:28:40 +0200
 MIME-Version: 1.0
-References: <20220629105658.1373770-1-geert@linux-m68k.org>
- <d27c08a3-0f2f-c0f2-143f-482a33a6a4ce@gmx.de>
- <YvJ3R2HnTSXDF7lx@phenom.ffwll.local>
-In-Reply-To: <YvJ3R2HnTSXDF7lx@phenom.ffwll.local>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 4 Apr 2023 17:20:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUaHd1jgrsCSxCqF-HP2rAo2ODM_ZOjhk7Q4vjuqvt36w@mail.gmail.com>
-Message-ID: <CAMuHMdUaHd1jgrsCSxCqF-HP2rAo2ODM_ZOjhk7Q4vjuqvt36w@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Remove helpers to change
- frame buffer config
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-5-yi.l.liu@intel.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <20230401144429.88673-5-yi.l.liu@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 04/12] vfio-iommufd: Add helper to
+ retrieve iommufd_ctx and devid for vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,93 +91,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Tomi Valkeinen <tomba@kernel.org>,
- David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: eric.auger@redhat.com
+Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
+ mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
+ cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
+ yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+Hi,
 
-On Tue, Aug 9, 2022 at 5:03=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> wrot=
-e:
-> On Sat, Jul 02, 2022 at 08:05:54PM +0200, Helge Deller wrote:
-> > On 6/29/22 12:56, Geert Uytterhoeven wrote:
-> > > The DRM fbdev emulation layer does not support pushing back
-> > > changes to fb_var_screeninfo to KMS.
-> > >
-> > > However, drm_fb_helper still implements the fb_ops.fb_check_var() and
-> > > fb_ops.fb_set_par() callbacks, but the former fails to validate vario=
-us
-> > > parameters passed from userspace.  Hence unsanitized and possible
-> > > invaled values are passed up through the fbdev, fbcon, and console
-> > > stack, which has become an endless source of security issues reported
-> > > against fbdev.
-> > >
-> > > Fix this by not populating the fb_ops.fb_check_var() and
-> > > fb_ops.fb_set_par() callbacks, as there is no point in providing them=
- if
-> > > the frame buffer config cannot be changed anyway.  This makes the fbd=
-ev
-> > > core aware that making changes to the frame buffer config is not
-> > > supported, so it will always return the current config.
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> >
-> > It's unfortunate that DRM currently isn't able to switch resolutions
-> > at runtime.
-> >
-> > With that in mind I agree with Geert that it's probably better to
-> > disable (or drop) that code until DRM can cope with fbdev's
-> > interface to switch resolutions.
-> >
-> > Furthermore, with the upcoming patches to fbcon (which prevents crashes=
- on
-> > invalid userspace input), you will face a kernel WARNING if you call fb=
-set
-> > to switch screen resolutions with DRM drivers.
-> >
-> > So, from my side (although I'd prefer a better fix for DRM):
-> >
-> > Acked-by: Helge Deller <deller@gmx.de>
+On 4/1/23 16:44, Yi Liu wrote:
+> This is needed by the vfio-pci driver to report affected devices in the
+> hot reset for a given device.
 >
-> So maybe I'm missing something, but I think this breaks a lot of stuff.
-> The issue is that fbdev is only a subordinate owner of the kms device, if
-> there's a real drm kms owner around that wins.
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/iommu/iommufd/device.c | 12 ++++++++++++
+>  drivers/vfio/iommufd.c         | 14 ++++++++++++++
+>  include/linux/iommufd.h        |  3 +++
+>  include/linux/vfio.h           | 13 +++++++++++++
+>  4 files changed, 42 insertions(+)
 >
-> Which means when you switch back then set_par needs to restore the fbdev
-> framebuffer. So that might break some recovery/use-cases.
+> diff --git a/drivers/iommu/iommufd/device.c b/drivers/iommu/iommufd/device.c
+> index 25115d401d8f..04a57aa1ae2c 100644
+> --- a/drivers/iommu/iommufd/device.c
+> +++ b/drivers/iommu/iommufd/device.c
+> @@ -131,6 +131,18 @@ void iommufd_device_unbind(struct iommufd_device *idev)
+>  }
+>  EXPORT_SYMBOL_NS_GPL(iommufd_device_unbind, IOMMUFD);
+>  
+> +struct iommufd_ctx *iommufd_device_to_ictx(struct iommufd_device *idev)
+> +{
+> +	return idev->ictx;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_ictx, IOMMUFD);
+> +
+> +u32 iommufd_device_to_id(struct iommufd_device *idev)
+> +{
+> +	return idev->obj.id;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_id, IOMMUFD);
+> +
+>  static int iommufd_device_setup_msi(struct iommufd_device *idev,
+>  				    struct iommufd_hw_pagetable *hwpt,
+>  				    phys_addr_t sw_msi_start)
+> diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> index 88b00c501015..809f2dd73b9e 100644
+> --- a/drivers/vfio/iommufd.c
+> +++ b/drivers/vfio/iommufd.c
+> @@ -66,6 +66,20 @@ void vfio_iommufd_unbind(struct vfio_device *vdev)
+>  		vdev->ops->unbind_iommufd(vdev);
+>  }
+>  
+> +struct iommufd_ctx *vfio_iommufd_physical_ictx(struct vfio_device *vdev)
+> +{
+> +	if (!vdev->iommufd_device)
+> +		return NULL;
+> +	return iommufd_device_to_ictx(vdev->iommufd_device);
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_ictx);
+> +
+> +void vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id)
+> +{
+> +	if (vdev->iommufd_device)
+> +		*id = iommufd_device_to_id(vdev->iommufd_device);
+since there is no return value, may be worth to add at least a WARN_ON
+in case of !vdev->iommufd_device
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_devid);
+>  /*
+>   * The physical standard ops mean that the iommufd_device is bound to the
+>   * physical device vdev->dev that was provided to vfio_init_group_dev(). Drivers
+> diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
+> index 1129a36a74c4..ac96df406833 100644
+> --- a/include/linux/iommufd.h
+> +++ b/include/linux/iommufd.h
+> @@ -24,6 +24,9 @@ void iommufd_device_unbind(struct iommufd_device *idev);
+>  int iommufd_device_attach(struct iommufd_device *idev, u32 *pt_id);
+>  void iommufd_device_detach(struct iommufd_device *idev);
+>  
+> +struct iommufd_ctx *iommufd_device_to_ictx(struct iommufd_device *idev);
+> +u32 iommufd_device_to_id(struct iommufd_device *idev);
+> +
+>  struct iommufd_access_ops {
+>  	u8 needs_pin_pages : 1;
+>  	void (*unmap)(void *data, unsigned long iova, unsigned long length);
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index 3188d8a374bd..97a1174b922f 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -113,6 +113,8 @@ struct vfio_device_ops {
+>  };
+>  
+>  #if IS_ENABLED(CONFIG_IOMMUFD)
+> +struct iommufd_ctx *vfio_iommufd_physical_ictx(struct vfio_device *vdev);
+> +void vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id);
+>  int vfio_iommufd_physical_bind(struct vfio_device *vdev,
+>  			       struct iommufd_ctx *ictx, u32 *out_device_id);
+>  void vfio_iommufd_physical_unbind(struct vfio_device *vdev);
+> @@ -122,6 +124,17 @@ int vfio_iommufd_emulated_bind(struct vfio_device *vdev,
+>  void vfio_iommufd_emulated_unbind(struct vfio_device *vdev);
+>  int vfio_iommufd_emulated_attach_ioas(struct vfio_device *vdev, u32 *pt_id);
+>  #else
+> +static inline struct iommufd_ctx *
+> +vfio_iommufd_physical_ictx(struct vfio_device *vdev)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline void
+> +vfio_iommufd_physical_devid(struct vfio_device *vdev, u32 *id)
+> +{
+> +}
+> +
+>  #define vfio_iommufd_physical_bind                                      \
+>  	((int (*)(struct vfio_device *vdev, struct iommufd_ctx *ictx,   \
+>  		  u32 *out_device_id)) NULL)
+besides
 
-Upon closer look, I think I was a bit too over-eager, and we can keep
-the implementation of fb_ops.fb_set_par().
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
 
-> The other thing is that I think this also breaks the scanout offset, and
-> people do use that for double-buffering on top of fbdev on top of drm
-> drivers. So we can't just nuke it completely.
+Eric
 
-You mean panning? That does not need fb_ops.fb_check_var(), as it
-should be done through fb_ops.fb_pan_display().
-
-> For better or worse I think we need to keep playing the whack-a-mole game=
-.
-> Or do I miss something here?
-
-With the above fixed, we can continue whacking the drm bugs in
-implementing the fbdev API?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
