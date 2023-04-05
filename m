@@ -1,65 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6426D769B
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:16:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5443F6D76A3
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:17:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6077710E864;
-	Wed,  5 Apr 2023 08:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4522A10E879;
+	Wed,  5 Apr 2023 08:16:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1A0010E864;
- Wed,  5 Apr 2023 08:15:59 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 82E9722A0C;
- Wed,  5 Apr 2023 08:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1680682558; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Kwcy03IAwt/j6MA5gbkQA9uJVPqeDwduNTy2ePvnbVc=;
- b=1dBEhUhTpEnCBc2fFXxTYbTAW0ckD1C2ZJq7V3CQY/cv3VlWoQQklRxPTCRFzLn/olWw1E
- clH4+Mr3Z7dwingle18Pa9LIYoE6eAIE+jDpKItGmtd8Vn9bZAVXXV52XA7bA6J9Ng70gf
- ke4nY0RdfH9zr8De09wz7YHJpXj235g=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1680682558;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Kwcy03IAwt/j6MA5gbkQA9uJVPqeDwduNTy2ePvnbVc=;
- b=YapbTBEtypxRgiQFncpMkBpvCSSf4tuUk288TpJFGxGkiikYvYiAQ+CUe1KkuDic1X0Ni+
- YOJe4FcKCHKg2/CQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5E3A213A10;
- Wed,  5 Apr 2023 08:15:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id k+QDFj4uLWR6OwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 05 Apr 2023 08:15:58 +0000
-Message-ID: <f00a1032-51bc-e556-6c0a-475e3ea89eb3@suse.de>
-Date: Wed, 5 Apr 2023 10:15:57 +0200
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E417610E878
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 08:16:55 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-4fd1f2a0f82so7207a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 01:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680682614; x=1683274614;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=qP3CRuOXtd0j8FH60pKDaapzSWilH3ybWh3D2BA2OVg=;
+ b=GjLl3ua24l4Ov2GQ+uRq2bGA8FFfCelF7z+YR0ZN0ez6Tb4K/TAjDMG+xwe6+xxnVB
+ zDKECAoNBIqH/aGbAtpyUXhaguJpZGG0JAO+CKxjhC0A6uMVAxvdMKJLve7rhnouoiMz
+ MgVPIGv0iQKsnn1XemqCEGw2vg0Ipw9iOiJkk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680682614; x=1683274614;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=qP3CRuOXtd0j8FH60pKDaapzSWilH3ybWh3D2BA2OVg=;
+ b=hpkVfurCFqXYcR+EJwRs/kUY4uXt+kVE4yf5nX/NVEhUekEEK00nSqtyCf5Icmusfn
+ txjzSntF86NOsfvqFB44o5YlaYM3ptn09huvlTVBip4Dn55Lo/oOiYF5TehHoN2wPh2v
+ myIhG7kzxZMoknu57jgZDEYVYqeKDPS+UV65OHbH1lMhEo1MAuvYDYtsF2RJrxIYcOeq
+ SpAssdrWYgua6N8CVa6mgxUjjQDUHLYl1nYN3tfSt/S4nEvt8TMz5sJwxhAzd9XL+fLa
+ 99yZujbNo6Uz4K3hAwWybFmwe/MBBFt6RyeAhmrBGpFqOmcs9y0tlyy3cHfqfjvwpNrN
+ gwog==
+X-Gm-Message-State: AAQBX9faCKzqnvOR5+ofPpsLrNSk0lKSfevO9KwT5hRxb9+AQBdXoFH5
+ OKisUxJMmo2RqHWsRvlyHYWhXg==
+X-Google-Smtp-Source: AKy350ZYz7OQVeF14jLM9v6G4L5hAkxBt0za08VJNASxD8vm5spaVp2Ou8H/3c31A0MGkaLzR96a3g==
+X-Received: by 2002:a05:6402:524e:b0:4fd:2978:d80 with SMTP id
+ t14-20020a056402524e00b004fd29780d80mr1086176edd.1.1680682614011; 
+ Wed, 05 Apr 2023 01:16:54 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ sz22-20020a1709078b1600b00948da767832sm2748474ejc.152.2023.04.05.01.16.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 01:16:53 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Wed,  5 Apr 2023 10:16:50 +0200
+Message-Id: <20230405081650.797972-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
- <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
- <CAMeQTsYH=gMv--qoOpQEc8-ozsW6ocN6zhw=Mjjat3L_xw=vwA@mail.gmail.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <CAMeQTsYH=gMv--qoOpQEc8-ozsW6ocN6zhw=Mjjat3L_xw=vwA@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------dS9tmnWeZ4IeOWEBm0V5Yj0P"
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/atomic-helper: Don't set deadline for
+ modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,120 +68,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Rob Clark <robdclark@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------dS9tmnWeZ4IeOWEBm0V5Yj0P
-Content-Type: multipart/mixed; boundary="------------dZ3cd3vEkkD70KmHXBec7OcU";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <f00a1032-51bc-e556-6c0a-475e3ea89eb3@suse.de>
-Subject: Re: [PATCH 1/8] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
- <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
- <CAMeQTsYH=gMv--qoOpQEc8-ozsW6ocN6zhw=Mjjat3L_xw=vwA@mail.gmail.com>
-In-Reply-To: <CAMeQTsYH=gMv--qoOpQEc8-ozsW6ocN6zhw=Mjjat3L_xw=vwA@mail.gmail.com>
+If the crtc is being switched on or off then the semantics of
+computing the timestampe of the next vblank is somewhat ill-defined.
+And indeed, the code splats with a warning in the timestamp
+computation code. Specifically it hits the check to make sure that
+atomic drivers have full set up the timing constants in the drm_vblank
+structure, and that's just not the case before the crtc is actually
+on.
 
---------------dZ3cd3vEkkD70KmHXBec7OcU
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+For robustness it seems best to just not set deadlines for modesets.
 
-SGkgUGF0cmlrDQoNCkFtIDA1LjA0LjIzIHVtIDEwOjA1IHNjaHJpZWIgUGF0cmlrIEpha29i
-c3NvbjoNCj4gT24gV2VkLCBBcHIgNSwgMjAyMyBhdCA5OjQ54oCvQU0gVGhvbWFzIFppbW1l
-cm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+IHdyb3RlOg0KPj4NCj4+IEhpDQo+Pg0KPj4g
-QW0gMDQuMDQuMjMgdW0gMjI6MTggc2NocmllYiBEYW5pZWwgVmV0dGVyOg0KPj4+IFRoaXMg
-b25lIG51a2VzIGFsbCBmcmFtZWJ1ZmZlcnMsIHdoaWNoIGlzIGEgYml0IG11Y2guIEluIHJl
-YWxpdHkNCj4+PiBnbWE1MDAgaXMgaWdwdSBhbmQgbmV2ZXIgc2hpcHBlZCB3aXRoIGFueXRo
-aW5nIGRpc2NyZXRlLCBzbyB0aGVyZSBzaG91bGQNCj4+PiBub3QgYmUgYW55IGRpZmZlcmVu
-Y2UuDQo+Pj4NCj4+PiB2MjogVW5mb3J0dW5hdGVseSB0aGUgZnJhbWVidWZmZXIgc2l0cyBv
-dXRzaWRlIG9mIHRoZSBwY2kgYmFycyBmb3INCj4+PiBnbWE1MDAsIGFuZCBzbyBvbmx5IHVz
-aW5nIHRoZSBwY2kgaGVscGVycyB3b24ndCBiZSBlbm91Z2guIE90b2ggaWYgd2UNCj4+PiBv
-bmx5IHVzZSBub24tcGNpIGhlbHBlciwgdGhlbiB3ZSBkb24ndCBnZXQgdGhlIHZnYSBoYW5k
-bGluZywgYW5kDQo+Pj4gc3Vic2VxdWVudCByZWZhY3RvcmluZyB0byB1bnRhbmdsZSB0aGVz
-ZSBzcGVjaWFsIGNhc2VzIHdvbid0IHdvcmsuDQo+Pj4NCj4+PiBJdCdzIG5vdCBwcmV0dHks
-IGJ1dCB0aGUgc2ltcGxlc3QgZml4IChzaW5jZSBnbWE1MDAgcmVhbGx5IGlzIHRoZSBvbmx5
-DQo+Pj4gcXVpcmt5IHBjaSBkcml2ZXIgbGlrZSB0aGlzIHdlIGhhdmUpIGlzIHRvIGp1c3Qg
-aGF2ZSBib3RoIGNhbGxzLg0KPj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRl
-ciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+DQo+Pj4gQ2M6IFBhdHJpayBKYWtvYnNzb24g
-PHBhdHJpay5yLmpha29ic3NvbkBnbWFpbC5jb20+DQo+Pj4gQ2M6IFRob21hcyBaaW1tZXJt
-YW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4+IENjOiBKYXZpZXIgTWFydGluZXogQ2Fu
-aWxsYXMgPGphdmllcm1AcmVkaGF0LmNvbT4NCj4+PiAtLS0NCj4+PiAgICBkcml2ZXJzL2dw
-dS9kcm0vZ21hNTAwL3BzYl9kcnYuYyB8IDkgKysrKysrKy0tDQo+Pj4gICAgMSBmaWxlIGNo
-YW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4+Pg0KPj4+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9nbWE1MDAvcHNiX2Rydi5jDQo+Pj4gaW5kZXggMmNlOTZiMWI5Yzc0Li5mMWUwZWVk
-OGZlYTQgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2
-LmMNCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYw0KPj4+IEBA
-IC00MjIsMTIgKzQyMiwxNyBAQCBzdGF0aWMgaW50IHBzYl9wY2lfcHJvYmUoc3RydWN0IHBj
-aV9kZXYgKnBkZXYsIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkICplbnQpDQo+Pj4NCj4+
-PiAgICAgICAgLyoNCj4+PiAgICAgICAgICogV2UgY2Fubm90IHlldCBlYXNpbHkgZmluZCB0
-aGUgZnJhbWVidWZmZXIncyBsb2NhdGlvbiBpbiBtZW1vcnkuIFNvDQo+Pj4gLSAgICAgICog
-cmVtb3ZlIGFsbCBmcmFtZWJ1ZmZlcnMgaGVyZS4NCj4+PiArICAgICAgKiByZW1vdmUgYWxs
-IGZyYW1lYnVmZmVycyBoZXJlLiBOb3RlIHRoYXQgd2Ugc3RpbGwgd2FudCB0aGUgcGNpIHNw
-ZWNpYWwNCj4+PiArICAgICAgKiBoYW5kbGluZyB0byBraWNrIG91dCB2Z2Fjb24uDQo+Pj4g
-ICAgICAgICAqDQo+Pj4gICAgICAgICAqIFRPRE86IFJlZmFjdG9yIHBzYl9kcml2ZXJfbG9h
-ZCgpIHRvIG1hcCB2ZGNfcmVnIGVhcmxpZXIuIFRoZW4gd2UNCj4+PiAgICAgICAgICogICAg
-ICAgbWlnaHQgYmUgYWJsZSB0byByZWFkIHRoZSBmcmFtZWJ1ZmZlciByYW5nZSBmcm9tIHRo
-ZSBkZXZpY2UuDQo+Pj4gICAgICAgICAqLw0KPj4+IC0gICAgIHJldCA9IGRybV9hcGVydHVy
-ZV9yZW1vdmVfZnJhbWVidWZmZXJzKHRydWUsICZkcml2ZXIpOw0KPj4+ICsgICAgIHJldCA9
-IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKGZhbHNlLCAmZHJpdmVyKTsNCj4+
-PiArICAgICBpZiAocmV0KQ0KPj4+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4+PiAr
-DQo+Pj4gKyAgICAgcmV0ID0gZHJtX2FwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19wY2lf
-ZnJhbWVidWZmZXJzKHBkZXYsICZkcml2ZXIpOw0KPj4NCj4+IFRoaXMgc2ltcGx5IGlzbid0
-IGl0LiBJZiB5b3UgaGF2ZSB0byB3b3JrIGFyb3VuZCB5b3VyIG93biBBUEksIGl0J3MgdGlt
-ZQ0KPj4gdG8gcmV0aGluayB0aGUgQVBJLg0KPiANCj4gV291bGQgaXQgaGVscCBpZiB3ZSBm
-aWd1cmUgb3V0IHRoZSBzdG9sZW4gcmFuZ2UgaGVyZT8gSXQgY2FuDQo+IHN1cHBvc2VkbHkg
-YmUgZm91bmQgYnkgcmVhZGluZyBwY2kgY29uZmlnIHNwYWNlLCBzbyBubyBuZWVkIHRvIG1h
-cCB2ZGMNCj4gcmVncyBmaXJzdC4NCj4gDQo+IEdCU00gaXMgdGhlIHN0b2xlbiBiYXNlIGFu
-ZCBUT0xVRCAtIEdCU00gPSBzdG9sZW4gc2l6ZS4gT3IgcmVhZCB0aGUNCj4gc2l6ZSBvdXQg
-ZnJvbSBHR0MuIE5vdCBzdXJlIHdoaWNoIG9uZSBpcyBtb3JlIHJlbGlhYmxlLg0KDQpTZWUg
-bXkgb3RoZXIgZW1haWwgaGVyZS4gV2UnZCBzdGlsbCBuZWVkIGEgbmljZSBpbnRlcmZhY2Ug
-Zm9yIHRoZSANCmFwZXJ0dXJlIGhlbHBlcnMuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoN
-Cj4gDQo+IC1QYXRyaWsNCj4gDQo+Pg0KPj4gQmVzdCByZWdhcmRzDQo+PiBUaG9tYXMNCj4+
-DQo+Pj4gICAgICAgIGlmIChyZXQpDQo+Pj4gICAgICAgICAgICAgICAgcmV0dXJuIHJldDsN
-Cj4+Pg0KPj4NCj4+IC0tDQo+PiBUaG9tYXMgWmltbWVybWFubg0KPj4gR3JhcGhpY3MgRHJp
-dmVyIERldmVsb3Blcg0KPj4gU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJI
-DQo+PiBNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCj4+IChIUkIg
-MzY4MDksIEFHIE7DvHJuYmVyZykNCj4+IEdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYN
-Cg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0K
-U1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5
-MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdl
-c2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+Link: https://lore.kernel.org/dri-devel/dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org/
+Fixes: d39e48ca80c0 ("drm/atomic-helper: Set fence deadline for vblank")
+Cc: Rob Clark <robdclark@chromium.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # test patch only
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
---------------dZ3cd3vEkkD70KmHXBec7OcU--
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index f21b5a74176c..6640d80d84f3 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
+ 	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
+ 		ktime_t v;
+ 
++		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
++			continue;
++
+ 		if (drm_crtc_next_vblank_start(crtc, &v))
+ 			continue;
+ 
+-- 
+2.40.0
 
---------------dS9tmnWeZ4IeOWEBm0V5Yj0P
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmQtLj0FAwAAAAAACgkQlh/E3EQov+CQ
-8Q//UW2yp3qaPbBTXKjWBBb12ya0MkukspkCYb36VMMUAlrohvqSMbK69coLdwRm03rLswq4Ms4s
-nwp0lMUNj3sqdJvj354wlGrYueRLCgTbdAvEoYIC8rab1TDgxqLVEKXyXTkk9Kfx0dC3XHw9ZgEC
-+gTPCc/0fefUofpMyIczVNX/7cxWXKX97phxH6vgZUJWv1N1pUrWThKEV0OlJuY+Rq9KbxFsI1a0
-vzGM2gHdHcmWz2PlxL8J6Non0dQnxeRx2pAx8as3p7+Cv8f32zBi2s3k/dfp550r56UPLO3X6fyM
-SfOzq+Ejf1e4gKMzAsjlCohsKElvuxQboXgSApbctECYjfK+jRzHu1Oszwi1rFKGTn2U6pm2BNCH
-+gJZdznbaQpkqm++pyJUcvtfCqo9IW3pG8pFs1QX5QaIwmJTPSoCv5//MxWcx+X2RXV/0Apcf40p
-CvchaWzMFBv/BfbzDLkZxxsowk4Y/Ra/WkgEALInOdTmMhN418H5hVpGWAYDwjieRvPXphmkIQc9
-hmGfJs8UXrzCb5IR2xwKnXzGGehX58ZHwGJdDYj/zUeqphsF7MeHeQcGPw0CswDE5hCFBq+oxCbw
-Fd1UAZC7wj/JVkmz09ZFAJ4isZjR8vlrcy8Mkkd/vDUQSBfIpvt9nC3Qe4k6R+0q09XGRqcvkMYb
-S00=
-=nkqU
------END PGP SIGNATURE-----
-
---------------dS9tmnWeZ4IeOWEBm0V5Yj0P--
