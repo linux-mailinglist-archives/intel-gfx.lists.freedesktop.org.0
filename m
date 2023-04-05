@@ -2,83 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4F86D765B
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8076D7658
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:08:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C85E010E873;
-	Wed,  5 Apr 2023 08:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5F810E86A;
+	Wed,  5 Apr 2023 08:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D33D810E870
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 08:08:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680682079;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB4E010E868;
+ Wed,  5 Apr 2023 08:07:56 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id EF9062288F;
+ Wed,  5 Apr 2023 08:07:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1680682074; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=8U/LZFacKxvEJhXlhZDIRP53Ufg1yjOKWtnSX+iUULI=;
- b=f3NzmqA4Z00Bq3B5A8OeKCu7iNGhXFfxDF6Z5InfRWviQHIp2qHZWoqaoRAmagQxDYnX/s
- lIZPsOnyvJni5cIk0TvBeq/Xrk7g88yq2NkGEpkWA0yv9yyggDOof2z4pxRf/VcClUOB1h
- UcjGT/pEd0oFXa4mJd0CvSyEGCKe/1I=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-340-wscQB97aOvWhtdj62a4mgg-1; Wed, 05 Apr 2023 04:07:58 -0400
-X-MC-Unique: wscQB97aOvWhtdj62a4mgg-1
-Received: by mail-qt1-f200.google.com with SMTP id
- m7-20020a05622a118700b003e4e203bc30so21531506qtk.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 01:07:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680682078;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=8U/LZFacKxvEJhXlhZDIRP53Ufg1yjOKWtnSX+iUULI=;
- b=UpU3Gxa0roSNQkq5nArCSmwDvYWCIGPFnrQvdkkO5sBR5meRKhajO1u7+bHv+1ws7Q
- sNDr7WoYznpLNpyQ2hx8ZcfY6Oi5HfPa9prXZn0mSIKvjAFALSuI5gwSKxoHuB0wGH0p
- SGrjqdxUQ15C6PyzeJiyvCQqrlbMJu4MIbEepV7SiIPiDxlQRkcOoJDp3Ff3OoOUwW2k
- KyQB5tMTrIbP1+G9G8V3x0MeQdGMaH9Esn0/3kII5lIW3y7RKICUBlH3yvD1f8RqT5np
- HLTUED6YWHw1Ivr62a6MIyzOon1hIVWlG0HL3cgltAXm9ic6mgJe9JD5HEU0qzuOPpOY
- sVwg==
-X-Gm-Message-State: AAQBX9fL4wdBQPKAz1/k50a8PNMmjYCeYy8TM5i7howwBmsWn8zcR9EV
- Zi1FC3Gn0hfLuyiMZ9lKxBAbldDZeTXMEnlLH4PY1PW2qY0JAgcLcCCv1RpGkzSZZp0L84WJulH
- JZnx0BOcA3Y6Xmaso0G8Ie/OjD3oz
-X-Received: by 2002:a05:6214:27e8:b0:5a9:2bc0:ea8b with SMTP id
- jt8-20020a05621427e800b005a92bc0ea8bmr8017262qvb.47.1680682077930; 
- Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZgI1tC1SFeJbsYcH6xJzpDHdFw2Hx/LUgx1rr9zrgKewKcPFylgHGZySRoD8+iCQ6DLLI0oA==
-X-Received: by 2002:a05:6214:27e8:b0:5a9:2bc0:ea8b with SMTP id
- jt8-20020a05621427e800b005a92bc0ea8bmr8017242qvb.47.1680682077580; 
- Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id
- mz6-20020a0562142d0600b005dd8b9345e9sm4012411qvb.129.2023.04.05.01.07.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 Apr 2023 01:07:56 -0700 (PDT)
-Message-ID: <f92c5f99-f519-e67c-71a9-476f08e4117c@redhat.com>
-Date: Wed, 5 Apr 2023 10:07:50 +0200
+ bh=O8fZEnvBG/mcR/mOca4+aEiu6Dj6/WZaI6ETmEv44Ks=;
+ b=k4mcS9tdSgdx275+DY/fpBAo4Q7y3FoPpqnnHJvrEiD614F1bJQzJATRhdFBDbazWsUF4z
+ khkl1Ar4TniS0Hs4CK1gJv+5Oc2OwmdluE81+Ggc6b8ebK2xiwSVvLojEj5kXhHxbOYNZ4
+ CtpAkz3YsYRLNcR1/nKpy/ctYfO+so8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1680682074;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=O8fZEnvBG/mcR/mOca4+aEiu6Dj6/WZaI6ETmEv44Ks=;
+ b=n6eo/Lm+gTBVGhzsCm2K0KgaNAXsF5McwVlcwwcI+g25g9hE7xLGTVIwXiTK3jYs0PKvIo
+ gwnQNgidGV22NpDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id D070A13A10;
+ Wed,  5 Apr 2023 08:07:54 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id EvDzMVosLWTaNgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 05 Apr 2023 08:07:54 +0000
+Message-ID: <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+Date: Wed, 5 Apr 2023 10:07:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
- kevin.tian@intel.com
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-8-yi.l.liu@intel.com>
-From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <20230401144429.88673-8-yi.l.liu@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+ Thunderbird/102.9.0
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 07/12] vfio: Accpet device file from vfio
- PCI hot reset path
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+In-Reply-To: <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------Od0r0Z6F0rRD0laA1EP1BvzX"
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,84 +72,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
- mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
- cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
- yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------Od0r0Z6F0rRD0laA1EP1BvzX
+Content-Type: multipart/mixed; boundary="------------sWQZMNvGet9b6O0LeWhd1TIO";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Message-ID: <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+Subject: Re: [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+In-Reply-To: <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
 
-On 4/1/23 16:44, Yi Liu wrote:
-> This extends both vfio_file_is_valid() and vfio_file_has_dev() to accept
-> device file from the vfio PCI hot reset.
-typo in the title s/Accpet/Accept
->
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
->  1 file changed, 19 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index fe7446805afd..ebbb6b91a498 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops = {
->  	.mmap		= vfio_device_fops_mmap,
->  };
->  
-> +static struct vfio_device *vfio_device_from_file(struct file *file)
-> +{
-> +	struct vfio_device *device = file->private_data;
-> +
-> +	if (file->f_op != &vfio_device_fops)
-> +		return NULL;
-> +	return device;
-> +}
-> +
->  /**
->   * vfio_file_is_valid - True if the file is valid vfio file
->   * @file: VFIO group file or VFIO device file
->   */
->  bool vfio_file_is_valid(struct file *file)
->  {
-> -	return vfio_group_from_file(file);
-> +	return vfio_group_from_file(file) ||
-> +	       vfio_device_from_file(file);
->  }
->  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
->  
-> @@ -1174,12 +1184,17 @@ EXPORT_SYMBOL_GPL(vfio_file_is_valid);
->  bool vfio_file_has_dev(struct file *file, struct vfio_device *device)
->  {
->  	struct vfio_group *group;
-> +	struct vfio_device *vdev;
->  
->  	group = vfio_group_from_file(file);
-> -	if (!group)
-> -		return false;
-> +	if (group)
-> +		return vfio_group_has_dev(group, device);
-> +
-> +	vdev = vfio_device_from_file(file);
-> +	if (vdev)
-> +		return vdev == device;
->  
-> -	return vfio_group_has_dev(group, device);
-> +	return false;
->  }
->  EXPORT_SYMBOL_GPL(vfio_file_has_dev);
->  
-With Alex' suggestion
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+--------------sWQZMNvGet9b6O0LeWhd1TIO
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Eric
+SGkNCg0KQW0gMDUuMDQuMjMgdW0gMDk6NDkgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoN
+Cj4gSGkNCj4gDQo+IEFtIDA0LjA0LjIzIHVtIDIyOjE4IHNjaHJpZWIgRGFuaWVsIFZldHRl
+cjoNCj4+IFRoaXMgb25lIG51a2VzIGFsbCBmcmFtZWJ1ZmZlcnMsIHdoaWNoIGlzIGEgYml0
+IG11Y2guIEluIHJlYWxpdHkNCj4+IGdtYTUwMCBpcyBpZ3B1IGFuZCBuZXZlciBzaGlwcGVk
+IHdpdGggYW55dGhpbmcgZGlzY3JldGUsIHNvIHRoZXJlIHNob3VsZA0KPj4gbm90IGJlIGFu
+eSBkaWZmZXJlbmNlLg0KPj4NCj4+IHYyOiBVbmZvcnR1bmF0ZWx5IHRoZSBmcmFtZWJ1ZmZl
+ciBzaXRzIG91dHNpZGUgb2YgdGhlIHBjaSBiYXJzIGZvcg0KPj4gZ21hNTAwLCBhbmQgc28g
+b25seSB1c2luZyB0aGUgcGNpIGhlbHBlcnMgd29uJ3QgYmUgZW5vdWdoLiBPdG9oIGlmIHdl
+DQo+PiBvbmx5IHVzZSBub24tcGNpIGhlbHBlciwgdGhlbiB3ZSBkb24ndCBnZXQgdGhlIHZn
+YSBoYW5kbGluZywgYW5kDQo+PiBzdWJzZXF1ZW50IHJlZmFjdG9yaW5nIHRvIHVudGFuZ2xl
+IHRoZXNlIHNwZWNpYWwgY2FzZXMgd29uJ3Qgd29yay4NCj4+DQo+PiBJdCdzIG5vdCBwcmV0
+dHksIGJ1dCB0aGUgc2ltcGxlc3QgZml4IChzaW5jZSBnbWE1MDAgcmVhbGx5IGlzIHRoZSBv
+bmx5DQo+PiBxdWlya3kgcGNpIGRyaXZlciBsaWtlIHRoaXMgd2UgaGF2ZSkgaXMgdG8ganVz
+dCBoYXZlIGJvdGggY2FsbHMuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRl
+ciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+DQo+PiBDYzogUGF0cmlrIEpha29ic3NvbiA8
+cGF0cmlrLnIuamFrb2Jzc29uQGdtYWlsLmNvbT4NCj4+IENjOiBUaG9tYXMgWmltbWVybWFu
+biA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4+IENjOiBKYXZpZXIgTWFydGluZXogQ2FuaWxs
+YXMgPGphdmllcm1AcmVkaGF0LmNvbT4NCj4+IC0tLQ0KPj4gwqAgZHJpdmVycy9ncHUvZHJt
+L2dtYTUwMC9wc2JfZHJ2LmMgfCA5ICsrKysrKystLQ0KPj4gwqAgMSBmaWxlIGNoYW5nZWQs
+IDcgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2LmMgDQo+PiBiL2RyaXZlcnMvZ3B1L2Ry
+bS9nbWE1MDAvcHNiX2Rydi5jDQo+PiBpbmRleCAyY2U5NmIxYjljNzQuLmYxZTBlZWQ4ZmVh
+NCAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2Rydi5jDQo+
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYw0KPj4gQEAgLTQyMiwx
+MiArNDIyLDE3IEBAIHN0YXRpYyBpbnQgcHNiX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAq
+cGRldiwgDQo+PiBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQ0KPj4gwqDCoMKg
+wqDCoCAvKg0KPj4gwqDCoMKgwqDCoMKgICogV2UgY2Fubm90IHlldCBlYXNpbHkgZmluZCB0
+aGUgZnJhbWVidWZmZXIncyBsb2NhdGlvbiBpbiANCj4+IG1lbW9yeS4gU28NCj4+IC3CoMKg
+wqDCoCAqIHJlbW92ZSBhbGwgZnJhbWVidWZmZXJzIGhlcmUuDQo+PiArwqDCoMKgwqAgKiBy
+ZW1vdmUgYWxsIGZyYW1lYnVmZmVycyBoZXJlLiBOb3RlIHRoYXQgd2Ugc3RpbGwgd2FudCB0
+aGUgcGNpIA0KPj4gc3BlY2lhbA0KPj4gK8KgwqDCoMKgICogaGFuZGxpbmcgdG8ga2ljayBv
+dXQgdmdhY29uLg0KPj4gwqDCoMKgwqDCoMKgICoNCj4+IMKgwqDCoMKgwqDCoCAqIFRPRE86
+IFJlZmFjdG9yIHBzYl9kcml2ZXJfbG9hZCgpIHRvIG1hcCB2ZGNfcmVnIGVhcmxpZXIuIFRo
+ZW4gd2UNCj4+IMKgwqDCoMKgwqDCoCAqwqDCoMKgwqDCoMKgIG1pZ2h0IGJlIGFibGUgdG8g
+cmVhZCB0aGUgZnJhbWVidWZmZXIgcmFuZ2UgZnJvbSB0aGUgDQo+PiBkZXZpY2UuDQo+PiDC
+oMKgwqDCoMKgwqAgKi8NCj4+IC3CoMKgwqAgcmV0ID0gZHJtX2FwZXJ0dXJlX3JlbW92ZV9m
+cmFtZWJ1ZmZlcnModHJ1ZSwgJmRyaXZlcik7DQo+PiArwqDCoMKgIHJldCA9IGRybV9hcGVy
+dHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKGZhbHNlLCAmZHJpdmVyKTsNCj4+ICvCoMKgwqAg
+aWYgKHJldCkNCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Ow0KPj4gKw0KPj4gK8Kg
+wqDCoCByZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX3BjaV9mcmFtZWJ1
+ZmZlcnMocGRldiwgDQo+PiAmZHJpdmVyKTsNCj4gDQo+IFRoaXMgc2ltcGx5IGlzbid0IGl0
+LiBJZiB5b3UgaGF2ZSB0byB3b3JrIGFyb3VuZCB5b3VyIG93biBBUEksIGl0J3MgdGltZSAN
+Cj4gdG8gcmV0aGluayB0aGUgQVBJLg0KDQpIZXJlJ3MgYSBwcm9wb3NhbDoNCg0KICAxKSBB
+cyB5b3UncmUgY2hhbmdpbmcgYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX2RldmljZXMo
+KSBhbnl3YXksIA0KcmVuYW1lIGl0IHRvIGFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19k
+ZXZpY2VzX2F0KCksIHNvIGl0J3MgY2xlYXIgDQp0aGF0IGl0IHRha2VzIGEgbWVtb3J5IHJh
+bmdlLg0KDQogIDIpIEludHJvZHVjZSBhcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfcGNp
+X2RldmljZXNfYXQoKSwgd2hpY2ggdGFrZXMgDQphIFBDSSBkZXZpY2UgYW5kIGEgbWVtb3J5
+IHJhbmdlLiBJdCBzaG91bGQgZG8gdGhlIGlzX3ByaW1hcnkgYW5kIHZnYWNvbiANCnN0dWZm
+LCBidXQga2ljayBvdXQgdGhlIHJhbmdlLg0KDQogIDMpIENhbGwgYXBlcnR1cmVfcmVtb3Zl
+X2NvbmZsaWN0aW5nX3BjaV9kZXZpY2VzX2F0KCkgZnJvbSBnbWE1MDAgd2l0aCANCnRoZSBm
+dWxsIHJhbmdlLiBFdmVuIGlmIHdlIGNhbiByZXN0cnVjdHVyZSBnbWE1MDAgdG8gZGV0ZWN0
+IHRoZSBmaXJtd2FyZSANCmZyYW1lYnVmZmVyIGZyb20gaXRzIHJlZ2lzdGVycyAodGhlcmUn
+cyB0aGlzIFRPRE8gaXRlbSksIHdlJ2Qgc3RpbGwgbmVlZCANCmFwZXJ0dXJlX3JlbW92ZV9j
+b25mbGljdGluZ19wY2lfZGV2aWNlc19hdCgpIHRvIGRvIHNvbWV0aGluZyB1c2VmdWwgd2l0
+aCBpdC4NCg0KICA0KSBXaXRoIHRoYXQsIGFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19k
+ZXZpY2VzX2F0KCkgY2FuIGRyb3AgdGhlIA0KcHJpbWFyeSBhcmd1bWVudC4NCg0KT2YgY291
+cnNlLCB0aGUgRFJNLXJlbGF0ZWQgaW50ZXJmYWNlIHNob3VsZCBiZSBhZGFwdGVkIGFzIHdl
+bGwuIFRoZXJlJ3MgDQphIGJpdCBvZiBvdmVybGFwIGluIHRoZSBpbXBsZW1lbnRhdGlvbiBv
+ZiBib3RoIFBDSSBhcGVydHVyZSBoZWxwZXJzLCBidXQgDQp0aGUgb3ZlcmFsbCBpbnRlcmZh
+Y2UgaXMgY2xlYXIuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IEJlc3QgcmVn
+YXJkcw0KPiBUaG9tYXMNCj4gDQo+PiDCoMKgwqDCoMKgIGlmIChyZXQpDQo+PiDCoMKgwqDC
+oMKgwqDCoMKgwqAgcmV0dXJuIHJldDsNCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4N
+CkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdl
+cm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQoo
+SFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2
+DQo=
 
+--------------sWQZMNvGet9b6O0LeWhd1TIO--
+
+--------------Od0r0Z6F0rRD0laA1EP1BvzX
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmQtLFoFAwAAAAAACgkQlh/E3EQov+Ah
+AA//XYhIoxeiE4lVqrfaUiA+DkKBjIZHWQDrDzorCZ/kek66IkRlA1Ev4Fu3gQSGXF6GFcdukniT
+QUWCrd60WbgzPRaxHc5WxDZkRjD0aVBemkpRVskkv8VeS5WsNzHOHHSQRprhQBQdwluH/Ag8Kmv1
+OCumVWu2rPm654FI2K1AZplmCYkGvqcNkRi/cpdZZ6ReUmGcFAIk2YTvIsD3LGnh0KRWPLJWxmxH
+1i0QEL4dxa6kGIURrp6+zBsk91J1qY/O5PX7N/wB9Qon6SkTTTLPQEJa824d/jFZiapYo8Liv3EW
+W5EzjZxcQUSJYudbOAgUUjpoUPzEEXRquW5cjAcdrYuwQdLrXNPpxhNLcvcsfY9MgdjJZCsCrh3h
+jIUhTTl5DG3bnzdqiF1sL7X4YMNL2IU9C5HTBh+2b3FBojS1cRut5Uq+AP44EZpbEXdEdJ37jisU
+v4DOaRhYW0IJ9fofnRaAsdYLpxukRWOV68ouHskCN4AOkssEpKsnaZVEVCDs5M8WHjVbHeHPELVm
+ptG9v7LYEnLDwE8GNhaiairKfIvsFq6RIzfahtnQ/ASg8H5Fi8isT7RKo59JqDYWRxKhaGlBAULQ
+fotk9vxJsJBNyPCqgK2rjQHnbfxmUBH/wQ+FBObyGQG7R3kKuJ7Vuk/bRfoO1G2bby3JQwHAj/M+
++EY=
+=woH9
+-----END PGP SIGNATURE-----
+
+--------------Od0r0Z6F0rRD0laA1EP1BvzX--
