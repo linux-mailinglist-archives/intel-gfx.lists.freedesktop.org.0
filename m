@@ -1,65 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8016D7DAD
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 15:25:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7346D7DBD
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 15:30:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0333810E95D;
-	Wed,  5 Apr 2023 13:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C710510E962;
+	Wed,  5 Apr 2023 13:30:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF37F10E95D
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 13:25:22 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id
- a640c23a62f3a-930bc91df7bso115558166b.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 06:25:22 -0700 (PDT)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16AAF10E95D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 13:30:09 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-502208f7cb3so69154a12.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 06:30:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680701121;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=CUtULfA5bLZhhAnqEVdsPO4f4/cotKXMpX/rBKrBwCU=;
- b=I+E9eZK0O0wCuaG3RpVayfgX04qh8RTiRNjffiQYHn0uWhBbKHKxNdeIPxonIxU8ED
- Qkikb7s817DwN6tIqPLt7G5Lm0Ro1PkGnzdJGnWgPYTrUO/6zV3wAzqCdzS0JWzDCuKR
- iqXxo30r5oXOhJOTgaZNSkjJWFgk2k4uj5DOk=
+ d=ffwll.ch; s=google; t=1680701407;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=SUMDFnUb6x/ZZ3aLmeYCivVPX9ECbDP10N/pwzMf/TY=;
+ b=G5q9TZU4APq7f1oI4bpOeO8ZoW4XdoPZ8NjfsI3mzFlz8FtZJkyXNPaJgAOTqNugMM
+ Ertdb2/XRMAxZw0KmSjCQPm+ynb8mIzgRxk1ZvVE9yKb7jiIrcXIJTg+1TGSHeE1mWqJ
+ g3xCM47wIOH48f7RmYimheOqtxlMTaWYBRkAc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680701121;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CUtULfA5bLZhhAnqEVdsPO4f4/cotKXMpX/rBKrBwCU=;
- b=n4H6TYcVJulGjV+JnJPllloFjX4oKVbXez8VNo9hturcBWybuG16BIMUoL0dEEe8jJ
- c+tph7Kjj7lvMTx8TWRFB01KriaBZwNL+AVS2/L92DlwU5GT/cHRrmqNlBWGWVmlupzG
- hxCuRN1VtUVCaByiVl+w5QIn6AAkTMOE7NRne+aru56Xo4j51MMyZxPvspgP8J+N8s+F
- jocuVjDbX22/sWiscy4iFlj8tlDpYDnxwH2LNjRA2M2xfclg6RwbZPFdOYXld/34SYia
- 31cMmmLnPbuZgxjrIE5I8D4TJaG4mWRpZIG1ef1AoCW6cneNI0t6q0BbSj0PgLKpuHdK
- womQ==
-X-Gm-Message-State: AAQBX9d5aYB6o4VXgugpNYTlZSUvjSht7VVmnGlbOXNawQ16EqsWC3x3
- PYMH25Tolm2fX+VyUhPjDcrAFg==
-X-Google-Smtp-Source: AKy350ZsNc/rtqu1NEGe53/lPebNr5LRx0G5RnZDO64RCYwlrsQnnIhn7bHPhGrr/AyAN7Sjecj++g==
-X-Received: by 2002:a17:906:2216:b0:947:bff2:1c2d with SMTP id
- s22-20020a170906221600b00947bff21c2dmr3058456ejs.3.1680701120972; 
- Wed, 05 Apr 2023 06:25:20 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680701407;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=SUMDFnUb6x/ZZ3aLmeYCivVPX9ECbDP10N/pwzMf/TY=;
+ b=4phtuDkrvdqwJ/w2fVnNk16nfK8R8UXkW3/vp+/b/zy8s3QhYgwa3v/J8487/78ZB/
+ iFCTZs7Ug19sun8battDi7BphHLMLjmzi9LWA5WcUWtktjlJ+E86A/0D+76bcU5Ugi6N
+ s8XrJiYBeQv5U0dTlvJyiCxpoqhL6t85o8hyGHrEQHR1zsqUZRLubPd1g+IFrT1OZsHs
+ fq7ld2R2WZGy6nveZQPq3AlAv5jGlYRNyXqz/owuPnZAsykIXjfCVb+dY9y9VSPniN7a
+ 4eE6cxiJyWU0oExBwtKHhhOv4VHblrsaUcc4Tagj2xjqwQC9H8AyVfqruDFeD2FEwVzW
+ RygA==
+X-Gm-Message-State: AAQBX9fX/OJ1/ojkUTi3N1RHuXMGiLyUuvnkjt5XACbGX4zuCxyxYkJ+
+ LvV72ip3+4SKhkmFQ1aYPUoiRg==
+X-Google-Smtp-Source: AKy350aqwbvgKPYlKHD4APbk5x6MRXfPK9tyk/uIlCTc9OF+GkwQh3LeL6DbIqr9APLo1RyXU8IYpQ==
+X-Received: by 2002:a17:906:19c:b0:931:5145:c51d with SMTP id
+ 28-20020a170906019c00b009315145c51dmr1680024ejb.0.1680701407162; 
+ Wed, 05 Apr 2023 06:30:07 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- bv20-20020a170906b1d400b009447277c2aasm7371257ejb.39.2023.04.05.06.25.19
+ xi3-20020a170906dac300b00947ab65d932sm7044235ejb.83.2023.04.05.06.30.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 06:25:20 -0700 (PDT)
-Date: Wed, 5 Apr 2023 15:25:18 +0200
+ Wed, 05 Apr 2023 06:30:06 -0700 (PDT)
+Date: Wed, 5 Apr 2023 15:30:04 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Message-ID: <ZC12vod/gn6vpHOR@phenom.ffwll.local>
-References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
- <87h6tud3zc.fsf@minerva.mail-host-address-is-not-set>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZC133MAiKmGLoKY+@phenom.ffwll.local>
+References: <20230405081650.797972-1-daniel.vetter@ffwll.ch>
+ <ZC1oq1+oBWM6PpRR@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87h6tud3zc.fsf@minerva.mail-host-address-is-not-set>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZC1oq1+oBWM6PpRR@intel.com>
 X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/fb-helper: set x/yres_virtual in
- drm_fb_helper_check_var
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helper: Don't set deadline for
+ modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,43 +74,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Rob Clark <robdclark@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- syzbot+20dcf81733d43ddff661@syzkaller.appspotmail.com, stable@vger.kernel.org,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Daniel Vetter <daniel.vetter@intel.com>
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 12:21:11PM +0200, Javier Martinez Canillas wrote:
-> Daniel Vetter <daniel.vetter@ffwll.ch> writes:
+On Wed, Apr 05, 2023 at 03:25:15PM +0300, Ville Syrjälä wrote:
+> On Wed, Apr 05, 2023 at 10:16:50AM +0200, Daniel Vetter wrote:
+> > If the crtc is being switched on or off then the semantics of
+> > computing the timestampe of the next vblank is somewhat ill-defined.
+> > And indeed, the code splats with a warning in the timestamp
+> > computation code. Specifically it hits the check to make sure that
+> > atomic drivers have full set up the timing constants in the drm_vblank
+> > structure, and that's just not the case before the crtc is actually
+> > on.
+> > 
+> > For robustness it seems best to just not set deadlines for modesets.
+> > 
+> > Link: https://lore.kernel.org/dri-devel/dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org/
+> > Fixes: d39e48ca80c0 ("drm/atomic-helper: Set fence deadline for vblank")
+> > Cc: Rob Clark <robdclark@chromium.org>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # test patch only
+> > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_atomic_helper.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> > index f21b5a74176c..6640d80d84f3 100644
+> > --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > @@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
+> >  	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
+> >  		ktime_t v;
+> >  
+> > +		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
+> > +			continue;
 > 
-> > Drivers are supposed to fix this up if needed if they don't outright
-> > reject it. Uncovered by 6c11df58fd1a ("fbmem: Check virtual screen
-> > sizes in fb_set_var()").
-> >
-> 
-> Should have a Fixes: tag ? I understand what was uncovered by that commit
-> but it help distros to figure out if something has to be cherry-picked by
-> them. So I believe that would be useful to have it.
-> 
-> The patch looks good to me.
+> Should this stuff also be skipped when !new_crtc_state->active?
+> I didn't actually check what drm_crtc_next_vblank_start() ends
+> up doing in that case.
 
-The cc: stable should go far enough back for that. Or that was at least my
-idea ... I can add the Fixes: back since I had it but dropped it
-intentionally because it's not really a bug in the fbmem patch.
+Uh yes, I'll spin v2.
 -Daniel
-
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> 
+> > +
+> >  		if (drm_crtc_next_vblank_start(crtc, &v))
+> >  			continue;
+> >  
+> > -- 
+> > 2.40.0
 > 
 > -- 
-> Best regards,
-> 
-> Javier Martinez Canillas
-> Core Platforms
-> Red Hat
-> 
+> Ville Syrjälä
+> Intel
 
 -- 
 Daniel Vetter
