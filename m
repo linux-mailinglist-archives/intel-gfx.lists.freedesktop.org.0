@@ -1,62 +1,84 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC566D7641
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:06:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4F86D765B
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:08:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01BAC10E868;
-	Wed,  5 Apr 2023 08:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C85E010E873;
+	Wed,  5 Apr 2023 08:08:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
- [IPv6:2607:f8b0:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAD0110E869;
- Wed,  5 Apr 2023 08:05:59 +0000 (UTC)
-Received: by mail-pl1-x633.google.com with SMTP id w4so33694421plg.9;
- Wed, 05 Apr 2023 01:05:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680681959;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2nO63yHjmM7KV8jXi9DlquqHoQvjGkN7MPeVvSFMwAI=;
- b=miBKPfKAuWB4Uu423fZqB8x8pgM5mb9Nf2neQLXIUdV3lpoec+ffh3X6LodQlrLyPW
- uAcWIgnWCouL4K8hC8KO2yqa2QWDDoVl4pkzBCDR7lmObsyJEGBkboJCCXg+LCRmbMv7
- rx2LfySz1Z4VJZW+iOjEG6JWZ3hWtXubNKXikM/SMvpDe4D4UEkB8cQM7Yfu+vBzq1Jc
- LQs86jTweXKu7OE+N27Fu77Of6so39CDGP4tatlpwLHA5MajYXLiMvjBphPR1WmRkDCw
- ryvvnXKd7UySWcOfIuIRGi4mmu0qI9vV2fmz1ABr0Vl5W3YINc+xRUrUUCoR//LFmPts
- zUzQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D33D810E870
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 08:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680682079;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=8U/LZFacKxvEJhXlhZDIRP53Ufg1yjOKWtnSX+iUULI=;
+ b=f3NzmqA4Z00Bq3B5A8OeKCu7iNGhXFfxDF6Z5InfRWviQHIp2qHZWoqaoRAmagQxDYnX/s
+ lIZPsOnyvJni5cIk0TvBeq/Xrk7g88yq2NkGEpkWA0yv9yyggDOof2z4pxRf/VcClUOB1h
+ UcjGT/pEd0oFXa4mJd0CvSyEGCKe/1I=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-340-wscQB97aOvWhtdj62a4mgg-1; Wed, 05 Apr 2023 04:07:58 -0400
+X-MC-Unique: wscQB97aOvWhtdj62a4mgg-1
+Received: by mail-qt1-f200.google.com with SMTP id
+ m7-20020a05622a118700b003e4e203bc30so21531506qtk.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 01:07:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680681959;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=2nO63yHjmM7KV8jXi9DlquqHoQvjGkN7MPeVvSFMwAI=;
- b=V8jq4JKQVOiItfxOyOpPTHAZe+M8mmi+mNf9msH8xluuFBsDeiFJG5PMjteaLQxumJ
- rTXO5VMIEm5a2Uk+TfZIJfWoXrB02iI/Z0U5GoDoVczicVcW99wycRE7mXz/sAnogKtx
- IvyazhOQbkjL2lsFptH4tii3gEgQVDAs/Ly0k0aNuRrSKvcW0nhTDjulv/rWK5tD24wS
- getUderDm+QhUQEH1xNFEYZqNSBvInENsx4qg3pwsfSktztQ/M059oeoNS3CZfTc+6eD
- fJ2ZAyCFL5LHoSmxhL5F3+EXKNee02YE98RJ+SSxDFd9TIBgby9R7r2uGOBYfhTYTIra
- 684w==
-X-Gm-Message-State: AAQBX9czrRkozARmS4lO6Z0SuHwYCVY0Yqf6p5n2DwGqZij4hNvPek3i
- vG/AcrtZqMS8XjXrGtUDmxebhvrBBpPrRmxrqtuT1LSCBtI=
-X-Google-Smtp-Source: AKy350ZeC3GA/KJxa1RYtXUL/lvzBiZh0MF5fy9En0+WNJMO2FTLZfnxofRVOQWaSka/Um3OgGBSzsSm7SuvidqttOY=
-X-Received: by 2002:a17:902:f802:b0:1a0:4933:c6ad with SMTP id
- ix2-20020a170902f80200b001a04933c6admr974222plb.3.1680681958588; Wed, 05 Apr
- 2023 01:05:58 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680682078;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8U/LZFacKxvEJhXlhZDIRP53Ufg1yjOKWtnSX+iUULI=;
+ b=UpU3Gxa0roSNQkq5nArCSmwDvYWCIGPFnrQvdkkO5sBR5meRKhajO1u7+bHv+1ws7Q
+ sNDr7WoYznpLNpyQ2hx8ZcfY6Oi5HfPa9prXZn0mSIKvjAFALSuI5gwSKxoHuB0wGH0p
+ SGrjqdxUQ15C6PyzeJiyvCQqrlbMJu4MIbEepV7SiIPiDxlQRkcOoJDp3Ff3OoOUwW2k
+ KyQB5tMTrIbP1+G9G8V3x0MeQdGMaH9Esn0/3kII5lIW3y7RKICUBlH3yvD1f8RqT5np
+ HLTUED6YWHw1Ivr62a6MIyzOon1hIVWlG0HL3cgltAXm9ic6mgJe9JD5HEU0qzuOPpOY
+ sVwg==
+X-Gm-Message-State: AAQBX9fL4wdBQPKAz1/k50a8PNMmjYCeYy8TM5i7howwBmsWn8zcR9EV
+ Zi1FC3Gn0hfLuyiMZ9lKxBAbldDZeTXMEnlLH4PY1PW2qY0JAgcLcCCv1RpGkzSZZp0L84WJulH
+ JZnx0BOcA3Y6Xmaso0G8Ie/OjD3oz
+X-Received: by 2002:a05:6214:27e8:b0:5a9:2bc0:ea8b with SMTP id
+ jt8-20020a05621427e800b005a92bc0ea8bmr8017262qvb.47.1680682077930; 
+ Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZgI1tC1SFeJbsYcH6xJzpDHdFw2Hx/LUgx1rr9zrgKewKcPFylgHGZySRoD8+iCQ6DLLI0oA==
+X-Received: by 2002:a05:6214:27e8:b0:5a9:2bc0:ea8b with SMTP id
+ jt8-20020a05621427e800b005a92bc0ea8bmr8017242qvb.47.1680682077580; 
+ Wed, 05 Apr 2023 01:07:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ mz6-20020a0562142d0600b005dd8b9345e9sm4012411qvb.129.2023.04.05.01.07.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 05 Apr 2023 01:07:56 -0700 (PDT)
+Message-ID: <f92c5f99-f519-e67c-71a9-476f08e4117c@redhat.com>
+Date: Wed, 5 Apr 2023 10:07:50 +0200
 MIME-Version: 1.0
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
- <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
-In-Reply-To: <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
-From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Date: Wed, 5 Apr 2023 10:05:47 +0200
-Message-ID: <CAMeQTsYH=gMv--qoOpQEc8-ozsW6ocN6zhw=Mjjat3L_xw=vwA@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-8-yi.l.liu@intel.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <20230401144429.88673-8-yi.l.liu@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 07/12] vfio: Accpet device file from vfio
+ PCI hot reset path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,94 +91,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: eric.auger@redhat.com
+Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
+ mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
+ cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
+ yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 5, 2023 at 9:49=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse.=
-de> wrote:
->
-> Hi
->
-> Am 04.04.23 um 22:18 schrieb Daniel Vetter:
-> > This one nukes all framebuffers, which is a bit much. In reality
-> > gma500 is igpu and never shipped with anything discrete, so there shoul=
-d
-> > not be any difference.
-> >
-> > v2: Unfortunately the framebuffer sits outside of the pci bars for
-> > gma500, and so only using the pci helpers won't be enough. Otoh if we
-> > only use non-pci helper, then we don't get the vga handling, and
-> > subsequent refactoring to untangle these special cases won't work.
-> >
-> > It's not pretty, but the simplest fix (since gma500 really is the only
-> > quirky pci driver like this we have) is to just have both calls.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Javier Martinez Canillas <javierm@redhat.com>
-> > ---
-> >   drivers/gpu/drm/gma500/psb_drv.c | 9 +++++++--
-> >   1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/=
-psb_drv.c
-> > index 2ce96b1b9c74..f1e0eed8fea4 100644
-> > --- a/drivers/gpu/drm/gma500/psb_drv.c
-> > +++ b/drivers/gpu/drm/gma500/psb_drv.c
-> > @@ -422,12 +422,17 @@ static int psb_pci_probe(struct pci_dev *pdev, co=
-nst struct pci_device_id *ent)
-> >
-> >       /*
-> >        * We cannot yet easily find the framebuffer's location in memory=
-. So
-> > -      * remove all framebuffers here.
-> > +      * remove all framebuffers here. Note that we still want the pci =
-special
-> > +      * handling to kick out vgacon.
-> >        *
-> >        * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then =
-we
-> >        *       might be able to read the framebuffer range from the dev=
-ice.
-> >        */
-> > -     ret =3D drm_aperture_remove_framebuffers(true, &driver);
-> > +     ret =3D drm_aperture_remove_framebuffers(false, &driver);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret =3D drm_aperture_remove_conflicting_pci_framebuffers(pdev, &d=
-river);
->
-> This simply isn't it. If you have to work around your own API, it's time
-> to rethink the API.
+Hi Yi,
 
-Would it help if we figure out the stolen range here? It can
-supposedly be found by reading pci config space, so no need to map vdc
-regs first.
-
-GBSM is the stolen base and TOLUD - GBSM =3D stolen size. Or read the
-size out from GGC. Not sure which one is more reliable.
-
--Patrik
-
+On 4/1/23 16:44, Yi Liu wrote:
+> This extends both vfio_file_is_valid() and vfio_file_has_dev() to accept
+> device file from the vfio PCI hot reset.
+typo in the title s/Accpet/Accept
 >
-> Best regards
-> Thomas
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/vfio_main.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
 >
-> >       if (ret)
-> >               return ret;
-> >
->
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-> (HRB 36809, AG N=C3=BCrnberg)
-> Gesch=C3=A4ftsf=C3=BChrer: Ivo Totev
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index fe7446805afd..ebbb6b91a498 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -1154,13 +1154,23 @@ const struct file_operations vfio_device_fops = {
+>  	.mmap		= vfio_device_fops_mmap,
+>  };
+>  
+> +static struct vfio_device *vfio_device_from_file(struct file *file)
+> +{
+> +	struct vfio_device *device = file->private_data;
+> +
+> +	if (file->f_op != &vfio_device_fops)
+> +		return NULL;
+> +	return device;
+> +}
+> +
+>  /**
+>   * vfio_file_is_valid - True if the file is valid vfio file
+>   * @file: VFIO group file or VFIO device file
+>   */
+>  bool vfio_file_is_valid(struct file *file)
+>  {
+> -	return vfio_group_from_file(file);
+> +	return vfio_group_from_file(file) ||
+> +	       vfio_device_from_file(file);
+>  }
+>  EXPORT_SYMBOL_GPL(vfio_file_is_valid);
+>  
+> @@ -1174,12 +1184,17 @@ EXPORT_SYMBOL_GPL(vfio_file_is_valid);
+>  bool vfio_file_has_dev(struct file *file, struct vfio_device *device)
+>  {
+>  	struct vfio_group *group;
+> +	struct vfio_device *vdev;
+>  
+>  	group = vfio_group_from_file(file);
+> -	if (!group)
+> -		return false;
+> +	if (group)
+> +		return vfio_group_has_dev(group, device);
+> +
+> +	vdev = vfio_device_from_file(file);
+> +	if (vdev)
+> +		return vdev == device;
+>  
+> -	return vfio_group_has_dev(group, device);
+> +	return false;
+>  }
+>  EXPORT_SYMBOL_GPL(vfio_file_has_dev);
+>  
+With Alex' suggestion
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
+
+Eric
+
