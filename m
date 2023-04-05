@@ -1,63 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70FD6D7E0F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 15:50:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 822996D7E17
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 15:52:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8467C10E966;
-	Wed,  5 Apr 2023 13:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFDC310E968;
+	Wed,  5 Apr 2023 13:52:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
- [IPv6:2607:f8b0:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D99D410E09E;
- Wed,  5 Apr 2023 13:50:35 +0000 (UTC)
-Received: by mail-ot1-x334.google.com with SMTP id
- a30-20020a9d3e1e000000b006a13f728172so15870198otd.3; 
- Wed, 05 Apr 2023 06:50:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680702634;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TWYCTW3umiiR+6qL8jCRq5HPkiPkwIuHGIYzIuJerUc=;
- b=SG7nWufenx4mh39/7JLVOg1GQfQ0jB5fjAv1g++007WllAQLkL6RQ23FLerkw1K4+y
- QeXZi2+vWINhFvc6IWdx2ZOq4ApxcX9ThZF8j2GfbSkklJHjk8l9CB2wj5ZuY76WRZMl
- N281jRqwsLs7ssSjZUKi+z6IIRQkymrcYyX9Ze5thyNon53UMVPRfglijLR7OHKedjnG
- /vwZZJshZGvMuOszdRxg1KYWwHmSRjySD6pzE0qzcJz0Z9nNyu+sF2urvy+Ew6ZEcIlY
- D5JtL9ki164lCmorM/RJ7eIfdO0gOAJgRkOoBHt/p3M+AEJZZhBYd1U9xoopTOCpspob
- lDwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680702634;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TWYCTW3umiiR+6qL8jCRq5HPkiPkwIuHGIYzIuJerUc=;
- b=CHba22bEy29k2bIgedYf1R18vI1Cc/tSXnikbWMAR6mVPE5mOz9wbTM29bulQ4dyq1
- ttu6OnvLmY96tHgTTR0RZsSTexnzeVHZqQzVZZRxBouqx0Eie9UqlSlb8emBff+M72vY
- HfuWqmAGxCD43p1GTuMWqK1LyzzZuWLnCM45njv0nigQHrkIhRLDAkQTquk32SR43MsL
- RiUBuuQh86aSXeEObTJ9zhq/QVVU6V8AOEJuP37qFp0Z5Dx3Col3bt1XYVJ6iT3R3Hdh
- LyDPIp2ZHRqe1TWzGarECGWGXiyA7GulqN4jBLXiYTLrMKvdkGR1cCbn7A+WpNvfK/3+
- KItA==
-X-Gm-Message-State: AAQBX9dROvV1aWVK5RakPvE/XnQ0JSxqqP77OXpQlRwIcH+MMraFzMhG
- wwmt4dZWjn8Q0tU1kqswRADEQF6H96755dvHLoY=
-X-Google-Smtp-Source: AKy350ZeWbieaLFA+NP2qQLhKqOwfEt8QEeLalSxkYi2UjWzSdSgw7nsbp51P4NFCyBZ3cx7K/URe9rys2fgzEEd8Gc=
-X-Received: by 2002:a9d:664e:0:b0:696:f275:a60d with SMTP id
- q14-20020a9d664e000000b00696f275a60dmr1925750otm.7.1680702634708; Wed, 05 Apr
- 2023 06:50:34 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D280010E966;
+ Wed,  5 Apr 2023 13:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680702760; x=1712238760;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Ss6KIAVNm+8Vzn22eI3/TKlG5euz1BkWuVgJyekgkTM=;
+ b=R9+CI0I0kIIGJ9b0YPLn2CYglIZB/P8nRXgy1R13l5tcYd6qKqth36Al
+ P1y642+wQm6wibQGQgaa2hu7S5Dd0scnJ3cR/aPaRiHvn3W4GS3Mjumfa
+ Ipt+7AY9TLJfqpAga9pvtp0cqTcg7ryV1mhSSw+gu15tpRIjlb/7tjdxU
+ 9+YBzpXxAcBzZ2dsL/B34KzRd1WNVP79V+ou96VKIp4ec7C4f46prJP5i
+ 3V3041Cupf53EymmVpHATClMkBmkfjYyU7I7c+aMleNu1Q2QgwSjgFRog
+ PqQe2Lllfaw/blzfsdtLbtKH+AB6Ea9MFrZ30zUxCj91Sl4QQs8jftQ68 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="428740673"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="428740673"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 06:52:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="717049674"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="717049674"
+Received: from amadden-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.53.144])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 06:52:37 -0700
+Date: Wed, 5 Apr 2023 15:52:09 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+Message-ID: <ZC19CScaY8vqrMbN@ashyti-mobl2.lan>
+References: <20230404143100.10452-1-nirmoy.das@intel.com>
+ <ZCxO9WeZHvINgMP8@ashyti-mobl2.lan>
+ <6131a80c-a23c-ee17-3144-327b66f636bf@linux.intel.com>
+ <ZC1hSRRKyU92kQ86@ashyti-mobl2.lan>
+ <c8fe6f23-51e4-fb22-6fdb-999bf41f8dec@linux.intel.com>
 MIME-Version: 1.0
-References: <20230405081650.797972-1-daniel.vetter@ffwll.ch>
- <20230405133105.947834-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20230405133105.947834-1-daniel.vetter@ffwll.ch>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 5 Apr 2023 06:50:22 -0700
-Message-ID: <CAF6AEGsFTSSQMMnr8PkJ4CBhwVnYBsxdZGP1SO9aZyeLhO0Ohg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helper: Don't set deadline for
- modesets
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c8fe6f23-51e4-fb22-6fdb-999bf41f8dec@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/ttm: Add I915_BO_PREALLOC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,71 +62,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 5, 2023 at 6:31=E2=80=AFAM Daniel Vetter <daniel.vetter@ffwll.c=
-h> wrote:
->
-> If the crtc is being switched on or off then the semantics of
-> computing the timestampe of the next vblank is somewhat ill-defined.
-> And indeed, the code splats with a warning in the timestamp
-> computation code. Specifically it hits the check to make sure that
-> atomic drivers have full set up the timing constants in the drm_vblank
-> structure, and that's just not the case before the crtc is actually
-> on.
->
-> For robustness it seems best to just not set deadlines for modesets.
->
-> v2: Also skip on inactive crtc (Ville)
->
-> Link: https://lore.kernel.org/dri-devel/dfc21f18-7e1e-48f0-c05a-d659b9c90=
-b91@linaro.org/
-> Fixes: d39e48ca80c0 ("drm/atomic-helper: Set fence deadline for vblank")
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Rob Clark <robdclark@chromium.org>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # test patch on=
-ly
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Add a mechanism to preserve existing data when creating a TTM
+> object with the I915_BO_ALLOC_USER flag. This will be used in the subsequent
+> patch where the I915_BO_ALLOC_USER flag will be applied to the framebuffer
+> object. For a pre-allocated framebuffer without the I915_BO_PREALLOC flag,
+> TTM would clear the content, which is not desirable.
 
-Reviewed-by: Rob Clark <robdclark@gmail.com>
+ack!
 
-> ---
->  drivers/gpu/drm/drm_atomic_helper.c | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_at=
-omic_helper.c
-> index f21b5a74176c..d44fb9b87ef8 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -1528,6 +1528,12 @@ static void set_fence_deadline(struct drm_device *=
-dev,
->         for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
->                 ktime_t v;
->
-> +               if (drm_atomic_crtc_needs_modeset(new_crtc_state))
-> +                       continue;
-> +
-> +               if (!new_crtc_state->active)
-> +                       continue;
-> +
->                 if (drm_crtc_next_vblank_start(crtc, &v))
->                         continue;
->
-> --
-> 2.40.0
->
+Andi
