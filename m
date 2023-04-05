@@ -1,84 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA976D856C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:58:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B236D85FD
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 20:29:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1B1C10E231;
-	Wed,  5 Apr 2023 17:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D79D10E34C;
+	Wed,  5 Apr 2023 18:29:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE0410E087
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:58:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680717515;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bxLaegyvGXsWtWEkMuJq7mzfRVKAvjHLcyr9E0NhVqA=;
- b=NpzX1pQSrnR2Ti9M3wMUQMSEwFnGiEh33waZO8MkwMZhDnkDG1lK9/aR4GKLYG6u1Gs2JY
- 8/2N5c+AHilshG+XhYjgRt+ek8hOqYCqRxY1goAMbvGxSps69SC+mYnTdyiCve0A7Rn3yF
- JXviAdUCaJwh5hPj1Ls8hxgDsrh3zVM=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-367-MMOyQq0rOL-ZJoLv1Pywtg-1; Wed, 05 Apr 2023 13:58:33 -0400
-X-MC-Unique: MMOyQq0rOL-ZJoLv1Pywtg-1
-Received: by mail-qk1-f198.google.com with SMTP id
- c80-20020ae9ed53000000b007468c560e1bso16745973qkg.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:58:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680717513;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=bxLaegyvGXsWtWEkMuJq7mzfRVKAvjHLcyr9E0NhVqA=;
- b=UYqsGva4aYkaoIguf5her/0FTtosASHH99w6g8UhZsLuL1380lsvjIi+/lp5LIIKr+
- hQYdqALzPfGXpZ2OAlEq2+eJfnZLBIlOi/u2MPn7WhxN8+eMYrCW8B8y9sxnFPmINZmy
- WDnS+b/LjOiTecONWx52bjKvV6oHSQWcqjTixP2WHxG5mBAMiSIa084Zue2wOqM91Xnx
- ipYe59tutlJUr2RJG+SmoxZ8fkENdPaNT2xgohsTIymV8P54Zlb+MjBXp0XkOJ04nr+0
- 5cRL/Ur2JTXIshQD9/7y55YnDTw5vcJ5IYqbr8BK74LYmtC0Fr2IpaHY8gRRk+w1wInq
- W9xg==
-X-Gm-Message-State: AAQBX9dHGWlLzlaXgLREc1KvA85gWk9aWedPPD2fjnVbX0TEidyPaFbX
- 8ddbwguTCDEsBkBd1J1EnKbhrECFNBIQqN9TzLcdZq2NJSFGFQ8hOtnhUO8k5i15zuIZRSKj60f
- GZhNlRjF6E9T7MN3lG0LjnEV1Qi7n
-X-Received: by 2002:ad4:5f8b:0:b0:5bd:14f9:650d with SMTP id
- jp11-20020ad45f8b000000b005bd14f9650dmr53896qvb.36.1680717513006; 
- Wed, 05 Apr 2023 10:58:33 -0700 (PDT)
-X-Google-Smtp-Source: AKy350aVDJ5I73OXxuM402WPKU9vfhckM20c+fZ/2+Cchx+DMOvKxzeMX7mOqyBFvtiDLu67T1foqg==
-X-Received: by 2002:ad4:5f8b:0:b0:5bd:14f9:650d with SMTP id
- jp11-20020ad45f8b000000b005bd14f9650dmr53862qvb.36.1680717512735; 
- Wed, 05 Apr 2023 10:58:32 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id
- h15-20020ac8548f000000b003e0945575dasm4184864qtq.1.2023.04.05.10.58.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 Apr 2023 10:58:31 -0700 (PDT)
-Message-ID: <43f6e334-f440-ea85-9e74-c0b700c07399@redhat.com>
-Date: Wed, 5 Apr 2023 19:58:24 +0200
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFE310E35E;
+ Wed,  5 Apr 2023 18:28:59 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 7186E22704;
+ Wed,  5 Apr 2023 18:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1680719337; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=8wDv+yRA6FyGfq9aZg8pabEn71vQtUQ/xXxjhnBw+jk=;
+ b=Qgkefk116vpQxypDdmotxblRzB6Mf8ewfIInvU3VbX58uA2E96/KmHbOSJ9pecyOEiROjt
+ 69gS1zu9Z8XrGX7OKdxpgsfEGOvLVSGtX4oXdfGWgPdYm7Aq5x1zSE/SMP8UCw63VszpDk
+ eDr5/oGeocwzc8NR6RNkwBa/liWXPTY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1680719337;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=8wDv+yRA6FyGfq9aZg8pabEn71vQtUQ/xXxjhnBw+jk=;
+ b=yTOLifE1L6ksbMJGrRrIOpkCUV8eJUsrDRXsSIH2M4+XebGrBhnglAGg54rSMgPnNysgdZ
+ V1M49gpxU1RApjCw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3228C13A31;
+ Wed,  5 Apr 2023 18:28:57 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 9sEbC+m9LWRzBQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 05 Apr 2023 18:28:57 +0000
+Date: Wed, 5 Apr 2023 20:28:55 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230405182855.GA1551@linux-uq9g>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
- kevin.tian@intel.com
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-5-yi.l.liu@intel.com>
-From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <20230401151833.124749-5-yi.l.liu@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v9 04/25] vfio: Accept vfio device file in
- the KVM facing kAPI
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,99 +64,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
- mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
- cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
- yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
+Hi Dave and Daniel,
 
-On 4/1/23 17:18, Yi Liu wrote:
-> This makes the vfio file kAPIs to accept vfio device files, also a
-> preparation for vfio device cdev support.
->
-> For the kvm set with vfio device file, kvm pointer is stored in struct
-> vfio_device_file, and use kvm_ref_lock to protect kvm set and kvm
-> pointer usage within VFIO. This kvm pointer will be set to vfio_device
-> after device file is bound to iommufd in the cdev path.
->
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Tested-by: Terrence Xu <terrence.xu@intel.com>
-> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> Tested-by: Matthew Rosato <mjrosato@linux.ibm.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+here's this week's PR for drm-misc-fixes. As requested, it comes
+a day earlier than usual due to Easter holidays.
 
-Thanks
+Best regards
+Thomas
 
-Eric
-> ---
->  drivers/vfio/vfio.h      |  2 ++
->  drivers/vfio/vfio_main.c | 18 ++++++++++++++++++
->  2 files changed, 20 insertions(+)
->
-> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> index 56ad127ac618..e4672d91a6f7 100644
-> --- a/drivers/vfio/vfio.h
-> +++ b/drivers/vfio/vfio.h
-> @@ -18,6 +18,8 @@ struct vfio_container;
->  
->  struct vfio_device_file {
->  	struct vfio_device *device;
-> +	spinlock_t kvm_ref_lock; /* protect kvm field */
-> +	struct kvm *kvm;
->  };
->  
->  void vfio_device_put_registration(struct vfio_device *device);
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 748bde4d74d9..cb543791b28b 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -414,6 +414,7 @@ vfio_allocate_device_file(struct vfio_device *device)
->  		return ERR_PTR(-ENOMEM);
->  
->  	df->device = device;
-> +	spin_lock_init(&df->kvm_ref_lock);
->  
->  	return df;
->  }
-> @@ -1246,6 +1247,20 @@ bool vfio_file_enforced_coherent(struct file *file)
->  }
->  EXPORT_SYMBOL_GPL(vfio_file_enforced_coherent);
->  
-> +static void vfio_device_file_set_kvm(struct file *file, struct kvm *kvm)
-> +{
-> +	struct vfio_device_file *df = file->private_data;
-> +
-> +	/*
-> +	 * The kvm is first recorded in the vfio_device_file, and will
-> +	 * be propagated to vfio_device::kvm when the file is bound to
-> +	 * iommufd successfully in the vfio device cdev path.
-> +	 */
-> +	spin_lock(&df->kvm_ref_lock);
-> +	df->kvm = kvm;
-> +	spin_unlock(&df->kvm_ref_lock);
-> +}
-> +
->  /**
->   * vfio_file_set_kvm - Link a kvm with VFIO drivers
->   * @file: VFIO group file or VFIO device file
-> @@ -1259,6 +1274,9 @@ void vfio_file_set_kvm(struct file *file, struct kvm *kvm)
->  	group = vfio_group_from_file(file);
->  	if (group)
->  		vfio_group_set_kvm(group, kvm);
-> +
-> +	if (vfio_device_from_file(file))
-> +		vfio_device_file_set_kvm(file, kvm);
->  }
->  EXPORT_SYMBOL_GPL(vfio_file_set_kvm);
->  
+drm-misc-fixes-2023-04-05:
+Short summary of fixes pull:
 
+ * ivpu: DMA fence and suspend fixes
+ * nouveau: Color-depth fixes
+ * panfrost: Fix mmap error handling
+The following changes since commit 25bbe844ef5c4fb4d7d8dcaa0080f922b7cd3a16:
+
+  drm: test: Fix 32-bit issue in drm_buddy_test (2023-03-29 17:14:15 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-04-05
+
+for you to fetch changes up to 0ec8671837a61d841462179686c5819d951d3b10:
+
+  accel/ivpu: Fix S3 system suspend when not idle (2023-04-05 09:07:26 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * ivpu: DMA fence and suspend fixes
+ * nouveau: Color-depth fixes
+ * panfrost: Fix mmap error handling
+
+----------------------------------------------------------------
+Boris Brezillon (1):
+      drm/panfrost: Fix the panfrost_mmu_map_fault_addr() error path
+
+Jacek Lawrynowicz (1):
+      accel/ivpu: Fix S3 system suspend when not idle
+
+Karol Herbst (1):
+      drm/nouveau/disp: Support more modes by checking with lower bpc
+
+Karol Wachowski (1):
+      accel/ivpu: Add dma fence to command buffers only
+
+ drivers/accel/ivpu/ivpu_job.c           | 18 +++++++-----------
+ drivers/accel/ivpu/ivpu_pm.c            | 26 +++++++++++---------------
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 32 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_dp.c    |  8 +++++---
+ drivers/gpu/drm/panfrost/panfrost_mmu.c |  1 +
+ 5 files changed, 56 insertions(+), 29 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
