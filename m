@@ -2,58 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A716D8835
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 22:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0836D88F1
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 22:44:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5175510E25E;
-	Wed,  5 Apr 2023 20:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8869710EA3B;
+	Wed,  5 Apr 2023 20:44:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F70B10E22E;
- Wed,  5 Apr 2023 20:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680726406; x=1712262406;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=qaKusVN7CdjCGVJHkao8zVo8wm1oK87hwBXuCZ3VQSg=;
- b=QA+mYkwjhTgxIPEf4sAM8NsujNPySVfIaZp060V6dNZzwx+WEAkCVFb4
- bzfCetx9Yn7u9B1iURp9XHBJsh1okejt47lddzcQSa2b5D/o4SCS4zNSp
- PsPU2QZRTVfUnnddER6w0iMbJwsKrfh3R4mNiYO8pCZ+6H96ep08+pxw7
- H7/SKY9YcOkdNnWO8D6cpbVo0wWGejMGlCFBU2flp/9e5r4ewdQQpblgE
- saR1nwoiWs6BMfjwz3WIG3L17azAHlWBwWwmSsXPNgXx9tCuBfkg48Bmx
- C+2WqYXdEkNCJtEeNwBPTWBHw5mxGZY0MuqgzwXku9VrjCIqMBTyim6Ed A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="326595288"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="326595288"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 13:26:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="1016609461"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="1016609461"
-Received: from srismrit-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.209.18.251])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 13:26:44 -0700
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C9C10E12F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 20:44:40 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id
+ a640c23a62f3a-93b8c095335so6189766b.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 13:44:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680727479;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=8aOdTvn6KuteSDKGtGMpoWiXxUq0oDNLerScz5xAFbU=;
+ b=GvFqcbYBLS3XAKNm3ESVyNLLVvaWKVAE8XaT2vUWvaWkeV3RcI6hHr/DWarIEB1955
+ NVc97RJ8X9QlaWngU8oAZbCL937cMc2kih9j34wWB1jya6ZM9QFmkYPzNd2YwPD/5R+9
+ V1hlgQgOPCibVus/heJ0x+POj0VsqWDFJfmoQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680727479;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8aOdTvn6KuteSDKGtGMpoWiXxUq0oDNLerScz5xAFbU=;
+ b=4KA2PCjoxcANgHkmpIkKkju+xL3Unl2F8c/6KKz5xkrHBQm5nEa0OjdIwwyE9fSxci
+ xQVjzqNwx02E1/SrTIl6G/C6rCPIR0i7NVzy+P8zIzU7JVuB7xx0RcBTIkhkiPZ0/iMg
+ hyUaW24hAsLv5tiRcHTttFAEEkmlxGatKeR0/3CoORWc4YtNDZKWjXF+YA7A+Y77vpyB
+ VSs3G7WI6Onqz/9ICRae3srZB09aRCBxzSzpFsWL/jaby9ypFwz/0d1aPlCBi93CWeNX
+ p2U+xUF06lRDJJKJwgRD8N1sRVse5h9+b/k+i3wiyIN06lvWUJqMS1ds68kOvMWJXm4a
+ IPIg==
+X-Gm-Message-State: AAQBX9eK4VCo2AlCdKhkYvdOGQOZPHpi77D/dAdcy29cmX6OLTeqeStv
+ lpvuSJp6yYmCktXCyeUU+a7Uew==
+X-Google-Smtp-Source: AKy350ZsKhy6CiCB0CdVecn8P1TdPyLysnWMxwAet/M4xD39PHhcVwaB/ikdB8zpya7K4pQtR8Saew==
+X-Received: by 2002:a05:6402:2811:b0:502:465:28e1 with SMTP id
+ h17-20020a056402281100b00502046528e1mr3786034ede.0.1680727478727; 
+ Wed, 05 Apr 2023 13:44:38 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ o12-20020a170906600c00b0092bea699124sm7761220ejj.106.2023.04.05.13.44.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 13:44:38 -0700 (PDT)
+Date: Wed, 5 Apr 2023 22:44:36 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Message-ID: <ZC3dtDP+m4c5jgNZ@phenom.ffwll.local>
+References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
+ <20230404194038.472803-3-daniel.vetter@ffwll.ch>
+ <87a5zmd2jn.fsf@minerva.mail-host-address-is-not-set>
+ <ZC12aR9ddp3j/3dL@phenom.ffwll.local>
+ <87ilea9twa.fsf@minerva.mail-host-address-is-not-set>
+ <ZC2t1I1SQrQh/fy1@phenom.ffwll.local>
+ <878rf69qfj.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <7fd9424a-678a-0d90-715c-f63179552093@intel.com>
-References: <20230401063830.438127-1-fei.yang@intel.com>
- <20230401063830.438127-8-fei.yang@intel.com>
- <7aa541f8-55e3-a182-5390-6ca161edb70b@intel.com>
- <BYAPR11MB256790AC5BDC891F186E000E9A939@BYAPR11MB2567.namprd11.prod.outlook.com>
- <7fd9424a-678a-0d90-715c-f63179552093@intel.com>
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: "Yang, Fei" <fei.yang@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 05 Apr 2023 13:26:43 -0700
-Message-ID: <168072640394.392286.10003850953246720395@jljusten-skl>
-User-Agent: alot/0.10
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Allow user to set cache at BO
- creation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <878rf69qfj.fsf@minerva.mail-host-address-is-not-set>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/fb-helper: fix input validation
+ gaps in check_var
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,54 +77,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-04-05 00:45:24, Lionel Landwerlin wrote:
-> On 04/04/2023 19:04, Yang, Fei wrote:
-> >> Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Allow user to set cache=
- at BO creation
-> >>
-> >> Just like the protected content uAPI, there is no way for userspace to=
- tell
-> >> this feature is available other than trying using it.
-> >>
-> >> Given the issues with protected content, is it not thing we could want=
- to add?
-> > Sorry I'm not aware of the issues with protected content, could you ela=
-borate?
-> > There was a long discussion on teams uAPI channel, could you comment th=
-ere if
-> > any concerns?
+On Wed, Apr 05, 2023 at 07:42:08PM +0200, Javier Martinez Canillas wrote:
+> Daniel Vetter <daniel@ffwll.ch> writes:
+> 
+> > On Wed, Apr 05, 2023 at 06:27:17PM +0200, Javier Martinez Canillas wrote:
+> >> Daniel Vetter <daniel@ffwll.ch> writes:
+> 
+> [...]
+> 
+> >> >
+> >> > The __fill_var is after this. I'm honestly not sure what the exact
+> >> 
+> >> Ah, your patch adds it after that indeed. Please ignore my comment then.
 > >
->=20
-> We wanted to have a getparam to detect protected support and were told=20
-> to detect it by trying to create a context with it.
->=20
+> > So rb: you?
+> >
+> 
+> Yes, I already provided it in my previous email and has been picked by
+> patchwork. I could do again but probably will confuse dim when applying.
 
-An extensions system where the detection mechanism is "just try it",
-and assume it's not supported if it fails. ??
+Yeah just wanted to confirm I cleared up all your questions. Merged the
+entire series to drm-misc-next, thanks for the review.
 
-This seem likely to get more and more problematic as a detection
-mechanism as more extensions are added.
+> The only patch from your series that is missing an {r,a}b is #1 right now:
+> 
+> https://patchwork.kernel.org/project/dri-devel/list/?series=736966&archived=both
 
->=20
-> Now it appears trying to create a protected context can block for=20
-> several seconds.
->=20
-> Since we have to report capabilities to the user even before it creates=20
-> protected contexts, any app is at risk of blocking.
->=20
+That's a different one :-)
 
-This failure path is not causing any re-thinking about using this as
-the extension detection mechanism?
+I'll respin with your comments and then let you&Thomas duke it out about
+patch 1.
+-Daniel
 
-Doesn't the ioctl# + input-struct-size + u64-extension# identify the
-extension such that the kernel could indicate if it is supported or
-not. (Or, perhaps return an array of the supported extensions so the
-umd doesn't have to potentially make many ioctls for each extension of
-interest.)
+> 
+> [...]
+> 
+> >> > What I'm wondering now is whether too small x/yres won't lead to problems
+> >> > of some sorts ... For multi-screen we set the virtual size to be big
+> >> > enough for all crtc, and then just set x/yres to be the smallest output.
+> >> > That way fbcon knows to only draw as much as is visible on all screens.
+> >> > But if you then pan that too much, the bigger screens might not have a big
+> >> > enough buffer anymore and things fail (but shouldn't).
+> >> >
+> >> > Not sure how to fix that tbh.
+> >> 
+> >> Would this be a problem in practice?
+> >
+> > I'm frankly not sure. You'd get a black screen for fbcon/fbdev across all
+> > outputs, but only if you have userspace doing this intentionally.
+> >
+> > In a way it's just another artifact of the drm fbdev emulation not using
+> > ATOMIC_TEST_ONLY in the various places where it should, and so doesn't
+> > really know whether a configuration change will work out.
+> >
+> > We already have this in obscure mulit-monitor cases where adding another
+> > screen kills fbcon, because the display hw is running out of fifo or
+> > clocks or whatever, and because the drm fbdev code doesn't check but just
+> > blindly commits the entire thing as an atomic commit, the overall commit
+> > fails.
+> >
+> > This worked "better" with legacy kms because there we commit per-crtc, so
+> > if any specific crtc runs into a limit check, only that one fails to light
+> > up.
+> >
+> > Imo given that no one cared enough yet to write up atomic TEST_ONLY
+> > support for fbdev emulation I think we can continue to just ignore this
+> > problem.
+> >
+> 
+> Agreed. If that ends being a problem for people in practice then I guess
+> someone can type atomic TEST_ONLY support for the fbdev emulation layer.
+> 
+> > What should not happen is that fbcon code blows up drawing out of bounds
+> > or something like that, resulting in a kernel crash. So from that pov I
+> > think it's "safe" :-)
+> 
+> Great. Thanks a lot for your explanations.
+> 
+> > -Daniel
+> 
+> -- 
+> Best regards,
+> 
+> Javier Martinez Canillas
+> Core Platforms
+> Red Hat
+> 
 
--Jordan
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
