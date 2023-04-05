@@ -1,42 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856A36D81CA
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 17:28:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5D66D820A
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 17:36:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 037DD10E9F8;
-	Wed,  5 Apr 2023 15:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9140010E9FC;
+	Wed,  5 Apr 2023 15:36:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 80B0010EA03;
- Wed,  5 Apr 2023 15:27:50 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9FB113E;
- Wed,  5 Apr 2023 08:28:33 -0700 (PDT)
-Received: from [10.57.94.33] (unknown [10.57.94.33])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1BDF93F6C4;
- Wed,  5 Apr 2023 08:27:46 -0700 (PDT)
-Message-ID: <8905800b-a977-e821-01ea-a43333f46904@arm.com>
-Date: Wed, 5 Apr 2023 16:27:50 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8AAE10E9FC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 15:36:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680709013;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=TuiXIjl7StR1lWcqJYYE1fB/Z6K6yMMeGx6F0a8wvVw=;
+ b=ezjmmx8C+sXQZ7rZPQls9R5s0z/Lr2xCgBBXhbnHsbzeeJ1VRkwFyTueUSSdoDalOYH7Vt
+ gusO7kd0ORcKH55S+rpzrsqLjyArxn9xKM0Zis9voocmzqZVQVLojhwCSMqbYMefchSD++
+ P4S5StCd6MZ+nTwsZjz5ITod665Y5Z0=
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-208-ETdyBfgjNdaxiVKJCH8q9g-1; Wed, 05 Apr 2023 11:36:49 -0400
+X-MC-Unique: ETdyBfgjNdaxiVKJCH8q9g-1
+Received: by mail-il1-f198.google.com with SMTP id
+ g12-20020a056e021e0c00b00327c0e193b1so1092834ila.21
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 08:36:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680709008;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=TuiXIjl7StR1lWcqJYYE1fB/Z6K6yMMeGx6F0a8wvVw=;
+ b=28pYbgCadrcReU4Qi60tAe/ZY/6jSdbNuyF0ecHE029hultNG6Yd1Qnldz3BMTrnzU
+ bNIt9sReooQS8sNO3ly0KJz7jsUR1OkpywvWfKAgpzf8F9ES3G9awjDcIrwhlHXkAmoo
+ J/N1GMIn4pHQdY1NFRvNGMidvB6I6mFMt6bFGLQATYKchLuXbREJJ+hlCmjB0xeqcRlF
+ wThkqW1G73Fp4xV8QvzbTXN0+a1/UXPxyF97P3h0zTy6ht1A4pm7Ml+lPm/jwM35bmZ9
+ DzF68oH6DYjjicSrFJJE7tlrrXHaeU0OhZfr4b8moblrKFVDxvHz3BakeyNxfJZx4VKB
+ Mzng==
+X-Gm-Message-State: AAQBX9epV6QT2uNzbGhJFkCSdrpx00ED9A3tcgiNglTbW0sAmf1HAVZN
+ TZN8VwtKgXtUr8DNPPRz2nf2FsUA2bKr3irF2jlwaARLo3ubgI+wLZwgv8r5vzYF5voyO+Ht/Xw
+ 7vtenzcKE2JysQHePIch+IOdb8B6g
+X-Received: by 2002:a5e:da44:0:b0:760:1fb6:c7d2 with SMTP id
+ o4-20020a5eda44000000b007601fb6c7d2mr3357756iop.5.1680709008440; 
+ Wed, 05 Apr 2023 08:36:48 -0700 (PDT)
+X-Google-Smtp-Source: AKy350Yiu+6jYuVXySDhz9l7TaJE2CbZAprEqCSA9voKn6Sxg2Pef1TWywH9iD954/Pk6M8+1tZHJQ==
+X-Received: by 2002:a5e:da44:0:b0:760:1fb6:c7d2 with SMTP id
+ o4-20020a5eda44000000b007601fb6c7d2mr3357742iop.5.1680709008129; 
+ Wed, 05 Apr 2023 08:36:48 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ e11-20020a02210b000000b004050d92f6d4sm4046543jaa.50.2023.04.05.08.36.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 08:36:47 -0700 (PDT)
+Date: Wed, 5 Apr 2023 09:36:46 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <20230405093646.337f0992.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB7529730CD29F2BD13F1DD9AEC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-6-yi.l.liu@intel.com>
+ <20230404141838.6a4efdd4.alex.williamson@redhat.com>
+ <DS0PR11MB752919BC81CCCAB1A13998CAC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <DS0PR11MB7529730CD29F2BD13F1DD9AEC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-To: Jani Nikula <jani.nikula@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Laight <David.Laight@ACULAB.COM>
-References: <20230330104243.2120761-1-jani.nikula@intel.com>
- <20230330125041.83b0f39fa3a4ec1a42dfd95f@linux-foundation.org>
- <549987e4967d45159573901d330c96a0@AcuMS.aculab.com>
- <20230330151846.fdbc8edbfbaa6eaddb056dc7@linux-foundation.org>
- <87edp52ufk.fsf@intel.com>
-Content-Language: en-GB
-From: Steven Price <steven.price@arm.com>
-In-Reply-To: <87edp52ufk.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/4] log2: make is_power_of_2() more generic
+Subject: Re: [Intel-gfx] [PATCH v3 05/12] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,99 +87,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- David Gow <davidgow@google.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 31/03/2023 09:31, Jani Nikula wrote:
-> On Thu, 30 Mar 2023, Andrew Morton <akpm@linux-foundation.org> wrote:
->> On Thu, 30 Mar 2023 21:53:03 +0000 David Laight <David.Laight@ACULAB.COM> wrote:
->>
->>>> But wouldn't all these issues be addressed by simply doing
->>>>
->>>> #define is_power_of_2(n) (n != 0 && ((n & (n - 1)) == 0))
->>>>
->>>> ?
->>>>
->>>> (With suitable tweaks to avoid evaluating `n' more than once)
->>>
->>> I think you need to use the 'horrid tricks' from min() to get
->>> a constant expression from constant inputs.
->>
->> This
->>
->> --- a/include/linux/log2.h~a
->> +++ a/include/linux/log2.h
->> @@ -41,11 +41,11 @@ int __ilog2_u64(u64 n)
->>   * *not* considered a power of two.
->>   * Return: true if @n is a power of 2, otherwise false.
->>   */
->> -static inline __attribute__((const))
->> -bool is_power_of_2(unsigned long n)
->> -{
->> -	return (n != 0 && ((n & (n - 1)) == 0));
->> -}
->> +#define is_power_of_2(_n)				\
->> +	({						\
->> +		typeof(_n) n = (_n);			\
->> +		n != 0 && ((n & (n - 1)) == 0);		\
->> +	})
->>  
->>  /**
->>   * __roundup_pow_of_two() - round up to nearest power of two
->> _
->>
->> worked for me in a simple test.
->>
->> --- a/fs/open.c~b
->> +++ a/fs/open.c
->> @@ -1564,3 +1564,10 @@ int stream_open(struct inode *inode, str
->>  }
->>  
->>  EXPORT_SYMBOL(stream_open);
->> +
->> +#include <linux/log2.h>
->> +
->> +int foo(void)
->> +{
->> +	return is_power_of_2(43);
->> +}
->> _
->>
->>
->> foo:
->> # fs/open.c:1573: }
->> 	xorl	%eax, %eax	#
->> 	ret	
->>
->>
->> Is there some more tricky situation where it breaks?
+On Wed, 5 Apr 2023 08:01:49 +0000
+"Liu, Yi L" <yi.l.liu@intel.com> wrote:
+
+> > From: Liu, Yi L <yi.l.liu@intel.com>
+> > Sent: Wednesday, April 5, 2023 3:55 PM  
+>  
+> > >
+> > > Therefore, I think as written, the singleton dev_set hot-reset is
+> > > enabled for iommufd and (unintentionally?) for the group path, while
+> > > also negating a requirement for a group fd or that a provided group fd
+> > > actually matches the device in this latter case.  The null-array
+> > > approach is not however extended to groups for more general use.
+> > > Additionally, limiting no-iommu hot-reset to singleton dev_sets
+> > > provides only a marginal functional difference vs VFIO_DEVICE_RESET.  
+> > 
+> > I think the singletion dev_set hot-reset is for iommufd (or more accurately
+> > for the noiommu case in cdev path).  
 > 
-> It doesn't work with BUILD_BUG_ON_ZERO().
+> but actually, singleton dev_set hot-reset can work for group path as well.
+> Based on this, I'm also wondering do we really want to have singleton dev_set
+> hot-reset only for cdev noiommu case? or we allow it generally or just
+> don't support it as it is equivalent with VFIO_DEVICE_RESET?
 
-Like most programming problems, you just need another layer of
-indirection! The below works for me in all the cases I could think of
-(including __uint128_t).
+I think you're taking the potential that VFIO_DEVICE_RESET and
+hot-reset could do the same thing too far.  The former is more likely
+to do an FLR, or even a PM reset.  QEMU even tries to guess what reset
+VFIO_DEVICE_RESET might use in order to choose to do a hot-reset if it
+seems like the device might only support a PM reset otherwise.
 
+Changing the reset method of a device requires privilege, which is
+maybe something we'd compromise on for no-iommu, but the general
+expectation is that VFIO_DEVICE_RESET provides a device level scope and
+hot-reset provides a... hot-reset, and sometimes those are the same
+thing, but that doesn't mean we can lean on the former.
 
-#define __IS_POWER_OF_2(n) (n != 0 && ((n & (n - 1)) == 0))
+> If we don't support singletion dev_set hot-reset, noiommu devices in cdev
+> path shall fail the hot-reset if empty-fd array is provided. But we may just
+> document that empty-fd array does not work for noiommu. User should
+> use the device fd array.
 
-#define _IS_POWER_OF_2(n, unique_n)				\
-	({							\
-		typeof(n) unique_n = (n);			\
-		__IS_POWER_OF_2(unique_n);			\
-	})
+I don't see any replies to my comment on 08/12 where I again question
+why we need an empty array option.  It's causing all sorts of headaches
+and I don't see the justification for it beyond some hand waving that
+it reduces complexity for the user.  This singleton dev-set notion
+seems equally unjustified.  Do we just need to deal with hot-reset
+being unsupported for no-iommu devices with iommufd?  Thanks,
 
-#define is_power_of_2(n)					\
-	__builtin_choose_expr(__is_constexpr((n)),		\
-			      __IS_POWER_OF_2((n)),		\
-			      _IS_POWER_OF_2(n, __UNIQUE_ID(_n)))
+Alex
 
-
-Although Jani's original might be easier to understand.
-
-Steve
