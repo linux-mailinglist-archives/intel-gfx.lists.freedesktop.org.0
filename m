@@ -1,54 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2912C6D7A13
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 12:43:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E37086D7A5D
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 12:52:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B5710E8C6;
-	Wed,  5 Apr 2023 10:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E7410E8C6;
+	Wed,  5 Apr 2023 10:52:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2318A10E8C6
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 10:43:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680691406; x=1712227406;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=24ZcKbAaEbMOl6/q88EWZX7P6TjUFK8mnMKLcbIJRFU=;
- b=EfK/FmfxIWCJGeC0JkrcOfcETLZ8J0LevCcG28kd6vYLxi6fe0C4C7Rd
- j4CIrj49NqUYQ6fwlndVxolA20KlcdZN642CyfYth18vA/e9RDTksWwzV
- s6KY1e3RogHdKVqFPCJ1MI+P1EMt+4UQaJbt12dfwKoVWIXsVQlvGs9wH
- JriOk8MRfN4MhFlu9UiZdtaTllCmbAiTl08gbpJYJkLFPo/Q8EMJb1TnE
- hnMl9isBz2RYp1vxt/a3Q4QYWX7qoNm319rZf4jV4sNPzpGXBNria6De0
- jQhnbqJwoNeTriPLPNwkGdBIm0679+WLygoAfb8std5Inn85uq9rDx0xB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="339912972"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="339912972"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 03:43:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="755973722"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="755973722"
-Received: from dlemiech-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.43.158])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 03:43:23 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <ZCxOnM2KoSipBKSq@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230404090528.173075-1-jani.nikula@intel.com>
- <202304042026.uZBs3cC2-lkp@intel.com> <875yab25qn.fsf@intel.com>
- <ZCxOnM2KoSipBKSq@intel.com>
-Date: Wed, 05 Apr 2023 13:43:21 +0300
-Message-ID: <87wn2qzk1i.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 900D910E8CF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 10:52:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680691935;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=NfR8hG4BSK2oH+JXo1qpSLt59Iy4pE0E8Ty+5V6Q3Kw=;
+ b=YNUC3e77IxeHR4bEbhmBOzxcotQmoawgFhG6+3G+BHtA25I7+YONBz6mt4JCJIdajETFLX
+ KPrLix+GIwUs9H5OFM620NaahnpLRxPWvR6uSxLG+p50lmveMSlREZ57kvXxZUlOKgR2Td
+ tiiyH5Xkjwv5hjGHQTqdzX01oJ165YI=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-504-VAu1YADEOHCWkeDNp8eh4Q-1; Wed, 05 Apr 2023 06:52:14 -0400
+X-MC-Unique: VAu1YADEOHCWkeDNp8eh4Q-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ j14-20020a05600c1c0e00b003f066d2638aso256870wms.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 03:52:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680691933;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=NfR8hG4BSK2oH+JXo1qpSLt59Iy4pE0E8Ty+5V6Q3Kw=;
+ b=W8D1oI9493LvpZkkNdagIKFIMbqXSuIDtpLxV+WbVQRTY/0n24xWXbn5r6NhLx1b1S
+ 2VZDxIh8EsoDsisPHksq5BBA/pzAI+SkgH1qrwbat3tnUWJptkmstFtILAe/+K7CHTHB
+ 143hisYvd3xKhCbcRm8xmON2nuULP/APZm6BupxaL7e8c0hDNVFznZX+k8vtQy+Y7PNY
+ wJfrl6fI5SSrDTy1a58CQAWruo0PaegpiCyV2KzIwv7/GpgQR/yMfPw240NeLYDVWFPs
+ LJ2FDZPIE94QE294fu8heH7cB43o21MZv2LEKDs8qSsMqg1cvnmHzYsLaHMlK0nYJKNf
+ cZpQ==
+X-Gm-Message-State: AAQBX9elgUyAIXe+Zn1f3VW0zHsim4/RGoMAe3Ry4GPpp1UaK0MxTU5/
+ VOAlmJdTvMJy0VxY32w9EEjbosF5DmtLC/jkM24toSEqwCeK5hKdjJAWaLAl2cIdrHpK0QHx3cu
+ uTp0dap+A+fGG0HRYNQTVVxNSfpn7
+X-Received: by 2002:a1c:4b06:0:b0:3ed:f9d3:f95c with SMTP id
+ y6-20020a1c4b06000000b003edf9d3f95cmr4280203wma.19.1680691933424; 
+ Wed, 05 Apr 2023 03:52:13 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YypFChNMSRr5cyT8L+ZHxrWjZZcWglGlfHwGA/7CQvNRB/z1vBRfsxOT+I+/Bpq7WCzao0YA==
+X-Received: by 2002:a1c:4b06:0:b0:3ed:f9d3:f95c with SMTP id
+ y6-20020a1c4b06000000b003edf9d3f95cmr4280186wma.19.1680691933147; 
+ Wed, 05 Apr 2023 03:52:13 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ h7-20020a5d4307000000b002e707102a02sm11892008wrq.101.2023.04.05.03.52.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 03:52:12 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
+ <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20230404194038.472803-3-daniel.vetter@ffwll.ch>
+References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
+ <20230404194038.472803-3-daniel.vetter@ffwll.ch>
+Date: Wed, 05 Apr 2023 12:52:12 +0200
+Message-ID: <87a5zmd2jn.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: run kernel-doc on headers as part
- of HDRTEST
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/fb-helper: fix input validation
+ gaps in check_var
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,169 +82,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Apr 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Apr 04, 2023 at 03:26:24PM +0300, Jani Nikula wrote:
->> On Tue, 04 Apr 2023, kernel test robot <lkp@intel.com> wrote:
->> > Hi Jani,
->> >
->> > kernel test robot noticed the following build warnings:
->> 
->> Yeah, that's kind of the point of adding more checks. ;)
+Daniel Vetter <daniel.vetter@ffwll.ch> writes:
+
+> Apparently drivers need to check all this stuff themselves, which for
+> most things makes sense I guess. And for everything else we luck out,
+> because modern distros stopped supporting any other fbdev drivers than
+> drm ones and I really don't want to argue anymore about who needs to
+> check stuff. Therefore fixing all this just for drm fbdev emulation is
+> good enough.
 >
-> Indeed. I was in doubt if the include of the full dir was the right
-> way, but this reply shows it works as expected :)
+
+Agreed.
+
+> Note that var->active is not set or validated. This is just control
+> flow for fbmem.c and needs to be validated in there as needed.
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-Thanks, pushed to drm-intel-next.
+[...]
 
-Btw the gitlab issue for the warnings is [1].
+>  
+> +static void __fill_var(struct fb_var_screeninfo *var,
+> +		       struct drm_framebuffer *fb)
+> +{
+> +	int i;
+> +
+> +	var->xres_virtual = fb->width;
+> +	var->yres_virtual = fb->height;
+> +	var->accel_flags = FB_ACCELF_TEXT;
+> +	var->bits_per_pixel = drm_format_info_bpp(fb->format, 0);
+> +
+> +	var->height = var->width = 0;
+> +	var->left_margin = var->right_margin = 0;
+> +	var->upper_margin = var->lower_margin = 0;
+> +	var->hsync_len = var->vsync_len = 0;
+> +	var->sync = var->vmode = 0;
+> +	var->rotate = 0;
+> +	var->colorspace = 0;
+> +	for (i = 0; i < 4; i++)
+> +		var->reserved[i] = 0;
+> +}
+> +
+>  /**
+>   * drm_fb_helper_check_var - implementation for &fb_ops.fb_check_var
+>   * @var: screeninfo to check
+> @@ -1595,8 +1616,22 @@ int drm_fb_helper_check_var(struct fb_var_screeninfo *var,
+>  		return -EINVAL;
+>  	}
+>  
+> -	var->xres_virtual = fb->width;
+> -	var->yres_virtual = fb->height;
+> +	__fill_var(var, fb);
+> +
 
-BR,
-Jani.
+[...]
 
+There is the following here (in latest drm-misc/drm-misc-next at least):
 
-[1] https://gitlab.freedesktop.org/drm/intel/-/issues/8335
+	/*
+	 * Changes struct fb_var_screeninfo are currently not pushed back
+	 * to KMS, hence fail if different settings are requested.
+	 */
+	bpp = drm_format_info_bpp(format, 0);
+	if (var->bits_per_pixel > bpp ||
+	    var->xres > fb->width || var->yres > fb->height ||
+	    var->xres_virtual > fb->width || var->yres_virtual > fb->height) {
+		drm_dbg_kms(dev, "fb requested width/height/bpp can't fit in current fb "
+			  "request %dx%d-%d (virtual %dx%d) > %dx%d-%d\n",
+			  var->xres, var->yres, var->bits_per_pixel,
+			  var->xres_virtual, var->yres_virtual,
+			  fb->width, fb->height, bpp);
+		return -EINVAL;
+	}
 
->
->> 
->> BR,
->> Jani.
->> 
->> 
->> >
->> > [auto build test WARNING on drm-tip/drm-tip]
->> >
->> > url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-run-kernel-doc-on-headers-as-part-of-HDRTEST/20230404-170637
->> > base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
->> > patch link:    https://lore.kernel.org/r/20230404090528.173075-1-jani.nikula%40intel.com
->> > patch subject: [Intel-gfx] [PATCH] drm/i915: run kernel-doc on headers as part of HDRTEST
->> > config: i386-defconfig (https://download.01.org/0day-ci/archive/20230404/202304042026.uZBs3cC2-lkp@intel.com/config)
->> > compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
->> > reproduce (this is a W=1 build):
->> >         # https://github.com/intel-lab-lkp/linux/commit/336391cc647b2fbdf0ebd2eda8a10fb4509918b7
->> >         git remote add linux-review https://github.com/intel-lab-lkp/linux
->> >         git fetch --no-tags linux-review Jani-Nikula/drm-i915-run-kernel-doc-on-headers-as-part-of-HDRTEST/20230404-170637
->> >         git checkout 336391cc647b2fbdf0ebd2eda8a10fb4509918b7
->> >         # save the config file
->> >         mkdir build_dir && cp config build_dir/.config
->> >         make W=1 O=build_dir ARCH=i386 olddefconfig
->> >         make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/
->> >
->> > If you fix the issue, kindly add following tag where applicable
->> > | Reported-by: kernel test robot <lkp@intel.com>
->> > | Link: https://lore.kernel.org/oe-kbuild-all/202304042026.uZBs3cC2-lkp@intel.com/
->> >
->> > All warnings (new ones prefixed by >>):
->> >
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'size' not described in '__guc_capture_bufstate'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'data' not described in '__guc_capture_bufstate'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'rd' not described in '__guc_capture_bufstate'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'wr' not described in '__guc_capture_bufstate'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'link' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'is_partial' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'eng_class' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'eng_inst' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'guc_id' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'lrca' not described in '__guc_capture_parsed_output'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'reginfo' not described in '__guc_capture_parsed_output'
->> >>> drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:62: warning: wrong kernel-doc identifier on line:
->> >     * struct guc_debug_capture_list_header / struct guc_debug_capture_list
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:80: warning: wrong kernel-doc identifier on line:
->> >     * struct __guc_mmio_reg_descr / struct __guc_mmio_reg_descr_group
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:105: warning: wrong kernel-doc identifier on line:
->> >     * struct guc_state_capture_header_t / struct guc_state_capture_t /
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'is_valid' not described in '__guc_capture_ads_cache'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'ptr' not described in '__guc_capture_ads_cache'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'size' not described in '__guc_capture_ads_cache'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'status' not described in '__guc_capture_ads_cache'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:216: warning: Function parameter or member 'ads_null_cache' not described in 'intel_guc_state_capture'
->> >    drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:216: warning: Function parameter or member 'max_mmio_per_node' not described in 'intel_guc_state_capture'
->> > --
->> >    drivers/gpu/drm/i915/i915_pmu.h:21: warning: cannot understand function prototype: 'enum i915_pmu_tracked_events '
->> >    drivers/gpu/drm/i915/i915_pmu.h:32: warning: cannot understand function prototype: 'enum '
->> >>> drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
->> >     * How many different events we track in the global PMU mask.
->> > --
->> >>> drivers/gpu/drm/i915/i915_request.h:176: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
->> >     * Request queue structure.
->> >    drivers/gpu/drm/i915/i915_request.h:477: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
->> >     * Returns true if seq1 is later than seq2.
->> > --
->> >>> drivers/gpu/drm/i915/i915_vma.h:145: warning: expecting prototype for i915_vma_offset(). Prototype was for i915_vma_size() instead
->> > --
->> >>> drivers/gpu/drm/i915/intel_wakeref.h:118: warning: expecting prototype for intel_wakeref_get_if_in_use(). Prototype was for intel_wakeref_get_if_active() instead
->> >
->> >
->> > vim +62 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
->> >
->> > 24492514ccbd57 Alan Previn 2022-03-21  14  
->> > f5718a7265a6f5 Alan Previn 2022-03-21  15  /**
->> > f5718a7265a6f5 Alan Previn 2022-03-21  16   * struct __guc_capture_bufstate
->> > f5718a7265a6f5 Alan Previn 2022-03-21  17   *
->> > f5718a7265a6f5 Alan Previn 2022-03-21  18   * Book-keeping structure used to track read and write pointers
->> > f5718a7265a6f5 Alan Previn 2022-03-21  19   * as we extract error capture data from the GuC-log-buffer's
->> > f5718a7265a6f5 Alan Previn 2022-03-21  20   * error-capture region as a stream of dwords.
->> > f5718a7265a6f5 Alan Previn 2022-03-21  21   */
->> > f5718a7265a6f5 Alan Previn 2022-03-21  22  struct __guc_capture_bufstate {
->> > f5718a7265a6f5 Alan Previn 2022-03-21  23  	u32 size;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  24  	void *data;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  25  	u32 rd;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  26  	u32 wr;
->> > f5718a7265a6f5 Alan Previn 2022-03-21 @27  };
->> > f5718a7265a6f5 Alan Previn 2022-03-21  28  
->> > f5718a7265a6f5 Alan Previn 2022-03-21  29  /**
->> > f5718a7265a6f5 Alan Previn 2022-03-21  30   * struct __guc_capture_parsed_output - extracted error capture node
->> > f5718a7265a6f5 Alan Previn 2022-03-21  31   *
->> > f5718a7265a6f5 Alan Previn 2022-03-21  32   * A single unit of extracted error-capture output data grouped together
->> > f5718a7265a6f5 Alan Previn 2022-03-21  33   * at an engine-instance level. We keep these nodes in a linked list.
->> > 247f8071d58933 Alan Previn 2022-03-21  34   * See cachelist and outlist below.
->> > f5718a7265a6f5 Alan Previn 2022-03-21  35   */
->> > f5718a7265a6f5 Alan Previn 2022-03-21  36  struct __guc_capture_parsed_output {
->> > f5718a7265a6f5 Alan Previn 2022-03-21  37  	/*
->> > f5718a7265a6f5 Alan Previn 2022-03-21  38  	 * A single set of 3 capture lists: a global-list
->> > f5718a7265a6f5 Alan Previn 2022-03-21  39  	 * an engine-class-list and an engine-instance list.
->> > f5718a7265a6f5 Alan Previn 2022-03-21  40  	 * outlist in __guc_capture_parsed_output will keep
->> > f5718a7265a6f5 Alan Previn 2022-03-21  41  	 * a linked list of these nodes that will eventually
->> > f5718a7265a6f5 Alan Previn 2022-03-21  42  	 * be detached from outlist and attached into to
->> > f5718a7265a6f5 Alan Previn 2022-03-21  43  	 * i915_gpu_codedump in response to a context reset
->> > f5718a7265a6f5 Alan Previn 2022-03-21  44  	 */
->> > f5718a7265a6f5 Alan Previn 2022-03-21  45  	struct list_head link;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  46  	bool is_partial;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  47  	u32 eng_class;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  48  	u32 eng_inst;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  49  	u32 guc_id;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  50  	u32 lrca;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  51  	struct gcap_reg_list_info {
->> > f5718a7265a6f5 Alan Previn 2022-03-21  52  		u32 vfid;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  53  		u32 num_regs;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  54  		struct guc_mmio_reg *regs;
->> > f5718a7265a6f5 Alan Previn 2022-03-21  55  	} reginfo[GUC_CAPTURE_LIST_TYPE_MAX];
->> > f5718a7265a6f5 Alan Previn 2022-03-21  56  #define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_CAPTURE_LIST_TYPE_GLOBAL)
->> > f5718a7265a6f5 Alan Previn 2022-03-21  57  #define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS)
->> > f5718a7265a6f5 Alan Previn 2022-03-21  58  #define GCAP_PARSED_REGLIST_INDEX_ENGINST  BIT(GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE)
->> > f5718a7265a6f5 Alan Previn 2022-03-21  59  };
->> > f5718a7265a6f5 Alan Previn 2022-03-21  60  
->> > 24492514ccbd57 Alan Previn 2022-03-21  61  /**
->> > 24492514ccbd57 Alan Previn 2022-03-21 @62   * struct guc_debug_capture_list_header / struct guc_debug_capture_list
->> > 24492514ccbd57 Alan Previn 2022-03-21  63   *
->> > 24492514ccbd57 Alan Previn 2022-03-21  64   * As part of ADS registration, these header structures (followed by
->> > 24492514ccbd57 Alan Previn 2022-03-21  65   * an array of 'struct guc_mmio_reg' entries) are used to register with
->> > 24492514ccbd57 Alan Previn 2022-03-21  66   * GuC microkernel the list of registers we want it to dump out prior
->> > 24492514ccbd57 Alan Previn 2022-03-21  67   * to a engine reset.
->> > 24492514ccbd57 Alan Previn 2022-03-21  68   */
->> > 24492514ccbd57 Alan Previn 2022-03-21  69  struct guc_debug_capture_list_header {
->> > 24492514ccbd57 Alan Previn 2022-03-21  70  	u32 info;
->> > 24492514ccbd57 Alan Previn 2022-03-21  71  #define GUC_CAPTURELISTHDR_NUMDESCR GENMASK(15, 0)
->> > 24492514ccbd57 Alan Previn 2022-03-21  72  } __packed;
->> > 24492514ccbd57 Alan Previn 2022-03-21  73  
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
+but only the 'var->xres > fb->width || var->yres > fb->height' from the
+conditions checked could be false after your __fill_var() call above.
+
+You should drop the 'var->bits_per_pixel > bpp', 'var->xres_virtual >
+fb->width' and 'var->yres_virtual > fb->height' checks I believe since
+those will always be true.
+
+> +	/*
+> +	 * fb_pan_display() validates this, but fb_set_par() doesn't and just
+> +	 * falls over. Note that __fill_var above adjusts y/res_virtual.
+> +	 */
+> +	if (var->yoffset > var->yres_virtual - var->yres ||
+> +	    var->xoffset > var->xres_virtual - var->xres)
+> +		return -EINVAL;
+> +
+> +	/* We neither support grayscale nor FOURCC (also stored in here). */
+> +	if (var->grayscale > 0)
+> +		return -EINVAL;
+> +
+> +	if (var->nonstd)
+> +		return -EINVAL;
+>  
+>  	/*
+>  	 * Workaround for SDL 1.2, which is known to be setting all pixel format
+> @@ -1612,11 +1647,6 @@ int drm_fb_helper_check_var(struct fb_var_screeninfo *var,
+>  		drm_fb_helper_fill_pixel_fmt(var, format);
+>  	}
+>  
+
+Other than what I mentioned, the patch makes sense to me.
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
