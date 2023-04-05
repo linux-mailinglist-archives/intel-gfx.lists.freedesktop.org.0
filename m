@@ -2,65 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080F96D7154
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 02:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4436D7228
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 03:46:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F13810E7E6;
-	Wed,  5 Apr 2023 00:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7283E10E2F8;
+	Wed,  5 Apr 2023 01:46:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1185D10E7FD;
- Wed,  5 Apr 2023 00:33:42 +0000 (UTC)
-Received: from [192.168.2.153] (109-252-119-170.nat.spd-mgts.ru
- [109.252.119.170])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 28F00660315A;
- Wed,  5 Apr 2023 01:33:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1680654820;
- bh=via3dJkBW0Q8Yv2lNNPhM1xz+EXuwPR73o7cexB8slY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=aDnntxld9l5U1838pxs7NIC4zlfcPtaKCwF2NGov7MOFh4qL466qI5WvAOWi6K/p+
- ZkhfEgrvEKpMEAEWNeA7+GiBxa7JYxR6fyecM+semPnPuQACmYxaGCmugo9Vqkyj3n
- TQAGZC8fpSAaeF3FJbLOWfw3N1n5vgRXhihKtWuKAGqn5BtzqJ0qQUiTihANTbojgg
- DHjAQGEVYOV2cTUTTPSllrvfZEYWoAokSc+lIt5KXU7UGGB6hiyPdXEn5ssBoxrSVS
- RQ8UUiSIQrVm2QmeQgmDwrKAXz4J2Gt2o2A//CeZjkd23tpyvvZJfu3pHQ/4RTUZZw
- nnt2kzHwFxcGA==
-Message-ID: <91788325-5050-9cf8-9246-5496d9db4df3@collabora.com>
-Date: Wed, 5 Apr 2023 03:33:22 +0300
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2C89410E2F8;
+ Wed,  5 Apr 2023 01:46:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F299AAADE4;
+ Wed,  5 Apr 2023 01:46:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Liam Mark <lmark@codeaurora.org>, Brian Starkey <Brian.Starkey@arm.com>,
- John Stultz <jstultz@google.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Tomi Valkeinen <tomba@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- Emil Velikov <emil.l.velikov@gmail.com>
-References: <20230402164826.752842-1-dmitry.osipenko@collabora.com>
- <20230402164826.752842-6-dmitry.osipenko@collabora.com>
- <7854897f-67f8-e82c-3edf-e8ef923d2474@amd.com>
-Content-Language: en-US
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <7854897f-67f8-e82c-3edf-e8ef923d2474@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v1 5/7] Revert "drm: Assert held reservation
- lock for dma-buf mmapping"
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Wed, 05 Apr 2023 01:46:34 -0000
+Message-ID: <168065919496.14696.2703247804095125375@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230405001433.2654971-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20230405001433.2654971-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?fdinfo=3A_Enable_some_support_for_GuC_based_client_busyness?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,37 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, kernel@collabora.com, linux-media@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/3/23 18:17, Christian König wrote:
-> Am 02.04.23 um 18:48 schrieb Dmitry Osipenko:
->> Don't assert held dma-buf reservation lock on memory mapping of exported
->> buffer.
->>
->> We're going to change dma-buf mmap() locking policy such that exporters
->> will have to handle the lock. The previous locking policy caused deadlock
->> problem for DRM drivers in a case of self-imported dma-bufs, it's solved
->> by moving the lock down to exporters.
-> 
-> I only checked the TTM code path and think that at least that one should
-> work fine.
-> 
->> Fixes: 39ce25291871 ("drm: Assert held reservation lock for dma-buf
->> mmapping")
-> 
-> This here is not really a "fix" for the previous patch. We just found
-> that we didn't like the behavior and so reverted the original patch.
-> 
-> A "Reverts..." comment in the commit message would be more appropriate I
-> think.
+== Series Details ==
 
-Ack, will drop the fixes tag in v2. Thank you and Emil for the review.
+Series: fdinfo: Enable some support for GuC based client busyness
+URL   : https://patchwork.freedesktop.org/series/116120/
+State : warning
 
--- 
-Best regards,
-Dmitry
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
