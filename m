@@ -2,63 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8CA6D851C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3296D852A
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:46:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F3110E1E2;
-	Wed,  5 Apr 2023 17:44:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D5D10E1E2;
+	Wed,  5 Apr 2023 17:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C28710E1E2
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:44:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680716645;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=1+OOQA9PZQd4PUwJ9BuG68QxiObq/aqDA99CcsUtChQ=;
- b=VEMMGFSeaAa3awyM5TyXFIORvqQDW9ISklIvj+OCddGT6TTqawV/p2XoliwjCSKi/sPPt3
- Xr1yXtdzDbXL9cw07/7I9xCHu4Fh3oQd/aJZdTggipILVlRtBoisDUkWaQeRuw+5gx5apX
- KegnMQ1GC/wPaHIVyEpm32or2nMS1VU=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-354-Zk-kM6GRP_GeIKD7ctmKeA-1; Wed, 05 Apr 2023 13:44:01 -0400
-X-MC-Unique: Zk-kM6GRP_GeIKD7ctmKeA-1
-Received: by mail-wm1-f71.google.com with SMTP id
- bg33-20020a05600c3ca100b003ef6d684105so15129897wmb.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:44:00 -0700 (PDT)
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com
+ [IPv6:2607:f8b0:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749E610E1E2;
+ Wed,  5 Apr 2023 17:46:16 +0000 (UTC)
+Received: by mail-pg1-x532.google.com with SMTP id l184so13131341pgd.11;
+ Wed, 05 Apr 2023 10:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1680716775;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1RjwHNkPIv0gqvcJDvLcIFhQPDzxKuxipVi5C1/h0iY=;
+ b=k9YsTrT7iglyB2h5BrYi0vc5gxR8cZ7mA/lKvhgo4IuUxMdXaMgAXnKYkCMVBQtCi0
+ ljwIUYA2lA8J8aHiwni8E0KhG5/ZNFZ3ZV6KeDL1lsoRo2T207nZaYscJ4AwpBG1YZDo
+ HJqt9hP4IRk7ZbxfE3huj8CMuifFs4v8o8vaCoP0CmctgLiPVczX2UsA5igwRQB4ju7S
+ V32yjMrJp8zy6njXl7h66QxCkC9rN/KgidzY6FpF6VptCDdD4URfPu+biSEKfDC1P22J
+ eC3JBo+zjazbSWhopXmnysTp4hqFFnMx5UFFNLdNfPzokdC7RwSuueZ8BbyRZiYcciPw
+ ujXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680716639;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=1+OOQA9PZQd4PUwJ9BuG68QxiObq/aqDA99CcsUtChQ=;
- b=IrA8GcMKv+UkhYmI12L8v3PidGqcut6hh1symHTfdzBriI/onaW9Q/uM7Sb3IfDYBb
- UaIZiyi/iC9l5HY012zYEEemgr52Pb4uHPrVnXAWrnI5XpTm1syR/bkO0GBN+0/hkogT
- IcXQJpzxmSZsqa2V7EGowBD4O3mxYi5irzff2V0GfVVdj3wIET+hsEN0fjmSwMUqOeea
- /Ykyr92LgIG2x7+YW9WhU3vXD/eGP5peWNAQc7U1kQ21BcDtS2DvMgB7SGK5QyO0lPFr
- SML2p1CfePhD0taxvOQA2M0MC6E9pXkzwbj0ctU3mnpT8ZwldPPsqLTZFiADsMLcedhS
- V5oQ==
-X-Gm-Message-State: AAQBX9esUPzVmceyyAFKKiRAlCU1gL2z+UFC2sZrpuv5MXmD/ICFJ4Q2
- TRcCcS9MqFbntylp03Ps2NaS/CugGsonD4jx+Jkrvr3vunCMHvpYLyiCOr8FTgS31roQqtKDpGE
- sjfEDXxe8M6ttqtksKT/nEH+c5EftTJaOESp9
-X-Received: by 2002:a5d:6687:0:b0:2cf:6089:2408 with SMTP id
- l7-20020a5d6687000000b002cf60892408mr2387269wru.0.1680716639463; 
- Wed, 05 Apr 2023 10:43:59 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bWGWG/CFxOJpT4iJdtG1Z00et7x2nuFjcUkxrAgqJ6h7Q++2YgYaFAieGG1eAWq6oDMkXL4w==
-X-Received: by 2002:a5d:6687:0:b0:2cf:6089:2408 with SMTP id
- l7-20020a5d6687000000b002cf60892408mr2387257wru.0.1680716639182; 
- Wed, 05 Apr 2023 10:43:59 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- o18-20020adfe812000000b002daf0b52598sm15610073wrm.18.2023.04.05.10.43.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 10:43:58 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
+ d=1e100.net; s=20210112; t=1680716775;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=1RjwHNkPIv0gqvcJDvLcIFhQPDzxKuxipVi5C1/h0iY=;
+ b=0DZLXwpRQql8uJ6Gvib9OA4tjfejh9RBIJLhbWN/OG1bmXzaPi3DNgokl0Ep1DpesB
+ YZ0Z4wgkYPBdLP7gejUUMeUwySL8u9VA19AfLi6XOkqU0OtM1yI08pifsGpg2Ooz+PUy
+ NMLM8O2ZbE87FoRUJXwFkaLMUIXL0/KABMsVWN9mMl1J+sNSMoprN6NPt2DkyAQpFKne
+ 7lm0r9U4EegS140d1F0vR048ccVN7wd3qsCWigwdsgv07DPD/2PMcm/ok1NqUZnXCi+R
+ gQxtn6RW5xV4MfQW4BrfcL0+wYvVFyGzzc/0qH/sqFTHlTeJItfMeQ3cidfqhdvUtrKR
+ u+ag==
+X-Gm-Message-State: AAQBX9ceuuPepBd81sx1U4stx29wu4ZNYLNdf5xsWDUqUNTKs0jgx9pj
+ omvi5N18R1+gPo1Ir/LDZZ1clx8CikQkYWQcf9A=
+X-Google-Smtp-Source: AKy350YPh2RyfQOOasMXAGbUKWcCvg3I6pkQCHSo04I6plSURlf5F/BifW7aJ7Dt8zM6N6tTmGU7wiZGkoHb/mwcDpA=
+X-Received: by 2002:a63:f307:0:b0:50c:bd0:eb8c with SMTP id
+ l7-20020a63f307000000b0050c0bd0eb8cmr2253298pgh.6.1680716775437; Wed, 05 Apr
+ 2023 10:46:15 -0700 (PDT)
+MIME-Version: 1.0
 References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
  <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
  <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
@@ -72,12 +59,13 @@ References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
  <ZC2beu/9inolwIlr@phenom.ffwll.local>
  <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
  <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
-Date: Wed, 05 Apr 2023 19:43:58 +0200
-Message-ID: <875yaa9qch.fsf@minerva.mail-host-address-is-not-set>
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+In-Reply-To: <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
+From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Date: Wed, 5 Apr 2023 19:46:04 +0200
+Message-ID: <CAMeQTsam0efUrS=x+Eb+p8A3rXgCOUmA7UVjFB=9oAKFoepzOw@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
  drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -94,36 +82,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Daniel Vetter <daniel@ffwll.ch> writes:
-
+On Wed, Apr 5, 2023 at 7:15=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> wrot=
+e:
+>
 > On Wed, 5 Apr 2023 at 18:54, Javier Martinez Canillas
 > <javierm@redhat.com> wrote:
->>
->> Daniel Vetter <daniel@ffwll.ch> writes:
-
-[...]
-
->>
->> Yeah, agreed that if vga_remove_vgacon() isn't enough and another helper
->> is needed then starts to get a little silly. Maybe one option is to add a
->> 3rd param to aperture_remove_conflicting_pci_devices() and skip the logic
->> to iterate over PCI bars and call aperture_remove_conflicting_devices() ?
+> >
+> > Daniel Vetter <daniel@ffwll.ch> writes:
+> >
+> > > On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote:
+> >
+> > [...]
+> >
+> > >> > > >        /*
+> > >> > > >         * WARNING: Apparently we must kick fbdev drivers befor=
+e vgacon,
+> > >> > > >         * otherwise the vga fbdev driver falls over.
+> > >> > > >         */
+> > >> > > >        ret =3D vga_remove_vgacon(pdev);
+> > >> >
+> > >> > This isn't enough, we also nuke stuff that's mapping the vga fb ra=
+nge.
+> >
+> > Ah, also need aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZ=
+E) then.
+> >
+> > [...]
+> >
+> > >> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
+> > >> {
+> > >>      aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE);
+> > >>
+> > >>      return vga_remove_vgacon(pdev);
+> > >> }
+> > >>
+> > >> And that can be called from gma500 and the pci aperture helper.
+> > >
+> > > But you still pass a pci_dev to that helper. Which just doesn't make =
+any
+> > > sense to me (assuming your entire point is that this isn't just a nor=
+mal
+> > > pci device but some special legacy vga thing), but if we go with (voi=
+d)
+> > > then there's more refactoring to do because the vga_remove_vgacon als=
+o
+> > > wants a pdev.
+> > >
+> > > All so that we don't call aperture_detach_devices() on a bunch of pci
+> > > bars, which apparently is not problem for any other driver, but absol=
+utely
+> > > is a huge problem for gma500 somehow.
+> > >
+> > > I don't understand why.
+> > >
+> >
+> > Yeah, agreed that if vga_remove_vgacon() isn't enough and another helpe=
+r
+> > is needed then starts to get a little silly. Maybe one option is to add=
+ a
+> > 3rd param to aperture_remove_conflicting_pci_devices() and skip the log=
+ic
+> > to iterate over PCI bars and call aperture_remove_conflicting_devices()=
+ ?
 >
 > The thing I don't get: Why does this matter for gma500 and not any of
 > the other pci devices? Look at your gpu, realize there's a lot more
+> than the one pci bar for vram or stolen memory, realize that we're
+> nuking bars that cannot possible contain the framebuffer for everyone
+> else too. Like the entire "gpus have a lot of bars" thing is the
+> reason why I pulled the sysfb_disable one level up, because we've been
+> doing that quite a few times before this patch (yes it's not the main
+> thing, but the side-effect cleanup is why I've gone down this rabbit
+> hole and wrote the entire series here):
+>
+> https://lore.kernel.org/dri-devel/20230404201842.567344-7-daniel.vetter@f=
+fwll.ch/
+>
+> But somehow for gma500 it's a problem, while for everyone else it's
+> fine. That's the part I dont get, or Thomas&me have been talking past
+> each another and there's another issue that I'm missing.
+> -Daniel
 
-Yes, I don't know why gma500 is special in that sense but I'm not familiar
-with that hardware to have an opinion on this.
+I'm also getting confused here.
 
--- 
-Best regards,
+AFAIK the stolen memory works the same for gma500 hardware as other
+Intel GPUs. Are you saying that there is a difference in how gma500
+hardware works? I always assumed that i915 got away with not dealing
+much with stolen memory because it simply doesn't use it for
+allocations. In gma500 we use it for fbdev and cursors. The actual
+pages reserved by the bios can be accessed through a pci bar if you
+map it so (which IIRC we do) but I suppose that doesn't help
+identifying it as a range reserved by other drivers.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+The reason I've kept the stolen allocation logic is because some
+gma500 systems don't have a lot of memory. But that is mostly the old
+Pouslbo systems. Perhaps it is time to ditch the stolen allocation
+code?
 
+-Patrik
+
+>
+> > > Consider this me throwing in the towel. If you&Javier are convinced t=
+his
+> > > makes sense please type it up and merge it, but I'm not going to type
+> > > something that just doesn't make sense to me.
+> >
+> > Honestly, I would just go with the double drm_aperture_remove_*() helpe=
+r
+> > calls (your original patch) unless that causes real issues. There is no
+> > point on blocking all your series just for this IMO.
+> >
+> > Then latter if Thomas has strong opinions can send a follow-up patch fo=
+r
+> > the gma500 driver and the aperture helpers.
+> >
+> > > -Daniel
+> > >
+> >
+> > --
+> > Best regards,
+> >
+> > Javier Martinez Canillas
+> > Core Platforms
+> > Red Hat
+> >
+>
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
