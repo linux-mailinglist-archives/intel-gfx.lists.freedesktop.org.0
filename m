@@ -1,83 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF686D7C4A
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 14:20:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124EE6D7C6A
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 14:25:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 181AA10E90A;
-	Wed,  5 Apr 2023 12:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C44110E919;
+	Wed,  5 Apr 2023 12:25:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 462F410E90A
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 12:20:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680697215;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=erf4UNO3fNS9mv22A+JjIcgyW6S0YpQ5DUbNcYGvtZ0=;
- b=Vv4bu1gFUdPCE0hvzS7JGgrxDvPYvsck+PahetuwUkXrcTNPKiWOu+gYzURj+YIKO9beXf
- O9J3ohWquh5LkXs/I4PLyyjDJFkDzf6gIwYrgmtAQ4fnn0JL0g2oSbESDjfSE3nWRrxJsf
- 9xWA4dC1BVG5YJD/TZ27Le5o+Oirz+A=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-32-OavnJbRmN9qxJeeluY1BWw-1; Wed, 05 Apr 2023 08:20:14 -0400
-X-MC-Unique: OavnJbRmN9qxJeeluY1BWw-1
-Received: by mail-qv1-f69.google.com with SMTP id
- pe26-20020a056214495a00b005df3eac4c0bso13015503qvb.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 05:20:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680697213;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=erf4UNO3fNS9mv22A+JjIcgyW6S0YpQ5DUbNcYGvtZ0=;
- b=Yl+LH65p8s7OLrkRhpdTHsdSLSb0umFoTS7edcO36EvAQdq4NBPxeVsrdUMvHgTPTh
- Ddqz4q+qIYIy46hFXxXNau4TmpWL/M0vLmAnXBwBcG3IgVWvmzE0bOknbsUGBJcxffaX
- AtbdNdGiUC8oQChVhS+RXfYfAtqk491YLexLxefWITVF/LXCwAufQQc7Db9vsM9LxQQ7
- fGxWm4eA5V17cOuMO2SMVQb3tLfUEJvaAVjcsMl2M5pKofCVSedDRcXOkfYUps/9MMm3
- P6BmhxRJk28qWqsAkfzTgrxkz8dTQS64Jj0WHz6di+aOr4PFXhOmOelkR2CQz8BDTycq
- I5QQ==
-X-Gm-Message-State: AAQBX9cmIXGE2T4DiQXAhXxN+wFzmwbHSS1sD0Yc0be2x+3x6ATmyZIY
- 1D3+Pwg1Ke5wmItWHDlvUqOiK+9Qwi6xovYHGlA+/Jlfj7IUvs0HGFqZRP0QX7WhScyGKQ8Pg8r
- q+o27G7p5em9kLNhcvZhdr/4278FZ
-X-Received: by 2002:a05:6214:e6e:b0:56e:f9a2:1aff with SMTP id
- jz14-20020a0562140e6e00b0056ef9a21affmr7785867qvb.35.1680697213760; 
- Wed, 05 Apr 2023 05:20:13 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YufqLIW4kTurRmpoStx2boSEtRlVeqT/uSnU6kdOvvAZfwzmAklgvT9NeSB7a7bO7FCPIIzA==
-X-Received: by 2002:a05:6214:e6e:b0:56e:f9a2:1aff with SMTP id
- jz14-20020a0562140e6e00b0056ef9a21affmr7785819qvb.35.1680697213472; 
- Wed, 05 Apr 2023 05:20:13 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id
- l8-20020a0cc208000000b005dd8b9345a2sm4164191qvh.58.2023.04.05.05.20.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 Apr 2023 05:20:12 -0700 (PDT)
-Message-ID: <f90410e0-96f1-9719-9d83-f7caa5992d6d@redhat.com>
-Date: Wed, 5 Apr 2023 14:20:07 +0200
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0617510E90A;
+ Wed,  5 Apr 2023 12:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680697521; x=1712233521;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=pOpaS/VzVZdJzObenZMlvFf1Tou6jErgD6Bwf6oEvXo=;
+ b=SwCDo21AqMhlH6pSZwmehNQTpt6lqhISdzuH8NBBEab2n+kNFR/TzE6K
+ TqZYa7rMXoQVtHMPA3sduII97bHBNX0gEIARQi+zN0PJ+l4aXnkE+HNie
+ WpIZtbBn0Ul5x+pg91U8XL0ZvEvWE06NO8E7l05gCMoe2tLRzzGo73/D/
+ gaW0IbNqHxhN28Zt4A7neVDZkiZYIuWNs0O3/1+qYY2pyl85O+DRP6S9Y
+ N1mPTySn7S1e8wlrM70EQFXhdcd2+VwPlXG0bSXNd3gqV997Jsxi368rS
+ SUsr++6zozjSDMJyduoevUwT6X7YvBqY1BGT9LPU5CoitLlDzXAgkJ5Bq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="345017360"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="345017360"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 05:25:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="719300576"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="719300576"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga001.jf.intel.com with SMTP; 05 Apr 2023 05:25:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 05 Apr 2023 15:25:15 +0300
+Date: Wed, 5 Apr 2023 15:25:15 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZC1oq1+oBWM6PpRR@intel.com>
+References: <20230405081650.797972-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
- kevin.tian@intel.com
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-4-yi.l.liu@intel.com>
-From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <20230401151833.124749-4-yi.l.liu@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v9 03/25] vfio: Remove vfio_file_is_group()
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230405081650.797972-1-daniel.vetter@ffwll.ch>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helper: Don't set deadline for
+ modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,68 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
- mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
- cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
- yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
+Cc: Rob Clark <robdclark@chromium.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
-
-On 4/1/23 17:18, Yi Liu wrote:
-> since no user of vfio_file_is_group() now.
->
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Tested-by: Terrence Xu <terrence.xu@intel.com>
-> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
-
-Eric
+On Wed, Apr 05, 2023 at 10:16:50AM +0200, Daniel Vetter wrote:
+> If the crtc is being switched on or off then the semantics of
+> computing the timestampe of the next vblank is somewhat ill-defined.
+> And indeed, the code splats with a warning in the timestamp
+> computation code. Specifically it hits the check to make sure that
+> atomic drivers have full set up the timing constants in the drm_vblank
+> structure, and that's just not the case before the crtc is actually
+> on.
+> 
+> For robustness it seems best to just not set deadlines for modesets.
+> 
+> Link: https://lore.kernel.org/dri-devel/dfc21f18-7e1e-48f0-c05a-d659b9c90b91@linaro.org/
+> Fixes: d39e48ca80c0 ("drm/atomic-helper: Set fence deadline for vblank")
+> Cc: Rob Clark <robdclark@chromium.org>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # test patch only
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > ---
->  drivers/vfio/group.c | 10 ----------
->  include/linux/vfio.h |  1 -
->  2 files changed, 11 deletions(-)
->
-> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-> index ede4723c5f72..4f937ebaf6f7 100644
-> --- a/drivers/vfio/group.c
-> +++ b/drivers/vfio/group.c
-> @@ -792,16 +792,6 @@ struct iommu_group *vfio_file_iommu_group(struct file *file)
->  }
->  EXPORT_SYMBOL_GPL(vfio_file_iommu_group);
+>  drivers/gpu/drm/drm_atomic_helper.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index f21b5a74176c..6640d80d84f3 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -1528,6 +1528,9 @@ static void set_fence_deadline(struct drm_device *dev,
+>  	for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
+>  		ktime_t v;
 >  
-> -/**
-> - * vfio_file_is_group - True if the file is a vfio group file
-> - * @file: VFIO group file
-> - */
-> -bool vfio_file_is_group(struct file *file)
-> -{
-> -	return vfio_group_from_file(file);
-> -}
-> -EXPORT_SYMBOL_GPL(vfio_file_is_group);
-> -
->  bool vfio_group_enforced_coherent(struct vfio_group *group)
->  {
->  	struct vfio_device *device;
-> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> index d9a0770e5fc1..7519ae89fcd6 100644
-> --- a/include/linux/vfio.h
-> +++ b/include/linux/vfio.h
-> @@ -264,7 +264,6 @@ int vfio_mig_get_next_state(struct vfio_device *device,
->   * External user API
->   */
->  struct iommu_group *vfio_file_iommu_group(struct file *file);
-> -bool vfio_file_is_group(struct file *file);
->  bool vfio_file_is_valid(struct file *file);
->  bool vfio_file_enforced_coherent(struct file *file);
->  void vfio_file_set_kvm(struct file *file, struct kvm *kvm);
+> +		if (drm_atomic_crtc_needs_modeset(new_crtc_state))
+> +			continue;
 
+Should this stuff also be skipped when !new_crtc_state->active?
+I didn't actually check what drm_crtc_next_vblank_start() ends
+up doing in that case.
+
+> +
+>  		if (drm_crtc_next_vblank_start(crtc, &v))
+>  			continue;
+>  
+> -- 
+> 2.40.0
+
+-- 
+Ville Syrjälä
+Intel
