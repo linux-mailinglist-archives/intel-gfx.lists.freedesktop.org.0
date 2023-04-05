@@ -2,83 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C73D56D7869
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 11:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 418046D7881
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 11:36:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AF110E8AD;
-	Wed,  5 Apr 2023 09:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77BD410E31B;
+	Wed,  5 Apr 2023 09:36:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1DAE10E8AE
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 09:32:44 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E35E10E8AC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 09:36:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680687163;
+ s=mimecast20190719; t=1680687395;
  h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=iJePrIKmM5p19yIm7M29IOK4mZgEMe/4wGNFN0wD5VI=;
- b=exJhsE0TDw+pBmrnEHtYVicN/3aONNmSA3vlybti8J/JtHs7pCPQiAkgt7OJbqhd69DGAa
- DKDS+TM8FYaQ3FL1oxUiqZv5sXBFRVHH0Ff/ceFIiJvWRZ5LW67C7ZqpIyUzcQsUMBoKnK
- mXqa9dG1D+F+BYWb/giGv7Lg3DRniIQ=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=iNBqhrj+XTm9KfkuETQ/F4AN0Uqhaaw5G/lVJC6MyqE=;
+ b=TDahx3M2YO/U9+U5tOpD/F+CWNUs5nEIlYIEVTrkBVNWQ7mKu65bGDwfDI8w/7tNXZt2Po
+ pAPFhpxYilvlrc7YWdcp9lR8pF9+05gMkSbj2CZbXFLEwEShXgSPx/VFIJw8TuiBqj+748
+ 0qeDWGtCnhWfHsKg6+xSOhg64NAJOWU=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-544-TglxaLTOP-KFOI5XaE-VHw-1; Wed, 05 Apr 2023 05:32:40 -0400
-X-MC-Unique: TglxaLTOP-KFOI5XaE-VHw-1
-Received: by mail-qv1-f71.google.com with SMTP id
- dg8-20020a056214084800b005acc280bf19so15926087qvb.22
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 02:32:40 -0700 (PDT)
+ us-mta-79-4MUVlzrNMpyAh1bRxoqy1A-1; Wed, 05 Apr 2023 05:36:34 -0400
+X-MC-Unique: 4MUVlzrNMpyAh1bRxoqy1A-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ h7-20020a0cd807000000b005dd254e7babso15879219qvj.14
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 02:36:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680687155;
+ d=1e100.net; s=20210112; t=1680687389;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:reply-to:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=iJePrIKmM5p19yIm7M29IOK4mZgEMe/4wGNFN0wD5VI=;
- b=cSCW8hgZF/W+SSbw6Vjkh0z7fpHL1EYstfOgKXPWE+7l5nJMYfrMag9XPhDEvZ6oMc
- RgbxwdqjU0Cqz47UmuvNm/ZTym9z9k64Wdf/GBX9Cn+IAQ8shp/yZJOdufd4RdljLw/C
- w9xe65ljDH5DcUPq21oOpeTZlEmOM0EOhn3k/L0rb7HwKojqdkuZ7SKSosVjM6maD+iQ
- DJt/4qJTnf5e8KGwFMlXUredANiY6ty36Su2zJXIyxu0WWPDgCANOMesJJ/g3z8R+I5o
- F2B171WyQ0ZhtOJii9OhPzY+h0XyRWaexWwyECPITUHFOmFhDcD68SVMTIsw2HqJNDce
- odug==
-X-Gm-Message-State: AAQBX9equCNjXYYErczDdwUVfUDuT+nCCDp4VTTSjMCmtPEWlwI/51df
- hCSkkiBq71mLg9S05vayH2f9SWKXEJViwDPuGrbzNm0SWgRSq6p51K6tjq/MhmjK2v3GsvhEMeA
- I3XZfTDnu2ZphWelLLHBN4u3HBKTF
-X-Received: by 2002:ac8:5d8d:0:b0:3bf:9f6e:a383 with SMTP id
- d13-20020ac85d8d000000b003bf9f6ea383mr3773383qtx.20.1680687154765; 
- Wed, 05 Apr 2023 02:32:34 -0700 (PDT)
-X-Google-Smtp-Source: AKy350Za+7n9GSyWy9b45qFE/eA8nCSnC0CPFcZ7xK49KUKdqgO8AfWeVw15E1LUZ5+byQQ44jGWCQ==
-X-Received: by 2002:ac8:5d8d:0:b0:3bf:9f6e:a383 with SMTP id
- d13-20020ac85d8d000000b003bf9f6ea383mr3773354qtx.20.1680687154483; 
- Wed, 05 Apr 2023 02:32:34 -0700 (PDT)
+ bh=iNBqhrj+XTm9KfkuETQ/F4AN0Uqhaaw5G/lVJC6MyqE=;
+ b=GQc6Fm/YyfmcjY2tCdBXFtWKiyeVZgGyLkRXpJYfEzAyN3zWqunOjL7RiUe6inln7h
+ YlVDVP8bqYw84ovdNabfi+630efJcqjZyHere8Cl60D+L5WOUbvTu8UYn5IVtIe507DA
+ XvcDdTkcMk1H0HPU5IkfwUanN5U+J0gY4ZZSjoetS7BNwaac6pYXQNcqezUyHfUi0QWV
+ qQotbdrvSPg2ZZoyqFywSA6E0lbcfVv+4Jvhbge14Hu8xID/UFz3wNEL6yAnoQ/x2esJ
+ p46I1ezgLiKMWHwwRWzjP0RZxzP7kqk5MbYeKV7lovgVq/h9uw7J+eCPE+j2i+TfhD/L
+ Oj2A==
+X-Gm-Message-State: AAQBX9fRo6OcR1SGBwg631sZqFfFwm1g6OdJAMRRZQVR02U9FDkZf9po
+ Jw+2QtEWdSspA7FMpVF3aZNfFUz3hbzuOIjLP8hpRCocWhRhXth4yQ3oqxOWfi8b6AIExJRi2Bv
+ mCxGgZHbyQDico+pzIEdwtZUZhCU+
+X-Received: by 2002:a05:6214:2588:b0:579:5dbc:ab8c with SMTP id
+ fq8-20020a056214258800b005795dbcab8cmr8061819qvb.30.1680687389404; 
+ Wed, 05 Apr 2023 02:36:29 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZmW7jHQa6DlupuWctFYcymxjC6ipeuyihMvEZoDZgJpFRcRiiHDYRJnqb2qNZSPOB4Sijfqw==
+X-Received: by 2002:a05:6214:2588:b0:579:5dbc:ab8c with SMTP id
+ fq8-20020a056214258800b005795dbcab8cmr8061789qvb.30.1680687388936; 
+ Wed, 05 Apr 2023 02:36:28 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
  ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
  by smtp.gmail.com with ESMTPSA id
- h19-20020a05620a401300b0074589d41342sm1900175qko.17.2023.04.05.02.32.29
+ mm17-20020a0562145e9100b005dd8b9345f4sm3996945qvb.140.2023.04.05.02.36.22
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 Apr 2023 02:32:33 -0700 (PDT)
-Message-ID: <4489a951-710f-a5b1-dcaf-f69d8b21f9fb@redhat.com>
-Date: Wed, 5 Apr 2023 11:32:27 +0200
+ Wed, 05 Apr 2023 02:36:26 -0700 (PDT)
+Message-ID: <5aaaf93e-f000-7f6c-b315-cf9550a237e8@redhat.com>
+Date: Wed, 5 Apr 2023 11:36:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
 To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
  kevin.tian@intel.com
 References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-9-yi.l.liu@intel.com>
+ <20230401144429.88673-10-yi.l.liu@intel.com>
 From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <20230401144429.88673-9-yi.l.liu@intel.com>
+In-Reply-To: <20230401144429.88673-10-yi.l.liu@intel.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 08/12] vfio/pci: Renaming for accepting
- device fd in hot reset path
+Subject: Re: [Intel-gfx] [PATCH v3 09/12] vfio/pci: Accept device fd in
+ VFIO_DEVICE_PCI_HOT_RESET ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,7 +105,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 4/1/23 16:44, Yi Liu wrote:
-> No functional change is intended.
+> Now user can also provide an array of device fds as a 3rd method to verify
+> the reset ownership. It's not useful at this point when the device fds are
+> acquired via group fds. But it's necessary when moving to device cdev which
+> allows the user to directly acquire device fds by skipping group. In that
+> case this method can be used as a last resort when the preferred iommufd
+> verification doesn't work, e.g. in noiommu usages.
+>
+> Clarify it in uAPI.
 >
 > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
 > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
@@ -115,148 +122,63 @@ Reviewed-by: Eric Auger <eric.auger@redhat.com>
 
 Eric
 > ---
->  drivers/vfio/pci/vfio_pci_core.c | 52 ++++++++++++++++----------------
->  1 file changed, 26 insertions(+), 26 deletions(-)
+>  drivers/vfio/pci/vfio_pci_core.c | 9 +++++----
+>  include/uapi/linux/vfio.h        | 3 ++-
+>  2 files changed, 7 insertions(+), 5 deletions(-)
 >
 > diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-> index 2a510b71edcb..da6325008872 100644
+> index da6325008872..19f5b075d70a 100644
 > --- a/drivers/vfio/pci/vfio_pci_core.c
 > +++ b/drivers/vfio/pci/vfio_pci_core.c
-> @@ -177,10 +177,10 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_core_device *vdev)
->  	}
->  }
->  
-> -struct vfio_pci_group_info;
-> +struct vfio_pci_file_info;
->  static void vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
->  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
-> -				      struct vfio_pci_group_info *groups,
-> +				      struct vfio_pci_file_info *info,
->  				      struct iommufd_ctx *iommufd_ctx);
->  
->  /*
-> @@ -800,7 +800,7 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
->  	return 0;
->  }
->  
-> -struct vfio_pci_group_info {
-> +struct vfio_pci_file_info {
->  	int count;
->  	struct file **files;
->  };
-> @@ -1257,14 +1257,14 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
->  }
->  
->  static int
-> -vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
-> -				    struct vfio_pci_hot_reset *hdr,
-> -				    bool slot,
-> -				    struct vfio_pci_hot_reset __user *arg)
-> +vfio_pci_ioctl_pci_hot_reset_files(struct vfio_pci_core_device *vdev,
-> +				   struct vfio_pci_hot_reset *hdr,
-> +				   bool slot,
-> +				   struct vfio_pci_hot_reset __user *arg)
->  {
-> -	int32_t *group_fds;
-> +	int32_t *fds;
->  	struct file **files;
-> -	struct vfio_pci_group_info info;
-> +	struct vfio_pci_file_info info;
->  	int file_idx, count = 0, ret = 0;
->  
->  	/*
-> @@ -1281,17 +1281,17 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
->  	if (hdr->count > count)
->  		return -EINVAL;
->  
-> -	group_fds = kcalloc(hdr->count, sizeof(*group_fds), GFP_KERNEL);
-> +	fds = kcalloc(hdr->count, sizeof(*fds), GFP_KERNEL);
->  	files = kcalloc(hdr->count, sizeof(*files), GFP_KERNEL);
-> -	if (!group_fds || !files) {
-> -		kfree(group_fds);
-> +	if (!fds || !files) {
-> +		kfree(fds);
->  		kfree(files);
+> @@ -1289,7 +1289,7 @@ vfio_pci_ioctl_pci_hot_reset_files(struct vfio_pci_core_device *vdev,
 >  		return -ENOMEM;
 >  	}
 >  
-> -	if (copy_from_user(group_fds, arg->group_fds,
-> -			   hdr->count * sizeof(*group_fds))) {
-> -		kfree(group_fds);
-> +	if (copy_from_user(fds, arg->group_fds,
-> +			   hdr->count * sizeof(*fds))) {
-> +		kfree(fds);
+> -	if (copy_from_user(fds, arg->group_fds,
+> +	if (copy_from_user(fds, arg->fds,
+>  			   hdr->count * sizeof(*fds))) {
+>  		kfree(fds);
 >  		kfree(files);
->  		return -EFAULT;
+> @@ -1297,8 +1297,8 @@ vfio_pci_ioctl_pci_hot_reset_files(struct vfio_pci_core_device *vdev,
 >  	}
-> @@ -1301,7 +1301,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
->  	 * the reset
+>  
+>  	/*
+> -	 * Get the group file for each fd to ensure the group held across
+> -	 * the reset
+> +	 * Get the file for each fd to ensure the group/device file
+> +	 * is held across the reset
 >  	 */
 >  	for (file_idx = 0; file_idx < hdr->count; file_idx++) {
-> -		struct file *file = fget(group_fds[file_idx]);
-> +		struct file *file = fget(fds[file_idx]);
->  
->  		if (!file) {
->  			ret = -EBADF;
-> @@ -1318,9 +1318,9 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
->  		files[file_idx] = file;
->  	}
->  
-> -	kfree(group_fds);
-> +	kfree(fds);
->  
-> -	/* release reference to groups on error */
-> +	/* release reference to fds on error */
->  	if (ret)
->  		goto hot_reset_release;
->  
-> @@ -1358,7 +1358,7 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
->  		return -ENODEV;
->  
->  	if (hdr.count)
-> -		return vfio_pci_ioctl_pci_hot_reset_groups(vdev, &hdr, slot, arg);
-> +		return vfio_pci_ioctl_pci_hot_reset_files(vdev, &hdr, slot, arg);
->  
->  	iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
->  
-> @@ -2329,16 +2329,16 @@ const struct pci_error_handlers vfio_pci_core_err_handlers = {
+>  		struct file *file = fget(fds[file_idx]);
+> @@ -2469,7 +2469,8 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+>  		 * cannot race being opened by another user simultaneously.
+>  		 *
+>  		 * Otherwise all opened devices in the dev_set must be
+> -		 * contained by the set of groups provided by the user.
+> +		 * contained by the set of groups/devices provided by
+> +		 * the user.
+>  		 *
+>  		 * If user provides a zero-length array, then all the
+>  		 * opened devices must be bound to a same iommufd_ctx.
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 17aa5d09db41..25432ef213ee 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -681,6 +681,7 @@ struct vfio_pci_hot_reset_info {
+>   *
+>   * The ownership can be proved by:
+>   *   - An array of group fds
+> + *   - An array of device fds
+>   *   - A zero-length array
+>   *
+>   * In the last case all affected devices which are opened by this user
+> @@ -694,7 +695,7 @@ struct vfio_pci_hot_reset {
+>  	__u32	argsz;
+>  	__u32	flags;
+>  	__u32	count;
+> -	__s32	group_fds[];
+> +	__s32	fds[];
 >  };
->  EXPORT_SYMBOL_GPL(vfio_pci_core_err_handlers);
 >  
-> -static bool vfio_dev_in_groups(struct vfio_pci_core_device *vdev,
-> -			       struct vfio_pci_group_info *groups)
-> +static bool vfio_dev_in_files(struct vfio_pci_core_device *vdev,
-> +			      struct vfio_pci_file_info *info)
->  {
->  	unsigned int i;
->  
-> -	if (!groups)
-> +	if (!info)
->  		return false;
->  
-> -	for (i = 0; i < groups->count; i++)
-> -		if (vfio_file_has_dev(groups->files[i], &vdev->vdev))
-> +	for (i = 0; i < info->count; i++)
-> +		if (vfio_file_has_dev(info->files[i], &vdev->vdev))
->  			return true;
->  	return false;
->  }
-> @@ -2429,7 +2429,7 @@ static bool vfio_dev_in_iommufd_ctx(struct vfio_pci_core_device *vdev,
->   * get each memory_lock.
->   */
->  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
-> -				      struct vfio_pci_group_info *groups,
-> +				      struct vfio_pci_file_info *info,
->  				      struct iommufd_ctx *iommufd_ctx)
->  {
->  	struct vfio_pci_core_device *cur_mem;
-> @@ -2478,7 +2478,7 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
->  		 * the calling device is in a singleton dev_set.
->  		 */
->  		if (cur_vma->vdev.open_count &&
-> -		    !vfio_dev_in_groups(cur_vma, groups) &&
-> +		    !vfio_dev_in_files(cur_vma, info) &&
->  		    !vfio_dev_in_iommufd_ctx(cur_vma, iommufd_ctx) &&
->  		    (dev_set->device_count > 1)) {
->  			ret = -EINVAL;
+>  #define VFIO_DEVICE_PCI_HOT_RESET	_IO(VFIO_TYPE, VFIO_BASE + 13)
 
