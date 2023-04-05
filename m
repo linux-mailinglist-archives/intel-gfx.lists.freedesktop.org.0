@@ -2,67 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F156D84C0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F386D84D3
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:23:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94DBD10EA1F;
-	Wed,  5 Apr 2023 17:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC6C10EA27;
+	Wed,  5 Apr 2023 17:23:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC67E10EA22
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:20:24 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id
- a640c23a62f3a-93b8c095335so3773866b.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680715222;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=E6Y3l2ai2dkc+mwGS+IVGglHZ/U6Qnew1qE+qgx1f2Q=;
- b=SBpgp9hyv9GLHorepCDl1dWQ1zCUOrNCShT6xTHvqseGuObap60syj/CFUCpG5qndU
- iQOeawocmoCTDlzaKbyqTZ15L4EQw4BzB4dCmxl7m5y2SQzh1I96hEsWopwLsz+mwMcC
- oNHvTfsFYG9RH1uRncHAov08tORi7KaPXQnKE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680715222;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=E6Y3l2ai2dkc+mwGS+IVGglHZ/U6Qnew1qE+qgx1f2Q=;
- b=cHpJM9qkq/RYlKFZSwMkHtVQ9VHc+o4QvRgUg1s4U9cWgGABZZ7g7aKYHjfmFZSYod
- TIj4TlgeTXfi+BjJ+uWXXf+QDCG0NAIgwvHlUf/aIOM24l6axYQIaqi28rQsbDAsicdj
- JtS5arMUCX4GLJqPuBZ5UeKfgTiCB9Uj+rTfkL5E2CoOgnyj3M5Tab+RVFyz5EDI3TzU
- s4/MHD/VAP7E4ojhHZWei9T7MQvRYiJ59TthAfX2V7+z7f6ozxoyxvww26pUsx+olL79
- VcZJQVBR3dpjzZ2SoGtVZm7I67VrnnfBhMSyoEXepxnlQaO4fi+Soa1nfw858PMVqX+u
- HHOg==
-X-Gm-Message-State: AAQBX9dr+s6VbC3hhD6LGvvaRUAD1pX5cFG6xDMRFV+DR6s82zC6XuRh
- pPVhynUFHYDqTBp0qeFhBdnrzg==
-X-Google-Smtp-Source: AKy350ZwGbyqfaCkugmYUI/uINYuGvFkZm6SRhoXyZOTjkrRlbZEGaRGbGQLY/1n8PyJmKLwiowUpQ==
-X-Received: by 2002:a17:906:3f12:b0:947:8734:a058 with SMTP id
- c18-20020a1709063f1200b009478734a058mr2278478ejj.4.1680715222675; 
- Wed, 05 Apr 2023 10:20:22 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- xc2-20020a170907074200b00947a6d84fefsm7397173ejb.75.2023.04.05.10.20.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 10:20:22 -0700 (PDT)
-Date: Wed, 5 Apr 2023 19:20:20 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Message-ID: <ZC2t1I1SQrQh/fy1@phenom.ffwll.local>
-References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
- <20230404194038.472803-3-daniel.vetter@ffwll.ch>
- <87a5zmd2jn.fsf@minerva.mail-host-address-is-not-set>
- <ZC12aR9ddp3j/3dL@phenom.ffwll.local>
- <87ilea9twa.fsf@minerva.mail-host-address-is-not-set>
-MIME-Version: 1.0
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2040.outbound.protection.outlook.com [40.107.95.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2E5C10EA24;
+ Wed,  5 Apr 2023 17:23:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Cw6DekOYj01wkK5iMzpxEEDh4w3ZR7OCDkMTOPqv6cqMdmzxUKLm1LcHcxjEYPDprQJgre60QD95nhO3mv/nBf/y6j1jG2AXeYjAp8Vr5/pdZ157EXDFzcq2qhSH4BHx9LyVJg43/rkXYS3u3UQf0Cqz1YKUG1M2dZRd3agEWLNYQ4VOx8CqahLoh+GI+K0IsCsc27aF0jEEVU4wGMXQgn3rYgMq0w4/nFhtNdhrAnGCU9B6/gTQQWj4SMDawMH+boTJJVorSsa0t4hc7iw6QxgTY3b5jw/uYLWC95+mxuFXGVBXlZDXUip1LhFVDdKailRi7Wr92JgARzYDKWg0fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UoV5J70MQ1jgf3mAfZITV8VuVmrutal3JHuVCrtKGFI=;
+ b=Ezo4siiSwSOtu987rTuQgh2pquwwK1GyopZUqDq1HRGBuYnn4ANOsJfbtxqwgrrlbSwMo1dQrcgzHaNfk90jgagKzajDNiVt3GbU04dVZVXfXUXUsKRJUBfAZyndA34yqPqSDYA1e65Sukt78sEffccwzhGYFAvMU9zYQes04imivMW2XRcNMz/bQe9p+PPecUr7wpVVqlRv5zh+80FzcgO/xSRNRQx4kdYKRgBHevyCgwwFth884ZNUZ9ksZbDNRGxDB0RZl+e6aLHdvMyMFJ0NMBsB6xUzYKeNs4m1VphY4Dl0Wu7cq9kTJBu17atN7MxSukYdbL6dB6bWguhHFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UoV5J70MQ1jgf3mAfZITV8VuVmrutal3JHuVCrtKGFI=;
+ b=OzlIyvSQUjf7XL+JOvOvBOttcRmGJyq3QHjsOlI8U8pn6oVf3qt9t1z98uB/06CLXvUbL1NrnsHodfBvPZUXj2xfS27oSJhUrJiJobSUW5S0bzHvSNU55YSihnJ/0LlPnV0Tclcf6EStTjifuxKqxJs/si5pXP8xPh6HD6hEgpBD4oQwl0BNrkpGPx+s+Ek6Pc/h0UErlU6+/jeOwbCubTyUsxVTVdLmue20VkH5s69keAGozPP2Qnl1l3yRO1P7mf2TGbbUbcIs+/Tz9gVhFOll/PiuEbGLaAdvudE+e4g5Jr4fBJ1N4afJlyKhmZUIxHizSEE3kPS5UWCyhyCjJQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DM4PR12MB6229.namprd12.prod.outlook.com (2603:10b6:8:a8::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Wed, 5 Apr
+ 2023 17:23:45 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2%6]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
+ 17:23:45 +0000
+Date: Wed, 5 Apr 2023 14:23:43 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <ZC2un1LaTUR1OrrJ@nvidia.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-13-yi.l.liu@intel.com>
+ <a937e622-ce32-6dda-d77c-7d8d76474ee0@redhat.com>
+ <DS0PR11MB7529D4E354C3B85D7698017DC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230405102545.41a61424.alex.williamson@redhat.com>
+ <ZC2jsQuWiMYM6JZb@nvidia.com>
+ <20230405105215.428fa9f5.alex.williamson@redhat.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87ilea9twa.fsf@minerva.mail-host-address-is-not-set>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/fb-helper: fix input validation
- gaps in check_var
+In-Reply-To: <20230405105215.428fa9f5.alex.williamson@redhat.com>
+X-ClientProxiedBy: MN2PR20CA0021.namprd20.prod.outlook.com
+ (2603:10b6:208:e8::34) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DM4PR12MB6229:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffe25177-ef25-4520-d2ff-08db35fa8298
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZsmebPLcPyMCGl9OaxGOlZd1YISPxI/fZeow/26BoRMwoVv8umlXrQNAmQcnvZhIhtbFq8sNfDaC+4jcIiCI2BtfOKaeAjCQrmpmYWX2HT0r1omezQkPwxwrzbKxuswXYupX/Dow+KPejhwj4PY+efbVc1Vv+d0vY+l32DhQgjsfvGnMFbt84YNpLysmih7fJ596/SUto5csf0yPBQVBVPDyiY+d8YOVs/C2tUgqvuehs//LkAg9LnMtf4iboQNlZa5M6vuvMGp96D6j25eUV653y1iNQZ+tr+NNG/qh5Oxg8oIVpq20oxkvZUEFfaOQYP/X0MzvQDTSaV73aMUw0QyaViCLN8nokuv2W+xz2Bd+/XTp8qyp8SUyfnwOQldNGA73ovIsPJT5H60lCxZknVnto3c3avV1BRtSAhFkjhRVwq4hT4ymI23IcTyNjk+lzrwXcYpThx1VROQSKFA+M/xO2wViKVPI7cYI1Y53jNuZdIEM+arWYZdepedMzZud7wcT1MWkccNop1sjKxJSJ3EGlZBQl8BJFqw/0zZnxQccGoh9+VuyHXzF5ZRaJkMW
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(346002)(396003)(39860400002)(366004)(136003)(451199021)(316002)(54906003)(6506007)(6512007)(26005)(6486002)(2616005)(478600001)(186003)(4326008)(6916009)(83380400001)(66556008)(8676002)(86362001)(66946007)(66476007)(7416002)(2906002)(41300700001)(5660300002)(38100700002)(8936002)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FNFxkCbGdT423IX0da3AsPmR8byTrb/T5TE+h4N2rViOjy8nZuTJhJrYzyx3?=
+ =?us-ascii?Q?5IQkbStVNNK7Ie1ivd607MuCVCAXiVTMW93n7a02UkJmxjVrUiZdxbdfZM6U?=
+ =?us-ascii?Q?/lWQ3uQFUmipVk+VsGXVcuQ2IPTgVHhwF9/62puD9hum4VV0hZL/acN2m4ND?=
+ =?us-ascii?Q?zHvfKnTB2L4/BWncNzSL5ciIKSjREhd9+pPfQEQJEr5IDFx5T9QurzmlgQ03?=
+ =?us-ascii?Q?XM3IR5FudjqMW2B0e7heH8Rl+JBmd0UxBefpQUjRwTLnPu/RrFsOaa6TCfhp?=
+ =?us-ascii?Q?xE16ax1GsiRA4KTVFZPF+WY7u99xfXe5r5IRVePG6kRZZKOgNVRewUGXzd0s?=
+ =?us-ascii?Q?HsTqw+B7ki3Nq7Scc7UI6oWLyuH6150RSS1/5+7XWwnsd2HDJFFCT0wdSUhp?=
+ =?us-ascii?Q?9AZavkeZ7Zt3VxLvcO9MGw15MPgpiRuRHa9g3OUfRXIkuMOC5ekcdhkcBSh3?=
+ =?us-ascii?Q?5pkOI1Lnn7TxN/NyyAqmWgyZDExYv4ldwDTP0IQwCzUpkfz7Fvwqh8CsbAYw?=
+ =?us-ascii?Q?dI1SSGS6/5Lf0nL9O5KjwZXIrv3hoLJmpslQSeHLUi1E6tJ2LbNZP+p07xuG?=
+ =?us-ascii?Q?GzIn6AYlAxgS4wcv1rNSI0Kw0Ztt3ArJ0Ax5CEZzeLkLd8+kEXG+dITdGbbA?=
+ =?us-ascii?Q?1Ef6fQH9X0HWLa97NE6FOzQLuHTO2BF1uulWfRyaekYuvSsRJPnCVNe0gQet?=
+ =?us-ascii?Q?kWKJNd+PNwNgcgXtWmwjTJUQ4JY3pb+fNT2rs+PqopDjNegx0lc3lrOw6bd2?=
+ =?us-ascii?Q?sqmeELtqvbctRbN5ucjfhRXemGPC0tuVtPL9+8Hjau061i2RlB218MA/SgPj?=
+ =?us-ascii?Q?gyM9I8M2yQI1HwKIIc8bbIN0gP+TmeckFrfLvU2oZ/VMLLdcsD/9kKrFyTSP?=
+ =?us-ascii?Q?BJJViKH6v155FQG9K+0PnZ5Y/AnwFhwKCaLeuoY4saIaq8RzitJ8Y8614IuJ?=
+ =?us-ascii?Q?sVOC8PN8XKjnT49SL9OR3JnI1u8ja0JGPmAicyjDCxXRFGgM8/wybT7Gq+nn?=
+ =?us-ascii?Q?sJZe0cwe7juhdkGts1kpnOWE8VX/D09wUzOrErtbzE9+YjRbWkTjomKgkV0b?=
+ =?us-ascii?Q?TZCSBtdJ2ydcYE9R15AXDGOzzDGWAlKkMGFPT0cyRKHByQBa2xUq9n2+a9+B?=
+ =?us-ascii?Q?7jRziyym86DK8eRCnoP85/EhnfwU260+S4E3nhUWD+LVJHWNkht7WJksAynQ?=
+ =?us-ascii?Q?wxsl/nF7SBv8HUxU/H6CyEsaM9aXY6zAdQwXFNimHOM6d59yjn5FhvU3Yvxj?=
+ =?us-ascii?Q?qkffNKpgtozJ0rUxbAtYTBOBTwXrGqoirXhUgsVcNafPC9UHLm2Zpl/T6A6d?=
+ =?us-ascii?Q?Qcm7fy2VGfidLv2YzewEsXDlrg/PJuSBIQ6RlYiokT4EVQrFJfC3+Q4e1Nhy?=
+ =?us-ascii?Q?RVpoEa3pJePvR6W4hDecdClCh3K61jtBismpNMBaXe75nhw7kDvl50jTif+h?=
+ =?us-ascii?Q?GWz1S36yyvCdXsNd9jkzNlr58B5o+zLXXOoNlNCMM3GEpK/wACOBLMF+1B4u?=
+ =?us-ascii?Q?+EBc0kQRODMt6fmkMDWbC3a7oxyYtisL+TSOkzEuOm8EW0HUyP39n3UDfkzW?=
+ =?us-ascii?Q?oyf/Y1Me2xwhem3YjqKs+yReQYWMhIYCQJoQyxYM?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffe25177-ef25-4520-d2ff-08db35fa8298
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2023 17:23:45.5159 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OZBASRQbOY9iQoEwLPSC4qDgfmgJyPF5rKfQyC1rdKBLnVBbnMosAKIltzgWaMm5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6229
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,74 +120,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Daniel Vetter <daniel.vetter@intel.com>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 06:27:17PM +0200, Javier Martinez Canillas wrote:
-> Daniel Vetter <daniel@ffwll.ch> writes:
+On Wed, Apr 05, 2023 at 10:52:15AM -0600, Alex Williamson wrote:
+> On Wed, 5 Apr 2023 13:37:05 -0300
+> Jason Gunthorpe <jgg@nvidia.com> wrote:
 > 
-> [...]
+> > On Wed, Apr 05, 2023 at 10:25:45AM -0600, Alex Williamson wrote:
+> > 
+> > > But that kind of brings to light the question of what does the user do
+> > > when they encounter this situation.  
+> > 
+> > What does it do now when it encounters a group_id it doesn't
+> > understand? Userspace already doesn't know if the foreign group is
+> > open or not, right?
 > 
-> >> 
-> >> but only the 'var->xres > fb->width || var->yres > fb->height' from the
-> >> conditions checked could be false after your __fill_var() call above.
-> >> 
-> >> You should drop the 'var->bits_per_pixel > bpp', 'var->xres_virtual >
-> >> fb->width' and 'var->yres_virtual > fb->height' checks I believe since
-> >> those will always be true.
-> >
-> > The __fill_var is after this. I'm honestly not sure what the exact
-> 
-> Ah, your patch adds it after that indeed. Please ignore my comment then.
+> It's simple, there is currently no screwiness around opened devices.
+> If the caller doesn't own all the groups mapping to the affected
+> devices, hot-reset is not available.
 
-So rb: you?
+That still has nasty edge cases. If the reset group spans beyond a
+single iommu group you end up with qemu being unable to operate reset
+at all, and it is unfixable from an API perspective as we can't pass
+in groups that VFIO isn't going to use.
 
-> > semantics are supposed to be, but essentially if userspace asks for too
-> > big virtual size, we reject it. And for anything else we then tell it
-> > (with __fill_var) how big the actually available space is.
-> >
-> > What I'm wondering now is whether too small x/yres won't lead to problems
-> > of some sorts ... For multi-screen we set the virtual size to be big
-> > enough for all crtc, and then just set x/yres to be the smallest output.
-> > That way fbcon knows to only draw as much as is visible on all screens.
-> > But if you then pan that too much, the bigger screens might not have a big
-> > enough buffer anymore and things fail (but shouldn't).
-> >
-> > Not sure how to fix that tbh.
-> 
-> Would this be a problem in practice?
+I think you are right, the fact we'd have to return -1 dev_ids to this
+modified API is pretty damaging, it doesn't seem like a good
+direction.
 
-I'm frankly not sure. You'd get a black screen for fbcon/fbdev across all
-outputs, but only if you have userspace doing this intentionally.
+> This leads to scenarios where the info ioctl indicates a hot-reset is
+> initially available, perhaps only because one of the affected devices
+> was not opened at the time, and now it fails when QEMU actually tries
+> to use it.
 
-In a way it's just another artifact of the drm fbdev emulation not using
-ATOMIC_TEST_ONLY in the various places where it should, and so doesn't
-really know whether a configuration change will work out.
+I would like it if the APIs toward the kernel were only about the
+kernel's security apparatus. It is makes it easier to reason about the
+kernel side and gives nice simple well defined APIs.
 
-We already have this in obscure mulit-monitor cases where adding another
-screen kills fbcon, because the display hw is running out of fifo or
-clocks or whatever, and because the drm fbdev code doesn't check but just
-blindly commits the entire thing as an atomic commit, the overall commit
-fails.
+This is a good point that qemu needs to make a policy decision if it
+is happy about the VFIO configuration - but that is a policy decision
+that should not become entangled with the kernel's security checks.
 
-This worked "better" with legacy kms because there we commit per-crtc, so
-if any specific crtc runs into a limit check, only that one fails to light
-up.
+Today qemu can make this policy choice the same way it does right now
+- call _INFO and check the group_ids. It gets the exact same outcome
+as today. We already discussed that we need to expose the group ID
+through an ioctl someplace.
 
-Imo given that no one cared enough yet to write up atomic TEST_ONLY
-support for fbdev emulation I think we can continue to just ignore this
-problem.
+If this is too awkward we could add a query to the kernel if the cdev
+is "reset exclusive" - eg the iommufd covers all the groups that span
+the reset set.
 
-What should not happen is that fbcon code blows up drawing out of bounds
-or something like that, resulting in a kernel crash. So from that pov I
-think it's "safe" :-)
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jason
