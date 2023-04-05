@@ -1,76 +1,111 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5073B6D83A5
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 18:27:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7826D83CB
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 18:37:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 724CF10EA13;
-	Wed,  5 Apr 2023 16:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC4C710EA16;
+	Wed,  5 Apr 2023 16:37:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D234210EA16
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 16:27:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680712041;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=BepbRdXMmknjyJpXJ6R3qQ1sNQIxMV2arEMQCnNCsRo=;
- b=UGBTpxrEkKPEvMvTY9MfhqZNjUP7OdxgnV6+Z2VKqTA7e/qyizA1Dsv7jYh0QDUJ4ZnsUM
- 5zTS3LJadEyUqkUmFJm4lVNMGfBpLORAHQZ1lARs4pp2xXhPpARuN7l/Mgi2Sc7FqEKy9j
- 5nnkmzjAgYSTLIYn/dLuKeZIExuxOdc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-621-FwPo3-QFM161sW8leWGBoA-1; Wed, 05 Apr 2023 12:27:19 -0400
-X-MC-Unique: FwPo3-QFM161sW8leWGBoA-1
-Received: by mail-wm1-f69.google.com with SMTP id
- bg33-20020a05600c3ca100b003ef6d684105so15059290wmb.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 09:27:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680712038;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BepbRdXMmknjyJpXJ6R3qQ1sNQIxMV2arEMQCnNCsRo=;
- b=ouJ82Y6HS77U19xsTPJBNCuoqZG1W36ACd4h+GU2bxf4WIsdwnPuBxHbIm+HHqC5JV
- IPg78v5cYuFBgYXAWJh2rSDbWj/xQMVkOg46Bs6jRsgEtMzjYHgalsKC5YgG1XMYwBCi
- VKl5iEooWCTiKNvkn8jGEif9lt2cjHPno0/t22rZ3F9azJ9xfMLSq0WbFmB/hVq15Xxu
- lL8JPf/YGEk5e9s0KZ9B+G9V2zakQznbSpkExREvJhIwB0efQ5JhvRmZDiMwflsdaNEn
- EC5NJ8Nxu6PdYvctO0GQOK0TGTstLCyTMniB33BPc5FpWNmsxdqxcr3RwTEJnDMfnxyb
- Wqtg==
-X-Gm-Message-State: AAQBX9ffs8+KURkv4VQlkWASI0GBExZuSt/o9uqDNgx0juDvkTkG9Yp4
- PB15rRsSchHoD7D1L/+2t9XkbNadewmUiex+cm3s7GH4AN/p48fkSkZPtUq5cPRCf7lg8s5CXp0
- gc2OoBsP0x+/IXGVMDvgKATs/cxbW
-X-Received: by 2002:adf:db4d:0:b0:2d1:7ade:aad with SMTP id
- f13-20020adfdb4d000000b002d17ade0aadmr4963257wrj.31.1680712038614; 
- Wed, 05 Apr 2023 09:27:18 -0700 (PDT)
-X-Google-Smtp-Source: AKy350be0ydhuGHVuI4dvQaCzef1K++pPNT56jl9mJW1ZgzNP+ITW5Avc2lYYjw5qxrGjFAo0K1NxA==
-X-Received: by 2002:adf:db4d:0:b0:2d1:7ade:aad with SMTP id
- f13-20020adfdb4d000000b002d17ade0aadmr4963244wrj.31.1680712038275; 
- Wed, 05 Apr 2023 09:27:18 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- v12-20020a5d4b0c000000b002cfed482e9asm15380895wrq.61.2023.04.05.09.27.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 09:27:18 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <ZC12aR9ddp3j/3dL@phenom.ffwll.local>
-References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
- <20230404194038.472803-3-daniel.vetter@ffwll.ch>
- <87a5zmd2jn.fsf@minerva.mail-host-address-is-not-set>
- <ZC12aR9ddp3j/3dL@phenom.ffwll.local>
-Date: Wed, 05 Apr 2023 18:27:17 +0200
-Message-ID: <87ilea9twa.fsf@minerva.mail-host-address-is-not-set>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0CE010EA13;
+ Wed,  5 Apr 2023 16:37:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iDq0fk+rBwV74Rb6k5UUM7OcRlCHt4HXnj4HDUGk6EsMHIROtEF6iyMEnXS647l8I4rp2rsSZjjOWe3YfBrnBQ6uu2PVJbu2lLr7dDJcMwCI8dg3hTWv5unMe+z3p8EGizeHHX2PsBYLdhrwGhx7SYw/n+7V2vFeH3EJJAtHAQBxgPI5NtK0oZXiWzEOBvZHGmof12h9myvF2BFc1GPzm++MSmb0uOVh4YcMYtf1t3gxTjLfSUpnVSagWu4phFmo6T5w55rWF1EFV9+AS1e7CuuUWdT/U2M0Sm952UnstUOZfhmv3HLi760mIWS6ENjwHwf2f8TfhRamUtx/5tbatA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZsijQCfTpdQIQXPOfQI/ccmEdRhnGb5yFkBi0+TliXY=;
+ b=Eg+eiWsZf88/zx1fOIUStB6/5FvWFRLcbcOKErKoaIjCOX+94EikTS/WSF2FPwwaxB4wyEvwgb7gYFATUyXt9W2MExJ6J+MXaxdcIur4w7moJfeYKrY1IbQaFfkJwVF7c6FYMNM3fiTJozCaMTdRLwDpvppg8IoQLDZx/cdkjWkXUH+a2ELjG2IVNQ+Jz7KngwPLbP8eQG8JAaFiDIXnvGbhD4CHvzN6ozl1kiJLrqZ54TPsUUKcwv+XeTYYHdWfzcFtJ/ky791JHhSB6a/tpZn/eA+RXKY/LRg2hdOP0g0NuQ0tqzjiDP2mx5J0ypAhWOsuF8Kx1n9dzLJAgUwegw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZsijQCfTpdQIQXPOfQI/ccmEdRhnGb5yFkBi0+TliXY=;
+ b=Vl1hKHSz4yoqWylggRXOvtyJDL18EpwOtNzkcQP+W9DfMFugp0t53F1T2np5WBsocQnFO1xGdxqXBFPteidXBOBSli5DWGJlc83+lnZH+vJiUIiG6v5c3bWYJc3ZTdMx4QABgzKUkq9BJ5J3H9aKhCslPxOPmsYlt2xzWA1A/AnRusWDV/ke1fmfHQKApTDZAcW2rCZOMtLjhAz8hXlppOVBny91qysvS6mpRKc/KU3/jOfDxH/+pW2PcxmWF1JpiwS1QrTAc76cZ5MgCx/BsogeeDr66MdWKvNaPDM90aUOk38iMYzZOpvmz/JeFsZMqV/Em/4K8ZKzdTVYTNOzOw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by IA1PR12MB7591.namprd12.prod.outlook.com (2603:10b6:208:429::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Wed, 5 Apr
+ 2023 16:37:06 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2%6]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
+ 16:37:06 +0000
+Date: Wed, 5 Apr 2023 13:37:05 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <ZC2jsQuWiMYM6JZb@nvidia.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-13-yi.l.liu@intel.com>
+ <a937e622-ce32-6dda-d77c-7d8d76474ee0@redhat.com>
+ <DS0PR11MB7529D4E354C3B85D7698017DC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230405102545.41a61424.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230405102545.41a61424.alex.williamson@redhat.com>
+X-ClientProxiedBy: BL0PR02CA0117.namprd02.prod.outlook.com
+ (2603:10b6:208:35::22) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/fb-helper: fix input validation
- gaps in check_var
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|IA1PR12MB7591:EE_
+X-MS-Office365-Filtering-Correlation-Id: adb37ad7-80df-4b4d-90a9-08db35f3fe33
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KbZF8C6Za/QJr0XbuCantp3/xBHaBG4Nnwy51OYfJVCdR/0TCRvSTv99vQyQMz2d66aNkjge7OUtJkQDyML54wEPCcZ4OEIpzQv4WgzGxN/JF4MebKeHk74x0pGrIt+zLTR/HWVzCjUj/1RsvmYiVzr8hYNMgAu5akTS2riVtyY/xTHBHYjYMXtAHGi+X0GE2QvjLHhppaZA+Abh1biyGBwTMs9C5gSTrOkPOBO/csnapK3ufp995te+ARY9knT6jnxr8Wq4oo9v71sSACR6tMO10QiuZRwLp8+76HSzUD+VaIZbIrLXOcwq84qOE43Y205ATIvCxQBxLJXrhUf1nf/lUnPlw0nvGiVJMMeP1rXaEALGHoRwPiPHHVkM4AhqiUCqAz0l3QctootGXG8PTnkbkFioOjhGFme/TggI1ox7dA8GAL9M8Tul361Cv7aPKIGhBQskq35JlZJzY5iaqdatTutF+Z6f36O1znIOS0lLbXeXxMt51/mJrRzEJ/U9on3ouX1ExwKsCusiFJczzltp4UvFricsSnbCx9a64pBhOSQrUscD9QvJKM1Y7FC6
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(366004)(376002)(396003)(39860400002)(136003)(451199021)(2616005)(86362001)(36756003)(2906002)(8936002)(83380400001)(186003)(6512007)(6486002)(26005)(6506007)(66476007)(66556008)(8676002)(66946007)(4326008)(478600001)(54906003)(6916009)(5660300002)(38100700002)(41300700001)(7416002)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b0xF/p5COGgYxxW5OHwpJXAHo1wAPV1f1uFlSjY2xll8w7bMdCfuMOy6pc6F?=
+ =?us-ascii?Q?atXL9RLCDuQEbYvI/2WY+cF7EtUFyGIRdQSV7ftTYNqAtb82qvYeIBUcdBg/?=
+ =?us-ascii?Q?WzRHRqFCQISrF0NQp5N4EmiNSlKN/QZ1meaDuIHnnOt9oqhaeuV9JV81YXDU?=
+ =?us-ascii?Q?CPetj/dUXmnQCCf1beioJMOBOXD07FVtmb0IkXgbaD4mkrZvXML8JTezSyC/?=
+ =?us-ascii?Q?7IT0Ifp9118IT5VIRHm/jPKnNRXxr1y76aKjGFuEyM/IMIhlYd80/2vZzsy5?=
+ =?us-ascii?Q?GywzN/NrRj4+64s+m3kqVPjZpcEipt6QalVe5C6gqwmcUEUBwKPJp/FAZiqa?=
+ =?us-ascii?Q?g4ZPNlJ4DVA11n3U+YYzhbM7zXqeJjy+cmQzfBIURTr+rA/Fw/9ztssOJ1Jn?=
+ =?us-ascii?Q?p7RUg0A8vnerO6o4oPUNahq6qcbI8BE3J7Gehr0URoE3mE/9u9gxoDYQe/1V?=
+ =?us-ascii?Q?Ssn8S5EvJTV7sMdZ+9Xz/V2odHghmcHugCr7i1ZQembUn3TjmwOBgueUPDWW?=
+ =?us-ascii?Q?b0WAAsGa6g9v7NjsGMkHICoQhy2ckLg4ETC0hapIIgDajhUDtDtnBYPyhymO?=
+ =?us-ascii?Q?8t1/S37PXxyJwfi6yC5OPOLLpgHivkxZAGEl36JjY+goBPhycQ1+yFTEO5vB?=
+ =?us-ascii?Q?/82zLr/BklT1nzarweYIvQ/jA8yTIbFtp7jICaOPIce59Qkn2HuXrANFESCQ?=
+ =?us-ascii?Q?7JS223OiaMLcho3Le8s/3q7YQ++ToBGyBXMb78wTY4XVG2AGvrT3sV5DOWeU?=
+ =?us-ascii?Q?CYRrSxFQIxHxfrlGvYNqa1z3kKl9Oba+5MwqlJ39CW8bIMgG6eKiE/zNCT00?=
+ =?us-ascii?Q?82pKh3pTLOHcwZwijOp8ziF+9NjcVdzUG4jd82PRwDJPDp6C5aWajsSkxWGS?=
+ =?us-ascii?Q?WfXz8csf8rN97hpbp/RXvdKue4svVkfjXXukvS7BF2yMtSOfCCClw3K+lnO7?=
+ =?us-ascii?Q?qK6SkITad/XTGDx6/tfSKauYd69M+8C5yS0DakBDB5zk1VAz6hSLbW7asQeb?=
+ =?us-ascii?Q?qxMlbZMhDQJhfYL0zLryGdT+wKk4PdEVyuL5yGsypkN/azD0TV1DViLZs02R?=
+ =?us-ascii?Q?Mesp6prDgROvXKbMZnXGqeuReRZxrTvyop9WemE0npAVc63UmEgwwEPbcIu9?=
+ =?us-ascii?Q?sA9OhlnTmNqOVp4Z7eK/ZIFOTuF8NthU6dYiK8UmL74x3IuQ/ia27L1/lGCM?=
+ =?us-ascii?Q?0CS5EcThTyZ3pgiok/Fyxw4XONLQlv53yw+Ah47M9l2cxYXdhGuXWnj7Jupa?=
+ =?us-ascii?Q?D6kRmREz/vdsDxlAM/Qs6oSkTjEC9SNaLyK7ihK3eYTtsTMLtdDi7teDKf8Y?=
+ =?us-ascii?Q?jpMi+gg+x9OTzF9hn3BTQ9/xx4bP5FvmPANr+ALCMebKzbXI21CN+HIVyfx2?=
+ =?us-ascii?Q?NeJDDgjGCr0Vn8gtlD1rnqYlJ46DWZOpA3JN4K49A2RvrKbx3GOUwJA+kJrU?=
+ =?us-ascii?Q?//MYm9AHX2O94IuMapXCfcu2sfi7jJORmQpne0LdTxyWQberuRdCpJk0RxPc?=
+ =?us-ascii?Q?yOvhJmqBrJsvwx36wjmzK0Zt1jHiszzsbvtSaUhYDxQBiCo51bWB93f5d9ng?=
+ =?us-ascii?Q?f16CqeC+4nn1azRqedhCa0gpkSDJBX/AKYU+s2cr?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: adb37ad7-80df-4b4d-90a9-08db35f3fe33
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2023 16:37:06.3706 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FQMkzyMKElF3lQFCZTCpg/ostyrnj3yJI49ApPGQWsmW7YShh8JOMxZvxVz+D4Y3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7591
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,49 +118,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Daniel Vetter <daniel@ffwll.ch> writes:
+On Wed, Apr 05, 2023 at 10:25:45AM -0600, Alex Williamson wrote:
 
-[...]
+> But that kind of brings to light the question of what does the user do
+> when they encounter this situation.
 
->> 
->> but only the 'var->xres > fb->width || var->yres > fb->height' from the
->> conditions checked could be false after your __fill_var() call above.
->> 
->> You should drop the 'var->bits_per_pixel > bpp', 'var->xres_virtual >
->> fb->width' and 'var->yres_virtual > fb->height' checks I believe since
->> those will always be true.
->
-> The __fill_var is after this. I'm honestly not sure what the exact
+What does it do now when it encounters a group_id it doesn't
+understand? Userspace already doesn't know if the foreign group is
+open or not, right?
 
-Ah, your patch adds it after that indeed. Please ignore my comment then.
+> reset can complete.  If the device is opened by a different user, the
+> reset is blocked.  The only logical conclusion is that the user should
+> try the reset regardless of the result of the info ioctl, which the
 
-> semantics are supposed to be, but essentially if userspace asks for too
-> big virtual size, we reject it. And for anything else we then tell it
-> (with __fill_var) how big the actually available space is.
->
-> What I'm wondering now is whether too small x/yres won't lead to problems
-> of some sorts ... For multi-screen we set the virtual size to be big
-> enough for all crtc, and then just set x/yres to be the smallest output.
-> That way fbcon knows to only draw as much as is visible on all screens.
-> But if you then pan that too much, the bigger screens might not have a big
-> enough buffer anymore and things fail (but shouldn't).
->
-> Not sure how to fix that tbh.
+IMHO my suggested version is still the overall saner uAPI.
 
-Would this be a problem in practice?
+An info that basically returns success/fail if reset is security
+authorized and information about the reset groupings.
 
--- 
-Best regards,
+Actual reset follows the returned groupings automatically.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Easy for qemu. Call the info at startup to confirm reset can be
+emulated, use the returned information to propogate the reset groups
+to the guest. Trigger the reset with no fuss when the guest asks for
+it.
 
+Less weird corner cases.
+
+Jason
