@@ -1,33 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A586D849F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:13:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 772106D84A7
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:15:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9C610E226;
-	Wed,  5 Apr 2023 17:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F8510E226;
+	Wed,  5 Apr 2023 17:14:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 59AA110E226;
- Wed,  5 Apr 2023 17:13:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 554DFA9932;
- Wed,  5 Apr 2023 17:13:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0687857357550717475=="
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4B410E22B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:14:57 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-17ebba88c60so39252823fac.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:14:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680714896;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=8RpaBHYQHQlUz8gzTyOfx2Akoi5V+UhYtNZbrEqY4yY=;
+ b=R5oEuHq4jmuDFHswm+Dm1Nyd38pEfZ3bhW7Ezqo+WXcMQPl7ObsHHKFbg472OH6m75
+ uVlITwoIA/ZwVdsS3RT9+P86sZy5s3nG19kxYbb5mM+7u39eP/7V2WFHQuy5hWNM1hys
+ N/7N45B5jr81rabHBpkmpS6wLUx4afgqgM5+8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680714896;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8RpaBHYQHQlUz8gzTyOfx2Akoi5V+UhYtNZbrEqY4yY=;
+ b=r/7YBYqKw4Y1/rBVHoNKR0njWlged/GT2LT01UjMtJ1w5wh2f+nYFkUo15346TDAad
+ ZiHiFMyr4VFMb7zRFWRvSuZlguxDrUAmdPsEFFXndedVxs0uhWF3HeSdYgNjguk+gxQj
+ 93bPeXwuonxe/zTHxHnyOcwm2gKwYI/SN/vh+uBcN9aXktjaiP3ulDymrgJlNt2nnPFa
+ 75yCZ42A0HQO9r+S6neOcYJfIhyFxi08tRBtQgNXDXc/VXjhsKxXcZTmdiD5YLajnzzY
+ 6qVcndX3BItRWddAPpRrzOHYm90oS0kSh1YHn5Vjuu6BGZ1uCApkGlhQ210+bBBbIToM
+ o0Kw==
+X-Gm-Message-State: AAQBX9esT2zY38I1z0ZcHx96R2xYASNc6i19NyzXzTBk3v9rB/aqk9rL
+ I/ieicjzzK9f2DApzEYkJsQey1+xaUZvcLoMQANIIA==
+X-Google-Smtp-Source: AKy350Yd3LVO+u/SGwGZK2+t1UQglBKW38h7x3bStfv3RPOc0JZGbAHPW4IlHFuu4cUpmfDjRcFUdh9MnqHxwswXNfc=
+X-Received: by 2002:a05:6870:e747:b0:17e:d863:a5c0 with SMTP id
+ t7-20020a056870e74700b0017ed863a5c0mr3471458oak.8.1680714896082; Wed, 05 Apr
+ 2023 10:14:56 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Wed, 05 Apr 2023 17:13:03 -0000
-Message-ID: <168071478334.14699.10835228368039622441@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230405065930.3576936-1-riana.tauro@intel.com>
-In-Reply-To: <20230405065930.3576936-1-riana.tauro@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_hwmon_support_for_dgfx_selftests_=28rev9=29?=
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+ <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+ <ZC04hoHywz0ySzAW@phenom.ffwll.local>
+ <3fd03c4c-3be6-e56b-faec-bd67a58cda09@suse.de>
+ <ZC1BlNCbXPlmAhj0@phenom.ffwll.local>
+ <eee11545-2a78-4556-be82-5178ea09d0d8@suse.de>
+ <877cuqd1f8.fsf@minerva.mail-host-address-is-not-set>
+ <ZC11J3og4Kc9ta6m@phenom.ffwll.local>
+ <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
+ <ZC2beu/9inolwIlr@phenom.ffwll.local>
+ <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
+In-Reply-To: <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 5 Apr 2023 19:14:44 +0200
+Message-ID: <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,259 +75,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0687857357550717475==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 5 Apr 2023 at 18:54, Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+>
+> Daniel Vetter <daniel@ffwll.ch> writes:
+>
+> > On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote:
+>
+> [...]
+>
+> >> > > >        /*
+> >> > > >         * WARNING: Apparently we must kick fbdev drivers before vgacon,
+> >> > > >         * otherwise the vga fbdev driver falls over.
+> >> > > >         */
+> >> > > >        ret = vga_remove_vgacon(pdev);
+> >> >
+> >> > This isn't enough, we also nuke stuff that's mapping the vga fb range.
+>
+> Ah, also need aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE) then.
+>
+> [...]
+>
+> >> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
+> >> {
+> >>      aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE);
+> >>
+> >>      return vga_remove_vgacon(pdev);
+> >> }
+> >>
+> >> And that can be called from gma500 and the pci aperture helper.
+> >
+> > But you still pass a pci_dev to that helper. Which just doesn't make any
+> > sense to me (assuming your entire point is that this isn't just a normal
+> > pci device but some special legacy vga thing), but if we go with (void)
+> > then there's more refactoring to do because the vga_remove_vgacon also
+> > wants a pdev.
+> >
+> > All so that we don't call aperture_detach_devices() on a bunch of pci
+> > bars, which apparently is not problem for any other driver, but absolutely
+> > is a huge problem for gma500 somehow.
+> >
+> > I don't understand why.
+> >
+>
+> Yeah, agreed that if vga_remove_vgacon() isn't enough and another helper
+> is needed then starts to get a little silly. Maybe one option is to add a
+> 3rd param to aperture_remove_conflicting_pci_devices() and skip the logic
+> to iterate over PCI bars and call aperture_remove_conflicting_devices() ?
 
-== Series Details ==
+The thing I don't get: Why does this matter for gma500 and not any of
+the other pci devices? Look at your gpu, realize there's a lot more
+than the one pci bar for vram or stolen memory, realize that we're
+nuking bars that cannot possible contain the framebuffer for everyone
+else too. Like the entire "gpus have a lot of bars" thing is the
+reason why I pulled the sysfb_disable one level up, because we've been
+doing that quite a few times before this patch (yes it's not the main
+thing, but the side-effect cleanup is why I've gone down this rabbit
+hole and wrote the entire series here):
 
-Series: Add hwmon support for dgfx selftests (rev9)
-URL   : https://patchwork.freedesktop.org/series/109850/
-State : success
+https://lore.kernel.org/dri-devel/20230404201842.567344-7-daniel.vetter@ffwll.ch/
 
-== Summary ==
+But somehow for gma500 it's a problem, while for everyone else it's
+fine. That's the part I dont get, or Thomas&me have been talking past
+each another and there's another issue that I'm missing.
+-Daniel
 
-CI Bug Log - changes from CI_DRM_12972 -> Patchwork_109850v9
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/index.html
-
-Participating hosts (35 -> 35)
-------------------------------
-
-  Additional (1): fi-apl-guc 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_109850v9 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-rpls-2:         [PASS][2] -> [INCOMPLETE][3] ([i915#4983] / [i915#7913])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-rpls-2/igt@i915_selftest@live@gt_lrc.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@guc:
-    - bat-rpls-1:         NOTRUN -> [DMESG-WARN][4] ([i915#7852])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@guc.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#7913])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-9/igt@i915_selftest@live@slpc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-9/igt@i915_selftest@live@slpc.html
-    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][7] ([i915#6367] / [i915#6997])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@slpc.html
-    - bat-dg2-8:          [PASS][8] -> [DMESG-FAIL][9] ([i915#7913])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-8/igt@i915_selftest@live@slpc.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-8/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@vga-hpd-fast:
-    - fi-apl-guc:         NOTRUN -> [SKIP][10] ([fdo#109271]) +22 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [PASS][11] -> [FAIL][12] ([i915#7932]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][13] ([i915#5354])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-adlp-6:         [DMESG-FAIL][14] ([i915#7699]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-adlp-6/igt@i915_selftest@live@migrate.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-adlp-6/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-1:         [TIMEOUT][16] ([i915#6794]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-rpls-1/igt@i915_selftest@live@mman.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@mman.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+> > Consider this me throwing in the towel. If you&Javier are convinced this
+> > makes sense please type it up and merge it, but I'm not going to type
+> > something that just doesn't make sense to me.
+>
+> Honestly, I would just go with the double drm_aperture_remove_*() helper
+> calls (your original patch) unless that causes real issues. There is no
+> point on blocking all your series just for this IMO.
+>
+> Then latter if Thomas has strong opinions can send a follow-up patch for
+> the gma500 driver and the aperture helpers.
+>
+> > -Daniel
+> >
+>
+> --
+> Best regards,
+>
+> Javier Martinez Canillas
+> Core Platforms
+> Red Hat
+>
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12972 -> Patchwork_109850v9
-
-  CI-20190529: 20190529
-  CI_DRM_12972: fc3082f44d3bfc20f364535b978fa0ba053a00f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7240: ef4550e3b7d3c11ba257006bc7d4f8e421667d46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109850v9: fc3082f44d3bfc20f364535b978fa0ba053a00f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-335f4c9315d6 drm/i915/selftests: skip comparison of power for discrete graphics
-3c638316aacf drm/i915/selftests: Add hwmon support in libpower for dgfx
-e37e2781d25d drm/i915/hwmon: Add helper function to obtain energy values
-dd66ed930fe9 drm/i915/selftests: Rename librapl library to libpower
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/index.html
-
---===============0687857357550717475==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add hwmon support for dgfx selftests (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109850/">https://patchwork.freedesktop.org/series/109850/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12972 -&gt; Patchwork_109850v9</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/index.html</p>
-<h2>Participating hosts (35 -&gt; 35)</h2>
-<p>Additional (1): fi-apl-guc <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109850v9 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-rpls-2/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-9/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-9/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</p>
-</li>
-<li>
-<p>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-8/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-8/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@vga-hpd-fast:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-adlp-6/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12972/bat-rpls-1/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109850v9/bat-rpls-1/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12972 -&gt; Patchwork_109850v9</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12972: fc3082f44d3bfc20f364535b978fa0ba053a00f0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7240: ef4550e3b7d3c11ba257006bc7d4f8e421667d46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109850v9: fc3082f44d3bfc20f364535b978fa0ba053a00f0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>335f4c9315d6 drm/i915/selftests: skip comparison of power for discrete graphics<br />
-3c638316aacf drm/i915/selftests: Add hwmon support in libpower for dgfx<br />
-e37e2781d25d drm/i915/hwmon: Add helper function to obtain energy values<br />
-dd66ed930fe9 drm/i915/selftests: Rename librapl library to libpower</p>
-
-</body>
-</html>
-
---===============0687857357550717475==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
