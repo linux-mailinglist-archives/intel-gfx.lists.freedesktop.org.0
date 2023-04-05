@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2EC6D750F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 09:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6956D752C
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 09:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7F1810E84B;
-	Wed,  5 Apr 2023 07:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83F1210E02B;
+	Wed,  5 Apr 2023 07:20:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F6E10E845
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 07:14:34 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD4710E02B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 07:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680678874; x=1712214874;
+ t=1680679233; x=1712215233;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UW655PThc//1ZpOaw1b6jAkm7C2sblC+gDbbNAAuOsE=;
- b=duEs6FseTeAGwSjqw+dU3t3WegIkK0BjsWtO5MKEgAFFGBatzY43myA6
- iFuICO0HQOot/mNkgKjO+7QOE5mSD7bt1a9XFh/8ivLpLFhz57Tc0BOHy
- QM64w2KNXYiuzbSTn57fh1gB4EsKtHAGRWmDcqaS6WPVweWhIEAg0P/Lg
- 8c8jiChTRs1Ibc/9lFTbcvOh14bw5bpQmO/BTV8P/trQQte+CUVIbrmPq
- pfosLr/euCzrp6E4R3JrbveYyM4I08l6mhtvJAMG6cxNC1hev9Y/BEEEK
- MuykpjyjGVI1KVbVTfY6vhidQE2ekCsj7Mo+LtLkfiLdKDlYydAkioxub g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="370211202"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="370211202"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 00:14:31 -0700
+ bh=3vS+aNywQ/Z84D6WXbnyqTruGSErxkiNBWm+SDGLhgI=;
+ b=JhI/ez8N80dFt9CMYvaW4QSfEKf759dcSJVYkClqEpymcSCf8no/5mkR
+ 2KjznEeGVBAQIrbPxO8nHHH8TObLAZo5di5xhFXw77cg613EDCM249HR3
+ zkSYFr1MQ+twH7xzM2zthg4HyuYldxN0K7vg3gjnkG0xGsmfnEKdLFCzg
+ QOBvbIjqosUiwHR2yn2xz+BKbauzd4eSKXRM5MkcHvELQii103BXC8POV
+ CIXNMpTX/znG/piiKoiwldryo2NqUM8on7YReKKbIYEyy3vlQ068CEpsN
+ d4fUXYXDxaHUZE0lG4n5dLke5uMk99OYU1ZiKL6hnq6u80F2HI/cybh7n g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="330989246"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="330989246"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 00:20:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="636797379"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="636797379"
-Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 00:14:30 -0700
-From: Riana Tauro <riana.tauro@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="719212607"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="719212607"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orsmga001.jf.intel.com with ESMTP; 05 Apr 2023 00:20:31 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Apr 2023 12:44:32 +0530
-Message-Id: <20230405071432.3582592-5-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230405071432.3582592-1-riana.tauro@intel.com>
-References: <20230405071432.3582592-1-riana.tauro@intel.com>
+Date: Wed,  5 Apr 2023 12:49:51 +0530
+Message-Id: <20230405071951.1258132-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230403080154.1239873-1-suraj.kandpal@intel.com>
+References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 4/4] drm/i915/selftests: skip comparison of
- power for discrete graphics
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout for
+ Type-C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +60,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hwmon reads the energy/power consumed by discrete soc,
-i.e. energy/power includes the power drawn from non-gfx discrete
-components
+Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
+Workaround: Increase the timeout.
 
-This test uses the power consumed by GT to validate RC6
-power consumption.
-Skip comparison of power for discrete graphics
+WA_14017248603: adlp
+Bspec: 55480
 
-TODO : measure power of GT in discrete graphics and modify the
-condition
+---v2
+-change style on how we mention WA [Ankit]
+-fix bat error
 
-v2: update commit message (Anshuman)
-
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_rc6.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ .../i915/display/intel_display_power_well.c   | 30 ++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 682f2fe67b3a..7040dac7acca 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -107,7 +107,15 @@ int live_rc6_manual(void *arg)
- 				      ktime_to_ns(dt));
- 		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
- 			rc0_power, rc6_power);
--		if (2 * rc6_power > rc0_power) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 62bafcbc7937..52f595929a18 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -489,6 +489,34 @@ static void icl_tc_cold_exit(struct drm_i915_private *i915)
+ 		    "succeeded");
+ }
+ 
++static void
++adl_aux_wait_for_power_well_enable(struct drm_i915_private *i915,
++				   struct i915_power_well *power_well,
++				   bool timeout_expected)
++{
++	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
++	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
++	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
 +
-+		/*
-+		 * Condition valid for integrated graphics
-+		 * On discrete graphics, hwmon reads the energy/power from
-+		 * discrete soc that includes non-gfx components.
-+		 * TODO : Measure power of GT for discrete graphics and
-+		 * modify the condition
-+		 */
-+		if (!IS_DGFX(gt->i915) && (2 * rc6_power > rc0_power)) {
- 			pr_err("GPU leaked energy while in RC6!\n");
- 			err = -EINVAL;
- 			goto out_unlock;
++	/*
++	 * WA_14017248603: adlp
++	 * Type-C Phy are taking longer than expected for AUX IO Power Enabling.
++	 * Increase timeout to 500ms.
++	 */
++	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
++		if (intel_de_wait_for_set(i915, regs->driver,
++					  HSW_PWR_WELL_CTL_STATE(pw_idx), 500)) {
++			drm_dbg_kms(&i915->drm, "%s power well enable timeout\n",
++				    intel_power_well_name(power_well));
++
++			drm_WARN_ON(&i915->drm, !timeout_expected);
++		}
++		return;
++	}
++
++	hsw_wait_for_power_well_enable(i915, power_well, timeout_expected);
++}
++
+ static void
+ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 				 struct i915_power_well *power_well)
+@@ -517,7 +545,7 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) == 11 && intel_tc_cold_requires_aux_pw(dig_port))
+ 		icl_tc_cold_exit(dev_priv);
+ 
+-	hsw_wait_for_power_well_enable(dev_priv, power_well, timeout_expected);
++	adl_aux_wait_for_power_well_enable(dev_priv, power_well, timeout_expected);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
+ 		enum tc_port tc_port;
 -- 
-2.40.0
+2.25.1
 
