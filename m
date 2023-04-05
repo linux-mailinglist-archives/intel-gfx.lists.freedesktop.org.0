@@ -1,73 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3296D852A
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:46:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73CE06D8562
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:57:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02D5D10E1E2;
-	Wed,  5 Apr 2023 17:46:18 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com
- [IPv6:2607:f8b0:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 749E610E1E2;
- Wed,  5 Apr 2023 17:46:16 +0000 (UTC)
-Received: by mail-pg1-x532.google.com with SMTP id l184so13131341pgd.11;
- Wed, 05 Apr 2023 10:46:16 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF7510E25B;
+	Wed,  5 Apr 2023 17:57:37 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
+ [IPv6:2607:f8b0:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A4E10E087
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:57:35 +0000 (UTC)
+Received: by mail-il1-x12f.google.com with SMTP id t5so7862562ilu.5
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:57:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680716775;
+ d=chromium.org; s=google; t=1680717455; x=1683309455;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=1RjwHNkPIv0gqvcJDvLcIFhQPDzxKuxipVi5C1/h0iY=;
- b=k9YsTrT7iglyB2h5BrYi0vc5gxR8cZ7mA/lKvhgo4IuUxMdXaMgAXnKYkCMVBQtCi0
- ljwIUYA2lA8J8aHiwni8E0KhG5/ZNFZ3ZV6KeDL1lsoRo2T207nZaYscJ4AwpBG1YZDo
- HJqt9hP4IRk7ZbxfE3huj8CMuifFs4v8o8vaCoP0CmctgLiPVczX2UsA5igwRQB4ju7S
- V32yjMrJp8zy6njXl7h66QxCkC9rN/KgidzY6FpF6VptCDdD4URfPu+biSEKfDC1P22J
- eC3JBo+zjazbSWhopXmnysTp4hqFFnMx5UFFNLdNfPzokdC7RwSuueZ8BbyRZiYcciPw
- ujXA==
+ bh=4C6EUOM3dMiYltREZIGKQdPNmg2oQ+OppDvyWFTirdg=;
+ b=C8KNEWJLjyMmHk8+/AznCDUMsNuXElNnECQIz1zA5WoAYlxidlRlZwY46rsNS78HVS
+ OR7U4uGKYNodSGrQ3k5dvs6nhHlcqZ7e+r7txkGDiW41xBdwAuT+M78tHzvPXSm888GB
+ zFGLqfJ7tHTiQAKyMXSGx0rdlR9+rUBPKDv9M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680716775;
+ d=1e100.net; s=20210112; t=1680717455; x=1683309455;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=1RjwHNkPIv0gqvcJDvLcIFhQPDzxKuxipVi5C1/h0iY=;
- b=0DZLXwpRQql8uJ6Gvib9OA4tjfejh9RBIJLhbWN/OG1bmXzaPi3DNgokl0Ep1DpesB
- YZ0Z4wgkYPBdLP7gejUUMeUwySL8u9VA19AfLi6XOkqU0OtM1yI08pifsGpg2Ooz+PUy
- NMLM8O2ZbE87FoRUJXwFkaLMUIXL0/KABMsVWN9mMl1J+sNSMoprN6NPt2DkyAQpFKne
- 7lm0r9U4EegS140d1F0vR048ccVN7wd3qsCWigwdsgv07DPD/2PMcm/ok1NqUZnXCi+R
- gQxtn6RW5xV4MfQW4BrfcL0+wYvVFyGzzc/0qH/sqFTHlTeJItfMeQ3cidfqhdvUtrKR
- u+ag==
-X-Gm-Message-State: AAQBX9ceuuPepBd81sx1U4stx29wu4ZNYLNdf5xsWDUqUNTKs0jgx9pj
- omvi5N18R1+gPo1Ir/LDZZ1clx8CikQkYWQcf9A=
-X-Google-Smtp-Source: AKy350YPh2RyfQOOasMXAGbUKWcCvg3I6pkQCHSo04I6plSURlf5F/BifW7aJ7Dt8zM6N6tTmGU7wiZGkoHb/mwcDpA=
-X-Received: by 2002:a63:f307:0:b0:50c:bd0:eb8c with SMTP id
- l7-20020a63f307000000b0050c0bd0eb8cmr2253298pgh.6.1680716775437; Wed, 05 Apr
- 2023 10:46:15 -0700 (PDT)
+ bh=4C6EUOM3dMiYltREZIGKQdPNmg2oQ+OppDvyWFTirdg=;
+ b=HJ1gEStVDyPEX5TB1MMfSj8+xmaJfR1fL/cuW+i6/bpu/orIejK08BhTiXkXJEdvwt
+ Nb01F1Awvcwdlr2S/DXpVGYmb5atnsZXGif01LrhyPbQt8Io0fIVrsCjdu5JLW5DebcG
+ /jI5woafwKs9wM/3NvOdrMo9KNK6LhrhYnuYcyfBN4kkdm1Q9zstNG1Ca6ElfxT4fA0Z
+ nZFGY9N6r5dLahxy+0oNbqXwJYr0LnA5lBbIIDOjzLUXzLGoLBOBL+iuWDJfWgFIxuOZ
+ ZhXKTZ4dVGIcXiOYDZVOeRuztP4uOp2zZKuqcXqcoAqOroMo+veYm/TLc3Nnl8dFh+MB
+ sC5Q==
+X-Gm-Message-State: AAQBX9dXk0BQ+c/N6oyJ6gqyscEVb1/cgTLVN3IJgthgHIJ0cEUF1diO
+ GdeUeaGrTcA5h7Q5qg7/480Ks7aWElW8/evzxZaDgQ==
+X-Google-Smtp-Source: AKy350aVxuMU4FRTVmFU0BYsAykKUbYwJhhHYPxJi11+hjO/ofFM3SjkVPUNaBwseucS0ZZCprZ9N2RkCCucWM5NLeM=
+X-Received: by 2002:a05:6e02:10c4:b0:316:ff39:6bbf with SMTP id
+ s4-20020a056e0210c400b00316ff396bbfmr4249975ilj.6.1680717454829; Wed, 05 Apr
+ 2023 10:57:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
- <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
- <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
- <ZC04hoHywz0ySzAW@phenom.ffwll.local>
- <3fd03c4c-3be6-e56b-faec-bd67a58cda09@suse.de>
- <ZC1BlNCbXPlmAhj0@phenom.ffwll.local>
- <eee11545-2a78-4556-be82-5178ea09d0d8@suse.de>
- <877cuqd1f8.fsf@minerva.mail-host-address-is-not-set>
- <ZC11J3og4Kc9ta6m@phenom.ffwll.local>
- <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
- <ZC2beu/9inolwIlr@phenom.ffwll.local>
- <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
- <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
-In-Reply-To: <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
-From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Date: Wed, 5 Apr 2023 19:46:04 +0200
-Message-ID: <CAMeQTsam0efUrS=x+Eb+p8A3rXgCOUmA7UVjFB=9oAKFoepzOw@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
+References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
+ <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
+From: Rob Clark <robdclark@chromium.org>
+Date: Wed, 5 Apr 2023 10:57:23 -0700
+Message-ID: <CAJs_Fx6viBKQwoRofup8z4ZBcGC6dabvLarzT8aoevBEjQe8Ew@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
+Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU
+ top tool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,141 +66,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: igt-dev@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 5, 2023 at 7:15=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> wrot=
-e:
+On Tue, Jan 31, 2023 at 3:33=E2=80=AFAM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
 >
-> On Wed, 5 Apr 2023 at 18:54, Javier Martinez Canillas
-> <javierm@redhat.com> wrote:
-> >
-> > Daniel Vetter <daniel@ffwll.ch> writes:
-> >
-> > > On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote:
-> >
-> > [...]
-> >
-> > >> > > >        /*
-> > >> > > >         * WARNING: Apparently we must kick fbdev drivers befor=
-e vgacon,
-> > >> > > >         * otherwise the vga fbdev driver falls over.
-> > >> > > >         */
-> > >> > > >        ret =3D vga_remove_vgacon(pdev);
-> > >> >
-> > >> > This isn't enough, we also nuke stuff that's mapping the vga fb ra=
-nge.
-> >
-> > Ah, also need aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZ=
-E) then.
-> >
-> > [...]
-> >
-> > >> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
-> > >> {
-> > >>      aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE);
-> > >>
-> > >>      return vga_remove_vgacon(pdev);
-> > >> }
-> > >>
-> > >> And that can be called from gma500 and the pci aperture helper.
-> > >
-> > > But you still pass a pci_dev to that helper. Which just doesn't make =
-any
-> > > sense to me (assuming your entire point is that this isn't just a nor=
-mal
-> > > pci device but some special legacy vga thing), but if we go with (voi=
-d)
-> > > then there's more refactoring to do because the vga_remove_vgacon als=
-o
-> > > wants a pdev.
-> > >
-> > > All so that we don't call aperture_detach_devices() on a bunch of pci
-> > > bars, which apparently is not problem for any other driver, but absol=
-utely
-> > > is a huge problem for gma500 somehow.
-> > >
-> > > I don't understand why.
-> > >
-> >
-> > Yeah, agreed that if vga_remove_vgacon() isn't enough and another helpe=
-r
-> > is needed then starts to get a little silly. Maybe one option is to add=
- a
-> > 3rd param to aperture_remove_conflicting_pci_devices() and skip the log=
-ic
-> > to iterate over PCI bars and call aperture_remove_conflicting_devices()=
- ?
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >
-> The thing I don't get: Why does this matter for gma500 and not any of
-> the other pci devices? Look at your gpu, realize there's a lot more
-> than the one pci bar for vram or stolen memory, realize that we're
-> nuking bars that cannot possible contain the framebuffer for everyone
-> else too. Like the entire "gpus have a lot of bars" thing is the
-> reason why I pulled the sysfb_disable one level up, because we've been
-> doing that quite a few times before this patch (yes it's not the main
-> thing, but the side-effect cleanup is why I've gone down this rabbit
-> hole and wrote the entire series here):
+> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be use=
+d
+> to display a sorted by card and usage list of processes using GPUs.
 >
-> https://lore.kernel.org/dri-devel/20230404201842.567344-7-daniel.vetter@f=
-fwll.ch/
+> Borrows a bit of code from intel_gpu_top but for now omits the fancy
+> features like interactive functionality, card selection, client
+> aggregation, sort modes, JSON output  and pretty engine names. Also no
+> support for global GPU or system metrics.
 >
-> But somehow for gma500 it's a problem, while for everyone else it's
-> fine. That's the part I dont get, or Thomas&me have been talking past
-> each another and there's another issue that I'm missing.
-> -Daniel
+> On the other hand it shows clients from all DRM cards which
+> intel_gpu_top does not do.
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Rob Clark <robdclark@chromium.org>
+> Cc: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-I'm also getting confused here.
+Reviewed-by: Rob Clark <robdclark@chromium.org>
 
-AFAIK the stolen memory works the same for gma500 hardware as other
-Intel GPUs. Are you saying that there is a difference in how gma500
-hardware works? I always assumed that i915 got away with not dealing
-much with stolen memory because it simply doesn't use it for
-allocations. In gma500 we use it for fbdev and cursors. The actual
-pages reserved by the bios can be accessed through a pci bar if you
-map it so (which IIRC we do) but I suppose that doesn't help
-identifying it as a range reserved by other drivers.
-
-The reason I've kept the stolen allocation logic is because some
-gma500 systems don't have a lot of memory. But that is mostly the old
-Pouslbo systems. Perhaps it is time to ditch the stolen allocation
-code?
-
--Patrik
-
+> ---
+>  tools/gputop.c    | 260 ++++++++++++++++++++++++++++++++++++++++++++++
+>  tools/meson.build |   5 +
+>  2 files changed, 265 insertions(+)
+>  create mode 100644 tools/gputop.c
 >
-> > > Consider this me throwing in the towel. If you&Javier are convinced t=
-his
-> > > makes sense please type it up and merge it, but I'm not going to type
-> > > something that just doesn't make sense to me.
-> >
-> > Honestly, I would just go with the double drm_aperture_remove_*() helpe=
-r
-> > calls (your original patch) unless that causes real issues. There is no
-> > point on blocking all your series just for this IMO.
-> >
-> > Then latter if Thomas has strong opinions can send a follow-up patch fo=
-r
-> > the gma500 driver and the aperture helpers.
-> >
-> > > -Daniel
-> > >
-> >
-> > --
-> > Best regards,
-> >
-> > Javier Martinez Canillas
-> > Core Platforms
-> > Red Hat
-> >
+> diff --git a/tools/gputop.c b/tools/gputop.c
+> new file mode 100644
+> index 000000000000..d259cac1ab17
+> --- /dev/null
+> +++ b/tools/gputop.c
+> @@ -0,0 +1,260 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#include <assert.h>
+> +#include <ctype.h>
+> +#include <dirent.h>
+> +#include <errno.h>
+> +#include <fcntl.h>
+> +#include <inttypes.h>
+> +#include <limits.h>
+> +#include <locale.h>
+> +#include <math.h>
+> +#include <poll.h>
+> +#include <signal.h>
+> +#include <stdint.h>
+> +#include <stdio.h>
+> +#include <stdlib.h>
+> +#include <string.h>
+> +#include <sys/ioctl.h>
+> +#include <sys/stat.h>
+> +#include <sys/types.h>
+> +#include <unistd.h>
+> +#include <termios.h>
+> +#include <sys/sysmacros.h>
+> +#include <stdbool.h>
+> +
+> +#include "igt_drm_clients.h"
+> +#include "igt_drm_fdinfo.h"
+> +
+> +static const char *bars[] =3D { " ", "=E2=96=8F", "=E2=96=8E", "=E2=96=
+=8D", "=E2=96=8C", "=E2=96=8B", "=E2=96=8A", "=E2=96=89", "=E2=96=88" };
+> +
+> +static void n_spaces(const unsigned int n)
+> +{
+> +       unsigned int i;
+> +
+> +       for (i =3D 0; i < n; i++)
+> +               putchar(' ');
+> +}
+> +
+> +static void print_percentage_bar(double percent, int max_len)
+> +{
+> +       int bar_len, i, len =3D max_len - 2;
+> +       const int w =3D 8;
+> +
+> +       assert(max_len > 0);
+> +
+> +       bar_len =3D ceil(w * percent * len / 100.0);
+> +       if (bar_len > w * len)
+> +               bar_len =3D w * len;
+> +
+> +       putchar('|');
+> +
+> +       for (i =3D bar_len; i >=3D w; i -=3D w)
+> +               printf("%s", bars[w]);
+> +       if (i)
+> +               printf("%s", bars[i]);
+> +
+> +       len -=3D (bar_len + (w - 1)) / w;
+> +       n_spaces(len);
+> +
+> +       putchar('|');
+> +}
+> +
+> +static int
+> +print_client_header(struct igt_drm_client *c, int lines, int con_w, int =
+con_h,
+> +                   int *engine_w)
+> +{
+> +       const char *pidname =3D "    PID               NAME ";
+> +       int ret, len =3D strlen(pidname);
+> +
+> +       if (lines++ >=3D con_h || len >=3D con_w)
+> +               return lines;
+> +       printf("\033[7m");
+> +       ret =3D printf("DRM minor %u", c->drm_minor);
+> +       n_spaces(con_w - ret);
+> +
+> +       if (lines++ >=3D con_h)
+> +               return lines;
+> +       printf("\n%s", pidname);
+> +
+> +       if (c->engines->num_engines) {
+> +               unsigned int i;
+> +               int width;
+> +
+> +               *engine_w =3D width =3D (con_w - len) / c->engines->num_e=
+ngines;
+> +
+> +               for (i =3D 0; i <=3D c->engines->max_engine_id; i++) {
+> +                       const char *name =3D c->engines->names[i];
+> +                       int name_len =3D strlen(name);
+> +                       int pad =3D (width - name_len) / 2;
+> +                       int spaces =3D width - pad - name_len;
+> +
+> +                       if (!name)
+> +                               continue;
+> +
+> +                       if (pad < 0 || spaces < 0)
+> +                               continue;
+> +
+> +                       n_spaces(pad);
+> +                       printf("%s", name);
+> +                       n_spaces(spaces);
+> +                       len +=3D pad + name_len + spaces;
+> +               }
+> +       }
+> +
+> +       n_spaces(con_w - len);
+> +       printf("\033[0m\n");
+> +
+> +       return lines;
+> +}
+> +
+> +
+> +static bool
+> +newheader(const struct igt_drm_client *c, const struct igt_drm_client *p=
+c)
+> +{
+> +       return !pc || c->drm_minor !=3D pc->drm_minor;
+> +}
+> +
+> +static int
+> +print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
+> +            double t, int lines, int con_w, int con_h,
+> +            unsigned int period_us, int *engine_w)
+> +{
+> +       unsigned int i;
+> +
+> +       /* Filter out idle clients. */
+> +       if (!c->total_runtime || c->samples < 2)
+> +               return lines;
+> +
+> +       /* Print header when moving to a different DRM card. */
+> +       if (newheader(c, *prevc)) {
+> +               lines =3D print_client_header(c, lines, con_w, con_h, eng=
+ine_w);
+> +               if (lines >=3D con_h)
+> +                       return lines;
+> +       }
+> +
+> +       *prevc =3D c;
+> +
+> +       printf("%8u %17s ", c->pid, c->print_name);
+> +       lines++;
+> +
+> +       for (i =3D 0; c->samples > 1 && i <=3D c->engines->max_engine_id;=
+ i++) {
+> +               double pct;
+> +
+> +               if (!c->engines->capacity[i])
+> +                       continue;
+> +
+> +               pct =3D (double)c->val[i] / period_us / 1e3 * 100 /
+> +                     c->engines->capacity[i];
+> +
+> +               /*
+> +                * Guard against fluctuations between our scanning period=
+ and
+> +                * GPU times as exported by the kernel in fdinfo.
+> +                */
+> +               if (pct > 100.0)
+> +                       pct =3D 100.0;
+> +
+> +               print_percentage_bar(pct, *engine_w);
+> +       }
+> +
+> +       putchar('\n');
+> +
+> +       return lines;
+> +}
+> +
+> +static int
+> +__client_id_cmp(const struct igt_drm_client *a,
+> +               const struct igt_drm_client *b)
+> +{
+> +       if (a->id > b->id)
+> +               return 1;
+> +       else if (a->id < b->id)
+> +               return -1;
+> +       else
+> +               return 0;
+> +}
+> +
+> +static int client_cmp(const void *_a, const void *_b, void *unused)
+> +{
+> +       const struct igt_drm_client *a =3D _a;
+> +       const struct igt_drm_client *b =3D _b;
+> +       long val_a, val_b;
+> +
+> +       /* DRM cards into consecutive buckets first. */
+> +       val_a =3D a->drm_minor;
+> +       val_b =3D b->drm_minor;
+> +       if (val_a > val_b)
+> +               return 1;
+> +       else if (val_b > val_a)
+> +               return -1;
+> +
+> +       /*
+> +        * Within buckets sort by last sampling period aggregated runtime=
+, with
+> +        * client id as a tie-breaker.
+> +        */
+> +       val_a =3D a->last_runtime;
+> +       val_b =3D b->last_runtime;
+> +       if (val_a =3D=3D val_b)
+> +               return __client_id_cmp(a, b);
+> +       else if (val_b > val_a)
+> +               return 1;
+> +       else
+> +               return -1;
+> +
+> +}
+> +
+> +int main(int argc, char **argv)
+> +{
+> +       unsigned int period_us =3D 2e6;
+> +       struct igt_drm_clients *clients =3D NULL;
+> +       int con_w =3D -1, con_h =3D -1;
+> +
+> +       clients =3D igt_drm_clients_init(NULL);
+> +       if (!clients)
+> +               exit(1);
+> +
+> +       igt_drm_clients_scan(clients, NULL, NULL, 0);
+> +
+> +       for (;;) {
+> +               struct igt_drm_client *c, *prevc =3D NULL;
+> +               int i, engine_w =3D 0, lines =3D 0;
+> +               struct winsize ws;
+> +
+> +               if (ioctl(0, TIOCGWINSZ, &ws) !=3D -1) {
+> +                       con_w =3D ws.ws_col;
+> +                       con_h =3D ws.ws_row;
+> +                       if (con_w =3D=3D 0 && con_h =3D=3D 0) {
+> +                               /* Serial console. */
+> +                               con_w =3D 80;
+> +                               con_h =3D 24;
+> +                       }
+> +               }
+> +
+> +               igt_drm_clients_scan(clients, NULL, NULL, 0);
+> +               igt_drm_clients_sort(clients, client_cmp);
+> +
+> +               printf("\033[H\033[J");
+> +
+> +               igt_for_each_drm_client(clients, c, i) {
+> +                       assert(c->status !=3D IGT_DRM_CLIENT_PROBE);
+> +                       if (c->status !=3D IGT_DRM_CLIENT_ALIVE)
+> +                               break; /* Active clients are first in the=
+ array. */
+> +
+> +                       lines =3D print_client(c, &prevc, (double)period_=
+us / 1e6,
+> +                                            lines, con_w, con_h, period_=
+us,
+> +                                            &engine_w);
+> +                       if (lines >=3D con_h)
+> +                               break;
+> +               }
+> +
+> +               if (lines++ < con_h)
+> +                       printf("\n");
+> +
+> +               usleep(period_us);
+> +       }
+> +
+> +       return 0;
+> +}
+> diff --git a/tools/meson.build b/tools/meson.build
+> index c6194fd15daa..0a3973dee90d 100644
+> --- a/tools/meson.build
+> +++ b/tools/meson.build
+> @@ -65,6 +65,11 @@ if libudev.found()
+>                    install : true)
+>  endif
 >
->
+> +executable('gputop', 'gputop.c',
+> +           install : true,
+> +           install_rpath : bindir_rpathdir,
+> +           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
+> +
+>  intel_l3_parity_src =3D [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c=
+' ]
+>  executable('intel_l3_parity', sources : intel_l3_parity_src,
+>            dependencies : tool_deps,
 > --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> 2.34.1
+>
