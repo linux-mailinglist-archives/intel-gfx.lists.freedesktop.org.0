@@ -1,146 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737C66D7EB7
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 16:10:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3E36D7ECF
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 16:11:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C247710E97D;
-	Wed,  5 Apr 2023 14:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD93A10E973;
+	Wed,  5 Apr 2023 14:11:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4725410E979;
- Wed,  5 Apr 2023 14:10:51 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6214910E973;
+ Wed,  5 Apr 2023 14:11:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680703851; x=1712239851;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Euyh7UAqb9I4F7WqFjp3Vto1ELLU9hZniANOyzw4oVs=;
- b=UulzUQxlG8ThYytqdAtJISpOFlMeYHQRbw3haxI+cx9wMr1F2MB3DooS
- 26Xr8CepQ2s2JL3iIjoyj45MPo1Q7aqdNbhvCb31TdrS8WIT0lVHa/M2E
- lCy8HTCL1oqSZNoHlee9m+pVomyHrpksXqKxm8PUJCWbeO9EWL4yv3CWb
- jNbhIWgqeC2d3aHG0F2q1xLXelcOGoa7o+NmC7rtrHvS6INdK9YcKLmTM
- wUD/G2vFjiX2j79lcU8Kmujy7+LwVdwSGURqIOZIv1vwbH/muqGCfGKDe
- wq6IrDmfI5lvbweJNKCT7bMBu+nwE9iyuFC3sEqcHE9YH+972Rlly5oz7 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="407543803"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="407543803"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 07:10:27 -0700
+ t=1680703889; x=1712239889;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2oUov4UWF8Lmx3dFADc7qojmM8YOCQkPSyu6cuKr5As=;
+ b=OO+Yc5oyXgCe0qU1skfS2NA4NdNNkjpXldeQtyJ0T3IB+fkon4z5nkaU
+ G/H240tDRDqxdg5lHF6mR8oQ33RY7kQclI7UIhOs7E6k8Fyotu/R/tOJ9
+ XraAJW8T8LneioQR71WXwIrTMf6BdgzHRJyHCgFW3C+Y5TF0LpLdpgtBp
+ qqr2rCub4v2LYZtNADxgLaaA2h2Ub6pmDjYkNFJ5+Zx2rQkPYLE6R1GQa
+ ewUhAXdhRutJrhk9Lqvnn4PquHRqhq66M4wtWdMEfWKJwktrfQ47WLMia
+ QYLANtdoxJprcIDn6lwdCNsQUM90kPjw786kcBQzpbzRLB2lnURhmpUI7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="428745622"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="428745622"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 07:11:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="719337836"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="719337836"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 05 Apr 2023 07:10:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 07:10:22 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 07:10:22 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 07:10:22 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 5 Apr 2023 07:10:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KGTeFE72TRPf19Xo1ulzN0E/Zyk0ch6pOnJow9kSjpQfnUedg+5GDN+ZXXIWdQgYEXcmXw26Ck1u9wO511oTzuwTkni3fgUEehyBkYXuLsDXNwyGYVvEOd3PqghxDIPxT2fvQks2tD5KtHJ+FCIsQBVXPJWbalpUIKh8+ihgAtQt1Swjq5WUlTfEGEc8IdaUzWYFZTRhhtT7LqslsnLGaTm8ni68IUZ0CUQXMem47mQCa0MBX1N5hdkNwyJKmxVLBwMFIMnGSu6IIty+gRQC/2e+IvdkZGaKDXR2KtbchtMc+Qf+h3URo0huWk4vmt1nNLuIVBeuROkXs6DGfPVDIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Noc/jS1dQlOYnzDITrC8Sgf9280qZ5ikML5wMzn8zbo=;
- b=S/JJ9pomkdKNdWRcEhM+ni7kB/vlYK7M39SrllAEimWzTWHHRKHxa3XZNNbSqSt7Z96P5CMTHY50RjgnzvXS92x5W5sdkISPhrf2tQj1pL/UWM4JH2nE3q2UmuPRZQT3Oy2ZPk4M77Z16NMsj6NQBh47kCm5aKY41oO96v9lJ+imUmOBXccI2J+6mkmtcxhKnjyoSsznU9lgfBP2GfNnOVpMZtDXkzmwWz46ggbmXMW+iDeQ7D51Nw42+hRFq/+ya6BbjPAcewB8RM9vL1ywv6+gjUoeq1E5ViUOdRAJxmZf/lNQZ9N5CpKBZxDNqUDgM5bkuA5DLIXGn6iqfv9ToA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by MN2PR11MB4583.namprd11.prod.outlook.com (2603:10b6:208:26a::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Wed, 5 Apr
- 2023 14:10:19 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de%5]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
- 14:10:19 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, Alex Williamson
- <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v9 16/25] iommufd/device: Add iommufd_access_detach() API
-Thread-Index: AQHZZK1DZFmNremnwkKG+VLVqq49ia8bxOAAgADdFACAACQI0A==
-Date: Wed, 5 Apr 2023 14:10:19 +0000
-Message-ID: <DS0PR11MB7529B223F9091E509DBF351DC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-17-yi.l.liu@intel.com>
- <20230404164512.37bca62e.alex.williamson@redhat.com>
- <ZC1h7PyuhEg3ZMcj@nvidia.com>
-In-Reply-To: <ZC1h7PyuhEg3ZMcj@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|MN2PR11MB4583:EE_
-x-ms-office365-filtering-correlation-id: 922cdfcf-ad66-4d73-10f1-08db35df7d42
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wUIGlE61qyiayhvqfBM2QdyKI1YE8NIO+lllJiKoGPcOaOOfdYhuXHTEBZ+O4EdRA5weETPxrAvPIw6Kl2wq5JqkMkHCUPPOU9xvhDWE7Mg24CuVw0Yj5v6feWuWNk4hnv3q7VZg1+sNPxeqMMyE3ycC50YFPvYms4mpJDgaBkLjdYXfaT6ZhvkaoepK6BGAAr1OggD9d8noxDrSf6gWRuCOd8sEGdPUMRRyLCbySVHbewvUBnYfxeOigvcLHVwygob4kIGlKEskkWKvZNM8tg3tqfkRU7fbI70EtlFJDMFVQIUpRXI03RbgkJi6EVcpAjeVESIk7MQ2abDPbXu3YNyNBzQTdMEuJkCANayWDK42Gp9LrdsAee80ggWvy54W9Gn5itdOYJ9bCLPEjcNMPM/ceE9wpEJmzSNA38WwaRk7kBIsHx5r5YXKwvjGH3z4IwD5oTuB+YX6XoizY2py6VvtD09blc6X9ojlABqTETS4mZe0po2A/2Mrol97QQPfcuEP3tjphyuMUjbjE0XpDCI5O3DDYg4ejgLfxUlrq3UNJpOdU1j5I15glHSkL0xK4PJvfSrFJSgzSzp3EZwoF+NGSR1kdgW6xgehTnrpeQWIyGZs0FhiVVo5EAtmvyai
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(376002)(346002)(39860400002)(396003)(366004)(451199021)(26005)(6506007)(9686003)(186003)(86362001)(478600001)(33656002)(7696005)(54906003)(71200400001)(110136005)(316002)(966005)(5660300002)(8936002)(7416002)(66476007)(38070700005)(41300700001)(82960400001)(38100700002)(52536014)(66946007)(2906002)(66446008)(64756008)(76116006)(8676002)(122000001)(55016003)(4326008)(66556008)(83380400001)(13296009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?a0TBgWXM7po4bBuxYIVAe9qgX411luvJ3p4fTyHqZRtxpWGZyOmjPH8BF6D1?=
- =?us-ascii?Q?m6Q80QyVJijYcjMClnfVvyipt2v0UT57Wmalcq3WwxIFQYKgt/z7cAlD/Y6a?=
- =?us-ascii?Q?/+U0+RnrWNmwdrgJTiolhh6KT+8ZU24FcbRJrqFGiLkhvu5TxB9CF6QVSXXD?=
- =?us-ascii?Q?pnJhVSA65+RP75bncrALbU8EkLa4oRQppnAiopFjQdNIn9zv+j+2gK7Iu08o?=
- =?us-ascii?Q?mSYRN6d9lzlWOkT4c9PJ6rxjb7wU764h08ENJcxj6UkifDdeWjI9BX76ilxt?=
- =?us-ascii?Q?olgx2A8qtcV/nc5BZd3rlq984DyCOa0BA0l6t92jycjLYGuV2h+9eatKVYuy?=
- =?us-ascii?Q?Ca5oXocfpn1LNNjDGdhPJdw3zZxmKOdPTfQHNmVeBwIRWfrVAIC6frnWlF/T?=
- =?us-ascii?Q?s7DV2qMRqgy1fLrxipsmoZrCOjn/T9WKCtj2y8jl7FKra24Vb7uxdqDfcvA8?=
- =?us-ascii?Q?ztk4fEidkWOLzEyBiGqk40PHTjakp0EWWN/nthSPWhbDYQESgvB4XHMjfkXZ?=
- =?us-ascii?Q?Qrk928i7Yq/6yi7l9SkuEiYdqY1tg+Frf8x146rxLeyjGordi1TXulbkTf2M?=
- =?us-ascii?Q?LqONgH7aUI7OjyK/pqSNrFHpj0ChFov+f18N1zpk0V6VceUQZGe8z+fesULL?=
- =?us-ascii?Q?lUiO3uPrjNfIJMoxOeIGi6aFBXLnQGm4mQA6QMGh6nNJyl0zZAUhEPWkVZmd?=
- =?us-ascii?Q?8TnQBtK6yUx+U3Pfa6E6SMyoTIK0DZ7/yOrWtTDloI2/NZjKC4veYqeo9M+q?=
- =?us-ascii?Q?Lw37SIMDs30f4XyNghoKSHbz6vlC4nPoZH32KLCCqjCjOh69XTFS/IswHQYV?=
- =?us-ascii?Q?RV+AX+M7tzh6wP1VLe6H6XvmJYR3RGP294mXW69TRFU6g7PInov8KqeMGSG/?=
- =?us-ascii?Q?WLycfhkByFhnx+Rvt7/SLEdwJdtlmUhd6wd7XYnIc0o4s1z25Aoo5MzkqXxN?=
- =?us-ascii?Q?M/HGyE7J/cr+Qta40t42sm2Q8Lo9FxvGAGvFyn+EBcSjkj4MzKZCL3BXp51F?=
- =?us-ascii?Q?qrhfHD9nb5MnvVmB3Pm+JP7UU7e0sSWm6hdU08hmuJ9JytETtEWDfwrPOLBZ?=
- =?us-ascii?Q?66OXMKP+nnqz387q+IC0+goULwS3v5vrSbwK+z6eJmVVj9zGh8IUcNF/3tsC?=
- =?us-ascii?Q?vBST6PhBHMhIompud4t+3+brZ+dke/QlkT02LgsQTpxlwJCEA79UovkEX+GF?=
- =?us-ascii?Q?nsl8RGwJMRkPqxa2hNegGCMLrm4kFLHqlPzJBRWrRcrGGw4LCEvkNdYifP3H?=
- =?us-ascii?Q?BcUnEow11np/aeawVPuP7t+PKgZ6fgJxY7qpnXZcVRPZ3YWszG4tz4Otao6W?=
- =?us-ascii?Q?d0+nemcfNNqZfI6lX20XOZwwjmS89zWjQMV/gF7kRS9vQPcuoLwgDJdsRcbq?=
- =?us-ascii?Q?j0TtjG8uJ4rzwEpDacMkcQla0NWzaLWApmhbCaTLesc2kOr9cHkIOFIZTlEL?=
- =?us-ascii?Q?wxLZTfR9KM6KxaJHO7KFTm6j1dmLMVK45i0DqEmX2/U+NCSnJp8OYq7OSMB4?=
- =?us-ascii?Q?BksODKaMBSScw3aMXC6qVpKPaSTw2l3aEjeZr0D/7eQy8OpCOfLLgfsY2l6h?=
- =?us-ascii?Q?suk2BzYKE9CmME/fdJxvid1I6uCYr/MKca08WuaU?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="717055515"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="717055515"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.30.7])
+ ([10.213.30.7])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 07:11:19 -0700
+Message-ID: <0fd2b66e-958c-32d4-2491-7d3e323e6045@intel.com>
+Date: Wed, 5 Apr 2023 16:11:17 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 922cdfcf-ad66-4d73-10f1-08db35df7d42
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2023 14:10:19.8338 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EtcunBhSPnfhZyqxyQ36agGjUhhGPwyc9/jXGhvVnMZDgdrxGB5YcBfQ0mj2lxJzeu8VlI0dLhBHfxoYflAdUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4583
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v9 16/25] iommufd/device: Add
- iommufd_access_detach() API
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.1
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230404143100.10452-1-nirmoy.das@intel.com>
+ <20230404143100.10452-2-nirmoy.das@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230404143100.10452-2-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/display: Set
+ I915_BO_ALLOC_USER for fb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,88 +65,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Wednesday, April 5, 2023 7:56 PM
->=20
-> On Tue, Apr 04, 2023 at 04:45:12PM -0600, Alex Williamson wrote:
-> > On Sat,  1 Apr 2023 08:18:24 -0700
-> > Yi Liu <yi.l.liu@intel.com> wrote:
-> >
-> > > From: Nicolin Chen <nicolinc@nvidia.com>
-> > >
-> > > Previously, the detach routine is only done by the destroy(). And it =
-was
-> > > called by vfio_iommufd_emulated_unbind() when the device runs close()=
-, so
-> > > all the mappings in iopt were cleaned in that setup, when the call tr=
-ace
-> > > reaches this detach() routine.
-> > >
-> > > Now, there's a need of a detach uAPI, meaning that it does not only n=
-eed
-> > > a new iommufd_access_detach() API, but also requires access->ops->unm=
-ap()
-> > > call as a cleanup. So add one.
-> > >
-> > > However, leaving that unprotected can introduce some potential of a r=
-ace
-> > > condition during the pin_/unpin_pages() call, where access->ioas->iop=
-t is
-> > > getting referenced. So, add an ioas_lock to protect the context of io=
-pt
-> > > referencings.
-> > >
-> > > Also, to allow the iommufd_access_unpin_pages() callback to happen vi=
-a
-> > > this unmap() call, add an ioas_unpin pointer, so the unpin routine wo=
-n't
-> > > be affected by the "access->ioas =3D NULL" trick.
-> > >
-> > > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> > > Tested-by: Terrence Xu <terrence.xu@intel.com>
-> > > Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> > > Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
-> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > > ---
-> > >  drivers/iommu/iommufd/device.c          | 76 +++++++++++++++++++++++=
---
-> > >  drivers/iommu/iommufd/iommufd_private.h |  2 +
-> > >  include/linux/iommufd.h                 |  1 +
-> > >  3 files changed, 74 insertions(+), 5 deletions(-)
-> >
-> > Does this need to go in via iommufd first?  There seems to be quite a
-> > bit of churn in iommufd/device.c vs the vfio_mdev_ops branch (ie. it
-> > doesn't apply). Thanks,
->=20
-> I think it is best to stay with this series, Yi has to rebase it
 
-The rebased version is here. Shall I resend a version which is rebased on
-top of vfio_mdev_ops?
 
-https://github.com/yiliu1765/iommufd/commit/d3d8f65c82fe2ca2a7b1a635f4b40b2=
-a0971daa9
+On 04.04.2023 16:30, Nirmoy Das wrote:
+> Framebuffer is exposed to userspace so make sure we set
+> proper flags for it. Set I915_BO_PREALLOC for prealloced
+> fb so that ttm won't clear existing data.
+>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Regards,
-Yi Liu
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/i915/display/intel_fbdev.c         | 3 ++-
+>   drivers/gpu/drm/i915/display/intel_plane_initial.c | 4 +++-
+>   2 files changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 673bcdfb7ff6..f7d48d00ae4b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -163,7 +163,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+>   	obj = ERR_PTR(-ENODEV);
+>   	if (HAS_LMEM(dev_priv)) {
+>   		obj = i915_gem_object_create_lmem(dev_priv, size,
+> -						  I915_BO_ALLOC_CONTIGUOUS);
+> +						  I915_BO_ALLOC_CONTIGUOUS |
+> +						  I915_BO_ALLOC_USER);
+>   	} else {
+>   		/*
+>   		 * If the FB is too big, just don't use it since fbdev is not very
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> index bb6ea7de5c61..736072a8b2b0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -110,7 +110,9 @@ initial_plane_vma(struct drm_i915_private *i915,
+>   	    size * 2 > i915->dsm.usable_size)
+>   		return NULL;
+>   
+> -	obj = i915_gem_object_create_region_at(mem, phys_base, size, 0);
+> +	obj = i915_gem_object_create_region_at(mem, phys_base, size,
+> +					       I915_BO_ALLOC_USER |
+> +					       I915_BO_PREALLOC);
+>   	if (IS_ERR(obj))
+>   		return NULL;
+>   
+
