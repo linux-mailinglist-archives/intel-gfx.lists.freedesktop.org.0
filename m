@@ -1,59 +1,87 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CE06D8562
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:57:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2616D8569
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 19:58:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBF7510E25B;
-	Wed,  5 Apr 2023 17:57:37 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
- [IPv6:2607:f8b0:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A4E10E087
- for <Intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:57:35 +0000 (UTC)
-Received: by mail-il1-x12f.google.com with SMTP id t5so7862562ilu.5
- for <Intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:57:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1680717455; x=1683309455;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4C6EUOM3dMiYltREZIGKQdPNmg2oQ+OppDvyWFTirdg=;
- b=C8KNEWJLjyMmHk8+/AznCDUMsNuXElNnECQIz1zA5WoAYlxidlRlZwY46rsNS78HVS
- OR7U4uGKYNodSGrQ3k5dvs6nhHlcqZ7e+r7txkGDiW41xBdwAuT+M78tHzvPXSm888GB
- zFGLqfJ7tHTiQAKyMXSGx0rdlR9+rUBPKDv9M=
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1D7010E42F;
+	Wed,  5 Apr 2023 17:58:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0E3D10E087
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 17:58:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680717503;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=380bqGdmN/J3+3GudvxHzAsrSJkRz0+zfZPDcP5TCsg=;
+ b=G8hLW9aZAIYw9KEsbC858H9Xf5j0Ant1UVhhhFfOe5kEHhXVnR64fQUVqAX1pFMjnXX7hJ
+ ioUcJsuZBNJhx0CfnipCrjLqeSt225aMqvLfxwUlBbqM0VR6J9NQfhebL/QbN8f+AXcngz
+ jxUQdh4EwQRDi99wOtDTtQ1kSHG2MEg=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-672-M3cy-8rxNNWzh9D0FDDYBA-1; Wed, 05 Apr 2023 13:58:22 -0400
+X-MC-Unique: M3cy-8rxNNWzh9D0FDDYBA-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ x80-20020a376353000000b0074681bc7f42so16608156qkb.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 10:58:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680717455; x=1683309455;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4C6EUOM3dMiYltREZIGKQdPNmg2oQ+OppDvyWFTirdg=;
- b=HJ1gEStVDyPEX5TB1MMfSj8+xmaJfR1fL/cuW+i6/bpu/orIejK08BhTiXkXJEdvwt
- Nb01F1Awvcwdlr2S/DXpVGYmb5atnsZXGif01LrhyPbQt8Io0fIVrsCjdu5JLW5DebcG
- /jI5woafwKs9wM/3NvOdrMo9KNK6LhrhYnuYcyfBN4kkdm1Q9zstNG1Ca6ElfxT4fA0Z
- nZFGY9N6r5dLahxy+0oNbqXwJYr0LnA5lBbIIDOjzLUXzLGoLBOBL+iuWDJfWgFIxuOZ
- ZhXKTZ4dVGIcXiOYDZVOeRuztP4uOp2zZKuqcXqcoAqOroMo+veYm/TLc3Nnl8dFh+MB
- sC5Q==
-X-Gm-Message-State: AAQBX9dXk0BQ+c/N6oyJ6gqyscEVb1/cgTLVN3IJgthgHIJ0cEUF1diO
- GdeUeaGrTcA5h7Q5qg7/480Ks7aWElW8/evzxZaDgQ==
-X-Google-Smtp-Source: AKy350aVxuMU4FRTVmFU0BYsAykKUbYwJhhHYPxJi11+hjO/ofFM3SjkVPUNaBwseucS0ZZCprZ9N2RkCCucWM5NLeM=
-X-Received: by 2002:a05:6e02:10c4:b0:316:ff39:6bbf with SMTP id
- s4-20020a056e0210c400b00316ff396bbfmr4249975ilj.6.1680717454829; Wed, 05 Apr
- 2023 10:57:34 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680717502;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=380bqGdmN/J3+3GudvxHzAsrSJkRz0+zfZPDcP5TCsg=;
+ b=hUVzxTSd98/vtONYiggY4hHCYDaGPKOGiJyAu9bR1E7yaVuPN5V9jTkIUxkV6+2BDh
+ db1N2DwqBiAP2gNogyQHcCtwsVFjKauGm0QK1Op23Iy9ORcxjpBWkfIVQx3rOHPzBg1O
+ FGWKKyFT7YoHEWTid3d6hOhdqZo4AsqpEazbSapc64LZ8WDmF0TAXtu3SqxLn5HtQ5wD
+ LD3yRfzEqUx4PzQmz8+/3MbDR3cnMNWq2qfyUu/CIPLzwWyohKXeQKYLMAqN6iAqeaTf
+ YP3QJ1eDLpIDXuF+iIOCKKd3V3M5y2CGBuZdB7JmgRqge4FWygTHd3iQM5IW5gN0yoTC
+ ZXhQ==
+X-Gm-Message-State: AAQBX9f6RJNt9XtESStpni7vICCETOXeDn0C9qDCj7cwbwNOGXklH11o
+ wdeGSwIleXB5c3P5gjMBIfavzACMiV6i2qnXlASar+OxrWcJqS/nhD33crYVnQTfeHRRh3Wxcs3
+ ASQnNa+dT8RJrNccAbLoDZoeED/LF
+X-Received: by 2002:ad4:5bc8:0:b0:5e0:47aa:40a6 with SMTP id
+ t8-20020ad45bc8000000b005e047aa40a6mr136461qvt.16.1680717502232; 
+ Wed, 05 Apr 2023 10:58:22 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZksC2LVBFlakR/QV0e90iMdBfeTz+PxJh0tY5FA9f1axDsojNcTMMC3Qt8fTWx/ZEqJLVa7A==
+X-Received: by 2002:ad4:5bc8:0:b0:5e0:47aa:40a6 with SMTP id
+ t8-20020ad45bc8000000b005e047aa40a6mr136432qvt.16.1680717501875; 
+ Wed, 05 Apr 2023 10:58:21 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ cp6-20020ad44ae6000000b005dd8b9345aesm4385044qvb.70.2023.04.05.10.58.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 05 Apr 2023 10:58:20 -0700 (PDT)
+Message-ID: <afbfbfe5-5334-6e18-6211-a3908816dc6e@redhat.com>
+Date: Wed, 5 Apr 2023 19:58:09 +0200
 MIME-Version: 1.0
-References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
- <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
-From: Rob Clark <robdclark@chromium.org>
-Date: Wed, 5 Apr 2023 10:57:23 -0700
-Message-ID: <CAJs_Fx6viBKQwoRofup8z4ZBcGC6dabvLarzT8aoevBEjQe8Ew@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU
- top tool
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Alex Williamson <alex.williamson@redhat.com>,
+ "Liu, Yi L" <yi.l.liu@intel.com>
+References: <20230401144429.88673-1-yi.l.liu@intel.com>
+ <20230401144429.88673-13-yi.l.liu@intel.com>
+ <a937e622-ce32-6dda-d77c-7d8d76474ee0@redhat.com>
+ <DS0PR11MB7529D4E354C3B85D7698017DC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230405102545.41a61424.alex.williamson@redhat.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <20230405102545.41a61424.alex.williamson@redhat.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,337 +94,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Reply-To: eric.auger@redhat.com
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 31, 2023 at 3:33=E2=80=AFAM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be use=
-d
-> to display a sorted by card and usage list of processes using GPUs.
->
-> Borrows a bit of code from intel_gpu_top but for now omits the fancy
-> features like interactive functionality, card selection, client
-> aggregation, sort modes, JSON output  and pretty engine names. Also no
-> support for global GPU or system metrics.
->
-> On the other hand it shows clients from all DRM cards which
-> intel_gpu_top does not do.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Rob Clark <robdclark@chromium.org>
-> Cc: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-Reviewed-by: Rob Clark <robdclark@chromium.org>
 
-> ---
->  tools/gputop.c    | 260 ++++++++++++++++++++++++++++++++++++++++++++++
->  tools/meson.build |   5 +
->  2 files changed, 265 insertions(+)
->  create mode 100644 tools/gputop.c
+On 4/5/23 18:25, Alex Williamson wrote:
+> On Wed, 5 Apr 2023 14:04:51 +0000
+> "Liu, Yi L" <yi.l.liu@intel.com> wrote:
 >
-> diff --git a/tools/gputop.c b/tools/gputop.c
-> new file mode 100644
-> index 000000000000..d259cac1ab17
-> --- /dev/null
-> +++ b/tools/gputop.c
-> @@ -0,0 +1,260 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =C2=A9 2022 Intel Corporation
-> + */
-> +
-> +#include <assert.h>
-> +#include <ctype.h>
-> +#include <dirent.h>
-> +#include <errno.h>
-> +#include <fcntl.h>
-> +#include <inttypes.h>
-> +#include <limits.h>
-> +#include <locale.h>
-> +#include <math.h>
-> +#include <poll.h>
-> +#include <signal.h>
-> +#include <stdint.h>
-> +#include <stdio.h>
-> +#include <stdlib.h>
-> +#include <string.h>
-> +#include <sys/ioctl.h>
-> +#include <sys/stat.h>
-> +#include <sys/types.h>
-> +#include <unistd.h>
-> +#include <termios.h>
-> +#include <sys/sysmacros.h>
-> +#include <stdbool.h>
-> +
-> +#include "igt_drm_clients.h"
-> +#include "igt_drm_fdinfo.h"
-> +
-> +static const char *bars[] =3D { " ", "=E2=96=8F", "=E2=96=8E", "=E2=96=
-=8D", "=E2=96=8C", "=E2=96=8B", "=E2=96=8A", "=E2=96=89", "=E2=96=88" };
-> +
-> +static void n_spaces(const unsigned int n)
-> +{
-> +       unsigned int i;
-> +
-> +       for (i =3D 0; i < n; i++)
-> +               putchar(' ');
-> +}
-> +
-> +static void print_percentage_bar(double percent, int max_len)
-> +{
-> +       int bar_len, i, len =3D max_len - 2;
-> +       const int w =3D 8;
-> +
-> +       assert(max_len > 0);
-> +
-> +       bar_len =3D ceil(w * percent * len / 100.0);
-> +       if (bar_len > w * len)
-> +               bar_len =3D w * len;
-> +
-> +       putchar('|');
-> +
-> +       for (i =3D bar_len; i >=3D w; i -=3D w)
-> +               printf("%s", bars[w]);
-> +       if (i)
-> +               printf("%s", bars[i]);
-> +
-> +       len -=3D (bar_len + (w - 1)) / w;
-> +       n_spaces(len);
-> +
-> +       putchar('|');
-> +}
-> +
-> +static int
-> +print_client_header(struct igt_drm_client *c, int lines, int con_w, int =
-con_h,
-> +                   int *engine_w)
-> +{
-> +       const char *pidname =3D "    PID               NAME ";
-> +       int ret, len =3D strlen(pidname);
-> +
-> +       if (lines++ >=3D con_h || len >=3D con_w)
-> +               return lines;
-> +       printf("\033[7m");
-> +       ret =3D printf("DRM minor %u", c->drm_minor);
-> +       n_spaces(con_w - ret);
-> +
-> +       if (lines++ >=3D con_h)
-> +               return lines;
-> +       printf("\n%s", pidname);
-> +
-> +       if (c->engines->num_engines) {
-> +               unsigned int i;
-> +               int width;
-> +
-> +               *engine_w =3D width =3D (con_w - len) / c->engines->num_e=
-ngines;
-> +
-> +               for (i =3D 0; i <=3D c->engines->max_engine_id; i++) {
-> +                       const char *name =3D c->engines->names[i];
-> +                       int name_len =3D strlen(name);
-> +                       int pad =3D (width - name_len) / 2;
-> +                       int spaces =3D width - pad - name_len;
-> +
-> +                       if (!name)
-> +                               continue;
-> +
-> +                       if (pad < 0 || spaces < 0)
-> +                               continue;
-> +
-> +                       n_spaces(pad);
-> +                       printf("%s", name);
-> +                       n_spaces(spaces);
-> +                       len +=3D pad + name_len + spaces;
-> +               }
-> +       }
-> +
-> +       n_spaces(con_w - len);
-> +       printf("\033[0m\n");
-> +
-> +       return lines;
-> +}
-> +
-> +
-> +static bool
-> +newheader(const struct igt_drm_client *c, const struct igt_drm_client *p=
-c)
-> +{
-> +       return !pc || c->drm_minor !=3D pc->drm_minor;
-> +}
-> +
-> +static int
-> +print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
-> +            double t, int lines, int con_w, int con_h,
-> +            unsigned int period_us, int *engine_w)
-> +{
-> +       unsigned int i;
-> +
-> +       /* Filter out idle clients. */
-> +       if (!c->total_runtime || c->samples < 2)
-> +               return lines;
-> +
-> +       /* Print header when moving to a different DRM card. */
-> +       if (newheader(c, *prevc)) {
-> +               lines =3D print_client_header(c, lines, con_w, con_h, eng=
-ine_w);
-> +               if (lines >=3D con_h)
-> +                       return lines;
-> +       }
-> +
-> +       *prevc =3D c;
-> +
-> +       printf("%8u %17s ", c->pid, c->print_name);
-> +       lines++;
-> +
-> +       for (i =3D 0; c->samples > 1 && i <=3D c->engines->max_engine_id;=
- i++) {
-> +               double pct;
-> +
-> +               if (!c->engines->capacity[i])
-> +                       continue;
-> +
-> +               pct =3D (double)c->val[i] / period_us / 1e3 * 100 /
-> +                     c->engines->capacity[i];
-> +
-> +               /*
-> +                * Guard against fluctuations between our scanning period=
- and
-> +                * GPU times as exported by the kernel in fdinfo.
-> +                */
-> +               if (pct > 100.0)
-> +                       pct =3D 100.0;
-> +
-> +               print_percentage_bar(pct, *engine_w);
-> +       }
-> +
-> +       putchar('\n');
-> +
-> +       return lines;
-> +}
-> +
-> +static int
-> +__client_id_cmp(const struct igt_drm_client *a,
-> +               const struct igt_drm_client *b)
-> +{
-> +       if (a->id > b->id)
-> +               return 1;
-> +       else if (a->id < b->id)
-> +               return -1;
-> +       else
-> +               return 0;
-> +}
-> +
-> +static int client_cmp(const void *_a, const void *_b, void *unused)
-> +{
-> +       const struct igt_drm_client *a =3D _a;
-> +       const struct igt_drm_client *b =3D _b;
-> +       long val_a, val_b;
-> +
-> +       /* DRM cards into consecutive buckets first. */
-> +       val_a =3D a->drm_minor;
-> +       val_b =3D b->drm_minor;
-> +       if (val_a > val_b)
-> +               return 1;
-> +       else if (val_b > val_a)
-> +               return -1;
-> +
-> +       /*
-> +        * Within buckets sort by last sampling period aggregated runtime=
-, with
-> +        * client id as a tie-breaker.
-> +        */
-> +       val_a =3D a->last_runtime;
-> +       val_b =3D b->last_runtime;
-> +       if (val_a =3D=3D val_b)
-> +               return __client_id_cmp(a, b);
-> +       else if (val_b > val_a)
-> +               return 1;
-> +       else
-> +               return -1;
-> +
-> +}
-> +
-> +int main(int argc, char **argv)
-> +{
-> +       unsigned int period_us =3D 2e6;
-> +       struct igt_drm_clients *clients =3D NULL;
-> +       int con_w =3D -1, con_h =3D -1;
-> +
-> +       clients =3D igt_drm_clients_init(NULL);
-> +       if (!clients)
-> +               exit(1);
-> +
-> +       igt_drm_clients_scan(clients, NULL, NULL, 0);
-> +
-> +       for (;;) {
-> +               struct igt_drm_client *c, *prevc =3D NULL;
-> +               int i, engine_w =3D 0, lines =3D 0;
-> +               struct winsize ws;
-> +
-> +               if (ioctl(0, TIOCGWINSZ, &ws) !=3D -1) {
-> +                       con_w =3D ws.ws_col;
-> +                       con_h =3D ws.ws_row;
-> +                       if (con_w =3D=3D 0 && con_h =3D=3D 0) {
-> +                               /* Serial console. */
-> +                               con_w =3D 80;
-> +                               con_h =3D 24;
-> +                       }
-> +               }
-> +
-> +               igt_drm_clients_scan(clients, NULL, NULL, 0);
-> +               igt_drm_clients_sort(clients, client_cmp);
-> +
-> +               printf("\033[H\033[J");
-> +
-> +               igt_for_each_drm_client(clients, c, i) {
-> +                       assert(c->status !=3D IGT_DRM_CLIENT_PROBE);
-> +                       if (c->status !=3D IGT_DRM_CLIENT_ALIVE)
-> +                               break; /* Active clients are first in the=
- array. */
-> +
-> +                       lines =3D print_client(c, &prevc, (double)period_=
-us / 1e6,
-> +                                            lines, con_w, con_h, period_=
-us,
-> +                                            &engine_w);
-> +                       if (lines >=3D con_h)
-> +                               break;
-> +               }
-> +
-> +               if (lines++ < con_h)
-> +                       printf("\n");
-> +
-> +               usleep(period_us);
-> +       }
-> +
-> +       return 0;
-> +}
-> diff --git a/tools/meson.build b/tools/meson.build
-> index c6194fd15daa..0a3973dee90d 100644
-> --- a/tools/meson.build
-> +++ b/tools/meson.build
-> @@ -65,6 +65,11 @@ if libudev.found()
->                    install : true)
->  endif
+>> Hi Eric,
+>>
+>>> From: Eric Auger <eric.auger@redhat.com>
+>>> Sent: Wednesday, April 5, 2023 8:20 PM
+>>>
+>>> Hi Yi,
+>>> On 4/1/23 16:44, Yi Liu wrote:  
+>>>> for the users that accept device fds passed from management stacks to be
+>>>> able to figure out the host reset affected devices among the devices
+>>>> opened by the user. This is needed as such users do not have BDF (bus,
+>>>> devfn) knowledge about the devices it has opened, hence unable to use
+>>>> the information reported by existing VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+>>>> to figure out the affected devices.
+>>>>
+>>>> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+>>>> ---
+>>>>  drivers/vfio/pci/vfio_pci_core.c | 58 ++++++++++++++++++++++++++++----
+>>>>  include/uapi/linux/vfio.h        | 24 ++++++++++++-
+>>>>  2 files changed, 74 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+>>>> index 19f5b075d70a..a5a7e148dce1 100644
+>>>> --- a/drivers/vfio/pci/vfio_pci_core.c
+>>>> +++ b/drivers/vfio/pci/vfio_pci_core.c
+>>>> @@ -30,6 +30,7 @@
+>>>>  #if IS_ENABLED(CONFIG_EEH)
+>>>>  #include <asm/eeh.h>
+>>>>  #endif
+>>>> +#include <uapi/linux/iommufd.h>
+>>>>
+>>>>  #include "vfio_pci_priv.h"
+>>>>
+>>>> @@ -767,6 +768,20 @@ static int vfio_pci_get_irq_count(struct  
+>>> vfio_pci_core_device *vdev, int irq_typ  
+>>>>  	return 0;
+>>>>  }
+>>>>
+>>>> +static struct vfio_device *
+>>>> +vfio_pci_find_device_in_devset(struct vfio_device_set *dev_set,
+>>>> +			       struct pci_dev *pdev)
+>>>> +{
+>>>> +	struct vfio_device *cur;
+>>>> +
+>>>> +	lockdep_assert_held(&dev_set->lock);
+>>>> +
+>>>> +	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+>>>> +		if (cur->dev == &pdev->dev)
+>>>> +			return cur;
+>>>> +	return NULL;
+>>>> +}
+>>>> +
+>>>>  static int vfio_pci_count_devs(struct pci_dev *pdev, void *data)
+>>>>  {
+>>>>  	(*(int *)data)++;
+>>>> @@ -776,13 +791,20 @@ static int vfio_pci_count_devs(struct pci_dev *pdev, void  
+>>> *data)  
+>>>>  struct vfio_pci_fill_info {
+>>>>  	int max;
+>>>>  	int cur;
+>>>> +	bool require_devid;
+>>>> +	struct iommufd_ctx *iommufd;
+>>>> +	struct vfio_device_set *dev_set;
+>>>>  	struct vfio_pci_dependent_device *devices;
+>>>>  };
+>>>>
+>>>>  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+>>>>  {
+>>>>  	struct vfio_pci_fill_info *fill = data;
+>>>> +	struct vfio_device_set *dev_set = fill->dev_set;
+>>>>  	struct iommu_group *iommu_group;
+>>>> +	struct vfio_device *vdev;
+>>>> +
+>>>> +	lockdep_assert_held(&dev_set->lock);
+>>>>
+>>>>  	if (fill->cur == fill->max)
+>>>>  		return -EAGAIN; /* Something changed, try again */
+>>>> @@ -791,7 +813,21 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev, void  
+>>> *data)  
+>>>>  	if (!iommu_group)
+>>>>  		return -EPERM; /* Cannot reset non-isolated devices */
+>>>>
+>>>> -	fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+>>>> +	if (fill->require_devid) {
+>>>> +		/*
+>>>> +		 * Report dev_id of the devices that are opened as cdev
+>>>> +		 * and have the same iommufd with the fill->iommufd.
+>>>> +		 * Otherwise, just fill IOMMUFD_INVALID_ID.
+>>>> +		 */
+>>>> +		vdev = vfio_pci_find_device_in_devset(dev_set, pdev);
+>>>> +		if (vdev && vfio_device_cdev_opened(vdev) &&
+>>>> +		    fill->iommufd == vfio_iommufd_physical_ictx(vdev))
+>>>> +			vfio_iommufd_physical_devid(vdev, &fill->devices[fill-
+>>>> cur].dev_id);
+>>>> +		else
+>>>> +			fill->devices[fill->cur].dev_id = IOMMUFD_INVALID_ID;
+>>>> +	} else {
+>>>> +		fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+>>>> +	}
+>>>>  	fill->devices[fill->cur].segment = pci_domain_nr(pdev->bus);
+>>>>  	fill->devices[fill->cur].bus = pdev->bus->number;
+>>>>  	fill->devices[fill->cur].devfn = pdev->devfn;
+>>>> @@ -1230,17 +1266,27 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
+>>>>  		return -ENOMEM;
+>>>>
+>>>>  	fill.devices = devices;
+>>>> +	fill.dev_set = vdev->vdev.dev_set;
+>>>>
+>>>> +	mutex_lock(&vdev->vdev.dev_set->lock);
+>>>> +	if (vfio_device_cdev_opened(&vdev->vdev)) {
+>>>> +		fill.require_devid = true;
+>>>> +		fill.iommufd = vfio_iommufd_physical_ictx(&vdev->vdev);
+>>>> +	}
+>>>>  	ret = vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_devs,
+>>>>  					    &fill, slot);
+>>>> +	mutex_unlock(&vdev->vdev.dev_set->lock);
+>>>>
+>>>>  	/*
+>>>>  	 * If a device was removed between counting and filling, we may come up
+>>>>  	 * short of fill.max.  If a device was added, we'll have a return of
+>>>>  	 * -EAGAIN above.
+>>>>  	 */
+>>>> -	if (!ret)
+>>>> +	if (!ret) {
+>>>>  		hdr.count = fill.cur;
+>>>> +		if (fill.require_devid)
+>>>> +			hdr.flags = VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID;
+>>>> +	}
+>>>>
+>>>>  reset_info_exit:
+>>>>  	if (copy_to_user(arg, &hdr, minsz))
+>>>> @@ -2346,12 +2392,10 @@ static bool vfio_dev_in_files(struct  
+>>> vfio_pci_core_device *vdev,  
+>>>>  static int vfio_pci_is_device_in_set(struct pci_dev *pdev, void *data)
+>>>>  {
+>>>>  	struct vfio_device_set *dev_set = data;
+>>>> -	struct vfio_device *cur;
+>>>>
+>>>> -	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+>>>> -		if (cur->dev == &pdev->dev)
+>>>> -			return 0;
+>>>> -	return -EBUSY;
+>>>> +	lockdep_assert_held(&dev_set->lock);
+>>>> +
+>>>> +	return vfio_pci_find_device_in_devset(dev_set, pdev) ? 0 : -EBUSY;
+>>>>  }
+>>>>
+>>>>  /*
+>>>> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+>>>> index 25432ef213ee..5a34364e3b94 100644
+>>>> --- a/include/uapi/linux/vfio.h
+>>>> +++ b/include/uapi/linux/vfio.h
+>>>> @@ -650,11 +650,32 @@ enum {
+>>>>   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 12,
+>>>>   *					      struct vfio_pci_hot_reset_info)
+>>>>   *
+>>>> + * This command is used to query the affected devices in the hot reset for
+>>>> + * a given device.  User could use the information reported by this command
+>>>> + * to figure out the affected devices among the devices it has opened.
+the 'opened' terminology does not look sufficient here because it is not
+only a matter of the device being opened using cdev but it also needs to
+have been bound to an iommufd, dev_id being the output of the
+dev-iommufd binding.
+
+By the way I am now confused. What does happen if the reset impact some
+devices which are not bound to an iommu ctx. Previously we returned the
+iommu group which always pre-exists but now you will report invalid id?
+>>>> + * This command always reports the segment, bus and devfn information for
+>>>> + * each affected device, and selectively report the group_id or the dev_id
+>>>> + * per the way how the device being queried is opened.
+>>>> + *	- If the device is opened via the traditional group/container manner,
+>>>> + *	  this command reports the group_id for each affected device.
+>>>> + *
+>>>> + *	- If the device is opened as a cdev, this command needs to report  
+>>> s/needs to report/reports  
+>> got it.
+>>
+>>>> + *	  dev_id for each affected device and set the
+>>>> + *	  VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID flag.  For the affected
+>>>> + *	  devices that are not opened as cdev or bound to different iommufds
+>>>> + *	  with the device that is queried, report an invalid dev_id to avoid  
+or not bound at all
+>>> s/bound to different iommufds with the device that is queried/bound to
+>>> iommufds different from the reset device one?  
+>> hmmm, I'm not a native speaker here. This _INFO is to query if want
+>> hot reset a given device, what devices would be affected. So it appears
+>> the queried device is better. But I'd admit "the queried device" is also
+>> "the reset device". may Alex help pick one. 😊
+> 	- If the calling device is opened directly via cdev rather than
+> 	  accessed through the vfio group, the returned
+> 	  vfio_pci_depdendent_device structure reports the dev_id
+> 	  rather than the group_id, which is indicated by the
+> 	  VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID flag in
+> 	  vfio_pci_hot_reset_info.  If the reset affects devices that
+> 	  are not opened within the same iommufd context as the calling
+> 	  device, IOMMUFD_INVALID_ID will be provided as the dev_id.
 >
-> +executable('gputop', 'gputop.c',
-> +           install : true,
-> +           install_rpath : bindir_rpathdir,
-> +           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
-> +
->  intel_l3_parity_src =3D [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c=
-' ]
->  executable('intel_l3_parity', sources : intel_l3_parity_src,
->            dependencies : tool_deps,
-> --
-> 2.34.1
+> But that kind of brings to light the question of what does the user do
+> when they encounter this situation.  If the device is not opened, the
+> reset can complete.  If the device is opened by a different user, the
+> reset is blocked.  The only logical conclusion is that the user should
+> try the reset regardless of the result of the info ioctl, which the
+> null-array approach further solidifies as the direction of the API.
+> I'm not liking this.  Thanks,
 >
+> Alex
+
+Thanks
+
+Eric
+>
+>
+>>>> + *	  potential dev_id conflict as dev_id is local to iommufd.  For such
+>>>> + *	  affected devices, user shall fall back to use the segment, bus and
+>>>> + *	  devfn info to map it to opened device.
+>>>> + *
+>>>>   * Return: 0 on success, -errno on failure:
+>>>>   *	-enospc = insufficient buffer, -enodev = unsupported for device.
+>>>>   */
+>>>>  struct vfio_pci_dependent_device {
+>>>> -	__u32	group_id;
+>>>> +	union {
+>>>> +		__u32   group_id;
+>>>> +		__u32	dev_id;
+>>>> +	};
+>>>>  	__u16	segment;
+>>>>  	__u8	bus;
+>>>>  	__u8	devfn; /* Use PCI_SLOT/PCI_FUNC */
+>>>> @@ -663,6 +684,7 @@ struct vfio_pci_dependent_device {
+>>>>  struct vfio_pci_hot_reset_info {
+>>>>  	__u32	argsz;
+>>>>  	__u32	flags;
+>>>> +#define VFIO_PCI_HOT_RESET_FLAG_IOMMUFD_DEV_ID	(1 << 0)
+>>>>  	__u32	count;
+>>>>  	struct vfio_pci_dependent_device	devices[];
+>>>>  };  
+>>> Eric  
+
