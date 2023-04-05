@@ -2,79 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5D66D820A
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 17:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E72C56D82CA
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 18:02:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9140010E9FC;
-	Wed,  5 Apr 2023 15:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABF910EA05;
+	Wed,  5 Apr 2023 16:02:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8AAE10E9FC
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 15:36:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680709013;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=TuiXIjl7StR1lWcqJYYE1fB/Z6K6yMMeGx6F0a8wvVw=;
- b=ezjmmx8C+sXQZ7rZPQls9R5s0z/Lr2xCgBBXhbnHsbzeeJ1VRkwFyTueUSSdoDalOYH7Vt
- gusO7kd0ORcKH55S+rpzrsqLjyArxn9xKM0Zis9voocmzqZVQVLojhwCSMqbYMefchSD++
- P4S5StCd6MZ+nTwsZjz5ITod665Y5Z0=
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
- [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-208-ETdyBfgjNdaxiVKJCH8q9g-1; Wed, 05 Apr 2023 11:36:49 -0400
-X-MC-Unique: ETdyBfgjNdaxiVKJCH8q9g-1
-Received: by mail-il1-f198.google.com with SMTP id
- g12-20020a056e021e0c00b00327c0e193b1so1092834ila.21
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 08:36:49 -0700 (PDT)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1A610E103
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 16:02:07 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id
+ 4fb4d7f45d1cf-5005c57f95cso75671a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 09:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680710525; x=1683302525;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=Z4x/60Nfen4S79vqKv7uwBT/fWu0hDg/Eg+9CWLyjFk=;
+ b=Dqd3L1Xdwkxqr7IDWVyV+aWpVbJbw6SVVHTDJS8LpNwDAozSdfNFbteqNXntMZt4bI
+ qyUoEI9Wc3WILeqjJn06Dt0wtVStQyWXLGQhYEfPu6c/NZi8ICUHUuVmLWENr517uHUl
+ XKqlZU8h+mphpeASbiSciDjYoAAMVpBKc2Aaw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680709008;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TuiXIjl7StR1lWcqJYYE1fB/Z6K6yMMeGx6F0a8wvVw=;
- b=28pYbgCadrcReU4Qi60tAe/ZY/6jSdbNuyF0ecHE029hultNG6Yd1Qnldz3BMTrnzU
- bNIt9sReooQS8sNO3ly0KJz7jsUR1OkpywvWfKAgpzf8F9ES3G9awjDcIrwhlHXkAmoo
- J/N1GMIn4pHQdY1NFRvNGMidvB6I6mFMt6bFGLQATYKchLuXbREJJ+hlCmjB0xeqcRlF
- wThkqW1G73Fp4xV8QvzbTXN0+a1/UXPxyF97P3h0zTy6ht1A4pm7Ml+lPm/jwM35bmZ9
- DzF68oH6DYjjicSrFJJE7tlrrXHaeU0OhZfr4b8moblrKFVDxvHz3BakeyNxfJZx4VKB
- Mzng==
-X-Gm-Message-State: AAQBX9epV6QT2uNzbGhJFkCSdrpx00ED9A3tcgiNglTbW0sAmf1HAVZN
- TZN8VwtKgXtUr8DNPPRz2nf2FsUA2bKr3irF2jlwaARLo3ubgI+wLZwgv8r5vzYF5voyO+Ht/Xw
- 7vtenzcKE2JysQHePIch+IOdb8B6g
-X-Received: by 2002:a5e:da44:0:b0:760:1fb6:c7d2 with SMTP id
- o4-20020a5eda44000000b007601fb6c7d2mr3357756iop.5.1680709008440; 
- Wed, 05 Apr 2023 08:36:48 -0700 (PDT)
-X-Google-Smtp-Source: AKy350Yiu+6jYuVXySDhz9l7TaJE2CbZAprEqCSA9voKn6Sxg2Pef1TWywH9iD954/Pk6M8+1tZHJQ==
-X-Received: by 2002:a5e:da44:0:b0:760:1fb6:c7d2 with SMTP id
- o4-20020a5eda44000000b007601fb6c7d2mr3357742iop.5.1680709008129; 
- Wed, 05 Apr 2023 08:36:48 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- e11-20020a02210b000000b004050d92f6d4sm4046543jaa.50.2023.04.05.08.36.46
+ d=1e100.net; s=20210112; t=1680710525; x=1683302525;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z4x/60Nfen4S79vqKv7uwBT/fWu0hDg/Eg+9CWLyjFk=;
+ b=kZMYRCe8UAOLvXzIbJ+RCCUTG4yQuqK0ZWeU94CcdFm4xcoXzlvIsgVKZlXkyeRlTx
+ K7JXI7H9Zpb0fY8YSJjVDWRi5UZOIEtti7zfrN5Q7dpSRnwgUDpMmthYQy/ws/g+ceQp
+ G7zI4Dtr2XIFDK90yFbo9MjWFoG8PayjFJvacEdvled1pohIer3gAi6xZHPDobaxSyMm
+ 9xz1MQ9DWeUScXociPyLhxSdRg+MlpmNooYfzOFbpc7b0Z7ZEtxa0Zb3lJLFEuZTS2QR
+ c4WCQO2TYNcNcZXqNT8hfPnxQTfvc+oTH2iGmZoBkPavipw37JnxefBX3Byuj2ZCuGma
+ fZgw==
+X-Gm-Message-State: AAQBX9f+627St7DWK0wvRcEku9JktzOeO4au2jKJVswcgHZcDOGyWo79
+ /UvgsvEseIpDMWM68zOTfvWN9Q==
+X-Google-Smtp-Source: AKy350axAiditkitqHBHfxhnykeiw70VksvAELgtkC6G2UnJycWyMNLJTz8jnmRhGGMr5w2xM9dfJA==
+X-Received: by 2002:a05:6402:34c8:b0:502:367:d5b8 with SMTP id
+ w8-20020a05640234c800b005020367d5b8mr2652687edc.4.1680710525418; 
+ Wed, 05 Apr 2023 09:02:05 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ t23-20020a1709060c5700b0093e23d03d72sm7670826ejf.177.2023.04.05.09.02.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 08:36:47 -0700 (PDT)
-Date: Wed, 5 Apr 2023 09:36:46 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230405093646.337f0992.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB7529730CD29F2BD13F1DD9AEC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-6-yi.l.liu@intel.com>
- <20230404141838.6a4efdd4.alex.williamson@redhat.com>
- <DS0PR11MB752919BC81CCCAB1A13998CAC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
- <DS0PR11MB7529730CD29F2BD13F1DD9AEC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+ Wed, 05 Apr 2023 09:02:04 -0700 (PDT)
+Date: Wed, 5 Apr 2023 18:02:02 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ZC2beu/9inolwIlr@phenom.ffwll.local>
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+ <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+ <ZC04hoHywz0ySzAW@phenom.ffwll.local>
+ <3fd03c4c-3be6-e56b-faec-bd67a58cda09@suse.de>
+ <ZC1BlNCbXPlmAhj0@phenom.ffwll.local>
+ <eee11545-2a78-4556-be82-5178ea09d0d8@suse.de>
+ <877cuqd1f8.fsf@minerva.mail-host-address-is-not-set>
+ <ZC11J3og4Kc9ta6m@phenom.ffwll.local>
+ <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 05/12] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,74 +82,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 5 Apr 2023 08:01:49 +0000
-"Liu, Yi L" <yi.l.liu@intel.com> wrote:
-
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Wednesday, April 5, 2023 3:55 PM  
->  
-> > >
-> > > Therefore, I think as written, the singleton dev_set hot-reset is
-> > > enabled for iommufd and (unintentionally?) for the group path, while
-> > > also negating a requirement for a group fd or that a provided group fd
-> > > actually matches the device in this latter case.  The null-array
-> > > approach is not however extended to groups for more general use.
-> > > Additionally, limiting no-iommu hot-reset to singleton dev_sets
-> > > provides only a marginal functional difference vs VFIO_DEVICE_RESET.  
-> > 
-> > I think the singletion dev_set hot-reset is for iommufd (or more accurately
-> > for the noiommu case in cdev path).  
+On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote:
+> Hi
 > 
-> but actually, singleton dev_set hot-reset can work for group path as well.
-> Based on this, I'm also wondering do we really want to have singleton dev_set
-> hot-reset only for cdev noiommu case? or we allow it generally or just
-> don't support it as it is equivalent with VFIO_DEVICE_RESET?
+> Am 05.04.23 um 15:18 schrieb Daniel Vetter:
+> > On Wed, Apr 05, 2023 at 01:16:27PM +0200, Javier Martinez Canillas wrote:
+> > > Thomas Zimmermann <tzimmermann@suse.de> writes:
+> > > 
+> > > [...]
+> > > 
+> > > > 
+> > > > Your comment says that it calls a PCI function to clean up to vgacon.
+> > > > That comment explains what is happening, not why. And how the PCI and
+> > > > vgacon code work together is non-obvious.
+> > 
+> > Would a better comment help then:
+> > 
+> > 	/*
+> > 	 * gma500 is a strange hybrid device, which both acts as a pci
+> > 	 * device (for legacy vga functionality) but also more like an
+> > 	 * integrated display on a SoC where the framebuffer simply
+> > 	 * resides in main memory and not in a special pci bar (that
+> > 	 * internally redirects to a stolen range of main memory) like all
+> > 	 * other integrated pci display devices have.
+> > 	 *
+> > 	 * To catch all cases we need to both remove conflicting fw
+> > 	 * drivers for the pci device and main memory.
+> > 	 */
+> 
+> Together with the existing comment, this should be the comment to describe
+> gma_remove_conflicting_framebuffers().
+> 
+> > > > 
+> > > > Again, here's my proposal for gma500:
+> > > > 
+> > > > // call this from psb_pci_probe()
+> > > > int gma_remove_conflicting_framebuffers(struct pci_dev *pdev, const
+> > > > 					struct drm_driver *req_driver)
+> > > > {
+> > > > 	resource_size_t base = 0;
+> > > > 	resource_size_t size = (resource_size_t)-1;
+> > > > 	const char *name = req_driver->name;
+> > > > 	int ret;
+> > > > 
+> > > > 	/*
+> > > > 	 * We cannot yet easily find the framebuffer's location in
+> > > > 	 * memory. So remove all framebuffers here.
+> > > > 	 *
+> > > > 	 * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then
+> > > > 	 *       we might be able to read the framebuffer range from the
+> > > > 	 *       device.
+> > > > 	 */
+> > > > 	ret = aperture_remove_conflicting_devices(base, size, name);
+> > 
+> > Why can't this be a call to drm_aperture_remove_framebuffers? At least as
+> > long as we don't implement the "read out actual fb base and size" code,
+> > which also none of the other soc drivers bother with?
+> 
+> It can. Feel free to use it.
+> 
+> But I have to say that those DRM helpers are somewhat empty and obsolete
+> after the aperture code has been moved to drivers/video/. They exist mostly
+> for convenience. As with other DRM helpers, if a driver needs something
+> special, it can ignore them.
+> 
+> > 
+> > > > 	if (ret)
+> > > > 		return ret;
+> > > > 
+> > > > 	/*
+> > > > 	 * WARNING: Apparently we must kick fbdev drivers before vgacon,
+> > > > 	 * otherwise the vga fbdev driver falls over.
+> > > > 	 */
+> > > > 	ret = vga_remove_vgacon(pdev);
+> > 
+> > This isn't enough, we also nuke stuff that's mapping the vga fb range.
+> > Which is really the reason I don't want to open code random stuff, pci is
+> > self-describing, if it's decoding legacy vga it can figure this out and we
+> > only have to implement the "how do I nuke legacy vga fw drivers from a pci
+> > driver" once.
+> 
+> Sure, but it's really just one additional line:
+> 
+>   aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE);
+> 
+> as you mention below, this and vgacon can be exported in a single VGA
+> aperture helper.
+> 
+> > 
+> > Not twice like this would result in, with the gma500 version being only
+> > half the thing.
+> > 
+> > If it absolutely has to be a separate function for the gma500 pci legacy
+> > vga (I still don't get why, it's just a pci vga device, there's absolutely
+> > nothing special about that part at all) then I think it needs to be at
+> > least a common "nuke a legacy vga device for me pls" function, which
+> > shares the implementation with the pci one.
+> 
+> Sure
+> 
+> /**
+>  * kerneldoc goes here
+>  *
+>  * WARNING: Apparently we must remove graphics drivers before calling
+>  *          this helper. Otherwise the vga fbdev driver falls over if
+>  *          we have vgacon configured.
+>  */
+> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
+> {
+> 	aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE);
+> 
+> 	return vga_remove_vgacon(pdev);
+> }
+> 
+> And that can be called from gma500 and the pci aperture helper.
 
-I think you're taking the potential that VFIO_DEVICE_RESET and
-hot-reset could do the same thing too far.  The former is more likely
-to do an FLR, or even a PM reset.  QEMU even tries to guess what reset
-VFIO_DEVICE_RESET might use in order to choose to do a hot-reset if it
-seems like the device might only support a PM reset otherwise.
+But you still pass a pci_dev to that helper. Which just doesn't make any
+sense to me (assuming your entire point is that this isn't just a normal
+pci device but some special legacy vga thing), but if we go with (void)
+then there's more refactoring to do because the vga_remove_vgacon also
+wants a pdev.
 
-Changing the reset method of a device requires privilege, which is
-maybe something we'd compromise on for no-iommu, but the general
-expectation is that VFIO_DEVICE_RESET provides a device level scope and
-hot-reset provides a... hot-reset, and sometimes those are the same
-thing, but that doesn't mean we can lean on the former.
+All so that we don't call aperture_detach_devices() on a bunch of pci
+bars, which apparently is not problem for any other driver, but absolutely
+is a huge problem for gma500 somehow.
 
-> If we don't support singletion dev_set hot-reset, noiommu devices in cdev
-> path shall fail the hot-reset if empty-fd array is provided. But we may just
-> document that empty-fd array does not work for noiommu. User should
-> use the device fd array.
+I don't understand why.
 
-I don't see any replies to my comment on 08/12 where I again question
-why we need an empty array option.  It's causing all sorts of headaches
-and I don't see the justification for it beyond some hand waving that
-it reduces complexity for the user.  This singleton dev-set notion
-seems equally unjustified.  Do we just need to deal with hot-reset
-being unsupported for no-iommu devices with iommufd?  Thanks,
+Consider this me throwing in the towel. If you&Javier are convinced this
+makes sense please type it up and merge it, but I'm not going to type
+something that just doesn't make sense to me.
+-Daniel
 
-Alex
+> Best regards
+> Thomas
+> 
+> > 
+> > But not open-coding just half of it only.
+> > 
+> > > > 	if (ret)
+> > > > 		return ret;
+> > > > 
+> > > > 	return 0;
+> > > > }
+> > > > 
+> > > 
+> > > If this is enough I agree that is much more easier code to understand.
+> > 
+> > It's still two calls and more code with more bugs? I'm not seeing the
+> > point.
+> > -Daniel
+> 
+> -- 
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 Nürnberg, Germany
+> (HRB 36809, AG Nürnberg)
+> Geschäftsführer: Ivo Totev
 
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
