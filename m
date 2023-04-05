@@ -1,51 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0178A6D775E
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 10:53:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1BB6D77A1
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 11:00:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B7E10E887;
-	Wed,  5 Apr 2023 08:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 433DB10E32D;
+	Wed,  5 Apr 2023 08:59:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C979210E887
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 08:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680684801; x=1712220801;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gOQh9h/50JU6v/bmyRJlW4BlgPAtpvx0cUOXZCHbrpw=;
- b=ZASnS35uAHAj0BKqjbwcGnvL+FmbrkHVNT5+gClU0fOubd/EAWD3MZzV
- 0byYkEfkZySi31+oGjAWZkhhVFEcNIQKgjoATGpOmAChWFx59h313Lt1x
- en+r+mNPldffKwoxQ/V16i5ldpYGoINAt5hlaX3B5JVzosuN729vAOkvd
- G3jivo9ARJfp90L602dMji1d0BcjAv5qOxzZCq5ZKsVnV+5HlAEGKkmBq
- YQhte5fyCdnXcBe/u292pd36R1f2c4V+Y2/SxdZ9G6/1eERSqn8vSFPOO
- v0ig/CNfIiG8m6BvyNaBX4NA3R0uJXebVQRyQwNlv6Ct/gQ3DZV2qyxgY w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="326436538"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="326436538"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 01:53:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="751194949"
-X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="751194949"
-Received: from jfunnell-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.51.209])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 01:53:19 -0700
-Date: Wed, 5 Apr 2023 10:52:52 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-Message-ID: <ZC025PixMYQpD4Ae@ashyti-mobl2.lan>
-References: <20230327123433.896216-1-mika.kahola@intel.com>
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
+ [IPv6:2a00:1450:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9494310E32D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 08:59:55 +0000 (UTC)
+Received: by mail-ed1-x530.google.com with SMTP id
+ 4fb4d7f45d1cf-502aa0f24daso31131a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 01:59:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680685192;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=3RxdsHUGlz72mqBAPhCRIDVuLK/DwmpKu0XLa+O9S98=;
+ b=Z/x1jGBcX+WJpStgzbxYvgFNA7nFaRyIlAVD5b0Tuz8aHwCzFBiAe3AnD9Gy7Lfel2
+ QSgab9JQvWbnJbTee+I2k2KuJ+dPKjCwJ/hNUg5d8qXz0waw4Eg36hdLRzm/EHN2r/3H
+ P+Aqyx9jYwaIhOqWVy1mAY3LoWoXY3Ovlo7aw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680685192;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3RxdsHUGlz72mqBAPhCRIDVuLK/DwmpKu0XLa+O9S98=;
+ b=H1QMT1AlMI7HnqflpsgAcmhYuimuO70IN43fz0KGOsymqvw9Ny9n7QtAFsDMwJEXrI
+ on3K78wBUPD61A7r6vUR4D+FCd+DM6fmjOCvuX3ddWLmRkLj2JRfBylBgeKKNUpzZL0s
+ aW9xAlN/+Aw/WAGxcfLUQ6PhBsuXGZXyjoi9LoCQ0Z9ee80gCuYNLM9bIH/DNet6uBGW
+ fLH0rmXfSSJmBMBfiReUchbf8zmUoY4zGiA02x69rOT8T5aAeTJv0nDBMgjxIMZh0MK5
+ weHDxOcl2cjFoeQva6NjrvrtkC0h3mtF5/E3pjhrqYxGLw2gKw+vuHbDt10eEYlNcDXU
+ TmXQ==
+X-Gm-Message-State: AAQBX9cDWf96ywmmy4KRkV8WkBAQmlO+aJFSpg6uJwhjjvIe0x+4Cu1Z
+ W6mA1iiuDmxotJZwL5vMy4wHIg==
+X-Google-Smtp-Source: AKy350YFj+AiVfZacvTla/2NA1bYuejQy386+iWeGzJng6g2ZbETcy8ks7Yub0SthjW68XrbKrD4CA==
+X-Received: by 2002:a17:906:2d7:b0:949:148d:82c0 with SMTP id
+ 23-20020a17090602d700b00949148d82c0mr1191417ejk.6.1680685192524; 
+ Wed, 05 Apr 2023 01:59:52 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ gw22-20020a170906f15600b0093debb9990esm7061995ejb.212.2023.04.05.01.59.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 01:59:52 -0700 (PDT)
+Date: Wed, 5 Apr 2023 10:59:50 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ZC04hoHywz0ySzAW@phenom.ffwll.local>
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+ <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230327123433.896216-1-mika.kahola@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915/mtl: Add Support for C10 chips
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +75,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mika,
+On Wed, Apr 05, 2023 at 10:07:54AM +0200, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 05.04.23 um 09:49 schrieb Thomas Zimmermann:
+> > Hi
+> > 
+> > Am 04.04.23 um 22:18 schrieb Daniel Vetter:
+> > > This one nukes all framebuffers, which is a bit much. In reality
+> > > gma500 is igpu and never shipped with anything discrete, so there should
+> > > not be any difference.
+> > > 
+> > > v2: Unfortunately the framebuffer sits outside of the pci bars for
+> > > gma500, and so only using the pci helpers won't be enough. Otoh if we
+> > > only use non-pci helper, then we don't get the vga handling, and
+> > > subsequent refactoring to untangle these special cases won't work.
+> > > 
+> > > It's not pretty, but the simplest fix (since gma500 really is the only
+> > > quirky pci driver like this we have) is to just have both calls.
+> > > 
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > Cc: Javier Martinez Canillas <javierm@redhat.com>
+> > > ---
+> > >   drivers/gpu/drm/gma500/psb_drv.c | 9 +++++++--
+> > >   1 file changed, 7 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/gma500/psb_drv.c
+> > > b/drivers/gpu/drm/gma500/psb_drv.c
+> > > index 2ce96b1b9c74..f1e0eed8fea4 100644
+> > > --- a/drivers/gpu/drm/gma500/psb_drv.c
+> > > +++ b/drivers/gpu/drm/gma500/psb_drv.c
+> > > @@ -422,12 +422,17 @@ static int psb_pci_probe(struct pci_dev *pdev,
+> > > const struct pci_device_id *ent)
+> > >       /*
+> > >        * We cannot yet easily find the framebuffer's location in
+> > > memory. So
+> > > -     * remove all framebuffers here.
+> > > +     * remove all framebuffers here. Note that we still want the
+> > > pci special
+> > > +     * handling to kick out vgacon.
+> > >        *
+> > >        * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then we
+> > >        *       might be able to read the framebuffer range from the
+> > > device.
+> > >        */
+> > > -    ret = drm_aperture_remove_framebuffers(true, &driver);
+> > > +    ret = drm_aperture_remove_framebuffers(false, &driver);
+> > > +    if (ret)
+> > > +        return ret;
+> > > +
+> > > +    ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev,
+> > > &driver);
+> > 
+> > This simply isn't it. If you have to work around your own API, it's time
+> > to rethink the API.
+> 
+> Here's a proposal:
+> 
+>  1) As you're changing aperture_remove_conflicting_devices() anyway, rename
+> it to aperture_remove_conflicting_devices_at(), so it's clear that it takes
+> a memory range.
+> 
+>  2) Introduce aperture_remove_conflicting_pci_devices_at(), which takes a
+> PCI device and a memory range. It should do the is_primary and vgacon stuff,
+> but kick out the range.
+> 
+>  3) Call aperture_remove_conflicting_pci_devices_at() from gma500 with the
+> full range. Even if we can restructure gma500 to detect the firmware
+> framebuffer from its registers (there's this TODO item), we'd still need
+> aperture_remove_conflicting_pci_devices_at() to do something useful with it.
+> 
+>  4) With that, aperture_remove_conflicting_devices_at() can drop the primary
+> argument.
+> 
+> Of course, the DRM-related interface should be adapted as well. There's a
+> bit of overlap in the implementation of both PCI aperture helpers, but the
+> overall interface is clear.
 
-On Mon, Mar 27, 2023 at 03:34:26PM +0300, Mika Kahola wrote:
-> Phy programming support for C10 PICA chips. This is the first part of
-> the series that adds support for PICA chips. Later the support for
-> C20 chips are added.
-> 
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-> 
-> Clint Taylor (1):
->   drm/i915/mtl: Initial DDI port setup
-> 
-> Mika Kahola (3):
->   drm/i915/mtl: Add DP rates
->   drm/i915/mtl: Create separate reg file for PICA registers
->   drm/i915/mtl: Add support for PM DEMAND
-> 
-> Radhakrishna Sripada (3):
->   drm/i915/mtl: Add Support for C10 PHY message bus and pll programming
->   drm/i915/mtl: Add C10 phy programming for HDMI
->   drm/i915/mtl: Add vswing programming for C10 phys
+This essentially just gives us a helper which does the above two
+open-coded steps but all wrapped up. For gma500 only. Also I really don't
+think I'm working around the api here, it's gma500 which is special:
 
-please add your SoB at the end of every patch. The last tag needs
-to be the SoB of the person who is sending the patch.
+- Normal pci devices all have their fw framebuffer within the memory bars,
+  never outside. So for those the pci version is the right interface.
 
-Thanks,
-Andi
+- If the framebuffer is outside of the pci bar then it's just not really a
+  pci vga device anymore, but looks a lot more like a SoC design.
+
+gma500 is somehow both at the same time, so it gets two calls. And having
+both calls explicitly I think is better, because it highlights the dual
+nature of gma500 of being both a pci vga devices and a SoC embedded
+device. Trying to make a wrapper to hide this dual nature just so we have
+a single call still seems worse to me. Aside from it's just boilerplate
+for no gain.
+
+Frankly at that point I think it would be clearer to call the gma500
+function remove_conflicting_gma500 or something like that. Or at least
+remove_conflicting_pci_and_separate_range_at.
+
+This is imo similar to the hypothetical case of a SoC chip which also
+happens to decode legacy vga, without being a pci device. We could add a
+new interface function which just nukes the vga stuff (without the pci
+device tie-in, maybe with some code sharing internally in aperture.c), and
+then that driver does 2 calls: 1. nuke aperture range 2. nuke vga stuff.
+And sure if you have a lot of those maybe you could make a helper to safe
+a few lines of code, but semantically it's still two different things
+your're removing.
+
+Or another case: A pci device with 2 subfunctions, each a gpu device. This
+happened with dual-head gpus 20 years ago because windows 2000 insisted
+that each crtc needs its own pci function. You'd just call the pci removal
+twice for that too (except not relevant because bios fw never figured out
+how to enable both heads, so just nuking the first one is good enough).
+
+iow, I don't understand why you think this is the wrong api. There's no
+rule that a driver must be able remove all conflicting fw drivers in a
+single call, if it's two things we need to nuke it can be two calls.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
