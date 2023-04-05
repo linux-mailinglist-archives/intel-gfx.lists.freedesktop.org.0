@@ -2,74 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FC56D79A0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 12:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C75B46D7A05
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Apr 2023 12:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1518B10E8B3;
-	Wed,  5 Apr 2023 10:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05DBA10E8B9;
+	Wed,  5 Apr 2023 10:41:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D51FF10E8B3
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 10:23:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680690238;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=q8h/t7AguYHqg/RJI4qXzEVYb6mDUWxgBaaG/M3dDHI=;
- b=DfmiNB4Slbr8Gx0c1IdLFIGApyyHLAC632y/cJBniSh+rANlPA8CVkGS1+GSVdcQMRhK5/
- PzVHAlexvj29Ye7bZ8OYKVkYG1Sb+kupZl2btdgReeY+3FadyQmj2VmW+OrxVzPUZNrcgx
- SvQIB/afgmiKFD7iCLLxH0uS6q/1+fU=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-184-wfJcsAPmO425tun0CB1kBQ-1; Wed, 05 Apr 2023 06:23:57 -0400
-X-MC-Unique: wfJcsAPmO425tun0CB1kBQ-1
-Received: by mail-wr1-f69.google.com with SMTP id
- k16-20020adfd230000000b002cfe7555486so4372617wrh.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 03:23:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680690236;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=q8h/t7AguYHqg/RJI4qXzEVYb6mDUWxgBaaG/M3dDHI=;
- b=m5tzGphCTMLGxEim8KAZmfrQUiEFDYgjy7qVgUe8yvzSgRb8B5K7FZppCYuOwIZKQo
- k2S4Z2tTZ4o/ZBX6RcjzlC+ofawgB9+nURP+L6ignvqWYXha8DhbDgRKWuHcO/QIgW+1
- dC2+SFPQJhBAa6UXwuonhLIrG1rqifUE6vwy7AfTcLJ6OVyXFIRkTmYx7XiauwjhSYhW
- QI0R74aowl8unM0fv81gmjE/yoLjvnE0xOIfNjLTaW4sFf8YzXRNg01m7sfLaZsCWSjf
- FzF/U0jd+nfSlQGNs198q2278TNo63Va1G5fkalJ3Gvpq60j2JlPUxmVLzpAoKOctctJ
- WGEw==
-X-Gm-Message-State: AAQBX9e9LU0guSL5mql+0/If6Rrr+l7aI5EBMCTb5IaJ0Y1Ta5nIfeu+
- K9fxFE1pzTHQnxYerpWHZPll9evFRVvk/4J+7yShmBniaID4I4lKwB+S5M2Rl215aZhrKvPjM4V
- eqF311uCRSCyCqnvcYZSvB4IiioLZ
-X-Received: by 2002:a1c:7c17:0:b0:3eb:39e0:3530 with SMTP id
- x23-20020a1c7c17000000b003eb39e03530mr3981387wmc.41.1680690236650; 
- Wed, 05 Apr 2023 03:23:56 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YfIn/xDQ35RT+tRkheLM+RgiKzqRwa7sQjs8XSH58OmifZzQYlImhseRWzGijyujICWBHtjw==
-X-Received: by 2002:a1c:7c17:0:b0:3eb:39e0:3530 with SMTP id
- x23-20020a1c7c17000000b003eb39e03530mr3981378wmc.41.1680690236386; 
- Wed, 05 Apr 2023 03:23:56 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- d21-20020a1c7315000000b003ed1f6878a5sm1782292wmb.5.2023.04.05.03.23.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 03:23:56 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
- <dri-devel@lists.freedesktop.org>
-In-Reply-To: <20230404194038.472803-2-daniel.vetter@ffwll.ch>
-References: <20230404194038.472803-1-daniel.vetter@ffwll.ch>
- <20230404194038.472803-2-daniel.vetter@ffwll.ch>
-Date: Wed, 05 Apr 2023 12:23:55 +0200
-Message-ID: <87edoyd3us.fsf@minerva.mail-host-address-is-not-set>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75C2B10E8B9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Apr 2023 10:41:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680691307; x=1712227307;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bnCECc6v7qfTU0D6KsS2OzkKqN2SACh0nsSaCwbK2KU=;
+ b=fBK8MYbso2M832u42RJFf01LDhn6rl7D/IMQUx/zngAZUxkdILbkmoqC
+ p0L2/l3RvUBv/4HHwSa0KuoSvgKIcxVB35ymrJgJws1p0Rm0c7uhuYCh7
+ BpEBrrgBXp/KBdeTfQj9hJSrHPFeYC89vhx3OIoj/MTSW8e9hQjuHjwbU
+ ve/cNxNqdNACFxzkye+d2jrhhNJjdVLGx/2vQxiszyG9FYszLvQ1wh/gA
+ UXUNAGMTiOc36EtXn7FHIRAN8xlRyw8/lZ6UqOM+h79MWvgH4fZkj7VY8
+ Hn6HwoSQgBodLPoo4cLLZajRbRApWUenkBEEsGwZoCEvgQvTXd/81qPMR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="370245048"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="370245048"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 03:41:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="810587854"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="810587854"
+Received: from dlemiech-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.158])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 03:41:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Apr 2023 13:41:41 +0300
+Message-Id: <20230405104142.766598-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/fb-helper: drop redundant pixclock
- check from drm_fb_helper_set_par()
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/tc: demote a kernel-doc comment to
+ a regular comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,35 +58,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Daniel Vetter <daniel.vetter@ffwll.ch> writes:
+There's not much point in a static work function having a kernel-doc
+comment. Just clean it up and make it a regular comment.
 
-> The fb_check_var hook is supposed to validate all this stuff. Any
-> errors from fb_set_par are considered driver/hw issues and resulting
-> in dmesg warnings.
->
-> Luckily we do fix up the pixclock already, so this is all fine.
->
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+This fixes the kernel-doc warnings:
 
-Makes sense to drop this.
+drivers/gpu/drm/i915/display/intel_tc.c:1370: warning: Function
+parameter or member 'work' not described in
+'intel_tc_port_disconnect_phy_work'
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+drivers/gpu/drm/i915/display/intel_tc.c:1370: warning: Excess function
+parameter 'dig_port' description in 'intel_tc_port_disconnect_phy_work'
 
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_tc.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index 2bb02d4e6859..3b60995e9dfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1358,10 +1358,7 @@ void intel_tc_port_lock(struct intel_digital_port *dig_port)
+ 	__intel_tc_port_lock(to_tc_port(dig_port), 1);
+ }
+ 
+-/**
+- * intel_tc_port_disconnect_phy_work: disconnect TypeC PHY from display port
+- * @dig_port: digital port
+- *
++/*
+  * Disconnect the given digital port from its TypeC PHY (handing back the
+  * control of the PHY to the TypeC subsystem). This will happen in a delayed
+  * manner after each aux transactions and modeset disables.
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.39.2
 
