@@ -1,55 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C428B6D94B9
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:10:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3457D6D94DF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:16:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A6410EB5B;
-	Thu,  6 Apr 2023 11:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA3310EB61;
+	Thu,  6 Apr 2023 11:16:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8CB910EB5B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 11:10:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680779414; x=1712315414;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4pDRw4aicJSIJC3qwutLnnx6QQqz9KYWa2FurS+YN/A=;
- b=PJEG3Lzvu4Conh/E/VFcZd0W+Tml5GM0piqafBkQswqB/Yr8rUlrVGa+
- VHlUH0NXlzSm4D9yPEG3j0lC3S5zVknUcf52R6AvfKKDpiS0PI7o1tELV
- 2b/oxoSbo/WewdlNJWtuw3EhZ0W9llpsxDo2EzUcaPwNTLQwL+wJ3TIju
- GsKpVQOweOG2OxSP26uZhGLWNX3D84hFbmqvi4XjV3OybiEllLMfZhyUc
- 1gBtv5c+Q1U+RH4dxL0WpsCUjX4qTEK/tl5BTLFj43vFh9FlZ9mqMOD82
- OL7Ix5rAVAC1wUx0QEkiB8WQPnv/XaFAdHow3UAidrMBHTJpfBmbV2RxG Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="405494393"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="405494393"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 04:10:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="717414084"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="717414084"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 06 Apr 2023 04:10:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Apr 2023 14:10:10 +0300
-Date: Thu, 6 Apr 2023 14:10:10 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <ZC6okmAsug2LGYBO@intel.com>
-References: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
- <20230329135002.3096-2-ville.syrjala@linux.intel.com>
- <eeceb998-0bc6-53c3-a6c8-54b5e660f961@intel.com>
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E942110EB5F;
+ Thu,  6 Apr 2023 11:16:41 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id ml21so14971580pjb.4;
+ Thu, 06 Apr 2023 04:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1680779801;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rHYb6HpZexNXpJPoSYlJ81so+XmwouNfzYZUA6PN18U=;
+ b=SDaFVzdAZ+PGA1ek7sqxgPqbwZ9e8KwjO6kClHWchQUtfi/N49prAHd7IdkbvOwWOZ
+ DDpc8RwXY+XPJeA39kRMrRgHknt+we5V7J+JHaYX9uqFd/iDJ1A1rKFxn75FVGwRN7C9
+ Rdbzb5wpwizbAz8a5w6B4/69ooWI+qcE8ct/52b2eImoo8RvSEHLXnPOtbqnW7eSW6L9
+ xxaoGQJ/MgI5t5o0nrkC1xWa4wVSzkgz4m7Zvjs6kmgLtlBFeUoQQP1O6aHzFLulaVGI
+ eSMeh0uBunp4exeqgVl9B6IKPri0dVWGCtTmJTB+NflZYOgv1UDcFSw+QRTHV2N0jHe+
+ MH0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680779801;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rHYb6HpZexNXpJPoSYlJ81so+XmwouNfzYZUA6PN18U=;
+ b=TMlqI1gtksENkiZWkc9WewW8kBbhJeHk0I66jN9SrwHmon78Pez1qmyD4uXY7BPhdv
+ HkiX1Z/rja5JmtCaDuU3WlnpTv8J5ehQxzL+loF7HOAEFgMt9jQbNIiAqFvky6mbWtyi
+ KVusjqySearJKCRmM/8PRBta02NGvtp+xy7SWQMhPSuMIv6m8zpGXx8R5E9e7RoGBKPB
+ qijIBeeARuCoEMPXowkbgTrmXnrExfXkyTYS8w05YhQUQ/7fFeuF/GNL1u+dYtzyhtkn
+ 4ltFxEe2urQ3Ea80QZ1s+pX7MsXaODkF7FjD7O1iXeIu38mwP4rM9yne4KQB4Y4SX//e
+ dj8g==
+X-Gm-Message-State: AAQBX9dnOSssUXDYilM93BBIZfMUYgm1GovldNmErdyIXo0VWdj3jbRT
+ WTWVfcfOWOdnicq+2zG9f3tjIkOLS3xL+4bSmj4=
+X-Google-Smtp-Source: AKy350arGCXxw7uauw789YlI8TO/HwCaYawY3nlDmw4c5UA3Zi2ES5khLwASbt7Bf6ex+oy5vMfzdUDRk2wt+5Ej38c=
+X-Received: by 2002:a17:902:8684:b0:1a0:6b23:7b55 with SMTP id
+ g4-20020a170902868400b001a06b237b55mr3912998plo.4.1680779800802; Thu, 06 Apr
+ 2023 04:16:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <eeceb998-0bc6-53c3-a6c8-54b5e660f961@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Fix limited range csc matrix
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+ <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
+ <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
+ <ZC04hoHywz0ySzAW@phenom.ffwll.local>
+ <3fd03c4c-3be6-e56b-faec-bd67a58cda09@suse.de>
+ <ZC1BlNCbXPlmAhj0@phenom.ffwll.local>
+ <eee11545-2a78-4556-be82-5178ea09d0d8@suse.de>
+ <877cuqd1f8.fsf@minerva.mail-host-address-is-not-set>
+ <ZC11J3og4Kc9ta6m@phenom.ffwll.local>
+ <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
+ <ZC2beu/9inolwIlr@phenom.ffwll.local>
+ <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
+ <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
+ <CAMeQTsam0efUrS=x+Eb+p8A3rXgCOUmA7UVjFB=9oAKFoepzOw@mail.gmail.com>
+ <CAKMK7uEKab8UN4U=ztER_4zyODNJhxVhowJ6yDVBWuLd978MDQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uEKab8UN4U=ztER_4zyODNJhxVhowJ6yDVBWuLd978MDQ@mail.gmail.com>
+From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Date: Thu, 6 Apr 2023 13:16:29 +0200
+Message-ID: <CAMeQTsbs01-B4rk3v=+emAm2o2pKB6Ndpz=3AG5VEiHso1D7qA@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,103 +82,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 04:26:48PM +0530, Nautiyal, Ankit K wrote:
-> Hi Ville,
-> 
-> HDMI1.4b indeed says max value for 16bpc as 60160 (0xeb00)
-> And black level of 4096.
-> 
-> Got me thinking that we might need to consider bpc for getting the 
-> Coeffs and the offsets.
-> IIUC for CSC Full range to Limited range:
-> out = in * gain  + offset
-> 
-> Gain :
-> So for 8 bpc, as you have mentioned
-> multiplier or gain will be: (235-16) / 255 = 0.8588 ~0.86
-> offset will be 16, as range is from 16-235
-> 
-> 16 bpc
-> Multiplier: (60160-4096)/65535 = 0.8555 ~0.86
-> Offset for 16bit: should be 4096
-> 
-> So it seems Multiplier of 0.86 should be alright for different bpc, but 
-> offset would vary.
+On Thu, Apr 6, 2023 at 9:32=E2=80=AFAM Daniel Vetter <daniel@ffwll.ch> wrot=
+e:
+>
+> On Wed, 5 Apr 2023 at 19:46, Patrik Jakobsson
+> <patrik.r.jakobsson@gmail.com> wrote:
+> >
+> > On Wed, Apr 5, 2023 at 7:15=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> =
+wrote:
+> > >
+> > > On Wed, 5 Apr 2023 at 18:54, Javier Martinez Canillas
+> > > <javierm@redhat.com> wrote:
+> > > >
+> > > > Daniel Vetter <daniel@ffwll.ch> writes:
+> > > >
+> > > > > On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote=
+:
+> > > >
+> > > > [...]
+> > > >
+> > > > >> > > >        /*
+> > > > >> > > >         * WARNING: Apparently we must kick fbdev drivers b=
+efore vgacon,
+> > > > >> > > >         * otherwise the vga fbdev driver falls over.
+> > > > >> > > >         */
+> > > > >> > > >        ret =3D vga_remove_vgacon(pdev);
+> > > > >> >
+> > > > >> > This isn't enough, we also nuke stuff that's mapping the vga f=
+b range.
+> > > >
+> > > > Ah, also need aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS=
+_SIZE) then.
+> > > >
+> > > > [...]
+> > > >
+> > > > >> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
+> > > > >> {
+> > > > >>      aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE)=
+;
+> > > > >>
+> > > > >>      return vga_remove_vgacon(pdev);
+> > > > >> }
+> > > > >>
+> > > > >> And that can be called from gma500 and the pci aperture helper.
+> > > > >
+> > > > > But you still pass a pci_dev to that helper. Which just doesn't m=
+ake any
+> > > > > sense to me (assuming your entire point is that this isn't just a=
+ normal
+> > > > > pci device but some special legacy vga thing), but if we go with =
+(void)
+> > > > > then there's more refactoring to do because the vga_remove_vgacon=
+ also
+> > > > > wants a pdev.
+> > > > >
+> > > > > All so that we don't call aperture_detach_devices() on a bunch of=
+ pci
+> > > > > bars, which apparently is not problem for any other driver, but a=
+bsolutely
+> > > > > is a huge problem for gma500 somehow.
+> > > > >
+> > > > > I don't understand why.
+> > > > >
+> > > >
+> > > > Yeah, agreed that if vga_remove_vgacon() isn't enough and another h=
+elper
+> > > > is needed then starts to get a little silly. Maybe one option is to=
+ add a
+> > > > 3rd param to aperture_remove_conflicting_pci_devices() and skip the=
+ logic
+> > > > to iterate over PCI bars and call aperture_remove_conflicting_devic=
+es() ?
+> > >
+> > > The thing I don't get: Why does this matter for gma500 and not any of
+> > > the other pci devices? Look at your gpu, realize there's a lot more
+> > > than the one pci bar for vram or stolen memory, realize that we're
+> > > nuking bars that cannot possible contain the framebuffer for everyone
+> > > else too. Like the entire "gpus have a lot of bars" thing is the
+> > > reason why I pulled the sysfb_disable one level up, because we've bee=
+n
+> > > doing that quite a few times before this patch (yes it's not the main
+> > > thing, but the side-effect cleanup is why I've gone down this rabbit
+> > > hole and wrote the entire series here):
+> > >
+> > > https://lore.kernel.org/dri-devel/20230404201842.567344-7-daniel.vett=
+er@ffwll.ch/
+> > >
+> > > But somehow for gma500 it's a problem, while for everyone else it's
+> > > fine. That's the part I dont get, or Thomas&me have been talking past
+> > > each another and there's another issue that I'm missing.
+> > > -Daniel
+> >
+> > I'm also getting confused here.
+> >
+> > AFAIK the stolen memory works the same for gma500 hardware as other
+> > Intel GPUs. Are you saying that there is a difference in how gma500
+> > hardware works? I always assumed that i915 got away with not dealing
+> > much with stolen memory because it simply doesn't use it for
+> > allocations. In gma500 we use it for fbdev and cursors. The actual
+> > pages reserved by the bios can be accessed through a pci bar if you
+> > map it so (which IIRC we do) but I suppose that doesn't help
+> > identifying it as a range reserved by other drivers.
+>
+> The other integrated gpu have their fw fb behind a pci bar, and stolen
+> is often entirely hidden from the cpu for direct access. gma500 seems
+> different with having stolen as just a specially marked up range of
+> normal system memory. That's why the usual pci helper doesn't catch
+> everything for gma500.
 
-It's all still in the pipe's internal precision. So any 16 vs. 4096
-distinction doesn't exist.
+Right, now I get it. You don't have the GATT on some systems so the
+range can never be inside the aperture on those systems anyway.
 
-> 
-> Also CSC Postoff programming for the offset doesn’t seem very clear to me.
-> For CSC BT709 RGB Full range->YCbCr Limited Range, we use offset of {16, 
-> 128, 128} for Y, Cb, Cr, and we write 0x800, 0x100, 0x100 for these values.
+The GATT probably went away because there is no need for it since you
+don't get coherency with the PowerVR parts anyway.
 
-Y is the middle channel. We write 0x800,0x100,0x800
+Thanks for explaining
 
-> 
-> But below for Limited range Post offset 16,  we seem to be shifting by 
-> (12 - 8) i.e 4. Am I missing something?
-> 
-> 
-> Regards,
-> 
-> Ankit
-> 
-> On 3/29/2023 7:19 PM, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> > The reason I've kept the stolen allocation logic is because some
+> > gma500 systems don't have a lot of memory. But that is mostly the old
+> > Pouslbo systems. Perhaps it is time to ditch the stolen allocation
+> > code?
+>
+> Yeah that's all fine.
+> -Daniel
+>
 > >
-> > Our current limited range matrix is a bit off. I think it
-> > was originally calculated with rounding, as if we wanted
-> > the normal pixel replication type of behaviour.
-> > That is, since the 8bpc max value is 0xeb we assumed the
-> > 16bpc max value should be 0xebeb, but what the HDMI spec
-> > actually says it should be is 0xeb00.
+> > -Patrik
 > >
-> > So to get what we want we make the formula
-> >   out = in * (235-16) << (12-8) / in_max + 16 << (12-8),
-> > with 12 being precision of the csc, 8 being the precision
-> > of the constants we used.
-> >
-> > The hardware takes its coefficients as floating point
-> > values, but the (235−16)/255 = ~.86, so exponent 0
-> > is what we want anyway, so it works out perfectly without
-> > having to hardcode it in hex or start playing with floats.
-> >
-> > In terms of raw numbers we are feeding the hardware the
-> > post offset changes from 0x101 to 0x100, and the coefficient
-> > changes from 0xdc0 to 0xdb0 (~.860->~.855). So this should
-> > make everything come out just a tad darker.
-> >
-> > I already used better constants in lut_limited_range() earlier
-> > so the output of the two paths should be closer now.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_color.c | 5 ++---
-> >   1 file changed, 2 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > index 36aac88143ac..3c3e2f5a5cde 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -116,10 +116,9 @@ struct intel_color_funcs {
-> >   #define ILK_CSC_COEFF_FP(coeff, fbits)	\
-> >   	(clamp_val(((coeff) >> (32 - (fbits) - 3)) + 4, 0, 0xfff) & 0xff8)
-> >   
-> > -#define ILK_CSC_COEFF_LIMITED_RANGE 0x0dc0
-> >   #define ILK_CSC_COEFF_1_0 0x7800
-> > -
-> > -#define ILK_CSC_POSTOFF_LIMITED_RANGE (16 * (1 << 12) / 255)
-> > +#define ILK_CSC_COEFF_LIMITED_RANGE ((235 - 16) << (12 - 8)) /* exponent 0 */
-> > +#define ILK_CSC_POSTOFF_LIMITED_RANGE (16 << (12 - 8))
-> >   
-> >   /* Nop pre/post offsets */
-> >   static const u16 ilk_csc_off_zero[3] = {};
-
--- 
-Ville Syrjälä
-Intel
+> > >
+> > > > > Consider this me throwing in the towel. If you&Javier are convinc=
+ed this
+> > > > > makes sense please type it up and merge it, but I'm not going to =
+type
+> > > > > something that just doesn't make sense to me.
+> > > >
+> > > > Honestly, I would just go with the double drm_aperture_remove_*() h=
+elper
+> > > > calls (your original patch) unless that causes real issues. There i=
+s no
+> > > > point on blocking all your series just for this IMO.
+> > > >
+> > > > Then latter if Thomas has strong opinions can send a follow-up patc=
+h for
+> > > > the gma500 driver and the aperture helpers.
+> > > >
+> > > > > -Daniel
+> > > > >
+> > > >
+> > > > --
+> > > > Best regards,
+> > > >
+> > > > Javier Martinez Canillas
+> > > > Core Platforms
+> > > > Red Hat
+> > > >
+> > >
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+>
+>
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
