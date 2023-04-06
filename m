@@ -2,78 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2AC6DA06C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 20:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CFD6DA36C
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 22:38:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A58010ECA4;
-	Thu,  6 Apr 2023 18:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF9B010ED15;
+	Thu,  6 Apr 2023 20:38:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 078E710ECA4
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 18:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680807456;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wrJKx7A1GuEl4Junf/KhUJYI2+zpRcMaomSzMn8W3Lc=;
- b=GMhFE1wa5ki3FV/sRDBAiUZmT/Cy/0jVfqW2Di9BI0Vfp2JQVYNyhKNoZxQggik++5Bk40
- Z6DGDP3fRxHrc9XdkQy/11i0s9Hc8CAZ3L5dx7UtLvn6ID51lcyd0RnQYhF829J4CXhesx
- G3rMIn1h0sVEws6L217FtxEjhXG9d6Q=
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
- [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-460-nldpQtWTP_WO2AWNBz7OrA-1; Thu, 06 Apr 2023 14:57:33 -0400
-X-MC-Unique: nldpQtWTP_WO2AWNBz7OrA-1
-Received: by mail-io1-f72.google.com with SMTP id
- j4-20020a6b5504000000b00758646159fbso24889825iob.20
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 11:57:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680807453; x=1683399453;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=wrJKx7A1GuEl4Junf/KhUJYI2+zpRcMaomSzMn8W3Lc=;
- b=CZxVjbVOU+lBVgXZq1GLFasNhrQ2Zn+Ly3z5yyTqCwV1D5D4DrjP0lyT2wofK1bD1Z
- VTzS1IX7Pot/1jXEnnovV1m2vhBak5bL+Npj1FN+nMqzf0uhOrEC+ioqKoW+HnU9L9yL
- L62Tq/6v0lcXLuanu7TJFESkd8EexYDZuKmTmRWezz0XYkgvPkzi1SzPIfidJIHFD55V
- H157SmE/wBorh4hBF6RwJuPvIY1JS35P+SmANx9AjG5Tfdswoo5/ef9HDNc8qTFLdq6y
- 1Y014/O+i0Ty4Pe2WiGuXR6id3qdD1MJQh4X5yOowiAUqwtLvLV5Jby+/w5T1cTHpYRB
- ItmQ==
-X-Gm-Message-State: AAQBX9fik4/5QQUmjdsv19mfdSXgjnOoeCAFY9VMzyRj/x9ulGL2RxRA
- snh4BtRjSeh97r8ky15YH5ACvxVyMp42lNQshWzi+nbYe4oPf6Hy9WVOo/4hElXVb6Upe7ckFKw
- XhUj9V0sPf255ucb2EPnGY2kmtcGd
-X-Received: by 2002:a5d:9586:0:b0:746:1c75:233a with SMTP id
- a6-20020a5d9586000000b007461c75233amr223953ioo.20.1680807452955; 
- Thu, 06 Apr 2023 11:57:32 -0700 (PDT)
-X-Google-Smtp-Source: AKy350b0j+giohjhzfEVrvrURxOCy3+Hx3IJ49kk8R31lIZ4Xw5zjGf/c9skO+ZYmVaMsS7Rtrgejw==
-X-Received: by 2002:a5d:9586:0:b0:746:1c75:233a with SMTP id
- a6-20020a5d9586000000b007461c75233amr223942ioo.20.1680807452640; 
- Thu, 06 Apr 2023 11:57:32 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- 10-20020a020a0a000000b00406147dad72sm576410jaw.104.2023.04.06.11.57.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 11:57:32 -0700 (PDT)
-Date: Thu, 6 Apr 2023 12:57:30 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230406125730.55bfa666.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB7529B8DC835A6EADDB815C04C3919@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-7-yi.l.liu@intel.com>
- <8fb5a0b3-39c6-e924-847d-6545fcc44c08@redhat.com>
- <DS0PR11MB7529B8DC835A6EADDB815C04C3919@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE5910ED15;
+ Thu,  6 Apr 2023 20:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680813509; x=1712349509;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=chqiawdJd7XO5ZMpoLJrv0yG+2r7Fn9Xk+UeP+r3fTQ=;
+ b=KUmeiv7kEW7SB1bG3yMlrGvmFdQSsOymfBCRHhcjcBFHvZphJf7mJtw3
+ kmY4yzo7Sp/g0oI3r84N7tUwrin7RJ+dOOe5qtPGDRTg/2oJwske9Mis2
+ Z/GYz844x+v4t+QyJkMAijn28ei+U6Tbrv1g1w4CK3QWkc0xFvbCf7jKb
+ W4GPzDkpBZD+UHODE7H8Cll8j65br6VmND5RehNXnTaY+6NSOwNgiiP0n
+ WFj5UxySdPMhzOZfQzvm960LIvHo5ZSfh7dj3HG34idBA0O6Cf1SoUvTu
+ 7gMZUhLoSZUBsXDAy6cgXgHU20AfcdOrx1ydYriKMsRMUct9DjSO9iqY2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="344603155"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="344603155"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 13:38:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="756464214"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="756464214"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga004.fm.intel.com with ESMTP; 06 Apr 2023 13:38:27 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 6 Apr 2023 13:38:27 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 6 Apr 2023 13:38:27 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.44) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Thu, 6 Apr 2023 13:38:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NBdXG8ND1eKVdU8sXexTXuZzYEBf0MdBb1gI0qAepAhNhBGcNL8lO10ImJFg6B+GnsL8rl7ZQUhQA3bQCzfPvMxUgjpede616HHF0fPhbILpsg73PWj+YaksQoxB5fits2HNRLdInf99tZTRrIoyoVjBG7HW4qNx/VW9PMZXY8ZEbjjIGc8xM91an99HwdkONIUFM+DKuMk7eb6+lQooSwAeyWJQULM6eUA+kKzBi31Zhl/PTkBI1vE4C7TICRvQfyBefg7Qwl2VtzwSE3hfJ0RFy0FhJ1SSK0THFVCGptxoED8+FEP3r+RqDR5ZEQ3kRU+47YwPRiuX8jlXQ9fpgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r4z4Nq3AeCEeQgLYwYST1UX5tCpnhTpZxSJ+OlLADmM=;
+ b=AybPQ3urY32sriE66WEXk5CyGG/oKZicKKvRNx1s6x6mOHvfoAIMl69mnwHhBzRFBDZqsEvRmwYWuE621jJnYmo0i0BEmzrJE74WfXNsdabqtLE6EEP6rz4hmkdQwcJ4hMT3/M2zuvVQ6uPm6J9l5NiYKhxtkYsFIbiecci1BWWeMRLLVXRRBFTrQj8DeVFURZ737dVstXdWsTHRmig9ZCtJbMDpxvLXG7JVGi+tLeyk9ipWTe5zzSuiJWhHl1jFIgqKNwQpM23uiepxF/zaQEiv98caBavsgIwZgv52pQjfDVcGQ1uo0qb8QVc0ysJzUkyW0Swvdwqy4wWUC34xUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MW3PR11MB4730.namprd11.prod.outlook.com (2603:10b6:303:58::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Thu, 6 Apr
+ 2023 20:38:23 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18%6]) with mapi id 15.20.6277.031; Thu, 6 Apr 2023
+ 20:38:23 +0000
+Date: Thu, 6 Apr 2023 16:38:20 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <ZC8tvEoKW425Sbeh@intel.com>
+References: <20230406143133.29474-1-jose.souza@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230406143133.29474-1-jose.souza@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0015.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::20) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v9 06/25] kvm/vfio: Accept vfio device file
- from userspace
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW3PR11MB4730:EE_
+X-MS-Office365-Filtering-Correlation-Id: b4901898-2670-4ec1-3406-08db36dedd73
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: k4f3m7IvQVjU+YaocXM6ooAVdNkKK+XXKq8QXr1FwEBoIYCtMVCpFZXN7MlVzE7HoVrikD2Kigz3Fq0SpBwKmlMnxPt8XS/fDAyr6EB56sNBYVC45fn+w+Yc31IipVYDs575s1dRLsipRGcnXmoWC95PXIxNcpfkgf7fjQEbJsch7OyKc8cu2Fl9fA4A0StiTfIZoyd1CVksMahN62A3JexfREaxceQhyYA1nTV3HsshQkBdbs5HvBBRP36LdaDF9OisiHO3leBfymt0knx2i/W4iWAySCiOm1eAF2pGjchTyKYjtI1HmZ7PFIvH9WrA7iXHu/yXBBs188sZ0AnloCUw83vc5NG3vSyC193VJ7+I8BU7HV9WHQDziJKj4Ljr8pGKYozq32A2N54AwdF3si2N2Fin6AoH1OnaUD8WnAfnXRnVcUU/Jm45Qbrma05zJGJNVAtHmumL9tZ9A/8ijWLg/mBxOtcxQH1LyNgb8j0DSGtrkVwuyM79fheWNmJqeI391UsngNnm7r5HBNcczw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(396003)(346002)(366004)(39860400002)(136003)(451199021)(26005)(6636002)(37006003)(478600001)(86362001)(6506007)(966005)(6486002)(6512007)(36756003)(186003)(316002)(82960400001)(66556008)(66476007)(66946007)(4326008)(8676002)(5660300002)(38100700002)(450100002)(83380400001)(44832011)(41300700001)(2906002)(8936002)(6862004)(2616005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0oTyY0dsCZt2+yjXeIarx+gVNkXXNB15pRk9IH23SQHW0nMayy87rMcwmt?=
+ =?iso-8859-1?Q?MQeQcsDuCsPAsS6I7p71lUgjUTRenSBCEYg0PH43GECE+U9A3SQeLVpC4g?=
+ =?iso-8859-1?Q?Ei1nHBCvokI1Ge4WEclPDadsoAEUWcgqUr1gxHpSy4WzavsgpiyIoobkMr?=
+ =?iso-8859-1?Q?eaaWDRzIixBMkEVAt3DGu+buI7y4U14sNybhySJ/rgexQHJw1nVnjORQHg?=
+ =?iso-8859-1?Q?gfa+a5WgAzBoRp9OoN+2MI7VRkDHTACP+Gz3zAOUzd9heiMZwHTlEzN+F9?=
+ =?iso-8859-1?Q?IO3rdl7gbVjKQYgEkPmoioEpu1Gog6OIdr3TcICBCXXBcHmAisfhqsNSU0?=
+ =?iso-8859-1?Q?dMNgaNVOr+ccswQAxZ3/Pl0OuuSfPDStykHnBgS/5zNCcghZqdQZvOFbC1?=
+ =?iso-8859-1?Q?exLHL6WObTTuFoW2dJANaLFLaA1SdyIbm4iUSqQb5hL1KeiM6FzpfTND2k?=
+ =?iso-8859-1?Q?gKW9ZXtfs8CyboYPQXJ7Ww+3U43RD7O1If179rzLINQxVFt2Fly8z9ls4O?=
+ =?iso-8859-1?Q?3qtwEiqazF3gYhmQ7ojyZ4Y6n6fWZN3jrpR0pQZ7v1E3cIP0RULBtQEnQY?=
+ =?iso-8859-1?Q?JcBQsunO5Ai/eIH/SVNoBHCdHxPxLcvACMZHI9hLFHzyo9V8O6jfwm69RJ?=
+ =?iso-8859-1?Q?AGpKLTr0tIs4j/fS/3ETL0gAlG25YKlHjGAhEYqXAZoxgcE1hW8pqRs5lH?=
+ =?iso-8859-1?Q?/KgIb4E+oNJbwlQiIR9zEgZG+iK5kGMLhrphqtPiMJkSvicRRjwv91IFls?=
+ =?iso-8859-1?Q?RUhd3SBCSAxRaUCbAjKgN8HFcSbaOlWa4XLdO4QDOTyWX2483lGGQp3m7N?=
+ =?iso-8859-1?Q?DXYQMGwg8oaOpfT6vxLzm+02Tm/rL6bBLp5zJYhx4X6BfxB2UiDnP6M0pE?=
+ =?iso-8859-1?Q?vOVFq95b8Hnkie+iCCWcX4JxCpY6Dc9wdVQVfwvGULOhwNl01w/A22hWJU?=
+ =?iso-8859-1?Q?atZ3DgFxblvUOC+lykdFNTqSJPVUmNCnF1B5CP56E6q5d2eNab0XEpKu/J?=
+ =?iso-8859-1?Q?pu9h0/iBVUd61sh7i0oALCuB3TOI7QbNieLizrW7cKRWkW5fezhB29yWaO?=
+ =?iso-8859-1?Q?9754EnboXWcqAPWAfglp5aK4aje/9rJOXDnlJJvFDfnLWUNo5JB3t+dub/?=
+ =?iso-8859-1?Q?Z0CT1/PyyeDF3A4aGwN6HDLhLhTR+Jfd3kRVO0BYmqA5TGYg1VL4E1z03R?=
+ =?iso-8859-1?Q?aULQa4H2QcfMNIL3jBD/1kgUKBNTQpV0wEEGcAG2UbiWLQtqrTcy5jwofR?=
+ =?iso-8859-1?Q?0vtLHcmuC/0JrLWyx3cJ5s1V/pG/gB852TsoByVH+q0SuWl4RoVXh0iKYe?=
+ =?iso-8859-1?Q?rWM1saRtgE5QBxTOSuoZiOb3N4wdCU5Vt30Su5u5yeDDeW7JLKaJ5nuHu5?=
+ =?iso-8859-1?Q?+1mV9m4n7NG8f7UDSvII/SXPt3SXt2TQDfBhcwY1+9UhNK6JXojIFCZkVt?=
+ =?iso-8859-1?Q?zzebtYs2vzsbDIrYC3VMST8CQ1Tt7+Wmm/Y2U5uokfreh33eyL720e0N+6?=
+ =?iso-8859-1?Q?LtM7r7euWxRrKth/UOjrd6fmaCg4kUJyJKPCrMdyx43hgDx8wGp2Vx6Ocb?=
+ =?iso-8859-1?Q?NZSjMC1tUxghriMmH8DPgp2HLswBlOR+QISWpGaB9mQWhRP7+KYj+vchuk?=
+ =?iso-8859-1?Q?hiDLepJF/mm0ZzKAuoGcjaklEHGlYCZrJEuIF2hRlhhUFPOFZBd58v1Q?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b4901898-2670-4ec1-3406-08db36dedd73
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 20:38:23.2299 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ER5yk36trGpJoCyk7wy6NzN0dE1fpj4W/Xt+xr/rb5yRGW3drsxt3Q/vlLR7HKN72VrUWiH0gpI4PGQrnXHm7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4730
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v2 rebased 1/6] drm/i915: Nuke
+ unused dsparb_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,282 +145,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 6 Apr 2023 10:49:45 +0000
-"Liu, Yi L" <yi.l.liu@intel.com> wrote:
+On Thu, Apr 06, 2023 at 07:31:28AM -0700, José Roberto de Souza wrote:
+> dsparb_lock it not used anymore, nuke it.
 
-> Hi Eric,
-> 
-> > From: Eric Auger <eric.auger@redhat.com>
-> > Sent: Thursday, April 6, 2023 5:47 PM
-> > 
-> > Hi Yi,
-> > 
-> > On 4/1/23 17:18, Yi Liu wrote:  
-> > > This defines KVM_DEV_VFIO_FILE* and make alias with KVM_DEV_VFIO_GROUP*.
-> > > Old userspace uses KVM_DEV_VFIO_GROUP* works as well.
-> > >
-> > > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> > > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> > > Tested-by: Terrence Xu <terrence.xu@intel.com>
-> > > Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> > > Tested-by: Matthew Rosato <mjrosato@linux.ibm.com>
-> > > Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > > ---
-> > >  Documentation/virt/kvm/devices/vfio.rst | 53 +++++++++++++++++--------
-> > >  include/uapi/linux/kvm.h                | 16 ++++++--
-> > >  virt/kvm/vfio.c                         | 16 ++++----
-> > >  3 files changed, 56 insertions(+), 29 deletions(-)
-> > >
-> > > diff --git a/Documentation/virt/kvm/devices/vfio.rst  
-> > b/Documentation/virt/kvm/devices/vfio.rst  
-> > > index 79b6811bb4f3..277d727ec1a2 100644
-> > > --- a/Documentation/virt/kvm/devices/vfio.rst
-> > > +++ b/Documentation/virt/kvm/devices/vfio.rst
-> > > @@ -9,24 +9,38 @@ Device types supported:
-> > >    - KVM_DEV_TYPE_VFIO
-> > >
-> > >  Only one VFIO instance may be created per VM.  The created device
-> > > -tracks VFIO groups in use by the VM and features of those groups
-> > > -important to the correctness and acceleration of the VM.  As groups
-> > > -are enabled and disabled for use by the VM, KVM should be updated
-> > > -about their presence.  When registered with KVM, a reference to the
-> > > -VFIO-group is held by KVM.
-> > > +tracks VFIO files (group or device) in use by the VM and features
-> > > +of those groups/devices important to the correctness and acceleration
-> > > +of the VM.  As groups/devices are enabled and disabled for use by the
-> > > +VM, KVM should be updated about their presence.  When registered with
-> > > +KVM, a reference to the VFIO file is held by KVM.
-> > >
-> > >  Groups:
-> > > -  KVM_DEV_VFIO_GROUP
-> > > -
-> > > -KVM_DEV_VFIO_GROUP attributes:
-> > > -  KVM_DEV_VFIO_GROUP_ADD: Add a VFIO group to VFIO-KVM device tracking
-> > > -	kvm_device_attr.addr points to an int32_t file descriptor
-> > > -	for the VFIO group.
-> > > -  KVM_DEV_VFIO_GROUP_DEL: Remove a VFIO group from VFIO-KVM device  
-> > tracking  
-> > > -	kvm_device_attr.addr points to an int32_t file descriptor
-> > > -	for the VFIO group.
-> > > -  KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE: attaches a guest visible TCE table
-> > > +  KVM_DEV_VFIO_FILE
-> > > +	alias: KVM_DEV_VFIO_GROUP
-> > > +
-> > > +KVM_DEV_VFIO_FILE attributes:
-> > > +  KVM_DEV_VFIO_FILE_ADD: Add a VFIO file (group/device) to VFIO-KVM device
-> > > +	tracking
-> > > +
-> > > +	alias: KVM_DEV_VFIO_GROUP_ADD
-> > > +
-> > > +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> > > +	VFIO file.
-> > > +
-> > > +  KVM_DEV_VFIO_FILE_DEL: Remove a VFIO file (group/device) from VFIO-KVM
-> > > +	device tracking
-> > > +
-> > > +	alias: KVM_DEV_VFIO_GROUP_DEL
-> > > +
-> > > +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> > > +	VFIO file.
-> > > +
-> > > +  KVM_DEV_VFIO_FILE_SET_SPAPR_TCE: attaches a guest visible TCE table
-> > >  	allocated by sPAPR KVM.
-> > > +
-> > > +	alias: KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE
-> > > +
-> > >  	kvm_device_attr.addr points to a struct::
-> > >
-> > >  		struct kvm_vfio_spapr_tce {
-> > > @@ -40,9 +54,14 @@ KVM_DEV_VFIO_GROUP attributes:
-> > >  	- @tablefd is a file descriptor for a TCE table allocated via
-> > >  	  KVM_CREATE_SPAPR_TCE.
-> > >
-> > > +	only accepts vfio group file as SPAPR has no iommufd support  
-> > So then what is the point of introducing
-> > 
-> > KVM_DEV_VFIO_FILE_SET_SPAPR_TCE at this stage?  
-> 
-> the major reason is to make the naming aligned since this patch
-> names the groups as KVM_DEV_VFIO_FILE.
-> 
-> > 
-> > I think would have separated the
-> > 
-> > Groups:
-> >   KVM_DEV_VFIO_FILE
-> > 	alias: KVM_DEV_VFIO_GROUP
-> > 
-> > KVM_DEV_VFIO_FILE attributes:
-> >   KVM_DEV_VFIO_FILE_ADD: Add a VFIO file (group/device) to VFIO-KVM device
-> > 	tracking
-> > 
-> > 	kvm_device_attr.addr points to an int32_t file descriptor for the
-> > 	VFIO file.
-> > 
-> >   KVM_DEV_VFIO_FILE_DEL: Remove a VFIO file (group/device) from VFIO-KVM
-> > 	device tracking
-> > 
-> > 	kvm_device_attr.addr points to an int32_t file descriptor for the
-> > 	VFIO file.
-> > 
-> > KVM_DEV_VFIO_GROUP (legacy kvm device group restricted to the handling of VFIO
-> > group fd)
-> >   KVM_DEV_VFIO_GROUP_ADD: same as KVM_DEV_VFIO_FILE_ADD for group fd only
-> >   KVM_DEV_VFIO_GROUP_DEL: same as KVM_DEV_VFIO_FILE_DEL for group fd only
-> >   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE: attaches a guest visible TCE table
-> > 	allocated by sPAPR KVM.
-> > 	kvm_device_attr.addr points to a struct::
-> > 
-> > 		struct kvm_vfio_spapr_tce {
-> > 			__s32	groupfd;
-> > 			__s32	tablefd;
-> > 		};
-> > 
-> > 	where:
-> > 
-> > 	- @groupfd is a file descriptor for a VFIO group;
-> > 	- @tablefd is a file descriptor for a TCE table allocated via
-> > 	  KVM_CREATE_SPAPR_TCE.  
-> 
-> hmmm, this way is clearer. I'd adopt it if it's acceptable.
-> 
-> > 
-> > You don't say anything about potential restriction, ie. what if the user calls
-> > KVM_DEV_VFIO_FILE with device fds while it has been using legacy container/group
-> > API?  
-> 
-> legacy container/group path cannot do it as the below enhancement.
-> User needs to call KVM_DEV_VFIO_FILE before open devices, so this
-> should happen before _GET_DEVICE_FD. So the legacy path can never
-> pass device fds in KVM_DEV_VFIO_FILE.
-> 
-> https://lore.kernel.org/kvm/20230327102059.333d6976.alex.williamson@redhat.com/#t
+Well, this doesn't exist in our drm-tip baseline, so it would be good
+if this patch is a fixup! to whatever patch is adding this back here.
 
-Wait, are you suggesting that a comment in the documentation suggesting
-a usage policy somehow provides enforcement of that ordering??  That's
-not how this works.  Thanks,
+Take a look to the Jani series I just pushed:
 
-Alex
- 
-> > > -The GROUP_ADD operation above should be invoked prior to accessing the
-> > > +The FILE/GROUP_ADD operation above should be invoked prior to accessing the
-> > >  device file descriptor via VFIO_GROUP_GET_DEVICE_FD in order to support
-> > >  drivers which require a kvm pointer to be set in their .open_device()
-> > > -callback.
-> > > +callback.  It is the same for device file descriptor via character device
-> > > +open which gets device access via VFIO_DEVICE_BIND_IOMMUFD.  For such file
-> > > +descriptors, FILE_ADD should be invoked before VFIO_DEVICE_BIND_IOMMUFD
-> > > +to support the drivers mentioned in prior sentence as well.  
-> 
-> just as here. This means device fds can only be passed with KVM_DEV_VFIO_FILE
-> in the cdev path.
-> 
-> Regards,
-> Yi Liu
-> 
-> > > diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-> > > index d77aef872a0a..a8eeca70a498 100644
-> > > --- a/include/uapi/linux/kvm.h
-> > > +++ b/include/uapi/linux/kvm.h
-> > > @@ -1410,10 +1410,18 @@ struct kvm_device_attr {
-> > >  	__u64	addr;		/* userspace address of attr data */
-> > >  };
-> > >
-> > > -#define  KVM_DEV_VFIO_GROUP			1
-> > > -#define   KVM_DEV_VFIO_GROUP_ADD			1
-> > > -#define   KVM_DEV_VFIO_GROUP_DEL			2
-> > > -#define   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE		3
-> > > +#define  KVM_DEV_VFIO_FILE	1
-> > > +
-> > > +#define   KVM_DEV_VFIO_FILE_ADD			1
-> > > +#define   KVM_DEV_VFIO_FILE_DEL			2
-> > > +#define   KVM_DEV_VFIO_FILE_SET_SPAPR_TCE	3
-> > > +
-> > > +/* KVM_DEV_VFIO_GROUP aliases are for compile time uapi compatibility */
-> > > +#define  KVM_DEV_VFIO_GROUP	KVM_DEV_VFIO_FILE
-> > > +
-> > > +#define   KVM_DEV_VFIO_GROUP_ADD	KVM_DEV_VFIO_FILE_ADD
-> > > +#define   KVM_DEV_VFIO_GROUP_DEL	KVM_DEV_VFIO_FILE_DEL
-> > > +#define   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE  
-> > 	KVM_DEV_VFIO_FILE_SET_SPAPR_TCE  
-> > >
-> > >  enum kvm_device_type {
-> > >  	KVM_DEV_TYPE_FSL_MPIC_20	= 1,
-> > > diff --git a/virt/kvm/vfio.c b/virt/kvm/vfio.c
-> > > index 857d6ba349e1..d869913baafd 100644
-> > > --- a/virt/kvm/vfio.c
-> > > +++ b/virt/kvm/vfio.c
-> > > @@ -286,18 +286,18 @@ static int kvm_vfio_set_file(struct kvm_device *dev, long  
-> > attr,  
-> > >  	int32_t fd;
-> > >
-> > >  	switch (attr) {
-> > > -	case KVM_DEV_VFIO_GROUP_ADD:
-> > > +	case KVM_DEV_VFIO_FILE_ADD:
-> > >  		if (get_user(fd, argp))
-> > >  			return -EFAULT;
-> > >  		return kvm_vfio_file_add(dev, fd);
-> > >
-> > > -	case KVM_DEV_VFIO_GROUP_DEL:
-> > > +	case KVM_DEV_VFIO_FILE_DEL:
-> > >  		if (get_user(fd, argp))
-> > >  			return -EFAULT;
-> > >  		return kvm_vfio_file_del(dev, fd);
-> > >
-> > >  #ifdef CONFIG_SPAPR_TCE_IOMMU
-> > > -	case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> > > +	case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
-> > >  		return kvm_vfio_file_set_spapr_tce(dev, arg);
-> > >  #endif
-> > >  	}
-> > > @@ -309,7 +309,7 @@ static int kvm_vfio_set_attr(struct kvm_device *dev,
-> > >  			     struct kvm_device_attr *attr)
-> > >  {
-> > >  	switch (attr->group) {
-> > > -	case KVM_DEV_VFIO_GROUP:
-> > > +	case KVM_DEV_VFIO_FILE:
-> > >  		return kvm_vfio_set_file(dev, attr->attr,
-> > >  					 u64_to_user_ptr(attr->addr));
-> > >  	}
-> > > @@ -321,12 +321,12 @@ static int kvm_vfio_has_attr(struct kvm_device *dev,
-> > >  			     struct kvm_device_attr *attr)
-> > >  {
-> > >  	switch (attr->group) {
-> > > -	case KVM_DEV_VFIO_GROUP:
-> > > +	case KVM_DEV_VFIO_FILE:
-> > >  		switch (attr->attr) {
-> > > -		case KVM_DEV_VFIO_GROUP_ADD:
-> > > -		case KVM_DEV_VFIO_GROUP_DEL:
-> > > +		case KVM_DEV_VFIO_FILE_ADD:
-> > > +		case KVM_DEV_VFIO_FILE_DEL:
-> > >  #ifdef CONFIG_SPAPR_TCE_IOMMU
-> > > -		case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> > > +		case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
-> > >  #endif
-> > >  			return 0;
-> > >  		}  
-> 
+https://lists.freedesktop.org/archives/intel-xe/2023-April/002000.html
 
+I believe you should make this series on something more like that.
+so on a next step I run a rebase --autosquash and we get cleaner patches.
+
+Also, I believe this series here might conflict with that, so I'm
+afraid you will have to rebase it anyway. Sorry about that...
+
+> 
+> Cc: intel-gfx@lists.freedesktop.org
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_core.h | 3 ---
+>  drivers/gpu/drm/i915/i915_driver.c                | 1 -
+>  2 files changed, 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index cc058eb303ee8..d2346d43d1162 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -266,9 +266,6 @@ struct intel_wm {
+>  	 */
+>  	struct mutex wm_mutex;
+>  
+> -	/* protects DSPARB registers on pre-g4x/vlv/chv */
+> -	spinlock_t dsparb_lock;
+> -
+>  	bool ipc_enabled;
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 066d79c2069c4..ea2cc56d18a6e 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -214,7 +214,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  	spin_lock_init(&dev_priv->irq_lock);
+>  	spin_lock_init(&dev_priv->gpu_error.lock);
+>  	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+> -	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+>  	mutex_init(&dev_priv->display.backlight.lock);
+>  
+>  	mutex_init(&dev_priv->sb_lock);
+> -- 
+> 2.40.0
+> 
