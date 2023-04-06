@@ -2,153 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEF56D8F7D
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 08:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2280C6D904D
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 09:14:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8753610E114;
-	Thu,  6 Apr 2023 06:34:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB5610E09C;
+	Thu,  6 Apr 2023 07:14:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEB5289190;
- Thu,  6 Apr 2023 06:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680762855; x=1712298855;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=XGCj4z5U2VZMRmhZP8pPauCt4ykyoYh+pdMpqzaGapg=;
- b=Njz4Uhuyf9CRvUvdB05mWIexeZ5SwdX5k1r3/BxzW1XySbwJ3g3kuk62
- 5/1iOQU+bUL2slpVqcP9U7ZL9SS1D8ITV0afmQm6yyVpqk3Rz2h7Q/Hk0
- V7Zc9jMwdbuRQj0JWamwzh8+Hz3GupcP9ATYnrY1efYf1/Ktx+KkAv093
- QS3TUc2wdJxl1a0ptE0+cxAx3R51woLbqMasXE223GchYDe6TOI6pwqhv
- H/dH64yhzJYnLXO+KtGlxN67NB5KDCEYdjlBLcG196/PDnfwmTJ38nbnT
- 1bMuQ6oh51VV/qpy7co9Pxon76MhsNotx4amQeL309dn29kw5DoqLyZsu A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="428941867"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="428941867"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 23:34:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="776344185"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="776344185"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2023 23:34:13 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 23:34:13 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 23:34:13 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 23:34:12 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.49) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 5 Apr 2023 23:34:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UR0E11KqGEYhOKE9fdqYfi3/CzhKWM47S4HUNsP72dcxHL7ujxT4Ns7ydgVzKvLayhKDbwEepB0bGpnF25+WVOa/PLS9pb+IOZmEnzKh9XDSlGHZY3gqK+X8fJUcPbsRXNSvshivZgkHCbnSGCMBcK76UNSOmBSd2+AXWBzh4nEa99D2AuRl99JAphU+MIVv+n09T94vIOQWypTnnoYLmrIwvmH2I4qTQwrI2KzoVlb5/V3tGMN/A48uO+VBNPd/FqF/70ZZ8UsKU9XLVD1/PX1JRC+nxucM5a0O0qV+W7CeaB74b8q+tMNC1qLj9/B0x2VCIk8gQr+VYr+ErbtqSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L7cON/sJtagpymD2ncklEUL+gqh6Kn3nFynJQ+ERvGI=;
- b=clNQ7FHNFS6Px+qRFLd3VBKtsoIx+OJi75KKGuhxYs1VeNG6Iz03OBahISLwmRrEGsqi5BVKVg68pDHVbXrDz040uNtTJZ9BflU8u8IW57ZJcjwVS227wcTFNKnfnHK1nYkl7skN2vlYP7ShN4tuUzrlDwejqyNcjGusckN3ouo/OWidXmhxzRwsugIlSFGmX5f4MCZa4HVs/N204oQ5qrGTPtaMnNrT9U6sidE/R7/2CBIXkkq5T6kFS3WN4eI5qZPLiLFcgaTZe2q3bSkFEQM0D55nfu/hVkbO+g1VMp5smpdmHbeqIcSOxEqc/Aavq9YhHYgOaWgiASgFzBUS/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by DS0PR11MB7879.namprd11.prod.outlook.com (2603:10b6:8:f7::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.29; Thu, 6 Apr
- 2023 06:34:09 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de%5]) with mapi id 15.20.6254.035; Thu, 6 Apr 2023
- 06:34:09 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>, Jason Gunthorpe
- <jgg@nvidia.com>
-Thread-Topic: [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
-Thread-Index: AQHZZKiCMJJkpNrujkKpjX0h05Zqwa8cqG8AgAAcMGCAACibgIAAAyuAgAAEPICAAAjLgIAAGeKAgAAG7oCAAAf9gIAAqz1g
-Date: Thu, 6 Apr 2023 06:34:08 +0000
-Message-ID: <DS0PR11MB752987A5B996D93582F8A8BCC3919@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-13-yi.l.liu@intel.com>
- <a937e622-ce32-6dda-d77c-7d8d76474ee0@redhat.com>
- <DS0PR11MB7529D4E354C3B85D7698017DC3909@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230405102545.41a61424.alex.williamson@redhat.com>
- <ZC2jsQuWiMYM6JZb@nvidia.com>
- <20230405105215.428fa9f5.alex.williamson@redhat.com>
- <ZC2un1LaTUR1OrrJ@nvidia.com>
- <20230405125621.4627ca19.alex.williamson@redhat.com>
- <ZC3KJUxJa0O0M+9O@nvidia.com>
- <20230405134945.29e967be.alex.williamson@redhat.com>
-In-Reply-To: <20230405134945.29e967be.alex.williamson@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|DS0PR11MB7879:EE_
-x-ms-office365-filtering-correlation-id: 1334f4fa-c21d-4803-a9b5-08db3668ed5a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: pmGyq3QIlB4m6yAtw6UYH+vrvbnpuwPv37rH8RBUJSGR+sJiB6Lvqyi5Je9sxErbxci9rjvthvk1jAFTO73brpNy7K5tX8s4T4r83x3L8JSxw0l2KG14dA27Xboc3Y0UYwpZswx7xnk+EtDcB9RFeCnsEwnpRXDO3VNdJPhMr9cDouVqkhjPQEaWZqn+O7Bihurfj/4UjM3UM1so0oFHhiSFr18al9eYWgmmEduYbCiud4WKc29h225hvrVkM4Q2OE43lVV/z3pgbyjW1aQtZcbMITdUomS2zjnrEe28NXuAj+lgmhurXu9jeH0tgm4Lg2PFToP7uEdxGPM4VcTaR66Kf+0kkQ3sqpdjIpiy+Kv+sj+3M0ny92UjiVQr9akb7gXwQIKWbJFEjO/J4+mGG8YrYj9MkVthHvWCn2+2PXwwMH6M2BNpS4aBrCGnC9klcsj1vEdp/L8P5Z+/h6I9IJIAWiRScGUIuAwqX3sD+9ZQpwKyosFnZYdoi27kJi4epJ2d8ZNS/HyDa4/CdiWz7i4rRxoKwshlLEJxuQfp3Yn+nyTNABOdh7HpdcegCgo2EsyH+vvoFmYnxILAQ+A4gW4SAs5sqBgrTPFE7hrVjbTrZ05Sj0lucB0FxGIu7nqU
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(346002)(136003)(366004)(376002)(396003)(451199021)(86362001)(33656002)(38070700005)(2906002)(55016003)(7696005)(71200400001)(83380400001)(186003)(966005)(6506007)(9686003)(26005)(76116006)(66946007)(66446008)(8676002)(64756008)(66476007)(4326008)(66556008)(7416002)(5660300002)(38100700002)(82960400001)(110136005)(478600001)(54906003)(52536014)(316002)(122000001)(41300700001)(8936002)(13296009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bXw9ByvmuUwZ6OxhVHNivbTD1LEdTdYGT2/pDXAVej6CtD9dKiekfY57OfWo?=
- =?us-ascii?Q?Ju6jsE6WVJFXb37jjXjvPxYKWk//U1kMDNo1CpkHlfgRNrumTiVrJ5N8Qt8m?=
- =?us-ascii?Q?uHt/6M5rQwBkoj4UJRSbIPPhQu6RZ1S4ommJIRh7l7WlO3FzsXa3UfqaAGl4?=
- =?us-ascii?Q?ebk/O+jAp2jVGVLPeqd34QKRS+kgemNpDeaeoG/JBuOOaFM6V1soDe48sD99?=
- =?us-ascii?Q?/6yoUyBZA2PKTfgGBR5KSmpFQ71ckE14BNfYowhBSZvrqBXLnWAE9O8XwiKw?=
- =?us-ascii?Q?UEY/DT8Si+7S0kTkL5FQC+sSd88Oo3upaMi07Ufei2Gdo+5lCPnGuh2UgISi?=
- =?us-ascii?Q?xC/npSXQt1PGPx4ZCJsEBrfWqVQYZ/nHzYOFjDZ0Kt6WLVZ48vBu2WYDzjvf?=
- =?us-ascii?Q?qeJXIKQPWRB0dC7njL2MwHKI+Pbe0rCJW8pTbGjj5Lc1u8N7xu1pPVJxqGjC?=
- =?us-ascii?Q?kG0Xz8K7W0MIFGH1PBNWJvfujAcqYs1pI7alNkvEcL0/ztqCgPj4wayKIAXh?=
- =?us-ascii?Q?2j8ipUTjKHQCvxRzJjnwU9kUkvVGjF5iKLKBNw//9TcjUECfQu7yOP3cgtG/?=
- =?us-ascii?Q?bIyraZyy1Q4ZIECrI5ywUaJYDzunhD5J+laYmfBbUicJHKl9pqFsLiQT7W0D?=
- =?us-ascii?Q?MlvkFicKJZjgQtLRuAB20Db1RspXFcSXpbfw8zjZ/A+qxW8jpOLr8gt92og+?=
- =?us-ascii?Q?YXa5Hf4HMcZJ5oH9YtRL2+CCgMjITSe2n54I+bqETg1RDs52UvM9CVkNZ5bP?=
- =?us-ascii?Q?LNZXxj9LVN/a7TWD5ue+A4jp6t/evRbY+Sfhle3aoVGavLec1j/UofQv4wmI?=
- =?us-ascii?Q?Cjt6eB4W5di2wD1WFRtpTP8QykxyowuWxe5KN/Iw7O0/eqlVVc1sLBai2ESc?=
- =?us-ascii?Q?MhA7ZWqYrNPXKImXphFLZA8eyFXLfvecAQ5u7M20suY82uphOIRTDEOnrSAm?=
- =?us-ascii?Q?yZ1kO7W8RW8Dz7hbu2694iFx12SNuyuLbEF9W/ASiGQZQOWfAo1ITEt/vpep?=
- =?us-ascii?Q?niQly3J4Qq7I42ojEDc9eyyZad1umAQc3Yy+ffrxUyR2/FdloD1fnj8ndd7P?=
- =?us-ascii?Q?eW1bVcwSgFGjtQFJaFgVlO1FDjv+PdbNmfT4KPRd+pToJ9LqvxTy70++QbER?=
- =?us-ascii?Q?5NCLUYf1LypnZOowCyvS4M7WXxBrb36CkUdM/Cnys0qyOxvxs3aP79BznI4T?=
- =?us-ascii?Q?bbpqnFBlQa5QkywjWmMOZSUuGvOJnQlG3D8tXZqw8ouPCsNxnA2UhCoWTbVu?=
- =?us-ascii?Q?4zAJDVltIMTC4fsJOGB9kTgDs6rZq6zHUCZbN+Sujque3JZ4XZdfs6uJwymW?=
- =?us-ascii?Q?iczRmpDs5j843JZTtcsZzEVrGSeOD4k81prhjax0zKw2VaFLajdv5ORMEwmS?=
- =?us-ascii?Q?Za9D0TDsbK2am+HllylJzbqDFj8nznkNNhOFGjsBV45oItipir0D4f/58ERY?=
- =?us-ascii?Q?vpc7FngA2eEMjrApxZXDoW2spu7CwnmLSQMSO4mcd3iRjS6hbNdVfBYJz7k5?=
- =?us-ascii?Q?fE901SiBVZEGgF0HkHpaBYKmoyQLJ7hYYn8InQ1PM8HHYUz0wBcCSlUf5Bmd?=
- =?us-ascii?Q?ptL6BKAR+m5lzVrCEYjn/3YxRguP1UM1/ONIydRl?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1192B10E09C;
+ Thu,  6 Apr 2023 07:14:29 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BB1831FF47;
+ Thu,  6 Apr 2023 07:14:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1680765267; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BGYCg/cGe58PXwHwgN/RxSagps5ek5W254aLHT5TirY=;
+ b=IZq+ZjroXoLZzkpsPhL+Zf/VJT3w6bPQv7kN8Ob5WDm4AxEzasfPBxBfL8lidiFZL2BTla
+ YP7InuJkb0WPJT2TBEkesmht+pIgqWMVoXDwU2z82/xZycgH4YZCAd4/0MNT7HeFzCnC7p
+ wCzFDTTAYtykapPGIymR6mkMhHx6oi0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1680765267;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BGYCg/cGe58PXwHwgN/RxSagps5ek5W254aLHT5TirY=;
+ b=0cqg3sPSb/0HPZI4gsr9Jl/Nf4ucTw1M6/FvIw79h+hhUaFv8UR03XxroDVGEoQi2o69Ix
+ Cv6cCjTInFnKmnBw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 95E791351F;
+ Thu,  6 Apr 2023 07:14:27 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id yfV/IlNxLmS6PAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 06 Apr 2023 07:14:27 +0000
+Message-ID: <66f9196e-df2b-19ce-e2ec-15f7a81d63c7@suse.de>
+Date: Thu, 6 Apr 2023 09:14:26 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1334f4fa-c21d-4803-a9b5-08db3668ed5a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2023 06:34:08.9139 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gBhwmIIQxLMI5HUOPcxgerP/36vflXhz8upK4meahocbxBWmXHm2uBfXaLCOZlyLOw1znL+E2Hjhm8Lbv2B2rw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7879
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------BH3rk9LG2lA3qJBPMIELS096"
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,169 +71,261 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alex,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------BH3rk9LG2lA3qJBPMIELS096
+Content-Type: multipart/mixed; boundary="------------90w9BPDQ22WQHum4ABhrlOTA";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Message-ID: <66f9196e-df2b-19ce-e2ec-15f7a81d63c7@suse.de>
+Subject: Re: [PATCH 1/8] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
+References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
 
-> From: Alex Williamson <alex.williamson@redhat.com>
-> Sent: Thursday, April 6, 2023 3:50 AM
->=20
-> On Wed, 5 Apr 2023 16:21:09 -0300
-> Jason Gunthorpe <jgg@nvidia.com> wrote:
->=20
-> > On Wed, Apr 05, 2023 at 12:56:21PM -0600, Alex Williamson wrote:
-> > > Usability needs to be a consideration as well.  An interface where th=
-e
-> > > result is effectively arbitrary from a user perspective because the
-> > > kernel is solely focused on whether the operation is allowed,
-> > > evaluating constraints that the user is unaware of and cannot control=
-,
-> > > is unusable.
-> >
-> > Considering this API is only invoked by qemu we might be overdoing
-> > this usability and 'no shoot in foot' view.
->=20
-> Ok, I'm not sure why we're diminishing the de facto vfio userspace...
->=20
-> > > > This is a good point that qemu needs to make a policy decision if i=
-t
-> > > > is happy about the VFIO configuration - but that is a policy decisi=
-on
-> > > > that should not become entangled with the kernel's security checks.
-> > > >
-> > > > Today qemu can make this policy choice the same way it does right n=
-ow
-> > > > - call _INFO and check the group_ids. It gets the exact same outcom=
-e
-> > > > as today. We already discussed that we need to expose the group ID
-> > > > through an ioctl someplace.
-> > >
-> > > QEMU can make a policy decision today because the kernel provides a
-> > > sufficiently reliable interface, ie. based on the set of owned groups=
-, a
-> > > hot-reset is all but guaranteed to work.
-> >
-> > And we don't change that with cdev. If qemu wants to make the policy
-> > decision it keeps using the exact same _INFO interface to make that
-> > decision same it has always made.
-> >
-> > We weaken the actual reset action to only consider the security side.
-> >
-> > Applications that want this exclusive reset group policy simply must
-> > check it on their own. It is a reasonable API design.
->=20
-> I disagree, as I've argued before, the info ioctl becomes so weak and
-> effectively arbitrary from a user perspective at being able to predict
-> whether the hot-reset ioctl works that it becomes useless, diminishing
-> the entire hot-reset info/execute API.
->=20
-> > > > If this is too awkward we could add a query to the kernel if the cd=
-ev
-> > > > is "reset exclusive" - eg the iommufd covers all the groups that sp=
-an
-> > > > the reset set.
-> > >
-> > > That's essentially what we have if there are valid dev-ids for each
-> > > affected device in the info ioctl.
-> >
-> > If you have dev-ids for everything, yes. If you don't, then you can't
-> > make the same policy choice using a dev-id interface.
->=20
-> Exactly, you can't make any policy choice because the success or
-> failure of the hot-reset ioctl can't be known.
+--------------90w9BPDQ22WQHum4ABhrlOTA
+Content-Type: multipart/mixed; boundary="------------m2XW94l20N1PYqz1PR2YY8vT"
 
-could you elaborate a bit about what the policy is here. As far as I know,
-QEMU makes use of the information reported by _INFO to check:
-- if all the affected groups are owned by the current QEMU[1]
-- if the affected devices are opened by the current QEMU, if yes, QEMU
-  needs to use vfio_pci_pre_reset() to do preparation before issuing
-  hot rest[1]
+--------------m2XW94l20N1PYqz1PR2YY8vT
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-[1] vfio_pci_hot_reset() in https://github.com/qemu/qemu/blob/master/hw/vfi=
-o/pci.c
+SGkNCg0KQXR0YWNoZWQgaXMgdGhlIHBhdGNoIHRvIHByb3ZpZGUgZ21hNTAwIHdpdGggYW4g
+aW50ZXJmYWNlIHRvIHJlbW92ZSB0aGUgDQpWR0EgZGV2aWNlcy4gSG9wZWZ1bGx5IHRoaXMs
+IG90aGVyd2lzZSwgSSdkIHJlc3BpbiB0aGUgd2hvbGUgc2VyaWVzLg0KDQpCZXN0IHJlZ2Fy
+ZHMNClRob21hcw0KDQpBbSAwNC4wNC4yMyB1bSAyMjoxOCBzY2hyaWViIERhbmllbCBWZXR0
+ZXI6DQo+IFRoaXMgb25lIG51a2VzIGFsbCBmcmFtZWJ1ZmZlcnMsIHdoaWNoIGlzIGEgYml0
+IG11Y2guIEluIHJlYWxpdHkNCj4gZ21hNTAwIGlzIGlncHUgYW5kIG5ldmVyIHNoaXBwZWQg
+d2l0aCBhbnl0aGluZyBkaXNjcmV0ZSwgc28gdGhlcmUgc2hvdWxkDQo+IG5vdCBiZSBhbnkg
+ZGlmZmVyZW5jZS4NCj4gDQo+IHYyOiBVbmZvcnR1bmF0ZWx5IHRoZSBmcmFtZWJ1ZmZlciBz
+aXRzIG91dHNpZGUgb2YgdGhlIHBjaSBiYXJzIGZvcg0KPiBnbWE1MDAsIGFuZCBzbyBvbmx5
+IHVzaW5nIHRoZSBwY2kgaGVscGVycyB3b24ndCBiZSBlbm91Z2guIE90b2ggaWYgd2UNCj4g
+b25seSB1c2Ugbm9uLXBjaSBoZWxwZXIsIHRoZW4gd2UgZG9uJ3QgZ2V0IHRoZSB2Z2EgaGFu
+ZGxpbmcsIGFuZA0KPiBzdWJzZXF1ZW50IHJlZmFjdG9yaW5nIHRvIHVudGFuZ2xlIHRoZXNl
+IHNwZWNpYWwgY2FzZXMgd29uJ3Qgd29yay4NCj4gDQo+IEl0J3Mgbm90IHByZXR0eSwgYnV0
+IHRoZSBzaW1wbGVzdCBmaXggKHNpbmNlIGdtYTUwMCByZWFsbHkgaXMgdGhlIG9ubHkNCj4g
+cXVpcmt5IHBjaSBkcml2ZXIgbGlrZSB0aGlzIHdlIGhhdmUpIGlzIHRvIGp1c3QgaGF2ZSBi
+b3RoIGNhbGxzLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVs
+LnZldHRlckBpbnRlbC5jb20+DQo+IENjOiBQYXRyaWsgSmFrb2Jzc29uIDxwYXRyaWsuci5q
+YWtvYnNzb25AZ21haWwuY29tPg0KPiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJt
+YW5uQHN1c2UuZGU+DQo+IENjOiBKYXZpZXIgTWFydGluZXogQ2FuaWxsYXMgPGphdmllcm1A
+cmVkaGF0LmNvbT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2
+LmMgfCA5ICsrKysrKystLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyks
+IDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2dt
+YTUwMC9wc2JfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYw0KPiBp
+bmRleCAyY2U5NmIxYjljNzQuLmYxZTBlZWQ4ZmVhNCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2dt
+YTUwMC9wc2JfZHJ2LmMNCj4gQEAgLTQyMiwxMiArNDIyLDE3IEBAIHN0YXRpYyBpbnQgcHNi
+X3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwgY29uc3Qgc3RydWN0IHBjaV9kZXZp
+Y2VfaWQgKmVudCkNCj4gICANCj4gICAJLyoNCj4gICAJICogV2UgY2Fubm90IHlldCBlYXNp
+bHkgZmluZCB0aGUgZnJhbWVidWZmZXIncyBsb2NhdGlvbiBpbiBtZW1vcnkuIFNvDQo+IC0J
+ICogcmVtb3ZlIGFsbCBmcmFtZWJ1ZmZlcnMgaGVyZS4NCj4gKwkgKiByZW1vdmUgYWxsIGZy
+YW1lYnVmZmVycyBoZXJlLiBOb3RlIHRoYXQgd2Ugc3RpbGwgd2FudCB0aGUgcGNpIHNwZWNp
+YWwNCj4gKwkgKiBoYW5kbGluZyB0byBraWNrIG91dCB2Z2Fjb24uDQo+ICAgCSAqDQo+ICAg
+CSAqIFRPRE86IFJlZmFjdG9yIHBzYl9kcml2ZXJfbG9hZCgpIHRvIG1hcCB2ZGNfcmVnIGVh
+cmxpZXIuIFRoZW4gd2UNCj4gICAJICogICAgICAgbWlnaHQgYmUgYWJsZSB0byByZWFkIHRo
+ZSBmcmFtZWJ1ZmZlciByYW5nZSBmcm9tIHRoZSBkZXZpY2UuDQo+ICAgCSAqLw0KPiAtCXJl
+dCA9IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKHRydWUsICZkcml2ZXIpOw0K
+PiArCXJldCA9IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKGZhbHNlLCAmZHJp
+dmVyKTsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiArDQo+ICsJcmV0ID0g
+ZHJtX2FwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19wY2lfZnJhbWVidWZmZXJzKHBkZXYs
+ICZkcml2ZXIpOw0KPiAgIAlpZiAocmV0KQ0KPiAgIAkJcmV0dXJuIHJldDsNCj4gICANCg0K
+LS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VT
+RSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQw
+OSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2No
+w6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+--------------m2XW94l20N1PYqz1PR2YY8vT
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-video-aperture-Provide-a-VGA-helper-for-gma500-and-i.patch"
+Content-Disposition: attachment;
+ filename*0="0001-video-aperture-Provide-a-VGA-helper-for-gma500-and-i.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
 
-> > > I don't think it helps the user experience to create loopholes where
-> > > the hot-reset ioctl can still work in spite of those missing
-> > > devices.
-> >
-> > I disagree. The easy straightforward design is that the reset ioctl
-> > works if the process has security permissions. Mixing a policy check
-> > into the kernel on this path is creating complexity we don't really
-> > need.
-> >
-> > I don't view it as a loophole, it is flexability to use the API in a
-> > way that is different from what qemu wants - eg an app like dpdk may
-> > be willing to tolerate a reset group that becomes unavailable after
-> > startup. Who knows, why should we force this in the kernel?
->=20
-> Because look at all the problems it's causing to try to introduce these
-> loopholes without also introducing subtle bugs.  There's an argument
-> that we're overly strict, which is better than the alternative, which
-> seems to be what we're dabbling with.  It is a straightforward
-> interface for the hot-reset ioctl to mirror the information provided
-> via the hot-reset info ioctl.
->=20
-> > > For example, we have a VFIO_DEVICE_GET_INFO ioctl that supports
-> > > capability chains, we could add a capability that reports the group I=
-D
-> > > for the device.
-> >
-> > I was going to put that in an iommufd ioctl so it works with VDPA too,
-> > but sure, lets assume we can get the group ID from a cdev fd.
-> >
-> > > The hot-reset info ioctl remains as it is today, reporting group-ids
-> > > and bdfs.
-> >
-> > Sure, but userspace still needs to know how to map the reset sets into
-> > dev-ids.
->=20
-> No, it doesn't.
->=20
-> > Remember the reason we started doing this is because we don't
-> > have easy access to the BDF anymore.
->=20
-> We don't need it, the info ioctl provides the groups, the group
-> association can be learned from the DEVICE_GET_INFO ioctl, the
-> hot-reset ioctl only requires a single representative fd per affected
-> group.  dev-ids not required.
->=20
-> > I like leaving this ioctl alone, lets go back to a dedicated ioctl to
-> > return the dev_ids.
->=20
-> I don't see any justification for this.  We could add another PCI
-> specific DEVICE_GET_INFO capability to report the bdf if we really need
-> it, but reporting the group seems sufficient for this use case.
+RnJvbSAxYTZjNjczMGY5MzU2NzQ0NGE2YmZlY2YxYjliYWUyMjU2M2E1YzlkIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
+c3VzZS5kZT4KRGF0ZTogV2VkLCA1IEFwciAyMDIzIDIxOjA0OjM0ICswMjAwClN1YmplY3Q6
+IHZpZGVvL2FwZXJ0dXJlOiBQcm92aWRlIGEgVkdBIGhlbHBlciBmb3IgZ21hNTAwIGFuZCBp
+bnRlcm5hbCB1c2UKClRoZSBoYXJkd2FyZSBmb3IgZ21hNTAwIGlzIGRpZmZlcmVudCBmcm9t
+IHRoZSByZXN0LCBhcyBpdCB1c2VzIHN0b2xlbgpmcmFtZWJ1ZmZlciBtZW1vcnkgdGhhdCBp
+cyBub3QgYXZhaWxhYmxlIHZpYSBQQ0kgQkFSLiBUaGUgcmVndWxhciBQQ0kKcmVtb3ZhbCBo
+ZWxwZXIgY2Fubm90IGRldGVjdCB0aGUgZnJhbWVidWZmZXIsIHdoaWxlIHRoZSBub24tUENJ
+IGhlbHBlcgptaXNzZXMgcG9zc2libGUgY29uZmxpY3RpbmcgVkdBIGRldmljZXMgKGkuZS4s
+IGEgZnJhbWVidWZmZXIgb3IgdGV4dApjb25zb2xlKS4KCkdtYTUwMCB0aGVyZWZvcmUgY2Fs
+bHMgYm90aCBoZWxwZXJzIHRvIGNhdGNoIGFsbCBjYXNlcy4gSXQncyBjb25mdXNpbmcKYXMg
+aXQgaW1wbGllcyB0aGF0IHRoZXJlJ3Mgc29tZXRoaW5nIGFib3V0IHRoZSBQQ0kgZGV2aWNl
+IHRoYXQgcmVxdWlyZXMKb3duZXJzaGlwIG1hbmFnZW1lbnQuIFRoZSByZWxhdGlvbnNoaXAg
+YmV0d2VlbiB0aGUgUENJIGRldmljZSBhbmQgdGhlClZHQSBkZXZpY2VzIGlzIG5vbi1vYnZp
+b3VzLiBBdCB3b3JzdCwgcmVhZGVycyBtaWdodCBhc3N1bWUgdGhhdCBjYWxsaW5nCnR3byBm
+dW5jdGlvbnMgZm9yIGFwZXJ0dXJlIGNsZWFyaW5nIG93bmVyc2hpcCBpcyBhIGJ1ZyBpbiB0
+aGUgZHJpdmVyLgoKSGVuY2UsIG1vdmUgdGhlIFBDSSByZW1vdmFsIGhlbHBlcidzIGNvZGUg
+Zm9yIFZHQSBmdW5jdGlvbmFsaXR5IGludG8KYSBzZXBhcmF0ZSBmdW5jdGlvbiBhbmQgY2Fs
+bCB0aGlzIGZ1bmN0aW9uIGZyb20gZ21hNTAwLiBEb2N1bWVudHMgdGhlCnB1cnBvc2Ugb2Yg
+ZWFjaCBjYWxsIHRvIGFwZXJ0dXJlIGhlbHBlcnMuIFRoZSBjaGFuZ2UgY29udGFpbnMgY29t
+bWVudHMKYW5kIGV4YW1wbGUgY29kZSBmb3JtIHRoZSBkaXNjdXNzaW9uIGF0IFsxXS4KClNp
+Z25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgpM
+aW5rOiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvZHJpLWRldmVsL3Bh
+dGNoLzIwMjMwNDA0MjAxODQyLjU2NzM0NC0xLWRhbmllbC52ZXR0ZXJAZmZ3bGwuY2gvICMg
+MQotLS0KIGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2Rydi5jIHwgNDggKysrKysrKysr
+KysrKysrKysrLS0tLS0tLS0KIGRyaXZlcnMvdmlkZW8vYXBlcnR1cmUuYyAgICAgICAgIHwg
+NTggKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0KIGluY2x1ZGUvbGludXgvYXBl
+cnR1cmUuaCAgICAgICAgIHwgIDcgKysrKwogMyBmaWxlcyBjaGFuZ2VkLCA4MSBpbnNlcnRp
+b25zKCspLCAzMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+Z21hNTAwL3BzYl9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2Rydi5jCmlu
+ZGV4IDRiYjA2YTg5ZTQ4ZC4uNTFmZDM0YmI4NGYzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vZ21hNTAwL3BzYl9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3Bz
+Yl9kcnYuYwpAQCAtNyw2ICs3LDcgQEAKICAqCiAgKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiovCiAK
+KyNpbmNsdWRlIDxsaW51eC9hcGVydHVyZS5oPgogI2luY2x1ZGUgPGxpbnV4L2NwdS5oPgog
+I2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPgogI2luY2x1ZGUgPGxpbnV4L25vdGlmaWVyLmg+
+CkBAIC0xOSw3ICsyMCw2IEBACiAjaW5jbHVkZSA8YWNwaS92aWRlby5oPgogCiAjaW5jbHVk
+ZSA8ZHJtL2RybS5oPgotI2luY2x1ZGUgPGRybS9kcm1fYXBlcnR1cmUuaD4KICNpbmNsdWRl
+IDxkcm0vZHJtX2Rydi5oPgogI2luY2x1ZGUgPGRybS9kcm1fZmlsZS5oPgogI2luY2x1ZGUg
+PGRybS9kcm1faW9jdGwuaD4KQEAgLTQxNCwyNSArNDE0LDQ1IEBAIHN0YXRpYyBpbnQgcHNi
+X2RyaXZlcl9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGxvbmcgZmxh
+Z3MpCiAJcmV0dXJuIHJldDsKIH0KIAotc3RhdGljIGludCBwc2JfcGNpX3Byb2JlKHN0cnVj
+dCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQorLyoK
+KyAqIEhhcmR3YXJlIGZvciBnbWE1MDAgaXMgYSBoeWJyaWQgZGV2aWNlLCB3aGljaCBib3Ro
+IGFjdHMgYXMgYSBQQ0kKKyAqIGRldmljZSAoZm9yIGxlZ2FjeSB2Z2EgZnVuY3Rpb25hbGl0
+eSkgYnV0IGFsc28gbW9yZSBsaWtlIGFuCisgKiBpbnRlZ3JhdGVkIGRpc3BsYXkgb24gYSBT
+b0Mgd2hlcmUgdGhlIGZyYW1lYnVmZmVyIHNpbXBseQorICogcmVzaWRlcyBpbiBtYWluIG1l
+bW9yeSBhbmQgbm90IGluIGEgc3BlY2lhbCBQQ0kgYmFyICh0aGF0CisgKiBpbnRlcm5hbGx5
+IHJlZGlyZWN0cyB0byBhIHN0b2xlbiByYW5nZSBvZiBtYWluIG1lbW9yeSkgbGlrZSBhbGwK
+KyAqIG90aGVyIGludGVncmF0ZWQgUENJIGRpc3BsYXkgZGV2aWNlcyBoYXZlLgorICoKKyAq
+IFRvIGNhdGNoIGFsbCBjYXNlcyB3ZSBuZWVkIHRvIHJlbW92ZSBjb25mbGljdGluZyBmaXJt
+d2FyZSBkZXZpY2VzCisgKiBmb3IgdGhlIHN0b2xlbiBzeXN0ZW0gbWVtb3J5IGFuZCBmb3Ig
+dGhlIFZHQSBmdW5jdGlvbmFsaXR5LiBBcyB3ZQorICogY3VycmVudGx5IGNhbm5vdCBlYXNp
+bHkgZmluZCB0aGUgZnJhbWVidWZmZXIncyBsb2NhdGlvbiBpbiBzdG9sZW4KKyAqIG1lbW9y
+eSwgd2UgcmVtb3ZlIGFsbCBmcmFtZWJ1ZmZlcnMgaGVyZS4KKyAqCisgKiBUT0RPOiBSZWZh
+Y3RvciBwc2JfZHJpdmVyX2xvYWQoKSB0byBtYXAgdmRjX3JlZyBlYXJsaWVyLiBUaGVuCisg
+KiAgICAgICB3ZSBtaWdodCBiZSBhYmxlIHRvIHJlYWQgdGhlIGZyYW1lYnVmZmVyIHJhbmdl
+IGZyb20gdGhlCisgKiAgICAgICBkZXZpY2UuCisgKi8KK3N0YXRpYyBpbnQgZ21hX3JlbW92
+ZV9jb25mbGljdGluZ19mcmFtZWJ1ZmZlcnMoc3RydWN0IHBjaV9kZXYgKnBkZXYsCisJCQkJ
+CSAgICAgICBjb25zdCBzdHJ1Y3QgZHJtX2RyaXZlciAqcmVxX2RyaXZlcikKIHsKLQlzdHJ1
+Y3QgZHJtX3BzYl9wcml2YXRlICpkZXZfcHJpdjsKLQlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+OworCXJlc291cmNlX3NpemVfdCBiYXNlID0gMDsKKwlyZXNvdXJjZV9zaXplX3Qgc2l6ZSA9
+IFBIWVNfQUREUl9NQVg7CisJY29uc3QgY2hhciAqbmFtZSA9IHJlcV9kcml2ZXItPm5hbWU7
+CiAJaW50IHJldDsKIAotCS8qCi0JICogV2UgY2Fubm90IHlldCBlYXNpbHkgZmluZCB0aGUg
+ZnJhbWVidWZmZXIncyBsb2NhdGlvbiBpbiBtZW1vcnkuIFNvCi0JICogcmVtb3ZlIGFsbCBm
+cmFtZWJ1ZmZlcnMgaGVyZS4gTm90ZSB0aGF0IHdlIHN0aWxsIHdhbnQgdGhlIHBjaSBzcGVj
+aWFsCi0JICogaGFuZGxpbmcgdG8ga2ljayBvdXQgdmdhY29uLgotCSAqCi0JICogVE9ETzog
+UmVmYWN0b3IgcHNiX2RyaXZlcl9sb2FkKCkgdG8gbWFwIHZkY19yZWcgZWFybGllci4gVGhl
+biB3ZQotCSAqICAgICAgIG1pZ2h0IGJlIGFibGUgdG8gcmVhZCB0aGUgZnJhbWVidWZmZXIg
+cmFuZ2UgZnJvbSB0aGUgZGV2aWNlLgotCSAqLwotCXJldCA9IGRybV9hcGVydHVyZV9yZW1v
+dmVfZnJhbWVidWZmZXJzKCZkcml2ZXIpOworCXJldCA9IGFwZXJ0dXJlX3JlbW92ZV9jb25m
+bGljdGluZ19kZXZpY2VzKGJhc2UsIHNpemUsIG5hbWUpOwogCWlmIChyZXQpCiAJCXJldHVy
+biByZXQ7CiAKLQlyZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX3BjaV9m
+cmFtZWJ1ZmZlcnMocGRldiwgJmRyaXZlcik7CisJcmV0dXJuIF9fYXBlcnR1cmVfcmVtb3Zl
+X2xlZ2FjeV92Z2FfZGV2aWNlcyhwZGV2KTsKK30KKworc3RhdGljIGludCBwc2JfcGNpX3By
+b2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAq
+ZW50KQoreworCXN0cnVjdCBkcm1fcHNiX3ByaXZhdGUgKmRldl9wcml2OworCXN0cnVjdCBk
+cm1fZGV2aWNlICpkZXY7CisJaW50IHJldDsKKworCXJldCA9IGdtYV9yZW1vdmVfY29uZmxp
+Y3RpbmdfZnJhbWVidWZmZXJzKHBkZXYsICZkcml2ZXIpOwogCWlmIChyZXQpCiAJCXJldHVy
+biByZXQ7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvdmlkZW8vYXBlcnR1cmUuYyBiL2RyaXZl
+cnMvdmlkZW8vYXBlcnR1cmUuYwppbmRleCBlOTlmOTRiMzFlZTQuLmNhMWQxM2E5OWYzZiAx
+MDA2NDQKLS0tIGEvZHJpdmVycy92aWRlby9hcGVydHVyZS5jCisrKyBiL2RyaXZlcnMvdmlk
+ZW8vYXBlcnR1cmUuYwpAQCAtMzAxLDYgKzMwMSwzNyBAQCBpbnQgYXBlcnR1cmVfcmVtb3Zl
+X2NvbmZsaWN0aW5nX2RldmljZXMocmVzb3VyY2Vfc2l6ZV90IGJhc2UsIHJlc291cmNlX3Np
+emVfdCBzaQogfQogRVhQT1JUX1NZTUJPTChhcGVydHVyZV9yZW1vdmVfY29uZmxpY3Rpbmdf
+ZGV2aWNlcyk7CiAKKy8qKgorICogX19hcGVydHVyZV9yZW1vdmVfbGVnYWN5X3ZnYV9kZXZp
+Y2VzIC0gcmVtb3ZlIGxlZ2FjeSBWR0EgZGV2aWNlcyBvZiBhIFBDSSBkZXZpY2VzCisgKiBA
+cGRldjogUENJIGRldmljZQorICoKKyAqIFRoaXMgZnVuY3Rpb24gcmVtb3ZlcyBWR0EgZGV2
+aWNlcyBwcm92aWRlZCBieSBAcGRldiwgc3VjaCBhcyBhIFZHQQorICogZnJhbWVidWZmZXIg
+b3IgYSBjb25zb2xlLiBUaGlzIGlzIHVzZWZ1bCBpZiB5b3UgaGF2ZSBhIFZHQS1jb21wYXRp
+YmxlCisgKiBQQ0kgZ3JhcGhpY3MgZGV2aWNlIHdpdGggZnJhbWVidWZmZXJzIGluIG5vbi1C
+QVIgbG9jYXRpb25zLiBEcml2ZXJzCisgKiBzaG91bGQgYWNxdWlyZSBvd25lcnNoaXAgb2Yg
+dGhvc2UgbWVtb3J5IGFyZWFzIGFuZCBhZnRlcndhcmRzIGNhbGwKKyAqIHRoaXMgaGVscGVy
+IHRvIHJlbGVhc2UgcmVtYWluaW5nIFZHQSBkZXZpY2VzLgorICoKKyAqIElmIHlvdXIgaGFy
+ZHdhcmUgaGFzIGl0cyBmcmFtZWJ1ZmZlcnMgYWNjZXNzaWJsZSB2aWEgUENJIEJBUlMsIHVz
+ZQorICogYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX3BjaV9kZXZpY2VzKCkgaW5zdGVh
+ZC4gVGhlIGZ1bmN0aW9uIHdpbGwKKyAqIHJlbGVhc2UgYW55IFZHQSBkZXZpY2VzIGF1dG9t
+YXRpY2FsbHkuCisgKgorICogV0FSTklORzogQXBwYXJlbnRseSB3ZSBtdXN0IHJlbW92ZSBn
+cmFwaGljcyBkcml2ZXJzIGJlZm9yZSBjYWxsaW5nCisgKiAgICAgICAgICB0aGlzIGhlbHBl
+ci4gT3RoZXJ3aXNlIHRoZSB2Z2EgZmJkZXYgZHJpdmVyIGZhbGxzIG92ZXIgaWYKKyAqICAg
+ICAgICAgIHdlIGhhdmUgdmdhY29uIGNvbmZpZ3VyZWQuCisgKgorICogUmV0dXJuczoKKyAq
+IDAgb24gc3VjY2Vzcywgb3IgYSBuZWdhdGl2ZSBlcnJubyBjb2RlIG90aGVyd2lzZQorICov
+CitpbnQgX19hcGVydHVyZV9yZW1vdmVfbGVnYWN5X3ZnYV9kZXZpY2VzKHN0cnVjdCBwY2lf
+ZGV2ICpwZGV2KQoreworCS8qIFZHQSBmcmFtZWJ1ZmZlciAqLworCWFwZXJ0dXJlX2RldGFj
+aF9kZXZpY2VzKFZHQV9GQl9QSFlTX0JBU0UsIFZHQV9GQl9QSFlTX1NJWkUpOworCisJLyog
+VkdBIHRleHRtb2RlIGNvbnNvbGUgKi8KKwlyZXR1cm4gdmdhX3JlbW92ZV92Z2Fjb24ocGRl
+dik7Cit9CitFWFBPUlRfU1lNQk9MKF9fYXBlcnR1cmVfcmVtb3ZlX2xlZ2FjeV92Z2FfZGV2
+aWNlcyk7CisKIC8qKgogICogYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX3BjaV9kZXZp
+Y2VzIC0gcmVtb3ZlIGV4aXN0aW5nIGZyYW1lYnVmZmVycyBmb3IgUENJIGRldmljZXMKICAq
+IEBwZGV2OiBQQ0kgZGV2aWNlCkBAIC0zMTcsNyArMzQ4LDcgQEAgaW50IGFwZXJ0dXJlX3Jl
+bW92ZV9jb25mbGljdGluZ19wY2lfZGV2aWNlcyhzdHJ1Y3QgcGNpX2RldiAqcGRldiwgY29u
+c3QgY2hhciAqbmEKIHsKIAlib29sIHByaW1hcnk7CiAJcmVzb3VyY2Vfc2l6ZV90IGJhc2Us
+IHNpemU7Ci0JaW50IGJhciwgcmV0OworCWludCBiYXIsIHJldCA9IDA7CiAKIAlwcmltYXJ5
+ID0gcGRldiA9PSB2Z2FfZGVmYXVsdF9kZXZpY2UoKTsKIApAQCAtMzMzLDI0ICszNjQsMTUg
+QEAgaW50IGFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19wY2lfZGV2aWNlcyhzdHJ1Y3Qg
+cGNpX2RldiAqcGRldiwgY29uc3QgY2hhciAqbmEKIAkJYXBlcnR1cmVfZGV0YWNoX2Rldmlj
+ZXMoYmFzZSwgc2l6ZSk7CiAJfQogCi0JaWYgKHByaW1hcnkpIHsKLQkJLyoKLQkJICogSWYg
+dGhpcyBpcyB0aGUgcHJpbWFyeSBhZGFwdGVyLCB0aGVyZSBjb3VsZCBiZSBhIFZHQSBkZXZp
+Y2UKLQkJICogdGhhdCBjb25zdW1lcyB0aGUgVkdBIGZyYW1lYnVmZmVyIEkvTyByYW5nZS4g
+UmVtb3ZlIHRoaXMKLQkJICogZGV2aWNlIGFzIHdlbGwuCi0JCSAqLwotCQlhcGVydHVyZV9k
+ZXRhY2hfZGV2aWNlcyhWR0FfRkJfUEhZU19CQVNFLCBWR0FfRkJfUEhZU19TSVpFKTsKLQot
+CQkvKgotCQkgKiBXQVJOSU5HOiBBcHBhcmVudGx5IHdlIG11c3Qga2ljayBmYmRldiBkcml2
+ZXJzIGJlZm9yZSB2Z2Fjb24sCi0JCSAqIG90aGVyd2lzZSB0aGUgdmdhIGZiZGV2IGRyaXZl
+ciBmYWxscyBvdmVyLgotCQkgKi8KLQkJcmV0ID0gdmdhX3JlbW92ZV92Z2Fjb24ocGRldik7
+Ci0JCWlmIChyZXQpCi0JCQlyZXR1cm4gcmV0OwotCX0KKwkvKgorCSAqIElmIHRoaXMgaXMg
+dGhlIHByaW1hcnkgYWRhcHRlciwgdGhlcmUgY291bGQgYmUgYSBWR0EgZGV2aWNlCisJICog
+dGhhdCBjb25zdW1lcyB0aGUgVkdBIGZyYW1lYnVmZmVyIEkvTyByYW5nZS4gUmVtb3ZlIHRo
+aXMKKwkgKiBkZXZpY2UgYXMgd2VsbC4KKwkgKi8KKwlpZiAocHJpbWFyeSkKKwkJcmV0ID0g
+X19hcGVydHVyZV9yZW1vdmVfbGVnYWN5X3ZnYV9kZXZpY2VzKHBkZXYpOwogCi0JcmV0dXJu
+IDA7CisJcmV0dXJuIHJldDsKIAogfQogRVhQT1JUX1NZTUJPTChhcGVydHVyZV9yZW1vdmVf
+Y29uZmxpY3RpbmdfcGNpX2RldmljZXMpOwpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9h
+cGVydHVyZS5oIGIvaW5jbHVkZS9saW51eC9hcGVydHVyZS5oCmluZGV4IDcyNDg3Mjc3NTNi
+ZS4uMWE5YTg4YjExNTg0IDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4L2FwZXJ0dXJlLmgK
+KysrIGIvaW5jbHVkZS9saW51eC9hcGVydHVyZS5oCkBAIC0xNiw2ICsxNiw4IEBAIGludCBk
+ZXZtX2FwZXJ0dXJlX2FjcXVpcmVfZm9yX3BsYXRmb3JtX2RldmljZShzdHJ1Y3QgcGxhdGZv
+cm1fZGV2aWNlICpwZGV2LAogaW50IGFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19kZXZp
+Y2VzKHJlc291cmNlX3NpemVfdCBiYXNlLCByZXNvdXJjZV9zaXplX3Qgc2l6ZSwKIAkJCQkJ
+Y29uc3QgY2hhciAqbmFtZSk7CiAKK2ludCBfX2FwZXJ0dXJlX3JlbW92ZV9sZWdhY3lfdmdh
+X2RldmljZXMoc3RydWN0IHBjaV9kZXYgKnBkZXYpOworCiBpbnQgYXBlcnR1cmVfcmVtb3Zl
+X2NvbmZsaWN0aW5nX3BjaV9kZXZpY2VzKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBj
+aGFyICpuYW1lKTsKICNlbHNlCiBzdGF0aWMgaW5saW5lIGludCBkZXZtX2FwZXJ0dXJlX2Fj
+cXVpcmVfZm9yX3BsYXRmb3JtX2RldmljZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2
+LApAQCAtMzEsNiArMzMsMTEgQEAgc3RhdGljIGlubGluZSBpbnQgYXBlcnR1cmVfcmVtb3Zl
+X2NvbmZsaWN0aW5nX2RldmljZXMocmVzb3VyY2Vfc2l6ZV90IGJhc2UsIHJlc28KIAlyZXR1
+cm4gMDsKIH0KIAorc3RhdGljIGlubGluZSBpbnQgX19hcGVydHVyZV9yZW1vdmVfbGVnYWN5
+X3ZnYV9kZXZpY2VzKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQoreworCXJldHVybiAwOworfQor
+CiBzdGF0aWMgaW5saW5lIGludCBhcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfcGNpX2Rl
+dmljZXMoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0IGNoYXIgKm5hbWUpCiB7CiAJcmV0
+dXJuIDA7Ci0tIAoyLjQwLjAKCg==
 
-IMHO, the knowledge of group may be not enough. Take QEMU as an example.
-QEMU not only needs to ensure the group is owned by it, it also needs to
-do preparation on the devices that are already in use and affected by
-the hot reset on a new opened device. If there is only group knowledge,
-QEMU may blindly prepares all the devices that are already opened and
-belong to the same iommu group. But as I got in the discussion iommu
-group is not equal to hot reset scope (a.k.a. dev_set). is it? It is
-possible that devices in an iommu_group may span into multiple hot
-reset scope. For such case, get bdf info from cdev fd is necessary.
+--------------m2XW94l20N1PYqz1PR2YY8vT--
 
-Regards,
-Yi Liu
+--------------90w9BPDQ22WQHum4ABhrlOTA--
 
+--------------BH3rk9LG2lA3qJBPMIELS096
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmQucVIFAwAAAAAACgkQlh/E3EQov+CT
+eA/8DFNAVzXZk6TkcG4wR95ydkWngX1EAdBdc8l4PTQjkUkBekpSG6ZO6c8DANIP1AshV/5yE5j7
+TDIP5NgEk5ABZMY+vSTz2J2IAGw/EpT/+8aZDfCo2puI1r+usc1eMQRNQOCHthPeJKW5ASVBxD8R
+9w70ElyK29GoR+50GX7JnFLptIAg1qNVRSn63ksXjNJ5JNKwyX54GJvLg+TNc44wwbTPJNrcB45h
+9/NNRHgHulkxjrUnhl6oMbRHd7EaCPWVne3pTBznFfBMW81ltr01HFUGC+1SDLa1QOmTKsVwXuzO
+q1WAmsX1E523cCcQuWcl3p+Fqw9pr6Iw9Zuu6PTh7Lk5nOjYBrbplFgCRBzNZNfJDenUUheQqVYH
+gxFM3RzHEyqU5dysu7x1CCw+x9xXsUii+6r/8GYA9+Cv8BSpcxj3WxWVNCx3bMttIdm+riIgeid5
+nr4hGRXw8UdSOqgJmPO1kZ7l9C20KdE+U3rvp9ehblMo2UOE5Txam8JQam20vqAIxDUCXFsXaHZl
+w+cx993nBaWNLV94rswcEBRrvY6VyNDKl97ivM7ysV/hXNdbHYJJZIj+1q6x2z705CnK+xofHqkh
+8isl5+IBbJ+MApBLOND0FUwiS7eu5AeIj+tM9a3b+6tKzeOwRAUhImjrfnU/FgRmgXsNxUNVZ/0j
+/wI=
+=Gh1O
+-----END PGP SIGNATURE-----
+
+--------------BH3rk9LG2lA3qJBPMIELS096--
