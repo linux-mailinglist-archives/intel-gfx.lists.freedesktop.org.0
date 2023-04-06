@@ -2,62 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FC66D9717
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B496D9729
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5863C10E31E;
-	Thu,  6 Apr 2023 12:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D00810E2F5;
+	Thu,  6 Apr 2023 12:43:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
- [IPv6:2a00:1450:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2537A10E20C
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:38:06 +0000 (UTC)
-Received: by mail-ej1-x632.google.com with SMTP id
- a640c23a62f3a-93abb185e13so16418866b.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 05:38:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680784683; x=1683376683;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0o0i6oK4LGQoPEyZShn5tfjjc1h/PsxrgfVbb1dsNKw=;
- b=hyCoXYLRqkTZX/dd7Bbvk0RC/qS+WxkvBfuNLFdG1eReMbqTi1FG38AijQ0L3upYdi
- HESli4E95ry/H0gfazC8CQ0BENN6e6kk4EAzSoylDfh/5bPn/R3Io92pdVZDDQWA7Gyf
- b/6tdUYU5aAy3+Gle27C28Srdq0LSfqFF7eeg=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 723FA10E2F5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:43:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680785009;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=zVBvata7Mm/MkYzuOlGNnL4nXILAvoWW7w+2UKjzgAI=;
+ b=W33ovEv/nySsGDF5oqRarzNFYALIo9dw1hl1nuxIek/MdWBnbnWeclZkpLPxUzIyMudk3d
+ yfvkzqabrNtXB43fWHI04iVLKXXXMSIitz6GpfnXeTASV3SoAYcIVw1K2kcKI3i4JbmZNe
+ ZVFZs+/y3+jx4/R8MAMg3+emIt2rGBg=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-372-ea4D8y1ANWiFoLrEeDc1BA-1; Thu, 06 Apr 2023 08:43:28 -0400
+X-MC-Unique: ea4D8y1ANWiFoLrEeDc1BA-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ d187-20020a3768c4000000b00746864b272cso17674786qkc.15
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 05:43:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680784683; x=1683376683;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0o0i6oK4LGQoPEyZShn5tfjjc1h/PsxrgfVbb1dsNKw=;
- b=ejWmLaQ3DNco0XQbVmoJzMYyasYWESh7hLV93xQ29Y5ZlipV7lwMP39V5NGI2PZ48d
- nkib9XIgZNpLmz6Dx59KbCaZIVH730ULPJFf14W/9FlEk5vYvJBBzOF09+hPvcF4QhgH
- UIcNM7PTtO2j/rZ/2P175XKDGWWE8raoYEZYoyG2uIbjUwiAE0j/0mGby2uY5HjhGiSE
- 1US/rp0GNuSDlMwmCVO+mv2pM8IJgF5BKZ3Avpt6yBi0W1YE+W68fEAEt1qFLxWsXlnT
- qXQbsbIHTMcbwhXB6zotiwy5yaHjHr/4zPOlVY2GEU4xfsQycAwzGEQFwL4+wXayhBUv
- HzTQ==
-X-Gm-Message-State: AAQBX9dTnhOnwXF1QgLfv4FrI8XZ0c0899NMHH/49nAf1rfxl2I7dOIq
- hVskcgxghamb+aTBxgEK6NlhXjI6rBBNGO9K1WE=
-X-Google-Smtp-Source: AKy350b/cW6p8AlGvOUCrbRgmAosybVI8S1PRl0dmboaB2oGZm7S6khcbPFWKIVYvwKtvkeQVJXQBw==
-X-Received: by 2002:a17:906:2218:b0:8f5:14ab:94bc with SMTP id
- s24-20020a170906221800b008f514ab94bcmr4398493ejs.6.1680784683143; 
- Thu, 06 Apr 2023 05:38:03 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- mb14-20020a170906eb0e00b00947a749fc3esm771645ejb.33.2023.04.06.05.38.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 05:38:02 -0700 (PDT)
-Date: Thu, 6 Apr 2023 14:38:00 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <ZC69KBn9wEjHAhnF@phenom.ffwll.local>
-References: <ZC6APj/feB+jBf2d@jlahtine-mobl.ger.corp.intel.com>
+ d=1e100.net; s=20210112; t=1680785008;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=zVBvata7Mm/MkYzuOlGNnL4nXILAvoWW7w+2UKjzgAI=;
+ b=xsTHAuTpolKHPXUKHgXYq8+sj2haSSUHX/cZE0PyKo2z8HBAhTCuemxWGyudRjLo1v
+ 3H0pCxErWQZVQgcD+BIGNFpuSsM8NwJ1RVxRzIyJw0DEOSkmoTn5Z+TW0RDcMZEARW4r
+ 7OrVvXRI7miYe2ZAflWlL/UHQuCpgfLAcDWu9tu936cRbKPDHiTuRKD/5WXFZMdoOLHT
+ fftgG5CJbiYhcpciNOOTujNcwCllW5FRLlaZRN6EzqJ3jzS8TTAcTIdtKez5gphxDda2
+ h5ttUbd+wzBYq3b9UfKSNPgW6DLgaFRFnQlBdbWGmVf4KxlfxsOhIh+e61LDliJI5Cxe
+ jYkA==
+X-Gm-Message-State: AAQBX9fNPROL17QCvdmlr5+gvtSKrR7bcbPtjlpThIITfRuB56XcZ2UC
+ Al9HD0XuFQEpJkz0E0Mh/dwFrcgoC6ZkYuxpu98sDzM6e40yxWsBl1PgTbfaib6Op4v6bHZggi7
+ +T+1TTLWn3/6ANa8MRj2bWwJ7eM//
+X-Received: by 2002:ad4:5bc8:0:b0:5e0:47aa:40a6 with SMTP id
+ t8-20020ad45bc8000000b005e047aa40a6mr4199262qvt.16.1680785007484; 
+ Thu, 06 Apr 2023 05:43:27 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZZZBqkuCClmoQgew7Ga8w32aTpkf+0gTr7Gw2GardEq9kUBzOQNp2reLEna5OkSDHXP104GA==
+X-Received: by 2002:ad4:5bc8:0:b0:5e0:47aa:40a6 with SMTP id
+ t8-20020ad45bc8000000b005e047aa40a6mr4199207qvt.16.1680785007046; 
+ Thu, 06 Apr 2023 05:43:27 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ j5-20020a056214022500b005dd8b93459esm488119qvt.54.2023.04.06.05.43.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 Apr 2023 05:43:25 -0700 (PDT)
+Message-ID: <1520dad3-6858-28c4-08d0-503905a9933e@redhat.com>
+Date: Thu, 6 Apr 2023 14:43:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZC6APj/feB+jBf2d@jlahtine-mobl.ger.corp.intel.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-gt-next
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com
+References: <20230401151833.124749-1-yi.l.liu@intel.com>
+ <20230401151833.124749-8-yi.l.liu@intel.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <20230401151833.124749-8-yi.l.liu@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v9 07/25] vfio: Pass struct vfio_device_file
+ * to vfio_device_open/close()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,289 +91,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
+Reply-To: eric.auger@redhat.com
+Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
+ mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
+ cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
+ yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 11:18:06AM +0300, Joonas Lahtinen wrote:
-> Hi Dave & Daniel,
-> 
-> Here goes the final drm-intel-gt-next pull request for v6.4.
-> 
-> As top items we have a fix for context runtime accounting, Meteorlake
-> enabling, DMAR error noise elimination due to GPU error capture, BAR
-> resizing forcewake fix and memory contents clearing fix for discrete.
-> More robust GuC loading on systems with IFWI that leaves GPU to slow
-> frequency and a potential UAF closed on perf add_config IOCTL.
-> 
-> There is also change to the uAPI headers to eliminate flexible-array
-> member kernel-wide request, which does not impact binaries and also
-> should not impact compilation.
-> 
-> Then the usual amount of smaller fixes and cleanups. A good amount of
-> kerneldoc fixes included.
-> 
-> Best Regards, Joonas
-> 
-> ***
-> 
-> drm-intel-gt-next-2023-04-06:
-> 
-> UAPI Changes:
-> 
-> - (Build-time only, should not have any impact)
->   drm/i915/uapi: Replace fake flex-array with flexible-array member
-> 
->   "Zero-length arrays as fake flexible arrays are deprecated and we are
->   moving towards adopting C99 flexible-array members instead."
-> 
->   This is on core kernel request moving towards GCC 13.
-> 
-> Driver Changes:
-> 
-> - Fix context runtime accounting on sysfs fdinfo for heavy workloads (Tvrtko)
-> - Add support for OA media units on MTL (Umesh)
-> - Add new workarounds for Meteorlake (Daniele, Radhakrishna, Haridhar)
-> - Fix sysfs to read actual frequency for MTL and Gen6 and earlier
->   (Ashutosh)
-> - Synchronize i915/BIOS on C6 enabling on MTL (Vinay)
-> - Fix DMAR error noise due to GPU error capture (Andrej)
-> - Fix forcewake during BAR resize on discrete (Andrzej)
-> - Flush lmem contents after construction on discrete (Chris)
-> - Fix GuC loading timeout on systems where IFWI programs low boot
->   frequency (John)
-> - Fix race condition UAF in i915_perf_add_config_ioctl (Min)
-> 
-> - Sanitycheck MMIO access early in driver load and during forcewake
->   (Matt)
-> - Wakeref fixes for GuC RC error scenario and active VM tracking (Chris)
-> - Cancel HuC delayed load timer on reset (Daniele)
-> - Limit double GT reset to pre-MTL (Daniele)
-> - Use i915 instead of dev_priv insied the file_priv structure (Andi)
-> - Improve GuC load error reporting (John)
-> - Simplify VCS/BSD engine selection logic (Tvrtko)
-> - Perform uc late init after probe error injection (Andrzej)
-> - Fix format for perf_limit_reasons in debugfs (Vinay)
-> - Create per-gt debugfs files (Andi)
-> 
-> - Documentation and kerneldoc fixes (Nirmoy, Lee)
-> - Selftest improvements (Fei, Jonathan)
-> 
-> The following changes since commit d2a9692ad4295e227e3352fdbf14b8491b01e1c9:
-> 
->   drm/i915/gt: make kobj attributes const (2023-03-15 12:20:11 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-04-06
-> 
-> for you to fetch changes up to 4b51210f98c2b89ce37aede5b8dc5105be0572c6:
-> 
->   drm/i915/mtl: Add Wa_14017856879 (2023-04-05 07:59:12 -0700)
+Hi Yi,
 
-Pulled, thanks
+On 4/1/23 17:18, Yi Liu wrote:
+> This avoids passing too much parameters in multiple functions.
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Terrence Xu <terrence.xu@intel.com>
+> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
+> Tested-by: Matthew Rosato <mjrosato@linux.ibm.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/group.c     | 20 ++++++++++++++------
+>  drivers/vfio/vfio.h      |  8 ++++----
+>  drivers/vfio/vfio_main.c | 25 +++++++++++++++----------
+>  3 files changed, 33 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
+> index 4f937ebaf6f7..9a7b2765eef6 100644
+> --- a/drivers/vfio/group.c
+> +++ b/drivers/vfio/group.c
+> @@ -169,8 +169,9 @@ static void vfio_device_group_get_kvm_safe(struct vfio_device *device)
+>  	spin_unlock(&device->group->kvm_ref_lock);
+>  }
+>  
+> -static int vfio_device_group_open(struct vfio_device *device)
+> +static int vfio_device_group_open(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+>  	int ret;
+>  
+>  	mutex_lock(&device->group->group_lock);
+> @@ -190,7 +191,11 @@ static int vfio_device_group_open(struct vfio_device *device)
+>  	if (device->open_count == 0)
+>  		vfio_device_group_get_kvm_safe(device);
+>  
+> -	ret = vfio_device_open(device, device->group->iommufd);
+> +	df->iommufd = device->group->iommufd;
+> +
+> +	ret = vfio_device_open(df);
+> +	if (ret)
+> +		df->iommufd = NULL;
+>  
+>  	if (device->open_count == 0)
+>  		vfio_device_put_kvm(device);
+> @@ -202,12 +207,15 @@ static int vfio_device_group_open(struct vfio_device *device)
+>  	return ret;
+>  }
+>  
+> -void vfio_device_group_close(struct vfio_device *device)
+> +void vfio_device_group_close(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+> +
+>  	mutex_lock(&device->group->group_lock);
+>  	mutex_lock(&device->dev_set->lock);
+>  
+> -	vfio_device_close(device, device->group->iommufd);
+> +	vfio_device_close(df);
+> +	df->iommufd = NULL; 
+>  	if (device->open_count == 0)
+>  		vfio_device_put_kvm(device);
+> @@ -228,7 +236,7 @@ static struct file *vfio_device_open_file(struct vfio_device *device)
+>  		goto err_out;
+>  	}
+>  
+> -	ret = vfio_device_group_open(device);
+> +	ret = vfio_device_group_open(df);
+>  	if (ret)
+>  		goto err_free;
+>  
+> @@ -260,7 +268,7 @@ static struct file *vfio_device_open_file(struct vfio_device *device)
+>  	return filep;
+>  
+>  err_close_device:
+> -	vfio_device_group_close(device);
+> +	vfio_device_group_close(df);
+>  err_free:
+>  	kfree(df);
+>  err_out:
+> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
+> index e4672d91a6f7..cffc08f5a6f1 100644
+> --- a/drivers/vfio/vfio.h
+> +++ b/drivers/vfio/vfio.h
+> @@ -20,13 +20,13 @@ struct vfio_device_file {
+>  	struct vfio_device *device;
+>  	spinlock_t kvm_ref_lock; /* protect kvm field */
+>  	struct kvm *kvm;
+> +	struct iommufd_ctx *iommufd; /* protected by struct vfio_device_set::lock */
+>  };
+>  
+>  void vfio_device_put_registration(struct vfio_device *device);
+>  bool vfio_device_try_get_registration(struct vfio_device *device);
+> -int vfio_device_open(struct vfio_device *device, struct iommufd_ctx *iommufd);
+> -void vfio_device_close(struct vfio_device *device,
+> -		       struct iommufd_ctx *iommufd);
+> +int vfio_device_open(struct vfio_device_file *df);
+> +void vfio_device_close(struct vfio_device_file *df);
+>  struct vfio_device_file *
+>  vfio_allocate_device_file(struct vfio_device *device);
+>  
+> @@ -91,7 +91,7 @@ void vfio_device_group_register(struct vfio_device *device);
+>  void vfio_device_group_unregister(struct vfio_device *device);
+>  int vfio_device_group_use_iommu(struct vfio_device *device);
+>  void vfio_device_group_unuse_iommu(struct vfio_device *device);
+> -void vfio_device_group_close(struct vfio_device *device);
+> +void vfio_device_group_close(struct vfio_device_file *df);
+>  struct vfio_group *vfio_group_from_file(struct file *file);
+>  bool vfio_group_has_dev(struct vfio_group *group, struct vfio_device *device);
+>  bool vfio_group_enforced_coherent(struct vfio_group *group);
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index cb543791b28b..2ea6cb6d03c7 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -419,9 +419,10 @@ vfio_allocate_device_file(struct vfio_device *device)
+>  	return df;
+>  }
+>  
+> -static int vfio_device_first_open(struct vfio_device *device,
+> -				  struct iommufd_ctx *iommufd)
+> +static int vfio_device_first_open(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+> +	struct iommufd_ctx *iommufd = df->iommufd;
+>  	int ret;
+>  
+>  	lockdep_assert_held(&device->dev_set->lock);
+> @@ -453,9 +454,11 @@ static int vfio_device_first_open(struct vfio_device *device,
+>  	return ret;
+>  }
+>  
+> -static void vfio_device_last_close(struct vfio_device *device,
+> -				   struct iommufd_ctx *iommufd)
+> +static void vfio_device_last_close(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+> +	struct iommufd_ctx *iommufd = df->iommufd;
+> +
+>  	lockdep_assert_held(&device->dev_set->lock);
+>  
+>  	if (device->ops->close_device)
+> @@ -467,15 +470,16 @@ static void vfio_device_last_close(struct vfio_device *device,
+>  	module_put(device->dev->driver->owner);
+>  }
+>  
+> -int vfio_device_open(struct vfio_device *device, struct iommufd_ctx *iommufd)
+> +int vfio_device_open(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+>  	int ret = 0;
+>  
+>  	lockdep_assert_held(&device->dev_set->lock);
+>  
+>  	device->open_count++;
+>  	if (device->open_count == 1) {
+> -		ret = vfio_device_first_open(device, iommufd);
+> +		ret = vfio_device_first_open(df);
+>  		if (ret)
+>  			device->open_count--;
+>  	}
+> @@ -483,14 +487,15 @@ int vfio_device_open(struct vfio_device *device, struct iommufd_ctx *iommufd)
+>  	return ret;
+>  }
+>  
+> -void vfio_device_close(struct vfio_device *device,
+> -		       struct iommufd_ctx *iommufd)
+> +void vfio_device_close(struct vfio_device_file *df)
+>  {
+> +	struct vfio_device *device = df->device;
+> +
+>  	lockdep_assert_held(&device->dev_set->lock);
+>  
+>  	vfio_assert_device_open(device);
+>  	if (device->open_count == 1)
+> -		vfio_device_last_close(device, iommufd);
+> +		vfio_device_last_close(df);
+>  	device->open_count--;
+>  }
+>  
+> @@ -535,7 +540,7 @@ static int vfio_device_fops_release(struct inode *inode, struct file *filep)
+>  	struct vfio_device_file *df = filep->private_data;
+>  	struct vfio_device *device = df->device;
+>  
+> -	vfio_device_group_close(device);
+> +	vfio_device_group_close(df);
+>  
+>  	vfio_device_put_registration(device);
+>  
 
-> 
-> ----------------------------------------------------------------
-> UAPI Changes:
-> 
-> - (Build-time only, should not have any impact)
->   drm/i915/uapi: Replace fake flex-array with flexible-array member
-> 
->   "Zero-length arrays as fake flexible arrays are deprecated and we are
->   moving towards adopting C99 flexible-array members instead."
-> 
->   This is on core kernel request moving towards GCC 13.
-> 
-> Driver Changes:
-> 
-> - Fix context runtime accounting on sysfs fdinfo for heavy workloads (Tvrtko)
-> - Add support for OA media units on MTL (Umesh)
-> - Add new workarounds for Meteorlake (Daniele, Radhakrishna, Haridhar)
-> - Fix sysfs to read actual frequency for MTL and Gen6 and earlier
->   (Ashutosh)
-> - Synchronize i915/BIOS on C6 enabling on MTL (Vinay)
-> - Fix DMAR error noise due to GPU error capture (Andrej)
-> - Fix forcewake during BAR resize on discrete (Andrzej)
-> - Flush lmem contents after construction on discrete (Chris)
-> - Fix GuC loading timeout on systems where IFWI programs low boot
->   frequency (John)
-> - Fix race condition UAF in i915_perf_add_config_ioctl (Min)
-> 
-> - Sanitycheck MMIO access early in driver load and during forcewake
->   (Matt)
-> - Wakeref fixes for GuC RC error scenario and active VM tracking (Chris)
-> - Cancel HuC delayed load timer on reset (Daniele)
-> - Limit double GT reset to pre-MTL (Daniele)
-> - Use i915 instead of dev_priv insied the file_priv structure (Andi)
-> - Improve GuC load error reporting (John)
-> - Simplify VCS/BSD engine selection logic (Tvrtko)
-> - Perform uc late init after probe error injection (Andrzej)
-> - Fix format for perf_limit_reasons in debugfs (Vinay)
-> - Create per-gt debugfs files (Andi)
-> 
-> - Documentation and kerneldoc fixes (Nirmoy, Lee)
-> - Selftest improvements (Fei, Jonathan)
-> 
-> ----------------------------------------------------------------
-> Andi Shyti (3):
->       drm/i915/gt: Create per-gt debugfs files
->       drm/i915/debugfs: Enable upper layer interfaces to act on all gt's
->       drm/i915: Use i915 instead of dev_priv insied the file_priv structure
-> 
-> Andrzej Hajda (4):
->       drm/i915/gt: prevent forcewake releases during BAR resize
->       drm/i915/gt: introduce vm->scratch_range callback
->       drm/i915: add guard page to ggtt->error_capture
->       drm/i915/gt: perform uc late init after probe error injection
-> 
-> Ashutosh Dixit (1):
->       drm/i915/pmu: Use functions common with sysfs to read actual freq
-> 
-> Chris Wilson (3):
->       drm/i915/gem: Flush lmem contents after construction
->       drm/i915/perf: Drop wakeref on GuC RC error
->       drm/i915/gt: Hold a wakeref for the active VM
-> 
-> Daniele Ceraolo Spurio (3):
->       drm/i915/huc: Cancel HuC delayed load timer on reset.
->       drm/i915: limit double GT reset to pre-MTL
->       drm/i915/gsc: implement wa 14015076503
-> 
-> Fei Yang (1):
->       drm/i915/selftests: keep same cache settings as timeline
-> 
-> Gustavo A. R. Silva (1):
->       drm/i915/uapi: Replace fake flex-array with flexible-array member
-> 
-> Haridhar Kalvala (1):
->       drm/i915/mtl: Add Wa_14017856879
-> 
-> John Harrison (2):
->       drm/i915/guc: Improve GuC load error reporting
->       drm/i915/guc: Allow for very slow GuC loading
-> 
-> Jonathan Cavitt (1):
->       drm/i915/selftests: Drop igt_cs_tlb
-> 
-> Lee Jones (13):
->       drm/i915/i915_scatterlist: Fix kerneldoc formatting issue - missing '@'
->       drm/i915/intel_region_ttm: Provide missing description for 'offset' param
->       drm/i915/gt/intel_rps: Demote a kerneldoc abuse for ips_ping_for_i915_load()
->       drm/i915/gem/i915_gem_create: Provide the function names for proper kerneldoc headers
->       drm/i915/gem/i915_gem_domain: Provide function names to complete proper kerneldoc
->       drm/i915/gem/i915_gem_ttm_pm: Provide a couple of missing descriptions for 'flags' and remove some superfluous ones
->       drm/i915/gem/i915_gem_ttm: Demote half-filled kerneldoc
->       drm/i915/gem/i915_gem_ttm_move: Provide a couple of missing descriptions for 'num_pages' and 'ctx'
->       drm/i915/gem/i915_gem_wait: Provide function name to validate the kerneldoc header
->       drm/i915/gem/i915_gem_object: Demote non-kerneldoc header with no param descriptions
->       drm/i915/i915_gem: Provide function names to complete the expected kerneldoc format
->       drm/i915/gt/uc/intel_guc_hwconfig: Demote a few non-conforming kerneldoc headers
->       drm/i915/i915_vma: Provide one missing param and demote another non-kerneldoc header
-> 
-> Matt Roper (2):
->       drm/i915: Sanitycheck MMIO access early in driver load
->       drm/i915: Check for unreliable MMIO during forcewake
-> 
-> Min Li (1):
->       drm/i915: fix race condition UAF in i915_perf_add_config_ioctl
-> 
-> Nirmoy Das (1):
->       drm/i915/gt: Update engine_init_common documentation
-> 
-> Radhakrishna Sripada (2):
->       drm/i915/mtl: Add workarounds Wa_14017066071 and Wa_14017654203
->       drm/i915/mtl: Add Wa_22015279794
-> 
-> Tvrtko Ursulin (2):
->       drm/i915: Simplify vcs/bsd engine selection
->       drm/i915: Fix context runtime accounting
-> 
-> Umesh Nerlige Ramappa (10):
->       drm/i915/perf: Validate OA sseu config outside switch
->       drm/i915/perf: Group engines into respective OA groups
->       drm/i915/perf: Fail modprobe if i915_perf_init fails on OOM
->       drm/i915/perf: Parse 64bit report header formats correctly
->       drm/i915/perf: Handle non-power-of-2 reports
->       drm/i915/perf: Add engine class instance parameters to perf
->       drm/i915/perf: Add support for OA media units
->       drm/i915/perf: Pass i915 object to perf revision helper
->       drm/i915/perf: Wa_14017512683: Disable OAM if media C6 is enabled in BIOS
->       drm/i915/mtl: Disable C6 on MTL A0 for media
-> 
-> Vinay Belgaumkar (2):
->       drm/i915: Fix format for perf_limit_reasons
->       drm/i915/mtl: Synchronize i915/BIOS on C6 enabling
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_context.c        |  22 +-
->  drivers/gpu/drm/i915/gem/i915_gem_create.c         |   7 +-
->  drivers/gpu/drm/i915/gem/i915_gem_domain.c         |  14 +-
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  10 +-
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.c           |   3 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object.c         |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |   3 +
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c         |   5 +-
->  drivers/gpu/drm/i915/gem/i915_gem_wait.c           |   2 +-
->  drivers/gpu/drm/i915/gt/intel_context.h            |  15 +-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   4 +-
->  drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   9 +
->  drivers/gpu/drm/i915/gt/intel_engine_types.h       |  10 +
->  .../gpu/drm/i915/gt/intel_execlists_submission.c   |  12 +-
->  drivers/gpu/drm/i915/gt/intel_ggtt.c               |  43 +-
->  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c          |   1 +
->  drivers/gpu/drm/i915/gt/intel_gt.c                 |   4 +-
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c         |   4 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h            |   9 +
->  drivers/gpu/drm/i915/gt/intel_gtt.h                |   2 +
->  drivers/gpu/drm/i915/gt/intel_rc6.c                |  27 +
->  drivers/gpu/drm/i915/gt/intel_rc6.h                |   2 +
->  drivers/gpu/drm/i915/gt/intel_rc6_types.h          |   2 +
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c        |  25 +-
->  drivers/gpu/drm/i915/gt/intel_reset.c              | 119 ++++-
->  drivers/gpu/drm/i915/gt/intel_rps.c                |  40 +-
->  drivers/gpu/drm/i915/gt/intel_rps.h                |   4 +-
->  drivers/gpu/drm/i915/gt/intel_sseu.c               |   3 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c        |  19 +
->  drivers/gpu/drm/i915/gt/selftest_timeline.c        |  14 +-
->  drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h    |  17 +
->  drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h          |   2 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc.h             |   2 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          | 141 ++++-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c    |   6 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |   5 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h         |   4 +-
->  drivers/gpu/drm/i915/gt/uc/intel_huc.c             |   7 +
->  drivers/gpu/drm/i915/gt/uc/intel_huc.h             |   7 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |   2 +
->  drivers/gpu/drm/i915/i915_debugfs.c                |  36 +-
->  drivers/gpu/drm/i915/i915_driver.c                 |   4 +-
->  drivers/gpu/drm/i915/i915_drm_client.c             |   2 +-
->  drivers/gpu/drm/i915/i915_drv.h                    |   2 +
->  drivers/gpu/drm/i915/i915_file_private.h           |   2 +-
->  drivers/gpu/drm/i915/i915_gem.c                    |  10 +-
->  drivers/gpu/drm/i915/i915_getparam.c               |   2 +-
->  drivers/gpu/drm/i915/i915_pci.c                    |   1 +
->  drivers/gpu/drm/i915/i915_perf.c                   | 570 ++++++++++++++++-----
->  drivers/gpu/drm/i915/i915_perf.h                   |   4 +-
->  drivers/gpu/drm/i915/i915_perf_oa_regs.h           |  78 +++
->  drivers/gpu/drm/i915/i915_perf_types.h             |  75 ++-
->  drivers/gpu/drm/i915/i915_pmu.c                    |  10 +-
->  drivers/gpu/drm/i915/i915_reg.h                    |  14 +-
->  drivers/gpu/drm/i915/i915_scatterlist.c            |   2 +-
->  drivers/gpu/drm/i915/i915_vma.c                    |   3 +-
->  drivers/gpu/drm/i915/intel_device_info.h           |   1 +
->  drivers/gpu/drm/i915/intel_region_ttm.c            |   1 +
->  drivers/gpu/drm/i915/intel_uncore.c                |  47 +-
->  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      | 356 -------------
->  include/uapi/drm/i915_drm.h                        |  25 +-
->  63 files changed, 1241 insertions(+), 637 deletions(-)
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Maybe it reduces the number of parameters but the diffstat shows it does
+not really simplify the code overall. I am not really sure it was worth
+and the df->iommufd pre and post-setting is not really nice looking to me.
+
+But well it others are OK ...
+
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
+
+Thanks
+
+Eric
+
+
