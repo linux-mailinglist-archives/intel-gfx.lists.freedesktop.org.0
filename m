@@ -1,84 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6BD76D9DB5
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 18:45:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFDDA6D9DFC
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 18:53:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7781E10EC62;
-	Thu,  6 Apr 2023 16:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B648510E34D;
+	Thu,  6 Apr 2023 16:53:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C5110E2A2
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 16:44:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680799498;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cj1qdraUDIqQ4wyinXOunxUjzkj6NEpe76it1VNYXg4=;
- b=EiNpaJsegCsL1vzX3Qdt1gMrLkdygUFpx0uScmzX8nx0l87df3nTguyf0s3GwNxtqapHwA
- Sp6s2Kg5tE/PKzL2ByNlrvEmAxP8M20h3Cx1ed5eASFY6/EjzK7CkNN0j9u7yoxthJfGJ6
- BqS/Wz5V88/8KgjV9fUvTClJBFcQxKA=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-362-ppwj7KDBMkGdxaCxQCYUTw-1; Thu, 06 Apr 2023 12:44:55 -0400
-X-MC-Unique: ppwj7KDBMkGdxaCxQCYUTw-1
-Received: by mail-qk1-f198.google.com with SMTP id
- 187-20020a3707c4000000b007468d9a30faso18007323qkh.23
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 09:44:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680799495;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=cj1qdraUDIqQ4wyinXOunxUjzkj6NEpe76it1VNYXg4=;
- b=zqWX7XV2Z907SfiW+jrQgEv3FMoiUZB4OrBR2mM3b69kaxOild71+mz5qfU+T663zI
- DBmJrg3Os1BWlg+d2PGevk7ySt2rkat+UV1oo1FSXbNuK3ID0LhL771r+zq2FSuK1Zdq
- 8Ddw2Vv/lc6qfE4jsiryrl2wai3B3nFbcyXRIn/LOq3anR7n0Cdo9fvsL62AZIOKA0J/
- Pf5sq3g0KxEy2//5jMAoCHgxtgaHWd09Htdx7su6QlyQQT3xgBgqGbCzB1/dpFU86VJM
- V813gBkikoweFElkfMX7TbIzcthToBIYqM2Gar8gAQJ8M2t0iMul8enG3lEBTnBB2QFA
- UvuA==
-X-Gm-Message-State: AAQBX9ehbi/UHa3OA+pvz4X//Q9a5LGMZu4rOIni66QykrHtrYOUIkjy
- hQvbPLN96DCNbmpKNK0eMcb3ZM7H8sLkDEte+uOXdyJVzvPWcdrWGbJRaGOFArCWkaaGpi6S/qZ
- 5+NYJy1kAw874sDtHEPR4kVjnPegb
-X-Received: by 2002:ac8:59ca:0:b0:3b8:2cf6:4bd6 with SMTP id
- f10-20020ac859ca000000b003b82cf64bd6mr12365674qtf.57.1680799494846; 
- Thu, 06 Apr 2023 09:44:54 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZSS7EeAJwH0ALWV4bKpdOrqM0X6ZUGe2iW062njbJkUl7t6KGbG/PG3FNAG8z/sy0GF4g7UQ==
-X-Received: by 2002:ac8:59ca:0:b0:3b8:2cf6:4bd6 with SMTP id
- f10-20020ac859ca000000b003b82cf64bd6mr12365645qtf.57.1680799494556; 
- Thu, 06 Apr 2023 09:44:54 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id
- h7-20020ac846c7000000b003e3921077d9sm532848qto.38.2023.04.06.09.44.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 06 Apr 2023 09:44:53 -0700 (PDT)
-Message-ID: <dbf2057d-b715-f32d-454a-e4953921d232@redhat.com>
-Date: Thu, 6 Apr 2023 18:44:47 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 05A8A10E2A2;
+ Thu,  6 Apr 2023 16:53:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F18EBA02F0;
+ Thu,  6 Apr 2023 16:53:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6892910213411453115=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
- kevin.tian@intel.com
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-11-yi.l.liu@intel.com>
-From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <20230401151833.124749-11-yi.l.liu@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v9 10/25] vfio: Make vfio_device_open()
- single open for device cdev path
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 06 Apr 2023 16:53:17 -0000
+Message-ID: <168079999795.9536.1953943094026047775@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230406134615.1422509-1-jani.nikula@intel.com>
+In-Reply-To: <20230406134615.1422509-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/dsc=3A_fix_drm=5Fedp=5Fdsc=5Fsi?=
+ =?utf-8?q?nk=5Foutput=5Fbpp=28=29_DPCD_high_byte_usage?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,96 +41,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
-Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
- mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
- cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
- yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
- robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
+--===============6892910213411453115==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 4/1/23 17:18, Yi Liu wrote:
-> VFIO group has historically allowed multi-open of the device FD. This
-> was made secure because the "open" was executed via an ioctl to the
-> group FD which is itself only single open.
->
-> However, no known use of multiple device FDs today. It is kind of a
-> strange thing to do because new device FDs can naturally be created
-> via dup().
->
-> When we implement the new device uAPI (only used in cdev path) there is
-> no natural way to allow the device itself from being multi-opened in a
-> secure manner. Without the group FD we cannot prove the security context
-> of the opener.
->
-> Thus, when moving to the new uAPI we block the ability of opening
-> a device multiple times. Given old group path still allows it we store
-> a vfio_group pointer in struct vfio_device_file to differentiate.
->
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Tested-by: Terrence Xu <terrence.xu@intel.com>
-> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+== Series Details ==
 
-Thanks
+Series: series starting with [1/2] drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte usage
+URL   : https://patchwork.freedesktop.org/series/116192/
+State : success
 
-Eric
-> ---
->  drivers/vfio/group.c     | 2 ++
->  drivers/vfio/vfio.h      | 2 ++
->  drivers/vfio/vfio_main.c | 7 +++++++
->  3 files changed, 11 insertions(+)
->
-> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-> index d55ce3ca44b7..1af4b9e012a7 100644
-> --- a/drivers/vfio/group.c
-> +++ b/drivers/vfio/group.c
-> @@ -245,6 +245,8 @@ static struct file *vfio_device_open_file(struct vfio_device *device)
->  		goto err_out;
->  	}
->  
-> +	df->group = device->group;
-> +
->  	ret = vfio_device_group_open(df);
->  	if (ret)
->  		goto err_free;
-> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> index b2f20b78a707..f1a448f9d067 100644
-> --- a/drivers/vfio/vfio.h
-> +++ b/drivers/vfio/vfio.h
-> @@ -18,6 +18,8 @@ struct vfio_container;
->  
->  struct vfio_device_file {
->  	struct vfio_device *device;
-> +	struct vfio_group *group;
-> +
->  	bool access_granted;
->  	spinlock_t kvm_ref_lock; /* protect kvm field */
->  	struct kvm *kvm;
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 6d5d3c2180c8..c8721d5d05fa 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -477,6 +477,13 @@ int vfio_device_open(struct vfio_device_file *df)
->  
->  	lockdep_assert_held(&device->dev_set->lock);
->  
-> +	/*
-> +	 * Only the group path allows the device opened multiple times.
-> +	 * The device cdev path doesn't have a secure way for it.
-> +	 */
-> +	if (device->open_count != 0 && !df->group)
-> +		return -EINVAL;
-> +
->  	device->open_count++;
->  	if (device->open_count == 1) {
->  		ret = vfio_device_first_open(df);
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12981 -> Patchwork_116192v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116192v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-2:         [PASS][1] -> [ABORT][2] ([i915#4983] / [i915#7913])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-2/igt@i915_selftest@live@reset.html
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983] / [i915#7981])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-rpls-1:         [PASS][5] -> [DMESG-WARN][6] ([i915#7852])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][7] ([i915#5354])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-adlp-9:         NOTRUN -> [SKIP][8] ([i915#3546]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-11:         [FAIL][9] ([i915#8308]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
+    - bat-dg2-8:          [FAIL][11] ([i915#7932]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+
+  
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12981 -> Patchwork_116192v1
+
+  CI-20190529: 20190529
+  CI_DRM_12981: fbadfcf137737f02425a35bf3ae17a1492301f21 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7243: 402a13477510ab05591839a2bf4586de1158e60c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116192v1: fbadfcf137737f02425a35bf3ae17a1492301f21 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f59ff62f1716 drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values
+e5873af79f07 drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte usage
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/index.html
+
+--===============6892910213411453115==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116192/">https://patchwork.freedesktop.org/series/116192/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12981 -&gt; Patchwork_116192v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116192v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>
+<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</p>
+</li>
+<li>
+<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12981/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116192v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12981 -&gt; Patchwork_116192v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12981: fbadfcf137737f02425a35bf3ae17a1492301f21 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7243: 402a13477510ab05591839a2bf4586de1158e60c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116192v1: fbadfcf137737f02425a35bf3ae17a1492301f21 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f59ff62f1716 drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values<br />
+e5873af79f07 drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte usage</p>
+
+</body>
+</html>
+
+--===============6892910213411453115==--
