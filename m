@@ -1,75 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3457D6D94DF
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:16:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6076D961B
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA3310EB61;
-	Thu,  6 Apr 2023 11:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E37510EB83;
+	Thu,  6 Apr 2023 11:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E942110EB5F;
- Thu,  6 Apr 2023 11:16:41 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id ml21so14971580pjb.4;
- Thu, 06 Apr 2023 04:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680779801;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rHYb6HpZexNXpJPoSYlJ81so+XmwouNfzYZUA6PN18U=;
- b=SDaFVzdAZ+PGA1ek7sqxgPqbwZ9e8KwjO6kClHWchQUtfi/N49prAHd7IdkbvOwWOZ
- DDpc8RwXY+XPJeA39kRMrRgHknt+we5V7J+JHaYX9uqFd/iDJ1A1rKFxn75FVGwRN7C9
- Rdbzb5wpwizbAz8a5w6B4/69ooWI+qcE8ct/52b2eImoo8RvSEHLXnPOtbqnW7eSW6L9
- xxaoGQJ/MgI5t5o0nrkC1xWa4wVSzkgz4m7Zvjs6kmgLtlBFeUoQQP1O6aHzFLulaVGI
- eSMeh0uBunp4exeqgVl9B6IKPri0dVWGCtTmJTB+NflZYOgv1UDcFSw+QRTHV2N0jHe+
- MH0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680779801;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=rHYb6HpZexNXpJPoSYlJ81so+XmwouNfzYZUA6PN18U=;
- b=TMlqI1gtksENkiZWkc9WewW8kBbhJeHk0I66jN9SrwHmon78Pez1qmyD4uXY7BPhdv
- HkiX1Z/rja5JmtCaDuU3WlnpTv8J5ehQxzL+loF7HOAEFgMt9jQbNIiAqFvky6mbWtyi
- KVusjqySearJKCRmM/8PRBta02NGvtp+xy7SWQMhPSuMIv6m8zpGXx8R5E9e7RoGBKPB
- qijIBeeARuCoEMPXowkbgTrmXnrExfXkyTYS8w05YhQUQ/7fFeuF/GNL1u+dYtzyhtkn
- 4ltFxEe2urQ3Ea80QZ1s+pX7MsXaODkF7FjD7O1iXeIu38mwP4rM9yne4KQB4Y4SX//e
- dj8g==
-X-Gm-Message-State: AAQBX9dnOSssUXDYilM93BBIZfMUYgm1GovldNmErdyIXo0VWdj3jbRT
- WTWVfcfOWOdnicq+2zG9f3tjIkOLS3xL+4bSmj4=
-X-Google-Smtp-Source: AKy350arGCXxw7uauw789YlI8TO/HwCaYawY3nlDmw4c5UA3Zi2ES5khLwASbt7Bf6ex+oy5vMfzdUDRk2wt+5Ej38c=
-X-Received: by 2002:a17:902:8684:b0:1a0:6b23:7b55 with SMTP id
- g4-20020a170902868400b001a06b237b55mr3912998plo.4.1680779800802; Thu, 06 Apr
- 2023 04:16:40 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83F4610EB73;
+ Thu,  6 Apr 2023 11:42:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680781323; x=1712317323;
+ h=message-id:date:mime-version:from:subject:to:cc;
+ bh=gi2mC53mJivL5R5XLapBZo+5LMnagKRJ97SAPr2VTCI=;
+ b=kITQpE920HkUQ/QVNJrzuFasM4NfUF43KLJtx5rzudWXgsZ4nQlYtufW
+ f86cNL49NDmu4vU3uSMshfE+Jery9gK0u7myHtr9Z1OrFBDwzd5flIheq
+ FduJBzvNYMe3EzK1cH15Elbp9u9r0t7L6pT9eNVF1MjSp1hQgxfQaBwYY
+ vV0+SJvJRKDSBYosMRiqONrwBqaNZpG+h6Rcwbpot8MwZKTrxD30hEqLU
+ 4HiiC4P70lnzzS9TtLZoVDiMz74/kE4rL1ZXmbICsWG8NYgs8rpRj44IH
+ 0IgUCgpTkF/X86l7GwJCExX9eGmW0yO50iMYc+nj1cs607cyJStSC9HTi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="331325603"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; 
+ d="scan'208,217";a="331325603"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 04:41:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="810968195"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; 
+ d="scan'208,217";a="810968195"
+Received: from rvadera-mobl.ger.corp.intel.com (HELO [10.249.34.3])
+ ([10.249.34.3])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 04:41:31 -0700
+Content-Type: multipart/alternative;
+ boundary="------------m3NKjoEoYhyKBGyCCy0ajgJk"
+Message-ID: <64bb9696-a76a-89d9-1866-bcdf7c69c284@linux.intel.com>
+Date: Thu, 6 Apr 2023 13:41:29 +0200
 MIME-Version: 1.0
-References: <20230404201842.567344-1-daniel.vetter@ffwll.ch>
- <5556a755-01a1-3620-8693-0fc69c6f627d@suse.de>
- <3813a2f5-c74a-4760-34ce-1c88f187c91c@suse.de>
- <ZC04hoHywz0ySzAW@phenom.ffwll.local>
- <3fd03c4c-3be6-e56b-faec-bd67a58cda09@suse.de>
- <ZC1BlNCbXPlmAhj0@phenom.ffwll.local>
- <eee11545-2a78-4556-be82-5178ea09d0d8@suse.de>
- <877cuqd1f8.fsf@minerva.mail-host-address-is-not-set>
- <ZC11J3og4Kc9ta6m@phenom.ffwll.local>
- <242ab20f-affe-b55a-6068-5ea634705cf6@suse.de>
- <ZC2beu/9inolwIlr@phenom.ffwll.local>
- <87bkk29smu.fsf@minerva.mail-host-address-is-not-set>
- <CAKMK7uGbPWE5mg2+ojxxEdfknDzmjDr+5n_y-t-nYNzDFE21EA@mail.gmail.com>
- <CAMeQTsam0efUrS=x+Eb+p8A3rXgCOUmA7UVjFB=9oAKFoepzOw@mail.gmail.com>
- <CAKMK7uEKab8UN4U=ztER_4zyODNJhxVhowJ6yDVBWuLd978MDQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uEKab8UN4U=ztER_4zyODNJhxVhowJ6yDVBWuLd978MDQ@mail.gmail.com>
-From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Date: Thu, 6 Apr 2023 13:16:29 +0200
-Message-ID: <CAMeQTsbs01-B4rk3v=+emAm2o2pKB6Ndpz=3AG5VEiHso1D7qA@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.1
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,179 +60,489 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 6, 2023 at 9:32=E2=80=AFAM Daniel Vetter <daniel@ffwll.ch> wrot=
-e:
->
-> On Wed, 5 Apr 2023 at 19:46, Patrik Jakobsson
-> <patrik.r.jakobsson@gmail.com> wrote:
-> >
-> > On Wed, Apr 5, 2023 at 7:15=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> =
-wrote:
-> > >
-> > > On Wed, 5 Apr 2023 at 18:54, Javier Martinez Canillas
-> > > <javierm@redhat.com> wrote:
-> > > >
-> > > > Daniel Vetter <daniel@ffwll.ch> writes:
-> > > >
-> > > > > On Wed, Apr 05, 2023 at 04:32:19PM +0200, Thomas Zimmermann wrote=
-:
-> > > >
-> > > > [...]
-> > > >
-> > > > >> > > >        /*
-> > > > >> > > >         * WARNING: Apparently we must kick fbdev drivers b=
-efore vgacon,
-> > > > >> > > >         * otherwise the vga fbdev driver falls over.
-> > > > >> > > >         */
-> > > > >> > > >        ret =3D vga_remove_vgacon(pdev);
-> > > > >> >
-> > > > >> > This isn't enough, we also nuke stuff that's mapping the vga f=
-b range.
-> > > >
-> > > > Ah, also need aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS=
-_SIZE) then.
-> > > >
-> > > > [...]
-> > > >
-> > > > >> int aperture_remove_legacy_vga_devices(struct pci_dev *pdev)
-> > > > >> {
-> > > > >>      aperture_detach_devices(VGA_FB_PHYS_BASE, VGA_FB_PHYS_SIZE)=
-;
-> > > > >>
-> > > > >>      return vga_remove_vgacon(pdev);
-> > > > >> }
-> > > > >>
-> > > > >> And that can be called from gma500 and the pci aperture helper.
-> > > > >
-> > > > > But you still pass a pci_dev to that helper. Which just doesn't m=
-ake any
-> > > > > sense to me (assuming your entire point is that this isn't just a=
- normal
-> > > > > pci device but some special legacy vga thing), but if we go with =
-(void)
-> > > > > then there's more refactoring to do because the vga_remove_vgacon=
- also
-> > > > > wants a pdev.
-> > > > >
-> > > > > All so that we don't call aperture_detach_devices() on a bunch of=
- pci
-> > > > > bars, which apparently is not problem for any other driver, but a=
-bsolutely
-> > > > > is a huge problem for gma500 somehow.
-> > > > >
-> > > > > I don't understand why.
-> > > > >
-> > > >
-> > > > Yeah, agreed that if vga_remove_vgacon() isn't enough and another h=
-elper
-> > > > is needed then starts to get a little silly. Maybe one option is to=
- add a
-> > > > 3rd param to aperture_remove_conflicting_pci_devices() and skip the=
- logic
-> > > > to iterate over PCI bars and call aperture_remove_conflicting_devic=
-es() ?
-> > >
-> > > The thing I don't get: Why does this matter for gma500 and not any of
-> > > the other pci devices? Look at your gpu, realize there's a lot more
-> > > than the one pci bar for vram or stolen memory, realize that we're
-> > > nuking bars that cannot possible contain the framebuffer for everyone
-> > > else too. Like the entire "gpus have a lot of bars" thing is the
-> > > reason why I pulled the sysfb_disable one level up, because we've bee=
-n
-> > > doing that quite a few times before this patch (yes it's not the main
-> > > thing, but the side-effect cleanup is why I've gone down this rabbit
-> > > hole and wrote the entire series here):
-> > >
-> > > https://lore.kernel.org/dri-devel/20230404201842.567344-7-daniel.vett=
-er@ffwll.ch/
-> > >
-> > > But somehow for gma500 it's a problem, while for everyone else it's
-> > > fine. That's the part I dont get, or Thomas&me have been talking past
-> > > each another and there's another issue that I'm missing.
-> > > -Daniel
-> >
-> > I'm also getting confused here.
-> >
-> > AFAIK the stolen memory works the same for gma500 hardware as other
-> > Intel GPUs. Are you saying that there is a difference in how gma500
-> > hardware works? I always assumed that i915 got away with not dealing
-> > much with stolen memory because it simply doesn't use it for
-> > allocations. In gma500 we use it for fbdev and cursors. The actual
-> > pages reserved by the bios can be accessed through a pci bar if you
-> > map it so (which IIRC we do) but I suppose that doesn't help
-> > identifying it as a range reserved by other drivers.
->
-> The other integrated gpu have their fw fb behind a pci bar, and stolen
-> is often entirely hidden from the cpu for direct access. gma500 seems
-> different with having stolen as just a specially marked up range of
-> normal system memory. That's why the usual pci helper doesn't catch
-> everything for gma500.
+This is a multi-part message in MIME format.
+--------------m3NKjoEoYhyKBGyCCy0ajgJk
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Right, now I get it. You don't have the GATT on some systems so the
-range can never be inside the aperture on those systems anyway.
+Hi Dave, Daniel,
+Pull request to avoid backmerges. ;)
+Cheers,
+~Maarten
 
-The GATT probably went away because there is no need for it since you
-don't get coherency with the PowerVR parts anyway.
+drm-misc-next-2023-04-06:
+drm-misc-next for v6.4-rc1:
 
-Thanks for explaining
+UAPI Changes:
 
->
-> > The reason I've kept the stolen allocation logic is because some
-> > gma500 systems don't have a lot of memory. But that is mostly the old
-> > Pouslbo systems. Perhaps it is time to ditch the stolen allocation
-> > code?
->
-> Yeah that's all fine.
-> -Daniel
->
-> >
-> > -Patrik
-> >
-> > >
-> > > > > Consider this me throwing in the towel. If you&Javier are convinc=
-ed this
-> > > > > makes sense please type it up and merge it, but I'm not going to =
-type
-> > > > > something that just doesn't make sense to me.
-> > > >
-> > > > Honestly, I would just go with the double drm_aperture_remove_*() h=
-elper
-> > > > calls (your original patch) unless that causes real issues. There i=
-s no
-> > > > point on blocking all your series just for this IMO.
-> > > >
-> > > > Then latter if Thomas has strong opinions can send a follow-up patc=
-h for
-> > > > the gma500 driver and the aperture helpers.
-> > > >
-> > > > > -Daniel
-> > > > >
-> > > >
-> > > > --
-> > > > Best regards,
-> > > >
-> > > > Javier Martinez Canillas
-> > > > Core Platforms
-> > > > Red Hat
-> > > >
-> > >
-> > >
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
->
->
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+Cross-subsystem Changes:
+- Document port and rotation dt bindings better.
+- For panel timing DT bindings, document that vsync and hsync are
+   first, rather than last in image.
+- Fix video/aperture typos.
+
+Core Changes:
+- Reject prime DMA-Buf attachment if get_sg_table is missing.
+   (For self-importing dma-buf only.)
+- Add prime import/export to vram-helper.
+- Fix oops in drm/vblank when init is not called.
+- Fixup xres/yres_virtual and other fixes in fb helper.
+- Improve SCDC debugs.
+- Skip setting deadline on modesets.
+- Assorted TTM fixes.
+
+Driver Changes:
+- Add lima usage stats.
+- Assorted fixes to bridge/lt8192b, tc358767, ivpu,
+   bridge/ti-sn65dsi83, ps8640.
+- Use pci aperture helpers in drm/ast lynxfb, radeonfb.
+- Revert some lima patches, as they required a commit that has been
+   reverted upstream.
+- Add AUO NE135FBM-N41 v8.1 eDP panel.
+- Add QAIC accel driver.
+The following changes since commit 7d690f936e9bc9fbd6394fb3d4ad181af03ee393:
+
+   drm/panfrost: Add basic support for speed binning (2023-03-31 11:44:11 +0200)
+
+are available in the Git repository at:
+
+   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-04-06
+
+for you to fetch changes up to e44f18c6ff8beef7b2b10592287f0a9766376d9b:
+
+   drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting (2023-04-06 10:01:42 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for v6.4-rc1:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- Document port and rotation dt bindings better.
+- For panel timing DT bindings, document that vsync and hsync are
+   first, rather than last in image.
+- Fix video/aperture typos.
+
+Core Changes:
+- Reject prime DMA-Buf attachment if get_sg_table is missing.
+   (For self-importing dma-buf only.)
+- Add prime import/export to vram-helper.
+- Fix oops in drm/vblank when init is not called.
+- Fixup xres/yres_virtual and other fixes in fb helper.
+- Improve SCDC debugs.
+- Skip setting deadline on modesets.
+- Assorted TTM fixes.
+
+Driver Changes:
+- Add lima usage stats.
+- Assorted fixes to bridge/lt8192b, tc358767, ivpu,
+   bridge/ti-sn65dsi83, ps8640.
+- Use pci aperture helpers in drm/ast lynxfb, radeonfb.
+- Revert some lima patches, as they required a commit that has been
+   reverted upstream.
+- Add AUO NE135FBM-N41 v8.1 eDP panel.
+- Add QAIC accel driver.
+
+----------------------------------------------------------------
+Alexander Stein (2):
+       drm/bridge: ti-sn65dsi83: use dev_err_probe if host attach failed
+       drm/bridge: ti-sn65dsi86: Allow GPIO operations to sleep
+
+AngeloGioacchino Del Regno (1):
+       drm/panel-edp: Add AUO NE135FBM-N41 v8.1 panel entry
+
+Daniel Vetter (7):
+       drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers
+       staging/lynxfb: Use pci aperture helper
+       fbdev/radeon: use pci aperture helpers
+       drm/fb-helper: set x/yres_virtual in drm_fb_helper_check_var
+       drm/fb-helper: drop redundant pixclock check from drm_fb_helper_set_par()
+       drm/fb-helper: fix input validation gaps in check_var
+       drm/atomic-helper: Don't set deadline for modesets
+
+Erico Nunes (3):
+       drm/lima: add usage counting method to ctx_mgr
+       drm/lima: allocate unique id per drm_file
+       drm/lima: add show_fdinfo for drm usage stats
+
+Francesco Dolcini (1):
+       drm/bridge: lt8912b: Fix DSI Video Mode
+
+Harshit Mogalapalli (1):
+       drm/lima/lima_drv: Add missing unwind goto in lima_pdev_probe()
+
+Jeffrey Hugo (7):
+       accel/qaic: Add documentation for AIC100 accelerator driver
+       accel/qaic: Add uapi and core driver file
+       accel/qaic: Add MHI controller
+       accel/qaic: Add control path
+       accel/qaic: Add datapath
+       accel/qaic: Add qaic driver to the build system
+       MAINTAINERS: Add entry for QAIC driver
+
+Karol Wachowski (1):
+       accel/ivpu: Remove D3hot delay for Meteorlake
+
+Krzysztof Kozlowski (5):
+       dt-bindings: display: sitronix,st7789v: document dc-gpios
+       dt-bindings: display: xinpeng,xpp055c272: document port
+       dt-bindings: display: feiyang,fy07024di26a30d: document port
+       dt-bindings: display: elida,kd35t133: document port and rotation
+       dt-bindings: display: sitronix,st7701: document port and rotation
+
+Luca Ceresoli (2):
+       drm: bridge: ldb: add missing \n in dev_warn() string
+       drm: bridge: ldb: add support for using channel 1 only
+
+Marek Vasut (3):
+       drm/bridge: tc358767: Enable DSI burst mode, LPM, non-continuous clock
+       dt-bindings: display: Start the info graphics with HS/VS change
+       drm/bridge: ti-sn65dsi83: Do not generate HFP/HBP/HSA and EOT packet
+
+Pin-yen Lin (1):
+       drm/bridge: ps8640: Use constant sleep time for polling hpd
+
+Pranjal Ramajor Asha Kanojiya (1):
+       accel/qaic: Add mhi_qaic_cntl
+
+Qiang Yu (3):
+       Revert "drm/lima: add show_fdinfo for drm usage stats"
+       Revert "drm/lima: allocate unique id per drm_file"
+       Revert "drm/lima: add usage counting method to ctx_mgr"
+
+Rob Clark (1):
+       drm/vblank: Fix for drivers that do not drm_vblank_init()
+
+Simon Ser (2):
+       drm/prime: reject DMA-BUF attach when get_sg_table is missing
+       drm/vram-helper: turn on PRIME import/export
+
+Sui Jingfeng (1):
+       video/aperture: Fix typos in comments
+
+Thomas Hellström (3):
+       drm/ttm/pool: Fix ttm_pool_alloc error path
+       drm/ttm: Reduce the number of used allocation orders for TTM pages
+       drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting
+
+Ville Syrjälä (1):
+       drm/scdc-helper: Pimp SCDC debugs
+
+  Documentation/accel/index.rst                      |    1 +
+  Documentation/accel/qaic/aic100.rst                |  510 ++++++
+  Documentation/accel/qaic/index.rst                 |   13 +
+  Documentation/accel/qaic/qaic.rst                  |  170 ++
+  .../bindings/display/panel/elida,kd35t133.yaml     |    9 +
+  .../display/panel/feiyang,fy07024di26a30d.yaml     |    8 +
+  .../bindings/display/panel/panel-timing.yaml       |   46 +-
+  .../bindings/display/panel/sitronix,st7701.yaml    |    9 +
+  .../bindings/display/panel/sitronix,st7789v.yaml   |    4 +
+  .../bindings/display/panel/xinpeng,xpp055c272.yaml |    8 +
+  MAINTAINERS                                        |   10 +
+  drivers/accel/Kconfig                              |    1 +
+  drivers/accel/Makefile                             |    1 +
+  drivers/accel/ivpu/ivpu_drv.c                      |    4 +
+  drivers/accel/qaic/Kconfig                         |   23 +
+  drivers/accel/qaic/Makefile                        |   13 +
+  drivers/accel/qaic/mhi_controller.c                |  563 ++++++
+  drivers/accel/qaic/mhi_controller.h                |   16 +
+  drivers/accel/qaic/mhi_qaic_ctrl.c                 |  569 ++++++
+  drivers/accel/qaic/mhi_qaic_ctrl.h                 |   12 +
+  drivers/accel/qaic/qaic.h                          |  282 +++
+  drivers/accel/qaic/qaic_control.c                  | 1526 ++++++++++++++++
+  drivers/accel/qaic/qaic_data.c                     | 1902 ++++++++++++++++++++
+  drivers/accel/qaic/qaic_drv.c                      |  647 +++++++
+  drivers/gpu/drm/ast/ast_drv.c                      |   16 +-
+  drivers/gpu/drm/bridge/fsl-ldb.c                   |  103 +-
+  drivers/gpu/drm/bridge/lontium-lt8912b.c           |    1 -
+  drivers/gpu/drm/bridge/parade-ps8640.c             |    2 +-
+  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |    8 +-
+  drivers/gpu/drm/bridge/tc358767.c                  |    4 +-
+  drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    8 +-
+  drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    4 +-
+  drivers/gpu/drm/display/drm_scdc_helper.c          |   46 +-
+  drivers/gpu/drm/drm_atomic_helper.c                |    6 +
+  drivers/gpu/drm/drm_fb_helper.c                    |   53 +-
+  drivers/gpu/drm/drm_prime.c                        |    6 +-
+  drivers/gpu/drm/drm_vblank.c                       |   10 +-
+  drivers/gpu/drm/i915/display/intel_ddi.c           |    4 +-
+  drivers/gpu/drm/i915/display/intel_hdmi.c          |    8 +-
+  drivers/gpu/drm/lima/lima_drv.c                    |    6 +-
+  drivers/gpu/drm/panel/panel-edp.c                  |    1 +
+  drivers/gpu/drm/tegra/sor.c                        |   15 +-
+  drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   13 +-
+  drivers/gpu/drm/ttm/ttm_pool.c                     |  111 +-
+  drivers/gpu/drm/vc4/vc4_hdmi.c                     |   21 +-
+  drivers/staging/sm750fb/sm750.c                    |   16 +-
+  drivers/video/aperture.c                           |    8 +-
+  drivers/video/fbdev/aty/radeon_base.c              |   10 +-
+  include/drm/display/drm_scdc_helper.h              |    7 +-
+  include/drm/drm_gem_vram_helper.h                  |    4 +-
+  include/uapi/drm/qaic_accel.h                      |  397 ++++
+  51 files changed, 7004 insertions(+), 231 deletions(-)
+  create mode 100644 Documentation/accel/qaic/aic100.rst
+  create mode 100644 Documentation/accel/qaic/index.rst
+  create mode 100644 Documentation/accel/qaic/qaic.rst
+  create mode 100644 drivers/accel/qaic/Kconfig
+  create mode 100644 drivers/accel/qaic/Makefile
+  create mode 100644 drivers/accel/qaic/mhi_controller.c
+  create mode 100644 drivers/accel/qaic/mhi_controller.h
+  create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.c
+  create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.h
+  create mode 100644 drivers/accel/qaic/qaic.h
+  create mode 100644 drivers/accel/qaic/qaic_control.c
+  create mode 100644 drivers/accel/qaic/qaic_data.c
+  create mode 100644 drivers/accel/qaic/qaic_drv.c
+  create mode 100644 include/uapi/drm/qaic_accel.h
+
+--------------m3NKjoEoYhyKBGyCCy0ajgJk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <pre>Hi Dave, Daniel,
+Pull request to avoid backmerges. ;)
+Cheers,
+~Maarten
+
+drm-misc-next-2023-04-06:
+drm-misc-next for v6.4-rc1:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- Document port and rotation dt bindings better.
+- For panel timing DT bindings, document that vsync and hsync are
+  first, rather than last in image.
+- Fix video/aperture typos.
+
+Core Changes:
+- Reject prime DMA-Buf attachment if get_sg_table is missing.
+  (For self-importing dma-buf only.)
+- Add prime import/export to vram-helper.
+- Fix oops in drm/vblank when init is not called.
+- Fixup xres/yres_virtual and other fixes in fb helper.
+- Improve SCDC debugs.
+- Skip setting deadline on modesets.
+- Assorted TTM fixes.
+
+Driver Changes:
+- Add lima usage stats.
+- Assorted fixes to bridge/lt8192b, tc358767, ivpu,
+  bridge/ti-sn65dsi83, ps8640.
+- Use pci aperture helpers in drm/ast lynxfb, radeonfb.
+- Revert some lima patches, as they required a commit that has been
+  reverted upstream.
+- Add AUO NE135FBM-N41 v8.1 eDP panel.
+- Add QAIC accel driver.
+The following changes since commit 7d690f936e9bc9fbd6394fb3d4ad181af03ee393:
+
+  drm/panfrost: Add basic support for speed binning (2023-03-31 11:44:11 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-04-06
+
+for you to fetch changes up to e44f18c6ff8beef7b2b10592287f0a9766376d9b:
+
+  drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting (2023-04-06 10:01:42 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for v6.4-rc1:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- Document port and rotation dt bindings better.
+- For panel timing DT bindings, document that vsync and hsync are
+  first, rather than last in image.
+- Fix video/aperture typos.
+
+Core Changes:
+- Reject prime DMA-Buf attachment if get_sg_table is missing.
+  (For self-importing dma-buf only.)
+- Add prime import/export to vram-helper.
+- Fix oops in drm/vblank when init is not called.
+- Fixup xres/yres_virtual and other fixes in fb helper.
+- Improve SCDC debugs.
+- Skip setting deadline on modesets.
+- Assorted TTM fixes.
+
+Driver Changes:
+- Add lima usage stats.
+- Assorted fixes to bridge/lt8192b, tc358767, ivpu,
+  bridge/ti-sn65dsi83, ps8640.
+- Use pci aperture helpers in drm/ast lynxfb, radeonfb.
+- Revert some lima patches, as they required a commit that has been
+  reverted upstream.
+- Add AUO NE135FBM-N41 v8.1 eDP panel.
+- Add QAIC accel driver.
+
+----------------------------------------------------------------
+Alexander Stein (2):
+      drm/bridge: ti-sn65dsi83: use dev_err_probe if host attach failed
+      drm/bridge: ti-sn65dsi86: Allow GPIO operations to sleep
+
+AngeloGioacchino Del Regno (1):
+      drm/panel-edp: Add AUO NE135FBM-N41 v8.1 panel entry
+
+Daniel Vetter (7):
+      drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers
+      staging/lynxfb: Use pci aperture helper
+      fbdev/radeon: use pci aperture helpers
+      drm/fb-helper: set x/yres_virtual in drm_fb_helper_check_var
+      drm/fb-helper: drop redundant pixclock check from drm_fb_helper_set_par()
+      drm/fb-helper: fix input validation gaps in check_var
+      drm/atomic-helper: Don't set deadline for modesets
+
+Erico Nunes (3):
+      drm/lima: add usage counting method to ctx_mgr
+      drm/lima: allocate unique id per drm_file
+      drm/lima: add show_fdinfo for drm usage stats
+
+Francesco Dolcini (1):
+      drm/bridge: lt8912b: Fix DSI Video Mode
+
+Harshit Mogalapalli (1):
+      drm/lima/lima_drv: Add missing unwind goto in lima_pdev_probe()
+
+Jeffrey Hugo (7):
+      accel/qaic: Add documentation for AIC100 accelerator driver
+      accel/qaic: Add uapi and core driver file
+      accel/qaic: Add MHI controller
+      accel/qaic: Add control path
+      accel/qaic: Add datapath
+      accel/qaic: Add qaic driver to the build system
+      MAINTAINERS: Add entry for QAIC driver
+
+Karol Wachowski (1):
+      accel/ivpu: Remove D3hot delay for Meteorlake
+
+Krzysztof Kozlowski (5):
+      dt-bindings: display: sitronix,st7789v: document dc-gpios
+      dt-bindings: display: xinpeng,xpp055c272: document port
+      dt-bindings: display: feiyang,fy07024di26a30d: document port
+      dt-bindings: display: elida,kd35t133: document port and rotation
+      dt-bindings: display: sitronix,st7701: document port and rotation
+
+Luca Ceresoli (2):
+      drm: bridge: ldb: add missing \n in dev_warn() string
+      drm: bridge: ldb: add support for using channel 1 only
+
+Marek Vasut (3):
+      drm/bridge: tc358767: Enable DSI burst mode, LPM, non-continuous clock
+      dt-bindings: display: Start the info graphics with HS/VS change
+      drm/bridge: ti-sn65dsi83: Do not generate HFP/HBP/HSA and EOT packet
+
+Pin-yen Lin (1):
+      drm/bridge: ps8640: Use constant sleep time for polling hpd
+
+Pranjal Ramajor Asha Kanojiya (1):
+      accel/qaic: Add mhi_qaic_cntl
+
+Qiang Yu (3):
+      Revert "drm/lima: add show_fdinfo for drm usage stats"
+      Revert "drm/lima: allocate unique id per drm_file"
+      Revert "drm/lima: add usage counting method to ctx_mgr"
+
+Rob Clark (1):
+      drm/vblank: Fix for drivers that do not drm_vblank_init()
+
+Simon Ser (2):
+      drm/prime: reject DMA-BUF attach when get_sg_table is missing
+      drm/vram-helper: turn on PRIME import/export
+
+Sui Jingfeng (1):
+      video/aperture: Fix typos in comments
+
+Thomas Hellström (3):
+      drm/ttm/pool: Fix ttm_pool_alloc error path
+      drm/ttm: Reduce the number of used allocation orders for TTM pages
+      drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting
+
+Ville Syrjälä (1):
+      drm/scdc-helper: Pimp SCDC debugs
+
+ Documentation/accel/index.rst                      |    1 +
+ Documentation/accel/qaic/aic100.rst                |  510 ++++++
+ Documentation/accel/qaic/index.rst                 |   13 +
+ Documentation/accel/qaic/qaic.rst                  |  170 ++
+ .../bindings/display/panel/elida,kd35t133.yaml     |    9 +
+ .../display/panel/feiyang,fy07024di26a30d.yaml     |    8 +
+ .../bindings/display/panel/panel-timing.yaml       |   46 +-
+ .../bindings/display/panel/sitronix,st7701.yaml    |    9 +
+ .../bindings/display/panel/sitronix,st7789v.yaml   |    4 +
+ .../bindings/display/panel/xinpeng,xpp055c272.yaml |    8 +
+ MAINTAINERS                                        |   10 +
+ drivers/accel/Kconfig                              |    1 +
+ drivers/accel/Makefile                             |    1 +
+ drivers/accel/ivpu/ivpu_drv.c                      |    4 +
+ drivers/accel/qaic/Kconfig                         |   23 +
+ drivers/accel/qaic/Makefile                        |   13 +
+ drivers/accel/qaic/mhi_controller.c                |  563 ++++++
+ drivers/accel/qaic/mhi_controller.h                |   16 +
+ drivers/accel/qaic/mhi_qaic_ctrl.c                 |  569 ++++++
+ drivers/accel/qaic/mhi_qaic_ctrl.h                 |   12 +
+ drivers/accel/qaic/qaic.h                          |  282 +++
+ drivers/accel/qaic/qaic_control.c                  | 1526 ++++++++++++++++
+ drivers/accel/qaic/qaic_data.c                     | 1902 ++++++++++++++++++++
+ drivers/accel/qaic/qaic_drv.c                      |  647 +++++++
+ drivers/gpu/drm/ast/ast_drv.c                      |   16 +-
+ drivers/gpu/drm/bridge/fsl-ldb.c                   |  103 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c           |    1 -
+ drivers/gpu/drm/bridge/parade-ps8640.c             |    2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |    8 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |    4 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    8 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    4 +-
+ drivers/gpu/drm/display/drm_scdc_helper.c          |   46 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |    6 +
+ drivers/gpu/drm/drm_fb_helper.c                    |   53 +-
+ drivers/gpu/drm/drm_prime.c                        |    6 +-
+ drivers/gpu/drm/drm_vblank.c                       |   10 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c           |    4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |    8 +-
+ drivers/gpu/drm/lima/lima_drv.c                    |    6 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |    1 +
+ drivers/gpu/drm/tegra/sor.c                        |   15 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   13 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                     |  111 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |   21 +-
+ drivers/staging/sm750fb/sm750.c                    |   16 +-
+ drivers/video/aperture.c                           |    8 +-
+ drivers/video/fbdev/aty/radeon_base.c              |   10 +-
+ include/drm/display/drm_scdc_helper.h              |    7 +-
+ include/drm/drm_gem_vram_helper.h                  |    4 +-
+ include/uapi/drm/qaic_accel.h                      |  397 ++++
+ 51 files changed, 7004 insertions(+), 231 deletions(-)
+ create mode 100644 Documentation/accel/qaic/aic100.rst
+ create mode 100644 Documentation/accel/qaic/index.rst
+ create mode 100644 Documentation/accel/qaic/qaic.rst
+ create mode 100644 drivers/accel/qaic/Kconfig
+ create mode 100644 drivers/accel/qaic/Makefile
+ create mode 100644 drivers/accel/qaic/mhi_controller.c
+ create mode 100644 drivers/accel/qaic/mhi_controller.h
+ create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.c
+ create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.h
+ create mode 100644 drivers/accel/qaic/qaic.h
+ create mode 100644 drivers/accel/qaic/qaic_control.c
+ create mode 100644 drivers/accel/qaic/qaic_data.c
+ create mode 100644 drivers/accel/qaic/qaic_drv.c
+ create mode 100644 include/uapi/drm/qaic_accel.h
+
+</pre>
+  </body>
+</html>
+
+--------------m3NKjoEoYhyKBGyCCy0ajgJk--
