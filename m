@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8776D94B0
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:08:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C428B6D94B9
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 13:10:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 286A810EB5E;
-	Thu,  6 Apr 2023 11:08:20 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93D1D8905A;
- Thu,  6 Apr 2023 11:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A6410EB5B;
+	Thu,  6 Apr 2023 11:10:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CB910EB5B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 11:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680779296; x=1712315296;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=O6lfAibWgjTi5xksz9Ap60W4ZTXfS/WBBDOhwGG/rx0=;
- b=CzQUM+jARt4EAgSyxfT9OfVKL1Zvi+Yw2QuOBCsq5fLBt0r+2pJbLBsA
- iwiQMPJEQtKCWq3ew6lG8gF68J26SPBXrk1re3UmwHK8ueliMzNIfcjds
- g7cxYit99YR/bR23U70KsbdtpNaV/IjdWO0ba49wfXOR1B91282jtyLJM
- zIcap+42plmTgBMVLO7ZWSuvuPaEWjbmCn6sbzf387ubU4l14hAzlMBJh
- TcNsIeBpa/Bito7W72ohttj+W0WlO7VwzLK/+rtpEHTxe+5nCqW5b7WOK
- h2mv362czBRYdbLCnPojnhXgLUET9tySsQBxjaVVlsApku2YX3klCNLAS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="340197529"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="340197529"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 04:08:14 -0700
+ t=1680779414; x=1712315414;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4pDRw4aicJSIJC3qwutLnnx6QQqz9KYWa2FurS+YN/A=;
+ b=PJEG3Lzvu4Conh/E/VFcZd0W+Tml5GM0piqafBkQswqB/Yr8rUlrVGa+
+ VHlUH0NXlzSm4D9yPEG3j0lC3S5zVknUcf52R6AvfKKDpiS0PI7o1tELV
+ 2b/oxoSbo/WewdlNJWtuw3EhZ0W9llpsxDo2EzUcaPwNTLQwL+wJ3TIju
+ GsKpVQOweOG2OxSP26uZhGLWNX3D84hFbmqvi4XjV3OybiEllLMfZhyUc
+ 1gBtv5c+Q1U+RH4dxL0WpsCUjX4qTEK/tl5BTLFj43vFh9FlZ9mqMOD82
+ OL7Ix5rAVAC1wUx0QEkiB8WQPnv/XaFAdHow3UAidrMBHTJpfBmbV2RxG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="405494393"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="405494393"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 04:10:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="861369060"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="861369060"
-Received: from pjkenny-mobl2.ger.corp.intel.com (HELO [10.213.218.83])
- ([10.213.218.83])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 04:08:11 -0700
-Message-ID: <c80ae665-0177-355e-e38c-a7cce5043617@linux.intel.com>
-Date: Thu, 6 Apr 2023 12:08:09 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="717414084"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="717414084"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga008.jf.intel.com with SMTP; 06 Apr 2023 04:10:10 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 06 Apr 2023 14:10:10 +0300
+Date: Thu, 6 Apr 2023 14:10:10 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <ZC6okmAsug2LGYBO@intel.com>
+References: <20230329135002.3096-1-ville.syrjala@linux.intel.com>
+ <20230329135002.3096-2-ville.syrjala@linux.intel.com>
+ <eeceb998-0bc6-53c3-a6c8-54b5e660f961@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@chromium.org>
-References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
- <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
- <CAJs_Fx6viBKQwoRofup8z4ZBcGC6dabvLarzT8aoevBEjQe8Ew@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAJs_Fx6viBKQwoRofup8z4ZBcGC6dabvLarzT8aoevBEjQe8Ew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU
- top tool
+In-Reply-To: <eeceb998-0bc6-53c3-a6c8-54b5e660f961@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Fix limited range csc matrix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,335 +62,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 05/04/2023 18:57, Rob Clark wrote:
-> On Tue, Jan 31, 2023 at 3:33 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be used
->> to display a sorted by card and usage list of processes using GPUs.
->>
->> Borrows a bit of code from intel_gpu_top but for now omits the fancy
->> features like interactive functionality, card selection, client
->> aggregation, sort modes, JSON output  and pretty engine names. Also no
->> support for global GPU or system metrics.
->>
->> On the other hand it shows clients from all DRM cards which
->> intel_gpu_top does not do.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Rob Clark <robdclark@chromium.org>
->> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
->> Acked-by: Christian König <christian.koenig@amd.com>
+On Thu, Apr 06, 2023 at 04:26:48PM +0530, Nautiyal, Ankit K wrote:
+> Hi Ville,
 > 
-> Reviewed-by: Rob Clark <robdclark@chromium.org>
+> HDMI1.4b indeed says max value for 16bpc as 60160 (0xeb00)
+> And black level of 4096.
+> 
+> Got me thinking that we might need to consider bpc for getting the 
+> Coeffs and the offsets.
+> IIUC for CSC Full range to Limited range:
+> out = in * gain  + offset
+> 
+> Gain :
+> So for 8 bpc, as you have mentioned
+> multiplier or gain will be: (235-16) / 255 = 0.8588 ~0.86
+> offset will be 16, as range is from 16-235
+> 
+> 16 bpc
+> Multiplier: (60160-4096)/65535 = 0.8555 ~0.86
+> Offset for 16bit: should be 4096
+> 
+> So it seems Multiplier of 0.86 should be alright for different bpc, but 
+> offset would vary.
 
-Presumably for 8/8 only?
-
-The rest of the series does not apply any more by now. I need to rebase..
-
-Regards,
-
-Tvrtko
+It's all still in the pipe's internal precision. So any 16 vs. 4096
+distinction doesn't exist.
 
 > 
->> ---
->>   tools/gputop.c    | 260 ++++++++++++++++++++++++++++++++++++++++++++++
->>   tools/meson.build |   5 +
->>   2 files changed, 265 insertions(+)
->>   create mode 100644 tools/gputop.c
->>
->> diff --git a/tools/gputop.c b/tools/gputop.c
->> new file mode 100644
->> index 000000000000..d259cac1ab17
->> --- /dev/null
->> +++ b/tools/gputop.c
->> @@ -0,0 +1,260 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2022 Intel Corporation
->> + */
->> +
->> +#include <assert.h>
->> +#include <ctype.h>
->> +#include <dirent.h>
->> +#include <errno.h>
->> +#include <fcntl.h>
->> +#include <inttypes.h>
->> +#include <limits.h>
->> +#include <locale.h>
->> +#include <math.h>
->> +#include <poll.h>
->> +#include <signal.h>
->> +#include <stdint.h>
->> +#include <stdio.h>
->> +#include <stdlib.h>
->> +#include <string.h>
->> +#include <sys/ioctl.h>
->> +#include <sys/stat.h>
->> +#include <sys/types.h>
->> +#include <unistd.h>
->> +#include <termios.h>
->> +#include <sys/sysmacros.h>
->> +#include <stdbool.h>
->> +
->> +#include "igt_drm_clients.h"
->> +#include "igt_drm_fdinfo.h"
->> +
->> +static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
->> +
->> +static void n_spaces(const unsigned int n)
->> +{
->> +       unsigned int i;
->> +
->> +       for (i = 0; i < n; i++)
->> +               putchar(' ');
->> +}
->> +
->> +static void print_percentage_bar(double percent, int max_len)
->> +{
->> +       int bar_len, i, len = max_len - 2;
->> +       const int w = 8;
->> +
->> +       assert(max_len > 0);
->> +
->> +       bar_len = ceil(w * percent * len / 100.0);
->> +       if (bar_len > w * len)
->> +               bar_len = w * len;
->> +
->> +       putchar('|');
->> +
->> +       for (i = bar_len; i >= w; i -= w)
->> +               printf("%s", bars[w]);
->> +       if (i)
->> +               printf("%s", bars[i]);
->> +
->> +       len -= (bar_len + (w - 1)) / w;
->> +       n_spaces(len);
->> +
->> +       putchar('|');
->> +}
->> +
->> +static int
->> +print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
->> +                   int *engine_w)
->> +{
->> +       const char *pidname = "    PID               NAME ";
->> +       int ret, len = strlen(pidname);
->> +
->> +       if (lines++ >= con_h || len >= con_w)
->> +               return lines;
->> +       printf("\033[7m");
->> +       ret = printf("DRM minor %u", c->drm_minor);
->> +       n_spaces(con_w - ret);
->> +
->> +       if (lines++ >= con_h)
->> +               return lines;
->> +       printf("\n%s", pidname);
->> +
->> +       if (c->engines->num_engines) {
->> +               unsigned int i;
->> +               int width;
->> +
->> +               *engine_w = width = (con_w - len) / c->engines->num_engines;
->> +
->> +               for (i = 0; i <= c->engines->max_engine_id; i++) {
->> +                       const char *name = c->engines->names[i];
->> +                       int name_len = strlen(name);
->> +                       int pad = (width - name_len) / 2;
->> +                       int spaces = width - pad - name_len;
->> +
->> +                       if (!name)
->> +                               continue;
->> +
->> +                       if (pad < 0 || spaces < 0)
->> +                               continue;
->> +
->> +                       n_spaces(pad);
->> +                       printf("%s", name);
->> +                       n_spaces(spaces);
->> +                       len += pad + name_len + spaces;
->> +               }
->> +       }
->> +
->> +       n_spaces(con_w - len);
->> +       printf("\033[0m\n");
->> +
->> +       return lines;
->> +}
->> +
->> +
->> +static bool
->> +newheader(const struct igt_drm_client *c, const struct igt_drm_client *pc)
->> +{
->> +       return !pc || c->drm_minor != pc->drm_minor;
->> +}
->> +
->> +static int
->> +print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
->> +            double t, int lines, int con_w, int con_h,
->> +            unsigned int period_us, int *engine_w)
->> +{
->> +       unsigned int i;
->> +
->> +       /* Filter out idle clients. */
->> +       if (!c->total_runtime || c->samples < 2)
->> +               return lines;
->> +
->> +       /* Print header when moving to a different DRM card. */
->> +       if (newheader(c, *prevc)) {
->> +               lines = print_client_header(c, lines, con_w, con_h, engine_w);
->> +               if (lines >= con_h)
->> +                       return lines;
->> +       }
->> +
->> +       *prevc = c;
->> +
->> +       printf("%8u %17s ", c->pid, c->print_name);
->> +       lines++;
->> +
->> +       for (i = 0; c->samples > 1 && i <= c->engines->max_engine_id; i++) {
->> +               double pct;
->> +
->> +               if (!c->engines->capacity[i])
->> +                       continue;
->> +
->> +               pct = (double)c->val[i] / period_us / 1e3 * 100 /
->> +                     c->engines->capacity[i];
->> +
->> +               /*
->> +                * Guard against fluctuations between our scanning period and
->> +                * GPU times as exported by the kernel in fdinfo.
->> +                */
->> +               if (pct > 100.0)
->> +                       pct = 100.0;
->> +
->> +               print_percentage_bar(pct, *engine_w);
->> +       }
->> +
->> +       putchar('\n');
->> +
->> +       return lines;
->> +}
->> +
->> +static int
->> +__client_id_cmp(const struct igt_drm_client *a,
->> +               const struct igt_drm_client *b)
->> +{
->> +       if (a->id > b->id)
->> +               return 1;
->> +       else if (a->id < b->id)
->> +               return -1;
->> +       else
->> +               return 0;
->> +}
->> +
->> +static int client_cmp(const void *_a, const void *_b, void *unused)
->> +{
->> +       const struct igt_drm_client *a = _a;
->> +       const struct igt_drm_client *b = _b;
->> +       long val_a, val_b;
->> +
->> +       /* DRM cards into consecutive buckets first. */
->> +       val_a = a->drm_minor;
->> +       val_b = b->drm_minor;
->> +       if (val_a > val_b)
->> +               return 1;
->> +       else if (val_b > val_a)
->> +               return -1;
->> +
->> +       /*
->> +        * Within buckets sort by last sampling period aggregated runtime, with
->> +        * client id as a tie-breaker.
->> +        */
->> +       val_a = a->last_runtime;
->> +       val_b = b->last_runtime;
->> +       if (val_a == val_b)
->> +               return __client_id_cmp(a, b);
->> +       else if (val_b > val_a)
->> +               return 1;
->> +       else
->> +               return -1;
->> +
->> +}
->> +
->> +int main(int argc, char **argv)
->> +{
->> +       unsigned int period_us = 2e6;
->> +       struct igt_drm_clients *clients = NULL;
->> +       int con_w = -1, con_h = -1;
->> +
->> +       clients = igt_drm_clients_init(NULL);
->> +       if (!clients)
->> +               exit(1);
->> +
->> +       igt_drm_clients_scan(clients, NULL, NULL, 0);
->> +
->> +       for (;;) {
->> +               struct igt_drm_client *c, *prevc = NULL;
->> +               int i, engine_w = 0, lines = 0;
->> +               struct winsize ws;
->> +
->> +               if (ioctl(0, TIOCGWINSZ, &ws) != -1) {
->> +                       con_w = ws.ws_col;
->> +                       con_h = ws.ws_row;
->> +                       if (con_w == 0 && con_h == 0) {
->> +                               /* Serial console. */
->> +                               con_w = 80;
->> +                               con_h = 24;
->> +                       }
->> +               }
->> +
->> +               igt_drm_clients_scan(clients, NULL, NULL, 0);
->> +               igt_drm_clients_sort(clients, client_cmp);
->> +
->> +               printf("\033[H\033[J");
->> +
->> +               igt_for_each_drm_client(clients, c, i) {
->> +                       assert(c->status != IGT_DRM_CLIENT_PROBE);
->> +                       if (c->status != IGT_DRM_CLIENT_ALIVE)
->> +                               break; /* Active clients are first in the array. */
->> +
->> +                       lines = print_client(c, &prevc, (double)period_us / 1e6,
->> +                                            lines, con_w, con_h, period_us,
->> +                                            &engine_w);
->> +                       if (lines >= con_h)
->> +                               break;
->> +               }
->> +
->> +               if (lines++ < con_h)
->> +                       printf("\n");
->> +
->> +               usleep(period_us);
->> +       }
->> +
->> +       return 0;
->> +}
->> diff --git a/tools/meson.build b/tools/meson.build
->> index c6194fd15daa..0a3973dee90d 100644
->> --- a/tools/meson.build
->> +++ b/tools/meson.build
->> @@ -65,6 +65,11 @@ if libudev.found()
->>                     install : true)
->>   endif
->>
->> +executable('gputop', 'gputop.c',
->> +           install : true,
->> +           install_rpath : bindir_rpathdir,
->> +           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
->> +
->>   intel_l3_parity_src = [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c' ]
->>   executable('intel_l3_parity', sources : intel_l3_parity_src,
->>             dependencies : tool_deps,
->> --
->> 2.34.1
->>
+> Also CSC Postoff programming for the offset doesn’t seem very clear to me.
+> For CSC BT709 RGB Full range->YCbCr Limited Range, we use offset of {16, 
+> 128, 128} for Y, Cb, Cr, and we write 0x800, 0x100, 0x100 for these values.
+
+Y is the middle channel. We write 0x800,0x100,0x800
+
+> 
+> But below for Limited range Post offset 16,  we seem to be shifting by 
+> (12 - 8) i.e 4. Am I missing something?
+> 
+> 
+> Regards,
+> 
+> Ankit
+> 
+> On 3/29/2023 7:19 PM, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Our current limited range matrix is a bit off. I think it
+> > was originally calculated with rounding, as if we wanted
+> > the normal pixel replication type of behaviour.
+> > That is, since the 8bpc max value is 0xeb we assumed the
+> > 16bpc max value should be 0xebeb, but what the HDMI spec
+> > actually says it should be is 0xeb00.
+> >
+> > So to get what we want we make the formula
+> >   out = in * (235-16) << (12-8) / in_max + 16 << (12-8),
+> > with 12 being precision of the csc, 8 being the precision
+> > of the constants we used.
+> >
+> > The hardware takes its coefficients as floating point
+> > values, but the (235−16)/255 = ~.86, so exponent 0
+> > is what we want anyway, so it works out perfectly without
+> > having to hardcode it in hex or start playing with floats.
+> >
+> > In terms of raw numbers we are feeding the hardware the
+> > post offset changes from 0x101 to 0x100, and the coefficient
+> > changes from 0xdc0 to 0xdb0 (~.860->~.855). So this should
+> > make everything come out just a tad darker.
+> >
+> > I already used better constants in lut_limited_range() earlier
+> > so the output of the two paths should be closer now.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_color.c | 5 ++---
+> >   1 file changed, 2 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 36aac88143ac..3c3e2f5a5cde 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -116,10 +116,9 @@ struct intel_color_funcs {
+> >   #define ILK_CSC_COEFF_FP(coeff, fbits)	\
+> >   	(clamp_val(((coeff) >> (32 - (fbits) - 3)) + 4, 0, 0xfff) & 0xff8)
+> >   
+> > -#define ILK_CSC_COEFF_LIMITED_RANGE 0x0dc0
+> >   #define ILK_CSC_COEFF_1_0 0x7800
+> > -
+> > -#define ILK_CSC_POSTOFF_LIMITED_RANGE (16 * (1 << 12) / 255)
+> > +#define ILK_CSC_COEFF_LIMITED_RANGE ((235 - 16) << (12 - 8)) /* exponent 0 */
+> > +#define ILK_CSC_POSTOFF_LIMITED_RANGE (16 << (12 - 8))
+> >   
+> >   /* Nop pre/post offsets */
+> >   static const u16 ilk_csc_off_zero[3] = {};
+
+-- 
+Ville Syrjälä
+Intel
