@@ -2,59 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0A46D9A6D
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 16:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1677F6D9A70
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 16:34:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE5C210EC08;
-	Thu,  6 Apr 2023 14:33:19 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1027C10EC0B;
+	Thu,  6 Apr 2023 14:34:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B470C10EC08;
- Thu,  6 Apr 2023 14:33:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 555FB10EC08;
+ Thu,  6 Apr 2023 14:34:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680791598; x=1712327598;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tZxtjroVgKOUZwySrMlbwpqr781HWEnS0qKriE0huV4=;
- b=no355vY7K5WONrx0O3d2evsUBt1VYedtonvnL2lBReZzLmaCB/p+LtkE
- 99W9GA+WFDtBiol3GI7m7lodnpMi1Hyuw0XVn/LJl0Ssscrz3ysqaDKN5
- KJcNUHJmc2R4+Gle0DcgXaKB0TFO81BNEw7EqneqqG7tZ0cQ5txqtNyTn
- 5GDhmWx5lbRYLeoSCTvPY+svaCVorTk6KHEjFfBoGyGmyRLT+6hH1CK32
- REJ1Hp2bW9tyehSj2y10qmLizbTM+hUqxV3Jy/F6Uruj1G0Hkz1pTbWPP
- tNN0wF88pQ8zmz2EL+Wj2/koXZqv2fTjuuENIZjOUM3TcXtSzHR3avAwX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384294"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384294"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1680791650; x=1712327650;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eHscwEMheJ4cQOtRwB5dbjbffFkoWmLdRVEuGZAKVt4=;
+ b=XTwk1WQDKyo8JS7W9BH1u+b6YwNSuD8ZsNfbfN8EzZP9MQUsRbJLt/A7
+ gTR+4fAJ8HoCTuFd71nfDOYytMAncr/QxMW/cbqRfNMuWLNDDWbaCq8gW
+ 5Sv9GTxvKv0EocTSYFPnaOiiPgWvYkSW8jFj+BpiQ9PU9trulsH7FrE2y
+ OY/XzV6yPTvDWP5VjZQgnJJ/iBnvg16ujBro+xgdFGLCMZNVAFwO00kYu
+ 1X8E47Yrf0XeIad1fJuXy09jlEybL7I0uOI1r2JwLqcqAuuu4ROyd9n1Y
+ x/y5lXM17rJwaZRmV9ZAJWHlCqa64FfOr/fib0UkiDvk0CDPWWeYDw4IH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384529"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384529"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:20 -0700
+ 06 Apr 2023 07:31:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="776498187"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="776498187"
-Received: from pjkenny-mobl2.ger.corp.intel.com (HELO [10.213.218.83])
- ([10.213.218.83])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:03 -0700
-Message-ID: <c288faf6-28ad-b0bc-c77d-16628ba93475@linux.intel.com>
-Date: Thu, 6 Apr 2023 15:31:01 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664488414"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664488414"
+Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 07:31:40 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  6 Apr 2023 07:31:28 -0700
+Message-Id: <20230406143133.29474-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
- <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
- <CAJs_Fx6viBKQwoRofup8z4ZBcGC6dabvLarzT8aoevBEjQe8Ew@mail.gmail.com>
- <c80ae665-0177-355e-e38c-a7cce5043617@linux.intel.com>
- <CAF6AEGvP-AfKW7AtJuz3a020_E15fRa_vmKvNOBy_QQo5-zopQ@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGvP-AfKW7AtJuz3a020_E15fRa_vmKvNOBy_QQo5-zopQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 8/8] gputop: Basic vendor
- agnostic GPU top tool
+Subject: [Intel-gfx] [PATCH v2 rebased 1/6] drm/i915: Nuke unused dsparb_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,58 +56,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+dsparb_lock it not used anymore, nuke it.
 
-On 06/04/2023 15:21, Rob Clark wrote:
-> On Thu, Apr 6, 2023 at 4:08 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->>
->> On 05/04/2023 18:57, Rob Clark wrote:
->>> On Tue, Jan 31, 2023 at 3:33 AM Tvrtko Ursulin
->>> <tvrtko.ursulin@linux.intel.com> wrote:
->>>>
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be used
->>>> to display a sorted by card and usage list of processes using GPUs.
->>>>
->>>> Borrows a bit of code from intel_gpu_top but for now omits the fancy
->>>> features like interactive functionality, card selection, client
->>>> aggregation, sort modes, JSON output  and pretty engine names. Also no
->>>> support for global GPU or system metrics.
->>>>
->>>> On the other hand it shows clients from all DRM cards which
->>>> intel_gpu_top does not do.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>> Cc: Rob Clark <robdclark@chromium.org>
->>>> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
->>>> Acked-by: Christian König <christian.koenig@amd.com>
->>>
->>> Reviewed-by: Rob Clark <robdclark@chromium.org>
->>
->> Presumably for 8/8 only?
->>
->> The rest of the series does not apply any more by now. I need to rebase..
-> 
-> I didn't look closely at the rest of the series (was kinda assuming
-> that was mostly just moving things around).. but I see you rebased it
-> so I can take a look.
+Cc: intel-gfx@lists.freedesktop.org
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_core.h | 3 ---
+ drivers/gpu/drm/i915/i915_driver.c                | 1 -
+ 2 files changed, 4 deletions(-)
 
-There's a lot in there - first patch is extracting some code into a 
-library, with the corresponding renames, but then there are six patches 
-of tweaks and feature additions which finally make gputop possible.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index cc058eb303ee8..d2346d43d1162 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -266,9 +266,6 @@ struct intel_wm {
+ 	 */
+ 	struct mutex wm_mutex;
+ 
+-	/* protects DSPARB registers on pre-g4x/vlv/chv */
+-	spinlock_t dsparb_lock;
+-
+ 	bool ipc_enabled;
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 066d79c2069c4..ea2cc56d18a6e 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -214,7 +214,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	spin_lock_init(&dev_priv->irq_lock);
+ 	spin_lock_init(&dev_priv->gpu_error.lock);
+ 	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+-	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+ 	mutex_init(&dev_priv->display.backlight.lock);
+ 
+ 	mutex_init(&dev_priv->sb_lock);
+-- 
+2.40.0
 
-Hopefully you can penetrate the concepts. It was all at least Valgrind 
-clean back in the day I first did it.
-
-Regards,
-
-Tvrtko
