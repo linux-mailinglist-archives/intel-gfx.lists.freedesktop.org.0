@@ -1,53 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5D46D9714
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:35:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FC66D9717
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:38:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93BDC10E20C;
-	Thu,  6 Apr 2023 12:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5863C10E31E;
+	Thu,  6 Apr 2023 12:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE84110E20C
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680784529; x=1712320529;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bOx/z4I0EY2rnvVRy/FRIc2kfGMnzG8WAlP86pJumYE=;
- b=O4JCWFl61+2sc29GC9VYvpkWGDUr+r3dlg1M8WKWoD7KuNKz0lc9/7A6
- kV4irnVJoXX8EDjduqTqTucbg+XU1Sdx5ZWZJhprEDJWvDroSCkTJh0Ew
- eTFEDGmRzV8vlGNHi0dy2JFrV6kQRIHkuLloIh7d9FVhmzf8iM/5GAu0e
- b4FQDVp0+l97O1GbbYJlz1LZ0U71g3drFoTOMEFU/uE1534u7pvROjB4H
- Siqj5qRLjhXQ2cdWYIX2wGPOu1XCE8eDIQgRWzBeA/tQPF9I5SUkT9H67
- B88PaXTWWB5HGnRB0jDgcShhZzN5u8UjJKn7RsKixKAT+nzyisSR5asJK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="326765902"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="326765902"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:35:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="798306081"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="798306081"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:35:27 -0700
-Date: Thu, 6 Apr 2023 15:35:19 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZC68h9j0rQ63gwy7@intel.com>
-References: <20230406085802.7381-1-stanislav.lisovskiy@intel.com>
- <877cupz5yr.fsf@intel.com> <ZC6lQGuxumD+J8dC@intel.com>
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
+ [IPv6:2a00:1450:4864:20::632])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2537A10E20C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:38:06 +0000 (UTC)
+Received: by mail-ej1-x632.google.com with SMTP id
+ a640c23a62f3a-93abb185e13so16418866b.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 05:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680784683; x=1683376683;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=0o0i6oK4LGQoPEyZShn5tfjjc1h/PsxrgfVbb1dsNKw=;
+ b=hyCoXYLRqkTZX/dd7Bbvk0RC/qS+WxkvBfuNLFdG1eReMbqTi1FG38AijQ0L3upYdi
+ HESli4E95ry/H0gfazC8CQ0BENN6e6kk4EAzSoylDfh/5bPn/R3Io92pdVZDDQWA7Gyf
+ b/6tdUYU5aAy3+Gle27C28Srdq0LSfqFF7eeg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680784683; x=1683376683;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=0o0i6oK4LGQoPEyZShn5tfjjc1h/PsxrgfVbb1dsNKw=;
+ b=ejWmLaQ3DNco0XQbVmoJzMYyasYWESh7hLV93xQ29Y5ZlipV7lwMP39V5NGI2PZ48d
+ nkib9XIgZNpLmz6Dx59KbCaZIVH730ULPJFf14W/9FlEk5vYvJBBzOF09+hPvcF4QhgH
+ UIcNM7PTtO2j/rZ/2P175XKDGWWE8raoYEZYoyG2uIbjUwiAE0j/0mGby2uY5HjhGiSE
+ 1US/rp0GNuSDlMwmCVO+mv2pM8IJgF5BKZ3Avpt6yBi0W1YE+W68fEAEt1qFLxWsXlnT
+ qXQbsbIHTMcbwhXB6zotiwy5yaHjHr/4zPOlVY2GEU4xfsQycAwzGEQFwL4+wXayhBUv
+ HzTQ==
+X-Gm-Message-State: AAQBX9dTnhOnwXF1QgLfv4FrI8XZ0c0899NMHH/49nAf1rfxl2I7dOIq
+ hVskcgxghamb+aTBxgEK6NlhXjI6rBBNGO9K1WE=
+X-Google-Smtp-Source: AKy350b/cW6p8AlGvOUCrbRgmAosybVI8S1PRl0dmboaB2oGZm7S6khcbPFWKIVYvwKtvkeQVJXQBw==
+X-Received: by 2002:a17:906:2218:b0:8f5:14ab:94bc with SMTP id
+ s24-20020a170906221800b008f514ab94bcmr4398493ejs.6.1680784683143; 
+ Thu, 06 Apr 2023 05:38:03 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ mb14-20020a170906eb0e00b00947a749fc3esm771645ejb.33.2023.04.06.05.38.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Apr 2023 05:38:02 -0700 (PDT)
+Date: Thu, 6 Apr 2023 14:38:00 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <ZC69KBn9wEjHAhnF@phenom.ffwll.local>
+References: <ZC6APj/feB+jBf2d@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZC6lQGuxumD+J8dC@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Query compressed bpp properly
- using correct DPCD and DP Spec info
+In-Reply-To: <ZC6APj/feB+jBf2d@jlahtine-mobl.ger.corp.intel.com>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,174 +70,289 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 01:56:00PM +0300, Ville Syrjälä wrote:
-> On Thu, Apr 06, 2023 at 12:59:40PM +0300, Jani Nikula wrote:
-> > On Thu, 06 Apr 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> > > Currently we seem to be using wrong DPCD register for reading compressed bpps,
-> > > reading min/max input bpc instead of compressed bpp.
-> > > Fix that, so that we now apply min/max compressed bpp limitations we get
-> > > from DP Spec Table 2-157 DP v2.0 and/or correspondent DPCD register
-> > > DP_DSC_MAX_BITS_PER_PIXEL_LOW/HIGH.
-> > >
-> > > This might also allow us to get rid of an ugly compressed bpp recalculation,
-> > > which we had to add to make some MST hubs usable.
-> > >
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 76 ++++++++++++++-------
-> > >  1 file changed, 52 insertions(+), 24 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > index a88b852c437c..9479c7e0b269 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -174,6 +174,50 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static u16 dsc_max_sink_compressed_bppx16(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
-> > > +					  struct intel_crtc_state *pipe_config,
-> > > +					  int bpc)
-> > > +{
-> > > +	u16 max_bppx16 = dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_LOW - DP_DSC_SUPPORT] |
-> > > +			 (dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
-> > > +			  DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK << DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT);
-> > 
-> > This duplicates drm_edp_dsc_sink_output_bpp().
+On Thu, Apr 06, 2023 at 11:18:06AM +0300, Joonas Lahtinen wrote:
+> Hi Dave & Daniel,
 > 
-> These registers are not even valid for non-eDP.
+> Here goes the final drm-intel-gt-next pull request for v6.4.
+> 
+> As top items we have a fix for context runtime accounting, Meteorlake
+> enabling, DMAR error noise elimination due to GPU error capture, BAR
+> resizing forcewake fix and memory contents clearing fix for discrete.
+> More robust GuC loading on systems with IFWI that leaves GPU to slow
+> frequency and a potential UAF closed on perf add_config IOCTL.
+> 
+> There is also change to the uAPI headers to eliminate flexible-array
+> member kernel-wide request, which does not impact binaries and also
+> should not impact compilation.
+> 
+> Then the usual amount of smaller fixes and cleanups. A good amount of
+> kerneldoc fixes included.
+> 
+> Best Regards, Joonas
+> 
+> ***
+> 
+> drm-intel-gt-next-2023-04-06:
+> 
+> UAPI Changes:
+> 
+> - (Build-time only, should not have any impact)
+>   drm/i915/uapi: Replace fake flex-array with flexible-array member
+> 
+>   "Zero-length arrays as fake flexible arrays are deprecated and we are
+>   moving towards adopting C99 flexible-array members instead."
+> 
+>   This is on core kernel request moving towards GCC 13.
+> 
+> Driver Changes:
+> 
+> - Fix context runtime accounting on sysfs fdinfo for heavy workloads (Tvrtko)
+> - Add support for OA media units on MTL (Umesh)
+> - Add new workarounds for Meteorlake (Daniele, Radhakrishna, Haridhar)
+> - Fix sysfs to read actual frequency for MTL and Gen6 and earlier
+>   (Ashutosh)
+> - Synchronize i915/BIOS on C6 enabling on MTL (Vinay)
+> - Fix DMAR error noise due to GPU error capture (Andrej)
+> - Fix forcewake during BAR resize on discrete (Andrzej)
+> - Flush lmem contents after construction on discrete (Chris)
+> - Fix GuC loading timeout on systems where IFWI programs low boot
+>   frequency (John)
+> - Fix race condition UAF in i915_perf_add_config_ioctl (Min)
+> 
+> - Sanitycheck MMIO access early in driver load and during forcewake
+>   (Matt)
+> - Wakeref fixes for GuC RC error scenario and active VM tracking (Chris)
+> - Cancel HuC delayed load timer on reset (Daniele)
+> - Limit double GT reset to pre-MTL (Daniele)
+> - Use i915 instead of dev_priv insied the file_priv structure (Andi)
+> - Improve GuC load error reporting (John)
+> - Simplify VCS/BSD engine selection logic (Tvrtko)
+> - Perform uc late init after probe error injection (Andrzej)
+> - Fix format for perf_limit_reasons in debugfs (Vinay)
+> - Create per-gt debugfs files (Andi)
+> 
+> - Documentation and kerneldoc fixes (Nirmoy, Lee)
+> - Selftest improvements (Fei, Jonathan)
+> 
+> The following changes since commit d2a9692ad4295e227e3352fdbf14b8491b01e1c9:
+> 
+>   drm/i915/gt: make kobj attributes const (2023-03-15 12:20:11 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-04-06
+> 
+> for you to fetch changes up to 4b51210f98c2b89ce37aede5b8dc5105be0572c6:
+> 
+>   drm/i915/mtl: Add Wa_14017856879 (2023-04-05 07:59:12 -0700)
 
-BTW just checked DP 2.0 spec, says "For DP v2.0 (and higher) and eDP v1.4a (and higher)"
-for registers 0x67, 0x68.
-
-Otherwise if those are cleared and for older DP/eDP standards it instruct to use Table 2-154.
-
-So I guess this function can be used still.
-
-Stan
+Pulled, thanks
 
 > 
-> > 
-> > Both have operator precedence wrong, leading to the high byte always
-> > being ignored. For example, sink reported max bpp of 32 turns to 0, and
-> > 24 turns to 8.
-> > 
-> > Broken since 2018. 0575650077ea ("drm/dp: DRM DP helper/macros to get DP
-> > sink DSC parameters").
-> > 
-> > The definition of DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT is misleading wrt
-> > all of our regular usage. We should never have a FOO_MASK << FOO_SHIFT
-> > in code, the MASK should always be already shifted in place. Here we do,
-> > because the shift is not for shifting the mask in place, it's for
-> > combining the high and low bytes. But I don't really think
-> > DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT should exist, at all.
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > 
-> > > +
-> > > +	if (max_bppx16)
-> > > +		return max_bppx16;
-> > > +	/*
-> > > +	 * If support not given in DPCD 67h, 68h use the Maximum Allowed bit rate
-> > > +	 * values as given in spec Table 2-157 DP v2.0
-> > > +	 */
-> > > +	switch (pipe_config->output_format) {
-> > > +	case INTEL_OUTPUT_FORMAT_RGB:
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR444:
-> > > +		return bpc << 4;
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> > > +		return (3 * (bpc / 2)) << 4;
-> > > +	default:
-> > > +		MISSING_CASE(pipe_config->output_format);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static u16 dsc_min_compressed_bppx16(struct intel_crtc_state *pipe_config)
-> > > +{
-> > > +	switch (pipe_config->output_format) {
-> > > +	case INTEL_OUTPUT_FORMAT_RGB:
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR444:
-> > > +		return 8 << 4;
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> > > +		return 6 << 4;
-> > > +	default:
-> > > +		MISSING_CASE(pipe_config->output_format);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  						struct intel_crtc_state *crtc_state,
-> > >  						struct drm_connector_state *conn_state,
-> > > @@ -191,8 +235,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	u8 dsc_bpc[3] = {0};
-> > >  	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
-> > >  	u8 dsc_max_bpc;
-> > > -	bool need_timeslot_recalc = false;
-> > > -	u32 last_compressed_bpp;
-> > >  
-> > >  	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-> > >  	if (DISPLAY_VER(i915) >= 12)
-> > > @@ -228,6 +270,14 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	if (max_bpp > sink_max_bpp)
-> > >  		max_bpp = sink_max_bpp;
-> > >  
-> > > +	/* Get Min/Max compressed bpp's for those Input Bpps we got for source/sink */
-> > > +	max_bpp = min(max_bpp, dsc_max_sink_compressed_bppx16(intel_dp->dsc_dpcd, crtc_state, max_bpp / 3) >> 4);
-> > > +	min_bpp = max(min_bpp, dsc_min_compressed_bppx16(crtc_state) >> 4);
-> > > +
-> > > +	/* Align compressed bpps according to our own constraints */
-> > > +	max_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_bpp, crtc_state->pipe_bpp);
-> > > +	min_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_bpp, crtc_state->pipe_bpp);
-> > > +
-> > >  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
-> > >  						     min_bpp, limits,
-> > >  						     conn_state, 2 * 3, true);
-> > > @@ -235,28 +285,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	if (slots < 0)
-> > >  		return slots;
-> > >  
-> > > -	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
-> > > -
-> > > -	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
-> > > -									last_compressed_bpp,
-> > > -									crtc_state->pipe_bpp);
-> > > -
-> > > -	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
-> > > -		need_timeslot_recalc = true;
-> > > -
-> > > -	/*
-> > > -	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
-> > > -	 * the actual compressed bpp we use.
-> > > -	 */
-> > > -	if (need_timeslot_recalc) {
-> > > -		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> > > -							     crtc_state->dsc.compressed_bpp,
-> > > -							     crtc_state->dsc.compressed_bpp,
-> > > -							     limits, conn_state, 2 * 3, true);
-> > > -		if (slots < 0)
-> > > -			return slots;
-> > > -	}
-> > > -
-> > >  	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
-> > >  			       crtc_state->lane_count,
-> > >  			       adjusted_mode->crtc_clock,
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
+> ----------------------------------------------------------------
+> UAPI Changes:
 > 
-> -- 
-> Ville Syrjälä
-> Intel
+> - (Build-time only, should not have any impact)
+>   drm/i915/uapi: Replace fake flex-array with flexible-array member
+> 
+>   "Zero-length arrays as fake flexible arrays are deprecated and we are
+>   moving towards adopting C99 flexible-array members instead."
+> 
+>   This is on core kernel request moving towards GCC 13.
+> 
+> Driver Changes:
+> 
+> - Fix context runtime accounting on sysfs fdinfo for heavy workloads (Tvrtko)
+> - Add support for OA media units on MTL (Umesh)
+> - Add new workarounds for Meteorlake (Daniele, Radhakrishna, Haridhar)
+> - Fix sysfs to read actual frequency for MTL and Gen6 and earlier
+>   (Ashutosh)
+> - Synchronize i915/BIOS on C6 enabling on MTL (Vinay)
+> - Fix DMAR error noise due to GPU error capture (Andrej)
+> - Fix forcewake during BAR resize on discrete (Andrzej)
+> - Flush lmem contents after construction on discrete (Chris)
+> - Fix GuC loading timeout on systems where IFWI programs low boot
+>   frequency (John)
+> - Fix race condition UAF in i915_perf_add_config_ioctl (Min)
+> 
+> - Sanitycheck MMIO access early in driver load and during forcewake
+>   (Matt)
+> - Wakeref fixes for GuC RC error scenario and active VM tracking (Chris)
+> - Cancel HuC delayed load timer on reset (Daniele)
+> - Limit double GT reset to pre-MTL (Daniele)
+> - Use i915 instead of dev_priv insied the file_priv structure (Andi)
+> - Improve GuC load error reporting (John)
+> - Simplify VCS/BSD engine selection logic (Tvrtko)
+> - Perform uc late init after probe error injection (Andrzej)
+> - Fix format for perf_limit_reasons in debugfs (Vinay)
+> - Create per-gt debugfs files (Andi)
+> 
+> - Documentation and kerneldoc fixes (Nirmoy, Lee)
+> - Selftest improvements (Fei, Jonathan)
+> 
+> ----------------------------------------------------------------
+> Andi Shyti (3):
+>       drm/i915/gt: Create per-gt debugfs files
+>       drm/i915/debugfs: Enable upper layer interfaces to act on all gt's
+>       drm/i915: Use i915 instead of dev_priv insied the file_priv structure
+> 
+> Andrzej Hajda (4):
+>       drm/i915/gt: prevent forcewake releases during BAR resize
+>       drm/i915/gt: introduce vm->scratch_range callback
+>       drm/i915: add guard page to ggtt->error_capture
+>       drm/i915/gt: perform uc late init after probe error injection
+> 
+> Ashutosh Dixit (1):
+>       drm/i915/pmu: Use functions common with sysfs to read actual freq
+> 
+> Chris Wilson (3):
+>       drm/i915/gem: Flush lmem contents after construction
+>       drm/i915/perf: Drop wakeref on GuC RC error
+>       drm/i915/gt: Hold a wakeref for the active VM
+> 
+> Daniele Ceraolo Spurio (3):
+>       drm/i915/huc: Cancel HuC delayed load timer on reset.
+>       drm/i915: limit double GT reset to pre-MTL
+>       drm/i915/gsc: implement wa 14015076503
+> 
+> Fei Yang (1):
+>       drm/i915/selftests: keep same cache settings as timeline
+> 
+> Gustavo A. R. Silva (1):
+>       drm/i915/uapi: Replace fake flex-array with flexible-array member
+> 
+> Haridhar Kalvala (1):
+>       drm/i915/mtl: Add Wa_14017856879
+> 
+> John Harrison (2):
+>       drm/i915/guc: Improve GuC load error reporting
+>       drm/i915/guc: Allow for very slow GuC loading
+> 
+> Jonathan Cavitt (1):
+>       drm/i915/selftests: Drop igt_cs_tlb
+> 
+> Lee Jones (13):
+>       drm/i915/i915_scatterlist: Fix kerneldoc formatting issue - missing '@'
+>       drm/i915/intel_region_ttm: Provide missing description for 'offset' param
+>       drm/i915/gt/intel_rps: Demote a kerneldoc abuse for ips_ping_for_i915_load()
+>       drm/i915/gem/i915_gem_create: Provide the function names for proper kerneldoc headers
+>       drm/i915/gem/i915_gem_domain: Provide function names to complete proper kerneldoc
+>       drm/i915/gem/i915_gem_ttm_pm: Provide a couple of missing descriptions for 'flags' and remove some superfluous ones
+>       drm/i915/gem/i915_gem_ttm: Demote half-filled kerneldoc
+>       drm/i915/gem/i915_gem_ttm_move: Provide a couple of missing descriptions for 'num_pages' and 'ctx'
+>       drm/i915/gem/i915_gem_wait: Provide function name to validate the kerneldoc header
+>       drm/i915/gem/i915_gem_object: Demote non-kerneldoc header with no param descriptions
+>       drm/i915/i915_gem: Provide function names to complete the expected kerneldoc format
+>       drm/i915/gt/uc/intel_guc_hwconfig: Demote a few non-conforming kerneldoc headers
+>       drm/i915/i915_vma: Provide one missing param and demote another non-kerneldoc header
+> 
+> Matt Roper (2):
+>       drm/i915: Sanitycheck MMIO access early in driver load
+>       drm/i915: Check for unreliable MMIO during forcewake
+> 
+> Min Li (1):
+>       drm/i915: fix race condition UAF in i915_perf_add_config_ioctl
+> 
+> Nirmoy Das (1):
+>       drm/i915/gt: Update engine_init_common documentation
+> 
+> Radhakrishna Sripada (2):
+>       drm/i915/mtl: Add workarounds Wa_14017066071 and Wa_14017654203
+>       drm/i915/mtl: Add Wa_22015279794
+> 
+> Tvrtko Ursulin (2):
+>       drm/i915: Simplify vcs/bsd engine selection
+>       drm/i915: Fix context runtime accounting
+> 
+> Umesh Nerlige Ramappa (10):
+>       drm/i915/perf: Validate OA sseu config outside switch
+>       drm/i915/perf: Group engines into respective OA groups
+>       drm/i915/perf: Fail modprobe if i915_perf_init fails on OOM
+>       drm/i915/perf: Parse 64bit report header formats correctly
+>       drm/i915/perf: Handle non-power-of-2 reports
+>       drm/i915/perf: Add engine class instance parameters to perf
+>       drm/i915/perf: Add support for OA media units
+>       drm/i915/perf: Pass i915 object to perf revision helper
+>       drm/i915/perf: Wa_14017512683: Disable OAM if media C6 is enabled in BIOS
+>       drm/i915/mtl: Disable C6 on MTL A0 for media
+> 
+> Vinay Belgaumkar (2):
+>       drm/i915: Fix format for perf_limit_reasons
+>       drm/i915/mtl: Synchronize i915/BIOS on C6 enabling
+> 
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c        |  22 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c         |   7 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c         |  14 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  10 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_lmem.c           |   3 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c         |   2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |   3 +
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c         |   5 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_wait.c           |   2 +-
+>  drivers/gpu/drm/i915/gt/intel_context.h            |  15 +-
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   4 +-
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   9 +
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h       |  10 +
+>  .../gpu/drm/i915/gt/intel_execlists_submission.c   |  12 +-
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c               |  43 +-
+>  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c          |   1 +
+>  drivers/gpu/drm/i915/gt/intel_gt.c                 |   4 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c         |   4 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h            |   9 +
+>  drivers/gpu/drm/i915/gt/intel_gtt.h                |   2 +
+>  drivers/gpu/drm/i915/gt/intel_rc6.c                |  27 +
+>  drivers/gpu/drm/i915/gt/intel_rc6.h                |   2 +
+>  drivers/gpu/drm/i915/gt/intel_rc6_types.h          |   2 +
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c        |  25 +-
+>  drivers/gpu/drm/i915/gt/intel_reset.c              | 119 ++++-
+>  drivers/gpu/drm/i915/gt/intel_rps.c                |  40 +-
+>  drivers/gpu/drm/i915/gt/intel_rps.h                |   4 +-
+>  drivers/gpu/drm/i915/gt/intel_sseu.c               |   3 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c        |  19 +
+>  drivers/gpu/drm/i915/gt/selftest_timeline.c        |  14 +-
+>  drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h    |  17 +
+>  drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h          |   2 +
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h             |   2 +
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          | 141 ++++-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c    |   6 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |   5 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h         |   4 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c             |   7 +
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.h             |   7 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |   2 +
+>  drivers/gpu/drm/i915/i915_debugfs.c                |  36 +-
+>  drivers/gpu/drm/i915/i915_driver.c                 |   4 +-
+>  drivers/gpu/drm/i915/i915_drm_client.c             |   2 +-
+>  drivers/gpu/drm/i915/i915_drv.h                    |   2 +
+>  drivers/gpu/drm/i915/i915_file_private.h           |   2 +-
+>  drivers/gpu/drm/i915/i915_gem.c                    |  10 +-
+>  drivers/gpu/drm/i915/i915_getparam.c               |   2 +-
+>  drivers/gpu/drm/i915/i915_pci.c                    |   1 +
+>  drivers/gpu/drm/i915/i915_perf.c                   | 570 ++++++++++++++++-----
+>  drivers/gpu/drm/i915/i915_perf.h                   |   4 +-
+>  drivers/gpu/drm/i915/i915_perf_oa_regs.h           |  78 +++
+>  drivers/gpu/drm/i915/i915_perf_types.h             |  75 ++-
+>  drivers/gpu/drm/i915/i915_pmu.c                    |  10 +-
+>  drivers/gpu/drm/i915/i915_reg.h                    |  14 +-
+>  drivers/gpu/drm/i915/i915_scatterlist.c            |   2 +-
+>  drivers/gpu/drm/i915/i915_vma.c                    |   3 +-
+>  drivers/gpu/drm/i915/intel_device_info.h           |   1 +
+>  drivers/gpu/drm/i915/intel_region_ttm.c            |   1 +
+>  drivers/gpu/drm/i915/intel_uncore.c                |  47 +-
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      | 356 -------------
+>  include/uapi/drm/i915_drm.h                        |  25 +-
+>  63 files changed, 1241 insertions(+), 637 deletions(-)
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
