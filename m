@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AAD6D9710
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:34:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96D26D9712
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:34:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73E210E31E;
-	Thu,  6 Apr 2023 12:34:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D854210EB90;
+	Thu,  6 Apr 2023 12:34:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD6110E31E;
- Thu,  6 Apr 2023 12:34:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680784453; x=1712320453;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=LpplrNcPreA3YB2CXjm71103HDFKmhUjT7oX29AVvIc=;
- b=X1AMswFJAbv5cznlNYkqUoDlJWfmEhdRxFYp0zrG29jgUrE85LWatg8I
- VxktV8c+yqcTEV3pcA+MvW3ufvzyY4V503jPOO2Aa9HctKuxZuNnGYf1b
- PmM8Z3W600Y0E4P1Qk2jYhcz8Q3vARkg+gfFfFtULWWy5+X50ASxL/qUf
- BrRNi4tuWhmUVV9+tUC9ULAlNXtBdV7F1Rk80P9t/DloWemsMmIVqXIIw
- MVkACfdnluH8aadHZTrgBsGMe90dY9tU0bKJfb36gNJ6cnDdAFOS7ogP4
- VqAwBbCuPOp9/HgT/6Scanqg4CULWTHYsv9SfofWdu0eaH7x+hr3OikVK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="345323424"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="345323424"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:34:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="756363287"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="756363287"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:34:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Dave Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-In-Reply-To: <64bb9696-a76a-89d9-1866-bcdf7c69c284@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <64bb9696-a76a-89d9-1866-bcdf7c69c284@linux.intel.com>
-Date: Thu, 06 Apr 2023 15:34:04 +0300
-Message-ID: <87v8i9xk8z.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5444C10E20C;
+ Thu,  6 Apr 2023 12:34:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4B352AA0ED;
+ Thu,  6 Apr 2023 12:34:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3279204005475114358=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PULL] drm-intel-gt-next
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 06 Apr 2023 12:34:48 -0000
+Message-ID: <168078448830.9550.12505609031240240087@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230405104142.766598-1-jani.nikula@intel.com>
+In-Reply-To: <20230405104142.766598-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/tc=3A_demote_a_kernel-doc_?=
+ =?utf-8?q?comment_to_a_regular_comment?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,260 +41,369 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 06 Apr 2023, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> =
-wrote:
-> Hi Dave, Daniel,
-> Pull request to avoid backmerges. ;)
-> Cheers,
-> ~Maarten
+--===============3279204005475114358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Not using dim for this? Is the subject line copy-pasted from another
-pull request? :)
+== Series Details ==
 
-BR,
-Jani.
+Series: series starting with [1/2] drm/i915/tc: demote a kernel-doc comment to a regular comment
+URL   : https://patchwork.freedesktop.org/series/116144/
+State : success
 
->
-> drm-misc-next-2023-04-06:
-> drm-misc-next for v6.4-rc1:
->
-> UAPI Changes:
->
-> Cross-subsystem Changes:
-> - Document port and rotation dt bindings better.
-> - For panel timing DT bindings, document that vsync and hsync are
->    first, rather than last in image.
-> - Fix video/aperture typos.
->
-> Core Changes:
-> - Reject prime DMA-Buf attachment if get_sg_table is missing.
->    (For self-importing dma-buf only.)
-> - Add prime import/export to vram-helper.
-> - Fix oops in drm/vblank when init is not called.
-> - Fixup xres/yres_virtual and other fixes in fb helper.
-> - Improve SCDC debugs.
-> - Skip setting deadline on modesets.
-> - Assorted TTM fixes.
->
-> Driver Changes:
-> - Add lima usage stats.
-> - Assorted fixes to bridge/lt8192b, tc358767, ivpu,
->    bridge/ti-sn65dsi83, ps8640.
-> - Use pci aperture helpers in drm/ast lynxfb, radeonfb.
-> - Revert some lima patches, as they required a commit that has been
->    reverted upstream.
-> - Add AUO NE135FBM-N41 v8.1 eDP panel.
-> - Add QAIC accel driver.
-> The following changes since commit 7d690f936e9bc9fbd6394fb3d4ad181af03ee3=
-93:
->
->    drm/panfrost: Add basic support for speed binning (2023-03-31 11:44:11=
- +0200)
->
-> are available in the Git repository at:
->
->    git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-04-=
-06
->
-> for you to fetch changes up to e44f18c6ff8beef7b2b10592287f0a9766376d9b:
->
->    drm/ttm: Make the call to ttm_tt_populate() interruptible when faultin=
-g (2023-04-06 10:01:42 +0200)
->
-> ----------------------------------------------------------------
-> drm-misc-next for v6.4-rc1:
->
-> UAPI Changes:
->
-> Cross-subsystem Changes:
-> - Document port and rotation dt bindings better.
-> - For panel timing DT bindings, document that vsync and hsync are
->    first, rather than last in image.
-> - Fix video/aperture typos.
->
-> Core Changes:
-> - Reject prime DMA-Buf attachment if get_sg_table is missing.
->    (For self-importing dma-buf only.)
-> - Add prime import/export to vram-helper.
-> - Fix oops in drm/vblank when init is not called.
-> - Fixup xres/yres_virtual and other fixes in fb helper.
-> - Improve SCDC debugs.
-> - Skip setting deadline on modesets.
-> - Assorted TTM fixes.
->
-> Driver Changes:
-> - Add lima usage stats.
-> - Assorted fixes to bridge/lt8192b, tc358767, ivpu,
->    bridge/ti-sn65dsi83, ps8640.
-> - Use pci aperture helpers in drm/ast lynxfb, radeonfb.
-> - Revert some lima patches, as they required a commit that has been
->    reverted upstream.
-> - Add AUO NE135FBM-N41 v8.1 eDP panel.
-> - Add QAIC accel driver.
->
-> ----------------------------------------------------------------
-> Alexander Stein (2):
->        drm/bridge: ti-sn65dsi83: use dev_err_probe if host attach failed
->        drm/bridge: ti-sn65dsi86: Allow GPIO operations to sleep
->
-> AngeloGioacchino Del Regno (1):
->        drm/panel-edp: Add AUO NE135FBM-N41 v8.1 panel entry
->
-> Daniel Vetter (7):
->        drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers
->        staging/lynxfb: Use pci aperture helper
->        fbdev/radeon: use pci aperture helpers
->        drm/fb-helper: set x/yres_virtual in drm_fb_helper_check_var
->        drm/fb-helper: drop redundant pixclock check from drm_fb_helper_se=
-t_par()
->        drm/fb-helper: fix input validation gaps in check_var
->        drm/atomic-helper: Don't set deadline for modesets
->
-> Erico Nunes (3):
->        drm/lima: add usage counting method to ctx_mgr
->        drm/lima: allocate unique id per drm_file
->        drm/lima: add show_fdinfo for drm usage stats
->
-> Francesco Dolcini (1):
->        drm/bridge: lt8912b: Fix DSI Video Mode
->
-> Harshit Mogalapalli (1):
->        drm/lima/lima_drv: Add missing unwind goto in lima_pdev_probe()
->
-> Jeffrey Hugo (7):
->        accel/qaic: Add documentation for AIC100 accelerator driver
->        accel/qaic: Add uapi and core driver file
->        accel/qaic: Add MHI controller
->        accel/qaic: Add control path
->        accel/qaic: Add datapath
->        accel/qaic: Add qaic driver to the build system
->        MAINTAINERS: Add entry for QAIC driver
->
-> Karol Wachowski (1):
->        accel/ivpu: Remove D3hot delay for Meteorlake
->
-> Krzysztof Kozlowski (5):
->        dt-bindings: display: sitronix,st7789v: document dc-gpios
->        dt-bindings: display: xinpeng,xpp055c272: document port
->        dt-bindings: display: feiyang,fy07024di26a30d: document port
->        dt-bindings: display: elida,kd35t133: document port and rotation
->        dt-bindings: display: sitronix,st7701: document port and rotation
->
-> Luca Ceresoli (2):
->        drm: bridge: ldb: add missing \n in dev_warn() string
->        drm: bridge: ldb: add support for using channel 1 only
->
-> Marek Vasut (3):
->        drm/bridge: tc358767: Enable DSI burst mode, LPM, non-continuous c=
-lock
->        dt-bindings: display: Start the info graphics with HS/VS change
->        drm/bridge: ti-sn65dsi83: Do not generate HFP/HBP/HSA and EOT pack=
-et
->
-> Pin-yen Lin (1):
->        drm/bridge: ps8640: Use constant sleep time for polling hpd
->
-> Pranjal Ramajor Asha Kanojiya (1):
->        accel/qaic: Add mhi_qaic_cntl
->
-> Qiang Yu (3):
->        Revert "drm/lima: add show_fdinfo for drm usage stats"
->        Revert "drm/lima: allocate unique id per drm_file"
->        Revert "drm/lima: add usage counting method to ctx_mgr"
->
-> Rob Clark (1):
->        drm/vblank: Fix for drivers that do not drm_vblank_init()
->
-> Simon Ser (2):
->        drm/prime: reject DMA-BUF attach when get_sg_table is missing
->        drm/vram-helper: turn on PRIME import/export
->
-> Sui Jingfeng (1):
->        video/aperture: Fix typos in comments
->
-> Thomas Hellstr=C3=B6m (3):
->        drm/ttm/pool: Fix ttm_pool_alloc error path
->        drm/ttm: Reduce the number of used allocation orders for TTM pages
->        drm/ttm: Make the call to ttm_tt_populate() interruptible when fau=
-lting
->
-> Ville Syrj=C3=A4l=C3=A4 (1):
->        drm/scdc-helper: Pimp SCDC debugs
->
->   Documentation/accel/index.rst                      |    1 +
->   Documentation/accel/qaic/aic100.rst                |  510 ++++++
->   Documentation/accel/qaic/index.rst                 |   13 +
->   Documentation/accel/qaic/qaic.rst                  |  170 ++
->   .../bindings/display/panel/elida,kd35t133.yaml     |    9 +
->   .../display/panel/feiyang,fy07024di26a30d.yaml     |    8 +
->   .../bindings/display/panel/panel-timing.yaml       |   46 +-
->   .../bindings/display/panel/sitronix,st7701.yaml    |    9 +
->   .../bindings/display/panel/sitronix,st7789v.yaml   |    4 +
->   .../bindings/display/panel/xinpeng,xpp055c272.yaml |    8 +
->   MAINTAINERS                                        |   10 +
->   drivers/accel/Kconfig                              |    1 +
->   drivers/accel/Makefile                             |    1 +
->   drivers/accel/ivpu/ivpu_drv.c                      |    4 +
->   drivers/accel/qaic/Kconfig                         |   23 +
->   drivers/accel/qaic/Makefile                        |   13 +
->   drivers/accel/qaic/mhi_controller.c                |  563 ++++++
->   drivers/accel/qaic/mhi_controller.h                |   16 +
->   drivers/accel/qaic/mhi_qaic_ctrl.c                 |  569 ++++++
->   drivers/accel/qaic/mhi_qaic_ctrl.h                 |   12 +
->   drivers/accel/qaic/qaic.h                          |  282 +++
->   drivers/accel/qaic/qaic_control.c                  | 1526 +++++++++++++=
-+++
->   drivers/accel/qaic/qaic_data.c                     | 1902 +++++++++++++=
-+++++++
->   drivers/accel/qaic/qaic_drv.c                      |  647 +++++++
->   drivers/gpu/drm/ast/ast_drv.c                      |   16 +-
->   drivers/gpu/drm/bridge/fsl-ldb.c                   |  103 +-
->   drivers/gpu/drm/bridge/lontium-lt8912b.c           |    1 -
->   drivers/gpu/drm/bridge/parade-ps8640.c             |    2 +-
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |    8 +-
->   drivers/gpu/drm/bridge/tc358767.c                  |    4 +-
->   drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    8 +-
->   drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    4 +-
->   drivers/gpu/drm/display/drm_scdc_helper.c          |   46 +-
->   drivers/gpu/drm/drm_atomic_helper.c                |    6 +
->   drivers/gpu/drm/drm_fb_helper.c                    |   53 +-
->   drivers/gpu/drm/drm_prime.c                        |    6 +-
->   drivers/gpu/drm/drm_vblank.c                       |   10 +-
->   drivers/gpu/drm/i915/display/intel_ddi.c           |    4 +-
->   drivers/gpu/drm/i915/display/intel_hdmi.c          |    8 +-
->   drivers/gpu/drm/lima/lima_drv.c                    |    6 +-
->   drivers/gpu/drm/panel/panel-edp.c                  |    1 +
->   drivers/gpu/drm/tegra/sor.c                        |   15 +-
->   drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   13 +-
->   drivers/gpu/drm/ttm/ttm_pool.c                     |  111 +-
->   drivers/gpu/drm/vc4/vc4_hdmi.c                     |   21 +-
->   drivers/staging/sm750fb/sm750.c                    |   16 +-
->   drivers/video/aperture.c                           |    8 +-
->   drivers/video/fbdev/aty/radeon_base.c              |   10 +-
->   include/drm/display/drm_scdc_helper.h              |    7 +-
->   include/drm/drm_gem_vram_helper.h                  |    4 +-
->   include/uapi/drm/qaic_accel.h                      |  397 ++++
->   51 files changed, 7004 insertions(+), 231 deletions(-)
->   create mode 100644 Documentation/accel/qaic/aic100.rst
->   create mode 100644 Documentation/accel/qaic/index.rst
->   create mode 100644 Documentation/accel/qaic/qaic.rst
->   create mode 100644 drivers/accel/qaic/Kconfig
->   create mode 100644 drivers/accel/qaic/Makefile
->   create mode 100644 drivers/accel/qaic/mhi_controller.c
->   create mode 100644 drivers/accel/qaic/mhi_controller.h
->   create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.c
->   create mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.h
->   create mode 100644 drivers/accel/qaic/qaic.h
->   create mode 100644 drivers/accel/qaic/qaic_control.c
->   create mode 100644 drivers/accel/qaic/qaic_data.c
->   create mode 100644 drivers/accel/qaic/qaic_drv.c
->   create mode 100644 include/uapi/drm/qaic_accel.h
+== Summary ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_12974_full -> Patchwork_116144v1_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_116144v1_full:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_suspend@basic-s3@lmem0:
+    - {shard-dg1}:        NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-dg1-16/igt@gem_exec_suspend@basic-s3@lmem0.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116144v1_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rps@reset:
+    - shard-snb:          [PASS][2] -> [INCOMPLETE][3] ([i915#7790])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-snb4/igt@i915_pm_rps@reset.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-snb2/igt@i915_pm_rps@reset.html
+
+  * igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1:
+    - shard-glk:          [PASS][4] -> [FAIL][5] ([i915#2122])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk6/igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk4/igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1:
+    - shard-apl:          [PASS][6] -> [FAIL][7] ([i915#79])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:
+    - shard-apl:          [PASS][8] -> [ABORT][9] ([i915#180])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-apl:          [FAIL][10] ([i915#2842]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@vecs0:
+    - {shard-rkl}:        [FAIL][12] ([i915#2842]) -> [PASS][13] +2 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-3/igt@gem_exec_fair@basic-pace@vecs0.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-6/igt@gem_exec_fair@basic-pace@vecs0.html
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - {shard-tglu}:       [FAIL][14] ([i915#3989] / [i915#454]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-tglu-7/igt@i915_pm_dc@dc6-dpms.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-tglu-2/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip:
+    - {shard-rkl}:        [FAIL][16] ([i915#3743]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-4/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html
+
+  * igt@kms_cursor_legacy@forked-move@pipe-b:
+    - {shard-rkl}:        [INCOMPLETE][18] ([i915#8011]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-7/igt@kms_cursor_legacy@forked-move@pipe-b.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-4/igt@kms_cursor_legacy@forked-move@pipe-b.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2:
+    - shard-glk:          [FAIL][20] ([i915#2122]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk3/igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk4/igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2.html
+
+  * igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2:
+    - shard-glk:          [FAIL][22] ([i915#79]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk2/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk6/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#2]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/2
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109314]: https://bugs.freedesktop.org/show_bug.cgi?id=109314
+  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112283]: https://bugs.freedesktop.org/show_bug.cgi?id=112283
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
+  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
+  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
+  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
+  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
+  [i915#3989]: https://gitlab.freedesktop.org/drm/intel/issues/3989
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
+  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
+  [i915#4833]: https://gitlab.freedesktop.org/drm/intel/issues/4833
+  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
+  [i915#4859]: https://gitlab.freedesktop.org/drm/intel/issues/4859
+  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4879]: https://gitlab.freedesktop.org/drm/intel/issues/4879
+  [i915#4881]: https://gitlab.freedesktop.org/drm/intel/issues/4881
+  [i915#4885]: https://gitlab.freedesktop.org/drm/intel/issues/4885
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
+  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
+  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
+  [i915#5563]: https://gitlab.freedesktop.org/drm/intel/issues/5563
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
+  [i915#6433]: https://gitlab.freedesktop.org/drm/intel/issues/6433
+  [i915#6493]: https://gitlab.freedesktop.org/drm/intel/issues/6493
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#6946]: https://gitlab.freedesktop.org/drm/intel/issues/6946
+  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7697]: https://gitlab.freedesktop.org/drm/intel/issues/7697
+  [i915#7701]: https://gitlab.freedesktop.org/drm/intel/issues/7701
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7790]: https://gitlab.freedesktop.org/drm/intel/issues/7790
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8155]: https://gitlab.freedesktop.org/drm/intel/issues/8155
+  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
+  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12974 -> Patchwork_116144v1
+
+  CI-20190529: 20190529
+  CI_DRM_12974: 3a48ece2386f032a86b2c25c0e059eb158aab17e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7240: ef4550e3b7d3c11ba257006bc7d4f8e421667d46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116144v1: 3a48ece2386f032a86b2c25c0e059eb158aab17e @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/index.html
+
+--===============3279204005475114358==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/tc: demote a kernel-doc comment to a regular comment</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116144/">https://patchwork.freedesktop.org/series/116144/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12974_full -&gt; Patchwork_116144v1_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_116144v1_full:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@lmem0:<ul>
+<li>{shard-dg1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-dg1-16/igt@gem_exec_suspend@basic-s3@lmem0.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116144v1_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rps@reset:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-snb4/igt@i915_pm_rps@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-snb2/igt@i915_pm_rps@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7790">i915#7790</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk6/igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk4/igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-apl4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-apl7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@vecs0:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-3/igt@gem_exec_fair@basic-pace@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-6/igt@gem_exec_fair@basic-pace@vecs0.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-dpms:</p>
+<ul>
+<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-tglu-7/igt@i915_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3989">i915#3989</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/454">i915#454</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-tglu-2/igt@i915_pm_dc@dc6-dpms.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-4/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-hflip-async-flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@forked-move@pipe-b:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-rkl-7/igt@kms_cursor_legacy@forked-move@pipe-b.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8011">i915#8011</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-rkl-4/igt@kms_cursor_legacy@forked-move@pipe-b.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk3/igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk4/igt@kms_flip@2x-flip-vs-expired-vblank@ab-hdmi-a1-hdmi-a2.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12974/shard-glk2/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116144v1/shard-glk6/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12974 -&gt; Patchwork_116144v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12974: 3a48ece2386f032a86b2c25c0e059eb158aab17e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7240: ef4550e3b7d3c11ba257006bc7d4f8e421667d46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116144v1: 3a48ece2386f032a86b2c25c0e059eb158aab17e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============3279204005475114358==--
