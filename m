@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34626D96F2
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:19:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D317B6D9705
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 14:30:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB1AF10E256;
-	Thu,  6 Apr 2023 12:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21AAD10E35A;
+	Thu,  6 Apr 2023 12:30:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4B9D10E256
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:19:33 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE8A310E35A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 12:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680783573; x=1712319573;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=8bFS6o/95f9mny/k8Pn3jPWVCu23UQOmtmWQZJiE1vs=;
- b=jF983QVHRFMXf3oChSbsnMCRdWJ8OGjRciAP7opso6KnWHAT8yCbBgtP
- gKT2DM3AXh64YM5vlq3aoMDrIW8YXhaAhqHGNtmZH8W1Yqpb7Iu235EFS
- bNddcZSM3wBuRJOVOx6uEE/7o47vLY7aPzQJs/nFNvBAJg/s9NCUTd7yF
- 4GM1bG0aLM40KFnWERHbURCxFAcRm5La+Eas+g3iS/tbAFzH0qUMO/vho
- sECtcoQhHavYAOVQDsf5lw3ykffQKDNbrNue2gQmNigG0FhnYziaG5OBg
- cJXB+c3tcQlnf1HcuOW/IB9Fa21aUF6vDeYWZpyB3dlhrBrr8/HYVbM6U A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="331333235"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331333235"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:19:31 -0700
+ t=1680784213; x=1712320213;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=1n5fqbNFHc7Vhh0NXH/Ho8y/0k/eJEPZmTRadP91/2o=;
+ b=hEPZExl01L15YMegOJPZpMAiQlQHuVxRSiKLFyQiZ8s6RZMSTDoFvcDg
+ JsG7CiKhNDq8k73om2dHUCDa5rlhuZelVRGvNdNbHYMcUBQo2YA3JszSF
+ enDt3D29QCPRLAELCUpsuYDxHapNexcE2G/I7z80BFrgL6jMUQ8Wcem4X
+ 8cYnBI6hnSXg+11/XMArBwVBDuXsOAmUWxERhJvWSdXO82yZgGgOydi3H
+ A7J4lnTMO+Yu7YB1mp+II0ilvF4IJZJkibwyIbpEzWaxYLSmR24gCsHOa
+ M6ipvwe4HIVvVGL2MfmYr5SyLkC1xO6C/tDJ8BKwoJbbvgA3HyB6Acusq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="344456034"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="344456034"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 05:30:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="687108646"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="687108646"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 05:19:29 -0700
-Date: Thu, 6 Apr 2023 15:19:22 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZC64ymPWBQ9SZHFN@intel.com>
-References: <20230406085802.7381-1-stanislav.lisovskiy@intel.com>
- <877cupz5yr.fsf@intel.com> <ZC6lQGuxumD+J8dC@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="637261667"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="637261667"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 05:30:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Christian =?utf-8?Q?K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230331090729.2183-5-christian.koenig@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230331090729.2183-1-christian.koenig@amd.com>
+ <20230331090729.2183-5-christian.koenig@amd.com>
+Date: Thu, 06 Apr 2023 15:30:06 +0300
+Message-ID: <87y1n5xkfl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZC6lQGuxumD+J8dC@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Query compressed bpp properly
- using correct DPCD and DP Spec info
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/debugfs: remove debugfs_root
+ pointer from minor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,169 +61,1427 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 01:56:00PM +0300, Ville Syrjälä wrote:
-> On Thu, Apr 06, 2023 at 12:59:40PM +0300, Jani Nikula wrote:
-> > On Thu, 06 Apr 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> > > Currently we seem to be using wrong DPCD register for reading compressed bpps,
-> > > reading min/max input bpc instead of compressed bpp.
-> > > Fix that, so that we now apply min/max compressed bpp limitations we get
-> > > from DP Spec Table 2-157 DP v2.0 and/or correspondent DPCD register
-> > > DP_DSC_MAX_BITS_PER_PIXEL_LOW/HIGH.
-> > >
-> > > This might also allow us to get rid of an ugly compressed bpp recalculation,
-> > > which we had to add to make some MST hubs usable.
-> > >
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 76 ++++++++++++++-------
-> > >  1 file changed, 52 insertions(+), 24 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > index a88b852c437c..9479c7e0b269 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -174,6 +174,50 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static u16 dsc_max_sink_compressed_bppx16(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
-> > > +					  struct intel_crtc_state *pipe_config,
-> > > +					  int bpc)
-> > > +{
-> > > +	u16 max_bppx16 = dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_LOW - DP_DSC_SUPPORT] |
-> > > +			 (dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
-> > > +			  DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK << DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT);
-> > 
-> > This duplicates drm_edp_dsc_sink_output_bpp().
-> 
-> These registers are not even valid for non-eDP.
+On Fri, 31 Mar 2023, "Christian K=C3=B6nig" <ckoenig.leichtzumerken@gmail.c=
+om> wrote:
+> We only keept that around for API compatibility with drivers. Clean all
+> this up and use the per device debugfs directory.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/accel/drm_accel.c                      |  2 --
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c    |  4 ++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c      |  3 +--
+>  .../gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c        |  3 +--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c         |  3 +--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c        |  4 +---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c     |  5 ++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c        |  6 +++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c        |  6 +++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c       |  3 +--
+>  .../gpu/drm/amd/amdgpu/amdgpu_securedisplay.c  |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c        |  3 +--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c        |  3 +--
+>  .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  |  2 +-
+>  drivers/gpu/drm/amd/pm/amdgpu_pm.c             |  3 +--
+>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c      |  2 +-
+>  drivers/gpu/drm/arm/malidp_drv.c               |  2 +-
+>  drivers/gpu/drm/armada/armada_debugfs.c        |  2 +-
+>  drivers/gpu/drm/drm_debugfs.c                  |  3 ---
+>  drivers/gpu/drm/drm_mipi_dbi.c                 |  2 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_drv.c          |  2 +-
+>  .../drm/i915/display/intel_display_debugfs.c   |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_dmc.c       |  2 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c       |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hotplug.c   |  9 ++++++---
+>  drivers/gpu/drm/i915/display/intel_psr.c       |  6 ++++--
+>  drivers/gpu/drm/i915/display/intel_wm.c        |  9 ++++++---
+>  drivers/gpu/drm/i915/display/skl_watermark.c   |  6 ++++--
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c     |  4 ++--
+>  drivers/gpu/drm/i915/gvt/debugfs.c             |  6 +++---
+>  drivers/gpu/drm/i915/i915_debugfs.c            |  6 +++---
+>  drivers/gpu/drm/i915/i915_debugfs_params.c     |  2 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c   |  4 ++--
+>  drivers/gpu/drm/msm/adreno/a5xx_debugfs.c      |  4 ++--
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c    |  2 +-
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |  2 +-
+>  drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c       |  2 +-
+>  drivers/gpu/drm/msm/dp/dp_debug.c              |  2 +-
+>  drivers/gpu/drm/msm/msm_debugfs.c              | 18 +++++++++---------
+>  drivers/gpu/drm/msm/msm_perf.c                 |  2 +-
+>  drivers/gpu/drm/msm/msm_rd.c                   |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_debugfs.c      |  6 +++---
+>  drivers/gpu/drm/omapdrm/omap_debugfs.c         |  4 ++--
+>  drivers/gpu/drm/pl111/pl111_debugfs.c          |  2 +-
+>  drivers/gpu/drm/qxl/qxl_debugfs.c              |  4 ++--
+>  drivers/gpu/drm/qxl/qxl_ttm.c                  |  4 ++--
+>  drivers/gpu/drm/radeon/r100.c                  |  6 +++---
+>  drivers/gpu/drm/radeon/r300.c                  |  2 +-
+>  drivers/gpu/drm/radeon/r420.c                  |  2 +-
+>  drivers/gpu/drm/radeon/r600.c                  |  2 +-
+>  drivers/gpu/drm/radeon/radeon_fence.c          |  2 +-
+>  drivers/gpu/drm/radeon/radeon_gem.c            |  2 +-
+>  drivers/gpu/drm/radeon/radeon_ib.c             |  2 +-
+>  drivers/gpu/drm/radeon/radeon_pm.c             |  2 +-
+>  drivers/gpu/drm/radeon/radeon_ring.c           |  2 +-
+>  drivers/gpu/drm/radeon/radeon_ttm.c            |  2 +-
+>  drivers/gpu/drm/radeon/rs400.c                 |  2 +-
+>  drivers/gpu/drm/radeon/rv515.c                 |  2 +-
+>  drivers/gpu/drm/sti/sti_cursor.c               |  2 +-
+>  drivers/gpu/drm/sti/sti_drv.c                  |  4 ++--
+>  drivers/gpu/drm/sti/sti_dvo.c                  |  2 +-
+>  drivers/gpu/drm/sti/sti_gdp.c                  |  2 +-
+>  drivers/gpu/drm/sti/sti_hda.c                  |  2 +-
+>  drivers/gpu/drm/sti/sti_hdmi.c                 |  2 +-
+>  drivers/gpu/drm/sti/sti_hqvdp.c                |  2 +-
+>  drivers/gpu/drm/sti/sti_mixer.c                |  2 +-
+>  drivers/gpu/drm/sti/sti_tvout.c                |  2 +-
+>  drivers/gpu/drm/sti/sti_vid.c                  |  2 +-
+>  drivers/gpu/drm/tegra/drm.c                    |  2 +-
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.c            |  2 +-
+>  drivers/gpu/drm/tiny/arcpgu.c                  |  2 +-
+>  drivers/gpu/drm/vc4/vc4_hvs.c                  |  2 +-
+>  drivers/gpu/drm/virtio/virtgpu_debugfs.c       |  2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c            |  2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c            |  2 +-
+>  include/drm/drm_file.h                         |  2 --
+>  77 files changed, 120 insertions(+), 127 deletions(-)
+>
+> diff --git a/drivers/accel/drm_accel.c b/drivers/accel/drm_accel.c
+> index 82c54bc2dcad..7e4176c736a5 100644
+> --- a/drivers/accel/drm_accel.c
+> +++ b/drivers/accel/drm_accel.c
+> @@ -100,8 +100,6 @@ void accel_debugfs_register(struct drm_device *dev)
+>  {
+>  	struct drm_minor *minor =3D dev->accel;
+>=20=20
+> -	minor->debugfs_root =3D dev->debugfs_root;
+> -
+>  	drm_debugfs_create_files(accel_debugfs_list, ACCEL_DEBUGFS_ENTRIES,
+>  				 dev->debugfs_root, minor);
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_debugfs.c
+> index f60753f97ac5..54d2b92a9e71 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> @@ -1454,7 +1454,7 @@ static const char *debugfs_regs_names[] =3D {
+>  int amdgpu_debugfs_regs_init(struct amdgpu_device *adev)
+>  {
+>  	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *ent, *root =3D minor->debugfs_root;
+> +	struct dentry *ent, *root =3D minor->dev->debugfs_root;
+>  	unsigned int i;
+>=20=20
+>  	for (i =3D 0; i < ARRAY_SIZE(debugfs_regs); i++) {
+> @@ -1926,7 +1926,7 @@ static const struct file_operations amdgpu_reset_du=
+mp_register_list =3D {
+>=20=20
+>  int amdgpu_debugfs_init(struct amdgpu_device *adev)
+>  {
+> -	struct dentry *root =3D adev_to_drm(adev)->primary->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>  	struct dentry *ent;
+>  	int r, i;
+>=20=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_fence.c
+> index f52d0ba91a77..eb406870d57b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> @@ -927,8 +927,7 @@ static void amdgpu_debugfs_reset_work(struct work_str=
+uct *work)
+>  void amdgpu_debugfs_fence_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	debugfs_create_file("amdgpu_fence_info", 0444, root, adev,
+>  			    &amdgpu_debugfs_fence_info_fops);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c b/drivers=
+/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
+> index 2ca3c329de6d..c18f1316ea88 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
+> @@ -137,7 +137,7 @@ void amdgpu_fw_attestation_debugfs_init(struct amdgpu=
+_device *adev)
+>=20=20
+>  	debugfs_create_file("amdgpu_fw_attestation",
+>  			    S_IRUSR,
+> -			    adev_to_drm(adev)->primary->debugfs_root,
+> +			    adev_to_drm(adev)->debugfs_root,
+>  			    adev,
+>  			    &amdgpu_fw_attestation_debugfs_ops);
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gem.c
+> index 863cb668e000..d2c8c3491bb6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -994,8 +994,7 @@ DEFINE_SHOW_ATTRIBUTE(amdgpu_debugfs_gem_info);
+>  void amdgpu_debugfs_gem_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	debugfs_create_file("amdgpu_gem_info", 0444, root, adev,
+>  			    &amdgpu_debugfs_gem_info_fops);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu_ib.c
+> index df7eb0b7c4b9..f36b656f91d2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> @@ -457,8 +457,7 @@ DEFINE_SHOW_ATTRIBUTE(amdgpu_debugfs_sa_info);
+>  void amdgpu_debugfs_sa_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	debugfs_create_file("amdgpu_sa_info", 0444, root, adev,
+>  			    &amdgpu_debugfs_sa_info_fops);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_kms.c
+> index 0efb38539d70..751351aa598b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -1704,11 +1704,9 @@ DEFINE_SHOW_ATTRIBUTE(amdgpu_debugfs_firmware_info=
+);
+>  void amdgpu_debugfs_firmware_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	debugfs_create_file("amdgpu_firmware_info", 0444, root,
+>  			    adev, &amdgpu_debugfs_firmware_info_fops);
+> -
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_psp_ta.c
+> index 468a67b302d4..aff145bcbfe2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> @@ -373,9 +373,8 @@ static ssize_t ta_if_invoke_debugfs_write(struct file=
+ *fp, const char *buf, size
+>=20=20
+>  void amdgpu_ta_if_debugfs_init(struct amdgpu_device *adev)
+>  {
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -
+> -	struct dentry *dir =3D debugfs_create_dir("ta_if", minor->debugfs_root);
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+> +	struct dentry *dir =3D debugfs_create_dir("ta_if", root);
+>=20=20
+>  	debugfs_create_file("ta_load", 0200, dir, adev,
+>  				     &ta_load_debugfs_fops);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_rap.c
+> index 12010c988c8b..a39aba26710c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c
+> @@ -117,12 +117,12 @@ static const struct file_operations amdgpu_rap_debu=
+gfs_ops =3D {
+>  void amdgpu_rap_debugfs_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	if (!adev->psp.rap_context.context.initialized)
+>  		return;
+>=20=20
+> -	debugfs_create_file("rap_test", S_IWUSR, minor->debugfs_root,
+> -				adev, &amdgpu_rap_debugfs_ops);
+> +	debugfs_create_file("rap_test", S_IWUSR, root, adev,
+> +			    &amdgpu_rap_debugfs_ops);
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ras.c
+> index 11df6ee052b4..f7e6dcca3873 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -1440,10 +1440,10 @@ static int amdgpu_ras_sysfs_remove_all(struct amd=
+gpu_device *adev)
+>  static struct dentry *amdgpu_ras_debugfs_create_ctrl_node(struct amdgpu_=
+device *adev)
+>  {
+>  	struct amdgpu_ras *con =3D amdgpu_ras_get_context(adev);
+> -	struct drm_minor  *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry     *dir;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+> +	struct dentry *dir;
+>=20=20
+> -	dir =3D debugfs_create_dir(RAS_FS_NAME, minor->debugfs_root);
+> +	dir =3D debugfs_create_dir(RAS_FS_NAME, root);
+>  	debugfs_create_file("ras_ctrl", S_IWUGO | S_IRUGO, dir, adev,
+>  			    &amdgpu_ras_debugfs_ctrl_ops);
+>  	debugfs_create_file("ras_eeprom_reset", S_IWUGO | S_IRUGO, dir, adev,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_ring.c
+> index dc474b809604..b75cd5958c40 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> @@ -484,8 +484,7 @@ void amdgpu_debugfs_ring_init(struct amdgpu_device *a=
+dev,
+>  			      struct amdgpu_ring *ring)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>  	char name[32];
+>=20=20
+>  	sprintf(name, "amdgpu_ring_%s", ring->name);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c b/drivers/=
+gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
+> index 8ed0e073656f..575320c6d48a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
+> @@ -177,7 +177,7 @@ void amdgpu_securedisplay_debugfs_init(struct amdgpu_=
+device *adev)
+>  	if (!adev->psp.securedisplay_context.context.initialized)
+>  		return;
+>=20=20
+> -	debugfs_create_file("securedisplay_test", S_IWUSR, adev_to_drm(adev)->p=
+rimary->debugfs_root,
+> +	debugfs_create_file("securedisplay_test", S_IWUSR, adev_to_drm(adev)->d=
+ebugfs_root,
+>  				adev, &amdgpu_securedisplay_debugfs_ops);
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.c
+> index 2cd081cbf706..2198fef53fdc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -2371,8 +2371,7 @@ static const struct file_operations amdgpu_ttm_iome=
+m_fops =3D {
+>  void amdgpu_ttm_debugfs_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	debugfs_create_file_size("amdgpu_vram", 0444, root, adev,
+>  				 &amdgpu_ttm_vram_fops, adev->gmc.mc_vram_size);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_vcn.c
+> index e63fcc58e8e0..1d40763939dc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> @@ -1121,8 +1121,7 @@ void amdgpu_debugfs_vcn_fwlog_init(struct amdgpu_de=
+vice *adev, uint8_t i,
+>                                     struct amdgpu_vcn_inst *vcn)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>  	char name[32];
+>=20=20
+>  	sprintf(name, "amdgpu_vcn_%d_fwlog", i);
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/=
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 827fcb4fb3b3..cec1cafafd0c 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -3658,7 +3658,7 @@ void dtn_debugfs_init(struct amdgpu_device *adev)
+>  	};
+>=20=20
+>  	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D minor->dev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("amdgpu_mst_topology", 0444, root,
+>  			    adev, &mst_topo_fops);
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/=
+amdgpu_pm.c
+> index d75a67cfe523..3e900b6f746b 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -3705,8 +3705,7 @@ static const struct file_operations amdgpu_debugfs_=
+pm_prv_buffer_fops =3D {
+>  void amdgpu_debugfs_pm_init(struct amdgpu_device *adev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D adev_to_drm(adev)->debugfs_root;
+>=20=20
+>  	if (!adev->pm.dpm_enabled)
+>  		return;
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/=
+amd/pm/swsmu/amdgpu_smu.c
+> index b5d64749990e..9afdd31072ee 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -3215,7 +3215,7 @@ void amdgpu_smu_stb_debug_fs_init(struct amdgpu_dev=
+ice *adev)
+>=20=20
+>  	debugfs_create_file_size("amdgpu_smu_stb_dump",
+>  			    S_IRUSR,
+> -			    adev_to_drm(adev)->primary->debugfs_root,
+> +			    adev_to_drm(adev)->debugfs_root,
+>  			    adev,
+>  			    &smu_stb_debugfs_fops,
+>  			    smu->stb_context.stb_buf_size);
+> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malid=
+p_drv.c
+> index c03cfd57b752..c825a453a03f 100644
+> --- a/drivers/gpu/drm/arm/malidp_drv.c
+> +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> @@ -552,7 +552,7 @@ static void malidp_debugfs_init(struct drm_minor *min=
+or)
+>  	malidp_error_stats_init(&malidp->de_errors);
+>  	malidp_error_stats_init(&malidp->se_errors);
+>  	spin_lock_init(&malidp->errors_lock);
+> -	debugfs_create_file("debug", S_IRUGO | S_IWUSR, minor->debugfs_root,
+> +	debugfs_create_file("debug", S_IRUGO | S_IWUSR, minor->dev->debugfs_roo=
+t,
+>  			    minor->dev, &malidp_debugfs_fops);
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/armada/armada_debugfs.c b/drivers/gpu/drm/ar=
+mada/armada_debugfs.c
+> index 29f4b52e3c8d..24b42ca59f02 100644
+> --- a/drivers/gpu/drm/armada/armada_debugfs.c
+> +++ b/drivers/gpu/drm/armada/armada_debugfs.c
+> @@ -105,7 +105,7 @@ static struct drm_info_list armada_debugfs_list[] =3D=
+ {
+>  int armada_drm_debugfs_init(struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(armada_debugfs_list, ARMADA_DEBUGFS_ENTRIES,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
+> index c8e2d4f9f00d..e09a4c47b66b 100644
+> --- a/drivers/gpu/drm/drm_debugfs.c
+> +++ b/drivers/gpu/drm/drm_debugfs.c
+> @@ -264,9 +264,6 @@ int drm_debugfs_register(struct drm_minor *minor, int=
+ minor_id,
+>  	sprintf(name, "%d", minor_id);
+>  	debugfs_create_symlink(name, root, dev->unique);
+>=20=20
+> -	/* TODO: Only for compatibility with drivers */
+> -	minor->debugfs_root =3D dev->debugfs_root;
+> -
+>  	if (dev->driver->debugfs_init && dev->render !=3D minor)
+>  		dev->driver->debugfs_init(minor);
+>=20=20
+> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_db=
+i.c
+> index c871d9f096b8..8ffd30885d01 100644
+> --- a/drivers/gpu/drm/drm_mipi_dbi.c
+> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
+> @@ -1454,7 +1454,7 @@ void mipi_dbi_debugfs_init(struct drm_minor *minor)
+>=20=20
+>  	if (dbidev->dbi.read_commands)
+>  		mode |=3D S_IRUGO;
+> -	debugfs_create_file("command", mode, minor->debugfs_root, dbidev,
+> +	debugfs_create_file("command", mode, minor->dev->debugfs_root, dbidev,
+>  			    &mipi_dbi_debugfs_command_fops);
+>  }
+>  EXPORT_SYMBOL(mipi_dbi_debugfs_init);
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c b/drivers/gpu/drm/etna=
+viv/etnaviv_drv.c
+> index 31a7f59ccb49..4819b4f9ebb4 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+> @@ -242,7 +242,7 @@ static void etnaviv_debugfs_init(struct drm_minor *mi=
+nor)
+>  {
+>  	drm_debugfs_create_files(etnaviv_debugfs_list,
+>  				 ARRAY_SIZE(etnaviv_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>  #endif
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index d5715ccc37f0..37173456f5bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1083,14 +1083,14 @@ void intel_display_debugfs_register(struct drm_i9=
+15_private *i915)
+>  	for (i =3D 0; i < ARRAY_SIZE(intel_display_debugfs_files); i++) {
+>  		debugfs_create_file(intel_display_debugfs_files[i].name,
+>  				    S_IRUGO | S_IWUSR,
+> -				    minor->debugfs_root,
+> +				    minor->dev->debugfs_root,
 
-You need to mention this then in review for Ankit's patches, as I took it from
-there, he still is working on this series I guess and at some point we should use that DSC api also for MST.
+Mmh, wherever you have struct drm_i915_private *i915 around, this should
+be the same as i915->drm.debugfs_root, and minor local could be ditched.
 
-Stan
-> 
-> > 
-> > Both have operator precedence wrong, leading to the high byte always
-> > being ignored. For example, sink reported max bpp of 32 turns to 0, and
-> > 24 turns to 8.
-> > 
-> > Broken since 2018. 0575650077ea ("drm/dp: DRM DP helper/macros to get DP
-> > sink DSC parameters").
-> > 
-> > The definition of DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT is misleading wrt
-> > all of our regular usage. We should never have a FOO_MASK << FOO_SHIFT
-> > in code, the MASK should always be already shifted in place. Here we do,
-> > because the shift is not for shifting the mask in place, it's for
-> > combining the high and low bytes. But I don't really think
-> > DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT should exist, at all.
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > 
-> > > +
-> > > +	if (max_bppx16)
-> > > +		return max_bppx16;
-> > > +	/*
-> > > +	 * If support not given in DPCD 67h, 68h use the Maximum Allowed bit rate
-> > > +	 * values as given in spec Table 2-157 DP v2.0
-> > > +	 */
-> > > +	switch (pipe_config->output_format) {
-> > > +	case INTEL_OUTPUT_FORMAT_RGB:
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR444:
-> > > +		return bpc << 4;
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> > > +		return (3 * (bpc / 2)) << 4;
-> > > +	default:
-> > > +		MISSING_CASE(pipe_config->output_format);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static u16 dsc_min_compressed_bppx16(struct intel_crtc_state *pipe_config)
-> > > +{
-> > > +	switch (pipe_config->output_format) {
-> > > +	case INTEL_OUTPUT_FORMAT_RGB:
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR444:
-> > > +		return 8 << 4;
-> > > +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> > > +		return 6 << 4;
-> > > +	default:
-> > > +		MISSING_CASE(pipe_config->output_format);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  						struct intel_crtc_state *crtc_state,
-> > >  						struct drm_connector_state *conn_state,
-> > > @@ -191,8 +235,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	u8 dsc_bpc[3] = {0};
-> > >  	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
-> > >  	u8 dsc_max_bpc;
-> > > -	bool need_timeslot_recalc = false;
-> > > -	u32 last_compressed_bpp;
-> > >  
-> > >  	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-> > >  	if (DISPLAY_VER(i915) >= 12)
-> > > @@ -228,6 +270,14 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	if (max_bpp > sink_max_bpp)
-> > >  		max_bpp = sink_max_bpp;
-> > >  
-> > > +	/* Get Min/Max compressed bpp's for those Input Bpps we got for source/sink */
-> > > +	max_bpp = min(max_bpp, dsc_max_sink_compressed_bppx16(intel_dp->dsc_dpcd, crtc_state, max_bpp / 3) >> 4);
-> > > +	min_bpp = max(min_bpp, dsc_min_compressed_bppx16(crtc_state) >> 4);
-> > > +
-> > > +	/* Align compressed bpps according to our own constraints */
-> > > +	max_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_bpp, crtc_state->pipe_bpp);
-> > > +	min_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_bpp, crtc_state->pipe_bpp);
-> > > +
-> > >  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
-> > >  						     min_bpp, limits,
-> > >  						     conn_state, 2 * 3, true);
-> > > @@ -235,28 +285,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > >  	if (slots < 0)
-> > >  		return slots;
-> > >  
-> > > -	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
-> > > -
-> > > -	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
-> > > -									last_compressed_bpp,
-> > > -									crtc_state->pipe_bpp);
-> > > -
-> > > -	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
-> > > -		need_timeslot_recalc = true;
-> > > -
-> > > -	/*
-> > > -	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
-> > > -	 * the actual compressed bpp we use.
-> > > -	 */
-> > > -	if (need_timeslot_recalc) {
-> > > -		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> > > -							     crtc_state->dsc.compressed_bpp,
-> > > -							     crtc_state->dsc.compressed_bpp,
-> > > -							     limits, conn_state, 2 * 3, true);
-> > > -		if (slots < 0)
-> > > -			return slots;
-> > > -	}
-> > > -
-> > >  	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
-> > >  			       crtc_state->lane_count,
-> > >  			       adjusted_mode->crtc_clock,
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Ditto for pretty much all i915 changes.
+
+BR,
+Jani.
+
+>  				    to_i915(minor->dev),
+>  				    intel_display_debugfs_files[i].fops);
+>  	}
+>=20=20
+>  	drm_debugfs_create_files(intel_display_debugfs_list,
+>  				 ARRAY_SIZE(intel_display_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	intel_dmc_debugfs_register(i915);
+>  	intel_fbc_debugfs_register(i915);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
+915/display/intel_dmc.c
+> index 8a88de67ff0a..4ca2125c0a8a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -1229,6 +1229,6 @@ void intel_dmc_debugfs_register(struct drm_i915_pri=
+vate *i915)
+>  {
+>  	struct drm_minor *minor =3D i915->drm.primary;
+>=20=20
+> -	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
+> +	debugfs_create_file("i915_dmc_info", 0444, minor->dev->debugfs_root,
+>  			    i915, &intel_dmc_debugfs_status_fops);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index b507ff944864..5a83b4e87246 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1839,5 +1839,5 @@ void intel_fbc_debugfs_register(struct drm_i915_pri=
+vate *i915)
+>=20=20
+>  	fbc =3D i915->display.fbc[INTEL_FBC_A];
+>  	if (fbc)
+> -		intel_fbc_debugfs_add(fbc, minor->debugfs_root);
+> +		intel_fbc_debugfs_add(fbc, minor->dev->debugfs_root);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
+rm/i915/display/intel_hotplug.c
+> index b12900446828..99dedfcefc50 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -943,10 +943,13 @@ void intel_hpd_debugfs_register(struct drm_i915_pri=
+vate *i915)
+>  {
+>  	struct drm_minor *minor =3D i915->drm.primary;
+>=20=20
+> -	debugfs_create_file("i915_hpd_storm_ctl", 0644, minor->debugfs_root,
+> +	debugfs_create_file("i915_hpd_storm_ctl", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_hpd_storm_ctl_fops);
+> -	debugfs_create_file("i915_hpd_short_storm_ctl", 0644, minor->debugfs_ro=
+ot,
+> +	debugfs_create_file("i915_hpd_short_storm_ctl", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_hpd_short_storm_ctl_fops);
+> -	debugfs_create_bool("i915_ignore_long_hpd", 0644, minor->debugfs_root,
+> +	debugfs_create_bool("i915_ignore_long_hpd", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    &i915->display.hotplug.ignore_long_hpd);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index ecf1781c1556..5411686c58a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2922,10 +2922,12 @@ void intel_psr_debugfs_register(struct drm_i915_p=
+rivate *i915)
+>  {
+>  	struct drm_minor *minor =3D i915->drm.primary;
+>=20=20
+> -	debugfs_create_file("i915_edp_psr_debug", 0644, minor->debugfs_root,
+> +	debugfs_create_file("i915_edp_psr_debug", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_edp_psr_debug_fops);
+>=20=20
+> -	debugfs_create_file("i915_edp_psr_status", 0444, minor->debugfs_root,
+> +	debugfs_create_file("i915_edp_psr_status", 0444,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_edp_psr_status_fops);
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i9=
+15/display/intel_wm.c
+> index bb99179cd5fd..cfa618da262e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_wm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_wm.c
+> @@ -395,13 +395,16 @@ void intel_wm_debugfs_register(struct drm_i915_priv=
+ate *i915)
+>  {
+>  	struct drm_minor *minor =3D i915->drm.primary;
+>=20=20
+> -	debugfs_create_file("i915_pri_wm_latency", 0644, minor->debugfs_root,
+> +	debugfs_create_file("i915_pri_wm_latency", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_pri_wm_latency_fops);
+>=20=20
+> -	debugfs_create_file("i915_spr_wm_latency", 0644, minor->debugfs_root,
+> +	debugfs_create_file("i915_spr_wm_latency", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_spr_wm_latency_fops);
+>=20=20
+> -	debugfs_create_file("i915_cur_wm_latency", 0644, minor->debugfs_root,
+> +	debugfs_create_file("i915_cur_wm_latency", 0644,
+> +			    minor->dev->debugfs_root,
+>  			    i915, &i915_cur_wm_latency_fops);
+>=20=20
+>  	skl_watermark_debugfs_register(i915);
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index 5296a20d62d3..34cb0c6d0f51 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3711,10 +3711,12 @@ void skl_watermark_debugfs_register(struct drm_i9=
+15_private *i915)
+>  	struct drm_minor *minor =3D i915->drm.primary;
+>=20=20
+>  	if (HAS_IPC(i915))
+> -		debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root, i915,
+> +		debugfs_create_file("i915_ipc_status", 0644,
+> +				    minor->dev->debugfs_root, i915,
+>  				    &skl_watermark_ipc_status_fops);
+>=20=20
+>  	if (HAS_SAGV(i915))
+> -		debugfs_create_file("i915_sagv_status", 0444, minor->debugfs_root, i91=
+5,
+> +		debugfs_create_file("i915_sagv_status", 0444,
+> +				    minor->dev->debugfs_root, i915,
+>  				    &intel_sagv_status_fops);
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm=
+/i915/gt/intel_gt_debugfs.c
+> index 4dc23b8d3aa2..bcb5407efdbe 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> @@ -85,11 +85,11 @@ void intel_gt_debugfs_register(struct intel_gt *gt)
+>  	struct dentry *root;
+>  	char gtname[4];
+>=20=20
+> -	if (!gt->i915->drm.primary->debugfs_root)
+> +	if (!gt->i915->drm.debugfs_root)
+>  		return;
+>=20=20
+>  	snprintf(gtname, sizeof(gtname), "gt%u", gt->info.id);
+> -	root =3D debugfs_create_dir(gtname, gt->i915->drm.primary->debugfs_root=
+);
+> +	root =3D debugfs_create_dir(gtname, gt->i915->drm.debugfs_root);
+>  	if (IS_ERR(root))
+>  		return;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gv=
+t/debugfs.c
+> index baccbf1761b7..f087986747ac 100644
+> --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> @@ -195,7 +195,7 @@ void intel_gvt_debugfs_remove_vgpu(struct intel_vgpu =
+*vgpu)
+>  	struct intel_gvt *gvt =3D vgpu->gvt;
+>  	struct drm_minor *minor =3D gvt->gt->i915->drm.primary;
+>=20=20
+> -	if (minor->debugfs_root && gvt->debugfs_root) {
+> +	if (minor->dev->debugfs_root && gvt->debugfs_root) {
+>  		debugfs_remove_recursive(vgpu->debugfs);
+>  		vgpu->debugfs =3D NULL;
+>  	}
+> @@ -209,7 +209,7 @@ void intel_gvt_debugfs_init(struct intel_gvt *gvt)
+>  {
+>  	struct drm_minor *minor =3D gvt->gt->i915->drm.primary;
+>=20=20
+> -	gvt->debugfs_root =3D debugfs_create_dir("gvt", minor->debugfs_root);
+> +	gvt->debugfs_root =3D debugfs_create_dir("gvt", minor->dev->debugfs_roo=
+t);
+>=20=20
+>  	debugfs_create_ulong("num_tracked_mmio", 0444, gvt->debugfs_root,
+>  			     &gvt->mmio.num_tracked_mmio);
+> @@ -223,7 +223,7 @@ void intel_gvt_debugfs_clean(struct intel_gvt *gvt)
+>  {
+>  	struct drm_minor *minor =3D gvt->gt->i915->drm.primary;
+>=20=20
+> -	if (minor->debugfs_root) {
+> +	if (minor->dev->debugfs_root) {
+>  		debugfs_remove_recursive(gvt->debugfs_root);
+>  		gvt->debugfs_root =3D NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i=
+915_debugfs.c
+> index 80c2bf98e341..6f76850ff6e3 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -811,17 +811,17 @@ void i915_debugfs_register(struct drm_i915_private =
+*dev_priv)
+>=20=20
+>  	i915_debugfs_params(dev_priv);
+>=20=20
+> -	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->debugfs_root,
+> +	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->dev->debugfs=
+_root,
+>  			    to_i915(minor->dev), &i915_forcewake_fops);
+>  	for (i =3D 0; i < ARRAY_SIZE(i915_debugfs_files); i++) {
+>  		debugfs_create_file(i915_debugfs_files[i].name,
+>  				    S_IRUGO | S_IWUSR,
+> -				    minor->debugfs_root,
+> +				    minor->dev->debugfs_root,
+>  				    to_i915(minor->dev),
+>  				    i915_debugfs_files[i].fops);
+>  	}
+>=20=20
+>  	drm_debugfs_create_files(i915_debugfs_list,
+>  				 ARRAY_SIZE(i915_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm=
+/i915/i915_debugfs_params.c
+> index 614bde321589..704a016b3520 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs_params.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
+> @@ -248,7 +248,7 @@ struct dentry *i915_debugfs_params(struct drm_i915_pr=
+ivate *i915)
+>  	struct i915_params *params =3D &i915->params;
+>  	struct dentry *dir;
+>=20=20
+> -	dir =3D debugfs_create_dir("i915_params", minor->debugfs_root);
+> +	dir =3D debugfs_create_dir("i915_params", minor->dev->debugfs_root);
+>  	if (IS_ERR(dir))
+>  		return dir;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/d=
+rm/i915/pxp/intel_pxp_debugfs.c
+> index 4b8e70caa3ad..264b4832d3d9 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> @@ -72,10 +72,10 @@ void intel_pxp_debugfs_register(struct intel_pxp *pxp)
+>  		return;
+>=20=20
+>  	minor =3D pxp->ctrl_gt->i915->drm.primary;
+> -	if (!minor->debugfs_root)
+> +	if (!minor->dev->debugfs_root)
+>  		return;
+>=20=20
+> -	pxproot =3D debugfs_create_dir("pxp", minor->debugfs_root);
+> +	pxproot =3D debugfs_create_dir("pxp", minor->dev->debugfs_root);
+>  	if (IS_ERR(pxproot))
+>  		return;
+>=20=20
+> diff --git a/drivers/gpu/drm/msm/adreno/a5xx_debugfs.c b/drivers/gpu/drm/=
+msm/adreno/a5xx_debugfs.c
+> index 6bd397a85834..b858a1590cf4 100644
+> --- a/drivers/gpu/drm/msm/adreno/a5xx_debugfs.c
+> +++ b/drivers/gpu/drm/msm/adreno/a5xx_debugfs.c
+> @@ -152,8 +152,8 @@ void a5xx_debugfs_init(struct msm_gpu *gpu, struct dr=
+m_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(a5xx_debugfs_list,
+>  				 ARRAY_SIZE(a5xx_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+> -	debugfs_create_file_unsafe("reset", S_IWUGO, minor->debugfs_root, dev,
+> +	debugfs_create_file_unsafe("reset", S_IWUGO, minor->dev->debugfs_root, =
+dev,
+>  				&reset_fops);
+>  }
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/dr=
+m/msm/disp/dpu1/dpu_encoder.c
+> index 758261e8ac73..987c332f216f 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -2137,7 +2137,7 @@ static int _dpu_encoder_init_debugfs(struct drm_enc=
+oder *drm_enc)
+>=20=20
+>  	/* create overall sub-directory for the encoder */
+>  	dpu_enc->debugfs_root =3D debugfs_create_dir(name,
+> -			drm_enc->dev->primary->debugfs_root);
+> +			drm_enc->dev->debugfs_root);
+>=20=20
+>  	/* don't error check these */
+>  	debugfs_create_file("status", 0600,
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/ms=
+m/disp/dpu1/dpu_kms.c
+> index a683bd9b5a04..3fba86e5b4da 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -269,7 +269,7 @@ static int dpu_kms_debugfs_init(struct msm_kms *kms, =
+struct drm_minor *minor)
+>  	dev =3D dpu_kms->dev;
+>  	priv =3D dev->dev_private;
+>=20=20
+> -	entry =3D debugfs_create_dir("debug", minor->debugfs_root);
+> +	entry =3D debugfs_create_dir("debug", minor->dev->debugfs_root);
+>=20=20
+>  	debugfs_create_x32(DPU_DEBUGFS_HWMASKNAME, 0600, entry, p);
+>=20=20
+> diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c b/drivers/gpu/drm/m=
+sm/disp/mdp5/mdp5_kms.c
+> index 29ae5c9613f3..800c0bf78529 100644
+> --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c
+> @@ -253,7 +253,7 @@ static int mdp5_kms_debugfs_init(struct msm_kms *kms,=
+ struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(mdp5_debugfs_list,
+>  				 ARRAY_SIZE(mdp5_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c b/drivers/gpu/drm/msm/dp/d=
+p_debug.c
+> index 5e35033ba3e4..eff62032a8f7 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_debug.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+> @@ -213,7 +213,7 @@ static void dp_debug_init(struct dp_debug *dp_debug, =
+struct drm_minor *minor)
+>=20=20
+>  	snprintf(path, sizeof(path), "msm_dp-%s", debug->connector->name);
+>=20=20
+> -	debug->root =3D debugfs_create_dir(path, minor->debugfs_root);
+> +	debug->root =3D debugfs_create_dir(path, minor->dev->debugfs_root);
+>=20=20
+>  	debugfs_create_file("dp_debug", 0444, debug->root,
+>  			debug, &dp_debug_fops);
+> diff --git a/drivers/gpu/drm/msm/msm_debugfs.c b/drivers/gpu/drm/msm/msm_=
+debugfs.c
+> index d6ecff0ab618..4fb5b44073bd 100644
+> --- a/drivers/gpu/drm/msm/msm_debugfs.c
+> +++ b/drivers/gpu/drm/msm/msm_debugfs.c
+> @@ -309,24 +309,24 @@ void msm_debugfs_init(struct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(msm_debugfs_list,
+>  				 ARRAY_SIZE(msm_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+> -	debugfs_create_file("gpu", S_IRUSR, minor->debugfs_root,
+> +	debugfs_create_file("gpu", S_IRUSR, minor->dev->debugfs_root,
+>  		dev, &msm_gpu_fops);
+>=20=20
+> -	debugfs_create_file("kms", S_IRUSR, minor->debugfs_root,
+> +	debugfs_create_file("kms", S_IRUSR, minor->dev->debugfs_root,
+>  		dev, &msm_kms_fops);
+>=20=20
+> -	debugfs_create_u32("hangcheck_period_ms", 0600, minor->debugfs_root,
+> +	debugfs_create_u32("hangcheck_period_ms", 0600, minor->dev->debugfs_roo=
+t,
+>  		&priv->hangcheck_period);
+>=20=20
+> -	debugfs_create_bool("disable_err_irq", 0600, minor->debugfs_root,
+> +	debugfs_create_bool("disable_err_irq", 0600, minor->dev->debugfs_root,
+>  		&priv->disable_err_irq);
+>=20=20
+> -	debugfs_create_file("shrink", S_IRWXU, minor->debugfs_root,
+> +	debugfs_create_file("shrink", S_IRWXU, minor->dev->debugfs_root,
+>  		dev, &shrink_fops);
+>=20=20
+> -	gpu_devfreq =3D debugfs_create_dir("devfreq", minor->debugfs_root);
+> +	gpu_devfreq =3D debugfs_create_dir("devfreq", dev->debugfs_root);
+>=20=20
+>  	debugfs_create_bool("idle_clamp",0600, gpu_devfreq,
+>  			    &priv->gpu_clamp_to_idle);
+> @@ -341,9 +341,9 @@ void msm_debugfs_init(struct drm_minor *minor)
+>  		priv->kms->funcs->debugfs_init(priv->kms, minor);
+>=20=20
+>  #ifdef CONFIG_FAULT_INJECTION
+> -	fault_create_debugfs_attr("fail_gem_alloc", minor->debugfs_root,
+> +	fault_create_debugfs_attr("fail_gem_alloc", minor->dev->debugfs_root,
+>  				  &fail_gem_alloc);
+> -	fault_create_debugfs_attr("fail_gem_iova", minor->debugfs_root,
+> +	fault_create_debugfs_attr("fail_gem_iova", minor->dev->debugfs_root,
+>  				  &fail_gem_iova);
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/msm/msm_perf.c b/drivers/gpu/drm/msm/msm_per=
+f.c
+> index 3d3da79fec2a..82d8ef9e0e74 100644
+> --- a/drivers/gpu/drm/msm/msm_perf.c
+> +++ b/drivers/gpu/drm/msm/msm_perf.c
+> @@ -214,7 +214,7 @@ int msm_perf_debugfs_init(struct drm_minor *minor)
+>  	mutex_init(&perf->read_lock);
+>  	priv->perf =3D perf;
+>=20=20
+> -	debugfs_create_file("perf", S_IFREG | S_IRUGO, minor->debugfs_root,
+> +	debugfs_create_file("perf", S_IFREG | S_IRUGO, minor->dev->debugfs_root,
+>  			    perf, &perf_debugfs_fops);
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/msm/msm_rd.c b/drivers/gpu/drm/msm/msm_rd.c
+> index db2f847c8535..cd0d4859fef0 100644
+> --- a/drivers/gpu/drm/msm/msm_rd.c
+> +++ b/drivers/gpu/drm/msm/msm_rd.c
+> @@ -261,7 +261,7 @@ static struct msm_rd_state *rd_init(struct drm_minor =
+*minor, const char *name)
+>=20=20
+>  	init_waitqueue_head(&rd->fifo_event);
+>=20=20
+> -	debugfs_create_file(name, S_IFREG | S_IRUGO, minor->debugfs_root, rd,
+> +	debugfs_create_file(name, S_IFREG | S_IRUGO, minor->dev->debugfs_root, =
+rd,
+>  			    &rd_debugfs_fops);
+>=20=20
+>  	return rd;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/=
+nouveau/nouveau_debugfs.c
+> index 2a36d1ca8fda..0ea7c19b8da9 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> @@ -233,18 +233,18 @@ nouveau_drm_debugfs_init(struct drm_minor *minor)
+>  	for (i =3D 0; i < ARRAY_SIZE(nouveau_debugfs_files); i++) {
+>  		debugfs_create_file(nouveau_debugfs_files[i].name,
+>  				    S_IRUGO | S_IWUSR,
+> -				    minor->debugfs_root, minor->dev,
+> +				    minor->dev->debugfs_root, minor->dev,
+>  				    nouveau_debugfs_files[i].fops);
+>  	}
+>=20=20
+>  	drm_debugfs_create_files(nouveau_debugfs_list,
+>  				 NOUVEAU_DEBUGFS_ENTRIES,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	/* Set the size of the vbios since we know it, and it's confusing to
+>  	 * userspace if it wants to seek() but the file has a length of 0
+>  	 */
+> -	dentry =3D debugfs_lookup("vbios.rom", minor->debugfs_root);
+> +	dentry =3D debugfs_lookup("vbios.rom", minor->dev->debugfs_root);
+>  	if (!dentry)
+>  		return;
+>=20=20
+> diff --git a/drivers/gpu/drm/omapdrm/omap_debugfs.c b/drivers/gpu/drm/oma=
+pdrm/omap_debugfs.c
+> index bfb2ccb40bd1..ef14bb95326f 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_debugfs.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_debugfs.c
+> @@ -85,12 +85,12 @@ void omap_debugfs_init(struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(omap_debugfs_list,
+>  				 ARRAY_SIZE(omap_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	if (dmm_is_available())
+>  		drm_debugfs_create_files(omap_dmm_debugfs_list,
+>  					 ARRAY_SIZE(omap_dmm_debugfs_list),
+> -					 minor->debugfs_root, minor);
+> +					 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  #endif
+> diff --git a/drivers/gpu/drm/pl111/pl111_debugfs.c b/drivers/gpu/drm/pl11=
+1/pl111_debugfs.c
+> index 6744fa16f464..2603822bf9f4 100644
+> --- a/drivers/gpu/drm/pl111/pl111_debugfs.c
+> +++ b/drivers/gpu/drm/pl111/pl111_debugfs.c
+> @@ -55,5 +55,5 @@ pl111_debugfs_init(struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(pl111_debugfs_list,
+>  				 ARRAY_SIZE(pl111_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+> diff --git a/drivers/gpu/drm/qxl/qxl_debugfs.c b/drivers/gpu/drm/qxl/qxl_=
+debugfs.c
+> index 2d9ed3b94574..80e5b12802da 100644
+> --- a/drivers/gpu/drm/qxl/qxl_debugfs.c
+> +++ b/drivers/gpu/drm/qxl/qxl_debugfs.c
+> @@ -90,7 +90,7 @@ qxl_debugfs_init(struct drm_minor *minor)
+>  	struct qxl_device *dev =3D to_qxl(minor->dev);
+>=20=20
+>  	drm_debugfs_create_files(qxl_debugfs_list, QXL_DEBUGFS_ENTRIES,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	qxl_ttm_debugfs_init(dev);
+>  #endif
+> @@ -120,7 +120,7 @@ void qxl_debugfs_add_files(struct qxl_device *qdev,
+>  	qdev->debugfs_count =3D i;
+>  #if defined(CONFIG_DEBUG_FS)
+>  	drm_debugfs_create_files(files, nfiles,
+> -				 qdev->ddev.primary->debugfs_root,
+> +				 qdev->ddev.debugfs_root,
+>  				 qdev->ddev.primary);
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
+> index 1a82629bce3f..f39f3a13e62c 100644
+> --- a/drivers/gpu/drm/qxl/qxl_ttm.c
+> +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
+> @@ -238,9 +238,9 @@ void qxl_ttm_debugfs_init(struct qxl_device *qdev)
+>  #if defined(CONFIG_DEBUG_FS)
+>  	ttm_resource_manager_create_debugfs(ttm_manager_type(&qdev->mman.bdev,
+>  							     TTM_PL_VRAM),
+> -					    qdev->ddev.primary->debugfs_root, "qxl_mem_mm");
+> +					    qdev->ddev.debugfs_root, "qxl_mem_mm");
+>  	ttm_resource_manager_create_debugfs(ttm_manager_type(&qdev->mman.bdev,
+>  							     TTM_PL_PRIV),
+> -					    qdev->ddev.primary->debugfs_root, "qxl_surf_mm");
+> +					    qdev->ddev.debugfs_root, "qxl_surf_mm");
+>  #endif
+>  }
+> diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+> index d4f09ecc3d22..23846346db0f 100644
+> --- a/drivers/gpu/drm/radeon/r100.c
+> +++ b/drivers/gpu/drm/radeon/r100.c
+> @@ -3058,7 +3058,7 @@ DEFINE_SHOW_ATTRIBUTE(r100_debugfs_mc_info);
+>  void  r100_debugfs_rbbm_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("r100_rbbm_info", 0444, root, rdev,
+>  			    &r100_debugfs_rbbm_info_fops);
+> @@ -3068,7 +3068,7 @@ void  r100_debugfs_rbbm_init(struct radeon_device *=
+rdev)
+>  void r100_debugfs_cp_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("r100_cp_ring_info", 0444, root, rdev,
+>  			    &r100_debugfs_cp_ring_info_fops);
+> @@ -3080,7 +3080,7 @@ void r100_debugfs_cp_init(struct radeon_device *rde=
+v)
+>  void  r100_debugfs_mc_info_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("r100_mc_info", 0444, root, rdev,
+>  			    &r100_debugfs_mc_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
+> index 7b0cfeaddcec..3038426e465c 100644
+> --- a/drivers/gpu/drm/radeon/r300.c
+> +++ b/drivers/gpu/drm/radeon/r300.c
+> @@ -615,7 +615,7 @@ DEFINE_SHOW_ATTRIBUTE(rv370_debugfs_pcie_gart_info);
+>  static void rv370_debugfs_pcie_gart_info_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("rv370_pcie_gart_info", 0444, root, rdev,
+>  			    &rv370_debugfs_pcie_gart_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+> index 7e6320e8c6a0..24e595db3dbf 100644
+> --- a/drivers/gpu/drm/radeon/r420.c
+> +++ b/drivers/gpu/drm/radeon/r420.c
+> @@ -492,7 +492,7 @@ DEFINE_SHOW_ATTRIBUTE(r420_debugfs_pipes_info);
+>  void r420_debugfs_pipes_info_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("r420_pipes_info", 0444, root, rdev,
+>  			    &r420_debugfs_pipes_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
+> index dd78fc499402..1a1cf06f968c 100644
+> --- a/drivers/gpu/drm/radeon/r600.c
+> +++ b/drivers/gpu/drm/radeon/r600.c
+> @@ -4358,7 +4358,7 @@ DEFINE_SHOW_ATTRIBUTE(r600_debugfs_mc_info);
+>  static void r600_debugfs_mc_info_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("r600_mc_info", 0444, root, rdev,
+>  			    &r600_debugfs_mc_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/rade=
+on/radeon_fence.c
+> index 73e3117420bf..20c178e2e9fd 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fence.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fence.c
+> @@ -1004,7 +1004,7 @@ DEFINE_DEBUGFS_ATTRIBUTE(radeon_debugfs_gpu_reset_f=
+ops,
+>  void radeon_debugfs_fence_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("radeon_gpu_reset", 0444, root, rdev,
+>  			    &radeon_debugfs_gpu_reset_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon=
+/radeon_gem.c
+> index 261fcbae88d7..7779179c9411 100644
+> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+> @@ -892,7 +892,7 @@ DEFINE_SHOW_ATTRIBUTE(radeon_debugfs_gem_info);
+>  void radeon_gem_debugfs_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("radeon_gem_info", 0444, root, rdev,
+>  			    &radeon_debugfs_gem_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/=
+radeon_ib.c
+> index 6a45a72488f9..0a4c8ce3c6ca 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ib.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ib.c
+> @@ -307,7 +307,7 @@ DEFINE_SHOW_ATTRIBUTE(radeon_debugfs_sa_info);
+>  static void radeon_debugfs_sa_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("radeon_sa_info", 0444, root, rdev,
+>  			    &radeon_debugfs_sa_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/=
+radeon_pm.c
+> index cbc554928bcc..e63aead25682 100644
+> --- a/drivers/gpu/drm/radeon/radeon_pm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_pm.c
+> @@ -1954,7 +1954,7 @@ DEFINE_SHOW_ATTRIBUTE(radeon_debugfs_pm_info);
+>  static void radeon_debugfs_pm_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("radeon_pm_info", 0444, root, rdev,
+>  			    &radeon_debugfs_pm_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeo=
+n/radeon_ring.c
+> index 7e207276df37..59f0b97b69eb 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ring.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ring.c
+> @@ -548,7 +548,7 @@ static void radeon_debugfs_ring_init(struct radeon_de=
+vice *rdev, struct radeon_r
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+>  	const char *ring_name =3D radeon_debugfs_ring_idx_to_name(ring->idx);
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	if (ring_name)
+>  		debugfs_create_file(ring_name, 0444, root, ring,
+> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon=
+/radeon_ttm.c
+> index 2220cdf6a3f6..202a3db46be0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> @@ -899,7 +899,7 @@ static void radeon_ttm_debugfs_init(struct radeon_dev=
+ice *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+>  	struct drm_minor *minor =3D rdev->ddev->primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D minor->dev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("radeon_vram", 0444, root, rdev,
+>  			    &radeon_ttm_vram_fops);
+> diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs40=
+0.c
+> index 6383f7a34bd8..79b968b41006 100644
+> --- a/drivers/gpu/drm/radeon/rs400.c
+> +++ b/drivers/gpu/drm/radeon/rs400.c
+> @@ -378,7 +378,7 @@ DEFINE_SHOW_ATTRIBUTE(rs400_debugfs_gart_info);
+>  static void rs400_debugfs_pcie_gart_info_init(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("rs400_gart_info", 0444, root, rdev,
+>  			    &rs400_debugfs_gart_info_fops);
+> diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv51=
+5.c
+> index 63fb06e8e2d7..1ad855b5eb21 100644
+> --- a/drivers/gpu/drm/radeon/rv515.c
+> +++ b/drivers/gpu/drm/radeon/rv515.c
+> @@ -255,7 +255,7 @@ DEFINE_SHOW_ATTRIBUTE(rv515_debugfs_ga_info);
+>  void rv515_debugfs(struct radeon_device *rdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+> -	struct dentry *root =3D rdev->ddev->primary->debugfs_root;
+> +	struct dentry *root =3D rdev->ddev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("rv515_pipes_info", 0444, root, rdev,
+>  			    &rv515_debugfs_pipes_info_fops);
+> diff --git a/drivers/gpu/drm/sti/sti_cursor.c b/drivers/gpu/drm/sti/sti_c=
+ursor.c
+> index db0a1eb53532..9b2d671e4a66 100644
+> --- a/drivers/gpu/drm/sti/sti_cursor.c
+> +++ b/drivers/gpu/drm/sti/sti_cursor.c
+> @@ -142,7 +142,7 @@ static void cursor_debugfs_init(struct sti_cursor *cu=
+rsor,
+>=20=20
+>  	drm_debugfs_create_files(cursor_debugfs_files,
+>  				 ARRAY_SIZE(cursor_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  static void sti_cursor_argb8888_to_clut8(struct sti_cursor *cursor, u32 =
+*src)
+> diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.c
+> index 1b87b5899f9e..947e07029ce9 100644
+> --- a/drivers/gpu/drm/sti/sti_drv.c
+> +++ b/drivers/gpu/drm/sti/sti_drv.c
+> @@ -95,9 +95,9 @@ static void sti_drm_dbg_init(struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(sti_drm_dbg_list,
+>  				 ARRAY_SIZE(sti_drm_dbg_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+> -	debugfs_create_file("fps_show", S_IRUGO | S_IWUSR, minor->debugfs_root,
+> +	debugfs_create_file("fps_show", S_IRUGO | S_IWUSR, minor->dev->debugfs_=
+root,
+>  			    minor->dev, &sti_drm_fps_fops);
+>=20=20
+>  	DRM_INFO("%s: debugfs installed\n", DRIVER_NAME);
+> diff --git a/drivers/gpu/drm/sti/sti_dvo.c b/drivers/gpu/drm/sti/sti_dvo.c
+> index 577c477b5f46..6d214a9cde62 100644
+> --- a/drivers/gpu/drm/sti/sti_dvo.c
+> +++ b/drivers/gpu/drm/sti/sti_dvo.c
+> @@ -205,7 +205,7 @@ static void dvo_debugfs_init(struct sti_dvo *dvo, str=
+uct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(dvo_debugfs_files,
+>  				 ARRAY_SIZE(dvo_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  static void sti_dvo_disable(struct drm_bridge *bridge)
+> diff --git a/drivers/gpu/drm/sti/sti_gdp.c b/drivers/gpu/drm/sti/sti_gdp.c
+> index 43c72c2604a0..83dbaa67d81e 100644
+> --- a/drivers/gpu/drm/sti/sti_gdp.c
+> +++ b/drivers/gpu/drm/sti/sti_gdp.c
+> @@ -347,7 +347,7 @@ static int gdp_debugfs_init(struct sti_gdp *gdp, stru=
+ct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(gdp_debugfs_files,
+>  				 nb_files,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  	return 0;
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/sti/sti_hda.c b/drivers/gpu/drm/sti/sti_hda.c
+> index 15097ac67931..f32dfb85f503 100644
+> --- a/drivers/gpu/drm/sti/sti_hda.c
+> +++ b/drivers/gpu/drm/sti/sti_hda.c
+> @@ -377,7 +377,7 @@ static void hda_debugfs_init(struct sti_hda *hda, str=
+uct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(hda_debugfs_files,
+>  				 ARRAY_SIZE(hda_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/sti/sti_hdmi.c b/drivers/gpu/drm/sti/sti_hdm=
+i.c
+> index 8539fe1fedc4..3827ca9ced90 100644
+> --- a/drivers/gpu/drm/sti/sti_hdmi.c
+> +++ b/drivers/gpu/drm/sti/sti_hdmi.c
+> @@ -743,7 +743,7 @@ static void hdmi_debugfs_init(struct sti_hdmi *hdmi, =
+struct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(hdmi_debugfs_files,
+>  				 ARRAY_SIZE(hdmi_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  static void sti_hdmi_disable(struct drm_bridge *bridge)
+> diff --git a/drivers/gpu/drm/sti/sti_hqvdp.c b/drivers/gpu/drm/sti/sti_hq=
+vdp.c
+> index 02b77279f6e4..3148e113e2d6 100644
+> --- a/drivers/gpu/drm/sti/sti_hqvdp.c
+> +++ b/drivers/gpu/drm/sti/sti_hqvdp.c
+> @@ -650,7 +650,7 @@ static void hqvdp_debugfs_init(struct sti_hqvdp *hqvd=
+p, struct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(hqvdp_debugfs_files,
+>  				 ARRAY_SIZE(hqvdp_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/sti/sti_mixer.c b/drivers/gpu/drm/sti/sti_mi=
+xer.c
+> index 7e5f14646625..d708fae682cd 100644
+> --- a/drivers/gpu/drm/sti/sti_mixer.c
+> +++ b/drivers/gpu/drm/sti/sti_mixer.c
+> @@ -202,7 +202,7 @@ void sti_mixer_debugfs_init(struct sti_mixer *mixer, =
+struct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(mixer_debugfs_files,
+>  				 nb_files,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  void sti_mixer_set_background_status(struct sti_mixer *mixer, bool enabl=
+e)
+> diff --git a/drivers/gpu/drm/sti/sti_tvout.c b/drivers/gpu/drm/sti/sti_tv=
+out.c
+> index 2499715a69b7..fefd04719315 100644
+> --- a/drivers/gpu/drm/sti/sti_tvout.c
+> +++ b/drivers/gpu/drm/sti/sti_tvout.c
+> @@ -579,7 +579,7 @@ static void tvout_debugfs_init(struct sti_tvout *tvou=
+t, struct drm_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(tvout_debugfs_files,
+>  				 ARRAY_SIZE(tvout_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  static void sti_tvout_encoder_dpms(struct drm_encoder *encoder, int mode)
+> diff --git a/drivers/gpu/drm/sti/sti_vid.c b/drivers/gpu/drm/sti/sti_vid.c
+> index 2d818397918d..e8aa6e608c69 100644
+> --- a/drivers/gpu/drm/sti/sti_vid.c
+> +++ b/drivers/gpu/drm/sti/sti_vid.c
+> @@ -133,7 +133,7 @@ void vid_debugfs_init(struct sti_vid *vid, struct drm=
+_minor *minor)
+>=20=20
+>  	drm_debugfs_create_files(vid_debugfs_files,
+>  				 ARRAY_SIZE(vid_debugfs_files),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>=20=20
+>  void sti_vid_commit(struct sti_vid *vid,
+> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+> index 6ca9f396e55b..4b7465464651 100644
+> --- a/drivers/gpu/drm/tegra/drm.c
+> +++ b/drivers/gpu/drm/tegra/drm.c
+> @@ -876,7 +876,7 @@ static void tegra_debugfs_init(struct drm_minor *mino=
+r)
+>  {
+>  	drm_debugfs_create_files(tegra_debugfs_list,
+>  				 ARRAY_SIZE(tegra_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>  #endif
+>=20=20
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc=
+/tilcdc_drv.c
+> index fe56beea3e93..5a54608d8c83 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -468,7 +468,7 @@ static void tilcdc_debugfs_init(struct drm_minor *min=
+or)
+>=20=20
+>  	drm_debugfs_create_files(tilcdc_debugfs_list,
+>  				 ARRAY_SIZE(tilcdc_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>=20=20
+>  	list_for_each_entry(mod, &module_list, list)
+>  		if (mod->funcs->debugfs_init)
+> diff --git a/drivers/gpu/drm/tiny/arcpgu.c b/drivers/gpu/drm/tiny/arcpgu.c
+> index e5b10e41554a..770b76701764 100644
+> --- a/drivers/gpu/drm/tiny/arcpgu.c
+> +++ b/drivers/gpu/drm/tiny/arcpgu.c
+> @@ -357,7 +357,7 @@ static void arcpgu_debugfs_init(struct drm_minor *min=
+or)
+>  {
+>  	drm_debugfs_create_files(arcpgu_debugfs_list,
+>  				 ARRAY_SIZE(arcpgu_debugfs_list),
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+>  #endif
+>=20=20
+> diff --git a/drivers/gpu/drm/vc4/vc4_hvs.c b/drivers/gpu/drm/vc4/vc4_hvs.c
+> index 4da66ef96783..85fae3ab85c6 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hvs.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hvs.c
+> @@ -769,7 +769,7 @@ int vc4_hvs_debugfs_init(struct drm_minor *minor)
+>=20=20
+>  	if (!vc4->is_vc5)
+>  		debugfs_create_bool("hvs_load_tracker", S_IRUGO | S_IWUSR,
+> -				    minor->debugfs_root,
+> +				    minor->dev->debugfs_root,
+>  				    &vc4->load_tracker_enabled);
+>=20=20
+>  	drm_debugfs_add_file(drm, "hvs_dlists", vc4_hvs_debugfs_dlist, NULL);
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_debugfs.c b/drivers/gpu/drm/v=
+irtio/virtgpu_debugfs.c
+> index 853dd9aa397e..f403d03149bc 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_debugfs.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_debugfs.c
+> @@ -107,5 +107,5 @@ virtio_gpu_debugfs_init(struct drm_minor *minor)
+>  {
+>  	drm_debugfs_create_files(virtio_gpu_debugfs_list,
+>  				 VIRTIO_GPU_DEBUGFS_ENTRIES,
+> -				 minor->debugfs_root, minor);
+> +				 minor->dev->debugfs_root, minor);
+>  }
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx=
+/vmwgfx_drv.c
+> index 2588615a2a38..d5e70d7f9a54 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> @@ -1409,7 +1409,7 @@ static void vmw_remove(struct pci_dev *pdev)
+>  static void vmw_debugfs_resource_managers_init(struct vmw_private *vmw)
+>  {
+>  	struct drm_minor *minor =3D vmw->drm.primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D minor->dev->debugfs_root;
+>=20=20
+>  	ttm_resource_manager_create_debugfs(ttm_manager_type(&vmw->bdev, TTM_PL=
+_SYSTEM),
+>  					    root, "system_ttm");
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx=
+/vmwgfx_gem.c
+> index c0da89e16e6f..46ca03d78ad6 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
+> @@ -267,7 +267,7 @@ void vmw_debugfs_gem_init(struct vmw_private *vdev)
+>  {
+>  #if defined(CONFIG_DEBUG_FS)
+>  	struct drm_minor *minor =3D vdev->drm.primary;
+> -	struct dentry *root =3D minor->debugfs_root;
+> +	struct dentry *root =3D minor->dev->debugfs_root;
+>=20=20
+>  	debugfs_create_file("vmwgfx_gem_info", 0444, root, vdev,
+>  			    &vmw_debugfs_gem_info_fops);
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index e687ce27624e..3ddbeef8f5de 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -77,8 +77,6 @@ struct drm_minor {
+>  	int type;                       /* Control or render or accel */
+>  	struct device *kdev;		/* Linux device */
+>  	struct drm_device *dev;
+> -
+> -	struct dentry *debugfs_root;
+>  };
+>=20=20
+>  /**
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
