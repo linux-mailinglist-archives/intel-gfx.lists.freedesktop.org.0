@@ -2,64 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CD16D9D7C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 18:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1456D9D86
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Apr 2023 18:27:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4454810EC5E;
-	Thu,  6 Apr 2023 16:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A00910EC5C;
+	Thu,  6 Apr 2023 16:27:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
- [IPv6:2a00:1450:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C602D10EC56
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 16:24:08 +0000 (UTC)
-Received: by mail-ej1-x62e.google.com with SMTP id
- a640c23a62f3a-94971337b10so13608666b.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 09:24:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680798247; x=1683390247;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=AnA2PMAB62wwSg/6v/Op5LcZjbURhrX+N7Ls0hv92X4=;
- b=fJRQWbQIFzepewP/phpZ1UZRoW2o+QHpxpLBnYKFmBRX8KN7VltXTrygBDuoZ0pRhX
- Z6+TCyd/MPIyXNsyKhQ4JJM1mF/bn0I+WGJSDwzp9bRktoKdPiOqEGsueND7+T+gbvoT
- +zwa6H69aUqnQc9vgCmYhivXOpenfrs7aJwAg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680798247; x=1683390247;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AnA2PMAB62wwSg/6v/Op5LcZjbURhrX+N7Ls0hv92X4=;
- b=1koojNLFHOcdzsSbA9l0LTG2fVBtuz1Kou1zdeP1QtDxw5tHkrt4IMW4NWNyfCvlw5
- +PFZ15q+UItfZhPLRF9j6OmsySy0NAZJj5f+C2VtH0aj1bwoHTv3RB3a9Kc4QJBGb05S
- C7tH1j5ZDALMvqJ6lKgF4mFO1jw4428+JqngsiggyoivH3aaA8G0k1FmiMsC7yuMwpJs
- 3+i0yxuokALy5DYhX6FfZPeU8+W/ihSo1xWvLxKakEbG9sC6ItWO2t+a6TDVwmZ4bm5I
- Y9uac5+6qpRmeBm0FQMKO7N09hiHuvqBpEQuF7c8eZ0p7RWS77JNmQxYZ8oRo4c+nRuL
- rwoQ==
-X-Gm-Message-State: AAQBX9dFH6sfkafWilIDvcpSenKWhdZfb5Xfk1d7UHoWrqNMZLxkgLEc
- yF48AAqTKRwRMTer0jOzskPKWg==
-X-Google-Smtp-Source: AKy350ZDOv4aSvJlmfQigu/iAijCUl8RKPVmf8qdpc3q1iWaRclR//9q9lmKSxCXW6+Nj7OSsFvLLg==
-X-Received: by 2002:a17:906:1d4:b0:92e:f520:7762 with SMTP id
- 20-20020a17090601d400b0092ef5207762mr5566661ejj.6.1680798246686; 
- Thu, 06 Apr 2023 09:24:06 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- gl2-20020a170906e0c200b00930aa50372csm1000828ejb.43.2023.04.06.09.24.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 09:24:06 -0700 (PDT)
-Date: Thu, 6 Apr 2023 18:24:04 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <ZC7yJMiqFdlJ3LOh@phenom.ffwll.local>
-References: <ZC7RR3Laet8ywHRo@intel.com>
+Received: from omta35.uswest2.a.cloudfilter.net
+ (omta35.uswest2.a.cloudfilter.net [35.89.44.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EED510EC57
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 16:27:17 +0000 (UTC)
+Received: from eig-obgw-6001a.ext.cloudfilter.net ([10.0.30.140])
+ by cmsmtp with ESMTP
+ id kQa5pc2CcE9lPkSSCpwWlX; Thu, 06 Apr 2023 16:27:16 +0000
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTP
+ id kSSApN4RmchbxkSSApUU6v; Thu, 06 Apr 2023 16:27:14 +0000
+X-Authority-Analysis: v=2.4 cv=KI5JsXJo c=1 sm=1 tr=0 ts=642ef2e2
+ a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=r5y7L3YFV7pC399TSlF17w==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=dKHAf1wccvYA:10
+ a=wYkD_t78qR0A:10 a=_Wotqz80AAAA:8 a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8
+ a=5PrvhKeIWMso7PqsVc4A:9 a=QEXdDO2ut3YA:10 a=buJP51TR1BpY-zbLSsyS:22
+ a=AjGcO6oz07-iQ99wixmX:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lV0u8gCzN+IVJnUOSxifOKoxf9sWC9J5lL5XQpoJLvo=; b=GW5vBFG8RNacOKxrvZIq9qCZzf
+ miMkjyb/m61EfNcnfNBlyT9HaIt8j5v1iQT7sb/qhYLUgG27dGGeVZ0YWpF2swgs67QssFrEJ1CI4
+ jk56vZs7kU48nCC5hb7q2OFlHScCDlyTKSKVfb+acgN1kBeMaJ6iZg2Ggf9jwY+enI0shFYSiudDN
+ ONMpOvMzbbygGQjCgZ6jV7g537ihKqQ5xOGADQgWHBXjK0GHD6fUmuLUq0KT3BSSdPthPN3qbIJ63
+ yv0IuE+A5RXa/DnxQ4STpskWezTCgef30Fo+n/HfODTruPstLHQoZoGvJNsy13OqM8G9iv2D5XsDY
+ NRaJiGtw==;
+Received: from 187.184.158.238.cable.dyn.cableonline.com.mx
+ ([187.184.158.238]:28874 helo=[192.168.0.24])
+ by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.95)
+ (envelope-from <gustavo@embeddedor.com>) id 1pkSS9-003zjR-7q;
+ Thu, 06 Apr 2023 11:27:13 -0500
+Message-ID: <e84ea7ad-e804-325a-a17b-5a939e0fc61d@embeddedor.com>
+Date: Thu, 6 Apr 2023 10:27:55 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <ZBSu2QsUJy31kjSE@work>
+ <ef8d083a-a82b-669c-0b0a-959e0f120a26@embeddedor.com>
+ <87ileh2yky.fsf@intel.com>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+In-Reply-To: <87ileh2yky.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZC7RR3Laet8ywHRo@intel.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-next
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 187.184.158.238
+X-Source-L: No
+X-Exim-ID: 1pkSS9-003zjR-7q
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 187.184.158.238.cable.dyn.cableonline.com.mx ([192.168.0.24])
+ [187.184.158.238]:28874
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 4
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfLWrMdRDc+E4lrvzibbkzrTVEd+MQ4U4bGTlddpsMAjU66DcOASPV8DmgY6s5ahgF/Tvi3Ue4xLA4Jw8AVA5UGv7GJh+f1G0GXb7R5slyUq9vq0IY3Sf
+ pEeH0FWzulkZ7B/cIfgsIDQ/8PWIudr7sKoqy7MZraqp4WyDtkF2FNePr2KoS1dMt1zpvJzB9fZKF1So4aKOpHEud5z1SJWFNICm4JX5P21zRHMzU8uFdzJl
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/uapi: Replace fake
+ flex-array with flexible-array member
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,273 +97,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 10:03:51AM -0400, Rodrigo Vivi wrote:
-> Hi Daniel,
-> 
-> Here goes drm-intel-next-2023-04-06:
-> 
-> - Fix DPT+shmem combo and add i915.enable_dpt modparam (Ville)
-> - i915.enable_sagv module parameter (Ville)
-> - Correction to QGV related register addresses (Vinod)
-> - IPS debugfs per-crtc and new file for false_color (Ville)
-> - More clean-up and reorganization of Display code (Jani)
-> - DP DSC related fixes and improvements (Stanislav, Ankit, Suraj, Swati)
-> - Make utility pin asserts more accurate (Ville)
-> - Meteor Lake enabling (Daniele)
-> - High refresh rate PSR fixes (Jouni)
-> - Cursor and Plane chicken register fixes (Ville)
-> - Align the ADL-P TypeC sequences with hardware specification (Imre)
-> - Documentation build fixes and improvements to catch bugs earlier (Lee, Jani)
-> - PL1 power limit hwmon entry changed to use 0 as disabled state (Ashutosh)
-> - DP aux sync fix and improvements (Ville)
-> - DP MST fixes and w/a (Stanislav)
-> - Limit PXP drm-errors or warning on firmware API failures (Alan)
-> 
-> Thanks,
-> Rodrigo.
-> 
-> The following changes since commit 46f28427f6f824b6cff06fa025a55350b7de454a:
-> 
->   Merge tag 'drm-rcar-next-20230325' of git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux into drm-next (2023-03-27 18:20:20 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2023-04-06
-> 
-> for you to fetch changes up to b358793c3bf231c455c55e0173256a86483997a8:
-> 
->   drm/i915/wakeref: fix kernel-doc comment (2023-04-06 15:39:26 +0300)
 
-Pulled, thanks
+
+On 3/31/23 01:02, Jani Nikula wrote:
+> On Thu, 30 Mar 2023, "Gustavo A. R. Silva" <gustavo@embeddedor.com> wrote:
+>> Friendly ping: who can take this, please? ðŸ˜„
+> 
+> It's in drm-intel-gt-next.
+
+Awesome. :) Thank you!
+
+--
+Gustavo
 
 > 
-> ----------------------------------------------------------------
-> - Fix DPT+shmem combo and add i915.enable_dpt modparam (Ville)
-> - i915.enable_sagv module parameter (Ville)
-> - Correction to QGV related register addresses (Vinod)
-> - IPS debugfs per-crtc and new file for false_color (Ville)
-> - More clean-up and reorganization of Display code (Jani)
-> - DP DSC related fixes and improvements (Stanislav, Ankit, Suraj, Swati)
-> - Make utility pin asserts more accurate (Ville)
-> - Meteor Lake enabling (Daniele)
-> - High refresh rate PSR fixes (Jouni)
-> - Cursor and Plane chicken register fixes (Ville)
-> - Align the ADL-P TypeC sequences with hardware specification (Imre)
-> - Documentation build fixes and improvements to catch bugs earlier (Lee, Jani)
-> - PL1 power limit hwmon entry changed to use 0 as disabled state (Ashutosh)
-> - DP aux sync fix and improvements (Ville)
-> - DP MST fixes and w/a (Stanislav)
-> - Limit PXP drm-errors or warning on firmware API failures (Alan)
+> commit 02abecdeebfcd3848b26b70778dd7f6eb0db65e1
+> Author:     Gustavo A. R. Silva <gustavoars@kernel.org>
+> AuthorDate: Fri Mar 17 12:18:01 2023 -0600
+> Commit:     Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> CommitDate: Tue Mar 21 08:41:18 2023 +0000
 > 
-> ----------------------------------------------------------------
-> Alan Previn (1):
->       drm/i915/pxp: limit drm-errors or warning on firmware API failures
+>      drm/i915/uapi: Replace fake flex-array with flexible-array member
 > 
-> Ankit Nautiyal (2):
->       drm/dp_helper: Add helper to check DSC support with given o/p format
->       drm/i915/dp: Check if DSC supports the given output_format
 > 
-> Ashutosh Dixit (1):
->       drm/i915/hwmon: Use 0 to designate disabled PL1 power limit
-> 
-> Daniele Ceraolo Spurio (1):
->       drm/i915/mtl: Fix MTL stolen memory GGTT mapping
-> 
-> Imre Deak (29):
->       drm/i915/tc: Group the TC PHY setup/query functions per platform
->       drm/i915/tc: Use the adlp prefix for ADLP TC PHY functions
->       drm/i915/tc: Rename tc_phy_status_complete() to tc_phy_is_ready()
->       drm/i915/tc: Use the tc_phy prefix for all TC PHY functions
->       drm/i915/tc: Move TC port fields to a new intel_tc_port struct
->       drm/i915/tc: Check for TC PHY explicitly in intel_tc_port_fia_max_lane_count()
->       drm/i915/tc: Move the intel_tc_port struct declaration to intel_tc.c
->       drm/i915/tc: Add TC PHY hook to get the PHY HPD live status
->       drm/i915/tc: Add TC PHY hooks to get the PHY ready/owned state
->       drm/i915/tc: Add TC PHY hook to read out the PHY HW state
->       drm/i915/tc: Add generic TC PHY connect/disconnect handlers
->       drm/i915/tc: Factor out tc_phy_verify_legacy_or_dp_alt_mode()
->       drm/i915/tc: Add TC PHY hooks to connect/disconnect the PHY
->       drm/i915/tc: Fix up the legacy VBT flag only in disconnected mode
->       drm/i915/tc: Check TC mode instead of the VBT legacy flag
->       drm/i915/tc: Block/unblock TC-cold in the PHY connect/disconnect hooks
->       drm/i915/tc: Remove redundant wakeref=0 check from unblock_tc_cold()
->       drm/i915/tc: Drop tc_cold_block()/unblock()'s power domain parameter
->       drm/i915/tc: Add TC PHY hook to get the TC-cold blocking power domain
->       drm/i915/tc: Add asserts in TC PHY hooks that the required power is on
->       drm/i915/tc: Add TC PHY hook to init the PHY
->       drm/i915/adlp/tc: Use the DE HPD ISR register for hotplug detection
->       drm/i915/tc: Get power ref for reading the HPD live status register
->       drm/i915/tc: Don't connect the PHY in intel_tc_port_connected()
->       drm/i915/adlp/tc: Align the connect/disconnect PHY sequence with bspec
->       drm/i915: Move shared DPLL disabling into CRTC disable hook
->       drm/i915: Disable DPLLs before disconnecting the TC PHY
->       drm/i915: Remove TC PHY disconnect workaround
->       drm/i915: Remove the encoder update_prepare()/complete() hooks
-> 
-> Jani Nikula (14):
->       drm/i915: remove unused config DRM_I915_UNSTABLE
->       drm/i915/pps: split out PPS regs to a separate file
->       drm/i915/tv: split out TV regs to a separate file
->       drm/i915/aux: split out DP AUX regs to a separate file
->       drm/i915/fdi: split out FDI regs to a separate file
->       drm/i915/dsb: split out DSB regs to a separate file
->       drm/i915/wm: split out SKL+ watermark regs to a separate file
->       drm/i915/psr: split out PSR regs to a separate file
->       drm/i915: enable kernel-doc warnings for CONFIG_DRM_I915_WERROR=y
->       drm/i915: run kernel-doc on headers as part of HDRTEST
->       drm/i915: rename intel_pm.[ch] to intel_clock_gating.[ch]
->       drm/i915/clock: mass rename dev_priv to i915
->       drm/i915/tc: demote a kernel-doc comment to a regular comment
->       drm/i915/wakeref: fix kernel-doc comment
-> 
-> Jouni Högander (6):
->       drm/i915/psr: Unify pre/post hooks
->       drm/i915/psr: Modify/Fix Wa_16013835468 and prepare for Wa_14015648006
->       drm/i915/psr: Implement Wa_14015648006
->       drm/i915/psr: Add helpers for block count number handling
->       drm/i915/psr: Check that vblank is long enough for psr2
->       drm/i915/psr: Implement Display WA #1136
-> 
-> Lee Jones (3):
->       drm/i915/display/intel_display_debugfs: Fix incorrect param naming for 'intel_connector'
->       drm/i915/display/intel_display_power: Fix incorrectly documented function __intel_display_power_put_async()
->       drm/i915/display/intel_wm: Fix a little doc-rot in intel_update_watermarks()
-> 
-> Rodrigo Vivi (1):
->       Merge drm/drm-next into drm-intel-next
-> 
-> Stanislav Lisovskiy (2):
->       drm/i915: Use compressed bpp when calculating m/n value for DP MST DSC
->       drm/i915: Implement UHBR bandwidth check
-> 
-> Suraj Kandpal (4):
->       drm/i915/dsc: Adding the new registers for DSC
->       drm/i915/dsc: Enable YCbCr420 for VDSC
->       drm/i915/dsc: Fill in native_420 field
->       drm/i915/vdsc: Check slice design requirement
-> 
-> Swati Sharma (1):
->       drm/i915/dsc: Add debugfs entry to validate DSC output formats
-> 
-> Ville Syrjälä (15):
->       drm/i915/dpt: Treat the DPT BO as a framebuffer
->       drm/i915/dpt: Only do the POT stride remap when using DPT
->       drm/i915/dpt: Introduce HAS_DPT()
->       drm/i915: Add PLANE_CHICKEN registers
->       drm/i915/dpt: Add a modparam to disable DPT via the chicken bit
->       drm/i915: Move PLANE_BUG_CFG bit definitions to the correct place
->       drm/i915: Add i915.enable_sagv modparam
->       drm/i915/ips: Make IPS debugfs per-crtc
->       drm/i915/ips: Add i915_ips_false_color debugfs file
->       drm/i915: Make utility pin asserts more accurate
->       drm/i915: Skip cursor when writing PLANE_CHICKEN
->       drm/i915: Document that PLANE_CHICKEN are for tgl+
->       drm/i915: Define cursor chicken reg
->       drm/i915: Fix fast wake AUX sync len
->       drm/i915: Explain the magic numbers for AUX SYNC/precharge length
-> 
-> Vinod Govindapillai (2):
->       drm/i915/reg: fix QGV points register access offsets
->       drm/i915/reg: use the correct register to access SAGV block time
-> 
->  .../ABI/testing/sysfs-driver-intel-i915-hwmon      |    4 +-
->  drivers/gpu/drm/i915/Kconfig                       |    6 -
->  drivers/gpu/drm/i915/Kconfig.unstable              |   21 -
->  drivers/gpu/drm/i915/Makefile                      |   12 +-
->  drivers/gpu/drm/i915/display/hsw_ips.c             |   73 +-
->  drivers/gpu/drm/i915/display/hsw_ips.h             |    3 +-
->  drivers/gpu/drm/i915/display/icl_dsi.c             |    2 -
->  drivers/gpu/drm/i915/display/intel_crt.c           |    1 +
->  .../gpu/drm/i915/display/intel_crtc_state_dump.c   |    4 +-
->  .../gpu/drm/i915/display/intel_crtc_state_dump.h   |    2 +
->  drivers/gpu/drm/i915/display/intel_ddi.c           |   71 +-
->  drivers/gpu/drm/i915/display/intel_display.c       |   95 +-
->  drivers/gpu/drm/i915/display/intel_display.h       |    7 -
->  drivers/gpu/drm/i915/display/intel_display_core.h  |    4 +
->  .../gpu/drm/i915/display/intel_display_debugfs.c   |   83 +-
->  drivers/gpu/drm/i915/display/intel_display_power.c |   10 +-
->  .../drm/i915/display/intel_display_power_well.c    |    7 +-
->  drivers/gpu/drm/i915/display/intel_display_types.h |   21 +-
->  drivers/gpu/drm/i915/display/intel_dp.c            |   48 +-
->  drivers/gpu/drm/i915/display/intel_dp_aux.c        |   33 +-
->  drivers/gpu/drm/i915/display/intel_dp_aux_regs.h   |   84 ++
->  drivers/gpu/drm/i915/display/intel_dp_mst.c        |   50 +-
->  drivers/gpu/drm/i915/display/intel_dpt.c           |   27 +
->  drivers/gpu/drm/i915/display/intel_dpt.h           |    2 +
->  drivers/gpu/drm/i915/display/intel_dsb.c           |    1 +
->  drivers/gpu/drm/i915/display/intel_dsb_regs.h      |   67 ++
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |    1 +
->  drivers/gpu/drm/i915/display/intel_fb.c            |   11 +-
->  drivers/gpu/drm/i915/display/intel_fb.h            |    1 +
->  drivers/gpu/drm/i915/display/intel_fdi.c           |    1 +
->  drivers/gpu/drm/i915/display/intel_fdi_regs.h      |  151 +++
->  drivers/gpu/drm/i915/display/intel_lvds.c          |    1 +
->  drivers/gpu/drm/i915/display/intel_modeset_setup.c |    1 -
->  drivers/gpu/drm/i915/display/intel_pch_display.c   |    1 +
->  drivers/gpu/drm/i915/display/intel_pps.c           |    1 +
->  drivers/gpu/drm/i915/display/intel_pps_regs.h      |   78 ++
->  drivers/gpu/drm/i915/display/intel_psr.c           |   91 +-
->  drivers/gpu/drm/i915/display/intel_psr_regs.h      |  260 ++++
->  drivers/gpu/drm/i915/display/intel_qp_tables.c     |  187 ++-
->  drivers/gpu/drm/i915/display/intel_qp_tables.h     |    4 +-
->  drivers/gpu/drm/i915/display/intel_tc.c            | 1253 +++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_tc.h            |    4 +-
->  drivers/gpu/drm/i915/display/intel_tv.c            |    3 +-
->  drivers/gpu/drm/i915/display/intel_tv_regs.h       |  490 ++++++++
->  drivers/gpu/drm/i915/display/intel_vdsc.c          |  132 ++-
->  drivers/gpu/drm/i915/display/intel_vdsc_regs.h     |   28 +
->  drivers/gpu/drm/i915/display/intel_wm.c            |    2 +-
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |    6 +
->  drivers/gpu/drm/i915/display/skl_watermark.c       |   11 +-
->  drivers/gpu/drm/i915/display/skl_watermark_regs.h  |  160 +++
->  drivers/gpu/drm/i915/gem/i915_gem_object.h         |    2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |    3 +
->  drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   15 +-
->  drivers/gpu/drm/i915/gvt/edid.c                    |    1 +
->  drivers/gpu/drm/i915/gvt/handlers.c                |    5 +
->  drivers/gpu/drm/i915/i915_driver.c                 |    8 +-
->  drivers/gpu/drm/i915/i915_drv.h                    |    2 +
->  drivers/gpu/drm/i915/i915_gem.c                    |    8 +-
->  drivers/gpu/drm/i915/i915_hwmon.c                  |   26 +
->  drivers/gpu/drm/i915/i915_irq.c                    |    2 +
->  drivers/gpu/drm/i915/i915_params.c                 |    6 +
->  drivers/gpu/drm/i915/i915_params.h                 |    2 +
->  drivers/gpu/drm/i915/i915_pci.c                    |    3 -
->  drivers/gpu/drm/i915/i915_reg.h                    | 1243 +------------------
->  drivers/gpu/drm/i915/intel_clock_gating.c          |  888 ++++++++++++++
->  drivers/gpu/drm/i915/intel_clock_gating.h          |   14 +
->  drivers/gpu/drm/i915/intel_device_info.h           |    1 -
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c        |    4 +
->  drivers/gpu/drm/i915/intel_pm.c                    |  885 --------------
->  drivers/gpu/drm/i915/intel_pm.h                    |   18 -
->  drivers/gpu/drm/i915/intel_wakeref.h               |    2 +-
->  .../gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h |    3 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.c       |    2 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c           |   77 +-
->  drivers/gpu/drm/i915/vlv_suspend.c                 |    4 +-
->  include/drm/display/drm_dp_helper.h                |   13 +
->  76 files changed, 3965 insertions(+), 2888 deletions(-)
->  delete mode 100644 drivers/gpu/drm/i915/Kconfig.unstable
->  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_dsb_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_fdi_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_pps_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_psr_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_tv_regs.h
->  create mode 100644 drivers/gpu/drm/i915/display/skl_watermark_regs.h
->  create mode 100644 drivers/gpu/drm/i915/intel_clock_gating.c
->  create mode 100644 drivers/gpu/drm/i915/intel_clock_gating.h
->  delete mode 100644 drivers/gpu/drm/i915/intel_pm.c
->  delete mode 100644 drivers/gpu/drm/i915/intel_pm.h
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
