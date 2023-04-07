@@ -1,88 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 386D96DAA7C
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 10:56:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 198E56DAAE7
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 11:32:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77EFD10E0DF;
-	Fri,  7 Apr 2023 08:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4D910E0DF;
+	Fri,  7 Apr 2023 09:32:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B8B710E071
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 08:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680857811;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=zm0x3qIRJGoq5IUNwNsG2TAdBWo5E6P2pw0Wr6/J6xU=;
- b=bKV/YI9cmBZYf88KP7Ou1RiKL3OxEAhfvDmILyhBv3OFrI2Kirh30zK19j+ENtMUJ3/gmd
- Nm7FhC6GQ701JzLLTfTVR39UbSOaTh+WJ2lHL44gL10WeDKymHb+cxldbJ56t5lf011N0Q
- 80QXPHi+eW/dqqNrzebnN/DPHfFEN7Q=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-218-hzJ21DQzN-yoEiSsAcc_YA-1; Fri, 07 Apr 2023 04:56:47 -0400
-X-MC-Unique: hzJ21DQzN-yoEiSsAcc_YA-1
-Received: by mail-wm1-f69.google.com with SMTP id
- o28-20020a05600c511c00b003ef69894934so17283387wms.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Apr 2023 01:56:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680857806;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zm0x3qIRJGoq5IUNwNsG2TAdBWo5E6P2pw0Wr6/J6xU=;
- b=O/p1Qi+CqoX/Hwt+ro/Uj4feoUBNcsgT3ygrk+7ox5ri7uFNof+qgPOX41pQu1pTBo
- sq37MqFnbQ6wT6F49EeesueMhvEHhp6kg/MzJ5pq18iHPRV+vu7bIWjKmm9PkDigCbOX
- DqWEZNTDnG3xDiIk6TchiZSUBnIBqKrK3hMghD2n8hdGQnl3PCjJn/zilyshMEojK+qP
- a+eqEK2TQ+MEt8tGFaTKBYOS7d3l+8OHUrKN0yS6A3dmu/h36I3xAayEaG4fey1ddYfK
- o+eY9CrOMSAZB8VglsGFClCf1d7DXQ1M28bPRIM6TsqoM6B3JBxvbQpZu2JQEXsyQgG5
- YK9Q==
-X-Gm-Message-State: AAQBX9cvAGMTcnOaVk6dfMwYhp9W2ORocTmPO+UdrKljx91Q94Shg9Ib
- tWijbT4UBGZ7v0oEyfhBal984xnfDb6CAGa8qagFgKnVvhOupa112pQ/GrOgwoTa/bvcp2nknBP
- bicYT9UT5Sukgf8s/aB+T6HDeA/sz
-X-Received: by 2002:a05:600c:4f45:b0:3ee:93d2:c915 with SMTP id
- m5-20020a05600c4f4500b003ee93d2c915mr915239wmq.6.1680857806783; 
- Fri, 07 Apr 2023 01:56:46 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bKstcvpy21T/+Sur+wGdRQ6MZEvGuCCMZJzNceYWbo9B1mTkijQltP94h5JEaS1eDfNwFqwg==
-X-Received: by 2002:a05:600c:4f45:b0:3ee:93d2:c915 with SMTP id
- m5-20020a05600c4f4500b003ee93d2c915mr915208wmq.6.1680857806468; 
- Fri, 07 Apr 2023 01:56:46 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id
- t6-20020a05600c450600b003ee2a0d49dbsm7785542wmo.25.2023.04.07.01.56.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 07 Apr 2023 01:56:45 -0700 (PDT)
-Message-ID: <5f8d9e23-8a4c-3f97-8f22-01eaa4eddfbb@redhat.com>
-Date: Fri, 7 Apr 2023 10:56:43 +0200
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238F810E0DF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 09:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680859959; x=1712395959;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pCKfLU+yWmhxVMz39vHJ6QgGGDlPzbNRceckztnlmY0=;
+ b=YmZyU4MHCIIeuUlC7KQaca5AiH9hCY0+pf3XPRC4mtQxc0/PMe8V+Oqt
+ 0YhXWPugudEBW+SkAsaEOgqdmpQ2AjZnP+1MWmjNr0FKXdLztFkZ3vR94
+ xljM1iIvt9UOe0OD+HFOFQX1T8VDyRtn4OqQhP8/JaBB+ENv0NuDCwdSm
+ VKyPUTLE2CypQl6q9LBVJsDa+85O11nUD9bqqwAufbq4wEGiW9n3jYGif
+ lxt0FSTRCPIulObdWUzQadL2lUT6aJRlaPmHzb4qIy4Kfex3ycodABaYQ
+ JE/0TuHOXb6Ydr8ukqcs3PBWCt8UT8vguGmxx6VI72QWLVU+FGHml7mbT A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="408086442"
+X-IronPort-AV: E=Sophos;i="5.98,326,1673942400"; d="scan'208";a="408086442"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2023 02:32:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="933543971"
+X-IronPort-AV: E=Sophos;i="5.98,326,1673942400"; d="scan'208";a="933543971"
+Received: from nmizonov-mobl.ccr.corp.intel.com (HELO uxy.intel.com)
+ ([10.252.42.241])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2023 02:32:36 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  7 Apr 2023 12:32:37 +0300
+Message-Id: <20230407093237.3296286-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: "Liu, Yi L" <yi.l.liu@intel.com>,
- Alex Williamson <alex.williamson@redhat.com>
-References: <20230401151833.124749-1-yi.l.liu@intel.com>
- <20230401151833.124749-7-yi.l.liu@intel.com>
- <8fb5a0b3-39c6-e924-847d-6545fcc44c08@redhat.com>
- <DS0PR11MB7529B8DC835A6EADDB815C04C3919@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230406125730.55bfa666.alex.williamson@redhat.com>
- <DS0PR11MB752903283C1E02708EC13848C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
-From: Eric Auger <eric.auger@redhat.com>
-In-Reply-To: <DS0PR11MB752903283C1E02708EC13848C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v9 06/25] kvm/vfio: Accept vfio device file
- from userspace
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: disable sampler indirect state in
+ bindless heap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,85 +57,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
+By default the indirect state sampler data (border colors) are stored
+in the same heap as the SAMPLER_STATE structure. For userspace drivers
+that can be 2 different heaps (dynamic state heap & bindless sampler
+state heap). This means that border colors have to copied in 2
+different places so that the same SAMPLER_STATE structure find the
+right data.
 
-On 4/7/23 05:42, Liu, Yi L wrote:
->> From: Alex Williamson <alex.williamson@redhat.com>
->> Sent: Friday, April 7, 2023 2:58 AM
->>>> You don't say anything about potential restriction, ie. what if the user calls
->>>> KVM_DEV_VFIO_FILE with device fds while it has been using legacy
->> container/group
->>>> API?
->>> legacy container/group path cannot do it as the below enhancement.
->>> User needs to call KVM_DEV_VFIO_FILE before open devices, so this
->>> should happen before _GET_DEVICE_FD. So the legacy path can never
->>> pass device fds in KVM_DEV_VFIO_FILE.
->>>
->>>
->> https://lore.kernel.org/kvm/20230327102059.333d6976.alex.williamson@redhat.com
->> /#t
->>
->> Wait, are you suggesting that a comment in the documentation suggesting
->> a usage policy somehow provides enforcement of that ordering??  That's
->> not how this works.  Thanks,
-> I don't know if there is a good way to enforce this order in the code. The
-> vfio_device->kvm pointer is optional. If it is NULL, vfio just ignores it.
-> So vfio doesn't have a good way to tell if the order requirement is met or
-> not. Perhaps just trigger NULL pointer dereference when kvm pointer is used
-> in the device drivers like kvmgt if this order is not met.
->
-> So that's why I come up to document it here. The applications uses kvm
-> should know this and follow this otherwise it may encounter error.
->
-> Do you have other suggestions for it? This order should be a generic
-> requirement. is it? group path also needs to follow it to make the mdev
-> driver that refers kvm pointer to be workable.
+This change is forcing the indirect state sampler data to only be in
+the dynamic state pool (more convinient for userspace drivers, they
+only have to have one copy of the border colors). This is reproducing
+the behavior of the Windows drivers.
 
-In the same way as kvm_vfio_file_is_valid() called in kvm_vfio_file_add()
-can't you have a kernel API that checks the fd consistence?
+BSpec: 46052
 
-Thanks
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Cc: stable@vger.kernel.org
+Reviewed-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  1 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 19 +++++++++++++++++++
+ 2 files changed, 20 insertions(+)
 
-Eric
->
-> Thanks,
-> Yi Liu
->
->>>>> -The GROUP_ADD operation above should be invoked prior to accessing the
->>>>> +The FILE/GROUP_ADD operation above should be invoked prior to accessing the
->>>>>  device file descriptor via VFIO_GROUP_GET_DEVICE_FD in order to support
->>>>>  drivers which require a kvm pointer to be set in their .open_device()
->>>>> -callback.
->>>>> +callback.  It is the same for device file descriptor via character device
->>>>> +open which gets device access via VFIO_DEVICE_BIND_IOMMUFD.  For such file
->>>>> +descriptors, FILE_ADD should be invoked before
->> VFIO_DEVICE_BIND_IOMMUFD
->>>>> +to support the drivers mentioned in prior sentence as well.
->>> just as here. This means device fds can only be passed with KVM_DEV_VFIO_FILE
->>> in the cdev path.
->>>
->>> Regards,
->>> Yi Liu
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 492b3de6678d7..fd1f9cd35e9d7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1145,6 +1145,7 @@
+ #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+ #define   GEN11_SAMPLER_ENABLE_HEADLESS_MSG	REG_BIT(5)
+ #define   MTL_DISABLE_SAMPLER_SC_OOO		REG_BIT(3)
++#define   GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE	REG_BIT(0)
+ 
+ #define GEN9_HALF_SLICE_CHICKEN7		MCR_REG(0xe194)
+ #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 6ea453ddd0116..b925ef47304b6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2971,6 +2971,25 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 
+ 	add_render_compute_tuning_settings(i915, wal);
+ 
++	if (GRAPHICS_VER(i915) >= 11) {
++		/* This is not a Wa (although referred to as
++		 * WaSetInidrectStateOverride in places), this allows
++		 * applications that reference sampler states through
++		 * the BindlessSamplerStateBaseAddress to have their
++		 * border color relative to DynamicStateBaseAddress
++		 * rather than BindlessSamplerStateBaseAddress.
++		 *
++		 * Otherwise SAMPLER_STATE border colors have to be
++		 * copied in multiple heaps (DynamicStateBaseAddress &
++		 * BindlessSamplerStateBaseAddress)
++		 *
++		 * BSpec: 46052
++		 */
++		wa_mcr_masked_en(wal,
++				 GEN10_SAMPLER_MODE,
++				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
++	}
++
+ 	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+ 	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+ 		/* Wa_14017856879 */
+-- 
+2.34.1
 
