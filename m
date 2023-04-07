@@ -2,139 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0AA16DAB0B
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 11:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECA06DAB11
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 11:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5883310E2BF;
-	Fri,  7 Apr 2023 09:46:03 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C621A10E0DF;
- Fri,  7 Apr 2023 09:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680860760; x=1712396760;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=tfLFCr+K3DhqKC0Y30XUHwdFvUfXhYa46RvNTIv4YgE=;
- b=SlnHZnuhoi/mFdiY8xNJ+h07Yemnz4yqgeHLLY/AYWwR9iyIRof2FssB
- p9n+15cSrkjQLt5oJx3HChsWO4T51Jc3jEYDmxBXBHtd21H5WIx/RI+MQ
- zNfmJ5U3aGnBo7AxcZKLtS6bM2ci6BafPNX+rRqtqQPfiTFt1FhuCw2Qp
- pkvhBWd+cDWb5d/F/hKV5Lv09srms3o3OkOuDoFfLGK+/Z4ugbNPfkAY5
- Nn+75xBDtpwSbecyEqsqqaFuwedIyUmEFC5GeDpeioyDXdLN9qn8pf2a8
- B6Xbu7hFAg2aZ4uagdlIQGcQRcsTlxZ9wMTe5gtrF9kSLglQbrN0yrqjs w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="408088826"
-X-IronPort-AV: E=Sophos;i="5.98,326,1673942400"; d="scan'208";a="408088826"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2023 02:46:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="933546709"
-X-IronPort-AV: E=Sophos;i="5.98,326,1673942400"; d="scan'208";a="933546709"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga006.fm.intel.com with ESMTP; 07 Apr 2023 02:45:59 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 7 Apr 2023 02:45:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 7 Apr 2023 02:45:58 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 7 Apr 2023 02:45:58 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 7 Apr 2023 02:45:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I88/rAbaH09iTfF2PoxRSJbsfJlCJo3yWXdSldM2JF46EYqCFIYoheBu17zGTUHzJCx3pQQ+S+zwmdqzUDg7e3WMhoQsrAikByYZMcXlp963gSR0ylBndA/OC7vETVmgS+aVf8LEQyWu1M44GDrLZR8yMwfnQbCMfgux2ZovHD6NzDUYT5lF+LcPixYckH6GPcu36NjTVV90K83DxcRZ1sLK80Zl6vf4QGjr3ONV6KIZWVFWp8ih0OOcS/FOsc4wVkpdhFMsNiKOHmhCh14AWTCK1/LHRban57AAhPi9HeJPUKGg1LlWUS+p5sCTVI65sTOzfgVgY9zm9EAM3szwkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9IuLN+jGRqGmQmnRLzQHFYwQkWMXbIFyDV9dbW0gmHs=;
- b=Qu7su9xRPUfUsIeTetKGNWpx48/5c1MMTyV4rE+eDZ07p/J2hiRcytA8Jgz/ycDvuJP/VpsQjhmWe950j/aDNNN9kVk5DxBmsFdDOr2d0udFdnFLUYCOdJaQyMK4WLnMl6XuubVhE0h07C37LIykYHV9NjntY5vp6V+8SQLlqUEUUe9/4rUsegapWJIffSSzYFzGHnp6sJJInstNocvgQ24s/+KR0KHPQ2PLgOgt0JKPdbsr2pI0h8/FOQ1Q9NK6qkWNkN23y642ers/AVcsjXX6LQTkAzTFwmyGRUUIq++m9PZbzJPolySEEGEH8d3qO/BvLkI+L/nrpsp4GJ5/Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB6237.namprd11.prod.outlook.com (2603:10b6:8:a9::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Fri, 7 Apr
- 2023 09:45:57 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::2b57:646c:1b01:cd18]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::2b57:646c:1b01:cd18%6]) with mapi id 15.20.6277.031; Fri, 7 Apr 2023
- 09:45:56 +0000
-Date: Fri, 7 Apr 2023 05:45:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZC/mUClubdajvFlf@intel.com>
-References: <20230331225216.4188274-1-John.C.Harrison@Intel.com>
- <20230407003758.lbpvzisom3rw5erx@ldmartin-desk2.lan>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230407003758.lbpvzisom3rw5erx@ldmartin-desk2.lan>
-X-ClientProxiedBy: BY3PR03CA0022.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::27) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9646E10E377;
+	Fri,  7 Apr 2023 09:48:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 236D710E2BF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 09:48:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680860894;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=o4iRHgbQhPwVpyJmMFVyQJvJ+/Z7zOQeM679Xa5eK6c=;
+ b=NwJBw2IK1iKNS2ch5BgiLei+K3b3fJHcxAXtEQm/0716c/vtzNeip1T8D5/O2w/teuTpfK
+ Pk7yv5ik6LuqG8anaEYotoYg5ECV320TeM+Sdo2BJvEFkG7ovMHPdY2qu48oDqHAssmuNA
+ hZ3D7bonu4Nt9qPyXvGAxHzepvNkVLA=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-594-1zqsGKw8NTiv-_EkkYG8aA-1; Fri, 07 Apr 2023 05:48:11 -0400
+X-MC-Unique: 1zqsGKw8NTiv-_EkkYG8aA-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ bh18-20020a05600c3d1200b003f05a99b571so4942975wmb.8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 07 Apr 2023 02:48:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680860890;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=o4iRHgbQhPwVpyJmMFVyQJvJ+/Z7zOQeM679Xa5eK6c=;
+ b=hU1GXMjzu0jUn47qAX4G/Rkb01ZXH9d952VRO3Fi/XWDySCdIFvY3BtEcD91LZzL4w
+ N/G9Ij6bOReQVj8cq0M6r5J1T1zrn6Xg29q9Ly2F2Lwob7pnwrm4nUuwrqi+uAEFx5hn
+ wS1yUadqqTU9IBZB/jBqg1C+84EgVaGf75oQYBMV8VFHzfh0qTB7n9FKNyyDGePcgaZx
+ rxmdtOG+HokjuQYlVYbWWSdvkxN5F7Gig9Dp22SfbVrfj1w19qMKiU/mDRDRQYrNR/rC
+ VJ4p+09gKmGfed8rCrODLrrJv/yF0pFg5Nyor2bp/IZq+ycPgsrYVnGpCfITRjKuSzDf
+ 5mNg==
+X-Gm-Message-State: AAQBX9c8F+ksdm306apMV+wD2ueyQ0g6FGkT8Ptp8nUKyof7w/3o6tCn
+ jacVRbrfEMHoRw62+hFnVP2KV1lCa42oOeV2WdqnOXTsFIeuinIdQtN8n1iKR8kvTg69nSAHNck
+ wE0IFP/vu77nzbFdv1J9hbgM9nK1A
+X-Received: by 2002:a05:600c:204d:b0:3ea:e4f8:be09 with SMTP id
+ p13-20020a05600c204d00b003eae4f8be09mr909023wmg.30.1680860889935; 
+ Fri, 07 Apr 2023 02:48:09 -0700 (PDT)
+X-Google-Smtp-Source: AKy350ZlpsPfpxKVEL2171G53vaHOkQSd6+4Svqt/X88zEcX4kRYEeQU3ue1qYmeM1kP8/bXxozatA==
+X-Received: by 2002:a05:600c:204d:b0:3ea:e4f8:be09 with SMTP id
+ p13-20020a05600c204d00b003eae4f8be09mr908998wmg.30.1680860889634; 
+ Fri, 07 Apr 2023 02:48:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ a2-20020a1cf002000000b003f049a42689sm4103205wmb.25.2023.04.07.02.48.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 07 Apr 2023 02:48:07 -0700 (PDT)
+Message-ID: <05d59a7e-fa75-a93e-95a5-a376c00721d5@redhat.com>
+Date: Fri, 7 Apr 2023 11:48:05 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6237:EE_
-X-MS-Office365-Filtering-Correlation-Id: b10e2123-3b64-4e61-8554-08db374ce2b6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8chjLyo/CWd36b2hSdtNKTNAG1YLIlf7cPFKviaTMJk2vQe/zwV+tkcAaKwllgKbucq8ruKd0vvI/j/w0+50XTNFVMN6xQqNfEKy+yT/8I0yhWqk3mOG4LN2nwkUU7WRZMd0y4/7om/rS1K+D72vu+S45j7w0TxVzT4/XZ3fQzFJ2nR9h/wPtCykpmyMS0pxTdL0CF6F3xrXJXv9C4pPmKGaLGvQyIAewAHurO+tdJnSNrmnixpQIlYiFbYub0r1vSvciDK5wD3CY1ivjkSv+E/Upb2zKNz35/bNjRat/4lxXvJuPBxfZBHoNdrRMRZZECQX/+9wbZpTTJR5m5Ne9lAaXXwYIYS0NQSdCUFgQGFfS4VV64HZkc3iw2wOdqiKLH5EYPm7out3pWkmFsxNG/rpANMKkqE6QcjkXfI9ZkP0jjKwoN2LXwIOTtAczmFzAprZaB+ne7KoNa2cWW9uHD8ju0/XqqI0qHTo26UdHvG0qmLwAjXAdFprSXZQAOTg7N4EsgO8VZDfgRqqFDTrzGbVaa/1BEtteSA4+qFdUiy1cMb8ZSYPzX9mwIGUwsHe
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(376002)(136003)(346002)(366004)(39860400002)(451199021)(2616005)(8676002)(66476007)(37006003)(66556008)(478600001)(82960400001)(41300700001)(316002)(6862004)(38100700002)(8936002)(6636002)(5660300002)(54906003)(4326008)(66946007)(6486002)(6666004)(966005)(186003)(83380400001)(26005)(44832011)(6506007)(6512007)(86362001)(36756003)(2906002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kQWtapCJ0DZwbPbyq3vggLiw4Kp3AJBZGa1y5SHtYJwip1eya9SxfTDCTZkp?=
- =?us-ascii?Q?SXIa044JAMOrYuoS6uu/kOFDH10O2lPO6Owa0KKE+UKbnGMywHd3v1xwvhrF?=
- =?us-ascii?Q?3gBP0LBQlBO8Q7P4Sh6wFq1gieQIrd98YLDrryogTLUhxuZ/cYcEZFMKfXy5?=
- =?us-ascii?Q?RGXVNGh2VXBaPqWXFP0GNWLGWL2u5viyWezxZY/48NSGqLaWtYASoqRWtEvd?=
- =?us-ascii?Q?Cuf4u1XvfiB7zDGc0JhOrmU9TOYjcZUab15OfbyDebprC9YIviNn4OFpOVWp?=
- =?us-ascii?Q?383P8drdo5ZdYKupuHm6beLWjSxi/a5lyjG5tfyV2JFhBliHUtNf+QrlL1dU?=
- =?us-ascii?Q?90dtjlXvLe8gaROSAMUwoE6AWGpguJEvhY4mL9gn4iB7A7GG2qK9ZLCCmngk?=
- =?us-ascii?Q?rUuDei1L1lVsuCKXRatw3ee2zObg1bnOCTCEYJtLBE5m261h6wJye+1N7iSu?=
- =?us-ascii?Q?XIkmMr9TfLUIt2WHpKPmiCgaLuE5nVbuzzeAn/iX8Wu1fx1bdkGh0TQHYcMv?=
- =?us-ascii?Q?34gD0DPwbqXeRxx2x4IaKBuhRE3iwVWcLpXS3hNtbwhuOw7RZkFsgGxOqHtx?=
- =?us-ascii?Q?N2Kl23R0KzGqqANsjH/SId8ijTgYsy+/384VgtfRTGhFA1BCmTWpn0hG0lpo?=
- =?us-ascii?Q?/Cbm9RhGLOsUm72wIGmwt4htejUd1nKMXASiFjBQktGXiREXyErMFhJzVEpw?=
- =?us-ascii?Q?cJ40OlQ+Q5LTzx2evhf6hCZ/0fPBq/ltavRiiCtHZ3+Z0LBT7ICn86t/+rna?=
- =?us-ascii?Q?xvieHgrKiDKIGySq3KIumwG546B5bDvyWzg1lkEpbvZDpXbJtdS+xg34MHd0?=
- =?us-ascii?Q?/cG+xPhVmYjiy36q+Gk+tagSQwJ/2v9neHy73jRP6ut00jm7Kjkxzh8gTIYc?=
- =?us-ascii?Q?yMdYOGGNJvGV2A8OQJV6fJn3ZN3ecbesMoCtul/U6oaTusgE/S3BkkO6A9+k?=
- =?us-ascii?Q?a8oE5DPFuiAjyu/psYnPWZNMRqFWbgGF0dfharecez54g5F04JcjyGpqHPk0?=
- =?us-ascii?Q?8icpJxQyaVack88vwBYdQH8DglumzMO08zhp5iH75dCDDcdhQkvEtiumvSvw?=
- =?us-ascii?Q?J6AAuHcqxmN1vfP9Uw5uZOr1A2KJrwAoEl9HobA8pRIPAJOS8VMyHs4WlV2K?=
- =?us-ascii?Q?G58VR06AydaaXFQdHaSK66ST0tiDcMA+2SS6o/TpewdbDqQSiLAq1u0LKNRk?=
- =?us-ascii?Q?Xfk0F1gyPkVSd0HjKSeHJhF9sjRoZJK0uOwyY4wD+j+PCD/Uzcpox6kRAs31?=
- =?us-ascii?Q?ncNaZP4Rr/FT3GhkbIz4GhYagHdx63e6Y+05Hb09oK/ztl+dRMg5nhCnCfJa?=
- =?us-ascii?Q?NhATNZ0T6xeJ2fVGuzEX0qkJz8fmJDgEYooH251bDty+/AEWjnyXiiLHvr+I?=
- =?us-ascii?Q?/ZIe/ZVrDwDnhvt8K4EVHgoSS94y6oh5AVnNjBn63HJmGvGdzQBUFDD08anM?=
- =?us-ascii?Q?g5yj/J7A4hD7euesbRvjr6ydH8/AVNbOcdz3pNOPld051F4vOo2NHknvnIsJ?=
- =?us-ascii?Q?e2KSdXbqP2W0Bq9HWWyOS9SqegIY5M2mfvGrT0fHmFzZiBvL+csmLh8GSM2c?=
- =?us-ascii?Q?9d/Inpkd1IJcsmVARWM9x6CN7ubuH22OsbMo9r6D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b10e2123-3b64-4e61-8554-08db374ce2b6
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2023 09:45:56.6593 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zCVwLDXhH/MOeQpsKxMKVNXsWxT/a22IpNOEszPIOba6XBDt25uC0y90P2MC/Cl6JeAQU0z83kNGhMZ2EgSDEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6237
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [CI] drm/i915/mtl: Define GuC firmware version for
- MTL
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com
+References: <20230401151833.124749-1-yi.l.liu@intel.com>
+ <20230401151833.124749-11-yi.l.liu@intel.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <20230401151833.124749-11-yi.l.liu@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v9 10/25] vfio: Make vfio_device_open()
+ single open for device cdev path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,72 +91,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
+Reply-To: eric.auger@redhat.com
+Cc: linux-s390@vger.kernel.org, yi.y.sun@linux.intel.com, kvm@vger.kernel.org,
+ mjrosato@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org, joro@8bytes.org,
+ cohuck@redhat.com, xudong.hao@intel.com, peterx@redhat.com,
+ yan.y.zhao@intel.com, terrence.xu@intel.com, nicolinc@nvidia.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ intel-gfx@lists.freedesktop.org, chao.p.peng@linux.intel.com, lulu@redhat.com,
+ robin.murphy@arm.com, jasowang@redhat.com, yanting.jiang@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 05:37:58PM -0700, Lucas De Marchi wrote:
-> On Fri, Mar 31, 2023 at 03:52:16PM -0700, John.C.Harrison@Intel.com wrote:
-> > From: John Harrison <John.C.Harrison@Intel.com>
-> > 
-> > First release of GuC for Meteorlake.
-> > 
-> > NB: As this is still pre-release and likely to change, use explicit
-> > versioning for now. The official, full release will use reduced
-> > version naming.
-> > 
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Applied to topic/core-for-CI with acks by Rodrigo and Tvrtko.
-> Reference issue: https://gitlab.freedesktop.org/drm/intel/-/issues/8343
-> 
-> Going forward we should plan to have these kind of patches in
-> drm-intel-gt-next itself rather than using the CI branch. The CI branch
-> is not the proper place.
-> 
-> To be clear, since MTL is under force probe and not normally enabled,
-> it's ok to bump the major version without retaining compabibility with
-> the previous version, as per
-> https://docs.kernel.org/driver-api/firmware/firmware-usage-guidelines.html
-> 
-> 
-> I think the main blocker right now to use drm-intel-gt-next would be
-> because MODULE_FIRMWARE() is unaware of force_probe. Then distros
-> would start getting a warning when creating their initrd that they may
-> have missed a firmware. But that firmware itself is not present in the
-> upstream linux-firmware repo.  We can think about a way to hide the fw
-> def for *new* firmware (not the legacy ones) that are using the mmp
-> version.
+Hi Yi,
 
-Maybe we should simply move to the final version path sooner than later?
+On 4/1/23 17:18, Yi Liu wrote:
+> VFIO group has historically allowed multi-open of the device FD. This
+> was made secure because the "open" was executed via an ioctl to the
+> group FD which is itself only single open.
+>
+> However, no known use of multiple device FDs today. It is kind of a
+> strange thing to do because new device FDs can naturally be created
+> via dup().
+>
+> When we implement the new device uAPI (only used in cdev path) there is
+> no natural way to allow the device itself from being multi-opened in a
+> secure manner. Without the group FD we cannot prove the security context
+> of the opener.
+>
+> Thus, when moving to the new uAPI we block the ability of opening
+> a device multiple times. Given old group path still allows it we store
+> a vfio_group pointer in struct vfio_device_file to differentiate.
+>
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Terrence Xu <terrence.xu@intel.com>
+> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/group.c     | 2 ++
+>  drivers/vfio/vfio.h      | 2 ++
+>  drivers/vfio/vfio_main.c | 7 +++++++
+>  3 files changed, 11 insertions(+)
+>
+> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
+> index d55ce3ca44b7..1af4b9e012a7 100644
+> --- a/drivers/vfio/group.c
+> +++ b/drivers/vfio/group.c
+> @@ -245,6 +245,8 @@ static struct file *vfio_device_open_file(struct vfio_device *device)
+>  		goto err_out;
+>  	}
+>  
+> +	df->group = device->group;
+> +
+in previous patches df fields were protected with various locks. I refer
+to vfio_device_group_open() implementation. No need here?
 
-Even if that means more updates in the blobs at linux-firmware.git, that
-would allow the OSVs to have this final patch sooner in their trees.
+By the way since the group is set here, wrt [PATCH v9 06/25] kvm/vfio:
+Accept vfio device file from userspace you have a way to determine if a
+device was opened in the legacy way, no?
+>  	ret = vfio_device_group_open(df);
+>  	if (ret)
+>  		goto err_free;
+> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
+> index b2f20b78a707..f1a448f9d067 100644
+> --- a/drivers/vfio/vfio.h
+> +++ b/drivers/vfio/vfio.h
+> @@ -18,6 +18,8 @@ struct vfio_container;
+>  
+>  struct vfio_device_file {
+>  	struct vfio_device *device;
+> +	struct vfio_group *group;
+> +
+>  	bool access_granted;
+>  	spinlock_t kvm_ref_lock; /* protect kvm field */
+>  	struct kvm *kvm;
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 6d5d3c2180c8..c8721d5d05fa 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -477,6 +477,13 @@ int vfio_device_open(struct vfio_device_file *df)
+>  
+>  	lockdep_assert_held(&device->dev_set->lock);
+>  
+> +	/*
+> +	 * Only the group path allows the device opened multiple times.
+allows the device to be opened multiple times
+> +	 * The device cdev path doesn't have a secure way for it.
+> +	 */
+> +	if (device->open_count != 0 && !df->group)
+> +		return -EINVAL;
+> +
+>  	device->open_count++;
+>  	if (device->open_count == 1) {
+>  		ret = vfio_device_first_open(df);
+Thanks
 
-> 
-> For now, let's keep this as is and use the CI branch to assess the
-> driver health with GuC.
-> 
-> 
-> thanks
-> Lucas De Marchi
-> 
-> > ---
-> > drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 1 +
-> > 1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > index 264c952f777bb..1ac6f9f340e31 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > @@ -79,6 +79,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
-> >  * security fixes, etc. to be enabled.
-> >  */
-> > #define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
-> > +	fw_def(METEORLAKE,   0, guc_mmp(mtl,  70, 6, 5)) \
-> > 	fw_def(DG2,          0, guc_maj(dg2,  70, 5)) \
-> > 	fw_def(ALDERLAKE_P,  0, guc_maj(adlp, 70, 5)) \
-> > 	fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 70, 1, 1)) \
-> > -- 
-> > 2.39.1
-> > 
+Eric
+
