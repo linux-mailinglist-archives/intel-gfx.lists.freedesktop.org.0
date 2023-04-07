@@ -1,137 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2AA6DA6A2
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 02:38:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7830C6DA7DA
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 04:57:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4FFC10E108;
-	Fri,  7 Apr 2023 00:38:15 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C1BA10E108;
- Fri,  7 Apr 2023 00:38:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680827894; x=1712363894;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=fwMWIq+z8eLIRMWoOUFylcwTmqQNK9dm25l9RZJ7xwQ=;
- b=niz7y+iZf1sWdsLlqVyF9fFlK6d6LemyyoS1XUNDTy+grClG5v6Ze1KS
- 1tqvoVFfpEbjNz1mUacn/0nW7XhXX6XB2jRbwKTi+67wd1+QU6PXhu9ml
- qTOtXg6yyydcvgmPfGl7+ieO6f/bUHQ/wms5G4W7DcuRYvYBNa1HxQkZ8
- nNjh9fvyXILWERGmRCrlybqsyiaHcXeLSsb3JPwdvHvxTIz6BB5yLLlJx
- dkWJZyfRI2o6YfMQp2S6Fm07wCBy3ymK4yRtHS4D4j4D4K1x+wsK9ODXc
- BxUCl4SzYQJUvJKM0JWDEY7Y97Ooy4POUChTkHszrCsxWI/PtUc5Uxh/g g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="342884743"
-X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="342884743"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 17:38:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="717641313"
-X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="717641313"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 06 Apr 2023 17:38:03 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 6 Apr 2023 17:38:02 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 6 Apr 2023 17:38:01 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Thu, 6 Apr 2023 17:38:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GzxSgjZTDLrqpI0H82E/IN/vgt1NP1CqBQYOQqaCnVCZ+tfrA7lFkXr0ytSHElghIVUWADX2hQSBBNtElUZ4rJ63Gh95Ow30ZMMiDDFT05vvJ38/EsslW8lu8vp/Ntzo4kmofx+obKzHKjv2DQL3whInYfOeKRd+ViEXdZ18a3KySR4cN9udmTcXlc89Ejfgj+szQqW9KMW5bk0wOxBLH2wCTfBja/cT9/JLgoFRqXwSivWUx+2fdSow7w8kSUUJzkKB0sb+dFiGSV9r8COwjRbizElQiWOSaMwxk8Tj0FrxIcjuiP23B2C67cXj1nNIs5typbakPUHA3yyM+UYtPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r+uWnoBeUuY0t9rVyTRaIjb2yEPyvR4ITIypvpwxdkk=;
- b=RzHviKLHU4xkleruwtzm5vcrkKPlOyLJcGLLtbR3GTbAaAfHjaHLHvfntyLguAL+9HsZiUDVCq/qOhKl8E5oHOL9DzudbFS2aG/84yO1g08cKg0yLT+BLIR1G3gvpsj6jy9a0BaayI6PXCtX8GE3caKyj6BIyGkRnTXYFu5kZvYmNmtywUrD/r1Yn029asbRxBb1Uy4xDQWcQmxBN5YwxhVL4UtHzgdECqwKHjIR8fByxp2/oAMXvwfypqiMSFmjZCj5TF7BITG24vOx2fLpU2DypoasLaj0os6btMdX/4An2sPWZXH2ccZdfiaHiV9lhgWje97vdjPzRvYB9n7+iQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ2PR11MB7474.namprd11.prod.outlook.com (2603:10b6:a03:4ca::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.31; Fri, 7 Apr
- 2023 00:38:01 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745%6]) with mapi id 15.20.6277.030; Fri, 7 Apr 2023
- 00:38:01 +0000
-Date: Thu, 6 Apr 2023 17:37:58 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <John.C.Harrison@intel.com>
-Message-ID: <20230407003758.lbpvzisom3rw5erx@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20230331225216.4188274-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230331225216.4188274-1-John.C.Harrison@Intel.com>
-X-ClientProxiedBy: BY5PR13CA0008.namprd13.prod.outlook.com
- (2603:10b6:a03:180::21) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D148B10E36C;
+	Fri,  7 Apr 2023 02:57:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D6A10E227
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 02:57:37 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id x20so42427442ljq.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 19:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1680836255;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=g0F4oiLkijYrhTD6GuHvT418JGo8rv9l6KH9KGjO6BI=;
+ b=VX9VJMVYbdSwv/hQpnoko8/0+p6YXYnni/dqJ8I/uNdnjvaJfZFt0jFVnT3jmm+Ls1
+ UCQrw6YLECs+Ia3TDAdYosXJj0BpLhwg+YQyx4r7TjmJpRJhjccCRYv6bOFCD2Nx6RN1
+ NEpeIi5Z/Xz30kn4cGXyMxZrgoktITQzjMJkuEaaxc5aaQiujPRT14ZG/T7jjhev9uxe
+ 2XaGIjtP0OmM+leGoVF5YWfwwMzn7cXUXscXIVflIBgxJ0t49gglASeHVSW1kpkgdpfw
+ QreYbNXR/pH6IcFvTk3LH0zm0/eimaoxKyD6sYSbasXqUvK7Rqh42RfVZecai3TSdPuE
+ xWwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680836255;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=g0F4oiLkijYrhTD6GuHvT418JGo8rv9l6KH9KGjO6BI=;
+ b=GQUfFuMbAIueW1GjRu793+7dP4VzSvrk5+HuQ8ndSLMvxeg6RkX+8hVGh1JoWDDReP
+ egp69OUwW6cjwEsIETxHrfv9Ziv8fAgP8Z11rfMj5AykVmkorhiEh8ONEVSqP52EyDui
+ 2DeaF82hxTade08Qx7bXG5EDMpVgBf7/SKJWkYUv+8H2UoVOcJHoDSBZ2CDjAqzoPBI+
+ KOWUYs6xGYD3LLdBiVvR3J9RDJrXleloLaVE3byYgqg8gzwDF7A4FAIAimeQ80nb9jjA
+ 1Bln+oqP0CzG7cW8KdBcElCUszASnv9Dh1DqvWYJ7mEFXQOcEbrpI4EroF/WLT7jperK
+ kq0g==
+X-Gm-Message-State: AAQBX9dmdSrDS456MbYbzSdMOZzQq3H03RszfDYIqAQxtzZm6qG4VUtK
+ hRPeh8dW7o8sf2sTOlq3CzdBqQ==
+X-Google-Smtp-Source: AKy350ZZVZqn4xs0cfPBNaU1gaGbr94MuY1Feh/ngQImLhzo1Ag8Xx7iokDDR0n2G9ilnTGr2+3XpQ==
+X-Received: by 2002:a2e:6a16:0:b0:299:ac49:46da with SMTP id
+ f22-20020a2e6a16000000b00299ac4946damr211580ljc.42.1680836254793; 
+ Thu, 06 Apr 2023 19:57:34 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ p24-20020a2ea418000000b0029bd4365c95sm569471ljn.87.2023.04.06.19.57.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 Apr 2023 19:57:34 -0700 (PDT)
+Message-ID: <e4fbeb9d-25f6-fe19-99ee-fa4f8a689535@linaro.org>
+Date: Fri, 7 Apr 2023 05:57:33 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ2PR11MB7474:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53ab366a-0166-45ac-464e-08db3700573d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a7I5vr/0JVCQI0fjnE1iSGHFTPoqyTwsQOPxDHOROXWa1dh6rvCf81+X8p5fdzBqNMLtcSEFpoofik9uv5FaX0eqf6O6Dji2ezV3sDc0iiykwwUclikR/M+uItFUT2pbYwAOre80PQoxuv4xDphTudG16y9jfQ7dxRhcBAA0DPBI257KHXMZhDlz1wR1aYH8Wo0NJwX1XWBjZZW/TSwLf7QR21r+tlsPC8nqMcZuv2u08GRGVM7MGbw21yt6jpsue6LrQSq5OHNoIGYJq4IfOmtWNBQjkwJgOYwjdX7JtWeUbZFMkzp8LKtQZ+hUzvR3qfGRE+BGA5CxAS7P/qHX7Bmg2ZJq1UdLg/+iVimVv+LLkhHJUGutWpaCPXLjTGycleVgHwhhvxALn8qu3JpF3gHKoIY4aTeZwD2t/XZTa00/bITOsj9A0HlGJnbjSEqWVE1OkPe1/7kQeGV0tq8/Yw0ocTIUh1s1fkxDeE+RXU6usX9UpypaMz0Tz37GnHdMIHi9e++0eKixCv+C+ms4Y8EDqTD7lyTfadtylc+1DcH5SjlWcloZwwyqZanxjQn/
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(366004)(376002)(346002)(396003)(39860400002)(451199021)(966005)(66946007)(6486002)(66556008)(4326008)(66476007)(8676002)(54906003)(6636002)(478600001)(41300700001)(316002)(36756003)(86362001)(6512007)(26005)(1076003)(9686003)(6506007)(6666004)(83380400001)(2906002)(34206002)(8936002)(5660300002)(38100700002)(186003)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EJU5YUT7ajfZCw69myo+5/VZBOwEkRuHe+3RO1xLOoh6jcwv48YcJCFJ+lh/?=
- =?us-ascii?Q?VrDybTdx7hXGnDIfzQDsT1S/6ysnTOiYbpLjmyixSehp7JRRCHhNf1bHOosx?=
- =?us-ascii?Q?rtTfrYr1QvuCyozSr5weN6sLIqk3qdqJsO/b/UfTf7vC9zqVSoWy1lshhQyC?=
- =?us-ascii?Q?Psw5Ft3q19+OKJTvFvPIObvds1fk05ehunlhzFPv4e5Vn3RB8kMAClEIOYIe?=
- =?us-ascii?Q?5Yz8fumnZ576N8T6bQIyMqdvZPh5DouosKEv4EaGeLq+svx3xRzpr5R0KVcV?=
- =?us-ascii?Q?qVMW+UD8HDPE2Mc+uOznHIRPLvzfc8UCPFCM2vb+VNMnyEk73snnMD8MOO69?=
- =?us-ascii?Q?X/rhFieEeq44sLvy2bUu98T8pSjY+mi9RVCcO1qr9ECTtwMAEfwGcISDGyJ6?=
- =?us-ascii?Q?8bpOTeeiU7AtGfhR4LFMl4kCpmUYuzSw2u96E9PDr1MYqt5011Bnc3IYQjsL?=
- =?us-ascii?Q?CL37WMrOcISKNc/+FrI+aiWsW34LCzqm3iapGxNnSB19GvDm4o4cr/YzgDlM?=
- =?us-ascii?Q?O4S7Fr9/FJjBpzVW9BqtuJsxUw4r34nLaBeuybHfdLMjZMYIShm74jD7q9cn?=
- =?us-ascii?Q?1FTxgepGrt78ktYGAO0JFt/eXKrVH7E2RsMGGhVCs0w/Q804urp5PUkGBU72?=
- =?us-ascii?Q?u1P+BLT3UztlGL9gtusw2VPJoqKMVp4csTav65LhG5Qhz9u+7/mrYpJg0zz+?=
- =?us-ascii?Q?+2ePSGT88rDufpBarC9M+0rz8ekW2gvXL37XrtFQBHANxr/ACSjixByNTys1?=
- =?us-ascii?Q?h59vU6lIW70rL/pV8GQrzJBZ2JSvkQYtdR2z1deCdlXb1u5nlAp2y89kI33g?=
- =?us-ascii?Q?F2QIyeJMjlRcOxOF6p9Z0vh9aI5MKxTurczVqq1Ze9+6vnA8C6C17K3litCu?=
- =?us-ascii?Q?EQ/k/cOlRegVVhlB5zlqMQksz65mm3TBt9YjrxD+MfSMRJbOdSbIqFBNRovJ?=
- =?us-ascii?Q?CRfzJ6kp7HIfOA6hh8efLVaaa4jXvR7DGtDwxNudeyfQngIhNHmwJF9xXDoY?=
- =?us-ascii?Q?088fQyd3o0niMIoLzY/+JgAQQukRotyoXtcV3yK40UqSvU47259x3VETSC8E?=
- =?us-ascii?Q?3RakcAS6d3PMkZVPPmTJ36bWZzSy5lly3vcsy82eERUwnz5b8k5jHG/Y7Zb1?=
- =?us-ascii?Q?ZadQjDCIuduarPgCDVTNmM1pkU9OCvKE9Y5fX/ZQ3wCPpWGEO3VsU48U/eJC?=
- =?us-ascii?Q?3YHtYGvhEmCY6327b1CraPTfVuN0W1ZjtNobK2WigRrUpU6/F4TIxb3VdmGu?=
- =?us-ascii?Q?9vURatlBpvpHkmwo558LRn7BqXR+O4cf0qTS63zTrNJoT2sZ1XQT87VjmSiw?=
- =?us-ascii?Q?ZSF5cfFld1cEoECu4Ci9LBLrbCzBINiPawLKUgcyYMT1T4qcGP2mE6WcbwQj?=
- =?us-ascii?Q?JXXMosEs4wGq/Xn3H3/butsfsmfmwNM7Poi598tbnQH02nAqTDVhRfalHwTK?=
- =?us-ascii?Q?bVnFsCGrkVPGsYp77Hha3n56xsNPxcjIB346icjoWqqk8BoWVZh6RdSQSWE7?=
- =?us-ascii?Q?eNvkrFxJspi2fSJm3ZafXpkX5OKAD3gvuiNDFOUOVclTWXhoDyyvLruoUvt+?=
- =?us-ascii?Q?ltWnMCQxLKGvIQa25RwSn3QNUyBQUqpHK7TVCptummZ0DiRmOg0bQ0WLeQld?=
- =?us-ascii?Q?QA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53ab366a-0166-45ac-464e-08db3700573d
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2023 00:38:00.8533 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2D3B8g/vbSbm2KIaqMoXM3Y3/4sO/KVDruM6btL/Le5FDSeYwK/G18ZuxIkkSC+benbPtGqBCH5B+4SkDgyYlgyEeELkC+3sUlC4mKee/mQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7474
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [CI] drm/i915/mtl: Define GuC firmware version for
- MTL
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-GB
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230222053153.3658345-1-suraj.kandpal@intel.com>
+ <87ttyvbhuz.fsf@intel.com>
+ <SN7PR11MB6750FDE3318A85E0A2541831E3889@SN7PR11MB6750.namprd11.prod.outlook.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <SN7PR11MB6750FDE3318A85E0A2541831E3889@SN7PR11MB6750.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/7] Enable YCbCr420 format for VDSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,66 +81,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 31, 2023 at 03:52:16PM -0700, John.C.Harrison@Intel.com wrote:
->From: John Harrison <John.C.Harrison@Intel.com>
->
->First release of GuC for Meteorlake.
->
->NB: As this is still pre-release and likely to change, use explicit
->versioning for now. The official, full release will use reduced
->version naming.
->
->Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Hi Suraj
 
-Applied to topic/core-for-CI with acks by Rodrigo and Tvrtko.
-Reference issue: https://gitlab.freedesktop.org/drm/intel/-/issues/8343
+On 28/03/2023 16:20, Kandpal, Suraj wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Jani
+>> Nikula
+>> Sent: Wednesday, March 8, 2023 5:00 PM
+>> To: Kandpal, Suraj <suraj.kandpal@intel.com>; dri-
+>> devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+>> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>; Nautiyal, Ankit K
+>> <ankit.k.nautiyal@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
+>> Kandpal, Suraj <suraj.kandpal@intel.com>
+>> Subject: Re: [PATCH 0/7] Enable YCbCr420 format for VDSC
+>>
+>> On Wed, 22 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>>> This patch series aims to enable the YCbCr420 format for DSC. Changes
+>>> are mostly compute params related for hdmi,dp and dsi along with the
+>>> addition of new rc_tables for native_420 and corresponding changes to
+>>> macros used to fetch them.
+>>> There have been discussions prior to this series in which some patches
+>>> have gotten rb and can be found in the below link
+>>> https://patchwork.freedesktop.org/series/113729
+>>
+>> I think it would be useful to get [1] from Dmitry merged to drm-misc-next
+>> first, have that in drm-next, and again backmerged to drm-intel-next before
+>> this. At least patches 1-5.
+>>
+>> There's not much point in all drivers duplicating the parameters, and we
+>> need to move towards common code. Dmitry has been helpful in
+>> contributing this to us.
+>>
+>> BR,
+>> Jani.
+>>
+>>
+> 
+> Hi Jani,
+> Maarten has acked the patch series to be merged through drm-intel and in the meantime
+> I will work with Dmitry to pull the common code to avoid duplication
 
-Going forward we should plan to have these kind of patches in
-drm-intel-gt-next itself rather than using the CI branch. The CI branch
-is not the proper place.
+I wanted to check, are there any updates from your side regarding the 
+series at [1] ?
 
-To be clear, since MTL is under force probe and not normally enabled,
-it's ok to bump the major version without retaining compabibility with
-the previous version, as per
-https://docs.kernel.org/driver-api/firmware/firmware-usage-guidelines.html
-
-
-I think the main blocker right now to use drm-intel-gt-next would be
-because MODULE_FIRMWARE() is unaware of force_probe. Then distros
-would start getting a warning when creating their initrd that they may
-have missed a firmware. But that firmware itself is not present in the
-upstream linux-firmware repo.  We can think about a way to hide the fw
-def for *new* firmware (not the legacy ones) that are using the mmp
-version.
-
-For now, let's keep this as is and use the CI branch to assess the
-driver health with GuC.
+> 
+> Regards,
+> Suraj Kandpal
+> 
+>> [1] https://patchwork.freedesktop.org/series/114473/
 
 
-thanks
-Lucas De Marchi
 
->---
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 1 +
-> 1 file changed, 1 insertion(+)
->
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->index 264c952f777bb..1ac6f9f340e31 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->@@ -79,6 +79,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->  * security fixes, etc. to be enabled.
->  */
-> #define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
->+	fw_def(METEORLAKE,   0, guc_mmp(mtl,  70, 6, 5)) \
-> 	fw_def(DG2,          0, guc_maj(dg2,  70, 5)) \
-> 	fw_def(ALDERLAKE_P,  0, guc_maj(adlp, 70, 5)) \
-> 	fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 70, 1, 1)) \
->-- 
->2.39.1
->
+-- 
+With best wishes
+Dmitry
+
