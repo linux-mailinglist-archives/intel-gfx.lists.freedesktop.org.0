@@ -2,151 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAD16DAFD8
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 17:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0206DB099
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 18:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 838B710EDD6;
-	Fri,  7 Apr 2023 15:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96BF510EE11;
+	Fri,  7 Apr 2023 16:32:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 538D910EDD6;
- Fri,  7 Apr 2023 15:47:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680882435; x=1712418435;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iJHCsfe5uj9eIZfvuG3cvmhcFV1jw0kiDy352aiJC5I=;
- b=YJsS65QNRrIdBbSthlZ/wHU9lyiHMm44ZitGhv43OKgNb4zfr1soymrK
- BlafRlTnye9BQ4RsdU5KjLEWUGVykrdu7P6FthJu94nxYw48DIMNnAYXp
- j/gV5au7A4SCVKi3XXqX8ub22lwFoBT9yJtOitN4SwkSFUxOcrzHxhoJ5
- v/ZKBAUrRk+B1eHnWsXm3ibgUKtSN4ipWrWpS91eTFOrR1fQHUr3f6hsp
- rnURN/pT2rxJvuRCvYjHbIFMbY/LxMluuXd+4eUiiLC5qzTJ2yZK5hm8i
- 8eb2W0st5KFnz1z5b8ilNkuzLR0uU1z3oJuGCwluaLhO0XcMruPPBaZz4 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10673"; a="429296121"
-X-IronPort-AV: E=Sophos;i="5.98,327,1673942400"; d="scan'208";a="429296121"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2023 08:47:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10673"; a="776872207"
-X-IronPort-AV: E=Sophos;i="5.98,327,1673942400"; d="scan'208";a="776872207"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP; 07 Apr 2023 08:47:13 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 7 Apr 2023 08:47:13 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 7 Apr 2023 08:47:13 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 7 Apr 2023 08:47:13 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 7 Apr 2023 08:47:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gBNrAguLe6WHcbbzrjjdCSdEY+TycSPKaftncEWaUFiQhtypWIu3/WAIX065AgKAQjuUKfP+Ge3IFSw8Tm4OqCRm2ruc3O52tLBisrM77XKaFY21gtFHx5EBCofSROB+ZYmx7FabGPIiCD9R7M7ODz+cZGCbwwy/d5ugKPMvxWDmlhh0LxIE3WKko4m2gU0xNSxs/Hot/kc6zrTNO7cHF3FdtxCa3mK+LU0cmVS5OySI2fCFBvSj41ttW1XAS/9rVMNMGLm4jJ7ruwzRfbespz0cGDABYv6/rBwfGHr283ity2SS7wyhmT2YvOnPfRqKCpOZHabqALfxl4Ap6egtCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PbMsXRE5X5G4qUfnhls3UILX8PuAOI14NVWCe5wG5gg=;
- b=bfglFfGc49ao0M21OydroQ3qaxQ8xKdf4KMCRL0AO/CfTi5meFjBIQw2N4v/kRbn8oH+OgCJhI9iDY9udZE89WIxDmGcRIR3U4PVgJXQTBWNQqOy22VPV/mItXPAIgZa0qHU13JqRU7iQGW/vAS2lnfcAdGde6z+TLpg86oaxB6orAgaQ0+Ro2RTYsumujCXVjGN/Vw/R4omYfSfdYFCAVJCWEddHzCjGG2DNILH5vEHwqkX+Uu6eLO1fvL4GZp0UlSWuQXuDhG8wRJw42qGWnV8LIPZ6bg4sm7Xnj5Rff5Tr5+jUcYMWdjeIa/0ceSHnTEnQhh4goDD93LjMip4sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SA2PR11MB4810.namprd11.prod.outlook.com (2603:10b6:806:116::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.35; Fri, 7 Apr
- 2023 15:47:11 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::ca24:b399:b445:a3de%5]) with mapi id 15.20.6254.035; Fri, 7 Apr 2023
- 15:47:11 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
-Thread-Index: AQHZZKiCMJJkpNrujkKpjX0h05Zqwa8ZTcVQgABjWoCABfZ/IIAAIQaAgAAVGHCAAAktgIAAAk+wgAAUoYCAAAeeMA==
-Date: Fri, 7 Apr 2023 15:47:10 +0000
-Message-ID: <DS0PR11MB7529A9D103F88381F84CF390C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-13-yi.l.liu@intel.com>
- <DS0PR11MB752996A6E6B3263BAD01DAC2C3929@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230403090151.4cb2158c.alex.williamson@redhat.com>
- <DS0PR11MB75291E6ED702ADD03AAE023BC3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407060335.7babfeb8.alex.williamson@redhat.com>
- <DS0PR11MB7529B0A91FF97C078BEA3783C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407075155.3ad4c804.alex.williamson@redhat.com>
- <DS0PR11MB7529C1CA38D7D1035869F358C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407091401.1c847419.alex.williamson@redhat.com>
-In-Reply-To: <20230407091401.1c847419.alex.williamson@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SA2PR11MB4810:EE_
-x-ms-office365-filtering-correlation-id: db1af8d6-81c1-484f-219f-08db377f5998
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sSYuMzYsLoupirb2SwLjbG4Q0NXMMJMgoOe6PyHlrB9yiJJE5AZkE/mvGIOIBG5oNsHOlH3DeELrNroQx2PGH7Kf6Mwwyg2+CkuDCLBbwnsApGwne8sSfGShjaFiv2q4iQzQdNRM2P83fARzEdbqK65E3AMi2skEauxSPFXq25yQRv+0eb8j1gKz3KNKSTNgP2DjytSfN6ncU+jSMzqqxCLnXsDvW790fhnIRRvLnfORPIpHBOZQNgsi8yvN74qrTKKflZtKQr1kDbg7NjrmqGXrDBPCLNPHhsrQ101POJQgVBdQAfFVzkRkFVC3CKK0nGR2dRJamPQiF+xHtGDA4yZERszYj66U/4KtIpPvO0sIEkKZbcw4j0WULHnpUW58F+/kHJIHJe099w7Bhn1SRAc7WYDLYc1CagyzGKRdrEIdrqiXmaey4X7PLiZHhHR/Jqn6hUJ61hSRNLYKI5N6mQ3cM3VarqDwUTPEEpAU+qtUDSXL86JnGY1PTJKXorExSNOKXciyHweR591lNQLeHtaO5bvmiGDjiNJRZLR0FsA8GOcst3fym//LL3f/LcYCgf9eiRAeDDoL0UsN25EckDjlYEPdQI1C+IJLpHuRmp4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(396003)(39860400002)(346002)(376002)(366004)(451199021)(86362001)(33656002)(316002)(76116006)(41300700001)(66446008)(64756008)(8676002)(66476007)(66556008)(6916009)(4326008)(966005)(66946007)(7696005)(71200400001)(54906003)(478600001)(55016003)(5660300002)(8936002)(52536014)(2906002)(7416002)(38070700005)(82960400001)(38100700002)(122000001)(186003)(6506007)(9686003)(26005)(83380400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Diu51Y3qUhcon3Nwbs/4V14Zj1svZtVQdZC7JW0KH/SeyZfDPK+JdDARvIud?=
- =?us-ascii?Q?h4ghVHRq02m5HCV7fey0bwm2xJfq/WJ81QXaYBs7UMdxijhEIj8qp/OnHWG2?=
- =?us-ascii?Q?NW6K3wxY4oGpMInx9NmWo1SaI5WhT4rxQLHJM/rrvt5aG5AqtJiBHsIgjTGU?=
- =?us-ascii?Q?yZDMS+HvKxUIkt1R2e+S4+TYdXkp9HCM1F7M8DpVMphoDWKB22Vwi1ih9rbR?=
- =?us-ascii?Q?ik0NvhzsRA+C3Ci80fNPNyWOKoJaxGqobtRcZizetG3D3ZXzom4eA4udwgjY?=
- =?us-ascii?Q?t/6wgXJ1cZ+lUZ1MDTCcqM5GkM+KGurJjY5WaBn+jU5HNdPER1CrLBbrzjCB?=
- =?us-ascii?Q?MK0OCRx+BPzTZ6sVu22gJO0+CMdy18vD0YQv45+0bz0nHm26ZcoDkSDmlWg8?=
- =?us-ascii?Q?u1ueMwVukw+XIr/yzuoO/t/ElGx/7YnvBNg0DV7hwG3gN9lbFK/SR4PTA09k?=
- =?us-ascii?Q?XNnIAMeVe0SiApj6XCEy+qVPbTQCbUv7moo6HJfHJBDQb4oRwmzxvpZWotM5?=
- =?us-ascii?Q?HM2m6IHYFSzolBr0SfcZPctL3k+3Cax5UNJJNLnSzn7OYKswl+Nnjdejfabb?=
- =?us-ascii?Q?96yhZFjZt6nV38wV+qfu5miIBxK8o7geOnRJDieFOndYcnWx0J6hFJs6qwkL?=
- =?us-ascii?Q?pexeL7zTUImzy6UVAqRoUNO0dU5TlN/HvGx7LiuYxfkyz0JrW7Bz+763HJDC?=
- =?us-ascii?Q?7HiCsKvbBG8UxouTGE7hmm6mOoufAXUVYy/UoCiRL1o/AoM9752GWVigO16m?=
- =?us-ascii?Q?1xNCu1+D9Eza1TJEwlT+C4ukt8ehVu3XorY993y3SZceauBQkOKDyyhZv8l6?=
- =?us-ascii?Q?W5ltE3cfr6Ktnz3b86YvI+J+Y0mhg77kA2zwqMBIFVKtjQKVjwt9drTH1qVh?=
- =?us-ascii?Q?Iu7r0FNMhBD/qnWXHIC16tJ9zWlMtXBj5Mie/eUffoRMVd+fmZxfVkX4TEBi?=
- =?us-ascii?Q?BdvSlaT/s5XzRg9kC2nCIy3fOfo3nd6jBdYh6suu0JlIUxV+1kyzTVtoO095?=
- =?us-ascii?Q?lfSGANcbf/+3YQU5Iq2KBxP/sF1+UKAln+Edl3wguwLYD89KbJ5b4kk7oh2B?=
- =?us-ascii?Q?oJ1lVlBxdis975S/MU6du7g/8yMfbvSTERvdUjJld5csJPvNE5OLZ1UgRZY/?=
- =?us-ascii?Q?1pVzeNTxLUZ7Qb//JAadpRLwAIWlpjaXGSR+NXZ71RsdQl6HP4jgX83aJXFU?=
- =?us-ascii?Q?3oL4OiVMx0iP5OFpf6H7MN7GFRlzi4Ie+NkxSlgQb3lC9KNcwD9Uf+bVwUzH?=
- =?us-ascii?Q?QlOHhe6YMIXCymX3xUdAAgcsIZ3XR9B6oKPVEoD4FPbmTz/7X2RPtriq3Rvh?=
- =?us-ascii?Q?ee/Se6HVFYz3NeNrvDVb3S4A/PuiR1UOIdUCw2rZDpB/OskNdWblzaXs7Ojp?=
- =?us-ascii?Q?ermrlZbr/orJdb3ltjEpLzuRG0FQQHtruIayaonKwvJD8ARMLcXn+BfRBBIQ?=
- =?us-ascii?Q?5jSqkgbvzQOdZrT0JivPKqL7Bj+3Nf8nkrmpKU5V3WbhcJkawSefYnmFFl/B?=
- =?us-ascii?Q?STcHuqLI3fC8IzGAlWgWy5kInyUR5pMBn8CAlqmveS1Ht2VTt7ka1hGXTA8d?=
- =?us-ascii?Q?0aCyBeioTZ0tVSwQri8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
+ [IPv6:2a00:1450:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72E5B10EE11
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 16:32:09 +0000 (UTC)
+Received: by mail-lj1-x22f.google.com with SMTP id y7so11575351ljp.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 07 Apr 2023 09:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1680885125;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=K+8WVp7xcuQUBrX4KoWqad26N4DeqEyftqme5Vn9e6s=;
+ b=v3tAxxR17HvKfe1lMXmgXf4GDNkzcRSHc48/eLG9iutgrhlSfsF3AvryR01aYX3Un3
+ WQQUm3vvPeBqp/konBCfCL4OwILJbwVOi2sozlxKxZzjtpQoPTByDiXg/BfQiJhpQtVj
+ uxN2TQvAz1BEUjjC3A+WYLmTB+dJJR+piMlrAeOFyAI4B4D7Y1H23QgUuuwEZvPPlpv/
+ xttrsvyy66hII2OO0qSlJFQM+eoMcPgGqBlVMZPIkrmkJHcO5sC3YGWUZfY4xVOovs4O
+ oIQzMh8ZXwetI/yTI9uZdLVZJ/qegfGMZc+eik9xWuEdS62SyKnlQT/zJ8bXQzjbYnbR
+ ljvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680885125;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=K+8WVp7xcuQUBrX4KoWqad26N4DeqEyftqme5Vn9e6s=;
+ b=MngJBMQ4pT30HQ2GOpeMtcj6MVK6e7R2y397/9eqm4EaEHYUWD9svguMn3k/uSCipi
+ TAN/QrT7gFxPIeFthir0kNJjHT/RYkwGwFQq1OGge5toyCfA6V9bm9KhUjufNBSpgwtl
+ V3tpcN1NnTfGrfIM06XMXXxYy7zigVVlEDr0xKbB3LIxq4MuDidu5RQS49V7hLRjQ4DS
+ rwbZg6fGJmdBG/BM2+vkZRxR8mTrRU1iaw0tu3qv5InbP6szzt6aEaMLqrM749zt+ouG
+ oGtWdTmQYFvprAb4BJfySNl71lnclOcF+fWAyNTvwmBf5Y5WfJbr4WN4iWiNlWg9n6tL
+ kxPA==
+X-Gm-Message-State: AAQBX9eQdLWy6ZwB7lXQzRQbM7aIEM4Bwa36Ui81kYkgEIjUEDxLIM+/
+ KfhSBhkbgF+LJ17FuaS4Z4vEPg==
+X-Google-Smtp-Source: AKy350bfafPBMABUGAFq0Yp3v0dQ/LanFis/IrX1kggeDz4+Blx8awwachf0bv9SRDfPlYEdJbYRSA==
+X-Received: by 2002:a2e:9e02:0:b0:299:d57b:c58a with SMTP id
+ e2-20020a2e9e02000000b00299d57bc58amr687285ljk.28.1680885124798; 
+ Fri, 07 Apr 2023 09:32:04 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ v19-20020a2e9613000000b002934b8d115csm888045ljh.51.2023.04.07.09.32.04
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 07 Apr 2023 09:32:04 -0700 (PDT)
+Message-ID: <5fca2448-8ddf-cc64-b68b-5b81bc6f711e@linaro.org>
+Date: Fri, 7 Apr 2023 19:32:03 +0300
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db1af8d6-81c1-484f-219f-08db377f5998
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2023 15:47:10.6032 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ornXm4LhYMa8XGGBiNYo79UWjUvruqFAZy2PSCJHdM7gCTY3WcGPnzIIR/i3nvPuHGby0mVSaSaB2r78mTYiVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4810
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-GB
+To: Mark Yacoub <markyacoub@chromium.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20230331221213.1691997-1-markyacoub@google.com>
+ <20230331221213.1691997-5-markyacoub@google.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230331221213.1691997-5-markyacoub@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v8 04/10] drm/hdcp: Expand HDCP helper
+ library for enable/disable/check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,147 +79,1709 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dianders@chromium.org, seanpaul@chromium.org, freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Alex Williamson <alex.williamson@redhat.com>
-> Sent: Friday, April 7, 2023 11:14 PM
->=20
-> On Fri, 7 Apr 2023 14:04:02 +0000
-> "Liu, Yi L" <yi.l.liu@intel.com> wrote:
->=20
-> > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > Sent: Friday, April 7, 2023 9:52 PM
-> > >
-> > > On Fri, 7 Apr 2023 13:24:25 +0000
-> > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
-> > >
-> > > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > > Sent: Friday, April 7, 2023 8:04 PM
-> > > > >
-> > > > > > > > > @@ -791,7 +813,21 @@ static int vfio_pci_fill_devs(struct=
- pci_dev
-> *pdev,
-> > > void
-> > > > > > > *data)
-> > > > > > > > >  	if (!iommu_group)
-> > > > > > > > >  		return -EPERM; /* Cannot reset non-isolated devices */
-> > > >
-> > > > [1]
-> > > >
-> > > > > > > >
-> > > > > > > > Hi Alex,
-> > > > > > > >
-> > > > > > > > Is disabling iommu a sane way to test vfio noiommu mode?
-> > > > > > >
-> > > > > > > Yes
-> > > > > > >
-> > > > > > > > I added intel_iommu=3Doff to disable intel iommu and bind a=
- device to vfio-
-> pci.
-> > > > > > > > I can see the /dev/vfio/noiommu-0 and /dev/vfio/devices/noi=
-ommu-vfio0.
-> > > Bind
-> > > > > > > > iommufd=3D=3D-1 can succeed, but failed to get hot reset in=
-fo due to the
-> above
-> > > > > > > > group check. Reason is that this happens to have some affec=
-ted devices,
-> and
-> > > > > > > > these devices have no valid iommu_group (because they are n=
-ot bound to
-> > > vfio-
-> > > > > pci
-> > > > > > > > hence nobody allocates noiommu group for them). So when hot=
- reset info
-> > > loops
-> > > > > > > > such devices, it failed with -EPERM. Is this expected?
-> > > > > > >
-> > > > > > > Hmm, I didn't recall that we put in such a limitation, but gi=
-ven the
-> > > > > > > minimally intrusive approach to no-iommu and the fact that we=
- never
-> > > > > > > defined an invalid group ID to return to the user, it makes s=
-ense that
-> > > > > > > we just blocked the ioctl for no-iommu use.  I guess we can d=
-o the same
-> > > > > > > for no-iommu cdev.
-> > > > > >
-> > > > > > I just realize a further issue related to this limitation. Reme=
-mber that we
-> > > > > > may finally compile out the vfio group infrastructure in the fu=
-ture. Say I
-> > > > > > want to test noiommu, I may boot such a kernel with iommu disab=
-led. I think
-> > > > > > the _INFO ioctl would fail as there is no iommu_group. Does it =
-mean we will
-> > > > > > not support hot reset for noiommu in future if vfio group infra=
-structure is
-> > > > > > compiled out?
-> > > > >
-> > > > > We're talking about IOMMU groups, IOMMU groups are always present
-> > > > > regardless of whether we expose a vfio group interface to userspa=
-ce.
-> > > > > Remember, we create IOMMU groups even in the no-iommu case.  Even=
- with
-> > > > > pure cdev, there are underlying IOMMU groups that maintain the DM=
-A
-> > > > > ownership.
-> > > >
-> > > > hmmm. As [1], when iommu is disabled, there will be no iommu_group =
-for a
-> > > > given device unless it is registered to VFIO, which a fake group is=
- created.
-> > > > That's why I hit the limitation [1]. When vfio_group is compiled ou=
-t, then
-> > > > even fake group goes away.
-> > >
-> > > In the vfio group case, [1] can be hit with no-iommu only when there
-> > > are affected devices which are not bound to vfio.
-> >
-> > yes. because vfio would allocate fake group when device is registered t=
-o
-> > it.
-> >
-> > > Why are we not
-> > > allocating an IOMMU group to no-iommu devices when vfio group is
-> > > disabled?  Thanks,
-> >
-> > hmmm. when the vfio group code is configured out. The
-> > vfio_device_set_group() just returns 0 after below patch is
-> > applied and CONFIG_VFIO_GROUP=3Dn. So when there is no
-> > vfio group, the fake group also goes away.
-> >
-> > https://lore.kernel.org/kvm/20230401151833.124749-25-yi.l.liu@intel.com=
-/
->=20
-> Is this a fundamental issue or just a problem with the current
-> implementation proposal?  It seems like the latter.  FWIW, I also don't
-> see a taint happening in the cdev path for no-iommu use.  Thanks,
+On 01/04/2023 01:12, Mark Yacoub wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> Expand upon the HDCP helper library to manage HDCP enable, disable, and check.
+> 
+> Previous to this patch, the majority of the state management and sink
+> interaction is tucked inside the Intel driver with the understanding
+> that once a new platform supported HDCP we could make good decisions
+> about what should be centralized. With the addition of HDCP support
+> for Qualcomm, it's time to migrate the protocol-specific bits of HDCP
+> authentication, key exchange, and link checks to the HDCP helper.
+> 
+> In terms of functionality, this migration is 1:1 with the Intel driver,
+> however things are laid out a bit differently than with intel_hdcp.c,
+> which is why this is a separate patch from the i915 transition to the
+> helper. On i915, the shim vtable is used to account for HDMI vs. DP
+> vs. DP-MST differences whereas the helper library uses a LUT to
+> account for the register offsets and a remote read function to route
+> the messages. On i915, storing the sink information in the source is
+> done inline whereas now we use the new drm_hdcp_helper_funcs vtable
+> to store and fetch information to/from source hw. Finally, instead of
+> calling enable/disable directly from the driver, we'll leave that
+> decision to the helper and by calling drm_hdcp_helper_atomic_commit()
+> from the driver. All told, this will centralize the protocol and state
+> handling in the helper, ensuring we collect all of our bugs^Wlogic
+> in one place.
 
-yes. the latter case. The reason I raised it here is to confirm the
-policy on the new group/bdf capability in the DEVICE_GET_INFO. If
-there is no iommu group, perhaps I only need to exclude the new
-group/bdf capability from the cap chain of DEVICE_GET_INFO. is it?
+I have a generic question regarding vtable design. Currently low level 
+accessors are a part of main helper vtable. They are set by the driver. 
+But when the driver calls drm_hdcp_helper_initialize_hdmi() or 
+drm_hdcp_helper_initialize_dp(), we also know, which low level backend 
+should be used. Can be have a struct describing hdmi vs dp functions and 
+move that to the helper too?
 
-Regards,
-Yi Liu
+For the reference: earlier revisions had it in form of if (aux) spread 
+all over the low level functions. I asked to split those accessors 
+(thank you!) but I think we can still have them as a set of functions 
+internal to the helper.
+
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> 
+> ---
+> Changes in v2:
+> -Fixed set-but-unused variable identified by 0-day
+> Changes in v3:
+> -Fixed uninitialized variable warning identified by 0-day
+> Changes in v4:
+> -None
+> Changes in v5:
+> -None
+> Changes in v6:
+> -Fixed typo in function descriptions
+> -Rebased: Moved the new code between drm_hdcp.h and drm_hdcp_helper.c/h
+> -Add missing headers. Reported-by: kernel test robot <lkp@intel.com>
+> Changes in v7:
+> - Add a |driver_data| field to some functions in drm_hdcp_helper_funcs
+>    that are called by the driver so drivers can pass anything they such
+>    as bridges
+> - Isolate all non-common code between HDMI and DP into separate
+>    functions instead of manually checking for datra->aux
+> Changes in v8 (suraj):
+> -Try hdcp 1.x if hdcp2_capable returns an error instead of goto out.
+> -set the enabled type to either 1 or 0 depending on the prop as hdcp2
+> can support either.
+> 
+>   drivers/gpu/drm/display/drm_hdcp_helper.c | 1215 +++++++++++++++++++++
+>   include/drm/display/drm_hdcp.h            |  287 +++++
+>   include/drm/display/drm_hdcp_helper.h     |   51 +-
+>   3 files changed, 1552 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_hdcp_helper.c b/drivers/gpu/drm/display/drm_hdcp_helper.c
+> index 3ee1a6ae26c53..3bc0308cc95d8 100644
+> --- a/drivers/gpu/drm/display/drm_hdcp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_hdcp_helper.c
+> @@ -6,13 +6,18 @@
+>    * Ramalingam C <ramalingam.c@intel.com>
+>    */
+>   
+> +#include <linux/delay.h>
+>   #include <linux/device.h>
+>   #include <linux/err.h>
+>   #include <linux/gfp.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iopoll.h>
+>   #include <linux/export.h>
+>   #include <linux/slab.h>
+>   #include <linux/firmware.h>
+> +#include <linux/workqueue.h>
+>   
+> +#include <drm/display/drm_dp_helper.h>
+>   #include <drm/display/drm_hdcp_helper.h>
+>   #include <drm/drm_sysfs.h>
+>   #include <drm/drm_print.h>
+> @@ -507,3 +512,1213 @@ bool drm_hdcp_has_changed(struct drm_connector *connector,
+>   	return old_hdcp != new_hdcp;
+>   }
+>   EXPORT_SYMBOL(drm_hdcp_has_changed);
+> +
+> +struct drm_hdcp_hdcp1_receiver_reg_lut {
+> +	unsigned int bksv;
+> +	unsigned int ri;
+> +	unsigned int aksv;
+> +	unsigned int an;
+> +	unsigned int ainfo;
+> +	unsigned int v[5];
+> +	unsigned int bcaps;
+> +	unsigned int bcaps_mask_repeater_present;
+> +	unsigned int bstatus;
+> +};
+> +
+> +static const struct drm_hdcp_hdcp1_receiver_reg_lut drm_hdcp_hdcp1_ddc_lut = {
+> +	.bksv = DRM_HDCP_DDC_BKSV,
+> +	.ri = DRM_HDCP_DDC_RI_PRIME,
+> +	.aksv = DRM_HDCP_DDC_AKSV,
+> +	.an = DRM_HDCP_DDC_AN,
+> +	.ainfo = DRM_HDCP_DDC_AINFO,
+> +	.v = { DRM_HDCP_DDC_V_PRIME(0), DRM_HDCP_DDC_V_PRIME(1),
+> +	       DRM_HDCP_DDC_V_PRIME(2), DRM_HDCP_DDC_V_PRIME(3),
+> +	       DRM_HDCP_DDC_V_PRIME(4) },
+> +	.bcaps = DRM_HDCP_DDC_BCAPS,
+> +	.bcaps_mask_repeater_present = DRM_HDCP_DDC_BCAPS_REPEATER_PRESENT,
+> +	.bstatus = DRM_HDCP_DDC_BSTATUS,
+> +};
+> +
+> +static const struct drm_hdcp_hdcp1_receiver_reg_lut drm_hdcp_hdcp1_dpcd_lut = {
+> +	.bksv = DP_AUX_HDCP_BKSV,
+> +	.ri = DP_AUX_HDCP_RI_PRIME,
+> +	.aksv = DP_AUX_HDCP_AKSV,
+> +	.an = DP_AUX_HDCP_AN,
+> +	.ainfo = DP_AUX_HDCP_AINFO,
+> +	.v = { DP_AUX_HDCP_V_PRIME(0), DP_AUX_HDCP_V_PRIME(1),
+> +	       DP_AUX_HDCP_V_PRIME(2), DP_AUX_HDCP_V_PRIME(3),
+> +	       DP_AUX_HDCP_V_PRIME(4) },
+> +	.bcaps = DP_AUX_HDCP_BCAPS,
+> +	.bcaps_mask_repeater_present = DP_BCAPS_REPEATER_PRESENT,
+> +
+> +	/*
+> +	 * For some reason the HDMI and DP HDCP specs call this register
+> +	 * definition by different names. In the HDMI spec, it's called BSTATUS,
+> +	 * but in DP it's called BINFO.
+> +	 */
+> +	.bstatus = DP_AUX_HDCP_BINFO,
+> +};
+> +
+> +/*
+> + * Read a DPCD register.
+> + *
+> + * @data: drm_hdcp_helper_data containing the DisplayPort AUX channel (SST or MST)
+> + * @offset: address of the (first) register to read
+> + * @value: buffer to store the register values
+> + * @len: number of bytes in @value
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int drm_hdcp_remote_dpcd_read(struct drm_hdcp_helper_data *data,
+> +			      unsigned int offset, u8 *value, size_t len)
+> +{
+> +	ssize_t ret;
+> +	struct drm_dp_aux *aux = data->aux;
+> +
+> +	ret = drm_dp_dpcd_read(aux, offset, value, len);
+> +	if (ret != len) {
+> +		if (ret >= 0)
+> +			return -EIO;
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_remote_dpcd_read);
+> +
+> +/*
+> + * Read a value from a remote DDC bus.
+> + *
+> + * @data: drm_hdcp_helper_data containing the i2c_adapter.
+> + * @offset: Offset of the value to read.
+> + * @value: Pointer to the value to read.
+> + * @len: Length of the value to read.
+> + *
+> + * Returns 0 on success or a negative error code on failure.
+> + */
+> +
+> +int drm_hdcp_remote_ddc_read(struct drm_hdcp_helper_data *data,
+> +			     unsigned int offset, u8 *value, size_t len)
+> +{
+> +	int ret;
+> +	struct i2c_adapter *i2c = data->connector->ddc;
+> +	u8 start = offset & 0xff;
+> +	struct i2c_msg msgs[] = { { .addr = DRM_HDCP_DDC_ADDR,
+> +				    .flags = 0,
+> +				    .len = 1,
+> +				    .buf = &start },
+> +				  { .addr = DRM_HDCP_DDC_ADDR,
+> +				    .flags = I2C_M_RD,
+> +				    .len = len,
+> +				    .buf = value } };
+> +	ret = i2c_transfer(i2c, msgs, ARRAY_SIZE(msgs));
+> +	if (ret == ARRAY_SIZE(msgs))
+> +		return 0;
+> +	return ret >= 0 ? -EIO : ret;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_remote_ddc_read);
+> +
+> +/*
+> + * Write to a DPCD register.
+> + *
+> + * @data: drm_hdcp_helper_data containing the DisplayPort AUX channel (SST or MST)
+> + * @offset: Offset of the DPCD register to read from
+> + * @value: Pointer to store the DPCD register data
+> + * @len: Number of bytes to read
+> + *
+> + * Returns:
+> + * Zero on success or a negative error code on failure
+> + */
+> +int drm_hdcp_remote_dpcd_write(struct drm_hdcp_helper_data *data,
+> +			       unsigned int offset, u8 *value, size_t len)
+> +{
+> +	ssize_t ret;
+> +	struct drm_dp_aux *aux = data->aux;
+> +
+> +	ret = drm_dp_dpcd_write(aux, offset, value, len);
+> +	if (ret != len) {
+> +		if (ret >= 0)
+> +			return -EIO;
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_remote_dpcd_write);
+> +
+> +/*
+> + * Write data to the HDCP DDC slave device
+> + *
+> + * @data: drm_hdcp_helper_data containing the i2c_adapter.
+> + * @offset: the offset to write to
+> + * @buffer: the data to write
+> + * @size: the size of the data
+> + *
+> + * Returns 0 on success or a negative error code on failure.
+> + */
+> +int drm_hdcp_remote_ddc_write(struct drm_hdcp_helper_data *data,
+> +			      unsigned int offset, u8 *buffer, size_t len)
+> +{
+> +	int ret;
+> +	u8 *write_buf;
+> +	struct i2c_msg msg;
+> +	struct i2c_adapter *i2c = data->connector->ddc;
+> +
+> +	write_buf = kzalloc(len + 1, GFP_KERNEL);
+> +	if (!write_buf)
+> +		return -ENOMEM;
+> +
+> +	write_buf[0] = offset & 0xff;
+> +	memcpy(&write_buf[1], buffer, len);
+> +
+> +	msg.addr = DRM_HDCP_DDC_ADDR;
+> +	msg.flags = 0, msg.len = len + 1, msg.buf = write_buf;
+> +
+> +	ret = i2c_transfer(i2c, &msg, 1);
+> +	if (ret == 1)
+> +		ret = 0;
+> +	else if (ret >= 0)
+> +		ret = -EIO;
+> +
+> +	kfree(write_buf);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_remote_ddc_write);
+> +
+> +static bool drm_hdcp_is_ksv_valid(struct drm_hdcp_ksv *ksv)
+> +{
+> +	/* Valid Ksv has 20 0's and 20 1's */
+> +	return hweight32(ksv->words[0]) + hweight32(ksv->words[1]) == 20;
+> +}
+> +
+> +static int drm_hdcp_read_valid_bksv(struct drm_hdcp_helper_data *data,
+> +				    struct drm_hdcp_ksv *bksv)
+> +{
+> +	int ret, i, tries = 2;
+> +
+> +	/* HDCP spec states that we must retry the bksv if it is invalid */
+> +	for (i = 0; i < tries; i++) {
+> +		ret = data->funcs->remote_read(data, data->hdcp1_lut->bksv,
+> +					       bksv->bytes, DRM_HDCP_KSV_LEN);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (drm_hdcp_is_ksv_valid(bksv))
+> +			break;
+> +	}
+> +	if (i == tries) {
+> +		drm_dbg_kms(data->connector->dev, "Bksv is invalid %*ph\n",
+> +			    DRM_HDCP_KSV_LEN, bksv->bytes);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * Check if the sink is capable of HDCP 1.x. DisplayPort has a dedicated bit
+> + * for this in DPCD.
+> + *
+> + * @data: pointer to the HDCP helper data.
+> + * @capable: pointer to a bool which will contain true if the sink is capable.
+> + *
+> + * Returns:
+> + * -errno if the transacation between source and sink fails.
+> + */
+> +int drm_hdcp_helper_hdcp1_capable_dp(struct drm_hdcp_helper_data *data,
+> +				     bool *capable)
+> +{
+> +	int ret;
+> +	u8 bcaps;
+> +
+> +	ret = data->funcs->remote_read(data, data->hdcp1_lut->bcaps, &bcaps, 1);
+> +	*capable = !ret && (bcaps & DP_BCAPS_HDCP_CAPABLE);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_capable_dp);
+> +
+> +/**
+> + * Check if the sink is capable of HDCP 1.x. HDMI spec states that transmitters
+> + * should use bksv to determine capability
+> + *
+> + * @data: pointer to the HDCP helper data.
+> + * @capable: pointer to a bool which will contain true if the sink is capable.
+> + *
+> + * Returns:
+> + * -errno if the transacation between source and sink fails.
+> + */
+> +int drm_hdcp_helper_hdcp1_capable_hdmi(struct drm_hdcp_helper_data *data,
+> +				       bool *capable)
+> +{
+> +	struct drm_hdcp_ksv bksv;
+> +	*capable = drm_hdcp_read_valid_bksv(data, &bksv) == 0;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_capable_hdmi);
+> +
+> +static void drm_hdcp_update_value(struct drm_hdcp_helper_data *data, u64 value,
+> +				  bool update_property)
+> +{
+> +	WARN_ON(!mutex_is_locked(&data->mutex));
+> +
+> +	data->value = value;
+> +	if (update_property) {
+> +		drm_connector_get(data->connector);
+> +		schedule_work(&data->prop_work);
+> +	}
+> +}
+> +
+> +int drm_hdcp_helper_hdcp1_ksv_fifo_ready_dp(struct drm_hdcp_helper_data *data)
+> +{
+> +	u8 val;
+> +	u8 mask = DP_BSTATUS_READY;
+> +	int ret = drm_hdcp_remote_dpcd_read(data, DP_AUX_HDCP_BSTATUS, &val, 1);
+> +
+> +	if (ret)
+> +		return ret;
+> +	if (val & mask)
+> +		return 0;
+> +
+> +	return -EAGAIN;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_ksv_fifo_ready_dp);
+> +
+> +int drm_hdcp_helper_hdcp1_ksv_fifo_ready_hdmi(struct drm_hdcp_helper_data *data)
+> +{
+> +	u8 val;
+> +	u8 mask = DRM_HDCP_DDC_BCAPS_KSV_FIFO_READY;
+> +	int ret = drm_hdcp_remote_ddc_read(data, DRM_HDCP_DDC_BCAPS, &val, 1);
+> +
+> +	if (ret)
+> +		return ret;
+> +	if (val & mask)
+> +		return 0;
+> +
+> +	return -EAGAIN;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_ksv_fifo_ready_hdmi);
+> +
+> +/* Read the KSV FIFO of the HDCP receive of DP.
+> + * Read via 15 byte window (3 entries @ 5 bytes each)
+> + *
+> + * @fifo: buffer to store the KSV FIFO
+> + * @num_downstream: number of devices in the KSV FIFO
+> + */
+> +int drm_hdcp_helper_hdcp1_read_ksv_fifo_dp(struct drm_hdcp_helper_data *data,
+> +					   u8 *fifo, u8 num_downstream)
+> +{
+> +	struct drm_device *dev = data->connector->dev;
+> +	int i;
+> +
+> +	for (i = 0; i < num_downstream; i += 3) {
+> +		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
+> +		int ret = drm_hdcp_remote_dpcd_read(data, DP_AUX_HDCP_KSV_FIFO,
+> +						    fifo + i * DRM_HDCP_KSV_LEN,
+> +						    len);
+> +		if (ret) {
+> +			drm_err(dev, "Read ksv[%d] from DP/AUX failed (%d)\n",
+> +				i, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_read_ksv_fifo_dp);
+> +
+> +/* Read the KSV FIFO of the HDCP receive of HDMI.
+> + * Over HDMI, read the whole thing at once.
+> + *
+> + * @fifo: buffer to store the KSV FIFO
+> + * @num_downstream: number of devices in the KSV FIFO
+> + */
+> +int drm_hdcp_helper_hdcp1_read_ksv_fifo_hdmi(struct drm_hdcp_helper_data *data,
+> +					     u8 *fifo, u8 num_downstream)
+> +{
+> +	struct drm_device *dev = data->connector->dev;
+> +
+> +	int ret = drm_hdcp_remote_ddc_read(data, DRM_HDCP_DDC_KSV_FIFO, fifo,
+> +					   num_downstream * DRM_HDCP_KSV_LEN);
+> +	if (ret)
+> +		drm_err(dev, "DDC ksv fifo read failed (%d)\n", ret);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_hdcp1_read_ksv_fifo_hdmi);
+> +
+> +static int drm_hdcp_helper_hdcp1_read_v_prime(struct drm_hdcp_helper_data *data,
+> +					      u32 *v_prime)
+> +{
+> +	struct drm_device *dev = data->connector->dev;
+> +	int ret, i;
+> +
+> +	for (i = 0; i < DRM_HDCP_V_PRIME_NUM_PARTS; i++) {
+> +		ret = data->funcs->remote_read(data, data->hdcp1_lut->v[i],
+> +					       (u8 *)&v_prime[i],
+> +					       DRM_HDCP_V_PRIME_PART_LEN);
+> +		if (ret) {
+> +			drm_dbg_kms(dev, "Read v'[%d] from failed (%d)\n", i,
+> +				    ret);
+> +			return ret >= 0 ? -EIO : ret;
+> +		}
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int
+> +drm_hdcp_helper_hdcp1_authenticate_downstream(struct drm_hdcp_helper_data *data)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	u32 v_prime[DRM_HDCP_V_PRIME_NUM_PARTS];
+> +	u8 bstatus[DRM_HDCP_BSTATUS_LEN];
+> +	u8 num_downstream, *ksv_fifo;
+> +	int ret, i, tries = 3;
+> +
+> +	ret = read_poll_timeout(data->funcs->hdcp1_ksv_fifo_ready, ret, !ret,
+> +				10 * 1000, 5 * 1000 * 1000, false, data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to poll ksv ready, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = data->funcs->remote_read(data, data->hdcp1_lut->bstatus, bstatus,
+> +				       DRM_HDCP_BSTATUS_LEN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * When repeater reports 0 device count, HDCP1.4 spec allows disabling
+> +	 * the HDCP encryption. That implies that repeater can't have its own
+> +	 * display. As there is no consumption of encrypted content in the
+> +	 * repeater with 0 downstream devices, we are failing the
+> +	 * authentication.
+> +	 */
+> +	num_downstream = DRM_HDCP_NUM_DOWNSTREAM(bstatus[0]);
+> +	if (num_downstream == 0) {
+> +		drm_err(dev, "Repeater with zero downstream devices, %*ph\n",
+> +			DRM_HDCP_BSTATUS_LEN, bstatus);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ksv_fifo = kcalloc(DRM_HDCP_KSV_LEN, num_downstream, GFP_KERNEL);
+> +	if (!ksv_fifo)
+> +		return -ENOMEM;
+> +
+> +	ret = data->funcs->hdcp1_read_ksv_fifo(data, ksv_fifo, num_downstream);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to read ksv fifo, %d/%d\n", num_downstream,
+> +			ret);
+> +		goto out;
+> +	}
+> +
+> +	if (drm_hdcp_check_ksvs_revoked(dev, ksv_fifo, num_downstream)) {
+> +		drm_err(dev, "Revoked Ksv(s) in ksv_fifo\n");
+> +		ret = -EPERM;
+> +		goto out;
+> +	}
+> +
+> +	/*
+> +	 * When V prime mismatches, DP Spec mandates re-read of
+> +	 * V prime at least twice.
+> +	 */
+> +	for (i = 0; i < tries; i++) {
+> +		ret = drm_hdcp_helper_hdcp1_read_v_prime(data, v_prime);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret = data->funcs->hdcp1_store_ksv_fifo(connector, ksv_fifo,
+> +							num_downstream, bstatus,
+> +							v_prime,
+> +							data->driver_data);
+> +		if (!ret)
+> +			break;
+> +	}
+> +	if (ret)
+> +		drm_err(dev, "Could not validate KSV FIFO with V' %d\n", ret);
+> +
+> +out:
+> +	if (!ret)
+> +		drm_dbg_kms(dev, "HDCP is enabled (%d downstream devices)\n",
+> +			    num_downstream);
+> +
+> +	kfree(ksv_fifo);
+> +	return ret;
+> +}
+> +
+> +static int drm_hdcp_helper_hdcp1_validate_ri(struct drm_hdcp_helper_data *data)
+> +{
+> +	union {
+> +		u32 word;
+> +		u8 bytes[DRM_HDCP_RI_LEN];
+> +	} ri_prime = { .word = 0 };
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	int ret;
+> +
+> +	ret = data->funcs->remote_read(data, data->hdcp1_lut->ri,
+> +				       ri_prime.bytes, DRM_HDCP_RI_LEN);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to read R0' %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return data->funcs->hdcp1_match_ri(connector, ri_prime.word,
+> +					   data->driver_data);
+> +}
+> +
+> +/*
+> + * Wait for the DP receiver to set the R0' ready bit in the Bstatus register.
+> + * This bit is set to 1 when the receiver has received and validated the
+> + * receiver ID list and receiver capability list.
+> + * The receiver must set this bit to 1 within 200 ms of the receiver ID
+> + * list and receiver capability list being received.
+> + *
+> + * @data: DRM HDCP helper data structure
+> + * @r0_prime_remaining_us: timeout for the R0' ready bit
+> + *
+> + * Return: 0 on success, error code on failure
+> + */
+> +int drm_hdcp_helper_wait_r0_dp(struct drm_hdcp_helper_data *data,
+> +			       unsigned long r0_prime_remaining_us)
+> +{
+> +	u8 val;
+> +	int ret = 0;
+> +
+> +	ret = read_poll_timeout(drm_hdcp_remote_dpcd_read, ret,
+> +				!ret && (val & DP_BSTATUS_R0_PRIME_READY), 1000,
+> +				r0_prime_remaining_us, false, data,
+> +				DP_AUX_HDCP_BSTATUS, &val, 1);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_wait_r0_dp);
+> +
+> +/*
+> + * drm_hdcp_helper_wait_r0_hdmi - Wait for R0 to be ready on HDMI
+> + * @data: DRM HDCP helper data
+> + * @r0_prime_remaining_us: Remaining time to wait for R0 in microseconds
+> + *
+> + * HDMI doesn't have a R0_READY bit, so we just have to wait the remainder of the
+> + * 300 ms timeout.
+> + *
+> + * Returns:
+> + * 0 on success, negative error code on failure
+> + */
+> +
+> +int drm_hdcp_helper_wait_r0_hdmi(struct drm_hdcp_helper_data *data,
+> +				 unsigned long r0_prime_remaining_us)
+> +{
+> +	usleep_range(r0_prime_remaining_us, r0_prime_remaining_us + 1000);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_wait_r0_hdmi);
+> +
+> +static int drm_hdcp_helper_hdcp1_authenticate(struct drm_hdcp_helper_data *data)
+> +{
+> +	union {
+> +		u32 word;
+> +		u8 bytes[DRM_HDCP_BSTATUS_LEN];
+> +	} bstatus;
+> +	const struct drm_hdcp_helper_funcs *funcs = data->funcs;
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	unsigned long r0_prime_timeout, r0_prime_remaining_us = 0, tmp_jiffies;
+> +	struct drm_hdcp_ksv aksv;
+> +	struct drm_hdcp_ksv bksv;
+> +	struct drm_hdcp_an an;
+> +	bool repeater_present;
+> +	int ret, i, tries = 3;
+> +	u8 bcaps;
+> +
+> +	if (funcs->hdcp1_read_an_aksv) {
+> +		ret = funcs->hdcp1_read_an_aksv(connector, an.words, aksv.words,
+> +						data->driver_data);
+> +		if (ret) {
+> +			drm_err(dev, "Failed to read An/Aksv values, %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = funcs->remote_write(data, data->hdcp1_lut->an, an.bytes,
+> +					  DRM_HDCP_AN_LEN);
+> +		if (ret) {
+> +			drm_err(dev, "Failed to write An to receiver, %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = funcs->remote_write(data, data->hdcp1_lut->aksv,
+> +					  aksv.bytes, DRM_HDCP_KSV_LEN);
+> +		if (ret) {
+> +			drm_err(dev, "Failed to write Aksv to receiver, %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +	} else {
+> +		ret = funcs->hdcp1_send_an_aksv(connector, data->driver_data);
+> +		if (ret) {
+> +			drm_err(dev, "Failed to read An/Aksv values, %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * Timeout for R0' to become available. The spec says 100ms from Aksv,
+> +	 * but some monitors can take longer than this. We'll set the timeout at
+> +	 * 300ms just to be sure.
+> +	 */
+> +	r0_prime_timeout = jiffies + msecs_to_jiffies(300);
+> +
+> +	memset(&bksv, 0, sizeof(bksv));
+> +
+> +	ret = drm_hdcp_read_valid_bksv(data, &bksv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (drm_hdcp_check_ksvs_revoked(dev, bksv.bytes, 1)) {
+> +		drm_err(dev, "BKSV is revoked\n");
+> +		return -EPERM;
+> +	}
+> +
+> +	ret = funcs->remote_read(data, data->hdcp1_lut->bcaps, &bcaps, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	memset(&bstatus, 0, sizeof(bstatus));
+> +
+> +	ret = funcs->remote_read(data, data->hdcp1_lut->bstatus, bstatus.bytes,
+> +				 DRM_HDCP_BSTATUS_LEN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (DRM_HDCP_MAX_DEVICE_EXCEEDED(bstatus.bytes[0]) ||
+> +	    DRM_HDCP_MAX_CASCADE_EXCEEDED(bstatus.bytes[1])) {
+> +		drm_err(dev, "Max Topology Limit Exceeded, bstatus=%*ph\n",
+> +			DRM_HDCP_BSTATUS_LEN, bstatus.bytes);
+> +		return -EPERM;
+> +	}
+> +
+> +	repeater_present = bcaps & data->hdcp1_lut->bcaps_mask_repeater_present;
+> +
+> +	ret = funcs->hdcp1_store_receiver_info(connector, bksv.words,
+> +					       bstatus.word, bcaps,
+> +					       repeater_present,
+> +					       data->driver_data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to store bksv, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = funcs->hdcp1_enable_encryption(connector, data->driver_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = funcs->hdcp1_wait_for_r0(connector, data->driver_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	tmp_jiffies = jiffies;
+> +	if (time_before(tmp_jiffies, r0_prime_timeout))
+> +		r0_prime_remaining_us =
+> +			jiffies_to_usecs(r0_prime_timeout - tmp_jiffies);
+> +
+> +	ret = funcs->wait_r0(data, r0_prime_remaining_us);
+> +	if (ret) {
+> +		drm_err(dev, "R0' did not become ready %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * DP HDCP Spec mandates the two more reattempt to read R0, in case
+> +	 * of R0 mismatch.
+> +	 */
+> +	for (i = 0; i < tries; i++) {
+> +		ret = drm_hdcp_helper_hdcp1_validate_ri(data);
+> +		if (!ret)
+> +			break;
+> +	}
+> +	if (ret) {
+> +		drm_err(dev, "Failed to match R0/R0', aborting HDCP %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (repeater_present)
+> +		return drm_hdcp_helper_hdcp1_authenticate_downstream(data);
+> +
+> +	drm_dbg_kms(dev, "HDCP is enabled (no repeater present)\n");
+> +	return 0;
+> +}
+> +
+> +static int drm_hdcp_helper_hdcp1_enable(struct drm_hdcp_helper_data *data)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	int i, ret, tries = 3;
+> +
+> +	drm_dbg_kms(dev, "[%s:%d] HDCP is being enabled...\n", connector->name,
+> +		    connector->base.id);
+> +
+> +	/* In case of authentication failures, HDCP spec expects reauth. */
+> +	for (i = 0; i < tries; i++) {
+> +		ret = drm_hdcp_helper_hdcp1_authenticate(data);
+> +		if (!ret)
+> +			return 0;
+> +
+> +		drm_dbg_kms(dev, "HDCP Auth failure (%d)\n", ret);
+> +
+> +		/* Ensuring HDCP encryption and signalling are stopped. */
+> +		data->funcs->hdcp1_disable(data->connector, data->driver_data);
+> +	}
+> +
+> +	drm_err(dev, "HDCP authentication failed (%d tries/%d)\n", tries, ret);
+> +	return ret;
+> +}
+> +
+> +static inline void
+> +drm_hdcp_helper_driver_lock(struct drm_hdcp_helper_data *data)
+> +{
+> +	if (data->driver_mutex)
+> +		mutex_lock(data->driver_mutex);
+> +}
+> +
+> +static inline void
+> +drm_hdcp_helper_driver_unlock(struct drm_hdcp_helper_data *data)
+> +{
+> +	if (data->driver_mutex)
+> +		mutex_unlock(data->driver_mutex);
+> +}
+> +
+> +static int drm_hdcp_helper_enable_hdcp(struct drm_hdcp_helper_data *data,
+> +				       struct drm_atomic_state *state,
+> +				       struct mutex *driver_mutex)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_connector_state *conn_state;
+> +	struct drm_device *dev = connector->dev;
+> +	unsigned long check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
+> +	bool capable;
+> +	int ret = 0;
+> +
+> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> +
+> +	mutex_lock(&data->mutex);
+> +
+> +	if (data->value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_ENABLED,
+> +				      true);
+> +		goto out_data_mutex;
+> +	}
+> +
+> +	drm_WARN_ON(dev, data->driver_mutex != NULL);
+> +	data->driver_mutex = driver_mutex;
+> +
+> +	drm_hdcp_helper_driver_lock(data);
+> +
+> +	if (data->funcs->setup) {
+> +		ret = data->funcs->setup(connector, state, data->driver_data);
+> +		if (ret) {
+> +			drm_err(dev, "Failed to setup HDCP %d\n", ret);
+> +			goto out;
+> +		}
+> +	}
+> +
+> +	if (!data->funcs->are_keys_valid ||
+> +	    !data->funcs->are_keys_valid(connector, data->driver_data)) {
+> +		if (data->funcs->load_keys) {
+> +			ret = data->funcs->load_keys(connector,
+> +						     data->driver_data);
+> +			if (ret) {
+> +				drm_err(dev, "Failed to load HDCP keys %d\n",
+> +					ret);
+> +				goto out;
+> +			}
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
+> +	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
+> +	 */
+> +	ret = data->funcs->hdcp2_capable(connector, &capable,
+> +					 data->driver_data);
+> +	if (ret)
+> +		drm_err(dev, "HDCP 2.x capability check failed %d\n", ret);
+> +
+> +	if (!ret && capable) {
+> +		if (conn_state->content_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
+> +			data->enabled_type = DRM_MODE_HDCP_CONTENT_TYPE1;
+> +		} else {
+> +			data->enabled_type = DRM_MODE_HDCP_CONTENT_TYPE0;
+> +		}
+> +
+> +		ret = data->funcs->hdcp2_enable(connector, data->driver_data);
+> +		if (!ret) {
+> +			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
+> +			goto out;
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
+> +	 * be attempted.
+> +	 */
+> +	ret = data->funcs->hdcp1_capable(data, &capable);
+> +	if (ret) {
+> +		drm_err(dev, "HDCP 1.x capability check failed %d\n", ret);
+> +		goto out;
+> +	}
+> +	if (capable &&
+> +	    conn_state->content_type != DRM_MODE_HDCP_CONTENT_TYPE1) {
+> +		data->enabled_type = DRM_MODE_HDCP_CONTENT_TYPE0;
+> +		ret = drm_hdcp_helper_hdcp1_enable(data);
+> +		if (!ret)
+> +			check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
+> +	}
+> +
+> +out:
+> +	if (!ret) {
+> +		schedule_delayed_work(&data->check_work, check_link_interval);
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_ENABLED,
+> +				      true);
+> +	}
+> +
+> +	drm_hdcp_helper_driver_unlock(data);
+> +	if (ret)
+> +		data->driver_mutex = NULL;
+> +
+> +out_data_mutex:
+> +	mutex_unlock(&data->mutex);
+> +	return ret;
+> +}
+> +
+> +static int drm_hdcp_helper_disable_hdcp(struct drm_hdcp_helper_data *data)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&data->mutex);
+> +	drm_hdcp_helper_driver_lock(data);
+> +
+> +	if (data->value == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
+> +		goto out;
+> +
+> +	drm_dbg_kms(data->connector->dev, "[%s:%d] HDCP is being disabled...\n",
+> +		    data->connector->name, data->connector->base.id);
+> +
+> +	drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_UNDESIRED,
+> +			      true);
+> +
+> +	if (data->enabled_type == DRM_MODE_HDCP_CONTENT_TYPE1)
+> +		ret = data->funcs->hdcp2_disable(data->connector,
+> +						 data->driver_data);
+> +	else
+> +		ret = data->funcs->hdcp1_disable(data->connector,
+> +						 data->driver_data);
+> +
+> +	drm_dbg_kms(data->connector->dev, "HDCP is disabled\n");
+> +
+> +out:
+> +	drm_hdcp_helper_driver_unlock(data);
+> +	data->driver_mutex = NULL;
+> +	mutex_unlock(&data->mutex);
+> +	cancel_delayed_work_sync(&data->check_work);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * drm_hdcp_helper_atomic_commit - Helper for drivers to call during commit to
+> + * enable/disable HDCP
+> + *
+> + * @data: pointer to the @drm_hdcp_helper_data for the connector
+> + * @state: pointer to the atomic state being committed
+> + * @driver_mutex: driver-provided lock to be used while interacting with the driver
+> + *
+> + * This function can be used by display drivers to determine when HDCP should be
+> + * enabled or disabled based on the connector state. It should be called during
+> + * steady-state commits as well as connector enable/disable. The function will
+> + * handle the HDCP authentication/encryption logic, calling back into the driver
+> + * when source operations are necessary.
+> + *
+> + * @driver_mutex will be retained and used for the duration of the HDCP session
+> + * since it will be needed for link checks and retries. This mutex is useful if
+> + * the driver has shared resources across connectors which must be serialized.
+> + * For example, driver_mutex can be used for MST connectors sharing a common
+> + * encoder which should not be accessed/changed concurrently. When the
+> + * connector's session is torn down, the mutex will be forgotten by the helper
+> + * for this connector until the next session.
+> + */
+> +void drm_hdcp_helper_atomic_commit(struct drm_hdcp_helper_data *data,
+> +				   struct drm_atomic_state *state,
+> +				   struct mutex *driver_mutex)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_connector_state *conn_state;
+> +	bool type_changed;
+> +
+> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> +	if (!conn_state)
+> +		return;
+> +
+> +	type_changed = conn_state->hdcp_content_type != data->enabled_type;
+> +
+> +	if (conn_state->content_protection ==
+> +	    DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
+> +		drm_hdcp_helper_disable_hdcp(data);
+> +		return;
+> +	}
+> +
+> +	if (!conn_state->crtc) {
+> +		drm_hdcp_helper_disable_hdcp(data);
+> +
+> +		/* Restore property to DESIRED so it's retried later */
+> +		if (conn_state->content_protection ==
+> +		    DRM_MODE_CONTENT_PROTECTION_ENABLED) {
+> +			mutex_lock(&data->mutex);
+> +			drm_hdcp_update_value(
+> +				data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
+> +				true);
+> +			mutex_unlock(&data->mutex);
+> +		}
+> +		return;
+> +	}
+> +
+> +	/* Already enabled */
+> +	if (conn_state->content_protection ==
+> +	    DRM_MODE_CONTENT_PROTECTION_ENABLED)
+> +		return;
+> +
+> +	/* Disable and re-enable HDCP on content type change */
+> +	if (type_changed)
+> +		drm_hdcp_helper_disable_hdcp(data);
+> +
+> +	drm_hdcp_helper_enable_hdcp(data, state, driver_mutex);
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_atomic_commit);
+> +
+> +static void drm_hdcp_helper_prop_work(struct work_struct *work)
+> +{
+> +	struct drm_hdcp_helper_data *data =
+> +		container_of(work, struct drm_hdcp_helper_data, prop_work);
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +
+> +	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
+> +	mutex_lock(&data->mutex);
+> +
+> +	/*
+> +	 * This worker is only used to flip between ENABLED/DESIRED. Either of
+> +	 * those to UNDESIRED is handled by core. If value == UNDESIRED,
+> +	 * we're running just after hdcp has been disabled, so just exit
+> +	 */
+> +	if (data->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
+> +		drm_hdcp_update_content_protection(connector, data->value);
+> +
+> +	mutex_unlock(&data->mutex);
+> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> +}
+> +
+> +/*
+> + * Check the link registers for HDCP 1.x for DP.
+> + */
+> +int drm_hdcp_hdcp1_check_link_registers_dp(struct drm_device *dev,
+> +					   struct drm_hdcp_helper_data *data,
+> +					   bool *shoud_retry)
+> +{
+> +	u8 bstatus;
+> +	int ret = drm_hdcp_remote_dpcd_read(data, DP_AUX_HDCP_BSTATUS, &bstatus,
+> +					    1);
+> +	*shoud_retry = true;
+> +
+> +	if (ret) {
+> +		*shoud_retry = false;
+> +		drm_err(dev, "Failed to read dpcd bstatus, %d\n", ret);
+> +		return ret;
+> +	}
+> +	if (bstatus & (DP_BSTATUS_LINK_FAILURE | DP_BSTATUS_REAUTH_REQ))
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_hdcp1_check_link_registers_dp);
+> +
+> +/*
+> + * Check the link registers for HDCP 1.x for HDMI.
+> + */
+> +int drm_hdcp_hdcp1_check_link_registers_hdmi(struct drm_device *dev,
+> +					     struct drm_hdcp_helper_data *data,
+> +					     bool *shoud_retry)
+> +{
+> +	int ret = drm_hdcp_helper_hdcp1_validate_ri(data);
+> +	*shoud_retry = true;
+> +
+> +	if (ret)
+> +		drm_err(dev, "Ri' mismatch, check failed (%d)\n", ret);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_hdcp1_check_link_registers_hdmi);
+> +
+> +static int drm_hdcp_hdcp1_check_link(struct drm_hdcp_helper_data *data)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	int ret;
+> +	bool should_retry = false;
+> +
+> +	if (data->funcs->hdcp1_check_link) {
+> +		ret = data->funcs->hdcp1_check_link(connector,
+> +						    data->driver_data);
+> +		if (ret)
+> +			goto retry;
+> +	}
+> +
+> +	ret = data->funcs->hdcp1_check_link_registers(connector->dev, data,
+> +						      &should_retry);
+> +	if (!ret)
+> +		return 0;
+> +	else if (!should_retry)
+> +		return ret;
+> +
+> +retry:
+> +	drm_err(dev, "[%s:%d] HDCP link failed, retrying authentication\n",
+> +		connector->name, connector->base.id);
+> +
+> +	ret = data->funcs->hdcp1_disable(connector, data->driver_data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to disable hdcp (%d)\n", ret);
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
+> +				      true);
+> +		return ret;
+> +	}
+> +
+> +	ret = drm_hdcp_helper_hdcp1_enable(data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to enable hdcp (%d)\n", ret);
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
+> +				      true);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_hdcp_hdcp2_check_link(struct drm_hdcp_helper_data *data)
+> +{
+> +	struct drm_connector *connector = data->connector;
+> +	struct drm_device *dev = connector->dev;
+> +	int ret;
+> +
+> +	ret = data->funcs->hdcp2_check_link(connector, data->driver_data);
+> +	if (!ret)
+> +		return 0;
+> +
+> +	drm_err(dev, "[%s:%d] HDCP2 link failed, retrying authentication\n",
+> +		connector->name, connector->base.id);
+> +
+> +	ret = data->funcs->hdcp2_disable(connector, data->driver_data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to disable hdcp2 (%d)\n", ret);
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
+> +				      true);
+> +		return ret;
+> +	}
+> +
+> +	ret = data->funcs->hdcp2_enable(connector, data->driver_data);
+> +	if (ret) {
+> +		drm_err(dev, "Failed to enable hdcp2 (%d)\n", ret);
+> +		drm_hdcp_update_value(data, DRM_MODE_CONTENT_PROTECTION_DESIRED,
+> +				      true);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void drm_hdcp_helper_check_work(struct work_struct *work)
+> +{
+> +	struct drm_hdcp_helper_data *data = container_of(
+> +		to_delayed_work(work), struct drm_hdcp_helper_data, check_work);
+> +	unsigned long check_link_interval;
+> +
+> +	mutex_lock(&data->mutex);
+> +	if (data->value != DRM_MODE_CONTENT_PROTECTION_ENABLED)
+> +		goto out_data_mutex;
+> +
+> +	drm_hdcp_helper_driver_lock(data);
+> +
+> +	if (data->enabled_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
+> +		if (drm_hdcp_hdcp2_check_link(data))
+> +			goto out;
+> +		check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
+> +	} else {
+> +		if (drm_hdcp_hdcp1_check_link(data))
+> +			goto out;
+> +		check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
+> +	}
+> +	schedule_delayed_work(&data->check_work, check_link_interval);
+> +
+> +out:
+> +	drm_hdcp_helper_driver_unlock(data);
+> +out_data_mutex:
+> +	mutex_unlock(&data->mutex);
+> +}
+> +
+> +/**
+> + * drm_hdcp_helper_schedule_hdcp_check - Schedule a check link cycle.
+> + *
+> + * @data: Pointer to the HDCP helper data.
+> + *
+> + * This function will kick off a check link cycle on behalf of the caller. This
+> + * can be used by DP short hpd interrupt handlers, where the driver must poke
+> + * the helper to check the link is still valid.
+> + */
+> +void drm_hdcp_helper_schedule_hdcp_check(struct drm_hdcp_helper_data *data)
+> +{
+> +	schedule_delayed_work(&data->check_work, 0);
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_schedule_hdcp_check);
+> +
+> +static struct drm_hdcp_helper_data *
+> +drm_hdcp_helper_initialize(struct drm_connector *connector,
+> +			   const struct drm_hdcp_helper_funcs *funcs,
+> +			   bool hdcp_content_type)
+> +{
+> +	struct drm_hdcp_helper_data *out;
+> +	int ret;
+> +
+> +	out = kzalloc(sizeof(*out), GFP_KERNEL);
+> +	if (!out)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	out->connector = connector;
+> +	out->funcs = funcs;
+> +
+> +	mutex_init(&out->mutex);
+> +	out->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
+> +
+> +	INIT_DELAYED_WORK(&out->check_work, drm_hdcp_helper_check_work);
+> +	INIT_WORK(&out->prop_work, drm_hdcp_helper_prop_work);
+> +
+> +	ret = drm_connector_attach_content_protection_property(
+> +		connector, hdcp_content_type);
+> +	if (ret) {
+> +		drm_hdcp_helper_destroy(out);
+> +		return ERR_PTR(ret);
+> +	}
+> +
+> +	return out;
+> +}
+> +
+> +/**
+> + * drm_hdcp_helper_initialize_dp - Initializes the HDCP helpers for a
+> + * DisplayPort connector
+> + *
+> + * @connector: pointer to the DisplayPort connector.
+> + * @funcs: pointer to the vtable of HDCP helper funcs for this connector.
+> + * @hdcp_content_type: True if the content_type property should be attached.
+> + *
+> + * This function initializes the HDCP helper for the given DisplayPort connector.
+> + * This involves creating the Content Protection property as well as the Content
+> + * Type property (if desired). Upon success, it will return a pointer to the
+> + * HDCP helper data. Ownership of the underlying memory is ttransferredto the
+> + * caller and should be freed using drm_hdcp_helper_destroy().
+> + *
+> + * Returns:
+> + * Pointer to newly created HDCP helper data. PTR_ERR on failure.
+> + */
+> +struct drm_hdcp_helper_data *drm_hdcp_helper_initialize_dp(
+> +	struct drm_connector *connector, struct drm_dp_aux *aux,
+> +	const struct drm_hdcp_helper_funcs *funcs, bool hdcp_content_type)
+> +{
+> +	struct drm_hdcp_helper_data *out;
+> +
+> +	out = drm_hdcp_helper_initialize(connector, funcs, hdcp_content_type);
+> +	if (IS_ERR(out))
+> +		return out;
+> +
+> +	out->aux = aux;
+> +	out->hdcp1_lut = &drm_hdcp_hdcp1_dpcd_lut;
+> +
+> +	return out;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_initialize_dp);
+> +
+> +/**
+> + * drm_hdcp_helper_initialize_hdmi - Initializes the HDCP helpers for an HDMI
+> + * connector
+> + *
+> + * @connector: pointer to the HDMI connector.
+> + * @funcs: pointer to the vtable of HDCP helper funcs for this connector.
+> + * @hdcp_content_type: True if the content_type property should be attached.
+> + *
+> + * This function initializes the HDCP helper for the given HDMI connector. This
+> + * involves creating the Content Protection property as well as the Content Type
+> + * property (if desired). Upon success, it will return a pointer to the HDCP
+> + * helper data. Ownership of the underlying memory is transferred to the caller
+> + * and should be freed using drm_hdcp_helper_destroy().
+> + *
+> + * Returns:
+> + * Pointer to newly created HDCP helper data. PTR_ERR on failure.
+> + */
+> +struct drm_hdcp_helper_data *
+> +drm_hdcp_helper_initialize_hdmi(struct drm_connector *connector,
+> +				const struct drm_hdcp_helper_funcs *funcs,
+> +				bool hdcp_content_type)
+> +{
+> +	struct drm_hdcp_helper_data *out;
+> +
+> +	out = drm_hdcp_helper_initialize(connector, funcs, hdcp_content_type);
+> +	if (IS_ERR(out))
+> +		return out;
+> +
+> +	out->hdcp1_lut = &drm_hdcp_hdcp1_ddc_lut;
+> +
+> +	return out;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_initialize_hdmi);
+> +
+> +/**
+> + * drm_hdcp_helper_destroy - Destroys the given HDCP helper data.
+> + *
+> + * @data: Pointer to the HDCP helper data.
+> + *
+> + * This function cleans up and destroys the HDCP helper data created by
+> + * drm_hdcp_helper_initialize_dp() or drm_hdcp_helper_initialize_hdmi().
+> + */
+> +void drm_hdcp_helper_destroy(struct drm_hdcp_helper_data *data)
+> +{
+> +	struct drm_connector *connector;
+> +
+> +	if (!data)
+> +		return;
+> +
+> +	connector = data->connector;
+> +
+> +	/*
+> +	 * If the connector is registered, it's possible userspace could kick
+> +	 * off another HDCP enable, which would re-spawn the workers.
+> +	 */
+> +	drm_WARN_ON(connector->dev,
+> +		    connector->registration_state == DRM_CONNECTOR_REGISTERED);
+> +
+> +	/*
+> +	 * Now that the connector is not registered, check_work won't be run,
+> +	 * but cancel any outstanding instances of it
+> +	 */
+> +	cancel_delayed_work_sync(&data->check_work);
+> +
+> +	/*
+> +	 * We don't cancel prop_work in the same way as check_work since it
+> +	 * requires connection_mutex which could be held while calling this
+> +	 * function. Instead, we rely on the connector references grabbed before
+> +	 * scheduling prop_work to ensure the connector is alive when prop_work
+> +	 * is run. So if we're in the destroy path (which is where this
+> +	 * function should be called), we're "guaranteed" that prop_work is not
+> +	 * active (tl;dr This Should Never Happen).
+> +	 */
+> +	drm_WARN_ON(connector->dev, work_pending(&data->prop_work));
+> +
+> +	kfree(data);
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_helper_destroy);
+> diff --git a/include/drm/display/drm_hdcp.h b/include/drm/display/drm_hdcp.h
+> index 96a99b1377c0e..6ff28db964f13 100644
+> --- a/include/drm/display/drm_hdcp.h
+> +++ b/include/drm/display/drm_hdcp.h
+> @@ -9,8 +9,12 @@
+>   #ifndef _DRM_HDCP_H_
+>   #define _DRM_HDCP_H_
+>   
+> +#include "linux/mutex.h"
+> +#include "linux/workqueue.h"
+>   #include <linux/types.h>
+>   
+> +#include <drm/drm_device.h>
+> +
+>   /* Period of hdcp checks (to ensure we're still authenticated) */
+>   #define DRM_HDCP_CHECK_PERIOD_MS		(128 * 16)
+>   #define DRM_HDCP2_CHECK_PERIOD_MS		500
+> @@ -36,6 +40,7 @@
+>   #define DRM_HDCP_DDC_BKSV			0x00
+>   #define DRM_HDCP_DDC_RI_PRIME			0x08
+>   #define DRM_HDCP_DDC_AKSV			0x10
+> +#define DRM_HDCP_DDC_AINFO			0x15
+>   #define DRM_HDCP_DDC_AN				0x18
+>   #define DRM_HDCP_DDC_V_PRIME(h)			(0x20 + h * 4)
+>   #define DRM_HDCP_DDC_BCAPS			0x40
+> @@ -123,6 +128,19 @@
+>   #define HDCP_2_2_DEV_COUNT_HI(x)		((x) & BIT(0))
+>   #define HDCP_2_2_DEPTH(x)			(((x) & (0x7 << 1)) >> 1)
+>   
+> +struct drm_hdcp_ksv {
+> +	union {
+> +		u32 words[2];
+> +		u8 bytes[DRM_HDCP_KSV_LEN];
+> +	};
+> +};
+> +struct drm_hdcp_an {
+> +	union {
+> +		u32 words[2];
+> +		u8 bytes[DRM_HDCP_AN_LEN];
+> +	};
+> +};
+> +
+>   struct hdcp2_cert_rx {
+>   	u8	receiver_id[HDCP_2_2_RECEIVER_ID_LEN];
+>   	u8	kpub_rx[HDCP_2_2_K_PUB_RX_LEN];
+> @@ -295,4 +313,273 @@ struct hdcp_srm_header {
+>   #define DRM_MODE_HDCP_CONTENT_TYPE0		0
+>   #define DRM_MODE_HDCP_CONTENT_TYPE1		1
+>   
+> +struct drm_connector;
+> +struct drm_atomic_state;
+> +
+> +struct drm_hdcp_helper_data {
+> +	struct mutex mutex;
+> +	struct mutex *driver_mutex;
+> +
+> +	struct drm_connector *connector;
+> +	const struct drm_hdcp_helper_funcs *funcs;
+> +
+> +	u64 value;
+> +	unsigned int enabled_type;
+> +
+> +	struct delayed_work check_work;
+> +	struct work_struct prop_work;
+> +
+> +	struct drm_dp_aux *aux;
+> +	const struct drm_hdcp_hdcp1_receiver_reg_lut *hdcp1_lut;
+> +
+> +	void *driver_data;
+> +};
+> +
+> +/**
+> + * struct drm_hdcp_helper_funcs - A vtable of function hooks for the hdcp helper
+> + *
+> + * These hooks are used by the hdcp helper to call into the driver/connector
+> + * code to read/write to hw.
+> + */
+> +struct drm_hdcp_helper_funcs {
+> +	/**
+> +	 * @setup - Performs driver-specific setup before hdcp is enabled
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*setup)(struct drm_connector *connector,
+> +		     struct drm_atomic_state *state, void *driver_data);
+> +
+> +	/**
+> +	 * @are_keys_valid - Checks if the HDCP transmitter keys are valid
+> +	 *
+> +	 * Returns: true if the display controller has valid keys loaded
+> +	 */
+> +	bool (*are_keys_valid)(struct drm_connector *connector,
+> +			       void *driver_data);
+> +
+> +	/**
+> +	 * @load_keys - Instructs the driver to load its HDCP transmitter keys
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*load_keys)(struct drm_connector *connector, void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp2_capable - Checks if both source and sink support HDCP 2.x
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp2_capable)(struct drm_connector *connector, bool *capable,
+> +			     void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp2_enable - Enables HDCP 2.x on the specified connector
+> +	 *
+> +	 * Since we don't have multiple examples of HDCP 2.x enablement, we
+> +	 * provide the bare minimum support for HDCP 2.x help. Once we have
+> +	 * more examples, perhaps we can be more helpful.
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp2_enable)(struct drm_connector *connector, void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp2_check_link - Checks the HDCP 2.x link on a specified connector
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp2_check_link)(struct drm_connector *connector,
+> +				void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp2_disable - Disables HDCP 2.x on the specified connector
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp2_disable)(struct drm_connector *connector,
+> +			     void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_read_an_aksv - Reads transmitter's An & Aksv from hardware
+> +	 *
+> +	 * Use this function if hardware allows reading the transmitter's An and
+> +	 * Aksv values from the kernel. If your hardware will not allow this,
+> +	 * use hdcp1_send_an_aksv() and implement the transmission in the
+> +	 * driver.
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_read_an_aksv)(struct drm_connector *connector, u32 *an,
+> +				  u32 *aksv, void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_send_an_aksv - Sends transmitter's An & Aksv to the receiver
+> +	 *
+> +	 * Only implement this on hardware where An or Aksv are not accessible
+> +	 * from the kernel. If these values can be read, use
+> +	 * hdcp1_read_an_aksv() instead.
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_send_an_aksv)(struct drm_connector *connector,
+> +				  void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_store_receiver_info - Stores the receiver's info in the transmitter
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_store_receiver_info)(struct drm_connector *connector,
+> +					 u32 *ksv, u32 status, u8 caps,
+> +					 bool repeater_present,
+> +					 void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_enable_encryption - Enables encryption of the outgoing signal
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_enable_encryption)(struct drm_connector *connector,
+> +				       void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_wait_for_r0 - Wait for transmitter to calculate R0
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_wait_for_r0)(struct drm_connector *connector,
+> +				 void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_match_ri - Matches the given Ri from the receiver with Ri in
+> +	 * the transmitter
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_match_ri)(struct drm_connector *connector, u32 ri_prime,
+> +			      void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_post_encryption - Allows the driver to confirm encryption and
+> +	 * perform any post-processing
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_post_encryption)(struct drm_connector *connector,
+> +				     void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_store_ksv_fifo - Write the receiver's KSV list to transmitter
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_store_ksv_fifo)(struct drm_connector *connector,
+> +				    u8 *ksv_fifo, u8 num_downstream,
+> +				    u8 *bstatus, u32 *vprime,
+> +				    void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_check_link - Allows the driver to check the HDCP 1.x status
+> +	 * on a specified connector
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_check_link)(struct drm_connector *connector,
+> +				void *driver_data);
+> +
+> +	/**
+> +	 * @hdcp1_disable - Disables HDCP 1.x on the specified connector
+> +	 *
+> +	 * Returns: 0 on success, -errno on failure
+> +	 */
+> +	int (*hdcp1_disable)(struct drm_connector *connector,
+> +			     void *driver_data);
+> +
+> +	/**
+> +	 * @remote_read - Read HDCP keys from the remote HDCP engine
+> +
+> +	 * @data: drm_hdcp_helper_data containing the adapter
+> +	 * @offset: address of the register to read
+> +	 * @value: Pointer to the value to be filled
+> +	 * @len: The length of the data to be read
+> +	 *
+> +	 * Return 0 on success
+> +	 */
+> +	int (*remote_read)(struct drm_hdcp_helper_data *data,
+> +			   unsigned int offset, u8 *value, size_t len);
+> +
+> +	/**
+> +	 * @remote_write - Write HDCP keys to the remote HDCP engine
+> +
+> +	 * @data: drm_hdcp_helper_data containing the adapter
+> +	 * @offset: address of the register to read
+> +	 * @value: Pointer to the value to be filled
+> +	 * @len: The length of the data to be read
+> +	 *
+> +	 * Return 0 on success
+> +	 */
+> +	int (*remote_write)(struct drm_hdcp_helper_data *data,
+> +			    unsigned int offset, u8 *value, size_t len);
+> +
+> +	/**
+> +	 * @hdcp1_capable - Checks if the sink is capable of HDCP 1.x.
+> +	 *
+> +	 * @data: pointer to the HDCP helper data.
+> +	 * @capable: pointer to a bool which will contain true if the sink is capable.
+> +	 *
+> +	 * Returns:
+> +	 * -errno if the transacation between source and sink fails.
+> +	 */
+> +	int (*hdcp1_capable)(struct drm_hdcp_helper_data *data, bool *capable);
+> +
+> +	/**
+> +	 * @hdcp1_ksv_fifo_ready - Read KSV FIFO ready bit.
+> +	 *
+> +	 * @data: pointer to the HDCP helper data.
+> +	 *
+> +	 * Returns:
+> +	 * -errno if the transacation between source and sink fails.
+> +	 * 0 on success.
+> +	 * -EAGAIN otherwise.
+> +	 */
+> +	int (*hdcp1_ksv_fifo_ready)(struct drm_hdcp_helper_data *data);
+> +
+> +	/**
+> +	 * @wait_r0 - Wait for R0' to become available.
+> +	 *
+> +	 * @data: pointer to the HDCP helper data.
+> +	 * @r0_prime_remaining_us: time remaining for R0' to become available.
+> +	 *
+> +	 * Returns 0 on success.
+> +	 */
+> +	int (*wait_r0)(struct drm_hdcp_helper_data *data,
+> +		       unsigned long r0_prime_remaining_us);
+> +
+> +	/*
+> +	 * @hdcp1_check_link_registers - This function checks the HDCP1
+> +	 * link registers and returns true if the link is valid and false otherwise.
+> +	 *
+> +	 * @dev: DRM device for printing error messages
+> +	 * @data: HDCP helper data
+> +	 * @should_retry: if true, the caller will retry checking the registers
+> +	 *
+> +	 * Returns 0 on success.
+> +	 */
+> +	int (*hdcp1_check_link_registers)(struct drm_device *dev,
+> +					  struct drm_hdcp_helper_data *data,
+> +					  bool *shoud_retry);
+> +
+> +	/**
+> +	 * @hdcp1_read_ksv_fifo - Read HDCP1.x KSV FIFO
+> +	 * @data: Helper data
+> +	 * @fifo: Buffer to store values
+> +	 * @num_downstream: Number of downstream devices
+> +	 *
+> +	 * Return: Zero on success or negative error code on failure.
+> +	 */
+> +	int (*hdcp1_read_ksv_fifo)(struct drm_hdcp_helper_data *data, u8 *fifo,
+> +				   u8 num_downstream);
+> +};
+> +
+>   #endif
+> diff --git a/include/drm/display/drm_hdcp_helper.h b/include/drm/display/drm_hdcp_helper.h
+> index 703421fcdf96c..a2e25bad78dbd 100644
+> --- a/include/drm/display/drm_hdcp_helper.h
+> +++ b/include/drm/display/drm_hdcp_helper.h
+> @@ -15,11 +15,60 @@ struct drm_atomic_state;
+>   struct drm_device;
+>   struct drm_connector;
+>   
+> +struct drm_hdcp_helper_data;
+> +struct drm_dp_aux;
+> +struct i2c_adapter;
+> +struct mutex;
+> +
+>   int drm_hdcp_check_ksvs_revoked(struct drm_device *dev, u8 *ksvs, u32 ksv_count);
+>   int drm_connector_attach_content_protection_property(struct drm_connector *connector,
+>   						     bool hdcp_content_type);
+>   void drm_hdcp_update_content_protection(struct drm_connector *connector, u64 val);
+>   bool drm_hdcp_has_changed(struct drm_connector *connector,
+> -			   struct drm_atomic_state *state);
+> +			  struct drm_atomic_state *state);
+> +
+> +int drm_hdcp_remote_dpcd_read(struct drm_hdcp_helper_data *data,
+> +			      unsigned int offset, u8 *value, size_t len);
+> +int drm_hdcp_remote_ddc_read(struct drm_hdcp_helper_data *data,
+> +			     unsigned int offset, u8 *value, size_t len);
+> +int drm_hdcp_remote_dpcd_write(struct drm_hdcp_helper_data *data,
+> +			       unsigned int offset, u8 *value, size_t len);
+> +int drm_hdcp_remote_ddc_write(struct drm_hdcp_helper_data *data,
+> +			      unsigned int offset, u8 *buffer, size_t len);
+> +
+> +int drm_hdcp_helper_hdcp1_capable_dp(struct drm_hdcp_helper_data *data,
+> +				     bool *capable);
+> +int drm_hdcp_helper_hdcp1_capable_hdmi(struct drm_hdcp_helper_data *data,
+> +				       bool *capable);
+> +int drm_hdcp_helper_hdcp1_ksv_fifo_ready_dp(struct drm_hdcp_helper_data *data);
+> +int drm_hdcp_helper_hdcp1_ksv_fifo_ready_hdmi(struct drm_hdcp_helper_data *data);
+> +int drm_hdcp_helper_hdcp1_read_ksv_fifo_dp(struct drm_hdcp_helper_data *data,
+> +					   u8 *fifo, u8 num_downstream);
+> +int drm_hdcp_helper_hdcp1_read_ksv_fifo_hdmi(struct drm_hdcp_helper_data *data,
+> +					     u8 *fifo, u8 num_downstream);
+> +int drm_hdcp_helper_wait_r0_dp(struct drm_hdcp_helper_data *data,
+> +			       unsigned long r0_prime_remaining_us);
+> +int drm_hdcp_helper_wait_r0_hdmi(struct drm_hdcp_helper_data *data,
+> +				 unsigned long r0_prime_remaining_us);
+> +void drm_hdcp_helper_atomic_commit(struct drm_hdcp_helper_data *data,
+> +				   struct drm_atomic_state *state,
+> +				   struct mutex *driver_mutex);
+> +
+> +int drm_hdcp_hdcp1_check_link_registers_dp(struct drm_device *dev,
+> +					   struct drm_hdcp_helper_data *data,
+> +					   bool *shoud_retry);
+> +int drm_hdcp_hdcp1_check_link_registers_hdmi(struct drm_device *dev,
+> +					     struct drm_hdcp_helper_data *data,
+> +					     bool *shoud_retry);
+> +void drm_hdcp_helper_schedule_hdcp_check(struct drm_hdcp_helper_data *data);
+> +
+> +struct drm_hdcp_helper_data *drm_hdcp_helper_initialize_dp(
+> +	struct drm_connector *connector, struct drm_dp_aux *aux,
+> +	const struct drm_hdcp_helper_funcs *funcs, bool hdcp_content_type);
+> +struct drm_hdcp_helper_data *
+> +drm_hdcp_helper_initialize_hdmi(struct drm_connector *connector,
+> +				const struct drm_hdcp_helper_funcs *funcs,
+> +				bool hdcp_content_type);
+> +void drm_hdcp_helper_destroy(struct drm_hdcp_helper_data *data);
+>   
+>   #endif
+
+-- 
+With best wishes
+Dmitry
+
