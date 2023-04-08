@@ -2,85 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13AB76DB5AE
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Apr 2023 23:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 586666DB7DF
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 Apr 2023 02:48:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C8010EE48;
-	Fri,  7 Apr 2023 21:07:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7598210EEA8;
+	Sat,  8 Apr 2023 00:47:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29DF410EC36
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Apr 2023 21:07:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680901647;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/5KpsOJOZ4YA+v0e7h56AcRCS0K0kPfTOJnEBGf/OGY=;
- b=hxUitRYjVorv7oiVAwYes3FKJOTagGEZRWmNkalkJyHi5bL4ICgUwPR97GcXWMXGEiDprC
- bG5kgXUqE3EJo4Ye5ZCfJczcCoNQsmGoRyirvuGpv10e/cb47UtONLzoJebeHzGLbzSr7g
- a9V8t7Oaqy+AaXhZoa+SvaScRoUPvXg=
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
- [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-626-s4IDpPr_PUiX3fuR5wWDRw-1; Fri, 07 Apr 2023 17:07:25 -0400
-X-MC-Unique: s4IDpPr_PUiX3fuR5wWDRw-1
-Received: by mail-io1-f70.google.com with SMTP id
- h136-20020a6bb78e000000b00758b105cdd3so27131654iof.23
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Apr 2023 14:07:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680901645; x=1683493645;
- h=content-transfer-encoding:mime-version:organization:references
- :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=/5KpsOJOZ4YA+v0e7h56AcRCS0K0kPfTOJnEBGf/OGY=;
- b=3IhN2zveXnkAcvDK+Ew1ssVTJ3RrS4apuquOHcDYE4ACQy32pBYuDCpL4a7Q3v8g6A
- cc7ez3dSghMmcsNwS2yISCT7AayYg2qaIlrMFG0h85WGbBRty8Y+rOsOifQhCI8K4MOI
- qAk30R05KDN5FNVcroQ/KGK+ML9ocQYm9u3j4p/kzyu/3R0q6Xm6lJ6zmFkun9be3MU1
- DpbZ4xsyvXLxBpZMMIEFmgy7HZBLroEMVn8YVa6Cwjv7ec8CeJp9H0sn4vvagUP3RmAR
- u/E2JMZco/7n3OF305ieidtQoklbq7dnTOuCP4xruyBwnPOBd3tunstz8CsHTde+isW1
- 8npQ==
-X-Gm-Message-State: AAQBX9e1W4S99Wdj/uvYf3Diw6ljBThEM9pJYS7dOzzrgL5/7AdtBKiB
- C+dZSWUNl9KLwfgN2GfRTqI7X4EG+FHr8i34n53PSdnsb4xWyWFsCBjl7/0zFPpSb+Jv+dQm4Nl
- K7FAIQp+XBleJL6Oj3Moj/Ia7WmZk
-X-Received: by 2002:a92:c842:0:b0:310:c6f7:c1e9 with SMTP id
- b2-20020a92c842000000b00310c6f7c1e9mr46530ilq.5.1680901644900; 
- Fri, 07 Apr 2023 14:07:24 -0700 (PDT)
-X-Google-Smtp-Source: AKy350blmaCJLT4o9hbUAuzSGLAYyai8t8DDOomZycals9fmQUkixA3uNQMnu5k2ngdyGVebYrNjzQ==
-X-Received: by 2002:a92:c842:0:b0:310:c6f7:c1e9 with SMTP id
- b2-20020a92c842000000b00310c6f7c1e9mr46508ilq.5.1680901644577; 
- Fri, 07 Apr 2023 14:07:24 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- y17-20020a027311000000b0040b1f6db720sm1389567jab.29.2023.04.07.14.07.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Apr 2023 14:07:23 -0700 (PDT)
-Date: Fri, 7 Apr 2023 15:07:21 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230407150721.395eabc4.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB7529A9D103F88381F84CF390C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230401144429.88673-1-yi.l.liu@intel.com>
- <20230401144429.88673-13-yi.l.liu@intel.com>
- <DS0PR11MB752996A6E6B3263BAD01DAC2C3929@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230403090151.4cb2158c.alex.williamson@redhat.com>
- <DS0PR11MB75291E6ED702ADD03AAE023BC3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407060335.7babfeb8.alex.williamson@redhat.com>
- <DS0PR11MB7529B0A91FF97C078BEA3783C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407075155.3ad4c804.alex.williamson@redhat.com>
- <DS0PR11MB7529C1CA38D7D1035869F358C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230407091401.1c847419.alex.williamson@redhat.com>
- <DS0PR11MB7529A9D103F88381F84CF390C3969@DS0PR11MB7529.namprd11.prod.outlook.com>
-Organization: Red Hat
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D394310EEA8
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 Apr 2023 00:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680914876; x=1712450876;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=dkw/5KUaNNv0KoLUYeDaOsZS296o44yw9edOXfkqi38=;
+ b=dUgUYG3fGeojUn11xJfF5SGr/YVAi3NESz/Z2RjefzfWeF0NCjwt9ESg
+ Pqu42eNU3Dbqm6olOceu2SDsCyU6HozX+WZz+wyn1RYrg8gWOecIULjld
+ 6x0dOOt79oECkiYsl2aGucfyPDc0sMiD95FJnYVxiBk9OD46sn42aWpjM
+ uVpn50gctdvrEXF3HDpluymU1w8ZLBtT3QEGa3ztSw+mvyUKx+sEUjRxF
+ VAytuGAsKnRP/7m/1hyng3JR+2PacKIFJwO1E0jTrJnXsdDv9YtdlNQRw
+ HoUyFUYZmGIz57T+BKeRF4P1kCwc0GH2UlbV6SMiwHWZOr3WpA82Uhidy A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10673"; a="370928142"
+X-IronPort-AV: E=Sophos;i="5.98,328,1673942400"; d="scan'208";a="370928142"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2023 17:47:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10673"; a="1017412450"
+X-IronPort-AV: E=Sophos;i="5.98,328,1673942400"; d="scan'208";a="1017412450"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Apr 2023 17:47:55 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 7 Apr 2023 17:47:55 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 7 Apr 2023 17:47:55 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Fri, 7 Apr 2023 17:47:55 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Fri, 7 Apr 2023 17:47:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=myAhZ8KvwmM77KhRnW1MyEj+m8dXdWzaP0+uTB8OXqAUfMjSlRxQ/0gb49UpAq5ieYgQOWunnXLxfkm8573kEJ+ELMDmmuNw12I3tMyvWmcF/rzENXadUekh/cDcCQinM25fV2lVhEBE7zawng677wCLeLN06ZGlf7LveuJ4wDBTqVO8QezAjp+WC6I9Jejj9WXHewkhe1EP0mr3GtGRbaOTLRe7GybTDdYE7DQKU0zPbyfq6eZAREHkPnMKcOLdsrjNtWLWqeTBaqlbcmQktRu+vzzmZ+hEjptKEOfM572FQ8Sa8S/YDIVC5C0V7GIMWO7CxaSmMWXpIqf9mthvZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h/tKai+3dnDZmv98R9K/6/bJd0IqZHn599Vt09z4kGI=;
+ b=epIZ5QSOmFxj3vogoLRwSr3S467ZbQL61L/akjhWDsOPN6IahwX78sN8vb3+lLegA88yYgmpQmGKZ/upFM7tNly72Xea921HJUIIIiFd4dPDjqiQ6n0Aqsx8GPl3RgdcUqzNBO9TlCTZcP1dncW/0MqNsSvqo7GPXQQSXjBUIU665lVLwdPFnyIFuFu8tkjSX4Ac3k/WWea2fkjyhP1v2Dy1dgL8YMaKHvTP4+yk8JxLI2F9Gz5nWJXG14/D4cQs2S7m5DsZZDwgLJR4GR91Ne65yEcLFKku+iaBS4Lxnj97ehBwQxdLcakAY2O1+uw1Xnl3c4Myw0QKMCuatFnxHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ DM6PR11MB4546.namprd11.prod.outlook.com (2603:10b6:5:2a7::24) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6277.30; Sat, 8 Apr 2023 00:47:53 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::1c61:b69d:4ca:10d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::1c61:b69d:4ca:10d0%8]) with mapi id 15.20.6277.033; Sat, 8 Apr 2023
+ 00:47:50 +0000
+Date: Fri, 7 Apr 2023 17:47:47 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Message-ID: <20230408004747.GT4085390@mdroper-desk1.amr.corp.intel.com>
+References: <20230407093237.3296286-1-lionel.g.landwerlin@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230407093237.3296286-1-lionel.g.landwerlin@intel.com>
+X-ClientProxiedBy: BY3PR10CA0028.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::33) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DM6PR11MB4546:EE_
+X-MS-Office365-Filtering-Correlation-Id: f8e01061-69a9-4426-010d-08db37cae0e8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nJdu9/4Agj6Ypos98mkpFo9vfXuWKoQ0V3VeiZphErfhbW2l+mNrMfHLEziKtf357joO2UudnrLQ8XETmNAXOlw1FcG7KOAszTW736lt8ZjBhn2FahuWdCCXfezjj5cB+1d3rtVprpmS1v4i06PVNMZdmzISDis9KCTJsyLotccMCxWKkt5FXmDv9Q/opvbeHpGh2jMsk2Ho0b40kvar2bBkQvHvfRqjA1WVfpLeansKytnDvCdipF6YrKTF/4M7NggAkQouhSCrpJCzDMMQ6xVAMZsWkarVoRTULeO6tUTfooBK/zXsMRI8YSVQSK87308za6pZzi7dT3PoE/bXkBQArmjuHnL/i4jYN2JLV28fZAjX/E5N4Q2CF1wgw1ZSJVbvl5+6MNSgVt2egfnb+lmAWra4eYkHw+2N0vAuCWtTA10Jycg1EHj3mIocOLMYS4y1KcW2R7slUpV6gUDd327F5bTkATPOxfF/jEpZlfpq/OFo1WB8EdiYWuyTGeCwHeJbRQXqbkDJjOZpxtjhm90yQlpLIJO6bW3MpJhoxgCV1doGMDdXc3joVSHaEzmZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(346002)(39860400002)(366004)(396003)(376002)(451199021)(6862004)(4326008)(8676002)(8936002)(41300700001)(66476007)(66946007)(66556008)(5660300002)(2906002)(316002)(478600001)(6636002)(6486002)(1076003)(6506007)(6666004)(83380400001)(26005)(33656002)(6512007)(38100700002)(186003)(86362001)(82960400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4TqI3raiLsj1FGWFsIyjspqkkrCpSt9BouPkYriRhelN1/Hq7glT8J7JRYzZ?=
+ =?us-ascii?Q?xuxep2lxCNFcYXJbAbTAWjRbyP1ZjWxg2tJ5g5ZGda5OzFhYSK6sonLx+v0Z?=
+ =?us-ascii?Q?bFX/nHWm+gTG9qFEsdkCSPKyBoU7LtCy53/j7bPXuEfAWHbAR1ErAzcNUEJl?=
+ =?us-ascii?Q?k9/N7UZ0lzplE287Zth8IKu1pFmbLPR7oAM9bkWUEtzsWkG0lGo/05gdVABC?=
+ =?us-ascii?Q?nqLtpDXrzRoF3MoWbsd3ZSKHm3Q9hRMIUMaBWDfYKP49bGjV0hLSGzsfbfl9?=
+ =?us-ascii?Q?qv6Ar50JPzoaY5HxFTN8wh2KVAmuInFqihDh9WrctJKH5MY68Fckbz8/HcL8?=
+ =?us-ascii?Q?b5jdVu+Iro/9T4G9E6PpOyqfVBfnEFQ4pY/GHBdXvbLq2R6l5MUs7kVNixop?=
+ =?us-ascii?Q?molUMt2704oBzuo8lwD0OfZFYLW2ZEnDa8q10JMsO56UcAuJKgdlydUcMnaq?=
+ =?us-ascii?Q?4u6SOqrGKivV5g73qYZOfEKzg63iv4YE02fcN9NfUd5SnZYGT+thNkfIdU5s?=
+ =?us-ascii?Q?3Da4AeGaakLHDZ7bUQB/4JZi5/PqxaBoYlN3blAkbah3Mgs8S9CmUXdNLoxF?=
+ =?us-ascii?Q?cboRV80o+yPafm3QVj1qRXkVSYRu6Jlx1N1NkqudfQ2Wm2QCjVrHV0/tENn3?=
+ =?us-ascii?Q?+0Ygo6HB7avlFy0ys4zfl9vdT5ea4ScR2fD26BM05cbYLSFHvrCLWsdDf7WE?=
+ =?us-ascii?Q?8ELDHVEc+MsuLoVNR9kNhUhcoGpEXL+f1X08egRdxIuLxtNq6WgKe6dFo3Hf?=
+ =?us-ascii?Q?ejCD1mDsKtIjODrSC5euBnsLraIsoaQHA83bw2ojDvR/610ZLSFHNJYAqc5e?=
+ =?us-ascii?Q?6dufvvw8lOBH+SePDPQVcBNt9PDuyR0xD5OSdpiNNwcbJIovP9PEzM+u1aNw?=
+ =?us-ascii?Q?rZnGHzuVIUtyaK1kIPDMi/Jb+ljV0HBodVoQSBsKj0j0gWWNWhXc2MP1maT0?=
+ =?us-ascii?Q?FZYM92u+WwdPFfwgbGCaNRg6S7nK6AHq8Q7QjMuhYisczeJjRMU9YCSoupfc?=
+ =?us-ascii?Q?E2cmXlJsuY5+EsrtF9sbPvaDQ8WRu7DIHo4l7MJl/rPCs1yr5D9zUne0Kgge?=
+ =?us-ascii?Q?1YTX9CP5I7A7djOXl8pNXmUYUHuoWhREmsOI0VPEz/drC3u2tP8Vytgv6+Ho?=
+ =?us-ascii?Q?mdc8IR67lbe8biu/VVxLLYVWskswPyWzFIcLk6kPu5GBkGM8xwrQXnFR8ukL?=
+ =?us-ascii?Q?JYuLob5BzJCqTlqGkFB9AOBIdRwIJ7R6PSo97knOUyLGAx1z2BZQqAMMqq2f?=
+ =?us-ascii?Q?1/DZjPs7ehqjXj8ErAfCv5u/N8mU0iiqTbEFfQ4+h0OXvVNt5lpA3/yIUmII?=
+ =?us-ascii?Q?eSqSP8RwaGekSFyWzl+cIx7YFbJKLEyix7DUkPzOFbja7hKCd754zpujKqur?=
+ =?us-ascii?Q?MVNBqG5U2eV9kKehO525oBKnzLqTy/+QkkuiuLPXgxz214dME1SFdpabXt3w?=
+ =?us-ascii?Q?wuhmhMXKkz769LH9EhCiP0EKvOt9ft0wNW4sRKEveFljIOxKflLcnnd6PHFR?=
+ =?us-ascii?Q?1LUHcleVpgpr0yFfusxq6vyN0M7mLz/taciIrWVNhEASNPa5qWgTmPuyYyiv?=
+ =?us-ascii?Q?YfpP22UciQ8uOV0WcIsr/S1ciBn1NHUtvC9ajD90FBLy/VuSFbzGTjzlHv2j?=
+ =?us-ascii?Q?OA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8e01061-69a9-4426-010d-08db37cae0e8
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2023 00:47:50.1872 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z6BxdWsB4/yXTsAVavqMbvYjkmwMX+J1AWaNJhE1FnuVh8tLMu88Amnko8x4xhQ8jJNOvN+V/Kx9ktSfI51MPoaoJLcQJiCi2138pz14wbU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4546
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: disable sampler indirect state in
+ bindless heap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,136 +147,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 7 Apr 2023 15:47:10 +0000
-"Liu, Yi L" <yi.l.liu@intel.com> wrote:
-
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Friday, April 7, 2023 11:14 PM
-> > 
-> > On Fri, 7 Apr 2023 14:04:02 +0000
-> > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
-> >   
-> > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > Sent: Friday, April 7, 2023 9:52 PM
-> > > >
-> > > > On Fri, 7 Apr 2023 13:24:25 +0000
-> > > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
-> > > >  
-> > > > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > > > Sent: Friday, April 7, 2023 8:04 PM
-> > > > > >  
-> > > > > > > > > > @@ -791,7 +813,21 @@ static int vfio_pci_fill_devs(struct pci_dev  
-> > *pdev,  
-> > > > void  
-> > > > > > > > *data)  
-> > > > > > > > > >  	if (!iommu_group)
-> > > > > > > > > >  		return -EPERM; /* Cannot reset non-isolated devices */  
-> > > > >
-> > > > > [1]
-> > > > >  
-> > > > > > > > >
-> > > > > > > > > Hi Alex,
-> > > > > > > > >
-> > > > > > > > > Is disabling iommu a sane way to test vfio noiommu mode?  
-> > > > > > > >
-> > > > > > > > Yes
-> > > > > > > >  
-> > > > > > > > > I added intel_iommu=off to disable intel iommu and bind a device to vfio-  
-> > pci.  
-> > > > > > > > > I can see the /dev/vfio/noiommu-0 and /dev/vfio/devices/noiommu-vfio0.  
-> > > > Bind  
-> > > > > > > > > iommufd==-1 can succeed, but failed to get hot reset info due to the  
-> > above  
-> > > > > > > > > group check. Reason is that this happens to have some affected devices,  
-> > and  
-> > > > > > > > > these devices have no valid iommu_group (because they are not bound to  
-> > > > vfio-  
-> > > > > > pci  
-> > > > > > > > > hence nobody allocates noiommu group for them). So when hot reset info  
-> > > > loops  
-> > > > > > > > > such devices, it failed with -EPERM. Is this expected?  
-> > > > > > > >
-> > > > > > > > Hmm, I didn't recall that we put in such a limitation, but given the
-> > > > > > > > minimally intrusive approach to no-iommu and the fact that we never
-> > > > > > > > defined an invalid group ID to return to the user, it makes sense that
-> > > > > > > > we just blocked the ioctl for no-iommu use.  I guess we can do the same
-> > > > > > > > for no-iommu cdev.  
-> > > > > > >
-> > > > > > > I just realize a further issue related to this limitation. Remember that we
-> > > > > > > may finally compile out the vfio group infrastructure in the future. Say I
-> > > > > > > want to test noiommu, I may boot such a kernel with iommu disabled. I think
-> > > > > > > the _INFO ioctl would fail as there is no iommu_group. Does it mean we will
-> > > > > > > not support hot reset for noiommu in future if vfio group infrastructure is
-> > > > > > > compiled out?  
-> > > > > >
-> > > > > > We're talking about IOMMU groups, IOMMU groups are always present
-> > > > > > regardless of whether we expose a vfio group interface to userspace.
-> > > > > > Remember, we create IOMMU groups even in the no-iommu case.  Even with
-> > > > > > pure cdev, there are underlying IOMMU groups that maintain the DMA
-> > > > > > ownership.  
-> > > > >
-> > > > > hmmm. As [1], when iommu is disabled, there will be no iommu_group for a
-> > > > > given device unless it is registered to VFIO, which a fake group is created.
-> > > > > That's why I hit the limitation [1]. When vfio_group is compiled out, then
-> > > > > even fake group goes away.  
-> > > >
-> > > > In the vfio group case, [1] can be hit with no-iommu only when there
-> > > > are affected devices which are not bound to vfio.  
-> > >
-> > > yes. because vfio would allocate fake group when device is registered to
-> > > it.
-> > >  
-> > > > Why are we not
-> > > > allocating an IOMMU group to no-iommu devices when vfio group is
-> > > > disabled?  Thanks,  
-> > >
-> > > hmmm. when the vfio group code is configured out. The
-> > > vfio_device_set_group() just returns 0 after below patch is
-> > > applied and CONFIG_VFIO_GROUP=n. So when there is no
-> > > vfio group, the fake group also goes away.
-> > >
-> > > https://lore.kernel.org/kvm/20230401151833.124749-25-yi.l.liu@intel.com/  
-> > 
-> > Is this a fundamental issue or just a problem with the current
-> > implementation proposal?  It seems like the latter.  FWIW, I also don't
-> > see a taint happening in the cdev path for no-iommu use.  Thanks,  
+On Fri, Apr 07, 2023 at 12:32:37PM +0300, Lionel Landwerlin wrote:
+> By default the indirect state sampler data (border colors) are stored
+> in the same heap as the SAMPLER_STATE structure. For userspace drivers
+> that can be 2 different heaps (dynamic state heap & bindless sampler
+> state heap). This means that border colors have to copied in 2
+> different places so that the same SAMPLER_STATE structure find the
+> right data.
 > 
-> yes. the latter case. The reason I raised it here is to confirm the
-> policy on the new group/bdf capability in the DEVICE_GET_INFO. If
-> there is no iommu group, perhaps I only need to exclude the new
-> group/bdf capability from the cap chain of DEVICE_GET_INFO. is it?
+> This change is forcing the indirect state sampler data to only be in
+> the dynamic state pool (more convinient for userspace drivers, they
+> only have to have one copy of the border colors). This is reproducing
+> the behavior of the Windows drivers.
+> 
+> BSpec: 46052
+> 
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Cc: stable@vger.kernel.org
+> Reviewed-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
 
-I think we need to revisit the question of why allocating an IOMMU
-group for a no-iommu device is exclusive to the vfio group support.
-We've already been down the path of trying to report a field that only
-exists for devices with certain properties with dev-id.  It doesn't
-work well.  I think we've said all along that while the cdev interface
-is device based, there are still going to be underlying IOMMU groups
-for the user to be aware of, they're just not as much a fundamental
-part of the interface.  There should not be a case where a device
-doesn't have a group to report.  Thanks,
+Applied to drm-intel-gt-next.  Thanks for the patch and review.
 
-Alex
 
+Matt
+
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  1 +
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 19 +++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 492b3de6678d7..fd1f9cd35e9d7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1145,6 +1145,7 @@
+>  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+>  #define   GEN11_SAMPLER_ENABLE_HEADLESS_MSG	REG_BIT(5)
+>  #define   MTL_DISABLE_SAMPLER_SC_OOO		REG_BIT(3)
+> +#define   GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE	REG_BIT(0)
+>  
+>  #define GEN9_HALF_SLICE_CHICKEN7		MCR_REG(0xe194)
+>  #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 6ea453ddd0116..b925ef47304b6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -2971,6 +2971,25 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>  
+>  	add_render_compute_tuning_settings(i915, wal);
+>  
+> +	if (GRAPHICS_VER(i915) >= 11) {
+> +		/* This is not a Wa (although referred to as
+> +		 * WaSetInidrectStateOverride in places), this allows
+> +		 * applications that reference sampler states through
+> +		 * the BindlessSamplerStateBaseAddress to have their
+> +		 * border color relative to DynamicStateBaseAddress
+> +		 * rather than BindlessSamplerStateBaseAddress.
+> +		 *
+> +		 * Otherwise SAMPLER_STATE border colors have to be
+> +		 * copied in multiple heaps (DynamicStateBaseAddress &
+> +		 * BindlessSamplerStateBaseAddress)
+> +		 *
+> +		 * BSpec: 46052
+> +		 */
+> +		wa_mcr_masked_en(wal,
+> +				 GEN10_SAMPLER_MODE,
+> +				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+> +	}
+> +
+>  	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>  	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>  		/* Wa_14017856879 */
+> -- 
+> 2.34.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
