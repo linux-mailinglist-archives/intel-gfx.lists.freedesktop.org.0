@@ -1,55 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05A86DDD0C
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 15:58:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2374B6DDD28
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 16:03:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B3A410E267;
-	Tue, 11 Apr 2023 13:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F61D10E31F;
+	Tue, 11 Apr 2023 14:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4238F10E267;
- Tue, 11 Apr 2023 13:58:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681221530; x=1712757530;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yexL/N1m4BbU3jFepRVc09D3Ftt41ycmTKQzelkjxfo=;
- b=FHmMaScZpTkfTSNvycUOCXipRdJvhP/uAB1DpwOl0hCwY1yw71VS3Wkd
- vV/rJD9gjTT5jX24cVURPRob6aXkMg75JM/qYFA0iWe30pLmx6esOxzUm
- 22Z8xJ8cOlVAK7rp0Ciu3FIRutEeOa8LLFXWeQoekDHTsqXOvuCY8MwQf
- 3QlqxcrrXIsAmo6XA1C/4L+ow19q+/YpP5PyMoHEzbERd2HVTH8VZ8/eU
- G8TyNHFw78huykQO+9iLYplRNyN9u/40Cnpq65MS6bJctVu1x2fwE4umt
- Ryen8eOnAPT/jC4++4TG32RpDALd5YWAKIuQiZT6dG6mwwOM26zBgb8nU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="323982912"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="323982912"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 06:58:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="777919862"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="777919862"
-Received: from aburgsta-mobl.ger.corp.intel.com (HELO [10.252.45.152])
- ([10.252.45.152])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 06:58:43 -0700
-Message-ID: <8cef35ad-881e-3db3-5c7a-e27ff9968b77@linux.intel.com>
-Date: Tue, 11 Apr 2023 15:58:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE9C10E31F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 14:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1681221810;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CIGXauWS2Wr91Jq5IW+UgW4CSynzPp3COFUoOkdMkhA=;
+ b=Iy58mzct9gy0k8dFpNLv0I8NkvCIck0GbdnZe8zHPiXrfTqynL63vpFXNLOXt2wUCyEbfa
+ 5bmTErlcKHNiuEWWElnHt0UcHKCKDcF8HsXQCprk1+Got/5p7/dxx/EhIq2bmbTLGck/F9
+ Ie9I8XWlhqze3VPsbE7vRff8O8BsvR4=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-601-9WMQZqg3MVamWvJOdC8UWA-1; Tue, 11 Apr 2023 10:03:29 -0400
+X-MC-Unique: 9WMQZqg3MVamWvJOdC8UWA-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ d20-20020adfa354000000b002cfe8493fe6so1142526wrb.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 07:03:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1681221808;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=CIGXauWS2Wr91Jq5IW+UgW4CSynzPp3COFUoOkdMkhA=;
+ b=flpv20FMt67d1j017IjSy1oQ7B2THVIrOih8QCwFEcwx3Xw1wQjKGwxsXZXvNBhTTn
+ cQep0SK/9QE54BQrYHjPAeWO7bVwoj93/jU1pmYl4+sGoWTjJDvKFGKwgwwJqGx7JQBQ
+ eTCJJh9IS0ugBMY1ypt8xfvQ5SHGH9VmKK1uctwz6Mzy4ruuhjDtPqQxx5wKKm6GKuIk
+ l/BEb2ztbZO4+cLlOBevfbK+USF/vFQLULs692FaQejPSoXWLEuwh70a1Gy7cgR/aIFn
+ bT+JQHBC5fkrHioQcPUS4BPBYb0Cyjqj2m5Yg5O8OLx5QmdNHxGPu6Gode3YhXPivOg1
+ +Sww==
+X-Gm-Message-State: AAQBX9d3dSndF6x3D0eNNpimnJyrWQsrmPUbKy4ZGTb+YO01aQr8lCsI
+ YfnJiEgZrveQTtX/JCFTn4aBXAv5QqNIQ7YOSfzxwJRRb1gz+Jm/19g2+HfD3Z5Q+d9Db8l6eGO
+ gE3I47mfE6otrj2sAjASsz+Nj9kse
+X-Received: by 2002:a05:600c:246:b0:3ef:62c6:9930 with SMTP id
+ 6-20020a05600c024600b003ef62c69930mr2272887wmj.3.1681221808150; 
+ Tue, 11 Apr 2023 07:03:28 -0700 (PDT)
+X-Google-Smtp-Source: AKy350aKiEZG2/eTE3qgJobPobJFBtpp/GDgmMcutPCUe6o6pFTDe6EfUfpz+ooaKEyqriEN7AUpYw==
+X-Received: by 2002:a05:600c:246:b0:3ef:62c6:9930 with SMTP id
+ 6-20020a05600c024600b003ef62c69930mr2272867wmj.3.1681221807826; 
+ Tue, 11 Apr 2023 07:03:27 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ j23-20020a05600c1c1700b003ee443bf0c7sm20919284wms.16.2023.04.11.07.03.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Apr 2023 07:03:27 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <20230404193934.472457-1-daniel.vetter@ffwll.ch>
 References: <20230404193934.472457-1-daniel.vetter@ffwll.ch>
- <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Tue, 11 Apr 2023 16:03:24 +0200
+Message-ID: <874jpmtt1v.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH] fbmem: Reject FB_ACTIVATE_KD_TEXT from
  userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,61 +86,59 @@ Cc: linux-fbdev@vger.kernel.org, Shigeru Yoshida <syoshida@redhat.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
  Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
  Helge Deller <deller@gmx.de>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
  Geert Uytterhoeven <geert@linux-m68k.org>,
  Samuel Thibault <samuel.thibault@ens-lyon.org>,
  Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Maxime Ripard <mripard@kernel.org>, shlomo@fastmail.com,
+ Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>, shlomo@fastmail.com,
  Nathan Chancellor <natechancellor@gmail.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Alex Deucher <alexander.deucher@amd.com>, Peter Rosin <peda@axentia.se>,
  Qiujun Huang <hqjagain@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Daniel Vetter <daniel.vetter@ffwll.ch> writes:
 
-On 2023-04-11 15:44, Daniel Vetter wrote:
-> On Tue, Apr 04, 2023 at 09:39:34PM +0200, Daniel Vetter wrote:
->> This is an oversight from dc5bdb68b5b3 ("drm/fb-helper: Fix vt
->> restore") - I failed to realize that nasty userspace could set this.
->>
->> It's not pretty to mix up kernel-internal and userspace uapi flags
->> like this, but since the entire fb_var_screeninfo structure is uapi
->> we'd need to either add a new parameter to the ->fb_set_par callback
->> and fb_set_par() function, which has a _lot_ of users. Or some other
->> fairly ugly side-channel int fb_info. Neither is a pretty prospect.
->>
->> Instead just correct the issue at hand by filtering out this
->> kernel-internal flag in the ioctl handling code.
->>
->> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->> Fixes: dc5bdb68b5b3 ("drm/fb-helper: Fix vt restore")
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: shlomo@fastmail.com
->> Cc: Michel Dänzer <michel@daenzer.net>
->> Cc: Noralf Trønnes <noralf@tronnes.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Daniel Vetter <daniel.vetter@intel.com>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: David Airlie <airlied@linux.ie>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: <stable@vger.kernel.org> # v5.7+
->> Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
->> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
->> Cc: Nathan Chancellor <natechancellor@gmail.com>
->> Cc: Qiujun Huang <hqjagain@gmail.com>
->> Cc: Peter Rosin <peda@axentia.se>
->> Cc: linux-fbdev@vger.kernel.org
->> Cc: Helge Deller <deller@gmx.de>
->> Cc: Sam Ravnborg <sam@ravnborg.org>
->> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->> Cc: Samuel Thibault <samuel.thibault@ens-lyon.org>
->> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
->> Cc: Shigeru Yoshida <syoshida@redhat.com>
-> An Ack on this (or a better idea) would be great, so I can stuff it into
-> -fixes.
-Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> This is an oversight from dc5bdb68b5b3 ("drm/fb-helper: Fix vt
+> restore") - I failed to realize that nasty userspace could set this.
+>
+> It's not pretty to mix up kernel-internal and userspace uapi flags
+> like this, but since the entire fb_var_screeninfo structure is uapi
+> we'd need to either add a new parameter to the ->fb_set_par callback
+> and fb_set_par() function, which has a _lot_ of users. Or some other
+> fairly ugly side-channel int fb_info. Neither is a pretty prospect.
+>
+> Instead just correct the issue at hand by filtering out this
+> kernel-internal flag in the ioctl handling code.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Fixes: dc5bdb68b5b3 ("drm/fb-helper: Fix vt restore")
+
+[..]
+
+> diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
+> index 875541ff185b..3fd95a79e4c3 100644
+> --- a/drivers/video/fbdev/core/fbmem.c
+> +++ b/drivers/video/fbdev/core/fbmem.c
+> @@ -1116,6 +1116,8 @@ static long do_fb_ioctl(struct fb_info *info, unsigned int cmd,
+>  	case FBIOPUT_VSCREENINFO:
+>  		if (copy_from_user(&var, argp, sizeof(var)))
+>  			return -EFAULT;
+> +		/* only for kernel-internal use */
+> +		var.activate &= ~FB_ACTIVATE_KD_TEXT;
+>  		console_lock();
+
+I don't have a better idea on how to fix this and as you said the whole
+struct fb_var_screeninfo is an uAPI anyways...
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
