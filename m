@@ -2,62 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6476DD85A
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 12:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B35956DD86B
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 12:56:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1896010E2C3;
-	Tue, 11 Apr 2023 10:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFBFF10E2AE;
+	Tue, 11 Apr 2023 10:56:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
- [209.85.128.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC5C010E2BA;
- Tue, 11 Apr 2023 10:53:41 +0000 (UTC)
-Received: by mail-yw1-f170.google.com with SMTP id
- 00721157ae682-54ee9ad5eb3so145666607b3.1; 
- Tue, 11 Apr 2023 03:53:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681210420;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=zMZXbjYPoB8bF3eM0jBoFIas3yC6vYWDoi6gxtxj/GU=;
- b=kMF0U+C+LkxxFCiaNGCtMm8pAuSCrispI7/ubiHoL5i97fOcm6+YFHZcZcwREb4Jt3
- WLwEUWaFsrjMRqMYA7ZMXC4LUQwlh7g477ZdV/DYSpaOtzmCVWWnWc3VcxwIFDrUnF8I
- R9xF16log+nfn44E3WvsM1pb70lpMt2eQmhDRwY1hV7uoQIMQK87YrzzbUxCDEHbHLl5
- bWsh/BUMCw/UGwpFa3hZf7mi7fmVCMILvLDYk029N6S0YJPlJAV6OmWJoa+BEnxCWVOd
- osv/BD80wTH6EDLDd7rDBz+ItrXRgzFaPQfpz7/UeyjwINUv1nKs7bse8wSacRwuwXR5
- WXEw==
-X-Gm-Message-State: AAQBX9dip+KSyE8V8HyVj+jQXM7O6U4+7MCdaX/0kl1xkB0GZuSubDAK
- iDfNYyjZY4jkh9m+hvHp3oz5O2q7hwhwgg==
-X-Google-Smtp-Source: AKy350Z8SqIHt9QV3WaH5ue1eNycRmTp/xr7U5vRshyXrOXfSqjomCpumEShDT/Jy1OSJorIfxto2g==
-X-Received: by 2002:a0d:cc0f:0:b0:54c:11e2:d32 with SMTP id
- o15-20020a0dcc0f000000b0054c11e20d32mr11011685ywd.27.1681210420341; 
- Tue, 11 Apr 2023 03:53:40 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com.
- [209.85.128.173]) by smtp.gmail.com with ESMTPSA id
- g135-20020a0ddd8d000000b0054f0349073esm1611816ywe.62.2023.04.11.03.53.39
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 11 Apr 2023 03:53:39 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-54c061acbc9so290168427b3.11; 
- Tue, 11 Apr 2023 03:53:39 -0700 (PDT)
-X-Received: by 2002:a81:e401:0:b0:54c:19a6:480 with SMTP id
- r1-20020a81e401000000b0054c19a60480mr7419834ywl.4.1681210418913; Tue, 11 Apr
- 2023 03:53:38 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1246610E2AE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 10:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681210610; x=1712746610;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9JtqWb4Dit8P5dQ4Tt6H0XfdznwBi/yyjfkicKzgo7s=;
+ b=Ho73AwgYb4/FtYwr9T+/iemQ/tBMYUM92pHccTpDMj5T/vIPOKpr4TKr
+ FCRG+VFZyUytYDPRwRyYMzpAf04GjCX564x0VtaCxfdj31eV3X5eJGowQ
+ cJcm8HDo+HiYjVqU+DEFyg7MyL8W6kWDBFmV+B2TqTplmzw2SMt3DigtD
+ C7FX1pfuXyAZZrgGEaNDaf5N2Yf1AppZl8hELzpocaavdETaZnrJaK+21
+ c/7pOVP41wOeP/qVR/bIC+FPAGinSdS9VDDwmzjEbpzjJ3Nkb1B+DmXhF
+ 0UC3vZ1cqjWGVdSpA2ubxtJEGPHQydYQBLC0QhjgaHxMuRr5LGtKOEdS4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="332271179"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="332271179"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2023 03:56:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="753095886"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="753095886"
+Received: from pcarabas-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.227])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2023 03:56:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Apr 2023 13:56:43 +0300
+Message-Id: <20230411105643.292416-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <50439958420f91cc97ad929437334bfb19ca4d90.1681208396.git.geert+renesas@glider.be>
- <fd7c23298f2c62db85abc9114d12059ef5e5f330.1681208396.git.geert+renesas@glider.be>
- <CAB9dFds_C9hfwW+YBMbF8sakUwVXm4etVPSAXgXQpKMeTA9+yA@mail.gmail.com>
-In-Reply-To: <CAB9dFds_C9hfwW+YBMbF8sakUwVXm4etVPSAXgXQpKMeTA9+yA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 11 Apr 2023 12:53:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV14YpXgHf+a8RgJSFgBWh2QiwAVmOTJRs=_=4om83CuA@mail.gmail.com>
-Message-ID: <CAMuHMdV14YpXgHf+a8RgJSFgBWh2QiwAVmOTJRs=_=4om83CuA@mail.gmail.com>
-To: Marc Dionne <marc.c.dionne@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm: Spelling s/randevouz/rendez-vouz/
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RESEND] drm/i915: hide mkwrite_device_info() better
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,61 +57,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui <Xinhui.Pan@amd.com>, Pan@rox.of.borg,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Marc,
+The goal has been to just make device info a pointer to static const
+data, i.e. the static const structs in i915_pci.c. See [1]. However,
+there were issues with intel_device_info_runtime_init() clearing the
+display sub-struct of device info on the !HAS_DISPLAY() path, which
+consequently disables a lot of display functionality, like it
+should. Looks like we'd have to cover all those paths, and maybe
+sprinkle HAS_DISPLAY() checks in them, which we haven't gotten around
+to.
 
-On Tue, Apr 11, 2023 at 12:49=E2=80=AFPM Marc Dionne <marc.c.dionne@gmail.c=
-om> wrote:
-> On Tue, Apr 11, 2023 at 7:44=E2=80=AFAM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> >
-> > Fix a misspelling of "rendez-vouz".
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+In the mean time, hide mkwrite_device_info() better within
+intel_device_info.c by adding a intel_device_info_driver_create() for
+the very early initialization of the device info and initial runtime
+info. This also lets us declutter i915_drv.h a bit, and stops promoting
+mkwrite_device_info() as something that could be used.
 
-> > --- a/include/drm/task_barrier.h
-> > +++ b/include/drm/task_barrier.h
-> > @@ -24,7 +24,7 @@
-> >  #include <linux/atomic.h>
-> >
-> >  /*
-> > - * Reusable 2 PHASE task barrier (randevouz point) implementation for =
-N tasks.
-> > + * Reusable 2 PHASE task barrier (rendez-vouz point) implementation fo=
-r N tasks.
-> >   * Based on the Little book of semaphores - https://greenteapress.com/=
-wp/semaphores/
-> >   */
-> >
-> > --
-> > 2.34.1
->
-> Sorry for the drive by comment, but shouldn't this be "rendez-vous"
-> (with an 's' rather than a 'z')?
+[1] https://lore.kernel.org/r/a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com
 
-Yes it should. Thanks!
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_driver.c       | 12 ++--------
+ drivers/gpu/drm/i915/i915_drv.h          |  7 ------
+ drivers/gpu/drm/i915/intel_device_info.c | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+ 4 files changed, 33 insertions(+), 17 deletions(-)
 
-/me hides in a brown paper bag, under a rock...
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 93fdc40d724f..2980ccdef6cd 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -720,8 +720,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ {
+ 	const struct intel_device_info *match_info =
+ 		(struct intel_device_info *)ent->driver_data;
+-	struct intel_device_info *device_info;
+-	struct intel_runtime_info *runtime;
+ 	struct drm_i915_private *i915;
+ 
+ 	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
+@@ -734,14 +732,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	/* Device parameters start as a copy of module parameters. */
+ 	i915_params_copy(&i915->params, &i915_modparams);
+ 
+-	/* Setup the write-once "constant" device info */
+-	device_info = mkwrite_device_info(i915);
+-	memcpy(device_info, match_info, sizeof(*device_info));
+-
+-	/* Initialize initial runtime info from static const data and pdev. */
+-	runtime = RUNTIME_INFO(i915);
+-	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+-	runtime->device_id = pdev->device;
++	/* Set up device info and initial runtime info. */
++	intel_device_info_driver_create(i915, pdev->device, match_info);
+ 
+ 	return i915;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e771fdc3099c..fe7eeafe9cff 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -931,11 +931,4 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
+ 				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
+ 
+-/* intel_device_info.c */
+-static inline struct intel_device_info *
+-mkwrite_device_info(struct drm_i915_private *dev_priv)
+-{
+-	return (struct intel_device_info *)INTEL_INFO(dev_priv);
+-}
+-
+ #endif
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index fc5cd14adfcc..4e23be2995bf 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -381,6 +381,13 @@ void intel_device_info_runtime_init_early(struct drm_i915_private *i915)
+ 	intel_device_info_subplatform_init(i915);
+ }
+ 
++/* FIXME: Remove this, and make device info a const pointer to rodata. */
++static struct intel_device_info *
++mkwrite_device_info(struct drm_i915_private *i915)
++{
++	return (struct intel_device_info *)INTEL_INFO(i915);
++}
++
+ /**
+  * intel_device_info_runtime_init - initialize runtime info
+  * @dev_priv: the i915 device
+@@ -548,6 +555,28 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
+ }
+ 
++/*
++ * Set up device info and initial runtime info at driver create.
++ *
++ * Note: i915 is only an allocated blob of memory at this point.
++ */
++void intel_device_info_driver_create(struct drm_i915_private *i915,
++				     u16 device_id,
++				     const struct intel_device_info *match_info)
++{
++	struct intel_device_info *info;
++	struct intel_runtime_info *runtime;
++
++	/* Setup the write-once "constant" device info */
++	info = mkwrite_device_info(i915);
++	memcpy(info, match_info, sizeof(*info));
++
++	/* Initialize initial runtime info from static const data and pdev. */
++	runtime = RUNTIME_INFO(i915);
++	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
++	runtime->device_id = device_id;
++}
++
+ void intel_driver_caps_print(const struct intel_driver_caps *caps,
+ 			     struct drm_printer *p)
+ {
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 080a4557899b..f032f2500f50 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -317,6 +317,8 @@ struct intel_driver_caps {
+ 
+ const char *intel_platform_name(enum intel_platform platform);
+ 
++void intel_device_info_driver_create(struct drm_i915_private *i915, u16 device_id,
++				     const struct intel_device_info *match_info);
+ void intel_device_info_runtime_init_early(struct drm_i915_private *dev_priv);
+ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv);
+ 
+-- 
+2.39.2
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
