@@ -1,55 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897896DD5F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 10:51:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DBD66DD611
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 10:59:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053FC10E4F7;
-	Tue, 11 Apr 2023 08:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99FE310E509;
+	Tue, 11 Apr 2023 08:58:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFB3A10E0FA;
- Tue, 11 Apr 2023 08:51:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA1710E509;
+ Tue, 11 Apr 2023 08:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681203098; x=1712739098;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=H6RqyduHXjKcWopslR8l5eoG56+I7TgzshvwiwN56+U=;
- b=Iz08VVpNQeDT1jxO6i7Cei4U6tRu/xFweICCOu8D4dh4V6+gL5Ox7S7B
- zIZALbz0YIQ4FqUe7Ur9j6OAbSsXrFJgBjHpdLBeiTRjKMEpp+1fgtXfm
- hytJyA1ooTdByZjDQuE6QH5lPc2uktd/tp3k+zBUK/kGyvKQPPhtmgLV7
- asPwEv2iHs5GiRAJQ73ey9TGYM29+fZEGr95eWzDSOUSONV+RDYI1d9Dn
- JVWzXJbggy5KA0AC1FulFbDa8+2cYtzBD+AM3txCmkdJCG7r45Ltdv2Pf
- h/+jNUMAKcUCimnJ0Fk1PDqMq06Z2zMcNtOwwVgotfuv1MdsMS0LMS62u Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="327660542"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="327660542"
+ t=1681203538; x=1712739538;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zbOtIQMf42c2SHzFMrB8hRwMktqs8MpIonzBrCcu15Q=;
+ b=O7lwwbZzzexDjpJIxYMZudcIiOq+MxshZUjbJfcZ7YyxsCEty9P1ambJ
+ ws0rotwpcCdMQrcC22wMLYTkKVyWYPKP0gKpQUaDgQZGSaMsYQsP6kAin
+ E9vMYoXRLGjEB7XAsRj+d5pZthLR4DsqJ60lEBR942FVVxEECOjGGhiaw
+ 53fHtesDSANk5VgTo942MDZj9m6kaBINSePkLgArFIonKLuVG+FuLi57v
+ li0Akn5OuUCKf+69vAseFBVFfnjrfk7H5/CKW7pD7h0OGuasEm3ihZSLb
+ i9McIjEDojEJgYi6o54cjjmz/xCjyX2bo31KsCYwThBj7p3aivUbz4xKL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="327661804"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="327661804"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 01:51:38 -0700
+ 11 Apr 2023 01:58:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="682000570"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="682000570"
-Received: from tunterlu-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.56.34])
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="682002558"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="682002558"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.1.115])
+ ([10.213.1.115])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 01:51:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>
-In-Reply-To: <ZDUc1Ya/ybwjo4DC@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230410183219.191543-1-jose.souza@intel.com>
- <ZDUc1Ya/ybwjo4DC@intel.com>
-Date: Tue, 11 Apr 2023 11:51:33 +0300
-Message-ID: <878reyer8q.fsf@intel.com>
+ 11 Apr 2023 01:58:56 -0700
+Message-ID: <3e306d18-de86-8903-2116-6443c26672ab@intel.com>
+Date: Tue, 11 Apr 2023 10:58:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v3 1/6] drm/i915: Initialize
- dkl_phy spin lock from display code path
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.1
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, stable@vger.kernel.org
+References: <20230308094106.203686-1-andi.shyti@linux.intel.com>
+ <20230308094106.203686-2-andi.shyti@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230308094106.203686-2-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 1/5] drm/i915: Throttle for ringspace
+ prior to taking the timeline mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,192 +66,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Apr 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Apr 10, 2023 at 11:32:14AM -0700, Jos=C3=A9 Roberto de Souza wrot=
-e:
->> Start to move the initialization of some lock from
->> i915_driver_early_probe().
->> No dkl function is called prior to intel_setup_outputs(), so this is
->> a good place to initialize it.
->
-> I disagree. We don't want to sprinke these all over the place.
+On 08.03.2023 10:41, Andi Shyti wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> Before taking exclusive ownership of the ring for emitting the request,
+> wait for space in the ring to become available. This allows others to
+> take the timeline->mutex to make forward progresses while userspace is
+> blocked.
+> 
+> In particular, this allows regular clients to issue requests on the
+> kernel context, potentially filling the ring, but allow the higher
+> priority heartbeats and pulses to still be submitted without being
+> blocked by the less critical work.
+> 
+> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-I'm thinking if only foo.c uses a lock, foo.c should initialize it, not
-someone else.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-BR,
-Jani.
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c | 41 +++++++++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_context.h |  2 ++
+>   drivers/gpu/drm/i915/i915_request.c     |  3 ++
+>   3 files changed, 46 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 2aa63ec521b89..59cd612a23561 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -626,6 +626,47 @@ bool intel_context_revoke(struct intel_context *ce)
+>   	return ret;
+>   }
+>   
+> +int intel_context_throttle(const struct intel_context *ce)
+> +{
+> +	const struct intel_ring *ring = ce->ring;
+> +	const struct intel_timeline *tl = ce->timeline;
+> +	struct i915_request *rq;
+> +	int err = 0;
+> +
+> +	if (READ_ONCE(ring->space) >= SZ_1K)
+> +		return 0;
+> +
+> +	rcu_read_lock();
+> +	list_for_each_entry_reverse(rq, &tl->requests, link) {
+> +		if (__i915_request_is_complete(rq))
+> +			break;
+> +
+> +		if (rq->ring != ring)
+> +			continue;
+> +
+> +		/* Wait until there will be enough space following that rq */
+> +		if (__intel_ring_space(rq->postfix,
+> +				       ring->emit,
+> +				       ring->size) < ring->size / 2) {
+> +			if (i915_request_get_rcu(rq)) {
+> +				rcu_read_unlock();
+> +
+> +				if (i915_request_wait(rq,
+> +						      I915_WAIT_INTERRUPTIBLE,
+> +						      MAX_SCHEDULE_TIMEOUT) < 0)
+> +					err = -EINTR;
+> +
+> +				rcu_read_lock();
+> +				i915_request_put(rq);
+> +			}
+> +			break;
+> +		}
+> +	}
+> +	rcu_read_unlock();
+> +
+> +	return err;
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>   #include "selftest_context.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 0a8d553da3f43..f919a66cebf5b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -226,6 +226,8 @@ static inline void intel_context_exit(struct intel_context *ce)
+>   		ce->ops->exit(ce);
+>   }
+>   
+> +int intel_context_throttle(const struct intel_context *ce);
+> +
+>   static inline struct intel_context *intel_context_get(struct intel_context *ce)
+>   {
+>   	kref_get(&ce->ref);
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 630a732aaecca..72aed544f8714 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1034,6 +1034,9 @@ i915_request_create(struct intel_context *ce)
+>   	struct i915_request *rq;
+>   	struct intel_timeline *tl;
+>   
+> +	if (intel_context_throttle(ce))
+> +		return ERR_PTR(-EINTR);
+> +
+>   	tl = intel_context_timeline_lock(ce);
+>   	if (IS_ERR(tl))
+>   		return ERR_CAST(tl);
 
-
-
->
->> This will also fix a warning in Xe kmd:
->>=20
->> [  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed t=
-o retrieve link info, disabling eDP
->> [  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
->> [  202.175346] INFO: trying to register non-static key.
->> [  202.175347] irq event stamp: 754060
->> [  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] =
-tick_nohz_idle_enter+0x59/0x80
->> [  202.180294] The code is fine but needs lockdep annotation, or maybe
->> [  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] =
-do_idle+0x99/0x230
->> [  202.192734] you didn't initialize this object before use?
->> [  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] =
-irq_exit_rcu+0xbe/0x130
->> [  202.206882] turning off the locking correctness validator.
->> [  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] =
-irq_exit_rcu+0xbe/0x130
->> [  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W      =
-    6.3.0-rc4+zeh-xe+ #909
->> [  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platf=
-orm/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
->> [  202.255737] Call Trace:
->> [  202.258179]  <TASK>
->> [  202.260275]  dump_stack_lvl+0x58/0xc0
->> [  202.263922]  register_lock_class+0x756/0x7d0
->> [  202.268165]  ? find_held_lock+0x2b/0x80
->> [  202.271975]  __lock_acquire+0x72/0x28b0
->> [  202.275786]  ? debug_object_free+0xb4/0x160
->> [  202.279946]  lock_acquire+0xd1/0x2d0
->> [  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->> [  202.288181]  _raw_spin_lock+0x2a/0x40
->> [  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->> [  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
->> [  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
->> [  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
->> [  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
->> [  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
->> [  202.323812]  intel_display_power_get+0x43/0x70 [xe]
->> [  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
->> [  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
->> [  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
->> [  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
->> [  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
->> [  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
->> [  202.356260]  pci_device_probe+0x9d/0x150
->> [  202.360164]  really_probe+0x19a/0x400
->> [  202.363809]  ? __pfx___driver_attach+0x10/0x10
->> [  202.368226]  __driver_probe_device+0x73/0x170
->> [  202.372558]  driver_probe_device+0x1a/0x90
->> [  202.376632]  __driver_attach+0xcd/0x1c0
->> [  202.380442]  bus_for_each_dev+0x72/0xc0
->> [  202.384253]  bus_add_driver+0x110/0x210
->> [  202.388063]  driver_register+0x50/0x100
->> [  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
->> [  202.396431]  do_one_initcall+0x55/0x260
->> [  202.400245]  ? rcu_is_watching+0xd/0x40
->> [  202.404058]  ? kmalloc_trace+0xa0/0xb0
->> [  202.407786]  do_init_module+0x45/0x1e0
->> [  202.411512]  __do_sys_finit_module+0xac/0x120
->> [  202.415838]  do_syscall_64+0x37/0x90
->> [  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
->> [  202.424409] RIP: 0033:0x7fd11291ea3d
->> [  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa =
-48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 =
-<48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
->> [  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 000=
-0000000000139
->> [  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd1=
-1291ea3d
->> [  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 00000000=
-0000000e
->> [  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 00000000=
-00000002
->> [  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616=
-a617fe60
->> [  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616=
-a6180650
->> [  202.489396]  </TASK>
->>=20
->> Cc: intel-gfx@lists.freedesktop.org
->> Cc: intel-xe@lists.freedesktop.org
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
->>  drivers/gpu/drm/i915/display/intel_dkl_phy.c | 6 ++++++
->>  drivers/gpu/drm/i915/display/intel_dkl_phy.h | 2 ++
->>  drivers/gpu/drm/i915/i915_driver.c           | 1 -
->>  4 files changed, 11 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
-drm/i915/display/intel_display.c
->> index 24c96f388d521..cf3a3b3afdd13 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -83,6 +83,7 @@
->>  #include "intel_display_debugfs.h"
->>  #include "intel_display_power.h"
->>  #include "intel_display_types.h"
->> +#include "intel_dkl_phy.h"
->>  #include "intel_dmc.h"
->>  #include "intel_dp.h"
->>  #include "intel_dp_link_training.h"
->> @@ -7883,6 +7884,8 @@ static void intel_setup_outputs(struct drm_i915_pr=
-ivate *dev_priv)
->>  	if (!HAS_DISPLAY(dev_priv))
->>  		return;
->>=20=20
->> +	intel_dkl_phy_init(dev_priv);
->> +
->>  	if (IS_DG2(dev_priv)) {
->>  		intel_ddi_init(dev_priv, PORT_A);
->>  		intel_ddi_init(dev_priv, PORT_B);
->> diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/=
-drm/i915/display/intel_dkl_phy.c
->> index 57cc3edba0163..5bce7b5b27bc7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
->> @@ -104,3 +104,9 @@ intel_dkl_phy_posting_read(struct drm_i915_private *=
-i915, struct intel_dkl_phy_r
->>=20=20
->>  	spin_unlock(&i915->display.dkl.phy_lock);
->>  }
->> +
->> +void
->> +intel_dkl_phy_init(struct drm_i915_private *i915)
->> +{
->> +	spin_lock_init(&i915->display.dkl.phy_lock);
->> +}
->> diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/=
-drm/i915/display/intel_dkl_phy.h
->> index 570ee36f9386f..615429b6392c5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
->> @@ -20,5 +20,7 @@ void
->>  intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_r=
-eg reg, u32 clear, u32 set);
->>  void
->>  intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_=
-dkl_phy_reg reg);
->> +void
->> +intel_dkl_phy_init(struct drm_i915_private *i915);
->>=20=20
->>  #endif /* __INTEL_DKL_PHY_H__ */
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i=
-915_driver.c
->> index 066d79c2069c4..6fe1a97cc246d 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -224,7 +224,6 @@ static int i915_driver_early_probe(struct drm_i915_p=
-rivate *dev_priv)
->>  	mutex_init(&dev_priv->display.wm.wm_mutex);
->>  	mutex_init(&dev_priv->display.pps.mutex);
->>  	mutex_init(&dev_priv->display.hdcp.comp_mutex);
->> -	spin_lock_init(&dev_priv->display.dkl.phy_lock);
->>=20=20
->>  	i915_memcpy_init_early(dev_priv);
->>  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
->> --=20
->> 2.40.0
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
