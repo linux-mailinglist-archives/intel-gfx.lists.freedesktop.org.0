@@ -1,87 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7408D6EAC5D
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:10:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCE06DE024
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 17:58:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3219310EE41;
-	Fri, 21 Apr 2023 14:10:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50A8110E5A8;
+	Tue, 11 Apr 2023 15:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83BBB10E24B
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 15:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1681228462;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/ZNXveaGk5HLYRGMQ5DuVUz0xA+shHaKeZZfqAaQ1fA=;
- b=BNhSoKSX4kt0GfPp04g7QEZ3atp4QmXRRd7O7SMNnkfQxd7pfbW5D6us3kpyERkRsc7w09
- EUZNbp/yWi26eVFipBrdW3rsOX8CijjDeMNplrStBpd2oq1OiOoUEF5OGDDs9uLRA4fhd6
- ajX5CcD6bbAE3Uuzxm89xM7+0i1E/Sk=
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-641-hcaQXXKfNmO6hyHwciXj1Q-1; Tue, 11 Apr 2023 11:54:21 -0400
-X-MC-Unique: hcaQXXKfNmO6hyHwciXj1Q-1
-Received: by mail-il1-f197.google.com with SMTP id
- z13-20020a056e02088d00b00326098d01d9so2229361ils.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 08:54:21 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
+ [209.85.128.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B6B10E37F;
+ Tue, 11 Apr 2023 15:58:02 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-5491fa028adso489769007b3.10; 
+ Tue, 11 Apr 2023 08:58:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681228460; x=1683820460;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20210112; t=1681228680;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=/ZNXveaGk5HLYRGMQ5DuVUz0xA+shHaKeZZfqAaQ1fA=;
- b=M1Ps2dNZMgwpgRbvG2xMA57eXCoSK7Gyc81srTCKHmW6NYGiHc/7Cp1m18HSldu60m
- tQuTWoXqKEZoxg1BpvOhh6SniGbllAqDmTeDOzA/E/MOkN1/TKhY5E/VQf3kX03WeOTw
- BIF7G/3R6AofdZhBGHcWt+oXEiYYUiHhh+UQtAOEYtlhNZbQShVbwSy7IW50nmZpzTVi
- 5bKFwZL7F9Jo4Nx/c3Qe4mn4uWBqD2PiSlrbghvxFwCFsUcXdp31KQZxac+Y+fUpqGjy
- s0LAKLbtHtVQNkgHBbzEPaZwtYBhH3XgTwVTMN8tQam2RQttuBQ6xNf162l561r/vV99
- NRXQ==
-X-Gm-Message-State: AAQBX9e8WzIcCRBs0SzvyGvR5SjrYUKHaB++qYH5Ppgye32O1Rov+43S
- 2QPcuBuZHQxyY8jmMK5MHz1aTdaoquqryh5W1qvQDjRpIzIPYHVh1agfH8SxRyDbutsdbtZFfNj
- RC9RVT9nd6y99OQhfufRerj4KVk7x
-X-Received: by 2002:a5d:8049:0:b0:755:7b0c:6042 with SMTP id
- b9-20020a5d8049000000b007557b0c6042mr7337142ior.2.1681228460146; 
- Tue, 11 Apr 2023 08:54:20 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bepyJTwaOkf+4bun1jkCJ259CNjNpHAeiIFiEnDDgFrMXPzn9WkVq9ZUWW34H3c+QFW6tIYQ==
-X-Received: by 2002:a5d:8049:0:b0:755:7b0c:6042 with SMTP id
- b9-20020a5d8049000000b007557b0c6042mr7337124ior.2.1681228459808; 
- Tue, 11 Apr 2023 08:54:19 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- r17-20020a056638131100b003eb3be5601csm4105422jad.174.2023.04.11.08.54.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Apr 2023 08:54:18 -0700 (PDT)
-Date: Tue, 11 Apr 2023 09:54:17 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20230411095417.240bac39.alex.williamson@redhat.com>
-In-Reply-To: <ZDVfqpOCnImKr//m@nvidia.com>
-References: <20230405102545.41a61424.alex.williamson@redhat.com>
- <ZC2jsQuWiMYM6JZb@nvidia.com>
- <20230405105215.428fa9f5.alex.williamson@redhat.com>
- <ZC2un1LaTUR1OrrJ@nvidia.com>
- <20230405125621.4627ca19.alex.williamson@redhat.com>
- <ZC3KJUxJa0O0M+9O@nvidia.com>
- <20230405134945.29e967be.alex.williamson@redhat.com>
- <ZC4CwH2ouTfZ9DNN@nvidia.com>
- <DS0PR11MB75292DA91ED15AE94A85EB3DC3919@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230406115347.7af28448.alex.williamson@redhat.com>
- <ZDVfqpOCnImKr//m@nvidia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+ bh=f+3w89leq3eEIkwoZcDVhq9F0DoH4q/Sj2floJIfCG0=;
+ b=nbG6FGyfIyP9Z+C29I6hztMKGubg9X3ytmJtrpsh7upKQW2l3WsoGkKUDNujNPSdhr
+ OCF6IE/fcMcAdSWbD5oqulccMZWb9KNe+CijMYFugk3y0XIHyh6Paw8oz9lGMCbh8WQT
+ qQfTdXq9RM7ILwL/75IrZgSxZPL3pmtQhBQEnAG+LwWc8KwYDxGHyszgHSYpT9lWb2/S
+ zvfNtO9guqNWWKcfRgZ2+4yVQtjmGxlkISWvrAmjmZ2/aCQ4Q2BJ891Dg57VRu2lmGNa
+ KRmx+WYHH4wtdcYJdV2t9QCKDe9y4fmfgeIl2f62oMiuQ9JT4g4JDH5o7ZuEm/38Xw9j
+ jlIQ==
+X-Gm-Message-State: AAQBX9d3WI14JD1V6hg60UnKHE1KaYo5JPO74mQemzx9icEKWfNt3K00
+ CXDWj+W7Qc674s9iZ8o3rvrMPHajEnj0EA==
+X-Google-Smtp-Source: AKy350YLQGCcnAD5Owu02qeMWZr/5RVA9DuDqjCD0v+1mJTXI/cApxKS/N71bNAVGwLhqvsqHIoE6w==
+X-Received: by 2002:a0d:d413:0:b0:54c:cab:66d8 with SMTP id
+ w19-20020a0dd413000000b0054c0cab66d8mr2666786ywd.31.1681228680420; 
+ Tue, 11 Apr 2023 08:58:00 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com.
+ [209.85.219.175]) by smtp.gmail.com with ESMTPSA id
+ a71-20020a811a4a000000b0054640a352f2sm3548523ywa.20.2023.04.11.08.57.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 11 Apr 2023 08:57:58 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id ch3so9764594ybb.4;
+ Tue, 11 Apr 2023 08:57:58 -0700 (PDT)
+X-Received: by 2002:a25:7654:0:b0:b8e:e0db:5b9d with SMTP id
+ r81-20020a257654000000b00b8ee0db5b9dmr4304677ybc.12.1681228677832; Tue, 11
+ Apr 2023 08:57:57 -0700 (PDT)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:20 +0000
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+References: <20230404193934.472457-1-daniel.vetter@ffwll.ch>
+ <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
+In-Reply-To: <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 11 Apr 2023 17:57:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUVME6RnXkq-0FsUdH6-hqe5BqeT2UzgtW1uK+sg0GsQg@mail.gmail.com>
+Message-ID: <CAMuHMdUVME6RnXkq-0FsUdH6-hqe5BqeT2UzgtW1uK+sg0GsQg@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] fbmem: Reject FB_ACTIVATE_KD_TEXT from
+ userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,84 +69,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yanting@freedesktop.org,
-	"mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
-	"jasowang@redhat.com" <jasowang@redhat.com>,
-	"peterx@redhat.com" <peterx@redhat.com>,
-	"  <lulu@redhat.com>, "@freedesktop.org,
-	suravee.suthikulpanit@amd.com,
-	"chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
-	"Liu,  Yi L" <yi.l.liu@intel.com>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"joro@8bytes.org" <joro@8bytes.org>, Yan@freedesktop.org,
-	"nicolinc@nvidia.com" <nicolinc@nvidia.com>,
-	"     <intel-gvt-dev@lists.freedesktop.org>,  "@freedesktop.org,
-	intel-gfx@lists.freedesktop.org, <linux-s390@vger.kernel.org>, ,
-	Xudong@freedesktop.org, Zhenzhong@freedesktop.org,
-	"  <suravee.suthikulpanit@amd.com>, "@freedesktop.org,
-	intel-gvt-dev@lists.freedesktop.org,,
-	" <intel-gfx@lists.freedesktop.org>,   "@freedesktop.org,
-	linux-s390@vger.kernel.org, Terrence@freedesktop.org,
-	"yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
-	"eric.auger@redhat.com" <eric.auger@redhat.com>,
-	"cohuck@redhat.com" <cohuck@redhat.com>,
-	"robin.murphy@arm.com" <robin.murphy@arm.com>,
-	"shameerali.kolothum.thodi@huawei.com\"          <shameerali.kolothum.thodi@huawei.com>, "@freedesktop.org,
-	lulu@redhat.com
+Cc: linux-fbdev@vger.kernel.org, Shigeru Yoshida <syoshida@redhat.com>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Helge Deller <deller@gmx.de>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Samuel Thibault <samuel.thibault@ens-lyon.org>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, shlomo@fastmail.com,
+ Nathan Chancellor <natechancellor@gmail.com>, stable@vger.kernel.org,
+ =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>, Peter Rosin <peda@axentia.se>,
+ Qiujun Huang <hqjagain@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Apr 2023 10:24:58 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
+Hi Daniel,
 
-> On Thu, Apr 06, 2023 at 11:53:47AM -0600, Alex Williamson wrote:
-> 
-> > Where whether a device is opened is subject to change outside of the
-> > user's control.  This essentially allows the user to perform hot-resets
-> > of devices outside of their ownership so long as the device is not
-> > used elsewhere, versus the current requirement that the user own all the
-> > affected groups, which implies device ownership.  It's not been
-> > justified why this feature needs to exist, imo.  
-> 
-> The cdev API doesn't have the notion that owning a group means you
-> "own" some collection of devices. It still happens as a side effect,
-> but it isn't obviously part of the API. I'm really loath to
-> re-introduce that group-based concept just for this. We are trying
-> reduce the group API surface.
-> 
-> How about a different direction.
-> 
-> We add a new uAPI for cdev mode that is "take ownership of the reset
-> group". Maybe it can be a flag in during bind.
-> 
-> When requested vfio will ensure that every device in the reset group
-> is only bound to this iommufd_ctx or left closed. Now and in the
-> future. Since no-iommu has no iommufd_ctx this means we can open only
-> one device in the reset group.
-> 
-> With this flag RESET is guaranteed to always work by definition.
-> 
-> We continue with the zero-length FD, but we can just replace the
-> security checks with a check if we are in reset group ownership mode.
-> 
-> _INFO is unchanged.
-> 
-> We decide if we add a new IOCTL to return the BDF so the existing
-> _INFO can get back to the dev_id or a new IOCTL that returns the
-> dev_id list of the reset group.
-> 
-> Userspace is required to figure out the extent of the reset, but we
-> don't require that userspace prove to the kernel it did this when
-> requesting the reset.
+On Tue, Apr 11, 2023 at 3:44=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> wro=
+te:
+> On Tue, Apr 04, 2023 at 09:39:34PM +0200, Daniel Vetter wrote:
+> > This is an oversight from dc5bdb68b5b3 ("drm/fb-helper: Fix vt
+> > restore") - I failed to realize that nasty userspace could set this.
+> >
+> > It's not pretty to mix up kernel-internal and userspace uapi flags
+> > like this, but since the entire fb_var_screeninfo structure is uapi
+> > we'd need to either add a new parameter to the ->fb_set_par callback
+> > and fb_set_par() function, which has a _lot_ of users. Or some other
+> > fairly ugly side-channel int fb_info. Neither is a pretty prospect.
+> >
+> > Instead just correct the issue at hand by filtering out this
+> > kernel-internal flag in the ioctl handling code.
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Fixes: dc5bdb68b5b3 ("drm/fb-helper: Fix vt restore")
 
-Take for example a multi-function PCIe device with ACS isolation between
-functions, are you going to allow a user who has only been granted
-ownership of a subset of functions control of the entire dev_set?  It
-seems this proposal essentially extends the ownership model to the
-greater of the dev_set or iommu group, apparently neither of which are
-explicitly exposed to the user in the cdev API.  How does a user
-determine when devices cannot be used independently in the cdev API?
-Thanks,
+> An Ack on this (or a better idea) would be great, so I can stuff it into
+> -fixes.
 
-Alex
+I don't understand what the original commit this fixes is doing anyway...
 
+> > --- a/drivers/video/fbdev/core/fbmem.c
+> > +++ b/drivers/video/fbdev/core/fbmem.c
+> > @@ -1116,6 +1116,8 @@ static long do_fb_ioctl(struct fb_info *info, uns=
+igned int cmd,
+> >       case FBIOPUT_VSCREENINFO:
+> >               if (copy_from_user(&var, argp, sizeof(var)))
+> >                       return -EFAULT;
+> > +             /* only for kernel-internal use */
+> > +             var.activate &=3D ~FB_ACTIVATE_KD_TEXT;
+> >               console_lock();
+> >               lock_fb_info(info);
+> >               ret =3D fbcon_modechange_possible(info, &var);
+
+Perhaps FB_ACTIVATE_KD_TEXT should be removed (marked as
+reserved) from include/uapi/linux/fb.h, too?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
