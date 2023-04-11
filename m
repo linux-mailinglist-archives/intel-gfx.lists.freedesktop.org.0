@@ -2,58 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBD66DD611
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 10:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E54CB6DD658
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 11:12:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99FE310E509;
-	Tue, 11 Apr 2023 08:58:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37B5E10E503;
+	Tue, 11 Apr 2023 09:12:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA1710E509;
- Tue, 11 Apr 2023 08:58:58 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7F8910E503;
+ Tue, 11 Apr 2023 09:12:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681203538; x=1712739538;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zbOtIQMf42c2SHzFMrB8hRwMktqs8MpIonzBrCcu15Q=;
- b=O7lwwbZzzexDjpJIxYMZudcIiOq+MxshZUjbJfcZ7YyxsCEty9P1ambJ
- ws0rotwpcCdMQrcC22wMLYTkKVyWYPKP0gKpQUaDgQZGSaMsYQsP6kAin
- E9vMYoXRLGjEB7XAsRj+d5pZthLR4DsqJ60lEBR942FVVxEECOjGGhiaw
- 53fHtesDSANk5VgTo942MDZj9m6kaBINSePkLgArFIonKLuVG+FuLi57v
- li0Akn5OuUCKf+69vAseFBVFfnjrfk7H5/CKW7pD7h0OGuasEm3ihZSLb
- i9McIjEDojEJgYi6o54cjjmz/xCjyX2bo31KsCYwThBj7p3aivUbz4xKL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="327661804"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="327661804"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 01:58:58 -0700
+ t=1681204328; x=1712740328;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AIDc0YT+U1vB3MHOuWlo4z1Lxd76Qa7SrvgmuupGqXc=;
+ b=KkOXqOlM8IqTGcE9E9/Sgm4llv6m6krYXuNJkVAnSH0Y9qNgtCS/3W4u
+ LLy+ssGnysFlOKlx3DpaCEtYRc5xDfRJvyE4XFgg1qOR9g8UN8TNwoZZD
+ u4AYzo6IWsXWB4xRyx9jSPr7/bPmiTegazX2ZnNEawcXjvlmH99U5BJV9
+ UFj99zxgeaeLuGYRQ++7RaOQbun1Na+tn/ZavKOWYtVdFZx11ZXF/Z5LP
+ ucIrFuqvQlV8nzteVaj1aPgtYRIKnJtXrRwSIGunsCvb1eDy/gy9PZK0X
+ mi0gnrpsBRHKS3vFehNGRnMsC9MGlNLnlfKCNKhQphebxZWr6IYWh/gjJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="343568444"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="343568444"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2023 02:12:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="682002558"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="682002558"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.1.115])
- ([10.213.1.115])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 01:58:56 -0700
-Message-ID: <3e306d18-de86-8903-2116-6443c26672ab@intel.com>
-Date: Tue, 11 Apr 2023 10:58:53 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="753067121"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="753067121"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga008.fm.intel.com with SMTP; 11 Apr 2023 02:12:05 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 11 Apr 2023 12:12:04 +0300
+Date: Tue, 11 Apr 2023 12:12:04 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZDUkZKotRVT0bxga@intel.com>
+References: <20230410183219.191543-1-jose.souza@intel.com>
+ <ZDUc1Ya/ybwjo4DC@intel.com> <878reyer8q.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-References: <20230308094106.203686-1-andi.shyti@linux.intel.com>
- <20230308094106.203686-2-andi.shyti@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230308094106.203686-2-andi.shyti@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 1/5] drm/i915: Throttle for ringspace
- prior to taking the timeline mutex
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <878reyer8q.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v3 1/6] drm/i915: Initialize
+ dkl_phy spin lock from display code path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,117 +62,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>, Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 08.03.2023 10:41, Andi Shyti wrote:
-> From: Chris Wilson <chris@chris-wilson.co.uk>
+On Tue, Apr 11, 2023 at 11:51:33AM +0300, Jani Nikula wrote:
+> On Tue, 11 Apr 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Mon, Apr 10, 2023 at 11:32:14AM -0700, José Roberto de Souza wrote:
+> >> Start to move the initialization of some lock from
+> >> i915_driver_early_probe().
+> >> No dkl function is called prior to intel_setup_outputs(), so this is
+> >> a good place to initialize it.
+> >
+> > I disagree. We don't want to sprinke these all over the place.
 > 
-> Before taking exclusive ownership of the ring for emitting the request,
-> wait for space in the ring to become available. This allows others to
-> take the timeline->mutex to make forward progresses while userspace is
-> blocked.
-> 
-> In particular, this allows regular clients to issue requests on the
-> kernel context, potentially filling the ring, but allow the higher
-> priority heartbeats and pulses to still be submitted without being
-> blocked by the less critical work.
-> 
-> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> I'm thinking if only foo.c uses a lock, foo.c should initialize it, not
+> someone else.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Perhaps. But I think there should be some consistent place in the higher
+level code where all such things get called instead of dropping each one
+individually into some random spot in the overlall display init flow.
 
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/i915/gt/intel_context.c | 41 +++++++++++++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_context.h |  2 ++
->   drivers/gpu/drm/i915/i915_request.c     |  3 ++
->   3 files changed, 46 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> index 2aa63ec521b89..59cd612a23561 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> @@ -626,6 +626,47 @@ bool intel_context_revoke(struct intel_context *ce)
->   	return ret;
->   }
->   
-> +int intel_context_throttle(const struct intel_context *ce)
-> +{
-> +	const struct intel_ring *ring = ce->ring;
-> +	const struct intel_timeline *tl = ce->timeline;
-> +	struct i915_request *rq;
-> +	int err = 0;
-> +
-> +	if (READ_ONCE(ring->space) >= SZ_1K)
-> +		return 0;
-> +
-> +	rcu_read_lock();
-> +	list_for_each_entry_reverse(rq, &tl->requests, link) {
-> +		if (__i915_request_is_complete(rq))
-> +			break;
-> +
-> +		if (rq->ring != ring)
-> +			continue;
-> +
-> +		/* Wait until there will be enough space following that rq */
-> +		if (__intel_ring_space(rq->postfix,
-> +				       ring->emit,
-> +				       ring->size) < ring->size / 2) {
-> +			if (i915_request_get_rcu(rq)) {
-> +				rcu_read_unlock();
-> +
-> +				if (i915_request_wait(rq,
-> +						      I915_WAIT_INTERRUPTIBLE,
-> +						      MAX_SCHEDULE_TIMEOUT) < 0)
-> +					err = -EINTR;
-> +
-> +				rcu_read_lock();
-> +				i915_request_put(rq);
-> +			}
-> +			break;
-> +		}
-> +	}
-> +	rcu_read_unlock();
-> +
-> +	return err;
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->   #include "selftest_context.c"
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> index 0a8d553da3f43..f919a66cebf5b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> @@ -226,6 +226,8 @@ static inline void intel_context_exit(struct intel_context *ce)
->   		ce->ops->exit(ce);
->   }
->   
-> +int intel_context_throttle(const struct intel_context *ce);
-> +
->   static inline struct intel_context *intel_context_get(struct intel_context *ce)
->   {
->   	kref_get(&ce->ref);
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 630a732aaecca..72aed544f8714 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -1034,6 +1034,9 @@ i915_request_create(struct intel_context *ce)
->   	struct i915_request *rq;
->   	struct intel_timeline *tl;
->   
-> +	if (intel_context_throttle(ce))
-> +		return ERR_PTR(-EINTR);
-> +
->   	tl = intel_context_timeline_lock(ce);
->   	if (IS_ERR(tl))
->   		return ERR_CAST(tl);
-
+-- 
+Ville Syrjälä
+Intel
