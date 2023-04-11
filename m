@@ -2,61 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCE06DE024
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 17:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E29CF6DE0D9
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 18:19:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50A8110E5A8;
-	Tue, 11 Apr 2023 15:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080F110E5A8;
+	Tue, 11 Apr 2023 16:19:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B6B10E37F;
- Tue, 11 Apr 2023 15:58:02 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-5491fa028adso489769007b3.10; 
- Tue, 11 Apr 2023 08:58:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681228680;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=f+3w89leq3eEIkwoZcDVhq9F0DoH4q/Sj2floJIfCG0=;
- b=nbG6FGyfIyP9Z+C29I6hztMKGubg9X3ytmJtrpsh7upKQW2l3WsoGkKUDNujNPSdhr
- OCF6IE/fcMcAdSWbD5oqulccMZWb9KNe+CijMYFugk3y0XIHyh6Paw8oz9lGMCbh8WQT
- qQfTdXq9RM7ILwL/75IrZgSxZPL3pmtQhBQEnAG+LwWc8KwYDxGHyszgHSYpT9lWb2/S
- zvfNtO9guqNWWKcfRgZ2+4yVQtjmGxlkISWvrAmjmZ2/aCQ4Q2BJ891Dg57VRu2lmGNa
- KRmx+WYHH4wtdcYJdV2t9QCKDe9y4fmfgeIl2f62oMiuQ9JT4g4JDH5o7ZuEm/38Xw9j
- jlIQ==
-X-Gm-Message-State: AAQBX9d3WI14JD1V6hg60UnKHE1KaYo5JPO74mQemzx9icEKWfNt3K00
- CXDWj+W7Qc674s9iZ8o3rvrMPHajEnj0EA==
-X-Google-Smtp-Source: AKy350YLQGCcnAD5Owu02qeMWZr/5RVA9DuDqjCD0v+1mJTXI/cApxKS/N71bNAVGwLhqvsqHIoE6w==
-X-Received: by 2002:a0d:d413:0:b0:54c:cab:66d8 with SMTP id
- w19-20020a0dd413000000b0054c0cab66d8mr2666786ywd.31.1681228680420; 
- Tue, 11 Apr 2023 08:58:00 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com.
- [209.85.219.175]) by smtp.gmail.com with ESMTPSA id
- a71-20020a811a4a000000b0054640a352f2sm3548523ywa.20.2023.04.11.08.57.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 11 Apr 2023 08:57:58 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id ch3so9764594ybb.4;
- Tue, 11 Apr 2023 08:57:58 -0700 (PDT)
-X-Received: by 2002:a25:7654:0:b0:b8e:e0db:5b9d with SMTP id
- r81-20020a257654000000b00b8ee0db5b9dmr4304677ybc.12.1681228677832; Tue, 11
- Apr 2023 08:57:57 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83DC110E59C;
+ Tue, 11 Apr 2023 16:19:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681229954; x=1712765954;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ebv4X64ieNfiXnAWTir2mKL5gEmR+YcgoH8Y0iy78V4=;
+ b=gOL7cIorWSqg18rC86I/6csjeglqX4LsG9n/wlwgATswQCmXf6KSQnmd
+ rL0A39zYDOvSvz/eeWc3JZTNwmg9r1pTQSwiWACgEc16Lsp9AvWx9Ttol
+ hNy3W/WFIF662TgevCz1nut/V/orrrY5EG2pJl0mBTNCefBFPF7q2+Qim
+ TBViPIzuvAt2Z5QjeHRqOMPuK5WdVMzFwO37zM1BWSY5RTP4ii4siw5am
+ nPeMcpICC3UGsRWomqJgwGZZHJXwrxHnELI3ggEt4RJ2seHkHoCP90QGf
+ yKB7M2zXAggv3wlb1eX3eDJ0fiiMAHqO8+JQrEm4HVpYnS10i7wjJfwhE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="345452834"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="345452834"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2023 09:19:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="688634389"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="688634389"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2023 09:19:13 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: igt-dev@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Date: Tue, 11 Apr 2023 09:19:06 -0700
+Message-Id: <168122983958.3152898.432397312184705707.b4-ty@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230404170737.1856619-1-lucas.demarchi@intel.com>
+References: <20230404170737.1856619-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-References: <20230404193934.472457-1-daniel.vetter@ffwll.ch>
- <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
-In-Reply-To: <ZDVkSaskEvwix8Bz@phenom.ffwll.local>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 11 Apr 2023 17:57:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUVME6RnXkq-0FsUdH6-hqe5BqeT2UzgtW1uK+sg0GsQg@mail.gmail.com>
-Message-ID: <CAMuHMdUVME6RnXkq-0FsUdH6-hqe5BqeT2UzgtW1uK+sg0GsQg@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] fbmem: Reject FB_ACTIVATE_KD_TEXT from
- userspace
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH i-g-t v2] tools: Add tool to dump
+ GuC/HuC CSS header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,75 +59,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Shigeru Yoshida <syoshida@redhat.com>,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Samuel Thibault <samuel.thibault@ens-lyon.org>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, shlomo@fastmail.com,
- Nathan Chancellor <natechancellor@gmail.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>, Peter Rosin <peda@axentia.se>,
- Qiujun Huang <hqjagain@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
 
-On Tue, Apr 11, 2023 at 3:44=E2=80=AFPM Daniel Vetter <daniel@ffwll.ch> wro=
-te:
-> On Tue, Apr 04, 2023 at 09:39:34PM +0200, Daniel Vetter wrote:
-> > This is an oversight from dc5bdb68b5b3 ("drm/fb-helper: Fix vt
-> > restore") - I failed to realize that nasty userspace could set this.
-> >
-> > It's not pretty to mix up kernel-internal and userspace uapi flags
-> > like this, but since the entire fb_var_screeninfo structure is uapi
-> > we'd need to either add a new parameter to the ->fb_set_par callback
-> > and fb_set_par() function, which has a _lot_ of users. Or some other
-> > fairly ugly side-channel int fb_info. Neither is a pretty prospect.
-> >
-> > Instead just correct the issue at hand by filtering out this
-> > kernel-internal flag in the ioctl handling code.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Fixes: dc5bdb68b5b3 ("drm/fb-helper: Fix vt restore")
+On Tue, 04 Apr 2023 10:07:37 -0700, Lucas De Marchi wrote:
+> Since we are now using unversioned GuC/HuC, it's useful to be able to
+> dump the firmware blob and get that information from the CSS header.
+> Add a tool that decodes that information and dumps the raw header.
+> 
+> Example output:
+> 
+> 	$ tools/intel-gfx-fw-info /lib/firmware/i915/tgl_guc_70.bin
+> 	version: 70.5.1
+> 	date: 2022-09-09
+> 	raw dump:
+> 	00000000  06 00 00 00 a1 00 00 00  00 00 01 00 00 00 00 00   ................
+> 	00000010  86 80 00 00 09 09 22 20  71 17 01 00 40 00 00 00   ......" q...@...
+> 	00000020  40 00 00 00 01 00 00 00  09 21 45 00 73 79 73 5f   @........!E.sys_
+> 	00000030  67 62 73 62 50 43 2d 31  2e 30 2e 33 31 35 30 00   gbsbPC-1.0.3150.
+> 	00000040  01 05 46 00 00 00 00 00  00 00 00 00 00 00 00 00   ..F.............
+> 	00000050  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
+> 	00000060  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
+> 	00000070  00 00 00 00 00 00 00 00  00 10 80 00 00 01 40 00   ..............@.
+> 
+> [...]
 
-> An Ack on this (or a better idea) would be great, so I can stuff it into
-> -fixes.
+Applied, thanks for the reviews.
 
-I don't understand what the original commit this fixes is doing anyway...
+[1/1] tools: Add tool to dump GuC/HuC CSS header
+      commit: 2da179d399d83a6859a89176d83b7ec1d71fe27a
 
-> > --- a/drivers/video/fbdev/core/fbmem.c
-> > +++ b/drivers/video/fbdev/core/fbmem.c
-> > @@ -1116,6 +1116,8 @@ static long do_fb_ioctl(struct fb_info *info, uns=
-igned int cmd,
-> >       case FBIOPUT_VSCREENINFO:
-> >               if (copy_from_user(&var, argp, sizeof(var)))
-> >                       return -EFAULT;
-> > +             /* only for kernel-internal use */
-> > +             var.activate &=3D ~FB_ACTIVATE_KD_TEXT;
-> >               console_lock();
-> >               lock_fb_info(info);
-> >               ret =3D fbcon_modechange_possible(info, &var);
-
-Perhaps FB_ACTIVATE_KD_TEXT should be removed (marked as
-reserved) from include/uapi/linux/fb.h, too?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+-- 
+Lucas De Marchi <lucas.demarchi@intel.com>
