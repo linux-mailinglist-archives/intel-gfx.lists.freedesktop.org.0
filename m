@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B12D6DE673
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 23:33:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5866DE680
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Apr 2023 23:35:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1732E10E139;
-	Tue, 11 Apr 2023 21:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C97110E696;
+	Tue, 11 Apr 2023 21:34:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B076F10E139
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 21:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681248807; x=1712784807;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Qbs/+BT7zaXH0NFJ1Etj/EqbkrZR4YTOBmmPKWBUP3c=;
- b=C9flPaXtToLgleIzt/nALNSQMxpPFms9FFn3H/OlU78I271HbjrSO+eE
- /E4wOs2ACux9mLwYbRfll6YAL4eD/+r/NnNBSszsQzH1iRJZc62Tg4FK0
- R/qimeQ8f3KkHv0EY6sC02DcL7jZehQLNpsQ8Gux7K3ylJvLL6u6Q3C55
- T3orG6WsElcHXK8MzI43xs26SAynf1et39KDzY//qw6uQTN4Avcrx6KcE
- VgkKz4ZipXNBEJOQEKjVWh8Mn7GF9QucCKn+pVIuR8nzCBiyMMQEJ6vm7
- q9sGUeUPCEXlbqFwAs2D1KaigJPX5GZlcAZ7BPmfPrU/Dc1Vsh8qofEWL Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="408880798"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="408880798"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 14:33:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="753285746"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="753285746"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga008.fm.intel.com with ESMTP; 11 Apr 2023 14:33:26 -0700
-Received: from debox1-desk4.lan (unknown [10.209.9.147])
- by linux.intel.com (Postfix) with ESMTP id A8F65580AFF;
- Tue, 11 Apr 2023 14:33:25 -0700 (PDT)
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: david.e.box@linux.intel.com, ville.syrjala@linux.intel.com,
- nirmal.patel@linux.intel.com, jonathan.derrick@linux.dev,
- lorenzo.pieralisi@arm.com, hch@infradead.org, kw@linux.com,
- robh@kernel.org, bhelgaas@google.com, michael.a.bottini@intel.com,
- rafael@kernel.org
-Date: Tue, 11 Apr 2023 14:33:23 -0700
-Message-Id: <20230411213323.1362300-1-david.e.box@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4189C10E139;
+ Tue, 11 Apr 2023 21:34:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38E50AADE6;
+ Tue, 11 Apr 2023 21:34:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0271086102166202728=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>
+Date: Tue, 11 Apr 2023 21:34:57 -0000
+Message-ID: <168124889722.13173.3064929221551570852@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <50439958420f91cc97ad929437334bfb19ca4d90.1681208396.git.geert+renesas@glider.be>
+In-Reply-To: <50439958420f91cc97ad929437334bfb19ca4d90.1681208396.git.geert+renesas@glider.be>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm=3A_Spelling_s/sempahore/semapho?=
+ =?utf-8?q?re/?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,193 +41,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: me@adhityamohan.in, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
-LTR") the VMD driver calls pci_enabled_link_state as a callback from
-pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
-warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
-DECLARE_PCI_FIXUP_FINAL.
+--===============0271086102166202728==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and LTR")
-Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
----
+== Series Details ==
 
-V2 - Instead of adding a lock flag argument to pci_enabled_link_state, move
-     the fix to quirks.c
+Series: series starting with [1/2] drm: Spelling s/sempahore/semaphore/
+URL   : https://patchwork.freedesktop.org/series/116307/
+State : success
 
- drivers/pci/controller/vmd.c | 55 +--------------------------
- drivers/pci/quirks.c         | 72 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 73 insertions(+), 54 deletions(-)
+== Summary ==
 
-diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c
-index 990630ec57c6..47fa3e5f2dc5 100644
---- a/drivers/pci/controller/vmd.c
-+++ b/drivers/pci/controller/vmd.c
-@@ -66,22 +66,11 @@ enum vmd_features {
- 	 * interrupt handling.
- 	 */
- 	VMD_FEAT_CAN_BYPASS_MSI_REMAP		= (1 << 4),
--
--	/*
--	 * Enable ASPM on the PCIE root ports and set the default LTR of the
--	 * storage devices on platforms where these values are not configured by
--	 * BIOS. This is needed for laptops, which require these settings for
--	 * proper power management of the SoC.
--	 */
--	VMD_FEAT_BIOS_PM_QUIRK		= (1 << 5),
- };
- 
--#define VMD_BIOS_PM_QUIRK_LTR	0x1003	/* 3145728 ns */
--
- #define VMD_FEATS_CLIENT	(VMD_FEAT_HAS_MEMBAR_SHADOW_VSCAP |	\
- 				 VMD_FEAT_HAS_BUS_RESTRICTIONS |	\
--				 VMD_FEAT_OFFSET_FIRST_VECTOR |		\
--				 VMD_FEAT_BIOS_PM_QUIRK)
-+				 VMD_FEAT_OFFSET_FIRST_VECTOR)
- 
- static DEFINE_IDA(vmd_instance_ida);
- 
-@@ -724,46 +713,6 @@ static void vmd_copy_host_bridge_flags(struct pci_host_bridge *root_bridge,
- 	vmd_bridge->native_dpc = root_bridge->native_dpc;
- }
- 
--/*
-- * Enable ASPM and LTR settings on devices that aren't configured by BIOS.
-- */
--static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
--{
--	unsigned long features = *(unsigned long *)userdata;
--	u16 ltr = VMD_BIOS_PM_QUIRK_LTR;
--	u32 ltr_reg;
--	int pos;
--
--	if (!(features & VMD_FEAT_BIOS_PM_QUIRK))
--		return 0;
--
--	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
--
--	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
--	if (!pos)
--		return 0;
--
--	/*
--	 * Skip if the max snoop LTR is non-zero, indicating BIOS has set it
--	 * so the LTR quirk is not needed.
--	 */
--	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
--	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
--		return 0;
--
--	/*
--	 * Set the default values to the maximum required by the platform to
--	 * allow the deepest power management savings. Write as a DWORD where
--	 * the lower word is the max snoop latency and the upper word is the
--	 * max non-snoop latency.
--	 */
--	ltr_reg = (ltr << 16) | ltr;
--	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
--	pci_info(pdev, "VMD: Default LTR value set by driver\n");
--
--	return 0;
--}
--
- static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
- {
- 	struct pci_sysdata *sd = &vmd->sysdata;
-@@ -936,8 +885,6 @@ static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
- 
- 	pci_assign_unassigned_bus_resources(vmd->bus);
- 
--	pci_walk_bus(vmd->bus, vmd_pm_enable_quirk, &features);
--
- 	/*
- 	 * VMD root buses are virtual and don't return true on pci_is_pcie()
- 	 * and will fail pcie_bus_configure_settings() early. It can instead be
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index 44cab813bf95..2d86623f96e3 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
- #endif
-+
-+#ifdef CONFIG_VMD
-+/*
-+ * Enable ASPM on the PCIE root ports under VMD and set the default LTR of the
-+ * storage devices on platforms where these values are not configured by BIOS.
-+ * This is needed for laptops, which require these settings for proper power
-+ * management of the SoC.
-+ */
-+#define VMD_DEVICE_LTR	0x1003	/* 3145728 ns */
-+static void quirk_intel_vmd(struct pci_dev *pdev)
-+{
-+	struct pci_dev *parent;
-+	u16 ltr = VMD_DEVICE_LTR;
-+	u32 ltr_reg;
-+	int pos;
-+
-+	/* Check in VMD domain */
-+	if (pci_domain_nr(pdev->bus) < 0x10000)
-+		return;
-+
-+	/* Get Root Port */
-+	parent = pci_upstream_bridge(pdev);
-+	if (!parent || parent->vendor != PCI_VENDOR_ID_INTEL)
-+		return;
-+
-+	/* Get VMD Host Bridge */
-+	parent = to_pci_dev(parent->dev.parent);
-+	if (!parent)
-+		return;
-+
-+	/* Get RAID controller */
-+	parent = to_pci_dev(parent->dev.parent);
-+	if (!parent)
-+		return;
-+
-+	switch (parent->device) {
-+	case 0x467f:
-+	case 0x4c3d:
-+	case 0xa77f:
-+	case 0x7d0b:
-+	case 0xad0b:
-+	case 0x9a0b:
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
-+
-+	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
-+	if (!pos)
-+		return;
-+
-+	/* Skip if the max snoop LTR is non-zero, indicating BIOS has set it */
-+	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
-+	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
-+		return;
-+
-+	/*
-+	 * Set the LTR values to the maximum required by the platform to
-+	 * allow the deepest power management savings. Write as a DWORD where
-+	 * the lower word is the max snoop latency and the upper word is the
-+	 * max non-snoop latency.
-+	 */
-+	ltr_reg = (ltr << 16) | ltr;
-+	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
-+	pci_info(pdev, "LTR set by VMD PCI quick\n");
-+
-+}
-+DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
-+			      PCI_CLASS_STORAGE_EXPRESS, 0, quirk_intel_vmd);
-+#endif
--- 
-2.34.1
+CI Bug Log - changes from CI_DRM_12993 -> Patchwork_116307v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/index.html
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116307v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-2:         [PASS][1] -> [ABORT][2] ([i915#4983] / [i915#7913])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rpls-2/igt@i915_selftest@live@reset.html
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-dg2-8:          NOTRUN -> [SKIP][5] ([i915#6645])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-dg2-8:          NOTRUN -> [SKIP][6] ([i915#7828])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
+    - bat-dg2-8:          [PASS][7] -> [FAIL][8] ([i915#7932])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-adlp-9:         NOTRUN -> [SKIP][9] ([i915#3546]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][10] ([i915#5334]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg2-8:          [ABORT][12] ([i915#7913] / [i915#7979]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rplp-1:         [DMESG-FAIL][14] ([i915#6367] / [i915#7913]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rplp-1/igt@i915_selftest@live@slpc.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rplp-1/igt@i915_selftest@live@slpc.html
+
+  
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7979]: https://gitlab.freedesktop.org/drm/intel/issues/7979
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12993 -> Patchwork_116307v1
+
+  CI-20190529: 20190529
+  CI_DRM_12993: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7250: 2da179d399d83a6859a89176d83b7ec1d71fe27a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116307v1: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+7391edc7954b drm: Spelling s/randevouz/rendez-vouz/
+c7460eabfbd4 drm: Spelling s/sempahore/semaphore/
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/index.html
+
+--===============0271086102166202728==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm: Spelling s/sempahore/semaphore/</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116307/">https://patchwork.freedesktop.org/series/116307/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12993 -&gt; Patchwork_116307v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116307v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>
+<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</p>
+</li>
+<li>
+<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7979">i915#7979</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116307v1/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12993 -&gt; Patchwork_116307v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12993: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7250: 2da179d399d83a6859a89176d83b7ec1d71fe27a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116307v1: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>7391edc7954b drm: Spelling s/randevouz/rendez-vouz/<br />
+c7460eabfbd4 drm: Spelling s/sempahore/semaphore/</p>
+
+</body>
+</html>
+
+--===============0271086102166202728==--
