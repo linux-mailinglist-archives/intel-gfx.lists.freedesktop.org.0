@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3059A6DE888
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 02:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3EC6DE889
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 02:40:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F65E10E0B9;
-	Wed, 12 Apr 2023 00:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0ADF10E6D7;
+	Wed, 12 Apr 2023 00:40:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC4510E0B9;
- Wed, 12 Apr 2023 00:39:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C20710E6D0;
+ Wed, 12 Apr 2023 00:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681259994; x=1712795994;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2gIU6cqQyiYB6JKcaV4bwxsJOQcCDQENZuAy+4pht7g=;
- b=LeLvTg5NlKhLCVzwx8FmWWni2x5KBMPZCrNEeihlmwFJ5vLK6r0QozsJ
- L2APUzsd1p8TbNUR6aIRTqNWtIFPH8oOfnpm0Va5ATKevpm+tg0NhdyhU
- Ws067JqzmY4+3kGHOcU02DCZ0lZhWtMKiJz8ouOBVG/0Bo74ITd6UMzUo
- ZSK8fH+FmG9HTY11efvEJbBOI5+xQRQl32FYBRrFRMT2kuyNgRixcHK6Z
- Mj80ZoX3clfwKQwUc4O5SZ+Pwz5k/mwT3eozmphtpECVXK3SavcbNiEPD
- AZk+1jv3SZveknkUmRntxoYeS3sZ5U3xYsMN6fD94cyBCk4s0hj5AYR/2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="345557263"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="345557263"
+ t=1681260004; x=1712796004;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=githB5zBJCX/xHnLRmuyn/yGSw4HIadZsweFS/3RV1Y=;
+ b=f1TnDZXE9ck7JL65+XmcvWPb8byq0L6sYzrRWz4mBBml6ZXgm/zjuhER
+ 4qM3QFKLdD2+EErIBB7GUHfFvdPaBN0oraNreXOrK8j5Ofz+JZBuzn7N7
+ 6JQ/1oDBWeNfi0DPiGTl9FfWagqtmoSA2H4+pqywcCFQ1peeZMLdyOzf/
+ QKNxcHosMduSVlYsk98Dx1RMkq9Ypvfh8ZObYi5q9V4QhA2OClnyaSJgd
+ XutMgBBwuAXsCIsWDIDNh/WqWUJHj7XcenwRxaekygF+e7TVVIlwiMavb
+ 7Qzck2nvlxAoVP6DEAZYskbrHaU8b0PPA2cJAu6IBcuMXI3QJKsx57lDp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="345557281"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="345557281"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 17:39:53 -0700
+ 11 Apr 2023 17:40:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="719166833"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="719166833"
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="719166890"
+X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="719166890"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga008.jf.intel.com with ESMTP; 11 Apr 2023 17:39:53 -0700
+ by orsmga008.jf.intel.com with ESMTP; 11 Apr 2023 17:40:03 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	igt-dev@lists.freedesktop.org
-Date: Tue, 11 Apr 2023 17:42:15 -0700
-Message-Id: <20230412004218.1634893-1-vinay.belgaumkar@intel.com>
+Date: Tue, 11 Apr 2023 17:42:16 -0700
+Message-Id: <20230412004218.1634893-2-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230412004218.1634893-1-vinay.belgaumkar@intel.com>
+References: <20230412004218.1634893-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v3 0/3] tests/slpc: Add basic IGT test
+Subject: [Intel-gfx] [PATCH i-g-t 1/3] lib/debugfs: Add per GT debugfs
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,25 +61,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Borrow some subtests from xe_guc_pc. Also add per GT debugfs helpers.
+These can be used to open per-gt debugfs files.
 
-v3: Review comments and add HAX patch
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Vinay Belgaumkar <viay.belgaumkar@intel.com>
+---
+ lib/igt_debugfs.c | 60 +++++++++++++++++++++++++++++++++++++++++++++++
+ lib/igt_debugfs.h |  4 ++++
+ 2 files changed, 64 insertions(+)
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-
-Vinay Belgaumkar (3):
-  lib/debugfs: Add per GT debugfs helpers
-  i915_pm_freq_api: Add some basic SLPC igt tests
-  HAX: tests/i915: Try out the SLPC IGT tests
-
- lib/igt_debugfs.c                     |  60 ++++++++++
- lib/igt_debugfs.h                     |   4 +
- tests/i915/i915_pm_freq_api.c         | 151 ++++++++++++++++++++++++++
- tests/intel-ci/fast-feedback.testlist |   2 +
- tests/meson.build                     |   1 +
- 5 files changed, 218 insertions(+)
- create mode 100644 tests/i915/i915_pm_freq_api.c
-
+diff --git a/lib/igt_debugfs.c b/lib/igt_debugfs.c
+index 05889bbe..afde2da6 100644
+--- a/lib/igt_debugfs.c
++++ b/lib/igt_debugfs.c
+@@ -217,6 +217,37 @@ int igt_debugfs_dir(int device)
+ 	return open(path, O_RDONLY);
+ }
+ 
++/**
++ * igt_debugfs_gt_dir:
++ * @device: fd of the device
++ * @gt: GT instance number
++ *
++ * This opens the debugfs directory corresponding to device for use
++ * with igt_sysfs_get() and related functions.
++ *
++ * Returns:
++ * The directory fd, or -1 on failure.
++ */
++int igt_debugfs_gt_dir(int device, unsigned int gt)
++{
++	int debugfs_gt_dir_fd;
++	char path[PATH_MAX];
++	char gtpath[16];
++	int ret;
++
++	if (!igt_debugfs_path(device, path, sizeof(path)))
++		return -1;
++
++	ret = snprintf(gtpath, sizeof(gtpath), "/gt%u", gt);
++	igt_assert(ret < sizeof(gtpath));
++	strncat(path, gtpath, sizeof(path) - 1);
++
++	debugfs_gt_dir_fd = open(path, O_RDONLY);
++	igt_debug_on_f(debugfs_gt_dir_fd < 0, "path: %s\n", path);
++
++	return debugfs_gt_dir_fd;
++}
++
+ /**
+  * igt_debugfs_connector_dir:
+  * @device: fd of the device
+@@ -313,6 +344,35 @@ bool igt_debugfs_exists(int device, const char *filename, int mode)
+ 	return false;
+ }
+ 
++/**
++ * igt_debugfs_gt_open:
++ * @device: open i915 drm fd
++ * @gt: gt instance number
++ * @filename: name of the debugfs node to open
++ * @mode: mode bits as used by open()
++ *
++ * This opens a debugfs file as a Unix file descriptor. The filename should be
++ * relative to the drm device's root, i.e. without "drm/$minor".
++ *
++ * Returns:
++ * The Unix file descriptor for the debugfs file or -1 if that didn't work out.
++ */
++int
++igt_debugfs_gt_open(int device, unsigned int gt, const char *filename, int mode)
++{
++	int dir, ret;
++
++	dir = igt_debugfs_gt_dir(device, gt);
++	if (dir < 0)
++		return dir;
++
++	ret = openat(dir, filename, mode);
++
++	close(dir);
++
++	return ret;
++}
++
+ /**
+  * igt_debugfs_simple_read:
+  * @dir: fd of the debugfs directory
+diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h
+index 4824344a..3e6194ad 100644
+--- a/lib/igt_debugfs.h
++++ b/lib/igt_debugfs.h
+@@ -45,6 +45,10 @@ void __igt_debugfs_write(int fd, const char *filename, const char *buf, int size
+ int igt_debugfs_simple_read(int dir, const char *filename, char *buf, int size);
+ bool igt_debugfs_search(int fd, const char *filename, const char *substring);
+ 
++int igt_debugfs_gt_dir(int device, unsigned int gt);
++int igt_debugfs_gt_open(int device, unsigned int gt, const char *filename,
++			int mode);
++
+ /**
+  * igt_debugfs_read:
+  * @filename: name of the debugfs file
 -- 
 2.38.1
 
