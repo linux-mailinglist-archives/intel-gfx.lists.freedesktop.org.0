@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1106DEB96
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 08:13:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA0B6DEB97
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 08:13:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC2910E29E;
-	Wed, 12 Apr 2023 06:12:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03EA810E37E;
+	Wed, 12 Apr 2023 06:13:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9A53410E24E;
- Wed, 12 Apr 2023 06:12:56 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49B5610E37E;
+ Wed, 12 Apr 2023 06:12:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 94514A0BA8;
- Wed, 12 Apr 2023 06:12:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1A22FA0BA8;
+ Wed, 12 Apr 2023 06:12:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 12 Apr 2023 06:12:56 -0000
-Message-ID: <168127997660.10846.4987106445456737447@emeril.freedesktop.org>
+Date: Wed, 12 Apr 2023 06:12:59 -0000
+Message-ID: <168127997910.10848.4212702327137724078@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230411222931.15127-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20230411222931.15127-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_CTM_stuff_mostly_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_CTM_stuff_mostly_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,17 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-aad53ba45589 drm/uapi: Document CTM matrix better
-09d5183293e0 drm/i915: Expose crtc CTM property on ilk/snb
-f76bd864fa13 drm/i915: Fix CHV CGM CSC coefficient sign handling
-29e00e24196a drm/i915: Implement CTM property support for VLV
--:10: WARNING:REPEATED_WORD: Possible repeated word: 'is'
-#10: 
-What it is is a 3x3 matrix similar to the later CHV CGM
-
-total: 0 errors, 1 warnings, 0 checks, 310 lines checked
-4fb54cc0c3d2 drm/i915: No 10bit gamma on desktop gen3 parts
-f8f2d848572e drm/i915: Do state check for color management changes
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
