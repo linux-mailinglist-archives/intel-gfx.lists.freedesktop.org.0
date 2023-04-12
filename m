@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD156DED99
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 10:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0196DF009
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 11:08:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC03810E2B9;
-	Wed, 12 Apr 2023 08:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1068410E73E;
+	Wed, 12 Apr 2023 09:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7264D10E2B9;
- Wed, 12 Apr 2023 08:29:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E3E1AADEB;
- Wed, 12 Apr 2023 08:29:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3057298763358639340=="
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
+ [IPv6:2607:f8b0:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB3510E73E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 09:08:24 +0000 (UTC)
+Received: by mail-oi1-x22f.google.com with SMTP id z16so6852703oib.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 02:08:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1681290503;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=MDKu9h07XSmG8BLT1PMkO3nxryyYNz+99k5JAa1yFlc=;
+ b=NJjaBn9J6P1o8FjDOWAGbzakyXnwQ02owAEtdIV0/Soj2vrlHyZUojkRikTFNqw7Ut
+ 37hxct4D74KuwiJzy99g5qvm1cB8lVv7OxOq8sSRjbLdg5ICy6lT5Rc1X89GtDenH/EF
+ 7bk5oWiI3sv9eeorYFh+eN0e32TUvYGZKyktk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1681290503;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=MDKu9h07XSmG8BLT1PMkO3nxryyYNz+99k5JAa1yFlc=;
+ b=qKz7siBLbfp+w0GBzr4GzxjdRlk0YxYavuMY0BByoBTmthB1Ik4keNbCc5Y1A2dOUe
+ md+ZhzzjpFt0WVcZl4xgvm5z6GtufxexDl/iPRNT/7p4PgyrUbY6M/4oJO169dQPwiVv
+ 6GosT1rcOFXDzExKo1vu0JJkNwiKZ870F4FBQs1YSnoz6syU7NI00alOY8isyImT8MyH
+ FVGb3xXAGzk3y8RjYX8ljO2VlV1GnSanOY4ofs36emuv4Bn374VFoWF0QQhjiA78Fn1S
+ 5fEki74Ig6SVi9+U17POliltnTiIE2qZ8za425XyvmLpIiFMMHpwEfzHVxA5uGZDNgCi
+ Hprw==
+X-Gm-Message-State: AAQBX9fO1vYVCZDolHyPGW3aYhPn93GTEnJ9QPKGovKJSjSPOfTKUJ4J
+ KzcT6Q5WgfKMZ9glxAkxM6X4v6MAhymRoU8OK8Ibgg==
+X-Google-Smtp-Source: AKy350YhiIV9O0+MOoL5UhAzdVEopIuUdVfTDs491jtq25WL+DJc7SdRItpzEv2WtOqX1Kx7CX+wpqvOcQZXWyNlZSw=
+X-Received: by 2002:aca:2407:0:b0:389:2b9b:fe5f with SMTP id
+ n7-20020aca2407000000b003892b9bfe5fmr399260oic.8.1681290503070; Wed, 12 Apr
+ 2023 02:08:23 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 12 Apr 2023 08:29:22 -0000
-Message-ID: <168128816244.10847.5905007822995873384@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230411191429.29895-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230411191429.29895-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_=28mostly=29_PSR_related_register_cleanups_=28rev4=29?=
+References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
+ <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
+ <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
+ <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
+ <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
+In-Reply-To: <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 12 Apr 2023 11:08:11 +0200
+Message-ID: <CAKMK7uEZdWjs9snGdNpzBthOWz0YSCZh-rNKOGywLWozzpFwbA@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
+ used allocation orders for TTM pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,291 +69,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3057298763358639340==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 11 Apr 2023 at 15:45, Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Tue, Apr 11, 2023 at 02:11:18PM +0200, Christian K=C3=B6nig wrote:
+> > Am 11.04.23 um 11:51 schrieb Daniel Vetter:
+> > > On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellstr=C3=B6m wrote=
+:
+> > > > When swapping out, we will split multi-order pages both in order to
+> > > > move them to the swap-cache and to be able to return memory to the
+> > > > swap cache as soon as possible on a page-by-page basis.
+> > > > Reduce the page max order to the system PMD size, as we can then be=
+ nicer
+> > > > to the system and avoid splitting gigantic pages.
+> > > >
+> > > > Looking forward to when we might be able to swap out PMD size folio=
+s
+> > > > without splitting, this will also be a benefit.
+> > > >
+> > > > v2:
+> > > > - Include all orders up to the PMD size (Christian K=C3=B6nig)
+> > > > v3:
+> > > > - Avoid compilation errors for architectures with special PFN_SHIFT=
+s
+> > > >
+> > > > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.=
+com>
+> > > > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Apparently this fails on ppc build testing. Please supply build fix a=
+sap
+> > > (or I guess we need to revert). I'm kinda not clear why this only sho=
+wed
+> > > up when I merged the drm-misc-next pr into drm-next ...
+> >
+> > I'm really wondering this as well. It looks like PMD_SHIFT isn't a cons=
+tant
+> > on this particular platform.
+> >
+> > But from what I can find in the upstream 6.2 kernel PMD_SHIFT always se=
+ems
+> > to be a constant.
+> >
+> > So how exactly can that here break?
+>
+> There's some in-flight patches to rework MAX_ORDER and other things in
+> linux-next, maybe it's recent? If you check out linux-next then you need
+> to reapply the patch (since sfr reverted it).
 
-== Series Details ==
+So I looked and on ppc64 PMD_SHIFT is defined in terms of
+PTE_INDEX_SIZE, which is defined (for book3s) in terms of the variable
+__pte_index_size. This is in 6.3 already and seems pretty old.
 
-Series: drm/i915: (mostly) PSR related register cleanups (rev4)
-URL   : https://patchwork.freedesktop.org/series/115708/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12993 -> Patchwork_115708v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/index.html
-
-Participating hosts (37 -> 35)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115708v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#8308])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4] ([i915#7911] / [i915#7913])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][5] -> [ABORT][6] ([i915#4983])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-dg2-8:          NOTRUN -> [SKIP][7] ([i915#6645])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg2-8:          NOTRUN -> [SKIP][8] ([i915#7828])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][9] ([i915#5354])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [PASS][10] -> [FAIL][11] ([i915#7932])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][12] ([i915#5334]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg2-8:          [ABORT][14] ([i915#7913] / [i915#7979]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rplp-1:         [DMESG-FAIL][16] ([i915#6367] / [i915#7913]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rplp-1/igt@i915_selftest@live@slpc.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rplp-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:
-    - bat-dg2-8:          [FAIL][18] ([i915#7932]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][20] ([i915#6997] / [i915#7913]) -> [DMESG-FAIL][21] ([i915#6367] / [i915#7913])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7979]: https://gitlab.freedesktop.org/drm/intel/issues/7979
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+So revert? Or fixup patch to make this work on ppc?
 
 
-Build changes
--------------
+> > > > ---
+> > > >   drivers/gpu/drm/ttm/ttm_pool.c | 30 +++++++++++++++++++----------=
+-
+> > > >   1 file changed, 19 insertions(+), 11 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/t=
+tm_pool.c
+> > > > index dfce896c4bae..18c342a919a2 100644
+> > > > --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> > > > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> > > > @@ -47,6 +47,11 @@
+> > > >   #include "ttm_module.h"
+> > > > +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
+> > > > +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
+> > > > +/* Some architectures have a weird PMD_SHIFT */
+> > > > +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <=3D MAX_ORDER ? __TTM_DIM_=
+ORDER : MAX_ORDER)
+> > > > +
+> > > >   /**
+> > > >    * struct ttm_pool_dma - Helper object for coherent DMA mappings
+> > > >    *
+> > > > @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
+> > > >   static atomic_long_t allocated_pages;
+> > > > -static struct ttm_pool_type global_write_combined[MAX_ORDER];
+> > > > -static struct ttm_pool_type global_uncached[MAX_ORDER];
+> > > > +static struct ttm_pool_type global_write_combined[TTM_DIM_ORDER];
+> > > > +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
+> > > > -static struct ttm_pool_type global_dma32_write_combined[MAX_ORDER]=
+;
+> > > > -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
+> > > > +static struct ttm_pool_type global_dma32_write_combined[TTM_DIM_OR=
+DER];
+> > > > +static struct ttm_pool_type global_dma32_uncached[TTM_DIM_ORDER];
+> > > >   static spinlock_t shrinker_lock;
+> > > >   static struct list_head shrinker_list;
+> > > > @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struc=
+t ttm_tt *tt,
+> > > >           else
+> > > >                   gfp_flags |=3D GFP_HIGHUSER;
+> > > > - for (order =3D min_t(unsigned int, MAX_ORDER - 1, __fls(num_pages=
+));
+> > > > + for (order =3D min_t(unsigned int, TTM_MAX_ORDER, __fls(num_pages=
+));
+> > > >                num_pages;
+> > > >                order =3D min_t(unsigned int, order, __fls(num_pages=
+))) {
+> > > >                   struct ttm_pool_type *pt;
+> > > > @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, struc=
+t device *dev,
+> > > >           if (use_dma_alloc) {
+> > > >                   for (i =3D 0; i < TTM_NUM_CACHING_TYPES; ++i)
+> > > > -                 for (j =3D 0; j < MAX_ORDER; ++j)
+> > > > +                 for (j =3D 0; j < TTM_DIM_ORDER; ++j)
+> > > >                                   ttm_pool_type_init(&pool->caching=
+[i].orders[j],
+> > > >                                                      pool, i, j);
+> > > >           }
+> > > > @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
+> > > >           if (pool->use_dma_alloc) {
+> > > >                   for (i =3D 0; i < TTM_NUM_CACHING_TYPES; ++i)
+> > > > -                 for (j =3D 0; j < MAX_ORDER; ++j)
+> > > > +                 for (j =3D 0; j < TTM_DIM_ORDER; ++j)
+> > > >                                   ttm_pool_type_fini(&pool->caching=
+[i].orders[j]);
+> > > >           }
+> > > > @@ -637,7 +642,7 @@ static void ttm_pool_debugfs_header(struct seq_=
+file *m)
+> > > >           unsigned int i;
+> > > >           seq_puts(m, "\t ");
+> > > > - for (i =3D 0; i < MAX_ORDER; ++i)
+> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i)
+> > > >                   seq_printf(m, " ---%2u---", i);
+> > > >           seq_puts(m, "\n");
+> > > >   }
+> > > > @@ -648,7 +653,7 @@ static void ttm_pool_debugfs_orders(struct ttm_=
+pool_type *pt,
+> > > >   {
+> > > >           unsigned int i;
+> > > > - for (i =3D 0; i < MAX_ORDER; ++i)
+> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i)
+> > > >                   seq_printf(m, " %8u", ttm_pool_type_count(&pt[i])=
+);
+> > > >           seq_puts(m, "\n");
+> > > >   }
+> > > > @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long num_pages=
+)
+> > > >   {
+> > > >           unsigned int i;
+> > > > + BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
+> > > > + BUILD_BUG_ON(TTM_DIM_ORDER < 1);
+> > > > +
+> > > >           if (!page_pool_size)
+> > > >                   page_pool_size =3D num_pages;
+> > > >           spin_lock_init(&shrinker_lock);
+> > > >           INIT_LIST_HEAD(&shrinker_list);
+> > > > - for (i =3D 0; i < MAX_ORDER; ++i) {
+> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i) {
+> > > >                   ttm_pool_type_init(&global_write_combined[i], NUL=
+L,
+> > > >                                      ttm_write_combined, i);
+> > > >                   ttm_pool_type_init(&global_uncached[i], NULL, ttm=
+_uncached, i);
+> > > > @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
+> > > >   {
+> > > >           unsigned int i;
+> > > > - for (i =3D 0; i < MAX_ORDER; ++i) {
+> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i) {
+> > > >                   ttm_pool_type_fini(&global_write_combined[i]);
+> > > >                   ttm_pool_type_fini(&global_uncached[i]);
+> > > > --
+> > > > 2.39.2
+> > > >
+> >
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 
-  * Linux: CI_DRM_12993 -> Patchwork_115708v4
-
-  CI-20190529: 20190529
-  CI_DRM_12993: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7250: 2da179d399d83a6859a89176d83b7ec1d71fe27a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115708v4: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
-### Linux commits
-
-f8351f7b5fd4 drm/i915/psr: Sprinkle cpu_transcoder variables around
-5471e3653077 drm/i915/psr: Include PSR_PERF_CNT in debugfs output on all platforms
-301e32825fb5 drm/i915/psr: Add a FIXME for the PSR vs. AUX usage conflict
-304c475dccab drm/i915/psr: Define more PSR mask bits
-8acdb39db5ec drm/i915/psr: Use intel_de_rmw()
-c29df78f401c drm/i915/psr: Clean up PSR register defininitions
-f061adae234a drm/i915: Clean up various display chicken registers
-159966a40dff drm/i915: Fix up whitespace in some display chicken registers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/index.html
-
---===============3057298763358639340==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: (mostly) PSR related register cleanups (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115708/">https://patchwork.freedesktop.org/series/115708/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12993 -&gt; Patchwork_115708v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/index.html</p>
-<h2>Participating hosts (37 -&gt; 35)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115708v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7979">i915#7979</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12993/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115708v4/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12993 -&gt; Patchwork_115708v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12993: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7250: 2da179d399d83a6859a89176d83b7ec1d71fe27a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115708v4: 3f6d1a580787c3aa8c9c7f174bdce5b055d6d724 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f8351f7b5fd4 drm/i915/psr: Sprinkle cpu_transcoder variables around<br />
-5471e3653077 drm/i915/psr: Include PSR_PERF_CNT in debugfs output on all platforms<br />
-301e32825fb5 drm/i915/psr: Add a FIXME for the PSR vs. AUX usage conflict<br />
-304c475dccab drm/i915/psr: Define more PSR mask bits<br />
-8acdb39db5ec drm/i915/psr: Use intel_de_rmw()<br />
-c29df78f401c drm/i915/psr: Clean up PSR register defininitions<br />
-f061adae234a drm/i915: Clean up various display chicken registers<br />
-159966a40dff drm/i915: Fix up whitespace in some display chicken registers</p>
-
-</body>
-</html>
-
---===============3057298763358639340==--
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
