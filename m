@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C286DF2B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 13:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D35E6DF3BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 13:34:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA66810E76C;
-	Wed, 12 Apr 2023 11:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB38A10E794;
+	Wed, 12 Apr 2023 11:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2EF10E76C
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 11:12:35 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72DD510E794;
+ Wed, 12 Apr 2023 11:33:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681297955; x=1712833955;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=SLfUJ2qR8cDOQL3VJcrJPpDafrBu3JkciRYcSVigaHI=;
- b=G4pT/oWScU5URYrZeM61sDXT4ljZ1wJQmp4lo/gkf6WlxxRFsEZTB9fj
- zOWZ+iProaxdhPB1oxfR3S5BeiHMl41m3nLCMKywX051lok9OUykc588Z
- 9y38LACI1nRlXScxgDFu0pH2ON+yA/9hl2Nk4aASEsJbiSNtyJoQ8McP4
- D1E8MiZ8+8vuyz0/GrSJCeXDWakX+KZO9+GIDZaeE+68kX8LzvQWo4Zc0
- nlCNcu9bQSTo4KoofL1Y8NPx7x7wAE16mlEPLnOrX0ppB8AEZVPMcbeQk
- AJMeMaHIech1n2SkSsjPebmB6yZJGFJmBxodd251HpjSkcT+071adDLVp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="343868655"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="343868655"
+ t=1681299236; x=1712835236;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DL3MgYnzKAEXsAUQPyglUiDH5LIQHjqJDKbmsnSxR2c=;
+ b=iGqUShfJNso8amxKg6c52WHt7sbyeq0Kh+CT93W7nmk+TK33JvTU72//
+ rMa+lS2cFeLceVRdphvsCTg+/6QxgN3CwM7jCJBuiFJsaThnsgsKTyT/D
+ Vk9hXDxCKo1MhnieqpbDVpKQ4tgWjCl3RDehwlounw0kzHZTo6euGeDLc
+ /t+QhDeeaRbvmfuuerbytgfHllRb8fWkWRVIIQYNxsthQL/+XQhgtDIlR
+ r2mdCLF5xa0Bt7kMlk7c9HD8AyBk+ecSHI3+n2ddSGhUwUYCpOv3uG2UM
+ vrS0bFlMaFEKeuZMHcHYGJE5j9FjeCJrDzr/rATHzvZ6K3da4fnrC7d8P g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="327978204"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="327978204"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 04:12:34 -0700
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 04:33:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="778263007"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="778263007"
-Received: from smoticic-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.45.172])
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="778268708"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="778268708"
+Received: from zbiro-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.212.144])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 04:12:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230412104152.828326-2-bhanuprakash.modem@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230412104152.828326-1-bhanuprakash.modem@intel.com>
- <20230412104152.828326-2-bhanuprakash.modem@intel.com>
-Date: Wed, 12 Apr 2023 14:12:30 +0300
-Message-ID: <87leixcq1t.fsf@intel.com>
+ 12 Apr 2023 04:33:51 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Date: Wed, 12 Apr 2023 13:33:03 +0200
+Message-Id: <20230412113308.812468-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V2 1/1] drm/i915/debugfs: New debugfs for display
- clock frequencies
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/5] Fix error propagation amongst request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,99 +57,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Matthew Auld <matthew.auld@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 12 Apr 2023, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
-> Instead of mixing display & non-display stuff together, move
-> display specific clock info to new debugfs. This patch will
-> create a new debugfs "i915_cdclk_info" to expose Current & Max
-> cdclk and Max pixel clock frequency info.
->
-> Example:
-> $ cat /sys/kernel/debug/dri/0/i915_cdclk_info
-> Current CD clock frequency: 163200 kHz
-> Max CD clock frequency: 652800 kHz
-> Max pixel clock frequency: 1305600 kHz
->
-> V2: - s/i915_display_clock_info/i915_cdclk_info/ (Jani)
->     - Move the logic to intel_cdclk.c (Jani)
->     - Don't remove info from i915_frequency_info (Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
->  .../drm/i915/display/intel_display_debugfs.c  |  1 +
->  3 files changed, 27 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 084a483f9776..c3ad7837fa09 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -3235,6 +3235,31 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
->  	return freq;
->  }
->  
-> +static int i915_cdclk_info_show(struct seq_file *m, void *unused)
-> +{
-> +	struct drm_i915_private *i915 = m->private;
-> +
-> +	drm_modeset_lock_all(&i915->drm);
+Hi,
 
-Mmmh, I wonder how important that really is?
+This series of two patches fixes the issue introduced in
+cf586021642d80 ("drm/i915/gt: Pipelined page migration") where,
+as reported by Matt, in a chain of requests an error is reported
+only if happens in the last request.
 
-BR,
-Jani.
+However Chris noticed that without ensuring exclusivity in the
+locking we might end up in some deadlock. That's why patch 1
+throttles for the ringspace in order to make sure that no one is
+holding it.
 
+Version 1 of this patch has been reviewed by matt and this
+version is adding Chris exclusive locking.
 
-> +
-> +	seq_printf(m, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
-> +	seq_printf(m, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
-> +	seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
-> +
-> +	drm_modeset_unlock_all(&i915->drm);
-> +
-> +	return 0;
-> +}
-> +
-> +DEFINE_SHOW_ATTRIBUTE(i915_cdclk_info);
-> +
-> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915)
-> +{
-> +	struct drm_minor *minor = i915->drm.primary;
-> +
-> +	debugfs_create_file("i915_cdclk_info", 0444, minor->debugfs_root,
-> +			    i915, &i915_cdclk_info_fops);
-> +}
-> +
->  static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
->  	.get_cdclk = bxt_get_cdclk,
->  	.set_cdclk = bxt_set_cdclk,
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 51e2f6a11ce4..48fd7d39e0cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -82,5 +82,6 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
->  	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
->  
->  int intel_cdclk_init(struct drm_i915_private *dev_priv);
-> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915);
->  
->  #endif /* __INTEL_CDCLK_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 45113ae107ba..abd16a2b1f7a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1094,6 +1094,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
->  				 ARRAY_SIZE(intel_display_debugfs_list),
->  				 minor->debugfs_root, minor);
->  
-> +	intel_cdclk_debugfs_register(i915);
->  	intel_dmc_debugfs_register(i915);
->  	intel_fbc_debugfs_register(i915);
->  	intel_hpd_debugfs_register(i915);
+Thanks Chris for this work.
+
+Andi
+
+Changelog
+=========
+v4 -> v5
+ - add timeline locking also in the copy operation, which was
+   forgottein in v4.
+ - rearrange the patches in order to avoid a bisect break.
+
+v3 -> v4
+ - In v3 the timeline was being locked, but I forgot that also
+   request_create() and request_add() are locking the timeline
+   as well. The former does the locking, the latter does the
+   unlocking. In order to avoid this extra lock/unlock, we need
+   the "_locked" version of the said functions.
+
+v2 -> v3
+ - Really lock the timeline before generating all the requests
+   until the last.
+
+v1 -> v2
+ - Add patch 1 for ensuring exclusive locking of the timeline
+ - Reword git commit of patch 2.
+
+Andi Shyti (4):
+  drm/i915/gt: Add intel_context_timeline_is_locked helper
+  drm/i915: Create the locked version of the request create
+  drm/i915: Create the locked version of the request add
+  drm/i915/gt: Make sure that errors are propagated through request
+    chains
+
+Chris Wilson (1):
+  drm/i915: Throttle for ringspace prior to taking the timeline mutex
+
+ drivers/gpu/drm/i915/gt/intel_context.c | 41 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_context.h |  8 ++++
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 51 +++++++++++++++++------
+ drivers/gpu/drm/i915/i915_request.c     | 55 +++++++++++++++++++------
+ drivers/gpu/drm/i915/i915_request.h     |  3 ++
+ 5 files changed, 133 insertions(+), 25 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.2
+
