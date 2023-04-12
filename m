@@ -1,59 +1,117 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB7C6DF95B
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 17:07:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8456DF954
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 17:06:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF8CF10E86A;
-	Wed, 12 Apr 2023 15:07:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C34310E44E;
+	Wed, 12 Apr 2023 15:06:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D75B10E85B
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 15:07:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681312052; x=1712848052;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=X5R0bu+IR3bHesiZRr/YXrhC+O1grhxDl39o/u+JtUQ=;
- b=K0ZdEkPHe0g4uPGZsSmRvSuGMHtRaLYZCvpYZsD9SZ+l2WQgIv6iwLNz
- STJZV+CFA+6ToYFq0sZKbBMdLrz3VCbJZUxi96helRrxMLuawgM2S2mvD
- SYBDUzgrMmBGywhy7eP8m7fXP31HM2GAuBqLD88q8aQt17zwCNZz/Vihr
- vKjpv2SwkqT1BvLews7CKFUV/3km6CrcIENqPc0ROhEdqaWtbR0mrv2Ct
- x5+S8htmaphFzCfz+H3MgGpS4X7zwTzBBp4OJOF/Uz1WGCLZOEIJvunki
- EM8gucO9VYts95yUbLpLgAosIFrvxG/uHaOubwphIM7d0uTKReKVxFbiD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328034469"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328034469"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 08:05:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="758279819"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="758279819"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga004.fm.intel.com with SMTP; 12 Apr 2023 08:05:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Apr 2023 18:05:05 +0300
-Date: Wed, 12 Apr 2023 18:05:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-Message-ID: <ZDbIoa2KSespTMd5@intel.com>
-References: <20230320203352.19515-6-ville.syrjala@linux.intel.com>
- <20230321135615.27338-1-ville.syrjala@linux.intel.com>
- <MWHPR11MB19351B3CC439AB4C1A9F370EB28B9@MWHPR11MB1935.namprd11.prod.outlook.com>
- <ZDTy93UCSN4TUCV1@intel.com> <ZDZhk/tizSv0pTmZ@intel.com>
- <MWHPR11MB19358BF6559163B84B3F5FD1B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
- <MWHPR11MB19351E0FB8251DBBD7DDD866B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2062b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C60E410E44E;
+ Wed, 12 Apr 2023 15:06:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WKinpsziUVRY+U/5V4N59MIR32fTjD+Cvm55B1W3xFAySb3hOlxyHvZlMxYJBlWObXH7HK+peY2poDIzxQx6gBmFdzVMTxFp69Ho3jO913NuRQBi/pdk5qBHhluw4vHhUFNfe2fiOvjeZkXMx66KXrqRIJg5AjEasmx/UsgDvTq8eApiWvsTTXPH5E2pn+MfmRyYilvCrWdqTn69RC7P+6cZ5RLdINOfS91+FDfYdkpSdTB9Vfsktad86JGVUHLGM9Faqx8ZpzXgJ5xrWWRKFRTuYB3WD/PvsA+yK9AUcFQPJ2/U0wk4mOV91XfsonY6/kbv93cJ+8PXz9wsDi5iMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nFu8eKSey1iJesURmKz/gOSKp9xCKAGK+u/PyDYLSYo=;
+ b=hfkDU9SqsAjQprUK/Q3a3DqBrcqPdoB/ZpNiZjlp/CMy8/hx77LsLpoYXCWrkMfwnJPEWBhCznatDf3WSdU5DJjKnOn4vBc9vLpNr+Ke4SqzDC74tBK6Tnbv4rKP56btiFvpNCprvoxPYesqmZsW+gvMwru/pLvwWBh2my8QnawetvqPR31pl446NZ6Yqg/ds5v+OZNlm3qjzpFtN9xFO5iflF45gxgyvwAgILdk5VFTN2w8Vxs/4Wso8zKjA6xQqqWKBB+FK44plXDnLZ2btkhC9NqkuGONT+2PREX/7TxQOkw7b8pzK3YyLTHU89BE+DuJ73Z2DyLaTNFvKgacRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nFu8eKSey1iJesURmKz/gOSKp9xCKAGK+u/PyDYLSYo=;
+ b=RPs107V8yzG653oPSD9A98wY9tQgqospAVQL6rJQ/wZ+43XRduFMihg+wa8e87GzSYPEcjOnHcA1YfokJZ4MAeH37b3zAWb0VmahcWi/i4htfbhlZX6C7judwc+51WITAcQgJ78uIwV4jooLW6ttoAfO36kS7K+sTGzDAdr+4CeM6/0fvAaoyXT5hYFMyWW/nuRatbqnY3XK7WMAUExPhUjn/EdP+eFmx3dPd5fQp+/E+bpeHdxLF/iGD/G/2RBbqTeuQFOxF3CzPF0j7VSehnIB9nOa6PhLAZ4fNbWE2fHPPGUQ7QvL6yfuNpcNfS9BOlSrttADMLg6UVmYjfIAkA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MW4PR12MB7031.namprd12.prod.outlook.com (2603:10b6:303:1ef::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Wed, 12 Apr
+ 2023 15:05:55 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2%9]) with mapi id 15.20.6277.038; Wed, 12 Apr 2023
+ 15:05:54 +0000
+Date: Wed, 12 Apr 2023 12:05:50 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Message-ID: <ZDbIzvawep4Sk+0M@nvidia.com>
+References: <ZC4CwH2ouTfZ9DNN@nvidia.com>
+ <DS0PR11MB75292DA91ED15AE94A85EB3DC3919@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230406115347.7af28448.alex.williamson@redhat.com>
+ <ZDVfqpOCnImKr//m@nvidia.com>
+ <20230411095417.240bac39.alex.williamson@redhat.com>
+ <20230411111117.0766ad52.alex.williamson@redhat.com>
+ <ZDWph7g0hcbJHU1B@nvidia.com>
+ <20230411155827.3489400a.alex.williamson@redhat.com>
+ <ZDX0wtcvZuS4uxmG@nvidia.com>
+ <BN9PR11MB52761A24E435E9EF910766E28C9B9@BN9PR11MB5276.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <MWHPR11MB19351E0FB8251DBBD7DDD866B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
- enable/disable
+In-Reply-To: <BN9PR11MB52761A24E435E9EF910766E28C9B9@BN9PR11MB5276.namprd11.prod.outlook.com>
+X-ClientProxiedBy: SJ0PR03CA0039.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::14) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW4PR12MB7031:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b03c8c9-e6c9-4ebe-7537-08db3b676956
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lodt+8ONK6htVPm05/Pmi/xNnoEiDWjQDhOTxAkGDyvaavqi9jgK0o7lXvzaaM5zwnBszRliVI+bU6qmxIylbGDS95AfbbkNe8OvXK2Yjf94PnvvrgfoaDLa9GuwiXe/D0ORB2sTvJhFoVdV9Ph/v5dR67OfRaYH7R81+xnqmVmtXK9q03EnYx9d2aL8oy9312POBsefbEyU6RizDI27J2gI8bAMh99L4U1byth58C6070a1nlkNXA+R+vLTBKXhiJmnQDVKiOIeK6DN9hxAxLDqXjgCv3RFPQ6SKrgqBN7FIKCBdDAv0+4urplAbzo8ZA3Fy6/cfPfOgiPsvA/mjU6w4qEvfv+KEH2UuNrkG3+GwBdMpve3Bv+UVQmYWn+5qYZPfsKZWHz22w+unomVCAtEx3QuQgdXNSWeAT0fRFXbRJkE8I9APBcBX+kdFzSeBRdZ51WGYp49EnTE6aKpRWDmOVqKyTZClPzuVcBd9ayCSKDl8OxdfoJeyMs24PuWzfjzBrCB1/3PH0XaHZTBwATL30tmACwgrIB7Gu4ACqasCsRBlwo/Ft8p3qgmHVbcqxBI6XsLedZDHUPtpKLEmaPSoYhy9GwBPwJkypeFhWA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(376002)(366004)(39860400002)(396003)(136003)(451199021)(5660300002)(7416002)(41300700001)(8936002)(8676002)(2906002)(38100700002)(6486002)(6666004)(478600001)(186003)(2616005)(36756003)(6506007)(26005)(6512007)(4326008)(86362001)(6916009)(66476007)(66946007)(66556008)(54906003)(316002)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?E/2jFLFISBSy8eiZM64OSF/3y1KjtSl+DIYAFUKzePjRw6ZMK7cTihwvzEMc?=
+ =?us-ascii?Q?FWfd2FKLqZ3Nxb81kDXqGAJEeDbS/Pe4veLLnwU3s3LYShQVgG1RkNsz0xPZ?=
+ =?us-ascii?Q?pgWdSGPlWfIiGx8NBTXk88DsyTHxIFlclu+VnKwE6h2gn9SfSIBBEegK5w+a?=
+ =?us-ascii?Q?0cQcJjtnteva94DevGxhGBxLDFD5zI0Bbddh5QTF0QU41KG1IuRfEBnYszNM?=
+ =?us-ascii?Q?iW0jDf6ON3qlfIcv8fPLqW9gFIzQN9KOIHLJiUKI7YOhen1C4J7OlT5t3oWj?=
+ =?us-ascii?Q?jb2yjUfp1rBZHnV4KwkED4UPgbuMLIi3vRp3hW9z38ghRr32H1Ew0RScN04Q?=
+ =?us-ascii?Q?l6IWkr8fKY55aQaXLHNdSoF3/pghoKlgIKS34bMb6RGO8RyLbKOH9gltNKa/?=
+ =?us-ascii?Q?O6DVG8u0GIcwrmyVYI7bgV7qxXDP4xwDFLzNRzELGkNtQ3F4b4mD5aYkguAc?=
+ =?us-ascii?Q?r/VX0OicSxc2Wfe3QOu+pIbep/l+Djzg5VmBOYbT12y8yUq0vi/Chk2wnT8A?=
+ =?us-ascii?Q?DX1qJDoK34NRhKOrRqZqbBdLkcBSHh162yl4/PimbmHq5BcpRMw1VXP5kJ8i?=
+ =?us-ascii?Q?KcMGZWqso+GMjhM+rm403kA/LdeQR6ed6O2Bczq470CpXDqbqVPN1BRHyY0m?=
+ =?us-ascii?Q?ahO7mic4Hdr+IGLu8TDUZyEg5kh2cM3QG350PERDGYI9kNEpetVKpDqy45J8?=
+ =?us-ascii?Q?1k4jvi9zkwPUCldsURnWeZHQ0cX0XbqGAw3PIQohEaY7ihxk9Zqb9e6F/wrz?=
+ =?us-ascii?Q?rovw615idesP771H+nzojK5P4jmGEG45JiUVyPimZoHeZudhbCD5jfjCvnZf?=
+ =?us-ascii?Q?zG5ekBvP4h9MjIfG7/h62mOx2TcZNIzvJ9L24cpx0h1ysW01bom+X8+GuC55?=
+ =?us-ascii?Q?EsaHwJf9tV1jXqsK3kMOEj8hcsqw+BHZB6CLSNSpByTMxmHkaj+B2H6GezKn?=
+ =?us-ascii?Q?nN+sauhOZ3Lx5Zcbn4SrKbOJElkMhA/UqZV056hTb8dtI1BrwNF4sFoNcj4T?=
+ =?us-ascii?Q?5THXErGqkWQNTyrGTATfT4HmY4XW9il2S2fRakhG2M8cLI2E9uJ9rs9KiFzL?=
+ =?us-ascii?Q?SPo98zf/rGj4Aiuvko2/zLStTSoetGqiMkgB3a+6Ahbs+h64rnL/mssSIJH2?=
+ =?us-ascii?Q?Z849Z3VHyaw7W9krVwgadv/OX/9A4F8HDdor+X2Hp4sYyhjvJfRy6EKCX4Md?=
+ =?us-ascii?Q?/xUmvmaeLgGrMhMhqz+Lxl+jb5QMSWSPphNd5TeOHZjD8ZGii6KpoFzNI4DZ?=
+ =?us-ascii?Q?o44zhk7rFuMRJA2IdPBokOFn7ZXIyvfwd/3KL3th9jjEz2I4CHRKBVfEOaSz?=
+ =?us-ascii?Q?5vy9IougUarNuDNWTorZgJYNRoItks1osjTmUW42Nh7ptm7MPiVUupi+eLBT?=
+ =?us-ascii?Q?brUsHuv9UwTJv4NHl+5vZXeuvvycWFIEg+HDhWaHmWb240xaKFcyzJ62Qq+i?=
+ =?us-ascii?Q?Vix1skn4C7FxloAXHH4jrg0bjRYK/Tjtpj4Go+/EsKqjjTehPLr9r17ub9cg?=
+ =?us-ascii?Q?bbMxjqkQTmDEImksmvt21xurf2zzhTf6oLuLqMaEVdk53ZEvZyKXSuJJvIjE?=
+ =?us-ascii?Q?UslaSy4PDvR0M3lX6i0wgkNSsZPVC7KLP02eQfy6?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b03c8c9-e6c9-4ebe-7537-08db3b676956
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2023 15:05:54.1362 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oIxz2DTrXron4Y9JRLy86tVGJ9rOCvqF+0n+Ig/1hlhiVWT0lTCVMFTZ+SdkH0/L
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7031
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,108 +124,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 12, 2023 at 02:16:22PM +0000, Golani, Mitulkumar Ajitkumar wrote:
-> HI Ville,
+On Wed, Apr 12, 2023 at 07:27:43AM +0000, Tian, Kevin wrote:
+> > From: Jason Gunthorpe
+> > Sent: Wednesday, April 12, 2023 8:01 AM
+> > 
+> > I see this problem as a few basic requirements from a qemu-like
+> > application:
+> > 
+> >  1) Does the configuration I was given support reset right now?
+> >  2) Will the configuration I was given support reset for the duration
+> >     of my execution?
+> >  3) What groups of the devices I already have open does the reset
+> >     effect?
+> >  4) For debugging, report to the user the full list of devices in the
+> >     reset group, in a way that relates back to sysfs.
+> >  5) Away to trigger a reset on a group of devices
+> > 
+> > #1/#2 is the API I suggested here. Ask the kernel if the current
+> > configuration works, and ask it to keep it working.
+> > 
+> > #3 is either INFO and a CAP for BDF or INFO2 reporting dev_id
+> > 
+> > #4 is either INFO and print the BDFs or INFO2 reporting the struct
+> > vfio_device IDR # (eg /sys/class/vfio/vfioXXX/).
 > 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> > Golani, Mitulkumar Ajitkumar
-> > Sent: 12 April 2023 19:45
-> > To: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> > enable/disable
-> > 
-> > Hi Ville,
-> > 
-> > > -----Original Message-----
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Sent: 12 April 2023 13:15
-> > > To: Golani, Mitulkumar Ajitkumar
-> > > <mitulkumar.ajitkumar.golani@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org
-> > > Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> > > enable/disable
-> > >
-> > > On Tue, Apr 11, 2023 at 08:41:11AM +0300, Ville Syrjälä wrote:
-> > > > On Mon, Mar 27, 2023 at 08:05:49PM +0000, Golani, Mitulkumar
-> > > > Ajitkumar
-> > > wrote:
-> > > > > Hi Ville,
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
-> > > > > > Behalf Of Ville Syrjala
-> > > > > > Sent: 21 March 2023 19:26
-> > > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > > Subject: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> > > > > > enable/disable
-> > > > > >
-> > > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > >
-> > > > > > Move VRR enabling/disabling into a place where it also works for
-> > > fastsets.
-> > > > > >
-> > > > > > With this we always start the transcoder up in non-VRR mode.
-> > > > > > Granted  we already did that but for a very short period of time.
-> > > > > > But now that we might end up doing a bit more with the
-> > > > > > transcoder in non-VRR mode it seems prudent to also update the
-> > > > > > active timings as the transcoder changes its operating mode.
-> > > > > >
-> > > > > > crtc_state->vrr.enable still tracks whether VRR is actually
-> > > > > > enabled or not, but now we configure all the other VRR timing
-> > > > > > registers whenever VRR is possible (whether we actually enable
-> > > > > > it or not). crtc_state->vrr.flipline can now serve as our "is VRR
-> > possible"
-> > > bit of state.
-> > > > >
-> > > > > Understood the change. I was thinking if it is possible to make
-> > > > > distinguish between is VRR "possible" and is VRR "enabled" by
-> > > > > adding a new param ? Although changes looks good to me but using
-> > > > > Flipline
-> > > value as "is VRR Possible" makes it bit confusing.
-> > > >
-> > > > I suppose we could think about adding a knob for it. It would just
-> > > > reflect the flipline enable bit state in the current scheme.
-> > >
-> > > After further pondering I think I'm leaning towards just adding a tiny
-> > > intel_vrr_possible()/etc. helper instead of adding a separate knob for
-> > > this into the crtc state. That seems like somehting we can trivially
-> > > do as a followup.
-> > 
-> > Yes. That also sounds good.
-> > 
-> > Regards,
-> > Mitul
-> > >
-> > > >
-> > > > Another thing I was pondering is whether we should even care about
-> > > > this in intel_dp_prepare_link_train() or if we should just set the
-> > > > MSA ingore bit any time we have a VRR capable display. But I suppose
-> > > > that could have some implicatations eg. for interlaces displays modes.
-> > 
-> > In that case to avoid implications should we add additional check for
-> > vrr.enable as well ?
-> > > >
-> > > > --
-> > > > Ville Syrjälä
-> > > > Intel
-> > >
-> > > --
-> > > Ville Syrjälä
-> > > Intel
-> 
-> Changes LGTM.
-> Thanks
->  
-> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> mdev doesn't have BDF. Of course it doesn't support hot_reset either.
 
-Thanks for the review. Series pushed.
+It should support a reset.. Maybe idxd doesn't, but it should be part
+of the SIOV model. Our SIOV devices would need it for instance.
 
--- 
-Ville Syrjälä
-Intel
+> but it's presented to userspace as a pci device. Is it weird for a pci
+> device which doesn't provide a BDF cap?
+
+It is weird for a PCI device, but it is not weird for a VFIO
+device. Leaking the physical labels out of the uAPI is not clean,
+IMHO.
+
+> from this point the vfio_device IDR# sounds more generic.
+
+Yes, I was thinking about this for the SIOV model.
+
+Jason
