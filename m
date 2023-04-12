@@ -1,62 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34786EAC50
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:09:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160D26DF229
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 12:46:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA4C10EE33;
-	Fri, 21 Apr 2023 14:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BD5210E378;
+	Wed, 12 Apr 2023 10:46:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com
- [IPv6:2607:f8b0:4864:20::1134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643F410E036;
- Wed, 12 Apr 2023 10:16:50 +0000 (UTC)
-Received: by mail-yw1-x1134.google.com with SMTP id
- 00721157ae682-54f21cdfadbso158739597b3.7; 
- Wed, 12 Apr 2023 03:16:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681294609; x=1683886609;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=19dXlvHgMePLLzjJNE3ILaQBnedS0pYMNzyfIhoRXxM=;
- b=EAQfrASv8KPDAv4+pdLnYB1XvWdCG7BadG3EAWkTPPvVu2WBJVwxQm5f3l+6H0/jXN
- XS6n5ikdV770ofbD9X+Xa1hogZytqUvOK3WbjoaYpClNJiQKJKMWrqyOkYVBtZhOIg3T
- n3gKngm1vDtu+KKmTbiVAbCMsq3z6NpoxFSw0DRAMvOR7xQYXFje0S3YfXI97Cvvl5UN
- HWAxKX4no7XAg6CDu3zpAEtAY7OfQvAdVv7828OSrDKFTsZjke2iu6ZsRi2qRhNsmibD
- C8DOad/FaPWFbFZ213gQ/GT0797QI2vO5fXEUknzvesvgL6VHK50g99XoO2ovG/K/z0I
- pCKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681294609; x=1683886609;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=19dXlvHgMePLLzjJNE3ILaQBnedS0pYMNzyfIhoRXxM=;
- b=rOXyW2jfKWwPJftUQd6Bg5Znt4wAuRbHVuAFt+5L/TDQyWDfPI6v+2H+WufjheeuQk
- QZTNJSjByNVK92ry/BPQWAMVvWU4fyKODz6d4cfYmeuRfmZQ2HdIjDO57smSxdneC/hl
- USCCrc0XxD4wvtDp5LQnTcBROAVbr1a9mL6V8+fcurwmnUr6DOZEoFS3SxvHQBRzKJYG
- nroRzXX9uTdLPxnaQkj0WQbeUm3cwDhoLBE0vYGWdGbt6+LPcPFo2yXGHDHMWydCxoJU
- bLInGS+N6GyNWFIJD97SCvONmsqP9fbR7HRBUTxykB36lukK0cBae5s84mjaQvahk1l4
- CKrQ==
-X-Gm-Message-State: AAQBX9do1bJPBD0FIoIeu3xV1XfX2HZY1P9PRacAXMVIje3IgJVmV69i
- l/VKBrbbLWDJp+tuL9Rz5J1nkGr84Ad3fZJcTA==
-X-Google-Smtp-Source: AKy350Zbl3xTmIJhw9eX8Q6upCZv7QKX45sX7JtpGJJaFIZE+ybDiJmirCSO3VVFaUGoUxmOUUDVuGGBn6ZRB8avHh4=
-X-Received: by 2002:a81:bc48:0:b0:54f:a609:e88 with SMTP id
- b8-20020a81bc48000000b0054fa6090e88mr454918ywl.7.1681294608809; Wed, 12 Apr
- 2023 03:16:48 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2958A10E1FB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 10:46:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681296384; x=1712832384;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8jXEgxUaOaW0RAsPKCP7ZIK1viXlbEXzDAAf15VQOvc=;
+ b=iVxpJcyWze4vSahW9Ir1+3WmQWJZYQgHtgQSk6Ud5eSND1IEvjuz254u
+ z6HjZj1WZZw6uF4jEkyeqttqLsWgbx1H4L8uH8E4ESZUUHGwC/wezRGqP
+ C43/5Ah48OsdEsyvdNBklP4hsTm9+YEbD9PlQ3Kagtpq0Vco+7Of0Mx6q
+ BdK8Kg5aDpB+cOqZ5pYP249+Hyy7qxzzKlMigIGMvzE1TtrvEx5qV4x4P
+ /kufmEleoEKkYdPUlEaVGu+oAy+WwjIPsC5KG2CP16EcOQlzjwTmS12jw
+ HBUQLbxu0xQJwfeUTLAUFFe0XOX7RqJE6mlkhUwvAYJjfSEQT+FrEKERx w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="327970199"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="327970199"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 03:46:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10677"; a="639173997"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="639173997"
+Received: from bhanu-nuclab.iind.intel.com ([10.145.169.172])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 03:46:15 -0700
+From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	jani.nikula@intel.com
+Date: Wed, 12 Apr 2023 16:11:51 +0530
+Message-Id: <20230412104152.828326-1-bhanuprakash.modem@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <CALjTZvZ=Y1psyd0nmfzm6GhqMKvq5V_NQCWb_X02nasp1CpfcQ@mail.gmail.com>
- <87r0spcuvi.fsf@intel.com>
-In-Reply-To: <87r0spcuvi.fsf@intel.com>
-From: Rui Salvaterra <rsalvaterra@gmail.com>
-Date: Wed, 12 Apr 2023 11:16:37 +0100
-Message-ID: <CALjTZvao=N7wxyj_DpqzWUhdJwEsWSKUo3ddi-3ubgMp8BXi_Q@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:19 +0000
-Subject: Re: [Intel-gfx] [BUG?] INFO: rcu_sched detected expedited stalls on
- CPUs/tasks: { 0-.... } 3 jiffies s: 309 root: 0x1/.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [V2 0/1] drm/i915/debugfs: New debugfs for display
+ clock frequencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +57,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulmck@kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Jani,
+Instead of mixing display & non-display stuff together, move
+display specific clock info to new debugfs. This patch will
+create a new debugfs "i915_cdclk_info" to expose Current & Max
+cdclk and Max pixel clock frequency info.
 
-On Wed, 12 Apr 2023 at 10:28, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> Please file a bug at fdo gitlab [1]. Add drm.debug=0xe and maybe
-> log_buf_len=4M or similar kernel parameters, and attach dmesg all the
-> way from boot to reproducing the problem.
+Test-with: 20230412103448.826946-1-bhanuprakash.modem@intel.com
 
-Sure, will do, thanks!
+Bhanuprakash Modem (1):
+  drm/i915/debugfs: New debugfs for display clock frequencies
 
-> How long is "for some time now"?
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ 3 files changed, 27 insertions(+)
 
-That's a wonderful question. I actually found a screenshot I took on
-the 14th October(!) with one of these traces. I don't know the exact
-kernel version, but since I've been running weekly release candidates
-for years, it shouldn't be hard to pinpoint, if strictly needed. Since
-the trace seemed informative and I haven't noticed any problems, I was
-kind of hoping it would solve itself in time. I guess my patience
-lasted 6 months. :)
+--
+2.40.0
 
-Kind regards,
-Rui
