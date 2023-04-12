@@ -1,55 +1,116 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2AA6DFD7F
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 20:27:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010CA6DFF61
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 22:06:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 457A710E917;
-	Wed, 12 Apr 2023 18:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5989710E956;
+	Wed, 12 Apr 2023 20:06:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21F0010E910;
- Wed, 12 Apr 2023 18:27:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681324049; x=1712860049;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cqKO9TziOmEEhE0gbMgiPkWcojaHbnVzNzEhpsuxk3A=;
- b=MlYpcDd2b5+ONb6XHEywyqnKE2gIZwHj5ajiBDdeIyrF4/Obg4sXBgij
- 2J5MaKfSCorl+KRRkh05nMGQS/mEw1EFDI//7eWd3c3q7o8HcIdmmm3VS
- fiBWRjGX3W04zi+xQwcD3h1Fu4DdTu7VDTErvC7kk4S4e+DXIItQ58wc9
- RmjeNCz+xCjvAP1p+jBquLjw3qlZ91Xx7JKKdENtmG+x6WyZzrSiVtfpZ
- UFbWhZiVsKmnXWX+g5MkFlms+yWSzGyECl9CoT4bJxu03JSxxiR1ABX1J
- RmvWcK6nLAQMoQTAue8NmuEQXRiuY+qUaJz4at4UnjDNbDQFz71mWv6yj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328099184"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328099184"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 11:27:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="753646682"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="753646682"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 12 Apr 2023 11:27:21 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pmfBg-000Xyx-2P;
- Wed, 12 Apr 2023 18:27:20 +0000
-Date: Thu, 13 Apr 2023 02:27:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>,
- David Airlie <airlied@gmail.com>
-Message-ID: <202304130224.59cNkdgV-lkp@intel.com>
-References: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2042.outbound.protection.outlook.com [40.107.92.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8618910E954;
+ Wed, 12 Apr 2023 20:06:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B6w4NHf0SFNIVHNF3D4pVkVOE8zUD9dqN6+R+HhRPT2Qsd/gMpIUNVVbxUhWqSdheal7nmQxRo1aAkJ0zJz0al0DhO3DFSe+rVliQGlJ8l79RQLrs9LzVSqw7KfnlnyCwMiZyCnDO66FjT3ncFAokiXN6YsAcMCjg7449FtY/YclKA+e6TRix3P52TEjzvKqCd0RiJN39F2aJk5fcdXCUDft50Qmv6uNXHPZngOY3QZsAYmVDGqe7KdXt4pHtrq1n6IJp4eoBwBClU0tgJbfzCzli0/W/+dXsFJ9dDmDHK2Cspo4u3KtNaClrOpcSbrZniGiR2QdxSVrCU5hunCTog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SyWeYyx0KpFIBxH0mNGsCaAesVUa6okKbhY0pu/tUJM=;
+ b=Maq4rk5GZyUVl+AluIfaZ8u9Wppoqfrr3zNgiEscOEm37T8y57iBlM0OCmGxWIjt7+GrOCi+CUO4xtuvf6hVHDEGHKnhSBEnv1yNaeehFVLn42ncaUyWLBMmXNHRr5pbs6yjxwQD5qaoqx1xty9Sj+ymIZxs3SgQiyIBf2LWeSV7Fv+xtdlp7KG42Obc89ffK/QIypjZFyoClPqrjM0CeANq47d5PNBVEGWVvz2PGaeIpHIO2J1XZbd25cDRiup1a0edSDeReQSdyBxiHr4SFh4wpqWge7yFHW3ym1ofYFVbMt8FTmmC9ckwjs0eN+FIYFIdVrtpuMvecK5PCZfMgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SyWeYyx0KpFIBxH0mNGsCaAesVUa6okKbhY0pu/tUJM=;
+ b=jQkXgSVM0hPsrgMxo9BZqbYVUDzE/QO3r5xO0QHLuXDanOGloyK5HumFC6KhIy2LFdL8y8RL3HVpLFTD9KFwhLp8bIq8VHazdOzB5qo47HGoHd+33r1NkA28SwSL0zX7Nss/gqCsTt0VNftXUVs3wJY/vqoIBE0G2Z0l3LPp382WToX0lKe6h1wnEAzvxkwXiakLMuFRSOe8MMtyZ/GmXoZ2YVYProdCnw2PB2C0TrU/KRg4loY5XcTympL3UB9OZHANlk/8Zi+x/9m0NM6LDw97vsRwAfZ2RD6oEiAv6/4Q9BIpi1oFIjB8MRngF8c2ErJ5cImAgJYFyudRT9/Y0A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by PH7PR12MB5593.namprd12.prod.outlook.com (2603:10b6:510:133::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Wed, 12 Apr
+ 2023 20:06:39 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::6045:ad97:10b7:62a2%9]) with mapi id 15.20.6277.038; Wed, 12 Apr 2023
+ 20:06:39 +0000
+Date: Wed, 12 Apr 2023 17:06:37 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <ZDcPTTPlni/Mi6p3@nvidia.com>
+References: <ZC4CwH2ouTfZ9DNN@nvidia.com>
+ <DS0PR11MB75292DA91ED15AE94A85EB3DC3919@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230406115347.7af28448.alex.williamson@redhat.com>
+ <ZDVfqpOCnImKr//m@nvidia.com>
+ <20230411095417.240bac39.alex.williamson@redhat.com>
+ <20230411111117.0766ad52.alex.williamson@redhat.com>
+ <ZDWph7g0hcbJHU1B@nvidia.com>
+ <20230411155827.3489400a.alex.williamson@redhat.com>
+ <ZDX0wtcvZuS4uxmG@nvidia.com>
+ <20230412105045.79adc83d.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
-Subject: Re: [Intel-gfx] [PATCH] video/hdmi: minor fixes for
- *_infoframe_init functions
+In-Reply-To: <20230412105045.79adc83d.alex.williamson@redhat.com>
+X-ClientProxiedBy: YT4PR01CA0114.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:d7::19) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|PH7PR12MB5593:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac494bc5-c5a4-4c17-64ae-08db3b916d21
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: d+R5DyJPW1jpIjz3UeWDCJWoO7HPI8SOaaxQAVvOUVrhYYY1p/blYKMQJyPOf5uhXxQ+9qmq7J6DYIptukXhX5SqHeI1IoesHR6pQ3Y5DR8+mvOdhLLYEkXZ+tICBhJXkbcnYUqzZKKgYgJsA/g6UCwNHi0lWOSWnwwHo0iEEaYDvS+eyDFKZES5GPW83Paab0WrTeMUivWVmRBPlpc9uFyUcwiDZQr+uCbAMyimKB2Qy740PkVBOKMkuShY8R2q/rr7rAlZbDPMmlnNNOBZP+JJamdx1BmPtQHkvX5bKTy1OgFmhm6uE9pvnl/mdWp5tp+t7Z5JpZFn3YFgSweMUOYfraAQcFedl1rqBiCM+kh03Sfl8G+kwA9xxPulORNxaL1pVhjjWTnQy1CJZiwjqcui/bm1V7lWSOsUl56HvB1N3FokuGcCz4jolFZxg6CNlhNBIN8IZcAHWqsK+XSJj0rrdjUNjQErML+bT2NGj2x9AcVTpLOj3YFs1WqcyjMX5F86uieU3dLw45FgmkNXMLPxQcV4KavrLfNu7/hZ+EQmKqElvZ+GqEe33fY0WRqv
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(396003)(136003)(366004)(376002)(346002)(451199021)(36756003)(41300700001)(66476007)(54906003)(66946007)(478600001)(8676002)(6486002)(4326008)(6916009)(66556008)(316002)(86362001)(2616005)(6506007)(6512007)(83380400001)(26005)(7416002)(2906002)(5660300002)(8936002)(38100700002)(186003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?unZl/TXgdHRF25uLjgni9C//glbsfMNHtY1RuaWSUBOYIv6mjlwRCyx1C2qH?=
+ =?us-ascii?Q?Hev+XG9BS6jcexHaZzW1XjoB6jzerqe9pzhV5sUUeQDj7R7yB5QdvvTCElth?=
+ =?us-ascii?Q?83rdzgwo7tQsSDRod0sqKb8f1jexUv7x/hqb0qzKw+fa3PiZnpney5GGi1iu?=
+ =?us-ascii?Q?eoraJYOy8+8PKnFrGwEbyo/YWY+oGHFq1G1ZlbXL7G5bbgCizBuo7wssN5XK?=
+ =?us-ascii?Q?84JrCeHqJIB1US07Oogk1c23OjUUtK7RRYMxEr0UIWMqauE0TQ8Sojo4pAgT?=
+ =?us-ascii?Q?/FOHUvtNiSqJEqicwBya6LlH+7reInHezBHCxrJQnXDcd2d5PaDUDOy2QVQf?=
+ =?us-ascii?Q?xejl+C/swV/BHMfwAjZiWeVzL0MY29Z1cMrtuvkmmGgJolVF9bdTI/FOSS3w?=
+ =?us-ascii?Q?42eleH/Dl1IHo07vaFPk2a3pJYa3FPAi/z/7o2j5Hk9ZWZQ51GnCP/qnwI1L?=
+ =?us-ascii?Q?AvOuubRPzInIzevCDzqrYJ6lwlyOuqEFHUMX2sx6EqFI5kKLws+BssHwXZYr?=
+ =?us-ascii?Q?BhpIiuWJuQhHM5Q2tbTM6MSqUTNx+vpLrnYoMHMQomcK3/WPPEQxO2Ts6j9n?=
+ =?us-ascii?Q?RSdy1q56jbdC5bLF4qLoDqlQv2egtuqAeGAz8iydw7Vm9R/PItyWYEYjJdWY?=
+ =?us-ascii?Q?fglace9oxg1bhm+pfOLlRrzCnFIEL5cDz+rPI9S1ksHHOWZZFubKIGYtIh/D?=
+ =?us-ascii?Q?ANscdXW1dYiXr7z89dX216b0VuJqbn6s0y8Ux5wNJzdJoIKOTUcV2Sizj5E+?=
+ =?us-ascii?Q?4pl1OAbuDLL0RTW6qCPjwn37i0+bBqq3yAj171kCZTeVKhEDgywKp9Zl4vJO?=
+ =?us-ascii?Q?pboXCQsmIrTU2b69Aj+OivSw+mqfdKxUunKfgJR2voy+8avxXYcJi1+AjEpX?=
+ =?us-ascii?Q?GTABkrt09X/tLs9sjFUceOeYjTIrPVih4BCjXocGZMUv1YPECRHiszSFzx3f?=
+ =?us-ascii?Q?FcJeTjiWOwK/5wj/HYYukyPxZv3kw935fVxc+JGg8+kRqXOPeB76xh3xxuhM?=
+ =?us-ascii?Q?YJw9ye9+TbYOMJk2lHfxIVZpyFOkATFQdY23Ps9Zn0xxTCT1gYCPvuV3Phis?=
+ =?us-ascii?Q?RqTfB1fPMbJiHiEBkmLvf46YQggf6GBBAJ67NCyW/6jp7vk0sZPLrwsnFSTj?=
+ =?us-ascii?Q?bZlnepS1F42i8olf5a6u/r0ZqfE0uT3ttQm6kMT1qa5rRhssIsNpQjvC0+oI?=
+ =?us-ascii?Q?I3vrHsvhSbl/kf3tp6JFrUpyXuPLf9evcKRbEMK4yAgB1KhN7mm82FDAM6p9?=
+ =?us-ascii?Q?PrqDP+fn07f2Au3VH0gWEHt3JCVaXZYzlAtfFe6QPnNbJrN4QmW7XQOrPV0t?=
+ =?us-ascii?Q?tJqWqDdxI23X7f3ylcbaULZa5YrdrCcY2Ba4os7nOhWO8TAfkJCxx13NHTi8?=
+ =?us-ascii?Q?KBOehw2IxAg91xytYmwMgSg493Q9NxLGnvWBr35YwMKH48xGk/OL9EYwy9e7?=
+ =?us-ascii?Q?FGnIYyqkI+HTRna5ReNlKaEaePPfMO4bgO9CM9T+5pKdC9ADa1x3EfK4B10e?=
+ =?us-ascii?Q?au1Q2f+49/qM6W/DEgVq3EWDyTRCaRGxgPaJ4bxpyxqlXXpVUKJJoYeJsCvO?=
+ =?us-ascii?Q?6s3vuOnAYMvukzWo3rKXUQz5bbi2S3qm7qIDkgZ4?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac494bc5-c5a4-4c17-64ae-08db3b916d21
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2023 20:06:39.3527 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: okVNVfxhaGCd/77kwRvREmk8a8RCG+QwyxEiMMwSGxjL3BFU4f2MTQDkRABZRMSK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5593
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,108 +123,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, linux-fbdev@vger.kernel.org,
- lvc-project@linuxtesting.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Helge Deller <deller@gmx.de>, llvm@lists.linux.dev,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- Nikita Zhandarovich <n.zhandarovich@fintech.ru>, oe-kbuild-all@lists.linux.dev,
- Matthias Brugger <matthias.bgg@gmail.com>, intel-gfx@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nikita,
+On Wed, Apr 12, 2023 at 10:50:45AM -0600, Alex Williamson wrote:
 
-kernel test robot noticed the following build warnings:
+> > You keep going back to this, but I maintain userspace doesn't
+> > care. qemu is given a list of VFIO devices to use, all it wants to
+> > know is if it is allowed to use reset or not. Why should it need to
+> > know groups and group_ids to get that binary signal out of the kernel?
+> 
+> hw/vfio/pci.c:2320
+>         error_report("vfio: Cannot reset device %s, "
+>                      "depends on group %d which is not owned.",
+>                      vdev->vbasedev.name, devices[i].group_id);
+> 
+> That creates a feedback loop where a user can take corrective action
+> with actual information in hand to resolve the issue.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on tegra/for-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.3-rc6 next-20230412]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Which is why I listed debugging as requirement #4, and solve
+requirement #4 by using the existing INFO and printing the BDF list it
+returns.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nikita-Zhandarovich/video-hdmi-minor-fixes-for-_infoframe_init-functions/20230412-232947
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230412152910.9486-1-n.zhandarovich%40fintech.ru
-patch subject: [PATCH] video/hdmi: minor fixes for *_infoframe_init functions
-config: i386-randconfig-a005-20230410 (https://download.01.org/0day-ci/archive/20230413/202304130224.59cNkdgV-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/36210f5b0ac3046f4c1c1d0c6e392eab40811699
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Nikita-Zhandarovich/video-hdmi-minor-fixes-for-_infoframe_init-functions/20230412-232947
-        git checkout 36210f5b0ac3046f4c1c1d0c6e392eab40811699
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+> > The kicker is we don't force the user to generate a de-duplicated list
+> > of devices FDs, one per group, just because.
+> 
+> So on one hand you're asking for simplicity, but on the other you're
+> criticizing a trivial simplification that we chose to allow the user to
+> pass number of group fds equal to number of devices affected so that
+> the user doesn't need to take that step to de-duplicate the list.  We
+> can't win.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304130224.59cNkdgV-lkp@intel.com/
+It is not a simplification because the kernel is wired to accept only
+a list of exactly that group length, no more no less. It turns into a
+pointless puzzle that userspace has to solve, and it can only solve it
+by knowing about groups.
 
-All warnings (new ones prefixed by >>):
+If we get rid of groups we have to do something about this so
+userspace doesn't need to do the calculation. That is the point of
+this change.
 
->> drivers/gpu/drm/i915/display/intel_hdmi.c:769:37: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-           if (drm_WARN_ON(encoder->base.dev, ret))
-                                              ^~~
-   include/drm/drm_print.h:630:19: note: expanded from macro 'drm_WARN_ON'
-           drm_WARN((drm), (x), "%s",                                      \
-                            ^
-   include/drm/drm_print.h:620:7: note: expanded from macro 'drm_WARN'
-           WARN(condition, "%s %s: " format,                               \
-                ^~~~~~~~~
-   include/asm-generic/bug.h:131:25: note: expanded from macro 'WARN'
-           int __ret_warn_on = !!(condition);                              \
-                                  ^~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_hdmi.c:756:9: note: initialize the variable 'ret' to silence this warning
-           int ret;
-                  ^
-                   = 0
-   1 warning generated.
+> > > You've said that hot-reset works if the iommufd_ctx has
+> > > representation from each affected group, the INFO ioctl remains as
+> > > it is, which suggests that it's reporting group ID and BDF, yet only
+> > > sysfs tells the user the relation between a vfio cdev and a group
+> > > and we're trying to enable a pass-by-fd model for cdev where the
+> > > user has no reference to a sysfs node for the device.  Show me how
+> > > these pieces fit together.  
+> > 
+> > I prefer the version where INFO2 returns the dev_id, but info can work
+> > if we do the BDF cap like you suggested to Yi
+> 
+> As discussed ad nauseam, dev-id is useless if an affected device is not
+> already within the iommufd ctx.  
 
+The purpose of INFO2 is to satisfy requirement #3 - which is to report
+the effected devices *that are already opened*. For this dev_id is
+fine. There is nothing qemu can do with devices that are outside its
+iommufdctx, so it is pointless to tell it about them. It will generate
+the debug print of #4 using INFO. I don't think we don't need one API here.
 
-vim +/ret +769 drivers/gpu/drm/i915/display/intel_hdmi.c
+> > I see this problem as a few basic requirements from a qemu-like
+> > application:
+> > 
+> >  1) Does the configuration I was given support reset right now?
+> >  2) Will the configuration I was given support reset for the duration
+> >     of my execution?
+> >  3) What groups of the devices I already have open does the reset
+> >     effect?
+> >  4) For debugging, report to the user the full list of devices in the
+> >     reset group, in a way that relates back to sysfs.
+> >  5) Away to trigger a reset on a group of devices
+> > 
+> > #1/#2 is the API I suggested here. Ask the kernel if the current
+> > configuration works, and ask it to keep it working.
+> 
+> That is super sketchy because you're also advocating for
+> opportunistically supporting reset if the instantaneous conditions
+> allow is (ex. unopened devices), and going back and forth whether "ask
+> it to keep working" suggests that a user is able to extend their
+> granted ownership themselves.  I think both needs to be based on some
+> form of granted, not requested, ownership and not opportunism.
 
-b055c8f3ef9f7b drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-07-08  748  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  749  static bool
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  750  intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  751  				 struct intel_crtc_state *crtc_state,
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  752  				 struct drm_connector_state *conn_state)
-c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  753  {
-7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  754  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  755  	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
-5adaea799c1c2c drivers/gpu/drm/i915/intel_hdmi.c         Damien Lespiau      2013-08-06  756  	int ret;
-5adaea799c1c2c drivers/gpu/drm/i915/intel_hdmi.c         Damien Lespiau      2013-08-06  757  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  758  	if (!crtc_state->has_infoframe)
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  759  		return true;
-c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  760  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  761  	crtc_state->infoframes.enable |=
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  762  		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
-c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  763  
-7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  764  	if (IS_DGFX(i915))
-36210f5b0ac304 drivers/gpu/drm/i915/display/intel_hdmi.c Nikita Zhandarovich 2023-04-12  765  		hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
-7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  766  	else
-36210f5b0ac304 drivers/gpu/drm/i915/display/intel_hdmi.c Nikita Zhandarovich 2023-04-12  767  		hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
-7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  768  
-3a47ae201e0749 drivers/gpu/drm/i915/display/intel_hdmi.c Pankaj Bharadiya    2020-01-15 @769  	if (drm_WARN_ON(encoder->base.dev, ret))
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  770  		return false;
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  771  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  772  	frame->sdi = HDMI_SPD_SDI_PC;
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  773  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  774  	ret = hdmi_spd_infoframe_check(frame);
-3a47ae201e0749 drivers/gpu/drm/i915/display/intel_hdmi.c Pankaj Bharadiya    2020-01-15  775  	if (drm_WARN_ON(encoder->base.dev, ret))
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  776  		return false;
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  777  
-fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  778  	return true;
-c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  779  }
-c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  780  
+Ok, lets give up on ownership then
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> > #3 is either INFO and a CAP for BDF or INFO2 reporting dev_id
+> 
+> Where dev-id is useful for... ?  I think there's a misuse of "groups"
+> in 3) above, userspace needs to know specific devices affected, thus
+> BDF.
+
+I did not mean "group of devices" to mean iommu_group, I mean "the set of
+devices affected by the reset"
+
+> > #4 is either INFO and print the BDFs or INFO2 reporting the struct
+> > vfio_device IDR # (eg /sys/class/vfio/vfioXXX/).
+> 
+> We can't assume that all the affected devices are bound to vfio,
+> therefore we cannot assume a vfio_device IDR exists.
+
+So BDF is better for the debugging print.
+
+> > #5 is adjusting the FD list in existing RESET ioctl. Remove the need
+> > for userspace to specify a minimal exact list of FDs means userspace
+> > doesn't need the information to figure out what that list actually
+> > is. Pass a 0 length list and use iommufdctx.
+> 
+> "...doesn't need the information to figure out what the list actually
+> is."  That's false, userspace needs the information whether it uses it
+> to make a list or not,
+
+#3 is the need of affected devices, it is already covered.
+
+I mean that #5 should not need this, #5 is only about triggering the
+reset.
+
+What I want is a #5 action that does not require doing a calcuation on
+group IDs.
+
+At the core, without any notion of groups, #5 requires userspace to
+pass in every opened device FD and kernel checks that every opened
+device is in the passed FD list. Close devices are ignored. Devices
+with unattached drivers are ignored.
+
+#5 does not need the answer to requirement #2.
+
+> So we need one or more ioctls that a) indicates whether
+> the ownership requirements are met 
+
+If we reject the ownership direction, then I go back to suggesting
+that INFO2 should do this.
+
+> b) indicates the set of affected
+> devices.  
+
+INFO2 will return the dev_id which is sufficient to satisfy
+requirement #3
+
+> Is b) only the set of affected devices within the calling
+> devices iommufd_ctx (ie. dev-ids),
+
+I vote yes
+
+> in which case we need c) a way to
+> report the overall set of affected devices regardless of ownership in
+> support of 4), BDF?
+
+Yes, continue to use INFO unmodified.
+ 
+> Are we back to replacing group-ids with dev-ids in the INFO structure,
+> where an invalid dev-id either indicates an affected device with
+> implied ownership (ok) or a gap in ownership (bad) and a flag somewhere
+> is meant to indicate the overall disposition based on the availability
+> of reset?  
+
+As you explore in the following this gets ugly. I prefer to keep INFO
+unchanged and add INFO2.
+
+So maybe we should make patches that look something like this, try to
+come up with a workable INFO2 and squeeze no-iommu into it somehow.
+
+Jason
