@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74DD56DF856
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 16:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A56D6DF8C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 16:39:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB17810E82A;
-	Wed, 12 Apr 2023 14:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCF010E839;
+	Wed, 12 Apr 2023 14:39:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 673CE10E823
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 14:24:15 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- 5b1f17b1804b1-3f0769b0699so756475e9.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 07:24:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681309453;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=vMEz+vyXmWkb2mfG3EHZCV47jXj0FhidszGd7fTtoWc=;
- b=fEBGZiRyV5TyAwpRZLY3WOk4FFfWb8Z9J1kkNUYf439UtScvY4mHv3lZZPTgU/zAyj
- d8qJm0X6JiRl0Q6O8U/mUh5nOSatKf+H+fQ80BSslKDq0CQ4WhnNOUIWUtSOb7Fb6N7O
- 9BpiJNpa/tGboCgkoNkkK8M+50jwzYgDGeOOM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681309453;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=vMEz+vyXmWkb2mfG3EHZCV47jXj0FhidszGd7fTtoWc=;
- b=K4lVJYRRTJlxub5NdiqfYC+9X12XYivHFqvNm2bl32mZei/fHBeIIwLna/6WEoMfH7
- xne3Lid9lfdecZbO3t+buhwpwu844YoDcjGf9bo4R5WxwkWRXyCDnIIxtjwbxvV01Qaa
- h0c2oAvYPmHnIAbLNPlFTl1xtJN59Zqd0dv6wA04S2zY8vELZpKhs6z8smCYiCQEvN63
- p4OBX+49Nmbo5nTsHUJxdCjkHwij9t5KprjKujQ2McnmTIlTmc3+DcR24RoplAj/Ky8F
- jGPS3pXuWpKaTINyOx9dF7Qh0mjke4oxjA2NP3zfJXsqwScIPf6+9S09Phj4k+x1+66X
- vaSg==
-X-Gm-Message-State: AAQBX9fQzqd3vNBWYajUuArhAMwD2uRCpDwXaDhji319+hkYCskwbpEH
- 57y57BlsOSinR6/uWPQidNozpw==
-X-Google-Smtp-Source: AKy350a0Kx8S/h/sXssIu8kp88KU0tZTr+bARtQaM76YsW3sjREU/hZd1lhInQew6xRnYm9WPWr/5w==
-X-Received: by 2002:a05:600c:46cb:b0:3f0:84b7:22cf with SMTP id
- q11-20020a05600c46cb00b003f084b722cfmr2137954wmo.2.1681309453585; 
- Wed, 12 Apr 2023 07:24:13 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- o3-20020a05600c4fc300b003ee1e07a14asm2563862wmq.45.2023.04.12.07.24.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Apr 2023 07:24:13 -0700 (PDT)
-Date: Wed, 12 Apr 2023 16:24:11 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZDa/C/uGRhNnJFcV@phenom.ffwll.local>
-References: <b7c37d4e-8f16-85dc-0f5f-3bd98f961395@linux.intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A26010E839;
+ Wed, 12 Apr 2023 14:39:52 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A385662E86;
+ Wed, 12 Apr 2023 14:39:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2520DC4339E;
+ Wed, 12 Apr 2023 14:39:45 +0000 (UTC)
+Message-ID: <ec2f4f25-938d-f87c-90f2-2e7f69b27c8f@xs4all.nl>
+Date: Wed, 12 Apr 2023 16:39:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b7c37d4e-8f16-85dc-0f5f-3bd98f961395@linux.intel.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Liam Mark <lmark@codeaurora.org>, Brian Starkey <Brian.Starkey@arm.com>,
+ John Stultz <jstultz@google.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Tomi Valkeinen <tomba@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>
+References: <20230406160637.541702-1-dmitry.osipenko@collabora.com>
+ <20230406160637.541702-2-dmitry.osipenko@collabora.com>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20230406160637.541702-2-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/7] media: videobuf2: Don't assert held
+ reservation lock for dma-buf mmapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,142 +61,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 12, 2023 at 03:32:30PM +0200, Maarten Lankhorst wrote:
+On 06/04/2023 18:06, Dmitry Osipenko wrote:
+> Don't assert held dma-buf reservation lock on memory mapping of exported
+> buffer.
 > 
-> Good afternoon Daniel, Dave,
+> We're going to change dma-buf mmap() locking policy such that exporters
+> will have to handle the lock. The previous locking policy caused deadlock
+> problem for DRM drivers in a case of self-imported dma-bufs once these
+> drivers are moved to use reservation lock universally. The problem is
+> solved by moving the lock down to exporters. This patch prepares videobuf2
+> for the locking policy update.
 > 
-> One last pull request for drm-misc-next.
-> 
-> Small one, so easy to merge. As a result also more likely to eat your
-> computer alive. ;)
-> 
-> Cheers,
-> 
-> ~Maarten
-> 
-> drm-misc-next-2023-04-12:
-> 
-> drm-misc-next for v6.4-rc1:
-> 
-> Cross-subsystem Changes:
-> - Convert MIPI DSIM bridge to yaml.
-> 
-> Core Changes:
-> - Fix UAF race in drm scheduler.
-> 
-> Driver Changes:
-> - Add primary plane positioning support to VKMS.
-> - Convert omapdrm fbdev emulation to in-kernel client.
-> - Assorted small fixes to vkms, vc4, nouveau, vmwgfx.
-> The following changes since commit e44f18c6ff8beef7b2b10592287f0a9766376d9b:
-> 
->   drm/ttm: Make the call to ttm_tt_populate() interruptible when faulting
-> (2023-04-06 10:01:42 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-04-12
+> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 
-There's non-breakable space in this line, which broke dim and it took me a
-while to figure out wtf is going on. Please copypaste more carefully :-)
+Reviewed-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 
-> for you to fetch changes up to fd35174e13f98f9232c4aa66689816731d34ca28:
-> 
->   drm/vmwgfx: remove unused vmw_overlay function (2023-04-11 13:48:55 -0400)
+Regards,
 
-Pulled, thanks
+	Hans
 
+> ---
+>  drivers/media/common/videobuf2/videobuf2-dma-contig.c | 3 ---
+>  drivers/media/common/videobuf2/videobuf2-dma-sg.c     | 3 ---
+>  drivers/media/common/videobuf2/videobuf2-vmalloc.c    | 3 ---
+>  3 files changed, 9 deletions(-)
 > 
-> ----------------------------------------------------------------
-> drm-misc-next for v6.4-rc1:
-> 
-> Cross-subsystem Changes:
-> - Convert MIPI DSIM bridge to yaml.
-> 
-> Core Changes:
-> - Fix UAF race in drm scheduler.
-> 
-> Driver Changes:
-> - Add primary plane positioning support to VKMS.
-> - Convert omapdrm fbdev emulation to in-kernel client.
-> - Assorted small fixes to vkms, vc4, nouveau, vmwgfx.
-> 
-> ----------------------------------------------------------------
-> Asahi Lina (1):
->       drm/scheduler: Fix UAF race in drm_sched_entity_push_job()
-> 
-> Ben Dooks (1):
->       drm/nouveau/mc/ga100: make ga100_mc_device static
-> 
-> Jagan Teki (1):
->       dt-bindings: bridge: Convert Samsung MIPI DSIM bridge to yaml
-> 
-> Javier Martinez Canillas (2):
->       drm/vkms: Drop vkms_connector_destroy() wrapper
->       drm/vkms: Remove <drm/drm_simple_kms_helper.h> include
-> 
-> Martin Krastev (2):
->       drm/vmwgfx: Drop mksstat_init_record fn as currently unused
->       drm/vmwgfx: Fix Legacy Display Unit atomic drm support
-> 
-> Maíra Canal (2):
->       drm/vkms: remove the need for the primary plane to be visible
->       drm/vkms: allow the primary plane to be positioned
-> 
-> Thomas Zimmermann (5):
->       drm/omapdrm: Include <linux/of.h>
->       drm/omapdrm: Remove fb from struct omap_fbdev
->       drm/omapdrm: Remove bo from struct omap_fbdev
->       drm/omapdrm: Remove fbdev from struct omap_drm_private
->       drm/omapdrm: Implement fbdev emulation as in-kernel client
-> 
-> Tom Rix (2):
->       drm/vc4: remove unused render_wait variable
->       drm/vmwgfx: remove unused vmw_overlay function
-> 
-> Zack Rusin (1):
->       drm/vmwgfx: Print errors when running on broken/unsupported configs
-> 
-> ruanjinjie (1):
->       drm/nouveau/disp: make gv100_disp_core_mthd_base static
-> 
->  .../bindings/display/bridge/samsung,mipi-dsim.yaml | 255
-> +++++++++++++++++++++
->  .../bindings/display/exynos/exynos_dsim.txt        |  92 --------
->  MAINTAINERS                                        |   1 +
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c   |   2 +-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mc/ga100.c     |   2 +-
->  drivers/gpu/drm/omapdrm/omap_debugfs.c             |   6 +-
->  drivers/gpu/drm/omapdrm/omap_drv.c                 |  13 +-
->  drivers/gpu/drm/omapdrm/omap_drv.h                 |   3 -
->  drivers/gpu/drm/omapdrm/omap_fbdev.c               | 163 ++++++++-----
->  drivers/gpu/drm/omapdrm/omap_fbdev.h               |   9 +-
->  drivers/gpu/drm/scheduler/sched_entity.c           |  11 +-
->  drivers/gpu/drm/vc4/vc4_irq.c                      |   2 -
->  drivers/gpu/drm/vkms/vkms_output.c                 |  15 +-
->  drivers/gpu/drm/vkms/vkms_plane.c                  |  10 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |  29 +++
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   2 +
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |  62 +----
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |   5 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |  45 +++-
->  drivers/gpu/drm/vmwgfx/vmwgfx_msg.c                |  35 +--
->  drivers/gpu/drm/vmwgfx/vmwgfx_overlay.c            |   6 -
->  21 files changed, 465 insertions(+), 303 deletions(-)
->  create mode 100644
-> Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
->  delete mode 100644
-> Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> 
+> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-contig.c b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
+> index 205d3cac425c..2fa455d4a048 100644
+> --- a/drivers/media/common/videobuf2/videobuf2-dma-contig.c
+> +++ b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
+> @@ -11,7 +11,6 @@
+>   */
+>  
+>  #include <linux/dma-buf.h>
+> -#include <linux/dma-resv.h>
+>  #include <linux/module.h>
+>  #include <linux/refcount.h>
+>  #include <linux/scatterlist.h>
+> @@ -456,8 +455,6 @@ static int vb2_dc_dmabuf_ops_vmap(struct dma_buf *dbuf, struct iosys_map *map)
+>  static int vb2_dc_dmabuf_ops_mmap(struct dma_buf *dbuf,
+>  	struct vm_area_struct *vma)
+>  {
+> -	dma_resv_assert_held(dbuf->resv);
+> -
+>  	return vb2_dc_mmap(dbuf->priv, vma);
+>  }
+>  
+> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-sg.c b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
+> index 183037fb1273..28f3fdfe23a2 100644
+> --- a/drivers/media/common/videobuf2/videobuf2-dma-sg.c
+> +++ b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
+> @@ -10,7 +10,6 @@
+>   * the Free Software Foundation.
+>   */
+>  
+> -#include <linux/dma-resv.h>
+>  #include <linux/module.h>
+>  #include <linux/mm.h>
+>  #include <linux/refcount.h>
+> @@ -498,8 +497,6 @@ static int vb2_dma_sg_dmabuf_ops_vmap(struct dma_buf *dbuf,
+>  static int vb2_dma_sg_dmabuf_ops_mmap(struct dma_buf *dbuf,
+>  	struct vm_area_struct *vma)
+>  {
+> -	dma_resv_assert_held(dbuf->resv);
+> -
+>  	return vb2_dma_sg_mmap(dbuf->priv, vma);
+>  }
+>  
+> diff --git a/drivers/media/common/videobuf2/videobuf2-vmalloc.c b/drivers/media/common/videobuf2/videobuf2-vmalloc.c
+> index a6c6d2fcaaa4..7c635e292106 100644
+> --- a/drivers/media/common/videobuf2/videobuf2-vmalloc.c
+> +++ b/drivers/media/common/videobuf2/videobuf2-vmalloc.c
+> @@ -10,7 +10,6 @@
+>   * the Free Software Foundation.
+>   */
+>  
+> -#include <linux/dma-resv.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/mm.h>
+> @@ -319,8 +318,6 @@ static int vb2_vmalloc_dmabuf_ops_vmap(struct dma_buf *dbuf,
+>  static int vb2_vmalloc_dmabuf_ops_mmap(struct dma_buf *dbuf,
+>  	struct vm_area_struct *vma)
+>  {
+> -	dma_resv_assert_held(dbuf->resv);
+> -
+>  	return vb2_vmalloc_mmap(dbuf->priv, vma);
+>  }
+>  
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
