@@ -1,78 +1,145 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8F46DF7B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 15:51:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F626DF816
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 16:12:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA17D10E811;
-	Wed, 12 Apr 2023 13:51:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DECA10E81E;
+	Wed, 12 Apr 2023 14:12:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE9F10E803
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 13:51:19 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- 5b1f17b1804b1-3f080fdb924so4562885e9.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 06:51:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681307478; x=1683899478;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=LQ4NiZvznI6IBHIw53zN4PYbVETcRXS/mWjDM4fzXi4=;
- b=V6NvYG80P0AwbTYTb710JCsHBXPO8z1p+yX1qAkADij2GAGwKttISHoJ6IE2kXEWxZ
- 18u2Qx/O1+aRenmH82kbc4PzY1kzeALFyCp5v6Q3B925Tj8Nhi1+nvPSbcisaWFwqa84
- jfxo4XldKXk0zeAJzEFwQC+jLzUQGi85QiZW8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681307478; x=1683899478;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=LQ4NiZvznI6IBHIw53zN4PYbVETcRXS/mWjDM4fzXi4=;
- b=J9VfNo/Oj8h6u0SW46KZ/Gh9rOJ/qQre3FkeGieEki0bnBkLp5bZObaQVHGzG60fIK
- DQuOy3hr5aBYJ56+y0hSC0Q1iqu0aiXILDyxfer/tWk2ehcNuYwstLfQYyjpnZNbspVg
- zNfNJY5lQ9Mj46CRjHG4TFU+9tAQujrjNIifH4imwXi1nEiFOXX/vvsJyfd+AX77aE3+
- CoxdMrfagYVS22whx9MlkY4JRf0W/LEY4B9Uki1NqA9SuNhfqeqtKVaqndlp5I62BcQc
- YLdyBN3y1f8dAagngYQg7lqeW5yM3Oit+K4xWAJT4s5yoD/hw8x4X1OlKP2xoRaZ266W
- qvrA==
-X-Gm-Message-State: AAQBX9cKx+Yox/ySNLiPpxTRVEM4Iedj3RZsNIA0JC/C0GJw2gNifrKz
- a9wADhLsyA1JsEGTiPSFNHwLAg==
-X-Google-Smtp-Source: AKy350Yev9AoQttQJuI2EFo+iz78JVTq8wQnWUp147g1uDZB5AoV2Ib1Ak5O6swXsXNWA1+Evrw4WA==
-X-Received: by 2002:a05:600c:1f0e:b0:3f0:80fe:212d with SMTP id
- bd14-20020a05600c1f0e00b003f080fe212dmr2293208wmb.3.1681307477662; 
- Wed, 12 Apr 2023 06:51:17 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- g15-20020a05600c4ecf00b003edc4788fa0sm2627683wmq.2.2023.04.12.06.51.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Apr 2023 06:51:17 -0700 (PDT)
-Date: Wed, 12 Apr 2023 15:51:15 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZDa3U/k9orudzwL2@phenom.ffwll.local>
-Mail-Followup-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Christopher Healy <healych@amazon.com>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- Rob Clark <robdclark@chromium.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>
-References: <20230411225725.2032862-1-robdclark@gmail.com>
- <20230411225725.2032862-5-robdclark@gmail.com>
- <292d10fe-3163-d282-6497-18c1d8621d72@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A22710E816
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 14:12:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681308726; x=1712844726;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Zm4ps7WWSpDd82XlMASFXlLKDHeeMmX+NbNLsjllOLs=;
+ b=Dm1TCyt2wI/s3BO1hez8KNMC+c5zJvOo2v+/71QQ+QIgZnjtn2MYU15o
+ NZ1aUYhD9mCygFWC8ITG6zkgTDmfGtAfcC7pprECJzQuUHnjJb3BKOROH
+ 9ZRftld6KIbItZ60dg5gJte33h8XFqv9xC1bynf96Fgi8mxlr/knsg/Od
+ e/rNuJQRBhYLM33+85t0zJrofudVV2xW5IzjPcX3H+EMQoSNk+CTxKUIY
+ pGOqAomvBq2UUoKnlPVH2BnMcBOucznU/M0r9RyMv07BqKvTL1k+zrhYk
+ ejFyPCifRscHqBLpzvHYjgb05Bir3b/T0ny2UhLELtPR85er1QUEgbhH2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="332604963"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="332604963"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 07:12:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="719389535"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="719389535"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 12 Apr 2023 07:12:05 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 12 Apr 2023 07:12:05 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 12 Apr 2023 07:12:05 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.45) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 12 Apr 2023 07:11:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h95NYJWC3BdrE+viO2O+by4vD+QHSHlyi2r9rKrTdk95loy9y3cxgYvd6oEruyh2JWH82I0lOfNamqo+FF7RU5vzclY/pZNXuQtZKL8mNEJUeEJ9SCiqAGpLa2NmVQ0Jfc87qKyZm67bfKMMeBvXCEJxIrGqMciotr/B9L75tVS2LiTT+YcEA8icoMsRA9WHziwGJMih95qfT8VasWvTQxP0AphK5tEvB1VAba8RQMNuzNwEpl2HTxXnV8WF4pOu2ruajKQmDmT8gWJ1QR0aZC3fMG2cWJfP0y3BFY0f6YsvHRC+54Vimh+8UwGAWOgKy7qV07X9zUg48jskfk05Uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EgGjASQH2qcOKABYjFVBTeKgdwFS+CPoFSgGodH0dLM=;
+ b=TGme064rcj6WnpZpHCFQvfP/r+VvgEMHoXYz+OJk9bHeFnVpMwhJQU5kCvVaduXX9BVlWNEP1avkoN7ry73PyUZAi/LUMnHir+KYyZMYDxuP6kW3U2bylAh9ye9m/OM4mIpbIqxOxZ6YBmmSN2QwwF774M/PSBfUcDWMOC91ik3kYPzdIhaUaDDpHiOeROnnI74bi8vWdH3+lmwH+4hNhELvMj+Lu8dprBsX1EDuys+6NbULJFi2MPfSB2+tsYRkBIhArVD+eM0tkCWHopMZgROB1Hk9J9t7peDJlSR3jwmOKrwJy4ecmynwLYv/prUDH+zyzZU9e1tpLZQhytCA3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com (2603:10b6:300:10c::20)
+ by SJ0PR11MB5792.namprd11.prod.outlook.com (2603:10b6:a03:425::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.36; Wed, 12 Apr
+ 2023 14:11:30 +0000
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::47e0:df10:25c7:ce5f]) by MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::47e0:df10:25c7:ce5f%7]) with mapi id 15.20.6298.030; Wed, 12 Apr 2023
+ 14:11:30 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
+ enable/disable
+Thread-Index: AQHZW/z+ggztexoTfki4jDfF7FcQKK8PEY0AgBam6oCAAh7sUA==
+Date: Wed, 12 Apr 2023 14:11:29 +0000
+Message-ID: <MWHPR11MB1935B2215BECDFA356A48F40B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
+References: <20230320203352.19515-6-ville.syrjala@linux.intel.com>
+ <20230321135615.27338-1-ville.syrjala@linux.intel.com>
+ <MWHPR11MB19351B3CC439AB4C1A9F370EB28B9@MWHPR11MB1935.namprd11.prod.outlook.com>
+ <ZDTy93UCSN4TUCV1@intel.com>
+In-Reply-To: <ZDTy93UCSN4TUCV1@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MWHPR11MB1935:EE_|SJ0PR11MB5792:EE_
+x-ms-office365-filtering-correlation-id: f2de2fa5-1f1d-4580-8ea5-08db3b5fcfce
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: H9p8YjAOyXMlPNUDrPTAJSOKPCWffcT2/ctIhOzyBIxee/OndAGyxhcjdx8CuISaK5Y7mYgOExUGWVrqlaAvypuLD9w06s1Yjfs8oA0iPF2lSyR0uzeLhsRISaopMR1D4di5c3LPHVxA+LHIvL+zdEAWgKiydm4Gr+b5f92Q5njDegnN+Yy6Zjw0KzuB9vu4bOYA5uKhjL/e4xVD2K2aLgWqe816Zow1upg/hxSu3aSJQbUyVZ0K2b4aNlMT3DSY9yAcumbljlwjHGMnsDXdZqI3C8i7vhf9RHKRr/fcYWNy9LimTVR29CIDKUr8SZp4yv9kPXdEesP9qbON4t1p/4npAhA5bElvvYnbZ2ZCASst4IgkRQu5vOLwmt3x4aY8FdJmWtYNJV0u1QI1CabzZG6vsgyTwYtMV7Q92vvBaQGRY0qmKPS6EaHRi07hF3jttxj36k4snuSKFuVsoAcxUrSM8jPm4sHslflqbl3LNvmA/zXN4P6pDivtTafrUSUC/T1Fot4hoQRUFiIFzgIR9Y6z0MY3PLtThzK4MzAW7eoXBnf0Hk1mHpBmUDXXdUQ3gHHga/dC8nRw6ijNQKWI4oQ+6Lwcmr4aW9/w7tRLli2VnyeWn/8LztOEcRIdZuCc
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR11MB1935.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(376002)(346002)(39860400002)(396003)(136003)(451199021)(8936002)(55016003)(52536014)(7696005)(5660300002)(86362001)(4326008)(66556008)(6916009)(53546011)(66446008)(66476007)(76116006)(66946007)(8676002)(64756008)(478600001)(33656002)(38100700002)(38070700005)(316002)(122000001)(82960400001)(66574015)(2906002)(83380400001)(71200400001)(9686003)(6506007)(186003)(41300700001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?X8vZJn/5f/qpBlg3bP4pPkrajdwb1yOi56YxYnNYgfxsug/fdXk5SHInVI?=
+ =?iso-8859-1?Q?g2mlbwE3xP7SMIS4s/K4PnAg4lujnPG/OfJ1F48tFH6Mo7PzPOwGA/0Rkz?=
+ =?iso-8859-1?Q?82a/qwQ6rxo8EWj6ksRUo7bEf0qd0izPZNHkEMUTtlh5x1osZmEdsJiDc8?=
+ =?iso-8859-1?Q?CrTxM6HuoK2GeGxdwtdEDTn6qZvGkpumuRNETcNgtRIhfuuiUyv9EIVxQZ?=
+ =?iso-8859-1?Q?YNjkZvbKW8clp41JivxJ8lnNaw4ON/yoTE3oOCsdxJeneMHoJsYXoTGy0X?=
+ =?iso-8859-1?Q?jCxH5CF3hJ4yZ7q5w0qxMBjz4gKfApDobGV/gbyE66Ss0twLBzJHA8KYHK?=
+ =?iso-8859-1?Q?Ib3V7yfEB4IPYrt2QwMUOQXh3b2uklF3u0i7FGISxSLAuT8pq/r8oMOYVH?=
+ =?iso-8859-1?Q?I6n3zqI3letxWReTpswrfubGF0aqKfCpqRtMkNVEU14WrRt92O/Z3Eacpt?=
+ =?iso-8859-1?Q?1aRlZqAF04Wze49BGf/Ekgsgks0Ys1xYhZ1wzbqvA/iF1iPi/h5jIYTmXB?=
+ =?iso-8859-1?Q?3Tc8QtZGhm4ov7c1qxZEtPlqaptvepToPm09AcCQWBCNDp0pgI4UcBvRv+?=
+ =?iso-8859-1?Q?a7hqtpPjG7o/0Y71Lvj3FJyOEZxslkjB0wAWxL7FLw5NP3IHHV8oJtWjjn?=
+ =?iso-8859-1?Q?j6WHRhXvjmgw4hADLX2LqmOHSosQHYm0qj6VJQ0DU4Kjl/tLgZiLLEy+/R?=
+ =?iso-8859-1?Q?zNNqcemOtWyEQU2jEmVG/LMV0W1cTRerjFWjOKby37w2wFzSLgegB3uXyI?=
+ =?iso-8859-1?Q?ySqj3AUuoN1iGtaUFxC2ZUJiPzvKQKrEayV+JWpbte1dgQTHMv+xxJxjAM?=
+ =?iso-8859-1?Q?iRwiHNvg1oz7NeqC6PLi0Y/uDl/roieJUVnNAejb3On33trEfae06MmYf0?=
+ =?iso-8859-1?Q?FURd9xuH/el89HnfSiIXNFtce5kifpLkips0EswlIIx5mInwSMsyXdmXIZ?=
+ =?iso-8859-1?Q?bFpcH6JfYDLlbPXi0yVt/mHeuJJTx2yqkTlc+5KPnxeGJVyVt2qc4xuav0?=
+ =?iso-8859-1?Q?tO/PI+lUvzaAQq94z7bowLCP70ayf8vC0zIM2Ft90vdUQYQSPQeVvd2hFU?=
+ =?iso-8859-1?Q?MtKpHg+7STZ9TBowC1tiJUSDBVXnzRQJ4BY5P86E7PvQOdR1ynJoTd+bfu?=
+ =?iso-8859-1?Q?P20hJwvpkZNXbbosFC/zy5rJgfq6G9Mecvf+yt4NZH1B+jF+WfKfkkKozS?=
+ =?iso-8859-1?Q?9QbcpohE6Y30nZ06b2kEtm0MjIwpvD4nHwWAd49UFhwk5LoE48Cvl+XdD2?=
+ =?iso-8859-1?Q?Sk+6IOYW3hljiNfnBEOC6fdft7GRRRpnjN2jw2lTgzlXXzu+L00AqS1BM1?=
+ =?iso-8859-1?Q?orv/9VpbxSfuxdv2MF+lmWAfcyOQ0cA+DTk9huEj6Ri8T1+fYsnQwmY4r5?=
+ =?iso-8859-1?Q?yQ29FvgbCpTTJqANGdsuw4CZ8zyTUi/BpT/RTDVZ0QOBsYJiUqFXLP/85W?=
+ =?iso-8859-1?Q?KS7aQY5j85R6cW6BCdefIsuCfE2GJrnYMufhRubU0v0Ju6EYhBLzurw0AC?=
+ =?iso-8859-1?Q?/2q8DLV+unG7Ji0Nxuy9UsyEI8Wm08Cy72rV/g1HxBEEJLMB7Udu/lM95m?=
+ =?iso-8859-1?Q?hB2aKgWfgctuTiWgD3caQF7P0H1L60/+oLHZRtz2NHwFFWMyM8yf7mrTWp?=
+ =?iso-8859-1?Q?ZG6WOi78qYTYS2xLcbPWm6xXjIG1vMeC/wi0ElmAv9m8Nz3P9dljMR71fD?=
+ =?iso-8859-1?Q?s+pFx39saceN64Ll0A/wd5ZTVwL0gWKXDWGr2HeqwkSob16SqUz8V2x3kq?=
+ =?iso-8859-1?Q?imfjtOoM/tSMDTsSTFmKVrGO8=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <292d10fe-3163-d282-6497-18c1d8621d72@linux.intel.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915: Switch to fdinfo helper
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1935.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2de2fa5-1f1d-4580-8ea5-08db3b5fcfce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2023 14:11:29.7193 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bAIkiB68YDIImLPODR6n0h+EHfspQeHLHi3/Nfq8360CU+Bv3X2RnHYTdLxmJ2+k+GK+GZfy7BmZFXa4AKjU0Yf5kGcw8sWXRdzplRCtNFJvepqU0nSUg15rOZAEEG3d
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5792
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
+ enable/disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,153 +152,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Christopher Healy <healych@amazon.com>,
- dri-devel@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, freedreno@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 12, 2023 at 01:32:43PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 11/04/2023 23:56, Rob Clark wrote:
-> > From: Rob Clark <robdclark@chromium.org>
-> > 
-> > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > ---
-> >   drivers/gpu/drm/i915/i915_driver.c     |  3 ++-
-> >   drivers/gpu/drm/i915/i915_drm_client.c | 18 +++++-------------
-> >   drivers/gpu/drm/i915/i915_drm_client.h |  2 +-
-> >   3 files changed, 8 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > index db7a86def7e2..37eacaa3064b 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -1696,7 +1696,7 @@ static const struct file_operations i915_driver_fops = {
-> >   	.compat_ioctl = i915_ioc32_compat_ioctl,
-> >   	.llseek = noop_llseek,
-> >   #ifdef CONFIG_PROC_FS
-> > -	.show_fdinfo = i915_drm_client_fdinfo,
-> > +	.show_fdinfo = drm_fop_show_fdinfo,
-> >   #endif
-> >   };
-> > @@ -1796,6 +1796,7 @@ static const struct drm_driver i915_drm_driver = {
-> >   	.open = i915_driver_open,
-> >   	.lastclose = i915_driver_lastclose,
-> >   	.postclose = i915_driver_postclose,
-> > +	.show_fdinfo = i915_drm_client_fdinfo,
-> >   	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
-> >   	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
-> > diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> > index b09d1d386574..4a77e5e47f79 100644
-> > --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> > +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> > @@ -101,7 +101,7 @@ static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-> >   }
-> >   static void
-> > -show_client_class(struct seq_file *m,
-> > +show_client_class(struct drm_printer *p,
-> >   		  struct i915_drm_client *client,
-> >   		  unsigned int class)
-> >   {
-> > @@ -117,22 +117,20 @@ show_client_class(struct seq_file *m,
-> >   	rcu_read_unlock();
-> >   	if (capacity)
-> > -		seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-> > +		drm_printf(p, "drm-engine-%s:\t%llu ns\n",
-> >   			   uabi_class_names[class], total);
-> >   	if (capacity > 1)
-> > -		seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
-> > +		drm_printf(p, "drm-engine-capacity-%s:\t%u\n",
-> >   			   uabi_class_names[class],
-> >   			   capacity);
-> >   }
-> > -void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> > +void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
-> >   {
-> > -	struct drm_file *file = f->private_data;
-> >   	struct drm_i915_file_private *file_priv = file->driver_priv;
-> >   	struct drm_i915_private *i915 = file_priv->dev_priv;
-> >   	struct i915_drm_client *client = file_priv->client;
-> > -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> >   	unsigned int i;
-> >   	/*
-> > @@ -141,12 +139,6 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> >   	 * ******************************************************************
-> >   	 */
-> > -	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-> > -	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-> > -		   pci_domain_nr(pdev->bus), pdev->bus->number,
-> > -		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-> > -	seq_printf(m, "drm-client-id:\t%u\n", client->id);
-> 
-> As mentioned in my reply to the cover letter, I think the i915
-> implementation is the right one. At least the semantics of it.
-> 
-> Granted it is a super set of the minimum required as documented by
-> drm-usage-stats.rst - not only 1:1 to current instances of struct file, but
-> also avoids immediate id recycling.
-> 
-> Former could perhaps be achieved with a simple pointer hash, but latter
-> helps userspace detect when a client has exited and id re-allocated to a new
-> client within a single scanning period.
-> 
-> Without this I don't think userspace can implement a fail safe method of
-> detecting which clients are new ones and so wouldn't be able to track
-> history correctly.
-> 
-> I think we should rather extend the documented contract to include the
-> cyclical property than settle for a weaker common implementation.
+Hi Ville,
 
-atomic64_t never wraps, so you don't have any recycling issues?
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: 11 April 2023 11:11
+> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
+> enable/disable
+>=20
+> On Mon, Mar 27, 2023 at 08:05:49PM +0000, Golani, Mitulkumar Ajitkumar
+> wrote:
+> > Hi Ville,
+> >
+> > > -----Original Message-----
+> > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+> > > Of Ville Syrjala
+> > > Sent: 21 March 2023 19:26
+> > > To: intel-gfx@lists.freedesktop.org
+> > > Subject: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
+> > > enable/disable
+> > >
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >
+> > > Move VRR enabling/disabling into a place where it also works for fast=
+sets.
+> > >
+> > > With this we always start the transcoder up in non-VRR mode.
+> > > Granted  we already did that but for a very short period of time.
+> > > But now that we might end up doing a bit more with the transcoder in
+> > > non-VRR mode it seems prudent to also update the active timings as
+> > > the transcoder changes its operating mode.
+> > >
+> > > crtc_state->vrr.enable still tracks whether VRR is actually enabled
+> > > or not, but now we configure all the other VRR timing registers
+> > > whenever VRR is possible (whether we actually enable it or not).
+> > > crtc_state->vrr.flipline can now serve as our "is VRR possible" bit o=
+f state.
+> >
+> > Understood the change. I was thinking if it is possible to make
+> > distinguish between is VRR "possible" and is VRR "enabled" by adding a
+> > new param ? Although changes looks good to me but using Flipline value =
+as
+> "is VRR Possible" makes it bit confusing.
+>=20
+> I suppose we could think about adding a knob for it. It would just reflec=
+t the
+> flipline enable bit state in the current scheme.
+>=20
+> Another thing I was pondering is whether we should even care about this i=
+n
+> intel_dp_prepare_link_train() or if we should just set the MSA ingore bit=
+ any
+> time we have a VRR capable display. But I suppose that could have some
+> implicatations eg. for interlaces displays modes.
 
-The other piece and imo much more important is that I really don't want
-the i915_drm_client design to spread, it conceptually makes no sense.
-drm_file is the uapi object, once that's gone userspace will never be able
-to look at anything, having a separate free-standing object that's
-essentially always dead is backwards.
-
-I went a bit more in-depth in a different thread on scheduler fd_info
-stats, but essentially fd_info needs to pull stats, you should never push
-stats towards the drm_file (or i915_drm_client). That avoids all the
-refcounting issues and rcu needs and everything else like that.
-
-Maybe you want to jump into that thread:
-https://lore.kernel.org/dri-devel/CAKMK7uE=m3sSTQrLCeDg0vG8viODOecUsYDK1oC++f5pQi0e8Q@mail.gmail.com/
-
-So retiring i915_drm_client infrastructure is the right direction I think.
--Daniel
-
-> Regards,
-> 
-> Tvrtko
-> 
-> > -
-> >   	/*
-> >   	 * Temporarily skip showing client engine information with GuC submission till
-> >   	 * fetching engine busyness is implemented in the GuC submission backend
-> > @@ -155,6 +147,6 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> >   		return;
-> >   	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-> > -		show_client_class(m, client, i);
-> > +		show_client_class(p, client, i);
-> >   }
-> >   #endif
-> > diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-> > index 69496af996d9..ef85fef45de5 100644
-> > --- a/drivers/gpu/drm/i915/i915_drm_client.h
-> > +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-> > @@ -60,7 +60,7 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
-> >   struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients);
-> >   #ifdef CONFIG_PROC_FS
-> > -void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
-> > +void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
-> >   #endif
-> >   void i915_drm_clients_fini(struct i915_drm_clients *clients);
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+In that case to avoid implications should we add additional check for vrr.e=
+nable
+as well ?
