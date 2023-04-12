@@ -1,80 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999116DFD41
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 20:13:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2AA6DFD7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 20:27:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885FA10E901;
-	Wed, 12 Apr 2023 18:13:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457A710E917;
+	Wed, 12 Apr 2023 18:27:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B58110E901
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 18:13:38 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id
- ffacd0b85a97d-2f27a10f72bso216799f8f.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 11:13:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681323216; x=1683915216;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=lGJeVrG1N/1V3zTKivsInYjQUiueSRiWAcGL0n6eppw=;
- b=Er7LBqXAApNF6/x1dREFNL1RJxnwnrkTqAnBCxi/8JoCqI8kvWr1YmzrYT3o6J/ZSy
- /ZKXBjj3yK39wER3OZRj30BfKO9mcM0xb+3NRi8ZpM0RlQYwtzX1WWPN/MTiECRBDXsl
- Vl2w86a3zkIkV4+VA/GCQr6+7DI2UpZmLV+8s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681323216; x=1683915216;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lGJeVrG1N/1V3zTKivsInYjQUiueSRiWAcGL0n6eppw=;
- b=ZQhuHW5npny4tQ+eQ5eyCFyv1NRBnQi8wDMxWUcXNJmFuJSwJByYiZdVsDN6EZmHqB
- eu9fiBqxXz17HAdIoIkhLq7b/LXEB7dWVN7bL8jFIC6bOxoijb3yQE6kHy+8baHkVzER
- lG1am1zJ8MH/ltGzmVKFCwGjA6CbJ+yejEjZH/drA98fenD6mUp67SH+PzCn+80+R0A+
- EfQ+RpSKfDBAA0mqIKgvz+e8LTvg/yN6t9KE+x6USjshCsaVuaEb44g1EnLldjOosvxF
- +JL/t05FsGJO3wzjil+bdC+BVU5dzlWVJ7Hx4G2+a2q2Ki4155BlPZqTsLCFr6qrdCCs
- s7+g==
-X-Gm-Message-State: AAQBX9fKlE7YhU+VkbQzE+cm62H4MiuaQOMiOu9TLcV9U1KAaVUrfmBD
- igSkAxBTAaU6P3/iDQetTTzv0g==
-X-Google-Smtp-Source: AKy350bfyUdmt1T/AkLZPoXuAqLPpZYKrlAk23acN2cT/mUWkIn/v/NLi8eVPs4Uv1IK6qWUQKVnGg==
-X-Received: by 2002:a05:600c:35c2:b0:3ee:da0:cb85 with SMTP id
- r2-20020a05600c35c200b003ee0da0cb85mr13033379wmq.1.1681323216218; 
- Wed, 12 Apr 2023 11:13:36 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- 20-20020a05600c025400b003ede3e54ed7sm3147905wmj.6.2023.04.12.11.13.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Apr 2023 11:13:35 -0700 (PDT)
-Date: Wed, 12 Apr 2023 20:13:33 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZDb0zUrYqaikJjhg@phenom.ffwll.local>
-Mail-Followup-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Christopher Healy <healych@amazon.com>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- Rob Clark <robdclark@chromium.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>
-References: <20230411225725.2032862-1-robdclark@gmail.com>
- <20230411225725.2032862-5-robdclark@gmail.com>
- <292d10fe-3163-d282-6497-18c1d8621d72@linux.intel.com>
- <ZDa3U/k9orudzwL2@phenom.ffwll.local>
- <625477ba-2f98-4137-7c96-dc54990c6963@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21F0010E910;
+ Wed, 12 Apr 2023 18:27:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681324049; x=1712860049;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=cqKO9TziOmEEhE0gbMgiPkWcojaHbnVzNzEhpsuxk3A=;
+ b=MlYpcDd2b5+ONb6XHEywyqnKE2gIZwHj5ajiBDdeIyrF4/Obg4sXBgij
+ 2J5MaKfSCorl+KRRkh05nMGQS/mEw1EFDI//7eWd3c3q7o8HcIdmmm3VS
+ fiBWRjGX3W04zi+xQwcD3h1Fu4DdTu7VDTErvC7kk4S4e+DXIItQ58wc9
+ RmjeNCz+xCjvAP1p+jBquLjw3qlZ91Xx7JKKdENtmG+x6WyZzrSiVtfpZ
+ UFbWhZiVsKmnXWX+g5MkFlms+yWSzGyECl9CoT4bJxu03JSxxiR1ABX1J
+ RmvWcK6nLAQMoQTAue8NmuEQXRiuY+qUaJz4at4UnjDNbDQFz71mWv6yj g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328099184"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328099184"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 11:27:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="753646682"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="753646682"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Apr 2023 11:27:21 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pmfBg-000Xyx-2P;
+ Wed, 12 Apr 2023 18:27:20 +0000
+Date: Thu, 13 Apr 2023 02:27:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>,
+ David Airlie <airlied@gmail.com>
+Message-ID: <202304130224.59cNkdgV-lkp@intel.com>
+References: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <625477ba-2f98-4137-7c96-dc54990c6963@linux.intel.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915: Switch to fdinfo helper
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
+Subject: Re: [Intel-gfx] [PATCH] video/hdmi: minor fixes for
+ *_infoframe_init functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,175 +62,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Christopher Healy <healych@amazon.com>,
- dri-devel@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- freedreno@lists.freedesktop.org
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, linux-fbdev@vger.kernel.org,
+ lvc-project@linuxtesting.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Helge Deller <deller@gmx.de>, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ Nikita Zhandarovich <n.zhandarovich@fintech.ru>, oe-kbuild-all@lists.linux.dev,
+ Matthias Brugger <matthias.bgg@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 12, 2023 at 04:12:41PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 12/04/2023 14:51, Daniel Vetter wrote:
-> > On Wed, Apr 12, 2023 at 01:32:43PM +0100, Tvrtko Ursulin wrote:
-> > > 
-> > > On 11/04/2023 23:56, Rob Clark wrote:
-> > > > From: Rob Clark <robdclark@chromium.org>
-> > > > 
-> > > > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/i915_driver.c     |  3 ++-
-> > > >    drivers/gpu/drm/i915/i915_drm_client.c | 18 +++++-------------
-> > > >    drivers/gpu/drm/i915/i915_drm_client.h |  2 +-
-> > > >    3 files changed, 8 insertions(+), 15 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > > > index db7a86def7e2..37eacaa3064b 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > > > @@ -1696,7 +1696,7 @@ static const struct file_operations i915_driver_fops = {
-> > > >    	.compat_ioctl = i915_ioc32_compat_ioctl,
-> > > >    	.llseek = noop_llseek,
-> > > >    #ifdef CONFIG_PROC_FS
-> > > > -	.show_fdinfo = i915_drm_client_fdinfo,
-> > > > +	.show_fdinfo = drm_fop_show_fdinfo,
-> > > >    #endif
-> > > >    };
-> > > > @@ -1796,6 +1796,7 @@ static const struct drm_driver i915_drm_driver = {
-> > > >    	.open = i915_driver_open,
-> > > >    	.lastclose = i915_driver_lastclose,
-> > > >    	.postclose = i915_driver_postclose,
-> > > > +	.show_fdinfo = i915_drm_client_fdinfo,
-> > > >    	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
-> > > >    	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
-> > > > diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> > > > index b09d1d386574..4a77e5e47f79 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> > > > @@ -101,7 +101,7 @@ static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-> > > >    }
-> > > >    static void
-> > > > -show_client_class(struct seq_file *m,
-> > > > +show_client_class(struct drm_printer *p,
-> > > >    		  struct i915_drm_client *client,
-> > > >    		  unsigned int class)
-> > > >    {
-> > > > @@ -117,22 +117,20 @@ show_client_class(struct seq_file *m,
-> > > >    	rcu_read_unlock();
-> > > >    	if (capacity)
-> > > > -		seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-> > > > +		drm_printf(p, "drm-engine-%s:\t%llu ns\n",
-> > > >    			   uabi_class_names[class], total);
-> > > >    	if (capacity > 1)
-> > > > -		seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
-> > > > +		drm_printf(p, "drm-engine-capacity-%s:\t%u\n",
-> > > >    			   uabi_class_names[class],
-> > > >    			   capacity);
-> > > >    }
-> > > > -void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> > > > +void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
-> > > >    {
-> > > > -	struct drm_file *file = f->private_data;
-> > > >    	struct drm_i915_file_private *file_priv = file->driver_priv;
-> > > >    	struct drm_i915_private *i915 = file_priv->dev_priv;
-> > > >    	struct i915_drm_client *client = file_priv->client;
-> > > > -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > > >    	unsigned int i;
-> > > >    	/*
-> > > > @@ -141,12 +139,6 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> > > >    	 * ******************************************************************
-> > > >    	 */
-> > > > -	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-> > > > -	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-> > > > -		   pci_domain_nr(pdev->bus), pdev->bus->number,
-> > > > -		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-> > > > -	seq_printf(m, "drm-client-id:\t%u\n", client->id);
-> > > 
-> > > As mentioned in my reply to the cover letter, I think the i915
-> > > implementation is the right one. At least the semantics of it.
-> > > 
-> > > Granted it is a super set of the minimum required as documented by
-> > > drm-usage-stats.rst - not only 1:1 to current instances of struct file, but
-> > > also avoids immediate id recycling.
-> > > 
-> > > Former could perhaps be achieved with a simple pointer hash, but latter
-> > > helps userspace detect when a client has exited and id re-allocated to a new
-> > > client within a single scanning period.
-> > > 
-> > > Without this I don't think userspace can implement a fail safe method of
-> > > detecting which clients are new ones and so wouldn't be able to track
-> > > history correctly.
-> > > 
-> > > I think we should rather extend the documented contract to include the
-> > > cyclical property than settle for a weaker common implementation.
-> > 
-> > atomic64_t never wraps, so you don't have any recycling issues?
-> 
-> Okay yes, with 64 bits there aren't any practical recycling issues.
-> 
-> > The other piece and imo much more important is that I really don't want
-> > the i915_drm_client design to spread, it conceptually makes no sense.
-> > drm_file is the uapi object, once that's gone userspace will never be able
-> > to look at anything, having a separate free-standing object that's
-> > essentially always dead is backwards.
-> > 
-> > I went a bit more in-depth in a different thread on scheduler fd_info
-> > stats, but essentially fd_info needs to pull stats, you should never push
-> > stats towards the drm_file (or i915_drm_client). That avoids all the
-> > refcounting issues and rcu needs and everything else like that.
-> > 
-> > Maybe you want to jump into that thread:
-> > https://lore.kernel.org/dri-devel/CAKMK7uE=m3sSTQrLCeDg0vG8viODOecUsYDK1oC++f5pQi0e8Q@mail.gmail.com/
-> > 
-> > So retiring i915_drm_client infrastructure is the right direction I think.
-> 
-> Hmmm.. it is a _mostly_ pull model that we have in i915 ie. data is pulled
-> on fdinfo queries.
-> 
-> _Mostly_ because it cannot be fully pull based when you look at some
-> internal flows. We have to save some data at runtime at times not driven by
-> the fdinfo queries.
-> 
-> For instance context close needs to record the GPU utilisation against the
-> client so that it is not lost. Also in the execlists backend we must
-> transfer the hardware tracked runtime into the software state when hw
-> contexts are switched out.
-> 
-> The fact i915_drm_client is detached from file_priv is a consequence of the
-> fact i915 GEM contexts can outlive drm_file, and that when such contexts are
-> closed, we need a to record their runtimes.
-> 
-> So I think there are three options: how it is now, fully krefed drm_file, or
-> prohibit persistent contexts. Last one don't think we can do due ABI and 2nd
-> felt heavy handed so I choose a lightweight i915_drm_client option.
-> 
-> Maybe there is a fourth option of somehow detecting during context
-> destruction that drm_file is gone and skip the runtime recording, but
-> avoiding races and all did not make me want to entertain it much. Is this
-> actually what you are proposing?
+Hi Nikita,
 
-Hm right, persistent context, the annoying thing I missed again. From a
-quick look amdgpu gets away with that by shooting all contexts
-synchronously on drmfd close, which is the thing i915 can't because uapi.
+kernel test robot noticed the following build warnings:
 
-The other part of the trick is to ... not care :-) See
-amdgpu_ctx_fence_time(). I guess what would work a bit better is a
-drm_file context list under a spinlock (which would need to be per
-drm_device probably), which is cleaned up both when the final context ref
-drops and when the drmfd closes, and you push back the final tally just
-under that spinlock. But that's not how drm_sched_entity works right now,
-that disappears before the final in-flight jobs have finished.
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on tegra/for-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.3-rc6 next-20230412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-But yeah unless we just shrug and accept an accounting hole some minimal
-push-back (at least while the drm_file is still alive) is needed to add
-back the final tally when a context is destroyed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Nikita-Zhandarovich/video-hdmi-minor-fixes-for-_infoframe_init-functions/20230412-232947
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230412152910.9486-1-n.zhandarovich%40fintech.ru
+patch subject: [PATCH] video/hdmi: minor fixes for *_infoframe_init functions
+config: i386-randconfig-a005-20230410 (https://download.01.org/0day-ci/archive/20230413/202304130224.59cNkdgV-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/36210f5b0ac3046f4c1c1d0c6e392eab40811699
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Nikita-Zhandarovich/video-hdmi-minor-fixes-for-_infoframe_init-functions/20230412-232947
+        git checkout 36210f5b0ac3046f4c1c1d0c6e392eab40811699
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Anyway I think it'd be good if you can follow that sched fd_info thread a
-bit, to make sure it's not too silly :-) i915 won't use it, but xe will
-eventually.
--Daniel
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304130224.59cNkdgV-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_hdmi.c:769:37: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+           if (drm_WARN_ON(encoder->base.dev, ret))
+                                              ^~~
+   include/drm/drm_print.h:630:19: note: expanded from macro 'drm_WARN_ON'
+           drm_WARN((drm), (x), "%s",                                      \
+                            ^
+   include/drm/drm_print.h:620:7: note: expanded from macro 'drm_WARN'
+           WARN(condition, "%s %s: " format,                               \
+                ^~~~~~~~~
+   include/asm-generic/bug.h:131:25: note: expanded from macro 'WARN'
+           int __ret_warn_on = !!(condition);                              \
+                                  ^~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_hdmi.c:756:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+   1 warning generated.
+
+
+vim +/ret +769 drivers/gpu/drm/i915/display/intel_hdmi.c
+
+b055c8f3ef9f7b drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-07-08  748  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  749  static bool
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  750  intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  751  				 struct intel_crtc_state *crtc_state,
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  752  				 struct drm_connector_state *conn_state)
+c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  753  {
+7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  754  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  755  	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
+5adaea799c1c2c drivers/gpu/drm/i915/intel_hdmi.c         Damien Lespiau      2013-08-06  756  	int ret;
+5adaea799c1c2c drivers/gpu/drm/i915/intel_hdmi.c         Damien Lespiau      2013-08-06  757  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  758  	if (!crtc_state->has_infoframe)
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  759  		return true;
+c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  760  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  761  	crtc_state->infoframes.enable |=
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  762  		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
+c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  763  
+7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  764  	if (IS_DGFX(i915))
+36210f5b0ac304 drivers/gpu/drm/i915/display/intel_hdmi.c Nikita Zhandarovich 2023-04-12  765  		hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
+7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  766  	else
+36210f5b0ac304 drivers/gpu/drm/i915/display/intel_hdmi.c Nikita Zhandarovich 2023-04-12  767  		hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
+7d1675dcb5a16c drivers/gpu/drm/i915/display/intel_hdmi.c Taylor, Clinton A   2022-11-29  768  
+3a47ae201e0749 drivers/gpu/drm/i915/display/intel_hdmi.c Pankaj Bharadiya    2020-01-15 @769  	if (drm_WARN_ON(encoder->base.dev, ret))
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  770  		return false;
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  771  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  772  	frame->sdi = HDMI_SPD_SDI_PC;
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  773  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  774  	ret = hdmi_spd_infoframe_check(frame);
+3a47ae201e0749 drivers/gpu/drm/i915/display/intel_hdmi.c Pankaj Bharadiya    2020-01-15  775  	if (drm_WARN_ON(encoder->base.dev, ret))
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  776  		return false;
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  777  
+fbf08556ed4344 drivers/gpu/drm/i915/intel_hdmi.c         Ville Syrjälä       2019-02-25  778  	return true;
+c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  779  }
+c0864cb39c6869 drivers/gpu/drm/i915/intel_hdmi.c         Jesse Barnes        2011-08-03  780  
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
