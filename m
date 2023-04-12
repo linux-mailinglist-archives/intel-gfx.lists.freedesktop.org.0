@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8B16DE8E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 03:31:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0496DE8EB
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 03:32:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDD910E6D0;
-	Wed, 12 Apr 2023 01:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D027310E6E0;
+	Wed, 12 Apr 2023 01:32:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 58AA910E6D0;
- Wed, 12 Apr 2023 01:31:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 87AE610E6D7;
+ Wed, 12 Apr 2023 01:32:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4FF10AADD2;
- Wed, 12 Apr 2023 01:31:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 81C76AADD2;
+ Wed, 12 Apr 2023 01:32:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sean Paul" <sean@poorly.run>
-Date: Wed, 12 Apr 2023 01:31:52 -0000
-Message-ID: <168126311229.10847.16134431211306462477@emeril.freedesktop.org>
+To: "David E. Box" <david.e.box@linux.intel.com>
+Date: Wed, 12 Apr 2023 01:32:26 -0000
+Message-ID: <168126314652.10847.8991419644627040102@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230411192134.508113-1-markyacoub@google.com>
-In-Reply-To: <20230411192134.508113-1-markyacoub@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/hdcp=3A_Pull_HDCP_auth/exchange/check_into_helpers_=28rev9?=
- =?utf-8?q?=29?=
+References: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+In-Reply-To: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBQ?=
+ =?utf-8?q?CI=3A_Move_VMD_ASPM/LTR_fix_to_PCI_quirk?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,26 +47,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/hdcp: Pull HDCP auth/exchange/check into helpers (rev9)
-URL   : https://patchwork.freedesktop.org/series/94712/
+Series: PCI: Move VMD ASPM/LTR fix to PCI quirk
+URL   : https://patchwork.freedesktop.org/series/116343/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/94712/revisions/9/mbox/ not applied
-Applying: drm/hdcp: Add drm_hdcp_atomic_check()
-Applying: drm/hdcp: Avoid changing crtc state in hdcp atomic check
-Applying: drm/hdcp: Update property value on content type and user changes
-Applying: drm/hdcp: Expand HDCP helper library for enable/disable/check
-Applying: drm/i915/hdcp: Consolidate HDCP setup/state cache
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/116343/revisions/1/mbox/ not applied
+Applying: PCI: Move VMD ASPM/LTR fix to PCI quirk
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_hdcp.c
+M	drivers/pci/controller/vmd.c
 Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_hdcp.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_hdcp.c
+Auto-merging drivers/pci/controller/vmd.c
+CONFLICT (content): Merge conflict in drivers/pci/controller/vmd.c
 error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0005 drm/i915/hdcp: Consolidate HDCP setup/state cache
+Patch failed at 0001 PCI: Move VMD ASPM/LTR fix to PCI quirk
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
