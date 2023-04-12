@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66266DFCD6
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 19:41:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DB66DFD01
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 19:52:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CBF310E8E9;
-	Wed, 12 Apr 2023 17:41:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C53FA10E821;
+	Wed, 12 Apr 2023 17:52:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B4F4710E821;
- Wed, 12 Apr 2023 17:41:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE19EA7DFF;
- Wed, 12 Apr 2023 17:41:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3637108753615477083=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E90810E821;
+ Wed, 12 Apr 2023 17:52:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681321947; x=1712857947;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TIYs4ZIk35TXWTPd2ztjdk8cMzBEHCggjBsOZcucAJ8=;
+ b=KRcFWHijGwE+zgye527VwBO1i/Oo0l0WYC0r/Q+1lm91quGtShYINpZA
+ bp5gkQtZ47zQ2RTWy46Co71ZOJExIDS6WdvFFsmbk7mZfhGvlkUc7Rc2D
+ Ld26xroDdA7ensFMUkMLkUeOJiNoLEeVt2g/4VZJKQqvVjIGCSlzI/+6B
+ tjEt6xBPW4BkjQUXLCOwU9SPj9fvbEbDEB4RdMj5paT/3Jn30bv4qpBZr
+ Zud8Vr2jsufhrpHtJ1DW3YvlRDBjIPAOYtupAdYNqIoFrEfs1J3HRZCx7
+ Aeah+wy/Bt8zPFBN6yEWbT4RQkoTUvob1xeNme2CAHA+BxHCjaf0d/LKA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="345763364"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="345763364"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 10:52:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="682575524"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="682575524"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by orsmga007.jf.intel.com with ESMTP; 12 Apr 2023 10:52:20 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pmedo-000Xxf-0F;
+ Wed, 12 Apr 2023 17:52:20 +0000
+Date: Thu, 13 Apr 2023 01:51:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <6436efbb.08+e+yEDqvRxvHDP%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Wed, 12 Apr 2023 17:41:43 -0000
-Message-ID: <168132130368.10847.5970915305146816139@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230412113308.812468-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20230412113308.812468-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
- =?utf-8?q?_error_propagation_amongst_request_=28rev3=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 7d8214bba44c1aa6a75921a09a691945d26a8d43
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,286 +59,347 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-hwmon@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-acpi@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org,
+ linux-csky@vger.kernel.org, Linux Memory Management List <linux-mm@kvack.org>,
+ linux-bluetooth@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3637108753615477083==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 7d8214bba44c1aa6a75921a09a691945d26a8d43  Add linux-next specific files for 20230412
 
-== Series Details ==
+Error/Warning reports:
 
-Series: Fix error propagation amongst request (rev3)
-URL   : https://patchwork.freedesktop.org/series/114451/
-State : success
+https://lore.kernel.org/oe-kbuild-all/202303161521.jbGbaFjJ-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202304061839.hi01VPl1-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202304102354.Q4VOXGTE-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202304112044.8NzKpvxM-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202304121606.ltRFyuij-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202304121702.bav49HFN-lkp@intel.com
 
-== Summary ==
+Error/Warning: (recently discovered and may have been fixed)
 
-CI Bug Log - changes from CI_DRM_12996 -> Patchwork_114451v3
-====================================================
+Error: failed to load BTF from vmlinux: No data available
+arch/arm/vfp/entry.S:27: undefined reference to `vfp_entry'
+arch/csky/abiv2/cacheflush.c:15:9: error: implicit declaration of function 'flush_tlb_page'; did you mean 'flush_anon_page'? [-Werror=implicit-function-declaration]
+diff: tools/arch/s390/include/uapi/asm/ptrace.h: No such file or directory
+drivers/bluetooth/hci_qca.c:1894:37: warning: unused variable 'qca_soc_data_wcn6855' [-Wunused-const-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_validation.c:351:13: warning: variable 'bw_needed' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_validation.c:352:25: warning: variable 'link' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:62: warning: wrong kernel-doc identifier on line:
+drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+drivers/gpu/drm/i915/i915_request.h:176: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+drivers/gpu/drm/i915/i915_vma.h:145: warning: expecting prototype for i915_vma_offset(). Prototype was for i915_vma_size() instead
+drivers/net/wireless/legacy/ray_cs.c:628:17: warning: 'strncpy' specified bound 32 equals destination size [-Wstringop-truncation]
+drivers/tty/serial/samsung_tty.c:2034:10: error: implicit declaration of function 'of_device_get_match_data' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+drivers/tty/serial/samsung_tty.c:2034:10: warning: incompatible integer to pointer conversion returning 'int' from a function with result type 'const struct s3c24xx_serial_drv_data *' [-Wint-conversion]
+drivers/tty/serial/samsung_tty.c:2034:24: error: implicit declaration of function 'of_device_get_match_data'; did you mean 'device_get_match_data'? [-Werror=implicit-function-declaration]
+drivers/tty/serial/samsung_tty.c:2034:24: warning: returning 'int' from a function with return type 'const struct s3c24xx_serial_drv_data *' makes pointer from integer without a cast [-Wint-conversion]
+make[3]: *** No rule to make target 'zip.h', needed by '/tools/build/libbpf/sharedobjs/libbpf.o'.
+make[3]: *** No rule to make target 'zip.h', needed by '/tools/build/libbpf/staticobjs/libbpf.o'.
+make[4]: *** No rule to make target 'zip.h', needed by 'kselftest/net/tools/build/libbpf/sharedobjs/libbpf.o'.
+make[4]: *** No rule to make target 'zip.h', needed by 'kselftest/net/tools/build/libbpf/staticobjs/libbpf.o'.
+membarrier_test_impl.h:27:30: error: 'MEMBARRIER_CMD_GET_REGISTRATIONS' undeclared (first use in this function)
+mount_setattr_test.c:107:8: error: redefinition of 'struct mount_attr'
+thermal_nl.h:6:10: fatal error: netlink/netlink.h: No such file or directory
+thermometer.c:21:10: fatal error: libconfig.h: No such file or directory
 
-Summary
--------
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-  **SUCCESS**
+drivers/acpi/property.c:985 acpi_data_prop_read_single() error: potentially dereferencing uninitialized 'obj'.
+drivers/crypto/intel/qat/qat_common/adf_cfg.c:262 adf_cfg_add_key_value_param() warn: argument 4 to %lx specifier is cast from pointer
+drivers/hwmon/pmbus/pmbus_core.c:3164:7-32: WARNING: Threaded IRQ with no primary handler requested without IRQF_ONESHOT (unless it is nested IRQ)
+drivers/soc/fsl/qe/tsa.c:140:26: sparse: sparse: incorrect type in argument 2 (different address spaces)
+drivers/soc/fsl/qe/tsa.c:150:27: sparse: sparse: incorrect type in argument 1 (different address spaces)
 
-  No regressions found.
+Error/Warning ids grouped by kconfigs:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/index.html
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|   `-- drivers-net-wireless-legacy-ray_cs.c:warning:strncpy-specified-bound-equals-destination-size
+|-- alpha-randconfig-c023-20230409
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- alpha-randconfig-r016-20230409
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data
+|   `-- drivers-tty-serial-samsung_tty.c:warning:returning-int-from-a-function-with-return-type-const-struct-s3c24xx_serial_drv_data-makes-pointer-from-integer-without-a-cast
+|-- alpha-randconfig-r023-20230410
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- arc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- arm-keystone_defconfig
+|   `-- arch-arm-vfp-entry.S:undefined-reference-to-vfp_entry
+|-- arm64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- csky-defconfig
+|   `-- arch-csky-abiv2-cacheflush.c:error:implicit-declaration-of-function-flush_tlb_page
+|-- csky-randconfig-r013-20230409
+|   `-- arch-csky-abiv2-cacheflush.c:error:implicit-declaration-of-function-flush_tlb_page
+|-- i386-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- i386-randconfig-m021
+|   |-- drivers-acpi-property.c-acpi_data_prop_read_single()-error:potentially-dereferencing-uninitialized-obj-.
+|   `-- drivers-crypto-intel-qat-qat_common-adf_cfg.c-adf_cfg_add_key_value_param()-warn:argument-to-lx-specifier-is-cast-from-pointer
+|-- ia64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|   `-- drivers-net-wireless-legacy-ray_cs.c:warning:strncpy-specified-bound-equals-destination-size
+|-- ia64-buildonly-randconfig-r005-20230409
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- ia64-randconfig-c44-20230409
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- ia64-randconfig-m031-20230410
+|   `-- drivers-crypto-intel-qat-qat_common-adf_cfg.c-adf_cfg_add_key_value_param()-warn:argument-to-lx-specifier-is-cast-from-pointer
+|-- ia64-randconfig-r002-20230410
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data
+|   `-- drivers-tty-serial-samsung_tty.c:warning:returning-int-from-a-function-with-return-type-const-struct-s3c24xx_serial_drv_data-makes-pointer-from-integer-without-a-cast
+|-- loongarch-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- loongarch-defconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- loongarch-randconfig-r032-20230409
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- mips-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- mips-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- parisc-randconfig-r003-20230412
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data
+|   `-- drivers-tty-serial-samsung_tty.c:warning:returning-int-from-a-function-with-return-type-const-struct-s3c24xx_serial_drv_data-makes-pointer-from-integer-without-a-cast
+|-- parisc-randconfig-r034-20230410
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data
+|   `-- drivers-tty-serial-samsung_tty.c:warning:returning-int-from-a-function-with-return-type-const-struct-s3c24xx_serial_drv_data-makes-pointer-from-integer-without-a-cast
+|-- parisc-randconfig-s053-20230409
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data
+|   `-- drivers-tty-serial-samsung_tty.c:warning:returning-int-from-a-function-with-return-type-const-struct-s3c24xx_serial_drv_data-makes-pointer-from-integer-without-a-cast
+|-- powerpc-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- powerpc-randconfig-s033-20230411
+|   |-- drivers-soc-fsl-qe-tsa.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-noderef-__iomem-addr-got-void-noderef-__iomem-addr
+|   `-- drivers-soc-fsl-qe-tsa.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-noderef-__iomem-addr-got-void-noderef-__iomem-addr
+|-- riscv-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- riscv-randconfig-r042-20230410
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- s390-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- sparc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|   `-- drivers-net-wireless-legacy-ray_cs.c:warning:strncpy-specified-bound-equals-destination-size
+|-- sparc-randconfig-c041-20230409
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- x86_64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
+|-- x86_64-randconfig-c002
+|   `-- drivers-hwmon-pmbus-pmbus_core.c:WARNING:Threaded-IRQ-with-no-primary-handler-requested-without-IRQF_ONESHOT-(unless-it-is-nested-IRQ)
+`-- x86_64-randconfig-k001-20230410
+    |-- Error:failed-to-load-BTF-from-vmlinux:No-data-available
+    |-- diff:tools-arch-s390-include-uapi-asm-ptrace.h:No-such-file-or-directory
+    |-- make:No-rule-to-make-target-zip.h-needed-by-kselftest-net-tools-build-libbpf-sharedobjs-libbpf.o-.
+    |-- make:No-rule-to-make-target-zip.h-needed-by-kselftest-net-tools-build-libbpf-staticobjs-libbpf.o-.
+    |-- make:No-rule-to-make-target-zip.h-needed-by-tools-build-libbpf-sharedobjs-libbpf.o-.
+    |-- make:No-rule-to-make-target-zip.h-needed-by-tools-build-libbpf-staticobjs-libbpf.o-.
+    |-- membarrier_test_impl.h:error:MEMBARRIER_CMD_GET_REGISTRATIONS-undeclared-(first-use-in-this-function)
+    |-- mount_setattr_test.c:error:redefinition-of-struct-mount_attr
+    |-- thermal_nl.h:fatal-error:netlink-netlink.h:No-such-file-or-directory
+    `-- thermometer.c:fatal-error:libconfig.h:No-such-file-or-directory
+clang_recent_errors
+|-- hexagon-randconfig-r005-20230410
+|   `-- drivers-bluetooth-hci_qca.c:warning:unused-variable-qca_soc_data_wcn6855
+|-- i386-buildonly-randconfig-r004-20230410
+|   |-- drivers-tty-serial-samsung_tty.c:error:implicit-declaration-of-function-of_device_get_match_data-is-invalid-in-C99-Werror-Wimplicit-function-declaration
+|   `-- drivers-tty-serial-samsung_tty.c:warning:incompatible-integer-to-pointer-conversion-returning-int-from-a-function-with-result-type-const-struct-s3c24xx_serial_drv_data
+|-- x86_64-randconfig-a003-20230410
+|   `-- drivers-bluetooth-hci_qca.c:warning:unused-variable-qca_soc_data_wcn6855
+|-- x86_64-randconfig-a005-20230410
+|   |-- drivers-gpu-drm-i915-gt-uc-guc_capture_fwif.h:warning:wrong-kernel-doc-identifier-on-line:
+|   |-- drivers-gpu-drm-i915-i915_pmu.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
+|   |-- drivers-gpu-drm-i915-i915_request.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
+|   `-- drivers-gpu-drm-i915-i915_vma.h:warning:expecting-prototype-for-i915_vma_offset().-Prototype-was-for-i915_vma_size()-instead
+`-- x86_64-randconfig-r033-20230410
+    `-- drivers-bluetooth-hci_qca.c:warning:unused-variable-qca_soc_data_wcn6855
 
-Participating hosts (36 -> 35)
-------------------------------
+elapsed time: 722m
 
-  Missing    (1): fi-snb-2520m 
+configs tested: 145
+configs skipped: 9
 
-Known issues
-------------
+tested configs:
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+alpha                randconfig-r002-20230409   gcc  
+alpha                randconfig-r016-20230409   gcc  
+alpha                randconfig-r023-20230410   gcc  
+alpha                randconfig-r026-20230410   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                  randconfig-r005-20230411   gcc  
+arc                  randconfig-r005-20230412   gcc  
+arc                  randconfig-r033-20230409   gcc  
+arc                  randconfig-r036-20230410   gcc  
+arc                  randconfig-r043-20230409   gcc  
+arc                  randconfig-r043-20230410   gcc  
+arm                              allmodconfig   gcc  
+arm                              allyesconfig   gcc  
+arm          buildonly-randconfig-r001-20230409   clang
+arm          buildonly-randconfig-r005-20230410   clang
+arm                                 defconfig   gcc  
+arm                  randconfig-r012-20230409   clang
+arm                  randconfig-r046-20230409   clang
+arm                  randconfig-r046-20230410   clang
+arm64                            allyesconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                randconfig-r001-20230410   clang
+arm64                randconfig-r004-20230411   gcc  
+arm64                randconfig-r016-20230410   gcc  
+arm64                randconfig-r022-20230410   gcc  
+csky                                defconfig   gcc  
+csky                 randconfig-r013-20230409   gcc  
+hexagon      buildonly-randconfig-r003-20230409   clang
+hexagon              randconfig-r005-20230410   clang
+hexagon              randconfig-r011-20230409   clang
+hexagon              randconfig-r041-20230409   clang
+hexagon              randconfig-r041-20230410   clang
+hexagon              randconfig-r045-20230409   clang
+hexagon              randconfig-r045-20230410   clang
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-r003-20230410   clang
+i386         buildonly-randconfig-r004-20230410   clang
+i386                              debian-10.3   gcc  
+i386                                defconfig   gcc  
+i386                 randconfig-a001-20230410   clang
+i386                 randconfig-a002-20230410   clang
+i386                 randconfig-a003-20230410   clang
+i386                 randconfig-a004-20230410   clang
+i386                 randconfig-a005-20230410   clang
+i386                 randconfig-a006-20230410   clang
+i386                 randconfig-a011-20230410   gcc  
+i386                 randconfig-a012-20230410   gcc  
+i386                 randconfig-a013-20230410   gcc  
+i386                 randconfig-a014-20230410   gcc  
+i386                 randconfig-a015-20230410   gcc  
+i386                 randconfig-a016-20230410   gcc  
+ia64                             allmodconfig   gcc  
+ia64         buildonly-randconfig-r005-20230409   gcc  
+ia64                                defconfig   gcc  
+ia64                 randconfig-r002-20230410   gcc  
+ia64                 randconfig-r022-20230409   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch            randconfig-r014-20230410   gcc  
+loongarch            randconfig-r024-20230409   gcc  
+loongarch            randconfig-r032-20230409   gcc  
+m68k                             allmodconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                 randconfig-r001-20230412   gcc  
+m68k                 randconfig-r004-20230412   gcc  
+m68k                 randconfig-r031-20230410   gcc  
+m68k                 randconfig-r035-20230409   gcc  
+m68k                 randconfig-r035-20230410   gcc  
+microblaze           randconfig-r001-20230411   gcc  
+microblaze           randconfig-r002-20230412   gcc  
+mips                             allmodconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                 randconfig-r011-20230410   clang
+mips                 randconfig-r021-20230409   clang
+mips                 randconfig-r032-20230410   gcc  
+nios2                               defconfig   gcc  
+nios2                randconfig-r002-20230411   gcc  
+nios2                randconfig-r003-20230411   gcc  
+nios2                randconfig-r014-20230409   gcc  
+openrisc     buildonly-randconfig-r004-20230409   gcc  
+parisc                              defconfig   gcc  
+parisc               randconfig-r003-20230412   gcc  
+parisc               randconfig-r006-20230412   gcc  
+parisc               randconfig-r015-20230409   gcc  
+parisc               randconfig-r023-20230409   gcc  
+parisc               randconfig-r034-20230410   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc      buildonly-randconfig-r002-20230410   gcc  
+powerpc      buildonly-randconfig-r006-20230409   gcc  
+powerpc              randconfig-r006-20230409   clang
+riscv                            allmodconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv                               defconfig   gcc  
+riscv                randconfig-r001-20230409   clang
+riscv                randconfig-r003-20230410   clang
+riscv                randconfig-r004-20230409   clang
+riscv                randconfig-r006-20230411   gcc  
+riscv                randconfig-r024-20230410   gcc  
+riscv                randconfig-r042-20230409   gcc  
+riscv                randconfig-r042-20230410   gcc  
+riscv                          rv32_defconfig   gcc  
+s390                             allmodconfig   gcc  
+s390                             allyesconfig   gcc  
+s390         buildonly-randconfig-r002-20230409   gcc  
+s390                                defconfig   gcc  
+s390                 randconfig-r026-20230409   gcc  
+s390                 randconfig-r044-20230409   gcc  
+s390                 randconfig-r044-20230410   gcc  
+sh                               allmodconfig   gcc  
+sh                   randconfig-r004-20230410   gcc  
+sh                   randconfig-r012-20230410   gcc  
+sh                   randconfig-r013-20230410   gcc  
+sh                   randconfig-r025-20230409   gcc  
+sparc                               defconfig   gcc  
+sparc                randconfig-r031-20230409   gcc  
+sparc64              randconfig-r025-20230410   gcc  
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   gcc  
+x86_64                            allnoconfig   gcc  
+x86_64                           allyesconfig   gcc  
+x86_64                              defconfig   gcc  
+x86_64                                  kexec   gcc  
+x86_64               randconfig-a001-20230410   clang
+x86_64               randconfig-a002-20230410   clang
+x86_64               randconfig-a003-20230410   clang
+x86_64               randconfig-a004-20230410   clang
+x86_64               randconfig-a005-20230410   clang
+x86_64               randconfig-a006-20230410   clang
+x86_64               randconfig-a011-20230410   gcc  
+x86_64               randconfig-a012-20230410   gcc  
+x86_64               randconfig-a013-20230410   gcc  
+x86_64               randconfig-a014-20230410   gcc  
+x86_64               randconfig-a015-20230410   gcc  
+x86_64               randconfig-a016-20230410   gcc  
+x86_64               randconfig-r006-20230410   clang
+x86_64               randconfig-r021-20230410   gcc  
+x86_64               randconfig-r033-20230410   clang
+x86_64                               rhel-8.3   gcc  
+xtensa               randconfig-r005-20230409   gcc  
 
-  Here are the changes found in Patchwork_114451v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-atsm-1:         [PASS][1] -> [INCOMPLETE][2] ([i915#6311])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-atsm-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-atsm-1/igt@gem_exec_suspend@basic-s3@smem.html
-    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#6687] / [i915#7978])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [PASS][5] -> [FAIL][6] ([i915#8308])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [PASS][7] -> [DMESG-WARN][8] ([i915#7699])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@i915_selftest@live@migrate.html
-    - bat-atsm-1:         [PASS][9] -> [DMESG-FAIL][10] ([i915#7699])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-atsm-1/igt@i915_selftest@live@migrate.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-atsm-1/igt@i915_selftest@live@migrate.html
-    - bat-rpls-2:         [PASS][11] -> [DMESG-FAIL][12] ([i915#7699])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-2/igt@i915_selftest@live@migrate.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-adlp-6:         [PASS][13] -> [ABORT][14] ([i915#7913] / [i915#7982])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-adlp-6/igt@i915_selftest@live@requests.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-adlp-6/igt@i915_selftest@live@requests.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][15] ([i915#7828])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][16] ([i915#5354]) +1 similar issue
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][17] ([i915#1845])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-2:         [ABORT][18] ([i915#6687] / [i915#7978]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:
-    - bat-dg2-8:          [FAIL][20] ([i915#7932]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-FAIL][22] ([i915#6367]) -> [DMESG-FAIL][23] ([i915#6367] / [i915#7996])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12996 -> Patchwork_114451v3
-
-  CI-20190529: 20190529
-  CI_DRM_12996: d82f63ad2143079892f2bee4f3e72556c54fac7d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7253: 1a619e8dbc6ca887f2ae24b2d7f1ac536342f58c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114451v3: d82f63ad2143079892f2bee4f3e72556c54fac7d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f3519c42fc8d drm/i915/gt: Make sure that errors are propagated through request chains
-327332d5b34e drm/i915: Throttle for ringspace prior to taking the timeline mutex
-37fa43d37a38 drm/i915: Create the locked version of the request add
-d0943676553b drm/i915: Create the locked version of the request create
-6614e8ff5ba9 drm/i915/gt: Add intel_context_timeline_is_locked helper
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/index.html
-
---===============3637108753615477083==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix error propagation amongst request (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114451/">https://patchwork.freedesktop.org/series/114451/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12996 -&gt; Patchwork_114451v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/index.html</p>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114451v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>
-<p>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-atsm-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-atsm-1/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a>)</p>
-</li>
-<li>
-<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>
-<p>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</p>
-</li>
-<li>
-<p>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-atsm-1/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-atsm-1/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</p>
-</li>
-<li>
-<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-2/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-adlp-6/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-adlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12996/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114451v3/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12996 -&gt; Patchwork_114451v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12996: d82f63ad2143079892f2bee4f3e72556c54fac7d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7253: 1a619e8dbc6ca887f2ae24b2d7f1ac536342f58c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114451v3: d82f63ad2143079892f2bee4f3e72556c54fac7d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f3519c42fc8d drm/i915/gt: Make sure that errors are propagated through request chains<br />
-327332d5b34e drm/i915: Throttle for ringspace prior to taking the timeline mutex<br />
-37fa43d37a38 drm/i915: Create the locked version of the request add<br />
-d0943676553b drm/i915: Create the locked version of the request create<br />
-6614e8ff5ba9 drm/i915/gt: Add intel_context_timeline_is_locked helper</p>
-
-</body>
-</html>
-
---===============3637108753615477083==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
