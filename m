@@ -2,145 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4166DF82C
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 16:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8ACF6DF82F
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Apr 2023 16:18:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD4A10E81E;
-	Wed, 12 Apr 2023 14:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A542710E822;
+	Wed, 12 Apr 2023 14:18:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62FB810E822
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Apr 2023 14:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681309011; x=1712845011;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=alTh3oKpa1adMPvfCT7Ec2cq/Krha1+4frFxAAaF5vU=;
- b=CZ/XIxIqD8ZdWlPoC3y+XV98VZUJ9KjVMiHwH97/aIqIUYr5CESC2gAl
- AHyEh6CLznTzFFGDk+mBzYCWbDW7t8fm9CRZ4ksk4NFx50ocNU2wiL8we
- UHWGjFSpkfLgABxjomJa9FkxwcqjpWpw9cHymMKxuv0tAFApElVD+NVuc
- Bp62oqdiJ3xwgkrGrbFJGGvEU4ItZmIzlo4RFDrcTwWDjDu6hc4IkUbem
- RjnYIeVnsfCybEWvsKIVX6k1Y0sLCJFRFwSjBKp+hTs/oT3TbL3tBwpXg
- OwFycdgjHaDSj/5+sCXDXvyp7KzhW7leW60gUzFBTU7BvdAmkqnKYN3sA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="323533720"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="323533720"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:16:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="758262437"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="758262437"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 12 Apr 2023 07:16:25 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 12 Apr 2023 07:16:24 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 12 Apr 2023 07:16:24 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 12 Apr 2023 07:16:24 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on20604.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8c::604])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85C7F10E81E;
+ Wed, 12 Apr 2023 14:18:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FikEt+oFY3nDbsVhe89OVeMHIKRIrHjERcvZNDLGJLBNtNQ17p5Qpxrth/Eky5CeMx2L9flw4Uu19Xp59vnegbwqlyK7QNnEnnEboA4TU8ysFNqtCiJEDMLatt0croajNkZVDPIvwuazEzdXuWhRf/lIIPM5QEpS2viWKHQdeLN1JT8Z2KfJk1FL0owHUKkmU3w23Jz9uOR3lVoM4omWVjuws4zbiS2DVFPvJJgip9cETVmQw3JEdnTzhqZvzdT1/+YwZBrESdAs2geyml/MNMOOVQFQgHpCMF1sMvUAuepzkZoN6FHMfzmzUNv0buzbRdB4Y/bA/FzlCgDhRvoRGg==
+ b=nKmFer6M4sVrGsxEWu+EuVyGLFieXAGm4+4ZcHhuSdOEomcNM1aWgwCoSZcs4jUeoNS3Y27g80E2vIENhyTyinxVrSNI0mI9SolK8mmPjbl2BM2yUsojoO9g97GRVuBg7sGkalB3OzEgMKhqXLq6xkn5XSRmMUwrsVM+0y7sXmm9L38F7rKRRoUdh35gcRr2n9EpQMmGphmrkmoLNEZvT3Y40oGF1jBuZPCTqmrOtWZnJDvkgiwCNot6QiltQYJx4/YL+cBL6tCt3oqMroOktAt26hpOvkZRjw3fHnxBFutF/RFQUbb4HA6yrGpg2MrqqSFE8Jc3BPZYjMR4avjdgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j5i+aVZh9D1HeQ88ErwiD2+Yy9VPChqeD22gC8Dmp8A=;
- b=mXQzAR4ZuCHn5nBDZEtdz0m8O2daBLkcQdDWj2q7PodrhLHkdf050kINhiwtdd+waBDVP1EuWCEwske8vZF+lOR+R/pYSW2tFXK08PRMEWEjp2Q8JrZ1IEIwiOVZXKA3C54Skp1ELsMGxJ+W/nXXIBmLCOkz3WnR01W3RlN5mVeEhG/3I4HxNELwNdSzaUY99u93hGPGUhErasFiDK7hgeTkq4GuvrTxBA6E31y2cI1aMCNQeGPskAck07H+S+0SehfaxGsS++QNTwwLCgxBT8By4N+qtbyfUcrwf9dvaCsi/ubdestHtxuxGL6TWv+1N8KeWBr0VEKnTU5GZDPUYA==
+ bh=dTUpYBq9CMOql5pyvd8fyxGf6s3u68sl6SJgH2xX+WI=;
+ b=Wk62PmCuREG7WD8PNilgC+Tt1rastfgrM1VTG0yGISvKgUYYrLPWEhRbEl1LUTj+Apw+tHB9yoDZhqqHNnN2ME29G4nKzo0g1hFWbbKRc6blSKpqfOUZInxySiOmhP5gTragi3PDpPf4/1DvkNc0PB4inBGNSWAMopcviP8srbnWqkuEJFjfKLQhjjYSiLR5mjESNRoFRV6DaZ0vw7qaJYZc6hET6OdAcTzdgAooEX+3sYiZfnFsr4nZgOtHSSCXmVGlSGWVALshm2o5ffn89xF7a6S/OJvYIWbVhJwEbeq94/DO+MsjaPdewZK+QFA2N5/9YTdqRTD36/b2nAceSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR11MB1935.namprd11.prod.outlook.com (2603:10b6:300:10c::20)
- by SA3PR11MB7485.namprd11.prod.outlook.com (2603:10b6:806:31c::9)
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dTUpYBq9CMOql5pyvd8fyxGf6s3u68sl6SJgH2xX+WI=;
+ b=MMEH1ZclekkqCM5MOyNPWkhhbZOFUBY4hDkAoVHDg2kap3QakM3M592yu+IMgEaMIXhi/M/fN51GSsWIeo93sjiZgUw08hXhmA6vn+cNiSN2I0urwu4wRAYwzVWjdqygExegA/6ciP1CrEFk63W2fMDDi8p2ef4c0nFQf2rGjGg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by SN7PR12MB7954.namprd12.prod.outlook.com (2603:10b6:806:344::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.34; Wed, 12 Apr
- 2023 14:16:23 +0000
-Received: from MWHPR11MB1935.namprd11.prod.outlook.com
- ([fe80::47e0:df10:25c7:ce5f]) by MWHPR11MB1935.namprd11.prod.outlook.com
- ([fe80::47e0:df10:25c7:ce5f%7]) with mapi id 15.20.6298.030; Wed, 12 Apr 2023
- 14:16:23 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
- enable/disable
-Thread-Index: AQHZW/z+ggztexoTfki4jDfF7FcQKK8PEY0AgBam6oCAAbUIgIAAbDaAgAAAwtA=
-Date: Wed, 12 Apr 2023 14:16:22 +0000
-Message-ID: <MWHPR11MB19351E0FB8251DBBD7DDD866B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
-References: <20230320203352.19515-6-ville.syrjala@linux.intel.com>
- <20230321135615.27338-1-ville.syrjala@linux.intel.com>
- <MWHPR11MB19351B3CC439AB4C1A9F370EB28B9@MWHPR11MB1935.namprd11.prod.outlook.com>
- <ZDTy93UCSN4TUCV1@intel.com> <ZDZhk/tizSv0pTmZ@intel.com>
- <MWHPR11MB19358BF6559163B84B3F5FD1B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
-In-Reply-To: <MWHPR11MB19358BF6559163B84B3F5FD1B29B9@MWHPR11MB1935.namprd11.prod.outlook.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.35; Wed, 12 Apr
+ 2023 14:17:57 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::4624:dc39:943e:6ae]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::4624:dc39:943e:6ae%5]) with mapi id 15.20.6277.036; Wed, 12 Apr 2023
+ 14:17:57 +0000
+Message-ID: <ae672182-f7a4-7107-1071-1561c49bc122@amd.com>
+Date: Wed, 12 Apr 2023 16:17:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MWHPR11MB1935:EE_|SA3PR11MB7485:EE_
-x-ms-office365-filtering-correlation-id: 79ea459e-6c4e-4e27-cda1-08db3b607e6c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kyyphm6Nv9lhxQnj8FbXVXXSG5rjJQeoclSgeQHhmZr71MJvvVthyB5VOXFZ8S+G2CHZUMIuqMLtTnW0WhTjv8lqRoYP20tamXuWBkNrRiQ2f64Sio25NbGoWu0iAlA5t0CWDwBeCOEn35vJojeULrEG1UbW+1NTVPZifszTJxCjaIxH/FVPHwcSRLfq68amfkRXbt/RRDvVlIaON6NMKvy1PsTP3gQXJ4oaSXKZL4Y+6Tjb9Pf4PtwesnN+OEneh/zL142kcGsrkdCqEVOy/oKPhQ0MM8z9WVpjq4KGIrlu7i3raJtf8jcIiLyR4Ziaz1Gto2Ms9B1Ec9q63N8Ctzi1m24S+lO29bzpfVBsJyHh8ir2+k9lwl/oYmfxdJyR3ep7Augx4HjAoYpCH7jarcaLIp4DpzSBDuvjr3wyXkrMKQDPNvhFr6Q4hQbf1zWAjuqaDLJk5g9gMmXQHISYkipOVWjLs0RYuKOcIDfyhla0DITswkQpzjsmZZRvjH1xoA2mla8Oanpibm2Acyp+WLsiK/xqF+x3YOl1emxeplGeNVvo7L67+Cr3EWPPD0kCBOzE0MR7iuVtCjWObQstRYpf0+A3NWAdgAgpKatmCl78Cy95ZdyAkECOriuV4HzZ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1935.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(346002)(376002)(39860400002)(136003)(366004)(451199021)(4326008)(66476007)(66946007)(6916009)(76116006)(33656002)(66556008)(82960400001)(38100700002)(316002)(122000001)(66446008)(66574015)(83380400001)(8676002)(8936002)(2906002)(52536014)(5660300002)(41300700001)(55016003)(64756008)(71200400001)(86362001)(9686003)(6506007)(53546011)(38070700005)(478600001)(7696005)(2940100002)(186003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?ghgbsi4MQyvmiyx4s9L+fchNAb3sAgZvj6UbK8J+qs7DV+25E5YFw8yGlq?=
- =?iso-8859-1?Q?yLPZpSyoRaHDLj8zxFHr0dk2C0WSm/Sht8eRC1sthRhQe0rS7gMxeJhNNr?=
- =?iso-8859-1?Q?9a3o3h3OT6/Qd6ZLqz/N3GKyvUyqUCGvuOw5F5kVGDkxAJw2uUJdSv1m/V?=
- =?iso-8859-1?Q?ib5nxEKsYIUsFEsBI5vDQByqK1JpCiDUTb8HnM63wMVeKiDPpe3sIWTGSr?=
- =?iso-8859-1?Q?rW9SkNPlPH8vAAd2+YE5Ygkz4noEz/1WFfsGKQsxA5+F3tZYtySbCUr7fH?=
- =?iso-8859-1?Q?kFNOIoS4Tmay1VG0M/kv4O3Mxgx6xUIf6vkkaHOY+fs6THwnkEuDhtOYPu?=
- =?iso-8859-1?Q?vAJ6bYVq8NTrELFDcnB7EmP9Bn8jdh59VRHlZYbz32349f6ixpKmllkhtU?=
- =?iso-8859-1?Q?KSMisq33HwcZIi0QDwnfmaYbok1/5HwmoCCW14Jx8moOzvy5npxn9I7sQq?=
- =?iso-8859-1?Q?uPwUG6kmzqlk7gcHt3p1zbmC9sUhKsXqmG+eDO9Pw6plObQkIn1cxA9FoN?=
- =?iso-8859-1?Q?vqXofzI94B+h/rElZ5ZZ6GaHyj10Ri4gnfpbJ/wD2neVTkNgJ5lHdlKJSu?=
- =?iso-8859-1?Q?jIymujhbulve1lNDhV31Bab+OBA1orh2CAbQp1KKsAbZA68hpJ0SalEDV0?=
- =?iso-8859-1?Q?ln0cbDV8aO7iXvL23J/not09CyF9moDsfyeHt10PCKm99AvvoeB0uaiUtT?=
- =?iso-8859-1?Q?b3xb64DFHB5mHac4vvxoDrSfIr9Kz0NFqn16/SgeBZG0w+h+N51z/+7dmA?=
- =?iso-8859-1?Q?RhPHI3B1ORz5E0pyPcrUd5cTaZxLog3pcIYqahjWHTn+mpRQN3vLSa48HJ?=
- =?iso-8859-1?Q?tJqDs6o+W/NyvkkQcHDBv+HUeXxQYfaF5Pp5VEtimOMofQ8GAllaXnACuK?=
- =?iso-8859-1?Q?SejvJZijDYUpNIzmINL0MYikRby2k0l2r7tYsOtFwM/Ofb1pPPoF/jVj8B?=
- =?iso-8859-1?Q?2XawGpEprR+oz14BhlU23m0spgzyfRZY7FUxvwao0XyePfK0KGfoGB3awS?=
- =?iso-8859-1?Q?PMLOpO553qclVMJrUtcNOQ2kbCStkZRKkyHnDaBK81q8KOdFtfguHyYcD3?=
- =?iso-8859-1?Q?enMZ1Zhtf9QRidTqQs+slYTcWQqR4fOMO0ki8jb6mRzp+dWtnuf9pWaxay?=
- =?iso-8859-1?Q?EjJGShiRlCrJDt2NoDiGAM3aWBL3+l2uuTfD8PlRJMsgxL9n1kH68Dsbvl?=
- =?iso-8859-1?Q?QvtOCUBBTrJAbSKyUsdQk+L6TxvVCs4mTL/7ckplhToqpk4pTvI+DeEHOT?=
- =?iso-8859-1?Q?zoi+L3bw0tPVG+QBbCP3FAjtNB+ZqajCHY6XC7cYCf/p7sKTEGPZ7BP+xa?=
- =?iso-8859-1?Q?x2T6Au0g8KIGv3dCGmaO5M0evVq8MeFdxkXz9Ra0XRdAuCmckKsidQ4ctc?=
- =?iso-8859-1?Q?qsGAxfxTN06z2AdrX1gkQYuXCGuiu4UwlyiA1fkCvAZC1VVUuqQoN0uB3u?=
- =?iso-8859-1?Q?dvBUPWqiXChZPsJOGsjExoJlr1Fyqm0pMpLz5cMkLXezDRgH76rD5at5qY?=
- =?iso-8859-1?Q?c9NBFRU9ayei3kHD7x0DZxh84CAlNL0CupIVtj3X/c+JGIlK3MmYQ+1mdi?=
- =?iso-8859-1?Q?8YannG/5vZcvVf+VEYQL1jgaHr5O+oBmlCMAPur0DymLTwfP9rPrNP93Ac?=
- =?iso-8859-1?Q?SGXWNMiSbttV+GZB8WFTJ7mnbLjopVGrtSVFwHUWaoDmYKDFZljwH4PkgS?=
- =?iso-8859-1?Q?Sg5O4SWNwuqtoS+bxyeMi921CcyCkABejH6qFIB5mJKGdL6K8tQDgUeRkF?=
- =?iso-8859-1?Q?K0G6Q83n8sHxKasxi05LINDhc=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
+ <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
+ <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
+ <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
+ <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
+ <CAKMK7uEZdWjs9snGdNpzBthOWz0YSCZh-rNKOGywLWozzpFwbA@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CAKMK7uEZdWjs9snGdNpzBthOWz0YSCZh-rNKOGywLWozzpFwbA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0102.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9c::16) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SN7PR12MB7954:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83f4fda2-5491-407c-06b6-08db3b60b6a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9CqTq+5IMlE1NFQ2kwIZgfWD1YWmAcnAY6Wc/cRRKDRX2Q5GGXDpYGoS83e+f+1MYSKnjiW46bWugxyDj/afwY4F7Uw2cC0pR1Tla2H+fDgJOoVc89McpulBwi1veEK8IkuBGN7r510LM24EAKaFvKvqStkcJiylS4LkUpFZzX2BkkZ/eMMx474WXgLcaY0gzsl3IfDnFkIlyCcZidiuOAF0N1eK2Oo9mog3OqUkvkuOao/FueMbSXReLuakNe/XNDbZFAwtl3n0TOMiXEz6/YJxaHk5/x026phwhIkqarmmM931afbb8mcNKCsnOsUyUnp2l8nmMah/9AX8EOvBP0+sPwy3o+pyPavn9EoekHM8bpagaoY8b2qAGx3X9+NW7CJB5Z1YKCnm8TdpKbHdYf5v7T0tpre04qedOgQcBnosrwie9uHW6VYyM43OZR9BYvQAa7I1Ilzg2xFCKGObLiRrcmv0+M77bd55qNeMC4kGo0VyDQDALytufyGMwwmGA5VcC/VUnGoJ7wNL6MJkVIsj0XcKejN8LacQ+mIuk7BBFO5X31OE4a9KFb3RqwV87sUcO77Hz6uFV6KGhKEJ65+WTDiTHh9gReWqllj6i6bygamxH7rSghWsxmDXheq13Tp6OLEshxxs8fDH9cvYmA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(376002)(366004)(136003)(346002)(39860400002)(451199021)(31696002)(86362001)(36756003)(316002)(54906003)(41300700001)(66476007)(478600001)(6486002)(4326008)(6916009)(966005)(66556008)(66946007)(8676002)(5660300002)(2906002)(8936002)(38100700002)(186003)(83380400001)(6666004)(6506007)(6512007)(66574015)(2616005)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?LzhOeFVuN3BkdFh6b2IzREdPM01GTno0YUFCN3JuVU40QzRrV01ZSGR0NjhV?=
+ =?utf-8?B?cE5TZkRtMTVFSjhlcFZOOS9pcXRadHY2Mk5HOHM4SnhGbFVHWDZtdnZJenNq?=
+ =?utf-8?B?akg0aU5jenJmR2o2SXBwTGJBSWdVd3MwZ2dDalUrTnlGTG02bG80cThYUlNs?=
+ =?utf-8?B?ZEdZVkFTUC8zQTA1cDlqY0tLbXl3eFU3TkhKYW80ZHJ4MjFGNHJkS2N4TVpo?=
+ =?utf-8?B?VFFxb05pQXBmU1FaVi9lbnBPU2k5OUgxQ2NGdTl5eGtrNUpyTEhwaCt1RXE4?=
+ =?utf-8?B?R1FLK3RLRmUwejhmdlpiWjlZcm9oNitoZU5IS25qYU1UVldHbXJQMHpNc3Vk?=
+ =?utf-8?B?ckJJYzE0OVE2dnVVRGp6RWgwbExoL3hBWkxvck5zZlc5M3BhU1ZHMnNmNEVk?=
+ =?utf-8?B?aDJqVmpHQVNhNWFlOThYZ0ExcFdLVDlnQXVvTWtLUTZ6Zm81SnRtbWtCWFFJ?=
+ =?utf-8?B?aW0yS1R6Qm42WElSWVJYUnFpVGRpWEJEOGJYZDhCS1RJRndVUUNFakVqWFVv?=
+ =?utf-8?B?ajFZSzBuZHJGVzlMaSsySzNnNS9DRjZlb2JKb2J2NktmUkRmbFBKRHRaZ00y?=
+ =?utf-8?B?a0dvSDU5Q3FTRnA3dGpLYUh3eEt2aU5ydTZVa2V2ZmRQL1VSc2FvY3BXa1hH?=
+ =?utf-8?B?SUFBcVloK0V3MU1ZeXVkR0hTb1dhTkk4TGhXQVFQU2ZQdWgybG5PRmMvMEds?=
+ =?utf-8?B?QUdiNHplUEZGdS9DZG1HaEZnaGM3RitYdnFoZHdESnhTM0gyNi84NUxlYTZi?=
+ =?utf-8?B?M0x4UXNHWlo3TWZ0NnovZ2hJT3FSdVVNdjlKa2tGMFZjQ2hwZTQ3SGdMTjVH?=
+ =?utf-8?B?bm5RajRFTnhQMy9jVDhzdGNkZGJ5QzZNbEpaOXI2SWg4WkF1V0YzbWdsZ01W?=
+ =?utf-8?B?ZDFiemxzcmhuTGxTeWMvd0Fvek1ZMzA0Tk82b01CR3NabU8rSklsRW5XcUlY?=
+ =?utf-8?B?cjczNG5mSkIzZHZ5UG9XWXlPaTdCQ2ZtU21jRUdyamNyUnJNWjRZekc5UzR5?=
+ =?utf-8?B?c3FkSlhsc0c3NGM2Rm56RGQvWSs5YlcvR2FlZTY5eVh0SmtROVBEWDY3eDdQ?=
+ =?utf-8?B?NFBFand0YlVQY3hVNUlRREl4RDB6Tk5FUFlWSm5uSklDdlNyYldhUGc5UFBm?=
+ =?utf-8?B?MlZmQ3l1ZWRmZVZKYWxDd3B4anpYUHduNmVBOFY3Qnc1MFNUTVp6ZU0zejZM?=
+ =?utf-8?B?QStaZWZydkNjY245dERtOEs2cXo5THdiVHlmTVNTQWpQMHdsOWZKRkpad3J0?=
+ =?utf-8?B?WDUrZ0laZUx0Q0NLMDVQcFdoN2dHTzVZQW4xY2dtYzRoSXNuUXlBdWVDSno3?=
+ =?utf-8?B?MTNsZXRueXE3bUVFbEduS0dtMXVNUnEydE5oeVJqYXlXb3VCdHNEcnhpVEkw?=
+ =?utf-8?B?Z0tzbzEwTFhscVhmS1Jva2l4YWE5NHk5dlZ0UnpwZ0FYUFh0SzdORUc4SDlU?=
+ =?utf-8?B?c2w0R0pWUGhDVkdZME8zdlB6a1VEYkhsRmR2WkNxTHpLZ1RMV0xKUXA4N2lP?=
+ =?utf-8?B?MnA0dnBYdXFMYSsyZFJxd0x5VlBqZDljaTRQdDNRUUQ4dnpBR0ZYNEZVd3ox?=
+ =?utf-8?B?dE5qdlFMenZtaHlUU2FNaWM0RVc0UEV1dWhUaDNsVVFZWW95Ujh1K1VReU9P?=
+ =?utf-8?B?RmFKeElNclpqSlFoRG5zRE9KMW9NZ0N1VS90N1o0SktDQnBsRTRGV0puam1m?=
+ =?utf-8?B?aW5WUnRaN1JOR1hodE1zUnBNanE2eDhseEFGbjA4S3JKNS9rNk5jc1JGNlZG?=
+ =?utf-8?B?NHA4MTU5dlBWanJqZTM1TitRelgyM3gxZU1OUkUrMTlsQUpFMFcrejJLM2pF?=
+ =?utf-8?B?U2NIMi9aUUJCVU1jbG5RUlcraDFTV3ArU0l4TWErYjlLbjFYZk9meHlTMG5J?=
+ =?utf-8?B?VFRESWRUZ3VxT2xudTl2ZFFaOE1pblgyOXRxVGNMckVZTU5JYXNITDNHOWI4?=
+ =?utf-8?B?M2hjNFY0NFBkMWFoeGx4OWE0Wm8zK0xnVS9RMFlTc1E1Y05FN3psNE1Ud09P?=
+ =?utf-8?B?Z2Nqdnl5UG0ycnZSbU5SOW1SMkNnMHZiMkNjUE1LSUo2T3V5YjJhTVB3b3Fq?=
+ =?utf-8?B?eEFUVDZaYzR4KzhsdWFFL2tlWlhWb0oxYTVTTzVMOVYzOXB3OFF1dXZoOEFH?=
+ =?utf-8?B?Zno3aDJPRDlxWjg0bm1BQXFEbDFZM0VsdkRzNnllZlZtOE1Zb1FDcUlSYm9P?=
+ =?utf-8?Q?yxSMzpVMHOd90mmxjPj2EwDctPic/FTNNzP3z98QqMHT?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83f4fda2-5491-407c-06b6-08db3b60b6a9
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1935.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79ea459e-6c4e-4e27-cda1-08db3b607e6c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2023 14:16:22.6719 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vpaQrglHMRXSvG31E3twBHK4d0uhotkVzs30qLDAAXe3swN/5jTk43RSzmCIdmBb1Shb4+tVSzFZYwBop0oOawBcbnGNdgRhGLDst++ScMWZ6EPmGqQOiWyn+xnGe+c5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7485
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
- enable/disable
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2023 14:17:57.3610 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d0YZSvTAck1kWnO/3iDppsswRZeSwa8Do9rcGctq97nA78co3v9i60jPO8cXqoES
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7954
+Subject: Re: [Intel-gfx] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
+ used allocation orders for TTM pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,102 +132,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-HI Ville,
+Am 12.04.23 um 11:08 schrieb Daniel Vetter:
+> On Tue, 11 Apr 2023 at 15:45, Daniel Vetter <daniel@ffwll.ch> wrote:
+>> On Tue, Apr 11, 2023 at 02:11:18PM +0200, Christian König wrote:
+>>> Am 11.04.23 um 11:51 schrieb Daniel Vetter:
+>>>> On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellström wrote:
+>>>>> When swapping out, we will split multi-order pages both in order to
+>>>>> move them to the swap-cache and to be able to return memory to the
+>>>>> swap cache as soon as possible on a page-by-page basis.
+>>>>> Reduce the page max order to the system PMD size, as we can then be nicer
+>>>>> to the system and avoid splitting gigantic pages.
+>>>>>
+>>>>> Looking forward to when we might be able to swap out PMD size folios
+>>>>> without splitting, this will also be a benefit.
+>>>>>
+>>>>> v2:
+>>>>> - Include all orders up to the PMD size (Christian König)
+>>>>> v3:
+>>>>> - Avoid compilation errors for architectures with special PFN_SHIFTs
+>>>>>
+>>>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>> Reviewed-by: Christian König <christian.koenig@amd.com>
+>>>> Apparently this fails on ppc build testing. Please supply build fix asap
+>>>> (or I guess we need to revert). I'm kinda not clear why this only showed
+>>>> up when I merged the drm-misc-next pr into drm-next ...
+>>> I'm really wondering this as well. It looks like PMD_SHIFT isn't a constant
+>>> on this particular platform.
+>>>
+>>> But from what I can find in the upstream 6.2 kernel PMD_SHIFT always seems
+>>> to be a constant.
+>>>
+>>> So how exactly can that here break?
+>> There's some in-flight patches to rework MAX_ORDER and other things in
+>> linux-next, maybe it's recent? If you check out linux-next then you need
+>> to reapply the patch (since sfr reverted it).
+> So I looked and on ppc64 PMD_SHIFT is defined in terms of
+> PTE_INDEX_SIZE, which is defined (for book3s) in terms of the variable
+> __pte_index_size. This is in 6.3 already and seems pretty old.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Golani, Mitulkumar Ajitkumar
-> Sent: 12 April 2023 19:45
-> To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> enable/disable
->=20
-> Hi Ville,
->=20
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: 12 April 2023 13:15
-> > To: Golani, Mitulkumar Ajitkumar
-> > <mitulkumar.ajitkumar.golani@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> > enable/disable
-> >
-> > On Tue, Apr 11, 2023 at 08:41:11AM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Mon, Mar 27, 2023 at 08:05:49PM +0000, Golani, Mitulkumar
-> > > Ajitkumar
-> > wrote:
-> > > > Hi Ville,
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
-> > > > > Behalf Of Ville Syrjala
-> > > > > Sent: 21 March 2023 19:26
-> > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > Subject: [Intel-gfx] [PATCH v2 5/6] drm/i915/vrr: Relocate VRR
-> > > > > enable/disable
-> > > > >
-> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > >
-> > > > > Move VRR enabling/disabling into a place where it also works for
-> > fastsets.
-> > > > >
-> > > > > With this we always start the transcoder up in non-VRR mode.
-> > > > > Granted  we already did that but for a very short period of time.
-> > > > > But now that we might end up doing a bit more with the
-> > > > > transcoder in non-VRR mode it seems prudent to also update the
-> > > > > active timings as the transcoder changes its operating mode.
-> > > > >
-> > > > > crtc_state->vrr.enable still tracks whether VRR is actually
-> > > > > enabled or not, but now we configure all the other VRR timing
-> > > > > registers whenever VRR is possible (whether we actually enable
-> > > > > it or not). crtc_state->vrr.flipline can now serve as our "is VRR
-> possible"
-> > bit of state.
-> > > >
-> > > > Understood the change. I was thinking if it is possible to make
-> > > > distinguish between is VRR "possible" and is VRR "enabled" by
-> > > > adding a new param ? Although changes looks good to me but using
-> > > > Flipline
-> > value as "is VRR Possible" makes it bit confusing.
-> > >
-> > > I suppose we could think about adding a knob for it. It would just
-> > > reflect the flipline enable bit state in the current scheme.
-> >
-> > After further pondering I think I'm leaning towards just adding a tiny
-> > intel_vrr_possible()/etc. helper instead of adding a separate knob for
-> > this into the crtc state. That seems like somehting we can trivially
-> > do as a followup.
->=20
-> Yes. That also sounds good.
->=20
-> Regards,
-> Mitul
-> >
-> > >
-> > > Another thing I was pondering is whether we should even care about
-> > > this in intel_dp_prepare_link_train() or if we should just set the
-> > > MSA ingore bit any time we have a VRR capable display. But I suppose
-> > > that could have some implicatations eg. for interlaces displays modes=
-.
->=20
-> In that case to avoid implications should we add additional check for
-> vrr.enable as well ?
-> > >
-> > > --
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> >
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
+Ah! I missed that one, thanks.
 
-Changes LGTM.
-Thanks
-=20
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> So revert? Or fixup patch to make this work on ppc?
+
+I think for now just revert or change it so that we check if PMD_SHIFT 
+is a constant.
+
+Thomas do you have any quick solution?
+
+Christian.
+
+>
+>
+>>>>> ---
+>>>>>    drivers/gpu/drm/ttm/ttm_pool.c | 30 +++++++++++++++++++-----------
+>>>>>    1 file changed, 19 insertions(+), 11 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>> index dfce896c4bae..18c342a919a2 100644
+>>>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>> @@ -47,6 +47,11 @@
+>>>>>    #include "ttm_module.h"
+>>>>> +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
+>>>>> +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
+>>>>> +/* Some architectures have a weird PMD_SHIFT */
+>>>>> +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <= MAX_ORDER ? __TTM_DIM_ORDER : MAX_ORDER)
+>>>>> +
+>>>>>    /**
+>>>>>     * struct ttm_pool_dma - Helper object for coherent DMA mappings
+>>>>>     *
+>>>>> @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
+>>>>>    static atomic_long_t allocated_pages;
+>>>>> -static struct ttm_pool_type global_write_combined[MAX_ORDER];
+>>>>> -static struct ttm_pool_type global_uncached[MAX_ORDER];
+>>>>> +static struct ttm_pool_type global_write_combined[TTM_DIM_ORDER];
+>>>>> +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
+>>>>> -static struct ttm_pool_type global_dma32_write_combined[MAX_ORDER];
+>>>>> -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
+>>>>> +static struct ttm_pool_type global_dma32_write_combined[TTM_DIM_ORDER];
+>>>>> +static struct ttm_pool_type global_dma32_uncached[TTM_DIM_ORDER];
+>>>>>    static spinlock_t shrinker_lock;
+>>>>>    static struct list_head shrinker_list;
+>>>>> @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>>>>>            else
+>>>>>                    gfp_flags |= GFP_HIGHUSER;
+>>>>> - for (order = min_t(unsigned int, MAX_ORDER - 1, __fls(num_pages));
+>>>>> + for (order = min_t(unsigned int, TTM_MAX_ORDER, __fls(num_pages));
+>>>>>                 num_pages;
+>>>>>                 order = min_t(unsigned int, order, __fls(num_pages))) {
+>>>>>                    struct ttm_pool_type *pt;
+>>>>> @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+>>>>>            if (use_dma_alloc) {
+>>>>>                    for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
+>>>>> -                 for (j = 0; j < MAX_ORDER; ++j)
+>>>>> +                 for (j = 0; j < TTM_DIM_ORDER; ++j)
+>>>>>                                    ttm_pool_type_init(&pool->caching[i].orders[j],
+>>>>>                                                       pool, i, j);
+>>>>>            }
+>>>>> @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
+>>>>>            if (pool->use_dma_alloc) {
+>>>>>                    for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
+>>>>> -                 for (j = 0; j < MAX_ORDER; ++j)
+>>>>> +                 for (j = 0; j < TTM_DIM_ORDER; ++j)
+>>>>>                                    ttm_pool_type_fini(&pool->caching[i].orders[j]);
+>>>>>            }
+>>>>> @@ -637,7 +642,7 @@ static void ttm_pool_debugfs_header(struct seq_file *m)
+>>>>>            unsigned int i;
+>>>>>            seq_puts(m, "\t ");
+>>>>> - for (i = 0; i < MAX_ORDER; ++i)
+>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i)
+>>>>>                    seq_printf(m, " ---%2u---", i);
+>>>>>            seq_puts(m, "\n");
+>>>>>    }
+>>>>> @@ -648,7 +653,7 @@ static void ttm_pool_debugfs_orders(struct ttm_pool_type *pt,
+>>>>>    {
+>>>>>            unsigned int i;
+>>>>> - for (i = 0; i < MAX_ORDER; ++i)
+>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i)
+>>>>>                    seq_printf(m, " %8u", ttm_pool_type_count(&pt[i]));
+>>>>>            seq_puts(m, "\n");
+>>>>>    }
+>>>>> @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long num_pages)
+>>>>>    {
+>>>>>            unsigned int i;
+>>>>> + BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
+>>>>> + BUILD_BUG_ON(TTM_DIM_ORDER < 1);
+>>>>> +
+>>>>>            if (!page_pool_size)
+>>>>>                    page_pool_size = num_pages;
+>>>>>            spin_lock_init(&shrinker_lock);
+>>>>>            INIT_LIST_HEAD(&shrinker_list);
+>>>>> - for (i = 0; i < MAX_ORDER; ++i) {
+>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i) {
+>>>>>                    ttm_pool_type_init(&global_write_combined[i], NULL,
+>>>>>                                       ttm_write_combined, i);
+>>>>>                    ttm_pool_type_init(&global_uncached[i], NULL, ttm_uncached, i);
+>>>>> @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
+>>>>>    {
+>>>>>            unsigned int i;
+>>>>> - for (i = 0; i < MAX_ORDER; ++i) {
+>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i) {
+>>>>>                    ttm_pool_type_fini(&global_write_combined[i]);
+>>>>>                    ttm_pool_type_fini(&global_uncached[i]);
+>>>>> --
+>>>>> 2.39.2
+>>>>>
+>> --
+>> Daniel Vetter
+>> Software Engineer, Intel Corporation
+>> http://blog.ffwll.ch
+>
+>
+
