@@ -1,63 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D13C6E0203
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 00:43:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F23C86E020F
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 00:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B692B10E9D8;
-	Wed, 12 Apr 2023 22:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BFB410E9D7;
+	Wed, 12 Apr 2023 22:43:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D99F210E9D2;
- Wed, 12 Apr 2023 22:43:21 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id
- d9443c01a7336-1a67bcde3a7so1640035ad.3; 
- Wed, 12 Apr 2023 15:43:21 -0700 (PDT)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
+ [IPv6:2607:f8b0:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCE1410E9D7;
+ Wed, 12 Apr 2023 22:43:35 +0000 (UTC)
+Received: by mail-pg1-x530.google.com with SMTP id
+ 41be03b00d2f7-51870e745bfso782471a12.2; 
+ Wed, 12 Apr 2023 15:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681339401;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=jsDArGzo8UwzIHTKg4ZFesLzSfYls6QtUAhhPvCnIR8=;
- b=BR7mEMT/8rYu6AtMVIBgw3z4X+v7bZLyzLyaHfSGsNcVlWEC6X4Pt3CU+Q5aDWjSBw
- OyPlCcyByobDFutdLcF7xCxDH0ZYocP9rSZ51lIsNTDU9Qvxb4SHi2qYp50yzATwVHHf
- m6NWG7CkvHHOoxAEZP8+DA/PvRLnB1coRYRUltLjvi3dtAKFkazlEERm3+tq76mqhzQG
- m6Y8ViwGmo1trvUjzF4A/ldXuMGdnSNzOOAW3OufH6/DY2rFl5erI6NjC80JdIIoNN9Z
- pT/ufkyWe9KaWHs8kkT412BydAyrcC02JeTtesN13O8O0BCBvOe66XwMD90rPv1gK+aW
- mzcA==
+ d=gmail.com; s=20221208; t=1681339415;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vkssoMCH0JBHP5vQQ5/soNqQdOvnZ6jaRR6/QM733LA=;
+ b=CN2Lu5bkY+MGZCbxwRhM4EnjEolwajayHfLudHbz9tBs33RQgILaEi5P6Qxw8qyguN
+ xoWnK90QAZ9zgi3uJgybS58pTFgOPDC0i/Y6N/CC9/JxdBnW/Xko5eF5195pN+o96lOt
+ B3t6MqVZRv401aFbp97LgzPPX3z/TcwK390iW3z2Gf8xXjmYrFOQ/B4oOjWKzqnHTa96
+ GN/9Aoqri3BO7s/4Byeu1KOHWVLYt/NMY37imHJ+YbzDNqT6SjvT1Ibylkrd6+wKdab4
+ 3/7Ke0vXSk9PbKxS52tVBdr3grAT7reP701Rx6Wi78SSX9YiFQ/Ur9GJnzcZXFXOKmZK
+ sFUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681339401;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jsDArGzo8UwzIHTKg4ZFesLzSfYls6QtUAhhPvCnIR8=;
- b=U0zHRIohhFCZFHDSTNgvU3GaO8XQNwy4vm3Lrc6dd8OV0ta9P4/KYwQZtF+iSyG/z6
- 39G8a5lB3qQ20xAxeB9j5MLNt5jJg6nl7mKnLkPFVyyrALaVFLXWKmZ4MrdpFqy4yZup
- z7u/nayTzJFmMVxVfjlfpO7LXG77ioJHyPNdagf8BBfFOs4jLLminytwIyNuqJuPccwu
- Ux7dnCYR+B68F7VoXF8rqzaUbk5I6vHCwuSxA3XFOH7fhaj6Bua9dz7gGKT7i3QuRVfy
- K//RPc2pY0IydgQsEtFO4Y7VcuXgYnsui8sMfrIFuMpvh2Y51S3hUWFHU3R/cFOdJdV0
- hJng==
-X-Gm-Message-State: AAQBX9dzbUY8Qu2nvoFByke59MX/UcfXPHlJHsZWLY7Bm2Twc1xykiSj
- npdCUopc4YpKtiXLQ6o46VXy4V/676Y=
-X-Google-Smtp-Source: AKy350ZlpBPdTHWwnoS3DWIIAHEnWpX3sJfsQunpB1ugPu/RcyTRvjmYquL2lY552tk9dZGjs5kFvw==
-X-Received: by 2002:a05:6a00:1508:b0:639:66e6:42d8 with SMTP id
- q8-20020a056a00150800b0063966e642d8mr667554pfu.19.1681339400671; 
- Wed, 12 Apr 2023 15:43:20 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1681339415;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vkssoMCH0JBHP5vQQ5/soNqQdOvnZ6jaRR6/QM733LA=;
+ b=iUY+eJNGIz7WV7j0Bz2yk1lL5A2NHhmEVEOG3iRR2nEIPcpPyBegV01O7C01qIcwX/
+ YUbczGm29RKB6zQIDOFxO/CFlMKD5xUPYpBQjwBBV9s4GCaqG98VNYVTLTL1//6R+nVx
+ 4pVHoaT0KjG7ZdFGEetl9wV/vL8l5KW507r5IlJc3Ufjfbn8mR2vTNaGQYBEE+XjT4/t
+ tOpIRNIzupFYQvhwce6tp0mQ5t1ulBn0+gRm5iBclEu1qHfO5TgCCAwtAQ+OWFBag1Ix
+ 95z3aLnix6Ego5RRRWjnGanIHcONo2A5VlaBEnnxh9eXzPxxw91blvLpxH+UVC0Yeila
+ lgUA==
+X-Gm-Message-State: AAQBX9fhDwkCsuGwQO/ds4LJRsO9gDyVlzo27MA8rLbhqT5uBpPQoGnV
+ asHk7qSfKqa/7Np+lZzL+CpjmoHQ29c=
+X-Google-Smtp-Source: AKy350aYwJOvUW0JQIxdrV8N4IpK0cbzSlW+M9BgaNU7TLenuTzBVtC65d4AdjjHrJfk602WSzijeg==
+X-Received: by 2002:a05:6a00:16c1:b0:636:4523:da93 with SMTP id
+ l1-20020a056a0016c100b006364523da93mr529335pfc.12.1681339414895; 
+ Wed, 12 Apr 2023 15:43:34 -0700 (PDT)
 Received: from localhost ([2a00:79e1:abd:4a00:61b:48ed:72ab:435b])
  by smtp.gmail.com with ESMTPSA id
- s21-20020aa78295000000b00627ed4e23e0sm12253844pfm.101.2023.04.12.15.43.19
+ w30-20020a63161e000000b00517f165d0a6sm114761pgl.4.2023.04.12.15.43.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 Apr 2023 15:43:20 -0700 (PDT)
+ Wed, 12 Apr 2023 15:43:34 -0700 (PDT)
 From: Rob Clark <robdclark@gmail.com>
 To: dri-devel@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 15:42:52 -0700
-Message-Id: <20230412224311.23511-1-robdclark@gmail.com>
+Date: Wed, 12 Apr 2023 15:42:56 -0700
+Message-Id: <20230412224311.23511-5-robdclark@gmail.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230412224311.23511-1-robdclark@gmail.com>
+References: <20230412224311.23511-1-robdclark@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/6] drm: fdinfo memory stats
+Subject: [Intel-gfx] [PATCH v4 4/6] drm/i915: Switch to fdinfo helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,60 +73,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Rob Clark <robdclark@chromium.org>, Guchun Chen <guchun.chen@amd.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Evan Quan <evan.quan@amd.com>, Christopher Healy <healych@amazon.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+Cc: Rob Clark <robdclark@chromium.org>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Christopher Healy <healych@amazon.com>,
+ open list <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
  freedreno@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Rob Clark <robdclark@chromium.org>
 
-Similar motivation to other similar recent attempt[1].  But with an
-attempt to have some shared code for this.  As well as documentation.
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+---
+ drivers/gpu/drm/i915/i915_driver.c     |  3 ++-
+ drivers/gpu/drm/i915/i915_drm_client.c | 18 +++++-------------
+ drivers/gpu/drm/i915/i915_drm_client.h |  2 +-
+ 3 files changed, 8 insertions(+), 15 deletions(-)
 
-It is probably a bit UMA-centric, I guess devices with VRAM might want
-some placement stats as well.  But this seems like a reasonable start.
-
-Basic gputop support: https://patchwork.freedesktop.org/series/116236/
-And already nvtop support: https://github.com/Syllo/nvtop/pull/204
-
-[1] https://patchwork.freedesktop.org/series/112397/
-
-Rob Clark (6):
-  drm: Add common fdinfo helper
-  drm/msm: Switch to fdinfo helper
-  drm/amdgpu: Switch to fdinfo helper
-  drm/i915: Switch to fdinfo helper
-  drm: Add fdinfo memory stats
-  drm/msm: Add memory stats to fdinfo
-
- Documentation/gpu/drm-usage-stats.rst      |  31 +++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  16 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.h |   2 +-
- drivers/gpu/drm/drm_file.c                 | 111 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_driver.c         |   3 +-
- drivers/gpu/drm/i915/i915_drm_client.c     |  18 +---
- drivers/gpu/drm/i915/i915_drm_client.h     |   2 +-
- drivers/gpu/drm/msm/msm_drv.c              |  11 +-
- drivers/gpu/drm/msm/msm_gem.c              |  15 +++
- drivers/gpu/drm/msm/msm_gpu.c              |   2 -
- include/drm/drm_drv.h                      |   7 ++
- include/drm/drm_file.h                     |   5 +
- include/drm/drm_gem.h                      |  30 ++++++
- 14 files changed, 220 insertions(+), 36 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index db7a86def7e2..0d91f85f8b97 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1696,7 +1696,7 @@ static const struct file_operations i915_driver_fops = {
+ 	.compat_ioctl = i915_ioc32_compat_ioctl,
+ 	.llseek = noop_llseek,
+ #ifdef CONFIG_PROC_FS
+-	.show_fdinfo = i915_drm_client_fdinfo,
++	.show_fdinfo = drm_show_fdinfo,
+ #endif
+ };
+ 
+@@ -1796,6 +1796,7 @@ static const struct drm_driver i915_drm_driver = {
+ 	.open = i915_driver_open,
+ 	.lastclose = i915_driver_lastclose,
+ 	.postclose = i915_driver_postclose,
++	.show_fdinfo = i915_drm_client_fdinfo,
+ 
+ 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index b09d1d386574..4a77e5e47f79 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -101,7 +101,7 @@ static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
+ }
+ 
+ static void
+-show_client_class(struct seq_file *m,
++show_client_class(struct drm_printer *p,
+ 		  struct i915_drm_client *client,
+ 		  unsigned int class)
+ {
+@@ -117,22 +117,20 @@ show_client_class(struct seq_file *m,
+ 	rcu_read_unlock();
+ 
+ 	if (capacity)
+-		seq_printf(m, "drm-engine-%s:\t%llu ns\n",
++		drm_printf(p, "drm-engine-%s:\t%llu ns\n",
+ 			   uabi_class_names[class], total);
+ 
+ 	if (capacity > 1)
+-		seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
++		drm_printf(p, "drm-engine-capacity-%s:\t%u\n",
+ 			   uabi_class_names[class],
+ 			   capacity);
+ }
+ 
+-void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
++void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
+ {
+-	struct drm_file *file = f->private_data;
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+ 	struct drm_i915_private *i915 = file_priv->dev_priv;
+ 	struct i915_drm_client *client = file_priv->client;
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	unsigned int i;
+ 
+ 	/*
+@@ -141,12 +139,6 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
+ 	 * ******************************************************************
+ 	 */
+ 
+-	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
+-	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
+-		   pci_domain_nr(pdev->bus), pdev->bus->number,
+-		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+-	seq_printf(m, "drm-client-id:\t%u\n", client->id);
+-
+ 	/*
+ 	 * Temporarily skip showing client engine information with GuC submission till
+ 	 * fetching engine busyness is implemented in the GuC submission backend
+@@ -155,6 +147,6 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
+ 		return;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
+-		show_client_class(m, client, i);
++		show_client_class(p, client, i);
+ }
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index 69496af996d9..ef85fef45de5 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -60,7 +60,7 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
+ struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients);
+ 
+ #ifdef CONFIG_PROC_FS
+-void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
++void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
+ #endif
+ 
+ void i915_drm_clients_fini(struct i915_drm_clients *clients);
 -- 
 2.39.2
 
