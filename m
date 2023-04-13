@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBE86E1597
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 22:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 187986E159E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 22:06:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD6C610EC25;
-	Thu, 13 Apr 2023 20:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CB910EC25;
+	Thu, 13 Apr 2023 20:06:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB4E510EC26
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 20:04:34 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C81010EC25
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 20:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681416274; x=1712952274;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1681416366; x=1712952366;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=TIPLS8SWnUVzjVmSAmTj+Ptcp/kXQnm244iexAsQTlQ=;
- b=LOzQ0CB+4rIw9l6oG48KOq8QIXbkgOTTelRO+m4izgEXaXU1DSgB/oWc
- i4XytnCHGuFQhlTfSA3NXB+eGrnuoGeuQ7h5ugsy7hbWw8dxTStm0eFam
- co+gDGeiLAzDczIO6S2OGTYwMxxLEcxVUPvPuBv1a1S6YRMg/4ZZ6JHF4
- LsKVBeN8bFsD3TJyq67DycoIIJEjXJdpIajK40BXc5q2I7Xo3/F4+FTRj
- 6GQZfth2p9/JcK2V4GwCiwgY0GvTFlb2GWDuv5adeLXr7LYDh7q73KcYJ
- rfYXfx8Ycj40Zd762FX6JrR0f81eP8S2yOb3Eab87tS+xJcL7MoJNcNEL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409472863"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="409472863"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 13:04:15 -0700
+ bh=bLNyhSJEdnaxLrq1d4eridaB4T6wXiVBGfv6KrCgkgU=;
+ b=Q8hJYYVgWYqT+crMd7FqR07fRHd5hVeb5KQNYZrZndTaBeYOb2Kf9eMu
+ 7rmLGmPpdhlk4cd3545jX4CtTQZDQYQjkqyX/h/hQCZJy0IzvqSgVmtPd
+ sNWIUaANULEebiNNjATCwLfCRdwDXpZvpqwU7eXh4SblfgulLFX5TYwrG
+ BYr2DWLrEfl00NnF1xyZ6/pIUEXunrOnjW2GbP78ZhQRj8qFvVBVe9fdM
+ b8Q0MN9oOL2jtyDYuGv1Vxiy5YZ2ZdtMf/sb0hUhmiisb125ZlP0zhym6
+ wYGN5NpJBoKGtcQPP0jAV6l50tTd0jtMKqwy9U35XuMyuFYV196oX57Zu Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="344289166"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="344289166"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 13:06:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="800924238"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="800924238"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 13:04:15 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689496129"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="689496129"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga002.jf.intel.com with SMTP; 13 Apr 2023 13:06:03 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 13 Apr 2023 23:06:02 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Apr 2023 13:03:49 -0700
-Message-Id: <20230413200349.3492571-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
+Date: Thu, 13 Apr 2023 23:06:01 +0300
+Message-Id: <20230413200602.6037-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Avoid out-of-bounds access when
- loading HuC
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Make intel_mpllb_state_verify()
+ safer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,79 +58,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When HuC is loaded by GSC, there is no header definition for the kernel
-to look at and firmware is just handed to GSC. However when reading the
-version, it should still check the size of the blob to guarantee it's not
-incurring into out-of-bounds array access.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-If firmware is smaller than expected, the following message is now
-printed:
+intel_mpllb_state_verify() blows up if you call it for a
+non-modeset/fastset commit on account of the relevant
+connector not being part of the overall atomic state.
+Currently the state checker only runs for modeset/fastset
+commits, but for testing purposes it is sometimes desirable
+to run it for other commits too. Check for modeset/fastset
+in intel_mpllb_state_verify() itself to make this safe.
 
-	# echo boom > /lib/firmware/i915/dg2_huc_gsc.bin
-	# dmesg | grep -i huc
-	[drm] GT0: HuC firmware i915/dg2_huc_gsc.bin: invalid size: 5 < 184
-	[drm] *ERROR* GT0: HuC firmware i915/dg2_huc_gsc.bin: fetch failed -ENODATA
-	...
-
-Even without this change the size, header and signature are still
-checked by GSC when loading, so this only avoids the out-of-bounds array
-access.
-
-Fixes: a7b516bd981f ("drm/i915/huc: Add fetch support for gsc-loaded HuC binary")
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 1ac6f9f340e3..a82a53dbbc86 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -489,12 +489,25 @@ static void __force_fw_fetch_failures(struct intel_uc_fw *uc_fw, int e)
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+index 1cfb94b5cedb..4efc79d47e43 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+@@ -2007,6 +2007,10 @@ void intel_mpllb_state_verify(struct intel_atomic_state *state,
+ 	if (!new_crtc_state->hw.active)
+ 		return;
  
--static int check_gsc_manifest(const struct firmware *fw,
-+static int check_gsc_manifest(struct intel_gt *gt,
-+			      const struct firmware *fw,
- 			      struct intel_uc_fw *uc_fw)
- {
- 	u32 *dw = (u32 *)fw->data;
--	u32 version_hi = dw[HUC_GSC_VERSION_HI_DW];
--	u32 version_lo = dw[HUC_GSC_VERSION_LO_DW];
-+	u32 version_hi, version_lo;
-+	size_t min_size;
++	if (!intel_crtc_needs_modeset(new_crtc_state) &&
++	    !intel_crtc_needs_fastset(new_crtc_state))
++		return;
 +
-+	/* Check the size of the blob before examining buffer contents */
-+	min_size = sizeof(u32) * (HUC_GSC_VERSION_LO_DW + 1);
-+	if (unlikely(fw->size < min_size)) {
-+		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
-+			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+			fw->size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	version_hi = dw[HUC_GSC_VERSION_HI_DW];
-+	version_lo = dw[HUC_GSC_VERSION_LO_DW];
+ 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+ 	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
  
- 	uc_fw->file_selected.ver.major = FIELD_GET(HUC_GSC_MAJOR_VER_HI_MASK, version_hi);
- 	uc_fw->file_selected.ver.minor = FIELD_GET(HUC_GSC_MINOR_VER_HI_MASK, version_hi);
-@@ -665,7 +678,7 @@ static int check_fw_header(struct intel_gt *gt,
- 		return 0;
- 
- 	if (uc_fw->loaded_via_gsc)
--		err = check_gsc_manifest(fw, uc_fw);
-+		err = check_gsc_manifest(gt, fw, uc_fw);
- 	else
- 		err = check_ccs_header(gt, fw, uc_fw);
- 	if (err)
 -- 
-2.39.0
+2.39.2
 
