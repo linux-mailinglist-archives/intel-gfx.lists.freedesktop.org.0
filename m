@@ -1,117 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B68B76E1027
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 16:41:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC486EAC55
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EE7E10EAFC;
-	Thu, 13 Apr 2023 14:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA5E10EE3F;
+	Fri, 21 Apr 2023 14:09:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on20624.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7ea9::624])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB1A710E1E7;
- Thu, 13 Apr 2023 14:41:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F83QjN+ml18A0Xw3KUNep10IfPyljuuLn50pwoC0w+aWrrApw0GZ1SMC4OaQCH96jMgvzgvKdAbjHPJnL54r3rz1VeDB33OoX/pT0McPxhqqnvEeFEF+hFEViwN8qyNC1BCeNsrcnxHI1luvZxmv03qaIiY5/svsxZxBomImHP/vFW1Wu15oOReK57WqWFLejpGAJOsfOlDW+VBd2TCMBgFk2liV8vhbCfCBSMEjOSclfAnIEJSfjKo6JU5HbojyNPIdx586Al1rxUhBq3PYM1eqaZ/LSd5TS1auy4FHLg7CGiLFpTY102WRsGV78out/lzU5W75bBqfB5VU6LQAKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yas+VSEVEY4nXjIXrmiKT6e9u3dl/PH+kkISUUvRMmA=;
- b=LwFzfR9xlSLiM6Vqbf1NiRSr0YtC9R1T8xsit+IqYr+Gt9hxGRj5Qbdpjyg8RyCRawFzHGnAgNaghvpOw0zrERJRewazysn73kVhdVs+x64fSGhd2LrBq0DJKUX8VtLbs9EXppEXkJLI4npS42jJin8JbDI50qnULz25x8O1+WCrz1tB/GFn8kU7/HC0kfaDenCDFSNYchsYhQrHCkH2S6UIH84g/hesBVyb7vlpjDOJa9sJm1c54pzmVahzQ9Vo9sTcJHGd/JTeW94TeQaJwqVzCFb0CjWD9JPcUU0ym5wBj7wSEDEts4NL2+897OAosQ3txSx50ndizLibyGosCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yas+VSEVEY4nXjIXrmiKT6e9u3dl/PH+kkISUUvRMmA=;
- b=fyZQDm0Yy3ggKh1JSwLImdGQnZbHcPP9WHTQigXm3ppMfSS0TtCNPt7ZNxN/UdSn/GzdUu1ci149PwYrxi4JivSYy6JkLz6R34ht24zJvlSluNzL2bFeMxovMB21bLVu/vlzzF+TX0BHoJdZeYlE0TNeoynwtuijXUn+l/QvI5SQYPPi78lDclDaY2c+paBv7EzQYOe+RChMB298omZw/4LYGDanXJfmZoo7Ww9EFP6lIeUwxs1btubwBmnGv5KdGu1h0HhWdlN4XLssmpziR3n47SUoNITX6l8RZtXzHmZ6puYqjFR40i6SQamTB2IPH7httZGHMhAAy3BVgPPLbQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by SA1PR12MB8946.namprd12.prod.outlook.com (2603:10b6:806:375::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.35; Thu, 13 Apr
- 2023 14:41:08 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::6045:ad97:10b7:62a2]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::6045:ad97:10b7:62a2%9]) with mapi id 15.20.6298.030; Thu, 13 Apr 2023
- 14:41:07 +0000
-Date: Thu, 13 Apr 2023 11:41:05 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZDgUgVKtqoaXRIZr@nvidia.com>
-References: <20230411095417.240bac39.alex.williamson@redhat.com>
- <20230411111117.0766ad52.alex.williamson@redhat.com>
- <ZDWph7g0hcbJHU1B@nvidia.com>
- <20230411155827.3489400a.alex.williamson@redhat.com>
- <ZDX0wtcvZuS4uxmG@nvidia.com>
- <20230412105045.79adc83d.alex.williamson@redhat.com>
- <ZDcPTTPlni/Mi6p3@nvidia.com>
- <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZDfslVwqk6JtPpyD@nvidia.com>
- <DS0PR11MB7529AEB1CA7528C6FD51CBD6C3989@DS0PR11MB7529.namprd11.prod.outlook.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D0F10E17C;
+ Thu, 13 Apr 2023 14:43:59 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0FED661527;
+ Thu, 13 Apr 2023 14:43:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76C7CC433D2;
+ Thu, 13 Apr 2023 14:43:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1681397038;
+ bh=AjYMdKM0hDHqTLI9N4QN9XTQwY63MI6AowdWFYWZDpY=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=NIw322gwUkbyFgo8Gw3qWZMwUCesB2sEM5PNyElM1qFYdILWfzTZH1dWuZBydHWEE
+ BbjNtJozTeIP/HbD1p9xXxkAJkKBiPOlZ+dVDK9K9a2o7Dzbk41XhmMv9RWzq9HMrn
+ HqmvYb50jE6PHEM8vveylyuP2MEGjbqwQcRFLwZRjGhcjBO8w7hR3padOck6X5oTzi
+ T8GuayEigD/kq8Fh11D78DzlZFdjTTCKJKFeryxkUuc6oEtvr2AXxcv/lGmvpYewg8
+ eYuu1B2AlVZgWrW6UEdAVW6yDumwDa1yQ2gOzJWa7kiSHcPaW3HNqxQn0nNhYenZPr
+ 01HuJBruh0wAA==
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+ id 0C11C15404B3; Thu, 13 Apr 2023 07:43:58 -0700 (PDT)
+Date: Thu, 13 Apr 2023 07:43:58 -0700
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: Rui Salvaterra <rsalvaterra@gmail.com>
+Message-ID: <2495408f-a644-4e56-aaca-e6915cbda179@paulmck-laptop>
+References: <CALjTZvZ=Y1psyd0nmfzm6GhqMKvq5V_NQCWb_X02nasp1CpfcQ@mail.gmail.com>
+ <87r0spcuvi.fsf@intel.com>
+ <CALjTZvao=N7wxyj_DpqzWUhdJwEsWSKUo3ddi-3ubgMp8BXi_Q@mail.gmail.com>
+ <CALjTZvaf1cwcZc9O8g24SnZXsoQaWB97UVQW=g6M0coaudLr6w@mail.gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529AEB1CA7528C6FD51CBD6C3989@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BYAPR02CA0057.namprd02.prod.outlook.com
- (2603:10b6:a03:54::34) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|SA1PR12MB8946:EE_
-X-MS-Office365-Filtering-Correlation-Id: 508667f9-6b90-4830-616b-08db3c2d1dfb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZjptNaJ4inA5FuBicOb5A7/Zk4AktBZFmHl5Y8I0+KrUyWd4Dpd0gInHKItWYhxWYCupq08EZuU8c1CwNaP7StBtavvWhtBMD50HhhOoTBdPdkFKtr7SDNYcEBUlUBlahXVkdd3BxUFjHg9vvDVBgZfT0CUCU0tBFVzkhdvSNSTa3R24XfrwJGb4gBZRC9Irs8x5WxCX7HfF1UfAsTReDbSzrR4ApNRtd9gq3RZ8PLJRnJiwRmv3yzX/ERFpxEctKFWA4UNaAavcqkShOMpYxR9WnxfNTqRKDptlXfRxqKEpxfVl9DVEK2crSTsmSq0C+q6gf0RuvfC42E8P3qu5EyxRcxn1te32PVQoRnO8D3yex+zfXtB+1ranNJT/nhv3qVs4wXeJH4qrQXGmFZlP7M8GValHjJ13sNggasaBfJf7IR9BRFIg/wSpY9JV2i94nC6IWKHFFl8GUKR+P94caFAH4BmzNGWWkz7W+c6O5kw0ElxoK30sT9XyeF6Wten+2ORZbtbNZT+uqBNwld4iO4Is+ep6KgLwuvNdwKOSQuz4YEDfLnA6+2yOP9+SBbrZ
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(376002)(39860400002)(136003)(346002)(396003)(451199021)(36756003)(41300700001)(66476007)(54906003)(66946007)(478600001)(8676002)(6486002)(4326008)(6916009)(66556008)(316002)(86362001)(2616005)(6506007)(6512007)(26005)(4744005)(7416002)(2906002)(5660300002)(8936002)(38100700002)(186003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Zwe2/RkgZA+I/+P3bELZ5JPTfQwvEXtLYxTTeIVEMFlF2fSwxmesXQ+dX80m?=
- =?us-ascii?Q?EYRP+c2Sch0vUVJkw5SdenlxrbwvlJQUbcmnkkKbubxgpl1N8/NzK8rBrWb8?=
- =?us-ascii?Q?lYd5Tq2nHfNefM35lKuQo5PuTFSkVBk4DL2vQiiJeubLjv7GxvibAndjx83S?=
- =?us-ascii?Q?UfuqyyBjY/BECrdrhFyp0cmTjc8qLz2b1MPRlohecX5P/em7t40ajdmiOJJB?=
- =?us-ascii?Q?YfkVP4OA9MOLr0k1md2Wx5QeckR1vqobpmikvvUeAzhSNIp+qY/DqijDhoWP?=
- =?us-ascii?Q?styaXxSYvqxHW9UEt4pyP4FnJgGtqUiN8Ae3EzRu/MIBwtyDv2koYkg1MWID?=
- =?us-ascii?Q?wKZtMPLm+yJ2/RBorL5RmAlHzmvqubr055vJWhjl6CDpPNqSkw29JhfV4Fre?=
- =?us-ascii?Q?wA9drwHRox1yOfYQfwp0aD3ds0PZKcluhPwLYAOhpKEHQUXQ4pRMApAVTXKO?=
- =?us-ascii?Q?fbPdJbigSXfwsiipvEMHlEF6MlLHNTVaSGGHFtBylJCcBGPMmSlVa1QCfeck?=
- =?us-ascii?Q?yFBiSt9fhCxuJF6WYNkrW346PSEr52ZfIIRr0MTja2pm+IEeomGtriAasLH/?=
- =?us-ascii?Q?bmHVkYPPoE0LbBq7LhaYRuZW4S1Z9BEn+W5Swvd2Jn88CAuwACXtnVeHdYjM?=
- =?us-ascii?Q?5NMOPOYlY9PrdUMQx9BGai5x1iIai7HDB06D/oeVhdXMjds7YJvyUpsP8djm?=
- =?us-ascii?Q?kemNsAVPwJk40fJJ8p1/8Uu6eioEUSkxD8k83GbRM0ekGwcQGoTaRBCFARui?=
- =?us-ascii?Q?5nxvXHp24apeHM6H6XtJnByjuMQjvgCVqtNMuycMtIiRwIg9mte5kEPYy1ua?=
- =?us-ascii?Q?hUoNxpFdDVlHH9V7/ehMIgjZ+i5dG9gIYQqOyP8qoT3HK4+mqRdpmj6Lcipd?=
- =?us-ascii?Q?dVih6meo6clB4jx4yKeSJQBAhys6+yLKfB2gdzXC24OjQ8Is9iqTEfOnivbl?=
- =?us-ascii?Q?bR50a9Xnf9/6FU0LIWY8iUJJL5+664RriMhhUyOm5uye/3atraw9YIPz6eRe?=
- =?us-ascii?Q?8JoxSE6Wx2vpf4aXMMwiRJRDCCmfQvFWpiF+plFTAfYhtdDHB5lYVF1gYSRx?=
- =?us-ascii?Q?LJ4LXjY7iY1T0Se1jR2nhJVgvqmKK0H3I/aAlaPd0Nt0y6bUj698+gZ9P9nF?=
- =?us-ascii?Q?pza1CdCPVPKyuxvoiRSjjM8T5qERwY8eVWBf6HoU/zE79FQddodeM2PqIpMh?=
- =?us-ascii?Q?M06xVVjxNnAMwaOOgSy38qL28ivmMBp08rcfyhpHsBSLU9mUomoYdee73o1b?=
- =?us-ascii?Q?tNK1/Bm5QNHHAdcoK0xe5N2zYn5Veg8ZHqziyMbWwtv/Bf1RhRBeNJJGZ19R?=
- =?us-ascii?Q?zMaSalbnN6hjMIHz3NRhNeu/NnvpS+8/zs4RiHNGManVlBVYXPpFQZ0YolVP?=
- =?us-ascii?Q?D8FMpyBmLRI4xAMxx87bLttquaq1RUTcERuIGLMiJHrZOgLV9WzNIgMDT6d9?=
- =?us-ascii?Q?jESJl3U1b2rWLusF2/SNpYrA+9I0xBK7YYmAya4XkTwY/BPYzcuvH5w3KWfz?=
- =?us-ascii?Q?uJCBCzuSsbEAkYXmssS213iDsA3pO/+bQAm2H6NQH68ZMZ/a1vvfxAwqUFpj?=
- =?us-ascii?Q?IEb4mmgeG8+NWAwpO1NtSBxGfHtbk160PRnlUBfk?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 508667f9-6b90-4830-616b-08db3c2d1dfb
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2023 14:41:07.8495 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P1bZ8XT/ANAMKTW/1wuuMEmlJHVtSAqvTIKlWZlzC8OUCZ9/3H+8h0ELScDaptWL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8946
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+In-Reply-To: <CALjTZvaf1cwcZc9O8g24SnZXsoQaWB97UVQW=g6M0coaudLr6w@mail.gmail.com>
+X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:19 +0000
+Subject: Re: [Intel-gfx] [BUG?] INFO: rcu_sched detected expedited stalls on
+ CPUs/tasks: { 0-.... } 3 jiffies s: 309 root: 0x1/.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,43 +58,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: paulmck@kernel.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 13, 2023 at 02:35:57PM +0000, Liu, Yi L wrote:
+On Thu, Apr 13, 2023 at 08:30:02AM +0100, Rui Salvaterra wrote:
+> Hi again, everyone.
+> 
+> So, while preparing to file the bug report with the requested
+> information, I got a trace completely unrelated to DRM (on a swapon
+> call, it seems).
+> 
+> [    4.868340] rcu: INFO: rcu_sched detected expedited stalls on
+> CPUs/tasks: { 4-.... } 3 jiffies s: 265 root: 0x10/.
+> [    4.868349] rcu: blocking rcu_node structures (internal RCU debug):
+> [    4.868351] Sending NMI from CPU 3 to CPUs 4:
+> [    4.868355] NMI backtrace for cpu 4
+> [    4.868357] CPU: 4 PID: 462 Comm: swapon Not tainted 6.3.0-rc6-debug+ #57
+> [    4.868359] Hardware name: Apple Inc.
+> Macmini6,2/Mac-F65AE981FFA204ED, BIOS 429.0.0.0.0 03/18/2022
+> [    4.868360] RIP: 0010:zram_submit_bio+0x57c/0x940
+> [    4.868365] Code: 04 4c 01 f0 48 8d 48 08 f0 48 0f ba 68 08 0d 0f
+> 82 80 00 00 00 4c 89 ef e8 01 eb ff ff 49 8b 45 00 4a 8d 44 30 09 f0
+> 80 20 df <f0> 48 ff 45 00 48 81 eb 00 10 00 00 41 83 c4 01 48 81 fb ff
+> 0f 00
+> [    4.868366] RSP: 0018:ffff8881057dbcd8 EFLAGS: 00000246
+> [    4.868368] RAX: ffffc90001c186d9 RBX: 000000003e893000 RCX: ffffc90001c186d8
+> [    4.868369] RDX: ffffc90001c186d0 RSI: 0000000000000000 RDI: ffff88810083b400
+> [    4.868369] RBP: ffff88810083b470 R08: 0000000000027e40 R09: 0000000000025850
+> [    4.868370] R10: 000000000014b212 R11: ffff88810ba03180 R12: 00000000000c176d
+> [    4.868371] R13: ffff88810083b400 R14: 0000000000c176d0 R15: 0000000000000000
+> [    4.868372] FS:  00007fbd8f8ce800(0000) GS:ffff888266100000(0000)
+> knlGS:0000000000000000
+> [    4.868373] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [    4.868374] CR2: 0000563005371000 CR3: 000000010355c003 CR4: 00000000001706e0
+> [    4.868375] Call Trace:
+> [    4.868377]  <TASK>
+> [    4.868378]  ? block_read_full_folio+0x23e/0x2e0
+> [    4.868383]  ? kmem_cache_alloc+0x1b/0x110
+> [    4.868385]  ? mempool_alloc+0x37/0x140
+> [    4.868388]  ? pcpu_block_update_hint_alloc+0xce/0x2f0
+> [    4.868390]  __submit_bio+0x41/0xd0
+> [    4.868394]  submit_bio_noacct_nocheck+0xc4/0x2b0
+> [    4.868396]  blk_next_bio+0x55/0x70
+> [    4.868398]  __blkdev_issue_discard+0xc8/0x180
+> [    4.868401]  blkdev_issue_discard+0x3c/0x80
+> [    4.868403]  __x64_sys_swapon+0xb71/0x1120
+> [    4.868407]  do_syscall_64+0x2b/0x50
+> [    4.868410]  entry_SYSCALL_64_after_hwframe+0x46/0xb0
+> [    4.868414] RIP: 0033:0x7fbd8f712d5b
+> [    4.868416] Code: 73 01 c3 48 8b 0d bd 30 0e 00 f7 d8 64 89 01 48
+> 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 a7 00 00
+> 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 8d 30 0e 00 f7 d8 64 89
+> 01 48
+> [    4.868417] RSP: 002b:00007ffcaf9a3448 EFLAGS: 00000246 ORIG_RAX:
+> 00000000000000a7
+> [    4.868418] RAX: ffffffffffffffda RBX: 0000000000018064 RCX: 00007fbd8f712d5b
+> [    4.868419] RDX: 0000000000018064 RSI: 0000000000018064 RDI: 000056300535fb10
+> [    4.868420] RBP: 00007ffcaf9a3530 R08: 000000014b213000 R09: 00007fbd8f7f70f0
+> [    4.868420] R10: 0000000000001000 R11: 0000000000000246 R12: 000056300535fb10
+> [    4.868421] R13: 0000000000000064 R14: 00007ffcaf9a3530 R15: 0000000000000000
+> [    4.868423]  </TASK>
+> 
+> Could it be that RCU is reporting expedited stalls too eagerly? And,
+> if so, why only on this machine?
 
-> Today, at least QEMU will not go to do hot-reset if _INFO fails. I think
-> this check may need to be relaxed if want _INFO work when there is
-> no VFIO_GROUP (also no fake iommu_group).
+My guess would be that you have CONFIG_RCU_EXP_CPU_STALL_TIMEOUT set to
+some small non-zero number, for example, you might have set up a recent
+Android .config or some such.  The default of zero would give you about
+21 seconds rather than the three jiffies that you are seeing.
 
-Current qemu does not work if there is no VFIO_GROUP, so it doesn't
-matter.
+Could you please check your .config?
 
-In cdev mode qemu should work differently, we can make the kernel
-return -1 for group_id and qemu can ignore group_id for the debug
-print, or we can just make it fail.
-
-Given qemu doesn't, and can't, support no-iommu this is pretty fringe
-stuff.
-
-Jason
+							Thanx, Paul
