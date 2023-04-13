@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EC56E1641
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 23:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3FF6E1643
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 23:03:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCBA110E38C;
-	Thu, 13 Apr 2023 21:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9762A10E3FE;
+	Thu, 13 Apr 2023 21:03:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F33010E0A1
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 21:02:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD6810E2FC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 21:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681419772; x=1712955772;
+ t=1681419773; x=1712955773;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MH+XoV+pIvzmYGdtMeUpvqSOu6W+tnqZuqS0ChJ0QVc=;
- b=cBeMncXVQYu0naUTEWFc94QiLfrmtwLEZ9T1JKJI07ACwYk1f0FJ3+wW
- x3v4cBCPSTSPThWuc+uJDWkuWQ737btPKUlE1C+Dr0ksa+3wylMniLIBc
- ugJth8Iw/JhWrV9XRmsgJbwMXvUDlwYxyF+XPEP4uY1HOhz99N2khNpD7
- Rq483hJUc4xAkippwRPLeWThkGFCgexitQCAmumG6liPj4fZOLa3ybFlD
- ALnoHZEg+qxVHOTtTkM1Q58S4B5mAjoRMB3j0fSudCHt90efH9hcFRdWG
- 235jJ/7bnIfHiDiU1a62IcbQ2D9HVBHFiH9K+Ud/t+dwt0giCeQMYkyy8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409493081"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="409493081"
+ bh=m9H2y1oLwK+1qYyatDGf9Zz+Zbr4GClwzpT6Jeiu0K0=;
+ b=fpj0klu5HniRCr+gXnYCX3K1TrRR0i5KjAHyqeMqGI4bSMFbJGtsmLc0
+ 69fkuVHEfQiPnK9kZIE29QUIGlD45LMrjzkPtNaJni7WqIEKqrbS8jIhm
+ DqEohg0aI26xsHVHBMTzNg7l1fqCcnPRQfZ/lTqh3UHo/Hxvta8+swkG9
+ p06N2eUTJpZl8A1wBVpUshbD2DqlqoaPyrUzdaux8Fc+Fje3CphKKlWqg
+ tVPSYFi9zyJztpaYPUp/+ctEz9XXbdgfVL6NKILYpn1XVLlW1AONIZSSY
+ k+iiIx7E3VygmrBGxoHjYZUzfBCjG3Z9cD3jWix0J/+P+0wFEqlRufG7m Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409493083"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="409493083"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Apr 2023 14:02:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="935749060"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="935749060"
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="935749066"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="935749066"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Apr 2023 14:02:34 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Apr 2023 14:01:16 -0700
-Message-Id: <20230413210122.1496865-7-radhakrishna.sripada@intel.com>
+Date: Thu, 13 Apr 2023 14:01:17 -0700
+Message-Id: <20230413210122.1496865-8-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230413210122.1496865-1-radhakrishna.sripada@intel.com>
 References: <20230413210122.1496865-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/9] drm/i915/mtl/display: Implement DisplayPort
- sequences
+Subject: [Intel-gfx] [PATCH 7/9] drm/i915/mtl: Add C10 phy programming for
+ HDMI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,554 +61,738 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+Like DG2, we still don't have a proper algorithm that can be used
+for calculating PHY settings, but we do have tables of register
+values for a handful of the more common link rates. Some support is
+better than none, so let's go ahead and add/use these tables when we
+can, and also add some logic to hdmi_port_clock_valid() to filter the
+modelist to just the modes we can actually support with these link
+rates.
 
-The differences between MTL and TGL DP sequences are big enough to
-MTL have its own functions.
+Hopefully we'll have a proper / non-encumbered algorithm to calculate
+these registers by the time we upstream and we'll be able to replace
+this patch with something more general purpose.
 
-Also it is much easier to follow MTL sequences against spec with
-its own functions.
+Bspec: 64568
 
-One change worthy to mention is the move of
-'intel_display_power_get(dev_priv, dig_port->ddi_io_power_domain)'.
-This call is not necessary for MTL but we have _put() counter part in
-intel_ddi_post_disable_dp() that needs to balanced.
-We could add a display version check on it but instead here it is
-moving it to intel_ddi_pre_enable_dp() so it is executed for all
-platforms in a single place and this will not cause any harm in MTL
-and newer platforms.
+v2: Rebasing with Clint's HDMI C10 PLL tables (Mika)
+v3: Remove the extra hdmi clock check pruning.
 
-v2:
- - Fix logic to wait for buf idle.
- - Use the right register to wait for ddi active.(RK)
-v3:
- - Increase wait timeout for ddi buf active (Mika)
-v4:
- - Increase idle timeout for ddi buf idle (Mika)
-v5: use rmw in mtl_disable_ddi_buf. Donot clear
-    link training mask(Imre)
-
-BSpec: 65448 65505
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Satyeshwar Singh <satyeshwar.singh@intel.com>
-Cc: Clint Taylor <clinton.a.taylor@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: Imre Deak <imre.deak@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20221014124740.774835-6-mika.kahola@intel.com
 ---
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   8 +
- drivers/gpu/drm/i915/display/intel_ddi.c      | 344 +++++++++++++++++-
- drivers/gpu/drm/i915/i915_reg.h               |   5 +
- 3 files changed, 345 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 610 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   2 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   5 +-
+ 4 files changed, 614 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 5ffd661fa507..d46ff3401e5e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -647,6 +647,603 @@ static const struct intel_c10pll_state * const mtl_c10_edp_tables[] = {
+ 	NULL,
+ };
+ 
++/*
++ * HDMI link rates with 38.4 MHz reference clock.
++ */
++
++static const struct intel_c10pll_state mtl_c10_hdmi_25_2 = {
++	.clock = 25200,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x4,
++	.pll[1] = 0,
++	.pll[2] = 0xB2,
++	.pll[3] = 0,
++	.pll[4] = 0,
++	.pll[5] = 0,
++	.pll[6] = 0,
++	.pll[7] = 0,
++	.pll[8] = 0x20,
++	.pll[9] = 0x1,
++	.pll[10] = 0,
++	.pll[11] = 0,
++	.pll[12] = 0,
++	.pll[13] = 0,
++	.pll[14] = 0,
++	.pll[15] = 0xD,
++	.pll[16] = 0x6,
++	.pll[17] = 0x8F,
++	.pll[18] = 0x84,
++	.pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_27_0 = {
++	.clock = 27000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34,
++	.pll[1] = 0,
++	.pll[2] = 0xC0,
++	.pll[3] = 0,
++	.pll[4] = 0,
++	.pll[5] = 0,
++	.pll[6] = 0,
++	.pll[7] = 0,
++	.pll[8] = 0x20,
++	.pll[9] = 0x1,
++	.pll[10] = 0,
++	.pll[11] = 0,
++	.pll[12] = 0x80,
++	.pll[13] = 0,
++	.pll[14] = 0,
++	.pll[15] = 0xD,
++	.pll[16] = 0x6,
++	.pll[17] = 0xCF,
++	.pll[18] = 0x84,
++	.pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_74_25 = {
++	.clock = 74250,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4,
++	.pll[1] = 0,
++	.pll[2] = 0x7A,
++	.pll[3] = 0,
++	.pll[4] = 0,
++	.pll[5] = 0,
++	.pll[6] = 0,
++	.pll[7] = 0,
++	.pll[8] = 0x20,
++	.pll[9] = 0x1,
++	.pll[10] = 0,
++	.pll[11] = 0,
++	.pll[12] = 0x58,
++	.pll[13] = 0,
++	.pll[14] = 0,
++	.pll[15] = 0xB,
++	.pll[16] = 0x6,
++	.pll[17] = 0xF,
++	.pll[18] = 0x85,
++	.pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_148_5 = {
++	.clock = 148500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4,
++	.pll[1] = 0,
++	.pll[2] = 0x7A,
++	.pll[3] = 0,
++	.pll[4] = 0,
++	.pll[5] = 0,
++	.pll[6] = 0,
++	.pll[7] = 0,
++	.pll[8] = 0x20,
++	.pll[9] = 0x1,
++	.pll[10] = 0,
++	.pll[11] = 0,
++	.pll[12] = 0x58,
++	.pll[13] = 0,
++	.pll[14] = 0,
++	.pll[15] = 0xA,
++	.pll[16] = 0x6,
++	.pll[17] = 0xF,
++	.pll[18] = 0x85,
++	.pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_594 = {
++	.clock = 594000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4,
++	.pll[1] = 0,
++	.pll[2] = 0x7A,
++	.pll[3] = 0,
++	.pll[4] = 0,
++	.pll[5] = 0,
++	.pll[6] = 0,
++	.pll[7] = 0,
++	.pll[8] = 0x20,
++	.pll[9] = 0x1,
++	.pll[10] = 0,
++	.pll[11] = 0,
++	.pll[12] = 0x58,
++	.pll[13] = 0,
++	.pll[14] = 0,
++	.pll[15] = 0x8,
++	.pll[16] = 0x6,
++	.pll[17] = 0xF,
++	.pll[18] = 0x85,
++	.pll[19] = 0x23,
++};
++
++/* Precomputed C10 HDMI PLL tables */
++static const struct intel_c10pll_state mtl_c10_hdmi_27027 = {
++	.clock = 27027,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xCC, .pll[12] = 0x9C, .pll[13] = 0xCB, .pll[14] = 0xCC,
++	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_28320 = {
++	.clock = 28320,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xCC, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_30240 = {
++	.clock = 30240,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xDC, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_31500 = {
++	.clock = 31500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x62, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xA0, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0C, .pll[16] = 0x09, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_36000 = {
++	.clock = 36000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xC4, .pll[1] = 0x00, .pll[2] = 0x76, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_40000 = {
++	.clock = 40000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x55, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_49500 = {
++	.clock = 49500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_50000 = {
++	.clock = 50000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xB0, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x2A, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_57284 = {
++	.clock = 57284,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xCE, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x77, .pll[12] = 0x57, .pll[13] = 0x77, .pll[14] = 0x77,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_58000 = {
++	.clock = 58000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xD5, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_65000 = {
++	.clock = 65000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x66, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xB5, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0B, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_71000 = {
++	.clock = 71000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x72, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xF5, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_74176 = {
++	.clock = 74176,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x44, .pll[12] = 0x44, .pll[13] = 0x44, .pll[14] = 0x44,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_75000 = {
++	.clock = 75000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7C, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_78750 = {
++	.clock = 78750,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x84, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x08, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_85500 = {
++	.clock = 85500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x92, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x10, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_88750 = {
++	.clock = 88750,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0x98, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x72, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x0B, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_106500 = {
++	.clock = 106500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBC, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xF0, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_108000 = {
++	.clock = 108000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x80, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_115500 = {
++	.clock = 115500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x50, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_119000 = {
++	.clock = 119000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD6, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xF5, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_135000 = {
++	.clock = 135000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6C, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x50, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0A, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_138500 = {
++	.clock = 138500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x70, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x22, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_147160 = {
++	.clock = 147160,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x78, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xA5, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_148352 = {
++	.clock = 148352,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x44, .pll[12] = 0x44, .pll[13] = 0x44, .pll[14] = 0x44,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_154000 = {
++	.clock = 154000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x80, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x35, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_162000 = {
++	.clock = 162000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x88, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x60, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_167000 = {
++	.clock = 167000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x8C, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0xFA, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_197802 = {
++	.clock = 197802,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x99, .pll[12] = 0x05, .pll[13] = 0x98, .pll[14] = 0x99,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_198000 = {
++	.clock = 198000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_209800 = {
++	.clock = 209800,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBA, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x45, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_241500 = {
++	.clock = 241500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xDA, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xC8, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_262750 = {
++	.clock = 262750,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x68, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x6C, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x09, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_268500 = {
++	.clock = 268500,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xEC, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x09, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_296703 = {
++	.clock = 296703,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x33, .pll[12] = 0x44, .pll[13] = 0x33, .pll[14] = 0x33,
++	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_297000 = {
++	.clock = 297000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x58, .pll[13] = 0x00, .pll[14] = 0x00,
++	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_319750 = {
++	.clock = 319750,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x44, .pll[13] = 0xA9, .pll[14] = 0xAA,
++	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_497750 = {
++	.clock = 497750,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xE2, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x9F, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_592000 = {
++	.clock = 592000,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x15, .pll[13] = 0x55, .pll[14] = 0x55,
++	.pll[15] = 0x08, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state mtl_c10_hdmi_593407 = {
++	.clock = 593407,
++	.tx = 0x10,
++	.cmn = 0x1,
++	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
++	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
++	.pll[10] = 0xFF, .pll[11] = 0x3B, .pll[12] = 0x44, .pll[13] = 0xBA, .pll[14] = 0xBB,
++	.pll[15] = 0x08, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
++};
++
++static const struct intel_c10pll_state * const mtl_c10_hdmi_tables[] = {
++	&mtl_c10_hdmi_25_2, /* Consolidated Table */
++	&mtl_c10_hdmi_27_0, /* Consolidated Table */
++	&mtl_c10_hdmi_27027,
++	&mtl_c10_hdmi_28320,
++	&mtl_c10_hdmi_30240,
++	&mtl_c10_hdmi_31500,
++	&mtl_c10_hdmi_36000,
++	&mtl_c10_hdmi_40000,
++	&mtl_c10_hdmi_49500,
++	&mtl_c10_hdmi_50000,
++	&mtl_c10_hdmi_57284,
++	&mtl_c10_hdmi_58000,
++	&mtl_c10_hdmi_65000,
++	&mtl_c10_hdmi_71000,
++	&mtl_c10_hdmi_74176,
++	&mtl_c10_hdmi_74_25, /* Consolidated Table */
++	&mtl_c10_hdmi_75000,
++	&mtl_c10_hdmi_78750,
++	&mtl_c10_hdmi_85500,
++	&mtl_c10_hdmi_88750,
++	&mtl_c10_hdmi_106500,
++	&mtl_c10_hdmi_108000,
++	&mtl_c10_hdmi_115500,
++	&mtl_c10_hdmi_119000,
++	&mtl_c10_hdmi_135000,
++	&mtl_c10_hdmi_138500,
++	&mtl_c10_hdmi_147160,
++	&mtl_c10_hdmi_148352,
++	&mtl_c10_hdmi_148_5, /* Consolidated Table */
++	&mtl_c10_hdmi_154000,
++	&mtl_c10_hdmi_162000,
++	&mtl_c10_hdmi_167000,
++	&mtl_c10_hdmi_197802,
++	&mtl_c10_hdmi_198000,
++	&mtl_c10_hdmi_209800,
++	&mtl_c10_hdmi_241500,
++	&mtl_c10_hdmi_262750,
++	&mtl_c10_hdmi_268500,
++	&mtl_c10_hdmi_296703,
++	&mtl_c10_hdmi_297000,
++	&mtl_c10_hdmi_319750,
++	&mtl_c10_hdmi_497750,
++	&mtl_c10_hdmi_592000,
++	&mtl_c10_hdmi_593407,
++	&mtl_c10_hdmi_594, /* Consolidated Table */
++	NULL,
++};
++
++int intel_c10_phy_check_hdmi_link_rate(int clock)
++{
++	const struct intel_c10pll_state * const *tables = mtl_c10_hdmi_tables;
++	int i;
++
++	for (i = 0; tables[i]; i++) {
++		if (clock == tables[i]->clock)
++			return MODE_OK;
++	}
++
++	return MODE_CLOCK_RANGE;
++}
++
+ static const struct intel_c10pll_state * const *
+ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			struct intel_encoder *encoder)
+@@ -656,9 +1253,10 @@ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			return mtl_c10_edp_tables;
+ 		else
+ 			return mtl_c10_dp_tables;
++	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++		return mtl_c10_hdmi_tables;
+ 	}
+ 
+-	/* TODO: Add HDMI Support */
+ 	MISSING_CASE(encoder->type);
+ 	return NULL;
+ }
+@@ -758,6 +1356,7 @@ static void intel_c10_pll_program(struct drm_i915_private *i915,
+ 	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+ 		      0, C10_VDR_CTRL_MSGBUS_ACCESS,
+ 		      MB_WRITE_COMMITTED);
++
+ 	/* Custom width needs to be programmed to 0 for both the phy lanes */
+ 	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CUSTOM_WIDTH,
+ 		      C10_VDR_CUSTOM_WIDTH_MASK, C10_VDR_CUSTOM_WIDTH_8_10,
+@@ -820,7 +1419,8 @@ int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 				 const struct intel_c10pll_state *pll_state)
+ {
+ 	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
+-	unsigned int multiplier, tx_clk_div, refclk = 38400;
++	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
++	int tmpclk = 0;
+ 
+ 	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+ 		frac_quot = pll_state->pll[12] << 8 | pll_state->pll[11];
+@@ -832,10 +1432,14 @@ int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 		      pll_state->pll[2]) / 2 + 16;
+ 
+ 	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state->pll[15]);
++	hdmi_div = REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->pll[15]);
+ 
+-	return DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
++	tmpclk = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
+ 				     DIV_ROUND_CLOSEST(refclk * frac_rem, frac_den),
+ 				     10 << (tx_clk_div + 16));
++	tmpclk *= (hdmi_div ? 2 : 1);
++
++	return tmpclk;
+ }
+ 
+ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 6b736acb83e0..509d1d12776e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -32,5 +32,6 @@ void intel_c10pll_state_verify(struct intel_atomic_state *state,
+ 			       struct intel_crtc_state *new_crtc_state);
+ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				     const struct intel_crtc_state *crtc_state);
++int intel_c10_phy_check_hdmi_link_rate(int clock);
+ 
+ #endif /* __INTEL_CX0_PHY_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 9cfa7f508c90..fe2e3edef69b 100644
+index fe2e3edef69b..20024622d0eb 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -59,8 +59,16 @@
- 										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
- 										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
- 										 _XELPDP_PORT_BUF_CTL1_LN0_USBC2))
-+#define   XELPDP_PORT_BUF_D2D_LINK_ENABLE		REG_BIT(29)
-+#define   XELPDP_PORT_BUF_D2D_LINK_STATE		REG_BIT(28)
- #define   XELPDP_PORT_BUF_SOC_PHY_READY			REG_BIT(24)
-+#define   XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK		REG_GENMASK(19, 18)
-+#define   XELPDP_PORT_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 0)
-+#define   XELPDP_PORT_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 1)
-+#define   XELPDP_PORT_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 2)
- #define   XELPDP_PORT_REVERSAL				REG_BIT(16)
-+#define   XELPDP_PORT_BUF_IO_SELECT_TBT			REG_BIT(11)
-+#define   XELPDP_PORT_BUF_PHY_IDLE			REG_BIT(7)
- #define   XELPDP_TC_PHY_OWNERSHIP			REG_BIT(6)
- #define   XELPDP_TCSS_POWER_REQUEST			REG_BIT(5)
- #define   XELPDP_TCSS_POWER_STATE			REG_BIT(4)
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 21a86cb7b2dc..c0283829823f 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -40,6 +40,7 @@
+@@ -145,6 +145,8 @@
+ #define   C10_PLL0_FRACEN		REG_BIT8(4)
+ #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
+ #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
++#define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
++
+ #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
+ #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
+ #define   C10_CMN0_REF_CLK_MPLLB_DIV	REG_FIELD_PREP(REG_GENMASK(7, 5), 1)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 4fd944520826..8141d5184856 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -45,6 +45,7 @@
+ #include "intel_atomic.h"
+ #include "intel_audio.h"
  #include "intel_connector.h"
- #include "intel_crtc.h"
- #include "intel_cx0_phy.h"
-+#include "intel_cx0_phy_regs.h"
++#include "intel_cx0_phy.h"
  #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
  #include "intel_de.h"
-@@ -169,6 +170,18 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
- 		       trans->entries[level].hsw.trans2);
- }
+ #include "intel_display_types.h"
+@@ -1864,7 +1865,9 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
+ 	 * FIXME: We will hopefully get an algorithmic way of programming
+ 	 * the MPLLB for HDMI in the future.
+ 	 */
+-	if (IS_DG2(dev_priv))
++	if (IS_METEORLAKE(dev_priv))
++		return intel_c10_phy_check_hdmi_link_rate(clock);
++	else if (IS_DG2(dev_priv))
+ 		return intel_snps_phy_check_hdmi_link_rate(clock);
  
-+static void mtl_wait_ddi_buf_idle(struct drm_i915_private *i915, enum port port)
-+{
-+	int ret;
-+
-+	/* FIXME: find out why Bspec's 100us timeout is too short */
-+	ret = wait_for_us((intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port)) &
-+			   XELPDP_PORT_BUF_PHY_IDLE), 10000);
-+	if (ret)
-+		drm_err(&i915->drm, "Timeout waiting for DDI BUF %c to get idle\n",
-+			port_name(port));
-+}
-+
- void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
- 			     enum port port)
- {
-@@ -196,7 +209,9 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
- 		return;
- 	}
- 
--	if (IS_DG2(dev_priv)) {
-+	if (DISPLAY_VER(dev_priv) >= 14) {
-+		timeout_us = 10000;
-+	} else if (IS_DG2(dev_priv)) {
- 		timeout_us = 1200;
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
- 		if (intel_phy_is_tc(dev_priv, phy))
-@@ -207,8 +222,12 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
- 		timeout_us = 500;
- 	}
- 
--	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
--			  DDI_BUF_IS_IDLE), timeout_us, 10, 10);
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		ret = _wait_for(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) & XELPDP_PORT_BUF_PHY_IDLE),
-+				timeout_us, 10, 10);
-+	else
-+		ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) & DDI_BUF_IS_IDLE),
-+				timeout_us, 10, 10);
- 
- 	if (ret)
- 		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get active\n",
-@@ -313,6 +332,13 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
- 		DDI_PORT_WIDTH(crtc_state->lane_count) |
- 		DDI_BUF_TRANS_SELECT(0);
- 
-+	if (DISPLAY_VER(i915) >= 14) {
-+		if (intel_dp_is_uhbr(crtc_state))
-+			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
-+		else
-+			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
-+	}
-+
- 	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
- 		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
- 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
-@@ -2309,6 +2335,179 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
- 		     OVERLAP_PIXELS_MASK, dss1);
- }
- 
-+static u8 mtl_get_port_width(u8 lane_count)
-+{
-+	switch (lane_count) {
-+	case 1:
-+		return 0;
-+	case 2:
-+		return 1;
-+	case 3:
-+		return 4;
-+	case 4:
-+		return 3;
-+	default:
-+		MISSING_CASE(lane_count);
-+		return 4;
-+	}
-+}
-+
-+static void
-+mtl_ddi_enable_d2d(struct intel_encoder *encoder)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum port port = encoder->port;
-+
-+	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port), 0,
-+		     XELPDP_PORT_BUF_D2D_LINK_ENABLE);
-+
-+	if (wait_for_us((intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
-+			 XELPDP_PORT_BUF_D2D_LINK_STATE), 100)) {
-+		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link enable for PORT_BUF_CTL %c\n",
-+			port_name(port));
-+	}
-+}
-+
-+static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
-+				     const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	enum port port = encoder->port;
-+	u32 val;
-+
-+	val = intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port));
-+	val &= ~XELPDP_PORT_WIDTH_MASK;
-+	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
-+
-+	val &= ~XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK;
-+	if (intel_dp_is_uhbr(crtc_state))
-+		val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
-+	else
-+		val |= XELPDP_PORT_BUF_PORT_DATA_10BIT;
-+
-+	if (dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL)
-+		val |= XELPDP_PORT_REVERSAL;
-+
-+	intel_de_write(i915, XELPDP_PORT_BUF_CTL1(port), val);
-+}
-+
-+static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u32 val;
-+
-+	val = intel_tc_port_in_tbt_alt_mode(dig_port) ?
-+	      XELPDP_PORT_BUF_IO_SELECT_TBT : 0;
-+	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL1(encoder->port),
-+		     XELPDP_PORT_BUF_IO_SELECT_TBT, val);
-+}
-+
-+static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-+				  struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state,
-+				  const struct drm_connector_state *conn_state)
-+{
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
-+
-+	intel_dp_set_link_params(intel_dp,
-+				 crtc_state->port_clock,
-+				 crtc_state->lane_count);
-+
-+	/*
-+	 * We only configure what the register value will be here.  Actual
-+	 * enabling happens during link training farther down.
-+	 */
-+	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
-+
-+	/*
-+	 * 1. Enable Power Wells
-+	 *
-+	 * This was handled at the beginning of intel_atomic_commit_tail(),
-+	 * before we called down into this function.
-+	 */
-+
-+	/* 2. PMdemand was already set */
-+
-+	/* 3. Select Thunderbolt */
-+	mtl_port_buf_ctl_io_selection(encoder);
-+
-+	/* 4. Enable Panel Power if PPS is required */
-+	intel_pps_on(intel_dp);
-+
-+	/* 5. Enable the port PLL */
-+	intel_ddi_enable_clock(encoder, crtc_state);
-+
-+	/*
-+	 * 6.a Configure Transcoder Clock Select to direct the Port clock to the
-+	 * Transcoder.
-+	 */
-+	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
-+
-+	/*
-+	 * 6.b If DP v2.0/128b mode - Configure TRANS_DP2_CTL register settings.
-+	 */
-+	intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-+
-+	/*
-+	 * 6.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-+	 * Transport Select
-+	 */
-+	intel_ddi_config_transcoder_func(encoder, crtc_state);
-+
-+	/*
-+	 * 6.e Program CoG/MSO configuration bits in DSS_CTL1 if selected.
-+	 */
-+	intel_ddi_mso_configure(crtc_state);
-+
-+	if (!is_mst)
-+		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-+
-+	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
-+	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
-+	/*
-+	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-+	 * in the FEC_CONFIGURATION register to 1 before initiating link
-+	 * training
-+	 */
-+	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
-+
-+	intel_dp_check_frl_training(intel_dp);
-+	intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
-+
-+	/*
-+	 * 6. The rest of the below are substeps under the bspec's "Enable and
-+	 * Train Display Port" step.  Note that steps that are specific to
-+	 * MST will be handled by intel_mst_pre_enable_dp() before/after it
-+	 * calls into this function.  Also intel_mst_pre_enable_dp() only calls
-+	 * us when active_mst_links==0, so any steps designated for "single
-+	 * stream or multi-stream master transcoder" can just be performed
-+	 * unconditionally here.
-+	 *
-+	 * mtl_ddi_prepare_link_retrain() that is called by
-+	 * intel_dp_start_link_train() will execute steps: 6.d, 6.f, 6.g, 6.h,
-+	 * 6.i and 6.j
-+	 *
-+	 * 6.k Follow DisplayPort specification training sequence (see notes for
-+	 *     failure handling)
-+	 * 6.m If DisplayPort multi-stream - Set DP_TP_CTL link training to Idle
-+	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
-+	 *     (timeout after 800 us)
-+	 */
-+	intel_dp_start_link_train(intel_dp, crtc_state);
-+
-+	/* 6.n Set DP_TP_CTL link training to Normal */
-+	if (!is_trans_port_sync_mode(crtc_state))
-+		intel_dp_stop_link_train(intel_dp, crtc_state);
-+
-+	/* 6.o Configure and enable FEC if needed */
-+	intel_ddi_enable_fec(encoder, crtc_state);
-+
-+	intel_dsc_dp_pps_write(encoder, crtc_state);
-+}
-+
- static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 				  struct intel_encoder *encoder,
- 				  const struct intel_crtc_state *crtc_state,
-@@ -2523,7 +2722,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 		intel_dp_128b132b_sdp_crc16(enc_to_intel_dp(encoder),
- 					    crtc_state);
- 
--	if (DISPLAY_VER(dev_priv) >= 12)
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		mtl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-+	else if (DISPLAY_VER(dev_priv) >= 12)
- 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
- 	else
- 		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-@@ -2604,8 +2805,50 @@ static void intel_ddi_pre_enable(struct intel_atomic_state *state,
- 	}
- }
- 
--static void intel_disable_ddi_buf(struct intel_encoder *encoder,
--				  const struct intel_crtc_state *crtc_state)
-+static void
-+mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum port port = encoder->port;
-+
-+	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port),
-+		     XELPDP_PORT_BUF_D2D_LINK_ENABLE, 0);
-+
-+	if (wait_for_us(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
-+			  XELPDP_PORT_BUF_D2D_LINK_STATE), 100))
-+		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link disable for PORT_BUF_CTL %c\n",
-+			port_name(port));
-+}
-+
-+static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum port port = encoder->port;
-+	u32 val;
-+
-+	/* 3.b Clear DDI_CTL_DE Enable to 0. */
-+	val = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+	if (val & DDI_BUF_CTL_ENABLE) {
-+		val &= ~DDI_BUF_CTL_ENABLE;
-+		intel_de_write(dev_priv, DDI_BUF_CTL(port), val);
-+
-+		/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
-+		mtl_wait_ddi_buf_idle(dev_priv, port);
-+	}
-+
-+	/* 3.d Disable D2D Link */
-+	mtl_ddi_disable_d2d_link(encoder);
-+
-+	/* 3.e Disable DP_TP_CTL */
-+	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-+			     DP_TP_CTL_ENABLE, 0);
-+	}
-+}
-+
-+static void disable_ddi_buf(struct intel_encoder *encoder,
-+			    const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
-@@ -2630,6 +2873,21 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
- 		intel_wait_ddi_buf_idle(dev_priv, port);
- }
- 
-+static void intel_disable_ddi_buf(struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+
-+	if (DISPLAY_VER(dev_priv) >= 14) {
-+		mtl_disable_ddi_buf(encoder, crtc_state);
-+
-+		/* 3.f Disable DP_TP_CTL FEC Enable if it is needed */
-+		intel_ddi_disable_fec_state(encoder, crtc_state);
-+	} else {
-+		disable_ddi_buf(encoder, crtc_state);
-+	}
-+}
-+
- static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 				      struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *old_crtc_state,
-@@ -2638,6 +2896,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct intel_dp *intel_dp = &dig_port->dp;
-+	intel_wakeref_t wakeref;
- 	bool is_mst = intel_crtc_has_type(old_crtc_state,
- 					  INTEL_OUTPUT_DP_MST);
- 
-@@ -2677,12 +2936,19 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	intel_pps_vdd_on(intel_dp);
- 	intel_pps_off(intel_dp);
- 
--	if (!intel_tc_port_in_tbt_alt_mode(dig_port))
-+	wakeref = fetch_and_zero(&dig_port->ddi_io_wakeref);
-+
-+	if (wakeref)
- 		intel_display_power_put(dev_priv,
- 					dig_port->ddi_io_power_domain,
--					fetch_and_zero(&dig_port->ddi_io_wakeref));
-+					wakeref);
- 
- 	intel_ddi_disable_clock(encoder);
-+
-+	/* De-select Thunderbolt */
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(encoder->port),
-+			     XELPDP_PORT_BUF_IO_SELECT_TBT, 0);
- }
- 
- static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
-@@ -2693,6 +2959,7 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
-+	intel_wakeref_t wakeref;
- 
- 	dig_port->set_infoframes(encoder, false,
- 				 old_crtc_state, old_conn_state);
-@@ -2705,9 +2972,11 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		intel_ddi_disable_transcoder_clock(old_crtc_state);
- 
--	intel_display_power_put(dev_priv,
--				dig_port->ddi_io_power_domain,
--				fetch_and_zero(&dig_port->ddi_io_wakeref));
-+	wakeref = fetch_and_zero(&dig_port->ddi_io_wakeref);
-+	if (wakeref)
-+		intel_display_power_put(dev_priv,
-+					dig_port->ddi_io_power_domain,
-+					wakeref);
- 
- 	intel_ddi_disable_clock(encoder);
- 
-@@ -3104,6 +3373,53 @@ static void adlp_tbt_to_dp_alt_switch_wa(struct intel_encoder *encoder)
- 		intel_dkl_phy_rmw(i915, DKL_PCS_DW5(tc_port, ln), DKL_PCS_DW5_CORE_SOFTRESET, 0);
- }
- 
-+static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-+					 const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	struct intel_encoder *encoder = &dig_port->base;
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum port port = encoder->port;
-+	u32 dp_tp_ctl;
-+
-+	/*
-+	 * TODO: To train with only a different voltage swing entry is not
-+	 * necessary disable and enable port
-+	 */
-+	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-+	if (dp_tp_ctl & DP_TP_CTL_ENABLE)
-+		mtl_disable_ddi_buf(encoder, crtc_state);
-+
-+	/* 6.d Configure and enable DP_TP_CTL with link training pattern 1 selected */
-+	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-+		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
-+	} else {
-+		dp_tp_ctl |= DP_TP_CTL_MODE_SST;
-+		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
-+			dp_tp_ctl |= DP_TP_CTL_ENHANCED_FRAME_ENABLE;
-+	}
-+	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
-+	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-+
-+	/* 6.f Enable D2D Link */
-+	mtl_ddi_enable_d2d(encoder);
-+
-+	/* 6.g Configure voltage swing and related IO settings */
-+	encoder->set_signal_levels(encoder, crtc_state);
-+
-+	/* 6.h Configure PORT_BUF_CTL1 */
-+	mtl_port_buf_ctl_program(encoder, crtc_state);
-+
-+	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
-+	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
-+	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
-+	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
-+
-+	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
-+	intel_wait_ddi_buf_active(dev_priv, port);
-+}
-+
- static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 					   const struct intel_crtc_state *crtc_state)
- {
-@@ -3871,6 +4187,7 @@ static const struct drm_encoder_funcs intel_ddi_funcs = {
- static struct intel_connector *
- intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- {
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	struct intel_connector *connector;
- 	enum port port = dig_port->base.port;
- 
-@@ -3879,7 +4196,10 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- 		return NULL;
- 
- 	dig_port->dp.output_reg = DDI_BUF_CTL(port);
--	dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
-+	if (DISPLAY_VER(i915) >= 14)
-+		dig_port->dp.prepare_link_retrain = mtl_ddi_prepare_link_retrain;
-+	else
-+		dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
- 	dig_port->dp.set_link_train = intel_ddi_set_link_train;
- 	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 531c0ea68c05..df29ab301326 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5655,11 +5655,16 @@ enum skl_power_gate {
- /* DDI Buffer Control */
- #define _DDI_BUF_CTL_A				0x64000
- #define _DDI_BUF_CTL_B				0x64100
-+/* Known as DDI_CTL_DE in MTL+ */
- #define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
- #define  DDI_BUF_CTL_ENABLE			(1 << 31)
- #define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
- #define  DDI_BUF_EMP_MASK			(0xf << 24)
- #define  DDI_BUF_PHY_LINK_RATE(r)		((r) << 20)
-+#define  DDI_BUF_PORT_DATA_MASK			REG_GENMASK(19, 18)
-+#define  DDI_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 0)
-+#define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
-+#define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
- #define  DDI_BUF_PORT_REVERSAL			(1 << 16)
- #define  DDI_BUF_IS_IDLE			(1 << 7)
- #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
+ 	return MODE_OK;
 -- 
 2.34.1
 
