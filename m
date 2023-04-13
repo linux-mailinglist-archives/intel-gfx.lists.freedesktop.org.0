@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234EB6E0A8D
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 11:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CFE6E0B73
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 12:34:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6B910EAA2;
-	Thu, 13 Apr 2023 09:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28BDB10EAB9;
+	Thu, 13 Apr 2023 10:34:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4E510EAA2
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 09:50:09 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A49010EAB9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 10:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681379409; x=1712915409;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=I1ShU3Gmqej3wMEDy6P/nzFolKHEXtzVUtxhigfNXC8=;
- b=YqV42Gq36j+CMiNDTC0L0AbBxjiORFVH4IdeGIZiMR+emi+Txh/FnL/d
- Ab8UPl4BMS0yQHL5QPE7xHsNwuIOIh94r55C16JWcTGP7MeNj/PU695hq
- 2e4V5sIqgzpKP3jKLKIdyLq8ipQMU3pQAkyPfHBgLVP/p4iWePEAF3jit
- eSJszKDZEnA2yHPVffu9AXW5a6BdTsqXMyIAmjKjB2CV8yxhSgldgWY1A
- 5iAWdPMUTDVAVd3FIddCa5D3VxL4GPe5T3KcvbaMp0CtjbbBUbmhB+hNG
- psf0Fer6qf/vEyootScHcFPuU72oaPh+HT219ZkqGTgrjmXB/X84STttV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328255169"
-X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="328255169"
+ t=1681382095; x=1712918095;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=UlHTuYX0HUuyHjnXlm69764g1t6vEeSMrPRkYGCq76E=;
+ b=Cnw42P6Ids7G0Dgd9n8Hm71fF1nZezF2bYNm5VMLLFAVoGLDe094NTC9
+ enjiNEQjQvl2I11laruBhsbrDuJGaHNTgvSi4xjR+g4XUVcuOJvWpayxB
+ y/lN6aVh/U+f43k7zoQo8LOT45tRN7nBC9PMp36AKfR8udK3Jw80XoxKg
+ cNGMSgZRbhOE1cgOIAL7KUUehBERdIRY+n6n7nrEadPrCOuydexpT969U
+ Du1Vl27xkhhM2ftJCq6QunOtR4q2H34Z3uOaTxplG0mPjuyRUF2Tfz+gS
+ dEmNSbRrqr3nYaAqZBTN6Jez60/ZqvmPeyX/3j9B8L7x2OG90fxlhNHhD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="345939577"
+X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="345939577"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 02:50:08 -0700
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 03:34:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="719780015"
-X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="719780015"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="719789956"
+X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="719789956"
 Received: from merkanx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.88])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 02:50:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Mika Kahola
- <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87ile1cjh8.fsf@intel.com>
+ 13 Apr 2023 03:34:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87leixcq1t.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230403085043.2219092-1-mika.kahola@intel.com>
- <168125326577.3326.16288863179121640086@gjsousa-mobl2>
- <87o7ntcum5.fsf@intel.com>
- <168130241568.5121.2708879208728811060@gjsousa-mobl2>
- <87ile1cjh8.fsf@intel.com>
-Date: Thu, 13 Apr 2023 12:50:04 +0300
-Message-ID: <87pm88az77.fsf@intel.com>
+References: <20230412104152.828326-1-bhanuprakash.modem@intel.com>
+ <20230412104152.828326-2-bhanuprakash.modem@intel.com>
+ <87leixcq1t.fsf@intel.com>
+Date: Thu, 13 Apr 2023 13:34:44 +0300
+Message-ID: <87mt3cax4r.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add support for PM DEMAND
+Subject: Re: [Intel-gfx] [V2 1/1] drm/i915/debugfs: New debugfs for display
+ clock frequencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +61,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 12 Apr 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 12 Apr 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->> Quoting Jani Nikula (2023-04-12 06:33:54)
->>> On Tue, 11 Apr 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> > Quoting Mika Kahola (2023-04-03 05:50:43)
->>> >> @@ -8250,6 +8259,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
->>> >>         intel_color_init_hooks(dev_priv);
->>> >>         intel_init_cdclk_hooks(dev_priv);
->>> >>         intel_audio_hooks_init(dev_priv);
->>> >> +  intel_init_pmdemand(dev_priv);
->>> >
->>> > I think intel_init_display_hooks() is meant to call functions setting up
->>> > function pointers, right? That would not be the case for intel_init_pmdemand().
->>> >
->>> > I think we could rename intel_init_pmdemand() to
->>> > intel_pmdemand_init_early() and call it inside i915_driver_early_probe().
->>> 
->>> Please let's not add new direct calls to display from top level driver
->>> code. See also [1].
+On Wed, 12 Apr 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Wed, 12 Apr 2023, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
+>> Instead of mixing display & non-display stuff together, move
+>> display specific clock info to new debugfs. This patch will
+>> create a new debugfs "i915_cdclk_info" to expose Current & Max
+>> cdclk and Max pixel clock frequency info.
 >>
->> Okay. What would be the suggested place to do this SW-only initialization?
+>> Example:
+>> $ cat /sys/kernel/debug/dri/0/i915_cdclk_info
+>> Current CD clock frequency: 163200 kHz
+>> Max CD clock frequency: 652800 kHz
+>> Max pixel clock frequency: 1305600 kHz
 >>
->> Should we just merge the two init functions into one named intel_pmdemand_init()
->> and call the new function under intel_modeset_init_noirq()?
+>> V2: - s/i915_display_clock_info/i915_cdclk_info/ (Jani)
+>>     - Move the logic to intel_cdclk.c (Jani)
+>>     - Don't remove info from i915_frequency_info (Jani)
+>>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 +++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
+>>  .../drm/i915/display/intel_display_debugfs.c  |  1 +
+>>  3 files changed, 27 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> index 084a483f9776..c3ad7837fa09 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> @@ -3235,6 +3235,31 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+>>  	return freq;
+>>  }
+>>  
+>> +static int i915_cdclk_info_show(struct seq_file *m, void *unused)
+>> +{
+>> +	struct drm_i915_private *i915 = m->private;
+>> +
+>> +	drm_modeset_lock_all(&i915->drm);
 >
-> Or add a new function intel_display_early_probe() or somesuch, which
-> will call the early pmdemand init as well as intel_init_display_hooks()
-> that is currently called from i915_driver_early_probe().
->
-> Bottom line, there should only be one high level call from
-> i915_driver_early_probe().
->
-> There are similar needs for other things [1].
+> Mmmh, I wonder how important that really is?
+
+With the locking removed, this is
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+
 >
 > BR,
 > Jani.
 >
 >
-> [1] https://lore.kernel.org/r/20230411195918.hdxyir5w7dp2qx55@ldmartin-desk2.lan
-
-All of this is cleaned up in
-https://patchwork.freedesktop.org/series/116431/
-
-BR,
-Jani.
-
-
->
->
->>
->> --
->> Gustavo Sousa
+>> +
+>> +	seq_printf(m, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
+>> +	seq_printf(m, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
+>> +	seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
+>> +
+>> +	drm_modeset_unlock_all(&i915->drm);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +DEFINE_SHOW_ATTRIBUTE(i915_cdclk_info);
+>> +
+>> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915)
+>> +{
+>> +	struct drm_minor *minor = i915->drm.primary;
+>> +
+>> +	debugfs_create_file("i915_cdclk_info", 0444, minor->debugfs_root,
+>> +			    i915, &i915_cdclk_info_fops);
+>> +}
+>> +
+>>  static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
+>>  	.get_cdclk = bxt_get_cdclk,
+>>  	.set_cdclk = bxt_set_cdclk,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> index 51e2f6a11ce4..48fd7d39e0cd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> @@ -82,5 +82,6 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
+>>  	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
+>>  
+>>  int intel_cdclk_init(struct drm_i915_private *dev_priv);
+>> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915);
+>>  
+>>  #endif /* __INTEL_CDCLK_H__ */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index 45113ae107ba..abd16a2b1f7a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -1094,6 +1094,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
+>>  				 ARRAY_SIZE(intel_display_debugfs_list),
+>>  				 minor->debugfs_root, minor);
+>>  
+>> +	intel_cdclk_debugfs_register(i915);
+>>  	intel_dmc_debugfs_register(i915);
+>>  	intel_fbc_debugfs_register(i915);
+>>  	intel_hpd_debugfs_register(i915);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
