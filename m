@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CFE6E0B73
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 12:34:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53DFE6E0B94
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 12:41:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28BDB10EAB9;
-	Thu, 13 Apr 2023 10:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19DCB10EABC;
+	Thu, 13 Apr 2023 10:41:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A49010EAB9
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 10:34:55 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4247F10EABB;
+ Thu, 13 Apr 2023 10:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681382095; x=1712918095;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=UlHTuYX0HUuyHjnXlm69764g1t6vEeSMrPRkYGCq76E=;
- b=Cnw42P6Ids7G0Dgd9n8Hm71fF1nZezF2bYNm5VMLLFAVoGLDe094NTC9
- enjiNEQjQvl2I11laruBhsbrDuJGaHNTgvSi4xjR+g4XUVcuOJvWpayxB
- y/lN6aVh/U+f43k7zoQo8LOT45tRN7nBC9PMp36AKfR8udK3Jw80XoxKg
- cNGMSgZRbhOE1cgOIAL7KUUehBERdIRY+n6n7nrEadPrCOuydexpT969U
- Du1Vl27xkhhM2ftJCq6QunOtR4q2H34Z3uOaTxplG0mPjuyRUF2Tfz+gS
- dEmNSbRrqr3nYaAqZBTN6Jez60/ZqvmPeyX/3j9B8L7x2OG90fxlhNHhD A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="345939577"
-X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="345939577"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 03:34:48 -0700
+ t=1681382493; x=1712918493;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rEIGnPv+uIGkpgjR8IbmAiHPgpfkZMfFo0zP69MnIZo=;
+ b=d+UbpcV+IcDXCxsaKxouPFAHfBlmSzmwgogtcz1G52uDkH/U05w57Cir
+ IGu6byFSM//0cN58vmWydPR4CX3+J5Gvg0lNr9WikmVFMmdwZqurZcPPC
+ xL7/osxLgNckK37nzVzqIB4p8ErZFmUgvL9DdtIq47cXRjEM3XkaZYjUh
+ 8JJ80NrmPyzy1A7qiVoMmITBNl2QjCGYpLG/PsCTkxbRBa5ICujh+Srg9
+ y58qK/KzRLoB++J2ZydGhSpoxFstLbaFET7n6jAMfCGz5KAJdl9oIvPQy
+ ZLBOpdEzHOQiU/pI4RjUjLaNJN+8+8mKEvS8CNWeZTrOKLxPWtDDX5wlW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="342893357"
+X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="342893357"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 03:41:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="719789956"
-X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="719789956"
-Received: from merkanx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.88])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 03:34:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87leixcq1t.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230412104152.828326-1-bhanuprakash.modem@intel.com>
- <20230412104152.828326-2-bhanuprakash.modem@intel.com>
- <87leixcq1t.fsf@intel.com>
-Date: Thu, 13 Apr 2023 13:34:44 +0300
-Message-ID: <87mt3cax4r.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="935548112"
+X-IronPort-AV: E=Sophos;i="5.98,341,1673942400"; d="scan'208";a="935548112"
+Received: from mmcgar2x-mobl1.ger.corp.intel.com (HELO [10.213.231.135])
+ ([10.213.231.135])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 03:41:30 -0700
+Message-ID: <dc0042e0-8a4e-5c3d-922f-bd65402a154a@linux.intel.com>
+Date: Thu, 13 Apr 2023 11:41:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V2 1/1] drm/i915/debugfs: New debugfs for display
- clock frequencies
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Paulo Zanoni <paulo.r.zanoni@intel.com>
+References: <20230413092006.931861-1-andi.shyti@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230413092006.931861-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Make IRQ reset and postinstall
+ multi-gt aware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,107 +64,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 12 Apr 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 12 Apr 2023, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
->> Instead of mixing display & non-display stuff together, move
->> display specific clock info to new debugfs. This patch will
->> create a new debugfs "i915_cdclk_info" to expose Current & Max
->> cdclk and Max pixel clock frequency info.
->>
->> Example:
->> $ cat /sys/kernel/debug/dri/0/i915_cdclk_info
->> Current CD clock frequency: 163200 kHz
->> Max CD clock frequency: 652800 kHz
->> Max pixel clock frequency: 1305600 kHz
->>
->> V2: - s/i915_display_clock_info/i915_cdclk_info/ (Jani)
->>     - Move the logic to intel_cdclk.c (Jani)
->>     - Don't remove info from i915_frequency_info (Jani)
->>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 +++++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
->>  .../drm/i915/display/intel_display_debugfs.c  |  1 +
->>  3 files changed, 27 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> index 084a483f9776..c3ad7837fa09 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -3235,6 +3235,31 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
->>  	return freq;
->>  }
->>  
->> +static int i915_cdclk_info_show(struct seq_file *m, void *unused)
->> +{
->> +	struct drm_i915_private *i915 = m->private;
->> +
->> +	drm_modeset_lock_all(&i915->drm);
->
-> Mmmh, I wonder how important that really is?
 
-With the locking removed, this is
+On 13/04/2023 10:20, Andi Shyti wrote:
+> From: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> 
+> In multitile systems IRQ need to be reset and enabled per GT.
+> 
+> Although in MTL the GUnit misc interrupts register set are
+> available only in GT-0, we need to loop through all the GT's
+> in order to initialize the media engine which lies on a different
+> GT.
+> 
+> Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+> Hi,
+> 
+> proposing again this patch, apparently GuC needs this patch to
+> initialize the media GT.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+What is the resolution for Matt's concern that this is wrong for MTL?
 
+Regards,
 
+Tvrtko
 
->
-> BR,
-> Jani.
->
->
->> +
->> +	seq_printf(m, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
->> +	seq_printf(m, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
->> +	seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
->> +
->> +	drm_modeset_unlock_all(&i915->drm);
->> +
->> +	return 0;
->> +}
->> +
->> +DEFINE_SHOW_ATTRIBUTE(i915_cdclk_info);
->> +
->> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915)
->> +{
->> +	struct drm_minor *minor = i915->drm.primary;
->> +
->> +	debugfs_create_file("i915_cdclk_info", 0444, minor->debugfs_root,
->> +			    i915, &i915_cdclk_info_fops);
->> +}
->> +
->>  static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
->>  	.get_cdclk = bxt_get_cdclk,
->>  	.set_cdclk = bxt_set_cdclk,
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
->> index 51e2f6a11ce4..48fd7d39e0cd 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
->> @@ -82,5 +82,6 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
->>  	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
->>  
->>  int intel_cdclk_init(struct drm_i915_private *dev_priv);
->> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915);
->>  
->>  #endif /* __INTEL_CDCLK_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 45113ae107ba..abd16a2b1f7a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -1094,6 +1094,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
->>  				 ARRAY_SIZE(intel_display_debugfs_list),
->>  				 minor->debugfs_root, minor);
->>  
->> +	intel_cdclk_debugfs_register(i915);
->>  	intel_dmc_debugfs_register(i915);
->>  	intel_fbc_debugfs_register(i915);
->>  	intel_hpd_debugfs_register(i915);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> Changelog
+> =========
+> v1 -> v2
+>   - improve description in the commit log.
+> 
+>   drivers/gpu/drm/i915/i915_irq.c | 28 ++++++++++++++++++----------
+>   1 file changed, 18 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index d24bdea65a3dc..524d64bf5d186 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2764,14 +2764,19 @@ static void dg1_irq_reset(struct drm_i915_private *dev_priv)
+>   {
+>   	struct intel_gt *gt = to_gt(dev_priv);
+>   	struct intel_uncore *uncore = gt->uncore;
+> +	unsigned int i;
+>   
+>   	dg1_master_intr_disable(dev_priv->uncore.regs);
+>   
+> -	gen11_gt_irq_reset(gt);
+> -	gen11_display_irq_reset(dev_priv);
+> +	for_each_gt(gt, dev_priv, i) {
+> +		gen11_gt_irq_reset(gt);
+>   
+> -	GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
+> -	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+> +		uncore = gt->uncore;
+> +		GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
+> +		GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+> +	}
+> +
+> +	gen11_display_irq_reset(dev_priv);
+>   }
+>   
+>   void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+> @@ -3425,13 +3430,16 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+>   
+>   static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+>   {
+> -	struct intel_gt *gt = to_gt(dev_priv);
+> -	struct intel_uncore *uncore = gt->uncore;
+>   	u32 gu_misc_masked = GEN11_GU_MISC_GSE;
+> +	struct intel_gt *gt;
+> +	unsigned int i;
+>   
+> -	gen11_gt_irq_postinstall(gt);
+> +	for_each_gt(gt, dev_priv, i) {
+> +		gen11_gt_irq_postinstall(gt);
+>   
+> -	GEN3_IRQ_INIT(uncore, GEN11_GU_MISC_, ~gu_misc_masked, gu_misc_masked);
+> +		GEN3_IRQ_INIT(gt->uncore, GEN11_GU_MISC_, ~gu_misc_masked,
+> +			      gu_misc_masked);
+> +	}
+>   
+>   	if (HAS_DISPLAY(dev_priv)) {
+>   		icp_irq_postinstall(dev_priv);
+> @@ -3440,8 +3448,8 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+>   				   GEN11_DISPLAY_IRQ_ENABLE);
+>   	}
+>   
+> -	dg1_master_intr_enable(uncore->regs);
+> -	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
+> +	dg1_master_intr_enable(to_gt(dev_priv)->uncore->regs);
+> +	intel_uncore_posting_read(to_gt(dev_priv)->uncore, DG1_MSTR_TILE_INTR);
+>   }
+>   
+>   static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
