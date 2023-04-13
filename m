@@ -1,38 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D3D96EAC5C
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:10:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B97E6E100A
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 16:33:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8543010EE40;
-	Fri, 21 Apr 2023 14:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99F810E15F;
+	Thu, 13 Apr 2023 14:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 552ED10E16E;
- Thu, 13 Apr 2023 14:22:59 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 13 Apr
- 2023 17:22:55 +0300
-Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 13 Apr
- 2023 17:22:55 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: David Airlie <airlied@gmail.com>
-Date: Thu, 13 Apr 2023 07:22:38 -0700
-Message-ID: <20230413142238.19011-1-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
+ [IPv6:2a00:1450:4864:20::230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F49D10E15F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 14:33:54 +0000 (UTC)
+Received: by mail-lj1-x230.google.com with SMTP id y35so816535ljq.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 07:33:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1681396431; x=1683988431;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=MIGr3zwKLJfiClqBfhFNh96qonhpae26LL1XEE5OS98=;
+ b=PMVRFF86G+YuwmLvjghY/qYIgWzyHV6a9NNq/k/JRiQfyGGzk/HVd+R7jTV4ZUffrA
+ GbJ2Hd6Qrs1dkYbBKmMFe2hM8pGqqVBhgqpeL3vjRZCOCJ+Loz43TV8DyK764ue+5U9s
+ IiBqgKjYasD19yxh5FDWqMZm/f/4icasn/5bSJG6GVvq9JSgDm98oKucja+NhWV8GcJO
+ bZiRAQOD4bbipMqpPrK0iX5fvi5WOIhcZQ1maE9fN1QYSm3Uv/O91YN3xULvmQ6qiabK
+ znYIjIkfYGMvmGoJt1rr3NsFvQqzUkTGy+ossJE2XeacvAkkkM6E9dMKEGR6P34oj03k
+ KhuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681396431; x=1683988431;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MIGr3zwKLJfiClqBfhFNh96qonhpae26LL1XEE5OS98=;
+ b=Qu1YNozXXn96rYkVrGLCpmvGN9MiPPik/6U1gp1O8DyRBd7Y2K7Fh2j+qlSgdotPgf
+ z/tOxqzQhoEWoQS8wRrjGT/nvKqaw1qoxIS6h092gGx0+mUG05rTui9QqPeJkUA8ajN3
+ +KDO5kukmaG2LpiWIogfuv6Ry8NFYlTQtYoZbYIwv8ER/HJ8PkNffBxNBSXSQMuhWmfL
+ EIZk/S0cziUH7FA2EO+3K87P53cjFW6jvqR5oqW1W97NOkGe533YViRRjSEWl9wiScqp
+ CJO+T38WhhtViUw54fN0afp8J8Ria3iHqZF/HWuXSJOC3irDDSqU7HTpB67lk0lRlexR
+ H4IA==
+X-Gm-Message-State: AAQBX9cZG4zyd7VnrEGX6AcTPr0B4J4LhDPbpkBW/CuPjcBt28KvCUQQ
+ 4CyjvsM5ec5ZHX5/jwI2SqH02A==
+X-Google-Smtp-Source: AKy350b5IRJaASLvMbfGgxTnCODuNcMTGGMJJIo3v3k33oKxx4dZJjsX4Kz8PlQBFCUsSFl+gAPXMw==
+X-Received: by 2002:a2e:a407:0:b0:29f:6fd7:697c with SMTP id
+ p7-20020a2ea407000000b0029f6fd7697cmr1098873ljn.28.1681396431375; 
+ Thu, 13 Apr 2023 07:33:51 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ t20-20020a2e9d14000000b002a2e931fc48sm295735lji.140.2023.04.13.07.33.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 13 Apr 2023 07:33:50 -0700 (PDT)
+Message-ID: <26a42d52-5ee7-795b-62e8-c53a1e1daf82@linaro.org>
+Date: Thu, 13 Apr 2023 17:33:50 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
-X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:19 +0000
-Subject: [Intel-gfx] [PATCH v2] video/hdmi: minor fixes for *_infoframe_init
- functions
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-GB
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230222053153.3658345-1-suraj.kandpal@intel.com>
+ <87ttyvbhuz.fsf@intel.com>
+ <SN7PR11MB6750FDE3318A85E0A2541831E3889@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <e4fbeb9d-25f6-fe19-99ee-fa4f8a689535@linaro.org>
+ <SN7PR11MB6750280505C5150C647BBCD0E3969@SN7PR11MB6750.namprd11.prod.outlook.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <SN7PR11MB6750280505C5150C647BBCD0E3969@SN7PR11MB6750.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/7] Enable YCbCr420 format for VDSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,443 +83,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, lvc-project@linuxtesting.org,
- dri-devel@lists.freedesktop.org, Matthias
- Brugger <matthias.bgg@gmail.com>, Helge Deller <deller@gmx.de>,
- amd-gfx@lists.freedesktop.org, Nikita Zhandarovich <n.zhandarovich@fintech.ru>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, linux-mediatek@lists.infradead.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Multiple hdmi_*_infoframe_init() functions that initialize different
-types of hdmi infoframes only return default 0 value (contrary to their
-descriptions). Yet these functions are still checked against possible
-errors in case of failure.
+Hi Suraj,
 
-This patch removes redundant checks for errors in calls to following
-functions:
-- hdmi_spd_infoframe_init
-- hdmi_audio_infoframe_init
-- hdmi_vendor_infoframe_init
-- hdmi_drm_infoframe_init
+On 07/04/2023 06:11, Kandpal, Suraj wrote:
+> Hi Dmitry
+> 
+> 
+>> -----Original Message-----
+>> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Sent: Friday, April 7, 2023 8:28 AM
+>> To: Kandpal, Suraj <suraj.kandpal@intel.com>; Jani Nikula
+>> <jani.nikula@linux.intel.com>; dri-devel@lists.freedesktop.org; intel-
+>> gfx@lists.freedesktop.org
+>> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>; Maarten Lankhorst
+>> <maarten.lankhorst@linux.intel.com>
+>> Subject: Re: [PATCH 0/7] Enable YCbCr420 format for VDSC
+>>
+>> Hi Suraj
+>>
+>> On 28/03/2023 16:20, Kandpal, Suraj wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf
+>>>> Of Jani Nikula
+>>>> Sent: Wednesday, March 8, 2023 5:00 PM
+>>>> To: Kandpal, Suraj <suraj.kandpal@intel.com>; dri-
+>>>> devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+>>>> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>; Nautiyal, Ankit K
+>>>> <ankit.k.nautiyal@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
+>>>> Kandpal, Suraj <suraj.kandpal@intel.com>
+>>>> Subject: Re: [PATCH 0/7] Enable YCbCr420 format for VDSC
+>>>>
+>>>> On Wed, 22 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>>>>> This patch series aims to enable the YCbCr420 format for DSC.
+>>>>> Changes are mostly compute params related for hdmi,dp and dsi along
+>>>>> with the addition of new rc_tables for native_420 and corresponding
+>>>>> changes to macros used to fetch them.
+>>>>> There have been discussions prior to this series in which some
+>>>>> patches have gotten rb and can be found in the below link
+>>>>> https://patchwork.freedesktop.org/series/113729
+>>>>
+>>>> I think it would be useful to get [1] from Dmitry merged to
+>>>> drm-misc-next first, have that in drm-next, and again backmerged to
+>>>> drm-intel-next before this. At least patches 1-5.
+>>>>
+>>>> There's not much point in all drivers duplicating the parameters, and
+>>>> we need to move towards common code. Dmitry has been helpful in
+>>>> contributing this to us.
+>>>>
+>>>> BR,
+>>>> Jani.
+>>>>
+>>>>
+>>>
+>>> Hi Jani,
+>>> Maarten has acked the patch series to be merged through drm-intel and
+>>> in the meantime I will work with Dmitry to pull the common code to
+>>> avoid duplication
+>>
+>> I wanted to check, are there any updates from your side regarding the series
+>> at [1] ?
+>>
+> 
+> Will have a look and float comments if any by  Monday
 
-Also, change their return types to void and fix descriptions.
+Please excuse me for being slightly stubborn here. We are slowly getting 
+other patches piled up with dependency on this series. It is fine that 
+it doesn't get into 6.4 (which it probably definitely missed by now), 
+but we would like to know if we have to redo/update anything or if it is 
+fine as is and it is going to be merged by i915 in 6.5 cycle.
 
-Fixes: 2c676f378edb ("[media] hdmi: added unpack and logging functions for InfoFrames")
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
----
-v2: Fix build warning by removing unnecessary call to drm_WARN_ON()
-    with uninitialized value.
-    Reported-by: kernel test robot <lkp@intel.com>
-    Link: https://lore.kernel.org/oe-kbuild-all/202304131234.hT3mzkju-lkp@intel.com/
+Thank you for the understanding.
 
- drivers/gpu/drm/display/drm_hdmi_helper.c |  5 +---
- drivers/gpu/drm/drm_edid.c                |  5 +---
- drivers/gpu/drm/i915/display/intel_hdmi.c |  4 +--
- drivers/gpu/drm/mediatek/mtk_hdmi.c       | 14 ++--------
- drivers/gpu/drm/radeon/r600_hdmi.c      
- drivers/gpu/drm/display/drm_hdmi_helper.c |  5 +---
- drivers/gpu/drm/drm_edid.c                |  5 +---
- drivers/gpu/drm/i915/display/intel_hdmi.c |  7 ++---
- drivers/gpu/drm/mediatek/mtk_hdmi.c       | 14 ++--------
- drivers/gpu/drm/radeon/r600_hdmi.c        |  6 +----
- drivers/gpu/drm/sti/sti_hdmi.c            |  6 +----
- drivers/gpu/drm/tegra/hdmi.c              |  7 +----
- drivers/gpu/drm/tegra/sor.c               |  6 +----
- drivers/gpu/drm/vc4/vc4_hdmi.c            |  7 +----
- drivers/video/hdmi.c                      | 44 ++++++-------------------------
- include/linux/hdmi.h                      |  8 +++---
- 11 files changed, 23 insertions(+), 92 deletions(-)
+> 
+>>>
+>>> Regards,
+>>> Suraj Kandpal
+>>>
+>>>> [1] https://patchwork.freedesktop.org/series/114473/
+>>
+>>
+>>
+>> --
+>> With best wishes
+>> Dmitry
+> 
+> Regards,
+> Suraj Kandpal
 
-diff --git a/drivers/gpu/drm/display/drm_hdmi_helper.c b/drivers/gpu/drm/display/drm_hdmi_helper.c
-index faf5e9efa7d3..ce7038a3a183 100644
---- a/drivers/gpu/drm/display/drm_hdmi_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_helper.c
-@@ -27,7 +27,6 @@ int drm_hdmi_infoframe_set_hdr_metadata(struct hdmi_drm_infoframe *frame,
- {
- 	struct drm_connector *connector;
- 	struct hdr_output_metadata *hdr_metadata;
--	int err;
- 
- 	if (!frame || !conn_state)
- 		return -EINVAL;
-@@ -47,9 +46,7 @@ int drm_hdmi_infoframe_set_hdr_metadata(struct hdmi_drm_infoframe *frame,
- 	    connector->hdr_sink_metadata.hdmi_type1.eotf))
- 		DRM_DEBUG_KMS("Unknown EOTF %d\n", hdr_metadata->hdmi_metadata_type1.eotf);
- 
--	err = hdmi_drm_infoframe_init(frame);
--	if (err < 0)
--		return err;
-+	hdmi_drm_infoframe_init(frame);
- 
- 	frame->eotf = hdr_metadata->hdmi_metadata_type1.eotf;
- 	frame->metadata_type = hdr_metadata->hdmi_metadata_type1.metadata_type;
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 261a62e15934..c268148502d6 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -7159,7 +7159,6 @@ drm_hdmi_vendor_infoframe_from_display_mode(struct hdmi_vendor_infoframe *frame,
- 	 */
- 	bool has_hdmi_infoframe = connector ?
- 		connector->display_info.has_hdmi_infoframe : false;
--	int err;
- 
- 	if (!frame || !mode)
- 		return -EINVAL;
-@@ -7167,9 +7166,7 @@ drm_hdmi_vendor_infoframe_from_display_mode(struct hdmi_vendor_infoframe *frame,
- 	if (!has_hdmi_infoframe)
- 		return -EINVAL;
- 
--	err = hdmi_vendor_infoframe_init(frame);
--	if (err < 0)
--		return err;
-+	hdmi_vendor_infoframe_init(frame);
- 
- 	/*
- 	 * Even if it's not absolutely necessary to send the infoframe
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index c0ce6d3dc505..59e2f53015c0 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -778,12 +778,9 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
- 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
- 
- 	if (IS_DGFX(i915))
--		ret = hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
-+		hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
- 	else
--		ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
--
--	if (drm_WARN_ON(encoder->base.dev, ret))
--		return false;
-+		hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
- 
- 	frame->sdi = HDMI_SPD_SDI_PC;
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-index 0a8e0a13f516..75899e4a011f 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-@@ -995,12 +995,7 @@ static int mtk_hdmi_setup_spd_infoframe(struct mtk_hdmi *hdmi,
- 	u8 buffer[HDMI_INFOFRAME_HEADER_SIZE + HDMI_SPD_INFOFRAME_SIZE];
- 	ssize_t err;
- 
--	err = hdmi_spd_infoframe_init(&frame, vendor, product);
--	if (err < 0) {
--		dev_err(hdmi->dev, "Failed to initialize SPD infoframe: %zd\n",
--			err);
--		return err;
--	}
-+	hdmi_spd_infoframe_init(&frame, vendor, product);
- 
- 	err = hdmi_spd_infoframe_pack(&frame, buffer, sizeof(buffer));
- 	if (err < 0) {
-@@ -1018,12 +1013,7 @@ static int mtk_hdmi_setup_audio_infoframe(struct mtk_hdmi *hdmi)
- 	u8 buffer[HDMI_INFOFRAME_HEADER_SIZE + HDMI_AUDIO_INFOFRAME_SIZE];
- 	ssize_t err;
- 
--	err = hdmi_audio_infoframe_init(&frame);
--	if (err < 0) {
--		dev_err(hdmi->dev, "Failed to setup audio infoframe: %zd\n",
--			err);
--		return err;
--	}
-+	hdmi_audio_infoframe_init(&frame);
- 
- 	frame.coding_type = HDMI_AUDIO_CODING_TYPE_STREAM;
- 	frame.sample_frequency = HDMI_AUDIO_SAMPLE_FREQUENCY_STREAM;
-diff --git a/drivers/gpu/drm/radeon/r600_hdmi.c b/drivers/gpu/drm/radeon/r600_hdmi.c
-index f3551ebaa2f0..b690254562e8 100644
---- a/drivers/gpu/drm/radeon/r600_hdmi.c
-+++ b/drivers/gpu/drm/radeon/r600_hdmi.c
-@@ -432,11 +432,7 @@ void r600_hdmi_update_audio_settings(struct drm_encoder *encoder)
- 	DRM_DEBUG("0x%02X IEC60958 status bits and 0x%02X category code\n",
- 		  (int)audio.status_bits, (int)audio.category_code);
- 
--	err = hdmi_audio_infoframe_init(&frame);
--	if (err < 0) {
--		DRM_ERROR("failed to setup audio infoframe\n");
--		return;
--	}
-+	hdmi_audio_infoframe_init(&frame);
- 
- 	frame.channels = audio.channels;
- 
-diff --git a/drivers/gpu/drm/sti/sti_hdmi.c b/drivers/gpu/drm/sti/sti_hdmi.c
-index 8539fe1fedc4..1f92db1fb960 100644
---- a/drivers/gpu/drm/sti/sti_hdmi.c
-+++ b/drivers/gpu/drm/sti/sti_hdmi.c
-@@ -1321,11 +1321,7 @@ static int sti_hdmi_bind(struct device *dev, struct device *master, void *data)
- 	}
- 
- 	/* Initialize audio infoframe */
--	err = hdmi_audio_infoframe_init(&hdmi->audio.cea);
--	if (err) {
--		DRM_ERROR("Failed to init audio infoframe\n");
--		goto err_sysfs;
--	}
-+	hdmi_audio_infoframe_init(&hdmi->audio.cea);
- 
- 	cec_fill_conn_info_from_drm(&conn_info, drm_connector);
- 	hdmi->notifier = cec_notifier_conn_register(&hdmi->dev, NULL,
-diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
-index 40ec3e6cf204..fe8fcd1b056b 100644
---- a/drivers/gpu/drm/tegra/hdmi.c
-+++ b/drivers/gpu/drm/tegra/hdmi.c
-@@ -747,12 +747,7 @@ static void tegra_hdmi_setup_audio_infoframe(struct tegra_hdmi *hdmi)
- 	u8 buffer[14];
- 	ssize_t err;
- 
--	err = hdmi_audio_infoframe_init(&frame);
--	if (err < 0) {
--		dev_err(hdmi->dev, "failed to setup audio infoframe: %zd\n",
--			err);
--		return;
--	}
-+	hdmi_audio_infoframe_init(&frame);
- 
- 	frame.channels = hdmi->format.channels;
- 
-diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
-index 8af632740673..d8cd93d5af10 100644
---- a/drivers/gpu/drm/tegra/sor.c
-+++ b/drivers/gpu/drm/tegra/sor.c
-@@ -2021,11 +2021,7 @@ static int tegra_sor_hdmi_enable_audio_infoframe(struct tegra_sor *sor)
- 	u32 value;
- 	int err;
- 
--	err = hdmi_audio_infoframe_init(&frame);
--	if (err < 0) {
--		dev_err(sor->dev, "failed to setup audio infoframe: %d\n", err);
--		return err;
--	}
-+	hdmi_audio_infoframe_init(&frame);
- 
- 	frame.channels = sor->format.channels;
- 
-diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-index ea22c9bf223a..d7de86b41901 100644
---- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-+++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -816,13 +816,8 @@ static void vc4_hdmi_set_avi_infoframe(struct drm_encoder *encoder)
- static void vc4_hdmi_set_spd_infoframe(struct drm_encoder *encoder)
- {
- 	union hdmi_infoframe frame;
--	int ret;
- 
--	ret = hdmi_spd_infoframe_init(&frame.spd, "Broadcom", "Videocore");
--	if (ret < 0) {
--		DRM_ERROR("couldn't fill SPD infoframe\n");
--		return;
--	}
-+	hdmi_spd_infoframe_init(&frame.spd, "Broadcom", "Videocore");
- 
- 	frame.spd.sdi = HDMI_SPD_SDI_PC;
- 
-diff --git a/drivers/video/hdmi.c b/drivers/video/hdmi.c
-index 03c7f27dde49..a4a1359415a0 100644
---- a/drivers/video/hdmi.c
-+++ b/drivers/video/hdmi.c
-@@ -216,10 +216,8 @@ EXPORT_SYMBOL(hdmi_avi_infoframe_pack);
-  * @frame: HDMI SPD infoframe
-  * @vendor: vendor string
-  * @product: product string
-- *
-- * Returns 0 on success or a negative error code on failure.
-  */
--int hdmi_spd_infoframe_init(struct hdmi_spd_infoframe *frame,
-+void hdmi_spd_infoframe_init(struct hdmi_spd_infoframe *frame,
- 			    const char *vendor, const char *product)
- {
- 	size_t len;
-@@ -234,8 +232,6 @@ int hdmi_spd_infoframe_init(struct hdmi_spd_infoframe *frame,
- 	memcpy(frame->vendor, vendor, min(len, sizeof(frame->vendor)));
- 	len = strlen(product);
- 	memcpy(frame->product, product, min(len, sizeof(frame->product)));
--
--	return 0;
- }
- EXPORT_SYMBOL(hdmi_spd_infoframe_init);
- 
-@@ -348,18 +344,14 @@ EXPORT_SYMBOL(hdmi_spd_infoframe_pack);
- /**
-  * hdmi_audio_infoframe_init() - initialize an HDMI audio infoframe
-  * @frame: HDMI audio infoframe
-- *
-- * Returns 0 on success or a negative error code on failure.
-  */
--int hdmi_audio_infoframe_init(struct hdmi_audio_infoframe *frame)
-+void hdmi_audio_infoframe_init(struct hdmi_audio_infoframe *frame)
- {
- 	memset(frame, 0, sizeof(*frame));
- 
- 	frame->type = HDMI_INFOFRAME_TYPE_AUDIO;
- 	frame->version = 1;
- 	frame->length = HDMI_AUDIO_INFOFRAME_SIZE;
--
--	return 0;
- }
- EXPORT_SYMBOL(hdmi_audio_infoframe_init);
- 
-@@ -526,10 +518,8 @@ EXPORT_SYMBOL(hdmi_audio_infoframe_pack_for_dp);
- /**
-  * hdmi_vendor_infoframe_init() - initialize an HDMI vendor infoframe
-  * @frame: HDMI vendor infoframe
-- *
-- * Returns 0 on success or a negative error code on failure.
-  */
--int hdmi_vendor_infoframe_init(struct hdmi_vendor_infoframe *frame)
-+void hdmi_vendor_infoframe_init(struct hdmi_vendor_infoframe *frame)
- {
- 	memset(frame, 0, sizeof(*frame));
- 
-@@ -544,8 +534,6 @@ int hdmi_vendor_infoframe_init(struct hdmi_vendor_infoframe *frame)
- 	 */
- 	frame->s3d_struct = HDMI_3D_STRUCTURE_INVALID;
- 	frame->length = HDMI_VENDOR_INFOFRAME_SIZE;
--
--	return 0;
- }
- EXPORT_SYMBOL(hdmi_vendor_infoframe_init);
- 
-@@ -698,18 +686,14 @@ hdmi_vendor_any_infoframe_check_only(const union hdmi_vendor_any_infoframe *fram
-  * hdmi_drm_infoframe_init() - initialize an HDMI Dynaminc Range and
-  * mastering infoframe
-  * @frame: HDMI DRM infoframe
-- *
-- * Returns 0 on success or a negative error code on failure.
-  */
--int hdmi_drm_infoframe_init(struct hdmi_drm_infoframe *frame)
-+void hdmi_drm_infoframe_init(struct hdmi_drm_infoframe *frame)
- {
- 	memset(frame, 0, sizeof(*frame));
- 
- 	frame->type = HDMI_INFOFRAME_TYPE_DRM;
- 	frame->version = 1;
- 	frame->length = HDMI_DRM_INFOFRAME_SIZE;
--
--	return 0;
- }
- EXPORT_SYMBOL(hdmi_drm_infoframe_init);
- 
-@@ -1661,7 +1645,6 @@ static int hdmi_spd_infoframe_unpack(struct hdmi_spd_infoframe *frame,
- 				     const void *buffer, size_t size)
- {
- 	const u8 *ptr = buffer;
--	int ret;
- 
- 	if (size < HDMI_INFOFRAME_SIZE(SPD))
- 		return -EINVAL;
-@@ -1677,9 +1660,7 @@ static int hdmi_spd_infoframe_unpack(struct hdmi_spd_infoframe *frame,
- 
- 	ptr += HDMI_INFOFRAME_HEADER_SIZE;
- 
--	ret = hdmi_spd_infoframe_init(frame, ptr, ptr + 8);
--	if (ret)
--		return ret;
-+	hdmi_spd_infoframe_init(frame, ptr, ptr + 8);
- 
- 	frame->sdi = ptr[24];
- 
-@@ -1703,7 +1684,6 @@ static int hdmi_audio_infoframe_unpack(struct hdmi_audio_infoframe *frame,
- 				       const void *buffer, size_t size)
- {
- 	const u8 *ptr = buffer;
--	int ret;
- 
- 	if (size < HDMI_INFOFRAME_SIZE(AUDIO))
- 		return -EINVAL;
-@@ -1717,9 +1697,7 @@ static int hdmi_audio_infoframe_unpack(struct hdmi_audio_infoframe *frame,
- 	if (hdmi_infoframe_checksum(buffer, HDMI_INFOFRAME_SIZE(AUDIO)) != 0)
- 		return -EINVAL;
- 
--	ret = hdmi_audio_infoframe_init(frame);
--	if (ret)
--		return ret;
-+	hdmi_audio_infoframe_init(frame);
- 
- 	ptr += HDMI_INFOFRAME_HEADER_SIZE;
- 
-@@ -1755,7 +1733,6 @@ hdmi_vendor_any_infoframe_unpack(union hdmi_vendor_any_infoframe *frame,
- {
- 	const u8 *ptr = buffer;
- 	size_t length;
--	int ret;
- 	u8 hdmi_video_format;
- 	struct hdmi_vendor_infoframe *hvf = &frame->hdmi;
- 
-@@ -1789,9 +1766,7 @@ hdmi_vendor_any_infoframe_unpack(union hdmi_vendor_any_infoframe *frame,
- 	if (hdmi_video_format > 0x2)
- 		return -EINVAL;
- 
--	ret = hdmi_vendor_infoframe_init(hvf);
--	if (ret)
--		return ret;
-+	hdmi_vendor_infoframe_init(hvf);
- 
- 	hvf->length = length;
- 
-@@ -1837,15 +1812,12 @@ int hdmi_drm_infoframe_unpack_only(struct hdmi_drm_infoframe *frame,
- 	const u8 *temp;
- 	u8 x_lsb, x_msb;
- 	u8 y_lsb, y_msb;
--	int ret;
- 	int i;
- 
- 	if (size < HDMI_DRM_INFOFRAME_SIZE)
- 		return -EINVAL;
- 
--	ret = hdmi_drm_infoframe_init(frame);
--	if (ret)
--		return ret;
-+	hdmi_drm_infoframe_init(frame);
- 
- 	frame->eotf = ptr[0] & 0x7;
- 	frame->metadata_type = ptr[1] & 0x7;
-diff --git a/include/linux/hdmi.h b/include/linux/hdmi.h
-index 2f4dcc8d060e..e60a28d181f2 100644
---- a/include/linux/hdmi.h
-+++ b/include/linux/hdmi.h
-@@ -214,7 +214,7 @@ ssize_t hdmi_avi_infoframe_pack(struct hdmi_avi_infoframe *frame, void *buffer,
- ssize_t hdmi_avi_infoframe_pack_only(const struct hdmi_avi_infoframe *frame,
- 				     void *buffer, size_t size);
- int hdmi_avi_infoframe_check(struct hdmi_avi_infoframe *frame);
--int hdmi_drm_infoframe_init(struct hdmi_drm_infoframe *frame);
-+void hdmi_drm_infoframe_init(struct hdmi_drm_infoframe *frame);
- ssize_t hdmi_drm_infoframe_pack(struct hdmi_drm_infoframe *frame, void *buffer,
- 				size_t size);
- ssize_t hdmi_drm_infoframe_pack_only(const struct hdmi_drm_infoframe *frame,
-@@ -249,7 +249,7 @@ struct hdmi_spd_infoframe {
- 	enum hdmi_spd_sdi sdi;
- };
- 
--int hdmi_spd_infoframe_init(struct hdmi_spd_infoframe *frame,
-+void hdmi_spd_infoframe_init(struct hdmi_spd_infoframe *frame,
- 			    const char *vendor, const char *product);
- ssize_t hdmi_spd_infoframe_pack(struct hdmi_spd_infoframe *frame, void *buffer,
- 				size_t size);
-@@ -331,7 +331,7 @@ struct hdmi_audio_infoframe {
- 
- };
- 
--int hdmi_audio_infoframe_init(struct hdmi_audio_infoframe *frame);
-+void hdmi_audio_infoframe_init(struct hdmi_audio_infoframe *frame);
- ssize_t hdmi_audio_infoframe_pack(struct hdmi_audio_infoframe *frame,
- 				  void *buffer, size_t size);
- ssize_t hdmi_audio_infoframe_pack_only(const struct hdmi_audio_infoframe *frame,
-@@ -393,7 +393,7 @@ struct hdr_sink_metadata {
- 	};
- };
- 
--int hdmi_vendor_infoframe_init(struct hdmi_vendor_infoframe *frame);
-+void hdmi_vendor_infoframe_init(struct hdmi_vendor_infoframe *frame);
- ssize_t hdmi_vendor_infoframe_pack(struct hdmi_vendor_infoframe *frame,
- 				   void *buffer, size_t size);
- ssize_t hdmi_vendor_infoframe_pack_only(const struct hdmi_vendor_infoframe *frame,
+-- 
+With best wishes
+Dmitry
+
