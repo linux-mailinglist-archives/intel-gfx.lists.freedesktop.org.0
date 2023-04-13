@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A766E13CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 19:57:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375F06E13CD
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 19:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA0610E12C;
-	Thu, 13 Apr 2023 17:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A259A10E160;
+	Thu, 13 Apr 2023 17:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EEA9F10E12C;
- Thu, 13 Apr 2023 17:57:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B3AD10E160;
+ Thu, 13 Apr 2023 17:57:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DFE51AADE4;
- Thu, 13 Apr 2023 17:57:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 27A5EAADFD;
+ Thu, 13 Apr 2023 17:57:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 13 Apr 2023 17:57:44 -0000
-Message-ID: <168140866488.3698.13228516785710325078@emeril.freedesktop.org>
+Date: Thu, 13 Apr 2023 17:57:48 -0000
+Message-ID: <168140866816.3697.1722919551379716046@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230411105643.292416-1-jani.nikula@intel.com>
 In-Reply-To: <20230411105643.292416-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_hide_mkwrite=5Fdevice=5Finfo=28=29_better_=28re?=
- =?utf-8?b?djMp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_hide_mkwrite=5Fdevice=5Finfo=28=29_better_=28rev3?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-33d6eac19e2e drm/i915: hide mkwrite_device_info() better
--:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#21: 
-[1] https://lore.kernel.org/r/a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com
-
-total: 0 errors, 1 warnings, 0 checks, 84 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
