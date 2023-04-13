@@ -2,141 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C296E1176
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 17:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D0836E118E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 17:59:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24FAB10EB6E;
-	Thu, 13 Apr 2023 15:53:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E3E10EB77;
+	Thu, 13 Apr 2023 15:59:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0FE810EB60;
- Thu, 13 Apr 2023 15:53:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1463B10EB77
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 15:59:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681401183; x=1712937183;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=RfAjVu+TxXE4QgvMLNgCTuZM80XDfrx3Hv4j2VpY9s8=;
- b=aOXLjPkOC5PW/P/H0tJX69RL49cCLnMWqTfpX9adLkTy+5KvR74HMZ1L
- 3SQnYJXyoKspMyIHzbBq5fjoKiUmNFvEE0p6+5Q5PbVahvUt1pG0OWDvT
- QPgjbXBV9Q71UlzS3bMz/75ag+Lt7Bpxn5QdMi0ocLyA9IjPebCONboBH
- wySMt7eCKmtHk4SLtaXUnQYzsQZYGT+Lbl6j3xP3IRcSBK1l0+IdLIJ7O
- YtY6/BAgNE4/U5nKIlHydRwWCinv+7v4Uilnw3VnvJ+TP+PlQkQAIXMpG
- 4DTWjaL3hvJLnZZGj56TWOb5jACyG89fiWCAEbzXyhc225tzW1BRgwEZg w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="323844733"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="323844733"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1681401550; x=1712937550;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=O5VycOGAJ5Rcxy31QMBzdhzjGjh3Lr1aBmVg8cOHKBg=;
+ b=ZtAaixKMrQCuhU3fZnB0fRXZpVQQ1LikMLSORnczRAeh2pXLc479w+sU
+ O8KbHYS+CRfjvQvBqwDQW4qk3hbLwJAcMT/Re6c/r+RubV0vqcvBV2A1z
+ NhOLl3Nzuabrq0KW+HBJzlkZkbYV1NRSmUDE7ijWa0r6M9+lE95H2qiXR
+ XrHtJ8+plF8ahDN51C40ivn1wAHT7t7hG61XZiT28+fplL7NghfPbDDU9
+ aihTZXwAx/aJpnXp3g1r3MrtCBDnEmH7DJT6kvNCov6p0EPHwCKuwwizx
+ kfF46hLYH3+I2taL+WjNSMryzz9xJrtkpr89mtf9qv5CWJlE4lvCMU9cu A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="323846327"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="323846327"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 08:52:20 -0700
+ 13 Apr 2023 08:57:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="863830148"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="863830148"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 13 Apr 2023 08:52:17 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 13 Apr 2023 08:52:16 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 13 Apr 2023 08:52:16 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 13 Apr 2023 08:52:16 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.42) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 13 Apr 2023 08:52:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ccxx/XKrBsB2BDcnUQN8RrXmRAqzwZOHVYmnANutlA909y367Xnf1dhTwGZItYk62ifRsFsadCtYwWpZUG3KK/Jp8IO4Nmi5qxovUWHSkHi2PMKNqHiODjc7hmaHSZqo5t7lkouMtvUXSBLhkbctsWBwyCM47G24eqKEOVTj6PdylsZ/7EEKdXQ52sSCJ4Vd/IfafT59o92y/da9GtV8BiKiUrqM5tcFAlpYQno1QqHm92yPBNNfb/SyAGdCNRYfdNB4eWuSd2L8/Ezf9xE+VKM8SdF/xMiaHndKcM3wg6bGSxQV+6MoGL9wJCxm862QuqnQOsQKpyQFMHX29Jxg3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qKmfnmBLQyw7rk37KyRE2z0v5iH8mXJlObudvT2FbyI=;
- b=MKAM3Sz2uXgjCYE+PAboPO8HUJ7rX4ZiNHei5aqrluI03NdUAkCFSlijBnxGhUzNP6KNH5Iyb/RuUZmlEKzprNjNFeGjBHoHXVLSVrpd0Ry8tfW1ZE71FV8nFJ+D1HcCcvnYECRVZCYhS8rX0AILntevdwx2P7PWWQMQdSXvrA1dLxYTBhyQHWF+3Gix4/ZEZ1kS5gfVj2w6tHjnFszvRThr5BH6HEer+q6/MsQwyvc9/0S95JjiVP7ZWTRnY8pFXUqKlwOnzMHBhZbN6HujKb9vG9CgG4GiciLhsF6D8REnSlH6j1MEGy1MPaRVqJT95NIgzaPusrZtqmYw0j9VOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SJ1PR11MB6276.namprd11.prod.outlook.com (2603:10b6:a03:455::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6277.38; Thu, 13 Apr 2023 15:52:14 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0%8]) with mapi id 15.20.6298.030; Thu, 13 Apr 2023
- 15:52:14 +0000
-Date: Thu, 13 Apr 2023 08:52:10 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <20230413155210.GH4085390@mdroper-desk1.amr.corp.intel.com>
-References: <20230413092006.931861-1-andi.shyti@linux.intel.com>
- <dc0042e0-8a4e-5c3d-922f-bd65402a154a@linux.intel.com>
- <ZDgKBUIV9nGcfQqF@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZDgKBUIV9nGcfQqF@ashyti-mobl2.lan>
-X-ClientProxiedBy: BYAPR07CA0017.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::30) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="666824593"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="666824593"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 08:57:08 -0700
+Date: Thu, 13 Apr 2023 18:57:05 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <ZDgmURuAMVILpiY8@ideak-desk.fi.intel.com>
+References: <20230412224925.1309815-1-radhakrishna.sripada@intel.com>
+ <20230412224925.1309815-5-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ1PR11MB6276:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2dc0823e-160b-4ac0-f720-08db3c370c80
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vZDjAVRMrbsjQ+EzEIBNyYFobRqtYeK7prnKoiE5DbpAZYvYZWyDgyTffrcbx6sRP0unV/XVkpJJcVzljfCRIkPLxGQnCzYIuErgePopusu4mQ1tyKLoQubfqcCU7w/Eeuo3ReBkk/DuRhKOcUxmKVgjElSrRxUJDJRbBLRrXIm8mWNrc1wr2l8B8lPGL5f3JYlM5BujzJBvw4Aqn4rKBRQHxwhBE+d8FuhAOqAm3lObdJDTrF9z+fmfyPAB49wibkW4ujpN0iS6TeNZPH/Mr4TraPCM0XLbwzNfMOrMaHkY7oeGZPAStnPxiN0Bz+clmAwG1dYpyfR/Zn9Frto+Rkuc4c3+sCjZv36dkMFFypnrUxN+HUbP6YvUxcOnad22ZlDKFxbC4wpHQapsAPQt6ip2ugpbqG+rk/RFsmSOatnuJ1Nd4YZxh2JTsYRqiObWQhasiSTBV/JM5bzf2X4pX6O2w2pwmDGBpg6D/Vvp6q8UKq7pD9f2n7vi2/ZB8YKKnVYVX7UoDQSTqUXiIzpSafPlXz+ekUh/G3SkEajzyKcv47c+TSGEFTp4HJmI7U5/
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(376002)(366004)(396003)(39860400002)(136003)(451199021)(8936002)(38100700002)(2906002)(33656002)(4326008)(5660300002)(86362001)(82960400001)(66556008)(66946007)(6916009)(8676002)(66476007)(6486002)(83380400001)(54906003)(1076003)(6512007)(6506007)(53546011)(26005)(316002)(478600001)(186003)(41300700001)(6666004);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TCvF4CrAHqU6PNBSDa7pAS7LfCQ+djqJ8qTLGZBEVQ3q+bs+7cNdEWR3NvE1?=
- =?us-ascii?Q?jeJ6/oZ9tCHtIFe5tk4fVfKB1grDanzxTBjM4QjOF7sRI6Yfauf6U9xeHj9Q?=
- =?us-ascii?Q?7fBZh1iOsjAc1H1KUq8Sr10AkhkaCm08RSYCikLd6OKAEjeOjtV2EmYTc1Oh?=
- =?us-ascii?Q?UxsyGSqBTp0e4RQm8zYHwO4r5namyQgo8K8QeqN81+V6DdoydHOYH5Rd0y4W?=
- =?us-ascii?Q?dZn3EKGJtIOvSx2LuYLnQbO/i/v26gHNMeSny3rNOWh0mynDU7kOq6ck8mnt?=
- =?us-ascii?Q?gtLLl8kZ91c5ryjXa0ItDyQ1C/q3j6E93Flymog/3r9nJ/PAPiYd9YOLqxBY?=
- =?us-ascii?Q?oNOMabwJV1ICDoUJlHKLl/wyYWPas1MBgn2rtewxlSLj7WW2NW6z/PUsWHzD?=
- =?us-ascii?Q?F3PaGruTlmAQSMDRvKK1aOwkURRFKAdosZkMIfwuXAwgDMftgmRk+lVOCzNO?=
- =?us-ascii?Q?va1bl5pCUeCEr40JNlutAZaacOJmem3wJcRkcnakw5VMf0XvpEjgIpeVX0nc?=
- =?us-ascii?Q?c5VtLXiuaQc15TGWRoVu0WDN5UkYc1SKwpXHaPaTuxWpvsbru0tqMJtH8Vh5?=
- =?us-ascii?Q?19TaNhjRjTDdp0kt9H7YNcLe/YhcBF8q1MEAgpKlYy/6IPBOs12D5CdxUAsm?=
- =?us-ascii?Q?lLb6vS68QIKR+n3tRH6wU8QFW3vrrkjL4L6msR7kXzqozSYqVrqcBVfplOhb?=
- =?us-ascii?Q?0xal1G9yYQeQn/o0a7tnY3JwdBnpEDPF+ii013Vu2G3hN7h+LtZhp97+fePa?=
- =?us-ascii?Q?2TDQIzxiR2xGjmQ57vEcAEPBxLqDt88Qq6ZncJVrqDA49Ghnfiz7KeKySaSo?=
- =?us-ascii?Q?lczbhVl24QGJ+0QatZcFP/IkP5sN3EFLPaXwsSqEoh8L0842ey3G/GIZKjvP?=
- =?us-ascii?Q?5Ltgosk7L/doV5B9iBQXKxO0D8G4DtyplDsvLcG1UVDfu25HgNccsCrl5dfm?=
- =?us-ascii?Q?nkQg0PDCaRfrFcAj9JfTzY4rS4q/EjNou/DssUXDwMxpB3eDZyoqlwjN9DFq?=
- =?us-ascii?Q?InEtwiGciwIEjMxf9WVVXDCJjuiAsSbnJJ3A5/3JtdCFGwX8Kylhryh/6VRB?=
- =?us-ascii?Q?m4Sc1QYgSkOUl3j3306HN9EWYBg0spT5neYHsa5wsIcSANsXFIiUhaJaGL6D?=
- =?us-ascii?Q?awrBA+rDLoCMM0Gb6W8g48CRa2ZWBzJOZ51Eis05BaYDO5KJ9odpSTZ2dLj1?=
- =?us-ascii?Q?6zcZw8UC5mgCJbN7LdL1dp16/0DttskatSzi44P9DoEIqnPja+GcoMn2ipvw?=
- =?us-ascii?Q?n+qBj2/rjg6+UGuUIbyycG3jwuhXyP3B/yvEIkw5OdUA2/uGa5pIwmlVH6Ra?=
- =?us-ascii?Q?k7L35Uo7LnSjwBcDW2tbSkEjoyrl++6xwgd+7ubd6q1/wRt+PpA3c2tKUegm?=
- =?us-ascii?Q?G/CkJcS7/DmzMu83ie3GoYInCmjBJJYi9u/q0cI/QII4EDJcnHbk5+TsNNz8?=
- =?us-ascii?Q?/qZmTjraorhV3ggKFL9mwC43N81z+vd4ZWwJLUbL8XzMUHVY9B9RRv8Oqugg?=
- =?us-ascii?Q?+boHTk5x2P94kHdO9bcaQD5xPEWqRjCalO1KWtUQ6tV5a6eZB704GP9/rLtA?=
- =?us-ascii?Q?Ugl1rMlqWSYMv3X6ql6UnSmpMRu9kCMwFwb/hrQldzA8YvrwIYDmskc+p6rO?=
- =?us-ascii?Q?9A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2dc0823e-160b-4ac0-f720-08db3c370c80
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2023 15:52:13.7314 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jMR0q7/tBMujR+iZGyZOxWObWfG2sWyzE74S5i3ssdL+ks9Hx2xbNkgDC7qRZVWK0ujBNPETcdKOE2Wg9tobKx/lPrQUMEKn8awQudS01Y4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6276
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Make IRQ reset and postinstall
- multi-gt aware
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230412224925.1309815-5-radhakrishna.sripada@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/mtl: Add vswing programming
+ for C10 phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,82 +59,291 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@kernel.org>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 13, 2023 at 03:56:21PM +0200, Andi Shyti wrote:
-> Hi Tvrtko,
+On Wed, Apr 12, 2023 at 03:49:20PM -0700, Radhakrishna Sripada wrote:
+> From: Mika Kahola <mika.kahola@intel.com>
 > 
-> (I forgot to CC Daniele)
+> C10 phys uses direct mapping internally for voltage and pre-emphasis levels.
+> Program the levels directly to the fields in the VDR Registers.
 > 
-> On Thu, Apr 13, 2023 at 11:41:28AM +0100, Tvrtko Ursulin wrote:
-> > 
-> > On 13/04/2023 10:20, Andi Shyti wrote:
-> > > From: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > > 
-> > > In multitile systems IRQ need to be reset and enabled per GT.
-> > > 
-> > > Although in MTL the GUnit misc interrupts register set are
-> > > available only in GT-0, we need to loop through all the GT's
-> > > in order to initialize the media engine which lies on a different
-> > > GT.
-> > > 
-> > > Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > > ---
-> > > Hi,
-> > > 
-> > > proposing again this patch, apparently GuC needs this patch to
-> > > initialize the media GT.
-> > 
-> > What is the resolution for Matt's concern that this is wrong for MTL?
+> Bspec: 65449
 > 
-> There are two explanations, one easy and one less easy.
+> v2: From table "C10: Tx EQ settings for DP 1.4x" it shows level 1
+>     and preemphasis 1 instead of two times of level 1 preemphasis 0.
+>     Fix this in the driver code as well.
+> v3: VSwing update (Clint)
+> v4: Add vboost termination ctl programming(Imre)
+>     Fix tx llogic and other nits
+>     Restrict C10 vdr ctl register access for C10 phy(RK)
 > 
-> The easy one: without this patch i915 doesn't boot on MTL!(*)
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Reviewed-by: Imre Deak <imre.deak@intel.com>(v3)
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 102 +++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  14 ++-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+>  .../drm/i915/display/intel_ddi_buf_trans.c    |  31 +++++-
+>  5 files changed, 143 insertions(+), 10 deletions(-)
 > 
-> The second explanation is that in MTL the media engine has it's
-> own set of misc irq's registers and those are on a different GT
-> (Daniele pointed this out).
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 9ab1e686a40b..ca7626eadd7c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -6,6 +6,8 @@
+>  #include "i915_reg.h"
+>  #include "intel_cx0_phy.h"
+>  #include "intel_cx0_phy_regs.h"
+> +#include "intel_ddi.h"
+> +#include "intel_ddi_buf_trans.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp.h"
+> @@ -292,6 +294,97 @@ static void intel_cx0_rmw(struct drm_i915_private *i915, enum port port,
+>  		__intel_cx0_rmw(i915, port, lane, addr, clear, set, committed);
+>  }
+>  
+> +static u8 intel_c10_get_tx_vboost_lvl(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> +		if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+> +		    (crtc_state->port_clock == 540000 ||
+> +		     crtc_state->port_clock == 810000))
+> +			return 5;
+> +		else
+> +			return 4;
+> +	} else {
+> +		return 5;
+> +	}
+> +}
+> +
+> +static u8 intel_c10_get_tx_term_ctl(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> +		if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+> +		    (crtc_state->port_clock == 540000 ||
+> +		     crtc_state->port_clock == 810000))
+> +			return 5;
+> +		else
+> +			return 2;
+> +	} else {
+> +		return 6;
+> +	}
+> +}
+> +
+> +void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+> +				     const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	const struct intel_ddi_buf_trans *trans;
+> +	enum phy phy = intel_port_to_phy(i915, encoder->port);
+> +	intel_wakeref_t wakeref;
+> +	int n_entries, ln;
+> +
+> +	wakeref = intel_cx0_phy_transaction_begin(encoder);
+> +
+> +	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+> +	if (drm_WARN_ON_ONCE(&i915->drm, !trans)) {
+> +		intel_cx0_phy_transaction_end(encoder, wakeref);
+> +		return;
+> +	}
+> +
+> +	if (intel_is_c10phy(i915, phy)) {
+> +		intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+> +			      0, C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
+> +		intel_cx0_rmw(i915, encoder->port, INTEL_CX0_LANE0, PHY_C10_VDR_CMN(3),
+> +			      C10_CMN3_TXVBOOST_MASK,
+> +			      C10_CMN3_TXVBOOST(intel_c10_get_tx_vboost_lvl(crtc_state)),
+> +			      MB_WRITE_UNCOMMITTED);
+> +		intel_cx0_rmw(i915, encoder->port, INTEL_CX0_LANE0, PHY_C10_VDR_TX(1),
+> +			      C10_TX1_TERMCTL_MASK,
+> +			      C10_TX1_TERMCTL(intel_c10_get_tx_term_ctl(crtc_state)),
+> +			      MB_WRITE_COMMITTED);
 
-Assuming you're talking about MTL_GUC_MGUC_INTR_MASK, that's not true;
-it's just a single sgunit register (0x1900e8) that has different
-bitfields for the primary GuC and the media GuC.  So I still think we
-should avoid looping over GTs; it's actually much simpler to handle
-things in a single pass since we can just determine the single register
-value once (all fields) and write it directly, instead of doing two
-separate RMW updates to the same register to try to avoid clobbering
-the other GuC's settings.
+Both PHY lanes need to be programmed for all these vswing settings.
 
-For pre-MTL platforms, it's the same register, except that the bitfield
-now devoted to the media GuC was previously used for something else
-(scatter/gather).
-
-
-Matt
-
+> +	}
+> +
+> +	for (ln = 0; ln < crtc_state->lane_count; ln++) {
+> +		int level = intel_ddi_level(encoder, crtc_state, ln);
+> +		int lane, tx;
+> +
+> +		lane = ln / 2;
+> +		tx = ln % 2;
+> +
+> +		intel_cx0_rmw(i915, encoder->port, BIT(lane), PHY_CX0_VDROVRD_CTL(lane, tx, 0),
+> +			      C10_PHY_OVRD_LEVEL_MASK,
+> +			      C10_PHY_OVRD_LEVEL(trans->entries[level].snps.pre_cursor),
+> +			      MB_WRITE_COMMITTED);
+> +		intel_cx0_rmw(i915, encoder->port, BIT(lane), PHY_CX0_VDROVRD_CTL(lane, tx, 1),
+> +			      C10_PHY_OVRD_LEVEL_MASK,
+> +			      C10_PHY_OVRD_LEVEL(trans->entries[level].snps.vswing),
+> +			      MB_WRITE_COMMITTED);
+> +		intel_cx0_rmw(i915, encoder->port, BIT(lane), PHY_CX0_VDROVRD_CTL(lane, tx, 2),
+> +			      C10_PHY_OVRD_LEVEL_MASK,
+> +			      C10_PHY_OVRD_LEVEL(trans->entries[level].snps.post_cursor),
+> +			      MB_WRITE_COMMITTED);
+> +	}
+> +
+> +	/* Write Override enables in 0xD71 */
+> +	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_OVRD,
+> +		      0, PHY_C10_VDR_OVRD_TX1 | PHY_C10_VDR_OVRD_TX2,
+> +		      MB_WRITE_COMMITTED);
+> +
+> +	if (intel_is_c10phy(i915, phy))
+> +		intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+> +			      0, C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
+> +
+> +	intel_cx0_phy_transaction_end(encoder, wakeref);
+> +}
+> +
+>  /*
+>   * Basic DP link rates with 38.4 MHz reference clock.
+>   * Note: The tables below are with SSC. In non-ssc
+> @@ -766,10 +859,8 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+>  	val |= crtc_state->cx0pll_state.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+>  
+>  	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+> -		     XELPDP_LANE1_PHY_CLOCK_SELECT |
+> -		     XELPDP_FORWARD_CLOCK_UNGATE |
+> -		     XELPDP_DDI_CLOCK_SELECT_MASK |
+> -		     XELPDP_SSC_ENABLE_PLLB, val);
+> +		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+> +		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_SSC_ENABLE_PLLB, val);
+>  }
+>  
+>  static u32 intel_cx0_get_powerdown_update(u8 lane_mask)
+> @@ -1144,7 +1235,8 @@ static void intel_c10pll_disable(struct intel_encoder *encoder)
+>  
+>  	/* 7. Program PORT_CLOCK_CTL register to disable and gate clocks. */
+>  	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+> -		     XELPDP_DDI_CLOCK_SELECT_MASK |
+> +		     XELPDP_DDI_CLOCK_SELECT_MASK, 0);
+> +	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+>  		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 46fa0576ef0d..6b736acb83e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -30,5 +30,7 @@ int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+>  				 const struct intel_c10pll_state *pll_state);
+>  void intel_c10pll_state_verify(struct intel_atomic_state *state,
+>  			       struct intel_crtc_state *new_crtc_state);
+> +void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+> +				     const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __INTEL_CX0_PHY_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index 21a699c678a1..9cfa7f508c90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -144,6 +144,8 @@
+>  #define   C10_CMN3_TXVBOOST(val)	REG_FIELD_PREP8(C10_CMN3_TXVBOOST_MASK, val)
+>  #define PHY_C10_VDR_TX(idx)		(0xC30 + (idx))
+>  #define   C10_TX0_TX_MPLLB_SEL		REG_BIT(4)
+> +#define   C10_TX1_TERMCTL_MASK		REG_GENMASK8(7, 5)
+> +#define   C10_TX1_TERMCTL(val)		REG_FIELD_PREP8(C10_TX1_TERMCTL_MASK, val)
+>  #define PHY_C10_VDR_CONTROL(idx)	(0xC70 + (idx) - 1)
+>  #define   C10_VDR_CTRL_MSGBUS_ACCESS	REG_BIT8(2)
+>  #define   C10_VDR_CTRL_MASTER_LANE	REG_BIT8(1)
+> @@ -151,9 +153,15 @@
+>  #define PHY_C10_VDR_CUSTOM_WIDTH	0xD02
+>  #define   C10_VDR_CUSTOM_WIDTH_MASK    REG_GENMASK(1, 0)
+>  #define   C10_VDR_CUSTOM_WIDTH_8_10    REG_FIELD_PREP(C10_VDR_CUSTOM_WIDTH_MASK, 0)
+> -
+> -/* PHY_C10_VDR_PLL0 */
+> -#define PLL_C10_MPLL_SSC_EN             REG_BIT8(0)
+> +#define PHY_C10_VDR_OVRD		0xD71
+> +#define   PHY_C10_VDR_OVRD_TX1		REG_BIT8(0)
+> +#define   PHY_C10_VDR_OVRD_TX2		REG_BIT8(2)
+> +#define PHY_C10_VDR_PRE_OVRD_TX1	0xD80
+> +#define C10_PHY_OVRD_LEVEL_MASK		REG_GENMASK8(5, 0)
+> +#define C10_PHY_OVRD_LEVEL(val)		REG_FIELD_PREP8(C10_PHY_OVRD_LEVEL_MASK, val)
+> +#define PHY_CX0_VDROVRD_CTL(lane, tx, control)				\
+> +					(PHY_C10_VDR_PRE_OVRD_TX1 +	\
+> +					 ((lane) ^ (tx)) * 0x10 + (control))
+>  
+>  /* PIPE SPEC Defined Registers */
+>  #define PHY_CX0_TX_CONTROL(tx, control)	(0x400 + ((tx) - 1) * 0x200 + (control))
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 67d3ccd2ea76..b30e3ed7aedb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4475,7 +4475,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  		encoder->get_config = hsw_ddi_get_config;
+>  	}
+>  
+> -	if (IS_DG2(dev_priv)) {
+> +	if (DISPLAY_VER(dev_priv) >= 14) {
+> +		encoder->set_signal_levels = intel_cx0_phy_set_signal_levels;
+> +	} else if (IS_DG2(dev_priv)) {
+>  		encoder->set_signal_levels = intel_snps_phy_set_signal_levels;
+>  	} else if (DISPLAY_VER(dev_priv) >= 12) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> index 006a2e979000..cd4becbae098 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> @@ -1035,6 +1035,25 @@ static const struct intel_ddi_buf_trans dg2_snps_trans_uhbr = {
+>  	.num_entries = ARRAY_SIZE(_dg2_snps_trans_uhbr),
+>  };
+>  
+> +static const union intel_ddi_buf_trans_entry _mtl_c10_trans_dp14[] = {
+> +	{ .snps = { 26, 0, 0  } },      /* preset 0 */
+> +	{ .snps = { 33, 0, 6  } },      /* preset 1 */
+> +	{ .snps = { 38, 0, 11 } },      /* preset 2 */
+> +	{ .snps = { 43, 0, 19 } },      /* preset 3 */
+> +	{ .snps = { 39, 0, 0  } },      /* preset 4 */
+> +	{ .snps = { 45, 0, 7  } },      /* preset 5 */
+> +	{ .snps = { 46, 0, 13 } },      /* preset 6 */
+> +	{ .snps = { 46, 0, 0  } },      /* preset 7 */
+> +	{ .snps = { 55, 0, 7  } },      /* preset 8 */
+> +	{ .snps = { 62, 0, 0  } },      /* preset 9 */
+> +};
+> +
+> +static const struct intel_ddi_buf_trans mtl_cx0c10_trans = {
+> +	.entries = _mtl_c10_trans_dp14,
+> +	.num_entries = ARRAY_SIZE(_mtl_c10_trans_dp14),
+> +	.hdmi_default_entry = ARRAY_SIZE(_mtl_c10_trans_dp14) - 1,
+> +};
+> +
+>  bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+>  {
+>  	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+> @@ -1606,12 +1625,22 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
+>  		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
+>  }
+>  
+> +static const struct intel_ddi_buf_trans *
+> +mtl_get_cx0_buf_trans(struct intel_encoder *encoder,
+> +		      const struct intel_crtc_state *crtc_state,
+> +		      int *n_entries)
+> +{
+> +	return intel_get_buf_trans(&mtl_cx0c10_trans, n_entries);
+> +}
+> +
+>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  	enum phy phy = intel_port_to_phy(i915, encoder->port);
+>  
+> -	if (IS_DG2(i915)) {
+> +	if (DISPLAY_VER(i915) >= 14) {
+> +		encoder->get_buf_trans = mtl_get_cx0_buf_trans;
+> +	} else if (IS_DG2(i915)) {
+>  		encoder->get_buf_trans = dg2_get_snps_buf_trans;
+>  	} else if (IS_ALDERLAKE_P(i915)) {
+>  		if (intel_phy_is_combo(i915, phy))
+> -- 
+> 2.34.1
 > 
-> I sent this patch not to bypass any review, but to restart the
-> discussion as this patch was just dropped.
-> 
-> Thanks,
-> Andi
-> 
-> 
-> (*)
-> [drm] *ERROR* GT1: GUC: CT: No response for request 0x550a (fence 7)
-> [drm] *ERROR* GT1: GUC: CT: Sending action 0x550a failed (-ETIMEDOUT) status=0X0
-> [drm] *ERROR* GT1: GUC: Failed to enable usage stats: -ETIMEDOUT
-> [drm] *ERROR* GT1: GuC initialization failed -ETIMEDOUT
-> [drm] *ERROR* GT1: Enabling uc failed (-5)
-> [drm] *ERROR* GT1: Failed to initialize GPU, declaring it wedged!
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
