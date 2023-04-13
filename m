@@ -1,90 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7756E1376
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 19:25:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F90E6E1372
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 19:25:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D296A10EB99;
-	Thu, 13 Apr 2023 17:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3531210E19A;
+	Thu, 13 Apr 2023 17:25:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D91E10E380;
- Thu, 13 Apr 2023 17:25:35 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A43A10E19A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 17:25:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681406735; x=1712942735;
+ t=1681406719; x=1712942719;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=bb5+3GoxaHgISWW57Gol7uQPSB7Qydnk9TuKgRnqnM8=;
- b=YnMpe4+q8l7JH5p47fxOwMAJQPmIIPo8Yczmc8pXvumCBKCU9692AdKJ
- 1dw7KhI4tvyz9ozphG/qKLIhsO5l//vvVsX8fLgavHWYJzupJql7QqkB+
- FhZy/LWgBpri5Rq5e+VJGfyFtA0C0INzh7+GQRZxmk4jGshC9i2OZgFr8
- TzbjEc56gQH2Rm0/bwgipdHg8k6efMvArgY7WBchtN1Ajf2dqksd4fc+z
- 1R97jAA/ZwN9sNNYWTyFRkTZevcZCXFsS4fSbQO7SfCi48uum9wruz6/b
- HqndgMByZp+YUxDwM7fiQIpSCxLrvaWW1QENwBWQf52DfhPWJqoKEEtcQ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="343005413"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="343005413"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 10:25:16 -0700
+ bh=4J9zSYqLIpl9UOeKgGOg6FkQ1Vuqw0okYDEyM5cptTM=;
+ b=hzVos4DTMFiGlkMyWhAQMfI0CUnLC+usAzRDTsrMR4VmroGAbsXyOZsx
+ vBbKGT6yIgbWnKjRgV+GOEmUp+ICCGnlh2zH3suC+DZwIa7nWZ6SSCbqA
+ jI4iDzFsDDvHPxnu5NdroMS2TUM8FazrfCU/GtrqrnDZN6Qkhr9HSRf5z
+ eDPw+DlXI1kKtBbDnz13uPmrYBTW4jwob/1L84n2PeJRTraz301lHw9Hz
+ EYBLZEgr2IpADVDbbRkWxuvOBUBsM3mTi0M4lt55e+QgDgVxkCuar7Afj
+ e89OrujPKOnR6694BbxcGLEWeoz1ZLEFka+stUz5jC3B8S/3jecZ+3xj7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="346068484"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="346068484"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 10:25:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689436089"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="689436089"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 13 Apr 2023 10:25:15 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="863875071"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="863875071"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga005.jf.intel.com with ESMTP; 13 Apr 2023 10:25:17 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 13 Apr 2023 10:25:15 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 13 Apr 2023 10:25:17 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 13 Apr 2023 10:25:14 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 13 Apr 2023 10:25:14 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 13 Apr 2023 10:25:17 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 13 Apr 2023 10:25:14 -0700
+ 15.1.2507.23; Thu, 13 Apr 2023 10:25:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hD0pWgg1kE91N//AgyMqTDq3i5PVe4kUe8C1GtYLB2KwuvYCtwn7LIy2P6ys5qgOk0CRqmqKxjNOW3UOSIOlUDipYpVpY4ppBqN8ICQm0RtX79XvLQijenVqfyjOke1hHm7sBBzQfQiRsTAPJwGFBS1ZybMQe6QwR8neIF1WyRoXMXyO/mB7oYjH1pLyeqJYwxeNnfNr7wjShbfuNuivfAWW3fnTGG37DRSW/t8VxpNAMiaXzSv+k3w8eHnrilhNH+WGTi+HrOKbKe7dtP/iDZRg7TyZZ256ew8Kv7cEW72gNSBKOeT+nByQAfs/uUxzpdSSoKDXZdgVR3VJC38ncg==
+ b=fiYxZoZNCDibUGkPdORWHGS0fCvdQwxkt9ZZbvBtSqeIEqBA/VuIYHwO8FRrxChpXvAOssTQ95dwCDnTDIGnSetpZj2v5X9BuKUxI7G3WBjUHjj447eD2yP+5jzI/n//eF8KAgJs/GTj39iqnS9K4tLC89pGS4FSBLcmz/qByj9Sz9m46OL4Rar+/wHNw06a+1PokNSWxwURUido2lTPKl6Q/Dj0T6AsQ1/xhkStPjAlvb+NmIP4PM0czCKFaltmwM9THeIEsVMx1UmSRXsGoV3zu1as8QH1nDx+MxIk6+MaeH6jbPRSa2Pk2IHUcg7cp6I1vLxWY9b0QKL5eQXQOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ve61G4Nek9TAyl2HzyZxby6HMB4uDnaxUE8ZGsqYqAM=;
- b=Do71/r5h41XgL6hQF3/rXno93AzjQqXT7iRDX2ctUOZer6N/wJhmntT3+F+CRYyfljXfJUskCFeR6eySI6luMhSt2PQ4RycO1ylBoGwqHngBlkmVYDXXNbCSRkBVKC5EdNXOK0pYfUjfIWiBtpmKSx3COGRXn41hwjI5HDpfgdoBTfLHLDym0r1xdb2HMnNyEeX/VwNscci2mUlq9GsAZ3+lbjFlToAAz+SSZphPklJ6DG6In6hLUN51OSQ/RjTFOgaWwrGRGP0ToEpDr0YDVAxKHSDqGWvNy3eac9aKp2NLAXHPufIRsmgLOyHWOaP4+9DxV7BF9FObLIebUMFUwQ==
+ bh=4J9zSYqLIpl9UOeKgGOg6FkQ1Vuqw0okYDEyM5cptTM=;
+ b=UNjEgq8kUE2L5JVUxfwG+bEKKFCFy8krtGL4/Ix1chhIHAR9Ehj21D4aoLyOWg46XcBMMto6ws9FZO2BWG/XrrsGnrcmVh4XBrx8YuUgnGBcRX/OVQDBrptk/qBUy4+Th8MpZd3dLiZC6ToSDA2DTvu+4KLfBuYD51HgOXej72CzmSPr4dSIlxWoMWZ02x23DWuTRqymJnXd4BUrY13aceYUiqm1JOFYjgFQfvEKzbUZN1oMCXnb45XXCW5T+NL8kKp4pu3ml/1UOTzIJ76F9B9FzuiLon/RUK1cS2TtQAO78LY1hTFT52qzWxvA1Exn2LeRvBYDTBB9axZaNnwv1w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by PH7PR11MB6329.namprd11.prod.outlook.com (2603:10b6:510:1ff::7)
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com (2603:10b6:300:10c::20)
+ by MN6PR11MB8196.namprd11.prod.outlook.com (2603:10b6:208:47b::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.31; Thu, 13 Apr
- 2023 17:25:12 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::3541:e31b:6f64:d993]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::3541:e31b:6f64:d993%9]) with mapi id 15.20.6298.030; Thu, 13 Apr 2023
- 17:25:12 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Rob Clark
- <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul
- <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
-Thread-Topic: [PATCH v4 08/12] drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC
- parameters
-Thread-Index: AQHZZg4E678Q93xMIEubQF7hjIB+v68pjVtw
-Date: Thu, 13 Apr 2023 17:25:11 +0000
-Message-ID: <SN7PR11MB675048DBEDFE8CD781628198E3989@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20230403092313.235320-1-dmitry.baryshkov@linaro.org>
- <20230403092313.235320-9-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230403092313.235320-9-dmitry.baryshkov@linaro.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30; Thu, 13 Apr
+ 2023 17:25:15 +0000
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::47e0:df10:25c7:ce5f]) by MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::47e0:df10:25c7:ce5f%7]) with mapi id 15.20.6298.030; Thu, 13 Apr 2023
+ 17:25:15 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/3] drm/i915: Evade transcoder's vblank when
+ doing seamless M/N changes
+Thread-Index: AQHZZx6OHgdLvX5US0qBLoChCHelra8pizzA
+Date: Thu, 13 Apr 2023 17:25:14 +0000
+Message-ID: <MWHPR11MB1935B230BBFD78658DC32D00B2989@MWHPR11MB1935.namprd11.prod.outlook.com>
+References: <20230404175431.23064-1-ville.syrjala@linux.intel.com>
+ <20230404175431.23064-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230404175431.23064-2-ville.syrjala@linux.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -92,60 +82,69 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH7PR11MB6329:EE_
-x-ms-office365-filtering-correlation-id: 86d0ce2c-8a04-4235-0f4b-08db3c4409a3
+x-ms-traffictypediagnostic: MWHPR11MB1935:EE_|MN6PR11MB8196:EE_
+x-ms-office365-filtering-correlation-id: 6c716fc3-e4f7-473e-4d99-08db3c440b4f
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TEj8mMrqBWvQ+EI/axDlw2CwNBb4TIeHsfBYLck3Of2QQDkCZGSRygmQv7rMsafhrYIXmRCj4VOiTEC50keRprXE3pHX69ABNideHmuYGIIWEPQ8F1soxXiISA9mER+6jnzE4El+bDHtz0hiiBpxo97O2snKr+huTP6SQDoMTv7U1PK5H2E7LjGAnCtU1/GN3GZ+lcXU/gpDyoK8vwUJyUuKWzYuTc8lo87D6T/jZHVF3YQJhkk4MQ5VfLN+fKLNTIQbmre8/g7nILMSaZ2xQG4q29Z6kKbeBvYFNkOpUhExx44lV6qTBwHz9JDSyCZhVdXMk2HHghNChg3YZTsRz5W3ncjLEY9B37mQgFEkoQuPUnt0+dEkRabeN6Qsq9FvV9HipQro1jQl27t7Tp3ZRFY0sOhmMc7Dy8FqIG6HMk0QsRzbOqWqkQYQX2h1/n5oSUS7ZK8hYC82ip8HTBkvSiyvgHHB9kPigZ/Hd1n2toAEmt4kHQH+XE9hnNsd2VuhlqbwuMq81Zb/yVFLJljYaGJPU1X+MCYMQth55sQ/6N0VFxsgqOtkeP8XkNlP0PZ5qndYj22Ee9NkIRaX0uDsRLbc1YPAcRULiOfD6eYuzIhtapJkmTTdifsEtOKPrTrcGvrghg/XMweRNEZcxnvehQ==
+x-microsoft-antispam-message-info: M+m1WU941EhdpVUFFmDNywUFSaLfZP44TuVdGLoXbN7HBgr+nMf6u/BaC57Qc5IxylDdE/m6qcAhE6D4mbi6nkB2Cw+AirnRtJ/NiN6aug0UZ4vs5XDYZEJMTwYOr3DTdvexYD5w63yGTOLzQs24pE/3hXyELnA45CQ86Wkl/+XAMnZehSS8f62/T/OyWXOexYdm5MMutONurkA4lTKXYOHbZmnlq8I3T/wBLnuHNlTt8ZvTZCPmHna4BM2dsu79bnSCUE8ZkoVSFfVI1ddNJtJguigE3vWynuLEzhmETV7ptHLqtmhnWIG5NJnesRsUlaBywP0plNoBycQorzVowUR5Bxk901jlbxgQ0+7tB/5OFnsEfT3C02EFPVGQfxrhTlLFowWTClm1Uu8sTnxFCn34HvanUgR6Y176wC28pAnsoa6nKLwnAa2bWWm2p3oqdfeAV+PUZXjFN+jden3kekm9P2AqR5S3qIfufvIJGlSKzGLi9JJjuwIzWG+gVICFeoMqw8X6e4s3YiHtYAiRXhNWNrZML3NztNFVYUjPvjkv9rKNEJRwS6WUVTLRKOrugtlSKXsdGJabQ2kSe+Sof7RwsJXcxzHeM5mM6/PCCdcWzjaG0WjJkWZRjuYgT90e
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(6029001)(366004)(136003)(39860400002)(376002)(346002)(396003)(451199021)(82960400001)(8676002)(55016003)(64756008)(122000001)(38100700002)(921005)(5660300002)(38070700005)(2906002)(41300700001)(30864003)(66446008)(52536014)(33656002)(8936002)(86362001)(66946007)(66556008)(7416002)(186003)(110136005)(76116006)(4326008)(6506007)(26005)(9686003)(316002)(54906003)(7696005)(71200400001)(478600001)(66476007)(579004);
+ IPV:NLI; SFV:NSPM; H:MWHPR11MB1935.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(396003)(366004)(346002)(376002)(39860400002)(451199021)(33656002)(76116006)(66574015)(83380400001)(26005)(71200400001)(478600001)(186003)(9686003)(55236004)(53546011)(7696005)(6506007)(52536014)(2906002)(38100700002)(38070700005)(122000001)(4326008)(66476007)(66556008)(66946007)(6916009)(82960400001)(41300700001)(66446008)(55016003)(8936002)(86362001)(64756008)(5660300002)(8676002)(316002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?3BAfkV9YY2LfLuuJLMr5aLdFNYqNPI6Dg+DlBaCSIFXl1gDp7pPgjNLc47?=
- =?iso-8859-1?Q?QoPEao2xJmFC7xYQXtr69hbJ3Txsm1phkyyGfwX3OkxxwjiVk55OnT+VbM?=
- =?iso-8859-1?Q?GFrEgewf4LwBaJPUn/PNLCJ0kXZB8LnGSx6pgEx6RQqyudkNBNHquAKtci?=
- =?iso-8859-1?Q?cdA3pKAsvo3DLgLYMZYpBx+aPzGgYeBqJuqABFmcC6hAnCuxkysXqmg1E4?=
- =?iso-8859-1?Q?z0pNf5Pov3vzRyAgSn/D1AcnZLAh1hWP8tXnubdQ33zQwKFNvp4b2vh8jQ?=
- =?iso-8859-1?Q?+gHAtJCwSYQ24rAREmMs73CRDHNQf84kynUaYKKTcT6q5HL3TutgmF5xvW?=
- =?iso-8859-1?Q?SsPsXUHz9f/1EpYg5Uqvfe0wWD2OaHODDOGFdXL94nSKsZGuzRb+P2fLoK?=
- =?iso-8859-1?Q?cUKuyU9FLWSvH+Z+AjwXNumfUgCzCcJYO+2zgLtpCw60qgI0jMUYcxZpN0?=
- =?iso-8859-1?Q?QcqyHvLhtNZMfK43NoI5niq24HIJb5onqy3wYglfCE6Dz3aElPbQsnWgQS?=
- =?iso-8859-1?Q?j4HABw5FwBTnjd8NBGsHMtwqs5tn2ifJYQ9aN0q7FZ4hO2Bei1CMZe3Lkv?=
- =?iso-8859-1?Q?VyriP5A6GY8rRd3I6Xhgt0XH49E4bIA0XZY0FA/mTOK/sUsSw2xiqj5FNt?=
- =?iso-8859-1?Q?WatAMiytoQQExiD2mKbjC0dqX5+Ed1liV3hDOIRCZjgoIgcoqg8gcQ3z00?=
- =?iso-8859-1?Q?JqTquzNGqnKZgK4t/ffec2UGE42HMkErhNhVx4ho6qaa1zEfhq1YQH+Tsa?=
- =?iso-8859-1?Q?OtouRDhiotmJQ4cDHlqBDl36NfXPujDFYeAscxip/h/Kh8dEeMztRNBMuF?=
- =?iso-8859-1?Q?l0Owwuw+g4E6O7UsUGVe+osa6+9QuzUd5T1ZWs4XdW54ZpisAIpJtBL5rQ?=
- =?iso-8859-1?Q?2eZjgVXGci+ghi6scplY2jLuPXScmqCDqu7giRWAmqHxDx60O5jLwtmIeH?=
- =?iso-8859-1?Q?XWZz0xrg+lOJNOLlCmMs/rdmSYYfLLiprxq3BqAjA5fEGcgDBmGY51cjEA?=
- =?iso-8859-1?Q?G1YTgUEXB2jtOvQvp5GWY6PuCpkOoqMZZRhg8sHm4uBBgaXF9x0Qj+1S4F?=
- =?iso-8859-1?Q?WuMRh2GxmWUT85hHvNlaAqpmaRvPWQrxU3rW8nE/aX2bDZY3pPTOVUrst+?=
- =?iso-8859-1?Q?t3/7i9UqnjRvI0phEFCuU8oJ7TGVFthdrZLTR9vCZkr3RZWeGcPaQnMZZg?=
- =?iso-8859-1?Q?6Ajv8oxWOuZmC6fDTsyyqBsko1F6kSxxcfOhsa3ZH/oCe4tVD9YU0ivNKr?=
- =?iso-8859-1?Q?KNQvzo5lFJx/pKvE5fXzjqBZyg983C96MbHsXjRYihqsx7FrotkMgr2I45?=
- =?iso-8859-1?Q?ssmHf5pTBpbXQu6tv5Y9RuFrOlUy5jiAU4gRYptyVv2F1tUKXRhD7AV39n?=
- =?iso-8859-1?Q?LnZrmjt7ot+c+OxevE1CMtXvMiqH+OmzY95VY6tESfbOPTiuThGi8a01+3?=
- =?iso-8859-1?Q?WFxwPg4/tNuSQmsG9CkcyTgVsquhnG40obPGXzQ5G7PGWFR4KUWt1kl6qg?=
- =?iso-8859-1?Q?RK5X4zzCXBnAjgRLbSjV0fLfHJ1+UCQssVmjmeOtcIANpGCgh/erJqc0X3?=
- =?iso-8859-1?Q?NtunU3C0+nuh8OO0jyZsE2K5HgetNmBfUX8Gi8CrEgzwBTep4tcq3ubZ/E?=
- =?iso-8859-1?Q?eZFNuSmdaZsD1vHwJDyRJxqrxcNccrKG2i?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SXFKQzI3T3pLVTJZcUhKdFZ1TzNhWnJtTjhMc2pMdWpzVFZzYUZPdnZHamsr?=
+ =?utf-8?B?Nm9BNkN1eWV6VXZFaXNjYml3QzZaUFNITHFwZjVyYkJCeVdmWkNJb3VRcWJz?=
+ =?utf-8?B?YnphZ2FSYk1aOFdHNFg3TGI4VndZOC84TnZGQ0NUcllQNWVrc2svR2lzRWxo?=
+ =?utf-8?B?QjRjRmp3K3NPRW9rNWpkRzV3NGwrc2FybDFFQWZiSXFYcW53eXJJcjF1WEtV?=
+ =?utf-8?B?b0wxbkVHR0o3MUVzbmM2Ym9PS1NiS0NjckhxaDBHNGgxM2svNmhrbzhtbUEw?=
+ =?utf-8?B?T2ZHUjhlUk9XV3M2WmRaNmhaWmxVbS9ZVHFaVG9QSkRCVWVlNkR4WE1CbWMy?=
+ =?utf-8?B?cUpZay92bHlZRzdwREpBa3YvTGVKOG04c1hSV2FzQ0Y4NzlJclZXbVVxeEtz?=
+ =?utf-8?B?NVZUSTduNzZhTEdOU0dXb0ErWkhBK1kwUXVuODJ6WHZvbkl0K3ZEbkhUSGgx?=
+ =?utf-8?B?K1c3VDUwRi8vRGl0aFZad3RxWjdUbHAxZHNVem5WUmx5R2FjMDYrZ0t0cU9L?=
+ =?utf-8?B?WTFaYXdhUTlGM0lTalhTZTc4RGI1czZENjczMWdJQnNNT0lCeDZsQTJLL1R2?=
+ =?utf-8?B?RjNzTXBGemJseW1Pd05xcHpKbWdDUE03ek1ENGlkU09tNlNzb0t3eEJPaXY1?=
+ =?utf-8?B?RHpOYVNITjF6NE0xZHVoakRqdStTVjN6eFlJSnBMUWx1RUQxSGdDMzFkQVdt?=
+ =?utf-8?B?VVlrN3R3cDZWUm9JL3RENXlOTEM3N1p2Yml1RUpEdTJwMHJGc283ajBwaVZH?=
+ =?utf-8?B?UEQ2WDViY0dadG1FQ2k4TDNBZEkzRzJ0OGdtV1VZaTA1dzFSQzNML3d1V0R1?=
+ =?utf-8?B?UXRkWVovUlp5dmdpeHQrQmhFVm4wYm11eVNXMHdRUDdBUmdRbHdCc1dBWmxS?=
+ =?utf-8?B?KzBXUFRRbTYwRUptSlJnL1hRZ3RtNjg3QzFBbGJFb0QzcExYNys0YkovZHhY?=
+ =?utf-8?B?alRIZFltT2YvZncyOWVNTTViNDlxQjdFSkt4QnFVV1ZLTE9wTmVyMGZKVlcv?=
+ =?utf-8?B?SmtoTzdINkgrTkpLNEhBc2FLQ0lFQWtpMlg3dVErOUw2ejExQVhhM1drdkNC?=
+ =?utf-8?B?akE1dWJ0MmNTSzRYbXJYU1RwWXlmV2M0ZTN1QkVFcU1uSkxBQjVoU20xdlV6?=
+ =?utf-8?B?K1Q3KzFIc01Wak9mYnJVUW9ZRmsvQ3pLb0ZXZkdPUHJ1MW9oaE1ONTZub0Ri?=
+ =?utf-8?B?amtZZHc0dERvSnpULzZkR3JGU2ZoMkRqVjN2KzdnVGd2b0lFZmNiV3UwUHI3?=
+ =?utf-8?B?Ry9pbHdXQ3lrajliU1JoOGx6dy9nYndsSXhRMUpXcEFOQ2tBWklPS0RZS2dM?=
+ =?utf-8?B?RUxWL3BnSEsvTkFLT2tTMDB6TWdVSXVZNkpER1lPOWcxdCtYb0NVVlU4dC82?=
+ =?utf-8?B?S2dXNWZwaC9XNERrSGtDcDNGSERTK2tlOGVteWVRTit1Y09BOXdqbnB1bzRJ?=
+ =?utf-8?B?QWVMaGt1SStJaE50Tkl1M0xOdllGNVRJNFZnRDFzUk1GMHhnUlZ6ZmJ0ME1Z?=
+ =?utf-8?B?SkpFdysyY3ZGV0tlRnJpWDlwbEJjaW1RbmRPTHRJU2JzQTZzaGZ0M1dTc1hG?=
+ =?utf-8?B?NVh5RW1OakZoQlJmNzhEU2ZPVy9BUktDMXFkZkh3U1owSVBWVWN6QmVxNDJE?=
+ =?utf-8?B?MTZkbVlvQTQzRWlRbEJYUEU4cTVLK2xFWm1ZRVk1TFpBZmk5TnNGTklBYWZo?=
+ =?utf-8?B?Zm1rMm5jK0pYcnVpcTlRWmkvc2lkaFdHNnZqc2VaaFFLeStvNDJTczhoWUta?=
+ =?utf-8?B?T01BdFhpaThxQ01ZempHZmdGMG44ZlZjeWQzZnpqV3ljeENYblN5TTY4dHZt?=
+ =?utf-8?B?V1ozMlRsNE4ySEhNR0J4V1hpd0pMRU5jQ1JCTG5rd0Y0eXJTUFJvRURoUXlM?=
+ =?utf-8?B?L0Y0OTR3UEw3Rm0yVk9IVlVTWnF2d1RlYUlxenJaSnByVmR5ZFlueVd1UTd2?=
+ =?utf-8?B?OHk4bHpsUDBLTzJsT2FBWkdJSDBLeWtZTUxySzNIc1UyS0VDRGM4dnQ4TkEx?=
+ =?utf-8?B?c1VCcHhJMmhnV1hIb1RnYk9Tb3ZBNWtibEEySVlycUNlY3lsakl3TDFaZng2?=
+ =?utf-8?B?enJPcGJYdmxLYml4STdKTXgwZnBHY1Iva0tCdys4NEhIbjVkMHhKT0FNZEIw?=
+ =?utf-8?B?T1pBMG5TeDBmWmd1c1d2MHozTkxTcXNaUzlHWHg4M3Ywa3FXUWM2Y0krazJ2?=
+ =?utf-8?Q?ccw0Fx991/tPTMK8PUbeHbo=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86d0ce2c-8a04-4235-0f4b-08db3c4409a3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2023 17:25:11.9822 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1935.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c716fc3-e4f7-473e-4d99-08db3c440b4f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2023 17:25:14.8126 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iT20G59Qz+0B3Xo/0rRc05gv5FN0PRAgJr8o4cvld5vcQMlBlW3hasR1OB1P81mPj7Mzeq6FgvMWhOZwLjp6iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6329
+X-MS-Exchange-CrossTenant-userprincipalname: pqthSPmPJ4dsOEF/fPKTttPRWxJ3USW2Y2J2Z3n2JrCzFIbrrqnOTnDjK02nIZ1dD3xSXsQ1kHxAjwrb3VPQ3KorGsH7PPwrKWndWrEyyGOpViQZSdRL/d4n5nlIUHqB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8196
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 08/12] drm/display/dsc: add YCbCr 4:2:2
- and 4:2:0 RC parameters
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Evade transcoder's vblank
+ when doing seamless M/N changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,501 +157,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-> Include RC parameters for YCbCr 4:2:2 and 4:2:0 configurations.
->=20
-
-Looks Good to me
-
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/display/drm_dsc_helper.c | 438
-> +++++++++++++++++++++++
->  include/drm/display/drm_dsc_helper.h     |   2 +
->  2 files changed, 440 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_dsc_helper.c
-> b/drivers/gpu/drm/display/drm_dsc_helper.c
-> index aec6f8c201af..65e810a54257 100644
-> --- a/drivers/gpu/drm/display/drm_dsc_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dsc_helper.c
-> @@ -740,6 +740,438 @@ static const struct rc_parameters_data
-> rc_parameters_1_2_444[] =3D {
->  	{ /* sentinel */ }
->  };
->=20
-> +static const struct rc_parameters_data rc_parameters_1_2_422[] =3D {
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 8,
-> +		{ 512, 15, 6144, 3, 12, 11, 11, {
-> +			{ 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 10, -10 }, { 5, 11, -12 },
-> +			{ 5, 11, -12 }, { 9, 12, -12 }, { 12, 13, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 10,
-> +		{ 512, 15, 6144, 7, 16, 15, 15, {
-> +			{ 0, 8, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
-> +			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 14, -10 }, { 9, 15, -12 },
-> +			{ 9, 15, -12 }, { 13, 16, -12 }, { 16, 17, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 12,
-> +		{ 512, 15, 6144, 11, 20, 19, 19, {
-> +			{ 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
-> +			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 18, -10 },
-> +			{ 13, 19, -12 }, { 13, 19, -12 }, { 17, 20, -12 },
-> +			{ 20, 21, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 14,
-> +		{ 512, 15, 6144, 15, 24, 23, 23, {
-> +			{ 0, 12, 2 }, { 5, 13, 0 }, { 11, 15, 0 }, { 12, 17, -2 },
-> +			{ 15, 19, -4 }, { 15, 19, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 21, -8 }, { 15, 22, -10 }, { 17, 22, -10 },
-> +			{ 17, 23, -12 }, { 17, 23, -12 }, { 21, 24, -12 },
-> +			{ 24, 25, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 16,
-> +		{ 512, 15, 6144, 19, 28, 27, 27, {
-> +			{ 0, 12, 2 }, { 6, 14, 0 }, { 13, 17, 0 }, { 15, 20, -2 },
-> +			{ 19, 23, -4 }, { 19, 23, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 25, -8 }, { 19, 26, -10 }, { 21, 26, -10 },
-> +			{ 21, 27, -12 }, { 21, 27, -12 }, { 25, 28, -12 },
-> +			{ 28, 29, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(7), .bpc =3D 8,
-> +		{ 410, 15, 5632, 3, 12, 11, 11, {
-> +			{ 0, 3, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 2, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 9, -8 }, { 3, 9, -10 }, { 5, 10, -10 }, { 5, 10, -10 },
-> +			{ 5, 11, -12 }, { 7, 11, -12 }, { 11, 12, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(7), .bpc =3D 10,
-> +		{ 410, 15, 5632, 7, 16, 15, 15, {
-> +			{ 0, 7, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 6, 10, -2 },
-> +			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 13, -8 }, { 7, 13, -10 }, { 9, 14, -10 }, { 9, 14, -10 },
-> +			{ 9, 15, -12 }, { 11, 15, -12 }, { 15, 16, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(7), .bpc =3D 12,
-> +		{ 410, 15, 5632, 11, 20, 19, 19, {
-> +			{ 0, 11, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 10, 14, -2 },
-> +			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 17, -8 }, { 11, 17, -10 }, { 13, 18, -10 },
-> +			{ 13, 18, -10 }, { 13, 19, -12 }, { 15, 19, -12 },
-> +			{ 19, 20, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(7), .bpc =3D 14,
-> +		{ 410, 15, 5632, 15, 24, 23, 23, {
-> +			{ 0, 11, 2 }, { 5, 13, 0 }, { 11, 15, 0 }, { 13, 18, -2 },
-> +			{ 15, 19, -4 }, { 15, 19, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 21, -8 }, { 15, 21, -10 }, { 17, 22, -10 },
-> +			{ 17, 22, -10 }, { 17, 23, -12 }, { 19, 23, -12 },
-> +			{ 23, 24, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(7), .bpc =3D 16,
-> +		{ 410, 15, 5632, 19, 28, 27, 27, {
-> +			{ 0, 11, 2 }, { 6, 14, 0 }, { 13, 17, 0 }, { 16, 20, -2 },
-> +			{ 19, 23, -4 }, { 19, 23, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 25, -8 }, { 19, 25, -10 }, { 21, 26, -10 },
-> +			{ 21, 26, -10 }, { 21, 27, -12 }, { 23, 27, -12 },
-> +			{ 27, 28, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 8,
-> +		{ 341, 15, 2048, 3, 12, 11, 11, {
-> +			{ 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 8, -8 }, { 3, 9, -10 }, { 5, 9, -10 }, { 5, 9, -12 },
-> +			{ 5, 9, -12 }, { 7, 10, -12 }, { 10, 11, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 10,
-> +		{ 341, 15, 2048, 7, 16, 15, 15, {
-> +			{ 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
-> +			{ 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 12, -8 }, { 7, 13, -10 }, { 9, 13, -10 }, { 9, 13, -12 },
-> +			{ 9, 13, -12 }, { 11, 14, -12 }, { 14, 15, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 12,
-> +		{ 341, 15, 2048, 11, 20, 19, 19, {
-> +			{ 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
-> +			{ 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 16, -8 }, { 11, 17, -10 }, { 13, 17, -10 },
-> +			{ 13, 17, -12 }, { 13, 17, -12 }, { 15, 18, -12 },
-> +			{ 18, 19, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 14,
-> +		{ 341, 15, 2048, 15, 24, 23, 23, {
-> +			{ 0, 6, 2 }, { 7, 10, 0 }, { 9, 13, 0 }, { 11, 16, -2 },
-> +			{ 14, 17, -4 }, { 15, 18, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 20, -8 }, { 15, 21, -10 }, { 17, 21, -10 },
-> +			{ 17, 21, -12 }, { 17, 21, -12 }, { 19, 22, -12 },
-> +			{ 22, 23, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 16,
-> +		{ 341, 15, 2048, 19, 28, 27, 27, {
-> +			{ 0, 6, 2 }, { 6, 11, 0 }, { 11, 15, 0 }, { 14, 18, -2 },
-> +			{ 18, 21, -4 }, { 19, 22, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 24, -8 }, { 19, 25, -10 }, { 21, 25, -10 },
-> +			{ 21, 25, -12 }, { 21, 25, -12 }, { 23, 26, -12 },
-> +			{ 26, 27, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(10), .bpc =3D 8,
-> +		{ 273, 15, 2048, 3, 12, 11, 11, {
-> +			{ 0, 0, 10 }, { 0, 1, 8 }, { 0, 1, 6 }, { 0, 2, 4 },
-> +			{ 1, 2, 2 }, { 1, 3, 0 }, { 1, 3, -2 }, { 2, 4, -4 },
-> +			{ 2, 5, -6 }, { 3, 5, -8 }, { 4, 6, -10 }, { 4, 7, -10 },
-> +			{ 5, 7, -12 }, { 7, 8, -12 }, { 8, 9, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(10), .bpc =3D 10,
-> +		{ 273, 15, 2048, 7, 16, 15, 15, {
-> +			{ 0, 2, 10 }, { 2, 5, 8 }, { 3, 5, 6 }, { 4, 6, 4 },
-> +			{ 5, 6, 2 }, { 5, 7, 0 }, { 5, 7, -2 }, { 6, 8, -4 },
-> +			{ 6, 9, -6 }, { 7, 9, -8 }, { 8, 10, -10 }, { 8, 11, -10 },
-> +			{ 9, 11, -12 }, { 11, 12, -12 }, { 12, 13, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(10), .bpc =3D 12,
-> +		{ 273, 15, 2048, 11, 20, 19, 19, {
-> +			{ 0, 4, 10 }, { 2, 7, 8 }, { 4, 9, 6 }, { 6, 11, 4 },
-> +			{ 9, 11, 2 }, { 9, 11, 0 }, { 9, 12, -2 }, { 10, 12, -4 },
-> +			{ 11, 13, -6 }, { 11, 13, -8 }, { 12, 14, -10 },
-> +			{ 13, 15, -10 }, { 13, 15, -12 }, { 15, 16, -12 },
-> +			{ 16, 17, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(10), .bpc =3D 14,
-> +		{ 273, 15, 2048, 15, 24, 23, 23, {
-> +			{ 0, 4, 10 }, { 3, 8, 8 }, { 6, 11, 6 }, { 9, 14, 4 },
-> +			{ 13, 15, 2 }, { 13, 15, 0 }, { 13, 16, -2 }, { 14, 16, -4 },
-> +			{ 15, 17, -6 }, { 15, 17, -8 }, { 16, 18, -10 },
-> +			{ 17, 19, -10 }, { 17, 19, -12 }, { 19, 20, -12 },
-> +			{ 20, 21, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(10), .bpc =3D 16,
-> +		{ 273, 15, 2048, 19, 28, 27, 27, {
-> +			{ 0, 4, 10 }, { 4, 9, 8 }, { 8, 13, 6 }, { 12, 17, 4 },
-> +			{ 17, 19, 2 }, { 17, 20, 0 }, { 17, 20, -2 }, { 18, 20, -4 },
-> +			{ 19, 21, -6 }, { 19, 21, -8 }, { 20, 22, -10 },
-> +			{ 21, 23, -10 }, { 21, 23, -12 }, { 23, 24, -12 },
-> +			{ 24, 25, -12 }
-> +			}
-> +		}
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +
-> +static const struct rc_parameters_data rc_parameters_1_2_420[] =3D {
-> +	{
-> +		.bpp =3D DSC_BPP(4), .bpc =3D 8,
-> +		{ 512, 12, 6144, 3, 12, 11, 11, {
-> +			{ 0, 4, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 9, -8 }, { 3, 10, -10 }, { 5, 10, -10 }, { 5, 11, -12 },
-> +			{ 5, 11, -12 }, { 9, 12, -12 }, { 12, 13, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(4), .bpc =3D 10,
-> +		{ 512, 12, 6144, 7, 16, 15, 15, {
-> +			{ 0, 8, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 5, 10, -2 },
-> +			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 13, -8 }, { 7, 14, -10 }, { 9, 14, -10 }, { 9, 15, -12 },
-> +			{ 9, 15, -12 }, { 13, 16, -12 }, { 16, 17, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(4), .bpc =3D 12,
-> +		{ 512, 12, 6144, 11, 20, 19, 19, {
-> +			{ 0, 12, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 9, 14, -2 },
-> +			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 17, -8 }, { 11, 18, -10 }, { 13, 18, -10 },
-> +			{ 13, 19, -12 }, { 13, 19, -12 }, { 17, 20, -12 },
-> +			{ 20, 21, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(4), .bpc =3D 14,
-> +		{ 512, 12, 6144, 15, 24, 23, 23, {
-> +			{ 0, 12, 2 }, { 5, 13, 0 }, { 11, 15, 0 }, { 12, 17, -2 },
-> +			{ 15, 19, -4 }, { 15, 19, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 21, -8 }, { 15, 22, -10 }, { 17, 22, -10 },
-> +			{ 17, 23, -12 }, { 17, 23, -12 }, { 21, 24, -12 },
-> +			{ 24, 25, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(4), .bpc =3D 16,
-> +		{ 512, 12, 6144, 19, 28, 27, 27, {
-> +			{ 0, 12, 2 }, { 6, 14, 0 }, { 13, 17, 0 }, { 15, 20, -2 },
-> +			{ 19, 23, -4 }, { 19, 23, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 25, -8 }, { 19, 26, -10 }, { 21, 26, -10 },
-> +			{ 21, 27, -12 }, { 21, 27, -12 }, { 25, 28, -12 },
-> +			{ 28, 29, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(5), .bpc =3D 8,
-> +		{ 410, 15, 5632, 3, 12, 11, 11, {
-> +			{ 0, 3, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 2, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 9, -8 }, { 3, 9, -10 }, { 5, 10, -10 }, { 5, 10, -10 },
-> +			{ 5, 11, -12 }, { 7, 11, -12 }, { 11, 12, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(5), .bpc =3D 10,
-> +		{ 410, 15, 5632, 7, 16, 15, 15, {
-> +			{ 0, 7, 2 }, { 4, 8, 0 }, { 5, 9, 0 }, { 6, 10, -2 },
-> +			{ 7, 11, -4 }, { 7, 11, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 13, -8 }, { 7, 13, -10 }, { 9, 14, -10 }, { 9, 14, -10 },
-> +			{ 9, 15, -12 }, { 11, 15, -12 }, { 15, 16, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(5), .bpc =3D 12,
-> +		{ 410, 15, 5632, 11, 20, 19, 19, {
-> +			{ 0, 11, 2 }, { 4, 12, 0 }, { 9, 13, 0 }, { 10, 14, -2 },
-> +			{ 11, 15, -4 }, { 11, 15, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 17, -8 }, { 11, 17, -10 }, { 13, 18, -10 },
-> +			{ 13, 18, -10 }, { 13, 19, -12 }, { 15, 19, -12 },
-> +			{ 19, 20, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(5), .bpc =3D 14,
-> +		{ 410, 15, 5632, 15, 24, 23, 23, {
-> +			{ 0, 11, 2 }, { 5, 13, 0 }, { 11, 15, 0 }, { 13, 18, -2 },
-> +			{ 15, 19, -4 }, { 15, 19, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 21, -8 }, { 15, 21, -10 }, { 17, 22, -10 },
-> +			{ 17, 22, -10 }, { 17, 23, -12 }, { 19, 23, -12 },
-> +			{ 23, 24, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(5), .bpc =3D 16,
-> +		{ 410, 15, 5632, 19, 28, 27, 27, {
-> +			{ 0, 11, 2 }, { 6, 14, 0 }, { 13, 17, 0 }, { 16, 20, -2 },
-> +			{ 19, 23, -4 }, { 19, 23, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 25, -8 }, { 19, 25, -10 }, { 21, 26, -10 },
-> +			{ 21, 26, -10 }, { 21, 27, -12 }, { 23, 27, -12 },
-> +			{ 27, 28, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 8,
-> +		{ 341, 15, 2048, 3, 12, 11, 11, {
-> +			{ 0, 2, 2 }, { 0, 4, 0 }, { 1, 5, 0 }, { 1, 6, -2 },
-> +			{ 3, 7, -4 }, { 3, 7, -6 }, { 3, 7, -8 }, { 3, 8, -8 },
-> +			{ 3, 8, -8 }, { 3, 9, -10 }, { 5, 9, -10 }, { 5, 9, -12 },
-> +			{ 5, 9, -12 }, { 7, 10, -12 }, { 10, 12, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 10,
-> +		{ 341, 15, 2048, 7, 16, 15, 15, {
-> +			{ 0, 2, 2 }, { 2, 5, 0 }, { 3, 7, 0 }, { 4, 8, -2 },
-> +			{ 6, 9, -4 }, { 7, 10, -6 }, { 7, 11, -8 }, { 7, 12, -8 },
-> +			{ 7, 12, -8 }, { 7, 13, -10 }, { 9, 13, -10 }, { 9, 13, -12 },
-> +			{ 9, 13, -12 }, { 11, 14, -12 }, { 14, 15, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 12,
-> +		{ 341, 15, 2048, 11, 20, 19, 19, {
-> +			{ 0, 6, 2 }, { 4, 9, 0 }, { 7, 11, 0 }, { 8, 12, -2 },
-> +			{ 10, 13, -4 }, { 11, 14, -6 }, { 11, 15, -8 }, { 11, 16, -8 },
-> +			{ 11, 16, -8 }, { 11, 17, -10 }, { 13, 17, -10 },
-> +			{ 13, 17, -12 }, { 13, 17, -12 }, { 15, 18, -12 },
-> +			{ 18, 19, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 14,
-> +		{ 341, 15, 2048, 15, 24, 23, 23, {
-> +			{ 0, 6, 2 }, { 7, 10, 0 }, { 9, 13, 0 }, { 11, 16, -2 },
-> +			{ 14, 17, -4 }, { 15, 18, -6 }, { 15, 19, -8 }, { 15, 20, -8 },
-> +			{ 15, 20, -8 }, { 15, 21, -10 }, { 17, 21, -10 },
-> +			{ 17, 21, -12 }, { 17, 21, -12 }, { 19, 22, -12 },
-> +			{ 22, 23, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(6), .bpc =3D 16,
-> +		{ 341, 15, 2048, 19, 28, 27, 27, {
-> +			{ 0, 6, 2 }, { 6, 11, 0 }, { 11, 15, 0 }, { 14, 18, -2 },
-> +			{ 18, 21, -4 }, { 19, 22, -6 }, { 19, 23, -8 }, { 19, 24, -8 },
-> +			{ 19, 24, -8 }, { 19, 25, -10 }, { 21, 25, -10 },
-> +			{ 21, 25, -12 }, { 21, 25, -12 }, { 23, 26, -12 },
-> +			{ 26, 27, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 8,
-> +		{ 256, 15, 2048, 3, 12, 11, 11, {
-> +			{ 0, 0, 10 }, { 0, 1, 8 }, { 0, 1, 6 }, { 0, 2, 4 },
-> +			{ 1, 2, 2 }, { 1, 3, 0 }, { 1, 3, -2 }, { 2, 4, -4 },
-> +			{ 2, 5, -6 }, { 3, 5, -8 }, { 4, 6, -10 }, { 4, 7, -10 },
-> +			{ 5, 7, -12 }, { 7, 8, -12 }, { 8, 9, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 10,
-> +		{ 256, 15, 2048, 7, 16, 15, 15, {
-> +			{ 0, 2, 10 }, { 2, 5, 8 }, { 3, 5, 6 }, { 4, 6, 4 },
-> +			{ 5, 6, 2 }, { 5, 7, 0 }, { 5, 7, -2 }, { 6, 8, -4 },
-> +			{ 6, 9, -6 }, { 7, 9, -8 }, { 8, 10, -10 }, { 8, 11, -10 },
-> +			{ 9, 11, -12 }, { 11, 12, -12 }, { 12, 13, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 12,
-> +		{ 256, 15, 2048, 11, 20, 19, 19, {
-> +			{ 0, 4, 10 }, { 2, 7, 8 }, { 4, 9, 6 }, { 6, 11, 4 },
-> +			{ 9, 11, 2 }, { 9, 11, 0 }, { 9, 12, -2 }, { 10, 12, -4 },
-> +			{ 11, 13, -6 }, { 11, 13, -8 }, { 12, 14, -10 },
-> +			{ 13, 15, -10 }, { 13, 15, -12 }, { 15, 16, -12 },
-> +			{ 16, 17, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 14,
-> +		{ 256, 15, 2048, 15, 24, 23, 23, {
-> +			{ 0, 4, 10 }, { 3, 8, 8 }, { 6, 11, 6 }, { 9, 14, 4 },
-> +			{ 13, 15, 2 }, { 13, 15, 0 }, { 13, 16, -2 }, { 14, 16, -4 },
-> +			{ 15, 17, -6 }, { 15, 17, -8 }, { 16, 18, -10 },
-> +			{ 17, 19, -10 }, { 17, 19, -12 }, { 19, 20, -12 },
-> +			{ 20, 21, -12 }
-> +			}
-> +		}
-> +	},
-> +	{
-> +		.bpp =3D DSC_BPP(8), .bpc =3D 16,
-> +		{ 256, 15, 2048, 19, 28, 27, 27, {
-> +			{ 0, 4, 10 }, { 4, 9, 8 }, { 8, 13, 6 }, { 12, 17, 4 },
-> +			{ 17, 19, 2 }, { 17, 20, 0 }, { 17, 20, -2 }, { 18, 20, -4 },
-> +			{ 19, 21, -6 }, { 19, 21, -8 }, { 20, 22, -10 },
-> +			{ 21, 23, -10 }, { 21, 23, -12 }, { 23, 24, -12 },
-> +			{ 24, 25, -12 }
-> +			}
-> +		}
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +
->  static const struct rc_parameters *get_rc_params(const struct
-> rc_parameters_data *rc_parameters,
->  						 u16 dsc_bpp,
->  						 u8 bits_per_component)
-> @@ -782,6 +1214,12 @@ int drm_dsc_setup_rc_params(struct
-> drm_dsc_config *vdsc_cfg, enum drm_dsc_params
->  	case DRM_DSC_1_1_PRE_SCR:
->  		data =3D rc_parameters_pre_scr;
->  		break;
-> +	case DRM_DSC_1_2_422:
-> +		data =3D rc_parameters_1_2_422;
-> +		break;
-> +	case DRM_DSC_1_2_420:
-> +		data =3D rc_parameters_1_2_420;
-> +		break;
->  	default:
->  		return -EINVAL;
->  	}
-> diff --git a/include/drm/display/drm_dsc_helper.h
-> b/include/drm/display/drm_dsc_helper.h
-> index c634bb2935d3..0bb0c3afd740 100644
-> --- a/include/drm/display/drm_dsc_helper.h
-> +++ b/include/drm/display/drm_dsc_helper.h
-> @@ -13,6 +13,8 @@
->  enum drm_dsc_params_kind {
->  	DRM_DSC_1_2_444,
->  	DRM_DSC_1_1_PRE_SCR, /* legacy params from DSC 1.1 */
-> +	DRM_DSC_1_2_422,
-> +	DRM_DSC_1_2_420,
->  };
->=20
->  void drm_dsc_dp_pps_header_init(struct dp_sdp_header *pps_header);
-> --
-> 2.39.2
-
+SGkgVmlsbGUsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwt
+Z2Z4IDxpbnRlbC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBP
+ZiBWaWxsZQ0KPiBTeXJqYWxhDQo+IFNlbnQ6IDA0IEFwcmlsIDIwMjMgMjM6MjUNCj4gVG86IGlu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0gW1BB
+VENIIDIvM10gZHJtL2k5MTU6IEV2YWRlIHRyYW5zY29kZXIncyB2Ymxhbmsgd2hlbg0KPiBkb2lu
+ZyBzZWFtbGVzcyBNL04gY2hhbmdlcw0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gDQo+IFRoZSB0cmFuc2NvZGVyIE0vTiB2YWx1
+ZXMgYXJlIGRvdWJsZSBidWZmZXJlZCBvbiB0aGUgdHJhbnNjb2RlcidzDQo+IHVuZGVsYXllZCB2
+YmxhbmsuIFNvIHdoZW4gZG9pbmcgc2VhbWxlc3MgTS9OIGZhc3RzZXRzIHdlIG5lZWQgdG8gZXZh
+ZGUNCj4gYWxzbyB0aGF0Lg0KPiANCj4gTm90IHRoYXQgY3VycmVudGx5IHRoZSBwaXBlJ3MgZGVs
+YXllZCB2YmxhbmsgPT0gdHJhbnNjb2RlcidzIHVuZGVsYXllZA0KPiB2YmxhbmssIHNvIHRoaXMg
+aXMgc3RpbGwgYSBub3AgY2hhbmdlLiBCdXQgaW4gdGhlIGZ1dHVyZSB3aGVuIHdlIG1heSBoYXZl
+IHRvDQo+IGRlbGF5IHRoZSBwaXBlJ3MgdmJsYW5rIHRvIGNyZWF0ZSBhIHJlZ2lzdGVyIHByb2dy
+YW1taW5nIHdpbmRvdw0KPiAoIndpbmRvdzIiKSBmb3IgdGhlIERTQi4NCj4gDQo+IFNpZ25lZC1v
+ZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+
+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jcnRjLmMgfCA3ICsr
+KysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydGMuYw0KPiBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0Yy5jDQo+IGluZGV4IGVkNDVhNjkzNDg1
+NC4uZjNiODM2ODI5Mjk2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2NydGMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2NydGMuYw0KPiBAQCAtNTEwLDYgKzUxMCwxMyBAQCB2b2lkIGludGVsX3BpcGVfdXBkYXRl
+X3N0YXJ0KHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpuZXdfY3J0Y19zdGF0ZSkNCj4gDQo+
+IFZCTEFOS19FVkFTSU9OX1RJTUVfVVMpOw0KPiAgCW1heCA9IHZibGFua19zdGFydCAtIDE7DQo+
+IA0KPiArCS8qDQo+ICsJICogTS9OIGlzIGRvdWJsZSBidWZmZXJlZCBvbiB0aGUgdHJhbnNjb2Rl
+cidzIHVuZGVsYXllZCB2YmxhbmssDQo+ICsJICogc28gd2l0aCBzZWFtbGVzcyBNL04gd2UgbXVz
+dCBldmFkZSBib3RoIHZibGFua3MuDQo+ICsJICovDQo+ICsJaWYgKG5ld19jcnRjX3N0YXRlLT5z
+ZWFtbGVzc19tX24gJiYNCj4gaW50ZWxfY3J0Y19uZWVkc19mYXN0c2V0KG5ld19jcnRjX3N0YXRl
+KSkNCj4gKwkJbWluIC09IGFkanVzdGVkX21vZGUtPmNydGNfdmJsYW5rX3N0YXJ0IC0NCj4gK2Fk
+anVzdGVkX21vZGUtPmNydGNfdmRpc3BsYXk7DQo+ICsNCg0KY2hhbmdlcyBMR1RNLiANClRoYW5r
+cw0KIA0KUmV2aWV3ZWQtYnk6IE1pdHVsIEdvbGFuaSA8bWl0dWxrdW1hci5haml0a3VtYXIuZ29s
+YW5pQGludGVsLmNvbQ0KDQo+PiAgCWlmIChtaW4gPD0gMCB8fCBtYXggPD0gMCkNCj4gIAkJZ290
+byBpcnFfZGlzYWJsZTsNCj4gDQo+IC0tDQo+IDIuMzkuMg0KDQo=
