@@ -1,58 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE336E112B
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 17:31:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E476EAC5A
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:10:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA5210EB57;
-	Thu, 13 Apr 2023 15:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB2110EE27;
+	Fri, 21 Apr 2023 14:10:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74CA410EB01;
- Thu, 13 Apr 2023 15:31:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681399900; x=1712935900;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=BEHXL3jXGpKUbY+bvpIW4tnQqI6+zMX8BByAxAMnDsE=;
- b=P6IWlsRamT/7JQph05e0EqSoD7SIdVDDXH7Bg9LWfUldea/lAhjpAiJt
- 8UsBuCB0aJrV6nAwZfyBQ9XfBEXXKzeRTLEsQnjXbI2WSeiFCQvtAA2W+
- DD9aPgedBunQT2QMUGNckehssCRrTniGb1F+D1UcuOKaskJ8SdyVIFRW6
- al58f/7WdKGwl4hh1Q4vDObJu5WJBOPPhOuqS08KC4UrJyvNgMGf9WJrP
- 33BuUQSb+d8WjFBFGNnOgRt8uHFlYwi55T+AmcxSc3tUYYS/TK+ZcB6u+
- 3G11bwIACKPAJXVvCL6d3O+Ctj5a8cYqaDEGF/SJGioPG4x8Gmr5H5tuQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="430498209"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="430498209"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 08:31:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="800849601"
-X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="800849601"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.3.63])
- ([10.213.3.63])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 08:31:38 -0700
-Message-ID: <ff016423-edb8-bcd5-c75e-f05c0eaf1c8a@intel.com>
-Date: Thu, 13 Apr 2023 17:31:36 +0200
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
+ [IPv6:2607:f8b0:4864:20::112e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 572EA10EB5A;
+ Thu, 13 Apr 2023 15:32:45 +0000 (UTC)
+Received: by mail-yw1-x112e.google.com with SMTP id
+ 00721157ae682-54fbb713301so47149707b3.11; 
+ Thu, 13 Apr 2023 08:32:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1681399964; x=1683991964;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=4Nc75iyNukd0UR0rxIxhX/z29BaqR72KzPmAyeHJwIc=;
+ b=JAHnYmaeyTzRiLuZOeQwhE+KlzFkog2WLQuO5+Xkls1cIPq0GtTSILEI+jyF9oM1Lp
+ 7nliktTEq54GI2VPALYRdUSraMquQlNFMdAo10UETOI+Tz1TPQy6EV3j6fHm0vYHezZB
+ o5hmHMXOcLAAW74yS2QsvKxM3CSBad619AN+HW1nXsfgeDb9NLbg4X4hDL7VMKmmAVol
+ 285REognpebbHdRDxuM9at/5EbEQLUN+x0k5pWd3yDm7e7DutIMVTPbEmSEzpCoF0yRC
+ ijz9NVP7AkftSMBuH9k9IKN/kg8xJV1VAd5DzjidgGCZi9rkXWOOAwe3ziCQwGLAR6kt
+ cbrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681399964; x=1683991964;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4Nc75iyNukd0UR0rxIxhX/z29BaqR72KzPmAyeHJwIc=;
+ b=dCaqkTC3ulDw80bZYvuFey9m9WNzhy7MmbaOhYY13vENBAyQmwI3fY722SGyOGJ3bY
+ GFJ43n3dN3TrNK1FKXlIPcP8qGtbhQOZiwRe+skdJrrAsWDtfncE19VPnTR0upeEb8qH
+ Dd0oJ15Qd+3moKLyXLl/zeyUpZw4u0+RcyWfGjJIf2NZNXNtcJyDfZ6oMPzaqeUoJ7Ub
+ RDDLX3PEfX3A/B1s4903Ksi79y4Bzjmfn6bImvXjglU9ZXfC80HXCuMImz3Sxj3X8dH5
+ Bbv1WEDkaAF1LAIVbmYZnFZVTSM47D8MECnR0Mr5AjeCvjgbDZvVX8Xs/6qK6EZ7VE+b
+ pkwg==
+X-Gm-Message-State: AAQBX9dLxCIDB7xm/Rvr+pfmPnWXgQRyhfgh7FmlIJa28jUJ+rwOezh0
+ IyHqXz88zkL0owTGovXrVAsRS/Qa3SIZolsVbw==
+X-Google-Smtp-Source: AKy350aW7/Rt5uV9WGKym2asTJbmxp7nWKlm8h8QUtBJ9JRBKTw2Rz6Yer8O3p7N71ttmVpgZM2dMRD0CuuQdndOY0g=
+X-Received: by 2002:a81:1b8e:0:b0:533:a15a:d33e with SMTP id
+ b136-20020a811b8e000000b00533a15ad33emr5024977ywb.5.1681399964024; Thu, 13
+ Apr 2023 08:32:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-References: <20230413143626.311639-1-janusz.krzysztofik@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230413143626.311639-1-janusz.krzysztofik@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/gem_reset_stats: Don't allow
- request watchdog to interfere
+References: <CALjTZvZ=Y1psyd0nmfzm6GhqMKvq5V_NQCWb_X02nasp1CpfcQ@mail.gmail.com>
+ <87r0spcuvi.fsf@intel.com>
+ <CALjTZvao=N7wxyj_DpqzWUhdJwEsWSKUo3ddi-3ubgMp8BXi_Q@mail.gmail.com>
+ <CALjTZvaf1cwcZc9O8g24SnZXsoQaWB97UVQW=g6M0coaudLr6w@mail.gmail.com>
+ <2495408f-a644-4e56-aaca-e6915cbda179@paulmck-laptop>
+In-Reply-To: <2495408f-a644-4e56-aaca-e6915cbda179@paulmck-laptop>
+From: Rui Salvaterra <rsalvaterra@gmail.com>
+Date: Thu, 13 Apr 2023 16:32:32 +0100
+Message-ID: <CALjTZva=JHsckrBeHgJcd-_TDMgYgmZGcXavJ=GhPr7VQCOF5g@mail.gmail.com>
+To: paulmck@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:19 +0000
+Subject: Re: [Intel-gfx] [BUG?] INFO: rcu_sched detected expedited stalls on
+ CPUs/tasks: { 0-.... } 3 jiffies s: 309 root: 0x1/.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,62 +72,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi, Paul,
 
-
-On 13.04.2023 16:36, Janusz Krzysztofik wrote:
-> A user reported recently that some subtests are failing.  The test was
-> blocklisted in 2018, so we've lost CI feedback on its results since then.
+On Thu, 13 Apr 2023 at 15:43, Paul E. McKenney <paulmck@kernel.org> wrote:
 >
-> In 2021, request watchdog with 20 seconds timeout was introduced to i915.
-> Kernel logs from failed subtest runs indicate that the request watchdog
-> interfers with engine heartbeat and request preemption used by the test
-> for exercising reset statistics.
+> My guess would be that you have CONFIG_RCU_EXP_CPU_STALL_TIMEOUT set to
+> some small non-zero number, for example, you might have set up a recent
+> Android .config or some such.  The default of zero would give you about
+> 21 seconds rather than the three jiffies that you are seeing.
 >
-> Disable request watchdog during the test execution.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8310
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> ---
->   tests/i915/gem_reset_stats.c | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/tests/i915/gem_reset_stats.c b/tests/i915/gem_reset_stats.c
-> index baa101517d..7b003d88b6 100644
-> --- a/tests/i915/gem_reset_stats.c
-> +++ b/tests/i915/gem_reset_stats.c
-> @@ -906,6 +906,7 @@ igt_main
->   	igt_fixture {
->   		bool has_reset_stats;
->   		bool using_full_reset;
-> +		char *tmp;
->   
->   		device = drm_open_driver(DRIVER_INTEL);
->   		devid = intel_get_drm_devid(device);
-> @@ -922,6 +923,12 @@ igt_main
->   			      "No reset stats ioctl support. Too old kernel?\n");
->   		igt_require_f(using_full_reset,
->   			      "Full GPU reset is not enabled. Is enable_hangcheck set?\n");
-> +
-> +		/* Don't allow request watchdog to interfere */
-> +		tmp = __igt_params_get(device, "request_timeout_ms");
+> Could you please check your .config?
 
-With presence of igt_params_scanf it would be simpler.
+Well, this is embarrassing. I can't fathom why/how, but I had it set
+to 20, on this machine. That is, 20 millisseconds. I guess its a
+miracle I haven't seen *more* expedited RCU traces. Sorry for the
+noise, everyone.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-
-> +		if (tmp && atoi(tmp))
-> +			igt_params_save_and_set(device, "request_timeout_ms", "%u", 0);
-> +		free(tmp);
->   	}
->   
->   	igt_subtest("params")
-
+Kind regards,
+Rui
