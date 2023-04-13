@@ -2,64 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7ED6E1528
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 21:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FBE86E1597
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Apr 2023 22:04:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B8210EBF7;
-	Thu, 13 Apr 2023 19:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6C610EC25;
+	Thu, 13 Apr 2023 20:04:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1446B10E02F
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 19:27:17 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id
- 5b1f17b1804b1-3f0a7c48633so1640285e9.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 12:27:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681414034; x=1684006034;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=/a2zE3xd3xG33l/VNL2fMsP52KS7UNXGPG9UmSq+uv4=;
- b=QHNvfSFQNS1HyatYr7G2sVOSIUHRtbZucFfO8MgaVT2iapJTKOmPqPwQhA0vmHFvJ/
- xE0LwrQMXgbUyhWyHBPLmv7viFy8lngXYlYllJTJYsSjuO+0Toer6v4yLNQl2AbGPYrt
- wy2HkHjDCUJwPWBUuATX+CB4AKhqNiDFWk7Io=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681414034; x=1684006034;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/a2zE3xd3xG33l/VNL2fMsP52KS7UNXGPG9UmSq+uv4=;
- b=JwmNw7V4PdJB8PJcAfiZPylsTaw64HJdSbzQk9SqTOBKjOuMrE9omMnUK9dK8Owe5Y
- qM+O9ZkxhReNc4WLYpiIQRYzBZlrMxnvfVOmPO/16n4N2i3i1j0inKeHTdrAO1n3aAk+
- hlf4YKHzdkUDh/XP734wBAL7yzTigG2u9DZlUZy/l3jhrmbb+DOkmxetYy1RHGi/8Ghi
- ixyaE+/zq5rjq5EfnZ9DUBZvFMnv9Ef+T7FQSU0C+Tkh+pOIbhZJSnkz1aQLH+FPckAS
- /VWKoLWqwwVMjfw9nT/9jUI/N/yag5GvpoZBF184mZ2RHAPdMob7BtnxUacH8zMdW0YU
- 5pUw==
-X-Gm-Message-State: AAQBX9e775CkEgH5qUR1QKAAC/q5uNLUabxWU8GqomhrZRlCujkZJnsS
- Fp0aZ+9p+5fzzZ5+U+CbzC5Wwg==
-X-Google-Smtp-Source: AKy350ZChyKkNqVKRdO6kwmgPYECP09fiu+j3ECCVHCO6Aa6TzTKbFsygO2rEW8FVTrXzK4GrBHTzw==
-X-Received: by 2002:a5d:42d0:0:b0:2ce:a773:1150 with SMTP id
- t16-20020a5d42d0000000b002cea7731150mr1746694wrr.6.1681414034000; 
- Thu, 13 Apr 2023 12:27:14 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- r17-20020a5d4e51000000b002f01e181c4asm1925079wrt.5.2023.04.13.12.27.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Apr 2023 12:27:13 -0700 (PDT)
-Date: Thu, 13 Apr 2023 21:27:11 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <ZDhXj8PFyzTSfibk@phenom.ffwll.local>
-References: <20230413184233.GA8148@linux-uq9g>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4E510EC26
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 20:04:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681416274; x=1712952274;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TIPLS8SWnUVzjVmSAmTj+Ptcp/kXQnm244iexAsQTlQ=;
+ b=LOzQ0CB+4rIw9l6oG48KOq8QIXbkgOTTelRO+m4izgEXaXU1DSgB/oWc
+ i4XytnCHGuFQhlTfSA3NXB+eGrnuoGeuQ7h5ugsy7hbWw8dxTStm0eFam
+ co+gDGeiLAzDczIO6S2OGTYwMxxLEcxVUPvPuBv1a1S6YRMg/4ZZ6JHF4
+ LsKVBeN8bFsD3TJyq67DycoIIJEjXJdpIajK40BXc5q2I7Xo3/F4+FTRj
+ 6GQZfth2p9/JcK2V4GwCiwgY0GvTFlb2GWDuv5adeLXr7LYDh7q73KcYJ
+ rfYXfx8Ycj40Zd762FX6JrR0f81eP8S2yOb3Eab87tS+xJcL7MoJNcNEL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="409472863"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="409472863"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 13:04:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="800924238"
+X-IronPort-AV: E=Sophos;i="5.99,194,1677571200"; d="scan'208";a="800924238"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 13:04:15 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Apr 2023 13:03:49 -0700
+Message-Id: <20230413200349.3492571-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230413184233.GA8148@linux-uq9g>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Avoid out-of-bounds access when
+ loading HuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,85 +56,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 13, 2023 at 08:42:33PM +0200, Thomas Zimmermann wrote:
-> Hi Dave and Daniel,
-> 
-> this is the PR for drm-misc-fixes for this week.
-> 
-> Best regards
-> Thomas
-> 
-> drm-misc-fixes-2023-04-13:
-> Short summary of fixes pull:
-> 
->  * armada: Fix double free
->  * fb: Clear FB_ACTIVATE_KD_TEXT in ioctl
->  * nouveau: Add missing callbacks
->  * scheduler: Fix use-after-free error
-> The following changes since commit 09a9639e56c01c7a00d6c0ca63f4c7c41abe075d:
-> 
->   Linux 6.3-rc6 (2023-04-09 11:15:57 -0700)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-04-13
+When HuC is loaded by GSC, there is no header definition for the kernel
+to look at and firmware is just handed to GSC. However when reading the
+version, it should still check the size of the blob to guarantee it's not
+incurring into out-of-bounds array access.
 
-Pulled, thanks
+If firmware is smaller than expected, the following message is now
+printed:
 
-> 
-> for you to fetch changes up to 5603effb8295ada8419408d038a34ca89d658229:
-> 
->   Merge remote-tracking branch 'drm/drm-fixes' into drm-misc-fixes (2023-04-12 12:01:32 +0200)
-> 
-> ----------------------------------------------------------------
-> Short summary of fixes pull:
-> 
->  * armada: Fix double free
->  * fb: Clear FB_ACTIVATE_KD_TEXT in ioctl
->  * nouveau: Add missing callbacks
->  * scheduler: Fix use-after-free error
-> 
-> ----------------------------------------------------------------
-> Asahi Lina (1):
->       drm/scheduler: Fix UAF race in drm_sched_entity_push_job()
-> 
-> Christophe JAILLET (1):
->       drm/armada: Fix a potential double free in an error handling path
-> 
-> Daniel Vetter (1):
->       fbmem: Reject FB_ACTIVATE_KD_TEXT from userspace
-> 
-> Karol Herbst (1):
->       drm/nouveau/fb: add missing sysmen flush callbacks
-> 
-> Maarten Lankhorst (1):
->       Merge remote-tracking branch 'drm/drm-fixes' into drm-misc-fixes
-> 
->  drivers/gpu/drm/armada/armada_drv.c            |  1 -
->  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf108.c |  1 +
->  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk104.c |  1 +
->  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c |  1 +
->  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm107.c |  1 +
->  drivers/gpu/drm/scheduler/sched_entity.c       | 11 +++++++++--
->  drivers/video/fbdev/core/fbmem.c               |  2 ++
->  7 files changed, 15 insertions(+), 3 deletions(-)
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Felix Imendörffer
+	# echo boom > /lib/firmware/i915/dg2_huc_gsc.bin
+	# dmesg | grep -i huc
+	[drm] GT0: HuC firmware i915/dg2_huc_gsc.bin: invalid size: 5 < 184
+	[drm] *ERROR* GT0: HuC firmware i915/dg2_huc_gsc.bin: fetch failed -ENODATA
+	...
 
+Even without this change the size, header and signature are still
+checked by GSC when loading, so this only avoids the out-of-bounds array
+access.
+
+Fixes: a7b516bd981f ("drm/i915/huc: Add fetch support for gsc-loaded HuC binary")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 21 +++++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index 1ac6f9f340e3..a82a53dbbc86 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -489,12 +489,25 @@ static void __force_fw_fetch_failures(struct intel_uc_fw *uc_fw, int e)
+ 	}
+ }
+ 
+-static int check_gsc_manifest(const struct firmware *fw,
++static int check_gsc_manifest(struct intel_gt *gt,
++			      const struct firmware *fw,
+ 			      struct intel_uc_fw *uc_fw)
+ {
+ 	u32 *dw = (u32 *)fw->data;
+-	u32 version_hi = dw[HUC_GSC_VERSION_HI_DW];
+-	u32 version_lo = dw[HUC_GSC_VERSION_LO_DW];
++	u32 version_hi, version_lo;
++	size_t min_size;
++
++	/* Check the size of the blob before examining buffer contents */
++	min_size = sizeof(u32) * (HUC_GSC_VERSION_LO_DW + 1);
++	if (unlikely(fw->size < min_size)) {
++		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
++			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
++			fw->size, min_size);
++		return -ENODATA;
++	}
++
++	version_hi = dw[HUC_GSC_VERSION_HI_DW];
++	version_lo = dw[HUC_GSC_VERSION_LO_DW];
+ 
+ 	uc_fw->file_selected.ver.major = FIELD_GET(HUC_GSC_MAJOR_VER_HI_MASK, version_hi);
+ 	uc_fw->file_selected.ver.minor = FIELD_GET(HUC_GSC_MINOR_VER_HI_MASK, version_hi);
+@@ -665,7 +678,7 @@ static int check_fw_header(struct intel_gt *gt,
+ 		return 0;
+ 
+ 	if (uc_fw->loaded_via_gsc)
+-		err = check_gsc_manifest(fw, uc_fw);
++		err = check_gsc_manifest(gt, fw, uc_fw);
+ 	else
+ 		err = check_ccs_header(gt, fw, uc_fw);
+ 	if (err)
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.39.0
+
