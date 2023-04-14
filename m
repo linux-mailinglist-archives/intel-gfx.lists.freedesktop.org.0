@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B8A6E203F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 12:06:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7016E2057
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 12:11:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE8E10E16C;
-	Fri, 14 Apr 2023 10:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F3410ECA9;
+	Fri, 14 Apr 2023 10:11:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15F9C10E16C
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 10:06:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0973610ECA8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 10:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681466788; x=1713002788;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=iVaM1eHb2V/oih2WlNQSxQAo6oEDrFZszFOgewIquQg=;
- b=lhyrKsR7sPFzW8DdOObw3bOzsMg41IpSLwAVF4rLmUUhBSSY5axJd/A5
- biqXUSOrassrqL2sN8ltLt4u5d8E/wiYlMo9cQ8U3ReOwzBhgdMDl9HHl
- HvDup6hRc972oHH154bkLCkKvZkmfDJ9eDb+bAi8h3RF842t88cg/U1l0
- HcicftV4eEE4drY7zkWMgwZfWYbUqF7MR9rNKpphpeRE2TjOFDNtGUD8i
- 86ZjiPONx+I/g36Fvh5olnY08YEbxbFO0aIMUnWLbXzgii0kX8gojGPBj
- d5VVIszi32hoGZwInKLFMp+XtpZa4OPKvk2JU1TUXVzSpRDgRAN+gmGjp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="324782122"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="324782122"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 03:06:27 -0700
+ t=1681467075; x=1713003075;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=EOuPeBOIvwlHICii0elMwSRxBq1umbypGBL80XOYn6o=;
+ b=AjA8LJ5+PopXKssytx6lZr43OInAMrPh/ts8J3cekQbolZXV16GmULad
+ 4NXnGqpVd4vPCfw6KjbaalNuJETzdi6DurW/Gvg7vBAOPZ3NKhcOYrT1/
+ OGLe7sF/eusaD2M8NSdVGIgPzgorx2Hc/JzRhmKAcRPE13gluY0icSdkb
+ 6fHrWqUjW50im1MAXQn/Epgpc+R61dpfZAucFw0jCInoHMEvEC8/6wKm/
+ pAtr/UsIiizb9ja2CmXNQVKxIA+GGtO25r/8D7mn8e9MAXhPIF/jqDwig
+ zJ4f7V2DacYxTW/HDcYme7ogDPecio87OIUrEOBaq51qK+EIZIX//bPH8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="344430040"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="344430040"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 03:11:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="722401699"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="722401699"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga001.jf.intel.com with ESMTP; 14 Apr 2023 03:06:25 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pnGK0-000ZQZ-1F;
- Fri, 14 Apr 2023 10:06:24 +0000
-Date: Fri, 14 Apr 2023 18:06:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202304141736.ZKKtGows-lkp@intel.com>
-References: <20230414072345.1041605-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="683294505"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="683294505"
+Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.117])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 03:11:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <a81da631-c389-77ee-5c39-bdbfff02b034@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230411105643.292416-1-jani.nikula@intel.com>
+ <a81da631-c389-77ee-5c39-bdbfff02b034@linux.intel.com>
+Date: Fri, 14 Apr 2023 13:11:10 +0300
+Message-ID: <87h6tig4e9.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230414072345.1041605-1-suraj.kandpal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: PCH display HPD IRQ is
- not detected with default filter value
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RESEND] drm/i915: hide mkwrite_device_info() better
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,186 +59,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+On Thu, 13 Apr 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 11/04/2023 11:56, Jani Nikula wrote:
+>> The goal has been to just make device info a pointer to static const
+>> data, i.e. the static const structs in i915_pci.c. See [1]. However,
+>> there were issues with intel_device_info_runtime_init() clearing the
+>> display sub-struct of device info on the !HAS_DISPLAY() path, which
+>> consequently disables a lot of display functionality, like it
+>> should. Looks like we'd have to cover all those paths, and maybe
+>> sprinkle HAS_DISPLAY() checks in them, which we haven't gotten around
+>> to.
+>> 
+>> In the mean time, hide mkwrite_device_info() better within
+>> intel_device_info.c by adding a intel_device_info_driver_create() for
+>> the very early initialization of the device info and initial runtime
+>> info. This also lets us declutter i915_drv.h a bit, and stops promoting
+>> mkwrite_device_info() as something that could be used.
+>> 
+>> [1] https://lore.kernel.org/r/a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_driver.c       | 12 ++--------
+>>   drivers/gpu/drm/i915/i915_drv.h          |  7 ------
+>>   drivers/gpu/drm/i915/intel_device_info.c | 29 ++++++++++++++++++++++++
+>>   drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+>>   4 files changed, 33 insertions(+), 17 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 93fdc40d724f..2980ccdef6cd 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -720,8 +720,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>   {
+>>   	const struct intel_device_info *match_info =
+>>   		(struct intel_device_info *)ent->driver_data;
+>> -	struct intel_device_info *device_info;
+>> -	struct intel_runtime_info *runtime;
+>>   	struct drm_i915_private *i915;
+>>   
+>>   	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
+>> @@ -734,14 +732,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>   	/* Device parameters start as a copy of module parameters. */
+>>   	i915_params_copy(&i915->params, &i915_modparams);
+>>   
+>> -	/* Setup the write-once "constant" device info */
+>> -	device_info = mkwrite_device_info(i915);
+>> -	memcpy(device_info, match_info, sizeof(*device_info));
+>> -
+>> -	/* Initialize initial runtime info from static const data and pdev. */
+>> -	runtime = RUNTIME_INFO(i915);
+>> -	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+>> -	runtime->device_id = pdev->device;
+>> +	/* Set up device info and initial runtime info. */
+>> +	intel_device_info_driver_create(i915, pdev->device, match_info);
+>>   
+>>   	return i915;
+>>   }
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index e771fdc3099c..fe7eeafe9cff 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -931,11 +931,4 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>   #define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
+>>   				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
+>>   
+>> -/* intel_device_info.c */
+>> -static inline struct intel_device_info *
+>> -mkwrite_device_info(struct drm_i915_private *dev_priv)
+>> -{
+>> -	return (struct intel_device_info *)INTEL_INFO(dev_priv);
+>> -}
+>> -
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+>> index fc5cd14adfcc..4e23be2995bf 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.c
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>> @@ -381,6 +381,13 @@ void intel_device_info_runtime_init_early(struct drm_i915_private *i915)
+>>   	intel_device_info_subplatform_init(i915);
+>>   }
+>>   
+>> +/* FIXME: Remove this, and make device info a const pointer to rodata. */
+>> +static struct intel_device_info *
+>> +mkwrite_device_info(struct drm_i915_private *i915)
+>> +{
+>> +	return (struct intel_device_info *)INTEL_INFO(i915);
+>> +}
+>> +
+>>   /**
+>>    * intel_device_info_runtime_init - initialize runtime info
+>>    * @dev_priv: the i915 device
+>> @@ -548,6 +555,28 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>>   		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
+>>   }
+>>   
+>> +/*
+>> + * Set up device info and initial runtime info at driver create.
+>> + *
+>> + * Note: i915 is only an allocated blob of memory at this point.
+>> + */
+>> +void intel_device_info_driver_create(struct drm_i915_private *i915,
+>> +				     u16 device_id,
+>> +				     const struct intel_device_info *match_info)
+>> +{
+>> +	struct intel_device_info *info;
+>> +	struct intel_runtime_info *runtime;
+>> +
+>> +	/* Setup the write-once "constant" device info */
+>> +	info = mkwrite_device_info(i915);
+>> +	memcpy(info, match_info, sizeof(*info));
+>> +
+>> +	/* Initialize initial runtime info from static const data and pdev. */
+>> +	runtime = RUNTIME_INFO(i915);
+>> +	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+>> +	runtime->device_id = device_id;
+>> +}
+>> +
+>>   void intel_driver_caps_print(const struct intel_driver_caps *caps,
+>>   			     struct drm_printer *p)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+>> index 080a4557899b..f032f2500f50 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.h
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+>> @@ -317,6 +317,8 @@ struct intel_driver_caps {
+>>   
+>>   const char *intel_platform_name(enum intel_platform platform);
+>>   
+>> +void intel_device_info_driver_create(struct drm_i915_private *i915, u16 device_id,
+>> +				     const struct intel_device_info *match_info);
+>
+> Match_info maybe reads a bit odd when "exported" but I have no superior 
+> suggestions either (const? template? pci?). Hiding seems a good plan so:
+>
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-kernel test robot noticed the following build errors:
+Naming is hard, pushed as-is, thanks for the review.
 
-[auto build test ERROR on drm-tip/drm-tip]
+BR,
+Jani.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-display-PCH-display-HPD-IRQ-is-not-detected-with-default-filter-value/20230414-152733
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230414072345.1041605-1-suraj.kandpal%40intel.com
-patch subject: [Intel-gfx] [PATCH] drm/i915/display: PCH display HPD IRQ is not detected with default filter value
-config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20230414/202304141736.ZKKtGows-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/bf0d69db2e4066bb221d69355d2a1b27cb3a0f57
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Suraj-Kandpal/drm-i915-display-PCH-display-HPD-IRQ-is-not-detected-with-default-filter-value/20230414-152733
-        git checkout bf0d69db2e4066bb221d69355d2a1b27cb3a0f57
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304141736.ZKKtGows-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/intel_dp.c:4856:9: error: use of undeclared identifier 'PANEL_POWER_ON'
-                           pp = PANEL_POWER_ON;
-                                ^
->> drivers/gpu/drm/i915/display/intel_dp.c:4860:32: error: use of undeclared identifier 'PCH_PPS_BASE'
-                   intel_de_rmw(dev_priv, _MMIO(PCH_PPS_BASE + 4), 1, pp);
-                                                ^
-   2 errors generated.
-
-
-vim +/PANEL_POWER_ON +4856 drivers/gpu/drm/i915/display/intel_dp.c
-
-  4732	
-  4733	static int
-  4734	intel_dp_detect(struct drm_connector *connector,
-  4735			struct drm_modeset_acquire_ctx *ctx,
-  4736			bool force)
-  4737	{
-  4738		struct drm_i915_private *dev_priv = to_i915(connector->dev);
-  4739		struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
-  4740		struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-  4741		struct intel_encoder *encoder = &dig_port->base;
-  4742		enum drm_connector_status status;
-  4743		int32_t pp;
-  4744	
-  4745		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
-  4746			    connector->base.id, connector->name);
-  4747		drm_WARN_ON(&dev_priv->drm,
-  4748			    !drm_modeset_is_locked(&dev_priv->drm.mode_config.connection_mutex));
-  4749	
-  4750		if (!INTEL_DISPLAY_ENABLED(dev_priv))
-  4751			return connector_status_disconnected;
-  4752	
-  4753		/* Can't disconnect eDP */
-  4754		if (intel_dp_is_edp(intel_dp))
-  4755			status = edp_detect(intel_dp);
-  4756		else if (intel_digital_port_connected(encoder))
-  4757			status = intel_dp_detect_dpcd(intel_dp);
-  4758		else
-  4759			status = connector_status_disconnected;
-  4760	
-  4761		if (status == connector_status_disconnected) {
-  4762			memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
-  4763			memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
-  4764	
-  4765			if (intel_dp->is_mst) {
-  4766				drm_dbg_kms(&dev_priv->drm,
-  4767					    "MST device may have disappeared %d vs %d\n",
-  4768					    intel_dp->is_mst,
-  4769					    intel_dp->mst_mgr.mst_state);
-  4770				intel_dp->is_mst = false;
-  4771				drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
-  4772								intel_dp->is_mst);
-  4773			}
-  4774	
-  4775			goto out;
-  4776		}
-  4777	
-  4778		/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-  4779		if (HAS_DSC(dev_priv))
-  4780			intel_dp_get_dsc_sink_cap(intel_dp);
-  4781	
-  4782		intel_dp_configure_mst(intel_dp);
-  4783	
-  4784		/*
-  4785		 * TODO: Reset link params when switching to MST mode, until MST
-  4786		 * supports link training fallback params.
-  4787		 */
-  4788		if (intel_dp->reset_link_params || intel_dp->is_mst) {
-  4789			intel_dp_reset_max_link_params(intel_dp);
-  4790			intel_dp->reset_link_params = false;
-  4791		}
-  4792	
-  4793		intel_dp_print_rates(intel_dp);
-  4794	
-  4795		if (intel_dp->is_mst) {
-  4796			/*
-  4797			 * If we are in MST mode then this connector
-  4798			 * won't appear connected or have anything
-  4799			 * with EDID on it
-  4800			 */
-  4801			status = connector_status_disconnected;
-  4802			goto out;
-  4803		}
-  4804	
-  4805		/*
-  4806		 * Some external monitors do not signal loss of link synchronization
-  4807		 * with an IRQ_HPD, so force a link status check.
-  4808		 */
-  4809		if (!intel_dp_is_edp(intel_dp)) {
-  4810			int ret;
-  4811	
-  4812			ret = intel_dp_retrain_link(encoder, ctx);
-  4813			if (ret)
-  4814				return ret;
-  4815		}
-  4816	
-  4817		/*
-  4818		 * Clearing NACK and defer counts to get their exact values
-  4819		 * while reading EDID which are required by Compliance tests
-  4820		 * 4.2.2.4 and 4.2.2.5
-  4821		 */
-  4822		intel_dp->aux.i2c_nack_count = 0;
-  4823		intel_dp->aux.i2c_defer_count = 0;
-  4824	
-  4825		intel_dp_set_edid(intel_dp);
-  4826		if (intel_dp_is_edp(intel_dp) ||
-  4827		    to_intel_connector(connector)->detect_edid)
-  4828			status = connector_status_connected;
-  4829	
-  4830		intel_dp_check_device_service_irq(intel_dp);
-  4831	
-  4832	out:
-  4833		if (status != connector_status_connected && !intel_dp->is_mst)
-  4834			intel_dp_unset_edid(intel_dp);
-  4835	
-  4836		/*
-  4837		 * Make sure the refs for power wells enabled during detect are
-  4838		 * dropped to avoid a new detect cycle triggered by HPD polling.
-  4839		 */
-  4840		intel_display_power_flush_work(dev_priv);
-  4841	
-  4842		if (!intel_dp_is_edp(intel_dp))
-  4843			drm_dp_set_subconnector_property(connector,
-  4844							 status,
-  4845							 intel_dp->dpcd,
-  4846							 intel_dp->downstream_ports);
-  4847	
-  4848		/*
-  4849		 * WA_150879661:adls
-  4850		 * Driver shall enable this WA when external display is connected
-  4851		 * and remove WA when display is unplugged
-  4852		 */
-  4853		if (IS_ALDERLAKE_S(dev_priv)) {
-  4854			if (status == connector_status_connected &&
-  4855			    !dev_priv->edp_present)
-> 4856				pp = PANEL_POWER_ON;
-  4857			else if (status == connector_status_disconnected)
-  4858				pp = 0;
-  4859	
-> 4860			intel_de_rmw(dev_priv, _MMIO(PCH_PPS_BASE + 4), 1, pp);
-  4861		}
-  4862	
-  4863		return status;
-  4864	}
-  4865	
+>
+> Regards,
+>
+> Tvrtko
+>
+>>   void intel_device_info_runtime_init_early(struct drm_i915_private *dev_priv);
+>>   void intel_device_info_runtime_init(struct drm_i915_private *dev_priv);
+>>   
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Jani Nikula, Intel Open Source Graphics Center
