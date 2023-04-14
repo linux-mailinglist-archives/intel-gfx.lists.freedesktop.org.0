@@ -1,53 +1,152 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 728486E225A
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 13:37:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 736126E225D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 13:38:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A984510E1B3;
-	Fri, 14 Apr 2023 11:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9DF910E1B3;
+	Fri, 14 Apr 2023 11:38:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E8010E1B3
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 11:37:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4276D10E1B3;
+ Fri, 14 Apr 2023 11:38:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681472245; x=1713008245;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=d43IYfctoJzf294BkUSH7WcIad15HQxvVKUxwQXxiqM=;
- b=hvHIo88Wuc5aR0GcAtDmf9fMRlwSvYoGGM+vn+LL/RrK8FEOgUuhQSMR
- u8Exrb5nMgRfAWRTPv3BWklwGcwqp7Ibp3pqeY9MyuVHOo3wFmkzVcljd
- TCT3O6TDXcFx5rnU6o4t8RV768ClrH5h5DtyTvX1OWKQPG0WRE3i5wLpT
- VY9fkv/u/3L0aM9usvpJsY/aWYHZuj6qt2k1GF7GaG/MIR+4/QDEPgOxF
- VvO+TTg2+guzSFCkw3tX6/ngurRP0IeROOWpiI9I7khGt+DO/3md7ZSGJ
- M6JMSTPHRhTzkJd8sKMsX9TL4DoVpizAOF3XjRBobV6oF3DjZ5lScKrOJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="430736343"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="430736343"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ t=1681472309; x=1713008309;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=c1th6E+gEg2UgBlN4z6tBVzYeLREGHtBNQVdbAhmK8c=;
+ b=UW0XsfwxPgz+s99/pJVwom0Ah28eRNW+WC/yXz/zlCjyOHOvCrEWr4rE
+ fQLnFvwDWYrNjhYmd1tWWsknBz1hsxBLHLfkcpVOWy60pgt4OR0B/wrOo
+ JlmwTWOpKt6Hx4EDLr6/y1OxgtCKdt70jflcEAv4jhv+L/2zd9hajkh6G
+ 1LvehsbiBzk3divNjvNObDJh68kE/iTaTjuoBp+cDUyIKEkfzh6HSkcF6
+ PzmWHRBzpKW4V+XQgy8ORUhCxHqtK21XCRsgWlBlPl2/Ge3nkWxZ4S+lD
+ qrdO3rJM4Fy0TYvQ7sadx6MU8NQl1XAPApK6bgaJ05iMnPsJzhTh5qFIs A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="430736512"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="430736512"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 04:37:17 -0700
+ 14 Apr 2023 04:38:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="935987238"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="935987238"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 04:37:16 -0700
-Date: Fri, 14 Apr 2023 14:37:13 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Message-ID: <ZDk6yMD6rdsRmdVk@ideak-desk.fi.intel.com>
-References: <20230413212443.1504245-1-radhakrishna.sripada@intel.com>
- <20230413212443.1504245-7-radhakrishna.sripada@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689777586"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="689777586"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 14 Apr 2023 04:38:27 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 14 Apr 2023 04:38:27 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 14 Apr 2023 04:38:27 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 14 Apr 2023 04:38:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EUSRfc1Ez/rOavsv0qwFHSbcmKrh35w8jzjSEJminWvDu3Gp/ZXKFEEZ9SJ8eU7YoIZknvtKtIDUgbxVxXYJH0aiVWHYEZ7yLtPlWhlQwEd1Kfw40GtMrM3fyBeCbuDroe6lnAmFkzPgdaZIo2W6we1Qx45ejXWIH7ifrkC/Lx0t+IT9vY91IA2XDH8tf9Y+qSauUutj4PZ9siftDuATxRC9q+ugFvGaIxfGQt62PP3IGMF6MK9uKfs9PxJP2wqH+mD+d1E3atG2sJc1IKrfsB0xETDb7mjAVJYWhNuo4f3rnpiSKHZ46JSkwZAqg629y4szTO280DN1myfLeuVfjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ymOaIz7sG2dNWul9PX9hgkBzJ6gtO2bWApGF8L22E94=;
+ b=NvPzaQb9+m7W9CX7qXRd3eCJxsLimbHhZmj3EE9n8r5HZkXcCSjDswzX6T1qHepySF4+Xz22+lsXZ+gTnNo4CqRbuZDJYxWL6GTVTCL4v7+mWyEXV74HoSIG4PK13DTso93fZ/Ruqf8GzFYKnqGorptG/HNk5xM5tq72qF+2/rBLLrOdYXvkwpYHOjPTu2OKDyxGSDwltSPwGVjzGAlNzxbZntpZY347nRuz5actKxm3SdQxfPevJIHCvHMG8MnImqPrIvSGXeoRKJ3INo8s5nJ8s0xgGy8vvCv9zi5GBwp3UDEU7OFqaLxktHv+Pa2Pi+aWYmdBl7lAVCEW70Je0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by PH7PR11MB7073.namprd11.prod.outlook.com (2603:10b6:510:20c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Fri, 14 Apr
+ 2023 11:38:25 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5%4]) with mapi id 15.20.6298.030; Fri, 14 Apr 2023
+ 11:38:25 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>, Alex Williamson
+ <alex.williamson@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
+Thread-Topic: [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+Thread-Index: AQHZZKiCMJJkpNrujkKpjX0h05Zqwa8cqG8AgAAcMGCAACibgIAAAyuAgAAEPICAAAjLgIAAGeKAgAAG7oCAAAf9gIAAO30AgACaIeCAAJxQgIAHkI0AgAApuICAABWEgIAAGNKAgAA3aoCAACJEAIABGhiAgAA2uYCAAM6MAIAAOT6AgABpLgCAAPyoAIAAA7kQ
+Date: Fri, 14 Apr 2023 11:38:24 +0000
+Message-ID: <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230406115347.7af28448.alex.williamson@redhat.com>
+ <ZDVfqpOCnImKr//m@nvidia.com>
+ <20230411095417.240bac39.alex.williamson@redhat.com>
+ <20230411111117.0766ad52.alex.williamson@redhat.com>
+ <ZDWph7g0hcbJHU1B@nvidia.com>
+ <20230411155827.3489400a.alex.williamson@redhat.com>
+ <ZDX0wtcvZuS4uxmG@nvidia.com>
+ <20230412105045.79adc83d.alex.williamson@redhat.com>
+ <ZDcPTTPlni/Mi6p3@nvidia.com>
+ <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZDfslVwqk6JtPpyD@nvidia.com>
+ <20230413120712.3b9bf42d.alex.williamson@redhat.com>
+ <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+In-Reply-To: <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|PH7PR11MB7073:EE_
+x-ms-office365-filtering-correlation-id: fc07e8b1-72d0-40be-f468-08db3cdcc1ef
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2CJB1tFvmD3eTY+0tWkrrE/MOpCbn8721vMRvGApSWBNq4Fbaq9YsFOj8c3YRIGa6Xi4S1aGHiJcT5VSuGlDCwBjHgBkAHIpdJMv3JtMPGkk+uzE0L0GCBF+/Xf0b0ek6UYLw+wGqvqowxo7hFCYZhbYIH7Kuqpd75/X4gglNwg/ze1Hng9kW+lg1Z+nMKWLh2ifIQCqosFMpz0zykAtMhcXvo67ClDacxyJ83IQXhVNX4x4uJdTJ0iTHKjqB+9eT0YMvxBHzvsG1Eku/oyExehVMAbSEygaP5BPqFBolvsmpyDkcEN52BUvjC9AAEQivRk/KBXbEeQ+D9rXfFA4y/di4+h2EekhXkYkGUFsK0y1wehvcB/cDUVdbI5UglE4w8bXjSsXGpx5Lu36WWEiGOLW6lq73UxmrhzoFiDi9FTtP6sPcl5/2SUnsFAAI2NNjLwxoTpQC1Q+sWmepcKxcpMQlGKTOjQasqWQh92LrrL63IcSGNL5gB9hsJz5JfXnF+8HXGMNp6mgaIrCo0cZcYbAwcg39KZvlCA3kXOKNYfF1V3XtoBGpfORWJM0w9cboVkZSK9foefUth/QfqOHN2bCbYWCclm16pdANrpsUJV1cxe+Mpv/2drrgv9E4tsI
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(376002)(136003)(396003)(346002)(366004)(451199021)(7416002)(71200400001)(7696005)(86362001)(55016003)(52536014)(5660300002)(83380400001)(2906002)(38070700005)(6506007)(54906003)(110136005)(186003)(33656002)(9686003)(26005)(478600001)(4326008)(76116006)(122000001)(38100700002)(66556008)(64756008)(66476007)(66946007)(66446008)(82960400001)(8936002)(41300700001)(316002)(8676002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eF1guOHOwZ4TdxNobhZSOjYRQELPer4wZlR4D19D/a9dRk6KoZuJTIySBBnu?=
+ =?us-ascii?Q?SwQjpDalRMH8VcbB+gKjg4zfoE1WJazmTvN7zt+ga3YxTQ+qQVRak2KaIKIy?=
+ =?us-ascii?Q?ww0yV79Rh9wyaqrg1k8bLMCy8sP7gOeLUVokAwDZe4SMdhShF0bl38sbZsFU?=
+ =?us-ascii?Q?zLSuDdjLrWil/WwaLy6mkc1NWT9+E4JHIkebONto7AvuHzisNgeH8dUII4cA?=
+ =?us-ascii?Q?zWkQ/RTnrxhXqeP0xMU6biJZqnSt7ILBdJoGdyDv75gBl09nj31OWvfgxHEI?=
+ =?us-ascii?Q?v3cdve3FbYOX0moZemGfD5BuAftuECuAKXQK8jH5U96k+RylM3wp8rsiu5w3?=
+ =?us-ascii?Q?pmyR0hmuP4afVsQ424wTj4IfIUDFtKOE6NhZwfAx7UCnyvy+pqy/Mo3NIAaM?=
+ =?us-ascii?Q?OKdWY0P5FJKze2Pne5eCh0maeOziZdCWpIzrRf/gLJlgS8K7OJzkxPzrQ4bx?=
+ =?us-ascii?Q?bVsxww/tC7TmAoCmazxK+zyRMZeHrQ3bL0b4OSAeRZkOGuUa66GA82TMSHQV?=
+ =?us-ascii?Q?ITZ79bUFn++lx/v0SdiU42JqaOD7pX5sodZhtgVF7dZQ36RVd4IP1g5VSc7m?=
+ =?us-ascii?Q?3EwbYe8VXy5TzBkg74WLBKTyDAkchs4RhbHEfJVdhshKE52Q2frcKe+RtqPA?=
+ =?us-ascii?Q?TSLsXFvR0JPaqGcdf5AKwUw+KermviINHZ9x/hBQDV01kSJDm7DL/vzghWar?=
+ =?us-ascii?Q?KWXMx9oDVLIYi1n4EhJgaEiNMcyp8gQGQ6pxlY0FpcTQI2yvwmpQmYdXDshR?=
+ =?us-ascii?Q?dfPF02uLSoBusUdvr6/BA/N9qp9/0QEIKceXqZlOoCqkX6u+mbRbb5/XHCaU?=
+ =?us-ascii?Q?kSQAoDbNTapPabEoWjxq9XeXeYwDNu1oSeAONBFWGFrUWMh4TGMSKOyVuP+K?=
+ =?us-ascii?Q?HYgSYkTNfAzYbU5Z6riWLgArimRKYAgBvXMHY5eKhDKXHRxVNM98xjvOE2Y1?=
+ =?us-ascii?Q?oEZr0qUFWnB6odumiOlmu0feIndSXu6Z0wHS0f1RuyLPVmuD8/N6mBgfM3wJ?=
+ =?us-ascii?Q?omafNfWeAVbgVZKNQB28e6Yb0UTEJ5VUYntHq1XWycN2SdmrIFzPPAHWopbX?=
+ =?us-ascii?Q?IwpWViarIqWXjqcw/z3PjXV38tt7N9AJYBdGfug6vvjrK30OJNN3cWNFTmMv?=
+ =?us-ascii?Q?j72PxmFUdSTQjVCPCofRqnpezaJKzZKk2zdksH3sUBMYIND9NeZkpYldzEN9?=
+ =?us-ascii?Q?BzmVPge1/74u/4ZzycvFx1Y66ad6G2kEsTDrt8gIK40sX/+qvCRGl+f6JZ6L?=
+ =?us-ascii?Q?/hLugHPz1YXmMvLeNTYJr9TsNcvuDQUzwYZ5i8fai7AN78rQfmY03RoBuvG9?=
+ =?us-ascii?Q?Qmf5u593vs/T0l+PKBT1DFvQ/lRmSkRdB3F3GCI0Qp9cU+Hs480SMLjhjncH?=
+ =?us-ascii?Q?D5urYgJKbaZd4CSn7RIskCAcN5GfOdWul7SH7X1JAvFU3i4eBXR9D0+pN5EQ?=
+ =?us-ascii?Q?0TjJRIzU0a7n4IDwFYEPWbeVLV4Tf1STv+3+gR3n3NVMk3gUiHGrHW6JH+K2?=
+ =?us-ascii?Q?gNelz1EQkaA2DzUuKg70Exj14FKu+ka2YFKNHNBwsvGyvjYvS0MkheLf8j0+?=
+ =?us-ascii?Q?5KvjuyDttW5e3jlW9ARBfWwyJ9jea2Ra98f9dFg3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230413212443.1504245-7-radhakrishna.sripada@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/mtl/display: Implement
- DisplayPort sequences
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc07e8b1-72d0-40be-f468-08db3cdcc1ef
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2023 11:38:24.6786 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Gwij5//0VMExWvk2e85YwepNX0bugdXVJlUDFuW/6NlbFNygt8gpQLFrOwOzJDS9ZnznhPRmUfI/Wz4SvCcmVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7073
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,563 +159,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Duan, 
+ Zhenzhong" <zhenzhong.duan@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 13, 2023 at 02:24:40PM -0700, Radhakrishna Sripada wrote:
-> From: José Roberto de Souza <jose.souza@intel.com>
-> 
-> The differences between MTL and TGL DP sequences are big enough to
-> MTL have its own functions.
-> 
-> Also it is much easier to follow MTL sequences against spec with
-> its own functions.
-> 
-> One change worthy to mention is the move of
-> 'intel_display_power_get(dev_priv, dig_port->ddi_io_power_domain)'.
-> This call is not necessary for MTL but we have _put() counter part in
-> intel_ddi_post_disable_dp() that needs to balanced.
-> We could add a display version check on it but instead here it is
-> moving it to intel_ddi_pre_enable_dp() so it is executed for all
-> platforms in a single place and this will not cause any harm in MTL
-> and newer platforms.
-> 
-> v2:
->  - Fix logic to wait for buf idle.
->  - Use the right register to wait for ddi active.(RK)
-> v3:
->  - Increase wait timeout for ddi buf active (Mika)
-> v4:
->  - Increase idle timeout for ddi buf idle (Mika)
-> v5: use rmw in mtl_disable_ddi_buf. Donot clear
->     link training mask(Imre)
-> 
-> BSpec: 65448 65505
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Satyeshwar Singh <satyeshwar.singh@intel.com>
-> Cc: Clint Taylor <clinton.a.taylor@intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> From: Tian, Kevin <kevin.tian@intel.com>
+> Sent: Friday, April 14, 2023 5:12 PM
+>=20
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Friday, April 14, 2023 2:07 AM
+> >
+> > We had already iterated a proposal where the group-id is replaced with
+> > a dev-id in the existing ioctl and a flag indicates when the return
+> > value is a dev-id vs group-id.  This had a gap that userspace cannot
+> > determine if a reset is available given this information since un-owned
+> > devices report an invalid dev-id and userspace can't know if it has
+> > implicit ownership.
+>
+> >
+> > It seems cleaner to me though that we would could still re-use INFO in
+> > a similar way, simply defining a new flag bit which is valid only in
+> > the case of returning dev-ids and indicates if the reset is available.
+> > Therefore in one ioctl, userspace knows if hot-reset is available
+> > (based on a kernel determination) and can pull valid dev-ids from the
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+Need to confirm the meaning of hot-reset available flag. I think it
+should at least meet below two conditions to set this flag. Although
+it may not mean hot-reset is for sure to succeed. (but should be
+a high chance).
 
-> ---
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   8 +
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 344 +++++++++++++++++-
->  drivers/gpu/drm/i915/i915_reg.h               |   5 +
->  3 files changed, 345 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> index 9cfa7f508c90..fe2e3edef69b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> @@ -59,8 +59,16 @@
->  										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
->  										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
->  										 _XELPDP_PORT_BUF_CTL1_LN0_USBC2))
-> +#define   XELPDP_PORT_BUF_D2D_LINK_ENABLE		REG_BIT(29)
-> +#define   XELPDP_PORT_BUF_D2D_LINK_STATE		REG_BIT(28)
->  #define   XELPDP_PORT_BUF_SOC_PHY_READY			REG_BIT(24)
-> +#define   XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK		REG_GENMASK(19, 18)
-> +#define   XELPDP_PORT_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 0)
-> +#define   XELPDP_PORT_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 1)
-> +#define   XELPDP_PORT_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 2)
->  #define   XELPDP_PORT_REVERSAL				REG_BIT(16)
-> +#define   XELPDP_PORT_BUF_IO_SELECT_TBT			REG_BIT(11)
-> +#define   XELPDP_PORT_BUF_PHY_IDLE			REG_BIT(7)
->  #define   XELPDP_TC_PHY_OWNERSHIP			REG_BIT(6)
->  #define   XELPDP_TCSS_POWER_REQUEST			REG_BIT(5)
->  #define   XELPDP_TCSS_POWER_STATE			REG_BIT(4)
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 21a86cb7b2dc..c0283829823f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -40,6 +40,7 @@
->  #include "intel_connector.h"
->  #include "intel_crtc.h"
->  #include "intel_cx0_phy.h"
-> +#include "intel_cx0_phy_regs.h"
->  #include "intel_ddi.h"
->  #include "intel_ddi_buf_trans.h"
->  #include "intel_de.h"
-> @@ -169,6 +170,18 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
->  		       trans->entries[level].hsw.trans2);
->  }
->  
-> +static void mtl_wait_ddi_buf_idle(struct drm_i915_private *i915, enum port port)
-> +{
-> +	int ret;
-> +
-> +	/* FIXME: find out why Bspec's 100us timeout is too short */
-> +	ret = wait_for_us((intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port)) &
-> +			   XELPDP_PORT_BUF_PHY_IDLE), 10000);
-> +	if (ret)
-> +		drm_err(&i915->drm, "Timeout waiting for DDI BUF %c to get idle\n",
-> +			port_name(port));
-> +}
-> +
->  void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
->  			     enum port port)
->  {
-> @@ -196,7 +209,9 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
->  		return;
->  	}
->  
-> -	if (IS_DG2(dev_priv)) {
-> +	if (DISPLAY_VER(dev_priv) >= 14) {
-> +		timeout_us = 10000;
-> +	} else if (IS_DG2(dev_priv)) {
->  		timeout_us = 1200;
->  	} else if (DISPLAY_VER(dev_priv) >= 12) {
->  		if (intel_phy_is_tc(dev_priv, phy))
-> @@ -207,8 +222,12 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
->  		timeout_us = 500;
->  	}
->  
-> -	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> -			  DDI_BUF_IS_IDLE), timeout_us, 10, 10);
-> +	if (DISPLAY_VER(dev_priv) >= 14)
-> +		ret = _wait_for(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) & XELPDP_PORT_BUF_PHY_IDLE),
-> +				timeout_us, 10, 10);
-> +	else
-> +		ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) & DDI_BUF_IS_IDLE),
-> +				timeout_us, 10, 10);
->  
->  	if (ret)
->  		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get active\n",
-> @@ -313,6 +332,13 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
->  		DDI_PORT_WIDTH(crtc_state->lane_count) |
->  		DDI_BUF_TRANS_SELECT(0);
->  
-> +	if (DISPLAY_VER(i915) >= 14) {
-> +		if (intel_dp_is_uhbr(crtc_state))
-> +			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
-> +		else
-> +			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
-> +	}
-> +
->  	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
->  		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
->  		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
-> @@ -2309,6 +2335,179 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
->  		     OVERLAP_PIXELS_MASK, dss1);
->  }
->  
-> +static u8 mtl_get_port_width(u8 lane_count)
-> +{
-> +	switch (lane_count) {
-> +	case 1:
-> +		return 0;
-> +	case 2:
-> +		return 1;
-> +	case 3:
-> +		return 4;
-> +	case 4:
-> +		return 3;
-> +	default:
-> +		MISSING_CASE(lane_count);
-> +		return 4;
-> +	}
-> +}
-> +
-> +static void
-> +mtl_ddi_enable_d2d(struct intel_encoder *encoder)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	enum port port = encoder->port;
-> +
-> +	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port), 0,
-> +		     XELPDP_PORT_BUF_D2D_LINK_ENABLE);
-> +
-> +	if (wait_for_us((intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
-> +			 XELPDP_PORT_BUF_D2D_LINK_STATE), 100)) {
-> +		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link enable for PORT_BUF_CTL %c\n",
-> +			port_name(port));
-> +	}
-> +}
-> +
-> +static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
-> +				     const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	enum port port = encoder->port;
-> +	u32 val;
-> +
-> +	val = intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port));
-> +	val &= ~XELPDP_PORT_WIDTH_MASK;
-> +	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
-> +
-> +	val &= ~XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK;
-> +	if (intel_dp_is_uhbr(crtc_state))
-> +		val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
-> +	else
-> +		val |= XELPDP_PORT_BUF_PORT_DATA_10BIT;
-> +
-> +	if (dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL)
-> +		val |= XELPDP_PORT_REVERSAL;
-> +
-> +	intel_de_write(i915, XELPDP_PORT_BUF_CTL1(port), val);
-> +}
-> +
-> +static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	u32 val;
-> +
-> +	val = intel_tc_port_in_tbt_alt_mode(dig_port) ?
-> +	      XELPDP_PORT_BUF_IO_SELECT_TBT : 0;
-> +	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL1(encoder->port),
-> +		     XELPDP_PORT_BUF_IO_SELECT_TBT, val);
-> +}
-> +
-> +static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> +				  struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state,
-> +				  const struct drm_connector_state *conn_state)
-> +{
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
-> +
-> +	intel_dp_set_link_params(intel_dp,
-> +				 crtc_state->port_clock,
-> +				 crtc_state->lane_count);
-> +
-> +	/*
-> +	 * We only configure what the register value will be here.  Actual
-> +	 * enabling happens during link training farther down.
-> +	 */
-> +	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
-> +
-> +	/*
-> +	 * 1. Enable Power Wells
-> +	 *
-> +	 * This was handled at the beginning of intel_atomic_commit_tail(),
-> +	 * before we called down into this function.
-> +	 */
-> +
-> +	/* 2. PMdemand was already set */
-> +
-> +	/* 3. Select Thunderbolt */
-> +	mtl_port_buf_ctl_io_selection(encoder);
-> +
-> +	/* 4. Enable Panel Power if PPS is required */
-> +	intel_pps_on(intel_dp);
-> +
-> +	/* 5. Enable the port PLL */
-> +	intel_ddi_enable_clock(encoder, crtc_state);
-> +
-> +	/*
-> +	 * 6.a Configure Transcoder Clock Select to direct the Port clock to the
-> +	 * Transcoder.
-> +	 */
-> +	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
-> +
-> +	/*
-> +	 * 6.b If DP v2.0/128b mode - Configure TRANS_DP2_CTL register settings.
-> +	 */
-> +	intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-> +
-> +	/*
-> +	 * 6.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-> +	 * Transport Select
-> +	 */
-> +	intel_ddi_config_transcoder_func(encoder, crtc_state);
-> +
-> +	/*
-> +	 * 6.e Program CoG/MSO configuration bits in DSS_CTL1 if selected.
-> +	 */
-> +	intel_ddi_mso_configure(crtc_state);
-> +
-> +	if (!is_mst)
-> +		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> +
-> +	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
-> +	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
-> +	/*
-> +	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-> +	 * in the FEC_CONFIGURATION register to 1 before initiating link
-> +	 * training
-> +	 */
-> +	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
-> +
-> +	intel_dp_check_frl_training(intel_dp);
-> +	intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
-> +
-> +	/*
-> +	 * 6. The rest of the below are substeps under the bspec's "Enable and
-> +	 * Train Display Port" step.  Note that steps that are specific to
-> +	 * MST will be handled by intel_mst_pre_enable_dp() before/after it
-> +	 * calls into this function.  Also intel_mst_pre_enable_dp() only calls
-> +	 * us when active_mst_links==0, so any steps designated for "single
-> +	 * stream or multi-stream master transcoder" can just be performed
-> +	 * unconditionally here.
-> +	 *
-> +	 * mtl_ddi_prepare_link_retrain() that is called by
-> +	 * intel_dp_start_link_train() will execute steps: 6.d, 6.f, 6.g, 6.h,
-> +	 * 6.i and 6.j
-> +	 *
-> +	 * 6.k Follow DisplayPort specification training sequence (see notes for
-> +	 *     failure handling)
-> +	 * 6.m If DisplayPort multi-stream - Set DP_TP_CTL link training to Idle
-> +	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
-> +	 *     (timeout after 800 us)
-> +	 */
-> +	intel_dp_start_link_train(intel_dp, crtc_state);
-> +
-> +	/* 6.n Set DP_TP_CTL link training to Normal */
-> +	if (!is_trans_port_sync_mode(crtc_state))
-> +		intel_dp_stop_link_train(intel_dp, crtc_state);
-> +
-> +	/* 6.o Configure and enable FEC if needed */
-> +	intel_ddi_enable_fec(encoder, crtc_state);
-> +
-> +	intel_dsc_dp_pps_write(encoder, crtc_state);
-> +}
-> +
->  static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  				  struct intel_encoder *encoder,
->  				  const struct intel_crtc_state *crtc_state,
-> @@ -2523,7 +2722,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  		intel_dp_128b132b_sdp_crc16(enc_to_intel_dp(encoder),
->  					    crtc_state);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 12)
-> +	if (DISPLAY_VER(dev_priv) >= 14)
-> +		mtl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-> +	else if (DISPLAY_VER(dev_priv) >= 12)
->  		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
->  	else
->  		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-> @@ -2604,8 +2805,50 @@ static void intel_ddi_pre_enable(struct intel_atomic_state *state,
->  	}
->  }
->  
-> -static void intel_disable_ddi_buf(struct intel_encoder *encoder,
-> -				  const struct intel_crtc_state *crtc_state)
-> +static void
-> +mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	enum port port = encoder->port;
-> +
-> +	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port),
-> +		     XELPDP_PORT_BUF_D2D_LINK_ENABLE, 0);
-> +
-> +	if (wait_for_us(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
-> +			  XELPDP_PORT_BUF_D2D_LINK_STATE), 100))
-> +		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link disable for PORT_BUF_CTL %c\n",
-> +			port_name(port));
-> +}
-> +
-> +static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
-> +				const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	enum port port = encoder->port;
-> +	u32 val;
-> +
-> +	/* 3.b Clear DDI_CTL_DE Enable to 0. */
-> +	val = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-> +	if (val & DDI_BUF_CTL_ENABLE) {
-> +		val &= ~DDI_BUF_CTL_ENABLE;
-> +		intel_de_write(dev_priv, DDI_BUF_CTL(port), val);
-> +
-> +		/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
-> +		mtl_wait_ddi_buf_idle(dev_priv, port);
-> +	}
-> +
-> +	/* 3.d Disable D2D Link */
-> +	mtl_ddi_disable_d2d_link(encoder);
-> +
-> +	/* 3.e Disable DP_TP_CTL */
-> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
-> +		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
-> +			     DP_TP_CTL_ENABLE, 0);
-> +	}
-> +}
-> +
-> +static void disable_ddi_buf(struct intel_encoder *encoder,
-> +			    const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum port port = encoder->port;
-> @@ -2630,6 +2873,21 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
->  		intel_wait_ddi_buf_idle(dev_priv, port);
->  }
->  
-> +static void intel_disable_ddi_buf(struct intel_encoder *encoder,
-> +				  const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 14) {
-> +		mtl_disable_ddi_buf(encoder, crtc_state);
-> +
-> +		/* 3.f Disable DP_TP_CTL FEC Enable if it is needed */
-> +		intel_ddi_disable_fec_state(encoder, crtc_state);
-> +	} else {
-> +		disable_ddi_buf(encoder, crtc_state);
-> +	}
-> +}
-> +
->  static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->  				      struct intel_encoder *encoder,
->  				      const struct intel_crtc_state *old_crtc_state,
-> @@ -2638,6 +2896,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct intel_dp *intel_dp = &dig_port->dp;
-> +	intel_wakeref_t wakeref;
->  	bool is_mst = intel_crtc_has_type(old_crtc_state,
->  					  INTEL_OUTPUT_DP_MST);
->  
-> @@ -2677,12 +2936,19 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->  	intel_pps_vdd_on(intel_dp);
->  	intel_pps_off(intel_dp);
->  
-> -	if (!intel_tc_port_in_tbt_alt_mode(dig_port))
-> +	wakeref = fetch_and_zero(&dig_port->ddi_io_wakeref);
-> +
-> +	if (wakeref)
->  		intel_display_power_put(dev_priv,
->  					dig_port->ddi_io_power_domain,
-> -					fetch_and_zero(&dig_port->ddi_io_wakeref));
-> +					wakeref);
->  
->  	intel_ddi_disable_clock(encoder);
-> +
-> +	/* De-select Thunderbolt */
-> +	if (DISPLAY_VER(dev_priv) >= 14)
-> +		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(encoder->port),
-> +			     XELPDP_PORT_BUF_IO_SELECT_TBT, 0);
->  }
->  
->  static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
-> @@ -2693,6 +2959,7 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
-> +	intel_wakeref_t wakeref;
->  
->  	dig_port->set_infoframes(encoder, false,
->  				 old_crtc_state, old_conn_state);
-> @@ -2705,9 +2972,11 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
->  	if (DISPLAY_VER(dev_priv) >= 12)
->  		intel_ddi_disable_transcoder_clock(old_crtc_state);
->  
-> -	intel_display_power_put(dev_priv,
-> -				dig_port->ddi_io_power_domain,
-> -				fetch_and_zero(&dig_port->ddi_io_wakeref));
-> +	wakeref = fetch_and_zero(&dig_port->ddi_io_wakeref);
-> +	if (wakeref)
-> +		intel_display_power_put(dev_priv,
-> +					dig_port->ddi_io_power_domain,
-> +					wakeref);
->  
->  	intel_ddi_disable_clock(encoder);
->  
-> @@ -3104,6 +3373,53 @@ static void adlp_tbt_to_dp_alt_switch_wa(struct intel_encoder *encoder)
->  		intel_dkl_phy_rmw(i915, DKL_PCS_DW5(tc_port, ln), DKL_PCS_DW5_CORE_SOFTRESET, 0);
->  }
->  
-> +static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-> +					 const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_encoder *encoder = &dig_port->base;
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	enum port port = encoder->port;
-> +	u32 dp_tp_ctl;
-> +
-> +	/*
-> +	 * TODO: To train with only a different voltage swing entry is not
-> +	 * necessary disable and enable port
-> +	 */
-> +	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-> +	if (dp_tp_ctl & DP_TP_CTL_ENABLE)
-> +		mtl_disable_ddi_buf(encoder, crtc_state);
-> +
-> +	/* 6.d Configure and enable DP_TP_CTL with link training pattern 1 selected */
-> +	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> +		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
-> +	} else {
-> +		dp_tp_ctl |= DP_TP_CTL_MODE_SST;
-> +		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
-> +			dp_tp_ctl |= DP_TP_CTL_ENHANCED_FRAME_ENABLE;
-> +	}
-> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
-> +	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-> +
-> +	/* 6.f Enable D2D Link */
-> +	mtl_ddi_enable_d2d(encoder);
-> +
-> +	/* 6.g Configure voltage swing and related IO settings */
-> +	encoder->set_signal_levels(encoder, crtc_state);
-> +
-> +	/* 6.h Configure PORT_BUF_CTL1 */
-> +	mtl_port_buf_ctl_program(encoder, crtc_state);
-> +
-> +	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
-> +	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
-> +	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
-> +	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
-> +
-> +	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
-> +	intel_wait_ddi_buf_active(dev_priv, port);
-> +}
-> +
->  static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
->  					   const struct intel_crtc_state *crtc_state)
->  {
-> @@ -3871,6 +4187,7 @@ static const struct drm_encoder_funcs intel_ddi_funcs = {
->  static struct intel_connector *
->  intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->  {
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	struct intel_connector *connector;
->  	enum port port = dig_port->base.port;
->  
-> @@ -3879,7 +4196,10 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->  		return NULL;
->  
->  	dig_port->dp.output_reg = DDI_BUF_CTL(port);
-> -	dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
-> +	if (DISPLAY_VER(i915) >= 14)
-> +		dig_port->dp.prepare_link_retrain = mtl_ddi_prepare_link_retrain;
-> +	else
-> +		dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
->  	dig_port->dp.set_link_train = intel_ddi_set_link_train;
->  	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 531c0ea68c05..df29ab301326 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5655,11 +5655,16 @@ enum skl_power_gate {
->  /* DDI Buffer Control */
->  #define _DDI_BUF_CTL_A				0x64000
->  #define _DDI_BUF_CTL_B				0x64100
-> +/* Known as DDI_CTL_DE in MTL+ */
->  #define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
->  #define  DDI_BUF_CTL_ENABLE			(1 << 31)
->  #define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
->  #define  DDI_BUF_EMP_MASK			(0xf << 24)
->  #define  DDI_BUF_PHY_LINK_RATE(r)		((r) << 20)
-> +#define  DDI_BUF_PORT_DATA_MASK			REG_GENMASK(19, 18)
-> +#define  DDI_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 0)
-> +#define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
-> +#define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
->  #define  DDI_BUF_PORT_REVERSAL			(1 << 16)
->  #define  DDI_BUF_IS_IDLE			(1 << 7)
->  #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
-> -- 
-> 2.34.1
-> 
+1) dev_set is resettable (all affected device are in dev_set)
+2) affected device are owned by the current user
+
+Also, we need to has assumption that below two cases are rare
+if user encounters it, it just bad luck for them. I think the existing
+_INFO and hot-reset already has such assumption. So cdev mode
+can adopt it as well.
+
+a) physical topology change (e.g. new devices plugged to affected slot)
+b) an affected device is unbound from vfio
+
+> So the kernel needs to compare the group id between devices with
+> valid dev-ids and devices with invalid dev-ids to decide the implicit
+> ownership. For noiommu device which has no group_id when
+> VFIO_GROUP is off then it's resettable only if having a valid dev_id.
+
+In cdev mode, noiommu device doesn't have dev_id as it is not
+bound to valid iommufd. So if VFIO_GROUP is off, we may never
+allow hot-reset for noiommu devices. But we don't want to have
+regression with noiommu devices. Perhaps we may define the usage
+of the resettable flag like this:
+1) if it is set, user does not need to own all the affected devices as
+    some of them may have been owned implicitly. Kernel should have
+    checked it.
+2) if the flag is not set, that means user needs to check ownership
+    by itself. It needs to own all the affected devices. If not, don't
+   do hot-reset.
+
+This way we can still make noiommu devices support hot-reset
+just like VFIO_GROUP is on. Because noiommu devices have fake
+groups, such groups are all singleton. So checking all affected
+devices are opened by user is just same as check all affected
+groups.
+
+> The only corner case with this option is when a user mixes group
+> and cdev usages. iirc you mentioned it's a valid usage to be supported.
+> In that case the kernel doesn't have sufficient knowledge to judge
+> 'resettable' as it doesn't know which groups are opened by this user.
+>
+> Not sure whether we can leave it in a ugly way so INFO may not tell
+> 'resettable' accurately in that weird scenario.
+
+This seems not easy to support. If above scenario is allowed there can be
+three cases that returns invalid dev_id.
+1) devices not opened by user but owned implicitly
+2) devices not owned by user
+3) devices opened via group but owned by user
+
+User would require more info to tell the above cases from each other.
+
+> > array to associate affected, owned devices, and still has the
+> > equivalent information to know that one or more of the devices listed
+> > with an invalid dev-id are preventing the hot-reset from being
+> > available.
+> >
+> > Is that an option?  Thanks,
+> >
+>=20
+> This works for me if above corner case can be waived.
+
+One side check, perhaps already confirmed in prior email. @Alex, So
+the reason for the prediction of hot-reset is to avoid the possible
+vfio_pci_pre_reset() which does heavy operations like stop DMA and
+copy config space. Is it? Any other special reason? Anyhow, this reason
+is enough for this prediction per my understanding.
+
+Regards,
+Yi Liu
