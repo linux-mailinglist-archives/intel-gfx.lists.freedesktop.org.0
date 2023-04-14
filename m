@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F256E18E1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 02:15:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 946476E1911
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 02:35:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 194E310E601;
-	Fri, 14 Apr 2023 00:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C57510E7DE;
+	Fri, 14 Apr 2023 00:35:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE2A310E601;
- Fri, 14 Apr 2023 00:15:08 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D890510E01F;
+ Fri, 14 Apr 2023 00:35:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9E10AADD2;
- Fri, 14 Apr 2023 00:15:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5273582767562209422=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id BE991A006C;
+ Fri, 14 Apr 2023 00:35:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 14 Apr 2023 00:15:08 -0000
-Message-ID: <168143130867.26689.10225390148093971125@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Fri, 14 Apr 2023 00:35:29 -0000
+Message-ID: <168143252974.26688.7526568058269585989@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230413200602.6037-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230413200602.6037-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Make_intel=5Fmpllb=5Fst?=
- =?utf-8?q?ate=5Fverify=28=29_safer?=
+References: <20230413212443.1504245-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20230413212443.1504245-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/mtl=3A_Add_Support_for_C10_phy_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,264 +45,336 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5273582767562209422==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915: Make intel_mpllb_state_verify() safer
-URL   : https://patchwork.freedesktop.org/series/116461/
-State : success
+Series: drm/i915/mtl: Add Support for C10 phy (rev4)
+URL   : https://patchwork.freedesktop.org/series/116191/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13005 -> Patchwork_116461v1
-====================================================
+Error: dim checkpatch failed
+82a3f0bc865f drm/i915/mtl: Add DP rates
+c39006db21f7 drm/i915/mtl: Create separate reg file for PICA registers
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:19: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#19: 
+new file mode 100644
 
-Summary
--------
+-:39: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:16:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
 
-  **SUCCESS**
+-:40: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:17:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
 
-  No regressions found.
+-:41: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:18:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/index.html
+-:42: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:19:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2) + (lane) * 4)
 
-Participating hosts (37 -> 35)
-------------------------------
+-:45: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:22:
++#define   XELPDP_PORT_M2P_COMMAND_WRITE_UNCOMMITTED	REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x1)
 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+-:46: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:23:
++#define   XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED	REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x2)
 
-Known issues
-------------
+-:47: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:24:
++#define   XELPDP_PORT_M2P_COMMAND_READ			REG_FIELD_PREP(XELPDP_PORT_M2P_COMMAND_TYPE_MASK, 0x3)
 
-  Here are the changes found in Patchwork_116461v1 that come from known issues:
+-:49: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#49: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:26:
++#define   XELPDP_PORT_M2P_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_DATA_MASK, val)
 
-### IGT changes ###
+-:52: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:29:
++#define   XELPDP_PORT_M2P_ADDRESS(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_ADDRESS_MASK, val)
 
-#### Issues hit ####
+-:54: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:31:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         [PASS][1] -> [ABORT][2] ([i915#6687] / [i915#7978])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+-:55: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:32:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
 
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         NOTRUN -> [DMESG-WARN][3] ([i915#7699])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
+-:56: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:33:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
 
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         NOTRUN -> [DMESG-FAIL][4] ([i915#6367] / [i915#7913])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
+-:57: WARNING:LONG_LINE: line length of 137 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:34:
++										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2) + (lane) * 4 + 8)
 
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][5] ([i915#7828])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-dg2-11:         NOTRUN -> [SKIP][6] ([i915#7828])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+-:63: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#63: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:40:
++#define   XELPDP_PORT_P2M_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_P2M_DATA_MASK, val)
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][7] ([i915#5354])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+-:81: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:58:
++										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:
-    - bat-dg2-8:          [PASS][8] -> [FAIL][9] ([i915#7932])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
+-:82: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#82: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:59:
++										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][10] ([i915#1845])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
+-:83: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:60:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
 
-  
-#### Possible fixes ####
+-:84: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#84: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:61:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC2))
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-5:          [FAIL][11] ([i915#8308]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg1-5/igt@i915_pm_rps@basic-api.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html
+-:94: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:71:
++										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
 
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-dg2-11:         [INCOMPLETE][13] ([i915#7609] / [i915#7913]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html
+-:95: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:72:
++										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
 
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][15] ([i915#6794]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_selftest@live@mman.html
+-:96: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:73:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
 
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-2:         [ABORT][17] ([i915#6687] / [i915#7978]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
+-:97: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#97: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:74:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC2) + 4)
 
-  
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
+-:103: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:80:
++#define   _XELPDP_LANE0_POWERDOWN_NEW_STATE(val)	REG_FIELD_PREP(_XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK, val)
+
+-:105: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:82:
++#define   _XELPDP_LANE1_POWERDOWN_NEW_STATE(val)	REG_FIELD_PREP(_XELPDP_LANE1_POWERDOWN_NEW_STATE_MASK, val)
+
+-:106: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
+#106: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:83:
++#define   XELPDP_LANE_POWERDOWN_NEW_STATE(lane, val)	_PICK(lane, \
++							      _XELPDP_LANE0_POWERDOWN_NEW_STATE(val), \
++							      _XELPDP_LANE1_POWERDOWN_NEW_STATE(val))
+
+-:107: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:84:
++							      _XELPDP_LANE0_POWERDOWN_NEW_STATE(val), \
+
+-:108: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#108: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:85:
++							      _XELPDP_LANE1_POWERDOWN_NEW_STATE(val))
+
+-:111: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#111: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:88:
++#define   XELPDP_POWER_STATE_READY(val)			REG_FIELD_PREP(XELPDP_POWER_STATE_READY_MASK, val)
+
+-:114: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#114: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:91:
++										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
+
+-:115: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#115: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:92:
++										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
+
+-:116: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#116: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:93:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
+
+-:117: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#117: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:94:
++										 _XELPDP_PORT_BUF_CTL1_LN0_USBC2) + 8)
+
+-:119: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#119: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:96:
++#define   XELPDP_PLL_LANE_STAGGERING_DELAY(val)		REG_FIELD_PREP(XELPDP_PLL_LANE_STAGGERING_DELAY_MASK, val)
+
+-:121: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#121: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:98:
++#define   XELPDP_POWER_STATE_ACTIVE(val)		REG_FIELD_PREP(XELPDP_POWER_STATE_ACTIVE_MASK, val)
+
+-:128: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#128: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:105:
++										 _XELPDP_PORT_CLOCK_CTL_A, \
+
+-:129: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#129: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:106:
++										 _XELPDP_PORT_CLOCK_CTL_B, \
+
+-:130: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#130: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:107:
++										 _XELPDP_PORT_CLOCK_CTL_USBC1, \
+
+-:131: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#131: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:108:
++										 _XELPDP_PORT_CLOCK_CTL_USBC2))
+
+-:143: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#143: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:120:
++#define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
+
+total: 0 errors, 39 warnings, 1 checks, 133 lines checked
+00935ca88efb drm/i915/mtl: Add Support for C10 PHY message bus and pll programming
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:24: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#24: 
+    Move register definitions to a new file i.e. intel_cx0_reg_defs.h (Jani)
+
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+-:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__lane' - possible side-effects?
+#91: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:19:
++#define for_each_cx0_lane_in_mask(__lane_mask, __lane) \
++	for ((__lane) = 0; (__lane) < 2; (__lane)++) \
++		for_each_if((__lane_mask) & BIT(__lane))
+
+-:101: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'phy < PHY_C'
+#101: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:29:
++	if (IS_METEORLAKE(i915) && (phy < PHY_C))
+
+-:190: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#190: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:118:
++		drm_dbg_kms(&i915->drm, "PHY %c Error occurred during %s command. Status: 0x%x\n", phy_name(phy),
+
+-:197: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:125:
++		drm_dbg_kms(&i915->drm, "PHY %c Not a %s response. MSGBUS Status: 0x%x.\n", phy_name(phy),
+
+-:217: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#217: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:145:
++			    "PHY %c Timeout waiting for previous transaction to complete. Reset the bus and retry.\n", phy_name(phy));
+
+-:278: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#278: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:206:
++			    "PHY %c Timeout waiting for previous transaction to complete. Resetting the bus.\n", phy_name(phy));
+
+-:294: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#294: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:222:
++			    "PHY %c Timeout waiting for write to complete. Resetting the bus.\n", phy_name(phy));
+
+-:300: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#300: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:228:
++		if (intel_cx0_wait_for_ack(i915, port, XELPDP_PORT_P2M_COMMAND_WRITE_ACK, lane, &val) < 0) {
+
+-:754: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#754: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:682:
++	intel_cx0_write(i915, encoder->port, INTEL_CX0_LANE0, PHY_C10_VDR_CMN(0), pll_state->cmn, MB_WRITE_COMMITTED);
+
+-:755: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#755: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:683:
++	intel_cx0_write(i915, encoder->port, INTEL_CX0_LANE0, PHY_C10_VDR_TX(0), pll_state->tx, MB_WRITE_COMMITTED);
+
+-:877: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#877: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:805:
++		     intel_cx0_get_powerdown_state(INTEL_CX0_BOTH_LANES, XELPDP_LANE_POWERDOWN_NEW_STATE_MASK),
+
+-:1286: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_cx0_phy.h', please use '/*' instead
+#1286: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.h:1:
++// SPDX-License-Identifier: MIT
+
+-:1286: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#1286: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.h:1:
++// SPDX-License-Identifier: MIT
+
+-:1310: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1310: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.h:25:
++void intel_c10pll_readout_hw_state(struct intel_encoder *encoder, struct intel_c10pll_state *pll_state);
+
+-:1423: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1423: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3502:
++	crtc_state->port_clock = intel_c10pll_calc_port_clock(encoder, &crtc_state->cx0pll_state.c10);
+
+-:1508: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#1508: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1016:
++		crtc_state->port_clock = intel_c10pll_calc_port_clock(encoder, &crtc_state->cx0pll_state.c10);
+
+-:1605: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__n' - possible side-effects?
+#1605: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:33:
++#define REG_BIT8(__n)                                                   \
++	((u8)(BIT(__n) +                                                \
++	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&         \
++				 ((__n) < 0 || (__n) > 7))))
+
+-:1626: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__high' - possible side-effects?
+#1626: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:77:
++#define REG_GENMASK8(__high, __low)                                     \
++	((u8)(GENMASK(__high, __low) +                                  \
++	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
++				 __is_constexpr(__low) &&               \
++				 ((__low) < 0 || (__high) > 7 || (__low) > (__high)))))
+
+-:1626: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__low' - possible side-effects?
+#1626: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:77:
++#define REG_GENMASK8(__high, __low)                                     \
++	((u8)(GENMASK(__high, __low) +                                  \
++	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
++				 __is_constexpr(__low) &&               \
++				 ((__low) < 0 || (__high) > 7 || (__low) > (__high)))))
+
+-:1649: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__mask' - possible side-effects?
+#1649: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:115:
++#define REG_FIELD_PREP8(__mask, __val)                                          \
++	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
++	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
++	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
++	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+
+-:1649: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__val' - possible side-effects?
+#1649: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:115:
++#define REG_FIELD_PREP8(__mask, __val)                                          \
++	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
++	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
++	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
++	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+
+-:1654: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#1654: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:120:
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+
+total: 0 errors, 17 warnings, 7 checks, 1553 lines checked
+8931a3a9b171 drm/i915/mtl: Add vswing programming for C10 phys
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+C10 phys uses direct mapping internally for voltage and pre-emphasis levels.
+
+total: 0 errors, 1 warnings, 0 checks, 217 lines checked
+fde4467f4261 drm/i915/mtl: MTL PICA hotplug detection
+1b5b2b7ca926 drm/i915/mtl/display: Implement DisplayPort sequences
+-:56: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:66:
++#define   XELPDP_PORT_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 0)
+
+-:57: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:67:
++#define   XELPDP_PORT_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 1)
+
+-:58: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:68:
++#define   XELPDP_PORT_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 2)
+
+-:114: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#114: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:226:
++		ret = _wait_for(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) & XELPDP_PORT_BUF_PHY_IDLE),
+
+total: 0 errors, 4 warnings, 0 checks, 476 lines checked
+bb61a6835617 drm/i915/mtl: Add C10 phy programming for HDMI
+90b21be0e6b9 drm/i915/display/mtl: Fill port width in DDI_BUF_/TRANS_DDI_FUNC_/PORT_BUF_CTL for HDMI
+831bf44482a1 drm/i915/mtl: Initial DDI port setup
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13005 -> Patchwork_116461v1
-
-  CI-20190529: 20190529
-  CI_DRM_13005: bf4d8875e662b5cda5aa9ce2cb978176697a60c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7254: 7fab01340a3f360abacd7914015be1ad485363d7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116461v1: bf4d8875e662b5cda5aa9ce2cb978176697a60c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d2efc2d35222 drm/i915: Make intel_get_crtc_new_encoder() less oopsy
-fed2a84f4a1d drm/i915: Make intel_mpllb_state_verify() safer
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/index.html
-
---===============5273582767562209422==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Make intel_mpllb_state_verify() safer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116461/">https://patchwork.freedesktop.org/series/116461/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13005 -&gt; Patchwork_116461v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 35)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116461v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg1-5/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-dg2-11/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13005/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116461v1/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13005 -&gt; Patchwork_116461v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13005: bf4d8875e662b5cda5aa9ce2cb978176697a60c1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7254: 7fab01340a3f360abacd7914015be1ad485363d7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116461v1: bf4d8875e662b5cda5aa9ce2cb978176697a60c1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d2efc2d35222 drm/i915: Make intel_get_crtc_new_encoder() less oopsy<br />
-fed2a84f4a1d drm/i915: Make intel_mpllb_state_verify() safer</p>
-
-</body>
-</html>
-
---===============5273582767562209422==--
