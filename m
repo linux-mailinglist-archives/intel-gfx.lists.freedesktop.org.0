@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C816E2C88
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 Apr 2023 00:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CC36E2CA9
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 Apr 2023 01:02:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747D510E221;
-	Fri, 14 Apr 2023 22:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E0210EEBC;
+	Fri, 14 Apr 2023 23:02:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE28410E221;
- Fri, 14 Apr 2023 22:43:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681512184; x=1713048184;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Wuq+IPj1vfq8zA2DHw9ThHwn0V9278qwnLWCY71S/aM=;
- b=ieVJ70TBW3qOn7LMCXW8AIVVA54OjjSEiITGP/DGxVDx+TV1ZdcB6HVO
- s3Mw0OdxgDNbJmiecCeTJp6cszVBPLL1MAi4m4w6cYXLniZd/yVjNidv/
- NluVEmrxEL4jv8tcdgqedDNmk4f0dwdvqW3ZP0/GqHsAab18VolmGvMiW
- ixIgu19CIchOyO85VUuJ614vms0Jf4WjevTAesIO+Tt/BTq+kwvwhLt9z
- hrBrAze7oDt683YXJwaPv5pFb7gKjk4OQRAuqwuLixE6vf/CQKMRWP6Cb
- TPuWliBaZhk7DiwOucnj977opnIT/NTJ80y/UmfvMzM9sSkksWQaUlVIh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="407471973"
-X-IronPort-AV: E=Sophos;i="5.99,198,1677571200"; d="scan'208";a="407471973"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 15:43:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="754607509"
-X-IronPort-AV: E=Sophos;i="5.99,198,1677571200"; d="scan'208";a="754607509"
-Received: from nofferma-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.212.231])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 15:43:00 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Sat, 15 Apr 2023 00:41:09 +0200
-Message-Id: <20230414224109.1051922-1-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 27B1010EEBC;
+ Fri, 14 Apr 2023 23:02:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2342EAADE6;
+ Fri, 14 Apr 2023 23:02:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix memory leaks in i915 selftests
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Date: Fri, 14 Apr 2023 23:02:02 -0000
+Message-ID: <168151332213.26685.10128392012062833398@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230414223415.3077055-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20230414223415.3077055-1-vinay.belgaumkar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc/slpc=3A_Provide_sysfs_for_efficient_freq_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,52 +41,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Cong Liu <liucong2@kylinos.cn>,
- Andi Shyti <andi.shyti@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Cong Liu <liucong2@kylinos.cn>
+== Series Details ==
 
-This patch fixes memory leaks on error escapes in function fake_get_pages
+Series: drm/i915/guc/slpc: Provide sysfs for efficient freq (rev2)
+URL   : https://patchwork.freedesktop.org/series/116510/
+State : warning
 
-Fixes: c3bfba9a2225 ("drm/i915: Check for integer truncation on scatterlist creation")
-Signed-off-by: Cong Liu <liucong2@kylinos.cn>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
-Hi,
+== Summary ==
 
-just resending this patch as I don't see it in our patchwork.
+Error: dim checkpatch failed
+86d4ab64d0b0 drm/i915/guc/slpc: Provide sysfs for efficient freq
+-:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#33: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:455:
++static ssize_t slpc_ignore_eff_freq_show(struct kobject *kobj,
++				     struct kobj_attribute *attr,
 
-Andi
+-:49: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#49: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:471:
++	uint32_t val;
 
-Changelong
-==========
-v1 -> v2
- - Add r-b tags
+total: 0 errors, 0 warnings, 2 checks, 139 lines checked
 
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-index 5361ce70d3f29..154801f1c4685 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -69,8 +69,10 @@ static int fake_get_pages(struct drm_i915_gem_object *obj)
- 
- 	rem = round_up(obj->base.size, BIT(31)) >> 31;
- 	/* restricted by sg_alloc_table */
--	if (overflows_type(rem, unsigned int))
-+	if (overflows_type(rem, unsigned int)) {
-+		kfree(pages);
- 		return -E2BIG;
-+	}
- 
- 	if (sg_alloc_table(pages, rem, GFP)) {
- 		kfree(pages);
--- 
-2.39.2
 
