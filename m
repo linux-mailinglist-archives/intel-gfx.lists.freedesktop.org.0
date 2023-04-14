@@ -1,57 +1,159 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741E26E2584
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 16:21:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4066E26AA
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 17:18:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE7F910ED6A;
-	Fri, 14 Apr 2023 14:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A6910E1A9;
+	Fri, 14 Apr 2023 15:18:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D67210ED53
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 14:21:51 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C22A610E1A9;
+ Fri, 14 Apr 2023 15:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681482111; x=1713018111;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=eK26p+nd/n7LJkCZJmF4sBGKe2gnhOqIp+bPgnsmBr0=;
- b=e5ijSk2Vl/DczZpUbbs3u0u+JsAbiWFr5S1kSSvlDBvsgOO+lS+qa7o1
- bqq/yUMx+ttwUhOwFUY6AyHkDGK8HNdEVQKw1q1upjuI9RqhYpLeA3Vf3
- F5oGmhrmZHICkE62Z17prdJVuggIePze7f4YMb+JszozNlqWbOb5ODhsO
- JlUPGpyAsK7m+LYyPq3KphBXMGPCvQ2arW4n9iQ7ENQ94R5PEnHZhMdAu
- 8MT55np5CJVNb8DzzemBCA6VDT8rRYQCeSU4TkDIMRjCD62fzxzrytBac
- S+fHazDcaXpkOqjXxReNgYd3BjCmG/t2o1jXtDkDPpKw1gA+LrcFLlH2H Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="341971909"
-X-IronPort-AV: E=Sophos;i="5.99,197,1677571200"; d="scan'208";a="341971909"
+ t=1681485482; x=1713021482;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=YGi2epQ87dGzb7+TwEfXzXPObm7euALRUwX1m4VErVg=;
+ b=OalYnN3/asLoRimnWRDecVTqhvkk2by2ns0dq3VXAgC5yC/fk5gJa2L3
+ jUky+AX5ytNtPBvQ6I/626/NIuzfjNP1k7uRK0afMxAUPsDG8/6EDjEhC
+ pZG0O0fNLz8f5lHaovNLUc8gktDn9ydCo19zC6wDG3uowWwTPVPJu8rdQ
+ tR4+wR1h1Ay/3qt9r5FE7fqdaCjqXHk14pyRwcXbX9sWP9gMqEJb6dCTO
+ aGr49xON9SBMHgQ92GnIP4dzPjql0We9MzDI487eh30Wiq2R/GIZSZ3iN
+ D1pOxU2Q7y9D+YLLI3NB+DTeECuvzx7EzDMBvVcVOA5WnzSJsoTmTO0K6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="333261755"
+X-IronPort-AV: E=Sophos;i="5.99,197,1677571200"; d="scan'208";a="333261755"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 07:21:50 -0700
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 08:18:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="720304326"
-X-IronPort-AV: E=Sophos;i="5.99,197,1677571200"; d="scan'208";a="720304326"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 14 Apr 2023 07:21:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Apr 2023 17:21:46 +0300
-Date: Fri, 14 Apr 2023 17:21:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Message-ID: <ZDlhegJ/XHwC30ed@intel.com>
-References: <20230302161013.29213-1-ville.syrjala@linux.intel.com>
- <20230302161013.29213-6-ville.syrjala@linux.intel.com>
- <55edbdc0b5bceae9cc0a493fcf7a52e6069781b7.camel@intel.com>
- <09cc80e66549cbb30f0f701c875e27f1e8f064e0.camel@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10680"; a="720318845"
+X-IronPort-AV: E=Sophos;i="5.99,197,1677571200"; d="scan'208";a="720318845"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga008.jf.intel.com with ESMTP; 14 Apr 2023 08:18:01 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 14 Apr 2023 08:18:01 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 14 Apr 2023 08:18:01 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 14 Apr 2023 08:18:01 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 14 Apr 2023 08:18:00 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fzfQSRN4ptL4Uheozgv8+YwaJhUUnBzvC54DQ0xH6YQub31kiZgIMdcG6+STaJ2yT/s/+bKbNAZdueSj9iZuwl+rfWwZDwNfWEAJLn0XNA/KPVacoF3U45z/5oWV+ZMMduk1N4w6wB6HhPJpF4xEmcnyPuqv6Qz9xORscQGY9WQL71giDMIExv0HOrsmQFkw9xXUWhYnpHI92/L7/J8DT9/v5vBTC3DIGoPvrvOeL/Rw7Slw4OqccKF2D+NISc8ng+4laP0a9D34bcqD3jYoapXaNawkbZmkdrioV9Jwt4iX+tJ3IH6RgFl6Xro/SgJtXOMbUO9nz2sbpIriKyEOzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YGi2epQ87dGzb7+TwEfXzXPObm7euALRUwX1m4VErVg=;
+ b=EUyG9NPUZ2w22xViRqVZTiK0a2UDuwjRYh2pzSO71T8X4FLTbBIuTnT2mR557i57h+lG9DPGsmnyVLwtZzfosbm5H92NBO87QQOPT+mCONLvhicaukrOStbuoqzkI1WXQ1GA7coE9iCnGbN0gSYMslSH2qYkn6W6u96/wJGcmbOWVznGxcDocnkNeQ7aYP5BSjYjN6XcEFmhvO6DEzNskqzklELQ79WizT+mWk3/q8eVW64gPvb09zNVtPfVI8twMFy2JK3py+z9gZy7He165MNntz2j8IeRUZrzci9ZsG7NiGfP8QGJ5djpKToE1U9O54jwJm3WEtqHBpuNKsXwPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ DM4PR11MB6095.namprd11.prod.outlook.com (2603:10b6:8:aa::14) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6277.38; Fri, 14 Apr 2023 15:17:59 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::34a1:94e9:ec9b:dfe3]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::34a1:94e9:ec9b:dfe3%6]) with mapi id 15.20.6298.030; Fri, 14 Apr 2023
+ 15:17:59 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>
+Thread-Topic: [PATCH v7 6/8] drm/i915/uapi/pxp: Fix UAPI spec comments and add
+ GET_PARAM for PXP
+Thread-Index: AQHZaK9ya+davEyaqkWPdww46zK+Z68k0KeAgAYmj4A=
+Date: Fri, 14 Apr 2023 15:17:59 +0000
+Message-ID: <ae72a0dfb157a9944434b773a93d82d40c7cb4e7.camel@intel.com>
+References: <20230406174419.471256-1-alan.previn.teres.alexis@intel.com>
+ <20230406174419.471256-7-alan.previn.teres.alexis@intel.com>
+ <35d5f2da-115e-5873-1e3e-ba4db16537eb@intel.com>
+In-Reply-To: <35d5f2da-115e-5873-1e3e-ba4db16537eb@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.1-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|DM4PR11MB6095:EE_
+x-ms-office365-filtering-correlation-id: 5c6bed52-ed06-41a5-efe4-08db3cfb6ea4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y+E0Kzx1hutWWvRGZRzrGLD7/1T29JXetZOEEszroX5lmDVpk57gSI3d9bLdf9Z3L9zz+Hi9yitlP81Iwq4AFqQsMvsCVHhhYoFUhKIsNj4hCIQ4+A5FTO1vYhZDMc/7vGNqmIuonEGWA+PiXrsy9Tl9yw8wvQdmGwuF4bvE70d3qZcY68MqU47AEhJmU6y2aJPMs+MH//nPBuQRtw/bVCXYcXglNUodO6teczogpQ68JDFbTKymjretFfkk2VXfKjqDGF34H7JxgyBspnXQgF9y69ii6ehLzhhQQwbxeEOvGBpgFH9QKgs+iZwBq40TUApheMYAYiaP6OYgLxDT1IAnRzqdECyJyK0pblEQww/MTHjEoK7ZehDOx9cEi8/X4wJWBp5svuyBLocAKGQpgRbKDjVOdDXI9war45J0pXKopsc5EVDQkgyxpH6MxBSHEDYkXMswU+QCYZj9sE7MT5ej9mqvWOAYwCP6QugecIKEGKRngN8/aiNzpBkZtJrUs9aw5Wh6L0JZPDf5i31h9HCHUF+g8ahzJ/c/CtW9kmc1WSuk6CxoqbDOqKaYbJxx8t6LvpTzv7gaOmppXS/CCebxOHcbOf+SuR/68Qn+HUDXRJxyDp5Evq2Jpo7W2ZIs
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(136003)(346002)(366004)(396003)(39860400002)(451199021)(66556008)(4326008)(64756008)(66446008)(66946007)(66476007)(76116006)(316002)(107886003)(2906002)(36756003)(8676002)(41300700001)(186003)(8936002)(5660300002)(54906003)(6636002)(478600001)(110136005)(91956017)(86362001)(71200400001)(38070700005)(122000001)(38100700002)(6512007)(26005)(53546011)(6506007)(82960400001)(83380400001)(6486002)(2616005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R2kwOWhLNHRHMTJGK3U5VzQxNVovaUk4dFQxOEpLSlVLMlFMV3BKN0lzZ1dQ?=
+ =?utf-8?B?aDF6MFFkdEZnTWI3WXg1NGdrbkk4Um5CMjl4UW85ditNSjhRa1VOZzk1OENR?=
+ =?utf-8?B?cC9YVGxGTm52L25rWFkzYWZJQUFiamxDb1hraVo0a2hUNHlCVWpsbnByOGxJ?=
+ =?utf-8?B?RnN6bUpicUV0bjZXL3NXQWZmSnV0MC96eTNrTXhDU0R5WWk0S01WbUJteHBv?=
+ =?utf-8?B?R21HY3ZYYXVkVU9RdmduVnV5Y0pqV2FidUt2T1dHMVVHZWhORmZTV29Xb2Zk?=
+ =?utf-8?B?RVFkNVhpVSt3UzVVOHJiWTlzbEZBdUlpaEhLSy9uZUptd2h6ek1nWUU0cUFB?=
+ =?utf-8?B?T29ocWhDK1JjTHVTWitqNWI2MEhoaXlocHV5WlFZMTlVL0d2cldGUWlHdTlT?=
+ =?utf-8?B?b256RjFuMGdsQ3NxdUtzRHNwRW1vT2VKeUkxZFpCY1dxekdiMHB5emwweTBP?=
+ =?utf-8?B?ZFAzYXdDRmdoWWRzTDBub2xOWnVkTlB5d3FVaU43NTJTM1JiNVVXMUpjTjhI?=
+ =?utf-8?B?U2dOZ2hsa3BDc1NGaElrZWZKQm53MWt3WXFYcHZaOVZHdGVOenhsWGFNL20v?=
+ =?utf-8?B?TlEzcjl2dUNodDZCWXd3TXIzcHJJLzVNN1VJSmtwM1d3UVZ3dEpWb3F3Wk1r?=
+ =?utf-8?B?S1MvUEI0aU1QbVU2V0VBaHk3bEVoWE9QSUgyelNJQ3ZmM0RQeTRPYkRCMHhr?=
+ =?utf-8?B?dklOZ05FaThMRHdPSk9JM2NPS0tjUkpORFNETTZtelNXZUZTMzJTRStqSVRz?=
+ =?utf-8?B?OEN5MzF4VzBKZWVnQk9PWHRtbHZkczZCSC9MUXJCSnloUk4zNFMwdnJKT0RP?=
+ =?utf-8?B?SG8rdUVXeDlMMkQzVjBRQkpFZjNvWVNFTzB4VGJTeEZla2R2TkdoSkk4alJR?=
+ =?utf-8?B?RThMRVR1SUJSd3dQNjlMZW1ZWEl3Q2FyZG8yaDZiVHhZbVRZRTNCU0xId2pM?=
+ =?utf-8?B?TUZFWlNPN0VVeXJZVnBzNkVYNElWdUdqdzg1V0hwQW9CK3ZlYlBsSnFtWk90?=
+ =?utf-8?B?ak05M0xPT0l5anlXN0JZcnRsQUwzVmNQOFZEYk9DZ2RMTS8xMTgxWlk2OFdu?=
+ =?utf-8?B?MFhubXVEUS8xakVGZTIxK0NMMTBDNHNvSWRoSEUwV2JJTlpNUmdqL1E0MVVw?=
+ =?utf-8?B?L2pCbmczaGVwRk43UEZ1dktSTWZmaWtPSkJWVlpHWGZHOFhqU1VXVGJiTWtQ?=
+ =?utf-8?B?Zmp5ZlFKeDVqOStTMjF1bTRyUGU5MEk5SHRyUzFzek9tNlo0bVo1OXlieGxS?=
+ =?utf-8?B?WXhvczBodzBKYVdDaExGcmRDeStsNDVKaWJueW1acUZBcDZBbHJWZ2R1ZWRF?=
+ =?utf-8?B?T0lmQkpMNXpJektTZzA3b3g5TzMxTy9DdjMyNVljRDlFS09YVlRNUGpJWTEz?=
+ =?utf-8?B?eGlubzU2eWhhV1hEOEw0SlJUZlJ0NkNmeEw1QVdEc2dOVEhEekVmNmYxUDZJ?=
+ =?utf-8?B?SGJXVm1Qdi9WL0tZNyt6ZXhiT0dIL3dmMDdCRXFDa0JCMmw2ZytoWkZCQmw2?=
+ =?utf-8?B?OXNYSVVzMWRuVzk2a3NLNGNicnh6RHl5SnlLSDdXVmtkWFlhc2YraVpWRWtR?=
+ =?utf-8?B?K29ySC9HSFd5WXAyK3ZGa2llOW90L0p6Ti9zRUs4QWlNWVNJeEZCUUlxYVln?=
+ =?utf-8?B?NzR1cEM2Rm5wUEgzN20rTUFQS21zOXlPQ1FIVTNiTkh0RXpXWXFSRm9FM2pt?=
+ =?utf-8?B?bFk1d2M5R2lBWXQxVHNXZ1lCamp3SnRHU29uankzRXpMMFgyZEIwMFBRcE85?=
+ =?utf-8?B?WWpjZnRWSEM5bkVMU0RtUWdrc3lMbVNsRWl3Q1hOUzJQTDUrdk9YTFllcEM2?=
+ =?utf-8?B?TVk5VkcyUnR5U1RlL0VlTWFLOTdlWDFlVHg4TGo0MnJjSmU5V3kzSGpsMzJw?=
+ =?utf-8?B?ZXVhTTNzYmo4THdxcEVVamtYeGJhK25LZndvQU5pRVlaYzBNMTBHNFpQRU4v?=
+ =?utf-8?B?S3pleUFNWmc5YUhRTzhETjJCUk1QMnpHdnd4SnYwcFJWNUI5bFQ5RDMzNjFs?=
+ =?utf-8?B?MTQ3YnZLblBVNnI0UFpDN3Rsc2VBWDdoZjZESWl1UE5Xa1FId3MwWGkrcmk2?=
+ =?utf-8?B?ZnNyazlxdWNUZWxCWldFd2RxOXFXb01LUTAycG1lZU04Y1Zpb3dUcFl2QlZH?=
+ =?utf-8?B?T0k1Q0hmMGo2d25VMkdacHdSZUwxOWtmWGV5elFpWmo4K3FsdVgrdUJybEM1?=
+ =?utf-8?Q?K6h7Axbi7PvUgyjwI4DgDJI=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8B0DC4951BA0C5499D5BDD5EC2DB7BD9@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <09cc80e66549cbb30f0f701c875e27f1e8f064e0.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Introduce
- intel_hpd_enable_detection()
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c6bed52-ed06-41a5-efe4-08db3cfb6ea4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2023 15:17:59.3747 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uxJzyKS8UZ2aOc0JqBvpmhNV6QNoMlpZAWxP8s2HRPSH87hye2RGE2iowzxMeMlxKPBBe+i8h7PvDZXFBeNxJCCGpMNu6AfdigCysyKzx9uUDlTwRFMLQolmqIzDW8le
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6095
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v7 6/8] drm/i915/uapi/pxp: Fix UAPI spec
+ comments and add GET_PARAM for PXP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,306 +166,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 14, 2023 at 01:23:16PM +0000, Govindapillai, Vinod wrote:
-> Hi Ville
-> 
-> Btw, I dont see the <platform>_hotplug_mask() defined anywhere..
-> Am I missing any patch?
-
-The previous patch in the series.
-
-> 
-> BR
-> Vinod
-> 
-> On Fri, 2023-04-14 at 15:59 +0300, Govindapillai, Vinod wrote:
-> > On Thu, 2023-03-02 at 18:10 +0200, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > Add a mechanism by which we can enable the HPD sense for
-> > > individual encoders.
-> > > 
-> > > This will be used during eDP probing to figure out if
-> > > anything is actually connected. The normal intel_hpd_irq_setup()
-> > > thing doesn't work since we only do that after probing the
-> > > outputs, and we only enable HPD sense for encoders that were
-> > > successfully probed.
-> > > 
-> > > The other idea that crossed my minds was to just turn on
-> > > HPD sense for all pins before output probing and let hpd_irq_setup()
-> > > clean it up afterwards. But that doesn't work for BXT/GLK where
-> > > the HPD invert information comes from the VBT child device.
-> > > So looks like this really needs to be per-encoder.
-> > > 
-> > > v2: Give it a better name (Jani)
-> > > 
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > 
-> > Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> > 
-> > 
-> > >  drivers/gpu/drm/i915/i915_irq.c | 131 ++++++++++++++++++++++++++++++++
-> > >  drivers/gpu/drm/i915/i915_irq.h |   2 +
-> > >  2 files changed, 133 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> > > index 1e6a6f14a968..9d00b840727c 100644
-> > > --- a/drivers/gpu/drm/i915/i915_irq.c
-> > > +++ b/drivers/gpu/drm/i915/i915_irq.c
-> > > @@ -2893,6 +2893,15 @@ static void ibx_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, ibx_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void ibx_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> > > +                        ibx_hotplug_mask(encoder->hpd_pin),
-> > > +                        ibx_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > >  static void ibx_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -2963,6 +2972,15 @@ static void icp_ddi_hpd_detection_setup(struct drm_i915_private
-> > > *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void icp_ddi_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, SHOTPLUG_CTL_DDI,
-> > > +                        icp_ddi_hotplug_mask(encoder->hpd_pin),
-> > > +                        icp_ddi_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > >  static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         intel_uncore_rmw(&dev_priv->uncore, SHOTPLUG_CTL_TC,
-> > > @@ -2975,6 +2993,21 @@ static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void icp_tc_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, SHOTPLUG_CTL_TC,
-> > > +                        icp_tc_hotplug_mask(encoder->hpd_pin),
-> > > +                        icp_tc_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > > +static void icp_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       icp_ddi_hpd_enable_detection(encoder);
-> > > +       icp_tc_hpd_enable_detection(encoder);
-> > > +}
-> > > +
-> > >  static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -3025,6 +3058,14 @@ static void dg1_hpd_invert(struct drm_i915_private *i915)
-> > >         intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN1, 0, val);
-> > >  }
-> > >  
-> > > +static void dg1_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       dg1_hpd_invert(i915);
-> > > +       icp_hpd_enable_detection(encoder);
-> > > +}
-> > > +
-> > >  static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         dg1_hpd_invert(dev_priv);
-> > > @@ -3043,6 +3084,15 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private
-> > > *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void gen11_tc_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, GEN11_TC_HOTPLUG_CTL,
-> > > +                        gen11_hotplug_mask(encoder->hpd_pin),
-> > > +                        gen11_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > >  static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         intel_uncore_rmw(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL,
-> > > @@ -3055,6 +3105,26 @@ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private
-> > > *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void gen11_tbt_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, GEN11_TBT_HOTPLUG_CTL,
-> > > +                        gen11_hotplug_mask(encoder->hpd_pin),
-> > > +                        gen11_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > > +static void gen11_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       gen11_tc_hpd_enable_detection(encoder);
-> > > +       gen11_tbt_hpd_enable_detection(encoder);
-> > > +
-> > > +       if (INTEL_PCH_TYPE(i915) >= PCH_ICP)
-> > > +               icp_hpd_enable_detection(encoder);
-> > > +}
-> > > +
-> > >  static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -3140,6 +3210,26 @@ static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, spt_hotplug2_enables));
-> > >  }
-> > >  
-> > > +static void spt_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       /* Display WA #1179 WaHardHangonHotPlug: cnp */
-> > > +       if (HAS_PCH_CNP(i915)) {
-> > > +               intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN1,
-> > > +                                CHASSIS_CLK_REQ_DURATION_MASK,
-> > > +                                CHASSIS_CLK_REQ_DURATION(0xf));
-> > > +       }
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> > > +                        spt_hotplug_mask(encoder->hpd_pin),
-> > > +                        spt_hotplug_enables(encoder));
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG2,
-> > > +                        spt_hotplug2_mask(encoder->hpd_pin),
-> > > +                        spt_hotplug2_enables(encoder));
-> > > +}
-> > > +
-> > >  static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -3189,6 +3279,17 @@ static void ilk_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, ilk_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void ilk_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, DIGITAL_PORT_HOTPLUG_CNTRL,
-> > > +                        ilk_hotplug_mask(encoder->hpd_pin),
-> > > +                        ilk_hotplug_enables(encoder));
-> > > +
-> > > +       ibx_hpd_enable_detection(encoder);
-> > > +}
-> > > +
-> > >  static void ilk_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -3254,6 +3355,15 @@ static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
-> > >                          intel_hpd_hotplug_enables(dev_priv, bxt_hotplug_enables));
-> > >  }
-> > >  
-> > > +static void bxt_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       intel_uncore_rmw(&i915->uncore, PCH_PORT_HOTPLUG,
-> > > +                        bxt_hotplug_mask(encoder->hpd_pin),
-> > > +                        bxt_hotplug_enables(encoder));
-> > > +}
-> > > +
-> > >  static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_irqs, enabled_irqs;
-> > > @@ -3913,6 +4023,15 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
-> > >         i915_enable_asle_pipestat(dev_priv);
-> > >  }
-> > >  
-> > > +static void i915_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +       u32 hotplug_en = hpd_mask_i915[encoder->hpd_pin];
-> > > +
-> > > +       /* HPD sense and interrupt enable are one and the same */
-> > > +       i915_hotplug_interrupt_update(i915, hotplug_en, hotplug_en);
-> > > +}
-> > > +
-> > >  static void i915_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> > >  {
-> > >         u32 hotplug_en;
-> > > @@ -3998,12 +4117,16 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
-> > >  }
-> > >  
-> > >  struct intel_hotplug_funcs {
-> > > +       /* Enable HPD sense and interrupts for all present encoders */
-> > >         void (*hpd_irq_setup)(struct drm_i915_private *i915);
-> > > +       /* Enable HPD sense for a single encoder */
-> > > +       void (*hpd_enable_detection)(struct intel_encoder *encoder);
-> > >  };
-> > >  
-> > >  #define HPD_FUNCS(platform)                                     \
-> > >  static const struct intel_hotplug_funcs platform##_hpd_funcs = { \
-> > >         .hpd_irq_setup = platform##_hpd_irq_setup,               \
-> > > +       .hpd_enable_detection = platform##_hpd_enable_detection, \
-> > >  }
-> > >  
-> > >  HPD_FUNCS(i915);
-> > > @@ -4015,6 +4138,14 @@ HPD_FUNCS(spt);
-> > >  HPD_FUNCS(ilk);
-> > >  #undef HPD_FUNCS
-> > >  
-> > > +void intel_hpd_enable_detection(struct intel_encoder *encoder)
-> > > +{
-> > > +       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +
-> > > +       if (i915->display.funcs.hotplug)
-> > > +               i915->display.funcs.hotplug->hpd_enable_detection(encoder);
-> > > +}
-> > > +
-> > >  void intel_hpd_irq_setup(struct drm_i915_private *i915)
-> > >  {
-> > >         if (i915->display_irqs_enabled && i915->display.funcs.hotplug)
-> > > diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-> > > index 03ee4c8b1ed3..3717a66f97c6 100644
-> > > --- a/drivers/gpu/drm/i915/i915_irq.h
-> > > +++ b/drivers/gpu/drm/i915/i915_irq.h
-> > > @@ -17,6 +17,7 @@ struct drm_device;
-> > >  struct drm_display_mode;
-> > >  struct drm_i915_private;
-> > >  struct intel_crtc;
-> > > +struct intel_encoder;
-> > >  struct intel_uncore;
-> > >  
-> > >  void intel_irq_init(struct drm_i915_private *dev_priv);
-> > > @@ -37,6 +38,7 @@ i915_disable_pipestat(struct drm_i915_private *dev_priv, enum pipe pipe,
-> > >  void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv);
-> > >  void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv);
-> > >  
-> > > +void intel_hpd_enable_detection(struct intel_encoder *encoder);
-> > >  void intel_hpd_irq_setup(struct drm_i915_private *i915);
-> > >  void i915_hotplug_interrupt_update(struct drm_i915_private *dev_priv,
-> > >                                    u32 mask,
-> > 
-> 
-
--- 
-Ville Syrjälä
-Intel
+SGkgTGlvbmVsLCBkb2VzIHRoaXMgcGF0Y2ggd29yayBmb3IgeW91Pw0KDQpPbiBNb24sIDIwMjMt
+MDQtMTAgYXQgMTA6MjIgLTA3MDAsIENlcmFvbG8gU3B1cmlvLCBEYW5pZWxlIHdyb3RlOg0KPiBP
+biA0LzYvMjAyMyAxMDo0NCBBTSwgQWxhbiBQcmV2aW4gd3JvdGU6DQphbGFuOnNuaXANCg0KPiA+
+ICsvKg0KPiA+ICsgKiBRdWVyeSB0aGUgc3RhdHVzIG9mIFBYUCBzdXBwb3J0IGluIGk5MTUuDQo+
+ID4gKyAqDQo+ID4gKyAqIFRoZSBxdWVyeSBjYW4gZmFpbCBpbiB0aGUgZm9sbG93aW5nIHNjZW5h
+cmlvcyB3aXRoIHRoZSBsaXN0ZWQgZXJyb3IgY29kZXM6DQo+ID4gKyAqICAtRU5PREVWID0gUFhQ
+IHN1cHBvcnQgaXMgbm90IGF2YWlsYWJsZSBvbiB0aGUgR1BVIGRldmljZSBvciBpbiB0aGUga2Vy
+bmVsDQo+ID4gKyAqICAgICAgICAgICAgZHVlIHRvIG1pc3NpbmcgY29tcG9uZW50IGRyaXZlcnMg
+b3Iga2VybmVsIGNvbmZpZ3MuDQo+ID4gKyAqIElmIHRoZSBJT0NUTCBpcyBzdWNjZXNzZnVsLCB0
+aGUgcmV0dXJuZWQgcGFyYW1ldGVyIHdpbGwgYmUgc2V0IHRvIG9uZSBvZiB0aGUNCj4gPiArICog
+Zm9sbG93aW5nIHZhbHVlczoNCj4gPiArICogICAwID0gUFhQIHN1cHBvcnQgbWF5YmUgYXZhaWxh
+YmxlIGJ1dCB1bmRlcmx5aW5nIFNPQyBmdXNpbmcsIEJJT1Mgb3IgZmlybXdhcmUNCj4gPiArICog
+ICAgICAgY29uZmlndXJhdGlvbiBpcyB1bmtub3duIGFuZCBhIFBYUC1jb250ZXh0LWNyZWF0aW9u
+IHdvdWxkIGJlIHJlcXVpcmVkDQo+ID4gKyAqICAgICAgIGZvciBmaW5hbCB2ZXJpZmljYXRpb24g
+b2YgZmVhdHVyZSBhdmFpbGliaWxpdHkuDQo+IA0KPiBXb3VsZCBpdCBiZSB1c2VmdWwgdG8gYWRk
+Og0KPiANCj4gMSA9IFBYUCBzdXBwb3J0IGlzIGF2YWlsYWJsZQ0KPiANCj4gQW5kIHN0YXJ0IHJl
+dHVybmluZyB0aGF0IGFmdGVyIHdlJ3ZlIHN1Y2Nlc3NmdWxseSBjcmVhdGVkIG91ciBmaXJzdCAN
+Cj4gc2Vzc2lvbj8gTm90IHN1cmUgaWYgdXNlcnNwYWNlIHdvdWxkIHVzZSB0aGlzIHRob3VnaCwg
+c2luY2UgdGhleSBzdGlsbCANCj4gbmVlZCB0byBoYW5kbGUgdGhlIDAgY2FzZSBhbnl3YXkuDQo+
+IEknbSBhbHNvIG9rIHdpdGggdGhpcyBwYXRjaCBhcy1pcywgYXMgbG9uZyBhcyB5b3UgZ2V0IGFu
+IGFjayBmcm9tIHRoZSANCj4gdXNlcnNwYWNlIGRyaXZlcnMgZm9yIHRoaXMgaW50ZXJmYWNlIGJl
+aGF2aW9yOg0KPiANCj4gUmV2aWV3ZWQtYnk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmll
+bGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+DQo+IA0KPiBEYW5pZWxlDQoNCmFsYW46c25pcA0K
+DQo=
