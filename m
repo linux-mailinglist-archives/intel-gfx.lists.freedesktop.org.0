@@ -2,151 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 736126E225D
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 13:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 272226E2268
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 13:39:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9DF910E1B3;
-	Fri, 14 Apr 2023 11:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7982C10E1B3;
+	Fri, 14 Apr 2023 11:39:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4276D10E1B3;
- Fri, 14 Apr 2023 11:38:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F86210E1B3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 11:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681472309; x=1713008309;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=c1th6E+gEg2UgBlN4z6tBVzYeLREGHtBNQVdbAhmK8c=;
- b=UW0XsfwxPgz+s99/pJVwom0Ah28eRNW+WC/yXz/zlCjyOHOvCrEWr4rE
- fQLnFvwDWYrNjhYmd1tWWsknBz1hsxBLHLfkcpVOWy60pgt4OR0B/wrOo
- JlmwTWOpKt6Hx4EDLr6/y1OxgtCKdt70jflcEAv4jhv+L/2zd9hajkh6G
- 1LvehsbiBzk3divNjvNObDJh68kE/iTaTjuoBp+cDUyIKEkfzh6HSkcF6
- PzmWHRBzpKW4V+XQgy8ORUhCxHqtK21XCRsgWlBlPl2/Ge3nkWxZ4S+lD
- qrdO3rJM4Fy0TYvQ7sadx6MU8NQl1XAPApK6bgaJ05iMnPsJzhTh5qFIs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="430736512"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="430736512"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 04:38:28 -0700
+ t=1681472359; x=1713008359;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=QHwV/DyIH6ikibHlHrI+tc465PGEbiLWr1R/idujw0s=;
+ b=cKMqNLbmoxTOqjVeWzr22u5hc9zc0cSjFpMTlrIwGy2afdM1QD8zT3Od
+ 1ShT+qW0WcKCLYu5TIib0MpMqBCLqoucH9tcCd7JEq474tFFM7nIzW8wn
+ HS9oYvaU0N8G0kpKpZorWtJ5FgKayDhUhdTDBTUab70qxF7lFgtTtAaGL
+ A1EdrQWwDWamFxPXoBiwYzOvaufJX7pUCRdoh3AzuTm8uyWQgGlkJP2UC
+ 4riV3PElXPz39eEpeiHGZYWN2haQW1sW++qN0ALOxcFY9aOA9TjaGk/W1
+ f81V9dbYV8hGwiLb5OlybjD41uyIL08CC30UOx0HvkiGTLefUPduiiyQk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="324071180"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="324071180"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 04:39:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689777586"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="689777586"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 14 Apr 2023 04:38:27 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 14 Apr 2023 04:38:27 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 14 Apr 2023 04:38:27 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 14 Apr 2023 04:38:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EUSRfc1Ez/rOavsv0qwFHSbcmKrh35w8jzjSEJminWvDu3Gp/ZXKFEEZ9SJ8eU7YoIZknvtKtIDUgbxVxXYJH0aiVWHYEZ7yLtPlWhlQwEd1Kfw40GtMrM3fyBeCbuDroe6lnAmFkzPgdaZIo2W6we1Qx45ejXWIH7ifrkC/Lx0t+IT9vY91IA2XDH8tf9Y+qSauUutj4PZ9siftDuATxRC9q+ugFvGaIxfGQt62PP3IGMF6MK9uKfs9PxJP2wqH+mD+d1E3atG2sJc1IKrfsB0xETDb7mjAVJYWhNuo4f3rnpiSKHZ46JSkwZAqg629y4szTO280DN1myfLeuVfjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ymOaIz7sG2dNWul9PX9hgkBzJ6gtO2bWApGF8L22E94=;
- b=NvPzaQb9+m7W9CX7qXRd3eCJxsLimbHhZmj3EE9n8r5HZkXcCSjDswzX6T1qHepySF4+Xz22+lsXZ+gTnNo4CqRbuZDJYxWL6GTVTCL4v7+mWyEXV74HoSIG4PK13DTso93fZ/Ruqf8GzFYKnqGorptG/HNk5xM5tq72qF+2/rBLLrOdYXvkwpYHOjPTu2OKDyxGSDwltSPwGVjzGAlNzxbZntpZY347nRuz5actKxm3SdQxfPevJIHCvHMG8MnImqPrIvSGXeoRKJ3INo8s5nJ8s0xgGy8vvCv9zi5GBwp3UDEU7OFqaLxktHv+Pa2Pi+aWYmdBl7lAVCEW70Je0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by PH7PR11MB7073.namprd11.prod.outlook.com (2603:10b6:510:20c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Fri, 14 Apr
- 2023 11:38:25 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5%4]) with mapi id 15.20.6298.030; Fri, 14 Apr 2023
- 11:38:25 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>, Alex Williamson
- <alex.williamson@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
-Thread-Topic: [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
-Thread-Index: AQHZZKiCMJJkpNrujkKpjX0h05Zqwa8cqG8AgAAcMGCAACibgIAAAyuAgAAEPICAAAjLgIAAGeKAgAAG7oCAAAf9gIAAO30AgACaIeCAAJxQgIAHkI0AgAApuICAABWEgIAAGNKAgAA3aoCAACJEAIABGhiAgAA2uYCAAM6MAIAAOT6AgABpLgCAAPyoAIAAA7kQ
-Date: Fri, 14 Apr 2023 11:38:24 +0000
-Message-ID: <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230406115347.7af28448.alex.williamson@redhat.com>
- <ZDVfqpOCnImKr//m@nvidia.com>
- <20230411095417.240bac39.alex.williamson@redhat.com>
- <20230411111117.0766ad52.alex.williamson@redhat.com>
- <ZDWph7g0hcbJHU1B@nvidia.com>
- <20230411155827.3489400a.alex.williamson@redhat.com>
- <ZDX0wtcvZuS4uxmG@nvidia.com>
- <20230412105045.79adc83d.alex.williamson@redhat.com>
- <ZDcPTTPlni/Mi6p3@nvidia.com>
- <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZDfslVwqk6JtPpyD@nvidia.com>
- <20230413120712.3b9bf42d.alex.williamson@redhat.com>
- <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|PH7PR11MB7073:EE_
-x-ms-office365-filtering-correlation-id: fc07e8b1-72d0-40be-f468-08db3cdcc1ef
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2CJB1tFvmD3eTY+0tWkrrE/MOpCbn8721vMRvGApSWBNq4Fbaq9YsFOj8c3YRIGa6Xi4S1aGHiJcT5VSuGlDCwBjHgBkAHIpdJMv3JtMPGkk+uzE0L0GCBF+/Xf0b0ek6UYLw+wGqvqowxo7hFCYZhbYIH7Kuqpd75/X4gglNwg/ze1Hng9kW+lg1Z+nMKWLh2ifIQCqosFMpz0zykAtMhcXvo67ClDacxyJ83IQXhVNX4x4uJdTJ0iTHKjqB+9eT0YMvxBHzvsG1Eku/oyExehVMAbSEygaP5BPqFBolvsmpyDkcEN52BUvjC9AAEQivRk/KBXbEeQ+D9rXfFA4y/di4+h2EekhXkYkGUFsK0y1wehvcB/cDUVdbI5UglE4w8bXjSsXGpx5Lu36WWEiGOLW6lq73UxmrhzoFiDi9FTtP6sPcl5/2SUnsFAAI2NNjLwxoTpQC1Q+sWmepcKxcpMQlGKTOjQasqWQh92LrrL63IcSGNL5gB9hsJz5JfXnF+8HXGMNp6mgaIrCo0cZcYbAwcg39KZvlCA3kXOKNYfF1V3XtoBGpfORWJM0w9cboVkZSK9foefUth/QfqOHN2bCbYWCclm16pdANrpsUJV1cxe+Mpv/2drrgv9E4tsI
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(136003)(396003)(346002)(366004)(451199021)(7416002)(71200400001)(7696005)(86362001)(55016003)(52536014)(5660300002)(83380400001)(2906002)(38070700005)(6506007)(54906003)(110136005)(186003)(33656002)(9686003)(26005)(478600001)(4326008)(76116006)(122000001)(38100700002)(66556008)(64756008)(66476007)(66946007)(66446008)(82960400001)(8936002)(41300700001)(316002)(8676002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eF1guOHOwZ4TdxNobhZSOjYRQELPer4wZlR4D19D/a9dRk6KoZuJTIySBBnu?=
- =?us-ascii?Q?SwQjpDalRMH8VcbB+gKjg4zfoE1WJazmTvN7zt+ga3YxTQ+qQVRak2KaIKIy?=
- =?us-ascii?Q?ww0yV79Rh9wyaqrg1k8bLMCy8sP7gOeLUVokAwDZe4SMdhShF0bl38sbZsFU?=
- =?us-ascii?Q?zLSuDdjLrWil/WwaLy6mkc1NWT9+E4JHIkebONto7AvuHzisNgeH8dUII4cA?=
- =?us-ascii?Q?zWkQ/RTnrxhXqeP0xMU6biJZqnSt7ILBdJoGdyDv75gBl09nj31OWvfgxHEI?=
- =?us-ascii?Q?v3cdve3FbYOX0moZemGfD5BuAftuECuAKXQK8jH5U96k+RylM3wp8rsiu5w3?=
- =?us-ascii?Q?pmyR0hmuP4afVsQ424wTj4IfIUDFtKOE6NhZwfAx7UCnyvy+pqy/Mo3NIAaM?=
- =?us-ascii?Q?OKdWY0P5FJKze2Pne5eCh0maeOziZdCWpIzrRf/gLJlgS8K7OJzkxPzrQ4bx?=
- =?us-ascii?Q?bVsxww/tC7TmAoCmazxK+zyRMZeHrQ3bL0b4OSAeRZkOGuUa66GA82TMSHQV?=
- =?us-ascii?Q?ITZ79bUFn++lx/v0SdiU42JqaOD7pX5sodZhtgVF7dZQ36RVd4IP1g5VSc7m?=
- =?us-ascii?Q?3EwbYe8VXy5TzBkg74WLBKTyDAkchs4RhbHEfJVdhshKE52Q2frcKe+RtqPA?=
- =?us-ascii?Q?TSLsXFvR0JPaqGcdf5AKwUw+KermviINHZ9x/hBQDV01kSJDm7DL/vzghWar?=
- =?us-ascii?Q?KWXMx9oDVLIYi1n4EhJgaEiNMcyp8gQGQ6pxlY0FpcTQI2yvwmpQmYdXDshR?=
- =?us-ascii?Q?dfPF02uLSoBusUdvr6/BA/N9qp9/0QEIKceXqZlOoCqkX6u+mbRbb5/XHCaU?=
- =?us-ascii?Q?kSQAoDbNTapPabEoWjxq9XeXeYwDNu1oSeAONBFWGFrUWMh4TGMSKOyVuP+K?=
- =?us-ascii?Q?HYgSYkTNfAzYbU5Z6riWLgArimRKYAgBvXMHY5eKhDKXHRxVNM98xjvOE2Y1?=
- =?us-ascii?Q?oEZr0qUFWnB6odumiOlmu0feIndSXu6Z0wHS0f1RuyLPVmuD8/N6mBgfM3wJ?=
- =?us-ascii?Q?omafNfWeAVbgVZKNQB28e6Yb0UTEJ5VUYntHq1XWycN2SdmrIFzPPAHWopbX?=
- =?us-ascii?Q?IwpWViarIqWXjqcw/z3PjXV38tt7N9AJYBdGfug6vvjrK30OJNN3cWNFTmMv?=
- =?us-ascii?Q?j72PxmFUdSTQjVCPCofRqnpezaJKzZKk2zdksH3sUBMYIND9NeZkpYldzEN9?=
- =?us-ascii?Q?BzmVPge1/74u/4ZzycvFx1Y66ad6G2kEsTDrt8gIK40sX/+qvCRGl+f6JZ6L?=
- =?us-ascii?Q?/hLugHPz1YXmMvLeNTYJr9TsNcvuDQUzwYZ5i8fai7AN78rQfmY03RoBuvG9?=
- =?us-ascii?Q?Qmf5u593vs/T0l+PKBT1DFvQ/lRmSkRdB3F3GCI0Qp9cU+Hs480SMLjhjncH?=
- =?us-ascii?Q?D5urYgJKbaZd4CSn7RIskCAcN5GfOdWul7SH7X1JAvFU3i4eBXR9D0+pN5EQ?=
- =?us-ascii?Q?0TjJRIzU0a7n4IDwFYEPWbeVLV4Tf1STv+3+gR3n3NVMk3gUiHGrHW6JH+K2?=
- =?us-ascii?Q?gNelz1EQkaA2DzUuKg70Exj14FKu+ka2YFKNHNBwsvGyvjYvS0MkheLf8j0+?=
- =?us-ascii?Q?5KvjuyDttW5e3jlW9ARBfWwyJ9jea2Ra98f9dFg3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="759083980"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="759083980"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 04:39:16 -0700
+Date: Fri, 14 Apr 2023 14:39:13 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <ZDk7YSJd7G+uaHuE@ideak-desk.fi.intel.com>
+References: <20230413212443.1504245-1-radhakrishna.sripada@intel.com>
+ <20230413212443.1504245-8-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc07e8b1-72d0-40be-f468-08db3cdcc1ef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2023 11:38:24.6786 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Gwij5//0VMExWvk2e85YwepNX0bugdXVJlUDFuW/6NlbFNygt8gpQLFrOwOzJDS9ZnznhPRmUfI/Wz4SvCcmVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7073
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230413212443.1504245-8-radhakrishna.sripada@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/mtl: Add C10 phy programming
+ for HDMI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,119 +59,747 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Tian, Kevin <kevin.tian@intel.com>
-> Sent: Friday, April 14, 2023 5:12 PM
->=20
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Friday, April 14, 2023 2:07 AM
-> >
-> > We had already iterated a proposal where the group-id is replaced with
-> > a dev-id in the existing ioctl and a flag indicates when the return
-> > value is a dev-id vs group-id.  This had a gap that userspace cannot
-> > determine if a reset is available given this information since un-owned
-> > devices report an invalid dev-id and userspace can't know if it has
-> > implicit ownership.
->
-> >
-> > It seems cleaner to me though that we would could still re-use INFO in
-> > a similar way, simply defining a new flag bit which is valid only in
-> > the case of returning dev-ids and indicates if the reset is available.
-> > Therefore in one ioctl, userspace knows if hot-reset is available
-> > (based on a kernel determination) and can pull valid dev-ids from the
+On Thu, Apr 13, 2023 at 02:24:41PM -0700, Radhakrishna Sripada wrote:
+> Like DG2, we still don't have a proper algorithm that can be used
+> for calculating PHY settings, but we do have tables of register
+> values for a handful of the more common link rates. Some support is
+> better than none, so let's go ahead and add/use these tables when we
+> can, and also add some logic to hdmi_port_clock_valid() to filter the
+> modelist to just the modes we can actually support with these link
+> rates.
+> 
+> Hopefully we'll have a proper / non-encumbered algorithm to calculate
+> these registers by the time we upstream and we'll be able to replace
+> this patch with something more general purpose.
+> 
+> Bspec: 64568
+> 
+> v2: Rebasing with Clint's HDMI C10 PLL tables (Mika)
+> v3: Remove the extra hdmi clock check pruning.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20221014124740.774835-6-mika.kahola@intel.com
 
-Need to confirm the meaning of hot-reset available flag. I think it
-should at least meet below two conditions to set this flag. Although
-it may not mean hot-reset is for sure to succeed. (but should be
-a high chance).
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-1) dev_set is resettable (all affected device are in dev_set)
-2) affected device are owned by the current user
-
-Also, we need to has assumption that below two cases are rare
-if user encounters it, it just bad luck for them. I think the existing
-_INFO and hot-reset already has such assumption. So cdev mode
-can adopt it as well.
-
-a) physical topology change (e.g. new devices plugged to affected slot)
-b) an affected device is unbound from vfio
-
-> So the kernel needs to compare the group id between devices with
-> valid dev-ids and devices with invalid dev-ids to decide the implicit
-> ownership. For noiommu device which has no group_id when
-> VFIO_GROUP is off then it's resettable only if having a valid dev_id.
-
-In cdev mode, noiommu device doesn't have dev_id as it is not
-bound to valid iommufd. So if VFIO_GROUP is off, we may never
-allow hot-reset for noiommu devices. But we don't want to have
-regression with noiommu devices. Perhaps we may define the usage
-of the resettable flag like this:
-1) if it is set, user does not need to own all the affected devices as
-    some of them may have been owned implicitly. Kernel should have
-    checked it.
-2) if the flag is not set, that means user needs to check ownership
-    by itself. It needs to own all the affected devices. If not, don't
-   do hot-reset.
-
-This way we can still make noiommu devices support hot-reset
-just like VFIO_GROUP is on. Because noiommu devices have fake
-groups, such groups are all singleton. So checking all affected
-devices are opened by user is just same as check all affected
-groups.
-
-> The only corner case with this option is when a user mixes group
-> and cdev usages. iirc you mentioned it's a valid usage to be supported.
-> In that case the kernel doesn't have sufficient knowledge to judge
-> 'resettable' as it doesn't know which groups are opened by this user.
->
-> Not sure whether we can leave it in a ugly way so INFO may not tell
-> 'resettable' accurately in that weird scenario.
-
-This seems not easy to support. If above scenario is allowed there can be
-three cases that returns invalid dev_id.
-1) devices not opened by user but owned implicitly
-2) devices not owned by user
-3) devices opened via group but owned by user
-
-User would require more info to tell the above cases from each other.
-
-> > array to associate affected, owned devices, and still has the
-> > equivalent information to know that one or more of the devices listed
-> > with an invalid dev-id are preventing the hot-reset from being
-> > available.
-> >
-> > Is that an option?  Thanks,
-> >
->=20
-> This works for me if above corner case can be waived.
-
-One side check, perhaps already confirmed in prior email. @Alex, So
-the reason for the prediction of hot-reset is to avoid the possible
-vfio_pci_pre_reset() which does heavy operations like stop DMA and
-copy config space. Is it? Any other special reason? Anyhow, this reason
-is enough for this prediction per my understanding.
-
-Regards,
-Yi Liu
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 610 +++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   2 +
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |   5 +-
+>  4 files changed, 614 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 5ffd661fa507..d46ff3401e5e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -647,6 +647,603 @@ static const struct intel_c10pll_state * const mtl_c10_edp_tables[] = {
+>  	NULL,
+>  };
+>  
+> +/*
+> + * HDMI link rates with 38.4 MHz reference clock.
+> + */
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_25_2 = {
+> +	.clock = 25200,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x4,
+> +	.pll[1] = 0,
+> +	.pll[2] = 0xB2,
+> +	.pll[3] = 0,
+> +	.pll[4] = 0,
+> +	.pll[5] = 0,
+> +	.pll[6] = 0,
+> +	.pll[7] = 0,
+> +	.pll[8] = 0x20,
+> +	.pll[9] = 0x1,
+> +	.pll[10] = 0,
+> +	.pll[11] = 0,
+> +	.pll[12] = 0,
+> +	.pll[13] = 0,
+> +	.pll[14] = 0,
+> +	.pll[15] = 0xD,
+> +	.pll[16] = 0x6,
+> +	.pll[17] = 0x8F,
+> +	.pll[18] = 0x84,
+> +	.pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_27_0 = {
+> +	.clock = 27000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34,
+> +	.pll[1] = 0,
+> +	.pll[2] = 0xC0,
+> +	.pll[3] = 0,
+> +	.pll[4] = 0,
+> +	.pll[5] = 0,
+> +	.pll[6] = 0,
+> +	.pll[7] = 0,
+> +	.pll[8] = 0x20,
+> +	.pll[9] = 0x1,
+> +	.pll[10] = 0,
+> +	.pll[11] = 0,
+> +	.pll[12] = 0x80,
+> +	.pll[13] = 0,
+> +	.pll[14] = 0,
+> +	.pll[15] = 0xD,
+> +	.pll[16] = 0x6,
+> +	.pll[17] = 0xCF,
+> +	.pll[18] = 0x84,
+> +	.pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_74_25 = {
+> +	.clock = 74250,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4,
+> +	.pll[1] = 0,
+> +	.pll[2] = 0x7A,
+> +	.pll[3] = 0,
+> +	.pll[4] = 0,
+> +	.pll[5] = 0,
+> +	.pll[6] = 0,
+> +	.pll[7] = 0,
+> +	.pll[8] = 0x20,
+> +	.pll[9] = 0x1,
+> +	.pll[10] = 0,
+> +	.pll[11] = 0,
+> +	.pll[12] = 0x58,
+> +	.pll[13] = 0,
+> +	.pll[14] = 0,
+> +	.pll[15] = 0xB,
+> +	.pll[16] = 0x6,
+> +	.pll[17] = 0xF,
+> +	.pll[18] = 0x85,
+> +	.pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_148_5 = {
+> +	.clock = 148500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4,
+> +	.pll[1] = 0,
+> +	.pll[2] = 0x7A,
+> +	.pll[3] = 0,
+> +	.pll[4] = 0,
+> +	.pll[5] = 0,
+> +	.pll[6] = 0,
+> +	.pll[7] = 0,
+> +	.pll[8] = 0x20,
+> +	.pll[9] = 0x1,
+> +	.pll[10] = 0,
+> +	.pll[11] = 0,
+> +	.pll[12] = 0x58,
+> +	.pll[13] = 0,
+> +	.pll[14] = 0,
+> +	.pll[15] = 0xA,
+> +	.pll[16] = 0x6,
+> +	.pll[17] = 0xF,
+> +	.pll[18] = 0x85,
+> +	.pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_594 = {
+> +	.clock = 594000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4,
+> +	.pll[1] = 0,
+> +	.pll[2] = 0x7A,
+> +	.pll[3] = 0,
+> +	.pll[4] = 0,
+> +	.pll[5] = 0,
+> +	.pll[6] = 0,
+> +	.pll[7] = 0,
+> +	.pll[8] = 0x20,
+> +	.pll[9] = 0x1,
+> +	.pll[10] = 0,
+> +	.pll[11] = 0,
+> +	.pll[12] = 0x58,
+> +	.pll[13] = 0,
+> +	.pll[14] = 0,
+> +	.pll[15] = 0x8,
+> +	.pll[16] = 0x6,
+> +	.pll[17] = 0xF,
+> +	.pll[18] = 0x85,
+> +	.pll[19] = 0x23,
+> +};
+> +
+> +/* Precomputed C10 HDMI PLL tables */
+> +static const struct intel_c10pll_state mtl_c10_hdmi_27027 = {
+> +	.clock = 27027,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xCC, .pll[12] = 0x9C, .pll[13] = 0xCB, .pll[14] = 0xCC,
+> +	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_28320 = {
+> +	.clock = 28320,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xCC, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_30240 = {
+> +	.clock = 30240,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x04, .pll[1] = 0x00, .pll[2] = 0xDC, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0D, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_31500 = {
+> +	.clock = 31500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x62, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xA0, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0C, .pll[16] = 0x09, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_36000 = {
+> +	.clock = 36000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xC4, .pll[1] = 0x00, .pll[2] = 0x76, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x00, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_40000 = {
+> +	.clock = 40000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x55, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_49500 = {
+> +	.clock = 49500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_50000 = {
+> +	.clock = 50000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xB0, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x2A, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_57284 = {
+> +	.clock = 57284,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xCE, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x77, .pll[12] = 0x57, .pll[13] = 0x77, .pll[14] = 0x77,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_58000 = {
+> +	.clock = 58000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xD5, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0C, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_65000 = {
+> +	.clock = 65000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x66, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xB5, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0B, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_71000 = {
+> +	.clock = 71000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x72, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xF5, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_74176 = {
+> +	.clock = 74176,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x44, .pll[12] = 0x44, .pll[13] = 0x44, .pll[14] = 0x44,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_75000 = {
+> +	.clock = 75000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7C, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_78750 = {
+> +	.clock = 78750,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x84, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x08, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_85500 = {
+> +	.clock = 85500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x92, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x10, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_88750 = {
+> +	.clock = 88750,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0x98, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x72, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x0B, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_106500 = {
+> +	.clock = 106500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBC, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xF0, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_108000 = {
+> +	.clock = 108000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xC0, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x80, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_115500 = {
+> +	.clock = 115500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD0, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x50, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_119000 = {
+> +	.clock = 119000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xD6, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xF5, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0B, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_135000 = {
+> +	.clock = 135000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6C, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x50, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0A, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_138500 = {
+> +	.clock = 138500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x70, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x22, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_147160 = {
+> +	.clock = 147160,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x78, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0xA5, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_148352 = {
+> +	.clock = 148352,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x44, .pll[12] = 0x44, .pll[13] = 0x44, .pll[14] = 0x44,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_154000 = {
+> +	.clock = 154000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x80, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x35, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_162000 = {
+> +	.clock = 162000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x88, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x60, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_167000 = {
+> +	.clock = 167000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x8C, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0xFA, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_197802 = {
+> +	.clock = 197802,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x99, .pll[12] = 0x05, .pll[13] = 0x98, .pll[14] = 0x99,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_198000 = {
+> +	.clock = 198000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x74, .pll[1] = 0x00, .pll[2] = 0xAE, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x20, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_209800 = {
+> +	.clock = 209800,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xBA, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x45, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_241500 = {
+> +	.clock = 241500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xDA, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xC8, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x0A, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_262750 = {
+> +	.clock = 262750,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x68, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x6C, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x09, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_268500 = {
+> +	.clock = 268500,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x6A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0xEC, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x09, .pll[16] = 0x09, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_296703 = {
+> +	.clock = 296703,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x33, .pll[12] = 0x44, .pll[13] = 0x33, .pll[14] = 0x33,
+> +	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_297000 = {
+> +	.clock = 297000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x00, .pll[12] = 0x58, .pll[13] = 0x00, .pll[14] = 0x00,
+> +	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_319750 = {
+> +	.clock = 319750,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xB4, .pll[1] = 0x00, .pll[2] = 0x86, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0xAA, .pll[12] = 0x44, .pll[13] = 0xA9, .pll[14] = 0xAA,
+> +	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_497750 = {
+> +	.clock = 497750,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0x34, .pll[1] = 0x00, .pll[2] = 0xE2, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x9F, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x09, .pll[16] = 0x08, .pll[17] = 0xCF, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_592000 = {
+> +	.clock = 592000,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x55, .pll[12] = 0x15, .pll[13] = 0x55, .pll[14] = 0x55,
+> +	.pll[15] = 0x08, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state mtl_c10_hdmi_593407 = {
+> +	.clock = 593407,
+> +	.tx = 0x10,
+> +	.cmn = 0x1,
+> +	.pll[0] = 0xF4, .pll[1] = 0x00, .pll[2] = 0x7A, .pll[3] = 0x00, .pll[4] = 0x00,
+> +	.pll[5] = 0x00, .pll[6] = 0x00, .pll[7] = 0x00, .pll[8] = 0x20, .pll[9] = 0xFF,
+> +	.pll[10] = 0xFF, .pll[11] = 0x3B, .pll[12] = 0x44, .pll[13] = 0xBA, .pll[14] = 0xBB,
+> +	.pll[15] = 0x08, .pll[16] = 0x08, .pll[17] = 0x8F, .pll[18] = 0x84, .pll[19] = 0x23,
+> +};
+> +
+> +static const struct intel_c10pll_state * const mtl_c10_hdmi_tables[] = {
+> +	&mtl_c10_hdmi_25_2, /* Consolidated Table */
+> +	&mtl_c10_hdmi_27_0, /* Consolidated Table */
+> +	&mtl_c10_hdmi_27027,
+> +	&mtl_c10_hdmi_28320,
+> +	&mtl_c10_hdmi_30240,
+> +	&mtl_c10_hdmi_31500,
+> +	&mtl_c10_hdmi_36000,
+> +	&mtl_c10_hdmi_40000,
+> +	&mtl_c10_hdmi_49500,
+> +	&mtl_c10_hdmi_50000,
+> +	&mtl_c10_hdmi_57284,
+> +	&mtl_c10_hdmi_58000,
+> +	&mtl_c10_hdmi_65000,
+> +	&mtl_c10_hdmi_71000,
+> +	&mtl_c10_hdmi_74176,
+> +	&mtl_c10_hdmi_74_25, /* Consolidated Table */
+> +	&mtl_c10_hdmi_75000,
+> +	&mtl_c10_hdmi_78750,
+> +	&mtl_c10_hdmi_85500,
+> +	&mtl_c10_hdmi_88750,
+> +	&mtl_c10_hdmi_106500,
+> +	&mtl_c10_hdmi_108000,
+> +	&mtl_c10_hdmi_115500,
+> +	&mtl_c10_hdmi_119000,
+> +	&mtl_c10_hdmi_135000,
+> +	&mtl_c10_hdmi_138500,
+> +	&mtl_c10_hdmi_147160,
+> +	&mtl_c10_hdmi_148352,
+> +	&mtl_c10_hdmi_148_5, /* Consolidated Table */
+> +	&mtl_c10_hdmi_154000,
+> +	&mtl_c10_hdmi_162000,
+> +	&mtl_c10_hdmi_167000,
+> +	&mtl_c10_hdmi_197802,
+> +	&mtl_c10_hdmi_198000,
+> +	&mtl_c10_hdmi_209800,
+> +	&mtl_c10_hdmi_241500,
+> +	&mtl_c10_hdmi_262750,
+> +	&mtl_c10_hdmi_268500,
+> +	&mtl_c10_hdmi_296703,
+> +	&mtl_c10_hdmi_297000,
+> +	&mtl_c10_hdmi_319750,
+> +	&mtl_c10_hdmi_497750,
+> +	&mtl_c10_hdmi_592000,
+> +	&mtl_c10_hdmi_593407,
+> +	&mtl_c10_hdmi_594, /* Consolidated Table */
+> +	NULL,
+> +};
+> +
+> +int intel_c10_phy_check_hdmi_link_rate(int clock)
+> +{
+> +	const struct intel_c10pll_state * const *tables = mtl_c10_hdmi_tables;
+> +	int i;
+> +
+> +	for (i = 0; tables[i]; i++) {
+> +		if (clock == tables[i]->clock)
+> +			return MODE_OK;
+> +	}
+> +
+> +	return MODE_CLOCK_RANGE;
+> +}
+> +
+>  static const struct intel_c10pll_state * const *
+>  intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+>  			struct intel_encoder *encoder)
+> @@ -656,9 +1253,10 @@ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+>  			return mtl_c10_edp_tables;
+>  		else
+>  			return mtl_c10_dp_tables;
+> +	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> +		return mtl_c10_hdmi_tables;
+>  	}
+>  
+> -	/* TODO: Add HDMI Support */
+>  	MISSING_CASE(encoder->type);
+>  	return NULL;
+>  }
+> @@ -758,6 +1356,7 @@ static void intel_c10_pll_program(struct drm_i915_private *i915,
+>  	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+>  		      0, C10_VDR_CTRL_MSGBUS_ACCESS,
+>  		      MB_WRITE_COMMITTED);
+> +
+>  	/* Custom width needs to be programmed to 0 for both the phy lanes */
+>  	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CUSTOM_WIDTH,
+>  		      C10_VDR_CUSTOM_WIDTH_MASK, C10_VDR_CUSTOM_WIDTH_8_10,
+> @@ -820,7 +1419,8 @@ int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+>  				 const struct intel_c10pll_state *pll_state)
+>  {
+>  	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
+> -	unsigned int multiplier, tx_clk_div, refclk = 38400;
+> +	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
+> +	int tmpclk = 0;
+>  
+>  	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+>  		frac_quot = pll_state->pll[12] << 8 | pll_state->pll[11];
+> @@ -832,10 +1432,14 @@ int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+>  		      pll_state->pll[2]) / 2 + 16;
+>  
+>  	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state->pll[15]);
+> +	hdmi_div = REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->pll[15]);
+>  
+> -	return DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
+> +	tmpclk = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
+>  				     DIV_ROUND_CLOSEST(refclk * frac_rem, frac_den),
+>  				     10 << (tx_clk_div + 16));
+> +	tmpclk *= (hdmi_div ? 2 : 1);
+> +
+> +	return tmpclk;
+>  }
+>  
+>  static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 6b736acb83e0..509d1d12776e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -32,5 +32,6 @@ void intel_c10pll_state_verify(struct intel_atomic_state *state,
+>  			       struct intel_crtc_state *new_crtc_state);
+>  void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *crtc_state);
+> +int intel_c10_phy_check_hdmi_link_rate(int clock);
+>  
+>  #endif /* __INTEL_CX0_PHY_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index fe2e3edef69b..20024622d0eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -145,6 +145,8 @@
+>  #define   C10_PLL0_FRACEN		REG_BIT8(4)
+>  #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
+>  #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
+> +#define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
+> +
+>  #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
+>  #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
+>  #define   C10_CMN0_REF_CLK_MPLLB_DIV	REG_FIELD_PREP(REG_GENMASK(7, 5), 1)
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 4fd944520826..8141d5184856 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -45,6 +45,7 @@
+>  #include "intel_atomic.h"
+>  #include "intel_audio.h"
+>  #include "intel_connector.h"
+> +#include "intel_cx0_phy.h"
+>  #include "intel_ddi.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> @@ -1864,7 +1865,9 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
+>  	 * FIXME: We will hopefully get an algorithmic way of programming
+>  	 * the MPLLB for HDMI in the future.
+>  	 */
+> -	if (IS_DG2(dev_priv))
+> +	if (IS_METEORLAKE(dev_priv))
+> +		return intel_c10_phy_check_hdmi_link_rate(clock);
+> +	else if (IS_DG2(dev_priv))
+>  		return intel_snps_phy_check_hdmi_link_rate(clock);
+>  
+>  	return MODE_OK;
+> -- 
+> 2.34.1
+> 
