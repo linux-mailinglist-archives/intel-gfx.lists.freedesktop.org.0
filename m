@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18E86E1CFD
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 09:15:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 206026E1D14
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 09:25:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2345410E02E;
-	Fri, 14 Apr 2023 07:15:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0D0310E04F;
+	Fri, 14 Apr 2023 07:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5DED10E02E
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 07:15:00 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2D710E04F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 07:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681456501; x=1712992501;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=iRtLRWf0ZxsetKvmYRlGwjoQH5vWOp/gs8AZHQLdYzQ=;
- b=ffkgMVCfCf8u+fwlTTmSqrQVcZiiTkpkVR2JrKoyJgqGWlNCxnlhiR7g
- stWheQGcJSk0V1YbM6Q+noCl1RxVUU61M7d34Tl9aNYw92dQFBIp47cyu
- UbQpD5teb+H+E1ezhhaWT8S0LuBu+yua+KGt1YGbIWUV0KQLImbP0/UKj
- DmZYoUByOP1qPE5m22bGqw8CTd5Y6WZr8W0ZZj1UTlR1iHnNQsHYed+wP
- JnFT3X0KF9+s2lMdHTBe1drpi66wZiBFuZCMGg0aM5dKs9hXnO2BBVO4k
- G5OvP/nYNkLTsVC9YiCCC0yyfGbm2RrDVb3m0oOToh/N/wijFNEmJGku2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="346232108"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="346232108"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 00:14:37 -0700
+ t=1681457127; x=1712993127;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Zag9DavzbALTZsGUTN6TcI0orG2lm/9mg5p3cEADlFU=;
+ b=cD3LVW3fd18T3TWSVjX+nngN6tLDxrmn9CKzVckGeJCCqvX+adBTFhB/
+ lPgenPy9SuQcKnm5LnD87FaBU1I/uatdNZY6fHg7sOAoiFDsTub+CF/5Y
+ xQA3Y/iemnClgKaHsXFgs0zRK0dTJkHybpWQBG7IyDhN902voPEn5AuyS
+ a9hfJwcAy9PPCDrYoVBNPo3wA6xaM2S37JO/i5+Z81xjw5BSqssNK+lTp
+ kYwdTGY07eNtByHrxm46FdJVR4/eJjaJ9uow0m2StiyXOYXT+oly25kx/
+ tnp6c4l3r9C+T1h+OIhRoOYawgel+udybvYefyFAm0WVzcvEptSZBuHwA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="328550558"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="328550558"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 00:25:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="864104823"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="864104823"
-Received: from gssacale-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.46])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 00:14:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230413114502.1105288-1-bhanuprakash.modem@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230412104152.828326-2-bhanuprakash.modem@intel.com>
- <20230413114502.1105288-1-bhanuprakash.modem@intel.com>
-Date: Fri, 14 Apr 2023 10:14:33 +0300
-Message-ID: <87edongckm.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="692280424"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="692280424"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga007.fm.intel.com with ESMTP; 14 Apr 2023 00:25:24 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Apr 2023 12:53:45 +0530
+Message-Id: <20230414072345.1041605-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V3 1/1] drm/i915/debugfs: New debugfs for display
- clock frequencies
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: PCH display HPD IRQ is not
+ detected with default filter value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +58,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Apr 2023, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
-> Instead of mixing display & non-display stuff together, move
-> display specific clock info to new debugfs. This patch will
-> create a new debugfs "i915_cdclk_info" to expose Current & Max
-> cdclk and Max pixel clock frequency info.
->
-> Example:
-> $ cat /sys/kernel/debug/dri/0/i915_cdclk_info
-> Current CD clock frequency: 163200 kHz
-> Max CD clock frequency: 652800 kHz
-> Max pixel clock frequency: 1305600 kHz
->
-> V2: - s/i915_display_clock_info/i915_cdclk_info/ (Jani)
->     - Move the logic to intel_cdclk.c (Jani)
->     - Don't remove info from i915_frequency_info (Jani)
-> V3: - Drop locking (Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On TGP, the RTC (always running) was reduced from 3MHz to 32KHz.
+As a result of this change, when HPD active going low pulse or HPD IRQ
+is presented and the refclk (19.2MHz) is not toggling already toggling,
+there is a 60 to 90us synchronization delay which effectively reduces
+the duration of the IRQ pulse to less than the programmed 500us filter
+value and the hot plug interrupt is NOT registered.
+Program 0xC7204 (PP_CONTROL) bit #0 to '1' to enable workaround and clear
+to disable it.
+Driver shall enable this WA when external display is connected and
+remove WA when display is unplugged or before going into sleep to allow
+CS entry.
+Driver shall not enable WA when eDP is connected.
+Wa_1508796671:adls
 
-Pushed to drm-intel-next, thanks for the patch.
+Cc: Arun Murthy <arun.r.murthy@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c  | 19 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_pps.c |  1 +
+ drivers/gpu/drm/i915/i915_drv.h          |  2 ++
+ 3 files changed, 22 insertions(+)
 
-BR,
-Jani.
-
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 21 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
->  .../drm/i915/display/intel_display_debugfs.c  |  1 +
->  3 files changed, 23 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 084a483f9776..f6223d8f13b8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -3235,6 +3235,27 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
->  	return freq;
->  }
->  
-> +static int i915_cdclk_info_show(struct seq_file *m, void *unused)
-> +{
-> +	struct drm_i915_private *i915 = m->private;
-> +
-> +	seq_printf(m, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
-> +	seq_printf(m, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
-> +	seq_printf(m, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
-> +
-> +	return 0;
-> +}
-> +
-> +DEFINE_SHOW_ATTRIBUTE(i915_cdclk_info);
-> +
-> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915)
-> +{
-> +	struct drm_minor *minor = i915->drm.primary;
-> +
-> +	debugfs_create_file("i915_cdclk_info", 0444, minor->debugfs_root,
-> +			    i915, &i915_cdclk_info_fops);
-> +}
-> +
->  static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
->  	.get_cdclk = bxt_get_cdclk,
->  	.set_cdclk = bxt_set_cdclk,
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 51e2f6a11ce4..48fd7d39e0cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -82,5 +82,6 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
->  	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.cdclk.obj))
->  
->  int intel_cdclk_init(struct drm_i915_private *dev_priv);
-> +void intel_cdclk_debugfs_register(struct drm_i915_private *i915);
->  
->  #endif /* __INTEL_CDCLK_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 45113ae107ba..abd16a2b1f7a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1094,6 +1094,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
->  				 ARRAY_SIZE(intel_display_debugfs_list),
->  				 minor->debugfs_root, minor);
->  
-> +	intel_cdclk_debugfs_register(i915);
->  	intel_dmc_debugfs_register(i915);
->  	intel_fbc_debugfs_register(i915);
->  	intel_hpd_debugfs_register(i915);
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 8e16745275f6..f93895d99fd1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4689,6 +4689,7 @@ intel_dp_detect(struct drm_connector *connector,
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	struct intel_encoder *encoder = &dig_port->base;
+ 	enum drm_connector_status status;
++	int32_t pp;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
+ 		    connector->base.id, connector->name);
+@@ -4792,6 +4793,22 @@ intel_dp_detect(struct drm_connector *connector,
+ 						 status,
+ 						 intel_dp->dpcd,
+ 						 intel_dp->downstream_ports);
++
++	/*
++	 * WA_150879661:adls
++	 * Driver shall enable this WA when external display is connected
++	 * and remove WA when display is unplugged
++	 */
++	if (IS_ALDERLAKE_S(dev_priv)) {
++		if (status == connector_status_connected &&
++		    !dev_priv->edp_present)
++			pp = PANEL_POWER_ON;
++		else if (status == connector_status_disconnected)
++			pp = 0;
++
++		intel_de_rmw(dev_priv, _MMIO(PCH_PPS_BASE + 4), 1, pp);
++	}
++
+ 	return status;
+ }
+ 
+@@ -5489,6 +5506,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
+ 		intel_dp_aux_fini(intel_dp);
+ 		goto fail;
++	} else {
++		dev_priv->edp_present = true;
+ 	}
+ 
+ 	intel_dp_set_source_rates(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 24b5b12f7732..21538338af3d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1726,4 +1726,5 @@ void assert_pps_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	I915_STATE_WARN(panel_pipe == pipe && locked,
+ 			"panel assertion failure, pipe %c regs locked\n",
+ 			pipe_name(pipe));
++
+ }
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 6254aa977398..ebe16aee0ca8 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -352,6 +352,8 @@ struct drm_i915_private {
+ 	/* The TTM device structure. */
+ 	struct ttm_device bdev;
+ 
++	bool edp_present;
++
+ 	I915_SELFTEST_DECLARE(struct i915_selftest_stash selftest;)
+ 
+ 	/*
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
