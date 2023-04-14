@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2856E1F8B
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 11:42:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CDE6E1F8D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 11:42:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D75F210ECA9;
-	Fri, 14 Apr 2023 09:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F8110E16C;
+	Fri, 14 Apr 2023 09:42:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3382610E16C
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 09:42:38 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1675B10ECAE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 09:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681465358; x=1713001358;
+ t=1681465364; x=1713001364;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8RtGGABrM1qHpvV1vBTgbht18/oRtaV84r/NaKkp/8s=;
- b=L2Y6NkfISsdP9yuoKDtfk9BS/ukJOAKbG0t1doqo/fCHhzh4oDFfwES+
- XdilK2dH+12BYhhptg3DEZ9lhvz0YIiTLAnTwrg+rrCRXizOrd2skiaJV
- Z90HMwrEP0wHTlYYw+F+3Q7A04VblYtQ7qVOwbkxHtrz9oQ7Z3OIuq10E
- DY86dfOqKafi4+8SuXGYiJxEtUE8K9H4hMxo86AdLmtIBNymZhSUCzfbH
- ydCN8e5qSti5p/sh3t0Fu2yVgYF9MdOtOcmbTjj+dPOD1MfvIt5MWhGvV
- mBQO/Wf2JUUPLfTbV1q2QgvqmvV8u64kkALwNbH8aez11wLlbiNllbjon g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="324054464"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="324054464"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 02:42:37 -0700
+ bh=H68FEseiEV+Le6IR8dZ0ODi3vBClWGeCrWm+K808lRU=;
+ b=WNpKdLZ6XMXRDYaipzx3i4vWCzMgkb5UtJauW+OGjA664TLvVvXvLiqo
+ J4+mZ96T/+m3Nzi2xW54UBEh8q8iFXevmVXAIDDb14LpzIyEYtX0rm6/S
+ wJV+9vZGlFBZiqCveYaElsFYIN+fG5kl1rVRD7Uejmw/4a3E0JEHJe4wC
+ N5er2V+ReI/Y+TVns5PgPSZYJW5aByAw49Xx2yJ7bsxcInTOuFtfEbw2o
+ T3FA3nFVMB+HEj1S432hfmVA8XcRjGWFWy5M7Z49kjRFRSHp2JThKFAlv
+ 9REMGfnx6+kIkfRpdGgv8tNkbPWfROnpjUrCN2/htogEIq3YNUWXHDgIt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="324778677"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="324778677"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 02:42:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="754397553"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="754397553"
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="779133033"
+X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="779133033"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.55.117])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 02:42:35 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2023 02:42:41 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Apr 2023 12:41:59 +0300
-Message-Id: <5e98e2fc5f0c09490e02d22250c8201342852288.1681465222.git.jani.nikula@intel.com>
+Date: Fri, 14 Apr 2023 12:42:00 +0300
+Message-Id: <11fdd82437370d8f341cd546d546de5e934c000f.1681465222.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1681465222.git.jani.nikula@intel.com>
 References: <cover.1681465222.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 07/10] drm/i915/display: add
- intel_display_reset.[ch]
+Subject: [Intel-gfx] [PATCH v2 08/10] drm/i915/display: move display
+ suspend/resume to intel_display_driver.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,390 +64,315 @@ Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split out the display reset functionality to a separate file to
-declutter intel_display.c. Rename the functions accordingly. The minor
-downside is having to expose __intel_display_resume().
+High level display functionality only called from driver top level code.
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_display.c  | 123 +---------------
- drivers/gpu/drm/i915/display/intel_display.h  |   8 +-
- .../drm/i915/display/intel_display_reset.c    | 135 ++++++++++++++++++
- .../drm/i915/display/intel_display_reset.h    |  14 ++
- drivers/gpu/drm/i915/gt/intel_reset.c         |   6 +-
- 6 files changed, 160 insertions(+), 127 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_reset.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_reset.h
+ drivers/gpu/drm/i915/display/intel_display.c  | 102 ------------------
+ drivers/gpu/drm/i915/display/intel_display.h  |   8 --
+ .../drm/i915/display/intel_display_driver.c   | 101 +++++++++++++++++
+ .../drm/i915/display/intel_display_driver.h   |  10 ++
+ 4 files changed, 111 insertions(+), 110 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 91f0c214ef28..39e22cf85e55 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -241,6 +241,7 @@ i915-y += \
- 	display/intel_display_power.o \
- 	display/intel_display_power_map.o \
- 	display/intel_display_power_well.o \
-+	display/intel_display_reset.o \
- 	display/intel_display_rps.o \
- 	display/intel_dmc.o \
- 	display/intel_dpio_phy.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 59684febc345..c96339a2487c 100644
+index c96339a2487c..0970acee062b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -693,7 +693,7 @@ intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
+@@ -693,46 +693,6 @@ intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
  	return y;
  }
  
--static int
-+int
- __intel_display_resume(struct drm_i915_private *i915,
- 		       struct drm_atomic_state *state,
- 		       struct drm_modeset_acquire_ctx *ctx)
-@@ -733,127 +733,6 @@ __intel_display_resume(struct drm_i915_private *i915,
- 	return ret;
- }
- 
--static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
+-int
+-__intel_display_resume(struct drm_i915_private *i915,
+-		       struct drm_atomic_state *state,
+-		       struct drm_modeset_acquire_ctx *ctx)
 -{
--	return (INTEL_INFO(dev_priv)->gpu_reset_clobbers_display &&
--		intel_has_gpu_reset(to_gt(dev_priv)));
--}
+-	struct drm_crtc_state *crtc_state;
+-	struct drm_crtc *crtc;
+-	int ret, i;
 -
--void intel_display_prepare_reset(struct drm_i915_private *dev_priv)
--{
--	struct drm_modeset_acquire_ctx *ctx = &dev_priv->display.restore.reset_ctx;
--	struct drm_atomic_state *state;
--	int ret;
+-	intel_modeset_setup_hw_state(i915, ctx);
+-	intel_vga_redisable(i915);
 -
--	if (!HAS_DISPLAY(dev_priv))
--		return;
--
--	/* reset doesn't touch the display */
--	if (!dev_priv->params.force_reset_modeset_test &&
--	    !gpu_reset_clobbers_display(dev_priv))
--		return;
--
--	/* We have a modeset vs reset deadlock, defensively unbreak it. */
--	set_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags);
--	smp_mb__after_atomic();
--	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
--
--	if (atomic_read(&dev_priv->gpu_error.pending_fb_pin)) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "Modeset potentially stuck, unbreaking through wedging\n");
--		intel_gt_set_wedged(to_gt(dev_priv));
--	}
--
--	/*
--	 * Need mode_config.mutex so that we don't
--	 * trample ongoing ->detect() and whatnot.
--	 */
--	mutex_lock(&dev_priv->drm.mode_config.mutex);
--	drm_modeset_acquire_init(ctx, 0);
--	while (1) {
--		ret = drm_modeset_lock_all_ctx(&dev_priv->drm, ctx);
--		if (ret != -EDEADLK)
--			break;
--
--		drm_modeset_backoff(ctx);
--	}
--	/*
--	 * Disabling the crtcs gracefully seems nicer. Also the
--	 * g33 docs say we should at least disable all the planes.
--	 */
--	state = drm_atomic_helper_duplicate_state(&dev_priv->drm, ctx);
--	if (IS_ERR(state)) {
--		ret = PTR_ERR(state);
--		drm_err(&dev_priv->drm, "Duplicating state failed with %i\n",
--			ret);
--		return;
--	}
--
--	ret = drm_atomic_helper_disable_all(&dev_priv->drm, ctx);
--	if (ret) {
--		drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
--			ret);
--		drm_atomic_state_put(state);
--		return;
--	}
--
--	dev_priv->display.restore.modeset_state = state;
--	state->acquire_ctx = ctx;
--}
--
--void intel_display_finish_reset(struct drm_i915_private *i915)
--{
--	struct drm_modeset_acquire_ctx *ctx = &i915->display.restore.reset_ctx;
--	struct drm_atomic_state *state;
--	int ret;
--
--	if (!HAS_DISPLAY(i915))
--		return;
--
--	/* reset doesn't touch the display */
--	if (!test_bit(I915_RESET_MODESET, &to_gt(i915)->reset.flags))
--		return;
--
--	state = fetch_and_zero(&i915->display.restore.modeset_state);
 -	if (!state)
--		goto unlock;
+-		return 0;
 -
--	/* reset doesn't touch the display */
--	if (!gpu_reset_clobbers_display(i915)) {
--		/* for testing only restore the display */
--		ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
--		if (ret) {
--			drm_WARN_ON(&i915->drm, ret == -EDEADLK);
--			drm_err(&i915->drm,
--				"Restoring old state failed with %i\n", ret);
--		}
--	} else {
+-	/*
+-	 * We've duplicated the state, pointers to the old state are invalid.
+-	 *
+-	 * Don't attempt to use the old state until we commit the duplicated state.
+-	 */
+-	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
 -		/*
--		 * The display has been reset as well,
--		 * so need a full re-initialization.
+-		 * Force recalculation even if we restore
+-		 * current state. With fast modeset this may not result
+-		 * in a modeset when the state is compatible.
 -		 */
--		intel_pps_unlock_regs_wa(i915);
--		intel_display_driver_init_hw(i915);
--		intel_clock_gating_init(i915);
--		intel_hpd_init(i915);
--
--		ret = __intel_display_resume(i915, state, ctx);
--		if (ret)
--			drm_err(&i915->drm,
--				"Restoring old state failed with %i\n", ret);
--
--		intel_hpd_poll_disable(i915);
+-		crtc_state->mode_changed = true;
 -	}
 -
--	drm_atomic_state_put(state);
--unlock:
--	drm_modeset_drop_locks(ctx);
--	drm_modeset_acquire_fini(ctx);
--	mutex_unlock(&i915->drm.mode_config.mutex);
+-	/* ignore any reset values/BIOS leftovers in the WM registers */
+-	if (!HAS_GMCH(i915))
+-		to_intel_atomic_state(state)->skip_intermediate_wm = true;
 -
--	clear_bit_unlock(I915_RESET_MODESET, &to_gt(i915)->reset.flags);
+-	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
+-
+-	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
+-
+-	return ret;
 -}
 -
  static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
  {
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -2104,30 +2064,6 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+ 		i830_enable_pipe(dev_priv, pipe);
+ }
+ 
+-
+-/*
+- * turn all crtc's off, but do not adjust state
+- * This has to be paired with a call to intel_modeset_setup_hw_state.
+- */
+-int intel_display_suspend(struct drm_device *dev)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct drm_atomic_state *state;
+-	int ret;
+-
+-	if (!HAS_DISPLAY(dev_priv))
+-		return 0;
+-
+-	state = drm_atomic_helper_suspend(dev);
+-	ret = PTR_ERR_OR_ZERO(state);
+-	if (ret)
+-		drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
+-			ret);
+-	else
+-		dev_priv->display.restore.modeset_state = state;
+-	return ret;
+-}
+-
+ void intel_encoder_destroy(struct drm_encoder *encoder)
+ {
+ 	struct intel_encoder *intel_encoder = to_intel_encoder(encoder);
+@@ -8282,44 +8218,6 @@ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	intel_de_posting_read(dev_priv, DPLL(pipe));
+ }
+ 
+-void intel_display_resume(struct drm_device *dev)
+-{
+-	struct drm_i915_private *i915 = to_i915(dev);
+-	struct drm_atomic_state *state = i915->display.restore.modeset_state;
+-	struct drm_modeset_acquire_ctx ctx;
+-	int ret;
+-
+-	if (!HAS_DISPLAY(i915))
+-		return;
+-
+-	i915->display.restore.modeset_state = NULL;
+-	if (state)
+-		state->acquire_ctx = &ctx;
+-
+-	drm_modeset_acquire_init(&ctx, 0);
+-
+-	while (1) {
+-		ret = drm_modeset_lock_all_ctx(dev, &ctx);
+-		if (ret != -EDEADLK)
+-			break;
+-
+-		drm_modeset_backoff(&ctx);
+-	}
+-
+-	if (!ret)
+-		ret = __intel_display_resume(i915, state, &ctx);
+-
+-	skl_watermark_ipc_update(i915);
+-	drm_modeset_drop_locks(&ctx);
+-	drm_modeset_acquire_fini(&ctx);
+-
+-	if (ret)
+-		drm_err(&i915->drm,
+-			"Restoring old state failed with %i\n", ret);
+-	if (state)
+-		drm_atomic_state_put(state);
+-}
+-
+ void intel_hpd_poll_fini(struct drm_i915_private *i915)
+ {
+ 	struct intel_connector *connector;
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 01c27a4757a5..346f6342e8ed 100644
+index 346f6342e8ed..fefad8cfc8a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -468,8 +468,6 @@ intel_framebuffer_create(struct drm_i915_gem_object *obj,
+@@ -438,7 +438,6 @@ void intel_add_fb_offsets(int *x, int *y,
+ unsigned int intel_rotation_info_size(const struct intel_rotation_info *rot_info);
+ unsigned int intel_remapped_info_size(const struct intel_remapped_info *rem_info);
+ bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv);
+-int intel_display_suspend(struct drm_device *dev);
+ void intel_encoder_destroy(struct drm_encoder *encoder);
+ struct drm_display_mode *
+ intel_encoder_current_mode(struct intel_encoder *encoder);
+@@ -520,7 +519,6 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
+ void intel_update_watermarks(struct drm_i915_private *i915);
  
- bool intel_fuzzy_clock_check(int clock1, int clock2);
- 
--void intel_display_prepare_reset(struct drm_i915_private *dev_priv);
--void intel_display_finish_reset(struct drm_i915_private *dev_priv);
- void intel_zero_m_n(struct intel_link_m_n *m_n);
- void intel_set_m_n(struct drm_i915_private *i915,
- 		   const struct intel_link_m_n *m_n,
-@@ -543,6 +541,12 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ /* modesetting */
+-void intel_display_resume(struct drm_device *dev);
+ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 			    const char *reason);
+ void intel_modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state,
+@@ -541,12 +539,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
  
  void intel_hpd_poll_fini(struct drm_i915_private *i915);
  
-+/* interface for intel_display_reset.c */
-+int
-+__intel_display_resume(struct drm_i915_private *i915,
-+		       struct drm_atomic_state *state,
-+		       struct drm_modeset_acquire_ctx *ctx);
-+
+-/* interface for intel_display_reset.c */
+-int
+-__intel_display_resume(struct drm_i915_private *i915,
+-		       struct drm_atomic_state *state,
+-		       struct drm_modeset_acquire_ctx *ctx);
+-
  /* modesetting asserts */
  void assert_transcoder(struct drm_i915_private *dev_priv,
  		       enum transcoder cpu_transcoder, bool state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-new file mode 100644
-index 000000000000..166aa0cab1fc
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -0,0 +1,135 @@
-+// SPDX-License-Identifier: MIT
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 45e425100385..eb03b0a87d5a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -466,3 +466,104 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
+ 	acpi_video_unregister();
+ 	intel_opregion_unregister(i915);
+ }
++
 +/*
-+ * Copyright © 2023 Intel Corporation
++ * turn all crtc's off, but do not adjust state
++ * This has to be paired with a call to intel_modeset_setup_hw_state.
 + */
-+
-+#include <drm/drm_atomic_helper.h>
-+
-+#include "i915_drv.h"
-+#include "intel_clock_gating.h"
-+#include "intel_display_driver.h"
-+#include "intel_display_reset.h"
-+#include "intel_display_types.h"
-+#include "intel_hotplug.h"
-+#include "intel_pps.h"
-+
-+static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
++int intel_display_suspend(struct drm_device *dev)
 +{
-+	return (INTEL_INFO(dev_priv)->gpu_reset_clobbers_display &&
-+		intel_has_gpu_reset(to_gt(dev_priv)));
-+}
-+
-+void intel_display_reset_prepare(struct drm_i915_private *dev_priv)
-+{
-+	struct drm_modeset_acquire_ctx *ctx = &dev_priv->display.restore.reset_ctx;
++	struct drm_i915_private *dev_priv = to_i915(dev);
 +	struct drm_atomic_state *state;
 +	int ret;
 +
 +	if (!HAS_DISPLAY(dev_priv))
-+		return;
++		return 0;
 +
-+	/* reset doesn't touch the display */
-+	if (!dev_priv->params.force_reset_modeset_test &&
-+	    !gpu_reset_clobbers_display(dev_priv))
-+		return;
-+
-+	/* We have a modeset vs reset deadlock, defensively unbreak it. */
-+	set_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags);
-+	smp_mb__after_atomic();
-+	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
-+
-+	if (atomic_read(&dev_priv->gpu_error.pending_fb_pin)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Modeset potentially stuck, unbreaking through wedging\n");
-+		intel_gt_set_wedged(to_gt(dev_priv));
-+	}
-+
-+	/*
-+	 * Need mode_config.mutex so that we don't
-+	 * trample ongoing ->detect() and whatnot.
-+	 */
-+	mutex_lock(&dev_priv->drm.mode_config.mutex);
-+	drm_modeset_acquire_init(ctx, 0);
-+	while (1) {
-+		ret = drm_modeset_lock_all_ctx(&dev_priv->drm, ctx);
-+		if (ret != -EDEADLK)
-+			break;
-+
-+		drm_modeset_backoff(ctx);
-+	}
-+	/*
-+	 * Disabling the crtcs gracefully seems nicer. Also the
-+	 * g33 docs say we should at least disable all the planes.
-+	 */
-+	state = drm_atomic_helper_duplicate_state(&dev_priv->drm, ctx);
-+	if (IS_ERR(state)) {
-+		ret = PTR_ERR(state);
-+		drm_err(&dev_priv->drm, "Duplicating state failed with %i\n",
-+			ret);
-+		return;
-+	}
-+
-+	ret = drm_atomic_helper_disable_all(&dev_priv->drm, ctx);
-+	if (ret) {
++	state = drm_atomic_helper_suspend(dev);
++	ret = PTR_ERR_OR_ZERO(state);
++	if (ret)
 +		drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
 +			ret);
-+		drm_atomic_state_put(state);
-+		return;
-+	}
-+
-+	dev_priv->display.restore.modeset_state = state;
-+	state->acquire_ctx = ctx;
++	else
++		dev_priv->display.restore.modeset_state = state;
++	return ret;
 +}
 +
-+void intel_display_reset_finish(struct drm_i915_private *i915)
++int
++__intel_display_resume(struct drm_i915_private *i915,
++		       struct drm_atomic_state *state,
++		       struct drm_modeset_acquire_ctx *ctx)
 +{
-+	struct drm_modeset_acquire_ctx *ctx = &i915->display.restore.reset_ctx;
-+	struct drm_atomic_state *state;
++	struct drm_crtc_state *crtc_state;
++	struct drm_crtc *crtc;
++	int ret, i;
++
++	intel_modeset_setup_hw_state(i915, ctx);
++	intel_vga_redisable(i915);
++
++	if (!state)
++		return 0;
++
++	/*
++	 * We've duplicated the state, pointers to the old state are invalid.
++	 *
++	 * Don't attempt to use the old state until we commit the duplicated state.
++	 */
++	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
++		/*
++		 * Force recalculation even if we restore
++		 * current state. With fast modeset this may not result
++		 * in a modeset when the state is compatible.
++		 */
++		crtc_state->mode_changed = true;
++	}
++
++	/* ignore any reset values/BIOS leftovers in the WM registers */
++	if (!HAS_GMCH(i915))
++		to_intel_atomic_state(state)->skip_intermediate_wm = true;
++
++	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
++
++	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
++
++	return ret;
++}
++
++void intel_display_resume(struct drm_device *dev)
++{
++	struct drm_i915_private *i915 = to_i915(dev);
++	struct drm_atomic_state *state = i915->display.restore.modeset_state;
++	struct drm_modeset_acquire_ctx ctx;
 +	int ret;
 +
 +	if (!HAS_DISPLAY(i915))
 +		return;
 +
-+	/* reset doesn't touch the display */
-+	if (!test_bit(I915_RESET_MODESET, &to_gt(i915)->reset.flags))
-+		return;
++	i915->display.restore.modeset_state = NULL;
++	if (state)
++		state->acquire_ctx = &ctx;
 +
-+	state = fetch_and_zero(&i915->display.restore.modeset_state);
-+	if (!state)
-+		goto unlock;
++	drm_modeset_acquire_init(&ctx, 0);
 +
-+	/* reset doesn't touch the display */
-+	if (!gpu_reset_clobbers_display(i915)) {
-+		/* for testing only restore the display */
-+		ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
-+		if (ret) {
-+			drm_WARN_ON(&i915->drm, ret == -EDEADLK);
-+			drm_err(&i915->drm,
-+				"Restoring old state failed with %i\n", ret);
-+		}
-+	} else {
-+		/*
-+		 * The display has been reset as well,
-+		 * so need a full re-initialization.
-+		 */
-+		intel_pps_unlock_regs_wa(i915);
-+		intel_display_driver_init_hw(i915);
-+		intel_clock_gating_init(i915);
-+		intel_hpd_init(i915);
++	while (1) {
++		ret = drm_modeset_lock_all_ctx(dev, &ctx);
++		if (ret != -EDEADLK)
++			break;
 +
-+		ret = __intel_display_resume(i915, state, ctx);
-+		if (ret)
-+			drm_err(&i915->drm,
-+				"Restoring old state failed with %i\n", ret);
-+
-+		intel_hpd_poll_disable(i915);
++		drm_modeset_backoff(&ctx);
 +	}
 +
-+	drm_atomic_state_put(state);
-+unlock:
-+	drm_modeset_drop_locks(ctx);
-+	drm_modeset_acquire_fini(ctx);
-+	mutex_unlock(&i915->drm.mode_config.mutex);
++	if (!ret)
++		ret = __intel_display_resume(i915, state, &ctx);
 +
-+	clear_bit_unlock(I915_RESET_MODESET, &to_gt(i915)->reset.flags);
++	skl_watermark_ipc_update(i915);
++	drm_modeset_drop_locks(&ctx);
++	drm_modeset_acquire_fini(&ctx);
++
++	if (ret)
++		drm_err(&i915->drm,
++			"Restoring old state failed with %i\n", ret);
++	if (state)
++		drm_atomic_state_put(state);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
-new file mode 100644
-index 000000000000..f06d0d35b86b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+index aab498617b90..7b5ff4309dec 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.h
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+@@ -8,7 +8,10 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_atomic_state;
++struct drm_device;
+ struct drm_i915_private;
++struct drm_modeset_acquire_ctx;
+ struct pci_dev;
+ 
+ bool intel_display_driver_probe_defer(struct pci_dev *pdev);
+@@ -21,6 +24,13 @@ void intel_display_driver_remove(struct drm_i915_private *i915);
+ void intel_display_driver_remove_noirq(struct drm_i915_private *i915);
+ void intel_display_driver_remove_nogem(struct drm_i915_private *i915);
+ void intel_display_driver_unregister(struct drm_i915_private *i915);
++int intel_display_suspend(struct drm_device *dev);
++void intel_display_resume(struct drm_device *dev);
 +
-+#ifndef __INTEL_RESET_H__
-+#define __INTEL_RESET_H__
-+
-+struct drm_i915_private;
-+
-+void intel_display_reset_prepare(struct drm_i915_private *i915);
-+void intel_display_reset_finish(struct drm_i915_private *i915);
-+
-+#endif /* __INTEL_RESET_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 797ea8340467..6194212e8650 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -7,7 +7,7 @@
- #include <linux/stop_machine.h>
- #include <linux/string_helpers.h>
++/* interface for intel_display_reset.c */
++int __intel_display_resume(struct drm_i915_private *i915,
++			   struct drm_atomic_state *state,
++			   struct drm_modeset_acquire_ctx *ctx);
  
--#include "display/intel_display.h"
-+#include "display/intel_display_reset.h"
- #include "display/intel_overlay.h"
+ #endif /* __INTEL_DISPLAY_DRIVER_H__ */
  
- #include "gem/i915_gem_context.h"
-@@ -1370,11 +1370,11 @@ static void intel_gt_reset_global(struct intel_gt *gt,
- 
- 	/* Use a watchdog to ensure that our reset completes */
- 	intel_wedge_on_timeout(&w, gt, 60 * HZ) {
--		intel_display_prepare_reset(gt->i915);
-+		intel_display_reset_prepare(gt->i915);
- 
- 		intel_gt_reset(gt, engine_mask, reason);
- 
--		intel_display_finish_reset(gt->i915);
-+		intel_display_reset_finish(gt->i915);
- 	}
- 
- 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
 -- 
 2.39.2
 
