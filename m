@@ -2,52 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8426E1F8F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 11:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D2A6E201E
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Apr 2023 12:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 746EA10ECB5;
-	Fri, 14 Apr 2023 09:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBC7810ECA4;
+	Fri, 14 Apr 2023 10:01:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5905D10ECB4
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 09:42:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681465372; x=1713001372;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7zUWdwwVF0HHZltbnJknzTQPAwCbWERSvRYz17ltnPk=;
- b=cmRlLJdQ1X4czIGjm7gLgQQuYmqVqgiHAjkWaCrFY63DKKIavthiwAD3
- 54AQJn4DyMlLuYaG3neN+pGK1mdEV1CO9Md5e3pOnyUHVzaQuQ54L5Vx1
- U1x9n5zvZgSb/no4zlLljNu7AX1x1SVOVzeICD0UVFgilg6o+YXJ64v1Z
- JqGA7lyGW1Pn9l+h8ICJavTFxpif5Fqx+eqqGhIKPOvV2PnO8YU2Bn5Uc
- Uq9OvaO/2b745O5pqX6OdUqs88E1RfmYyAzj6DmBvMnChe4TgsaBL9qM+
- SrL2MpyxqgvyLa/HejWvyh1xvP0mrQssBlIlFOqFC2dOZNTN4SJvul2If w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="328575115"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="328575115"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 02:42:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="722398342"
-X-IronPort-AV: E=Sophos;i="5.99,195,1677571200"; d="scan'208";a="722398342"
-Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.55.117])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2023 02:42:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Apr 2023 12:42:02 +0300
-Message-Id: <0b02311e5343527b501b44671d2188f2a1b30a7d.1681465222.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1681465222.git.jani.nikula@intel.com>
-References: <cover.1681465222.git.jani.nikula@intel.com>
+Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087CD10ECBD;
+ Fri, 14 Apr 2023 10:01:50 +0000 (UTC)
+Received: from fsav415.sakura.ne.jp (fsav415.sakura.ne.jp [133.242.250.114])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 33EA1Tnm068226;
+ Fri, 14 Apr 2023 19:01:29 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav415.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav415.sakura.ne.jp);
+ Fri, 14 Apr 2023 19:01:29 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav415.sakura.ne.jp)
+Received: from [192.168.1.6] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 33EA1Tmw068222
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Fri, 14 Apr 2023 19:01:29 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Message-ID: <9ee23b3f-e2e1-6a78-4a28-2ed8790636e5@I-love.SAKURA.ne.jp>
+Date: Fri, 14 Apr 2023 19:01:27 +0900
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Content-Language: en-US
+To: Luca Coelho <luca@coelho.fi>, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
+ <5bbe7093-791e-5653-850b-aea343db3f3f@I-love.SAKURA.ne.jp>
+ <b10d5ada60ab823a09b64f3bfd79db2dd601d5fd.camel@coelho.fi>
+From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+In-Reply-To: <b10d5ada60ab823a09b64f3bfd79db2dd601d5fd.camel@coelho.fi>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 10/10] drm/i915/display: add
- intel_display_driver_early_probe()
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: avoid flush_scheduled_work()
+ usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,109 +56,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add intel_display_driver_early_probe() as the early probe call to
-replace intel_init_display_hooks(). The latter will be "demoted" to
-setting up hooks in intel_display.c only.
+On 2023/03/15 19:47, Luca Coelho wrote:
+> On Tue, 2023-03-14 at 20:21 +0900, Tetsuo Handa wrote:
+>> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a
+>> macro") says, flush_scheduled_work() is dangerous and will be forbidden.
+>>
+>> Now that i915 is the last flush_scheduled_work() user, for now let's
+>> start with blind conversion inside the whole drivers/gpu/drm/i915/
+>> directory. Jani Nikula wants to use two workqueues in order to avoid
+>> adding new module globals, but I'm not familiar enough to audit and
+>> split into two workqueues.
+>>
+>> Link: https://lkml.kernel.org/r/87sfeita1p.fsf@intel.com
+>> Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>> ---
+>> Changes in v2:
+>>   Add missing alloc_workqueue() failure check.
+> 
+> Hi,
+> 
+> Thanks for your patch! But it seems that you only fixed that failure
+> check, without making the other change Jani proposed, namely, move the
+> work to the i915 struct instead of making it a global.
+> 
+> I'm working on that now.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c       | 11 -----------
- .../gpu/drm/i915/display/intel_display_driver.c    | 14 ++++++++++++++
- .../gpu/drm/i915/display/intel_display_driver.h    |  1 +
- drivers/gpu/drm/i915/i915_driver.c                 |  2 +-
- 4 files changed, 16 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0970acee062b..258b06dd4de7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8015,15 +8015,6 @@ static const struct intel_display_funcs i9xx_display_funcs = {
-  */
- void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- {
--	if (!HAS_DISPLAY(dev_priv))
--		return;
--
--	intel_color_init_hooks(dev_priv);
--	intel_init_cdclk_hooks(dev_priv);
--	intel_audio_hooks_init(dev_priv);
--
--	intel_dpll_init_clock_hook(dev_priv);
--
- 	if (DISPLAY_VER(dev_priv) >= 9) {
- 		dev_priv->display.funcs.display = &skl_display_funcs;
- 	} else if (HAS_DDI(dev_priv)) {
-@@ -8036,8 +8027,6 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- 	} else {
- 		dev_priv->display.funcs.display = &i9xx_display_funcs;
- 	}
--
--	intel_fdi_init_hook(dev_priv);
- }
- 
- int intel_initial_commit(struct drm_device *dev)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index d20a279fdf51..b3dbfe2a892e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -32,6 +32,7 @@
- #include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dp.h"
-+#include "intel_dpll.h"
- #include "intel_dpll_mgr.h"
- #include "intel_fb.h"
- #include "intel_fbc.h"
-@@ -169,6 +170,19 @@ static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+void intel_display_driver_early_probe(struct drm_i915_private *i915)
-+{
-+	if (!HAS_DISPLAY(i915))
-+		return;
-+
-+	intel_color_init_hooks(i915);
-+	intel_init_cdclk_hooks(i915);
-+	intel_audio_hooks_init(i915);
-+	intel_dpll_init_clock_hook(i915);
-+	intel_init_display_hooks(i915);
-+	intel_fdi_init_hook(i915);
-+}
-+
- /* part #1: call before irq install */
- int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 84e7977f265a..c276a58ee329 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -15,6 +15,7 @@ struct pci_dev;
- 
- bool intel_display_driver_probe_defer(struct pci_dev *pdev);
- void intel_display_driver_init_hw(struct drm_i915_private *i915);
-+void intel_display_driver_early_probe(struct drm_i915_private *i915);
- int intel_display_driver_probe_noirq(struct drm_i915_private *i915);
- int intel_display_driver_probe_nogem(struct drm_i915_private *i915);
- int intel_display_driver_probe(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d806790114e0..dbbbf55e22dd 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -252,7 +252,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	intel_detect_pch(dev_priv);
- 
- 	intel_irq_init(dev_priv);
--	intel_init_display_hooks(dev_priv);
-+	intel_display_driver_early_probe(dev_priv);
- 	intel_clock_gating_hooks_init(dev_priv);
- 
- 	intel_detect_preproduction_hw(dev_priv);
--- 
-2.39.2
+What is estimated time of arrival on this?
+Can we expect your work in Linux 6.4 ?
 
