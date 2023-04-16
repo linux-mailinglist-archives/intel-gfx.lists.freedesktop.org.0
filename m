@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F16C6E3A04
-	for <lists+intel-gfx@lfdr.de>; Sun, 16 Apr 2023 17:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC3F76E3A05
+	for <lists+intel-gfx@lfdr.de>; Sun, 16 Apr 2023 17:54:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7448410E26C;
-	Sun, 16 Apr 2023 15:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 346D710E274;
+	Sun, 16 Apr 2023 15:54:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BBC810E265
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Apr 2023 15:54:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0CCE10E274
+ for <intel-gfx@lists.freedesktop.org>; Sun, 16 Apr 2023 15:54:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681660481; x=1713196481;
+ t=1681660484; x=1713196484;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sclp6OeYtXMwYNwRIljzpR9aJ+2vaKmq5CTSOZJQ3Z4=;
- b=ght6/rXcVg+yFOSumzr7gABV6flNp79QosfUh0LbnIq2luq7TTgCcAzK
- N8aBZYyCKUkwvZB6EgKTjiV+9thiR6avoR2lsDlaPAZ2D49GFzawKQ6Ra
- o/XswB13jXVobv/7grP3qRP2AZle6Dfyr6yD8QxUgKF9DE6DG50SxRVzF
- V5HXtc+eEVvAm450NlLxNeuahaKAkQ/N8EHGXZ68JyLZRUUkrIDMvkF2v
- KywydRqnbr2/L5EhqWlRsCFcRiR0GFYFdMpEEzbCGdqkgnMFzdTq6Luuy
- dojtvfGUXJ0xvhjjeJ3/Uqz0hgHPJWMPDyjuI9wMefbqwkDiEUdm2DS2H Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="328902097"
-X-IronPort-AV: E=Sophos;i="5.99,202,1677571200"; d="scan'208";a="328902097"
+ bh=wv3SXyt5vC9kgsvIzQVZdjwsPXgK3yGUgs8Nekv+XqI=;
+ b=XmlJAX8TBhmdpzyq36+IYmbva4zIRI9elxh0FhG0W9T3ezIPz7KqQSDE
+ usYKTt+Jv4ar9SsOCQtYMDlgLKGzuNBeiNuwCU81KcQ8/VbuA0X4NoL0y
+ lp/vTAGsoJbRhzP0YbHInIzPJ+s5C5CknWh+2nqWwty80wBrQYR9lhT+/
+ dVPYN+2Hf6ZFV8AVQ3vk1Zw0KPUK+K25S59/qdjVysNkL4f3GVE71FBec
+ gEJGCj9CwfOjIwDtOpNv14jjZ97G2tkaYtMODCRrMSJOfALhqFahWdM/J
+ vsS36KNqOjMqGftDPONOc2GRX/1Re2V5AwAEV3vDEVKmgq5Grl3yxDbOs w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="328902099"
+X-IronPort-AV: E=Sophos;i="5.99,202,1677571200"; d="scan'208";a="328902099"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2023 08:54:41 -0700
+ 16 Apr 2023 08:54:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="640698697"
-X-IronPort-AV: E=Sophos;i="5.99,202,1677571200"; d="scan'208";a="640698697"
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="640698700"
+X-IronPort-AV: E=Sophos;i="5.99,202,1677571200"; d="scan'208";a="640698700"
 Received: from yanghuib-mobl1.ger.corp.intel.com (HELO
  vgovind2-mobl3.intel.com) ([10.249.34.77])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2023 08:54:38 -0700
+ 16 Apr 2023 08:54:42 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 16 Apr 2023 18:54:16 +0300
-Message-Id: <20230416155417.174418-4-vinod.govindapillai@intel.com>
+Date: Sun, 16 Apr 2023 18:54:17 +0300
+Message-Id: <20230416155417.174418-5-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230416155417.174418-1-vinod.govindapillai@intel.com>
 References: <20230416155417.174418-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v1 3/4] drm/i915: store the peak bw per QGV point
+Subject: [Intel-gfx] [PATCH v1 4/4] drm/i915: extract
+ intel_bw_check_qgv_points()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,50 +64,288 @@ Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In MTL onwards, pcode locks the GV point based on the peak BW
-of a QGV point. So store the peak BW of all the QGV points.
-
-Bspec: 64636
+Extract intel_bw_check_qgv_points() from intel_bw_atomic_check
+to facilitate future platform variations in handling SAGV
+configurations.
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c           | 7 +++++--
- drivers/gpu/drm/i915/display/intel_display_core.h | 2 ++
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 235 +++++++++++++-----------
+ 1 file changed, 130 insertions(+), 105 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 57f8204162dd..bb2b8e31f9ff 100644
+index bb2b8e31f9ff..e818e2c3d6c0 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -531,10 +531,13 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+@@ -799,6 +799,128 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ 	return to_intel_bw_state(bw_state);
+ }
  
- 			bi->deratedbw[j] = min(maxdebw,
- 					       bw * (100 - sa->derating) / 100);
-+			bi->peakbw[j] = sp->dclk * num_channels *
-+					qi.channel_width / 8;
++static int icl_find_qgv_points(struct drm_i915_private *i915,
++			       unsigned int data_rate,
++			       unsigned int num_active_planes,
++			       const struct intel_bw_state *old_bw_state,
++			       struct intel_bw_state *new_bw_state)
++{
++	unsigned int max_bw_point = 0;
++	unsigned int max_bw = 0;
++	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
++	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
++	u16 psf_points = 0;
++	u16 qgv_points = 0;
++	int i;
++	int ret;
++
++	ret = intel_atomic_lock_global_state(&new_bw_state->base);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < num_qgv_points; i++) {
++		unsigned int max_data_rate;
++
++		if (DISPLAY_VER(i915) > 11)
++			max_data_rate = tgl_max_bw(i915, num_active_planes, i);
++		else
++			max_data_rate = icl_max_bw(i915, num_active_planes, i);
++		/*
++		 * We need to know which qgv point gives us
++		 * maximum bandwidth in order to disable SAGV
++		 * if we find that we exceed SAGV block time
++		 * with watermarks. By that moment we already
++		 * have those, as it is calculated earlier in
++		 * intel_atomic_check,
++		 */
++		if (max_data_rate > max_bw) {
++			max_bw_point = i;
++			max_bw = max_data_rate;
++		}
++		if (max_data_rate >= data_rate)
++			qgv_points |= BIT(i);
++
++		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d\n",
++			    i, max_data_rate, data_rate);
++	}
++
++	for (i = 0; i < num_psf_gv_points; i++) {
++		unsigned int max_data_rate = adl_psf_bw(i915, i);
++
++		if (max_data_rate >= data_rate)
++			psf_points |= BIT(i);
++
++		drm_dbg_kms(&i915->drm, "PSF GV point %d: max bw %d"
++			    " required %d\n",
++			    i, max_data_rate, data_rate);
++	}
++
++	/*
++	 * BSpec states that we always should have at least one allowed point
++	 * left, so if we couldn't - simply reject the configuration for obvious
++	 * reasons.
++	 */
++	if (qgv_points == 0) {
++		drm_dbg_kms(&i915->drm, "No QGV points provide sufficient memory"
++			    " bandwidth %d for display configuration(%d active planes).\n",
++			    data_rate, num_active_planes);
++		return -EINVAL;
++	}
++
++	if (num_psf_gv_points > 0 && psf_points == 0) {
++		drm_dbg_kms(&i915->drm, "No PSF GV points provide sufficient memory"
++			    " bandwidth %d for display configuration(%d active planes).\n",
++			    data_rate, num_active_planes);
++		return -EINVAL;
++	}
++
++	/*
++	 * Leave only single point with highest bandwidth, if
++	 * we can't enable SAGV due to the increased memory latency it may
++	 * cause.
++	 */
++	if (!intel_can_enable_sagv(i915, new_bw_state)) {
++		qgv_points = BIT(max_bw_point);
++		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d\n",
++			    max_bw_point);
++	}
++
++	/*
++	 * We store the ones which need to be masked as that is what PCode
++	 * actually accepts as a parameter.
++	 */
++	new_bw_state->qgv_points_mask =
++		~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
++		  ADLS_PCODE_REQ_PSF_PT(psf_points)) &
++		icl_qgv_points_mask(i915);
++
++	/*
++	 * If the actual mask had changed we need to make sure that
++	 * the commits are serialized(in case this is a nomodeset, nonblocking)
++	 */
++	if (new_bw_state->qgv_points_mask != old_bw_state->qgv_points_mask) {
++		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int intel_bw_check_qgv_points(struct drm_i915_private *i915,
++				     const struct intel_bw_state *old_bw_state,
++				     struct intel_bw_state *new_bw_state)
++{
++	unsigned int data_rate = intel_bw_data_rate(i915, new_bw_state);
++	unsigned int num_active_planes =
++			intel_bw_num_active_planes(i915, new_bw_state);
++
++	data_rate = DIV_ROUND_UP(data_rate, 1000);
++
++	return icl_find_qgv_points(i915, data_rate, num_active_planes,
++				   old_bw_state, new_bw_state);
++}
++
+ static bool intel_bw_state_changed(struct drm_i915_private *i915,
+ 				   const struct intel_bw_state *old_bw_state,
+ 				   const struct intel_bw_state *new_bw_state)
+@@ -1045,20 +1167,14 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
  
- 			drm_dbg_kms(&dev_priv->drm,
--				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
--				    i, j, bi->num_planes, bi->deratedbw[j]);
-+				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
-+				    i, j, bi->num_planes, bi->deratedbw[j],
-+				    bi->peakbw[j]);
- 		}
+ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	const struct intel_bw_state *old_bw_state;
+-	struct intel_bw_state *new_bw_state;
+-	unsigned int data_rate;
+-	unsigned int num_active_planes;
+-	int i, ret;
+-	u16 qgv_points = 0, psf_points = 0;
+-	unsigned int max_bw_point = 0, max_bw = 0;
+-	unsigned int num_qgv_points = dev_priv->display.bw.max[0].num_qgv_points;
+-	unsigned int num_psf_gv_points = dev_priv->display.bw.max[0].num_psf_gv_points;
+ 	bool changed = false;
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	struct intel_bw_state *new_bw_state;
++	const struct intel_bw_state *old_bw_state;
++	int ret;
  
- 		for (j = 0; j < qi.num_psf_points; j++) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index e36f88a39b86..9f66d734edf6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -314,6 +314,8 @@ struct intel_display {
- 			unsigned int deratedbw[I915_NUM_QGV_POINTS];
- 			/* for each PSF GV point */
- 			unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
-+			/* Peak BW for each QGV point */
-+			unsigned int peakbw[I915_NUM_QGV_POINTS];
- 			u8 num_qgv_points;
- 			u8 num_psf_gv_points;
- 			u8 num_planes;
+ 	/* FIXME earlier gens need some checks too */
+-	if (DISPLAY_VER(dev_priv) < 11)
++	if (DISPLAY_VER(i915) < 11)
+ 		return 0;
+ 
+ 	ret = intel_bw_check_data_rate(state, &changed);
+@@ -1069,8 +1185,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	new_bw_state = intel_atomic_get_new_bw_state(state);
+ 
+ 	if (new_bw_state &&
+-	    intel_can_enable_sagv(dev_priv, old_bw_state) !=
+-	    intel_can_enable_sagv(dev_priv, new_bw_state))
++	    intel_can_enable_sagv(i915, old_bw_state) !=
++	    intel_can_enable_sagv(i915, new_bw_state))
+ 		changed = true;
+ 
+ 	/*
+@@ -1080,101 +1196,10 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	if (!changed)
+ 		return 0;
+ 
+-	ret = intel_atomic_lock_global_state(&new_bw_state->base);
++	ret = intel_bw_check_qgv_points(i915, old_bw_state, new_bw_state);
+ 	if (ret)
+ 		return ret;
+ 
+-	data_rate = intel_bw_data_rate(dev_priv, new_bw_state);
+-	data_rate = DIV_ROUND_UP(data_rate, 1000);
+-
+-	num_active_planes = intel_bw_num_active_planes(dev_priv, new_bw_state);
+-
+-	for (i = 0; i < num_qgv_points; i++) {
+-		unsigned int max_data_rate;
+-
+-		if (DISPLAY_VER(dev_priv) > 11)
+-			max_data_rate = tgl_max_bw(dev_priv, num_active_planes, i);
+-		else
+-			max_data_rate = icl_max_bw(dev_priv, num_active_planes, i);
+-		/*
+-		 * We need to know which qgv point gives us
+-		 * maximum bandwidth in order to disable SAGV
+-		 * if we find that we exceed SAGV block time
+-		 * with watermarks. By that moment we already
+-		 * have those, as it is calculated earlier in
+-		 * intel_atomic_check,
+-		 */
+-		if (max_data_rate > max_bw) {
+-			max_bw_point = i;
+-			max_bw = max_data_rate;
+-		}
+-		if (max_data_rate >= data_rate)
+-			qgv_points |= BIT(i);
+-
+-		drm_dbg_kms(&dev_priv->drm, "QGV point %d: max bw %d required %d\n",
+-			    i, max_data_rate, data_rate);
+-	}
+-
+-	for (i = 0; i < num_psf_gv_points; i++) {
+-		unsigned int max_data_rate = adl_psf_bw(dev_priv, i);
+-
+-		if (max_data_rate >= data_rate)
+-			psf_points |= BIT(i);
+-
+-		drm_dbg_kms(&dev_priv->drm, "PSF GV point %d: max bw %d"
+-			    " required %d\n",
+-			    i, max_data_rate, data_rate);
+-	}
+-
+-	/*
+-	 * BSpec states that we always should have at least one allowed point
+-	 * left, so if we couldn't - simply reject the configuration for obvious
+-	 * reasons.
+-	 */
+-	if (qgv_points == 0) {
+-		drm_dbg_kms(&dev_priv->drm, "No QGV points provide sufficient memory"
+-			    " bandwidth %d for display configuration(%d active planes).\n",
+-			    data_rate, num_active_planes);
+-		return -EINVAL;
+-	}
+-
+-	if (num_psf_gv_points > 0 && psf_points == 0) {
+-		drm_dbg_kms(&dev_priv->drm, "No PSF GV points provide sufficient memory"
+-			    " bandwidth %d for display configuration(%d active planes).\n",
+-			    data_rate, num_active_planes);
+-		return -EINVAL;
+-	}
+-
+-	/*
+-	 * Leave only single point with highest bandwidth, if
+-	 * we can't enable SAGV due to the increased memory latency it may
+-	 * cause.
+-	 */
+-	if (!intel_can_enable_sagv(dev_priv, new_bw_state)) {
+-		qgv_points = BIT(max_bw_point);
+-		drm_dbg_kms(&dev_priv->drm, "No SAGV, using single QGV point %d\n",
+-			    max_bw_point);
+-	}
+-
+-	/*
+-	 * We store the ones which need to be masked as that is what PCode
+-	 * actually accepts as a parameter.
+-	 */
+-	new_bw_state->qgv_points_mask =
+-		~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
+-		  ADLS_PCODE_REQ_PSF_PT(psf_points)) &
+-		icl_qgv_points_mask(dev_priv);
+-
+-	/*
+-	 * If the actual mask had changed we need to make sure that
+-	 * the commits are serialized(in case this is a nomodeset, nonblocking)
+-	 */
+-	if (new_bw_state->qgv_points_mask != old_bw_state->qgv_points_mask) {
+-		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
+-		if (ret)
+-			return ret;
+-	}
+-
+ 	return 0;
+ }
+ 
 -- 
 2.34.1
 
