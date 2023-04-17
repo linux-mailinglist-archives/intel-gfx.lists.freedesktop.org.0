@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16BC6E4660
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 13:27:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD926E468B
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 13:34:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB8D10E428;
-	Mon, 17 Apr 2023 11:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E646810E429;
+	Mon, 17 Apr 2023 11:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDEB510E428
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 11:27:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681730856; x=1713266856;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=lXPN1W1eV+yRMgbHSpssz0WXaq4LtqY6jjoPFW/6NfY=;
- b=BN6LE/z0GeV1K/E/MVsgzrRMEgSs4yr1+ioG1qALE0xJ/YD6PZUeoshQ
- m/R4+M8m0QXSPr1WV/sYD6ozoHPZ3xIOmjhBqnpYSjXd821hJw7G2sjBL
- hfHvPk76e3EZMk6q36DjFc0uxBX0QqUhNMzlYL1YXV2V+Nd/hVZdNycBs
- lysDHoO82MOKJgDqzgfwQq0Z9W+Uu1oStF6Xubn2v1kHPLCUhCiway370
- SDmu7Hq7LPCUal16o4W18Bl4QQG6TlskXkZ4HVg5BblsIwxKVMiEAaKng
- gmoLxrKcLC9VjeTizDl2qtNQFaaDFfddvwEUVf9CHuMwwhgmUUip31rhN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="342359231"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="342359231"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 04:27:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="780039450"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="780039450"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 04:27:33 -0700
-Date: Mon, 17 Apr 2023 14:27:30 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZD0tItORRLeBZ3sj@ideak-desk.fi.intel.com>
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
- <20230405071951.1258132-1-suraj.kandpal@intel.com>
- <871qkigabf.fsf@intel.com>
- <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87h6teer21.fsf@intel.com>
- <SN7PR11MB67501452EA239C59649E8335E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87bkjmeq0j.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2E2B10E378;
+ Mon, 17 Apr 2023 11:34:32 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0FA6761007;
+ Mon, 17 Apr 2023 11:34:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1774C433D2;
+ Mon, 17 Apr 2023 11:34:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1681731271;
+ bh=y2/atbVteeg0LDohlIiMva71uhiV24MpeNSZbEAo7YM=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=t1r5ap2QbauIXSYpgSM5GpJiWufEsQ9twdKoELtqiYt2uGD/7zEzVHLj5KMzmF5gt
+ GqOk32CZUPkfFUcVjgJVPUAU9ehD+h61wGYNkW9J3DVyOB+pIV6exN8ICZdBjqNBgo
+ hSIMAzRE6VwPjdEJ5zF3IZYs1/7Qvb3/tTUri+Jah4tx6zApFlYQ1WH6CgNr5J1BlS
+ IO6bzp2OSkfBGd9NVd4Mg1SsXh6819KWpT7mFv8hb6Q8pRVObQJFxm6uYPG8kanzCQ
+ OMywhdAlEB+GwbVEogpScrvul/rPtgIumUvb7gZcSr6dw2xiEggIP9xE/li9CjuAB6
+ oFVUktxElkJ/w==
+Date: Mon, 17 Apr 2023 12:34:26 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Message-ID: <ec0ed678-ade5-4549-b859-e1c451bf2bf4@sirena.org.uk>
+References: <20230414125913.851920-1-broonie@kernel.org>
+ <ZDuqut+8BKjMXblJ@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="uuEsM8kBwgma7Hr3"
 Content-Disposition: inline
-In-Reply-To: <87bkjmeq0j.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
+In-Reply-To: <ZDuqut+8BKjMXblJ@phenom.ffwll.local>
+X-Cookie: Two heads are more numerous than one.
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ the mm-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,241 +61,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 17, 2023 at 01:56:12PM +0300, Jani Nikula wrote:
-> On Mon, 17 Apr 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> >> -----Original Message-----
-> >> From: Jani Nikula <jani.nikula@linux.intel.com>
-> >> Sent: Monday, April 17, 2023 4:04 PM
-> >> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
-> >> gfx@lists.freedesktop.org
-> >> Subject: RE: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
-> >> for Type-C
-> >> 
-> >> On Mon, 17 Apr 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> >> >> On Wed, 05 Apr 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> >> >> > Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
-> >> >> > Workaround: Increase the timeout.
-> >> >> >
-> >> >> > WA_14017248603: adlp
-> >> >> > Bspec: 55480
-> >> >> >
-> >> >> > ---v2
-> >> >> > -change style on how we mention WA [Ankit] -fix bat error
-> >> >> >
-> >> >> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> >> >> > ---
-> >> >> >  .../i915/display/intel_display_power_well.c   | 30 ++++++++++++++++++-
-> >> >> >  1 file changed, 29 insertions(+), 1 deletion(-)
-> >> >> >
-> >> >> > diff --git
-> >> >> > a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> >> >> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> >> >> > index 62bafcbc7937..52f595929a18 100644
-> >> >> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> >> >> > @@ -489,6 +489,34 @@ static void icl_tc_cold_exit(struct
-> >> >> drm_i915_private *i915)
-> >> >> >  		    "succeeded");
-> >> >> >  }
-> >> >> >
-> >> >> > +static void
-> >> >> > +adl_aux_wait_for_power_well_enable(struct drm_i915_private *i915,
-> >> >> > +				   struct i915_power_well *power_well,
-> >> >> > +				   bool timeout_expected)
-> >> >> > +{
-> >> >> > +	const struct i915_power_well_regs *regs = power_well->desc->ops-
-> >> >> >regs;
-> >> >> > +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
-> >> >> > +	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
-> >> >> > +
-> >> >> > +	/*
-> >> >> > +	 * WA_14017248603: adlp
-> >> >> > +	 * Type-C Phy are taking longer than expected for AUX IO Power
-> >> >> Enabling.
-> >> >> > +	 * Increase timeout to 500ms.
-> >> >> > +	 */
-> >> >> > +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
-> >> >> > +		if (intel_de_wait_for_set(i915, regs->driver,
-> >> >> > +
-> >> >> HSW_PWR_WELL_CTL_STATE(pw_idx), 500)) {
-> >> >> > +			drm_dbg_kms(&i915->drm, "%s power well enable
-> >> >> timeout\n",
-> >> >> > +				    intel_power_well_name(power_well));
-> >> >> > +
-> >> >> > +			drm_WARN_ON(&i915->drm, !timeout_expected);
-> >> >> > +		}
-> >> >> > +		return;
-> >> >> > +	}
-> >> >> > +
-> >> >> > +	hsw_wait_for_power_well_enable(i915, power_well,
-> >> >> timeout_expected);
-> >> >> > +}
-> >> >>
-> >> >> Please don't duplicate the function and the wait like this.
-> >> >>
-> >> >> Something like this is sufficient:
-> >> >>
-> >> >>
-> >> >> @@ -252,7 +252,9 @@ static void
-> >> hsw_wait_for_power_well_enable(struct
-> >> >> drm_i915_private *dev_priv,
-> >> >>  					   bool timeout_expected)
-> >> >>  {
-> >> >>  	const struct i915_power_well_regs *regs = power_well->desc->ops-
-> >> >> >regs;
-> >> >> +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
-> >> >>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
-> >> >> +	int timeout = 1;
-> >> >>
-> >> >>  	/*
-> >> >>  	 * For some power wells we're not supposed to watch the status bit
-> >> >> for @@ -264,9 +266,13 @@ static void
-> >> >> hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
-> >> >>  		return;
-> >> >>  	}
-> >> >>
-> >> >> +	/* WA_14017248603: adlp */
-> >> >> +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy))
-> >> >
-> >> > I did try this but it ends up throwing a kernel null pointer error at
-> >> > intel_phy_is_tc which made me float the version of code I did.
-> >> 
-> >> Please explain what causes it, and how your version avoids it.
-> >> 
-> >
-> > icl_aux_pw_to_phy is called is hsw_wait_for_power_well is called everywhere where its not possible for aux_pw to phy
-> > conversion is not possible with this change we only get the phy for adls version.
-> > Will address this is next version.
-> 
-> Cc: Imre for input
-> 
-> Maybe pass the timeout to hsw_wait_for_power_well_enable() as parameter?
-> Other ideas?
 
-Adding a non-default enable_timeout to the power well descriptor would
-avoid adding more platform checks:
+--uuEsM8kBwgma7Hr3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 6645eb1911d85..8ca1f34be14c2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1378,13 +1378,18 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
- 			I915_PW("AUX_C", &icl_pwdoms_aux_c, .hsw.idx = ICL_PW_CTL_IDX_AUX_C),
- 			I915_PW("AUX_D", &icl_pwdoms_aux_d, .hsw.idx = XELPD_PW_CTL_IDX_AUX_D),
- 			I915_PW("AUX_E", &icl_pwdoms_aux_e, .hsw.idx = XELPD_PW_CTL_IDX_AUX_E),
-+		),
-+		.ops = &icl_aux_power_well_ops,
-+		.fixed_enable_delay = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
- 			I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
- 			I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
- 			I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
- 			I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
- 		),
- 		.ops = &icl_aux_power_well_ops,
--		.fixed_enable_delay = true,
-+		.enable_timeout = 500,
- 	}, {
- 		.instances = &I915_PW_INSTANCES(
- 			I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TBT1),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 62bafcbc7937c..930a42c825c36 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -253,6 +253,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
- {
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
-+	int timeout = power_well->desc->enable_timeout ? : 1;
+On Sun, Apr 16, 2023 at 09:58:50AM +0200, Daniel Vetter wrote:
 
- 	/*
- 	 * For some power wells we're not supposed to watch the status bit for
-@@ -266,7 +267,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+> Note there was a ppc compile fail, which is why we pushed the ttm revert.
+> That /should/ be fixed now, but would be good if you can confirm?
 
- 	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
- 	if (intel_de_wait_for_set(dev_priv, regs->driver,
--				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
-+				  HSW_PWR_WELL_CTL_STATE(pw_idx), timeout)) {
- 		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
- 			    intel_power_well_name(power_well));
+I don't have any PowerPC toolchains set up - I guess one of the
+community builders might have checked?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-index ba7cb977e7c7f..fd5acf68503e1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-@@ -110,6 +110,8 @@ struct i915_power_well_desc {
- 	 * Thunderbolt mode.
- 	 */
- 	u16 is_tc_tbt:1;
-+	/* Enable timeout if bigger than the default 1ms. */
-+	u16 enable_timeout;
- };
+--uuEsM8kBwgma7Hr3
+Content-Type: application/pgp-signature; name="signature.asc"
 
- struct i915_power_well {
+-----BEGIN PGP SIGNATURE-----
 
-> BR,
-> Jani.
-> 
-> >
-> > Regards,
-> > Suraj Kandpal
-> >> BR,
-> >> Jani.
-> >> 
-> >> 
-> >> >
-> >> > Regards,
-> >> > Suraj Kandpal
-> >> >> +		timeout = 500;
-> >> >> +
-> >> >>  	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
-> >> >>  	if (intel_de_wait_for_set(dev_priv, regs->driver,
-> >> >> -				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
-> >> >> +				  HSW_PWR_WELL_CTL_STATE(pw_idx),
-> >> >> timeout)) {
-> >> >>  		drm_dbg_kms(&dev_priv->drm, "%s power well enable
-> >> timeout\n",
-> >> >>  			    intel_power_well_name(power_well));
-> >> >>
-> >> >>
-> >> >> > +
-> >> >
-> >> >> >  static void
-> >> >> >  icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> >> >> >  				 struct i915_power_well *power_well) @@ -
-> >> >> 517,7 +545,7 @@
-> >> >> > icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> >> >> >  	if (DISPLAY_VER(dev_priv) == 11 &&
-> >> >> intel_tc_cold_requires_aux_pw(dig_port))
-> >> >> >  		icl_tc_cold_exit(dev_priv);
-> >> >> >
-> >> >> > -	hsw_wait_for_power_well_enable(dev_priv, power_well,
-> >> >> timeout_expected);
-> >> >> > +	adl_aux_wait_for_power_well_enable(dev_priv, power_well,
-> >> >> > +timeout_expected);
-> >> >>
-> >> >> A function prefixed adl_ should indicate it's only needed for adl+.
-> >> >> This change is misleading.
-> >> >>
-> >> >> BR,
-> >> >> Jani.
-> >> >>
-> >> >>
-> >> >> >
-> >> >> >  	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
-> >> >> >  		enum tc_port tc_port;
-> >> >>
-> >> >> --
-> >> >> Jani Nikula, Intel Open Source Graphics Center
-> >> 
-> >> --
-> >> Jani Nikula, Intel Open Source Graphics Center
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQ9LsEACgkQJNaLcl1U
+h9BjAwf/cuSS/9ylDsEF54rC5Sdp/CYr0ozDoobN9zNlOKQ0RZ1xD1KGWyfs2pbk
+dgkvLcx9YLxtdOGvTKwBmjX3Lv1mRkCXB9Z8z7BtpkH0avwabqTQX/w0DL/nX1ky
+Tb7muuWDtKYEJ2Y++3tzP4gnOxPY+IMYzJJQNHz85nTfWUdZiWGdqAuGYc0u8B8F
+gfPYhDvTSIbW7/VzkuEaChWIqrybXgTHbyFfZkZJGRCHFJ6Bt99v+ra8MPsCcDtZ
+t4L9Ynce/nqXdqEsDQEGt2HVkNtnUs/ctiM9WWbeSsH/VsBxIbJYlbQ6BqnVQiLf
+OoSYL58q1IHD6xl8OSuPcn4Gn2UvFQ==
+=O/dY
+-----END PGP SIGNATURE-----
+
+--uuEsM8kBwgma7Hr3--
