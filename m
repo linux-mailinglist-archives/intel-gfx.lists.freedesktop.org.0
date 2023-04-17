@@ -1,66 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB016E41EA
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 10:02:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C59026E42F0
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 10:52:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A191810E3AE;
-	Mon, 17 Apr 2023 08:02:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F282C10E28C;
+	Mon, 17 Apr 2023 08:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8DC10E011;
- Mon, 17 Apr 2023 08:02:17 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1CF10E28C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 08:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681718537; x=1713254537;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zuggMPLqXtEGwEF1e7Hp1uyREuuOTrlgKJFKkOHt4W8=;
- b=LVjd/gyZMZcKVUmUsvOSEwCwsDLTEutcJzNL+QphKkTbf3UtUnvCBPAO
- bi2xvbsKkjeb9Wd6Rocmd1zIrhiOCXiA0mkAjL1Q6KV2az9L1BzRZBjqA
- Ido4sYkgThstK29jA1I4KDK3EDiOf/7JpPokETMPleX5qXo95Hmjls194
- DOXA9qO3TzAG5omVwa+YV72vUkCGa7XZptyF4it7dtbDyuaXTIH6vbuyE
- MWYj/1e5GSZl2MJwH9wx4OxCScpG259UtjY/wZAY8tYGdJJcnB0FR535Y
- wqB53LkLb1K5GRKRJxSBsao0lvsLhejPOrMMYPBUunh1f0q8fRq40KqSH w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="431121527"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="431121527"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 01:02:16 -0700
+ t=1681721544; x=1713257544;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=tTnKv22j7EF5nnecKIzyM0+L5X4ojBC8ZCMIU0IB4/4=;
+ b=VDOqYqsrFCsEbi4kDFihfrqbmYH82K6F0+yFCP5wgk7Po8mgU6RpK5N4
+ vquu43nOy4wGIbH+rZ6UOGGkBLz9sZUJimSpeTP2OImTz1dWdVjrxTqez
+ jA8uzsha8dLfGJDvdFNveB8XNS4gJskXcSwk9AgDGz5/20hAM7EcWdJz6
+ MlldqnluMNg0oewZvvznnYCwqNHYXbmJYgeDwJk7SlQhRR4auaw5nzUCb
+ HGnryGpUp+SJtStgBaRZ95ByylkhmhOwwDJc6wfasUlF+NDDlVe4f9aPU
+ S1Fy9DKvTVV7u+XZK7mxAa0X2mKRJP1wzjNQpM2yPh2j9VWW8U2LX/tEL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="342333767"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="342333767"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 01:52:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="1020334029"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="1020334029"
-Received: from imurugax-mobl2.gar.corp.intel.com (HELO [10.249.254.190])
- ([10.249.254.190])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 01:02:14 -0700
-Message-ID: <414a5129-d78d-9f86-9820-6932f13fb1bc@linux.intel.com>
-Date: Mon, 17 Apr 2023 10:02:12 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="721048379"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="721048379"
+Received: from habramov-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.252.47.83])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 01:52:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230405071951.1258132-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
+ <20230405071951.1258132-1-suraj.kandpal@intel.com>
+Date: Mon, 17 Apr 2023 11:52:20 +0300
+Message-ID: <871qkigabf.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
- <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
- <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
- <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
- <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
- <CAKMK7uEZdWjs9snGdNpzBthOWz0YSCZh-rNKOGywLWozzpFwbA@mail.gmail.com>
- <ae672182-f7a4-7107-1071-1561c49bc122@amd.com>
- <CAKMK7uFVWh16ng_tyuTu-0k4k7Wq5LjpwvJgYuidy-YVPEEQ=A@mail.gmail.com>
- <178a7ee4-1406-ff0f-4529-034f600785a9@amd.com>
- <CAKMK7uHgUuqWJuqmZKrxi2mNiqExhmMif-naYnzUSj-puW-x+A@mail.gmail.com>
- <8af45b2b-6c53-83e8-6f14-1e3091658e3e@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <8af45b2b-6c53-83e8-6f14-1e3091658e3e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
- used allocation orders for TTM pages
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
+ for Type-C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,229 +59,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
-
-On 4/14/23 12:11, Christian König wrote:
-> Am 13.04.23 um 15:13 schrieb Daniel Vetter:
->> On Thu, 13 Apr 2023 at 11:46, Christian König 
->> <christian.koenig@amd.com> wrote:
->>> Am 13.04.23 um 10:48 schrieb Daniel Vetter:
->>>> On Wed, 12 Apr 2023 at 16:18, Christian König 
->>>> <christian.koenig@amd.com> wrote:
->>>>> Am 12.04.23 um 11:08 schrieb Daniel Vetter:
->>>>>> On Tue, 11 Apr 2023 at 15:45, Daniel Vetter <daniel@ffwll.ch> wrote:
->>>>>>> On Tue, Apr 11, 2023 at 02:11:18PM +0200, Christian König wrote:
->>>>>>>> Am 11.04.23 um 11:51 schrieb Daniel Vetter:
->>>>>>>>> On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellström wrote:
->>>>>>>>>> When swapping out, we will split multi-order pages both in 
->>>>>>>>>> order to
->>>>>>>>>> move them to the swap-cache and to be able to return memory 
->>>>>>>>>> to the
->>>>>>>>>> swap cache as soon as possible on a page-by-page basis.
->>>>>>>>>> Reduce the page max order to the system PMD size, as we can 
->>>>>>>>>> then be nicer
->>>>>>>>>> to the system and avoid splitting gigantic pages.
->>>>>>>>>>
->>>>>>>>>> Looking forward to when we might be able to swap out PMD size 
->>>>>>>>>> folios
->>>>>>>>>> without splitting, this will also be a benefit.
->>>>>>>>>>
->>>>>>>>>> v2:
->>>>>>>>>> - Include all orders up to the PMD size (Christian König)
->>>>>>>>>> v3:
->>>>>>>>>> - Avoid compilation errors for architectures with special 
->>>>>>>>>> PFN_SHIFTs
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Thomas Hellström 
->>>>>>>>>> <thomas.hellstrom@linux.intel.com>
->>>>>>>>>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>>>>>>>> Apparently this fails on ppc build testing. Please supply 
->>>>>>>>> build fix asap
->>>>>>>>> (or I guess we need to revert). I'm kinda not clear why this 
->>>>>>>>> only showed
->>>>>>>>> up when I merged the drm-misc-next pr into drm-next ...
->>>>>>>> I'm really wondering this as well. It looks like PMD_SHIFT 
->>>>>>>> isn't a constant
->>>>>>>> on this particular platform.
->>>>>>>>
->>>>>>>> But from what I can find in the upstream 6.2 kernel PMD_SHIFT 
->>>>>>>> always seems
->>>>>>>> to be a constant.
->>>>>>>>
->>>>>>>> So how exactly can that here break?
->>>>>>> There's some in-flight patches to rework MAX_ORDER and other 
->>>>>>> things in
->>>>>>> linux-next, maybe it's recent? If you check out linux-next then 
->>>>>>> you need
->>>>>>> to reapply the patch (since sfr reverted it).
->>>>>> So I looked and on ppc64 PMD_SHIFT is defined in terms of
->>>>>> PTE_INDEX_SIZE, which is defined (for book3s) in terms of the 
->>>>>> variable
->>>>>> __pte_index_size. This is in 6.3 already and seems pretty old.
->>>>> Ah! I missed that one, thanks.
->>>>>
->>>>>> So revert? Or fixup patch to make this work on ppc?
->>>>> I think for now just revert or change it so that we check if 
->>>>> PMD_SHIFT
->>>>> is a constant.
->>>>>
->>>>> Thomas do you have any quick solution?
->>>> I guess Thomas is on vacations. Can you pls do the revert and push it
->>>> to drm-misc-next-fixes so this won't get lost?
->>> The offending patch hasn't showed up in drm-misc-next-fixes nor
->>> drm-misc-fixes yet. Looks like the branches are lacking behind.
->>>
->>> I can revert it on drm-misc-next, but I', not 100% sure that will then
->>> get picked up in time.
->> It's there now, Maarten forwarded drm-misc-next-fixes this morning.
->> That's why I pinged here again, trees are ready to land the revert :-)
+On Wed, 05 Apr 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
+> Workaround: Increase the timeout.
 >
-> Just pushed it.
+> WA_14017248603: adlp
+> Bspec: 55480
 >
-> Christian.
-
-Thanks for fixing this. (I was on vacation). I got a "BUILD SUCCESS" for 
-this series based on drm-misc-next so I didn't think anything weird 
-would show up.
-
-Thanks,
-
-Thomas
-
+> ---v2
+> -change style on how we mention WA [Ankit]
+> -fix bat error
 >
->> -Daniel
->>
->>> Christian.
->>>
->>>> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>>>
->>>> preemptively for that. Normally I think we could wait a bit more but
->>>> it's really close to merge window PR and I don't like handing too many
->>>> open things to Dave when he's back :-)
->>>> -Daniel
->>>>
->>>>> Christian.
->>>>>
->>>>>>>>>> ---
->>>>>>>>>>      drivers/gpu/drm/ttm/ttm_pool.c | 30 
->>>>>>>>>> +++++++++++++++++++-----------
->>>>>>>>>>      1 file changed, 19 insertions(+), 11 deletions(-)
->>>>>>>>>>
->>>>>>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c 
->>>>>>>>>> b/drivers/gpu/drm/ttm/ttm_pool.c
->>>>>>>>>> index dfce896c4bae..18c342a919a2 100644
->>>>>>>>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
->>>>>>>>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
->>>>>>>>>> @@ -47,6 +47,11 @@
->>>>>>>>>>      #include "ttm_module.h"
->>>>>>>>>> +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
->>>>>>>>>> +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
->>>>>>>>>> +/* Some architectures have a weird PMD_SHIFT */
->>>>>>>>>> +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <= MAX_ORDER ? 
->>>>>>>>>> __TTM_DIM_ORDER : MAX_ORDER)
->>>>>>>>>> +
->>>>>>>>>>      /**
->>>>>>>>>>       * struct ttm_pool_dma - Helper object for coherent DMA 
->>>>>>>>>> mappings
->>>>>>>>>>       *
->>>>>>>>>> @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
->>>>>>>>>>      static atomic_long_t allocated_pages;
->>>>>>>>>> -static struct ttm_pool_type global_write_combined[MAX_ORDER];
->>>>>>>>>> -static struct ttm_pool_type global_uncached[MAX_ORDER];
->>>>>>>>>> +static struct ttm_pool_type 
->>>>>>>>>> global_write_combined[TTM_DIM_ORDER];
->>>>>>>>>> +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
->>>>>>>>>> -static struct ttm_pool_type 
->>>>>>>>>> global_dma32_write_combined[MAX_ORDER];
->>>>>>>>>> -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
->>>>>>>>>> +static struct ttm_pool_type 
->>>>>>>>>> global_dma32_write_combined[TTM_DIM_ORDER];
->>>>>>>>>> +static struct ttm_pool_type 
->>>>>>>>>> global_dma32_uncached[TTM_DIM_ORDER];
->>>>>>>>>>      static spinlock_t shrinker_lock;
->>>>>>>>>>      static struct list_head shrinker_list;
->>>>>>>>>> @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, 
->>>>>>>>>> struct ttm_tt *tt,
->>>>>>>>>>              else
->>>>>>>>>>                      gfp_flags |= GFP_HIGHUSER;
->>>>>>>>>> - for (order = min_t(unsigned int, MAX_ORDER - 1, 
->>>>>>>>>> __fls(num_pages));
->>>>>>>>>> + for (order = min_t(unsigned int, TTM_MAX_ORDER, 
->>>>>>>>>> __fls(num_pages));
->>>>>>>>>>                   num_pages;
->>>>>>>>>>                   order = min_t(unsigned int, order, 
->>>>>>>>>> __fls(num_pages))) {
->>>>>>>>>>                      struct ttm_pool_type *pt;
->>>>>>>>>> @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, 
->>>>>>>>>> struct device *dev,
->>>>>>>>>>              if (use_dma_alloc) {
->>>>>>>>>>                      for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
->>>>>>>>>> -                 for (j = 0; j < MAX_ORDER; ++j)
->>>>>>>>>> +                 for (j = 0; j < TTM_DIM_ORDER; ++j)
->>>>>>>>>> ttm_pool_type_init(&pool->caching[i].orders[j],
->>>>>>>>>>                                                         pool, 
->>>>>>>>>> i, j);
->>>>>>>>>>              }
->>>>>>>>>> @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
->>>>>>>>>>              if (pool->use_dma_alloc) {
->>>>>>>>>>                      for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
->>>>>>>>>> -                 for (j = 0; j < MAX_ORDER; ++j)
->>>>>>>>>> +                 for (j = 0; j < TTM_DIM_ORDER; ++j)
->>>>>>>>>> ttm_pool_type_fini(&pool->caching[i].orders[j]);
->>>>>>>>>>              }
->>>>>>>>>> @@ -637,7 +642,7 @@ static void 
->>>>>>>>>> ttm_pool_debugfs_header(struct seq_file *m)
->>>>>>>>>>              unsigned int i;
->>>>>>>>>>              seq_puts(m, "\t ");
->>>>>>>>>> - for (i = 0; i < MAX_ORDER; ++i)
->>>>>>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i)
->>>>>>>>>>                      seq_printf(m, " ---%2u---", i);
->>>>>>>>>>              seq_puts(m, "\n");
->>>>>>>>>>      }
->>>>>>>>>> @@ -648,7 +653,7 @@ static void 
->>>>>>>>>> ttm_pool_debugfs_orders(struct ttm_pool_type *pt,
->>>>>>>>>>      {
->>>>>>>>>>              unsigned int i;
->>>>>>>>>> - for (i = 0; i < MAX_ORDER; ++i)
->>>>>>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i)
->>>>>>>>>>                      seq_printf(m, " %8u", 
->>>>>>>>>> ttm_pool_type_count(&pt[i]));
->>>>>>>>>>              seq_puts(m, "\n");
->>>>>>>>>>      }
->>>>>>>>>> @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long 
->>>>>>>>>> num_pages)
->>>>>>>>>>      {
->>>>>>>>>>              unsigned int i;
->>>>>>>>>> + BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
->>>>>>>>>> + BUILD_BUG_ON(TTM_DIM_ORDER < 1);
->>>>>>>>>> +
->>>>>>>>>>              if (!page_pool_size)
->>>>>>>>>>                      page_pool_size = num_pages;
->>>>>>>>>>              spin_lock_init(&shrinker_lock);
->>>>>>>>>>              INIT_LIST_HEAD(&shrinker_list);
->>>>>>>>>> - for (i = 0; i < MAX_ORDER; ++i) {
->>>>>>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i) {
->>>>>>>>>> ttm_pool_type_init(&global_write_combined[i], NULL,
->>>>>>>>>> ttm_write_combined, i);
->>>>>>>>>> ttm_pool_type_init(&global_uncached[i], NULL, ttm_uncached, i);
->>>>>>>>>> @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
->>>>>>>>>>      {
->>>>>>>>>>              unsigned int i;
->>>>>>>>>> - for (i = 0; i < MAX_ORDER; ++i) {
->>>>>>>>>> + for (i = 0; i < TTM_DIM_ORDER; ++i) {
->>>>>>>>>> ttm_pool_type_fini(&global_write_combined[i]);
->>>>>>>>>> ttm_pool_type_fini(&global_uncached[i]);
->>>>>>>>>> -- 
->>>>>>>>>> 2.39.2
->>>>>>>>>>
->>>>>>> -- 
->>>>>>> Daniel Vetter
->>>>>>> Software Engineer, Intel Corporation
->>>>>>> http://blog.ffwll.ch
->>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../i915/display/intel_display_power_well.c   | 30 ++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 62bafcbc7937..52f595929a18 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -489,6 +489,34 @@ static void icl_tc_cold_exit(struct drm_i915_private *i915)
+>  		    "succeeded");
+>  }
+>  
+> +static void
+> +adl_aux_wait_for_power_well_enable(struct drm_i915_private *i915,
+> +				   struct i915_power_well *power_well,
+> +				   bool timeout_expected)
+> +{
+> +	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+> +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
+> +	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+> +
+> +	/*
+> +	 * WA_14017248603: adlp
+> +	 * Type-C Phy are taking longer than expected for AUX IO Power Enabling.
+> +	 * Increase timeout to 500ms.
+> +	 */
+> +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
+> +		if (intel_de_wait_for_set(i915, regs->driver,
+> +					  HSW_PWR_WELL_CTL_STATE(pw_idx), 500)) {
+> +			drm_dbg_kms(&i915->drm, "%s power well enable timeout\n",
+> +				    intel_power_well_name(power_well));
+> +
+> +			drm_WARN_ON(&i915->drm, !timeout_expected);
+> +		}
+> +		return;
+> +	}
+> +
+> +	hsw_wait_for_power_well_enable(i915, power_well, timeout_expected);
+> +}
+
+Please don't duplicate the function and the wait like this.
+
+Something like this is sufficient:
+
+
+@@ -252,7 +252,9 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+ 					   bool timeout_expected)
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
++	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
++	int timeout = 1;
+ 
+ 	/*
+ 	 * For some power wells we're not supposed to watch the status bit for
+@@ -264,9 +266,13 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+ 		return;
+ 	}
+ 
++	/* WA_14017248603: adlp */
++	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy))
++		timeout = 500;
++	
+ 	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
+ 	if (intel_de_wait_for_set(dev_priv, regs->driver,
+-				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
++				  HSW_PWR_WELL_CTL_STATE(pw_idx), timeout)) {
+ 		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
+ 			    intel_power_well_name(power_well));
+ 
+
+> +
+>  static void
+>  icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  				 struct i915_power_well *power_well)
+> @@ -517,7 +545,7 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  	if (DISPLAY_VER(dev_priv) == 11 && intel_tc_cold_requires_aux_pw(dig_port))
+>  		icl_tc_cold_exit(dev_priv);
+>  
+> -	hsw_wait_for_power_well_enable(dev_priv, power_well, timeout_expected);
+> +	adl_aux_wait_for_power_well_enable(dev_priv, power_well, timeout_expected);
+
+A function prefixed adl_ should indicate it's only needed for adl+. This
+change is misleading.
+
+BR,
+Jani.
+
+
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
+>  		enum tc_port tc_port;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
