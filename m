@@ -1,33 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0DF6E515B
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 22:05:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CB76E515D
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 22:06:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C08B10E357;
-	Mon, 17 Apr 2023 20:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3052710E5B5;
+	Mon, 17 Apr 2023 20:06:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 448CF10E357;
- Mon, 17 Apr 2023 20:05:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 30AD7AADEB;
- Mon, 17 Apr 2023 20:05:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2470431138164213618=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA1210E45B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 20:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1681762007;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=uJkreuNWxZEE44fygt5zWJA+zq6jhPLH5gKQqPjNWJQ=;
+ b=Xla5ZkPsZPKIc6iceJ5yI579cJ/vPfYTS7feRDTt2FNYgmE4F92GfPV67YucZXjE0ao60z
+ YQWmSaq2o/1TLchHDaHrCtzESaygjqpQus7Q4aCnzWAfVklcdGrq6vHu6AqCkRmncK5/w5
+ muYxHPeYsrCiyXMKxzMFWqJ6EQ0Jbjk=
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-189-DX3IU6rpOKazbdv0aCTafA-1; Mon, 17 Apr 2023 16:06:46 -0400
+X-MC-Unique: DX3IU6rpOKazbdv0aCTafA-1
+Received: by mail-io1-f71.google.com with SMTP id
+ ca18e2360f4ac-7606e3c6c8aso120504639f.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 13:06:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681762005; x=1684354005;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uJkreuNWxZEE44fygt5zWJA+zq6jhPLH5gKQqPjNWJQ=;
+ b=U6pMaPfSL6SYOJ7oM+MHFLDxMjUGhsjtDy0R4R7sskDqdMvl/fa3oKbkKygrKZVhO4
+ Hnk3AQDTW3sT2ulOwfMN0KHAbFXBuyWmQQE3PetEBezQKtCfQ4K003LpromCtLHxWoLN
+ jQXTDrbIZHggYiJ8nHXQrtUykWHs+aWtgdNjskWpOEpNDuv+4T0SqtQ+zHhdGNoRzQRz
+ 99JbK6J9BrOpBVWrUWrspfSOOWNPW+9z1y6EdEiPr0vtsCOvpi1h7u7amcS7YJW6fJbI
+ b5E0lQ31NfWPS5R0I+65liMT4FfJFmUl3wWf8T/M9Iqi4vs8AGWMHG//UkW3jipFjBlQ
+ RFhA==
+X-Gm-Message-State: AAQBX9eMc8eGx0w7Hi1E06dlNxd2WwikoNYw/4k6e9uiJZxRt39jmCMD
+ kcwDSH2scM+OAD9FZ1QDobveYvNQB1pWht4wKIU8SHRCcZdS1F+WCT0Yz9uIHvkA5svzg30MbAA
+ X1yUIviV1kDx24VEG/bIYBU+ye9uB
+X-Received: by 2002:a92:c9c3:0:b0:32a:ea4e:97d1 with SMTP id
+ k3-20020a92c9c3000000b0032aea4e97d1mr5286314ilq.10.1681762005482; 
+ Mon, 17 Apr 2023 13:06:45 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YnqbcCParzLbuNdjYNdpgBYhVf9e7CqwAl3G3qqrikIx+WLx6VM5MZjUBX5I9Y6yBJY1EJeg==
+X-Received: by 2002:a92:c9c3:0:b0:32a:ea4e:97d1 with SMTP id
+ k3-20020a92c9c3000000b0032aea4e97d1mr5286281ilq.10.1681762005206; 
+ Mon, 17 Apr 2023 13:06:45 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ k14-20020a056e02134e00b003291bea8c7fsm3361811ilr.81.2023.04.17.13.06.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 Apr 2023 13:06:44 -0700 (PDT)
+Date: Mon, 17 Apr 2023 14:06:42 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20230417140642.650fc165.alex.williamson@redhat.com>
+In-Reply-To: <ZD2erN3nKbnyqei9@nvidia.com>
+References: <20230412105045.79adc83d.alex.williamson@redhat.com>
+ <ZDcPTTPlni/Mi6p3@nvidia.com>
+ <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZDfslVwqk6JtPpyD@nvidia.com>
+ <20230413120712.3b9bf42d.alex.williamson@redhat.com>
+ <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230414111043.40c15dde.alex.williamson@redhat.com>
+ <DS0PR11MB75290A78D6879EC2E31E21AEC39C9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230417130140.1b68082e.alex.williamson@redhat.com>
+ <ZD2erN3nKbnyqei9@nvidia.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 17 Apr 2023 20:05:04 -0000
-Message-ID: <168176190415.24900.15343526542503664112@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZmRp?=
- =?utf-8?q?nfo_alternative_memory_stats_proposal?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,238 +93,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao, 
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2470431138164213618==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 17 Apr 2023 16:31:56 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-== Series Details ==
+> On Mon, Apr 17, 2023 at 01:01:40PM -0600, Alex Williamson wrote:
+> > Yes, it's not trivial, but Jason is now proposing that we consider
+> > mixing groups, cdevs, and multiple iommufd_ctxs as invalid.  I think
+> > this means that regardless of which device calls INFO, there's only one
+> > answer (assuming same set of devices opened, all cdev, all within same
+> > iommufd_ctx).  Based on what I explained about my understanding of INFO2
+> > and Jason agreed to, I think the output would be:
+> > 
+> > flags: NOT_RESETABLE | DEV_ID
+> > {
+> >   { valid devA-id,  devA-BDF },
+> >   { valid devC-id,  devC-BDF },
+> >   { valid devD-id,  devD-BDF },
+> >   { invalid dev-id, devE-BDF },
+> > }
+> > 
+> > Here devB gets dropped because the kernel understands that devB is
+> > unopened, affected, and owned.  It's therefore not a blocker for
+> > hot-reset.  
+> 
+> I don't think we want to drop anything because it makes the API
+> ill suited for the debugging purpose.
+> 
+> devb should be returned with an invalid dev_id if I understand your
+> example. Maybe it should return with -1 as the dev_id instead of 0, to
+> make the debugging a bit better.
+> 
+> Userspace should look at only NOT_RESETTABLE to determine if it
+> proceeds or not, and it should use the valid dev_id list to iterate
+> over the devices it has open to do the config stuff.
 
-Series: fdinfo alternative memory stats proposal
-URL   : https://patchwork.freedesktop.org/series/116581/
-State : success
+If an affected device is owned, not opened, and not interfering with
+the reset, what is it adding to the API to report it for debugging
+purposes?  I'm afraid this leads into expanding "invalid dev-id" into an
+errno or bitmap of error conditions that the user needs to parse.
 
-== Summary ==
+> > OTOH, devE is unopened, affected, and un-owned, and we
+> > previously agreed against the opportunistic un-opened/un-owned loophole.  
+> 
+> NOT_RESETABLE should be returned in this case, yes.
+> 
+> If we want to enable userspace to use the loophole it should be an
+> additional flag. RESETABLE_FOR_NOW or something
 
-CI Bug Log - changes from CI_DRM_13022 -> Patchwork_116581v1
-====================================================
+Ugh, please no.  It's always a volatile result, but a volatile result
+that relies on device state outside the scope or control of the user is
+not even worthwhile imo.  Thanks,
 
-Summary
--------
+Alex
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116581v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#6687] / [i915#7978])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         [PASS][2] -> [FAIL][3] ([i915#8308])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         [PASS][4] -> [ABORT][5] ([i915#4983] / [i915#7913])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         NOTRUN -> [DMESG-FAIL][6] ([i915#6367] / [i915#7996])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-apl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-adlp-9:         NOTRUN -> [SKIP][9] ([i915#3546]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][10] ([i915#5334]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][12] ([i915#7911]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8308]: https://gitlab.freedesktop.org/drm/intel/issues/8308
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13022 -> Patchwork_116581v1
-
-  CI-20190529: 20190529
-  CI_DRM_13022: acfc88011228f839fcd32798637e419e429304bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7258: ad2eb276eda849b7a7985229009a816c7608186c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116581v1: acfc88011228f839fcd32798637e419e429304bd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-69b9be235707 drm/i915: Implement fdinfo memory stats printing
-f36f579a1ae5 drm/msm: Add basic memory stats
-8eabef51ce99 drm: Add simple fdinfo memory helpers
-972a11ccf5ad drm: Add fdinfo memory stats
-67129cbc4c47 drm/i915: Use the fdinfo helper
-3df872e57aca drm: Add common fdinfo helper
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/index.html
-
---===============2470431138164213618==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fdinfo alternative memory stats proposal</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116581/">https://patchwork.freedesktop.org/series/116581/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13022 -&gt; Patchwork_116581v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116581v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-dg2-11/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8308">i915#8308</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13022/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116581v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13022 -&gt; Patchwork_116581v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13022: acfc88011228f839fcd32798637e419e429304bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7258: ad2eb276eda849b7a7985229009a816c7608186c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116581v1: acfc88011228f839fcd32798637e419e429304bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>69b9be235707 drm/i915: Implement fdinfo memory stats printing<br />
-f36f579a1ae5 drm/msm: Add basic memory stats<br />
-8eabef51ce99 drm: Add simple fdinfo memory helpers<br />
-972a11ccf5ad drm: Add fdinfo memory stats<br />
-67129cbc4c47 drm/i915: Use the fdinfo helper<br />
-3df872e57aca drm: Add common fdinfo helper</p>
-
-</body>
-</html>
-
---===============2470431138164213618==--
