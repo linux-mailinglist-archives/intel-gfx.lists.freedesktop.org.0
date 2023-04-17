@@ -2,57 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC736E45CF
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 050826E45D4
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:57:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9604C10E408;
-	Mon, 17 Apr 2023 10:56:18 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5571310E40E
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 10:56:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 411B210E40A;
+	Mon, 17 Apr 2023 10:57:45 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 914DD10E407;
+ Mon, 17 Apr 2023 10:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681728977; x=1713264977;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ePsUTL5VxKWOhHoBqdiCKmZRpg+iamU9reryego+jKA=;
- b=Q0Ye8DqdwQkt0TBRVXJCZxirGOmDfWo+legvw3TOTsLckoB1KfXY2iyU
- xKNgUqMhcNxymuWwykZRtHqiUsxyvwZ42qXqaihyiFjbuXX7a+tvjHeGk
- FYI4B7hV1ZMAS+eoweH8GwaC+IKbn94hHamudlUszzL6aiC4vbcQqvigE
- dwL4WqymharaLBaEFz0gOMqKGyKiN+vMjg93+3jZjgwG97N4Q/DSbqbNe
- JDm028sZGLDJMWvHnKVGhKHugenpzBwhH+yQV58UyljFPfBStULFxhHtK
- G+ZshcKWsdhA6bLhbTlGElCnozWNhiIAan7M2dn2C7qlTJJGASwM790in g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="333656031"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="333656031"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 03:56:16 -0700
+ t=1681729063; x=1713265063;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fpdtyGdWUD1d4eMrPLy0EjS2/Q9C9ckevgEj+j0Bz/0=;
+ b=OVPWV7gPO89LEIK7c5jSvCYE4IzuidM9YZlsPLwNmBY75+MR7o2pyEW/
+ Z6pwlGvEvzsR24T6Z69vkS3EkMo/I6MIJTAf6Ng5g/3MlL64YGdrrcWil
+ MxMZNJkjqUsSGwZZzT0NXYtFyucaNQanfs2ATrfdAZDtT0QKJlab02QSl
+ 8IU1Z7ONTBSnNKp/7eva0wLjmoolpZg2yAlBn15UUGDy4gXf7nQHeKtmq
+ gwPbeat/JJuoe1PI7pXQWwPdmFuXtXNWuiKJvbB+Ef/9D0iOLvizpCxRz
+ sWONxwfbaT1YLI4KVckZ2ULUWbwj7D8TKI7PVrQR8pa2dhdHxxmd8zZRy Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="410073168"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="410073168"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 03:57:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="693207949"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="693207949"
-Received: from habramov-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.252.47.83])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 03:56:14 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <SN7PR11MB67501452EA239C59649E8335E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
- <20230405071951.1258132-1-suraj.kandpal@intel.com>
- <871qkigabf.fsf@intel.com>
- <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87h6teer21.fsf@intel.com>
- <SN7PR11MB67501452EA239C59649E8335E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Mon, 17 Apr 2023 13:56:12 +0300
-Message-ID: <87bkjmeq0j.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="834363399"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="834363399"
+Received: from gtohallo-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.232.210])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 03:57:41 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Apr 2023 11:57:26 +0100
+Message-Id: <20230417105734.3945840-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t v5 0/8] Vendor agnostic gputop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,173 +61,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 Apr 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Monday, April 17, 2023 4:04 PM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Subject: RE: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
->> for Type-C
->> 
->> On Mon, 17 Apr 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> >> On Wed, 05 Apr 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> >> > Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
->> >> > Workaround: Increase the timeout.
->> >> >
->> >> > WA_14017248603: adlp
->> >> > Bspec: 55480
->> >> >
->> >> > ---v2
->> >> > -change style on how we mention WA [Ankit] -fix bat error
->> >> >
->> >> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> >> > ---
->> >> >  .../i915/display/intel_display_power_well.c   | 30 ++++++++++++++++++-
->> >> >  1 file changed, 29 insertions(+), 1 deletion(-)
->> >> >
->> >> > diff --git
->> >> > a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> >> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> >> > index 62bafcbc7937..52f595929a18 100644
->> >> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> >> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> >> > @@ -489,6 +489,34 @@ static void icl_tc_cold_exit(struct
->> >> drm_i915_private *i915)
->> >> >  		    "succeeded");
->> >> >  }
->> >> >
->> >> > +static void
->> >> > +adl_aux_wait_for_power_well_enable(struct drm_i915_private *i915,
->> >> > +				   struct i915_power_well *power_well,
->> >> > +				   bool timeout_expected)
->> >> > +{
->> >> > +	const struct i915_power_well_regs *regs = power_well->desc->ops-
->> >> >regs;
->> >> > +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
->> >> > +	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
->> >> > +
->> >> > +	/*
->> >> > +	 * WA_14017248603: adlp
->> >> > +	 * Type-C Phy are taking longer than expected for AUX IO Power
->> >> Enabling.
->> >> > +	 * Increase timeout to 500ms.
->> >> > +	 */
->> >> > +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
->> >> > +		if (intel_de_wait_for_set(i915, regs->driver,
->> >> > +
->> >> HSW_PWR_WELL_CTL_STATE(pw_idx), 500)) {
->> >> > +			drm_dbg_kms(&i915->drm, "%s power well enable
->> >> timeout\n",
->> >> > +				    intel_power_well_name(power_well));
->> >> > +
->> >> > +			drm_WARN_ON(&i915->drm, !timeout_expected);
->> >> > +		}
->> >> > +		return;
->> >> > +	}
->> >> > +
->> >> > +	hsw_wait_for_power_well_enable(i915, power_well,
->> >> timeout_expected);
->> >> > +}
->> >>
->> >> Please don't duplicate the function and the wait like this.
->> >>
->> >> Something like this is sufficient:
->> >>
->> >>
->> >> @@ -252,7 +252,9 @@ static void
->> hsw_wait_for_power_well_enable(struct
->> >> drm_i915_private *dev_priv,
->> >>  					   bool timeout_expected)
->> >>  {
->> >>  	const struct i915_power_well_regs *regs = power_well->desc->ops-
->> >> >regs;
->> >> +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
->> >>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
->> >> +	int timeout = 1;
->> >>
->> >>  	/*
->> >>  	 * For some power wells we're not supposed to watch the status bit
->> >> for @@ -264,9 +266,13 @@ static void
->> >> hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
->> >>  		return;
->> >>  	}
->> >>
->> >> +	/* WA_14017248603: adlp */
->> >> +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy))
->> >
->> > I did try this but it ends up throwing a kernel null pointer error at
->> > intel_phy_is_tc which made me float the version of code I did.
->> 
->> Please explain what causes it, and how your version avoids it.
->> 
->
-> icl_aux_pw_to_phy is called is hsw_wait_for_power_well is called everywhere where its not possible for aux_pw to phy
-> conversion is not possible with this change we only get the phy for adls version.
-> Will address this is next version.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Cc: Imre for input
+This is a pile of patches which implements a rudimentary vendor agnostic gputop
+tool based of the new DRM spec as documented in
+Documentation/gpu/drm-usage-stats.rst.
 
-Maybe pass the timeout to hsw_wait_for_power_well_enable() as parameter?
-Other ideas?
+First part of the series is code refactoring which should be reasonably stable.
+I've tested it all while working on it both against intel_gpu_top and gputop.
 
-BR,
-Jani.
+Last patch is the actual tool itself. It works but it is rather rudimentary
+which is hopefully good enough for a start.
 
->
-> Regards,
-> Suraj Kandpal
->> BR,
->> Jani.
->> 
->> 
->> >
->> > Regards,
->> > Suraj Kandpal
->> >> +		timeout = 500;
->> >> +
->> >>  	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
->> >>  	if (intel_de_wait_for_set(dev_priv, regs->driver,
->> >> -				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
->> >> +				  HSW_PWR_WELL_CTL_STATE(pw_idx),
->> >> timeout)) {
->> >>  		drm_dbg_kms(&dev_priv->drm, "%s power well enable
->> timeout\n",
->> >>  			    intel_power_well_name(power_well));
->> >>
->> >>
->> >> > +
->> >
->> >> >  static void
->> >> >  icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
->> >> >  				 struct i915_power_well *power_well) @@ -
->> >> 517,7 +545,7 @@
->> >> > icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
->> >> >  	if (DISPLAY_VER(dev_priv) == 11 &&
->> >> intel_tc_cold_requires_aux_pw(dig_port))
->> >> >  		icl_tc_cold_exit(dev_priv);
->> >> >
->> >> > -	hsw_wait_for_power_well_enable(dev_priv, power_well,
->> >> timeout_expected);
->> >> > +	adl_aux_wait_for_power_well_enable(dev_priv, power_well,
->> >> > +timeout_expected);
->> >>
->> >> A function prefixed adl_ should indicate it's only needed for adl+.
->> >> This change is misleading.
->> >>
->> >> BR,
->> >> Jani.
->> >>
->> >>
->> >> >
->> >> >  	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
->> >> >  		enum tc_port tc_port;
->> >>
->> >> --
->> >> Jani Nikula, Intel Open Source Graphics Center
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+Fundamental difference between intel_gpu_top and gputop is that the former is
+centered around a single card and only shows processes belonging to it. Gputop
+on the other hand has an idea to show all processes with DRM file descriptors
+open and sort them into groups per card. It also makes no effort to provide
+sorting modes, well any interactivity, or any pretty names for GPUs or engines.
+
+It looks like this:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DRM minor 0
+     PID              NAME    render       copy       video
+    3816          kwin_x11 |███▎      ||          ||          ||          |
+    3523              Xorg |▊         ||          ||          ||          |
+ 1120449               mpv |          ||          ||▋         ||          |
+ 1120529          glxgears |▋         ||          ||          ||          |
+ 1120449               mpv |▍         ||          ||          ||          |
+    3860       plasmashell |▏         ||          ||          ||          |
+    4764           krunner |          ||          ||          ||          |
+  575206            chrome |          ||          ||          ||          |
+  833481           firefox |          ||          ||          ||          |
+  892924       thunderbird |          ||          ||          ||          |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I did test it as well with two cards and confirmed that too works.
+
+Rob Clark also tested it with a patch which exports the respective data from the
+msm driver and confirmed it works fine. Christian König tested it with in
+progress patches for amdgpu and that worked as well.
+
+v2:
+ * Fixed SPDX headers and added a bunch of code comments/docs throughout.
+
+v3:
+ * Rebased and some patch titles renamed as requested. (Kamil)
+
+v4:
+ * Just a rebase for conflicts due passage of time.
+
+ v5:
+ * A larger rebase this time round, catching up with some improvements which
+   landed to intel_gpu_top in the meantime.
+
+Tvrtko Ursulin (8):
+  lib: Extract igt_drm_clients from intel_gpu_top
+  lib: Allow specifying custom engine map
+  lib/igt_drm_clients: Record client drm minor
+  lib/igt_drm_clients: Support multiple DRM cards
+  lib/igt_drm_fdinfo: Track largest engine index
+  lib/igt_drm_clients: Decouple hardcoded engine assumptions
+  lib/igt_drm_clients: Enforce client status sort order in the library
+  gputop: Basic vendor agnostic GPU top tool
+
+ lib/igt_drm_clients.c   | 542 ++++++++++++++++++++++++++++++
+ lib/igt_drm_clients.h   |  91 +++++
+ lib/igt_drm_fdinfo.c    |  53 ++-
+ lib/igt_drm_fdinfo.h    |  16 +-
+ lib/meson.build         |   8 +
+ tests/i915/drm_fdinfo.c |  19 +-
+ tools/gputop.c          | 266 +++++++++++++++
+ tools/intel_gpu_top.c   | 718 +++++++++++-----------------------------
+ tools/meson.build       |   7 +-
+ 9 files changed, 1162 insertions(+), 558 deletions(-)
+ create mode 100644 lib/igt_drm_clients.c
+ create mode 100644 lib/igt_drm_clients.h
+ create mode 100644 tools/gputop.c
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.37.2
+
