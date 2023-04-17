@@ -2,49 +2,119 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ADE86E4DDB
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 17:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B21216E4E1E
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 18:20:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E41CC10E40D;
-	Mon, 17 Apr 2023 15:59:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC1E110E419;
- Mon, 17 Apr 2023 15:58:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681747138; x=1713283138;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+bf3g7DEupjk3db0oJpPwvhwi83iJ+w9SdZ6wPSXd8c=;
- b=katSQ5kZ9Z8nCKMN5gxXDVuJ/doN+q4awEy8lBzNh/4WQW/Bb6GKZjzz
- u1lK65oKxJ2haRKvJZuRcp6I4FjiqNjfuyWRO/a+u8pAD7fQFvgS1bQ5G
- TjygjnW2XofaspCphpkJtgfzV8IK9R0cI/y7fpl03mrfYkelylp1njBBk
- h5j0Mc8YXYmb4dD1B69hs7o2pPmPnAZUIMSlU7a9O73z/sUbLzdUyW3bv
- 0Pd6WayPrtTWEJdVBsCIGTU6DaVgXF30Y+dFYY9ybny1//Ofcw+nHhk0e
- efxwW1jn4f5Dqh5mtCfHxQt4Ld75miDcw1VrN4hL+PRVyCcz28MSClVAc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="372805026"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="372805026"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 08:58:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="690718618"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="690718618"
-Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 08:58:55 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Apr 2023 08:58:48 -0700
-Message-Id: <20230417155849.60297-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.40.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291C410E316;
+	Mon, 17 Apr 2023 16:20:13 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2066.outbound.protection.outlook.com [40.107.92.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC6910E316;
+ Mon, 17 Apr 2023 16:20:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V08jW8LLUdFDZplDUA14K+0Z3pOLXSG+v2fwJ12keTGJUQqdAKhghn3WvCezpNeGTLhvmrA3KgTObth0E5gV5oy0GiSIB/U7dbaKVRZLrkzoQbU5NYttoavp5tdg5pLf4Cdcg7PxXntFGvjsEDL7alK7m6KMvUkDPBIqws/QChjTO7woGB5Avc+DkdBjmd7FmABtVZaa83AfshzAl/A+X3GKdWkVFs6lBRzTkUvrddUngpyI3V1CswEVCGmIUxQFmAnliOh1WaT5Ois8W4HMt6E5KnMrWmluSbRZfIxuieYwpAShUmOyKVf4vheqOFIHhP+3ICh4GJ2QVcnGa1X1ow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=baLaEE5jBJEIpR72RXopifMCEPBRhYo+uJhTbV0yEyc=;
+ b=bhqZPS/bGOqqzIRNza5P1AcWIsh6MnQHxqYGXT1VAOTorRGuUG8L8r7dsTSQdNqmHFxtaMamjeVBcKdr0rtzPnEK5QgfZZzxImqNApTO/k8b0dZwsYqKvPR53eRU3EHPa8dnecI6XiAcGrCp4TaGpjkBQg0mghxOgr+6yxV8qiAsiDn8Pn6nNuI5Nhg4G+dOjru44YvO1FSGJuCKh7VCdNARBMwallq07GubVhEVFLxKqiVhKC3O86SxEl1r5psNCh17mXHLuNP3j6PhEu16yucTlIwN+2MQfjeI3J39BcgBcGsKCIPng1T4NbPY/L5Omxn9PJFfd4cJCIhuk1vcZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=baLaEE5jBJEIpR72RXopifMCEPBRhYo+uJhTbV0yEyc=;
+ b=IYT23ryni9VkLbkSTO1OtzSyTQP+YQV0dZVi6RinMmRGPFUO2NQiC3692aTUpLSuS3vA4jyrXIRBXk5hJ+z5Yb/rYZ+eUCTi7uoSRvvwm0jCrh3I9U5Ea3moHmH8OhQlNVefAqJqfqs+lq3HSNMVN3oJncLedvMZpiMdLSxCyvg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by DM4PR12MB5264.namprd12.prod.outlook.com (2603:10b6:5:39c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Mon, 17 Apr
+ 2023 16:20:08 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::d2f8:7388:39c1:bbed]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::d2f8:7388:39c1:bbed%3]) with mapi id 15.20.6298.045; Mon, 17 Apr 2023
+ 16:20:07 +0000
+Message-ID: <f708dbc2-cf55-6cf6-eef0-b69d00c3eee9@amd.com>
+Date: Mon, 17 Apr 2023 18:20:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
+ <20230417155613.4143258-4-tvrtko.ursulin@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230417155613.4143258-4-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0053.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:48::17) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Initialize dkl_phy spin lock from
- display code path
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DM4PR12MB5264:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1da48c64-1dd0-4e2c-15cc-08db3f5f9c1d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MOCmxO0zmV/2KObSVjT0AnVWFM1Mp3OzNvV6AojG5hfhYVgGusZuP086QQi9X2ea/bVRlHXv12jEfrtCVRfa3oVfzfeDYNLMUf290yk7i/Vj5DoLm7fGeQuoyx2uFNLyJSJ2l4izB2Q5Qi+IVEdoZBuclmz88hdH7pRSUbYBXRn1AsG2Pd1IoWuJ3GjI/Aorkq/wg4Sxy0RvvyQTt+GIIfi3RE+2Uzm1Tp/5QRoklbeSdhjY+IbvL1YLi8ThyQis0rmVk+K3tUhokOB4AnYE7KXIWayJnUg4JuMDkhYTRk73eAOo473dWcgJYSKdz3Rg6qaFUddXkmV0TxIN3VNxFUOT5MDLhq1OjjMYvhm97XGlOgplNnuU9T/gVyGOvMiIDUNA6JLywj8w+d+cToCccWNu822iAYSM+p79Va2Xqk+bSga9x8hkRSwVUdpFrxIz03ZOYqColOoMmjnaft0FS7+yqIU7hXyROK85o+CpJ+WqUx3kpcQ587LpDPO/gjyPicU7YGAvpWKrIqctIlq0Yhz2osw7E91tiNGqLYeGQKZdONveGQOJArKXzIZw3UesHUV5Qe4FpBYzeNN6WfERLCR5xbxzMFuItHDydFGWltz9Gg1fAJLwlGgovOhIIRU3w2+XE4Fu1QaXingJ2SqgTA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(136003)(39860400002)(346002)(366004)(376002)(396003)(451199021)(38100700002)(8676002)(8936002)(5660300002)(2906002)(36756003)(86362001)(31696002)(478600001)(6486002)(6666004)(54906003)(31686004)(186003)(2616005)(6506007)(6512007)(66946007)(66476007)(83380400001)(316002)(41300700001)(4326008)(66556008)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K05qWkU2YzFkNkV0NUdhZmtBdnVPRkJoY0tUakplK0NTaUcxdUlxUjUyTUlw?=
+ =?utf-8?B?Z0lQZG1GQ0NzSkFoWEJKWUY5VEw2aUc1UlMxN1YzQSsxSDhrdmpyMENsMzBU?=
+ =?utf-8?B?NUpXZjhiZDB2c2ZUTG50eG1WbElsYW1vQnZsTkZLcUNWVmhMOFcxbHZqQWxn?=
+ =?utf-8?B?cUJoYld3Q2VOQmZtQjRQeTZmMVFOZ2lqZ3FaMVVjd2xKcEhNOSt5ckhJMEV2?=
+ =?utf-8?B?aFJSMmtQSHBqQkF4SmlUMkFFZWZLVXAvdDZNMEIvby9Ub2kwOE1BeXRJS2F3?=
+ =?utf-8?B?Z0c3YS9KYll0T2ErWDlVY2xvL3ZnYzJtSW9vcFN4R21YVzNkNFlLUzF3cW1O?=
+ =?utf-8?B?bDNiNWQ2RFU0UWx5eGtQK3Bjc1RXVWQva29uWnI4ekw5SnFPakdTSWZkWVhp?=
+ =?utf-8?B?ZzBsWDVLNXk2Uk1zU0ZMc3NtY0hNL0UwWVBnQ0dCOVpJazlFVUQwRkVKOTVJ?=
+ =?utf-8?B?eml5THI0VDVsRTVxWDJOblplL2F6bFhDZW9YSVQxRWpZZ1d6ME5VMWJ6KzYv?=
+ =?utf-8?B?STJVd3ZxejM5RmpxQk0yTWpUNnE2L1J1b2hTTEVFNWZUbmF2K29YMmVzbEFV?=
+ =?utf-8?B?MDBScklEcmJONU1heFl2VkRSK1RuRWQrbEpPbnV6TmhIZnZpTGZEZ2M3aktO?=
+ =?utf-8?B?V01DcEtrNm4rSlgyc1ZLU3I1YXp0aDNKQi9lUTZ3ZFEwdVF2cWJTSjRNTERl?=
+ =?utf-8?B?QnBNZzFOaGpINVdjMnEySEVrOXowZGNQQVJtWk9TVU5UNUtORitoeklNNVpV?=
+ =?utf-8?B?QVZzeUlzc1dZaXVDZHBTQ0RPV1ZyNkFPcDZ3b0crVFRRSDJJaXZQT0phQlJa?=
+ =?utf-8?B?NEczTDVsMjFBYUdJUUExSHZ6MGxrd0RmM2dRSlNOQmlHZFBTdnhZc1FZZFc4?=
+ =?utf-8?B?R0JrekVNc0hFb0JDOFlCd29rVWk0ZWlnN2wwN05FUGJQR2tSazFGT0pNZ3Ny?=
+ =?utf-8?B?cnFtQjNlMDNOZHo1SzlkV2xlZGtCK3ZoUlE0NWI4UGhzRFh5empwTWhOODZ5?=
+ =?utf-8?B?T25JK1h5OEV2bGlzMHZaN2dETzI2WENVY0JWNjkwL3BrZHpmM0EvQVRHZU03?=
+ =?utf-8?B?QU1RcUV1NnBqcUNHUkxFY01OanlSTVN0VmovczVYMFRlR2d0L2tDQS95a1lp?=
+ =?utf-8?B?VFYyekxUTHNBVDJxVUkxcTkzY3ZheUVqK0xvcC9vZ3FSNzExUnhaZm10U1F5?=
+ =?utf-8?B?RjRmZnRUblRpYzQyZy92bkQ1UlRNbjFwYTI1TVhuTm9xYlVGdmRCcFFQaDJh?=
+ =?utf-8?B?UEJxMFhsUjQ4b1pBVXVZaStSTE9BMnFpN2hNbDZNT1pMRnJTMmo4R1RNNXVm?=
+ =?utf-8?B?bTlGYUFPRE5pVVhoWlVxMkRsTVhwNUxHNVJjalR0Zm13cWg3Qm0vY2k3Umw1?=
+ =?utf-8?B?cFNOMmdTMWlrdjlzdXN3R1orbEFVYmRCc21DVHE5WkVqekR5MUhGRXF5SWUw?=
+ =?utf-8?B?TDFFa0JHNEdvUUFIU0g2ZlVhajBqRmw5V3pOTEpIbVNqQ1UrTDE0K3dQL1ln?=
+ =?utf-8?B?czd6ZHVSeHlaS05HWkNDbUtQODJCeWdpcXFPaDFwTmVMM1ZML3MzdFRhaWxO?=
+ =?utf-8?B?Tm4zUCt1VXh3R1RxWlpQTklUSlhQTUtYRkJJem5aR1hGNVRpckp6cUY3MVIy?=
+ =?utf-8?B?YTdPSHpvU0ttcVdtSDlPckVjR3hNcnNMcHBtVXZlY1hTUTJOMVJsV0xXL0VY?=
+ =?utf-8?B?Mk0xZ1o0eVNQeFpTM2dlTllVY1pDUkFJKzB3ZDZUOWVuRU43T3A0bVdyNTNi?=
+ =?utf-8?B?bisydE0zbm9wQldEa3dmWXhSK2RVWW5xaDhUWmRHcmd3SXMweWZuYVh3L2pi?=
+ =?utf-8?B?cUtuYXlBUmRjeDQrTzJ1R0ZnOUU0TTl3WExsYkFCNmRKUnFYR3YwUzQ5TVV2?=
+ =?utf-8?B?T210c3NQTFhyQkVXOVFkdkJlTDAwVDJTcy9HbmdDM3k4SzVmVmd5SGpEK3B4?=
+ =?utf-8?B?V2pSbkZ2TXlML3dQVGZUallCOGFhSTlqdXpGRDB4Tm5xaDNVZ0Z6T3pTdHpX?=
+ =?utf-8?B?K1R0R0pZeWNJVTNlZFJtL2h2RTNGcEtVeVpKRFpMWXFIZGZ3TDI0ajhSdU5O?=
+ =?utf-8?B?RndsbnJFckRnVU9rYzRLbnlUakhGakYyakNBQmhuQnpKa3FQT1Y3ZTZwS3Jy?=
+ =?utf-8?B?c0FjdjBKOWZzUDhwYW5zbnhMbmRLZjltMW5rZG9ESjVTaXBSbnNzQk1WSnQ2?=
+ =?utf-8?Q?V08ahe5QiOYiK2blnWISQqU+/60kXMZX3HorTTJxJiZ0?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1da48c64-1dd0-4e2c-15cc-08db3f5f9c1d
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2023 16:20:07.7973 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qiOmV7JosXRfrQYRYZbaPh34EWbUBP3GMy9+IltFJxnAQcSf7lwWkt3/McZl8T/i
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5264
+Subject: Re: [Intel-gfx] [RFC 3/6] drm: Add fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,167 +127,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: Alex Deucher <alexdeucher@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Start to move the initialization of display locks from
-i915_driver_early_probe(), this way it is also executed when running
-Xe kmd.
 
-This will fix a warning in Xe kmd:
 
-[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
-[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
-[  202.175346] INFO: trying to register non-static key.
-[  202.175347] irq event stamp: 754060
-[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
-[  202.180294] The code is fine but needs lockdep annotation, or maybe
-[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
-[  202.192734] you didn't initialize this object before use?
-[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
-[  202.206882] turning off the locking correctness validator.
-[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
-[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
-[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
-[  202.255737] Call Trace:
-[  202.258179]  <TASK>
-[  202.260275]  dump_stack_lvl+0x58/0xc0
-[  202.263922]  register_lock_class+0x756/0x7d0
-[  202.268165]  ? find_held_lock+0x2b/0x80
-[  202.271975]  __lock_acquire+0x72/0x28b0
-[  202.275786]  ? debug_object_free+0xb4/0x160
-[  202.279946]  lock_acquire+0xd1/0x2d0
-[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.288181]  _raw_spin_lock+0x2a/0x40
-[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
-[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
-[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
-[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
-[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
-[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
-[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
-[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
-[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
-[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
-[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
-[  202.356260]  pci_device_probe+0x9d/0x150
-[  202.360164]  really_probe+0x19a/0x400
-[  202.363809]  ? __pfx___driver_attach+0x10/0x10
-[  202.368226]  __driver_probe_device+0x73/0x170
-[  202.372558]  driver_probe_device+0x1a/0x90
-[  202.376632]  __driver_attach+0xcd/0x1c0
-[  202.380442]  bus_for_each_dev+0x72/0xc0
-[  202.384253]  bus_add_driver+0x110/0x210
-[  202.388063]  driver_register+0x50/0x100
-[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
-[  202.396431]  do_one_initcall+0x55/0x260
-[  202.400245]  ? rcu_is_watching+0xd/0x40
-[  202.404058]  ? kmalloc_trace+0xa0/0xb0
-[  202.407786]  do_init_module+0x45/0x1e0
-[  202.411512]  __do_sys_finit_module+0xac/0x120
-[  202.415838]  do_syscall_64+0x37/0x90
-[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
-[  202.424409] RIP: 0033:0x7fd11291ea3d
-[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
-[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
-[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
-[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
-[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
-[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
-[  202.489396]  </TASK>
+Am 17.04.23 um 17:56 schrieb Tvrtko Ursulin:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> Add support to dump GEM stats to fdinfo.
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   Documentation/gpu/drm-usage-stats.rst | 12 +++++++
+>   drivers/gpu/drm/drm_file.c            | 52 +++++++++++++++++++++++++++
+>   include/drm/drm_drv.h                 |  7 ++++
+>   include/drm/drm_file.h                |  8 +++++
+>   4 files changed, 79 insertions(+)
+>
+> diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
+> index 2ab32c40e93c..8273a41b2fb0 100644
+> --- a/Documentation/gpu/drm-usage-stats.rst
+> +++ b/Documentation/gpu/drm-usage-stats.rst
+> @@ -21,6 +21,7 @@ File format specification
+>   
+>   - File shall contain one key value pair per one line of text.
+>   - Colon character (`:`) must be used to delimit keys and values.
+> +- Caret (`^`) is also a reserved character.
+>   - All keys shall be prefixed with `drm-`.
+>   - Whitespace between the delimiter and first non-whitespace character shall be
+>     ignored when parsing.
+> @@ -105,6 +106,17 @@ object belong to this client, in the respective memory region.
+>   Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
+>   indicating kibi- or mebi-bytes.
+>   
+> +- drm-memory-<str>^size:      <uint> [KiB|MiB]
+> +- drm-memory-<str>^shared:    <uint> [KiB|MiB]
+> +- drm-memory-<str>^resident:  <uint> [KiB|MiB]
+> +- drm-memory-<str>^purgeable: <uint> [KiB|MiB]
+> +- drm-memory-<str>^active:    <uint> [KiB|MiB]
 
-v2:
-- added intel_display_locks_init()
+What exactly does size/shared/active mean here?
 
-v3:
-- rebased
+If it means what I think it does I don't see how TTM based drivers 
+should track that in the first place.
 
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_driver.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 5 +++++
- drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
- drivers/gpu/drm/i915/i915_driver.c                  | 1 -
- 4 files changed, 14 insertions(+), 1 deletion(-)
+Christian.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index b3dbfe2a892e6..5e587b972ce0a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -30,6 +30,7 @@
- #include "intel_display_driver.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
-+#include "intel_dkl_phy.h"
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dpll.h"
-@@ -170,11 +171,18 @@ static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+static void
-+intel_display_locks_init(struct drm_i915_private *i915)
-+{
-+	intel_dkl_phy_init(i915);
-+}
-+
- void intel_display_driver_early_probe(struct drm_i915_private *i915)
- {
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
-+	intel_display_locks_init(i915);
- 	intel_color_init_hooks(i915);
- 	intel_init_cdclk_hooks(i915);
- 	intel_audio_hooks_init(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-index 57cc3edba0163..69d863dfb3a03 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-@@ -104,3 +104,8 @@ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_r
- 
- 	spin_unlock(&i915->display.dkl.phy_lock);
- }
-+
-+void intel_dkl_phy_init(struct drm_i915_private *i915)
-+{
-+	spin_lock_init(&i915->display.dkl.phy_lock);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-index 570ee36f9386f..a0183d322e058 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-@@ -20,5 +20,6 @@ void
- intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set);
- void
- intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
-+void intel_dkl_phy_init(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_DKL_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a52db8a809006..fd198700272b1 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -223,7 +223,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	mutex_init(&dev_priv->display.wm.wm_mutex);
- 	mutex_init(&dev_priv->display.pps.mutex);
- 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
--	spin_lock_init(&dev_priv->display.dkl.phy_lock);
- 
- 	i915_memcpy_init_early(dev_priv);
- 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
--- 
-2.40.0
+> +
+> +Resident category is identical to the drm-memory-<str> key and two should be
+> +mutually exclusive.
+> +
+> +TODO more description text...
+> +
+>   - drm-cycles-<str> <uint>
+>   
+>   Engine identifier string must be the same as the one specified in the
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index 37b4f76a5191..e202f79e816d 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -42,6 +42,7 @@
+>   #include <drm/drm_client.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_file.h>
+> +#include <drm/drm_gem.h>
+>   #include <drm/drm_print.h>
+>   
+>   #include "drm_crtc_internal.h"
+> @@ -871,6 +872,54 @@ void drm_send_event(struct drm_device *dev, struct drm_pending_event *e)
+>   }
+>   EXPORT_SYMBOL(drm_send_event);
+>   
+> +static void
+> +print_stat(struct drm_printer *p, const char *stat, const char *region, u64 sz)
+> +{
+> +	const char *units[] = {"", " KiB", " MiB"};
+> +	unsigned int u;
+> +
+> +	if (sz == ~0ull) /* Not supported by the driver. */
+> +		return;
+> +
+> +	for (u = 0; u < ARRAY_SIZE(units) - 1; u++) {
+> +		if (sz < SZ_1K)
+> +			break;
+> +		sz = div_u64(sz, SZ_1K);
+> +	}
+> +
+> +	drm_printf(p, "drm-memory-%s^%s:\t%llu%s\n",
+> +		   region, stat, sz, units[u]);
+> +}
+> +
+> +static void print_memory_stats(struct drm_printer *p, struct drm_file *file)
+> +{
+> +	struct drm_device *dev = file->minor->dev;
+> +	struct drm_fdinfo_memory_stat *stats;
+> +	unsigned int num, i;
+> +	char **regions;
+> +
+> +	regions = dev->driver->query_fdinfo_memory_regions(dev, &num);
+> +
+> +	stats = kcalloc(num, sizeof(*stats), GFP_KERNEL);
+> +	if (!stats)
+> +		return;
+> +
+> +	dev->driver->query_fdinfo_memory_stats(file, stats);
+> +
+> +	for (i = 0; i < num; i++) {
+> +		if (!regions[i]) /* Allow sparse name arrays. */
+> +			continue;
+> +
+> +		print_stat(p, "size", regions[i], stats[i].size);
+> +		print_stat(p, "shared", regions[i], stats[i].shared);
+> +		print_stat(p, "resident", regions[i], stats[i].resident);
+> +		print_stat(p, "purgeable", regions[i], stats[i].purgeable);
+> +		print_stat(p, "active", regions[i], stats[i].active);
+> +	}
+> +
+> +	kfree(stats);
+> +}
+> +
+>   /**
+>    * drm_show_fdinfo - helper for drm file fops
+>    * @seq_file: output stream
+> @@ -900,6 +949,9 @@ void drm_show_fdinfo(struct seq_file *m, struct file *f)
+>   
+>   	if (dev->driver->show_fdinfo)
+>   		dev->driver->show_fdinfo(&p, file);
+> +
+> +	if (dev->driver->query_fdinfo_memory_regions)
+> +		print_memory_stats(&p, file);
+>   }
+>   EXPORT_SYMBOL(drm_show_fdinfo);
+>   
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 89e2706cac56..ccc1cd98d2aa 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -35,6 +35,7 @@
+>   #include <drm/drm_device.h>
+>   
+>   struct drm_file;
+> +struct drm_fdinfo_memory_stat;
+>   struct drm_gem_object;
+>   struct drm_master;
+>   struct drm_minor;
+> @@ -408,6 +409,12 @@ struct drm_driver {
+>   	 */
+>   	void (*show_fdinfo)(struct drm_printer *p, struct drm_file *f);
+>   
+> +	char ** (*query_fdinfo_memory_regions)(struct drm_device *dev,
+> +					       unsigned int *num);
+> +
+> +	void (*query_fdinfo_memory_stats)(struct drm_file *f,
+> +					  struct drm_fdinfo_memory_stat *stat);
+> +
+>   	/** @major: driver major number */
+>   	int major;
+>   	/** @minor: driver minor number */
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index 7d9b3c65cbc1..00d48beeac5c 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -375,6 +375,14 @@ struct drm_file {
+>   #endif
+>   };
+>   
+> +struct drm_fdinfo_memory_stat {
+> +	u64 size;
+> +	u64 shared;
+> +	u64 resident;
+> +	u64 purgeable;
+> +	u64 active;
+> +};
+> +
+>   /**
+>    * drm_is_primary_client - is this an open file of the primary node
+>    * @file_priv: DRM file
 
