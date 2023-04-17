@@ -2,40 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA056E4819
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 14:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3286C6E49AB
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 15:17:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67EDD10E196;
-	Mon, 17 Apr 2023 12:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB1710E4DC;
+	Mon, 17 Apr 2023 13:17:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5BC810E196;
- Mon, 17 Apr 2023 12:44:54 +0000 (UTC)
-Received: from pendragon.ideasonboard.com
- (133-32-181-51.west.xps.vectant.ne.jp [133.32.181.51])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id EE06EF95;
- Mon, 17 Apr 2023 14:44:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1681735487;
- bh=zwJu2smQro8gmZkUISaFthzO1JFoFUjclNsgTOGhq0k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jZ7cALUflLY2jyyw1/dLRTBCqWHq1/RUmoJ5Si1ueg48oDpqAbGTIXMBJ8Y8bBhP6
- HOjdpcPmTDxfQXDLILaV4dzIVvZYJHHveKKNHpQZSknABUEVx+uX2AycGenjhTwann
- OJG2W+YXKBxe9nPuAmd1dieu4QpBgjoUFUHiRLiE=
-Date: Mon, 17 Apr 2023 15:45:02 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Ricardo Garcia <rgarcia@igalia.com>
-Message-ID: <20230417124502.GB19964@pendragon.ideasonboard.com>
-References: <ef4e39301a769ef83668074c341274e30db57f95.camel@igalia.com>
- <2b861d289edaab1c53c031f72de192fcddf85b13.camel@igalia.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBEDB10E4DC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 13:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681737452; x=1713273452;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zIRYvwz36Y3COhg/BIIRRrvnCsZMl0qiQLMIKbwC/Ok=;
+ b=SP8PN3ER5ppoxPlabiGPSaEoNUS/ysLqKa6v/EDQfYmpsIlGhtwzas1f
+ kFJ2u6X4MzrMBi5YF1tM1dvAV4eVFWJljqChRSd0+OY4+qXtzSx6a8vJE
+ O6VyC5Y/WE+ajWAZS6nBLw/neZhMjLU9YQbLGtbRB+CGIjjTwCvyPE1Ld
+ USj8BCPYgydpC79NMgSE2t3E7IVjHGyaVP7ZltO/71hFc2fiO7b97c/7P
+ ocDKdzEqYra8K+aPco2FxKwIehJZGpZP/WuBYnyWh/67ss6YuMw+B0UXH
+ qzVZewZn/35nbu3bBU2PoVARoGbNGkNTwEJ+5MmGzu8CzVC5wj1nJc5I7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="329057563"
+X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="329057563"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 06:17:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="640953193"
+X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="640953193"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga003.jf.intel.com with SMTP; 17 Apr 2023 06:17:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 17 Apr 2023 16:17:28 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Apr 2023 16:17:24 +0300
+Message-Id: <20230417131728.7705-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2b861d289edaab1c53c031f72de192fcddf85b13.camel@igalia.com>
-Subject: Re: [Intel-gfx] 2023 X.Org Foundation Membership deadline for
- voting in the election
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915: Check HPD during eDP probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,48 +57,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: xorg-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
- board <board@foundation.x.org>, members@x.org, amd-gfx@lists.freedesktop.org,
- events@lists.x.org, mesa-dev@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, libre-soc-dev@lists.libre-soc.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ricardo,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On Mon, Mar 13, 2023 at 04:22:54PM +0100, Ricardo Garcia wrote:
-> This is a reminder that the deadline for new memberships and renewals
-> finishes in a couple of weeks. Original email follows.
-> 
-> Thanks for your attention.
+Remainder of the eDP HPD check series, now rebased on top
+of MTL HPD stuff.
 
-I don't know if I'm the only one affected by this issue, but I've just
-received today two months of e-mails from x.org, including all the
-reminders aboud membership renewal and election nomination period. This
-isn't the first time this happens, and the last time I was told there
-was no automated process to quick the mail queues when errors happen,
-making mails pile up forever on x.org's side until someone handles it
-manually. This is something you really want to automate, or at least
-monitored.
+Ville Syrjälä (4):
+  drm/i915: Introduce <platform>_hotplug_mask()
+  drm/i915: Introduce intel_hpd_enable_detection()
+  drm/i915: Check HPD live state during eDP probe
+  drm/i915: Reuse <platform>_hotplug_mask() in .hpd_detection_setup()
 
-> On Wed, 2023-02-15 at 16:58 +0100, Ricardo Garcia wrote:
-> > The 2023 X.Org Foundation elections are rapidly approaching. We will be
-> > forwarding the election schedule and nominating process to the
-> > membership shortly.
-> > 
-> > Please note that only current members can vote in the upcoming election,
-> > and that the deadline for new memberships or renewals to vote in the
-> > upcoming election is 26 March 2023 at 23:59 UTC.
-> > 
-> > If you are interested in joining the X.Org Foundation or in renewing
-> > your membership, please visit the membership system site at:
-> > https://members.x.org/
-> > 
-> > Ricardo Garcia, on behalf of the X.Org elections committee
+ drivers/gpu/drm/i915/display/intel_dp.c |  28 ++
+ drivers/gpu/drm/i915/i915_irq.c         | 383 +++++++++++++++++++-----
+ drivers/gpu/drm/i915/i915_irq.h         |   2 +
+ 3 files changed, 341 insertions(+), 72 deletions(-)
 
 -- 
-Regards,
+2.39.2
 
-Laurent Pinchart
