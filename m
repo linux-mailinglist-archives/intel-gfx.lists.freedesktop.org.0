@@ -1,78 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50C96E4561
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:39:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F006E45D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:56:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0727910E400;
-	Mon, 17 Apr 2023 10:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74BF410E417;
+	Mon, 17 Apr 2023 10:56:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3083610E3F9;
- Mon, 17 Apr 2023 10:39:08 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id
- ffacd0b85a97d-2eed43bfa4bso1361038f8f.2; 
- Mon, 17 Apr 2023 03:39:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681727946; x=1684319946;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=cH79Swn8ZRJ2/YarOj91Bz0xxg30p0nVIyjLTbfZHEk=;
- b=YRKjuLMhTl40C+QqFYNyd1bRihczrfYWx/yGU36IRsJfmSPwWm5zftNVBsPia6yv+S
- Zxqe6js3OrRVHvL9eVEwsHAVrpNhJPpvZcA3/CuoUjouJePIvyzvpsD+QqepRoAlloZ/
- 0fsrKdoUG/TsMKLWUBTOHqggXyBAQ2C+BlCWcOm9TvmHiaIgIBq5KhCWjFeagOpEmB8d
- 1DAQ0WsJbDJw9QEjshxivpMLqq89xEmLpV7P0ecn/QKP2xODoAfG9PcVZbGxJetEzBPJ
- tD5YqlokKpW5QqC7IQ0a6OqDD1KDVY5I3WNXvmUYrxVtT80Kmg/URg+3ZpE9rLMH6zR0
- 2NkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681727946; x=1684319946;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=cH79Swn8ZRJ2/YarOj91Bz0xxg30p0nVIyjLTbfZHEk=;
- b=QU0y8E6hlLiFSuuUIcs0v6xoBcXukG8qpEa369wJTm8QkAi4m9bOoWorUfJQAzOYnV
- WnXkU8FgGZto7lfmibeeHar+Cpddz8DE6vzQah9XQf2fEEu/T8QVGE0xOz7svLG3eVDT
- rbX6yxj2j6vpQIZPd1v2eEO5KX9WMuDyiSr9helFE1JBuxMmMT+/4yTH2EFhBKHuxP4Y
- bHuzXlx1OHJqmMJU7JAmOyKgbX8kngRRzeXDXEW0F0DX62+afyDlE1mzIOmarpkipiC+
- G2RcS5YnbSY5BqJUboM0vslvrEEfknTFcWDNQgSry2r8nXVCrCD2DmdCpyNHtM61XUo1
- FJyQ==
-X-Gm-Message-State: AAQBX9degkGvY8UuQ50DnfEQQfqFJxPiUm1fTnm8uiG0JPHWHs4N13eP
- cUdf2lKXvEcn+AuvxciBQIM=
-X-Google-Smtp-Source: AKy350ZHLsYNFXN5GyVB3dvmvIOZLfVbmy328/EyKvOC+gnAZGSMikYnaDOJgYq7gQ7O8a2gX7ryOA==
-X-Received: by 2002:adf:d085:0:b0:2fa:88f2:b04c with SMTP id
- y5-20020adfd085000000b002fa88f2b04cmr1956315wrh.20.1681727945938; 
- Mon, 17 Apr 2023 03:39:05 -0700 (PDT)
-Received: from localhost.localdomain
- (host-87-19-108-254.retail.telecomitalia.it. [87.19.108.254])
- by smtp.gmail.com with ESMTPSA id
- y12-20020a5d470c000000b002c70ce264bfsm10238018wrq.76.2023.04.17.03.39.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 Apr 2023 03:39:05 -0700 (PDT)
-From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Mon, 17 Apr 2023 12:38:54 +0200
-Message-Id: <20230417103854.23333-4-fmdefrancesco@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230417103854.23333-1-fmdefrancesco@gmail.com>
-References: <20230417103854.23333-1-fmdefrancesco@gmail.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAB9310E407
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 10:56:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681729006; x=1713265006;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=j//SYlFP2eKlVpWNT/eTJJFsU98tnGqiJvjz+WJKm/o=;
+ b=FVjjLBjB961eKJYKg1TQ7CjEQLLCLZy/y12qr2KKNLco5P/no7gnFFNC
+ sLerSUxNdJoohARsxROUrAh0rZzkBiGmxgbkAoOIkCBW0z3xRAmf/zbjN
+ 1JSa0XkAlqKUi/b+ocfdyQc2Il75l9Xyp6zGZH19XerWPoenDTRYCn+z3
+ L0boEiCWpP+ChD9z3i90B+Yl4EXsUT+NsjO4ZSDy2AeOkViEUA+Zonk1M
+ 7bt7+Y30Eu/bTlFQCaDdMcs/OLAbBiBn0BggcdidE1vOjWSQLrgWLhSlC
+ Bv9bc4O+kgQt/rxPEFsmvoMFuq/Bn35nwLchJ7vmtVXG1aSL+042V8Hm/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="333656090"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="333656090"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 03:56:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="864963596"
+X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="864963596"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orsmga005.jf.intel.com with ESMTP; 17 Apr 2023 03:56:44 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Apr 2023 16:21:13 +0530
+Message-Id: <20230417105113.3211480-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230417100021.3205172-1-arun.r.murthy@intel.com>
+References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/gem: Replace kmap() with
- kmap_local_page()
+Subject: [Intel-gfx] [PATCHv2] drm/i915/display/dp: 128/132b LT requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,104 +56,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ira Weiny <ira.weiny@intel.com>,
- "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-kmap() s been deprecated in favor of kmap_local_page().
+For 128b/132b LT prior to LT DPTX should set power state, DP channel
+coding and then link rate.
 
-There are two main problems with kmap(): (1) It comes with an overhead as
-mapping space is restricted and protected by a global lock for
-synchronization and (2) it also requires global TLB invalidation when the
-kmap’s pool wraps and it might block when the mapping space is fully
-utilized until a slot becomes available.
+v2: added separate function to avoid code duplication(Jani N)
 
-With kmap_local_page() the mappings are per thread, CPU local, can take
-page faults, and can be called from any context (including interrupts).
-It is faster than kmap() in kernels with HIGHMEM enabled. Furthermore,
-the tasks can be preempted and, when they are scheduled to run again, the
-kernel virtual addresses are restored and are still valid.
-
-Obviously, thread locality implies that the kernel virtual addresses are
-only valid in the context of the callers. The kmap_local_page() use in
-i915/gem doesn't break the above-mentioned constraint, so it should be
-preferred to kmap().
-
-Therefore, replace kmap() with kmap_local_page() in i915/gem and use
-memcpy_to_page() where it is possible to avoid the open coding of
-mapping + memcpy() + un-mapping.
-
-Suggested-by: Ira Weiny <ira.weiny@intel.com>
-Signed-off-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c          | 6 ++----
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 8 ++++----
- 2 files changed, 6 insertions(+), 8 deletions(-)
+ .../drm/i915/display/intel_dp_link_training.c | 62 +++++++++++++------
+ 1 file changed, 44 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 37d1efcd3ca6..8856a6409e83 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -657,16 +657,14 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
- 	do {
- 		unsigned int len = min_t(typeof(size), size, PAGE_SIZE);
- 		struct page *page;
--		void *pgdata, *vaddr;
-+		void *pgdata;
-
- 		err = aops->write_begin(file, file->f_mapping, offset, len,
- 					&page, &pgdata);
- 		if (err < 0)
- 			goto fail;
-
--		vaddr = kmap(page);
--		memcpy(vaddr, data, len);
--		kunmap(page);
-+		memcpy_to_page(page, 0, data, len);
-
- 		err = aops->write_end(file, file->f_mapping, offset, len, len,
- 				      page, pgdata);
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index 56279908ed30..5fd9e1ee2340 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -155,7 +155,7 @@ static int check_partial_mapping(struct drm_i915_gem_object *obj,
- 	intel_gt_flush_ggtt_writes(to_gt(i915));
-
- 	p = i915_gem_object_get_page(obj, offset >> PAGE_SHIFT);
--	cpu = kmap(p) + offset_in_page(offset);
-+	cpu = kmap_local_page(p) + offset_in_page(offset);
- 	drm_clflush_virt_range(cpu, sizeof(*cpu));
- 	if (*cpu != (u32)page) {
- 		pr_err("Partial view for %lu [%u] (offset=%llu, size=%u [%llu, row size %u], fence=%d, tiling=%d, stride=%d) misalignment, expected write to page (%lu + %u [0x%lx]) of 0x%x, found 0x%x\n",
-@@ -173,7 +173,7 @@ static int check_partial_mapping(struct drm_i915_gem_object *obj,
- 	}
- 	*cpu = 0;
- 	drm_clflush_virt_range(cpu, sizeof(*cpu));
--	kunmap(p);
-+	kunmap_local(cpu);
-
- out:
- 	i915_gem_object_lock(obj, NULL);
-@@ -251,7 +251,7 @@ static int check_partial_mappings(struct drm_i915_gem_object *obj,
- 		intel_gt_flush_ggtt_writes(to_gt(i915));
-
- 		p = i915_gem_object_get_page(obj, offset >> PAGE_SHIFT);
--		cpu = kmap(p) + offset_in_page(offset);
-+		cpu = kmap_local_page(p) + offset_in_page(offset);
- 		drm_clflush_virt_range(cpu, sizeof(*cpu));
- 		if (*cpu != (u32)page) {
- 			pr_err("Partial view for %lu [%u] (offset=%llu, size=%u [%llu, row size %u], fence=%d, tiling=%d, stride=%d) misalignment, expected write to page (%lu + %u [0x%lx]) of 0x%x, found 0x%x\n",
-@@ -269,7 +269,7 @@ static int check_partial_mappings(struct drm_i915_gem_object *obj,
- 		}
- 		*cpu = 0;
- 		drm_clflush_virt_range(cpu, sizeof(*cpu));
--		kunmap(p);
-+		kunmap_local(cpu);
- 		if (err)
- 			return err;
-
---
-2.40.0
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 6aa4ae5e7ebe..3418cf43e555 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -637,6 +637,37 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+ 	return true;
+ }
+ 
++static void
++intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
++				const struct intel_crtc_state *crtc_state)
++{
++	u8 link_config[2];
++
++	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
++	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
++			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
++	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
++}
++
++static void
++intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
++			    const struct intel_crtc_state *crtc_state,
++			    u8 link_bw, u8 rate_select)
++{
++	u8 link_config[2];
++
++	/* Write the link configuration data */
++	link_config[0] = link_bw;
++	link_config[1] = crtc_state->lane_count;
++	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
++		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
++	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
++	/* eDP 1.4 rate select method. */
++	if (!link_bw)
++		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
++				  &rate_select, 1);
++}
++
+ /*
+  * Prepare link training by configuring the link parameters. On DDI platforms
+  * also enable the port here.
+@@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	u8 link_config[2];
+ 	u8 link_bw, rate_select;
+ 
+ 	if (intel_dp->prepare_link_retrain)
+@@ -686,23 +716,19 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
+ 			    encoder->base.base.id, encoder->base.name, rate_select);
+-
+-	/* Write the link configuration data */
+-	link_config[0] = link_bw;
+-	link_config[1] = crtc_state->lane_count;
+-	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+-		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+-	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+-
+-	/* eDP 1.4 rate select method. */
+-	if (!link_bw)
+-		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+-				  &rate_select, 1);
+-
+-	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+-	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+-		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+-	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
++	if (intel_dp_is_uhbr(crtc_state)) {
++		/*
++		 * Spec DP2.1 Section 3.5.2.16
++		 * Prior to LT DPTX should set 128/132 DP Channel coding and then set link rate
++		 */
++		intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
++		intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
++					    rate_select);
++	} else {
++		intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
++					    rate_select);
++		intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
++	}
+ 
+ 	return true;
+ }
+-- 
+2.25.1
 
