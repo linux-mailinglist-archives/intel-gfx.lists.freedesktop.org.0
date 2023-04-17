@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4606E4D63
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 17:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B246E4DC3
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 17:56:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A92510E413;
-	Mon, 17 Apr 2023 15:38:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C904C10E413
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 15:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 633EE10E408;
+	Mon, 17 Apr 2023 15:56:39 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C82910E1B1;
+ Mon, 17 Apr 2023 15:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681745879; x=1713281879;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+4WuhPKRo8VaaLgjqGg+MPyMlD2Xsn5szq5a2h/3Mc8=;
- b=EwAfu1EZLAFOHBYa00yMkyCLV+tP2lTCR3SeTLgVwPJx/TcKmheMGxzY
- 1fbneTnr5E4CFm5CuX2JHvoV9FpL+TOo9WQizheFKWAVSHJA/6ShevrJ/
- p9b8WBzBeouV1ypp1W1fv/lB/pjjOtLCUqbHvlOUlDHZajv0eAIOEyg3m
- 8nWRDYufURbVFWS0/2DvAfB648kGZ8JuAF4PVsh/PN04GE4tk0UtSV5f8
- LjbzvFEFhOmpbNn7aRQimr4twPAWnsxHMHJGT+G1SpKkqYE+xinzShijG
- PjnRR0c9FzP3yAHhp4ObINZwdxYw8CHpTEw86tvXuTQWB6n36ZdfdLlOM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="431212289"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="431212289"
+ t=1681746997; x=1713282997;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NkuxtsbO+mHTdhaOMm2pYNCWI+R28ZzS3Y10doUVbdw=;
+ b=foeQtA+qBp/bs/9O5AJAA+isnSAIMGEBVee23Pt+/YcaKpXhIRad8gT/
+ 7KZxcAfZL68S+v8B/Plvk3yIF2uR8gtfhh0+EUyVR7TVWZuDrTh4LH+ft
+ NfzjAWdgrnRhXL9M/mdbmzy095LiKJFqeD3M3QtD1q2tJzf7fCjkyeAzl
+ 26zVDut7XwVq4MnBKrnyFZiGKNRUQLU3jp49Z3ywuMpOYqWUNSzbg26t3
+ 6Y8QIPehAn+7dXpzOCOw2UV12GuTZmA/mN3/1+NIyNzH+W9dr8pQkfkU9
+ WgaQpnWZT7VVCwNSdOzLFUwRf8msNkuSdU60/5xi8hoOahzGXjcm3z7dt w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="372804610"
+X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="372804610"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 08:37:58 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2023 08:56:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="690710897"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="690710897"
-Received: from habramov-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.252.47.83])
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="690718267"
+X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="690718267"
+Received: from gtohallo-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.232.210])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 08:37:57 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Apr 2023 18:37:41 +0300
-Message-Id: <20230417153741.1074692-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230417153741.1074692-1-jani.nikula@intel.com>
-References: <20230417153741.1074692-1-jani.nikula@intel.com>
+ 17 Apr 2023 08:56:22 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 17 Apr 2023 16:56:07 +0100
+Message-Id: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display: throw out struct
- intel_load_detect_pipe
+Subject: [Intel-gfx] [RFC 0/6] fdinfo alternative memory stats proposal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,196 +57,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-An error-valued pointer can handle all in one without the wrapper
-struct.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crt.c      | 18 ++++++++---------
- .../gpu/drm/i915/display/intel_load_detect.c  | 20 ++++++++-----------
- .../gpu/drm/i915/display/intel_load_detect.h  | 12 ++++-------
- drivers/gpu/drm/i915/display/intel_tv.c       | 16 +++++++--------
- 4 files changed, 29 insertions(+), 37 deletions(-)
+As discussed in the Rob's thread here is a slightly alternative idea on what to
+expose and how.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 96acdf98a0c0..13519f78cf9f 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -822,9 +822,9 @@ intel_crt_detect(struct drm_connector *connector,
- 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
- 	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
- 	struct intel_encoder *intel_encoder = &crt->base;
-+	struct drm_atomic_state *state;
- 	intel_wakeref_t wakeref;
--	int status, ret;
--	struct intel_load_detect_pipe tmp;
-+	int status;
- 
- 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] force=%d\n",
- 		    connector->base.id, connector->name,
-@@ -882,8 +882,12 @@ intel_crt_detect(struct drm_connector *connector,
- 	}
- 
- 	/* for pre-945g platforms use load detect */
--	ret = intel_load_detect_get_pipe(connector, &tmp, ctx);
--	if (ret > 0) {
-+	state = intel_load_detect_get_pipe(connector, ctx);
-+	if (IS_ERR(state)) {
-+		status = PTR_ERR(state);
-+	} else if (!state) {
-+		status = connector_status_unknown;
-+	} else {
- 		if (intel_crt_detect_ddc(connector))
- 			status = connector_status_connected;
- 		else if (DISPLAY_VER(dev_priv) < 4)
-@@ -893,11 +897,7 @@ intel_crt_detect(struct drm_connector *connector,
- 			status = connector_status_disconnected;
- 		else
- 			status = connector_status_unknown;
--		intel_load_detect_release_pipe(connector, &tmp, ctx);
--	} else if (ret == 0) {
--		status = connector_status_unknown;
--	} else {
--		status = ret;
-+		intel_load_detect_release_pipe(connector, state, ctx);
- 	}
- 
- out:
-diff --git a/drivers/gpu/drm/i915/display/intel_load_detect.c b/drivers/gpu/drm/i915/display/intel_load_detect.c
-index 5d6bb6d712bc..d5a0aecf3e8f 100644
---- a/drivers/gpu/drm/i915/display/intel_load_detect.c
-+++ b/drivers/gpu/drm/i915/display/intel_load_detect.c
-@@ -44,9 +44,9 @@ static int intel_modeset_disable_planes(struct drm_atomic_state *state,
- 	return 0;
- }
- 
--int intel_load_detect_get_pipe(struct drm_connector *connector,
--			       struct intel_load_detect_pipe *old,
--			       struct drm_modeset_acquire_ctx *ctx)
-+struct drm_atomic_state *
-+intel_load_detect_get_pipe(struct drm_connector *connector,
-+			   struct drm_modeset_acquire_ctx *ctx)
- {
- 	struct intel_encoder *encoder =
- 		intel_attached_encoder(to_intel_connector(connector));
-@@ -64,8 +64,6 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
- 		    connector->base.id, connector->name,
- 		    encoder->base.base.id, encoder->base.name);
- 
--	old->restore_state = NULL;
--
- 	drm_WARN_ON(dev, !drm_modeset_is_locked(&config->connection_mutex));
- 
- 	/*
-@@ -179,13 +177,12 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
- 		goto fail;
- 	}
- 
--	old->restore_state = restore_state;
- 	drm_atomic_state_put(state);
- 
- 	/* let the connector get through one full cycle before testing */
- 	intel_crtc_wait_for_next_vblank(crtc);
- 
--	return true;
-+	return restore_state;
- 
- fail:
- 	if (state) {
-@@ -198,27 +195,26 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
- 	}
- 
- 	if (ret == -EDEADLK)
--		return ret;
-+		return ERR_PTR(ret);
- 
--	return false;
-+	return NULL;
- }
- 
- void intel_load_detect_release_pipe(struct drm_connector *connector,
--				    struct intel_load_detect_pipe *old,
-+				    struct drm_atomic_state *state,
- 				    struct drm_modeset_acquire_ctx *ctx)
- {
- 	struct intel_encoder *intel_encoder =
- 		intel_attached_encoder(to_intel_connector(connector));
- 	struct drm_i915_private *i915 = to_i915(intel_encoder->base.dev);
- 	struct drm_encoder *encoder = &intel_encoder->base;
--	struct drm_atomic_state *state = old->restore_state;
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s], [ENCODER:%d:%s]\n",
- 		    connector->base.id, connector->name,
- 		    encoder->base.id, encoder->name);
- 
--	if (!state)
-+	if (IS_ERR_OR_NULL(state))
- 		return;
- 
- 	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
-diff --git a/drivers/gpu/drm/i915/display/intel_load_detect.h b/drivers/gpu/drm/i915/display/intel_load_detect.h
-index 9b69da1867a5..aed51901b9ba 100644
---- a/drivers/gpu/drm/i915/display/intel_load_detect.h
-+++ b/drivers/gpu/drm/i915/display/intel_load_detect.h
-@@ -10,15 +10,11 @@ struct drm_atomic_state;
- struct drm_connector;
- struct drm_modeset_acquire_ctx;
- 
--struct intel_load_detect_pipe {
--	struct drm_atomic_state *restore_state;
--};
--
--int intel_load_detect_get_pipe(struct drm_connector *connector,
--			       struct intel_load_detect_pipe *old,
--			       struct drm_modeset_acquire_ctx *ctx);
-+struct drm_atomic_state *
-+intel_load_detect_get_pipe(struct drm_connector *connector,
-+			   struct drm_modeset_acquire_ctx *ctx);
- void intel_load_detect_release_pipe(struct drm_connector *connector,
--				    struct intel_load_detect_pipe *old,
-+				    struct drm_atomic_state *old,
- 				    struct drm_modeset_acquire_ctx *ctx);
- 
- #endif /* __INTEL_LOAD_DETECT_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 07e7f7cdd961..e3ccface0c9d 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1723,21 +1723,21 @@ intel_tv_detect(struct drm_connector *connector,
- 		return connector_status_disconnected;
- 
- 	if (force) {
--		struct intel_load_detect_pipe tmp;
--		int ret;
-+		struct drm_atomic_state *state;
- 
--		ret = intel_load_detect_get_pipe(connector, &tmp, ctx);
--		if (ret < 0)
--			return ret;
-+		state = intel_load_detect_get_pipe(connector, ctx);
-+		if (IS_ERR(state))
-+			return PTR_ERR(state);
- 
--		if (ret > 0) {
-+		if (state) {
- 			type = intel_tv_detect_type(intel_tv, connector);
--			intel_load_detect_release_pipe(connector, &tmp, ctx);
-+			intel_load_detect_release_pipe(connector, state, ctx);
- 			status = type < 0 ?
- 				connector_status_disconnected :
- 				connector_status_connected;
--		} else
-+		} else {
- 			status = connector_status_unknown;
-+		}
- 
- 		if (status == connector_status_connected) {
- 			intel_tv->type = type;
+DRM core is still defining a list of common memory categories but it is now up
+to drivers to fill in the data and opt into the feature.
+
+There is also no aggregated category and memory regions are always specified in
+key names.
+
+Two driver vfuncs are added where DRM core queries the number and names of
+memory regions supported by the driver instance, and second where the driver
+fills in the usage statistics for centrally defined memory categories.
+
+I think this is a more future proof option since by moving the stat filling to
+drivers they are able to show not only the GEM handles but all used memory. For
+instance in case of i915 we have contexts, ring buffers, status pages and page
+tables all backed by GEM objects too.
+
+It also opens up a route for reporting sub-object size backing store granularity
+and allows for not traversing under the file_table lock for drivers which are
+able to do it in a more light-weight manner. For the former one example could be
+simply adding TTM region helpers.
+
+Not having aggregated counters means we do not need to add a second set of keys
+as soon as the first driver wants to provide a more detailed view. And userspace
+can trivially aggregate itself anyway.
+
+At the same time two trivial helpers are provided who want to show just the
+basic stats.
+
+I have also tried to preserve the drm-memory-$region naming by reserving a
+special character ('^') as a suffix ie. drm-memory-$region^$category. Unless I
+am missing something this should be compatible with any existing parsers which
+would just see more memory regions with more specific names. And they can be
+updated to support the format extension.
+
+Series is a bit rough so for discussion only.
+
+Rob Clark (1):
+  drm: Add common fdinfo helper
+
+Tvrtko Ursulin (5):
+  drm/i915: Use the fdinfo helper
+  drm: Add fdinfo memory stats
+  drm: Add simple fdinfo memory helpers
+  drm/msm: Add basic memory stats
+  drm/i915: Implement fdinfo memory stats printing
+
+ Documentation/gpu/drm-usage-stats.rst  |  22 +++-
+ drivers/gpu/drm/drm_file.c             | 132 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_driver.c     |  11 +-
+ drivers/gpu/drm/i915/i915_drm_client.c | 167 +++++++++++++++++--------
+ drivers/gpu/drm/i915/i915_drm_client.h |  30 ++---
+ drivers/gpu/drm/i915/i915_drv.h        |   4 +-
+ drivers/gpu/drm/i915/i915_gem.c        |   6 +-
+ drivers/gpu/drm/msm/msm_drv.c          |   4 +
+ include/drm/drm_drv.h                  |  14 +++
+ include/drm/drm_file.h                 |  18 +++
+ 10 files changed, 324 insertions(+), 84 deletions(-)
+
 -- 
-2.39.2
+2.37.2
 
