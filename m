@@ -2,54 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979876E4540
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C95576E455C
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 12:39:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A1B10E3F4;
-	Mon, 17 Apr 2023 10:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9999210E3FB;
+	Mon, 17 Apr 2023 10:39:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D1710E3F0
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 10:33:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681727627; x=1713263627;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=ZJOwb7S+TstRbRsMu+HaWHccU9wYiYqf7HO2rwFhgk8=;
- b=EvIiI1cO5MTjlUn1VG+c2OSsh8r95ozbdQfdU5LLWQnAZ0l2CuiG4EMa
- h8w+NhqJnedlTFhiYW2Wj/yFij1IhMrq8gfHeaZLDwPgCVCGHyikAj5+D
- bVLNUopeb3A4S9wnxihfCYEFLHTfPWC3qk0nGKzAe/lSYDYwWDrtqvAO9
- 5tipEFipLWD/JvS/XAPsYEfQkq048s4jIE/bU5szAUsX+onCZ1KrWRk9u
- M7JLwyofqCaX7lWClXrZGcvBkl0zstrpnA+EjhHqn9+t3TugQRL701yG5
- Kon6JBE10GkYmTedoTd0HwctAVht0ro/Uzj9fm8QPKyju2fvy9sMG/O+T A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="325202782"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="325202782"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 03:33:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="834356367"
-X-IronPort-AV: E=Sophos;i="5.99,203,1677571200"; d="scan'208";a="834356367"
-Received: from habramov-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.252.47.83])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 03:33:44 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
- <20230405071951.1258132-1-suraj.kandpal@intel.com>
- <871qkigabf.fsf@intel.com>
- <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Mon, 17 Apr 2023 13:33:42 +0300
-Message-ID: <87h6teer21.fsf@intel.com>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3874210E3F6;
+ Mon, 17 Apr 2023 10:39:02 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ o6-20020a05600c4fc600b003ef6e6754c5so11415700wmq.5; 
+ Mon, 17 Apr 2023 03:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1681727940; x=1684319940;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=CmymNmbm0SFHzsUmDof5GjJMAJrAxQvLWm3ATdzKtGw=;
+ b=PyvaEv2OMxFIha0wI5BblRADti0qMpbF1gYKEZVSU+3OQvz6SQLcjJhiL9ivyhdUJX
+ Jb51hQ3SCun1pojTJp2CchSEKcFXvBfUJJu3MAmTMlpif8JME8EoPYWO8T/A1WKH63dn
+ iCDX652nzriAxGav7OZ1aUKb9uc75SBq6ftsy7wQIDFQ77EmUqpdILH41UoDxSDq42fT
+ Ik6pucLjrK09/Sp8YwnwEyv5Jq8q7Wmtra2+UPFgR6rkOqbnl857HapViUrvQozrv9an
+ 0Q4DU2D8AOcPqO45ccxzJzqe+0zpbiShI+j/zYpxofd5e/2sGWDs2H7WFvs3Yvt6R3RA
+ NBAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681727940; x=1684319940;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=CmymNmbm0SFHzsUmDof5GjJMAJrAxQvLWm3ATdzKtGw=;
+ b=TnTdoA94pDtFhY1oniCBc4PXSiHDgKpWqCbqT6FpUK2JWa0QULYLTq+4wDViFUbXXN
+ yu70y+WDL9is1VlRRALWk6Rb9FvG9ez+3xx60soCPDdJXbLnAjfg9bA+GX+3eYdWmrO5
+ bb3WTde46r2msBNjI/vOhmzwZSm+rVteFehK/zRAGeAoudIjLYpIipbGsKZuosTy9oMO
+ xJWErfkELYng6yCFG78oGrP+H5pm/g++selJyq+NURwCUGz/HkipCpUFUJrFNKtCUYJ+
+ MJTh3L1wZbnNLBDTydXNGnEHvA8SrVIFJYvi08zuC8HosOtLt5hKDzNx/MaSG7HcjL23
+ SbjQ==
+X-Gm-Message-State: AAQBX9eC3LX6pU7ZoEDrdCGziwl8P88dN6QBWM8cELwYs68ci9FvaZbw
+ PACzKmo9kim1O6kgfIjN2ho0RXg3Vm4=
+X-Google-Smtp-Source: AKy350YdU7qP4tBFqWVAJiivAblmNCnXdRCQFu60ob4m4TJL8g5SZDT0ZYc4RdPK2cbPhPtXmnnk3w==
+X-Received: by 2002:a05:600c:292:b0:3f1:73ca:7807 with SMTP id
+ 18-20020a05600c029200b003f173ca7807mr1703037wmk.37.1681727939919; 
+ Mon, 17 Apr 2023 03:38:59 -0700 (PDT)
+Received: from localhost.localdomain
+ (host-87-19-108-254.retail.telecomitalia.it. [87.19.108.254])
+ by smtp.gmail.com with ESMTPSA id
+ y12-20020a5d470c000000b002c70ce264bfsm10238018wrq.76.2023.04.17.03.38.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 Apr 2023 03:38:59 -0700 (PDT)
+From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Mon, 17 Apr 2023 12:38:51 +0200
+Message-Id: <20230417103854.23333-1-fmdefrancesco@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/3] drm/i915: Replace kmap() with
+ kmap_local_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,146 +82,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Ira Weiny <ira.weiny@intel.com>,
+ "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 Apr 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> On Wed, 05 Apr 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> > Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
->> > Workaround: Increase the timeout.
->> >
->> > WA_14017248603: adlp
->> > Bspec: 55480
->> >
->> > ---v2
->> > -change style on how we mention WA [Ankit] -fix bat error
->> >
->> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > ---
->> >  .../i915/display/intel_display_power_well.c   | 30 ++++++++++++++++++-
->> >  1 file changed, 29 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> > index 62bafcbc7937..52f595929a18 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> > @@ -489,6 +489,34 @@ static void icl_tc_cold_exit(struct
->> drm_i915_private *i915)
->> >  		    "succeeded");
->> >  }
->> >
->> > +static void
->> > +adl_aux_wait_for_power_well_enable(struct drm_i915_private *i915,
->> > +				   struct i915_power_well *power_well,
->> > +				   bool timeout_expected)
->> > +{
->> > +	const struct i915_power_well_regs *regs = power_well->desc->ops-
->> >regs;
->> > +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
->> > +	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
->> > +
->> > +	/*
->> > +	 * WA_14017248603: adlp
->> > +	 * Type-C Phy are taking longer than expected for AUX IO Power
->> Enabling.
->> > +	 * Increase timeout to 500ms.
->> > +	 */
->> > +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
->> > +		if (intel_de_wait_for_set(i915, regs->driver,
->> > +
->> HSW_PWR_WELL_CTL_STATE(pw_idx), 500)) {
->> > +			drm_dbg_kms(&i915->drm, "%s power well enable
->> timeout\n",
->> > +				    intel_power_well_name(power_well));
->> > +
->> > +			drm_WARN_ON(&i915->drm, !timeout_expected);
->> > +		}
->> > +		return;
->> > +	}
->> > +
->> > +	hsw_wait_for_power_well_enable(i915, power_well,
->> timeout_expected);
->> > +}
->> 
->> Please don't duplicate the function and the wait like this.
->> 
->> Something like this is sufficient:
->> 
->> 
->> @@ -252,7 +252,9 @@ static void hsw_wait_for_power_well_enable(struct
->> drm_i915_private *dev_priv,
->>  					   bool timeout_expected)
->>  {
->>  	const struct i915_power_well_regs *regs = power_well->desc->ops-
->> >regs;
->> +	enum phy phy = icl_aux_pw_to_phy(i915, power_well);
->>  	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
->> +	int timeout = 1;
->> 
->>  	/*
->>  	 * For some power wells we're not supposed to watch the status bit
->> for @@ -264,9 +266,13 @@ static void
->> hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
->>  		return;
->>  	}
->> 
->> +	/* WA_14017248603: adlp */
->> +	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy))
->
-> I did try this but it ends up throwing a kernel null pointer error at intel_phy_is_tc
-> which made me float the version of code I did.
+kmap() has been deprecated in favor of kmap_local_page().
 
-Please explain what causes it, and how your version avoids it.
+There are two main problems with kmap(): (1) It comes with an overhead as
+mapping space is restricted and protected by a global lock for
+synchronization and (2) it also requires global TLB invalidation when the
+kmap’s pool wraps and it might block when the mapping space is fully
+utilized until a slot becomes available.
 
-BR,
-Jani.
+With kmap_local_page() the mappings are per thread, CPU local, can take
+page faults, and can be called from any context (including interrupts).
 
+The tasks can be preempted and, when they are scheduled to run again, the
+kernel virtual addresses are restored and so they are still valid.
 
->
-> Regards,
-> Suraj Kandpal
->> +		timeout = 500;
->> +
->>  	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
->>  	if (intel_de_wait_for_set(dev_priv, regs->driver,
->> -				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
->> +				  HSW_PWR_WELL_CTL_STATE(pw_idx),
->> timeout)) {
->>  		drm_dbg_kms(&dev_priv->drm, "%s power well enable
->> timeout\n",
->>  			    intel_power_well_name(power_well));
->> 
->> 
->> > +
->
->> >  static void
->> >  icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
->> >  				 struct i915_power_well *power_well) @@ -
->> 517,7 +545,7 @@
->> > icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
->> >  	if (DISPLAY_VER(dev_priv) == 11 &&
->> intel_tc_cold_requires_aux_pw(dig_port))
->> >  		icl_tc_cold_exit(dev_priv);
->> >
->> > -	hsw_wait_for_power_well_enable(dev_priv, power_well,
->> timeout_expected);
->> > +	adl_aux_wait_for_power_well_enable(dev_priv, power_well,
->> > +timeout_expected);
->> 
->> A function prefixed adl_ should indicate it's only needed for adl+. This
->> change is misleading.
->> 
->> BR,
->> Jani.
->> 
->> 
->> >
->> >  	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
->> >  		enum tc_port tc_port;
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+Furthermore, kmap_local_page() is faster than kmap() in kernels with
+HIGHMEM enabled.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Thread locality implies that the kernel virtual addresses returned by
+kmap_local_page() are only valid in the context of the callers. This
+constraint is never violated with the conversions in this series,
+because the pointers are never handed to other threads, so the local
+mappings are allowed and preferred.
+
+Therefore, replace kmap() with kmap_local_page() in drm/i915/,
+drm/i915/gem/, drm/i915/gt/.
+
+Suggested-by: Ira Weiny <ira.weiny@intel.com>
+Signed-off-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
+
+v1->v2: Do some changes in the text of the cover letter and in the
+commit messages. There are no changes in the code of any of the three
+patches.
+
+Fabio M. De Francesco (3):
+  drm/i915: Replace kmap() with kmap_local_page()
+  drm/i915/gt: Replace kmap() with kmap_local_page()
+  drm/i915/gem: Replace kmap() with kmap_local_page()
+
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |  6 ++----
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  8 ++++----
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |  4 ++--
+ drivers/gpu/drm/i915/gt/shmem_utils.c              | 11 ++++-------
+ drivers/gpu/drm/i915/i915_gem.c                    |  8 ++++----
+ 5 files changed, 16 insertions(+), 21 deletions(-)
+
+--
+2.40.0
+
