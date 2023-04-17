@@ -1,59 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA33E6E46DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 13:53:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0806D6E46F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Apr 2023 14:00:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6630510E461;
-	Mon, 17 Apr 2023 11:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F5910E467;
+	Mon, 17 Apr 2023 11:59:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2355010E461
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 11:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681732413; x=1713268413;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=tyc57IZWXE9Z5niL19/dW1mM5/lBapcjKg5AQYJERoA=;
- b=bDdt5ovGtcYsg5dcEHB3f7pD8vCKf4D+BuCRV8Np2AFIH+xqqjfQj97Q
- DDuIX6+yD/Bc+sq8PWgz8zMQV7B8wrXCfPDXLT2XdwCKhED9Nl71RYQ/j
- XyhFFd6jMiENmfbPQ21ceEMCNpJBKAD8pST/9NhIsllX6wypE1saAug7a
- tNruUH97fBR3UQZH2t6fbIk8AqyG2SHgajT+Hf3v8vrLdVDXFAvK5zk4p
- KFfSIE0ZGt3n3taqbdfbGgM2ai7ar23CtYrpj8xShQf1mXNMqzOk+Ag32
- zfBYNZbHWoFqsOAdpAMnUpCU/FWL3TT9HDvQfKvz2ITIG+qAbHTaLJdpn g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="333665397"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="333665397"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 04:53:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10682"; a="780045005"
-X-IronPort-AV: E=Sophos;i="5.99,204,1677571200"; d="scan'208";a="780045005"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 04:53:30 -0700
-Date: Mon, 17 Apr 2023 14:53:27 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Message-ID: <ZD0zN66ryN2HqqYV@ideak-desk.fi.intel.com>
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
- <20230405071951.1258132-1-suraj.kandpal@intel.com>
- <871qkigabf.fsf@intel.com>
- <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87h6teer21.fsf@intel.com>
- <SN7PR11MB67501452EA239C59649E8335E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87bkjmeq0j.fsf@intel.com>
- <ZD0tItORRLeBZ3sj@ideak-desk.fi.intel.com>
- <SN7PR11MB6750A7954E47CF19AA16DDD9E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0723110E467;
+ Mon, 17 Apr 2023 11:59:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62D5AAADD2;
+ Mon, 17 Apr 2023 11:59:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN7PR11MB6750A7954E47CF19AA16DDD9E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Date: Mon, 17 Apr 2023 11:59:56 -0000
+Message-ID: <168173279637.24902.9121544494729929306@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230417062503.1884465-1-fei.yang@intel.com>
+In-Reply-To: <20230417062503.1884465-1-fei.yang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/mtl=3A_Define_MOCS_and_PAT_tables_for_MTL_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,84 +41,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 17, 2023 at 02:43:25PM +0300, Kandpal, Suraj wrote:
-> > [...]
-> > Adding a non-default enable_timeout to the power well descriptor would
-> > avoid adding more platform checks:
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > index 6645eb1911d85..8ca1f34be14c2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > @@ -1378,13 +1378,18 @@ static const struct i915_power_well_desc
-> > xelpd_power_wells_main[] = {
-> >                       I915_PW("AUX_C", &icl_pwdoms_aux_c, .hsw.idx = ICL_PW_CTL_IDX_AUX_C),
-> >                       I915_PW("AUX_D", &icl_pwdoms_aux_d, .hsw.idx = XELPD_PW_CTL_IDX_AUX_D),
-> >                       I915_PW("AUX_E", &icl_pwdoms_aux_e, .hsw.idx = XELPD_PW_CTL_IDX_AUX_E),
-> > +             ),
-> > +             .ops = &icl_aux_power_well_ops,
-> > +             .fixed_enable_delay = true,
-> > +     }, {
-> > +             .instances = &I915_PW_INSTANCES(
-> >                       I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
-> >                       I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
-> >                       I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
-> >                       I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
-> >               ),
-> >               .ops = &icl_aux_power_well_ops,
-> > -             .fixed_enable_delay = true,
-> > +             .enable_timeout = 500,
-> >       }, {
-> >               .instances = &I915_PW_INSTANCES(
-> >                       I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1,
-> > .hsw.idx = TGL_PW_CTL_IDX_AUX_TBT1), diff --git
-> > a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > index 62bafcbc7937c..930a42c825c36 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > @@ -253,6 +253,7 @@ static void hsw_wait_for_power_well_enable(struct
-> > drm_i915_private *dev_priv,  {
-> >       const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
-> >       int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
-> > +     int timeout = power_well->desc->enable_timeout ? : 1;
-> >
-> >       /*
-> >        * For some power wells we're not supposed to watch the status bit
-> > for @@ -266,7 +267,7 @@ static void
-> > hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
-> >
-> >       /* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
-> >       if (intel_de_wait_for_set(dev_priv, regs->driver,
-> > -                               HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
-> > +                               HSW_PWR_WELL_CTL_STATE(pw_idx), timeout)) {
-> >               drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
-> >                           intel_power_well_name(power_well));
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > index ba7cb977e7c7f..fd5acf68503e1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > @@ -110,6 +110,8 @@ struct i915_power_well_desc {
-> >        * Thunderbolt mode.
-> >        */
-> >       u16 is_tc_tbt:1;
-> > +     /* Enable timeout if bigger than the default 1ms. */
-> > +     u16 enable_timeout;
-> >  };
-> >
-> 
-> How would we make sure that this timeout only applies to ADLS in that
-> case as that's whom the workaround is for?
+== Series Details ==
 
-The HSD is for display 13 ADL, that is ADL-P/M/N. The ADL-S power wells
-are described separately in adls_power_wells.
+Series: drm/i915/mtl: Define MOCS and PAT tables for MTL (rev5)
+URL   : https://patchwork.freedesktop.org/series/115980/
+State : warning
 
---Imre
+== Summary ==
+
+Error: dim checkpatch failed
+04d4f946f5f0 drm/i915/mtl: Set has_llc=0
+f44a8a034a83 drm/i915/mtl: Define MOCS and PAT tables for MTL
+-:63: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#63: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:486:
++
++}
+
+total: 0 errors, 0 warnings, 1 checks, 247 lines checked
+5496af3927f8 drm/i915/mtl: Add PTE encode function
+-:151: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#151: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:229:
++	GEM_BUG_ON(addr & ~GEN12_GGTT_PTE_ADDR_MASK);
+
+total: 0 errors, 1 warnings, 0 checks, 164 lines checked
+72e4d658a8e9 drm/i915/mtl: workaround coherency issue for Media
+b9a188850588 drm/i915/mtl: end support for set caching ioctl
+eaa559214e8c drm/i915: preparation for using PAT index
+-:422: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#422: FILE: drivers/gpu/drm/i915/selftests/mock_gem_device.c:186:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 335 lines checked
+932e5c4abaa6 drm/i915: use pat_index instead of cache_level
+-:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#22: 
+cached, uncached, or writethrough. For these simple cases, using cache_level
+
+-:651: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#651: FILE: drivers/gpu/drm/i915/gt/gen8_ppgtt.c:873:
++					      i915_gem_get_pat_index(vm->i915,
++							I915_CACHE_NONE));
+
+-:921: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#921: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:1303:
++					 i915_gem_get_pat_index(vm->i915,
++							I915_CACHE_NONE),
+
+-:1619: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1619: FILE: drivers/gpu/drm/i915/i915_gem.c:424:
++					i915_gem_object_get_dma_address(obj,
++							offset >> PAGE_SHIFT),
+
+-:1634: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1634: FILE: drivers/gpu/drm/i915/i915_gem.c:606:
++					i915_gem_object_get_dma_address(obj,
++							offset >> PAGE_SHIFT),
+
+-:1652: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1652: FILE: drivers/gpu/drm/i915/i915_gpu_error.c:1121:
++						i915_gem_get_pat_index(gt->i915,
++							I915_CACHE_NONE),
+
+-:1658: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1658: FILE: drivers/gpu/drm/i915/i915_gpu_error.c:1126:
++						i915_gem_get_pat_index(gt->i915,
++							I915_CACHE_NONE),
+
+-:1776: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1776: FILE: drivers/gpu/drm/i915/selftests/i915_gem.c:62:
++				     i915_gem_get_pat_index(i915,
++							I915_CACHE_NONE),
+
+-:1822: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1822: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:363:
++					     i915_gem_get_pat_index(vm->i915,
++						     I915_CACHE_NONE),
+
+-:1834: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1834: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:1384:
++^I^I^I^I^I                    I915_CACHE_NONE),$
+
+-:1834: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1834: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:1384:
++				     i915_gem_get_pat_index(i915,
++					                    I915_CACHE_NONE),
+
+-:1868: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1868: FILE: drivers/gpu/drm/i915/selftests/intel_memory_region.c:1075:
++					  i915_gem_get_pat_index(i915,
++							I915_CACHE_NONE),
+
+total: 1 errors, 1 warnings, 10 checks, 1599 lines checked
+e50cbe9097b5 drm/i915: Allow user to set cache at BO creation
+
+
