@@ -1,92 +1,92 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98996E5846
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 07:02:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C07346E584A
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 07:02:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF5E610E044;
-	Tue, 18 Apr 2023 05:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF9C10E67D;
+	Tue, 18 Apr 2023 05:02:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2AB110E044
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 05:02:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DCA810E679;
+ Tue, 18 Apr 2023 05:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681794155; x=1713330155;
+ t=1681794169; x=1713330169;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=F4OHDUcZ6bs+HZyVvves0PPpyJpyj3re3URo9W+BmGU=;
- b=XHQ5bDUM4Oi/EsFimUeUI3JKaZfpzMiYT8k6klSuZsd0l0icEjv/i6M8
- tFblOd3WypzcspNoTuvH7WT93gbN2V0/EJ4IQf4DCLeXjflEbQzfhIVdP
- TTUdZr22SnkKSX2PNYq0vA3FDSOr8rINEYLRhdEXgbcURDqD8TliKQve4
- wmtijE4YjaXToAz4O6t5WZVPVqGNMOBuJ0wiK3JLlJq07HTSNCYloy49X
- fOHBd1tzdqDgRcyWJzdA8yjfFmJx0GrGfP63YD66jI7xSOk0hSjyeCdce
- U+dRuV7f9gBURHUMCbu1MhUYtJInng2B2GIhlURj8D9+wWMzbKQq7UPss w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="346922605"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="346922605"
+ bh=bpch/0fRSstvM8XbMHNZtNb9LEG5diVBcZX2ES0qdu4=;
+ b=hp/SU231pKCPlCsusDr3Vl9yhziZxgKRDfc1Sfzfu8ZnmDk5FGKeY/br
+ jiIcSex0NhidxgYh6IvuJOaSaywTb1AfK61kYHeBjivjmrx5Upae+Wtwx
+ 7Ay7/b/DPtPDmbq+SGFPqOJKuEhz10Scw6iBejjmO2n9mZaZQgZG9Ckf/
+ QEEB3+ESSF/SiFYEOMRAvnxvkySo9JbXfio4J3TX26igBERp44d0ItIcj
+ gp0gd4uRHQX79NEozdk+prQx5T3HfrtMgYC8xCYHhsBbzXlTHZzFoSXQd
+ UW2Bgc0ZFu+WVUbNEp0nhxDfggvs1PZz/8ierCsaaISVOOj6TJPUxXhtM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="346922664"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="346922664"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2023 22:02:34 -0700
+ 17 Apr 2023 22:02:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="937108140"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="937108140"
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="937108194"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="937108194"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP; 17 Apr 2023 22:02:34 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmsmga006.fm.intel.com with ESMTP; 17 Apr 2023 22:02:48 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 17 Apr 2023 22:02:34 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 17 Apr 2023 22:02:33 -0700
+ 15.1.2507.23; Mon, 17 Apr 2023 22:02:47 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 17 Apr 2023 22:02:33 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
+ 15.1.2507.23 via Frontend Transport; Mon, 17 Apr 2023 22:02:47 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 17 Apr 2023 22:02:33 -0700
+ 15.1.2507.23; Mon, 17 Apr 2023 22:02:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eqp7MwD2MsFdZq7D2TKNud/nGWpCTMwo/m9J2735v4sNceQ8P4uL5ouJfnigibzyE6LWI9H80qvF8/sfcNd0Cfog/l3NwjzXcQI+cuqqBA9k9OPqFFZ/qhd9fBhTcsLyLxmfgPWDLzytUZNWGB0iTHLS5PZbmM3a7BasQLnz8wI0XxNU/U+KrPgfr5LyD4uoq9t7SDw48yFQ0dUL5UTecC6sRIvzoLU53Fynzf8cyFN+mktrsXX0+wxIZt5unYcfpo40K4MUwDazhXZ019yXdZN0BPfh83dbAOZUHxIE64lZlhvlCGUUGFa4sR+GSz4m4nF8R9sSy9/46O+oKtOZ+g==
+ b=G+jG/BUdNrAEPsJwYtj8X2A+lvtLpnPbMSAkWdcgtv3hIwS3XqtVzva8C7ZZclvTAFaDlW07PxJ7S9o3+DN63JCfixAdym+vuqPOx2hXrMV4eG9ApDBAUyZpxqY0uVcUCpVIpqUQChRUMg8SnuGq+npuStgHybi1CBIAQ2Qep4MKOcvKEUmqxBqul1/YY2OTONBfyYPX05xf7CNQe31jGeDmEqQDOVdXH5mATxPv02mxIkQknU7HIVsC5PkemWZ9cwkESdYCqNGs5KcO1PyLv1LqOcilTxae5RYS7ydyXRinhyMpwZ+xIDrgITr5orzBNcCvNkLzonV/T3AhQ5EkbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KFsTaxxhpbD5tbUlPcixkIazzz4w+4aAakR6CEI5USw=;
- b=QoTDHbI0eFpxr5Scvzu8vNweGJ6JHi88Wg3Ze6ODXWPyLG5c54PvzWRmQf3/Nh+7YsVBz6YMPRRYu17FZbenGa+bxYscCTrt05nf3wiVJC95CUdW8XkFXWmuAXbiCPhWK0WnE2LmAAqLr9KZPRQYjg3rEgmgEOAB2WE+uQCA716z8jeSaXbUZBFDzZPlgS2rpK4T24Mfzn0WQRbuu0H7SuV44RAWWJVuk+prn1MyVQU1w9YSQAKGG0/SW/+ctGJpGfniRzG9HXqMNFo5mfhkGfWkBjhtusSS9GVzoaINniCIp7U5LKc6to1YrFh/U1CiwqwDHrFxKmfvHiyaR5x4ig==
+ bh=ir/qPlHBFPRkIfTSCv4AvDTvCUWWInNvVlclfx4pv2U=;
+ b=BKTwfDc6LBhbglZQQETvQSasclZzFlSGz4NskKTld2tO/eH8N5h+jr8Cxdb2xk8gG+d7VhU/x6w/BWqGQoGJXTy6wIbmXGF30o123x1kcacthVH5b/CDyv8W7ahEE7oPlSIFVPWBh9b/jvYa3eTzMRwVzfOmWJ9aO1Cw9xCBwvocufphJJEPHbZ4XeJTH1+dGNRXw1WajKkrO156cubOl5JLSIDxwm2F5DM2I7Cb1LP9yEkcEASEB/I8i6qCxHEuT8SRBXzvqkLJleK4/Z4d0tG/Qx64v2Iv3xf8zrpgGICTaZvV7hHLGopI6BWyNKdhu6YEauaXuHWGqCvWXuUDbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by SA0PR11MB4640.namprd11.prod.outlook.com (2603:10b6:806:9b::15)
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by CO1PR11MB5188.namprd11.prod.outlook.com (2603:10b6:303:95::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
- 2023 05:02:26 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::3541:e31b:6f64:d993]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::3541:e31b:6f64:d993%9]) with mapi id 15.20.6298.045; Tue, 18 Apr 2023
- 05:02:26 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
-Thread-Index: AQHZZ48eDLRLF5QNKUCgBLAIXnjav68vRLgAgAAXivCAAATIAIAAA/oAgAACTwCAAAi/AIAAA9JAgAADboCAAAgewIAAAd8AgAEVJAA=
-Date: Tue, 18 Apr 2023 05:02:26 +0000
-Message-ID: <SN7PR11MB6750921E2B37F7AFC67180FBE39D9@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20230405071951.1258132-1-suraj.kandpal@intel.com>
- <871qkigabf.fsf@intel.com>
- <SN7PR11MB6750CDF9E59B364748A7ABB3E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87h6teer21.fsf@intel.com>
- <SN7PR11MB67501452EA239C59649E8335E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87bkjmeq0j.fsf@intel.com> <ZD0tItORRLeBZ3sj@ideak-desk.fi.intel.com>
- <SN7PR11MB6750A7954E47CF19AA16DDD9E39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <ZD0zN66ryN2HqqYV@ideak-desk.fi.intel.com>
- <SN7PR11MB6750DBE164843AAD7A037ABEE39C9@SN7PR11MB6750.namprd11.prod.outlook.com>
- <ZD07mPhMi5cL6SZ/@ideak-desk.fi.intel.com>
-In-Reply-To: <ZD07mPhMi5cL6SZ/@ideak-desk.fi.intel.com>
+ 2023 05:02:45 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174%7]) with mapi id 15.20.6298.045; Tue, 18 Apr 2023
+ 05:02:44 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Thread-Topic: [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+Thread-Index: AQHZZKiCXow33Wzeq0K314B/OZqu968cqG8AgAAdbYCAACdegIAAAyuAgAAEPICAAAjLgIAAGeKAgAAG7oCAAAf9gIAAO30AgACyrQCAAIPEgIAHkI0AgAApuICAABWEgIAAGNKAgAA3aoCAACJEAIABGhiAgAA2uYCAAMsIYIAAPMKAgABpLgCAAPe5MIAALfsAgABc2YCAA9/IgIAA9jYAgAAIdQCAAAm2AIAAdrUwgAAQe4CAAAn+EA==
+Date: Tue, 18 Apr 2023 05:02:44 +0000
+Message-ID: <BN9PR11MB52764F6F00EFCD6EF9ACC71D8C9D9@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <20230412105045.79adc83d.alex.williamson@redhat.com>
+ <ZDcPTTPlni/Mi6p3@nvidia.com>
+ <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZDfslVwqk6JtPpyD@nvidia.com>
+ <20230413120712.3b9bf42d.alex.williamson@redhat.com>
+ <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230414111043.40c15dde.alex.williamson@redhat.com>
+ <DS0PR11MB75290A78D6879EC2E31E21AEC39C9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230417130140.1b68082e.alex.williamson@redhat.com>
+ <ZD2erN3nKbnyqei9@nvidia.com>
+ <20230417140642.650fc165.alex.williamson@redhat.com>
+ <BN9PR11MB5276D93DDFE3ED97CD1B923B8C9D9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20230417221033.778c00c9.alex.williamson@redhat.com>
+In-Reply-To: <20230417221033.778c00c9.alex.williamson@redhat.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,60 +94,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SA0PR11MB4640:EE_
-x-ms-office365-filtering-correlation-id: 5b582761-e493-484b-3ea2-08db3fca1a59
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|CO1PR11MB5188:EE_
+x-ms-office365-filtering-correlation-id: 9b276065-7796-457b-547f-08db3fca2542
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VyGKNVcHvYf+9/ZnFHM51+jFUDPXuojZ3385NDAxaAeFxidf2+9MVORwu1DBaozUYN3QJRw/dVKFj2gq4M7AArEdwmvROcGI5Zk8y5uedxxlU6RTpIFnG04TWAELE0ExYlXbVFWcXCh11ms4+cI8EIejwRavd8P23F+/YWmKw6cZHjgtYQCjFIhRGCO12H89YF3AcDTgSizOHwo9JC1sdkjp/F1adrBEvct/0zQiQLXgIfo2ORPvPSkJVikj68/QzB43w77Qa8yKtcLbVH8t/sEd21N+kSPYG+BYkcu9mhINvDOTjSV/ECEu8yJEZI3TxN6diz6IqBYOvpV6Qv5HAMwOZeStczdpJMngqMqi5As+HLdNVWEkorqk+J9odTIBVFbAc3uVQtjWKqzToJyQqRNK2yCHsyldxsRTQh/szaqE76IXY6vS+ged0Nl0ZTvkRh2mHtjzcgfefoNkMtyzYNHlWn2us3FUQiImlIdiT+DekRMYQL2qV9vWo/h9dU9Y8GMCr8BJ9QDfDBwp6QsvxyuDcrZ5LUz1N4DXjm5pak2sLIOmOTrjVHA4OoFfD4VTidarItCMGsuJMw6fD8JZAzmRbT6glz5ZeEqVu31prmkND2Or7LrbZE7OeuPSWM/i
+x-microsoft-antispam-message-info: 8jUUl9gZxFFQ+G4ERjAQVHPbfuT3OcArPxG1POHgPqEHfqLTHussgLNbt/S92+nNUo/N/oXFsU06PvWc/zyEPai2e6X+1OxCQJb1W9ef9s1NYcqiefm/tkGGvjby9pVUzO3rcMbJaJiP0pP8iOYKzjlVy19wPzU9DAWOBxUDl1jaXUQMd1kryI+t/i6cmWHvCiT2SwyfYf19DpDTla2PSOMmEix8aEfqszLyjAGiRE1lK5JQc9slq4mEMqqFkj3PVPtWVK+NwUpXEsKuyHukwBVCeHFE1WnfC8ZM0hK4OoKNFBcY+ExW6IGxdPO/0WPoKA5ohS5FVYUN5Ee/5YuWlrM2iApb2tPYqFb3G+HVj8Rc2eq6wuYnejhJx+XaBRQ0HOZlgdqCaEJbq2uqXdg7g+C4pyEPd4t/z1trgEBY/WNaRellU9/k/J7Ap+4ZgWH8RJcTw4lgb8GVBXo3D3LmwXgfGTLqs+L1JqoWS3FviOSwg38SLD+iKU9m6+2q48ghXVIHrL/1AKLikTueZtQvULQaAgTNyUhSJYz6mcDSiq02pPoieS86jsl2gTRBnERC9XcSSYkO6772v8BLAo2guKTOeS6dzuHknZ8PSCYVujTIkDQXHnRaf5RMrnPT29gW
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(136003)(366004)(376002)(39860400002)(396003)(451199021)(38100700002)(8936002)(6862004)(8676002)(122000001)(38070700005)(5660300002)(2906002)(33656002)(86362001)(52536014)(55016003)(478600001)(7696005)(71200400001)(54906003)(6636002)(186003)(9686003)(66946007)(6506007)(76116006)(66476007)(66446008)(26005)(41300700001)(82960400001)(316002)(4326008)(64756008)(66556008);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(136003)(366004)(376002)(39860400002)(396003)(451199021)(38100700002)(8936002)(8676002)(122000001)(38070700005)(5660300002)(7416002)(2906002)(33656002)(86362001)(52536014)(55016003)(478600001)(7696005)(71200400001)(54906003)(186003)(9686003)(66946007)(6506007)(76116006)(66476007)(66446008)(26005)(41300700001)(82960400001)(316002)(83380400001)(6916009)(4326008)(64756008)(66556008);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7RjfkWYo4rwbx4Aif26//zn49l2Q1MuC76haJOaauLxLzbfxefEPAj2G+CnI?=
- =?us-ascii?Q?/cAngeAKbf3Md+P+LpyVe+xrY95LvIvJqEFabFGbp7X+I26eCCS+J+9gtMWg?=
- =?us-ascii?Q?2RQLsJSH25c2rvq+i5lwzyZJHdJAxobHsKH/suwv0LpgV7gmOLeIZFJZB/YT?=
- =?us-ascii?Q?EJyGVxMijLcAT9+Kutc9rmAFSHDvOe/Bjs2+bzs8N46nLWdVMCv4gTas0RhA?=
- =?us-ascii?Q?qcLJXnrvUL2JpKHQCpUf+HVV/RtGGyCWybrwxd7HFivPULCK/+heHQbr3g5N?=
- =?us-ascii?Q?+Si7QFjcG/Elvokd1X2LMWyO1rNWGaC3Isp4wwUoRiBwUblA2nEXQdCTUsnN?=
- =?us-ascii?Q?q7eLz/BTUeeAgjvs4GgsfPX+JxPBQqmZSALwcsCiwzZ3o7r7NfWlNlCdFa5O?=
- =?us-ascii?Q?zKt2jNz3vOxmA5Pegp2SPgw6pSlTXW0e70Fl2mNMrV1ScY7BUnS33JoUzdYW?=
- =?us-ascii?Q?P9Ciuxlu8YlLLtikYbO8dCcxHXU00wd5DYz4zigX78/YVVrwvy75MF92yIZX?=
- =?us-ascii?Q?cS+Rdn/kIYtqEqTN2NbYdJ4Poo+Fi82o/EE1D2MgAsoNGrgz3pn83UcI0sCQ?=
- =?us-ascii?Q?tTrD1aGAkDV+fWP7WJv5Yq1Td6/Vw0g+zNMzzFMqtmi7we97hgCkz84PgSV4?=
- =?us-ascii?Q?A/6sSaWwepby3OXQaWIpydSYXgdk/vGYWfUG93Hf7vmzW3FRnNRQmgk9WNVU?=
- =?us-ascii?Q?myRHQjyEu225d3vnpEoge5OsSPyEn+llZ2Jo9lMQxaiczpFN2cZIDGG74QxQ?=
- =?us-ascii?Q?2GbN3wYykLBawFAVJyqVa/oDTBdiQs9vGoyQLT3RntnBDeeAaTw57fR5AogF?=
- =?us-ascii?Q?V6I6bnRgwnAKIrXy+cnrK8UMv4wYPFHzeokZLy4+7YJgv3ezP42UEoNRa8oy?=
- =?us-ascii?Q?IiJQ5VEJtde9izh/TnBAV65qOA068vUbBkpY8DPbj+h+zX9A7Yf23aoqx0rI?=
- =?us-ascii?Q?Paq06Y4Qza9QOvj2i1hgLVps/wfsZEsq7ciAu1GwZOuzBlxGmSfN3AIM4Ham?=
- =?us-ascii?Q?keDDcfHRRU29cNxkiheR0xbRdx53QWk15k1fuxVcMTDYXLRUYHHuo+bd6rbN?=
- =?us-ascii?Q?GSx9VnXAdoScv4+Rp2pt/x3N6zk6xpVpKgSOmZqMs44hwxKyjvuMtdmZafkp?=
- =?us-ascii?Q?oeQbrTg4lLn8IVhRB5iRKSIY+m9iEGFV4d+aK9ieQIsEspOK7FnH2JPvbe3n?=
- =?us-ascii?Q?0t9AchsA23ZMY/AXGmWw6SxsgWlQgrgrR5s2mNZ3ORj1HLWl2wPv4wTAS0k/?=
- =?us-ascii?Q?uSbl37Bbal5TguJNFStd1wyO9BbanYoyKNWYl07gxSdTIuUCuQQ7LVvm18Ot?=
- =?us-ascii?Q?8NOPyjzvU1SDL7A5TEf/gSAWa3zRuihmvuY/Rq1awstOEFZc/SDUtk9op722?=
- =?us-ascii?Q?Fvh4Of70ZZBFRcGUPu0unyXkBB5CuvVquPIbv+kXtcleobFawbDE9ll1Wj41?=
- =?us-ascii?Q?zCbbH+WBd9I56UprknnKbX2yoJl7MAoGTM/t8YuBHQMIVymw6bhmXHIwrR2W?=
- =?us-ascii?Q?b6PEc4Ra2GHHm/NlqPVAVeew7bb/FbpcyXT2MRIMYt/g1zX9duuDVd/sC1CW?=
- =?us-ascii?Q?UVWEB6JjgE2+/AFaeh6ZJUnLQzhW+SauJPl9Ru2d?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZMtLLM4M5dEaYJID2n+d1pUdBky2AUBrOc8LMFs9yxv1szvsJZMLFvNvRwQ7?=
+ =?us-ascii?Q?Q/3f+oyA7cIAKY0agQYTRs31a2Yy5i28jLF0R16M+QtWT+PPb6HCJw+MQXf2?=
+ =?us-ascii?Q?9OWTAc/ua1YhxF3p24OyDyiAl4is9h02eZlsg1NMucSP+OlELqJ4dBw+5aiC?=
+ =?us-ascii?Q?QPUFvCSzearDOGACI84sMiRp3+abBp/GGQTara0Mgk3cM9QEVn91kyS4iM9v?=
+ =?us-ascii?Q?O6OJCVsJpYhU+Qp0rIRpJ3oqhEU9R0SEiPdaSgFnLJXqD2KcjH2WejlXOG6T?=
+ =?us-ascii?Q?fqcsUdMmTsCkZ4UXGwTzdHpEF31Lg6kPNWachoZhemdWvebfXTUMLYW7Dc1p?=
+ =?us-ascii?Q?Ve6+94elbv9GQSrkPGjIuSpEYDlcqF0ZokXEmhJDe3j7YSFlTKhUmBHJRSOR?=
+ =?us-ascii?Q?3Lo43fEB0dGV/NtSg4XX5mhoLgWKbsIJ2jbzB6sLmLQK45fzqfPiMqflu0bg?=
+ =?us-ascii?Q?iMYdX1GZwyt2o/0M0JJ0G7xsdpLy51rka8VD+7+y3OAYc7tqbjOIfZmucVq7?=
+ =?us-ascii?Q?+0PWQaWlI2RswthPI6LH6QmWSwFtU5AoSJE2kF/Mpnm2Ny3TteA1/zXKlTT0?=
+ =?us-ascii?Q?NaDFdXJDgcINPhE2B3aUFc7c3Dhqb3TGtzUVER0hXJwMxdxxuK06IMMtNxxx?=
+ =?us-ascii?Q?tvhBjgxoZKuQaZ654FFPFKvx6cwA/csX3BZIBS+y2o1c1QRqUufH39K4aonO?=
+ =?us-ascii?Q?JqQ3I97g1zF91RqD9aat33SGkviIN3U98NoDYna03/VFztkLvwPcSxSyng0k?=
+ =?us-ascii?Q?ST73KL+xNQKXSSI23fEhROSlO1tYvDOfqpoEAMBwB4iMZrr1qsaTyv8gg4kM?=
+ =?us-ascii?Q?InQ6GllpgFKPUQS6krEcsMC3FOWE1q8acgstspPn9Ido9SU9GSQ4pIW0k+TU?=
+ =?us-ascii?Q?ORUz0d/p1Pp8+nWBzS1n/cafRFZOjqfA+hKU4tj7V+ddJRj1I2uc8PQ1tjk5?=
+ =?us-ascii?Q?jMPX5Wj+vJ2uW4yVMTmYEFKJREibZvaEU47I9lgtVwNg26sRD47pmTChkrOx?=
+ =?us-ascii?Q?+O8FNxkyqvxYt6hyBVEEGzR667h9OnaM6e1Ml36srhK557mfvsIt6UbJThgX?=
+ =?us-ascii?Q?kt+Qqy0z9qSAtybY+G9j+qzZ+U58dEnwUzSnGdcRhH69bFkl/ty9I0nK6m94?=
+ =?us-ascii?Q?1M6l3cDOXoZa4LGa3U1wRzmbYlkIh6KIRF7+hL6WLHSbq1uKga8FRz1AMZ2v?=
+ =?us-ascii?Q?Cc05a2Di+BNHy8nmEiKvXt3o0hjG7M/A1EkiF/1WpEJcOJzRUd0pfohSo6Mb?=
+ =?us-ascii?Q?/pEZQN3MMLU6zjz6zxJ8VIEPI8XNrXb5E60tr2uWK3aGmJr551a+LXq5+0Th?=
+ =?us-ascii?Q?RF+5WkRjPqScJQEz3uq0zUBKq3zyfvACTHFKdMSMgCnKa6zVSGBlyW+uo/lZ?=
+ =?us-ascii?Q?lPAX8RyzdVdObQvlsvp02hM9l6uKZENiZlYzaOAT9gIED9GbWT1ehmjA3wqh?=
+ =?us-ascii?Q?S5IPE/fG4uTZ5cgKilUAnUU0vRu4fmuyPqjwJsfLEUpfpzH0Rf+a8/GQw1at?=
+ =?us-ascii?Q?Ei7aGXwHdRwhVibcj5vTuv3YVk5iR2yIzYyNbwUooqIxJhCCbHM7GuHKlrnM?=
+ =?us-ascii?Q?Fvhn/uav14WloaHFpIGzf8EjQJa59OSRR7KJEGPv?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b582761-e493-484b-3ea2-08db3fca1a59
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2023 05:02:26.0763 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b276065-7796-457b-547f-08db3fca2542
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2023 05:02:44.3925 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kPrcmb5L5tA2r5uL3bAOJ5UdMnGTd5VKXRBiTY5DNHmFXa0qNjDAgmeKlQ8gkJEaFGnmNdGqDB4yBlIz8pD+GA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4640
+X-MS-Exchange-CrossTenant-userprincipalname: PkdR8o/fnsIBba64yF+tm1CsKFHL+7vkC549fhoi7XZAjNx7f/UtIoMtO85g8rkcy9iEhGY01Hd2YCM4LxnMfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5188
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Increase AUX timeout
- for Type-C
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,121 +159,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, 
+ Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Xu, Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> On Mon, Apr 17, 2023 at 03:25:34PM +0300, Kandpal, Suraj wrote:
+> From: Alex Williamson <alex.williamson@redhat.com>
+> Sent: Tuesday, April 18, 2023 12:11 PM
+>=20
+> On Tue, 18 Apr 2023 03:24:46 +0000
+> "Tian, Kevin" <kevin.tian@intel.com> wrote:
+>=20
+> > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > Sent: Tuesday, April 18, 2023 4:07 AM
 > > >
-> > > On Mon, Apr 17, 2023 at 02:43:25PM +0300, Kandpal, Suraj wrote:
-> > > > > [...]
-> > > > > Adding a non-default enable_timeout to the power well descriptor
-> > > > > would avoid adding more platform checks:
+> > > On Mon, 17 Apr 2023 16:31:56 -0300
+> > > Jason Gunthorpe <jgg@nvidia.com> wrote:
+> > >
+> > > > On Mon, Apr 17, 2023 at 01:01:40PM -0600, Alex Williamson wrote:
+> > > > > Yes, it's not trivial, but Jason is now proposing that we conside=
+r
+> > > > > mixing groups, cdevs, and multiple iommufd_ctxs as invalid.  I th=
+ink
+> > > > > this means that regardless of which device calls INFO, there's on=
+ly one
+> > > > > answer (assuming same set of devices opened, all cdev, all within
+> same
+> > > > > iommufd_ctx).  Based on what I explained about my understanding o=
+f
+> > > INFO2
+> > > > > and Jason agreed to, I think the output would be:
 > > > > >
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > > index 6645eb1911d85..8ca1f34be14c2 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > > @@ -1378,13 +1378,18 @@ static const struct i915_power_well_desc
-> xelpd_power_wells_main[] =3D {
-> > > > >                       I915_PW("AUX_C", &icl_pwdoms_aux_c, .hsw.id=
-x =3D
-> ICL_PW_CTL_IDX_AUX_C),
-> > > > >                       I915_PW("AUX_D", &icl_pwdoms_aux_d, .hsw.id=
-x =3D
-> XELPD_PW_CTL_IDX_AUX_D),
-> > > > >                       I915_PW("AUX_E", &icl_pwdoms_aux_e,
-> > > > > .hsw.idx =3D XELPD_PW_CTL_IDX_AUX_E),
-> > > > > +             ),
-> > > > > +             .ops =3D &icl_aux_power_well_ops,
-> > > > > +             .fixed_enable_delay =3D true,
-> > > > > +     }, {
-> > > > > +             .instances =3D &I915_PW_INSTANCES(
-> > > > >                       I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1,
-> .hsw.idx =3D TGL_PW_CTL_IDX_AUX_TC1),
-> > > > >                       I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2,
-> .hsw.idx =3D TGL_PW_CTL_IDX_AUX_TC2),
-> > > > >                       I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3,
-> .hsw.idx =3D TGL_PW_CTL_IDX_AUX_TC3),
-> > > > >                       I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4,
-> .hsw.idx =3D TGL_PW_CTL_IDX_AUX_TC4),
-> > > > >               ),
-> > > > >               .ops =3D &icl_aux_power_well_ops,
-> > > > > -             .fixed_enable_delay =3D true,
-> > > > > +             .enable_timeout =3D 500,
-> > > > >       }, {
-> > > > >               .instances =3D &I915_PW_INSTANCES(
-> > > > >                       I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1,
-> > > > > .hsw.idx =3D TGL_PW_CTL_IDX_AUX_TBT1), diff --git
-> > > > > a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > > > index 62bafcbc7937c..930a42c825c36 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > > > @@ -253,6 +253,7 @@ static void
-> > > > > hsw_wait_for_power_well_enable(struct
-> > > > > drm_i915_private *dev_priv,  {
-> > > > >       const struct i915_power_well_regs *regs =3D power_well->des=
-c-
-> >ops->regs;
-> > > > >       int pw_idx =3D
-> > > > > i915_power_well_instance(power_well)->hsw.idx;
-> > > > > +     int timeout =3D power_well->desc->enable_timeout ? : 1;
+> > > > > flags: NOT_RESETABLE | DEV_ID
+> > > > > {
+> > > > >   { valid devA-id,  devA-BDF },
+> > > > >   { valid devC-id,  devC-BDF },
+> > > > >   { valid devD-id,  devD-BDF },
+> > > > >   { invalid dev-id, devE-BDF },
+> > > > > }
 > > > > >
-> > > > >       /*
-> > > > >        * For some power wells we're not supposed to watch the
-> > > > > status bit for @@ -266,7 +267,7 @@ static void
-> > > > > hsw_wait_for_power_well_enable(struct drm_i915_private
-> > > > > *dev_priv,
-> > > > >
-> > > > >       /* Timeout for PW1:10 us, AUX:not specified, other PWs:20 u=
-s. */
-> > > > >       if (intel_de_wait_for_set(dev_priv, regs->driver,
-> > > > > -                               HSW_PWR_WELL_CTL_STATE(pw_idx), 1=
-)) {
-> > > > > +                               HSW_PWR_WELL_CTL_STATE(pw_idx),
-> > > > > + timeout)) {
-> > > > >               drm_dbg_kms(&dev_priv->drm, "%s power well enable
-> timeout\n",
-> > > > >                           intel_power_well_name(power_well));
-> > > > >
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > > > > b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > > > > index ba7cb977e7c7f..fd5acf68503e1 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-> > > > > @@ -110,6 +110,8 @@ struct i915_power_well_desc {
-> > > > >        * Thunderbolt mode.
-> > > > >        */
-> > > > >       u16 is_tc_tbt:1;
-> > > > > +     /* Enable timeout if bigger than the default 1ms. */
-> > > > > +     u16 enable_timeout;
-> > > > >  };
-> > > > >
+> > > > > Here devB gets dropped because the kernel understands that devB i=
+s
+> > > > > unopened, affected, and owned.  It's therefore not a blocker for
+> > > > > hot-reset.
 > > > >
-> > > > How would we make sure that this timeout only applies to ADLS in
-> > > > that case as that's whom the workaround is for?
+> > > > I don't think we want to drop anything because it makes the API
+> > > > ill suited for the debugging purpose.
+> > > >
+> > > > devb should be returned with an invalid dev_id if I understand your
+> > > > example. Maybe it should return with -1 as the dev_id instead of 0,=
+ to
+> > > > make the debugging a bit better.
+> > > >
+> > > > Userspace should look at only NOT_RESETTABLE to determine if it
+> > > > proceeds or not, and it should use the valid dev_id list to iterate
+> > > > over the devices it has open to do the config stuff.
 > > >
-> > > The HSD is for display 13 ADL, that is ADL-P/M/N. The ADL-S power
-> > > wells are described separately in adls_power_wells.
+> > > If an affected device is owned, not opened, and not interfering with
+> > > the reset, what is it adding to the API to report it for debugging
+> > > purposes?  I'm afraid this leads into expanding "invalid dev-id" into=
+ an
 > >
-> > Right sorry meant ADLP so how do we make sure this is enabled only for
-> > the required Display version
+> > consistent output before and after devB is opened.
 >=20
-> It is enabled only for those. xelpd_power_wells_main is used by display 1=
-3
-> platforms.
+> In the case where devB is not opened including it only provides
+> useless information.  In the case where devB is opened it's necessary
+> to be reported as an opened, affected device.
 >=20
-
-Ohkay got it I can float this version of fix if Jani is okay with this.
-
-Regards,
-Suraj Kandpal
-
-> > Regards,
-> > Suraj Kandpal
+> > > errno or bitmap of error conditions that the user needs to parse.
 > > >
-> > > --Imre
+> >
+> > Not exactly.
+> >
+> > If RESETABLE invalid dev_id doesn't matter. The user only use the
+> > valid dev_id list to iterate as Jason pointed out.
+>=20
+> Yes, but...
+>=20
+> > If NOT_RESETTABLE due to devE not assigned to the VM one can
+> > easily figure out the fact by simply looking at the list of affected BD=
+Fs
+> > and the configuration of assigned devices of the VM. Then invalid
+> > dev_id also doesn't matter.
+>=20
+> Huh?
+>=20
+> Given:
+>=20
+> flags: NOT_RESETABLE | DEV_ID
+> {
+>   { valid devA-id,  devA-BDF },
+>   { invalid dev-id, devB-BDF },
+>   { valid devC-id,  devC-BDF },
+>   { valid devD-id,  devD-BDF },
+>   { invalid dev-id, devE-BDF },
+> }
+>=20
+> How does the user determine that devE is to blame and not devB based on
+> BDF?  The user cannot rely on sysfs for help, they don't know the IOMMU
+> grouping, nor do they know the BDF except as inferred by matching valid
+> dev-ids in the above output.
+
+emmm aren't we talking about the 'person' who does diagnostic? This guy
+will look at the VM configuration file to know that devA/B/C/D have been
+assigned to the VM but not devE.
+
+>=20
+> > If NOT_RESETTABLE while devE is already assigned to the VM then it's
+> > indication of mixing groups, cdevs or multiple iommufd_ctxs. Then
+> > people should debug with other means/hints to dig out the exact
+> > culprit.
+>=20
+> I don't know what situation you're trying to explain here.  If devE
+> were opened within the same iommufd_ctx, this becomes:
+
+It's about a scenario where the mgmt.. stack has assigned all affected
+devices to Qemu but Qemu itself messed it up with mixed group/cdev
+or multiple iommufd_ctx so hitting the NON_RESETTABLE situation.
+
+>=20
+> flags: RESETABLE | DEV_ID
+> {
+>   { valid devA-id,  devA-BDF },
+>   { invalid dev-id, devB-BDF },
+>   { valid devC-id,  devC-BDF },
+>   { valid devD-id,  devD-BDF },
+>   { valid devE-id,  devE-BDF },
+> }
+>=20
+> Yes, the user should only be looking at the flag to determine the
+> availability of hot-reset, (here's the but) but how is it consistent to
+> indicate both that hot-reset is available and include an invalid
+> dev-id?  The consistency as I propose is that an invalid dev-id is only
+> presented with NOT_RESETTABLE for the device blocking hot-reset.  In
+> the previous case, devB is not blocking reset and reporting an invalid
+> dev-id only serves to obfuscate determining the blocking device.
+>=20
+> For the cases of affected group-opened devices or separate
+> iommufd_ctxs, the user gets invalid dev-ids for anything outside of
+> the calling device's iommufd_ctx.
+>=20
+> We haven't discussed how it fails when called on a group-opened device
+> in a mixed environment.  I'd propose that the INFO ioctl behaves
+> exactly as it does today, reporting group-id and BDF for each affected
+> device.  However, the hot-reset ioctl itself is not extended to accept
+> devicefd because there is no proof-of-ownership model for cdevs.
+> Therefore even if the user could map group-id to devicefd, they get
+> -EINVAL calling HOT_RESET with a devicefd when the ioctl is called from
+> a group-opened device.  Thanks,
+>=20
+
+Yes I chatted with Yi about it.
+
+If the calling device of the INFO ioctl is opened by group then behave
+as it does today.
+
+If the calling device is opened via cdev then use dev_id scheme as
+discussed above.
+
+in hot_reset ioctl the fd array only accepts group fd's.
+
+cdev can be reset only via null fd array.
+
+It remains a small open that null fd array could potentially work for
+group-opened device too if vfio-compat is used. In that case devices
+are in same iommufd ctx with valid dev_id even though they are opened=20
+via group. But probably it's not worthy blocking it?
