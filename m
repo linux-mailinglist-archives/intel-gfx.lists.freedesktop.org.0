@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820B16E5E22
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 12:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E99E6E5E4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 12:10:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 705D910E73A;
-	Tue, 18 Apr 2023 10:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89CC210E73F;
+	Tue, 18 Apr 2023 10:10:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2F810E73A
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 10:00:42 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9CE10E73F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 10:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681812043; x=1713348043;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WRj91xfrVTrxXgd6ILbJhhbhDig6+QVG5OTMsuuQIdE=;
- b=dXjIUbWwKLOL4gb9Ig5LowcLm9f8N0LFzu9TD/sod8z5EQeqsfYoEZzM
- hCcJDvC71I0gTnIHdAiwfJJ2hFMxHRRtUigQSbMNgQK3a3roR0fn3NLgs
- IasDfxWHWDtKRXqRXUam4bDTqDUir05cq0gqzvHVR3P/b1QekP3j7qE4R
- Wsnd+xyUhL8gcQRYZSoqkwZ3pFHsyZRPBp+k3+bHddS0I/E5WJg/c3tMv
- FSzK5bMike0b+pGlE9hrjRnsolNbmtEaJKPqr3rmmUsvahprN1KARtxfb
- sut4HocSTjTSF9S+C96GgnM+89P2jDXXIWaoXMQV6uHkMCHGZN68/CE5R g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="347878182"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="347878182"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 03:00:27 -0700
+ t=1681812646; x=1713348646;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=kci+MFe3NRQKsxY+4835cB2+Uhdf5/Muin+6Yg9nSBI=;
+ b=ji+LlwfqIIk79+5NmLh5e/aPVH5kMCd2/iMIlCmdtpq+13UzrxwLQtxc
+ soDKZpb9EJqiSFrUukopXxt73GMBXgs+Wpuk9KUKAWrer8l4U9xvuh4WM
+ 1PSvLLEtwkSMZRWvzyLxksCGI1MbktmfHQD3n6vjwZLy8ExQLYTa3M8on
+ rCnHUThK1SmaOdpB2xeuD1/j986wGYH/I5Vx8sdA8ISQj9NKpvREANs/7
+ Ru3wDz6daGgJvevHbt2IHmc2bko4QLXxKjCW8OeQbgQYMJ0R6sBf8OCEx
+ wI+C5Yl3IL9KiaNphlIrdWmvBrkm7hGtV0Eovn+8hq3g/K5dil0pse9bN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="333933319"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="333933319"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 03:10:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="684518177"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="684518177"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 03:00:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230418092346.1279064-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="691050745"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="691050745"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 03:10:42 -0700
+Date: Tue, 18 Apr 2023 13:10:39 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Message-ID: <ZD5sn3hd0NurTy5m@ideak-desk.fi.intel.com>
 References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
  <20230418092346.1279064-1-suraj.kandpal@intel.com>
-Date: Tue, 18 Apr 2023 13:00:22 +0300
-Message-ID: <87h6td1pe1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418092346.1279064-1-suraj.kandpal@intel.com>
 Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Increase AUX timeout
  for Type-C
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -59,35 +59,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Apr 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+On Tue, Apr 18, 2023 at 02:53:46PM +0530, Suraj Kandpal wrote:
 > Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
 > Workaround: Increase the timeout.
->
+> 
 > WA_14017248603: adlp
-
-This needs to be in a comment, and removed from the commit message.
-
 > Bspec: 55480
-
-This needs to be moved down...
-
->
+> 
 > ---v2
 > -change style on how we mention WA [Ankit]
 > -fix bat error by creating new func that is only called for aux power
 > well scenarios so we can avoid null pointer error as it is called
 > everywhere.
->
+> 
 > --v3
 > -Add non-default enable_timeout to power well descriptor which avoids
 > adding more platform checks [Imre]
->
-
-...here, right above the Cc: etc. tags.
-
+> 
 > Cc: Jani Nikula <jani.nikula@intel.com>
 > Cc: Imre Deak <imre.deak@intel.com>
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
@@ -96,7 +89,7 @@ This needs to be moved down...
 >  drivers/gpu/drm/i915/display/intel_display_power_well.c | 3 ++-
 >  drivers/gpu/drm/i915/display/intel_display_power_well.h | 2 ++
 >  3 files changed, 13 insertions(+), 1 deletion(-)
->
+> 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
 > index 6645eb1911d8..4b559de6d036 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
@@ -114,6 +107,14 @@ This needs to be moved down...
 > +		),
 > +		.ops = &icl_aux_power_well_ops,
 > +		.enable_timeout = true,
+
+This should be the duration in ms.
+
+Also .fixed_enable_delay = true is needed here as well, as DG2 is a
+display 13 platform and uses TC1 requiring just waiting a fixed amount
+of time instead of the regular polling (I forgot to mention this in my
+previous feedback).
+
 >  	}, {
 >  		.instances = &I915_PW_INSTANCES(
 >  			I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TBT1),
@@ -151,6 +152,6 @@ This needs to be moved down...
 >  };
 >  
 >  struct i915_power_well {
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> -- 
+> 2.25.1
+> 
