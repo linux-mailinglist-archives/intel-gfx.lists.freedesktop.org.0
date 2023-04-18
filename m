@@ -2,142 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33386E69B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 18:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F216E69D4
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 18:43:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13C3010E048;
-	Tue, 18 Apr 2023 16:39:00 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA39410E048;
- Tue, 18 Apr 2023 16:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88BFB10E296;
+	Tue, 18 Apr 2023 16:43:48 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEE910E296;
+ Tue, 18 Apr 2023 16:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681835937; x=1713371937;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=nANAdNIZ+HeLYeefw43jNAczsK13EoILJSOMzy92Ql8=;
- b=bjwTdMjBOp/9qiNYw6rkZ1Sn2a+Srn2Mtnkvk5XSRjgw3T6Nix1NSbL1
- kWZuTeJFx3bgfwMXVNEx/VzfGxjiDAdgjWUcORRzLV1DguIhFH2diSVpA
- Wisq4KuyNG4hJHihhXhTTcSVBjze+Qip9P+pk0vP9cNXe7O9lCkvjXii1
- AKBXAQmG82IxE6FiAbt4z8Er6w9rJIKVwS7FfzYsMa+gHBp9mtWBTbHlf
- BIPt0RqEWLROH1d3Bpm0R8XF+LQEkXLh/Zr3gwkOWz4NkWHGWD2IuhhrM
- SPmooUIxhRXxDTsQXkmpdk7IQ2swwPUpBa4Lw/V7sWzTCfHLjIw920LzQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="345221477"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="345221477"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 09:38:56 -0700
+ t=1681836227; x=1713372227;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=on0Gv/pDuAOriZnMrNZIUzms38yA3AY4qw01mGrEFQQ=;
+ b=add6W9dXyLas+mEbx0xJrw+Eej6h0tE+h245dmWVph4A6SocyzqaWRCT
+ XjZQtIUHSERlU+MXOHdDcRoEOPQWz62FSR8ueX1MYb3XWbVkB8qV+F7Az
+ WTaQtB9ykCAcScQ4NX2QAv5MBGXmX4brkz05U9qf9pv/BxcppF3AMDF/A
+ 0gm+koD6lcGFJqdcC738+m7JI1tVYXPBY0aiEf7Ki1+I+V4p4H0bujLj+
+ 3uEXXs7luw/aVOSLZNnvtnZUi3Qn0HeNNnfr7+hvm1hkysfZ2uHskihSg
+ 54cPEcvxkGKolimV6eUaLgzx2zAC4LRbnyOQn2DK+fmPFp3NxSF+g23ua w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="347076119"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="347076119"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 09:43:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="815270908"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="815270908"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga004.jf.intel.com with ESMTP; 18 Apr 2023 09:38:56 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 18 Apr 2023 09:38:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 18 Apr 2023 09:38:55 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 18 Apr 2023 09:38:55 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 18 Apr 2023 09:38:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lLV8R303F9Qte3EaLGC1JmeNlQP/6QUYTfVvzCuLTvjWEDj35AHbU8NA4/IZMXr8SAWDI8baqD9UhT4utoCUi+/pIqz2/FamXtZU90b5LkeZDycAXay2cEUOMrrgMOUl+ofv3RQCKB8GLedCTH5q6InVzjoY7hMtjFVSlMno21Rrp9WSTptjPg4mI4Tjn3bQcLu7nwSkAKTQxHVWVecp/ltDZIpAlRl2PCWNWUQxJ00VSh9du3GInNX+kggyP9/Gj5YhaH2i5YdmwF0/YH4WljcPx8EtF6etIYsO2Z7KW2vz7AjZ+xSUH3W4LezVvkb9JYs0bk/JK0ug/7pQ8VqLhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M9ynZkJzRju6ePeoyNJet13U8zlYLylHWOyx9R29D6s=;
- b=N7+d1zYeI4ovutPnNqzV4Z3D4dj5fcMV9QE5DVtYtIjdp6KikDL65EE4RIcWQUtrfVfup5eiKy0ecGrJyu6fSLbQjhVxbYHodOtKsRGntJ7dolzayT0rT+oniAPNJLkrKz7PiFCdYvA4PXUPuVN3+YNKvrSYmBnjjAf17iGCo2yzZnZpIOMI1r8Jw9YFrfPEya6VGFnI3jOj9hr9QcMaOJqDJjVpMyd9Ue9KW0u2B50TIoMJZPzGb0XhSucWuTr3DfyAZ9cA0gmsWVaQchZEJ/ne1dbnSnDX2ZOryMvWSYubZ34gsBiGnZnQDBqaPJV+/t3znEXrxC+UZ+fyZlJk0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB6528.namprd11.prod.outlook.com (2603:10b6:8:8f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
- 2023 16:38:51 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::f7ec:aae9:1e7b:e004%5]) with mapi id 15.20.6298.030; Tue, 18 Apr 2023
- 16:38:51 +0000
-Date: Tue, 18 Apr 2023 12:38:47 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <ZD7Hl3ubfmZD1H9J@intel.com>
-References: <20230410192523.2020049-1-John.C.Harrison@Intel.com>
- <ZDVxocPZR1Ad2QLa@intel.com>
- <f4c5dfbf-6dc2-52cb-c31d-c6e78646bcac@intel.com>
- <ZDWP7TRexJRphUNQ@phenom.ffwll.local>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZDWP7TRexJRphUNQ@phenom.ffwll.local>
-X-ClientProxiedBy: BY5PR20CA0027.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::40) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="760415091"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="760415091"
+Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 09:43:42 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 18 Apr 2023 09:43:37 -0700
+Message-Id: <20230418164337.50303-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6528:EE_
-X-MS-Office365-Filtering-Correlation-Id: 398e3f33-3d79-4d3c-8ac0-08db402b641c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j8OCeE1pmeMPxM+gJi6jylH4BsvnIbvjB5ESPoDftLqxHZCJyOpAEjv5CYsYNVIXAWT5tfvoZay9wfLQU0baew9RjpbSLVoRJ/RHdSG5VV2KWgPsVIqSEFyq7GtfCc+oVyFRmPaJI1siID3jh4j8Idn3z2d/+xfq3QAiHk074ZUQUWsNOlJPi4ZuVVLsxTlYGuJ1PQUVQKmBe1q3fa65X2n/eiT6deFquB8/UWpA2+BikdDWxzIWuSzdLf/PdkSy5dbtpMPd1Gzr4GzanBajrx7LPKvpvwNQWWAgNFg3qVPw6oUHA2d7BtEXre+iXR9MdxXQrfu7DtVn4Fjjf8zRjXTneaWCfU/wQT4nZrmsqL8bHzBgSVTv02evNcfxIFu2AFI4QFqdGge6L2eqb+dh5wxtvh7QRlXXt3XAregNZruqq+xEWrlfxZXnv8sdOUayCQHzpyftvi6J+6wjQW7I9wxQRA5ZNnKL0HkanuINDC7dCk9jz30ySkrKLbSM6aAE6/asV+8Pf+1X2TqQmg5tcs6UEkCcXOPrnuznh5kz+aQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(39860400002)(136003)(346002)(376002)(396003)(451199021)(83380400001)(38100700002)(2616005)(6512007)(6506007)(26005)(53546011)(478600001)(966005)(6486002)(6666004)(66946007)(6916009)(4326008)(66476007)(66556008)(316002)(44832011)(86362001)(186003)(36756003)(41300700001)(8936002)(5660300002)(8676002)(2906002)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DxeMaAhqi+nOtk3df4ruu2/Pwkr+ePAEN2l1PamkX+C3y5cTISy7klfNyYl+?=
- =?us-ascii?Q?fLA27MF3ycdl6GIpRJDCf4XDdIY+OQxBUPm2x9WHJ6xSyoPgCdZIfK9nR6Yg?=
- =?us-ascii?Q?7j4Sjre1azWYJGS+Pz89bnBz7ReH8dRPRKm+Exqs4cliVvDokKpVxkM4jNxB?=
- =?us-ascii?Q?+WkNEbB9UDk8+nKo9/ut+NbsKw9IO1nZdg/Gq7sHUr2VcaH1WFWG2GB0us+V?=
- =?us-ascii?Q?9qzAZFQD7ewr46tFM/gZ1ywJkGIDRUtaasMkon5rv0TGu7/3vfBcUjZor5ZU?=
- =?us-ascii?Q?agMIG4Ne43pXGTy0zIAHDK22LOGQ7iuU4dIG/XX3V17sCl6jkh61mdkNpAmQ?=
- =?us-ascii?Q?+OK+1VzWbaIBROFDYfMGeWcg9PEmr/AQ71gisb4GqPAmrNqAFY4QdHfFVYCw?=
- =?us-ascii?Q?Vm6lg3GaVoCKXCdCi5kLQKOfhGfskn1hqAekK3nAtG/H9hMLvDxoH5IM9wir?=
- =?us-ascii?Q?TMFqEvre1mJYftrC24VtaACOHJT3XFrT69B6lVXCwDS78jC6A9CT0R/Blayk?=
- =?us-ascii?Q?/LdRVgEQxT+gRCVVD378tKGUeuhFl0TTD1kniPr1ldSzGiNwfO7ImWVZXDR8?=
- =?us-ascii?Q?yjd3TEP4LUmahdq0+6vkUNxlsHdOLynmniZOlvGnxTl8O9ahfPyxpARLRaU9?=
- =?us-ascii?Q?MXokWf3uJ3XTB+hXwXc9e+PqQUWQaAu1FxG9JausoZjVL29fyzaOVx89xsbI?=
- =?us-ascii?Q?ejKZ0i8MNmIaF7vFSjQsQkY8F/yNR7Y3n3SYyj8kXPPlBFzVnF/RVV4kKDQ7?=
- =?us-ascii?Q?GmFhEY45KusIzaReY6QaHRlVRhkqBmQJQElu52DLmDpVZ1JpGw8Sd1Zn3w00?=
- =?us-ascii?Q?I2uVc0fekvsqJTA90Z9xLbtmaeDchnB0yXYkyezIW7w9s2JX8S4KLeCIil2A?=
- =?us-ascii?Q?vQn9zY/vLaPUaLQ1FRd0R++60WevGAbgM6B/9xVWDgpxuQgMUqbqBttJ/3d7?=
- =?us-ascii?Q?5zxrDesWHHRUluYIP68VOcj44ciEZqXAgVil5oA4tjoyhpB5blG75hTzlqsQ?=
- =?us-ascii?Q?vJZqa5O/XAUmdYl7YpppElNuSYTWKIhdz9DLojQseBoTGxT/3WiE+l9bJcL5?=
- =?us-ascii?Q?hqSPAm5IxhEFMWpNR3ieLAmgivABOP+cBxnKIFGb5xDb1lYniBm7up4w90RD?=
- =?us-ascii?Q?VNU+Dp4iLwPxevMp0zda3KZtgMLdgDzwooFpedcz1A4Wi5TtzuJ8vZrVq2M2?=
- =?us-ascii?Q?Q3FuIECcqRGYNqrnA5NqemhT0KbyqnBxOdgvvh6NyWNzzDJ6ugLSNoh0+Kxw?=
- =?us-ascii?Q?rjY8ZPdoCyTXF0woml4DbrVULUF6PIO4PTwDzefH3zLT8HmFMbFvHjXWpJTH?=
- =?us-ascii?Q?MK+BG39J0Cw917oJgPAueAI1UXfEqoxdqU89D2CYKgQxJjdiw7xd3DZ5iPA3?=
- =?us-ascii?Q?EKe3x22Yv5Zz6YpSPo0ZFQVQOypwJlaggOJVeerV47zFBXmzTLVyGdMMBK3f?=
- =?us-ascii?Q?NPdtx0boT/NR9zz4sVpRGzPYqJltYZJkE7gD5cAbD/ZbKTC1y4B6Qied8e5X?=
- =?us-ascii?Q?xmybkRVq2YFp3Qjax/PIBNlQFn2m+8YDT1RbHATgvwUz4Gb9G8hbmO9+p+d6?=
- =?us-ascii?Q?XW7lGsa4xPHu3b1g/PdojK90QCtbG4it4ZrWfh6ejYtW2MIR4Zl0DU4O+DBF?=
- =?us-ascii?Q?8g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 398e3f33-3d79-4d3c-8ac0-08db402b641c
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 16:38:51.7341 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qJ0X9bBbtAgE3/LtPZ9U6FTB68L5xD7ZZ9YCtk3wpWRiXIqpNjO0BQWmUTmn5BcqoJ3Wqbczq+3Gy+ar+vUH/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6528
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 0/2] Add support for dumping error captures
- via kernel logging
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4] drm/i915: Initialize dkl_phy spin lock from
+ display code path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,96 +57,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 11, 2023 at 06:50:53PM +0200, Daniel Vetter wrote:
-> On Tue, Apr 11, 2023 at 09:41:04AM -0700, John Harrison wrote:
-> > On 4/11/2023 07:41, Rodrigo Vivi wrote:
-> > > On Mon, Apr 10, 2023 at 12:25:21PM -0700, John.C.Harrison@Intel.com wrote:
-> > > > From: John Harrison <John.C.Harrison@Intel.com>
-> > > > 
-> > > > Sometimes, the only effective way to debug an issue is to dump all the
-> > > > interesting information at the point of failure. So add support for
-> > > > doing that.
-> > > No! Please no!
-> > > We have some of this on Xe and I'm hating it. I'm going to try to remove
-> > > from there soon. It is horrible when you lost the hability to use dmesg
-> > > directly because it goes over the number of lines it saves... or even
-> > > with dmesg -w it goes over the number of lines of your terminal...
-> > > or the ssh and serial slowness when printing a bunch of information.
-> > > 
-> > > We probably want to be able to capture multiple error states and be
-> > > able to cross them with a kernel timeline, but definitely not overflood
-> > > our log terminals.
-> > I think you are missing the point.
-> > 
-> > This is the emergency backup plan for when nothing else works. It is not on
-> > by default. It should never happen on an end user system unless we
-> > specifically request them to run with a patched kernel to enable a dump at a
-> > specific point.
-> > 
-> > But there are (many) times when nothing else works. In those instances, it
-> > is extremely useful to be able to dump the system state in this manner.
-> > 
-> > It is code we have been using internally for some time and it has helped
-> > resolve a number of different difficult to debug bugs. As our Xe generation
-> > platforms are now out in the wild and no longer just internal, it is also
-> > proving important to have this facility available in upstream trees as well.
-> > And having it merged rather than floating around as random patches passed
-> > from person to person is far easier to manage and would also help reduce the
-> > internal tree burden.
+Start to move the initialization of display locks from
+i915_driver_early_probe(), this way it is also executed when running
+Xe kmd.
 
-Okay then. As long as it depends on some DEBUG config which depends on EXPERT
-I believe we have a good reason.
+This will fix a warning in Xe kmd:
 
-I see the second patch is indeed protected by CONFIG_DRM_I915_DEBUG_GUC.
-It would be good to do something similar on the patch 1?
+[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
+[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
+[  202.175346] INFO: trying to register non-static key.
+[  202.175347] irq event stamp: 754060
+[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
+[  202.180294] The code is fine but needs lockdep annotation, or maybe
+[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
+[  202.192734] you didn't initialize this object before use?
+[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
+[  202.206882] turning off the locking correctness validator.
+[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
+[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
+[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
+[  202.255737] Call Trace:
+[  202.258179]  <TASK>
+[  202.260275]  dump_stack_lvl+0x58/0xc0
+[  202.263922]  register_lock_class+0x756/0x7d0
+[  202.268165]  ? find_held_lock+0x2b/0x80
+[  202.271975]  __lock_acquire+0x72/0x28b0
+[  202.275786]  ? debug_object_free+0xb4/0x160
+[  202.279946]  lock_acquire+0xd1/0x2d0
+[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.288181]  _raw_spin_lock+0x2a/0x40
+[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
+[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
+[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
+[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
+[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
+[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
+[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
+[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
+[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
+[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
+[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
+[  202.356260]  pci_device_probe+0x9d/0x150
+[  202.360164]  really_probe+0x19a/0x400
+[  202.363809]  ? __pfx___driver_attach+0x10/0x10
+[  202.368226]  __driver_probe_device+0x73/0x170
+[  202.372558]  driver_probe_device+0x1a/0x90
+[  202.376632]  __driver_attach+0xcd/0x1c0
+[  202.380442]  bus_for_each_dev+0x72/0xc0
+[  202.384253]  bus_add_driver+0x110/0x210
+[  202.388063]  driver_register+0x50/0x100
+[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
+[  202.396431]  do_one_initcall+0x55/0x260
+[  202.400245]  ? rcu_is_watching+0xd/0x40
+[  202.404058]  ? kmalloc_trace+0xa0/0xb0
+[  202.407786]  do_init_module+0x45/0x1e0
+[  202.411512]  __do_sys_finit_module+0xac/0x120
+[  202.415838]  do_syscall_64+0x37/0x90
+[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+[  202.424409] RIP: 0033:0x7fd11291ea3d
+[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
+[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
+[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
+[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
+[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
+[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
+[  202.489396]  </TASK>
 
-> 
-> Note that Xe needs to move over to devcoredump infrastructure, so if you
-> need dumping straight to dmesg that would be a patch for that subsystem in
-> the future.
+v2:
+- added intel_display_locks_init()
 
-devcoredump is a nice thing and it does deserves a bit of improvements
-to be able to catch snapshots and all, but for this case here I believe
-that the current devcoredump infrastructure would already be enough.
+v3:
+- rebased
 
-It would be only a matter of doing an immediate print to the dmesg at
-the moment that devcoredump is created and this is inside the driver.
+v4:
+- drop intel_display_locks_init()
 
-But yeap, that would need to be protected by debug/expert kconfig.
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 5 +++++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
+ drivers/gpu/drm/i915/i915_driver.c                  | 1 -
+ 4 files changed, 8 insertions(+), 1 deletion(-)
 
-> 
-> Not sure how much you want to add fun here in the i915-gem deadend, I'll
-> leave that up to i915 maintainers.
-> 
-> Just figured this is a good place to drop this aside :-)
-> -Daniel
-> 
-> > 
-> > John.
-> > 
-> > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > > 
-> > > > 
-> > > > John Harrison (2):
-> > > >    drm/i915: Dump error capture to kernel log
-> > > >    drm/i915/guc: Dump error capture to dmesg on CTB error
-> > > > 
-> > > >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  53 +++++++++
-> > > >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   6 +
-> > > >   drivers/gpu/drm/i915/i915_gpu_error.c     | 130 ++++++++++++++++++++++
-> > > >   drivers/gpu/drm/i915/i915_gpu_error.h     |   8 ++
-> > > >   4 files changed, 197 insertions(+)
-> > > > 
-> > > > -- 
-> > > > 2.39.1
-> > > > 
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index b3dbfe2a892e6..60ce10fc72058 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -30,6 +30,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
++#include "intel_dkl_phy.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dpll.h"
+@@ -175,6 +176,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
++	intel_dkl_phy_init(i915);
+ 	intel_color_init_hooks(i915);
+ 	intel_init_cdclk_hooks(i915);
+ 	intel_audio_hooks_init(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 57cc3edba0163..69d863dfb3a03 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -104,3 +104,8 @@ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_r
+ 
+ 	spin_unlock(&i915->display.dkl.phy_lock);
+ }
++
++void intel_dkl_phy_init(struct drm_i915_private *i915)
++{
++	spin_lock_init(&i915->display.dkl.phy_lock);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+index 570ee36f9386f..a0183d322e058 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+@@ -20,5 +20,6 @@ void
+ intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set);
+ void
+ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
++void intel_dkl_phy_init(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_DKL_PHY_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index a52db8a809006..fd198700272b1 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -223,7 +223,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+ 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+-	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+ 
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+-- 
+2.40.0
+
