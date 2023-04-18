@@ -2,85 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CAD6E6C41
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 20:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 956AD6E6C4A
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 20:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D32D310E84D;
-	Tue, 18 Apr 2023 18:39:28 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 711EB10E84D
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 18:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1681843165;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=RlhdInMDglDOKE7GpswpOzxWQD/BSn3H/Bb/VhIcGlQ=;
- b=ULqQ3clwDqe8jmnrs3eY5pRZnN36ucu0e5RGHGF6h6Mi2Aasurt5usT+0qdHK1ByrkoOGB
- ePzS87+GWBwyRKhcZJG2S75+QGerI8BXBdqC+8pDp2XRTzj/tiua68ViEVlOUZD31mmAaS
- QUwh4XCvfQ/MrjHth6bnTq3NS7LHpDI=
-Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
- [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-668-3_53jrvhPO2VLej_aWAObA-1; Tue, 18 Apr 2023 14:39:23 -0400
-X-MC-Unique: 3_53jrvhPO2VLej_aWAObA-1
-Received: by mail-io1-f71.google.com with SMTP id
- ca18e2360f4ac-760718e6816so239322539f.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 11:39:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681843163; x=1684435163;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=RlhdInMDglDOKE7GpswpOzxWQD/BSn3H/Bb/VhIcGlQ=;
- b=AAkosiJzWVaLtuYXMdGUdf5lGpK+iWC6l5+AhK5dyNMYsbbO55oeX5aw7siFPOT/J2
- qPx+06NABfnH5iWmol3tt2SWNB09oLgH/7O2D04kyrawZiTT1Dtj7hq/aF59vclxU7a5
- woeCpW+w2aRjbmZ3nen7E0xENw2VCYkfC5gnZQzLmsq4Hio1mul0JG1i5hAsCC0wgCe9
- FWIfSPJW1Uyp8I778DliuMPt5bU9/6ZhBU8KraORjiDq3DnoqcaAT5r9IewALqw1K89X
- GujCpqnIaW8B1JY4zTyyEsXVXtj08tGSH0nuHF4LXa1Gm4WUbi0OXXpR1CtuJ3ZHTAwO
- OsJg==
-X-Gm-Message-State: AAQBX9eFv8zQcGoq9NLJfagi8CWZXIh1SoHAOGatQP3+d9/ak2cvPY6c
- cMi59YAdFCgTKyAuUYRTt4nnbc+M3HJyLpy9xXEvrXXnGAxQluKZyD5X/dJ6hkU+GNZmbMSD3Yq
- 3YmK95gf6wsFpZRJW1H9wssK+WtHr
-X-Received: by 2002:a6b:ee0f:0:b0:760:eabc:e709 with SMTP id
- i15-20020a6bee0f000000b00760eabce709mr2809063ioh.5.1681843163017; 
- Tue, 18 Apr 2023 11:39:23 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZBMu2Ku+EgL+xrfqBT3olO/h3dlhwVXO3eygNQx8PsQ3dE3awxUujY3TvdRou00sMSiGZD3A==
-X-Received: by 2002:a6b:ee0f:0:b0:760:eabc:e709 with SMTP id
- i15-20020a6bee0f000000b00760eabce709mr2809046ioh.5.1681843162606; 
- Tue, 18 Apr 2023 11:39:22 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- c12-20020a6bfd0c000000b00763601c4bfesm618585ioi.55.2023.04.18.11.39.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Apr 2023 11:39:22 -0700 (PDT)
-Date: Tue, 18 Apr 2023 12:39:20 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20230418123920.5d92f402.alex.williamson@redhat.com>
-In-Reply-To: <ZD6TvA+9oI0v4vC2@nvidia.com>
-References: <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZDfslVwqk6JtPpyD@nvidia.com>
- <20230413120712.3b9bf42d.alex.williamson@redhat.com>
- <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230414111043.40c15dde.alex.williamson@redhat.com>
- <DS0PR11MB75290A78D6879EC2E31E21AEC39C9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230417130140.1b68082e.alex.williamson@redhat.com>
- <ZD2erN3nKbnyqei9@nvidia.com>
- <20230417140642.650fc165.alex.williamson@redhat.com>
- <ZD6TvA+9oI0v4vC2@nvidia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED0E210E859;
+	Tue, 18 Apr 2023 18:41:44 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11F4310E844;
+ Tue, 18 Apr 2023 18:41:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681843302; x=1713379302;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=uXeNoPSMU/jzz1AI/iqZL8G3yOSp4pLaajkNn1FOTZw=;
+ b=bqjOfJdwbQ2PF6QkiiMHua3v/MRMpD1Z/j8WZNOXId+1mjLK3LJfIDjn
+ nP9ttTHsuJZZH1lkANcvrKEaf0V1d+6VjdR1ZQ/N5R5LpDWu4xNjbJwwf
+ XMplqOuh5hvOUdgEoXEp8PTd30In82/kZ6skOJtp3g8BAentOlzGhSnaU
+ QvYZWiGe9UuWr1dywRTAMkoliNocmb4U01LvFFHrDZ+yMmh1m/vPxbtie
+ Q0cHu9VWlX9Q8iwHJ6kgdFSQ6HLHoqZHaEGwvZEMh7ULIyIQ55z+iseIP
+ k24Fx36gjif2/7lWLQmC7p5uhh2e6GcTGRibSVQvk2AXwf0G776QhISRP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="324877424"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="324877424"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 11:41:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="723769216"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="723769216"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 18 Apr 2023 11:41:40 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 18 Apr 2023 11:41:40 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 18 Apr 2023 11:41:40 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Tue, 18 Apr 2023 11:41:40 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Tue, 18 Apr 2023 11:41:39 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f/Wt9tW87uoE8dme459jlsKMO3s5EgYt/fnAlvc9PdFwgwz9ISB+3MjuDe2sod9MeFjK0fQEJEHVjjGujsf2tmNCt0jpWXjR8JmIQo7kzAdQlnyrVdNLV7jklAidgv3MG0NBewztXzr9fXO6SavSMN2ssRabv2vtsHP3qoG8ySmtqGWqzy/jUUacgb37ICvbX4W97Gz8MrF1DXWhDxKHyvBueE+5I4JNVF4jxfgFlBHM6OyNHnE2Qbsn9eGkpbVVZwJ8PczSQ23ckxDPMzIV5jZTyvHzB7LBxA6viVLAkMPu5Q2TwRa6tVQNigkrsJjLEAyzNV3gVN1hwdlX2iID5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VNCRoNNOFyZFcR/ZPA3a4F+XqeVbOYMsfn2kz+9V+yc=;
+ b=DYJPqP4u3atY1Ez7hUEXTPjWJaAY0NTld+0VYoMmcuAxH4bEb29OiQzA+XjiuMmjAfMJ164QQWid6c+GHjCe6locQbNL4z5xQRnmfpXpphsjfhNVPW7xtiwK/bIaD4oFMTO4wfoOrm5wWM5zxZZF16w4AnpZOdvfsiqSkgoHkcV02cpis21RiLEE2v7pIv0WVhTnSbldEO+giHs/aq6d27dotiQ8Jr84PpZw9DzTDLIfOp3qgwyVAHcNnfCE9ZwtdApYhqxUHMqUoakL73NSrK82aLrKxCF4V7pIcP98yycyMOfJlX8tQyd7U1DNyMMnJ6Wds7SBllvrncd6drFLZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ SJ0PR11MB4816.namprd11.prod.outlook.com (2603:10b6:a03:2ad::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
+ 2023 18:41:37 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0%7]) with mapi id 15.20.6298.045; Tue, 18 Apr 2023
+ 18:41:37 +0000
+Message-ID: <120661e9-0e05-5d6a-3872-de48276f91cd@intel.com>
+Date: Tue, 18 Apr 2023 11:41:35 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20230415005706.4135485-1-John.C.Harrison@Intel.com>
+ <20230415005706.4135485-2-John.C.Harrison@Intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230415005706.4135485-2-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
+X-ClientProxiedBy: BY5PR20CA0030.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::43) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|SJ0PR11MB4816:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3955fc37-922d-4a92-3db7-08db403c8a9c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qf/Mr5tOAJSVCfQOloiMMWQN83mqqIEGQEcj4NaUwyZslSaryTGfy2SN5SpaEhKSVc0x6Z/7yG3iukAs8VBbZjVhEcLHaD5kpd7xRVgIjBZ8DN8hof6q+uofGrqnCaG+D8m+Ukv7oSPUj2aqGZzv1DAkWxtmtnH0v8Vr71aBNOt1aMAqUxBvNzjzFSm+NOrjHfTEC0CopL+dgTEWc+IEYPPnlvlEEyjXAQcgGHScLBktVd6riOUPdxo04SvivMr5HD66eKEYM4XPJeShLe/oFKAphf32mBtdZpdoSaMI2HZdlsfyahiaevTMoXeFEEZsW1IcOPmcnzhRozDTU7z1CmI33HDkfnmg1ewYtnSUz1LtU9A5YyhFfdpMMt/c/IaHakm0iSi3Ux4h5igTWcco+5xOgiMRXweYLqT/78MW/OQfeNMvAGPPxjf5bs/IvT6ZO2g79Gk96XiK1RnD6Uv26kvre14cac0pemxO2BQ7paJMW/JR3s5cfAya5a9aXgIfVNN4OO3ZIjMC2vh+8NaW6RVrMe/kZxY1CyMPhXlR2D7VBhfU8gi0byxNsnMDOpqm0i99jwsr7vQaVfwci6NoI61Cjq+clZHcmHbKbvoWYBUzdVPAhLffhN1Nq4/V+MBaTe4YhgCgt978ND5tUiQMBA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(366004)(39860400002)(136003)(346002)(376002)(451199021)(26005)(186003)(6512007)(53546011)(41300700001)(6506007)(450100002)(86362001)(83380400001)(2616005)(4326008)(31696002)(316002)(66946007)(66476007)(66556008)(2906002)(8676002)(8936002)(6486002)(82960400001)(31686004)(38100700002)(36756003)(5660300002)(478600001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NzBkVmNkaUd0dlR2bFFsRCt2azZ4aWh6M1BWSnBBL1M2V29tUy9zVlJnR3Ix?=
+ =?utf-8?B?Qkp3eGFQcDNZb1RPaXVieDJKRTE5anlaUGRBL0pic2xnTC9MZXM5MXFrbnRW?=
+ =?utf-8?B?aDBWZFM1c0tmNlFpSVFEVlVOcmwvL2lyNmFRVVVPYkE4amV0OURBMmhFOXQ5?=
+ =?utf-8?B?L042ditONDV4elRRNktWaG91aU03WFpRaWNZN3A0TmNtOUljbzFVclJEU01l?=
+ =?utf-8?B?clNkd251eDZHaURsSlNER1BYd2FudkUzRG15R251V29LMnZIZjY1T3FJcnZv?=
+ =?utf-8?B?UkkyN21jYUIyZ0QyalN1WXRXYWJRbUREbUErTzMwV1JnbGk4UVFONjdtcFBk?=
+ =?utf-8?B?eGZRZVBaemJWRVc5bkdxQkptbkRKSXlzQktmSmJyVW51VVQxbkYwS0VSejND?=
+ =?utf-8?B?OUhwVlpLVGYrQjQ2L0IxTEQ0cXdRNXhSRVRtb1hJZGpFSVZPSXgzOWpPOWNa?=
+ =?utf-8?B?dkh1bVFkYlFLSXBTbzNTVWxuOGpMczF6TVNLeEVacFVxVXpLK2RrN0t6VEU2?=
+ =?utf-8?B?UDkxcE1uVk80TWhWb0E2VDgyUVcraXBNazc2ZHVPQU5CcU5CWllmRWNMN2Fw?=
+ =?utf-8?B?R29odVY4bE5ORGRrRzdodXp6NWZHVUZHdjQ3UURaY0p3TEcwb3lZeklzek4r?=
+ =?utf-8?B?NGM4bXVUTDFUdEVyUnJEKzBHMXVuSFpJWDZuNVdjZ016ZVBRSGZwU0RNSStr?=
+ =?utf-8?B?MEo3bmNqNFNDRmpocWhrRGI4cUdmL2hlNFMrM0YvQi9rdHV5K1pBN2JiK2RD?=
+ =?utf-8?B?bWxMUCtiUStLV0NMS01aUEJZVE1ZVlRSQkREU291aEc4SE5kZTl4MTBWV3pS?=
+ =?utf-8?B?ckppd3JXWTFZZTVKdGV5anJ2ZXo0b2J5MzJoTVcxY0U5RFoyd3l4NzAzS3hy?=
+ =?utf-8?B?K3hjdk1hRjNRdXVsNEd0UWw3c2FYaW5WVitmL1hMdnZGVWlla1JkejJTazNk?=
+ =?utf-8?B?YVVObFJvRWRYU0w2a3d6Q0ZVSHdvWDlES1hsWmdBdVRqbWVXNVRuL3p3cEt3?=
+ =?utf-8?B?NEY1OCtKVzRoaHRRc1NoVEhYYkROb1h6MHhNU0ZNYmFHQXErZzNsVXlWb0RY?=
+ =?utf-8?B?R1RqK2xEaGhiZTFnYzhvQ1VqTktmTFNMVVRZVmNjQzY4a0x2amw2MUw1OXFk?=
+ =?utf-8?B?U2NIK2J3R0hiOHVacVFUUGYwd2ttT0swR0x1S0dNWFgybnN0OWpWWkhPdGdS?=
+ =?utf-8?B?OEozRXZIclEwd1ZWMU5NdEtpWTNBd2tQeVJXT0o3UzNReUxOaWJXRWxZNTFr?=
+ =?utf-8?B?dzJDTzRacU5rUkJLZXRtWlN0bnJtS3k0WHQxajJDbld4TlNLbEdiVFIyL1dF?=
+ =?utf-8?B?VmU2YmVKMHQwbmhhOFF4TFlhK1FQaG9yMGpiMStCSGtXWFNocXQyY2pJazln?=
+ =?utf-8?B?Tkt5Qy9YRWxDaVN5d2ZpVDZVVXZEK042cjdzY3hxS2JTdC9HNXlSQzd0NnFM?=
+ =?utf-8?B?UFJOQkttem5JR3lMSHgzUGRYRmhVODA3bDJVQ2lPRWlvR09lYzdsWjFTYW5h?=
+ =?utf-8?B?ZlFLaFN3dDlxb21tQ2pFcVRUUCtHaTNJMGRVSm40dEZpaXNnZS9yTTJHWm1m?=
+ =?utf-8?B?dzhJYzljanZMTU1iTTYwQnZkcXBIMlNKN1NJUHdrQm94azNJYWFJR0xUb1dU?=
+ =?utf-8?B?ZG9nWmk5ZUZHU0IzYVdRai93T2xGZGVNTHZwRE5xa1NLT2VNUWNqcUZmVzEr?=
+ =?utf-8?B?T1ZwS21DUUxlVDZYOUNmMTBvZU00bENranRscllreldNbG01VW5BbW9MRnc5?=
+ =?utf-8?B?ZnJXc2NVMFkzOU1UanJqaHRsN0NYd2tUMnNCYkp5KzJ3Rk5ZMXpuUUt3M0dy?=
+ =?utf-8?B?Um1aSWNBa2pxellsYnRtbVBjcFhnNEtGSmswTms3WGZqb09QT0lieWpxZkxz?=
+ =?utf-8?B?cXNqeStKRzh6N1VicENLUFNmRXlETGZiakMzN0xrdDl3NHRlZVd1YUZ0Zmhl?=
+ =?utf-8?B?RGFTMVZzZWVEZGVDZU9VcDcyQXZ6NlJHcUY0OWtLL1pjSXovR2g5Z1pIendV?=
+ =?utf-8?B?M3NENXVYb3NhWGhudzIwSTJqcHIyQTF2Unc2c29HWEFVTzB4R1F5SUhCVElP?=
+ =?utf-8?B?YmlOUW5HaVBGSVZDZlJGVWx6RTg1bHRGL3FXKzdPdjc0QmlPT3hXK1FUamhB?=
+ =?utf-8?B?WEpXU29XVDR6UUcrN2dEcnpsamNKWjhQTHJsMHExRWt0R3ljbWpHUFZnajN2?=
+ =?utf-8?Q?9sIA78D+HZElXB0yrGjQxSc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3955fc37-922d-4a92-3db7-08db403c8a9c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 18:41:37.4283 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2yfNta8Cce3TApRe40DGJ0Guk6nLmdjsstvDhroR/mlOQkIcfiM3Ns6f31hti3p5F5ehLUzTeuvE+030PO/87are/QxzgUsjKu46V3Rnqjw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4816
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/guc: Decode another GuC load
+ failure case
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,88 +160,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao, 
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Apr 2023 09:57:32 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-> On Mon, Apr 17, 2023 at 02:06:42PM -0600, Alex Williamson wrote:
-> > On Mon, 17 Apr 2023 16:31:56 -0300
-> > Jason Gunthorpe <jgg@nvidia.com> wrote:
-> >   
-> > > On Mon, Apr 17, 2023 at 01:01:40PM -0600, Alex Williamson wrote:  
-> > > > Yes, it's not trivial, but Jason is now proposing that we consider
-> > > > mixing groups, cdevs, and multiple iommufd_ctxs as invalid.  I think
-> > > > this means that regardless of which device calls INFO, there's only one
-> > > > answer (assuming same set of devices opened, all cdev, all within same
-> > > > iommufd_ctx).  Based on what I explained about my understanding of INFO2
-> > > > and Jason agreed to, I think the output would be:
-> > > > 
-> > > > flags: NOT_RESETABLE | DEV_ID
-> > > > {
-> > > >   { valid devA-id,  devA-BDF },
-> > > >   { valid devC-id,  devC-BDF },
-> > > >   { valid devD-id,  devD-BDF },
-> > > >   { invalid dev-id, devE-BDF },
-> > > > }
-> > > > 
-> > > > Here devB gets dropped because the kernel understands that devB is
-> > > > unopened, affected, and owned.  It's therefore not a blocker for
-> > > > hot-reset.    
-> > > 
-> > > I don't think we want to drop anything because it makes the API
-> > > ill suited for the debugging purpose.
-> > > 
-> > > devb should be returned with an invalid dev_id if I understand your
-> > > example. Maybe it should return with -1 as the dev_id instead of 0, to
-> > > make the debugging a bit better.
-> > > 
-> > > Userspace should look at only NOT_RESETTABLE to determine if it
-> > > proceeds or not, and it should use the valid dev_id list to iterate
-> > > over the devices it has open to do the config stuff.  
-> > 
-> > If an affected device is owned, not opened, and not interfering with
-> > the reset, what is it adding to the API to report it for debugging
-> > purposes?  
-> 
-> It lets it print the entire group of devices, this is the only way
-> something can learn the actual list of all BDFs affected.
 
-If we do so, userspace must be able to differentiate which devices are
-blocking, which necessitates at least a bi-modal invalid dev-id.
+On 4/14/2023 5:57 PM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+>
+> Explain another potential firmware failure mode and early exit the
+> long wait if hit.
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-> dev_id can just return 0, we don't need a complex bitmap. Userspace
-> looks at the flag, if !NOT_RESETABLE then it ignores dev_id=0.
 
-I'm having trouble with a succinct definition of dev-id == 0, is it "A
-device affected by the hot-reset reset, which does not directly
-contribute to the availability of the hot-reset, ex. an unopened device
-within the same IOMMU group as an opened device (ie. this is not the
-device responsible if hot-reset is unavailable).  Whereas dev-id < 0
-(== -1) is an affected device which prevents hot-reset, ex. an un-owned
-device, device configured within a different iommufd_ctx, or device
-opened outside of the vfio cdev API."  Is that about right?  Thanks,
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Alex
+Daniele
+
+> ---
+>   drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h | 1 +
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c       | 6 ++++++
+>   2 files changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> index bcb1129b36102..dabeaf4f245f3 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> @@ -44,6 +44,7 @@ enum intel_guc_load_status {
+>   enum intel_bootrom_load_status {
+>   	INTEL_BOOTROM_STATUS_NO_KEY_FOUND                 = 0x13,
+>   	INTEL_BOOTROM_STATUS_AES_PROD_KEY_FOUND           = 0x1A,
+> +	INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE       = 0x2B,
+>   	INTEL_BOOTROM_STATUS_RSA_FAILED                   = 0x50,
+>   	INTEL_BOOTROM_STATUS_PAVPC_FAILED                 = 0x73,
+>   	INTEL_BOOTROM_STATUS_WOPCM_FAILED                 = 0x74,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> index 6fda3aec5c66a..0ff088a5e51a8 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> @@ -129,6 +129,7 @@ static inline bool guc_load_done(struct intel_uncore *uncore, u32 *status, bool
+>   	case INTEL_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
+>   	case INTEL_BOOTROM_STATUS_MPUMAP_INCORRECT:
+>   	case INTEL_BOOTROM_STATUS_EXCEPTION:
+> +	case INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+>   		*success = false;
+>   		return true;
+>   	}
+> @@ -219,6 +220,11 @@ static int guc_wait_ucode(struct intel_guc *guc)
+>   			guc_info(guc, "firmware signature verification failed\n");
+>   			ret = -ENOEXEC;
+>   			break;
+> +
+> +		case INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+> +			guc_info(guc, "firmware production part check failure\n");
+> +			ret = -ENOEXEC;
+> +			break;
+>   		}
+>   
+>   		switch (ukernel) {
 
