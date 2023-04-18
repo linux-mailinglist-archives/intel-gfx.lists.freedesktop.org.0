@@ -2,32 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9156E66C9
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 16:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA056E66E7
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 16:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAEE610E10F;
-	Tue, 18 Apr 2023 14:11:35 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 439F010E10F;
- Tue, 18 Apr 2023 14:11:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F369A7DFB;
- Tue, 18 Apr 2023 14:11:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5978084753087629351=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610B810E71A;
+	Tue, 18 Apr 2023 14:17:05 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
+ [IPv6:2001:4860:4864:20::2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B065C10E71A;
+ Tue, 18 Apr 2023 14:17:03 +0000 (UTC)
+Received: by mail-oa1-x2e.google.com with SMTP id
+ 586e51a60fabf-187c78c6657so348911fac.2; 
+ Tue, 18 Apr 2023 07:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1681827422; x=1684419422;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FmBaQkHIE64deNzpVv55QJIbTu5/1hu1+/btmYt5dHY=;
+ b=jKa5OfFTS+n4vtrJc8mzIHygxLW41dhG2sFd2J0lZ+RAPOjG84AtApkFQuR0FeiC2c
+ srTwSAEN7o5UdrHsVZyFUHBedmwl0TgJa4AmVg+w3B653gVfvaxsTIDmqe3b2LN9OZb2
+ L0HM4her9SCO1HM20OFnSZJniZibPtW0AzB7sTakTD0zFaozs///zq/SvZOML7hC2a4a
+ D8d7eZiYcI9rm/QO2WWgXwrm+WcVNASMoPNd78hjsNUslAdzGqzrVyuiK8kHxluY+tqK
+ TVmm7zufSqhpaG5zzpGVlw1x5lAGQIAHNbDheYPvOz0afgWdDmfHyT2uDKLwdzYkJw45
+ mG/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681827422; x=1684419422;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=FmBaQkHIE64deNzpVv55QJIbTu5/1hu1+/btmYt5dHY=;
+ b=YMSg6JZCN0weI1eZ7vaNlbwU/XxL0tZdUM5Kg3fyU9m6Sgdw8eSSvVCCWUw+377cd/
+ U2pFIGQW9k73fsz/azyTrjRXiHDp0rYgx/0b9VsD+mMT/prVfc+r+rWVUXeYNZdFTmIP
+ xwcfceY9rmksO8zc5Cg3QIYrCvWBsf/JTurVDGgy24B4pUyCvaXDn2fEMHWrUA4FEMRO
+ anHp9b8MqNTDYsPtGuze6JfJKGK0+RYF0QW0jOaDuf8jdhDLSbrwOOPtcnmtpQoKraiP
+ Rj8DlanNXM1qOKQBLrGFbxt+RKFY3LPlzxYhPQESKRQBqhu1pbjRcwxzlSWiBGsTaZ1a
+ Zbsg==
+X-Gm-Message-State: AAQBX9e24SvsHO6KrmGD0WtiOYoCkOvklUSE4PZZd8odBcPj6NKp7Uwb
+ ZeMB9HZ9hs3Qx9g+FUULuUjrNa9qRvozW8RH4aiUutwn
+X-Google-Smtp-Source: AKy350aF5xQ4ly7rIUprVqghxM9cShr8cRj38BCRc5QDT8ptSh2iDMapuHyM24yw4Yoo51Su0/AEj2FBFGkJJHNFPKw=
+X-Received: by 2002:a05:6870:f289:b0:187:fd12:f6d0 with SMTP id
+ u9-20020a056870f28900b00187fd12f6d0mr1080334oap.5.1681827422329; Tue, 18 Apr
+ 2023 07:17:02 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Tue, 18 Apr 2023 14:11:34 -0000
-Message-ID: <168182709425.17887.9905568405835613890@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Increase_AUX_timeout_for_Type-C_=28rev8=29?=
+References: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
+ <20230417155613.4143258-4-tvrtko.ursulin@linux.intel.com>
+ <f708dbc2-cf55-6cf6-eef0-b69d00c3eee9@amd.com>
+ <54b21ae8-33ce-0f5c-4e0b-1118d25b12bf@linux.intel.com>
+In-Reply-To: <54b21ae8-33ce-0f5c-4e0b-1118d25b12bf@linux.intel.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 18 Apr 2023 07:16:51 -0700
+Message-ID: <CAF6AEGvAeguBLdHGqu_uTCrvGUJ-gEDZ2pvNUnxar6OiseJQkw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC 3/6] drm: Add fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,209 +71,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5978084753087629351==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 18, 2023 at 3:47=E2=80=AFAM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 17/04/2023 17:20, Christian K=C3=B6nig wrote:
+> > Am 17.04.23 um 17:56 schrieb Tvrtko Ursulin:
+> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>
+> >> Add support to dump GEM stats to fdinfo.
+> >>
+> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >> ---
+> >>   Documentation/gpu/drm-usage-stats.rst | 12 +++++++
+> >>   drivers/gpu/drm/drm_file.c            | 52 +++++++++++++++++++++++++=
+++
+> >>   include/drm/drm_drv.h                 |  7 ++++
+> >>   include/drm/drm_file.h                |  8 +++++
+> >>   4 files changed, 79 insertions(+)
+> >>
+> >> diff --git a/Documentation/gpu/drm-usage-stats.rst
+> >> b/Documentation/gpu/drm-usage-stats.rst
+> >> index 2ab32c40e93c..8273a41b2fb0 100644
+> >> --- a/Documentation/gpu/drm-usage-stats.rst
+> >> +++ b/Documentation/gpu/drm-usage-stats.rst
+> >> @@ -21,6 +21,7 @@ File format specification
+> >>   - File shall contain one key value pair per one line of text.
+> >>   - Colon character (`:`) must be used to delimit keys and values.
+> >> +- Caret (`^`) is also a reserved character.
+> >>   - All keys shall be prefixed with `drm-`.
+> >>   - Whitespace between the delimiter and first non-whitespace
+> >> character shall be
+> >>     ignored when parsing.
+> >> @@ -105,6 +106,17 @@ object belong to this client, in the respective
+> >> memory region.
+> >>   Default unit shall be bytes with optional unit specifiers of 'KiB'
+> >> or 'MiB'
+> >>   indicating kibi- or mebi-bytes.
+> >> +- drm-memory-<str>^size:      <uint> [KiB|MiB]
+> >> +- drm-memory-<str>^shared:    <uint> [KiB|MiB]
+> >> +- drm-memory-<str>^resident:  <uint> [KiB|MiB]
+> >> +- drm-memory-<str>^purgeable: <uint> [KiB|MiB]
+> >> +- drm-memory-<str>^active:    <uint> [KiB|MiB]
+> >
+> > What exactly does size/shared/active mean here?
+> >
+> > If it means what I think it does I don't see how TTM based drivers
+> > should track that in the first place.
+>
+> Size is an analogue to process VM size - maximum reachable/allocated
+> memory belonging to a client.
+>
+> Shared could be IMO viewed as a bit dodgy and either could be dropped or
+> needs to be better defined. For now I simply followed the implementation
+> from Rob's RFC which is:
+>
+>         if (obj->handle_count > 1)
+>                 stats[0].shared +=3D sz;
+>
+> I can see some usefulness to it but haven't thought much about semantics
+> yet.
+>
+> Similar story with active which I think is not very useful.
+> Implementation is like this:
+>
+>         if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true)))
+>                 stats[0].active +=3D sz;
+>
+> For me it is too transient to bring much value over the resident
+> category. I supposed only advantage is that resident (as does purgeable)
+> needs driver cooperation while active can be done like about from DRM
+> core. Although I am not a big fan of counting these stats from the core
+> to begin with..
 
-== Series Details ==
+Maybe there is a better way to track it, like setting an age/time when
+the buffer is last active (which could be made part of dma_resv to
+make it automatic). The question I really want to answer is more like
+"over the last T ms how many buffers were active".  This is a useful
+metric esp when you think about a use-case like the browser where you
+might have a lot of textures/etc for your 80 different tabs but at any
+given time only a small subset is active and the rest can be swapped
+out to zram if needed.
 
-Series: drm/i915/display: Increase AUX timeout for Type-C (rev8)
-URL   : https://patchwork.freedesktop.org/series/116010/
-State : success
+BR,
+-R
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13026 -> Patchwork_116010v8
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/index.html
-
-Participating hosts (38 -> 36)
-------------------------------
-
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116010v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adln-1:         [PASS][1] -> [INCOMPLETE][2] ([i915#4983] / [i915#7609])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-2:         [PASS][5] -> [ABORT][6] ([i915#6687] / [i915#7978])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:
-    - bat-dg2-8:          [PASS][7] -> [FAIL][8] ([i915#7932])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [DMESG-WARN][9] ([i915#7699]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][11] ([i915#6367] / [i915#7913] / [i915#7996]) -> [DMESG-FAIL][12] ([i915#6367] / [i915#7913])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13026 -> Patchwork_116010v8
-
-  CI-20190529: 20190529
-  CI_DRM_13026: 45bed7de41ad8bd909a82382a8fc4cb65e04ad56 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7259: 3d3a7f1c041d3f8d84d7457abf96adef0ea071cb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116010v8: 45bed7de41ad8bd909a82382a8fc4cb65e04ad56 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-69fc04abd6ed drm/i915/display: Increase AUX timeout for Type-C
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/index.html
-
---===============5978084753087629351==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Increase AUX timeout for Type-C (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116010/">https://patchwork.freedesktop.org/series/116010/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13026 -&gt; Patchwork_116010v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116010v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@migrate:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13026/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v8/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13026 -&gt; Patchwork_116010v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13026: 45bed7de41ad8bd909a82382a8fc4cb65e04ad56 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7259: 3d3a7f1c041d3f8d84d7457abf96adef0ea071cb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116010v8: 45bed7de41ad8bd909a82382a8fc4cb65e04ad56 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>69fc04abd6ed drm/i915/display: Increase AUX timeout for Type-C</p>
-
-</body>
-</html>
-
---===============5978084753087629351==--
+>
+> Regards,
+>
+> Tvrtko
+>
+> >> +Resident category is identical to the drm-memory-<str> key and two
+> >> should be
+> >> +mutually exclusive.
+> >> +
+> >> +TODO more description text...
+> >> +
+> >>   - drm-cycles-<str> <uint>
+> >>   Engine identifier string must be the same as the one specified in th=
+e
+> >> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> >> index 37b4f76a5191..e202f79e816d 100644
+> >> --- a/drivers/gpu/drm/drm_file.c
+> >> +++ b/drivers/gpu/drm/drm_file.c
+> >> @@ -42,6 +42,7 @@
+> >>   #include <drm/drm_client.h>
+> >>   #include <drm/drm_drv.h>
+> >>   #include <drm/drm_file.h>
+> >> +#include <drm/drm_gem.h>
+> >>   #include <drm/drm_print.h>
+> >>   #include "drm_crtc_internal.h"
+> >> @@ -871,6 +872,54 @@ void drm_send_event(struct drm_device *dev,
+> >> struct drm_pending_event *e)
+> >>   }
+> >>   EXPORT_SYMBOL(drm_send_event);
+> >> +static void
+> >> +print_stat(struct drm_printer *p, const char *stat, const char
+> >> *region, u64 sz)
+> >> +{
+> >> +    const char *units[] =3D {"", " KiB", " MiB"};
+> >> +    unsigned int u;
+> >> +
+> >> +    if (sz =3D=3D ~0ull) /* Not supported by the driver. */
+> >> +        return;
+> >> +
+> >> +    for (u =3D 0; u < ARRAY_SIZE(units) - 1; u++) {
+> >> +        if (sz < SZ_1K)
+> >> +            break;
+> >> +        sz =3D div_u64(sz, SZ_1K);
+> >> +    }
+> >> +
+> >> +    drm_printf(p, "drm-memory-%s^%s:\t%llu%s\n",
+> >> +           region, stat, sz, units[u]);
+> >> +}
+> >> +
+> >> +static void print_memory_stats(struct drm_printer *p, struct drm_file
+> >> *file)
+> >> +{
+> >> +    struct drm_device *dev =3D file->minor->dev;
+> >> +    struct drm_fdinfo_memory_stat *stats;
+> >> +    unsigned int num, i;
+> >> +    char **regions;
+> >> +
+> >> +    regions =3D dev->driver->query_fdinfo_memory_regions(dev, &num);
+> >> +
+> >> +    stats =3D kcalloc(num, sizeof(*stats), GFP_KERNEL);
+> >> +    if (!stats)
+> >> +        return;
+> >> +
+> >> +    dev->driver->query_fdinfo_memory_stats(file, stats);
+> >> +
+> >> +    for (i =3D 0; i < num; i++) {
+> >> +        if (!regions[i]) /* Allow sparse name arrays. */
+> >> +            continue;
+> >> +
+> >> +        print_stat(p, "size", regions[i], stats[i].size);
+> >> +        print_stat(p, "shared", regions[i], stats[i].shared);
+> >> +        print_stat(p, "resident", regions[i], stats[i].resident);
+> >> +        print_stat(p, "purgeable", regions[i], stats[i].purgeable);
+> >> +        print_stat(p, "active", regions[i], stats[i].active);
+> >> +    }
+> >> +
+> >> +    kfree(stats);
+> >> +}
+> >> +
+> >>   /**
+> >>    * drm_show_fdinfo - helper for drm file fops
+> >>    * @seq_file: output stream
+> >> @@ -900,6 +949,9 @@ void drm_show_fdinfo(struct seq_file *m, struct
+> >> file *f)
+> >>       if (dev->driver->show_fdinfo)
+> >>           dev->driver->show_fdinfo(&p, file);
+> >> +
+> >> +    if (dev->driver->query_fdinfo_memory_regions)
+> >> +        print_memory_stats(&p, file);
+> >>   }
+> >>   EXPORT_SYMBOL(drm_show_fdinfo);
+> >> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> >> index 89e2706cac56..ccc1cd98d2aa 100644
+> >> --- a/include/drm/drm_drv.h
+> >> +++ b/include/drm/drm_drv.h
+> >> @@ -35,6 +35,7 @@
+> >>   #include <drm/drm_device.h>
+> >>   struct drm_file;
+> >> +struct drm_fdinfo_memory_stat;
+> >>   struct drm_gem_object;
+> >>   struct drm_master;
+> >>   struct drm_minor;
+> >> @@ -408,6 +409,12 @@ struct drm_driver {
+> >>        */
+> >>       void (*show_fdinfo)(struct drm_printer *p, struct drm_file *f);
+> >> +    char ** (*query_fdinfo_memory_regions)(struct drm_device *dev,
+> >> +                           unsigned int *num);
+> >> +
+> >> +    void (*query_fdinfo_memory_stats)(struct drm_file *f,
+> >> +                      struct drm_fdinfo_memory_stat *stat);
+> >> +
+> >>       /** @major: driver major number */
+> >>       int major;
+> >>       /** @minor: driver minor number */
+> >> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> >> index 7d9b3c65cbc1..00d48beeac5c 100644
+> >> --- a/include/drm/drm_file.h
+> >> +++ b/include/drm/drm_file.h
+> >> @@ -375,6 +375,14 @@ struct drm_file {
+> >>   #endif
+> >>   };
+> >> +struct drm_fdinfo_memory_stat {
+> >> +    u64 size;
+> >> +    u64 shared;
+> >> +    u64 resident;
+> >> +    u64 purgeable;
+> >> +    u64 active;
+> >> +};
+> >> +
+> >>   /**
+> >>    * drm_is_primary_client - is this an open file of the primary node
+> >>    * @file_priv: DRM file
+> >
