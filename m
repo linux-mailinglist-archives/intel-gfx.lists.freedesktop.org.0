@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C956E5D46
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 11:25:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 011D96E5D47
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 11:25:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F86410E161;
-	Tue, 18 Apr 2023 09:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 160BC10E69C;
+	Tue, 18 Apr 2023 09:25:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6784910E161
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 09:25:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6827710E69C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 09:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681809935; x=1713345935;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DD4gZYUA4Ly5bmoWUPlIbJqTmjS7SnlH+rB+GTrQcw8=;
- b=koSFLN3RXY4FQkGB4v0rq0/pKTZPdSZ6SuAt1G+ykvv48/jZixcZATtK
- +pHSLd7ha7jpXuPItJdKIcWO4ABjN0N9OdXqamEMhi6NLpKNEOt9yRxzp
- 8pXzHXFCbU79oIDomyG2JUPhI+5u6Pd7FhaSu1q9iYsEP2tSgQuFo/XHJ
- 6J/vfvpPcoW8mXrPH16xZ3cfnysBp6nijBNCdW+j31wk8/i4oKL87ZBPt
- nK873QyxCREL6736lYv/dM9+IWO6HiZESB/G8TsZKnxK39Z1ids/ewF8N
- fzUEDqKF2WC9Qhln3x0fh9rShQNFOrPKH2rcgH6EmHzMXgZRiiWLaXDJV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="408020753"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="408020753"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=vilCc7bFPF/iSF1gl008Xuf3JHvhKZ0IVXFhRLuP3po=;
+ b=Kix5CV4Mct3aLjznM7NZ6SJWlKnnOH6sZd+Gp/YwW60y1/wMqzKXasWo
+ PJFgud7Ow50XeDFc4prXYcxWXVqF5w4Wa7S321MqcdLzi0itwZ7TNypoQ
+ TBynf5tPcjSr+jWGbsXV76kDnkbF8cGvP/BqRNArB/jAG/XYWUWRUKFdg
+ 5essNGEbbDQ6a7E2sr+ag8KdS1dAUpbHFDXv53+0Qd0o+0fzfzx6Doi2t
+ P3zPQExUwVe/N9VvM2PVdwm1knRnwnYL3CtDGbsupk5bBtlB3jCS+J1QA
+ f6P6DikCI40y/E/nRu3Jq/ZfePi7YHPnbyPvTG1ZAMQq9675F11QBJ/8W w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="408020757"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="408020757"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 02:25:08 -0700
+ 18 Apr 2023 02:25:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="865310811"
-X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="865310811"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga005.jf.intel.com with ESMTP; 18 Apr 2023 02:25:06 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Apr 2023 14:53:46 +0530
-Message-Id: <20230418092346.1279064-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="760292910"
+X-IronPort-AV: E=Sophos;i="5.99,206,1677571200"; d="scan'208";a="760292910"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 02:25:07 -0700
+Date: Tue, 18 Apr 2023 12:25:00 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZD5h7NSuDBQICMAx@intel.com>
+References: <20230416155417.174418-1-vinod.govindapillai@intel.com>
+ <20230416155417.174418-3-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/display: Increase AUX timeout for
- Type-C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230416155417.174418-3-vinod.govindapillai@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v1 2/4] drm/i915: update the QGV point
+ frequency calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,89 +59,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
-Workaround: Increase the timeout.
+On Sun, Apr 16, 2023 at 06:54:15PM +0300, Vinod Govindapillai wrote:
+> From MTL onwwards, pcode locks the QGV point based on peak BW of
+> the intended QGV point passed by the driver. So the peak BW
+> calculation must match the value expected by the pcode. Update
+> the calculations as per the Bspec.
+> 
+> Bspec: 64636
+> 
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 5fa599b04ca5..57f8204162dd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -179,7 +179,7 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>  	val2 = intel_uncore_read(&dev_priv->uncore,
+>  				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
+>  	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
+> -	sp->dclk = DIV_ROUND_UP((16667 * dclk), 1000);
+> +	sp->dclk = (16667 * dclk + 500) / 1000;
 
-WA_14017248603: adlp
-Bspec: 55480
+Hmm, wonder does it at least partly now intersects with what I'm doing in 
+https://patchwork.freedesktop.org/series/114982/
 
----v2
--change style on how we mention WA [Ankit]
--fix bat error by creating new func that is only called for aux power
-well scenarios so we can avoid null pointer error as it is called
-everywhere.
+I remember we were discussing if this "+500" is actually also rounding up
+itself.
 
---v3
--Add non-default enable_timeout to power well descriptor which avoids
-adding more platform checks [Imre]
+The thing is that the way how rounding up is done for instance in DIV_ROUND_UP
+also, if you check, if you lets say want to divide n by d, however you want to round
+up the result, you add n = n + (d - 1) and then divide by d. This is how DIV_ROUND_UP works.
+That effectively means that if n would be anything more than m*d, result would be not m,
+but m + 1(note flooring would give m)
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power_map.c  | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_display_power_well.h | 2 ++
- 3 files changed, 13 insertions(+), 1 deletion(-)
+Adding 500, when dividing by 1000 is also rouding up, however it is a bit weaker.
+In example above that would mean, if we want to divide n by d, we first add n = n + d / 2
+and then divide by d.
+That effectively means that if n would be anything more than m*d + 500, result would not m,
+but again m + 1(again note, that true flooeing would have given m, not m + 1)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 6645eb1911d8..4b559de6d036 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1385,6 +1385,15 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
- 		),
- 		.ops = &icl_aux_power_well_ops,
- 		.fixed_enable_delay = true,
-+	}, {
-+		.instances = &I915_PW_INSTANCES(
-+			I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
-+			I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
-+			I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
-+			I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
-+		),
-+		.ops = &icl_aux_power_well_ops,
-+		.enable_timeout = true,
- 	}, {
- 		.instances = &I915_PW_INSTANCES(
- 			I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TBT1),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 62bafcbc7937..930a42c825c3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -253,6 +253,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
- {
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
-+	int timeout = power_well->desc->enable_timeout ? : 1;
- 
- 	/*
- 	 * For some power wells we're not supposed to watch the status bit for
-@@ -266,7 +267,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
- 
- 	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
- 	if (intel_de_wait_for_set(dev_priv, regs->driver,
--				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
-+				  HSW_PWR_WELL_CTL_STATE(pw_idx), timeout)) {
- 		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
- 			    intel_power_well_name(power_well));
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-index ba7cb977e7c7..e494df379e6c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-@@ -110,6 +110,8 @@ struct i915_power_well_desc {
- 	 * Thunderbolt mode.
- 	 */
- 	u16 is_tc_tbt:1;
-+	/* Enable timeout if greater than the default 1ms */
-+	u16 enable_timeout;
- };
- 
- struct i915_power_well {
--- 
-2.25.1
+So it is still rounding up, but just being weaker/less precise though.
 
+If we would want to truly floor that division, we would want to get m, but not m + 1 from
+above examples, which means that we should just divide n / d, without adding anything.
+So in my opinion, if we want to floor (16667 * dclk / 1000) result - it should not have
+both "DIV_ROUND_UP" and " + 500" things - thats what I've done in series which also was touching
+this code as well.
+
+I think it would be nice to raise issue and clarify from HW team, if it was initial intention,
+because adding + 500 is clearly doing rounding up as well, but it is just now on +-500(d/2) granularity now,
+while DIV_ROUND_UP worked with +-1 granularity. However both things are essentially "rounding up".
+So in that case I would really want to challenge or clarify, what is written in BSpec.
+
+Stan
+
+>  	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
+>  	sp->t_rcd = REG_FIELD_GET(MTL_TRCD_MASK, val);
+>  
+> -- 
+> 2.34.1
+> 
