@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9686E6F14
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:06:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98A46E6F12
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:06:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05A6110E1FE;
-	Tue, 18 Apr 2023 22:06:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B039A10E07B;
+	Tue, 18 Apr 2023 22:06:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD12610E07B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8585210E1AE
  for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 22:06:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681855565; x=1713391565;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ons8xBClW240OsJqsEc6XRz4AzLqtWUQLa8ovoLCxcc=;
- b=Z0ZpNRNuoyOujJNLu040isY+mOqDXEB9DNuHa1Z20+ZaO6vUbwaW8kV1
- RsFhlh4nmFZVlTZQgk9oyB9QXTsUJGr+3hNjy3fiPpSxhsUPnObXXhPdA
- UBikm82bUwqEqlq8MHoSAcyOBZQFfIM3AysrDCV1UKxos4rEX0W7URXAw
- VoHm1qqfL9V6dJvJ0s5Debnz7a++a5MBIPfPN64W/9EoPV9k2TqRlxg35
- i91D1/BBwVEv4lT3Y3orn7Qxzf3+PHBBJ3IyRNek1peYXEvL2NAwC6u7h
- L4UEtVvZJSpcer7o3AYzuNRBeRVZDjlDHrwLQOdrrp7wqMo+fEdOkQPcg w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334101438"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="334101438"
+ bh=bHRnNR0You1Crdm8kE51zXEoqYKC3SUaSfoNn79NMGA=;
+ b=QpIODxRsUGdrTCJD1oxd7syRohubQx3MS9rQq9gpbC7E/EiS4LqAOM85
+ 4hDnF5yCY7vXeStmeimmekzaOaQevpyW8FyUS+T3vIp7wLieHYW2qOmjz
+ UMXC3YQbvV5wWHVl/4TbQJyIREXk6wick0F8qy2IjcnOlHaWubF2S9XSJ
+ WhLTALfr43/PWgRbvTidSpAytIdTlkHGQ4v9kfi3anHrp7izbICj0c6i+
+ 5Ew5HqwxaBATWmFJybu5/DNMZ//04o9Nr8uAb4xc7Wvuj1t/DEYPDH/BR
+ 3oRBQLzeoJgvm+nrMRFp3hRDGInVSoFtzs0FakvohKegZgMGlqTxb/FHV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334101437"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="334101437"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Apr 2023 15:06:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="684761347"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="684761347"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="684761348"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="684761348"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Apr 2023 15:05:59 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Apr 2023 15:04:44 -0700
-Message-Id: <20230418220446.2205509-3-radhakrishna.sripada@intel.com>
+Date: Tue, 18 Apr 2023 15:04:45 -0700
+Message-Id: <20230418220446.2205509-4-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230418220446.2205509-1-radhakrishna.sripada@intel.com>
 References: <20230418220446.2205509-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915/mtl: Re-use ADL-P's "DC off"
- power well
+Subject: [Intel-gfx] [PATCH v2 3/4] drm/i915/mtl: Extend Wa_22011802037 to
+ MTL A-step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,62 +61,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
 
-As with ADL-P, MTL's "DC off" power well should be a dependency of the
-PGC and PGD power wells, not the entire PG2 well.  In fact, the DC5/DC6
-requirements between the two platforms are the same, so the Xe_LPD "DC
-off" well definition can just be re-used for Xe_LPD+.
+Wa_22011802037 was being applied to all graphics_ver 11 & 12. This patch
+updates the if statement to apply the W/A to right platforms and extends
+it to MTL-M:A step.
 
-Bspec: 49193
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+v1.1: Fix checkpatch warning.
+v2: Change the check to reflect the wa at other palces(Lucas)
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- .../drm/i915/display/intel_display_power_map.c   | 16 +---------------
- 1 file changed, 1 insertion(+), 15 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 5906b62e79f1..100582f10590 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1456,15 +1456,6 @@ I915_DECL_PW_DOMAINS(xelpdp_pwdoms_pw_2,
- 	XELPDP_PW_2_POWER_DOMAINS,
- 	POWER_DOMAIN_INIT);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 88e881b100cf..ee3e8352637f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1629,16 +1629,16 @@ static void guc_reset_state(struct intel_context *ce, u32 head, bool scrub)
  
--I915_DECL_PW_DOMAINS(xelpdp_pwdoms_dc_off,
--	XELPDP_PW_2_POWER_DOMAINS,
--	POWER_DOMAIN_AUDIO_MMIO,
--	POWER_DOMAIN_MODESET,
--	POWER_DOMAIN_AUX_A,
--	POWER_DOMAIN_AUX_B,
--	POWER_DOMAIN_DC_OFF,
--	POWER_DOMAIN_INIT);
+ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
+ {
+-	if (!IS_GRAPHICS_VER(engine->i915, 11, 12))
+-		return;
 -
- I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc1,
- 	POWER_DOMAIN_AUX_USBC1,
- 	POWER_DOMAIN_AUX_TBT1);
-@@ -1483,12 +1474,6 @@ I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc4,
+-	intel_engine_stop_cs(engine);
+-
+ 	/*
+ 	 * Wa_22011802037: In addition to stopping the cs, we need
+ 	 * to wait for any pending mi force wakeups
+ 	 */
+-	intel_engine_wait_for_pending_mi_fw(engine);
++	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++	    (GRAPHICS_VER(engine->i915) >= 11 &&
++	     GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))) {
++		intel_engine_stop_cs(engine);
++		intel_engine_wait_for_pending_mi_fw(engine);
++	}
+ }
  
- static const struct i915_power_well_desc xelpdp_power_wells_main[] = {
- 	{
--		.instances = &I915_PW_INSTANCES(
--			I915_PW("DC_off", &xelpdp_pwdoms_dc_off,
--				.id = SKL_DISP_DC_OFF),
--		),
--		.ops = &gen9_dc_off_power_well_ops,
--	}, {
- 		.instances = &I915_PW_INSTANCES(
- 			I915_PW("PW_2", &xelpdp_pwdoms_pw_2,
- 				.hsw.idx = ICL_PW_CTL_IDX_PW_2,
-@@ -1545,6 +1530,7 @@ static const struct i915_power_well_desc xelpdp_power_wells_main[] = {
- static const struct i915_power_well_desc_list xelpdp_power_wells[] = {
- 	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
- 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
-+	I915_PW_DESCRIPTORS(xelpd_power_wells_dc_off),
- 	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
- };
- 
+ static void guc_reset_nop(struct intel_engine_cs *engine)
 -- 
 2.34.1
 
