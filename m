@@ -1,50 +1,90 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F216E69D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 18:43:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BD86E6A0F
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 18:44:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88BFB10E296;
-	Tue, 18 Apr 2023 16:43:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51D610E296;
+	Tue, 18 Apr 2023 16:44:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEE910E296;
- Tue, 18 Apr 2023 16:43:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681836227; x=1713372227;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=on0Gv/pDuAOriZnMrNZIUzms38yA3AY4qw01mGrEFQQ=;
- b=add6W9dXyLas+mEbx0xJrw+Eej6h0tE+h245dmWVph4A6SocyzqaWRCT
- XjZQtIUHSERlU+MXOHdDcRoEOPQWz62FSR8ueX1MYb3XWbVkB8qV+F7Az
- WTaQtB9ykCAcScQ4NX2QAv5MBGXmX4brkz05U9qf9pv/BxcppF3AMDF/A
- 0gm+koD6lcGFJqdcC738+m7JI1tVYXPBY0aiEf7Ki1+I+V4p4H0bujLj+
- 3uEXXs7luw/aVOSLZNnvtnZUi3Qn0HeNNnfr7+hvm1hkysfZ2uHskihSg
- 54cPEcvxkGKolimV6eUaLgzx2zAC4LRbnyOQn2DK+fmPFp3NxSF+g23ua w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="347076119"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="347076119"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 09:43:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="760415091"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="760415091"
-Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 09:43:42 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Apr 2023 09:43:37 -0700
-Message-Id: <20230418164337.50303-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.40.0
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97C5C10E296
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 16:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1681836269;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nHWVPIc4x5U/mlAf83FqLeQfAoumlxuLoM0oc93GYKc=;
+ b=cPGZN6dMgQU4gX4a7sfGzWiK3jBcl2CzRNVw04IUGksyKDwjl+tfbocpdIHG5811C3pwn7
+ Etqrwhxo9LU7exETdVkgStOPej53e0ZFvfwxXtuowm9w6A0ELMtvOwAXBzd6iLrWIW8TET
+ cNszF1pFOGOyhOvTk144mZgiH5SCeRw=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-34-O5t0_WHBP3qn0_MIxKMNMA-1; Tue, 18 Apr 2023 12:44:18 -0400
+X-MC-Unique: O5t0_WHBP3qn0_MIxKMNMA-1
+Received: by mail-io1-f72.google.com with SMTP id
+ ca18e2360f4ac-760da06b86aso164430039f.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 09:44:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681836257; x=1684428257;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nHWVPIc4x5U/mlAf83FqLeQfAoumlxuLoM0oc93GYKc=;
+ b=K38er0zxZgGwSajzi/a2MwXjMCNo2ZtiTM5v4DKcbUvEkjtsa6/1xqv7SLCMsHkkM6
+ EpipKpzAA0I6Udz5/1nPtM9e7CH5r2FtmuTG+zkaRbVaQxzwK1EQbtoIM0G9CQv645X7
+ 3MehkSebEpXn1XpkTkmk6ql4Kv6lyDkb8ipveRXLzqe9a7eU5AqX7m4YR3/dzIwDQ5/N
+ DZ+31YlGOmw4SVc56yPMZy6aRQZ6tSjsH+UE3E9dvdupeuf0PpxFXXsdWHAbNkEtR4ne
+ wAjV1Al76s2tgPmnaq4k8MXjXX3dH/pTN2ln249i8FJwSAqQkHE107N86L8xu1+RVtIq
+ eB9g==
+X-Gm-Message-State: AAQBX9eeFwUIii2aO0ZQCiWi/QjYla02X8Tm+4JgqK0lVyZqGo5r+Smv
+ WyXSzwlhigUA3afkhdppa67FfkGWKMNz7EmN3WIvxjo2YVpT4PbhD6ZZyu6Fk0L/szXT88xdWYX
+ ldHsr2jpdSR8b9P8HLMslgnfqnK3x
+X-Received: by 2002:a05:6602:228e:b0:763:5ab7:a8ec with SMTP id
+ d14-20020a056602228e00b007635ab7a8ecmr2330258iod.12.1681836257615; 
+ Tue, 18 Apr 2023 09:44:17 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YitzyKqrsLa63dC12LmXhePfvCEuOzHSgyVKtNmIoubcbobEdIKF/6U2yIwGxHSAEsU59enQ==
+X-Received: by 2002:a05:6602:228e:b0:763:5ab7:a8ec with SMTP id
+ d14-20020a056602228e00b007635ab7a8ecmr2330244iod.12.1681836257256; 
+ Tue, 18 Apr 2023 09:44:17 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ ch5-20020a0566383e8500b0040bd1d947bfsm4241002jab.158.2023.04.18.09.44.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 18 Apr 2023 09:44:16 -0700 (PDT)
+Date: Tue, 18 Apr 2023 10:44:15 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Message-ID: <20230418104415.5cdecb5e.alex.williamson@redhat.com>
+In-Reply-To: <BN9PR11MB52764F6F00EFCD6EF9ACC71D8C9D9@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <20230412105045.79adc83d.alex.williamson@redhat.com>
+ <ZDcPTTPlni/Mi6p3@nvidia.com>
+ <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZDfslVwqk6JtPpyD@nvidia.com>
+ <20230413120712.3b9bf42d.alex.williamson@redhat.com>
+ <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230414111043.40c15dde.alex.williamson@redhat.com>
+ <DS0PR11MB75290A78D6879EC2E31E21AEC39C9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230417130140.1b68082e.alex.williamson@redhat.com>
+ <ZD2erN3nKbnyqei9@nvidia.com>
+ <20230417140642.650fc165.alex.williamson@redhat.com>
+ <BN9PR11MB5276D93DDFE3ED97CD1B923B8C9D9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20230417221033.778c00c9.alex.williamson@redhat.com>
+ <BN9PR11MB52764F6F00EFCD6EF9ACC71D8C9D9@BN9PR11MB5276.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Initialize dkl_phy spin lock from
- display code path
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,159 +97,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Start to move the initialization of display locks from
-i915_driver_early_probe(), this way it is also executed when running
-Xe kmd.
+On Tue, 18 Apr 2023 05:02:44 +0000
+"Tian, Kevin" <kevin.tian@intel.com> wrote:
 
-This will fix a warning in Xe kmd:
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Tuesday, April 18, 2023 12:11 PM
+> > 
+> > On Tue, 18 Apr 2023 03:24:46 +0000
+> > "Tian, Kevin" <kevin.tian@intel.com> wrote:
+> >   
+> > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > Sent: Tuesday, April 18, 2023 4:07 AM
+> > > >
+> > > > On Mon, 17 Apr 2023 16:31:56 -0300
+> > > > Jason Gunthorpe <jgg@nvidia.com> wrote:
+> > > >  
+> > > > > On Mon, Apr 17, 2023 at 01:01:40PM -0600, Alex Williamson wrote:  
+> > > > > > Yes, it's not trivial, but Jason is now proposing that we consider
+> > > > > > mixing groups, cdevs, and multiple iommufd_ctxs as invalid.  I think
+> > > > > > this means that regardless of which device calls INFO, there's only one
+> > > > > > answer (assuming same set of devices opened, all cdev, all within  
+> > same  
+> > > > > > iommufd_ctx).  Based on what I explained about my understanding of  
+> > > > INFO2  
+> > > > > > and Jason agreed to, I think the output would be:
+> > > > > >
+> > > > > > flags: NOT_RESETABLE | DEV_ID
+> > > > > > {
+> > > > > >   { valid devA-id,  devA-BDF },
+> > > > > >   { valid devC-id,  devC-BDF },
+> > > > > >   { valid devD-id,  devD-BDF },
+> > > > > >   { invalid dev-id, devE-BDF },
+> > > > > > }
+> > > > > >
+> > > > > > Here devB gets dropped because the kernel understands that devB is
+> > > > > > unopened, affected, and owned.  It's therefore not a blocker for
+> > > > > > hot-reset.  
+> > > > >
+> > > > > I don't think we want to drop anything because it makes the API
+> > > > > ill suited for the debugging purpose.
+> > > > >
+> > > > > devb should be returned with an invalid dev_id if I understand your
+> > > > > example. Maybe it should return with -1 as the dev_id instead of 0, to
+> > > > > make the debugging a bit better.
+> > > > >
+> > > > > Userspace should look at only NOT_RESETTABLE to determine if it
+> > > > > proceeds or not, and it should use the valid dev_id list to iterate
+> > > > > over the devices it has open to do the config stuff.  
+> > > >
+> > > > If an affected device is owned, not opened, and not interfering with
+> > > > the reset, what is it adding to the API to report it for debugging
+> > > > purposes?  I'm afraid this leads into expanding "invalid dev-id" into an  
+> > >
+> > > consistent output before and after devB is opened.  
+> > 
+> > In the case where devB is not opened including it only provides
+> > useless information.  In the case where devB is opened it's necessary
+> > to be reported as an opened, affected device.
+> >   
+> > > > errno or bitmap of error conditions that the user needs to parse.
+> > > >  
+> > >
+> > > Not exactly.
+> > >
+> > > If RESETABLE invalid dev_id doesn't matter. The user only use the
+> > > valid dev_id list to iterate as Jason pointed out.  
+> > 
+> > Yes, but...
+> >   
+> > > If NOT_RESETTABLE due to devE not assigned to the VM one can
+> > > easily figure out the fact by simply looking at the list of affected BDFs
+> > > and the configuration of assigned devices of the VM. Then invalid
+> > > dev_id also doesn't matter.  
+> > 
+> > Huh?
+> > 
+> > Given:
+> > 
+> > flags: NOT_RESETABLE | DEV_ID
+> > {
+> >   { valid devA-id,  devA-BDF },
+> >   { invalid dev-id, devB-BDF },
+> >   { valid devC-id,  devC-BDF },
+> >   { valid devD-id,  devD-BDF },
+> >   { invalid dev-id, devE-BDF },
+> > }
+> > 
+> > How does the user determine that devE is to blame and not devB based on
+> > BDF?  The user cannot rely on sysfs for help, they don't know the IOMMU
+> > grouping, nor do they know the BDF except as inferred by matching valid
+> > dev-ids in the above output.  
+> 
+> emmm aren't we talking about the 'person' who does diagnostic? This guy
+> will look at the VM configuration file to know that devA/B/C/D have been
+> assigned to the VM but not devE.
 
-[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
-[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
-[  202.175346] INFO: trying to register non-static key.
-[  202.175347] irq event stamp: 754060
-[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
-[  202.180294] The code is fine but needs lockdep annotation, or maybe
-[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
-[  202.192734] you didn't initialize this object before use?
-[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
-[  202.206882] turning off the locking correctness validator.
-[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
-[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
-[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
-[  202.255737] Call Trace:
-[  202.258179]  <TASK>
-[  202.260275]  dump_stack_lvl+0x58/0xc0
-[  202.263922]  register_lock_class+0x756/0x7d0
-[  202.268165]  ? find_held_lock+0x2b/0x80
-[  202.271975]  __lock_acquire+0x72/0x28b0
-[  202.275786]  ? debug_object_free+0xb4/0x160
-[  202.279946]  lock_acquire+0xd1/0x2d0
-[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.288181]  _raw_spin_lock+0x2a/0x40
-[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
-[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
-[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
-[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
-[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
-[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
-[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
-[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
-[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
-[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
-[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
-[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
-[  202.356260]  pci_device_probe+0x9d/0x150
-[  202.360164]  really_probe+0x19a/0x400
-[  202.363809]  ? __pfx___driver_attach+0x10/0x10
-[  202.368226]  __driver_probe_device+0x73/0x170
-[  202.372558]  driver_probe_device+0x1a/0x90
-[  202.376632]  __driver_attach+0xcd/0x1c0
-[  202.380442]  bus_for_each_dev+0x72/0xc0
-[  202.384253]  bus_add_driver+0x110/0x210
-[  202.388063]  driver_register+0x50/0x100
-[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
-[  202.396431]  do_one_initcall+0x55/0x260
-[  202.400245]  ? rcu_is_watching+0xd/0x40
-[  202.404058]  ? kmalloc_trace+0xa0/0xb0
-[  202.407786]  do_init_module+0x45/0x1e0
-[  202.411512]  __do_sys_finit_module+0xac/0x120
-[  202.415838]  do_syscall_64+0x37/0x90
-[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
-[  202.424409] RIP: 0033:0x7fd11291ea3d
-[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
-[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
-[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
-[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
-[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
-[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
-[  202.489396]  </TASK>
+Actually the scenario is that devA/C/D are assigned, devB is implicitly
+owned, and it's devE that blocks the reset.  If you've followed any of
+the community forums for vfio over the years, it should be readily
+apparent that placing the burden solely on the end user to perform such
+a diagnosis is an unreasonable expectation.
 
-v2:
-- added intel_display_locks_init()
+> > > If NOT_RESETTABLE while devE is already assigned to the VM then it's
+> > > indication of mixing groups, cdevs or multiple iommufd_ctxs. Then
+> > > people should debug with other means/hints to dig out the exact
+> > > culprit.  
+> > 
+> > I don't know what situation you're trying to explain here.  If devE
+> > were opened within the same iommufd_ctx, this becomes:  
+> 
+> It's about a scenario where the mgmt.. stack has assigned all affected
+> devices to Qemu but Qemu itself messed it up with mixed group/cdev
+> or multiple iommufd_ctx so hitting the NON_RESETTABLE situation.
 
-v3:
-- rebased
+Is this a reasonable scenario?  I expect the QEMU support to favor cdev
+access where available and fd passing methods will only use cdev, so
+QEMU should never mess up to create such an environment.  There should
+never be a case where a device is exclusively available via group
+rather than cdev.
 
-v4:
-- drop intel_display_locks_init()
+> > flags: RESETABLE | DEV_ID
+> > {
+> >   { valid devA-id,  devA-BDF },
+> >   { invalid dev-id, devB-BDF },
+> >   { valid devC-id,  devC-BDF },
+> >   { valid devD-id,  devD-BDF },
+> >   { valid devE-id,  devE-BDF },
+> > }
+> > 
+> > Yes, the user should only be looking at the flag to determine the
+> > availability of hot-reset, (here's the but) but how is it consistent to
+> > indicate both that hot-reset is available and include an invalid
+> > dev-id?  The consistency as I propose is that an invalid dev-id is only
+> > presented with NOT_RESETTABLE for the device blocking hot-reset.  In
+> > the previous case, devB is not blocking reset and reporting an invalid
+> > dev-id only serves to obfuscate determining the blocking device.
+> > 
+> > For the cases of affected group-opened devices or separate
+> > iommufd_ctxs, the user gets invalid dev-ids for anything outside of
+> > the calling device's iommufd_ctx.
+> > 
+> > We haven't discussed how it fails when called on a group-opened device
+> > in a mixed environment.  I'd propose that the INFO ioctl behaves
+> > exactly as it does today, reporting group-id and BDF for each affected
+> > device.  However, the hot-reset ioctl itself is not extended to accept
+> > devicefd because there is no proof-of-ownership model for cdevs.
+> > Therefore even if the user could map group-id to devicefd, they get
+> > -EINVAL calling HOT_RESET with a devicefd when the ioctl is called from
+> > a group-opened device.  Thanks,
+> >   
+> 
+> Yes I chatted with Yi about it.
+> 
+> If the calling device of the INFO ioctl is opened by group then behave
+> as it does today.
+> 
+> If the calling device is opened via cdev then use dev_id scheme as
+> discussed above.
+> 
+> in hot_reset ioctl the fd array only accepts group fd's.
+> 
+> cdev can be reset only via null fd array.
+> 
+> It remains a small open that null fd array could potentially work for
+> group-opened device too if vfio-compat is used. In that case devices
+> are in same iommufd ctx with valid dev_id even though they are opened 
+> via group. But probably it's not worthy blocking it?
 
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
- drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 5 +++++
- drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
- drivers/gpu/drm/i915/i915_driver.c                  | 1 -
- 4 files changed, 8 insertions(+), 1 deletion(-)
+Yes, let's not create new models for the compatibility interface, stick
+with group-opened = group-id = proof-of-ownership.  Thanks,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index b3dbfe2a892e6..60ce10fc72058 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -30,6 +30,7 @@
- #include "intel_display_driver.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
-+#include "intel_dkl_phy.h"
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dpll.h"
-@@ -175,6 +176,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
-+	intel_dkl_phy_init(i915);
- 	intel_color_init_hooks(i915);
- 	intel_init_cdclk_hooks(i915);
- 	intel_audio_hooks_init(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-index 57cc3edba0163..69d863dfb3a03 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-@@ -104,3 +104,8 @@ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_r
- 
- 	spin_unlock(&i915->display.dkl.phy_lock);
- }
-+
-+void intel_dkl_phy_init(struct drm_i915_private *i915)
-+{
-+	spin_lock_init(&i915->display.dkl.phy_lock);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-index 570ee36f9386f..a0183d322e058 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-@@ -20,5 +20,6 @@ void
- intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set);
- void
- intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
-+void intel_dkl_phy_init(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_DKL_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a52db8a809006..fd198700272b1 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -223,7 +223,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	mutex_init(&dev_priv->display.wm.wm_mutex);
- 	mutex_init(&dev_priv->display.pps.mutex);
- 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
--	spin_lock_init(&dev_priv->display.dkl.phy_lock);
- 
- 	i915_memcpy_init_early(dev_priv);
- 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
--- 
-2.40.0
+Alex
 
