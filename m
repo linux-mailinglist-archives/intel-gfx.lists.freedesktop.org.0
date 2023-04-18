@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA026E6B85
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 19:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68E2C6E6B86
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 19:56:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBF910E820;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA9A910E830;
 	Tue, 18 Apr 2023 17:56:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B00110E830
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 17:55:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E13A10E820
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 17:56:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681840560; x=1713376560;
+ t=1681840562; x=1713376562;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=OMHAFzZrofMWWdCu8H3y19mF6NSFY/t/EM6wBBj4B0c=;
- b=PzvvDYNo1qpVS23ueFFwFLwMqj4foL5qiIQJ4Ncf3YAIROS84Q1znxgx
- IYca0RpZUfpVIzaR1wQHlTOmzhlBf6cS8onmyu3s+nEc3lJvJq5/bqFQc
- 1l78ZpcpnKYwB6tg3pQPZG9FtPEdKC/OlB1GS6fSVjqLRck7+l1AmqdUk
- lg9SUN2g/WLhH79GW6ZqPrtnedD1LqJtJd3sG70WQwbfPBsujW30hJr5G
- xuyiqDnttdBgJFTDWiz7hMaVeeNKJpH6a9qQhWqa+/6x5m6vPmZiM6vu9
- rtvR8P06L/q9pRj7XHzEwKgvHPUgdOw3QOfyontX4Nfbjn/jn/V7lpEMA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334052793"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="334052793"
+ bh=mZbTbg7GKEfHvsjbdjf5HeW+MnlSIcwL2AW1WUPRDzE=;
+ b=bDpfH/2y9+VNu2rOKE5b0ZzdeQ4IywBfudWWmNw+0uIS3FUDzD1e++L3
+ uY7zpeapJzHQTJa1AwAmatjtnNlvrARlj7YZkogXrEnB3JwftBO1SwCn+
+ ubfzI+in6XlGtoAdR1QXCyMQkuzN07vTsMkwvbFL/8W3gzk8SfllKQKIn
+ sxzNIEpHIYIZzDHB9w+ERitw4xfYG0OjvlstFMnrTv0sVk8Vr6thU8yOQ
+ 3xK9B1gm4H9V9oX1zcI5fRumSWiqcsScP0ubyQ9aphswJXm3TULgsQ0yO
+ wX4U9ZOSGuj/5K390P9ddVWNUypvLGpHYc3fer/eS4jkwAxAXxeeTDBkj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334052813"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="334052813"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 10:55:49 -0700
+ 18 Apr 2023 10:55:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="641451718"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="641451718"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="641451756"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="641451756"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga003.jf.intel.com with SMTP; 18 Apr 2023 10:55:47 -0700
+ by orsmga003.jf.intel.com with SMTP; 18 Apr 2023 10:55:50 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Apr 2023 20:55:46 +0300
+ Tue, 18 Apr 2023 20:55:49 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Apr 2023 20:55:19 +0300
-Message-Id: <20230418175528.13117-7-ville.syrjala@linux.intel.com>
+Date: Tue, 18 Apr 2023 20:55:20 +0300
+Message-Id: <20230418175528.13117-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
 References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/15] drm/i915: Namespace pfit registers
- properly
+Subject: [Intel-gfx] [PATCH 07/15] drm/i915: Use REG_BIT() & co. for ilk+
+ pfit registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,128 +65,79 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Give the PFIT_CONTROL bits a consistent namespace.
+Polish the ilk+ pfit registers with REG_BIT() & co., and
+also take the opportunity to unify the ivb/hsw vs. not checks
+in ilk_pfit_enable() and ilk_get_pfit_config().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lvds.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_overlay.c |  2 +-
- drivers/gpu/drm/i915/display/intel_panel.c   | 25 ++++++++++----------
- drivers/gpu/drm/i915/i915_reg.h              | 14 +++++------
- 4 files changed, 22 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  9 +++++++--
+ drivers/gpu/drm/i915/i915_reg.h              | 20 ++++++++++----------
+ 2 files changed, 17 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 0de44b3631cd..8e9a3d72b83b 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -150,7 +150,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
- 	if (DISPLAY_VER(dev_priv) < 4) {
- 		tmp = intel_de_read(dev_priv, PFIT_CONTROL);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ea1b0e87ae35..e9000ed15e7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3230,11 +3230,17 @@ static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 ctl, pos, size;
++	enum pipe pipe;
  
--		crtc_state->gmch_pfit.control |= tmp & PANEL_8TO6_DITHER_ENABLE;
-+		crtc_state->gmch_pfit.control |= tmp & PFIT_PANEL_8TO6_DITHER_ENABLE;
- 	}
+ 	ctl = intel_de_read(dev_priv, PF_CTL(crtc->pipe));
+ 	if ((ctl & PF_ENABLE) == 0)
+ 		return;
  
- 	crtc_state->hw.adjusted_mode.crtc_clock = crtc_state->port_clock;
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 1813ab5056a1..d6fe2bbabe55 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -948,7 +948,7 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
- 	} else {
- 		u32 tmp;
++	if (IS_IVYBRIDGE(dev_priv) || IS_HASWELL(dev_priv))
++		pipe = REG_FIELD_GET(PF_PIPE_SEL_MASK_IVB, ctl);
++	else
++		pipe = crtc->pipe;
++
+ 	crtc_state->pch_pfit.enabled = true;
  
--		if (intel_de_read(dev_priv, PFIT_CONTROL) & VERT_AUTO_SCALE)
-+		if (intel_de_read(dev_priv, PFIT_CONTROL) & PFIT_VERT_AUTO_SCALE)
- 			tmp = intel_de_read(dev_priv, PFIT_AUTO_RATIOS);
- 		else
- 			tmp = intel_de_read(dev_priv, PFIT_PGM_RATIOS);
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 71cd08f44ed0..9232a305b1e6 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -567,8 +567,8 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(bits) |
- 					     PFIT_VERT_SCALE(bits));
- 			*pfit_control |= (PFIT_ENABLE |
--					  VERT_INTERP_BILINEAR |
--					  HORIZ_INTERP_BILINEAR);
-+					  PFIT_VERT_INTERP_BILINEAR |
-+					  PFIT_HORIZ_INTERP_BILINEAR);
- 		}
- 	} else if (scaled_width < scaled_height) { /* letter */
- 		centre_vertically(adjusted_mode,
-@@ -582,15 +582,16 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(bits) |
- 					     PFIT_VERT_SCALE(bits));
- 			*pfit_control |= (PFIT_ENABLE |
--					  VERT_INTERP_BILINEAR |
--					  HORIZ_INTERP_BILINEAR);
-+					  PFIT_VERT_INTERP_BILINEAR |
-+					  PFIT_HORIZ_INTERP_BILINEAR);
- 		}
- 	} else {
- 		/* Aspects match, Let hw scale both directions */
- 		*pfit_control |= (PFIT_ENABLE |
--				  VERT_AUTO_SCALE | HORIZ_AUTO_SCALE |
--				  VERT_INTERP_BILINEAR |
--				  HORIZ_INTERP_BILINEAR);
-+				  PFIT_VERT_AUTO_SCALE |
-+				  PFIT_HORIZ_AUTO_SCALE |
-+				  PFIT_VERT_INTERP_BILINEAR |
-+				  PFIT_HORIZ_INTERP_BILINEAR);
- 	}
+ 	pos = intel_de_read(dev_priv, PF_WIN_POS(crtc->pipe));
+@@ -3249,8 +3255,7 @@ static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
+ 	 * ivb/hsw (since we don't use the higher upscaling modes which
+ 	 * differentiates them) so just WARN about this case for now.
+ 	 */
+-	drm_WARN_ON(&dev_priv->drm, DISPLAY_VER(dev_priv) == 7 &&
+-		    (ctl & PF_PIPE_SEL_MASK_IVB) != PF_PIPE_SEL_IVB(crtc->pipe));
++	drm_WARN_ON(&dev_priv->drm, pipe != crtc->pipe);
  }
  
-@@ -638,10 +639,10 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
- 			if (DISPLAY_VER(dev_priv) >= 4)
- 				pfit_control |= PFIT_SCALING_AUTO;
- 			else
--				pfit_control |= (VERT_AUTO_SCALE |
--						 VERT_INTERP_BILINEAR |
--						 HORIZ_AUTO_SCALE |
--						 HORIZ_INTERP_BILINEAR);
-+				pfit_control |= (PFIT_VERT_AUTO_SCALE |
-+						 PFIT_VERT_INTERP_BILINEAR |
-+						 PFIT_HORIZ_AUTO_SCALE |
-+						 PFIT_HORIZ_INTERP_BILINEAR);
- 		}
- 		break;
- 	default:
-@@ -662,7 +663,7 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
- 
- 	/* Make sure pre-965 set dither correctly for 18bpp panels. */
- 	if (DISPLAY_VER(dev_priv) < 4 && crtc_state->pipe_bpp == 18)
--		pfit_control |= PANEL_8TO6_DITHER_ENABLE;
-+		pfit_control |= PFIT_PANEL_8TO6_DITHER_ENABLE;
- 
- 	crtc_state->gmch_pfit.control = pfit_control;
- 	crtc_state->gmch_pfit.pgm_ratios = pfit_pgm_ratios;
+ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index cb8611aaaa5e..eea739e0b48a 100644
+index eea739e0b48a..3c02f6c70733 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2349,13 +2349,13 @@
- #define   PFIT_FILTER_FUZZY		REG_FIELD_PREP(PFIT_FILTER_MASK, 0)
- #define   PFIT_FILTER_CRISP		REG_FIELD_PREP(PFIT_FILTER_MASK, 1)
- #define   PFIT_FILTER_MEDIAN		REG_FIELD_PREP(PFIT_FILTER_MASK, 2)
--#define   VERT_INTERP_MASK		REG_GENMASK(11, 10) /* pre-965 */
--#define   VERT_INTERP_BILINEAR		REG_FIELD_PREP(VERT_INTERP_MASK, 1)
--#define   VERT_AUTO_SCALE		REG_BIT(9) /* pre-965 */
--#define   HORIZ_INTERP_MASK		REG_GENMASK(7, 6) /* pre-965 */
--#define   HORIZ_INTERP_BILINEAR		REG_FIELD_PREP(HORIZ_INTERP_MASK, 1)
--#define   HORIZ_AUTO_SCALE		REG_BIT(5) /* pre-965 */
--#define   PANEL_8TO6_DITHER_ENABLE	REG_BIT(3) /* pre-965 */
-+#define   PFIT_VERT_INTERP_MASK		REG_GENMASK(11, 10) /* pre-965 */
-+#define   PFIT_VERT_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_VERT_INTERP_MASK, 1)
-+#define   PFIT_VERT_AUTO_SCALE		REG_BIT(9) /* pre-965 */
-+#define   PFIT_HORIZ_INTERP_MASK	REG_GENMASK(7, 6) /* pre-965 */
-+#define   PFIT_HORIZ_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_HORIZ_INTERP_MASK, 1)
-+#define   PFIT_HORIZ_AUTO_SCALE		REG_BIT(5) /* pre-965 */
-+#define   PFIT_PANEL_8TO6_DITHER_ENABLE	REG_BIT(3) /* pre-965 */
+@@ -4008,16 +4008,16 @@
  
- #define PFIT_PGM_RATIOS _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61234)
- #define   PFIT_VERT_SCALE_MASK		REG_GENMASK(31, 20) /* pre-965 */
+ /* CPU panel fitter */
+ /* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
+-#define _PFA_CTL_1               0x68080
+-#define _PFB_CTL_1               0x68880
+-#define  PF_ENABLE              (1 << 31)
+-#define  PF_PIPE_SEL_MASK_IVB	(3 << 29)
+-#define  PF_PIPE_SEL_IVB(pipe)	((pipe) << 29)
+-#define  PF_FILTER_MASK		(3 << 23)
+-#define  PF_FILTER_PROGRAMMED	(0 << 23)
+-#define  PF_FILTER_MED_3x3	(1 << 23)
+-#define  PF_FILTER_EDGE_ENHANCE	(2 << 23)
+-#define  PF_FILTER_EDGE_SOFTEN	(3 << 23)
++#define _PFA_CTL_1		0x68080
++#define _PFB_CTL_1		0x68880
++#define   PF_ENABLE			REG_BIT(31)
++#define   PF_PIPE_SEL_MASK_IVB		REG_GENMASK(30, 29) /* ivb/hsw */
++#define   PF_PIPE_SEL_IVB(pipe)		REG_FIELD_PREP(PF_PIPE_SEL_MASK_IVB, (pipe))
++#define   PF_FILTER_MASK		REG_GENMASK(24, 23)
++#define   PF_FILTER_PROGRAMMED		REG_FIELD_PREP(PF_FILTER_MASK, 0)
++#define   PF_FILTER_MED_3x3		REG_FIELD_PREP(PF_FILTER_MASK, 1)
++#define   PF_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 2)
++#define   PF_FILTER_EDGE_SOFTEN		REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 3)
+ #define _PFA_WIN_SZ		0x68074
+ #define _PFB_WIN_SZ		0x68874
+ #define _PFA_WIN_POS		0x68070
 -- 
 2.39.2
 
