@@ -2,32 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4BD6E6F62
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20FA76E6F8D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4551E10E217;
-	Tue, 18 Apr 2023 22:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9763210E14F;
+	Tue, 18 Apr 2023 22:42:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B51F610E217;
- Tue, 18 Apr 2023 22:30:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AD454A9932;
- Tue, 18 Apr 2023 22:30:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1241233094852158657=="
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com
+ [IPv6:2607:f8b0:4864:20::e34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED79610E14F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 22:42:30 +0000 (UTC)
+Received: by mail-vs1-xe34.google.com with SMTP id cu36so2043996vsb.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 15:42:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1681857749; x=1684449749;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=f0uzdbR+MdUoUV2kXkUl0gsHMVuIqns3h86invsvwfw=;
+ b=cMgjJ2sI0KRlAuH9m6fDaQgI6nlhQuwxZHzwhuaL7ieenSALyttAu964lWD00mkZ8J
+ frGQZufIAOj1x9pM36BxMlCb2S6eBovzvIjbMcxqBQUZiIv0RcovFJPU42osZ450rije
+ K4hPIvDwDUZ+3J0blW4k256cP7gAeBpUYEkqc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681857749; x=1684449749;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=f0uzdbR+MdUoUV2kXkUl0gsHMVuIqns3h86invsvwfw=;
+ b=AmsL/nGlsWnOk2LO55Z7KjrTIZu0rt7Yy+S08NlNC8phGnmmv+WjpfaqqU/OTd+nJe
+ Ih8i/x9xi2mWs7eGmCbTr6cFk7tL05MobMk/HCAc901b9P53S0x9WoOz7WrWyjSq87co
+ i73yld3c+CUiyL/1PkfSbRhxm+BKGclAXGgoGW5NcHAKVTLvAQ6VpB01CsRiJIPO+o1L
+ ERW8FORYKVgrRick1b9UI5l9t1gPoFkdZ04moxX7b7f3JwvtQVAez7cVNJJ3N8mos7/c
+ 4w2Fm5BWqkNqzs96aB3xuWi+3pMVToW0th533FalqqGg+yZpwGmlq3tmgPWzp1U/UFTM
+ GTew==
+X-Gm-Message-State: AAQBX9crZrXyAojjHfpomodyQDnY2XwZtzP/7h9YhGXgu6mMfoiM5rbr
+ 1M5oxmOZx0BwBMD+onoAFnHRblXKklrnrUKZcWOwjcUz0sM1yXWb
+X-Google-Smtp-Source: AKy350aSaT8B6mZLB0mO2o6OpzM9boOQDIfQqaGxRzd0Ep6PVEea1P/PLYKuRY6bRVzkXpcfPr69WKOdi/+bYNGi8eM=
+X-Received: by 2002:a05:6102:1d1:b0:42e:65bf:3e5e with SMTP id
+ s17-20020a05610201d100b0042e65bf3e5emr4117997vsq.30.1681857749569; Tue, 18
+ Apr 2023 15:42:29 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Tue, 18 Apr 2023 22:30:42 -0000
-Message-ID: <168185704267.17885.2329105640845618081@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Scaler/pfit_stuff_=28rev2=29?=
+References: <20230411173408.1945921-1-navaremanasi@chromium.org>
+ <ZDWcDhmJyMhQpQBa@intel.com>
+ <CAE72mNkzD4fpXeTVyFaP+xQqDbSFm+yiQ8sBvGoD+beequfeaQ@mail.gmail.com>
+ <ZDZAHj4PPaDD9HHj@intel.com>
+ <CAE72mNmd2wAdLFQFLgKeDazyn+Qogd1h4N75hfJrtBsOndB2Vg@mail.gmail.com>
+ <CAE72mNmy9Lm2vZz9S1q18-yAGWXsBkjhFkYDzoHZFQY6LqvOyw@mail.gmail.com>
+ <ZD6RKS972byO+Fpa@intel.com> <fc47b7d8-0a93-716d-337b-405c601f2a6d@intel.com>
+ <ZD6vHkhvyqzHra2X@intel.com>
+In-Reply-To: <ZD6vHkhvyqzHra2X@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Tue, 18 Apr 2023 15:42:18 -0700
+Message-ID: <CAE72mNmHzOthzY_EURJW6BQYXAFmqmKyYes=ccTefuo1Y0VJ7Q@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Return correct err code
+ for bpc < 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,241 +72,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1241233094852158657==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Ville and Ankit,
 
-== Series Details ==
+I actually do not think this is a problem with the DSC logic, but it
+is a problem with the intel_dp_link_compute_config() where we should
+do something if max_bpp is 0 instead of just returning a -EINVAL
+directly.
+My question here:
+- In case of PCON, yuv format, is it a valid case to have max bpp set to 0?
+- This is where I am seeing it as set to 0
+- If it isnt then the problem is probably where it computes max bpp
+for hdmi case for yuv format
 
-Series: drm/i915: Scaler/pfit stuff (rev2)
-URL   : https://patchwork.freedesktop.org/series/116661/
-State : success
+Manasi
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13027 -> Patchwork_116661v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116661v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [PASS][1] -> [DMESG-WARN][2] ([i915#7699])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         NOTRUN -> [ABORT][3] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][4] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence:
-    - fi-glk-j4005:       [ABORT][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence.html
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-glk-j4005:       [DMESG-FAIL][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][9] ([i915#7911] / [i915#7982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [FAIL][11] ([i915#7932]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13027 -> Patchwork_116661v2
-
-  CI-20190529: 20190529
-  CI_DRM_13027: 9e1eb302fc69b5d8dc662f1ce7ed8684e87c5751 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7259: 3d3a7f1c041d3f8d84d7457abf96adef0ea071cb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116661v2: 9e1eb302fc69b5d8dc662f1ce7ed8684e87c5751 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-9947c69ee924 drm/i915: Define more PS_CTRL bits
-0ac6b744524a drm/i915: Use REG_BIT() & co. for pipe scaler registers
-6b67a6cd9f21 drm/i915: Define bitmasks for sik+ scaler window pos/size
-687ad0dac35d drm/i915: s/PS_COEE_INDEX_AUTO_INC/PS_COEF_INDEX_AUTO_INC/
-89444185a560 drm/i915: Rename skl+ scaler binding bits
-b3faccaba258 drm/i915: Remove dead scaler register defines
-c373ba56babd drm/i915: Define bitmasks for ilk pfit window pos/size
-3e421cff5a5c drm/i915: Drop a useless forward declararion
-5852fb441ef9 drm/i915: Use REG_BIT() & co. for ilk+ pfit registers
-4d524b27d865 drm/i915: Namespace pfit registers properly
-58c021cd2807 drm/i915: Use REG_BIT() & co for the pre-ilk pfit registers
-507b0444a95c drm/i915: Relocate skl_get_pfit_config()
-08731b676724 drm/i915: Relocate intel_atomic_setup_scalers()
-1a7334d25793 drm/i915: Relocate VBLANK_EVASION_TIME_US
-f77bf272f7b9 drm/i915: Check pipe source size when using skl+ scalers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/index.html
-
---===============1241233094852158657==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Scaler/pfit stuff (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116661/">https://patchwork.freedesktop.org/series/116661/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13027 -&gt; Patchwork_116661v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116661v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13027/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13027 -&gt; Patchwork_116661v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13027: 9e1eb302fc69b5d8dc662f1ce7ed8684e87c5751 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7259: 3d3a7f1c041d3f8d84d7457abf96adef0ea071cb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116661v2: 9e1eb302fc69b5d8dc662f1ce7ed8684e87c5751 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9947c69ee924 drm/i915: Define more PS_CTRL bits<br />
-0ac6b744524a drm/i915: Use REG_BIT() &amp; co. for pipe scaler registers<br />
-6b67a6cd9f21 drm/i915: Define bitmasks for sik+ scaler window pos/size<br />
-687ad0dac35d drm/i915: s/PS_COEE_INDEX_AUTO_INC/PS_COEF_INDEX_AUTO_INC/<br />
-89444185a560 drm/i915: Rename skl+ scaler binding bits<br />
-b3faccaba258 drm/i915: Remove dead scaler register defines<br />
-c373ba56babd drm/i915: Define bitmasks for ilk pfit window pos/size<br />
-3e421cff5a5c drm/i915: Drop a useless forward declararion<br />
-5852fb441ef9 drm/i915: Use REG_BIT() &amp; co. for ilk+ pfit registers<br />
-4d524b27d865 drm/i915: Namespace pfit registers properly<br />
-58c021cd2807 drm/i915: Use REG_BIT() &amp; co for the pre-ilk pfit registers<br />
-507b0444a95c drm/i915: Relocate skl_get_pfit_config()<br />
-08731b676724 drm/i915: Relocate intel_atomic_setup_scalers()<br />
-1a7334d25793 drm/i915: Relocate VBLANK_EVASION_TIME_US<br />
-f77bf272f7b9 drm/i915: Check pipe source size when using skl+ scalers</p>
-
-</body>
-</html>
-
---===============1241233094852158657==--
+On Tue, Apr 18, 2023 at 7:54=E2=80=AFAM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Tue, Apr 18, 2023 at 08:09:16PM +0530, Nautiyal, Ankit K wrote:
+> >
+> > On 4/18/2023 6:16 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > On Mon, Apr 17, 2023 at 03:48:12PM -0700, Manasi Navare wrote:
+> > >> Hi Ville,
+> > >>
+> > >> Could you suggest how to handle the intel_dp_link_compute_config()
+> > >> when the max_bpp is returned as 0, currently
+> > >> it just exits the loop and returns a -EINVAL and this triggers the D=
+SC path.
+> > >> While we should be completely failing the modeset and encoder_config
+> > >> in this case instead of trying DSC, correct?
+> > > The DSC path needs to handle the bpp limits correctly:
+> > > 1. Take the baseline limits already computed
+> > > 2. Further restrict them based on sink/source DSC capabilities/etc.
+> > > 3. Make sure the uncompressed bpp value chosen is between the min/max
+> >
+> > I have some older patch to try similar thing [1]. We try to iterate ove=
+r
+> > bpc to find pipe_bpp in the limits, then try to find out compressed_bpp=
+.
+> >
+> > But if intel_dp_max_bpp returns 0, limits.max_bpp is set to 0, so we
+> > discard this for dsc case and re-calculate the limits.max_bpp?
+>
+> You shouldn't discard anything. DSC should take the already computed
+> limits and potentially just shrink them further based on DSC specific
+> constraints.
+>
+> Or is there some weird case where DSC would allow lower/higher bpp
+> than what our uncompressed bpp limits declare?
+>
+> >
+> >
+> > [1] https://patchwork.freedesktop.org/patch/519346/?series=3D111391&rev=
+=3D3
+> >
+> > >
+> > >> Manasi
+> > >>
+> > >> On Thu, Apr 13, 2023 at 8:23=E2=80=AFAM Manasi Navare <navaremanasi@=
+chromium.org> wrote:
+> > >>> On Tue, Apr 11, 2023 at 10:22=E2=80=AFPM Ville Syrj=C3=A4l=C3=A4
+> > >>> <ville.syrjala@linux.intel.com> wrote:
+> > >>>> On Tue, Apr 11, 2023 at 05:07:01PM -0700, Manasi Navare wrote:
+> > >>>>> On Tue, Apr 11, 2023 at 10:42=E2=80=AFAM Ville Syrj=C3=A4l=C3=A4
+> > >>>>> <ville.syrjala@linux.intel.com> wrote:
+> > >>>>>> On Tue, Apr 11, 2023 at 05:34:08PM +0000, Manasi Navare wrote:
+> > >>>>>>> In the function intel_dp_max_bpp(), currently if bpc < 0 in cas=
+e of error,
+> > >>>>>>> we return 0 instead of returning an err code of -EINVAL.
+> > >>>>>>> This throws off the logic in the calling function.
+> > >>>>>> What logic? The caller doesn't expect to get an error.
+> > >>>>> If this returns a 0, we end up using limits.max_bpp =3D 0 and in
+> > >>>>> intel_dp_compute_link_config_wide(),
+> > >>>>> since max_bpp is 0, it exits this for loop:
+> > >>>>>
+> > >>>>> for (bpp =3D limits->max_bpp; bpp >=3D limits->min_bpp; bpp -=3D =
+2 * 3) and returns
+> > >>>>> -EINVAL which then wrongly goes to enable DSC even when link BW i=
+s
+> > >>>>> sufficient without DSC.
+> > >>>> And how woud max_bpp<0 prevent that?
+> > >>>>
+> > >>>> The real problem seems to be that the DSC code totally
+> > >>>> ignores bpp limits.
+> > >>> Hi Ville,
+> > >>>
+> > >>> So I see a few concerns/questions:
+> > >>> - Why is the Max bpp value 0 in intel_dp_max_bpp, is that a valid c=
+ase
+> > >>> and how should our link configurations handle that case when max_bp=
+p
+> > >>> is 0?
+> > >>> - This is happening in a bug I am looking at with HDMI PCON, @Ankit
+> > >>> Nautiyal  have we ever seen something similar where max_bpp for HDM=
+i
+> > >>> PCON
+> > >>> is returned 0?
+> > >>> - I dont think its a problem with DSC code, but rather
+> > >>> intel_dp_compute_link_config() outer for loop where we vary
+> > >>> from max_bpp to min_bpp and see if any bpp works with available lin=
+k
+> > >>> bw, how should we handle this when max_bpp =3D 0 if you are saying =
+thats
+> > >>> a valid case?
+> > >>> - In this patch if I return -EINVAL instead of 0, then atleast the
+> > >>> entire encoder_config will fail and that will fail the modeset, sin=
+ce
+> > >>> it assumes max_bpp cannot be 0
+> > >>>
+> > >>> Could you please help answer above concerns and how to handle max b=
+pp
+> > >>> =3D 0 case if that is valid? This patch is simply making that inval=
+id
+> > >>> resulting into modeset failure
+> > >>>
+> > >>> Manasi
+> > >>>> --
+> > >>>> Ville Syrj=C3=A4l=C3=A4
+> > >>>> Intel
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
