@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38EA6E607A
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 13:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEC86E6392
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 14:41:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B99F10E781;
-	Tue, 18 Apr 2023 11:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4CCE10E24A;
+	Tue, 18 Apr 2023 12:41:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0BC6410E77A;
- Tue, 18 Apr 2023 11:56:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 027E3AADE6;
- Tue, 18 Apr 2023 11:56:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8767007609684703443=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8F310E24A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 12:41:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681821707; x=1713357707;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=gqfSZlZN9/jbD+y3//d2YpGEo5iQmZfhiiNAOGZaa0o=;
+ b=EJ6JkF7WHdUYwRhsby/5bkUB7IrmmERVH5lygA1JnQl+r+9Ypahjn0vd
+ gbzfOrKMqj07p9NVUPMhqmfComZS+gM0TzKzT7IRX6K1CrNX5bGHcRfbY
+ yRlUQFzK+YC9PYCbbJEOruF2oHFIrfywlUqTIS9cZb3da0XW7VAiiUwpK
+ +CoWMBCoIL1wkk/9huNoCktF985pp7N0mtdOAFQwAYfX9RasqfpdPBfcq
+ Te3I1RfbdY7cTdv+EjB269FCdP8AgLOPPAcZlSsIxOmM00q7XpAwmb3CB
+ QY4kIUV+ZsLuUMfJE1HIusxlIQXeBmYZmZ5uBQ4ndwGdTS5pkmFfQepDM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="324775505"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+ d="scan'208,223";a="324775505"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 05:41:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="802528063"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; 
+ d="scan'208,223";a="802528063"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 05:41:44 -0700
+Date: Tue, 18 Apr 2023 15:41:41 +0300
+From: Imre Deak <imre.deak@intel.com>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Date: Tue, 18 Apr 2023 11:56:50 -0000
-Message-ID: <168181901000.17885.9349284481109776924@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Increase_AUX_timeout_for_Type-C_=28rev6=29?=
+Message-ID: <ZD6QBTWrAAx7qPYs@ideak-desk.fi.intel.com>
+References: <20230418105207.1281084-1-suraj.kandpal@intel.com>
+ <20230418105454.1282711-1-suraj.kandpal@intel.com>
+ <ZD55A0JHyRd2bozM@ideak-desk.fi.intel.com>
+ <MW4PR11MB67616E8133E26D024886E543E39D9@MW4PR11MB6761.namprd11.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="zto/qHG850eZdyP7"
+Content-Disposition: inline
+In-Reply-To: <MW4PR11MB67616E8133E26D024886E543E39D9@MW4PR11MB6761.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/display: Increase AUX timeout
+ for Type-C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,484 +63,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8767007609684703443==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
-
-Series: drm/i915/display: Increase AUX timeout for Type-C (rev6)
-URL   : https://patchwork.freedesktop.org/series/116010/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13025 -> Patchwork_116010v6
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_116010v6 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_116010v6, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/index.html
-
-Participating hosts (37 -> 38)
-------------------------------
-
-  Additional (2): fi-kbl-soraka bat-adlm-1 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_116010v6:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@dmabuf@all-tests@dma_fence:
-    - bat-adls-5:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-adls-5/igt@dmabuf@all-tests@dma_fence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adls-5/igt@dmabuf@all-tests@dma_fence.html
-
-  * igt@dmabuf@all-tests@sanitycheck:
-    - bat-adls-5:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-adls-5/igt@dmabuf@all-tests@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adls-5/igt@dmabuf@all-tests@sanitycheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116010v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-adlm-1:         NOTRUN -> [SKIP][5] ([i915#7456])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@eof:
-    - bat-adlm-1:         NOTRUN -> [SKIP][6] ([i915#2582]) +4 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@fbdev@eof.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-adlm-1:         NOTRUN -> [SKIP][9] ([i915#4613]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlm-1:         NOTRUN -> [SKIP][10] ([i915#3282])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - bat-adlm-1:         NOTRUN -> [SKIP][11] ([i915#7561])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][12] ([i915#1886])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-skl-guc:         [PASS][13] -> [DMESG-WARN][14] ([i915#8073])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [PASS][15] -> [ABORT][16] ([i915#4983] / [i915#7911])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@kms_chamelium_frames@dp-crc-fast:
-    - bat-adlm-1:         NOTRUN -> [SKIP][17] ([i915#7828]) +8 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_chamelium_frames@dp-crc-fast.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][18] ([fdo#109271]) +16 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][19] ([i915#7828])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][20] ([i915#7828])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-jsl-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - bat-adlm-1:         NOTRUN -> [SKIP][21] ([i915#1845]) +15 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-plain-flip:
-    - bat-adlm-1:         NOTRUN -> [SKIP][22] ([i915#3637]) +3 similar issues
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_flip@basic-plain-flip.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlm-1:         NOTRUN -> [SKIP][23] ([fdo#109285])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlm-1:         NOTRUN -> [SKIP][24] ([i915#1849])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][25] ([i915#1845])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - bat-adlm-1:         NOTRUN -> [SKIP][26] ([i915#1072]) +3 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlm-1:         NOTRUN -> [SKIP][27] ([i915#3555])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-adlm-1:         NOTRUN -> [SKIP][28] ([i915#1845] / [i915#3708])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-adlm-1:         NOTRUN -> [SKIP][29] ([i915#3708]) +3 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][30] ([i915#5334]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [DMESG-WARN][32] ([i915#7699]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-2:         [ABORT][34] ([i915#7978]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [DMESG-FAIL][36] ([i915#6997] / [i915#7913]) -> [DMESG-FAIL][37] ([i915#6367] / [i915#7913] / [i915#7996])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-  [i915#8073]: https://gitlab.freedesktop.org/drm/intel/issues/8073
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13025 -> Patchwork_116010v6
-
-  CI-20190529: 20190529
-  CI_DRM_13025: aedb908bbfc13d3d66f2715709f26f02283aef5a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7258: ad2eb276eda849b7a7985229009a816c7608186c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116010v6: aedb908bbfc13d3d66f2715709f26f02283aef5a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b92d5cd36da8 drm/i915/display: Increase AUX timeout for Type-C
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/index.html
-
---===============8767007609684703443==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Increase AUX timeout for Type-C (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116010/">https://patchwork.freedesktop.org/series/116010/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13025 -&gt; Patchwork_116010v6</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_116010v6 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_116010v6, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/index.html</p>
-<h2>Participating hosts (37 -&gt; 38)</h2>
-<p>Additional (2): fi-kbl-soraka bat-adlm-1 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_116010v6:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence:</p>
-<ul>
-<li>bat-adls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-adls-5/igt@dmabuf@all-tests@dma_fence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adls-5/igt@dmabuf@all-tests@dma_fence.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@sanitycheck:</p>
-<ul>
-<li>bat-adls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-adls-5/igt@dmabuf@all-tests@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adls-5/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116010v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8073">i915#8073</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_chamelium_frames@dp-crc-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-jsl-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_flip@basic-plain-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-adlm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13025/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116010v6/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7996">i915#7996</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13025 -&gt; Patchwork_116010v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13025: aedb908bbfc13d3d66f2715709f26f02283aef5a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7258: ad2eb276eda849b7a7985229009a816c7608186c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116010v6: aedb908bbfc13d3d66f2715709f26f02283aef5a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b92d5cd36da8 drm/i915/display: Increase AUX timeout for Type-C</p>
-
-</body>
-</html>
-
---===============8767007609684703443==--
+--zto/qHG850eZdyP7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Apr 18, 2023 at 02:45:27PM +0300, Kandpal, Suraj wrote:
+> [...]
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > > index 6645eb1911d8..f0d51a30430a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > > @@ -1385,6 +1385,17 @@ static const struct i915_power_well_desc
+> > xelpd_power_wells_main[] = {
+> > >             ),
+> > >             .ops = &icl_aux_power_well_ops,
+> > >             .fixed_enable_delay = true,
+> > > +   }, {
+> > > +           .instances = &I915_PW_INSTANCES(
+> > > +                   I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
+> > > +                   I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
+> > > +                   I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
+> > > +                   I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
+> > > +           ),
+> >
+> > Instead of duplicating the above 4 power wells the change should move them
+> > to this group, as in the diff I provided.
+> 
+> You mean add the enable timeout in this instance itself
+
+No, I meant moving the TC AUX power wells to a new group, as in the diff
+I provided earlier. Attached is the updated patch.
+
+> 
+> {
+>                 .instances = &I915_PW_INSTANCES(
+>                         I915_PW("AUX_A", &icl_pwdoms_aux_a, .hsw.idx = ICL_PW_CTL_IDX_AUX_A),
+>                         I915_PW("AUX_B", &icl_pwdoms_aux_b, .hsw.idx = ICL_PW_CTL_IDX_AUX_B),
+>                         I915_PW("AUX_C", &icl_pwdoms_aux_c, .hsw.idx = ICL_PW_CTL_IDX_AUX_C),
+>                         I915_PW("AUX_D", &icl_pwdoms_aux_d, .hsw.idx = XELPD_PW_CTL_IDX_AUX_D),
+>                         I915_PW("AUX_E", &icl_pwdoms_aux_e, .hsw.idx = XELPD_PW_CTL_IDX_AUX_E),
+>                         I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
+>                         I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
+>                         I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
+>                         I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
+>                 ),
+>                 .ops = &icl_aux_power_well_ops,
+>                 .fixed_enable_delay = true,
+>         },
+> 
+> Regards,
+> Suraj Kandpal
+> > > +           .ops = &icl_aux_power_well_ops,
+> > > +           .fixed_enable_delay = true,
+> > > +           /* WA_14017248603: adlp */
+> > > +           .enable_timeout = 500,
+> > >     }, {
+> > >             .instances = &I915_PW_INSTANCES(
+> > >                     I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1,
+
+--zto/qHG850eZdyP7
+Content-Type: text/x-diff; charset=us-ascii
+Content-Disposition: attachment;
+	filename="0001-drm-i915-display-Increase-AUX-timeout-for-Type-C.patch"
+
+From 9408a63e59e513d71acdda81e58609c4c6d543aa Mon Sep 17 00:00:00 2001
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+Date: Tue, 18 Apr 2023 16:22:07 +0530
+Subject: [PATCH] drm/i915/display: Increase AUX timeout for Type-C
+
+Type-C PHYs are taking longer than expected for Aux IO Power Enabling.
+Workaround: Increase the timeout.
+
+---v2
+-change style on how we mention WA [Ankit]
+-fix bat error by creating new func that is only called for aux power
+well scenarios so we can avoid null pointer error as it is called
+everywhere.
+
+--v3
+-Add non-default enable_timeout to power well descriptor which avoids
+adding more platform checks [Imre]
+
+--v4
+-Remove Bspec link from top to bottom remove WA link from commit put it
+on comment [Jani]
+-enable_timeout in ms and add .fixed_enable_delay too [Imre]
+
+Bspec: 55480
+
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power_map.c  | 7 +++++++
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_display_power_well.h | 2 ++
+ 3 files changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 6645eb1911d85..b4070845cd536 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1378,6 +1378,11 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+ 			I915_PW("AUX_C", &icl_pwdoms_aux_c, .hsw.idx = ICL_PW_CTL_IDX_AUX_C),
+ 			I915_PW("AUX_D", &icl_pwdoms_aux_d, .hsw.idx = XELPD_PW_CTL_IDX_AUX_D),
+ 			I915_PW("AUX_E", &icl_pwdoms_aux_e, .hsw.idx = XELPD_PW_CTL_IDX_AUX_E),
++		),
++		.ops = &icl_aux_power_well_ops,
++		.fixed_enable_delay = true,
++	}, {
++		.instances = &I915_PW_INSTANCES(
+ 			I915_PW("AUX_USBC1", &tgl_pwdoms_aux_usbc1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC1),
+ 			I915_PW("AUX_USBC2", &tgl_pwdoms_aux_usbc2, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC2),
+ 			I915_PW("AUX_USBC3", &tgl_pwdoms_aux_usbc3, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC3),
+@@ -1385,6 +1390,8 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+ 		),
+ 		.ops = &icl_aux_power_well_ops,
+ 		.fixed_enable_delay = true,
++		/* WA_14017248603: adlp */
++		.enable_timeout = 500,
+ 	}, {
+ 		.instances = &I915_PW_INSTANCES(
+ 			I915_PW("AUX_TBT1", &icl_pwdoms_aux_tbt1, .hsw.idx = TGL_PW_CTL_IDX_AUX_TBT1),
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 62bafcbc7937c..930a42c825c36 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -253,6 +253,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
++	int timeout = power_well->desc->enable_timeout ? : 1;
+ 
+ 	/*
+ 	 * For some power wells we're not supposed to watch the status bit for
+@@ -266,7 +267,7 @@ static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+ 
+ 	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
+ 	if (intel_de_wait_for_set(dev_priv, regs->driver,
+-				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
++				  HSW_PWR_WELL_CTL_STATE(pw_idx), timeout)) {
+ 		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
+ 			    intel_power_well_name(power_well));
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+index ba7cb977e7c7f..e494df379e6c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+@@ -110,6 +110,8 @@ struct i915_power_well_desc {
+ 	 * Thunderbolt mode.
+ 	 */
+ 	u16 is_tc_tbt:1;
++	/* Enable timeout if greater than the default 1ms */
++	u16 enable_timeout;
+ };
+ 
+ struct i915_power_well {
+-- 
+2.37.2
+
+
+--zto/qHG850eZdyP7--
