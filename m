@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB4B6E6F19
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAFE6E6F4B
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 00:20:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A4F10E07B;
-	Tue, 18 Apr 2023 22:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0285010E021;
+	Tue, 18 Apr 2023 22:20:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA30210E07B
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 22:07:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681855634; x=1713391634;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=jQHEShALP2TWZupyupYi4r1Y0EsXNmvPX4Aj7HUxmN8=;
- b=QuDHCsy7HQ1eNMVD0895ZEfe2WDW1kuwlzpLi7fHyrnAhNOpP3HflgoS
- A6sZ6PP5Z6rPxiYsnqS+a1N1fdn8srClA2Ws263OCxcF7WA1GijEltHJ+
- E8WKkdjfmod4/isbNG1hrghMdguuZvs3CQurnM95wEFVmZxJje1Ub27hA
- FOjUkqHqoonID/x1ea5lzziHdgWiKV+zRQMK8mcPtuac0CnHcMHlcURv7
- 1Yew7Z/ZDIY9I1tea0TI9JymiwzrFnObNrwSR9B7E1e6AN2B4H4lzH9Wj
- Fvr4f9cvd6R+iVdB2JbWvy4SPxa7pQpt11eYLozeZAmF7HNGCv6bbFUIS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334101730"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="334101730"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 15:07:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="684761868"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="684761868"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 18 Apr 2023 15:07:13 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1potTj-000e89-2r;
- Tue, 18 Apr 2023 22:07:11 +0000
-Date: Wed, 19 Apr 2023 06:06:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202304190547.OlyNaAi3-lkp@intel.com>
-References: <20230418175528.13117-12-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B3ADB10E100;
+ Tue, 18 Apr 2023 22:20:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0F27AA3D8;
+ Tue, 18 Apr 2023 22:20:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230418175528.13117-12-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Rename skl+ scaler binding
- bits
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 18 Apr 2023 22:20:21 -0000
+Message-ID: <168185642163.17885.8935858840995802959@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Scaler/pfit_stuff_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,68 +40,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: drm/i915: Scaler/pfit stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/116661/
+State : warning
 
-[auto build test ERROR on drm-tip/drm-tip]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-Check-pipe-source-size-when-using-skl-scalers/20230419-015829
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230418175528.13117-12-ville.syrjala%40linux.intel.com
-patch subject: [Intel-gfx] [PATCH 11/15] drm/i915: Rename skl+ scaler binding bits
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230419/202304190547.OlyNaAi3-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/19871303e2971d47d4ac0557533295744c04cfd4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ville-Syrjala/drm-i915-Check-pipe-source-size-when-using-skl-scalers/20230419-015829
-        git checkout 19871303e2971d47d4ac0557533295744c04cfd4
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
+Error: dim checkpatch failed
+96742f02457a drm/i915: Check pipe source size when using skl+ scalers
+-:19: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'Closes:', use 'Link:' instead
+#19: 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8357
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304190547.OlyNaAi3-lkp@intel.com/
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+020b73ecaea1 drm/i915: Relocate VBLANK_EVASION_TIME_US
+985d1c61ab4b drm/i915: Relocate intel_atomic_setup_scalers()
+d8119d553652 drm/i915: Relocate skl_get_pfit_config()
+abb5209c730e drm/i915: Use REG_BIT() & co for the pre-ilk pfit registers
+e661ff574bbc drm/i915: Namespace pfit registers properly
+5f7ed896b1db drm/i915: Use REG_BIT() & co. for ilk+ pfit registers
+8337eb734cde drm/i915: Drop a useless forward declararion
+152fabebf7a4 drm/i915: Define bitmasks for ilk pfit window pos/size
+afe2b9bb87f3 drm/i915: Remove dead scaler register defines
+500da878f1fb drm/i915: Rename skl+ scaler binding bits
+c4690f428705 drm/i915: s/PS_COEE_INDEX_AUTO_INC/PS_COEF_INDEX_AUTO_INC/
+73ea67a05509 drm/i915: Define bitmasks for sik+ scaler window pos/size
+dcfed7ebc951 drm/i915: Use REG_BIT() & co. for pipe scaler registers
+f9431f7d6815 drm/i915: Define more PS_CTRL bits
+-:44: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/i915_reg.h:4076:
++#define   PS_PIPE_SCALER_LOC_AFTER_OUTPUT_CSC	REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 0) /* non-linear */
 
-All errors (new ones prefixed by >>):
+-:45: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/i915_reg.h:4077:
++#define   PS_PIPE_SCALER_LOC_AFTER_CSC		REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 1) /* linear */
 
-   drivers/gpu/drm/i915/gvt/handlers.c: In function 'pf_write':
->> drivers/gpu/drm/i915/gvt/handlers.c:1565:45: error: 'PS_PLANE_SEL_MASK' undeclared (first use in this function); did you mean 'PS_PHASE_MASK'?
-    1565 |            offset == _PS_1C_CTRL) && (val & PS_PLANE_SEL_MASK) != 0) {
-         |                                             ^~~~~~~~~~~~~~~~~
-         |                                             PS_PHASE_MASK
-   drivers/gpu/drm/i915/gvt/handlers.c:1565:45: note: each undeclared identifier is reported only once for each function it appears in
+total: 0 errors, 2 warnings, 0 checks, 31 lines checked
 
 
-vim +1565 drivers/gpu/drm/i915/gvt/handlers.c
-
-e39c5add322184 Zhi Wang         2016-09-02  1556  
-04d348ae3f0aea Zhi Wang         2016-04-25  1557  static int pf_write(struct intel_vgpu *vgpu,
-04d348ae3f0aea Zhi Wang         2016-04-25  1558  		unsigned int offset, void *p_data, unsigned int bytes)
-04d348ae3f0aea Zhi Wang         2016-04-25  1559  {
-a61ac1e75105a0 Chris Wilson     2020-03-06  1560  	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
-04d348ae3f0aea Zhi Wang         2016-04-25  1561  	u32 val = *(u32 *)p_data;
-04d348ae3f0aea Zhi Wang         2016-04-25  1562  
-04d348ae3f0aea Zhi Wang         2016-04-25  1563  	if ((offset == _PS_1A_CTRL || offset == _PS_2A_CTRL ||
-04d348ae3f0aea Zhi Wang         2016-04-25  1564  	   offset == _PS_1B_CTRL || offset == _PS_2B_CTRL ||
-04d348ae3f0aea Zhi Wang         2016-04-25 @1565  	   offset == _PS_1C_CTRL) && (val & PS_PLANE_SEL_MASK) != 0) {
-12d5861973c70f Pankaj Bharadiya 2020-02-20  1566  		drm_WARN_ONCE(&i915->drm, true,
-12d5861973c70f Pankaj Bharadiya 2020-02-20  1567  			      "VM(%d): guest is trying to scaling a plane\n",
-04d348ae3f0aea Zhi Wang         2016-04-25  1568  			      vgpu->id);
-04d348ae3f0aea Zhi Wang         2016-04-25  1569  		return 0;
-04d348ae3f0aea Zhi Wang         2016-04-25  1570  	}
-04d348ae3f0aea Zhi Wang         2016-04-25  1571  
-04d348ae3f0aea Zhi Wang         2016-04-25  1572  	return intel_vgpu_default_mmio_write(vgpu, offset, p_data, bytes);
-04d348ae3f0aea Zhi Wang         2016-04-25  1573  }
-04d348ae3f0aea Zhi Wang         2016-04-25  1574  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
