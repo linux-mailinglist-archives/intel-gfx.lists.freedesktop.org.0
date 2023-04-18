@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604DF6E5F31
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 12:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2379F6E5F36
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Apr 2023 12:56:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E6D510E16F;
-	Tue, 18 Apr 2023 10:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29DEF10E1E4;
+	Tue, 18 Apr 2023 10:56:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13CB810E16F
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 10:53:30 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B14910E1E4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Apr 2023 10:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681815211; x=1713351211;
+ t=1681815376; x=1713351376;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BUswcY7MHs65xW/HnWOdZlVMHIYdd3yt9f2nOEGYit4=;
- b=Sx9lsgAk9eS4Mg8biu6KTqhm9LNiXk/5orgTXbJhR0aEvRd6GLyUFQe5
- 04416AA3vd2/Datn0zijOvkNSqGAZbPZ7G8oBa52TMuMlveLVd4n/FYqL
- mnp6DLfmZ+sLClghx/kthCgY6PLYk3daIHnM3de/13Hk3+yrpvhyfVDts
- gdRktpaAJK3nKC6ibkJLJUuMkzPr0p9yBiZ9zXy47u86/UEc3vYv773lX
- 3wE8J0jXCyv5F+Mi1lWHYVYqXoRVGss8X76IBnvVQWEz1gpLgmyqAcdM3
- cpaY4qndVfbvUkJ0+RdxBozOULaNy6SKsnn6B8NIgwvb6yfR3u9p33n9z g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="347888358"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="347888358"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 03:53:29 -0700
+ bh=MeYw2n8m0Loc/9vyQv0KGKxAzecDeZgtCedqxLPzpvM=;
+ b=Oh0sR6IFVzgYigZ61ZnKbjygYY5kHl3qea8M2vg7AeKByvMSun9oVqHx
+ vbxz3SaMwnoP2Ip9uBX0vqV667bsUl/88REmDBpKAFtVooCGBy7A3ulwy
+ s9Fh8DUD5jU0z1rpBMFozJ63ySDebTxvVsnrLJ4s0eWwFbrHRQrw9rtov
+ LnQ6AIrsmoGHe0PpuUoQvejJzpjLn2td3ZRVnl9lNjB6oWslhpY2zotIp
+ 29q9rnSnLTjDEhXo9CejAlRDwLYhlz/0KUJAqfn0MdW84M4E9lSeZ8dUE
+ ld0ma87IeldG0+eW5jhuCiTjLsiJ4SyFeDWqX8zfP4iukh0H4RsJo8IOI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="324754408"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="324754408"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 03:56:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="721484686"
-X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="721484686"
+X-IronPort-AV: E=McAfee;i="6600,9927,10683"; a="937220387"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="937220387"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga008.jf.intel.com with ESMTP; 18 Apr 2023 03:53:28 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 18 Apr 2023 03:56:13 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Apr 2023 16:22:07 +0530
-Message-Id: <20230418105207.1281084-1-suraj.kandpal@intel.com>
+Date: Tue, 18 Apr 2023 16:24:54 +0530
+Message-Id: <20230418105454.1282711-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230403080154.1239873-1-suraj.kandpal@intel.com>
-References: <20230403080154.1239873-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230418105207.1281084-1-suraj.kandpal@intel.com>
+References: <20230418105207.1281084-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Subject: [Intel-gfx] [PATCH v4] drm/i915/display: Increase AUX timeout for
@@ -85,16 +85,16 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_map.c | 10 ++++++++++
- .../gpu/drm/i915/display/intel_display_power_well.c    |  3 ++-
- .../gpu/drm/i915/display/intel_display_power_well.h    |  2 ++
- 3 files changed, 14 insertions(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_display_power_map.c    | 11 +++++++++++
+ .../gpu/drm/i915/display/intel_display_power_well.c   |  3 ++-
+ .../gpu/drm/i915/display/intel_display_power_well.h   |  2 ++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 6645eb1911d8..b065f86f89c9 100644
+index 6645eb1911d8..f0d51a30430a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -1385,6 +1385,16 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
+@@ -1385,6 +1385,17 @@ static const struct i915_power_well_desc xelpd_power_wells_main[] = {
  		),
  		.ops = &icl_aux_power_well_ops,
  		.fixed_enable_delay = true,
@@ -106,6 +106,7 @@ index 6645eb1911d8..b065f86f89c9 100644
 +			I915_PW("AUX_USBC4", &tgl_pwdoms_aux_usbc4, .hsw.idx = TGL_PW_CTL_IDX_AUX_TC4),
 +		),
 +		.ops = &icl_aux_power_well_ops,
++		.fixed_enable_delay = true,
 +		/* WA_14017248603: adlp */
 +		.enable_timeout = 500,
  	}, {
