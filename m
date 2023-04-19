@@ -1,150 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D74F6E806E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 19:33:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 585BC6E80B9
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 19:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7032710E60D;
-	Wed, 19 Apr 2023 17:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC22110EA39;
+	Wed, 19 Apr 2023 17:59:41 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C52910E1D7;
- Wed, 19 Apr 2023 17:33:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 722B410EA39;
+ Wed, 19 Apr 2023 17:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681925617; x=1713461617;
+ t=1681927180; x=1713463180;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=GHermTAwBv9G1+5Xc/wKWo95MYN3bZGctosrN8JetAc=;
- b=X6X58JKZnAyvcW6fx50wze361sqcbuSQv6qa2tjDIdw93ZdHlYlJ5HiY
- lUABFO4XYf6p+wMXQvA5s+ZveX+XwpPaBSkGz4zb5HLsCjQ52kzjJl1+j
- vJJlkMbBMaL1Ep70sGFI0Iwr8zLiHAyUD2ds4DdyUOx06sbOfuXAIwTgd
- HUwmbx/ppJ0cMeJH/5c0AqTc5HoQYoJJbtgd8vtHtUbX63Qc2GzF/S1nI
- ZJ9lJD0KDISk35e2eL/cDgNF3oqZ1Js/izCkNKFsEgGDLIzkVWhcMD5pR
- eKwoc1VdcPDPr9JUM623i+eLIl6GsWXOAPBKIN6AV1hJlQTl2RJXb998I g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348265534"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348265534"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=X9yks9IkeilYjoxcySGBkgBHlw7AuHUtw7u/vYKq6Qc=;
+ b=UfPqNiFh0/BAFMJ8LgiwdUKUxdDGmTVoFZVCU/NnoHe6RRDk4Q6cSV8q
+ T3yT41iC2JK1duLwiEjbX9ehUwxveyA3PcP5cwgxm1xLVL2tmpfcYbDPg
+ +N502YGX+l8s7dsyBZqQaKOWlp/+C9BppcNtNoFumjlip5cHugxn9ofSS
+ d7pVsHJGYXdRfylfE7kl+aLvZcDkcPfcj9WJahwG5f7ee4/gJjHnMr93d
+ lDBYPWkUQyHKW6TyQvmWzSy7UgxwHaQCdMImZG1X+KCYM3mQ+L0U0L+wY
+ S9cZymrTMex4QASXbsNjc1DkD26teAnhWgpmx1Kab7IpvU9VPCbzfm12A g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348271951"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348271951"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 10:33:36 -0700
+ 19 Apr 2023 10:59:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="722016982"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="722016982"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 19 Apr 2023 10:33:36 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="669058800"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="669058800"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 19 Apr 2023 10:59:39 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 19 Apr 2023 10:33:36 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 19 Apr 2023 10:59:39 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 19 Apr 2023 10:33:36 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 19 Apr 2023 10:59:38 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 19 Apr 2023 10:59:38 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 19 Apr 2023 10:33:36 -0700
+ 15.1.2507.23; Wed, 19 Apr 2023 10:59:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NzfSVd2quhTMj9EiymvFPej8UG52oRmtF6HsTX9/FXIFRFnqRwEgFnF/BnGSCRJJ1NVbI0PrBGFyuib+95T/h684885wHHRFBInOsh80aIaLKXngXLCkccrPAbnvSoFS4gcRVVWXW5a6wu3NNXXMxba+mtygQyYtyVKkLlRqH5bPOnkOcxANcVrXQokWVgJJAnnFJLv84CzN0WJ008im2n0ozqD9+hKWIhE6P0lazYO6zxl3Ekhhxxbw2NGVBo+7G4FojwMJJ+Mqn0hv93DNyH6C7Modz/wLYGLQP8bp6ETWHUo46+JJsf+k8P4QOvTQ+fftn073UC4Fa0wCUD4Wmg==
+ b=nfGuxH3nEgt0qyc2K6gbek4rLuu619lf3pxavzNgMKXT5krlsr3wqScjwpDJ0kHsZ5o7ulNpUMWfkCD9/0R1kqYjVG3nbCOIltZBqsAz2/+Q6kJ8MSBsTQlcIln22JLrSIpwXMK2C0s1lVnjFvBsKdeHEOUGP0ORpcqZWkJI1AHLSshPXcn08O4GninYUwnX59tvMc6nbojLSd6rOWSQPO0DNUMWoLjiSZ9pKf/6jlrHVlbNOHDq9aU3I8MaN7Tr0nYQ0Hh3poDN9AG+R1WGh4I4YfyK1AQ7313B4ZPRwoLDNPPBWKzP+vJJ5XIirardt+SRGnqU/7QLgtVTug5vWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hHRJT8TzxXzHcSCsGyGGCo3CTK/47ISz/aXwTOqAilw=;
- b=Nzd4Yn29KtElflDlOSMabvQ2Jvksfb23osZnv9y1737ATyjRH1PCXxht6DEG580j4daAgJOpUEESdaWAy0bwkpZvgB6To0YOALqizg5K+JIvGP4FIcaA6JfvB6BoNG4ELUl/0Tp3Xl3g42i2fkvBGtI24bfWjcHDgAvFM39hR9dhPaZszg7dmlXuC+X5ZNuL+UxwK3NqjzUvlctCoS33UZFjwbjtaAXo97U6m0Fn66MFc7p5NtYwxGqXSWb33sSKZUdzhqCIPnHKamnelNBxwDCHBPwadRoM4SbNpQdEf3f/3n2WNuNcGvE4IUMIUxsqk5At2w3/yIx0hV8n1y/xwQ==
+ bh=N8T9Bq+543KF+E8JGuO/oa30/FIrifcSXfh2ZPHuU08=;
+ b=bsTF0gyrYvtvXKUHQ7sxGe9NYwApzFvdqJv0ZiNvyBwgGfMykPS7Am3YfxrkVw9w8LurWZKa5KvaMkno5YmaUThz8gnnLvqJ78WEvxgJtr1TRsgouHBB1H1FYcps6XKcf6rHsq2KGZmt8tAiN1402hYahCc8Ql9c1rexPELcnsK/JPGuriHGt+Q/LFEh352BuIuJk624Oii27zMAP594v2LS9i0QaKMGa+5KfeSPTgZLSRKc4V1PyTzNDcveKzIABLeqPM/yA/rSfpq9NhUTT4dy6YybuAAKCOnrPBXUrszdEu0HzkOGDefg/4d067tZZK6xYlzgTCGfHScnHeOTcw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- CY8PR11MB7194.namprd11.prod.outlook.com (2603:10b6:930:92::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6298.45; Wed, 19 Apr 2023 17:33:34 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::4ae6:750e:a237:4eb0]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::4ae6:750e:a237:4eb0%7]) with mapi id 15.20.6319.022; Wed, 19 Apr 2023
- 17:33:34 +0000
-Message-ID: <f102d291-6284-52aa-a92e-7b911e9470b1@intel.com>
-Date: Wed, 19 Apr 2023 10:33:31 -0700
+Received: from BN6PR11MB3908.namprd11.prod.outlook.com (2603:10b6:405:7d::13)
+ by DM4PR11MB6310.namprd11.prod.outlook.com (2603:10b6:8:a7::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22; Wed, 19 Apr
+ 2023 17:59:36 +0000
+Received: from BN6PR11MB3908.namprd11.prod.outlook.com
+ ([fe80::7b09:91d7:6e26:5833]) by BN6PR11MB3908.namprd11.prod.outlook.com
+ ([fe80::7b09:91d7:6e26:5833%2]) with mapi id 15.20.6298.045; Wed, 19 Apr 2023
+ 17:59:36 +0000
+Message-ID: <688259d2-d29e-439f-44e7-7dca1a3f7037@intel.com>
+Date: Wed, 19 Apr 2023 10:59:33 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-To: John Harrison <john.c.harrison@intel.com>,
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-GB
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  <Intel-GFX@Lists.FreeDesktop.Org>
 References: <20230415005706.4135485-1-John.C.Harrison@Intel.com>
  <20230415005706.4135485-6-John.C.Harrison@Intel.com>
  <ff39e6ca-4ee6-149e-e0ba-13490306c577@intel.com>
  <c3632e2e-c064-d3f6-a68e-c77a662b1d2c@intel.com>
  <2cd1381b-10c6-f5ce-e868-39615d24280c@intel.com>
-Content-Language: en-US
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <2cd1381b-10c6-f5ce-e868-39615d24280c@intel.com>
+ <f102d291-6284-52aa-a92e-7b911e9470b1@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <f102d291-6284-52aa-a92e-7b911e9470b1@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0199.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::24) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+X-ClientProxiedBy: BYAPR03CA0010.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::23) To BN6PR11MB3908.namprd11.prod.outlook.com
+ (2603:10b6:405:7d::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|CY8PR11MB7194:EE_
-X-MS-Office365-Filtering-Correlation-Id: da78cf8a-e294-467b-dd4c-08db40fc334d
+X-MS-TrafficTypeDiagnostic: BN6PR11MB3908:EE_|DM4PR11MB6310:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87ada0dc-111f-4f72-4d04-08db40ffd695
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gmhMa638tgke1YfiA7hsvVsK5M9EHYjM1R8pJ4RhKD/FiBP/RH6+3UB7uoM1O2SPBC8ihgECpkyPJ7PTIYypSTlDD4QAGX1C7KWho1ZnVQvT3yRxl51c6gAISt98v3kRpl4mKi3Qkeu+jqEbRi0FSiCFN9azMP6AZcwkm2xcjx4v8XdJ8/ohdy0JVKUBG4aPkm9X2jwve08NrWeVmCH7Qo3se5r/FE/mzYqDumW/hudAXj+BWCwfav21FeeY49eanOjELymceOpcae27NBGJxG7VocKsyk6E6h5IwFm02hHDdu9LDi4s5ZUHapHXrZngp9b4YjMTICAKpL4tc95Jtxl7yts/EtG7qkIg0hrczmtrGkcbvphZc82Yhna3hx5iYLLwxlRMpaTKhaTGs0WmeKPGp/Zx8bN/uci9vbMjMRZFBzlOuC3Fcyx12RlCDkXM8LU8FFMi9am4XNsDZJyNsxN31r+5KiBynF5nS9VXK5ha8JULZHpL9R5qU24i4LO8YvnbxLrvaxhFI1Iv+Gy6glZ+iwqu1TR9LitLh17z5tIpaL56S0RafO30LOtbvZ+htnt8NK2LkWqpVZkoymjKMYTZruiKXF/VgnTKqlgCuvm82XppQbBTY/okJloHaZIGnJYooaBYzAU7SX1laFpOlQ==
+X-Microsoft-Antispam-Message-Info: LL/5FAd4OKxi5p6IzWY3RhS8EjKhgrVXg7B3ZW1UVy+V+k79iXRXur7zs2OnXofdFz+WdXiVjo5Dlw8s4IS+xol9OyTvIpw+B99FAc4it7N1PXxyjiBjhSWzFmd3ZQccRN8TrFMlXlYzfOpMUsD5I0+kJ7E4vNgIzj8/5QfnsarayNxSdvC/pQxG0kQbAIfYIESf46QWrRuJ5emwwLoRXTWnA8sW42gdL6atRA3qatQuoFFnT4Cv7ew0sZIWBgaL9dERzbiRVuml5OyQtU8WZuBuK1LzaGl/IbS0Z9g9HdexbK9tI/SktqZmpi0zhGwHcPkDKHwzlACL/wpYJszBKxVVoc1Qk0/fwB60sfK2cbey9saVKeGZvPb+kf7h7+nLh2NmlWGdiYlMTlitTb54cHyBuyATrc4o0lRdYdOe11FR2EpK+upB76+oWkBZFWg3RwOdU66eTiTHj+bLBcYKs+XpplVPBCGBhQWs12BGCw6Mu3npRk5pWFqj/5J8gv7YB+Igq58V2xHc9e9AESOTt0cu8kClIAdGSQQL+2IA3HFgPM9yeu3w/LGVHiEZ/myiYAX78+QdOC4+ohK9zL6VHIbVk8chpNveU+kLmUr23uZvGO4pYE1dETRusu3pamyjG/1G/oyZYOJBSeygqWN1/Q==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(396003)(136003)(366004)(376002)(346002)(451199021)(36756003)(2906002)(8936002)(5660300002)(8676002)(41300700001)(86362001)(31696002)(38100700002)(31686004)(478600001)(2616005)(316002)(53546011)(26005)(6506007)(6512007)(186003)(6666004)(6486002)(4326008)(66476007)(66556008)(66946007)(450100002)(83380400001)(82960400001)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BN6PR11MB3908.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(136003)(366004)(396003)(39860400002)(451199021)(2906002)(8936002)(38100700002)(8676002)(5660300002)(36756003)(86362001)(31696002)(6486002)(6666004)(6512007)(6506007)(26005)(478600001)(2616005)(31686004)(83380400001)(53546011)(186003)(316002)(4326008)(82960400001)(66556008)(66476007)(450100002)(66946007)(41300700001)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjUwcmdRSmlDK0pOU1JBVEtLYkVCS1dVdFZCN1BzUVl3YXR0MS9VeGFDaGhD?=
- =?utf-8?B?QU55M3FmUzIzWW5xMGJWNW5HNjA2NWhqbjVwQWJlZDA1emF1clpQcEhNOFhS?=
- =?utf-8?B?b3lnTFA1Vi84UmZXUXc4aWlyQUtRaDVjOTBzRWN0TVpEekJVK015anlDUzB2?=
- =?utf-8?B?OUIzVUsxOVRSYmR1V2lLTTVFVmlXYjNHM0J2NXdzakducnAyOXlWSG56UDhm?=
- =?utf-8?B?ejJRdWJSYUIyZ3B1bHRKNXdybmt3SzgyRWgzQmRpZ21NOTk4MEtucHQ2cXpL?=
- =?utf-8?B?Ni9HOHZHQUtVZUx1dlFyT3p0NitwUHJUM3drc2R0bE40TnJvclplcUh2cTIx?=
- =?utf-8?B?OVZ5RWZiU1BBaXl0OEVkWE9WWWRIK3JQeDhGWlZ0YVBSYmhRcFZkem5wMnVQ?=
- =?utf-8?B?czczc1RYZWZQOUxFVkx2L1lrdUZ2REIzajMrREhSRW9wVFlRT2JHVzlXeGRh?=
- =?utf-8?B?T3hDRGNMUG5vTmlRNjVrbHg0V1diT2JNWFBPc2ZJREY0WnFQbCtoSFRUVjJP?=
- =?utf-8?B?ejhXUGhxU21WQ0ZaTkxKeDRpa2ZrWjRaeWtsK0NzS2huV211bUYvNW9JRE1V?=
- =?utf-8?B?QXNFaWcvTUE0V0h5cWVRNllvQ2prSWM3dXNKT1BwNVN4UW1vMGtuaElrdnU0?=
- =?utf-8?B?Qnl2N3gwL0dUUXBjTDJNS0Z4V3NHdjVOaklkdlU5bWNDSTJGWVhyNnowSVYv?=
- =?utf-8?B?Nmo3WmNqckNWZ1c0NW0vWUNFN09mb1pON25GNHo5M3ZKTGkzYXFhMFErekt0?=
- =?utf-8?B?c21CcXFBdFFEU2hCazVCYWJOdlBMeHg1TGM3Rm9lb1RrTjM5alc2UllVRWd0?=
- =?utf-8?B?N05ZZHh0U2pZL2lCSmJBdklpQTYxd3FBeHhOVlhkeEhKdTRQK0c5cnB6YWZX?=
- =?utf-8?B?SUNKMTBIcDV5QnQ3MVd5ZVpYS3E1SEJuaWhGdzhwOFRaVnh1a0lYTVEvSVJj?=
- =?utf-8?B?Y3hLS2Uxb2pVVm5Ialc2N0Y5UWI1SmJRd0wrUUdNS2EyTkhVT0NLV3JXd2tp?=
- =?utf-8?B?RzNnbndaZ0VNVWZURldDUVVxNzRFTG1FZzBwaCtkQXRiTlNyNkozajB4WUNI?=
- =?utf-8?B?NFkvVDNrTERJalNlQU1MS2ZUaWZRNDRETksxSkRscWE1K1l1SG9yRkRoWmFG?=
- =?utf-8?B?WjhwdWwzdmNlam80enIweWE0U002ZE9EdjcybjY1RmFWSVhLcTRmQ2ZOaVZ3?=
- =?utf-8?B?N2xQOTBua1ZnOHA4eTh2TnpVWDJ0dm5jYmptczcxYkowZU5jL0FqK1BvNmp5?=
- =?utf-8?B?NGpERTU2TTFmQ25mSGNheDgweFZsMnRPdGtTNkU0NGdrMmxNbDk3MUQ1Y1Yx?=
- =?utf-8?B?MnV4b2Z4VWNYdXhvQzJVekZyYUtDYkJEMjJEVitueHVONUFXL2JWNlpudjNq?=
- =?utf-8?B?L1RmUVlsZlU4OWZVQVZWNlVLbkQ2OXBXQllFMTE5SURwTFRJclNMSld1d05n?=
- =?utf-8?B?eTROY054cHQ4VjlERElwTm5Oc0RueWNZQUcrREI5a0NqS0RNWVNNN2kyU3FY?=
- =?utf-8?B?NW5ZeVNVZEM2TnFnMFY4Qy9yK0tkQ25HK1YvYWd6Y1owZVVQWDJnNW9KWmIz?=
- =?utf-8?B?bTkrWmFra2NlR25sdnBwNlFGVVF2cWU4ajNPRXM1aFJpTlBLWU84b3ozY3ZK?=
- =?utf-8?B?OC84OVpQWmV6RjZydks5dTcrZUdtYklkRTRiSjErMWphMHFHYklnbFh3WUl5?=
- =?utf-8?B?Y0VxUVhLV1NMQnZhb2xMUFhzN2FnWWZ4aTl3MHBIN05pTWJuVHQ0RFNIZTdG?=
- =?utf-8?B?WHpUWURXT0xCZVdxRnQ0TGwwZXhQZ3R5TE5GK050NHRrL1NMWVg5SDRnZStn?=
- =?utf-8?B?cFBpcnpNMGFvUEwrQzNtM29CQmdLNFVjV2JXenVIa2NMN1o0Rmh4NDNqWlIy?=
- =?utf-8?B?aHRQL3VtNm5xdDJSR202dEQ2RW95RFdmQTZra0R4NG1RQ3ovSHpXN2VERTNT?=
- =?utf-8?B?SVZzTTV1UHNjanhkTWI1a2ZEb2E4eFVUenI0YXZURDU2cGtkeVpLM3NGQjRm?=
- =?utf-8?B?QVVnNEFjNEc1WUttRUZJSlZqWm01MFdnZ3ZkYjc1ZmRET2xHZzFWQ3hLMm1M?=
- =?utf-8?B?NVY2N2hFd01Pa1VHM1M1UG5DQktzR0VEZk0yWWpOMTdOV2d3d2syZmdyT1VK?=
- =?utf-8?B?WTNiQUlvdG1tWmsvU1JBWFRWYVBtb3Q0RkI0K1ozVkZqVm5Cem90VkJFRzZy?=
- =?utf-8?B?ekE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: da78cf8a-e294-467b-dd4c-08db40fc334d
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?enBHMzRjekdubXdtemI4c0xxcG9EZ21BbUdqWXNNbXNuaCs1NXBvUkhMY2di?=
+ =?utf-8?B?L29CbGhuZGx2WUlNaUlid1NMOG5iL2VKWnpzL3k1TjFSK1hqSDRGSVJhTWZi?=
+ =?utf-8?B?NGkxYWRNbmJTUUxmRmhFVnRWYUpPdnYrUUNMWHNtQXFsTGlsTU9NVnhxVnlw?=
+ =?utf-8?B?N1ZLazFEbm9MQndoU0FNeWwxOFFYRDBjVnBwQzFYUUJ2Zm1mdHdGb0xvMHFH?=
+ =?utf-8?B?YmtzUThaZGpmY1FCMEl4dURrTFJvOGloSW5nRDlqTEU4N2hvbXVVTkRsZ2M4?=
+ =?utf-8?B?VDBTb0VaTnFZSkFFODF5cmlGZG92Ull2NDJQemNUNnFnUElZTTlaR1kydVNV?=
+ =?utf-8?B?NFZTakU2SHlNaVM1clF3aU82dVZ0WDQwNElPWlN2MDdCSUxyY2VxT045bGgw?=
+ =?utf-8?B?U0dta1h5V0lMV2ovdWdEV3UvV0paZjV5ZllQRjZIb0Q0MVZWMjVzNkhoZjlM?=
+ =?utf-8?B?cm1QaGtCd3Myc293QzliNE0zRDVETWdOMVB2SlZVbnc3SXZ3Vm83NU9kbUxu?=
+ =?utf-8?B?SmlVWmZVeFExVWNSemN2ODAwR2tRWktPdlpTWTU1RFVHZWRtWC9nVkFOY3M0?=
+ =?utf-8?B?ZFZGMmMxbUVXZkVHeFJtMFE1bXlmN0ZjeU1CY2NwMXlOMnpVbW1wekZjVFZo?=
+ =?utf-8?B?VStoM1BkZjRvSkgzUXFxWXlyMmJuYmh4U1p4QW5aMTFqSzFwRXkwQkR6bk9O?=
+ =?utf-8?B?WFk1bGpRL0hhNFBDV2xVWmY4aU5kODludXZLelFUTWRWRHVjc3JaZE9YN2or?=
+ =?utf-8?B?RHBaamZSM3FFSDRDVFZZSlExT2ZhR0FHZ1VFTEp1TGRUd1QrMWkzMVJ2M3RM?=
+ =?utf-8?B?WDZiOEFDWXhhdHZ3WHFtNUl2d2N0ak9KZGhFU094Vk1sMGhpQVVLd1pWQ0lp?=
+ =?utf-8?B?TGszOFg0QWNMdEViRHFvcWdyNVZjME0za2V0RFVCd2hxejg0RmxXcFRXdDBK?=
+ =?utf-8?B?V1NibkdYNm5nUnQ1SzhVV21yZnYyWmozbkdyUlFwOEdKU0t1YWNscUIraXYx?=
+ =?utf-8?B?aG9TbUlFTWRUZEtXTzRMVDdySncvdkRYMHVFdUVwcEVNSW9qTG45ZU16eVRp?=
+ =?utf-8?B?YmVrSnBFcC9TK2RSNWg5UGNucmJRTWVrWW9MNktXNkFZTFYwT25xN1J4ZmEw?=
+ =?utf-8?B?ZnpkSlFER1Nxc2diZThDYVJKQUxudG9GakJXaVhDUGJjcXoxY3NWVlQ0TFpZ?=
+ =?utf-8?B?c3pxOFpMWUNtYW1hSVFYUG5tTGdIN0xVU0ZYNVRZR0gzbG8yTUtWak9OUUF2?=
+ =?utf-8?B?UVh0QmZxU0IzcXI1a0lLVHJLclVpamJ0OWcxR0FFMGFCUkFBU3hxcnQvU3Ur?=
+ =?utf-8?B?MFgwVHI2UGNpQWtwaHd6aFgzVjJ3SFp5ZlpWb0w3LytUaFZEYTJpbGllblYr?=
+ =?utf-8?B?cmRlTzN2S0daVW1rM1JSbk9oZ1UxYmZQR1ppcTlRcmZLbXZxWU1HYUJrM0I4?=
+ =?utf-8?B?WnU2Q0xKNDJsUWppYW5MUU1VSEgwZmpKTHZ6RjFuMzR3TW5STUdySE9sZGNp?=
+ =?utf-8?B?QStxbEp3bmRZbnhMRFB6aWlmWHlUUHduSDZrN2JpU3hUdmJHNUNiOUhQYXNr?=
+ =?utf-8?B?eFdrUHlJYjlWbWxOa0ltV28xdUdkeVhvUGcyQTI2TklXTjlGZ0NneDlNZkdI?=
+ =?utf-8?B?WTRybzl2VHU0Q3FLRm05N1hsd0p6THNNS2cyYnY5clp0cFlGV3llb1Mxamgw?=
+ =?utf-8?B?bGN2cE05Q0xzYjE0TEhXZzhCMWZITTZnY1hWMzU3NG9nTmlMZGd4blR1Mktq?=
+ =?utf-8?B?RytYaS9IRUE0di9pZitHd2JqbmFObU9YaUpjdTkvbVBPd0o4YnJweis4K0tL?=
+ =?utf-8?B?Q1dQTS9pZjc1SVkxZFVLOXd4OHJ2UDE2dmUrQUxBTzE0ZnRxTStOVjZpa1hl?=
+ =?utf-8?B?ajc1ZnhzL2dkOVJHU0NBVzhVMDk0QXRpTjBvSEVmNUNWb2JubVNWdkJBZlgx?=
+ =?utf-8?B?VnVTY1U5VS9ZbGJnT0NXaFZSeElUYWFRazkwa0FFNFVFZGxLV0M1ZTAwTThX?=
+ =?utf-8?B?bndRRWlmOGZsSXdmYVFVOGV3MDBpdVZoTFhucW93Si82TGV0aENBMjd6Ryta?=
+ =?utf-8?B?Z2sydlI0ZzJUcmtOV3RjRGYwLzBzcHZhUjlMR2tteVROSUZXc0RNdVU1cFJJ?=
+ =?utf-8?B?MmVFb2dpOVJQUldXK1dxSTcvOWtMangvUmNQSXlqOHRucFlSWUdIWEhmWDhD?=
+ =?utf-8?B?cmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87ada0dc-111f-4f72-4d04-08db40ffd695
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB3908.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 17:33:34.2051 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 17:59:36.6242 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AxXktqlrtfWZ+0i2r85nm8aBBtO3wBv0TpMuLU5+xirP0kOiQ+qhGl5SK8BAfYcXBixuAS9NEc7dsiedBzAgHbgs/RBfQHAL0GKSZC89BoQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7194
+X-MS-Exchange-CrossTenant-UserPrincipalName: ffO/CtNgC9MnQefaVPZpID04PKKtQAAsulwootCammdvpC65pY+qsdL9I36D8Uj0KnCjFsA81/8ENrchs6CTugRnGmvrUULNbBXYJnnYmlg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6310
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/uc: Reject doplicate entries
  in firmware table
@@ -164,133 +169,151 @@ Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 4/19/2023 10:12 AM, John Harrison wrote:
-> On 4/19/2023 10:02, John Harrison wrote:
->> On 4/18/2023 16:24, Ceraolo Spurio, Daniele wrote:
->>> Typo doplicate in patch title
->>>
->>> On 4/14/2023 5:57 PM, John.C.Harrison@Intel.com wrote:
->>>> From: John Harrison <John.C.Harrison@Intel.com>
+On 4/19/2023 10:33, Ceraolo Spurio, Daniele wrote:
+> On 4/19/2023 10:12 AM, John Harrison wrote:
+>> On 4/19/2023 10:02, John Harrison wrote:
+>>> On 4/18/2023 16:24, Ceraolo Spurio, Daniele wrote:
+>>>> Typo doplicate in patch title
 >>>>
->>>> It was noticed that duplicte entries in the firmware table could cause
+>>>> On 4/14/2023 5:57 PM, John.C.Harrison@Intel.com wrote:
+>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>
+>>>>> It was noticed that duplicte entries in the firmware table could 
+>>>>> cause
+>>>>
+>>>> typo duplicte
+>>>>
+>>>>> an infinite loop in the firmware loading code if that entry failed to
+>>>>> load. Duplicate entries are a bug anyway and so should never happen.
+>>>>> Ensure they don't by tweaking the table validation code to reject
+>>>>> duplicates.
+>>>>
+>>>> Here you're not really rejecting anything though, just printing an 
+>>>> error (and even that only if the SELFTEST kconfig is selected). 
+>>>> This would allow our CI to catch issues with patches sent to our 
+>>>> ML, but IIRC the reported bug was on a kernel fork. We could 
+>>>> disable the FW loading is the table for that particular blob type 
+>>>> is in an invalid state, as it wouldn't be safe to attempt a load in 
+>>>> that case anyway.
+>>> The validation code is rejecting duplicates. Whether the driver 
+>>> loads or not after a failed validation is another matter.
 >>>
->>> typo duplicte
+>>> I was basically assuming that CI will fail on the error message and 
+>>> thus prevent such code ever being merged. But yeah, I guess we don't 
+>>> run CI on backports to stable kernels and such. Although, I would 
+>>> hope that anyone pushing patches to a stable kernel would run some 
+>>> testing on it first!
 >>>
->>>> an infinite loop in the firmware loading code if that entry failed to
->>>> load. Duplicate entries are a bug anyway and so should never happen.
->>>> Ensure they don't by tweaking the table validation code to reject
->>>> duplicates.
->>>
->>> Here you're not really rejecting anything though, just printing an 
->>> error (and even that only if the SELFTEST kconfig is selected). This 
->>> would allow our CI to catch issues with patches sent to our ML, but 
->>> IIRC the reported bug was on a kernel fork. We could disable the FW 
->>> loading is the table for that particular blob type is in an invalid 
->>> state, as it wouldn't be safe to attempt a load in that case anyway.
->> The validation code is rejecting duplicates. Whether the driver loads 
->> or not after a failed validation is another matter.
->>
->> I was basically assuming that CI will fail on the error message and 
->> thus prevent such code ever being merged. But yeah, I guess we don't 
->> run CI on backports to stable kernels and such. Although, I would 
->> hope that anyone pushing patches to a stable kernel would run some 
->> testing on it first!
->>
->> Any thoughts on a good way to fail the load? We don't want to just 
->> pretend that firmware is not wanted/required on the platform and just 
->> load the i915 module without the firmware. Also, what about the 
->> longer plan of moving the validation to a selftest. You can't fail 
->> the load at all then.
-> Actually, forgot we already have a INTEL_UC_FIRMWARE_ERROR status. 
-> That works fine for aborting the load. So just go with that and drop 
-> the plan to move to a selftest?
->
-> John.
-
-I do actually like the idea of moving this code to a mock selftest. 
-Maybe just add a comment above the tables making clear that duplicated 
-entries are not allowed and will break the loading flow?
-
-Daniele
-
->
->
+>>> Any thoughts on a good way to fail the load? We don't want to just 
+>>> pretend that firmware is not wanted/required on the platform and 
+>>> just load the i915 module without the firmware. Also, what about the 
+>>> longer plan of moving the validation to a selftest. You can't fail 
+>>> the load at all then.
+>> Actually, forgot we already have a INTEL_UC_FIRMWARE_ERROR status. 
+>> That works fine for aborting the load. So just go with that and drop 
+>> the plan to move to a selftest?
 >>
 >> John.
+>
+> I do actually like the idea of moving this code to a mock selftest. 
+> Maybe just add a comment above the tables making clear that duplicated 
+> entries are not allowed and will break the loading flow?
+The point is about accidental breakages. The 'issue' was not an actual 
+failure but that a failure could potentially occur if, for example, a 
+patch got applied twice due to some backport error/confusion. Adding a 
+comment doesn't help with that.
+
+Given that it is trivial to return FIRMWARE_ERROR on a validation 
+failure, I'm inclined to go with that for now. The validation is still 
+only being done once (and moving it to _early time means we don't 
+actually need the static bool at all) and the driver is guaranteed to 
+not try to process a broken table and get confused. It is also instantly 
+evident if a backport is broken for any reason without worrying about 
+what kind of explicit testing may or may not be run.
+
+John.
+
+
+>
+> Daniele
+>
+>>
 >>
 >>>
->>>>
->>>> For full m/m/p files, that can be done by simply tweaking the patch
->>>> level check to reject matching values. For reduced version entries,
->>>> the filename itself must be compared.
->>>>
->>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 27 
->>>> +++++++++++++++++++++---
->>>>   1 file changed, 24 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
->>>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>>> index c589782467265..44829247ef6bc 100644
->>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>>> @@ -319,7 +319,7 @@ static void validate_fw_table_type(struct 
->>>> drm_i915_private *i915, enum intel_uc_
->>>>   {
->>>>       const struct uc_fw_platform_requirement *fw_blobs;
->>>>       u32 fw_count;
->>>> -    int i;
->>>> +    int i, j;
->>>>         if (type >= ARRAY_SIZE(blobs_all)) {
->>>>           drm_err(&i915->drm, "No blob array for %s\n", 
->>>> intel_uc_fw_type_repr(type));
->>>> @@ -334,6 +334,27 @@ static void validate_fw_table_type(struct 
->>>> drm_i915_private *i915, enum intel_uc_
->>>>         /* make sure the list is ordered as expected */
->>>>       for (i = 1; i < fw_count; i++) {
->>>> +        /* Versionless file names must be unique per platform: */
->>>> +        for (j = i + 1; j < fw_count; j++) {
->>>> +            /* Same platform? */
->>>> +            if (fw_blobs[i].p != fw_blobs[j].p)
->>>> +                continue;
->>>> +
->>>> +            if (fw_blobs[i].blob.path != fw_blobs[j].blob.path)
->>>> +                continue;
->>>> +
->>>> +            drm_err(&i915->drm, "Diplicaate %s blobs: %s r%u 
->>>> %s%d.%d.%d [%s] matches %s r%u %s%d.%d.%d [%s]\n",
+>>> John.
 >>>
->>> Typo Diplicaate
->>>
->>> Daniele
->>>
->>>> + intel_uc_fw_type_repr(type),
->>>> +                intel_platform_name(fw_blobs[j].p), fw_blobs[j].rev,
->>>> +                fw_blobs[j].blob.legacy ? "L" : "v",
->>>> +                fw_blobs[j].blob.major, fw_blobs[j].blob.minor,
->>>> +                fw_blobs[j].blob.patch, fw_blobs[j].blob.path,
->>>> +                intel_platform_name(fw_blobs[i].p), fw_blobs[i].rev,
->>>> +                fw_blobs[i].blob.legacy ? "L" : "v",
->>>> +                fw_blobs[i].blob.major, fw_blobs[i].blob.minor,
->>>> +                fw_blobs[i].blob.patch, fw_blobs[i].blob.path);
->>>> +        }
->>>> +
->>>>           /* Next platform is good: */
->>>>           if (fw_blobs[i].p < fw_blobs[i - 1].p)
->>>>               continue;
->>>> @@ -377,8 +398,8 @@ static void validate_fw_table_type(struct 
->>>> drm_i915_private *i915, enum intel_uc_
->>>>           if (fw_blobs[i].blob.minor != fw_blobs[i - 1].blob.minor)
->>>>               goto bad;
->>>>   -        /* Patch versions must be in order: */
->>>> -        if (fw_blobs[i].blob.patch <= fw_blobs[i - 1].blob.patch)
->>>> +        /* Patch versions must be in order and unique: */
->>>> +        if (fw_blobs[i].blob.patch < fw_blobs[i - 1].blob.patch)
->>>>               continue;
->>>>     bad:
+>>>>
+>>>>>
+>>>>> For full m/m/p files, that can be done by simply tweaking the patch
+>>>>> level check to reject matching values. For reduced version entries,
+>>>>> the filename itself must be compared.
+>>>>>
+>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 27 
+>>>>> +++++++++++++++++++++---
+>>>>>   1 file changed, 24 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
+>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>>> index c589782467265..44829247ef6bc 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>>> @@ -319,7 +319,7 @@ static void validate_fw_table_type(struct 
+>>>>> drm_i915_private *i915, enum intel_uc_
+>>>>>   {
+>>>>>       const struct uc_fw_platform_requirement *fw_blobs;
+>>>>>       u32 fw_count;
+>>>>> -    int i;
+>>>>> +    int i, j;
+>>>>>         if (type >= ARRAY_SIZE(blobs_all)) {
+>>>>>           drm_err(&i915->drm, "No blob array for %s\n", 
+>>>>> intel_uc_fw_type_repr(type));
+>>>>> @@ -334,6 +334,27 @@ static void validate_fw_table_type(struct 
+>>>>> drm_i915_private *i915, enum intel_uc_
+>>>>>         /* make sure the list is ordered as expected */
+>>>>>       for (i = 1; i < fw_count; i++) {
+>>>>> +        /* Versionless file names must be unique per platform: */
+>>>>> +        for (j = i + 1; j < fw_count; j++) {
+>>>>> +            /* Same platform? */
+>>>>> +            if (fw_blobs[i].p != fw_blobs[j].p)
+>>>>> +                continue;
+>>>>> +
+>>>>> +            if (fw_blobs[i].blob.path != fw_blobs[j].blob.path)
+>>>>> +                continue;
+>>>>> +
+>>>>> +            drm_err(&i915->drm, "Diplicaate %s blobs: %s r%u 
+>>>>> %s%d.%d.%d [%s] matches %s r%u %s%d.%d.%d [%s]\n",
+>>>>
+>>>> Typo Diplicaate
+>>>>
+>>>> Daniele
+>>>>
+>>>>> + intel_uc_fw_type_repr(type),
+>>>>> +                intel_platform_name(fw_blobs[j].p), fw_blobs[j].rev,
+>>>>> +                fw_blobs[j].blob.legacy ? "L" : "v",
+>>>>> +                fw_blobs[j].blob.major, fw_blobs[j].blob.minor,
+>>>>> +                fw_blobs[j].blob.patch, fw_blobs[j].blob.path,
+>>>>> +                intel_platform_name(fw_blobs[i].p), fw_blobs[i].rev,
+>>>>> +                fw_blobs[i].blob.legacy ? "L" : "v",
+>>>>> +                fw_blobs[i].blob.major, fw_blobs[i].blob.minor,
+>>>>> +                fw_blobs[i].blob.patch, fw_blobs[i].blob.path);
+>>>>> +        }
+>>>>> +
+>>>>>           /* Next platform is good: */
+>>>>>           if (fw_blobs[i].p < fw_blobs[i - 1].p)
+>>>>>               continue;
+>>>>> @@ -377,8 +398,8 @@ static void validate_fw_table_type(struct 
+>>>>> drm_i915_private *i915, enum intel_uc_
+>>>>>           if (fw_blobs[i].blob.minor != fw_blobs[i - 1].blob.minor)
+>>>>>               goto bad;
+>>>>>   -        /* Patch versions must be in order: */
+>>>>> -        if (fw_blobs[i].blob.patch <= fw_blobs[i - 1].blob.patch)
+>>>>> +        /* Patch versions must be in order and unique: */
+>>>>> +        if (fw_blobs[i].blob.patch < fw_blobs[i - 1].blob.patch)
+>>>>>               continue;
+>>>>>     bad:
+>>>>
 >>>
 >>
 >
