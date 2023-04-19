@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F6686E7E5A
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E768A6E7E79
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:38:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB7AF10E079;
-	Wed, 19 Apr 2023 15:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDEA210E9F4;
+	Wed, 19 Apr 2023 15:38:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0810710E079
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:35:58 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024D010E9F4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681918559; x=1713454559;
+ t=1681918689; x=1713454689;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=T92j5vwKeoGnfybQs7h7mavXmRSnNFHjg1XdBwrzdn4=;
- b=LLP44AXoVQAiYHv8pUVYVAVRshp0aJ9DinMu5mnBdkIbHED2231LxCOM
- omf9YuTCdfJUS3SHTI3LIdjqfkfZ/vLRiBpyfzZ4Dofvb5wrTdYCvXxE4
- 82XXAlOnYPWTHK/+pYhJw9fapR6bexu2YzPgQy05Y0fXahRdl6baIHwzG
- odjhudjgcSvGXFsjSXTdNKitaSXh/SnSY9+XyFL6345AI/QMS9dhElPUT
- rxMdNiLw1VGwhnEwpmiDJMokFsY5lI259D/ZnP6xUHKUEsGbd4YD1JNdW
- YGKis1gjqfepKRCSSAkF0jbkAGmSP6giIvMcGNvMoUQvwpHtZyDQHHudO A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="344230110"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="344230110"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:35:58 -0700
+ bh=oEU4R1TWv3IRO0P1EUSHdmU9KDK/dBBYWmcW3DF9FJQ=;
+ b=Ec3J7RvOrwrgSrzTra812klC9NzsUdW5LFaRg5QZkQuDy/xkFAIvIgLt
+ ijJJ8q5ABWIj/h1HT5/3MXh9ujIqxq9xt+RUl3udIyvWur1IoKEa4nqtE
+ avg6mTzQWdiU3FZMuxJ+Qbf9zz6+nCdDt0EMFWWKrJCnT4jd+zr9Rkqe2
+ BDVP9Qy8v+O1TG9NU0dpUz0yQbIDoiHjcB+/k+EqCKkR8Tbde11n03xHB
+ SbrGZuemyoeC0qzC5wlXJdXC7cVlwSNA0tyn0ezKIJh77oa+mxMT6gEVB
+ pnTYP/HmN+EhCoz4Kx+jMJAbn1KI9oVZvM41rfLn04bvY7UHRJ5LzpGdY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345484054"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="345484054"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 08:38:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="802951270"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="802951270"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="685025001"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="685025001"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:35:57 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 08:38:03 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230418175528.13117-11-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230418175528.13117-12-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
- <20230418175528.13117-11-ville.syrjala@linux.intel.com>
-Date: Wed, 19 Apr 2023 18:35:55 +0300
-Message-ID: <87sfcvyjdw.fsf@intel.com>
+ <20230418175528.13117-12-ville.syrjala@linux.intel.com>
+Date: Wed, 19 Apr 2023 18:38:01 +0300
+Message-ID: <87pm7zyjae.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 10/15] drm/i915: Remove dead scaler register
- defines
+Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Rename skl+ scaler binding
+ bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,41 +68,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 18 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We have some duplicated scaler register defines that are
-> never used. Remove them.
+> Rename the scaler binding bits to match the spec more closely.
+> Also call the parameters 'plane_id' to make it a bit more clear
+> what to pass in.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/i915_reg.h | 12 ------------
->  1 file changed, 12 deletions(-)
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++------
+>  drivers/gpu/drm/i915/i915_reg.h           |  9 +++++----
+>  2 files changed, 11 insertions(+), 10 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index ec930aec21c4..a96f8ecbeec1 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -396,7 +396,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_scaler_state *scaler_stat
+>  			mode =3D PS_SCALER_MODE_PLANAR;
+>=20=20
+>  			if (linked)
+> -				mode |=3D PS_PLANE_Y_SEL(linked->id);
+> +				mode |=3D PS_BINDING_Y_PLANE(linked->id);
+>  		}
+>  	} else if (DISPLAY_VER(dev_priv) >=3D 10) {
+>  		mode =3D PS_SCALER_MODE_NORMAL;
+> @@ -741,8 +741,8 @@ void skl_pfit_enable(const struct intel_crtc_state *c=
+rtc_state)
+>=20=20
+>  	id =3D scaler_state->scaler_id;
+>=20=20
+> -	ps_ctrl =3D skl_scaler_get_filter_select(crtc_state->hw.scaling_filter,=
+ 0);
+> -	ps_ctrl |=3D  PS_SCALER_EN | scaler_state->scalers[id].mode;
+> +	ps_ctrl =3D PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].=
+mode |
+> +		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, 0);
+>=20=20
+>  	skl_scaler_setup_filter(dev_priv, pipe, id, 0,
+>  				crtc_state->hw.scaling_filter);
+> @@ -804,8 +804,8 @@ skl_program_plane_scaler(struct intel_plane *plane,
+>  		uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+>  	}
+>=20=20
+> -	ps_ctrl =3D skl_scaler_get_filter_select(plane_state->hw.scaling_filter=
+, 0);
+> -	ps_ctrl |=3D PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode;
+> +	ps_ctrl =3D PS_SCALER_EN | PS_BINDING_PLANE(plane->id) | scaler->mode |
+> +		skl_scaler_get_filter_select(plane_state->hw.scaling_filter, 0);
+>=20=20
+>  	skl_scaler_setup_filter(dev_priv, pipe, scaler_id, 0,
+>  				plane_state->hw.scaling_filter);
+> @@ -870,7 +870,7 @@ void skl_scaler_get_config(struct intel_crtc_state *c=
+rtc_state)
+>  		u32 ctl, pos, size;
+>=20=20
+>  		ctl =3D intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
+> -		if ((ctl & (PS_SCALER_EN | PS_PLANE_SEL_MASK)) !=3D PS_SCALER_EN)
+> +		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) !=3D (PS_SCALER_EN | PS_B=
+INDING_PIPE))
+>  			continue;
+>=20=20
+>  		id =3D i;
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
-> index 75e1f30adda1..919d999a2345 100644
+> index 919d999a2345..f8e6b86facc3 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4041,18 +4041,6 @@
->  #define PF_VSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_VSCALE, _PFB_VSCALE)
->  #define PF_HSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_HSCALE, _PFB_HSCALE)
->=20=20
-> -#define _PSA_CTL		0x68180
-> -#define _PSB_CTL		0x68980
-> -#define PS_ENABLE		(1 << 31)
-> -#define _PSA_WIN_SZ		0x68174
-> -#define _PSB_WIN_SZ		0x68974
-> -#define _PSA_WIN_POS		0x68170
-> -#define _PSB_WIN_POS		0x68970
-> -
-> -#define PS_CTL(pipe)		_MMIO_PIPE(pipe, _PSA_CTL, _PSB_CTL)
-> -#define PS_WIN_SZ(pipe)		_MMIO_PIPE(pipe, _PSA_WIN_SZ, _PSB_WIN_SZ)
-> -#define PS_WIN_POS(pipe)	_MMIO_PIPE(pipe, _PSA_WIN_POS, _PSB_WIN_POS)
-> -
->  /*
->   * Skylake scalers
->   */
+> @@ -4056,8 +4056,9 @@
+>  #define SKL_PS_SCALER_MODE_NV12 (2 << 28)
+>  #define PS_SCALER_MODE_PLANAR (1 << 29)
+>  #define PS_SCALER_MODE_NORMAL (0 << 29)
+> -#define PS_PLANE_SEL_MASK  (7 << 25)
+> -#define PS_PLANE_SEL(plane) (((plane) + 1) << 25)
+> +#define PS_BINDING_MASK (7 << 25)
+> +#define PS_BINDING_PIPE (0 << 25)
+> +#define PS_BINDING_PLANE(plane_id) (((plane_id) + 1) << 25)
+>  #define PS_FILTER_MASK         (3 << 23)
+>  #define PS_FILTER_MEDIUM       (0 << 23)
+>  #define PS_FILTER_PROGRAMMED   (1 << 23)
+> @@ -4073,8 +4074,8 @@
+>  #define PS_VADAPT_MODE_LEAST_ADAPT (0 << 5)
+>  #define PS_VADAPT_MODE_MOD_ADAPT   (1 << 5)
+>  #define PS_VADAPT_MODE_MOST_ADAPT  (3 << 5)
+> -#define PS_PLANE_Y_SEL_MASK  (7 << 5)
+> -#define PS_PLANE_Y_SEL(plane) (((plane) + 1) << 5)
+> +#define PS_BINDING_Y_MASK  (7 << 5)
+> +#define PS_BINDING_Y_PLANE(plane_id) (((plane_id) + 1) << 5)
+>  #define PS_Y_VERT_FILTER_SELECT(set)   ((set) << 4)
+>  #define PS_Y_HORZ_FILTER_SELECT(set)   ((set) << 3)
+>  #define PS_UV_VERT_FILTER_SELECT(set)  ((set) << 2)
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
