@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CAE46E73C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 09:16:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D28A16E73D5
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 09:18:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F097810E24A;
-	Wed, 19 Apr 2023 07:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32DBC10E38E;
+	Wed, 19 Apr 2023 07:18:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0042B10E24A;
- Wed, 19 Apr 2023 07:16:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA1FE10E24A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 07:18:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681888588; x=1713424588;
+ t=1681888703; x=1713424703;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=aM5SuTvWuLUsX2JHnRTO4Al5bEvqWQPkgDavQVEVqdQ=;
- b=h6fc33GNPTAd2fSCAM3MN4PsdhArO84RlUTcX97mQWilrytN+/SELFxC
- hSqx4q40SHPCjytFii5+GWbGmIfUr+NEmDFKNyLkeXU8cGnBieuRX2EgD
- CB7A9MPWD0UKD0fp6Uag17HwoKZzh4/COA8BxfbQd04cZ9Pm5EvPwO9z5
- en7sX8tHmyhTCpkjH8DclebVbxulV8RDJ3V0P9M4gipFpbLtyJmDswUGM
- gnWUiOw1bCYH6mC4eI4fqB+zrc1BxCsn0VwhzQfZ9cFcNIyY5gROHo+nN
- 56xcZWYZm9q90vVJrmpXkhTPsWUgiIFiKwjl+PC+rB1YapKvb6+L/ih1v w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="324992207"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="324992207"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:16:27 -0700
+ bh=/4zWExtt9iLS9LneNbPgelf3KskxJgSayVWPUWSbl14=;
+ b=hE05uUIBLG6sPXOE7eZds6XGz/QTCWhY8RPzBwEC/I/8LVYFHsJdMMo2
+ tB7ZnQkGTUoSTfcc+T+54HT34FEKeNL75U0YvfH2VSSgohBwHG8UoksOB
+ F/pIBBv3jvJM5t7P9X02/FPmxq0m/3HPldqqZ3xRX+vU9J3NJpG89KanI
+ 5/CGBQ06nyTuITohFxZTLTOfZdNPvrx0HpE3CIWBLb65Qi/SYBnqf8VIk
+ H7Hg8lLuG130eTUX6qFvBcHA+eohl5Hy97u8K1vzqwqx67Xb+QBq+oTS+
+ r6LXpHZJmBCF5ET1R/cyxjodF8bXz66BVOiGWprv9WjeO2VY9S7HlJemu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="345376655"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="345376655"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 00:18:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="668829821"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="668829821"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="721808628"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="721808628"
 Received: from mosnatme-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.56.142])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:16:24 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 00:18:21 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, =?utf-8?Q?Jos=C3=A9?=
- Roberto de Souza <jose.souza@intel.com>
-In-Reply-To: <tfvlalzyff5hv5wxid4q5garmiburkapqo6xv3zdrdxicwt2un@64brrcp2ckgb>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230419022522.3457924-1-arun.r.murthy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230418164337.50303-1-jose.souza@intel.com>
- <uiz4v7ipqtw3mtgvccmi6vgiqojptaahydvh66aaqwq2tvy7sn@ne5s2vatg2zp>
- <tfvlalzyff5hv5wxid4q5garmiburkapqo6xv3zdrdxicwt2un@64brrcp2ckgb>
-Date: Wed, 19 Apr 2023 10:16:22 +0300
-Message-ID: <878reo1gvt.fsf@intel.com>
+References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
+ <20230419022522.3457924-1-arun.r.murthy@intel.com>
+Date: Wed, 19 Apr 2023 10:18:18 +0300
+Message-ID: <875y9s1gsl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v4] drm/i915: Initialize dkl_phy
- spin lock from display code path
+Subject: Re: [Intel-gfx] [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+ requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,114 +60,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Apr 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Apr 18, 2023 at 11:30:18PM -0700, Lucas De Marchi wrote:
->>On Tue, Apr 18, 2023 at 09:43:37AM -0700, Jose Souza wrote:
->>>Start to move the initialization of display locks from
->>>i915_driver_early_probe(), this way it is also executed when running
->>>Xe kmd.
->>>
->>>This will fix a warning in Xe kmd:
->>>
->>>[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
->>>[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
->>>[  202.175346] INFO: trying to register non-static key.
->>>[  202.175347] irq event stamp: 754060
->>>[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
->>>[  202.180294] The code is fine but needs lockdep annotation, or maybe
->>>[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
->>>[  202.192734] you didn't initialize this object before use?
->>>[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
->>>[  202.206882] turning off the locking correctness validator.
->>>[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
->>>[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
->>>[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
->>>[  202.255737] Call Trace:
->>>[  202.258179]  <TASK>
->>>[  202.260275]  dump_stack_lvl+0x58/0xc0
->>>[  202.263922]  register_lock_class+0x756/0x7d0
->>>[  202.268165]  ? find_held_lock+0x2b/0x80
->>>[  202.271975]  __lock_acquire+0x72/0x28b0
->>>[  202.275786]  ? debug_object_free+0xb4/0x160
->>>[  202.279946]  lock_acquire+0xd1/0x2d0
->>>[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->>>[  202.288181]  _raw_spin_lock+0x2a/0x40
->>>[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->>>[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
->>>[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
->>>[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
->>>[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
->>>[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
->>>[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
->>>[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
->>>[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
->>>[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
->>>[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
->>>[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
->>>[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
->>>[  202.356260]  pci_device_probe+0x9d/0x150
->>>[  202.360164]  really_probe+0x19a/0x400
->>>[  202.363809]  ? __pfx___driver_attach+0x10/0x10
->>>[  202.368226]  __driver_probe_device+0x73/0x170
->>>[  202.372558]  driver_probe_device+0x1a/0x90
->>>[  202.376632]  __driver_attach+0xcd/0x1c0
->>>[  202.380442]  bus_for_each_dev+0x72/0xc0
->>>[  202.384253]  bus_add_driver+0x110/0x210
->>>[  202.388063]  driver_register+0x50/0x100
->>>[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
->>>[  202.396431]  do_one_initcall+0x55/0x260
->>>[  202.400245]  ? rcu_is_watching+0xd/0x40
->>>[  202.404058]  ? kmalloc_trace+0xa0/0xb0
->>>[  202.407786]  do_init_module+0x45/0x1e0
->>>[  202.411512]  __do_sys_finit_module+0xac/0x120
->>>[  202.415838]  do_syscall_64+0x37/0x90
->>>[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>[  202.424409] RIP: 0033:0x7fd11291ea3d
->>>[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
->>>[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
->>>[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
->>>[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
->>>[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
->>>[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
->>>[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
->>>[  202.489396]  </TASK>
->>>
->>>v2:
->>>- added intel_display_locks_init()
->>>
->>>v3:
->>>- rebased
->>>
->>>v4:
->>>- drop intel_display_locks_init()
->>
->>why?
+On Wed, 19 Apr 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> For 128b/132b LT prior to LT DPTX should set power state, DP channel
+> coding and then link rate.
 >
-> ah... ok, now we have intel_display_driver_early_probe(). I thought you
-> were dropping the call from i915_driver.c 
+> v2: added separate function to avoid code duplication(Jani N)
 >
-> Remaining question for display: do we want to spread the lock
-> initialization to each compilation unit?  Or should we just keep a
->
-> 	static locks_init() { <all the locks here> }
->
-> the lock init seems a very cheap init that maybe doesn't deserve to be
-> spread. Then this patch could just move all the mutexes initialization
-> that were left behind.
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-I still think if only one file uses something, then that file should
-include the init for it too, and nobody else should touch it. Including
-locks. Ideally, they would be stowed away in allocated opaque structs
-that can't even be accessed (or initialized) by anyone else.
+RESEND for what reason?
+
+Two v2 and neither fixes
+https://lore.kernel.org/r/87o7nmergw.fsf@intel.com
 
 BR,
 Jani.
 
+
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 62 +++++++++++++------
+>  1 file changed, 44 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 6aa4ae5e7ebe..e5809cf7d0c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -637,6 +637,37 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+>  	return true;
+>  }
+>  
+> +static void
+> +intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+> +				const struct intel_crtc_state *crtc_state)
+> +{
+> +	u8 link_config[2];
+> +
+> +	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> +	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> +			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> +	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+> +}
+> +
+> +static void
+> +intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
+> +			    const struct intel_crtc_state *crtc_state,
+> +			    u8 link_bw, u8 rate_select)
+> +{
+> +	u8 link_config[2];
+> +
+> +	/* Write the link configuration data */
+> +	link_config[0] = link_bw;
+> +	link_config[1] = crtc_state->lane_count;
+> +	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> +		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> +	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+> +	/* eDP 1.4 rate select method. */
+> +	if (!link_bw)
+> +		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> +				  &rate_select, 1);
+> +}
+> +
+>  /*
+>   * Prepare link training by configuring the link parameters. On DDI platforms
+>   * also enable the port here.
+> @@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+>  {
+>  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	u8 link_config[2];
+>  	u8 link_bw, rate_select;
+>  
+>  	if (intel_dp->prepare_link_retrain)
+> @@ -686,23 +716,19 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+>  		drm_dbg_kms(&i915->drm,
+>  			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
+>  			    encoder->base.base.id, encoder->base.name, rate_select);
+> -
+> -	/* Write the link configuration data */
+> -	link_config[0] = link_bw;
+> -	link_config[1] = crtc_state->lane_count;
+> -	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> -		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> -	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+> -
+> -	/* eDP 1.4 rate select method. */
+> -	if (!link_bw)
+> -		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> -				  &rate_select, 1);
+> -
+> -	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> -	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> -		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> -	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+> +	if (intel_dp_is_uhbr(crtc_state)) {
+> +		/*
+> +		 * Spec DP2.1 Section 3.5.2.16
+> +		 * Prior to LT DPTX should set 128b/132b DP Channel coding and then set link rate
+> +		 */
+> +		intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+> +		intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+> +					    rate_select);
+> +	} else {
+> +		intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+> +					    rate_select);
+> +		intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+> +	}
+>  
+>  	return true;
+>  }
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
