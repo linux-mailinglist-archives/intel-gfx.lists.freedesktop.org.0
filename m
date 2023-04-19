@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE8C6E7B8E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 16:10:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F736E7C30
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 16:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71AD310E9C2;
-	Wed, 19 Apr 2023 14:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9260210E1D3;
+	Wed, 19 Apr 2023 14:18:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B497C10E9BB;
- Wed, 19 Apr 2023 14:10:24 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF09110E1D3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 14:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681913424; x=1713449424;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yQOvTRY4sROk/vs+rqjANgUZpPxBVP6uZr162wyxdfk=;
- b=B+IwhDW0cWyfZNoqdaFiaPNK3r81B/4XfVrVcVE7MazE+R45b1gn4TKf
- /dNnjw0KqkLq+01rPpfFtrTXY0pnWpG7yxXuafPKYwgIPY4ub8r8NFdId
- rS7QqdzoqiCVbpCGeyfBi3Bin9ZPU5CeL02FG0uSS6EFWFn3Xmn9bzd7S
- RHv1ts1R5vP2ZUnEmDZD3BVYd2hMTl7CJ5+yJukzuq8radZdOR8KhmSDX
- av/rLGnysIsFq6YFHT1dI8PbHGiVfOEwqlSE0Z+rUb+/g1gHYk3SfylDk
- kpuKahJ4a3uO9TjSUvNfYpBlOh6d+QKsgplAVbVBHID2xnvfjvamRMkNV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="325790687"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="325790687"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 07:10:23 -0700
+ t=1681913922; x=1713449922;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=9vNF5VjskPvKOfY/eYLxRKOT3PEs9O6V5mtD4GWwWCQ=;
+ b=KepVFEHmFn8Cx6AI78mJ7Fd9BHZxyhNRPUTa5/pQvfYiahSgj6f1/sXo
+ xBtb5Ny/QWLzrApAjQDSDppgZJ+kRGWwSj+WrDYcbqJgRAYjRePNIrF5e
+ 0SZP7sw1mVNqBMHQzpT35D0KJnFL+VDb39b82yDsiPOVoXMgFY93Laktx
+ 7crmjQA5gzWs2pGh1OsRLgsMQgTGvnamOw21C5QKIs7lsMq+cGtCkAxB7
+ pNe4R2PKf8DXITosvWsIn2+F6o4DutdEDsOtzG2Oej6Wlx7vX7wsGnQ5t
+ I1LszcrnIqMeZS4Wk58hqqWKfmkhdhGNxSUx+2u/VR0lKMcphwmeiSEu5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="329634527"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="329634527"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 07:18:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="780869171"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="780869171"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.32.240])
- ([10.252.32.240])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 07:10:22 -0700
-Message-ID: <b980f553-fc00-fd51-f858-6a38a195605b@linux.intel.com>
-Date: Wed, 19 Apr 2023 16:10:21 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="815642973"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="815642973"
+Received: from crijnder-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.35.137])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 07:18:39 -0700
+Date: Wed, 19 Apr 2023 16:18:35 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Message-ID: <ZD/4OzXKMhZaw1Qp@ashyti-mobl2.lan>
+References: <20230419060036.3422635-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20230417062503.1884465-1-fei.yang@intel.com>
- <20230417062503.1884465-2-fei.yang@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230417062503.1884465-2-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915/mtl: Set has_llc=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230419060036.3422635-1-tejas.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/3] Consider multi-gt instead of to_gt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,39 +58,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Tejas,
 
-On 4/17/2023 8:24 AM, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
->
-> On MTL, GT is no longer allocated on LLC, set has_llc=0.
+On Wed, Apr 19, 2023 at 11:30:33AM +0530, Tejas Upadhyay wrote:
+> drm/i915/gt: drm/i915/gem: drm/i915/selftests:
+> Consider multi-gt instead of to_gt()
+> 
+> In order to enable complete multi-GT, use the GT
+> reference obtained directly from the engine, rather
+> than relying on the to_gt(), which only provides a
+> reference to the primary GT.
+> 
+> Problem appear when it runs on platform like MTL
+> where different set of engines are possible on
+> different GTs.
+> 
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
+pushed to drm-intel-gt-next.
 
-This statement is bit unclear to me.  I would say "On MTL, LLC is not 
-shared between GT and CPU"
-
-Otherwise
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
->
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_pci.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index cddb6e197972..025d32c0b161 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1146,6 +1146,7 @@ static const struct intel_device_info mtl_info = {
->   	.has_flat_ccs = 0,
->   	.has_gmd_id = 1,
->   	.has_guc_deprivilege = 1,
-> +	.has_llc = 0,
->   	.has_mslice_steering = 0,
->   	.has_snoop = 1,
->   	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+Thank you!
+Andi
