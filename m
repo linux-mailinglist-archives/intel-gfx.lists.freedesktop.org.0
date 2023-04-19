@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAE96E82CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 22:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5D06E8318
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 23:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F407110EB08;
-	Wed, 19 Apr 2023 20:37:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E88E410EB0C;
+	Wed, 19 Apr 2023 21:11:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC0810EAFF;
- Wed, 19 Apr 2023 20:37:38 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA9C10E20D;
+ Wed, 19 Apr 2023 21:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681936658; x=1713472658;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MJNtlJbwqR8+qo05ouosF5HNTfa/H4h2E4Mb58fcB+g=;
- b=hP4Qg8G64LPhpc422bGhq1lyPo8mLajFJPt8QurH8QQIpgmkzaZ1WfmN
- TEyR9N0709gRaHdzcxwacUjSNd4GmDm+9t2qhHzj2s8QvXsAsQVwWd1NR
- s4k8AN2FIYVEnxw/n86Jyd/e/+WF+9sZP/HAXSD55phEiyeH4Zv4CTQHt
- sc5uQygUU5FALEYV9iP3h9BX+40ZzXkashCxN7USwZyS+ScG/MIqdTqNn
- xWmT8Z6TN2SwqOqlR1ec9h0v3zDazcOXHXZaqBY0p/wPRhLe1t7D9AYhI
- CbaZib1fZx6vizXQXl3dbofsSBKj5BPzdt9XM690TnMuN1laduS+cybld Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="325888863"
-X-IronPort-AV: E=Sophos;i="5.99,210,1677571200"; d="scan'208";a="325888863"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 13:37:37 -0700
+ t=1681938668; x=1713474668;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z3f6He2fvOdVhaMng7tBiHDllBeQCB4z6Z03KnFE43Y=;
+ b=GSXWzyyyN+VUdaE3XS1d4CNa6YB69Oh4bjt+dGwYMPzjaCE+CEFimx6i
+ g1SVwuK6W6B0oMKcINM/2iPoy9xHpGIMfx6l6jIb+YPL296R+5ptojuWV
+ i1ZBurIwNE6+Wp7J8N0B/DVNppAxxI6GuXFemZQ1OiZOAC4mO0YY91hRf
+ z/TW6D11EuAtVUDWTXQGo087qDhud8oT3Yt/ZAViaBztmomO+iSglvYoO
+ FW9lHNFtyvAARuvcPohzvCrG6yX4FuZnSrRv7ULdtNyyLtEjcWawATLhg
+ LOdKMDzSlzz367uPVfrQDTMNM0MTtmjW888SQsLf/4UoUG+a1zz33eisa g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="343042854"
+X-IronPort-AV: E=Sophos;i="5.99,210,1677571200"; d="scan'208";a="343042854"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 14:11:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="694213881"
-X-IronPort-AV: E=Sophos;i="5.99,210,1677571200"; d="scan'208";a="694213881"
-Received: from crijnder-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.35.137])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 13:37:35 -0700
-Date: Wed, 19 Apr 2023 22:37:32 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: fei.yang@intel.com
-Message-ID: <ZEBRDLC4RidF6Xga@ashyti-mobl2.lan>
-References: <20230419180942.2494156-1-fei.yang@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="685098934"
+X-IronPort-AV: E=Sophos;i="5.99,210,1677571200"; d="scan'208";a="685098934"
+Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 14:11:07 -0700
+From: fei.yang@intel.com
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Apr 2023 14:12:11 -0700
+Message-Id: <20230419211219.2574008-1-fei.yang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230419180942.2494156-1-fei.yang@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915/mtl: Define MOCS and PAT
- tables for MTL
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915/mtl: Define MOCS and PAT tables
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,45 +56,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Fei,
+From: Fei Yang <fei.yang@intel.com>
 
-On Wed, Apr 19, 2023 at 11:09:34AM -0700, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> The series includes patches needed to enable MTL.
-> Also add new extension for GEM_CREATE uAPI to let
-> user space set cache policy for buffer objects.
-> 
-> v2: addressing review comments and checkpatch warnings
-> 
-> Fei Yang (7):
->   drm/i915/mtl: Set has_llc=0
->   drm/i915/mtl: Add PTE encode function
->   drm/i915/mtl: workaround coherency issue for Media
->   drm/i915/mtl: end support for set caching ioctl
->   drm/i915: preparation for using PAT index
->   drm/i915: use pat_index instead of cache_level
->   drm/i915: Allow user to set cache at BO creation
-> 
-> Madhumitha Tolakanahalli Pradeep (1):
->   drm/i915/mtl: Define MOCS and PAT tables for MTL
+The series includes patches needed to enable MTL.
+Also add new extension for GEM_CREATE uAPI to let
+user space set cache policy for buffer objects.
 
-next time could you please add all the r-b's you got, as it's
-hard to track them down?
+v2: addressing review comments and checkpatch warnings
+v3: make mtl_ggtt_pte_encode static
 
-And, could you please version your patches with format patch:
+Fei Yang (7):
+  drm/i915/mtl: Set has_llc=0
+  drm/i915/mtl: Add PTE encode function
+  drm/i915/mtl: workaround coherency issue for Media
+  drm/i915/mtl: end support for set caching ioctl
+  drm/i915: preparation for using PAT index
+  drm/i915: use pat_index instead of cache_level
+  drm/i915: Allow user to set cache at BO creation
 
-   git format-patch -v X
+Madhumitha Tolakanahalli Pradeep (1):
+  drm/i915/mtl: Define MOCS and PAT tables for MTL
 
-and also add a changelog. The changelog might be a bit annoying
-but it's very useful to understand what has changed.
+ drivers/gpu/drm/i915/display/intel_dpt.c      | 14 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    | 36 ++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 30 +++----
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 67 ++++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  | 26 +++++-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 76 ++++++++++++-----
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 84 +++++++++++++------
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  6 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 47 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           | 38 ++++++---
+ drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
+ drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
+ drivers/gpu/drm/i915/gt/intel_mocs.c          | 76 ++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 ++++++-----
+ drivers/gpu/drm/i915/gt/selftest_mocs.c       |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c     | 13 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  7 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  6 ++
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
+ drivers/gpu/drm/i915/i915_debugfs.c           | 55 +++++++++---
+ drivers/gpu/drm/i915/i915_gem.c               | 16 +++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 76 +++++++++++++++--
+ drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
+ drivers/gpu/drm/i915/i915_vma.h               |  2 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
+ drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
+ .../drm/i915/selftests/intel_memory_region.c  |  4 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 ++
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
+ include/uapi/drm/i915_drm.h                   | 36 ++++++++
+ tools/include/uapi/drm/i915_drm.h             | 36 ++++++++
+ 52 files changed, 812 insertions(+), 226 deletions(-)
 
-As a reviewer, in order to check the different versions I had to
-check the date sent.
+-- 
+2.25.1
 
-Thanks,
-Andi
