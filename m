@@ -1,55 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA9E6E7E85
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:41:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804AE6E7E97
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD9310E9FB;
-	Wed, 19 Apr 2023 15:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E73210EA04;
+	Wed, 19 Apr 2023 15:43:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 225B810E9FB
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:41:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681918891; x=1713454891;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=fdqkGqLeE77r+7ghR8j2Nmv0dq1QHF8U3pHYw30QX5o=;
- b=XT902+qNFkM0CCTJsEosfVHnKsisPKuEHeu0bn2nkbA6J7Fg89CSdheU
- 699GRvwXb0nzkZndtpwhNRIbYJdvExpnkGcI14wGyxBewNdCDsm5+0/Ez
- CXTWT+8DbJ0Fid+mVxFd43NO2e2Epi4BzBdRp+h3T8af34CgB4JDkzPEG
- mLlgQun2vCfyUUL7F/z8bwG40aD1Ax8QtW78rVvj3m37ES//d74wGCs1+
- 0p4MJaU1Dxjy8VczmBC6STW1qj//cdvABc6ZVxtBTZensbg4DoP9dDYHx
- iDDZ+pQIieM5B5ybYQhOJ+11463cx28os2FDtx5wcNvY7O1jB+NbMlNjz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="342964325"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="342964325"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:41:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="937714826"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="937714826"
-Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.37])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:41:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230418175528.13117-14-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
- <20230418175528.13117-14-ville.syrjala@linux.intel.com>
-Date: Wed, 19 Apr 2023 18:41:26 +0300
-Message-ID: <87h6tbyj4p.fsf@intel.com>
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com
+ [IPv6:2607:f8b0:4864:20::1136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA5910E9F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:43:26 +0000 (UTC)
+Received: by mail-yw1-x1136.google.com with SMTP id
+ 00721157ae682-54fbee98814so4514697b3.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 08:43:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1681919005; x=1684511005;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=WYP/FiV4NZRa6cuRzACHXEBSXpiH2T5moAJ/fvYk8fQ=;
+ b=Bg3ej8Mx817Cb/4huu7B23u41PzGHpDtW0vXlB7s/sx0aAPo9GEozdq7daMoHJm9Nw
+ dJcTqIgpwSLn8EGoB0W0O0w4kQ03MKeluC/p2EUWmkeLjBMGHWJdijnfLaBZz3uTp7Ns
+ rVcku7g6+tmnt9iK+3Op1LYMOUGuqT54bNvz4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681919005; x=1684511005;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=WYP/FiV4NZRa6cuRzACHXEBSXpiH2T5moAJ/fvYk8fQ=;
+ b=jm1ZqIDs5rY+FacM8T+FDd9exiKxa5lX39y9RsGHWq9XwAPySByE09YOmUwdaB5d6J
+ XxJYG5RsE72BrK2pz1d2DYC+r0bjFRjrHyolqns6mcDXSaG7RS11klqP/hfTYVRqBvXn
+ PLjnBq8YqMDkSVCCP1t29zxcN9bklUuGNdV2thqqlexl5KZu5cw30qQwP+7BtDZsz8TP
+ Z4XCbJQzcfAJJ3Y3Qyvh02JVPCNFLWy/Cv8cAZrj74Pa5/Uj+ZoNVwvT3uYfoiqS0OuJ
+ 4cgKsDmckuX8mcc+uokIy5zmNwGj0kc/Tz6mWVtQm/StQAYhptTxbuwFHCW9NGQyZ1Ap
+ i6ew==
+X-Gm-Message-State: AAQBX9eN5gZrOCk+8Ouq3McRnmjiQvsZHsO5dKGrNmkwtx+1SAGq/EBd
+ 4wMjrCCkox8af/9jioDidxJsQg==
+X-Google-Smtp-Source: AKy350YUz4CgwWDe2UhIdSf3hlN0krIz+k7Rr1p3S6Lmy8YFNkmDRPImpAnYFzPWA5Byud316pAxYQ==
+X-Received: by 2002:a0d:d487:0:b0:54f:9b01:b353 with SMTP id
+ w129-20020a0dd487000000b0054f9b01b353mr3644144ywd.9.1681919005407; 
+ Wed, 19 Apr 2023 08:43:25 -0700 (PDT)
+Received: from localhost ([2620:0:1035:15:55c6:7cf1:a68:79b0])
+ by smtp.gmail.com with UTF8SMTPSA id
+ bf21-20020a05690c029500b0054f8a3624dbsm4477345ywb.145.2023.04.19.08.43.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Apr 2023 08:43:25 -0700 (PDT)
+From: Mark Yacoub <markyacoub@chromium.org>
+X-Google-Original-From: Mark Yacoub <markyacoub@google.com>
+To: 
+Date: Wed, 19 Apr 2023 11:43:10 -0400
+Message-ID: <20230419154321.1993419-1-markyacoub@google.com>
+X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 13/15] drm/i915: Define bitmasks for sik+
- scaler window pos/size
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v10 00/10] drm/hdcp: Pull HDCP
+ auth/exchange/check into helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,99 +69,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dianders@chromium.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org,
+ dmitry.baryshkov@linaro.org, freedreno@lists.freedesktop.org,
+ Mark Yacoub <markyacoub@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Define and use the bitmasks for the x/y components
-> of the skl+ scaler window pos/size registers.
+Hi all,
+This is v10 of the HDCP patches. The patches are authored by Sean Paul. 
+I rebased and addressed the review comments in v6-v10.
 
-This too should mention the change of mask size.
+Main change in v10 is handling the kernel test bot warnings.
 
-Typo in subject, *skl+
+Patches 1-4 focus on moving the common HDCP helpers to common DRM. 
+This introduces a slight change in the original intel flow
+as it splits the unique driver protocol from the generic implementation.
 
-BR,
-Jani.
+Patches 5-7 split the HDCP flow on the i915 driver to make use of the common DRM helpers.
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 14 ++++++++------
->  drivers/gpu/drm/i915/i915_reg.h           |  8 ++++++++
->  2 files changed, 16 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
-i915/display/skl_scaler.c
-> index 4437d130293a..1e7c97243fcf 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -754,9 +754,9 @@ void skl_pfit_enable(const struct intel_crtc_state *c=
-rtc_state)
->  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
->  			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
->  	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
-> -			  x << 16 | y);
-> +			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
->  	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
-> -			  width << 16 | height);
-> +			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
->  }
->=20=20
->  void
-> @@ -816,9 +816,9 @@ skl_program_plane_scaler(struct intel_plane *plane,
->  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
->  			  PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
->  	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, scaler_id),
-> -			  (crtc_x << 16) | crtc_y);
-> +			  PS_WIN_XPOS(crtc_x) | PS_WIN_YPOS(crtc_y));
->  	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, scaler_id),
-> -			  (crtc_w << 16) | crtc_h);
-> +			  PS_WIN_XSIZE(crtc_w) | PS_WIN_YSIZE(crtc_h));
->  }
->=20=20
->  static void skl_detach_scaler(struct intel_crtc *crtc, int id)
-> @@ -880,8 +880,10 @@ void skl_scaler_get_config(struct intel_crtc_state *=
-crtc_state)
->  		size =3D intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
->=20=20
->  		drm_rect_init(&crtc_state->pch_pfit.dst,
-> -			      pos >> 16, pos & 0xffff,
-> -			      size >> 16, size & 0xffff);
-> +			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-> +			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-> +			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-> +			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
->=20=20
->  		scaler_state->scalers[i].in_use =3D true;
->  		break;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index a5ae291de55b..68581864fb44 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4101,12 +4101,20 @@
->  #define _PS_WIN_POS_1B      0x68970
->  #define _PS_WIN_POS_2B      0x68A70
->  #define _PS_WIN_POS_1C      0x69170
-> +#define   PS_WIN_XPOS_MASK			REG_GENMASK(28, 16)
-> +#define   PS_WIN_XPOS(x)			REG_FIELD_PREP(PS_WIN_XPOS_MASK, (x))
-> +#define   PS_WIN_YPOS_MASK			REG_GENMASK(12, 0)
-> +#define   PS_WIN_YPOS(y)			REG_FIELD_PREP(PS_WIN_YPOS_MASK, (y))
->=20=20
->  #define _PS_WIN_SZ_1A       0x68174
->  #define _PS_WIN_SZ_2A       0x68274
->  #define _PS_WIN_SZ_1B       0x68974
->  #define _PS_WIN_SZ_2B       0x68A74
->  #define _PS_WIN_SZ_1C       0x69174
-> +#define   PS_WIN_XSIZE_MASK			REG_GENMASK(29, 16)
-> +#define   PS_WIN_XSIZE(w)			REG_FIELD_PREP(PS_WIN_XSIZE_MASK, (w))
-> +#define   PS_WIN_YSIZE_MASK			REG_GENMASK(12, 0)
-> +#define   PS_WIN_YSIZE(h)			REG_FIELD_PREP(PS_WIN_YSIZE_MASK, (h))
->=20=20
->  #define _PS_VSCALE_1A       0x68184
->  #define _PS_VSCALE_2A       0x68284
+Patches 8-10 implement HDCP on MSM driver.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Thanks,
+-Mark Yacoub
+
+Sean Paul (10):
+  drm/hdcp: Add drm_hdcp_atomic_check()
+  drm/hdcp: Avoid changing crtc state in hdcp atomic check
+  drm/hdcp: Update property value on content type and user changes
+  drm/hdcp: Expand HDCP helper library for enable/disable/check
+  drm/i915/hdcp: Consolidate HDCP setup/state cache
+  drm/i915/hdcp: Retain hdcp_capable return codes
+  drm/i915/hdcp: Use HDCP helpers for i915
+  dt-bindings: msm/dp: Add bindings for HDCP registers
+  arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
+  drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
+
+ .../bindings/display/msm/dp-controller.yaml   |    7 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |    8 +
+ drivers/gpu/drm/display/drm_hdcp_helper.c     | 1224 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_atomic.c   |    8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   32 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   12 +-
+ .../drm/i915/display/intel_display_types.h    |   51 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  352 ++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   16 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 1060 +++-----------
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |   48 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  267 ++--
+ drivers/gpu/drm/msm/Kconfig                   |    1 +
+ drivers/gpu/drm/msm/Makefile                  |    1 +
+ drivers/gpu/drm/msm/dp/dp_catalog.c           |  156 +++
+ drivers/gpu/drm/msm/dp/dp_catalog.h           |   18 +
+ drivers/gpu/drm/msm/dp/dp_debug.c             |   46 +-
+ drivers/gpu/drm/msm/dp/dp_debug.h             |   11 +-
+ drivers/gpu/drm/msm/dp/dp_display.c           |   39 +-
+ drivers/gpu/drm/msm/dp/dp_display.h           |    5 +
+ drivers/gpu/drm/msm/dp/dp_drm.c               |   39 +-
+ drivers/gpu/drm/msm/dp/dp_drm.h               |    7 +
+ drivers/gpu/drm/msm/dp/dp_hdcp.c              |  389 ++++++
+ drivers/gpu/drm/msm/dp/dp_hdcp.h              |   33 +
+ drivers/gpu/drm/msm/dp/dp_parser.c            |   14 +
+ drivers/gpu/drm/msm/dp/dp_parser.h            |    4 +
+ drivers/gpu/drm/msm/dp/dp_reg.h               |   30 +-
+ drivers/gpu/drm/msm/msm_atomic.c              |   19 +
+ include/drm/display/drm_hdcp.h                |  296 ++++
+ include/drm/display/drm_hdcp_helper.h         |   23 +
+ 30 files changed, 2867 insertions(+), 1349 deletions(-)
+ create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.c
+ create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.h
+
+-- 
+2.40.0.634.g4ca3ef3211-goog
+
