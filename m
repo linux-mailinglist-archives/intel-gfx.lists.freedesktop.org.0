@@ -2,51 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 783346E7A62
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 15:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7326E7A71
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 15:16:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D20A010E988;
-	Wed, 19 Apr 2023 13:14:44 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E176510E988
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 13:14:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E7510E993;
+	Wed, 19 Apr 2023 13:16:55 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A140610E993;
+ Wed, 19 Apr 2023 13:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681910083; x=1713446083;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Os3GanZ8BpLTLd66kbEjqEQZQD6xpWHwA7b9w+gquds=;
- b=D4kAe09JuaNag3WQb5mtZAd4BNWWh6Ysdj3ntYy/BAkghsL2sDDhElSS
- R5BLHFIvgx1L4CfTM9oGR7VNI1lGHtKYWLhaRONXDd/M2J5sOAHLBTeem
- BSOqyV6kCZWd2UaOQ7muUUm3W74P7b2jIfj/LEQze3t9jSjaxdrls560Y
- 1T18uvO66vy5hVLO8cKNiNQLO/u4Gnno1OL5ZcdppThK4ILoq2kYJFpyw
- 0xyuia8AxShqx8A649xF5DqlveRF58bBDi6u2wIYb5/R7NR//ixm8fEeF
- RXloRcSkGYMtNmFb4m9BSbb0g7NiHdA8+uQ3fBcCj+7Q8fW0+0yPi+AOP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="373323199"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="373323199"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 06:14:42 -0700
+ t=1681910213; x=1713446213;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=T9OmnESgxGs0kgus3QTCQwr6uKWNiPr1NzZZ13a0veQ=;
+ b=YQiaP0yJpeY7IayE7JivZyTVpmQdIizZOhfLFcGBf4L/Myzbw2uDSMfR
+ DdMaj5NLPiy/bjtuqnuNizXm5tNOzJNbiVc93Y0VzjMU7yr1ygtoPqJQn
+ nEFFjQIjGVYFoFqH/7f7mkL442f1fPSRuvzW6qg3FQgR9fkbV+pHihNWN
+ aleQiNBuW8Txhn2bmsgU/YIToZrzUEpO7X3HgVjZpH4l1O238jkyWJi4Y
+ C8yM9LJ1bbn4b1obsLsACcZ/WQgr9sdjsAQv5anjgfaGXTHbUBWXE0e6R
+ bTa7wYubQCIpOxObmxONU2iYlzvwZBzFPxkvFs+O+j6f5oC6AjiZfvgzu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="325058282"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="325058282"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 06:16:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="691497295"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="691497295"
-Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.47.37])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 06:14:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <9d206788-4cc3-d5f8-922a-697b9e3b09d1@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230419094243.366821-1-jani.nikula@intel.com>
- <9d206788-4cc3-d5f8-922a-697b9e3b09d1@intel.com>
-Date: Wed, 19 Apr 2023 16:14:37 +0300
-Message-ID: <87r0sgypxe.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="780850170"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="780850170"
+Received: from halahusx-mobl.ger.corp.intel.com (HELO [10.213.223.36])
+ ([10.213.223.36])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 06:16:50 -0700
+Message-ID: <3c9d4aed-5c26-6a20-071c-8a3d24f3c9ce@linux.intel.com>
+Date: Wed, 19 Apr 2023 14:16:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: use explicit includes for
- i915_reg.h and i915_irq.h
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>
+References: <20230417155613.4143258-1-tvrtko.ursulin@linux.intel.com>
+ <20230417155613.4143258-5-tvrtko.ursulin@linux.intel.com>
+ <CAF6AEGuobv8+fU-WU9D9vffNJC5zCqrHDtkppf__ieMJDHsWnw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <CAF6AEGuobv8+fU-WU9D9vffNJC5zCqrHDtkppf__ieMJDHsWnw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC 4/6] drm: Add simple fdinfo memory helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,248 +64,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Apr 2023, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> On 19.04.2023 11:42, Jani Nikula wrote:
->> A lot of places include i915_reg.h implicitly via i915_irq.h, which gets
->> included implicitly via intel_display_trace.h. Remove the includes from
->> the headers, and include i915_reg.h and i915_irq.h explicitly where
->> needed.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+On 18/04/2023 18:18, Rob Clark wrote:
+> On Mon, Apr 17, 2023 at 8:56 AM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> For drivers who only wish to show one memory region called 'system,
+>> and only account the GEM buffer object handles under it.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/i9xx_wm.c                  | 1 +
->>   drivers/gpu/drm/i915/display/intel_atomic_plane.c       | 1 +
->>   drivers/gpu/drm/i915/display/intel_display_power.c      | 1 +
->>   drivers/gpu/drm/i915/display/intel_display_power_well.c | 1 +
->>   drivers/gpu/drm/i915/display/intel_display_trace.h      | 1 -
->>   drivers/gpu/drm/i915/display/intel_fbc.c                | 1 +
->>   drivers/gpu/drm/i915/display/intel_fifo_underrun.c      | 2 ++
->>   drivers/gpu/drm/i915/gt/intel_gt_irq.c                  | 1 +
->>   drivers/gpu/drm/i915/gt/intel_reset.c                   | 1 +
->>   drivers/gpu/drm/i915/gt/intel_rps.c                     | 1 +
->>   drivers/gpu/drm/i915/gt/selftest_rps.c                  | 1 +
->>   drivers/gpu/drm/i915/gt/uc/intel_guc.c                  | 1 +
->>   drivers/gpu/drm/i915/i915_debugfs.c                     | 1 +
->>   drivers/gpu/drm/i915/i915_irq.c                         | 1 +
->>   drivers/gpu/drm/i915/i915_irq.h                         | 2 +-
->>   drivers/gpu/drm/i915/intel_clock_gating.c               | 1 +
->>   16 files changed, 16 insertions(+), 2 deletions(-)
->
-> I see the same is for i915_drv.h included imlicitly via 
-> intel_display_trace.h, I guess this is not the last case.
+>>   drivers/gpu/drm/drm_file.c | 45 ++++++++++++++++++++++++++++++++++++++
+>>   include/drm/drm_file.h     |  6 +++++
+>>   2 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+>> index e202f79e816d..1e70669dddf7 100644
+>> --- a/drivers/gpu/drm/drm_file.c
+>> +++ b/drivers/gpu/drm/drm_file.c
+>> @@ -872,6 +872,51 @@ void drm_send_event(struct drm_device *dev, struct drm_pending_event *e)
+>>   }
+>>   EXPORT_SYMBOL(drm_send_event);
+>>
+>> +static void
+>> +add_obj(struct drm_gem_object *obj, struct drm_fdinfo_memory_stat *stats)
+>> +{
+>> +       u64 sz = obj->size;
+>> +
+>> +       stats[0].size += sz;
+>> +
+>> +       if (obj->handle_count > 1)
+>> +               stats[0].shared += sz;
+>> +
+>> +       if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true)))
+>> +               stats[0].active += sz;
+>> +
+>> +       /* Not supported. */
+>> +       stats[0].resident = ~0ull;
+>> +       stats[0].purgeable = ~0ull;
+> 
+> Hmm, this kinda makes the simple helper not very useful.  In my
+> version, you get something that is useful for all UMA drivers (which
+> all, IIRC, have some form of madv ioctl).  I was kinda imagining that
+> for ttm drivers, my print_memory_stats() would just become a helper
+> and that TTM (or "multi-region") drivers would have their own thing.
 
-Yeah, but that's harder to drop. All roads lead to i915_drv.h. ;)
+Hm how? Your version also needed a driver specific vfunc:
 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
++static enum drm_gem_object_status msm_gem_status(struct drm_gem_object *obj)
++{
++	struct msm_gem_object *msm_obj = to_msm_bo(obj);
++	enum drm_gem_object_status status = 0;
++
++	if (msm_obj->pages)
++		status |= DRM_GEM_OBJECT_RESIDENT;
++
++	if (msm_obj->madv == MSM_MADV_DONTNEED)
++		status |= DRM_GEM_OBJECT_PURGEABLE;
++
++	return status;
++}
 
-Thanks, pushed to drm-intel-next.
+Regards,
 
-BR,
-Jani.
+Tvrtko
 
->
-> Regards
-> Andrzej
->
->> 
->> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
->> index 6288826a9497..af0c79a4c9a4 100644
->> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
->> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
->> @@ -4,6 +4,7 @@
->>    */
->>   
->>   #include "i915_drv.h"
->> +#include "i915_reg.h"
->>   #include "i9xx_wm.h"
->>   #include "intel_atomic.h"
->>   #include "intel_display.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> index 40de9f0f171b..9f670dcfe76e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> @@ -36,6 +36,7 @@
->>   #include <drm/drm_fourcc.h>
->>   
->>   #include "i915_config.h"
->> +#include "i915_reg.h"
->>   #include "intel_atomic_plane.h"
->>   #include "intel_cdclk.h"
->>   #include "intel_display_rps.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->> index 7c9f4288329e..5150069f3f82 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> @@ -7,6 +7,7 @@
->>   
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "intel_backlight_regs.h"
->>   #include "intel_cdclk.h"
->>   #include "intel_combo_phy.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> index 62bafcbc7937..1a19fd3bf103 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> @@ -5,6 +5,7 @@
->>   
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "intel_backlight_regs.h"
->>   #include "intel_combo_phy.h"
->>   #include "intel_combo_phy_regs.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
->> index 651ea8564e1b..99bdb833591c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
->> @@ -14,7 +14,6 @@
->>   #include <linux/tracepoint.h>
->>   
->>   #include "i915_drv.h"
->> -#include "i915_irq.h"
->>   #include "intel_crtc.h"
->>   #include "intel_display_types.h"
->>   #include "intel_vblank.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
->> index b507ff944864..11bb8cf9c9d0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->> @@ -44,6 +44,7 @@
->>   #include <drm/drm_fourcc.h>
->>   
->>   #include "i915_drv.h"
->> +#include "i915_reg.h"
->>   #include "i915_utils.h"
->>   #include "i915_vgpu.h"
->>   #include "intel_cdclk.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
->> index b708a62e509a..e7f77a225739 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
->> @@ -26,6 +26,8 @@
->>    */
->>   
->>   #include "i915_drv.h"
->> +#include "i915_reg.h"
->> +#include "i915_irq.h"
->>   #include "intel_de.h"
->>   #include "intel_display_trace.h"
->>   #include "intel_display_types.h"
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> index 1b25a6039152..c0f3ff4746ad 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> @@ -7,6 +7,7 @@
->>   
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "intel_breadcrumbs.h"
->>   #include "intel_gt.h"
->>   #include "intel_gt_irq.h"
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
->> index 6194212e8650..195ff72d7a14 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->> @@ -20,6 +20,7 @@
->>   #include "i915_file_private.h"
->>   #include "i915_gpu_error.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "intel_breadcrumbs.h"
->>   #include "intel_engine_pm.h"
->>   #include "intel_engine_regs.h"
->> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
->> index b2671ac59dc0..80968e49e2c3 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
->> @@ -10,6 +10,7 @@
->>   #include "display/intel_display.h"
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "intel_breadcrumbs.h"
->>   #include "intel_gt.h"
->>   #include "intel_gt_clock_utils.h"
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
->> index 84e77e8dbba1..fb30f733b036 100644
->> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
->> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
->> @@ -8,6 +8,7 @@
->>   
->>   #include "gem/i915_gem_internal.h"
->>   
->> +#include "i915_reg.h"
->>   #include "intel_engine_heartbeat.h"
->>   #include "intel_engine_pm.h"
->>   #include "intel_engine_regs.h"
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> index d76508fa3af7..e89f16ecf1ae 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> @@ -16,6 +16,7 @@
->>   #include "intel_guc_submission.h"
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   
+> 
+> BR,
+> -R
+> 
+>> +}
+>> +
+>> +char **
+>> +drm_query_fdinfo_system_region(struct drm_device *dev, unsigned int *num)
+>> +{
+>> +       static char *region[] = {
+>> +               "system",
+>> +       };
+>> +
+>> +       *num = 1;
+>> +
+>> +       return region;
+>> +}
+>> +EXPORT_SYMBOL(drm_query_fdinfo_system_region);
+>> +
+>> +void
+>> +drm_query_fdinfo_system_memory(struct drm_file *file,
+>> +                              struct drm_fdinfo_memory_stat *stats)
+>> +{
+>> +       struct drm_gem_object *obj;
+>> +       int id;
+>> +
+>> +       spin_lock(&file->table_lock);
+>> +       idr_for_each_entry(&file->object_idr, obj, id)
+>> +               add_obj(obj, stats);
+>> +       spin_unlock(&file->table_lock);
+>> +}
+>> +EXPORT_SYMBOL(drm_query_fdinfo_system_memory);
+>> +
+>>   static void
+>>   print_stat(struct drm_printer *p, const char *stat, const char *region, u64 sz)
+>>   {
+>> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+>> index 00d48beeac5c..dd7c6fb2c975 100644
+>> --- a/include/drm/drm_file.h
+>> +++ b/include/drm/drm_file.h
+>> @@ -383,6 +383,12 @@ struct drm_fdinfo_memory_stat {
+>>          u64 active;
+>>   };
+>>
+>> +char **drm_query_fdinfo_system_region(struct drm_device *dev,
+>> +                                     unsigned int *num);
+>> +void drm_query_fdinfo_system_memory(struct drm_file *file,
+>> +                                   struct drm_fdinfo_memory_stat *stats);
+>> +
+>> +
 >>   /**
->>    * DOC: GuC
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->> index 80c2bf98e341..41389a32e998 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -50,6 +50,7 @@
->>   #include "i915_debugfs_params.h"
->>   #include "i915_driver.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   #include "i915_scheduler.h"
->>   #include "intel_mchbar_regs.h"
->>   
->> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->> index ff2f1b115ba1..2b94b8ca8ec9 100644
->> --- a/drivers/gpu/drm/i915/i915_irq.c
->> +++ b/drivers/gpu/drm/i915/i915_irq.c
->> @@ -54,6 +54,7 @@
->>   #include "i915_driver.h"
->>   #include "i915_drv.h"
->>   #include "i915_irq.h"
->> +#include "i915_reg.h"
->>   
->>   /**
->>    * DOC: interrupt handling
->> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
->> index 3717a66f97c6..dd47e473ba4f 100644
->> --- a/drivers/gpu/drm/i915/i915_irq.h
->> +++ b/drivers/gpu/drm/i915/i915_irq.h
->> @@ -9,7 +9,7 @@
->>   #include <linux/ktime.h>
->>   #include <linux/types.h>
->>   
->> -#include "i915_reg.h"
->> +#include "i915_reg_defs.h"
->>   
->>   enum pipe;
->>   struct drm_crtc;
->> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
->> index 2c5302bcba19..1d796b76f71b 100644
->> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
->> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
->> @@ -36,6 +36,7 @@
->>   #include "gt/intel_gt_regs.h"
->>   
->>   #include "i915_drv.h"
->> +#include "i915_reg.h"
->>   #include "intel_clock_gating.h"
->>   #include "intel_mchbar_regs.h"
->>   #include "vlv_sideband.h"
->
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>>    * drm_is_primary_client - is this an open file of the primary node
+>>    * @file_priv: DRM file
+>> --
+>> 2.37.2
+>>
