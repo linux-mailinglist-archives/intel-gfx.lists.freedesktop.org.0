@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCA26E768F
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 11:42:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A46186E76E3
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 11:56:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB66710E912;
-	Wed, 19 Apr 2023 09:42:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B32610E90D;
+	Wed, 19 Apr 2023 09:56:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF9510E912
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 09:42:49 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A0D10E90D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 09:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681897370; x=1713433370;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9gHyZYrGQEstoCuf7sZkhu7MXkrA2OqFcL4jKPb8+IQ=;
- b=Orq7PolOPRBWoPUashtTpP9kyPxTunqps6iVQgZDyA7x4zW0FI4sOF6B
- QKE+E6Y7qM3AoByUwqbmIJijuS1YzegRBIWVVH2qELM0joyB7c/eautBY
- mqdubEjYSn1W4gRV7E/cwNykDwgf8vKdRkWzgW30SpH2bBU6bDx6kITQF
- l78i+st0jWCq5Qho/c1YkmLsgSFqsa/CO0TUmaEzEOgQKWThwUsDvqJgo
- NO+u6+i1ajMx7GGt2DP50cnc3clNMaYMxpGVG+bzF9YrmrjeimfMSIkM/
- hu/L/o+Dcpi8yLq68Rt/yL6WmmORCfbdVLRVUUuwRuD2rzEcUkiHdey0g A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="410632474"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="410632474"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 02:42:48 -0700
+ t=1681898159; x=1713434159;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IjMamxpBC365esbnVU4gnFp8xxSKmIlPSxS4Tcfsy9E=;
+ b=CBP70eP6n655azvx1KEEC7YzRrtNnPrggFHplIUfKBZDbyMkBM/NFxRl
+ tkkidbaTK8/Iq/PZmmrTw3j7dczuFASj+YH4P9IyeVaeiT0uDUwRO8DTh
+ s8xgK4eJ9QwEGs7Vt/vFMLuwIos9KBai0Kq4nkt8PUXfoHPcTyN7j+Xnh
+ ccQywtjNdhzmPeSwezIjsC1pA9EylrmSvD+C1UIsdWSVIajq4OkdWk2v0
+ cECzjvjTm1rmCBPo+cV8nsB8J9lHPrccIx5xp2iveyXTNq8a4ZntCQZhz
+ Vviz7u2lFDi0cdo57tiGnGEOrtqMOGfzTcm87yrbSCtk3dgpWzD1MQi4H g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="344152361"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="344152361"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 02:55:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="723988401"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="723988401"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693991975"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693991975"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 02:42:47 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 02:55:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 12:42:43 +0300
-Message-Id: <20230419094243.366821-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM6PR11MB31774133756416CC0B8D0F75BA629@DM6PR11MB3177.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: use explicit includes for i915_reg.h
- and i915_irq.h
+References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
+ <20230419022522.3457924-1-arun.r.murthy@intel.com>
+ <875y9s1gsl.fsf@intel.com>
+ <DM6PR11MB31774133756416CC0B8D0F75BA629@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Wed, 19 Apr 2023 12:55:55 +0300
+Message-ID: <87v8hsyz4k.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+ requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,229 +63,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A lot of places include i915_reg.h implicitly via i915_irq.h, which gets
-included implicitly via intel_display_trace.h. Remove the includes from
-the headers, and include i915_reg.h and i915_irq.h explicitly where
-needed.
+On Wed, 19 Apr 2023, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Wednesday, April 19, 2023 12:48 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+>> gfx@lists.freedesktop.org
+>> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Subject: Re: [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+>> requirement
+>>
+>> On Wed, 19 Apr 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > For 128b/132b LT prior to LT DPTX should set power state, DP channel
+>> > coding and then link rate.
+>> >
+>> > v2: added separate function to avoid code duplication(Jani N)
+>> >
+>> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>>
+>> RESEND for what reason?
+> Typo is sending V2 patch hence corrected and sent it again.
+>
+>>
+>> Two v2 and neither fixes
+>> https://lore.kernel.org/r/87o7nmergw.fsf@intel.com
+> This is pointing to the v1 patch.
+> V2 patch addressing review comments can be located @ https://lore.kernel.org/all/20230419022522.3457924-1-arun.r.murthy@intel.com/
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Argh.
+
+RESEND means you're sending the exact same patch again. Hence
+*re-send*. That's what I thought. That's what everyone would think.
+
+It's even documented in submitting-patches.rst [1].
+
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c                  | 1 +
- drivers/gpu/drm/i915/display/intel_atomic_plane.c       | 1 +
- drivers/gpu/drm/i915/display/intel_display_power.c      | 1 +
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 1 +
- drivers/gpu/drm/i915/display/intel_display_trace.h      | 1 -
- drivers/gpu/drm/i915/display/intel_fbc.c                | 1 +
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c      | 2 ++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c                  | 1 +
- drivers/gpu/drm/i915/gt/intel_reset.c                   | 1 +
- drivers/gpu/drm/i915/gt/intel_rps.c                     | 1 +
- drivers/gpu/drm/i915/gt/selftest_rps.c                  | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.c                  | 1 +
- drivers/gpu/drm/i915/i915_debugfs.c                     | 1 +
- drivers/gpu/drm/i915/i915_irq.c                         | 1 +
- drivers/gpu/drm/i915/i915_irq.h                         | 2 +-
- drivers/gpu/drm/i915/intel_clock_gating.c               | 1 +
- 16 files changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 6288826a9497..af0c79a4c9a4 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include "i915_drv.h"
-+#include "i915_reg.h"
- #include "i9xx_wm.h"
- #include "intel_atomic.h"
- #include "intel_display.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 40de9f0f171b..9f670dcfe76e 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -36,6 +36,7 @@
- #include <drm/drm_fourcc.h>
- 
- #include "i915_config.h"
-+#include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_cdclk.h"
- #include "intel_display_rps.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 7c9f4288329e..5150069f3f82 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -7,6 +7,7 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "intel_backlight_regs.h"
- #include "intel_cdclk.h"
- #include "intel_combo_phy.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 62bafcbc7937..1a19fd3bf103 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -5,6 +5,7 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "intel_backlight_regs.h"
- #include "intel_combo_phy.h"
- #include "intel_combo_phy_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index 651ea8564e1b..99bdb833591c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -14,7 +14,6 @@
- #include <linux/tracepoint.h>
- 
- #include "i915_drv.h"
--#include "i915_irq.h"
- #include "intel_crtc.h"
- #include "intel_display_types.h"
- #include "intel_vblank.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index b507ff944864..11bb8cf9c9d0 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -44,6 +44,7 @@
- #include <drm/drm_fourcc.h>
- 
- #include "i915_drv.h"
-+#include "i915_reg.h"
- #include "i915_utils.h"
- #include "i915_vgpu.h"
- #include "intel_cdclk.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index b708a62e509a..e7f77a225739 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -26,6 +26,8 @@
-  */
- 
- #include "i915_drv.h"
-+#include "i915_reg.h"
-+#include "i915_irq.h"
- #include "intel_de.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index 1b25a6039152..c0f3ff4746ad 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -7,6 +7,7 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "intel_breadcrumbs.h"
- #include "intel_gt.h"
- #include "intel_gt_irq.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 6194212e8650..195ff72d7a14 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -20,6 +20,7 @@
- #include "i915_file_private.h"
- #include "i915_gpu_error.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "intel_breadcrumbs.h"
- #include "intel_engine_pm.h"
- #include "intel_engine_regs.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index b2671ac59dc0..80968e49e2c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -10,6 +10,7 @@
- #include "display/intel_display.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "intel_breadcrumbs.h"
- #include "intel_gt.h"
- #include "intel_gt_clock_utils.h"
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 84e77e8dbba1..fb30f733b036 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -8,6 +8,7 @@
- 
- #include "gem/i915_gem_internal.h"
- 
-+#include "i915_reg.h"
- #include "intel_engine_heartbeat.h"
- #include "intel_engine_pm.h"
- #include "intel_engine_regs.h"
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index d76508fa3af7..e89f16ecf1ae 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -16,6 +16,7 @@
- #include "intel_guc_submission.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- 
- /**
-  * DOC: GuC
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 80c2bf98e341..41389a32e998 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -50,6 +50,7 @@
- #include "i915_debugfs_params.h"
- #include "i915_driver.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- #include "i915_scheduler.h"
- #include "intel_mchbar_regs.h"
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index ff2f1b115ba1..2b94b8ca8ec9 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -54,6 +54,7 @@
- #include "i915_driver.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "i915_reg.h"
- 
- /**
-  * DOC: interrupt handling
-diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-index 3717a66f97c6..dd47e473ba4f 100644
---- a/drivers/gpu/drm/i915/i915_irq.h
-+++ b/drivers/gpu/drm/i915/i915_irq.h
-@@ -9,7 +9,7 @@
- #include <linux/ktime.h>
- #include <linux/types.h>
- 
--#include "i915_reg.h"
-+#include "i915_reg_defs.h"
- 
- enum pipe;
- struct drm_crtc;
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 2c5302bcba19..1d796b76f71b 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -36,6 +36,7 @@
- #include "gt/intel_gt_regs.h"
- 
- #include "i915_drv.h"
-+#include "i915_reg.h"
- #include "intel_clock_gating.h"
- #include "intel_mchbar_regs.h"
- #include "vlv_sideband.h"
+There's still the question of whether we could just change the order for
+8b/10b too [2]. On IRC, Ville thinks we could, "i don't think there is
+any order specified. just use the same alwas imo".
+
+
+BR,
+Jani.
+
+
+[1] https://docs.kernel.org/process/submitting-patches.html#don-t-get-discouraged-or-impatient
+[2] https://lore.kernel.org/r/87r0siernf.fsf@intel.com
+
+
+
+
+
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>> > ---
+>> >  .../drm/i915/display/intel_dp_link_training.c | 62
+>> > +++++++++++++------
+>> >  1 file changed, 44 insertions(+), 18 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > index 6aa4ae5e7ebe..e5809cf7d0c4 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > @@ -637,6 +637,37 @@ static bool
+>> intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+>> >     return true;
+>> >  }
+>> >
+>> > +static void
+>> > +intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+>> > +                           const struct intel_crtc_state *crtc_state) {
+>> > +   u8 link_config[2];
+>> > +
+>> > +   link_config[0] = crtc_state->vrr.flipline ?
+>> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+>> > +   link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+>> > +                    DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+>> > +   drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
+>> link_config,
+>> > +2); }
+>> > +
+>> > +static void
+>> > +intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
+>> > +                       const struct intel_crtc_state *crtc_state,
+>> > +                       u8 link_bw, u8 rate_select)
+>> > +{
+>> > +   u8 link_config[2];
+>> > +
+>> > +   /* Write the link configuration data */
+>> > +   link_config[0] = link_bw;
+>> > +   link_config[1] = crtc_state->lane_count;
+>> > +   if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+>> > +           link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+>> > +   drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config,
+>> 2);
+>> > +   /* eDP 1.4 rate select method. */
+>> > +   if (!link_bw)
+>> > +           drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+>> > +                             &rate_select, 1);
+>> > +}
+>> > +
+>> >  /*
+>> >   * Prepare link training by configuring the link parameters. On DDI
+>> platforms
+>> >   * also enable the port here.
+>> > @@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp
+>> > *intel_dp,  {
+>> >     struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>> > -   u8 link_config[2];
+>> >     u8 link_bw, rate_select;
+>> >
+>> >     if (intel_dp->prepare_link_retrain)
+>> > @@ -686,23 +716,19 @@ intel_dp_prepare_link_train(struct intel_dp
+>> *intel_dp,
+>> >             drm_dbg_kms(&i915->drm,
+>> >                         "[ENCODER:%d:%s] Using LINK_RATE_SET value
+>> %02x\n",
+>> >                         encoder->base.base.id, encoder->base.name,
+>> rate_select);
+>> > -
+>> > -   /* Write the link configuration data */
+>> > -   link_config[0] = link_bw;
+>> > -   link_config[1] = crtc_state->lane_count;
+>> > -   if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+>> > -           link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+>> > -   drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config,
+>> 2);
+>> > -
+>> > -   /* eDP 1.4 rate select method. */
+>> > -   if (!link_bw)
+>> > -           drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+>> > -                             &rate_select, 1);
+>> > -
+>> > -   link_config[0] = crtc_state->vrr.flipline ?
+>> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+>> > -   link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+>> > -           DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+>> > -   drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
+>> link_config, 2);
+>> > +   if (intel_dp_is_uhbr(crtc_state)) {
+>> > +           /*
+>> > +            * Spec DP2.1 Section 3.5.2.16
+>> > +            * Prior to LT DPTX should set 128b/132b DP Channel coding
+>> and then set link rate
+>> > +            */
+>> > +           intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+>> > +           intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+>> > +                                       rate_select);
+>> > +   } else {
+>> > +           intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+>> > +                                       rate_select);
+>> > +           intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+>> > +   }
+>> >
+>> >     return true;
+>> >  }
+>>
+>> --
+>> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.39.2
-
+Jani Nikula, Intel Open Source Graphics Center
