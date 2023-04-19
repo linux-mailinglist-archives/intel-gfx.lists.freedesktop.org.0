@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A056E7E83
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:41:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA9E6E7E85
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32BA510EA01;
-	Wed, 19 Apr 2023 15:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD9310E9FB;
+	Wed, 19 Apr 2023 15:41:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EB0210EA01;
- Wed, 19 Apr 2023 15:40:54 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 225B810E9FB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:41:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681918854; x=1713454854;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=k9i9FeIcwInBgX/OalPS7sUvYsZo/iIlfgZJEAzUGzA=;
- b=UG4raHJPzugl4E0u5L42HqS5K8HEpWzSSs8aYoO4RnHZlp6qlOoRRyX0
- Y+YsDL9/rFdf1FTUZBW+1ia5HPd3Dx+wzo9TlOvSSlVeRUyHNYQxdYbMi
- sBmtQWpFcKJRRDxF6aS7wXFsoshe1DnnSWuYAIJs0bXkyIgVo64NDIO9P
- ecGmovbzm+/L2ihNxFNHekNS+3NiVgOguclCpWJmnWlfFVR+L4iTze0Ej
- Lg/wtoZ11q6qfiDQB7sVkdHepdnu6/02+y5Ep4GdvWstDZzhxbqFVmXAa
- GVUX8W+tZjRkdkRDEwNRuMhmf/zBHSirqHk5pS46kz39jsx+BJPYtptjh g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="325815846"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="325815846"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:40:53 -0700
+ t=1681918891; x=1713454891;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=fdqkGqLeE77r+7ghR8j2Nmv0dq1QHF8U3pHYw30QX5o=;
+ b=XT902+qNFkM0CCTJsEosfVHnKsisPKuEHeu0bn2nkbA6J7Fg89CSdheU
+ 699GRvwXb0nzkZndtpwhNRIbYJdvExpnkGcI14wGyxBewNdCDsm5+0/Ez
+ CXTWT+8DbJ0Fid+mVxFd43NO2e2Epi4BzBdRp+h3T8af34CgB4JDkzPEG
+ mLlgQun2vCfyUUL7F/z8bwG40aD1Ax8QtW78rVvj3m37ES//d74wGCs1+
+ 0p4MJaU1Dxjy8VczmBC6STW1qj//cdvABc6ZVxtBTZensbg4DoP9dDYHx
+ iDDZ+pQIieM5B5ybYQhOJ+11463cx28os2FDtx5wcNvY7O1jB+NbMlNjz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="342964325"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="342964325"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 08:41:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="694092260"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="694092260"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.18.145])
- ([10.213.18.145])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:40:52 -0700
-Message-ID: <e654fc52-b1ce-13f6-adfe-3e108f98e6ce@intel.com>
-Date: Wed, 19 Apr 2023 17:40:49 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="937714826"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="937714826"
+Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.47.37])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 08:41:28 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230418175528.13117-14-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
+ <20230418175528.13117-14-ville.syrjala@linux.intel.com>
+Date: Wed, 19 Apr 2023 18:41:26 +0300
+Message-ID: <87h6tbyj4p.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.10.0
-Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20230417062503.1884465-1-fei.yang@intel.com>
- <20230417062503.1884465-5-fei.yang@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230417062503.1884465-5-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/mtl: workaround coherency
- issue for Media
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 13/15] drm/i915: Define bitmasks for sik+
+ scaler window pos/size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,166 +62,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 17.04.2023 08:24, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> This patch implements Wa_22016122933.
-> 
-> In MTL, memory writes initiated by Media tile update the whole
-> cache line even for partial writes. This creates a coherency
-> problem for cacheable memory if both CPU and GPU are writing data
-> to different locations within a single cache line. CTB communication
-> is impacted by this issue because the head and tail pointers are
-> adjacent words within a cache line (see struct guc_ct_buffer_desc),
-> where one is written by GuC and the other by the host.
-> This patch circumvents the issue by making CPU/GPU shared memory
-> uncacheable (WC on CPU side, and PAT index 2 for GPU). Also for
-> CTB which is being updated by both CPU and GuC, mfence instruction
-> is added to make sure the CPU writes are visible to GPU right away
-> (flush the write combining buffer).
-> 
-> While fixing the CTB issue, we noticed some random GSC firmware
-> loading failure because the share buffers are cacheable (WB) on CPU
-> side but uncached on GPU side. To fix these issues we need to map
-> such shared buffers as WC on CPU side. Since such allocations are
-> not all done through GuC allocator, to avoid too many code changes,
-> the i915_coherent_map_type() is now hard coded to return WC for MTL.
-> 
-> BSpec: 45101
-> 
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
+On Tue, 18 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Define and use the bitmasks for the x/y components
+> of the skl+ scaler window pos/size registers.
+
+This too should mention the change of mask size.
+
+Typo in subject, *skl+
+
+BR,
+Jani.
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_pages.c |  5 ++++-
->   drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 13 +++++++++++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  7 +++++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 18 ++++++++++++------
->   4 files changed, 36 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index ecd86130b74f..89fc8ea6bcfc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -469,7 +469,10 @@ enum i915_map_type i915_coherent_map_type(struct drm_i915_private *i915,
->   					  struct drm_i915_gem_object *obj,
->   					  bool always_coherent)
->   {
-> -	if (i915_gem_object_is_lmem(obj))
-> +	/*
-> +	 * Wa_22016122933: always return I915_MAP_WC for MTL
-> +	 */
-> +	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(i915))
->   		return I915_MAP_WC;
->   	if (HAS_LLC(i915) || always_coherent)
->   		return I915_MAP_WB;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> index 1d9fdfb11268..236673c02f9a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> @@ -110,6 +110,13 @@ static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
->   	if (obj->base.size < gsc->fw.size)
->   		return -ENOSPC;
->   
-> +	/*
-> +	 * Wa_22016122933: For MTL the shared memory needs to be mapped
-> +	 * as WC on CPU side and UC (PAT index 2) on GPU side
-> +	 */
-> +	if (IS_METEORLAKE(i915))
-> +		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
-> +
->   	dst = i915_gem_object_pin_map_unlocked(obj,
->   					       i915_coherent_map_type(i915, obj, true));
->   	if (IS_ERR(dst))
-> @@ -125,6 +132,12 @@ static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
->   	memset(dst, 0, obj->base.size);
->   	memcpy(dst, src, gsc->fw.size);
->   
-> +	/*
-> +	 * Wa_22016122933: Making sure the data in dst is
-> +	 * visible to GSC right away
-> +	 */
-> +	intel_guc_write_barrier(&gt->uc.guc);
-> +
->   	i915_gem_object_unpin_map(gsc->fw.obj);
->   	i915_gem_object_unpin_map(obj);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index d76508fa3af7..f9bddaa876d9 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -743,6 +743,13 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
->   	if (IS_ERR(obj))
->   		return ERR_CAST(obj);
->   
-> +	/*
-> +	 * Wa_22016122933: For MTL the shared memory needs to be mapped
-> +	 * as WC on CPU side and UC (PAT index 2) on GPU side
-> +	 */
-> +	if (IS_METEORLAKE(gt->i915))
-> +		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
-> +
->   	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
->   	if (IS_ERR(vma))
->   		goto err;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 1803a633ed64..98e682b7df07 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -415,12 +415,6 @@ static int ct_write(struct intel_guc_ct *ct,
->   	}
->   	GEM_BUG_ON(tail > size);
->   
-> -	/*
-> -	 * make sure H2G buffer update and LRC tail update (if this triggering a
-> -	 * submission) are visible before updating the descriptor tail
-> -	 */
-> -	intel_guc_write_barrier(ct_to_guc(ct));
-> -
->   	/* update local copies */
->   	ctb->tail = tail;
->   	GEM_BUG_ON(atomic_read(&ctb->space) < len + GUC_CTB_HDR_LEN);
-> @@ -429,6 +423,12 @@ static int ct_write(struct intel_guc_ct *ct,
->   	/* now update descriptor */
->   	WRITE_ONCE(desc->tail, tail);
->   
-> +	/*
-> +	 * make sure H2G buffer update and LRC tail update (if this triggering a
-> +	 * submission) are visible before updating the descriptor tail
-> +	 */
-> +	intel_guc_write_barrier(ct_to_guc(ct));
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 14 ++++++++------
+>  drivers/gpu/drm/i915/i915_reg.h           |  8 ++++++++
+>  2 files changed, 16 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index 4437d130293a..1e7c97243fcf 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -754,9 +754,9 @@ void skl_pfit_enable(const struct intel_crtc_state *c=
+rtc_state)
+>  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
+>  			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
+> -			  x << 16 | y);
+> +			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
+> -			  width << 16 | height);
+> +			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
+>  }
+>=20=20
+>  void
+> @@ -816,9 +816,9 @@ skl_program_plane_scaler(struct intel_plane *plane,
+>  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
+>  			  PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, scaler_id),
+> -			  (crtc_x << 16) | crtc_y);
+> +			  PS_WIN_XPOS(crtc_x) | PS_WIN_YPOS(crtc_y));
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, scaler_id),
+> -			  (crtc_w << 16) | crtc_h);
+> +			  PS_WIN_XSIZE(crtc_w) | PS_WIN_YSIZE(crtc_h));
+>  }
+>=20=20
+>  static void skl_detach_scaler(struct intel_crtc *crtc, int id)
+> @@ -880,8 +880,10 @@ void skl_scaler_get_config(struct intel_crtc_state *=
+crtc_state)
+>  		size =3D intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
+>=20=20
+>  		drm_rect_init(&crtc_state->pch_pfit.dst,
+> -			      pos >> 16, pos & 0xffff,
+> -			      size >> 16, size & 0xffff);
+> +			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+> +			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+> +			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
+> +			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
+>=20=20
+>  		scaler_state->scalers[i].in_use =3D true;
+>  		break;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index a5ae291de55b..68581864fb44 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4101,12 +4101,20 @@
+>  #define _PS_WIN_POS_1B      0x68970
+>  #define _PS_WIN_POS_2B      0x68A70
+>  #define _PS_WIN_POS_1C      0x69170
+> +#define   PS_WIN_XPOS_MASK			REG_GENMASK(28, 16)
+> +#define   PS_WIN_XPOS(x)			REG_FIELD_PREP(PS_WIN_XPOS_MASK, (x))
+> +#define   PS_WIN_YPOS_MASK			REG_GENMASK(12, 0)
+> +#define   PS_WIN_YPOS(y)			REG_FIELD_PREP(PS_WIN_YPOS_MASK, (y))
+>=20=20
+>  #define _PS_WIN_SZ_1A       0x68174
+>  #define _PS_WIN_SZ_2A       0x68274
+>  #define _PS_WIN_SZ_1B       0x68974
+>  #define _PS_WIN_SZ_2B       0x68A74
+>  #define _PS_WIN_SZ_1C       0x69174
+> +#define   PS_WIN_XSIZE_MASK			REG_GENMASK(29, 16)
+> +#define   PS_WIN_XSIZE(w)			REG_FIELD_PREP(PS_WIN_XSIZE_MASK, (w))
+> +#define   PS_WIN_YSIZE_MASK			REG_GENMASK(12, 0)
+> +#define   PS_WIN_YSIZE(h)			REG_FIELD_PREP(PS_WIN_YSIZE_MASK, (h))
+>=20=20
+>  #define _PS_VSCALE_1A       0x68184
+>  #define _PS_VSCALE_2A       0x68284
 
-The comment above needs update, if this is correct change. The question 
-is why it is correct? If yes, it implies that old barrier is incorrect, 
-maybe it should be then separate fix?
-I am not an expert, but previous location of the barrier seems sane to 
-me - assure GuC will see proper buffer, before updating buffer's tail.
-
-And according to commit message this new barrier should flush WC buffer,
-so for me it seems to be different thing.
-Am I missing something?
-
-
-Regards
-Andrzej
-
-> +
->   	return 0;
->   
->   corrupted:
-> @@ -902,6 +902,12 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->   	/* now update descriptor */
->   	WRITE_ONCE(desc->head, head);
->   
-> +	/*
-> +	 * Wa_22016122933: Making sure the head update is
-> +	 * visible to GuC right away
-> +	 */
-> +	intel_guc_write_barrier(ct_to_guc(ct));
-> +
->   	return available - len;
->   
->   corrupted:
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
