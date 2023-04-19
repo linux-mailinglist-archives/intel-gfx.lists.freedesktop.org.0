@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E768A6E7E79
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:38:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8EE6E7E7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 17:38:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDEA210E9F4;
-	Wed, 19 Apr 2023 15:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6177F10E9F7;
+	Wed, 19 Apr 2023 15:38:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 024D010E9F4
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:38:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E809110E140
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 15:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681918689; x=1713454689;
+ t=1681918706; x=1713454706;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=oEU4R1TWv3IRO0P1EUSHdmU9KDK/dBBYWmcW3DF9FJQ=;
- b=Ec3J7RvOrwrgSrzTra812klC9NzsUdW5LFaRg5QZkQuDy/xkFAIvIgLt
- ijJJ8q5ABWIj/h1HT5/3MXh9ujIqxq9xt+RUl3udIyvWur1IoKEa4nqtE
- avg6mTzQWdiU3FZMuxJ+Qbf9zz6+nCdDt0EMFWWKrJCnT4jd+zr9Rkqe2
- BDVP9Qy8v+O1TG9NU0dpUz0yQbIDoiHjcB+/k+EqCKkR8Tbde11n03xHB
- SbrGZuemyoeC0qzC5wlXJdXC7cVlwSNA0tyn0ezKIJh77oa+mxMT6gEVB
- pnTYP/HmN+EhCoz4Kx+jMJAbn1KI9oVZvM41rfLn04bvY7UHRJ5LzpGdY w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345484054"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="345484054"
+ bh=CK4qHQMOMKdUt62AwQDcfj5HhZkkbeIn9RDUmY8EGfk=;
+ b=k8LYEqawS+T2zUxxHuruo8OHPTdEc4iJ0S1v1yw+c/MQWeYEl/16Zq4G
+ e1DMtK9iG+AdKCw0rs/OYhncklGiYoGrsU+rYITQ+SnPBTYPB5zbWlt1b
+ Kqj41GguuMrtqZS0yx+QU4dGM3Jr+B5lYGqMAWXrceHAix5Ruh/c3qsjI
+ obQFEZYvldhZa9aH7InBKb8X16R4ABmWRoeXXoZBgr46EqSD05rfqUdhu
+ 0JvBbtzCAyC2OFkBD6tBjQC9dtLYrZkdTrw5vY2pLyiq4eoqLqaNW+4BQ
+ gpyKFPA9E+79KJHYDkNnxyp5h4BXWmYlwYMrBbDDIEfcFr9gyb4IqC9rP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345484097"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="345484097"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:38:08 -0700
+ 19 Apr 2023 08:38:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="685025001"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="685025001"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="685025136"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="685025136"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 08:38:03 -0700
+ 19 Apr 2023 08:38:25 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230418175528.13117-12-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230418193653.22278-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230418175528.13117-1-ville.syrjala@linux.intel.com>
- <20230418175528.13117-12-ville.syrjala@linux.intel.com>
-Date: Wed, 19 Apr 2023 18:38:01 +0300
-Message-ID: <87pm7zyjae.fsf@intel.com>
+References: <20230418175528.13117-12-ville.syrjala@linux.intel.com>
+ <20230418193653.22278-1-ville.syrjala@linux.intel.com>
+Date: Wed, 19 Apr 2023 18:38:23 +0300
+Message-ID: <87mt33yj9s.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Rename skl+ scaler binding
- bits
+Subject: Re: [Intel-gfx] [PATCH v2 11/15] drm/i915: Rename skl+ scaler
+ binding bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,14 +72,17 @@ On Tue, 18 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > Also call the parameters 'plane_id' to make it a bit more clear
 > what to pass in.
 >
+> v2: Don't break gvt
+>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
 >  drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++------
+>  drivers/gpu/drm/i915/gvt/handlers.c       |  2 +-
 >  drivers/gpu/drm/i915/i915_reg.h           |  9 +++++----
->  2 files changed, 11 insertions(+), 10 deletions(-)
+>  3 files changed, 12 insertions(+), 11 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
 i915/display/skl_scaler.c
@@ -133,6 +136,21 @@ INDING_PIPE))
 >  			continue;
 >=20=20
 >  		id =3D i;
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
+vt/handlers.c
+> index 4b45a041ac5c..a9f7fa9b90bd 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+> @@ -1562,7 +1562,7 @@ static int pf_write(struct intel_vgpu *vgpu,
+>=20=20
+>  	if ((offset =3D=3D _PS_1A_CTRL || offset =3D=3D _PS_2A_CTRL ||
+>  	   offset =3D=3D _PS_1B_CTRL || offset =3D=3D _PS_2B_CTRL ||
+> -	   offset =3D=3D _PS_1C_CTRL) && (val & PS_PLANE_SEL_MASK) !=3D 0) {
+> +	   offset =3D=3D _PS_1C_CTRL) && (val & PS_BINDING_MASK) !=3D PS_BINDIN=
+G_PIPE) {
+>  		drm_WARN_ONCE(&i915->drm, true,
+>  			      "VM(%d): guest is trying to scaling a plane\n",
+>  			      vgpu->id);
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
 > index 919d999a2345..f8e6b86facc3 100644
