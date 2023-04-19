@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154F76E72C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 07:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77FAE6E72C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Apr 2023 07:56:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B68510E0E2;
-	Wed, 19 Apr 2023 05:56:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4ED10E099;
+	Wed, 19 Apr 2023 05:56:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 161DA10E465
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 05:56:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73C4610E0C0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 05:56:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681883762; x=1713419762;
+ t=1681883763; x=1713419763;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BETnyilgekA2xjPD7/Jg9wG2nz28uPtGtuPafbyl1wY=;
- b=aERg42XYox3OmjH6DxiAQF2Ga3ZyB/nRyqtm5PZ9GHzMnBtxfygxfvJB
- pYre2Xr0v9+SPKA9kWvcDwm/VRFSep2V0md8Mo6Po3aKGxG24WZgo41wS
- GHEBnDS8+nJLXBCMqejcAO098BtyeFMVzlvISBhwtwxRlTOHUrkyNkTth
- wyZ4gUUAr+VxPDbZXaVfCKXwOacyKstmkGl9sB+yYXSq/YGVh0Z4yjnKZ
- binZjOzPe+71jaZzrsL75Z5NpeoCtgA53yZ7G1A+NIh3Ml/KbGklOAobe
- WGyzX2F93cN0TZRrzYj3Ff3oKMCfe+6/c+vGPFZcXrCAOhVMgD0WKJdPO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="347216203"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="347216203"
+ bh=JT8863FArhVKr92efN/DOBs53cgSzCf9Oitf9qWrpPg=;
+ b=M/4q2va/prKJyheptnVToZy6p3xt6h+Fe59f/BF8gAFstYG2fNmFp3jL
+ k5IT0pElrDgT98DEBCL3c/YTH+uJlEUg4lI9yn6wNH6EoMjQ1VdgWNYiQ
+ 9NbcoUBC6Y2/OwdnkybAhGcnK9ajEyoQI88vLNoNtseeDLOOWjfHiLDJR
+ usWIK3aVY7TDdPYBmcCia3kQ+Zylz0MULdO0tk5iyWobK/8ZSEqLCJRBn
+ pTmtf8TS5F+XKAJzjQiv6XfNNqi7sc9mlS9Ff7BxOVM6VIPo67sPBc2rY
+ IGZ+IpnxaeVU+nNsjJbDd4RxJRSjZ70j8n8N77MEfFN+PLlMsXsdqmGoI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="347216209"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="347216209"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2023 22:56:01 -0700
+ 18 Apr 2023 22:56:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693910498"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693910498"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693910503"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693910503"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmsmga007.fm.intel.com with ESMTP; 18 Apr 2023 22:56:00 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 18 Apr 2023 22:56:02 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 11:30:35 +0530
-Message-Id: <20230419060036.3422635-3-tejas.upadhyay@intel.com>
+Date: Wed, 19 Apr 2023 11:30:36 +0530
+Message-Id: <20230419060036.3422635-4-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230419060036.3422635-1-tejas.upadhyay@intel.com>
 References: <20230419060036.3422635-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gem: Consider multi-gt instead of
- to_gt()
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/selftests: Consider multi-gt
+ instead of to_gt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,42 +60,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to enable complete multi-GT, use the GT
-reference obtained directly from the engine, rather
-than relying on the to_gt(), which only provides a
-reference to the primary GT.
+In order to enable complete multi-GT, loop through all
+the GTs, rather than relying on the to_gt(), which only
+provides a reference to the primary GT.
 
-Problem appear when it runs on platform like MTL
-where different set of engines are possible on
-different GTs.
+Problem appear when it runs on platform like MTL where
+different set of engines are possible on different GTs.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/selftests/igt_live_test.c    | 46 +++++++++++--------
+ 1 file changed, 27 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index a81fa6a20f5a..2697fbaa2ceb 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -93,7 +93,7 @@ static int live_nop_switch(void *arg)
- 		}
- 		if (i915_request_wait(rq, 0, 10 * HZ) < 0) {
- 			pr_err("Failed to populated %d contexts\n", nctx);
--			intel_gt_set_wedged(to_gt(i915));
-+			intel_gt_set_wedged(engine->gt);
- 			i915_request_put(rq);
- 			err = -EIO;
- 			goto out_file;
-@@ -149,7 +149,7 @@ static int live_nop_switch(void *arg)
- 			if (i915_request_wait(rq, 0, HZ / 5) < 0) {
- 				pr_err("Switching between %ld contexts timed out\n",
- 				       prime);
--				intel_gt_set_wedged(to_gt(i915));
-+				intel_gt_set_wedged(engine->gt);
- 				i915_request_put(rq);
- 				break;
- 			}
+diff --git a/drivers/gpu/drm/i915/selftests/igt_live_test.c b/drivers/gpu/drm/i915/selftests/igt_live_test.c
+index 72b58b66692a..714b7afc490b 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_live_test.c
++++ b/drivers/gpu/drm/i915/selftests/igt_live_test.c
+@@ -16,27 +16,31 @@ int igt_live_test_begin(struct igt_live_test *t,
+ 			const char *func,
+ 			const char *name)
+ {
+-	struct intel_gt *gt = to_gt(i915);
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
++	struct intel_gt *gt;
++	unsigned int i;
+ 	int err;
+ 
+ 	t->i915 = i915;
+ 	t->func = func;
+ 	t->name = name;
+ 
+-	err = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
+-	if (err) {
+-		pr_err("%s(%s): failed to idle before, with err=%d!",
+-		       func, name, err);
+-		return err;
+-	}
++	for_each_gt(gt, i915, i) {
+ 
+-	t->reset_global = i915_reset_count(&i915->gpu_error);
++		err = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
++		if (err) {
++			pr_err("%s(%s): failed to idle before, with err=%d!",
++			       func, name, err);
++			return err;
++		}
+ 
+-	for_each_engine(engine, gt, id)
+-		t->reset_engine[id] =
++		for_each_engine(engine, gt, id)
++			t->reset_engine[id] =
+ 			i915_reset_engine_count(&i915->gpu_error, engine);
++	}
++
++	t->reset_global = i915_reset_count(&i915->gpu_error);
+ 
+ 	return 0;
+ }
+@@ -46,6 +50,8 @@ int igt_live_test_end(struct igt_live_test *t)
+ 	struct drm_i915_private *i915 = t->i915;
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
++	struct intel_gt *gt;
++	unsigned int i;
+ 
+ 	if (igt_flush_test(i915))
+ 		return -EIO;
+@@ -57,16 +63,18 @@ int igt_live_test_end(struct igt_live_test *t)
+ 		return -EIO;
+ 	}
+ 
+-	for_each_engine(engine, to_gt(i915), id) {
+-		if (t->reset_engine[id] ==
+-		    i915_reset_engine_count(&i915->gpu_error, engine))
+-			continue;
++	for_each_gt(gt, i915, i) {
++		for_each_engine(engine, gt, id) {
++			if (t->reset_engine[id] ==
++			    i915_reset_engine_count(&i915->gpu_error, engine))
++				continue;
+ 
+-		pr_err("%s(%s): engine '%s' was reset %d times!\n",
+-		       t->func, t->name, engine->name,
+-		       i915_reset_engine_count(&i915->gpu_error, engine) -
+-		       t->reset_engine[id]);
+-		return -EIO;
++			pr_err("%s(%s): engine '%s' was reset %d times!\n",
++			       t->func, t->name, engine->name,
++			       i915_reset_engine_count(&i915->gpu_error, engine) -
++			       t->reset_engine[id]);
++			return -EIO;
++		}
+ 	}
+ 
+ 	return 0;
 -- 
 2.25.1
 
