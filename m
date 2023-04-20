@@ -2,54 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8F06E9234
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 13:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 825456E923C
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 13:16:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E3D710E0B6;
-	Thu, 20 Apr 2023 11:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6F710E0B6;
+	Thu, 20 Apr 2023 11:16:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD70E10E0AA;
- Thu, 20 Apr 2023 11:12:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F56910E0B6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 11:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681989161; x=1713525161;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xebxl7NafZdy1ESS2RpvDfKKxgdLR6cmqxtuplixmFM=;
- b=HUckGaP+doyGEMB5DTiC4gAJlPl2v+W3e6q0pKuNTfqr9xaRJ7n7Pio+
- h1mn1H+71B0UjWDeRl7EBh4dZBhO8XXjT6qeMKqAReXC/RWUaPAWug/6R
- KY9wDgKlS532aloKi18SfNfsFb6XaaaGUZm9f6Byy9/1jL1hmcnAy17YZ
- gB5QsJCkwOhBkKGpIGq+QH8wWW0yBBj8UjQVsgoYDWsjXslDEKIwCAzAd
- /7NwQjycWGG5ALiHDAw9JYoBeL0xlrj8MrKWRK24AwK0Y5LdgFDvM8lqn
- u+22AIhDIqdK4gsdvSMHrzxWV4qillfvBIQMqBdYJidlivCFlFshxJqcC g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345711478"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="345711478"
+ t=1681989406; x=1713525406;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vQ8IbJOxSj/Mp2aoHpME6ldDAZEpxN0jgSqJKLGGfMg=;
+ b=cYTW5KdTSZj7NxmgV1UWvqHyPzWy+n1kJHtBAZjz2OmQK7uo/LMBV5pi
+ h7f6nNKM2SN0WuumMNbW2ay4ry9moI5K9l+GdGgaSpmxi/t4gDLIOhNu9
+ 4UiDPXk879sEIpGZk+KuEBlDIhXgDNtegQeqm8sY3MP3OxQFsjz//k38b
+ vuMDYS0vBpZzKJ/+ub1h7ZlR6kuPeOvyQaOvfcHfCxtSn8fR1AyGrXJQ6
+ lgXx7j07K51aIziNbzGVD7OP/58T+xnACbJ4xhr0GU0Och2crWr9CxiB/
+ v+jleNEQtDDV3ki/Du5hwiH+KR3qlquS57mtY7VV/r0mCy429ui3TEmOj w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345712483"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="345712483"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 04:12:20 -0700
+ 20 Apr 2023 04:16:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="691876147"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="691876147"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 04:12:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <f8a0afc25630acc1e73bfa5a46dcc94ea559234a.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230329165658.2686549-1-daniele.ceraolospurio@intel.com>
- <20230329165658.2686549-2-daniele.ceraolospurio@intel.com>
- <f8a0afc25630acc1e73bfa5a46dcc94ea559234a.camel@intel.com>
-Date: Thu, 20 Apr 2023 14:12:16 +0300
-Message-ID: <87edoex0xb.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="691877967"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="691877967"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga002.jf.intel.com with ESMTP; 20 Apr 2023 04:16:43 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Apr 2023 16:51:23 +0530
+Message-Id: <20230420112123.3486469-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/mtl: Define GSC Proxy
- component interface
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Add workaround 14018778641
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,86 +54,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "Winkler,
- Tomas" <tomas.winkler@intel.com>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Apr 2023, "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com> wrote:
-> On Wed, 2023-03-29 at 09:56 -0700, Ceraolo Spurio, Daniele wrote:
->> From: Alexander Usyskin <alexander.usyskin@intel.com>
->> 
->> GSC Proxy component is used for communication between the
->> Intel graphics driver and MEI driver.
->
->
->
->> diff --git a/include/drm/i915_gsc_proxy_mei_interface.h b/include/drm/i915_gsc_proxy_mei_interface.h
->> new file mode 100644
->> index 000000000000..e817bb316d5c
->> --- /dev/null
->> +++ b/include/drm/i915_gsc_proxy_mei_interface.h
->> @@ -0,0 +1,36 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright (c) 2022-2023 Intel Corporation
->> + */
->> +
->> +#ifndef _I915_GSC_PROXY_MEI_INTERFACE_H_
->> +#define _I915_GSC_PROXY_MEI_INTERFACE_H_
->> +
->> +#include <linux/mutex.h>
->
-> alan: i notice u have included mutex.h but don't have any mutex use in this header.
-> side note: looking at at least one other component interfaces (pxp), I see a mutex in the
-> component struct but don't see it being used at all - a topic for a different series.
->
->
->> +#include <linux/device.h>
-> alan: any reason we should include "device.h"? as opposed to just define the ptr type
-> (since w only reference the ptrs). this could save us a little on build time
+WA 18018781329 is applicable now across all MTL
+steppings.
 
-The only thing required is <linux/types.h>. Everything else can be
-forward declared.
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
 
-BR,
-Jani.
-
->
->> +
->> +/**
->> + * struct i915_gsc_proxy_component_ops - ops for GSC Proxy services.
->> + * @owner: Module providing the ops
->> + * @send: sends data through GSC proxy
->> + * @recv: receives data through GSC proxy
-> alan: nit: to be more specific "... from i915 through GSC proxy"
->
->> + */
->> +struct i915_gsc_proxy_component_ops {
->> +	struct module *owner;
->> +
->> +	int (*send)(struct device *dev, const void *buf, size_t size);
->> +	int (*recv)(struct device *dev, void *buf, size_t size);
->> +};
-> alan: i believe we should have proper documentation on the possible list of
-> return values for the various error conditions (assuming 0 is success).
->
->> +
->> +/**
->> + * struct i915_gsc_proxy_component - Used for communication between i915 and
->> + * MEI drivers for GSC proxy services
->> + * @mei_dev: device that provide the GSC proxy service.
->> + * @ops: Ops implemented by GSC proxy driver, used by i915 driver.
->> + */
->> +struct i915_gsc_proxy_component {
->> +	struct device *mei_dev;
->> +	const struct i915_gsc_proxy_component_ops *ops;
->> +};
->> +
->> +#endif /* _I915_GSC_PROXY_MEI_INTERFACE_H_ */
->
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 312eb8b5f949..c73d2b5410d8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1695,17 +1695,22 @@ pvc_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ static void
+ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ {
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+-		/* Wa_14014830051 */
+-		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
++	/* Wa_14018778641: MTL */
++	if (IS_METEORLAKE(gt->i915)) {
+ 
+ 		/* Wa_18018781329 */
+ 		wa_mcr_write_or(wal, RENDER_MOD_CTRL, FORCE_MISS_FTLB);
+ 		wa_mcr_write_or(wal, COMP_MOD_CTRL, FORCE_MISS_FTLB);
+ 
+-		/* Wa_14015795083 */
+-		wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
++		if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
++		    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
++			/* Wa_14014830051 */
++			wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
++
++			/* Wa_14015795083 */
++			wa_write_clr(wal, GEN7_MISCCPCTL,
++				     GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
++		}
+ 	}
+ 
+ 	/*
+@@ -1718,7 +1723,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ static void
+ xelpmp_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ {
+-	if (IS_MTL_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0)) {
++	/* Wa_14018778641: MTL */
++	if (IS_METEORLAKE(gt->i915)) {
+ 		/*
+ 		 * Wa_18018781329
+ 		 *
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
