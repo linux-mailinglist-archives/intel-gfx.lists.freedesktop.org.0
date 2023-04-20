@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41406E900D
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 12:23:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB546E914B
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 12:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DD289496;
-	Thu, 20 Apr 2023 10:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984EF10E0B6;
+	Thu, 20 Apr 2023 10:58:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A37389496
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 10:23:56 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8202E10E062
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 10:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681986236; x=1713522236;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=My6lqlULcsfMnxILEbRK/yl4uDFWn93n3Sqqcuv3hXY=;
- b=E8pBQ0RlqtipWkICfXkHoY4r0qOCxyvfrbxFJzz9g/UO6wXHye/nG6Ci
- L+LUpXDTiYiS/I+VEHu6BkYWSw4RGTcel0skKExWTD3U1MSUXhqQuTUnn
- YE1/1iAOwI59EfXOtbDF5otTWEfGBibUwwFZ+74kX7aXoTfmNOiHXh/qV
- e+Hfe/DsIdwHInHCISdYjvBMl5wTsWdwkDpf6Ywqe0a3tGMGgo4SygpyQ
- k3JsJaa4UXR7NpRif5mKbF9JbQKp9DS3oVWz05v6FiZHGWLeqAbyWzGXP
- OGpEGLcRs6zpU481MdLGrci3ZHEmqDuJAKACc549V1PmBAsp3HwtyLJtX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="326024102"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="326024102"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 03:23:56 -0700
+ t=1681988312; x=1713524312;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=RqMEN+hYFs7P5hLD65h3sZxBY6nMVujAF77IL+MFAE8=;
+ b=kYHkqKVWwO/hl1SMA9o6zcXcmRqNhDXhzsw3TfeUSU+LINk/pvGK0pcD
+ xdp6Jn2RK/6oyfSfNBcd+b4XsWv2KCgBCBRtoEVkgkw/eN6EXbzGNxPod
+ hUbEntewG7u6bviT41HnxFKjOAlci1qbdccuPj+iP3VDMPrwtm8PPzB7s
+ anaQSE7fOw0JE5eDrQOIccB7YC/xwkmTbB87Jc/zJAM/HBaEld7vEUXQ3
+ soUe1x05EeDzW6swnQOT00wpqTu72dYpL4zvve7sNmSfGt0P/XXyc5FRn
+ EpJzdOo+ZAYUSEF+vMx5rIQL1wkbeRpjZHokI/nJ87git0IRefqZrz1yD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="408615534"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="408615534"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 03:58:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="1021535417"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="1021535417"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 03:23:54 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Apr 2023 12:23:49 +0200
-Message-Id: <20230420102349.15302-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="722332181"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="722332181"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 03:58:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <ZD/ftpzg9AbB3GMn@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230419115449.422214-1-jani.nikula@intel.com>
+ <ZD/ftpzg9AbB3GMn@intel.com>
+Date: Thu, 20 Apr 2023 13:58:27 +0300
+Message-ID: <87ildqx1kc.fsf@intel.com>
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Set has_llc=0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/wm: remove stale and unused
+ ilk_wm_max_level() declaration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +60,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+On Wed, 19 Apr 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Apr 19, 2023 at 02:54:49PM +0300, Jani Nikula wrote:
+>> The declaration was removed earlier, but got accidentally resurrected in
+>> i915xx_wm.[ch] refactoring. Remove harder.
+>
+> i9xx_wm
 
-On MTL, LLC is not shared between GT and CPU, set has_llc=0.
+I was going to fix that while pushing, but got distracted and
+forgot. *facepalm*.
 
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+>
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index d64e074d7457..272a8ba37b64 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1147,6 +1147,7 @@ static const struct intel_device_info mtl_info = {
- 	.has_flat_ccs = 0,
- 	.has_gmd_id = 1,
- 	.has_guc_deprivilege = 1,
-+	.has_llc = 0,
- 	.has_mslice_steering = 0,
- 	.has_snoop = 1,
- 	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
--- 
-2.39.0
+Thanks, pushed to din, warts and all.
 
+BR,
+Jani.
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/i9xx_wm.h | 1 -
+>>  1 file changed, 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.h b/drivers/gpu/drm/i9=
+15/display/i9xx_wm.h
+>> index a7875cbcd05a..b87ae369685a 100644
+>> --- a/drivers/gpu/drm/i915/display/i9xx_wm.h
+>> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.h
+>> @@ -12,7 +12,6 @@ struct drm_i915_private;
+>>  struct intel_crtc_state;
+>>  struct intel_plane_state;
+>>=20=20
+>> -int ilk_wm_max_level(const struct drm_i915_private *i915);
+>>  bool ilk_disable_lp_wm(struct drm_i915_private *i915);
+>>  void ilk_wm_sanitize(struct drm_i915_private *i915);
+>>  bool intel_set_memory_cxsr(struct drm_i915_private *i915, bool enable);
+>> --=20
+>> 2.39.2
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
