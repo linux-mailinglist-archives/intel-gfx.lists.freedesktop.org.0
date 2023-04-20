@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43226E99BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 18:41:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9F06E9AD7
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 19:35:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2C610ECAF;
-	Thu, 20 Apr 2023 16:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C60A10E0A9;
+	Thu, 20 Apr 2023 17:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9303310E0DE;
- Thu, 20 Apr 2023 16:40:49 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4091110E0A9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 17:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682008849; x=1713544849;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jfQ6QTYGS/utgVu7drUR8+iwPsDuhc565pVwYueCQYo=;
- b=HkObsP+skX1zh4T/wmoXWwXuQ6eqeG/3usR9kWtja47x1rwykNISiYfN
- VAP1wPKKLnOapyDXpz07DoYaJnA84gx9Hl9yJCE9X+HhKQRzN/qjxoDzQ
- RobPnLJUb+V8qFeDeEbL6q12H83dnhVPT9xfKKBQdEpe+FTVZigd/qPL+
- 4/pFxhiLIbhYG1OWxyKeeBI1E22uR8qX169PVtnB3Fdr6zBQ7lTbBTNt0
- gEOUM48XNHAv4P0UVDrBuhqDBoW+0iExstJ9NngOTsRbBZ/MP/ep+2BHP
- F2Hdmj0Veeg4qinbkILL6bA/RH6Qr1NOa4YIo1BLhMOCXd9BZBs8NxPjh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="344540947"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="344540947"
+ t=1682012117; x=1713548117;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W0PYQqVzHz2X2dO1R5FT1Y7i858ZtLP/1+WWzYGBBfI=;
+ b=hx8K+D26thNGBQRy0zWGPXMUHVlp+hcRkPnwT+i56IqU2AMR52nXwt4f
+ d150Lyv+Z7IPe3tQuZgGUVWWaIEFSAgftOXF4uLtn1RkqjnlbettKGuqh
+ YajoCPDvqX1oQb/bmnH4VEYjSxCCSNFaj91v9RPxeAFkdOycOvQHGZg1y
+ slzq0Q0o4WpJYVqvGV04SK6qdugaoomz4iUNQnmkxJOWwllmabXCOTZbH
+ Q0kHAAsUwVfMNnBn6TN7+2L48Yolm33XyWYtNc6h9Jqg34X04ek2xSvfs
+ 37z2w7fZ35544Qy5zYEQDkJuflti/0fkbwJX3AlByvvK9Re+vaFUgAgPv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="334658574"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="334658574"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 09:40:48 -0700
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 10:06:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="724479590"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="724479590"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="724487902"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="724487902"
+Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 09:40:48 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+ 20 Apr 2023 10:06:05 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Apr 2023 09:40:41 -0700
-Message-Id: <20230420164041.1428455-4-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20230420164041.1428455-1-ashutosh.dixit@intel.com>
-References: <20230420164041.1428455-1-ashutosh.dixit@intel.com>
+Date: Thu, 20 Apr 2023 10:05:58 -0700
+Message-Id: <20230420170558.35398-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/hwmon: Block waiting for GuC reset
- to complete
+Subject: [Intel-gfx] [PATCH v5] drm/i915: Initialize dkl_phy spin lock from
+ display code path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +57,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of erroring out when GuC reset is in progress, block waiting for
-GuC reset to complete which is a more reasonable uapi behavior.
+drm/i915: Initialize dkl_phy spin lock from display code path
 
-v2: Avoid race between wake_up_all and waiting for wakeup (Rodrigo)
-v3: Remove timeout when blocked (Tvrtko)
+Start moving the initialization of display locks from
+i915_driver_early_probe().
+Display locks should be initialized from display-only code paths.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+It was also agreed that if a variable is only used in one file, it
+should be initialized only in that file, so intel_dkl_phy_init() was
+added.
+
+v2:
+- added intel_display_locks_init()
+
+v3:
+- rebased
+
+v4:
+- dropped intel_display_locks_init()
+
+v5:
+- moved intel_dkl_phy_init() to the beginning of file
+
+Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/i915_hwmon.c | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 9 +++++++++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
+ drivers/gpu/drm/i915/i915_driver.c                  | 1 -
+ 4 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 9ab8971679fe3..a3bdd9f68a458 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -51,6 +51,7 @@ struct hwm_drvdata {
- 	char name[12];
- 	int gt_n;
- 	bool reset_in_progress;
-+	wait_queue_head_t waitq;
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index b3dbfe2a892e6..60ce10fc72058 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -30,6 +30,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
++#include "intel_dkl_phy.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dpll.h"
+@@ -175,6 +176,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
  
- struct i915_hwmon {
-@@ -397,14 +398,32 @@ hwm_power_max_write(struct hwm_drvdata *ddat, long val)
++	intel_dkl_phy_init(i915);
+ 	intel_color_init_hooks(i915);
+ 	intel_init_cdclk_hooks(i915);
+ 	intel_audio_hooks_init(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 57cc3edba0163..a001232ad445e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -11,6 +11,15 @@
+ #include "intel_dkl_phy.h"
+ #include "intel_dkl_phy_regs.h"
+ 
++/**
++ * intel_dkl_phy_init - initialize Dekel PHY
++ * @i915: i915 device instance
++ */
++void intel_dkl_phy_init(struct drm_i915_private *i915)
++{
++	spin_lock_init(&i915->display.dkl.phy_lock);
++}
++
+ static void
+ dkl_phy_set_hip_idx(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg)
  {
- 	struct i915_hwmon *hwmon = ddat->hwmon;
- 	intel_wakeref_t wakeref;
-+	DEFINE_WAIT(wait);
- 	int ret = 0;
- 	u32 nval;
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+index 570ee36f9386f..5956ec3e940b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+@@ -12,6 +12,7 @@
  
--	mutex_lock(&hwmon->hwmon_lock);
--	if (hwmon->ddat.reset_in_progress) {
--		ret = -EAGAIN;
--		goto unlock;
-+	/* Block waiting for GuC reset to complete when needed */
-+	for (;;) {
-+		mutex_lock(&hwmon->hwmon_lock);
-+
-+		prepare_to_wait(&ddat->waitq, &wait, TASK_INTERRUPTIBLE);
-+
-+		if (!hwmon->ddat.reset_in_progress)
-+			break;
-+
-+		if (signal_pending(current)) {
-+			ret = -EINTR;
-+			break;
-+		}
-+
-+		mutex_unlock(&hwmon->hwmon_lock);
-+
-+		schedule();
- 	}
-+	finish_wait(&ddat->waitq, &wait);
-+	if (ret)
-+		goto unlock;
-+
- 	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
+ struct drm_i915_private;
  
- 	/* Disable PL1 limit and verify, because the limit cannot be disabled on all platforms */
-@@ -508,6 +527,7 @@ void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old)
- 	intel_uncore_rmw(hwmon->ddat.uncore, hwmon->rg.pkg_rapl_limit,
- 			 PKG_PWR_LIM_1_EN, old ? PKG_PWR_LIM_1_EN : 0);
- 	hwmon->ddat.reset_in_progress = false;
-+	wake_up_all(&hwmon->ddat.waitq);
++void intel_dkl_phy_init(struct drm_i915_private *i915);
+ u32
+ intel_dkl_phy_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
+ void
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index a52db8a809006..fd198700272b1 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -223,7 +223,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+ 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+-	spin_lock_init(&dev_priv->display.dkl.phy_lock);
  
- 	mutex_unlock(&hwmon->hwmon_lock);
- }
-@@ -784,6 +804,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	ddat->uncore = &i915->uncore;
- 	snprintf(ddat->name, sizeof(ddat->name), "i915");
- 	ddat->gt_n = -1;
-+	init_waitqueue_head(&ddat->waitq);
- 
- 	for_each_gt(gt, i915, i) {
- 		ddat_gt = hwmon->ddat_gt + i;
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
 -- 
-2.38.0
+2.40.0
 
