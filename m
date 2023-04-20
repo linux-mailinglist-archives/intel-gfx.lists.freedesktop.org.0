@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8E46E930B
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 13:39:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3636E9317
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 13:40:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5193B10E20B;
-	Thu, 20 Apr 2023 11:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A454F10E2CD;
+	Thu, 20 Apr 2023 11:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E5B10E20B;
- Thu, 20 Apr 2023 11:39:45 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888F110E253
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 11:40:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681990785; x=1713526785;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=yVyrMJN1Iigkd+tJFiSwN+cWLKzO4jFI/hFaT3f7kbA=;
- b=KFBGlUHX6wwKJyq2JbrQNwyEGYRZDt4rxotmigqk48+yz6Dk7+oLh/Om
- b/Xfn2xnbdcSsQbMEzpeL+Lnah63j6yaV35yrFgI6M69ZA4jvrPANYNII
- fZw2URWs67bbhO24BvI8DjwieUxHUqc+R/fPsJZbrTFgfM8kx+PKnDjVq
- yfS+yikpNyiEQ/2o4NXjfev+01sMNPqmCoooIig5sdv+XrRJ7Hnm/hduz
- sIk/q6yCInpruQLdxqV3Xsk/soTumqS2eFOzIRrEXoVs5UcvrPJsu2yu8
- q50Yh3DLwsZ2rcGLa0sCmxEqiEm5uWOBVGatWBs1puZIxI7lAIn2IPn69 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="347572004"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="347572004"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 04:39:44 -0700
+ t=1681990850; x=1713526850;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=KlSAm+ok84WXs9UCEVeI1HmURtPSb/Mm5KCSuuetITU=;
+ b=ltq5b4V8dLSeHd49lWxAAbKO3s6yxnCFUfwcU9iA290PXmt89x3MhRvU
+ zDlc5kt4blV6imxRdv+Va1keQcS0mhBvw1HWAtX+tT1P6PqUMKwFwP5/f
+ m7BS1TJ9z2nlMAFcmpvHyQV/fGRH7gyHueklSWLtcVCH+HWnIf6QukzkW
+ Tw3mkWclS5UubiG0S/lDGTZuEXVA1jxlh66EM8v00SqhfDT8fekDHGHmC
+ 0jvUiQkEt+GSDQvzX5MQuqrVkNHmZxKT/DFtHxQAP25mDI0cgexAH9iew
+ b7+YYL0juSbGFT46mlS9zCj/p7y8JCdCI2BGZPW6kn857uIaPgzujoqxr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="344461771"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="344461771"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 04:40:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="815986146"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="815986146"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga004.jf.intel.com with ESMTP; 20 Apr 2023 04:39:40 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1ppSdX-000fnQ-1P;
- Thu, 20 Apr 2023 11:39:39 +0000
-Date: Thu, 20 Apr 2023 19:39:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mark Yacoub <markyacoub@chromium.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <202304201909.D57x63J5-lkp@intel.com>
-References: <20230419154321.1993419-11-markyacoub@google.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="866224117"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="866224117"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 04:40:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <ZD7T3H4SH0J7Eai9@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230417153741.1074692-1-jani.nikula@intel.com>
+ <20230417153741.1074692-2-jani.nikula@intel.com>
+ <ZD7T3H4SH0J7Eai9@intel.com>
+Date: Thu, 20 Apr 2023 14:40:46 +0300
+Message-ID: <87bkjiwzlt.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230419154321.1993419-11-markyacoub@google.com>
-Subject: Re: [Intel-gfx] [PATCH v10 10/10] drm/msm: Implement HDCP 1.x using
- the new drm HDCP helpers
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: throw out struct
+ intel_load_detect_pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,57 +60,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Mark Yacoub <markyacoub@chromium.org>,
- intel-gfx@lists.freedesktop.org, dianders@chromium.org,
- dri-devel@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
- seanpaul@chromium.org, oe-kbuild-all@lists.linux.dev,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mark,
+On Tue, 18 Apr 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Apr 17, 2023 at 06:37:41PM +0300, Jani Nikula wrote:
+>> An error-valued pointer can handle all in one without the wrapper
+>> struct.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_crt.c      | 18 ++++++++---------
+>>  .../gpu/drm/i915/display/intel_load_detect.c  | 20 ++++++++-----------
+>>  .../gpu/drm/i915/display/intel_load_detect.h  | 12 ++++-------
+>>  drivers/gpu/drm/i915/display/intel_tv.c       | 16 +++++++--------
+>>  4 files changed, 29 insertions(+), 37 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+>> index 96acdf98a0c0..13519f78cf9f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+>> @@ -822,9 +822,9 @@ intel_crt_detect(struct drm_connector *connector,
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+>>  	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+>>  	struct intel_encoder *intel_encoder = &crt->base;
+>> +	struct drm_atomic_state *state;
+>>  	intel_wakeref_t wakeref;
+>> -	int status, ret;
+>> -	struct intel_load_detect_pipe tmp;
+>> +	int status;
+>>  
+>>  	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] force=%d\n",
+>>  		    connector->base.id, connector->name,
+>> @@ -882,8 +882,12 @@ intel_crt_detect(struct drm_connector *connector,
+>>  	}
+>>  
+>>  	/* for pre-945g platforms use load detect */
+>> -	ret = intel_load_detect_get_pipe(connector, &tmp, ctx);
+>> -	if (ret > 0) {
+>> +	state = intel_load_detect_get_pipe(connector, ctx);
+>> +	if (IS_ERR(state)) {
+>> +		status = PTR_ERR(state);
+>> +	} else if (!state) {
+>> +		status = connector_status_unknown;
+>> +	} else {
+>>  		if (intel_crt_detect_ddc(connector))
+>>  			status = connector_status_connected;
+>>  		else if (DISPLAY_VER(dev_priv) < 4)
+>> @@ -893,11 +897,7 @@ intel_crt_detect(struct drm_connector *connector,
+>>  			status = connector_status_disconnected;
+>>  		else
+>>  			status = connector_status_unknown;
+>> -		intel_load_detect_release_pipe(connector, &tmp, ctx);
+>> -	} else if (ret == 0) {
+>> -		status = connector_status_unknown;
+>> -	} else {
+>> -		status = ret;
+>> +		intel_load_detect_release_pipe(connector, state, ctx);
+>
+> I confess it took me a while to see that we have the same logic in place.
+> I think I need more coffee.
 
-kernel test robot noticed the following build errors:
+It also took me a while when writing it! :)
 
-[auto build test ERROR on drm-intel/for-linux-next-fixes]
-[also build test ERROR on linus/master v6.3-rc7]
-[cannot apply to drm-misc/drm-misc-next drm-intel/for-linux-next drm/drm-next next-20230419]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mark-Yacoub/drm-hdcp-Add-drm_hdcp_atomic_check/20230419-234833
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next-fixes
-patch link:    https://lore.kernel.org/r/20230419154321.1993419-11-markyacoub%40google.com
-patch subject: [PATCH v10 10/10] drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
-config: ia64-randconfig-r011-20230416 (https://download.01.org/0day-ci/archive/20230420/202304201909.D57x63J5-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/6fb5b032262769c786a7a8c9ed522d936dcf14c2
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Mark-Yacoub/drm-hdcp-Add-drm_hdcp_atomic_check/20230419-234833
-        git checkout 6fb5b032262769c786a7a8c9ed522d936dcf14c2
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash
+Thanks, both pushed to din.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304201909.D57x63J5-lkp@intel.com/
+BR,
+Jani.
 
-All errors (new ones prefixed by >>):
-
-   ia64-linux-ld: ia64-linux-ld: DWARF error: could not find abbrev number 1548101
-   drivers/gpu/drm/msm/msm_atomic.o: in function `msm_atomic_commit_tail':
->> msm_atomic.c:(.text+0xe02): undefined reference to `dp_drm_is_bridge_msm_dp'
->> ia64-linux-ld: msm_atomic.c:(.text+0xe22): undefined reference to `dp_drm_atomic_commit'
-   ia64-linux-ld: ia64-linux-ld: DWARF error: could not find abbrev number 872
-   drivers/gpu/drm/msm/dp/dp_debug.o: in function `dp_hdcp_key_write':
->> dp_debug.c:(.text+0xa2): undefined reference to `dp_hdcp_ingest_key'
+>
+>>  	}
+>>  
+>>  out:
+>> diff --git a/drivers/gpu/drm/i915/display/intel_load_detect.c b/drivers/gpu/drm/i915/display/intel_load_detect.c
+>> index 5d6bb6d712bc..d5a0aecf3e8f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_load_detect.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_load_detect.c
+>> @@ -44,9 +44,9 @@ static int intel_modeset_disable_planes(struct drm_atomic_state *state,
+>>  	return 0;
+>>  }
+>>  
+>> -int intel_load_detect_get_pipe(struct drm_connector *connector,
+>> -			       struct intel_load_detect_pipe *old,
+>> -			       struct drm_modeset_acquire_ctx *ctx)
+>> +struct drm_atomic_state *
+>> +intel_load_detect_get_pipe(struct drm_connector *connector,
+>> +			   struct drm_modeset_acquire_ctx *ctx)
+>>  {
+>>  	struct intel_encoder *encoder =
+>>  		intel_attached_encoder(to_intel_connector(connector));
+>> @@ -64,8 +64,6 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
+>>  		    connector->base.id, connector->name,
+>>  		    encoder->base.base.id, encoder->base.name);
+>>  
+>> -	old->restore_state = NULL;
+>> -
+>>  	drm_WARN_ON(dev, !drm_modeset_is_locked(&config->connection_mutex));
+>>  
+>>  	/*
+>> @@ -179,13 +177,12 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
+>>  		goto fail;
+>>  	}
+>>  
+>> -	old->restore_state = restore_state;
+>>  	drm_atomic_state_put(state);
+>>  
+>>  	/* let the connector get through one full cycle before testing */
+>>  	intel_crtc_wait_for_next_vblank(crtc);
+>>  
+>> -	return true;
+>> +	return restore_state;
+>>  
+>>  fail:
+>>  	if (state) {
+>> @@ -198,27 +195,26 @@ int intel_load_detect_get_pipe(struct drm_connector *connector,
+>>  	}
+>>  
+>>  	if (ret == -EDEADLK)
+>> -		return ret;
+>> +		return ERR_PTR(ret);
+>>  
+>> -	return false;
+>> +	return NULL;
+>>  }
+>>  
+>>  void intel_load_detect_release_pipe(struct drm_connector *connector,
+>> -				    struct intel_load_detect_pipe *old,
+>> +				    struct drm_atomic_state *state,
+>>  				    struct drm_modeset_acquire_ctx *ctx)
+>>  {
+>>  	struct intel_encoder *intel_encoder =
+>>  		intel_attached_encoder(to_intel_connector(connector));
+>>  	struct drm_i915_private *i915 = to_i915(intel_encoder->base.dev);
+>>  	struct drm_encoder *encoder = &intel_encoder->base;
+>> -	struct drm_atomic_state *state = old->restore_state;
+>>  	int ret;
+>>  
+>>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s], [ENCODER:%d:%s]\n",
+>>  		    connector->base.id, connector->name,
+>>  		    encoder->base.id, encoder->name);
+>>  
+>> -	if (!state)
+>> +	if (IS_ERR_OR_NULL(state))
+>>  		return;
+>>  
+>>  	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_load_detect.h b/drivers/gpu/drm/i915/display/intel_load_detect.h
+>> index 9b69da1867a5..aed51901b9ba 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_load_detect.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_load_detect.h
+>> @@ -10,15 +10,11 @@ struct drm_atomic_state;
+>>  struct drm_connector;
+>>  struct drm_modeset_acquire_ctx;
+>>  
+>> -struct intel_load_detect_pipe {
+>> -	struct drm_atomic_state *restore_state;
+>> -};
+>> -
+>> -int intel_load_detect_get_pipe(struct drm_connector *connector,
+>> -			       struct intel_load_detect_pipe *old,
+>> -			       struct drm_modeset_acquire_ctx *ctx);
+>> +struct drm_atomic_state *
+>> +intel_load_detect_get_pipe(struct drm_connector *connector,
+>> +			   struct drm_modeset_acquire_ctx *ctx);
+>>  void intel_load_detect_release_pipe(struct drm_connector *connector,
+>> -				    struct intel_load_detect_pipe *old,
+>> +				    struct drm_atomic_state *old,
+>>  				    struct drm_modeset_acquire_ctx *ctx);
+>>  
+>>  #endif /* __INTEL_LOAD_DETECT_H__ */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+>> index 07e7f7cdd961..e3ccface0c9d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+>> @@ -1723,21 +1723,21 @@ intel_tv_detect(struct drm_connector *connector,
+>>  		return connector_status_disconnected;
+>>  
+>>  	if (force) {
+>> -		struct intel_load_detect_pipe tmp;
+>> -		int ret;
+>> +		struct drm_atomic_state *state;
+>>  
+>> -		ret = intel_load_detect_get_pipe(connector, &tmp, ctx);
+>> -		if (ret < 0)
+>> -			return ret;
+>> +		state = intel_load_detect_get_pipe(connector, ctx);
+>> +		if (IS_ERR(state))
+>> +			return PTR_ERR(state);
+>>  
+>> -		if (ret > 0) {
+>> +		if (state) {
+>>  			type = intel_tv_detect_type(intel_tv, connector);
+>> -			intel_load_detect_release_pipe(connector, &tmp, ctx);
+>> +			intel_load_detect_release_pipe(connector, state, ctx);
+>>  			status = type < 0 ?
+>>  				connector_status_disconnected :
+>>  				connector_status_connected;
+>> -		} else
+>> +		} else {
+>>  			status = connector_status_unknown;
+>> +		}
+>>  
+>>  		if (status == connector_status_connected) {
+>>  			intel_tv->type = type;
+>> -- 
+>> 2.39.2
+>> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Jani Nikula, Intel Open Source Graphics Center
