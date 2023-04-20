@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02EC96E989D
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 17:44:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7076E98A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 17:45:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C900910ECB2;
-	Thu, 20 Apr 2023 15:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8124B10E960;
+	Thu, 20 Apr 2023 15:45:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE21810E960;
- Thu, 20 Apr 2023 15:44:00 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED6510E960;
+ Thu, 20 Apr 2023 15:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682005441; x=1713541441;
+ t=1682005518; x=1713541518;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=/5L0TiLTXvOvGbP5+AvSqrOlukQpUUkWSkRVdRnAY1g=;
- b=XSkL0g7cUt10QVuHDx8oD3z1zFzwGglcYCPEjpZIY+tgNKKQwYkxCVb6
- gVwidsTDibuCinY6jnjNRKkgIN5bsKKe8QRXXSpwNU9h4MyYru1oFQsSS
- ahB+0Gpp9PDdlrt6YVeN4nIBtYfSO4at6saN7ZQxzM2gfVjk/CQnCrVpP
- y/demQgcO+kKsphTEESIG1+xhbQZW+ZdKwwrNHDkPBkby2npmHvHDN0gy
- srP9JpwJvDHs34ESo+YS08pomd9YIKAEyOdYTtit9LtmKenP/hdKlQCke
- kpLejSQkrsY+rHObDTXu3z6lHg1doe53LCGb0Rjr5tFAED7L9ztBK9f8k A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="411008411"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="411008411"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 08:43:59 -0700
+ bh=6e3jcl3rEySDZ3OzVkYBdUYdtTR0Kym9pe0zLXi6izE=;
+ b=MjRPbaVtgv4dWNj84yDAWRU71HigpOF6Cg9mtfX8HA4OvtfU4ktWSoTF
+ sdmeDFZm/b8iTUMJKOcVEXJQ1BbQv4p/MDVLBWn5CriKFzYk4Nl0PYwSB
+ vHoVzNb0sr54wRqnmMw9ULQFizrKxv0ybyDK/ebOZQDtqV5YfWiY4ll+h
+ JKcUUN3/Zk9SkhMs3glz3kwiaeBTnHu+9aFMT7D85/bY9HTDwwWUBSqIF
+ qskosWRW6LoPur8lzqvIlnusA49gu2foEPjRqf5jffMt9xoHNqqLYuV+b
+ cSF9nItf1mQNGOeCYryegi4ScZWECvRfGqi12WWhcfcJX2MDxQPoYxGVz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="325376435"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="325376435"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 08:45:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="938113319"
-X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="938113319"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga006.fm.intel.com with ESMTP; 20 Apr 2023 08:43:59 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="669390592"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="669390592"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 20 Apr 2023 08:45:17 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 20 Apr 2023 08:43:59 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 20 Apr 2023 08:45:16 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 20 Apr 2023 08:43:59 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 20 Apr 2023 08:45:16 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 20 Apr 2023 08:43:59 -0700
+ 15.1.2507.23; Thu, 20 Apr 2023 08:45:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hNTejiGACH1xjSGZZtP646nqPv7Fzh/D855fmxHQRvu2ya2Pc/QnFvuDT6bWAZkp7NgGZ67RyP7uP9zVKUepAlnBoEeAD8MnoYfRwf5wi1EL6zSS5sAc2fhuvy+Jr6FsXgf6dTuQfGt17IbvEwjCERG/PcP5lEotfdArQYowRRksFwFicy0Ol+72/PH1jF3YAyohjS6HIw8Q0D77PDn1tEdH3MHiG0F7xfKPLKSfa1OhaT2kjPpTSjCTYgmuaiieTCDTIMQtiUHy0USAOp5rp5OoGYjhvPB1Ao2btOXyPAUbfM0pKcbZlpM4n6da8ed0qqIwgmUr9d3PLqsBwchumQ==
+ b=BtWKU7UKs/Wi6MAs4OMXhwxsAmSyUV6sVLNXLMENGCLP6LqzMV6baU9cT9cXr6BDaH0ag+ad6Hye1YmZ1oFF9f802LodFireTgJ+gwK0fePjSrYniYLoSXZ05MReRr4EnSmYFtwYYi4vaNCFdrOsHaZRhtYA7ZbZEAibLsn4XCYpLbdxMbePakjTwiMxUVmqBwotWJsFFnl05NKLvz1cSxiMI5qIbPELn9tCuifVo8C5gxjKfdmQU8Fuf9WEsV37A/9brKtsp8N9G/Eu/LVXW8CtXmiI3B7rMTgnsWXdBEjpOMIL5cAIfrhwqJETCgo/dGXZr0iteU5S1AeBy7zfXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tEMloU6qBmEPCW7We9uBh49nKXquNP/5iqFhw5IUPPw=;
- b=GP/37GJ+n10Zs0lLLwmrOS4i7xwoqqyADQOfP47WCgbtt2qRZqMZ8LoGrTPji96WV58cpsX/JcdMb9K3l0rV0u5ZRVNoFMcakyhsfOXgzWfHemrmrFga2XkK27ZUDKbTO6skvx5IAEtH3tuDr9RddOxbrnx5PRsSfZf3Tr049a5LwNXVPWGzJRGCPwyT/4gbCr+av05rpU+mgYkOgd/zvv/tVPNzFJYkFgh/7HfFHSSbH2llCfXheygMrrs/MbNJUmHN6bAxsH+wqSDVeFVGwnz8JZ+j4TyH7nABNQqAuEHTt1YSTjB2tRCY0b0Jzh0goJ/b/UL5XWdjNtBe7ezkgw==
+ bh=yzR3w1QLL0Wrl7onzGIfJVE3dbzzcGkuVOCnsRNRv+w=;
+ b=XyvznyKFvHP8Oj6n4QmGFEGT5v7Eyw8GQINv4eEruS6EykXCpWXjXd7xsw5vsazhtFFP5qQ85Q1zWxwF6mxp4Ho4v+rVX+eNQ7pKfdGOd0b/BQFZTtIDRe/zDKWZ4EQty4Urqpz+KzmWfxtRNx9iQRDahhYBMF9HkN2nSKJUF8pYTYJvsNXlQcDnLNpN2jEi08cRDRJyXGKf6pAitn9vlM2pM8UhTlqVe1EOBx1WmA+6Wz0uOCNXVFhaIg7ZkgizCXSgEsDq3gCA2Tvcr6E7o+p1QjxVVT+jB6lta5xqTmfk5i8voGHJH1Du9ymzfoaN1/QrwB8DKwk2rphgaFWdTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -62,75 +62,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by MW3PR11MB4540.namprd11.prod.outlook.com (2603:10b6:303:56::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.20; Thu, 20 Apr
- 2023 15:43:57 +0000
+ 2023 15:45:14 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004%6]) with mapi id 15.20.6319.022; Thu, 20 Apr 2023
- 15:43:57 +0000
-Date: Thu, 20 Apr 2023 11:43:52 -0400
+ 15:45:14 +0000
+Date: Thu, 20 Apr 2023 11:45:09 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZEFduD1kUjhRJFaZ@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <ZEFeBeVtcEfBk0PJ@intel.com>
 References: <20230410223509.3593109-1-ashutosh.dixit@intel.com>
  <20230410223509.3593109-4-ashutosh.dixit@intel.com>
- <340d7a5f-0b38-3c40-77b8-ab825a7b5fef@linux.intel.com>
- <871qkfo74r.wl-ashutosh.dixit@intel.com>
- <852cfbbe-25be-ec23-e182-8e81f2f0e98a@linux.intel.com>
+ <ZD4sPiMDhhr1wO8+@intel.com>
+ <874jpdje8p.wl-ashutosh.dixit@intel.com>
+ <ZEBDvKq0vEx/Ow5Z@intel.com>
+ <87zg73msgb.wl-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <852cfbbe-25be-ec23-e182-8e81f2f0e98a@linux.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0148.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::33) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <87zg73msgb.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BY3PR10CA0025.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::30) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW3PR11MB4540:EE_
-X-MS-Office365-Filtering-Correlation-Id: d441318a-da51-4bbd-b542-08db41b60d51
+X-MS-Office365-Filtering-Correlation-Id: c46d4889-782f-41a7-fdf1-08db41b63b79
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +PNZ9KTnqn9AvGEW5OBHga9nYLR3uWehZMsznIFxngGUegckcG9ro/Vqdi2ypVAhVrQijOReVyt6AowKUHvKose508y8CGvtf8ZzYJ3eQ+dX0znWcA8GQbLVD8q2hpGrSH/SclzG7LfJ10Ovnct8j3tDWlJsdJxmk7tz8xCKEAnNyO6ur3iOsJz158Ukj8j0nWLOF+axLkewUCwmTHjzta1qC6mr25blJWRZE6X0d/MM2OK3Qs/olgKRXmIkBi9gOk9lx/dEElP82urYgaOu4lWsf9oJVPnCdVNpUTK2rlCJAOGzZ+GffP2CZr54V7LOAwu1ro+YIJJntjnvGdgU7I9TASleeGVkqtGrWwGEpl7LdFCNMb2S/gczm3ArDVURprZ+95OjHOhyDzHs/gc5zDA36h4S7k0hW1rpIJzNZ1HCZOTkXUSYc2ohnZBEUZFazkoSkmD2Ip4X1tUkdZxWY5FDpxAocx0YyqeYc1INDhPe2LKHD8G/BxcM/FnVsNOm8AObR91JfDnRuXp64fQXEdKNQOrOiVMJLILE9YQhvA1/4AszUaOlKZSdbgX50pLI
+X-Microsoft-Antispam-Message-Info: PVprNIPcMbMl6WQUXAjfuu172sbfjslPEG12uIavbTh0GovfS85rPDeOtOLXrIGi6NImvwBU2FbVF+N3QaSg1A0hICx5om9z14cGciQqVMT0pxU46bwENFVo7FA+IKAIMTfoOFMB4BHHchZoib/rPWkvz96K8wM10qETR0ROFsWqdX76HumaAg2q5M+yae4ytM5hUAfJ3KDXMTAzINuapIBjVs/vQZEf8vubtEPIXdvMezIxhknkhrSjPuFeDzb/W/RUxJL52fJa7SJi5P6B9/M2s5FUerxbph6Hbyy107QmtOZrb8+1KPL9nm/otu35DNyu/fjnqZBgvdddW67YdCVysEXISX02OJoBO/hLl5tzwQgrjbaBAQiRC6EbZUaq0hFpo9tshUuZP3FnCMRiejE8e64OkyiLtdHr0kfrxVVufJ+nj1XrZK6mcFbmeX1ThEpIQA1C4YY4XptgSvVRMydfkwNxSPabRUEFlNXWpUo6XEzDeZ7lCLah91yVvyf/6K0G6tak+Im0BkK3f0GJt4Y8c0r/JWXbDwWQ71fQxFiz3PDniN9xao08+sLtMTIe
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(346002)(39860400002)(136003)(396003)(376002)(451199021)(5660300002)(6486002)(41300700001)(316002)(66946007)(4326008)(66476007)(478600001)(66556008)(6916009)(44832011)(8936002)(8676002)(82960400001)(38100700002)(186003)(53546011)(83380400001)(2616005)(6666004)(26005)(6512007)(6506007)(86362001)(36756003)(2906002);
+ SFS:(13230028)(366004)(346002)(39860400002)(136003)(396003)(376002)(451199021)(5660300002)(6486002)(41300700001)(316002)(66946007)(4326008)(450100002)(66476007)(478600001)(66556008)(6636002)(44832011)(37006003)(8936002)(6862004)(8676002)(82960400001)(38100700002)(186003)(83380400001)(2616005)(6666004)(26005)(6512007)(6506007)(86362001)(36756003)(2906002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5b/e38iAuZRBtgkOTDYRyVuweoGgzTwuYdI0DselgeM3I4vuiW+lg3USixAs?=
- =?us-ascii?Q?LVNRpJbWZPaEhG7ybPVyu0mTlvGu0Ax1Qg3ie9cV+er2AS5kWJ1T12ySjNv0?=
- =?us-ascii?Q?vTUAdJG1MBBhB13khe1KT1XGQXcR/FaMlXkuqWB8fJCv/owwe/xGJBixycQ9?=
- =?us-ascii?Q?714Ji4quQrXd0QEcJ6Er8r8Bb3il4ONbhlFAmTZQvQ+YWotK5fjdlz3r6wCx?=
- =?us-ascii?Q?iaoVWVlyKtyfdpVMDL7HdqWFajetTEAXkc2r4A3HLvzEaQCgoig32t/YhWYl?=
- =?us-ascii?Q?yFZ4OUqH60pAeQxP/7Exo1qyIYhBIPI8rei4caSAP6vFCR2HVyscTSV10qPa?=
- =?us-ascii?Q?P0Ie4gt3cgaN53OK5FKFHEcPtg3FCgdS9k7M05jH3L6gdtkC7JA1zSgN6RC0?=
- =?us-ascii?Q?93vlXr4oWP96R7ueasCo9ZexHpg2D7nasIbKDItGdEgRVJ+MyZi8tUc+10OA?=
- =?us-ascii?Q?Y6g8LxgrZJUrUk7vdGAtgsMmGMMBF9LUa+oYsL6vj6rkPkfNASwIPSl8ht4x?=
- =?us-ascii?Q?YuphFeh4I4FLvIOt+6pxj+EltfIkO6BrMzPwGfg/Hod5hqSOdn19uMn18mbo?=
- =?us-ascii?Q?Dr3xv+FmL+oEAjyVylIh1h01ve4IdkkTIVgI07XcMkOYuPHmoOzIJcj1OeDF?=
- =?us-ascii?Q?R5hVKHcC8Gxc6zGIKzRi6SETlyM1FGfLigq4JA1DlVq46DZdEIZCF7xucL42?=
- =?us-ascii?Q?UmTrRy7bRVFKjh5AIJDFvIGgFyTjxHvOEOWIRi1kDmY/oF3WA7P3MOattXdF?=
- =?us-ascii?Q?W6yXg2Z6hOo8hRsxrOApgWQCTLy0gfGMQFy1Aha6wsUJe2JE4cE0jNrz/B4f?=
- =?us-ascii?Q?eIqQSnP1yJ6eGPeqI5GY5YcHXrTrxt9P9mBw1lbUc0bAv8SVZyHyvAFT8N4p?=
- =?us-ascii?Q?aQ6ks8msst4X62D7cOPbOGfZSoxXcV1SB0HDoKO7Pwkaic/1WfQERkkDgGpn?=
- =?us-ascii?Q?0t/SDZ0rbRNkcJ1nazUNIYuS5rrEr7qMin2BlzlbRt3U0wOH6eo9+gEMbdrX?=
- =?us-ascii?Q?tToN05xPZRbPVwBYNd7RKSq7VTsmKElwxYtDihR7HrDrzAfNi30SA4y+j3XH?=
- =?us-ascii?Q?k3Z0lv+aqc0YZkpWXKBwEc/S5u2cqDrZX0XDnQelgtRri+ytyHiLzzIFD3lD?=
- =?us-ascii?Q?eIClIyBENYEke8yIngZ+JuRoI9ufY6JAJa9DSe/hMZmOk6zJCcKuIILLxrKe?=
- =?us-ascii?Q?GA/S5zpC/zcvEtaGq1xX9Raq6gwNDTFweYkO4DDfNSzH1JOPzOch8pE/3i+X?=
- =?us-ascii?Q?Zjawh+mmJ2IzObJeSyBcAtLEPn4b/tLJ1FomR7Ww9INEOL+p6Xh6gJ9eRK8o?=
- =?us-ascii?Q?o+Knjb1a8cc8vzgROLj5jGxKCEGrmipP30y/GHI9H2NLctLXcukIMr5Gm1Mz?=
- =?us-ascii?Q?W0FfItbXjwsotrH3XCN0GyX33WbM5KILXCyIfAx2vGX1BjMNbtNhWcITsJKV?=
- =?us-ascii?Q?E6i660QvJ8Xj0OwM0f1JiKgavK5fLz6IOnTbgkFHlsqjrhTJfzdCI/0U4FyV?=
- =?us-ascii?Q?8IaOd6hKYq3252dG9BCZ2hV+wJrHsI+K8LitrTf66IR21LM9sGhvirC6osnA?=
- =?us-ascii?Q?4fE/Z4tti5JrC7yUlOCEf+RtlWeiaUvZGMW972PKx0mla399BHa/iDbhBuR/?=
- =?us-ascii?Q?rg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d441318a-da51-4bbd-b542-08db41b60d51
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cz+eb7WbZgNbcWDYd9lIsiqAhhgHiwFlyCLjgAcKhm6DSxbpTHAqerX7ueYt?=
+ =?us-ascii?Q?EED0wrZoP4+RGDFoJLFoBGClny6dPp0GP3IpiMhAsGYg5o9ev+zyeDD8eNJ4?=
+ =?us-ascii?Q?sGvh2fqdEaIUugiUdXM8uNLadmrbp54F6W/KSEelfjOFhV0R/dkHaMO9GbCq?=
+ =?us-ascii?Q?EicuIku7XBEC6p8OHMPJ8sHIUzeZ6OPzE8W0zatUaBAMvwXL5QCOZgyUJuOd?=
+ =?us-ascii?Q?0eicofcvq9kEyRatfcjF+yIm/qZcNeqalj0PQ46o08AxHO7UnFS/MRq48JqG?=
+ =?us-ascii?Q?gLcp2esyakPsAOIJ2vh2xRLSyysd85/1QtzqSFu4p/8CGjmPJ+3FFFZ1x7z9?=
+ =?us-ascii?Q?+jXx4tNH9IWz+Pw2Nh2jV7vE/GOUyfapTnqMREyGjT/GqEiGgTFHPHXcK27I?=
+ =?us-ascii?Q?VWEgauzzbb8MAfipOqgmv772GcFYw7Jr3LiQX2zGX7sf1EnsXpQhrlOyOTG3?=
+ =?us-ascii?Q?WTYD3FAxgaYB2AgAr4BykX1yaXDmBeB3tq65A4gn5i23Gq4wsVHNRrF5/pOh?=
+ =?us-ascii?Q?3nTsrAIm0q/mGqZ9Svd8/OME0NyTBIrxG6rAylSG8HqhPDYT2warlpBBK5XW?=
+ =?us-ascii?Q?zb8Q7J9G3uTFD0FYqh2Yf5RL8tZaTWN9DcN6mk5PWaonD7VM5w2b8t7Mr0ia?=
+ =?us-ascii?Q?Ix+JNWkdT45Zw/7srwHnYrSF5hlZzTYBU3YMSKJYX7gYz27bO4i1GzAaLa4q?=
+ =?us-ascii?Q?xHV/7Qx9J6463LcVv5VcsUCcH6yrbIgmIejQjec3vaTlYv6ijBgmBdXH7xET?=
+ =?us-ascii?Q?DUCDEUZAyQ3+btqlXfMNZM9tFkBE++epQzaka1j9PVRDoGYb/T/7/ajBIpbt?=
+ =?us-ascii?Q?gxpbG7+ARrZqcnv+puJ1zdlM6/ttEm46WHAxjpiSpXt+7s5EYzr3Y25AlCQE?=
+ =?us-ascii?Q?hQs/XqSm+Vs2avT7NKpU9BN8JvDSRTu38PJ4pcp0BTXh923nLHCO7O5U/ZTT?=
+ =?us-ascii?Q?+YZZ6MZVvZ+WCcPpW/tQF8hBknM9Bqc6oB+3enBVkpRxerIOwkwOwIM3rFik?=
+ =?us-ascii?Q?8uKsfz7aVYM/Ssn235UvVxjmJKNqRzEdwRZAUWoGONUzrFHxisU/4iKS+k8/?=
+ =?us-ascii?Q?TsxShDj/iVPSo61OXc0dCYMG6yO4oJy0a0QTrnM7rW41ccEQf3g7zCyArd3M?=
+ =?us-ascii?Q?LNKAI1zB9jnKvK7acDl1mvmkBMTt5db91mHJ+FI3Lc7s/EBpMOsalD7/JAf5?=
+ =?us-ascii?Q?Ay/3BITtajOi3uDyiT/xjpY+TKoBObXbshxG8DKs5p1be5sLJ1WkLwUBJFwZ?=
+ =?us-ascii?Q?F0XVRcPAX1sodtvAsDtfltIu/0jEW8z4GP6In7tAQ/No5yA/GwJT9rJJiwmb?=
+ =?us-ascii?Q?NnudmvGzTrSSzN010XHZvviF6V3JqtbQm5TlimUG/U03otB6rZYIBDUcRVIw?=
+ =?us-ascii?Q?ObnQElwrETUivDFTB3yqdtwcxkjZUXsfdpv8hZ1ld35FTzdtRGKdzwhzckEn?=
+ =?us-ascii?Q?MZbrnW2KB4iGdZPqNCcxh39RJ6GbuUytiCpwrc/MobBRrfu4VsziGocsu8Yg?=
+ =?us-ascii?Q?R+K2lvo5q/qGePsj+ISkhTE03ncT8aThV2jyoNHP1CjIJYskw/hzLPphECBR?=
+ =?us-ascii?Q?Z8RutO7jD09N4+2EkIJNgPeu7f/MMWvgwRAacckq5Llk2q9aD6LzwTHTsEwz?=
+ =?us-ascii?Q?og=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c46d4889-782f-41a7-fdf1-08db41b63b79
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 15:43:56.8901 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 15:45:14.5582 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aUPX0pRRMy44LjBlbQRTeLLFnJIa2ok0y5BazfE2azgig1/0SxU3LxRBjn0a6XUckaAFsOyy7uqEk/t7wyA2sA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Uqq0flqPkqwxftbxbYzBonFfcdAii/Rju4GT7TL5zI2ZTbw57ViGQFDLEw1B17SFKHFyA+y2w3bdHFaaKB9zBA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4540
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/hwmon: Block waiting for GuC
@@ -151,144 +152,201 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 20, 2023 at 08:57:24AM +0100, Tvrtko Ursulin wrote:
+On Wed, Apr 19, 2023 at 03:13:08PM -0700, Dixit, Ashutosh wrote:
+> On Wed, 19 Apr 2023 12:40:44 -0700, Rodrigo Vivi wrote:
+> >
 > 
-> On 19/04/2023 23:10, Dixit, Ashutosh wrote:
-> > On Wed, 19 Apr 2023 06:21:27 -0700, Tvrtko Ursulin wrote:
-> > > 
-> > 
-> > Hi Tvrtko,
-> > 
-> > > On 10/04/2023 23:35, Ashutosh Dixit wrote:
-> > > > Instead of erroring out when GuC reset is in progress, block waiting for
-> > > > GuC reset to complete which is a more reasonable uapi behavior.
-> > > > 
-> > > > v2: Avoid race between wake_up_all and waiting for wakeup (Rodrigo)
-> > > > 
-> > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/i915_hwmon.c | 38 +++++++++++++++++++++++++++----
-> > > >    1 file changed, 33 insertions(+), 5 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> > > > index 9ab8971679fe3..8471a667dfc71 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> > > > @@ -51,6 +51,7 @@ struct hwm_drvdata {
-> > > > 	char name[12];
-> > > > 	int gt_n;
-> > > > 	bool reset_in_progress;
-> > > > +	wait_queue_head_t waitq;
-> > > >    };
-> > > >      struct i915_hwmon {
-> > > > @@ -395,16 +396,41 @@ hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
-> > > >    static int
-> > > >    hwm_power_max_write(struct hwm_drvdata *ddat, long val)
-> > > >    {
-> > > > +#define GUC_RESET_TIMEOUT msecs_to_jiffies(2000)
-> > > > +
-> > > > +	int ret = 0, timeout = GUC_RESET_TIMEOUT;
-> > > 
-> > > Patch looks good to me
-> > 
-> > Great, thanks :)
-> > 
-> > > apart that I am not sure what is the purpose of the timeout? This is just
-> > > the sysfs write path or has more callers?
-> > 
-> > It is just the sysfs path, but the sysfs is accessed also by the oneAPI
-> > stack (Level 0). In the initial version I also didn't have the timeout
-> > thinking that the app can send a signal to the blocked thread to unblock
-> > it. I introduced the timeout after Rodrigo brought it up and I am now
-> > thinking maybe it's better to have the timeout in the driver since the app
-> > has no knowledge of how long GuC resets can take. But I can remove it if
-> > you think it's not needed.
+> Hi Rodrigo,
 > 
-> Maybe I am missing something but I don't get why we would need to provide a
-> timeout facility in sysfs? If the library writes here to configure something
-> it already has to expect a blocking write by the nature of a a write(2) and
-> sysfs contract. It can take long for any reason so I hope we are not
-> guaranteeing some latency number to someone? Or the concern is just about
-> things getting stuck? In which case I think Ctrl-C is the answer because
-> ETIME is not even listed as an errno for write(2).
+> > On Tue, Apr 18, 2023 at 10:23:50AM -0700, Dixit, Ashutosh wrote:
+> > > On Mon, 17 Apr 2023 22:35:58 -0700, Rodrigo Vivi wrote:
+> > > >
+> > >
+> > > Hi Rodrigo,
+> > >
+> > > > On Mon, Apr 10, 2023 at 03:35:09PM -0700, Ashutosh Dixit wrote:
+> > > > > Instead of erroring out when GuC reset is in progress, block waiting for
+> > > > > GuC reset to complete which is a more reasonable uapi behavior.
+> > > > >
+> > > > > v2: Avoid race between wake_up_all and waiting for wakeup (Rodrigo)
+> > > > >
+> > > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/i915_hwmon.c | 38 +++++++++++++++++++++++++++----
+> > > > >  1 file changed, 33 insertions(+), 5 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > > index 9ab8971679fe3..8471a667dfc71 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > > @@ -51,6 +51,7 @@ struct hwm_drvdata {
+> > > > >	char name[12];
+> > > > >	int gt_n;
+> > > > >	bool reset_in_progress;
+> > > > > +	wait_queue_head_t waitq;
+> > > > >  };
+> > > > >
+> > > > >  struct i915_hwmon {
+> > > > > @@ -395,16 +396,41 @@ hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
+> > > > >  static int
+> > > > >  hwm_power_max_write(struct hwm_drvdata *ddat, long val)
+> > > > >  {
+> > > > > +#define GUC_RESET_TIMEOUT msecs_to_jiffies(2000)
+> > > > > +
+> > > > > +	int ret = 0, timeout = GUC_RESET_TIMEOUT;
+> > > > >	struct i915_hwmon *hwmon = ddat->hwmon;
+> > > > >	intel_wakeref_t wakeref;
+> > > > > -	int ret = 0;
+> > > > > +	DEFINE_WAIT(wait);
+> > > > >	u32 nval;
+> > > > >
+> > > > > -	mutex_lock(&hwmon->hwmon_lock);
+> > > > > -	if (hwmon->ddat.reset_in_progress) {
+> > > > > -		ret = -EAGAIN;
+> > > > > -		goto unlock;
+> > > > > +	/* Block waiting for GuC reset to complete when needed */
+> > > > > +	for (;;) {
+> > > > > +		mutex_lock(&hwmon->hwmon_lock);
+> > > >
+> > > > I'm really afraid of how this mutex is handled with the wait queue.
+> > > > some initial thought it looks like it is trying to reimplement ww_mutex?
+> > >
+> > > Sorry, but I am missing the relation with ww_mutex. No such relation is
+> > > intended.
+> > >
+> > > > all other examples of the wait_queue usages like this or didn't use
+> > > > locks or had it in a total different flow that I could not correlate.
+> > >
+> > > Actually there are several examples of prepare_to_wait/finish_wait
+> > > sequences with both spinlock and mutex in the kernel. See
+> > > e.g. rpm_suspend(), wait_for_rtrs_disconnection(), softsynthx_read().
+> > >
+> > > Also, as I mentioned, except for the lock, the sequence here is identical
+> > > to intel_guc_wait_for_pending_msg().
+> > >
+> > > >
+> > > > > +
+> > > > > +		prepare_to_wait(&ddat->waitq, &wait, TASK_INTERRUPTIBLE);
+> > > > > +
+> > > > > +		if (!hwmon->ddat.reset_in_progress)
+> > > > > +			break;
+> > > >
+> > > > If this breaks we never unlock it?
+> > >
+> > > Correct, this is the original case in Patch 2 where the mutex is acquired
+> > > in the beginning of the function and released just before the final exit
+> > > from the function (so the mutex is held for the entire duration of the
+> > > function).
+> >
+> > I got really confused here...
+> 
+> Sorry, the patch is a little confusing/tricky but I thought I'd better
+> stick to the standard 'for (;;)' loop pattern otherwise it will also be
+> hard to review.
+> 
+> > I looked at the patch 2 again and I don't see any place where the lock
+> > remains outside of the function. What was what I asked to remove on the
+> > initial versions.
+> 
+> So it was in Patch 1 where we changed the code to take the lock in the
+> beginning of the function and release it at the end of the function (you
+> can see it Patch 1).
+> 
+> In Patch 2 the 'unlock' label and 'goto unlock' is introduced and the lock
+> is released at the 'unlock' label (it is visible in Patch 2).
+> 
+> > But now with this one I'm even more confused because I couldn't follow
+> > to understand who will remove the lock and when.
+> 
+> In Patch 3 again the lock is released at the the 'unlock' label (i.e. the
+> destination of 'goto unlock', not visible in Patch 3). But we execute 'goto
+> unlock' only when 'ret != 0' in the 'for (;;)' loop. But when 'ret == 0'
+> (when 'ddat.reset_in_progress' flag is clear) we hold the mutex, execute
+> the entire function and finally release the lock at the end of the
+> function.
+> 
+> Hopefully this helps.
 
-I suggested the timeout on the other version because of that race,
-which is fixed now with this approach. It is probably better to remove
-it now to avoid confusions. I'm sorry about that.
+more coffee also helped! I'm sorry for the noise.
+
+with the timeout thing sorted out:
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 
 > 
-> > > If the
-> > > former perhaps it would be better to just use interruptible everything
-> > > (mutex and sleep) and wait for as long as it takes or until user presses
-> > > Ctrl-C?
-> > 
-> > Now we are not holding the mutexes for long, just long enough do register
-> > rmw's. So not holding the mutex across GuC reset as we were
-> > originally. Therefore I am thinking mutex_lock_interruptible is not needed?
-> > The sleep is already interruptible (TASK_INTERRUPTIBLE).
+> Thanks.
+> --
+> Ashutosh
 > 
-> Ah yes, you are right.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > Anyway please let me know if you think we need to change anything.
-> > 
-> > Thanks.
-> > --
-> > Ashutosh
-> > 
-> > > > 	struct i915_hwmon *hwmon = ddat->hwmon;
-> > > > 	intel_wakeref_t wakeref;
-> > > > -	int ret = 0;
-> > > > +	DEFINE_WAIT(wait);
-> > > > 	u32 nval;
-> > > >    -	mutex_lock(&hwmon->hwmon_lock);
-> > > > -	if (hwmon->ddat.reset_in_progress) {
-> > > > -		ret = -EAGAIN;
-> > > > -		goto unlock;
-> > > > +	/* Block waiting for GuC reset to complete when needed */
-> > > > +	for (;;) {
-> > > > +		mutex_lock(&hwmon->hwmon_lock);
-> > > > +
-> > > > +		prepare_to_wait(&ddat->waitq, &wait, TASK_INTERRUPTIBLE);
-> > > > +
-> > > > +		if (!hwmon->ddat.reset_in_progress)
-> > > > +			break;
-> > > > +
-> > > > +		if (signal_pending(current)) {
-> > > > +			ret = -EINTR;
-> > > > +			break;
-> > > > +		}
-> > > > +
-> > > > +		if (!timeout) {
-> > > > +			ret = -ETIME;
-> > > > +			break;
-> > > > +		}
-> > > > +
-> > > > +		mutex_unlock(&hwmon->hwmon_lock);
-> > > > +
-> > > > +		timeout = schedule_timeout(timeout);
-> > > > 	}
-> > > > +	finish_wait(&ddat->waitq, &wait);
-> > > > +	if (ret)
-> > > > +		goto unlock;
-> > > > +
-> > > > 	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
-> > > > 		/* Disable PL1 limit and verify, because the limit cannot be
-> > > > disabled on all platforms */
-> > > > @@ -508,6 +534,7 @@ void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old)
-> > > > 	intel_uncore_rmw(hwmon->ddat.uncore, hwmon->rg.pkg_rapl_limit,
-> > > > 			 PKG_PWR_LIM_1_EN, old ? PKG_PWR_LIM_1_EN : 0);
-> > > > 	hwmon->ddat.reset_in_progress = false;
-> > > > +	wake_up_all(&hwmon->ddat.waitq);
-> > > > 		mutex_unlock(&hwmon->hwmon_lock);
-> > > >    }
-> > > > @@ -784,6 +811,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
-> > > > 	ddat->uncore = &i915->uncore;
-> > > > 	snprintf(ddat->name, sizeof(ddat->name), "i915");
-> > > > 	ddat->gt_n = -1;
-> > > > +	init_waitqueue_head(&ddat->waitq);
-> > > > 		for_each_gt(gt, i915, i) {
-> > > > 		ddat_gt = hwmon->ddat_gt + i;
+> >
+> > >
+> > > >
+> > > > > +
+> > > > > +		if (signal_pending(current)) {
+> > > > > +			ret = -EINTR;
+> > > > > +			break;
+> > > > > +		}
+> > > > > +
+> > > > > +		if (!timeout) {
+> > > > > +			ret = -ETIME;
+> > > > > +			break;
+> > > > > +		}
+> > > > > +
+> > > > > +		mutex_unlock(&hwmon->hwmon_lock);
+> > > >
+> > > > do we need to lock the signal pending and timeout as well?
+> > > > or only wrapping it around the hwmon->ddat access would be
+> > > > enough?
+> > >
+> > > Strictly, the mutex is only needed for the hwmon->ddat.reset_in_progress
+> > > flag. But because this is not a performance path, implementing it as done
+> > > in the patch simplifies the code flow (since there are several if/else,
+> > > goto's, mutex lock/unlock and prepare_to_wait/finish_wait to consider).
+> > >
+> > > So if possible I *really* want to not try to over-optimize here (I did try
+> > > a few other things when writing the patch but it was getting ugly). The
+> > > only real requirement is to drop the lock before calling schedule_timeout()
+> > > below (and we are reacquiring the lock as soon as we are scheduled back in,
+> > > as you can see in the loop above).
+> > >
+> > > >
+> > > > > +
+> > > > > +		timeout = schedule_timeout(timeout);
+> > > > >	}
+> > > > > +	finish_wait(&ddat->waitq, &wait);
+> > > > > +	if (ret)
+> > > > > +		goto unlock;
+> > > > > +
+> > > > >	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
+> > > > >
+> > > > >	/* Disable PL1 limit and verify, because the limit cannot be disabled on all platforms */
+> > > > > @@ -508,6 +534,7 @@ void i915_hwmon_power_max_restore(struct drm_i915_private *i915, bool old)
+> > > > >	intel_uncore_rmw(hwmon->ddat.uncore, hwmon->rg.pkg_rapl_limit,
+> > > > >			 PKG_PWR_LIM_1_EN, old ? PKG_PWR_LIM_1_EN : 0);
+> > > > >	hwmon->ddat.reset_in_progress = false;
+> > > > > +	wake_up_all(&hwmon->ddat.waitq);
+> > > > >
+> > > > >	mutex_unlock(&hwmon->hwmon_lock);
+> > > > >  }
+> > > > > @@ -784,6 +811,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+> > > > >	ddat->uncore = &i915->uncore;
+> > > > >	snprintf(ddat->name, sizeof(ddat->name), "i915");
+> > > > >	ddat->gt_n = -1;
+> > > > > +	init_waitqueue_head(&ddat->waitq);
+> > > > >
+> > > > >	for_each_gt(gt, i915, i) {
+> > > > >		ddat_gt = hwmon->ddat_gt + i;
+> > > > > --
+> > > > > 2.38.0
+> > > > >
+> > >
+> > > From what I understand is the locking above is fine and is not the
+> > > point. The real race is between schedule_timeout() (which suspends the
+> > > thread) and wake_up_all() (which schedules it back in). But this
+> > > prepare_to_wait/finish_wait pattern is so widespread that the kernel
+> > > guarantees that this works correctly as long as you do things in the
+> > > correct order (otherwise we'd see a lot more kernel hangs/deadlocks).
+> > >
+> > > Thanks,
+> > > Ashutosh
