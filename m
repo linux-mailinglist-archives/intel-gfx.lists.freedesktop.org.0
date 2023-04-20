@@ -1,52 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D9A6E8CDE
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 10:34:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 179676E8D09
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Apr 2023 10:45:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11D0610EBD9;
-	Thu, 20 Apr 2023 08:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85EDD10EBE5;
+	Thu, 20 Apr 2023 08:45:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E650610EBD8;
- Thu, 20 Apr 2023 08:34:36 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9C710EBE5;
+ Thu, 20 Apr 2023 08:45:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681979677; x=1713515677;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=ZGv0L529q98voH1fbcNCSpvZnqgMKbsbJDSUtIJrtxQ=;
- b=N5wpt7TFwo8n5qyiyIuZakViOtKhLXbpC4+5MuXOkIrS9I5n8cGnYA8S
- vNiPAdGD0IDJOJJ9aF6oiVof7GjVa2QtbZWK3Trl2iHOeitPghHdU9s58
- Jj3sZydydKv5Y9JL1ZbpS6HzfFevfXmcgBCY4FayBfoD9o6UWJX4Z+rCg
- gnB75obTPCEvlSH90OFfCx1L0a60ic71p74lUSyj46nuVlS0CORLiFENT
- I+e+d3rjw97NacMKgxVqea1gXrqZ8J9w8dooieICUQcunOV9U7zU/yN46
- QDmjEc/xscd8/J1YAnMUKbdVzu0ZB5bZxnR+e4ybggo0Gm6hhI8GgXi4i Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="344429254"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="344429254"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 01:34:36 -0700
+ t=1681980354; x=1713516354;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=oaz0vzQ/XRlM907A48YIDtdHA62fnzd4rZcRgUx5jnU=;
+ b=Brm6tSeQbaJn1D/g3FNfekKwtsJTMVPYLaAyNjUTecgRUPEtdX65dy36
+ +H8SWHnr2Wsxll8+7/xs0/zgmrj13EZm+Js+cMPn8b7IpKjdgQUosFQMa
+ zHDa7t6F7eLufgP+OIBml2ZXyzHR6LCMcDwra49Anz/NLFzuoSVRId7+1
+ xld4HUbhko4DZyaoyaIo6zEpnJCMLB9aMh07K6Ov9MRaUp+3CBf+wOV2S
+ 8hbbH+wpC+4h99clVmj5ldptg7MD/8FUqlmR+3HVJ4te6v48DEugp3AsN
+ bWjheRWKzGicTN/JXmEc7KZvyuSKkTa0FdOYQsQIFsfaJqWzrpIM5Wcr+ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="345679397"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="345679397"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 01:45:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="694394406"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="694394406"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga007.fm.intel.com with ESMTP; 20 Apr 2023 01:34:33 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1ppPkO-000fdC-1J;
- Thu, 20 Apr 2023 08:34:32 +0000
-Date: Thu, 20 Apr 2023 16:33:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <6440f8e1.DHft6gojVbeQoyZh%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="866152281"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="866152281"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.17.32])
+ ([10.213.17.32])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 01:45:47 -0700
+Message-ID: <2b3d031a-5688-7641-f749-da8cfe0b484c@intel.com>
+Date: Thu, 20 Apr 2023 10:45:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-US
+To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
+References: <20230419230058.2659455-1-fei.yang@intel.com>
+ <20230419230058.2659455-7-fei.yang@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230419230058.2659455-7-fei.yang@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- 3cdbc01c40e34c57697f8934f2727a88551696be
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915: preparation for using PAT
+ index
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,445 +65,462 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: op-tee@lists.trustedfirmware.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-acpi@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 3cdbc01c40e34c57697f8934f2727a88551696be  Add linux-next specific files for 20230419
+On 20.04.2023 01:00, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
+> 
+> This patch is a preparation for replacing enum i915_cache_level with PAT
+> index. Caching policy for buffer objects is set through the PAT index in
+> PTE, the old i915_cache_level is not sufficient to represent all caching
+> modes supported by the hardware.
+> 
+> Preparing the transition by adding some platform dependent data structures
+> and helper functions to translate the cache_level to pat_index.
+> 
+> cachelevel_to_pat: a platform dependent array mapping cache_level to
+>                     pat_index.
+> 
+> max_pat_index: the maximum PAT index supported by the hardware. Needed for
+>                 validating the PAT index passed in from user space.
+> 
+> i915_gem_get_pat_index: function to convert cache_level to PAT index.
+> 
+> obj_to_i915(obj): macro moved to header file for wider usage.
+> 
+> I915_MAX_CACHE_LEVEL: upper bound of i915_cache_level for the
+>                        convenience of coding.
+> 
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |  9 +++
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  4 +
+>   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  6 ++
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c          |  6 ++
+>   drivers/gpu/drm/i915/i915_pci.c               | 75 +++++++++++++++++--
+>   drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
+>   .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++
+>   9 files changed, 107 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 4666bb82f312..8c70a0ec7d2f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -45,6 +45,15 @@ static struct kmem_cache *slab_objects;
+>   
+>   static const struct drm_gem_object_funcs i915_gem_object_funcs;
+>   
+> +unsigned int i915_gem_get_pat_index(struct drm_i915_private *i915,
+> +				    enum i915_cache_level level)
+> +{
+> +	if (drm_WARN_ON(&i915->drm, level >= I915_MAX_CACHE_LEVEL))
+> +		return 0;
+> +
+> +	return INTEL_INFO(i915)->cachelevel_to_pat[level];
+> +}
+> +
+>   struct drm_i915_gem_object *i915_gem_object_alloc(void)
+>   {
+>   	struct drm_i915_gem_object *obj;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 885ccde9dc3c..4c92e17b4337 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -20,6 +20,8 @@
+>   
+>   enum intel_region_id;
+>   
+> +#define obj_to_i915(obj__) to_i915((obj__)->base.dev)
+> +
 
-Error/Warning reports:
+while moved could be replaced by inline, up to you
 
-https://lore.kernel.org/oe-kbuild-all/202304102354.Q4VOXGTE-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304200812.6UqNDVZy-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304201027.2upm4i0C-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304201216.YgbKeHUJ-lkp@intel.com
 
-Error/Warning: (recently discovered and may have been fixed)
+>   static inline bool i915_gem_object_size_2big(u64 size)
+>   {
+>   	struct drm_i915_gem_object *obj;
+> @@ -30,6 +32,8 @@ static inline bool i915_gem_object_size_2big(u64 size)
+>   	return false;
+>   }
+>   
+> +unsigned int i915_gem_get_pat_index(struct drm_i915_private *i915,
+> +				    enum i915_cache_level level);
+>   void i915_gem_init__objects(struct drm_i915_private *i915);
+>   
+>   void i915_objects_module_exit(void);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index 830c11431ee8..41b35abccf88 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -194,6 +194,7 @@ enum i915_cache_level {
+>   	 * engine.
+>   	 */
+>   	I915_CACHE_WT,
+> +	I915_MAX_CACHE_LEVEL,
+>   };
+>   
+>   enum i915_map_type {
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> index b1672e054b21..214763942aa2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> @@ -460,8 +460,6 @@ void i915_gem_shrinker_taints_mutex(struct drm_i915_private *i915,
+>   	fs_reclaim_release(GFP_KERNEL);
+>   }
+>   
+> -#define obj_to_i915(obj__) to_i915((obj__)->base.dev)
+> -
+>   /**
+>    * i915_gem_object_make_unshrinkable - Hide the object from the shrinker. By
+>    * default all object types that support shrinking(see IS_SHRINKABLE), will also
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index 11b91e0453c8..7a4b1d1afce9 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -78,6 +78,12 @@ static u64 mtl_pte_encode(dma_addr_t addr,
+>   	case I915_CACHE_WT:
+>   		pte |= GEN12_PPGTT_PTE_PAT0;
+>   		break;
+> +	default:
+> +		/* This should never happen. Added to deal with the compile
+> +		 * error due to the addition of I915_MAX_CACHE_LEVEL. Will
+> +		 * be removed by the pat_index patch.
+> +		 */
+> +		break;
+>   	}
+>   
+>   	return pte;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 20915edc8bd9..c8390d03fce2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -242,6 +242,12 @@ static u64 mtl_ggtt_pte_encode(dma_addr_t addr,
+>   	case I915_CACHE_WT:
+>   		pte |= MTL_GGTT_PTE_PAT0;
+>   		break;
+> +	default:
+> +		/* This should never happen. Added to deal with the compile
+> +		 * error due to the addition of I915_MAX_CACHE_LEVEL. Will
+> +		 * be removed by the pat_index patch.
+> +		 */
+> +		break;
+>   	}
+>   
+>   	return pte;
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 272a8ba37b64..4ca0ea8fce9b 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -30,6 +30,7 @@
+>   #include "display/intel_display_driver.h"
+>   #include "gt/intel_gt_regs.h"
+>   #include "gt/intel_sa_media.h"
+> +#include "gem/i915_gem_object_types.h"
+>   
+>   #include "i915_driver.h"
+>   #include "i915_drv.h"
+> @@ -164,6 +165,38 @@
+>   		.gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
+>   	}
+>   
+> +#define LEGACY_CACHELEVEL \
+> +	.cachelevel_to_pat = { \
+> +		[I915_CACHE_NONE]   = 0, \
+> +		[I915_CACHE_LLC]    = 1, \
+> +		[I915_CACHE_L3_LLC] = 2, \
+> +		[I915_CACHE_WT]     = 3, \
+> +	}
+> +
+> +#define TGL_CACHELEVEL \
+> +	.cachelevel_to_pat = { \
+> +		[I915_CACHE_NONE]   = 3, \
+> +		[I915_CACHE_LLC]    = 0, \
+> +		[I915_CACHE_L3_LLC] = 0, \
+> +		[I915_CACHE_WT]     = 2, \
+> +	}
+> +
+> +#define PVC_CACHELEVEL \
+> +	.cachelevel_to_pat = { \
+> +		[I915_CACHE_NONE]   = 0, \
+> +		[I915_CACHE_LLC]    = 3, \
+> +		[I915_CACHE_L3_LLC] = 3, \
+> +		[I915_CACHE_WT]     = 2, \
+> +	}
+> +
+> +#define MTL_CACHELEVEL \
+> +	.cachelevel_to_pat = { \
+> +		[I915_CACHE_NONE]   = 2, \
+> +		[I915_CACHE_LLC]    = 3, \
+> +		[I915_CACHE_L3_LLC] = 3, \
+> +		[I915_CACHE_WT]     = 1, \
+> +	}
+> +
+>   /* Keep in gen based order, and chronological order within a gen */
+>   
+>   #define GEN_DEFAULT_PAGE_SIZES \
+> @@ -189,11 +222,13 @@
+>   	.has_snoop = true, \
+>   	.has_coherent_ggtt = false, \
+>   	.dma_mask_size = 32, \
+> +	.max_pat_index = 3, \
+>   	I9XX_PIPE_OFFSETS, \
+>   	I9XX_CURSOR_OFFSETS, \
+>   	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   #define I845_FEATURES \
+>   	GEN(2), \
+> @@ -210,11 +245,13 @@
+>   	.has_snoop = true, \
+>   	.has_coherent_ggtt = false, \
+>   	.dma_mask_size = 32, \
+> +	.max_pat_index = 3, \
+>   	I845_PIPE_OFFSETS, \
+>   	I845_CURSOR_OFFSETS, \
+>   	I845_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   static const struct intel_device_info i830_info = {
+>   	I830_FEATURES,
+> @@ -249,11 +286,13 @@ static const struct intel_device_info i865g_info = {
+>   	.has_snoop = true, \
+>   	.has_coherent_ggtt = true, \
+>   	.dma_mask_size = 32, \
+> +	.max_pat_index = 3, \
+>   	I9XX_PIPE_OFFSETS, \
+>   	I9XX_CURSOR_OFFSETS, \
+>   	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   static const struct intel_device_info i915g_info = {
+>   	GEN3_FEATURES,
+> @@ -341,11 +380,13 @@ static const struct intel_device_info pnv_m_info = {
+>   	.has_snoop = true, \
+>   	.has_coherent_ggtt = true, \
+>   	.dma_mask_size = 36, \
+> +	.max_pat_index = 3, \
+>   	I9XX_PIPE_OFFSETS, \
+>   	I9XX_CURSOR_OFFSETS, \
+>   	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   static const struct intel_device_info i965g_info = {
+>   	GEN4_FEATURES,
+> @@ -395,11 +436,13 @@ static const struct intel_device_info gm45_info = {
+>   	/* ilk does support rc6, but we do not implement [power] contexts */ \
+>   	.has_rc6 = 0, \
+>   	.dma_mask_size = 36, \
+> +	.max_pat_index = 3, \
+>   	I9XX_PIPE_OFFSETS, \
+>   	I9XX_CURSOR_OFFSETS, \
+>   	ILK_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   static const struct intel_device_info ilk_d_info = {
+>   	GEN5_FEATURES,
+> @@ -429,13 +472,15 @@ static const struct intel_device_info ilk_m_info = {
+>   	.has_rc6p = 0, \
+>   	.has_rps = true, \
+>   	.dma_mask_size = 40, \
+> +	.max_pat_index = 3, \
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
+>   	.__runtime.ppgtt_size = 31, \
+>   	I9XX_PIPE_OFFSETS, \
+>   	I9XX_CURSOR_OFFSETS, \
+>   	ILK_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   #define SNB_D_PLATFORM \
+>   	GEN6_FEATURES, \
+> @@ -482,13 +527,15 @@ static const struct intel_device_info snb_m_gt2_info = {
+>   	.has_reset_engine = true, \
+>   	.has_rps = true, \
+>   	.dma_mask_size = 40, \
+> +	.max_pat_index = 3, \
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
+>   	.__runtime.ppgtt_size = 31, \
+>   	IVB_PIPE_OFFSETS, \
+>   	IVB_CURSOR_OFFSETS, \
+>   	IVB_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+> -	GEN_DEFAULT_REGIONS
+> +	GEN_DEFAULT_REGIONS, \
+> +	LEGACY_CACHELEVEL
+>   
+>   #define IVB_D_PLATFORM \
+>   	GEN7_FEATURES, \
+> @@ -542,6 +589,7 @@ static const struct intel_device_info vlv_info = {
+>   	.display.has_gmch = 1,
+>   	.display.has_hotplug = 1,
+>   	.dma_mask_size = 40,
+> +	.max_pat_index = 3,
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING,
+>   	.__runtime.ppgtt_size = 31,
+>   	.has_snoop = true,
+> @@ -553,6 +601,7 @@ static const struct intel_device_info vlv_info = {
+>   	I9XX_COLORS,
+>   	GEN_DEFAULT_PAGE_SIZES,
+>   	GEN_DEFAULT_REGIONS,
+> +	LEGACY_CACHELEVEL,
+>   };
+>   
+>   #define G75_FEATURES  \
+> @@ -640,6 +689,7 @@ static const struct intel_device_info chv_info = {
+>   	.has_logical_ring_contexts = 1,
+>   	.display.has_gmch = 1,
+>   	.dma_mask_size = 39,
+> +	.max_pat_index = 3,
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_FULL,
+>   	.__runtime.ppgtt_size = 32,
+>   	.has_reset_engine = 1,
+> @@ -651,6 +701,7 @@ static const struct intel_device_info chv_info = {
+>   	CHV_COLORS,
+>   	GEN_DEFAULT_PAGE_SIZES,
+>   	GEN_DEFAULT_REGIONS,
+> +	LEGACY_CACHELEVEL,
+>   };
+>   
+>   #define GEN9_DEFAULT_PAGE_SIZES \
+> @@ -890,9 +941,11 @@ static const struct intel_device_info jsl_info = {
+>   		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+>   	}, \
+>   	TGL_CURSOR_OFFSETS, \
+> +	TGL_CACHELEVEL, \
+>   	.has_global_mocs = 1, \
+>   	.has_pxp = 1, \
+> -	.display.has_dsb = 1
+> +	.display.has_dsb = 1, \
+> +	.max_pat_index = 3
+>   
+>   static const struct intel_device_info tgl_info = {
+>   	GEN12_FEATURES,
+> @@ -1014,6 +1067,7 @@ static const struct intel_device_info adl_p_info = {
+>   	.__runtime.graphics.ip.ver = 12, \
+>   	.__runtime.graphics.ip.rel = 50, \
+>   	XE_HP_PAGE_SIZES, \
+> +	TGL_CACHELEVEL, \
+>   	.dma_mask_size = 46, \
+>   	.has_3d_pipeline = 1, \
+>   	.has_64bit_reloc = 1, \
+> @@ -1032,6 +1086,7 @@ static const struct intel_device_info adl_p_info = {
+>   	.has_reset_engine = 1, \
+>   	.has_rps = 1, \
+>   	.has_runtime_pm = 1, \
+> +	.max_pat_index = 3, \
+>   	.__runtime.ppgtt_size = 48, \
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_FULL
+>   
+> @@ -1108,11 +1163,13 @@ static const struct intel_device_info pvc_info = {
+>   	PLATFORM(INTEL_PONTEVECCHIO),
+>   	NO_DISPLAY,
+>   	.has_flat_ccs = 0,
+> +	.max_pat_index = 7,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(BCS0) |
+>   		BIT(VCS0) |
+>   		BIT(CCS0) | BIT(CCS1) | BIT(CCS2) | BIT(CCS3),
+>   	.require_force_probe = 1,
+> +	PVC_CACHELEVEL,
+>   };
+>   
+>   #define XE_LPDP_FEATURES	\
+> @@ -1150,9 +1207,11 @@ static const struct intel_device_info mtl_info = {
+>   	.has_llc = 0,
+>   	.has_mslice_steering = 0,
+>   	.has_snoop = 1,
+> +	.max_pat_index = 4,
+>   	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
+>   	.require_force_probe = 1,
+> +	MTL_CACHELEVEL,
+>   };
+>   
+>   #undef PLATFORM
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index f032f2500f50..959a4080840c 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -35,6 +35,8 @@
+>   #include "gt/intel_context_types.h"
+>   #include "gt/intel_sseu.h"
+>   
+> +#include "gem/i915_gem_object_types.h"
+> +
+>   struct drm_printer;
+>   struct drm_i915_private;
+>   struct intel_gt_definition;
+> @@ -308,6 +310,9 @@ struct intel_device_info {
+>   	 * Initial runtime info. Do not access outside of i915_driver_create().
+>   	 */
+>   	const struct intel_runtime_info __runtime;
+> +
+> +	u32 cachelevel_to_pat[I915_MAX_CACHE_LEVEL];
+> +	u32 max_pat_index;
+>   };
+>   
+>   struct intel_driver_caps {
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> index f6a7c0bd2955..0eda8b4ee17f 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -123,7 +123,9 @@ struct drm_i915_private *mock_gem_device(void)
+>   	static struct dev_iommu fake_iommu = { .priv = (void *)-1 };
+>   #endif
+>   	struct drm_i915_private *i915;
+> +	struct intel_device_info *i915_info;
+>   	struct pci_dev *pdev;
+> +	unsigned int i;
+>   	int ret;
+>   
+>   	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
+> @@ -180,6 +182,13 @@ struct drm_i915_private *mock_gem_device(void)
+>   		I915_GTT_PAGE_SIZE_2M;
+>   
+>   	RUNTIME_INFO(i915)->memory_regions = REGION_SMEM;
+> +
+> +	/* simply use legacy cache level for mock device */
+> +	i915_info = (struct intel_device_info *)INTEL_INFO(i915);
+> +	i915_info->max_pat_index = 3;
+> +	for (i = 0; i < I915_MAX_CACHE_LEVEL; i++)
+> +		i915_info->cachelevel_to_pat[i] = i;
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:184:19: warning: variable 'dmub' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm.c:138:15: warning: variable 'feature_support' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:124:14: warning: no previous prototype for function 'dmub_abm_get_current_backlight' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:135:14: warning: no previous prototype for function 'dmub_abm_get_target_backlight' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:146:6: warning: no previous prototype for function 'dmub_abm_set_level' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:167:6: warning: no previous prototype for function 'dmub_abm_set_ambient_level' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:189:6: warning: no previous prototype for function 'dmub_abm_init_config' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:221:6: warning: no previous prototype for function 'dmub_abm_set_pause' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:241:6: warning: no previous prototype for function 'dmub_abm_set_pipe' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:263:6: warning: no previous prototype for function 'dmub_abm_set_backlight_level' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm_lcd.c:83:6: warning: no previous prototype for function 'dmub_abm_init' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_validation.c:351:13: warning: variable 'bw_needed' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_validation.c:352:25: warning: variable 'link' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:451:16: warning: variable 'j' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:1049:6: warning: no previous prototype for 'gfx_v9_4_3_disable_gpa_mode' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:1049:6: warning: no previous prototype for function 'gfx_v9_4_3_disable_gpa_mode' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:1072:6: warning: no previous prototype for 'gfx_v9_4_3_disable_gpa_mode' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:48:38: warning: unused variable 'golden_settings_gc_9_4_3' [-Wunused-const-variable]
-drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:62: warning: wrong kernel-doc identifier on line:
-drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-drivers/gpu/drm/i915/i915_request.h:176: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-drivers/gpu/drm/i915/i915_vma.h:145: warning: expecting prototype for i915_vma_offset(). Prototype was for i915_vma_size() instead
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:298:6: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-ld.lld: error: .btf.vmlinux.bin.o: unknown file type
-phy-mtk-hdmi-mt8195.c:(.text+0x2e2): undefined reference to `__floatundidf'
-phy-mtk-hdmi-mt8195.c:(.text+0x2f4): undefined reference to `__ltdf2'
-phy-mtk-hdmi-mt8195.c:(.text+0x344): undefined reference to `__gedf2'
-riscv64-linux-ld: phy-mtk-hdmi-mt8195.c:(.text+0x312): undefined reference to `__gedf2'
-riscv64-linux-ld: phy-mtk-hdmi-mt8195.c:(.text+0x32c): undefined reference to `__ltdf2'
+Pity LEGACY_CACHELEVEL cannot be used here.
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-drivers/acpi/property.c:985 acpi_data_prop_read_single() error: potentially dereferencing uninitialized 'obj'.
-drivers/firmware/smccc/smccc.c:20:21: sparse: sparse: symbol 'smccc_soc_id_version' was not declared. Should it be static?
-drivers/firmware/smccc/smccc.c:21:21: sparse: sparse: symbol 'smccc_soc_id_revision' was not declared. Should it be static?
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:240 mtk_hdmi_pll_calc() warn: impossible condition '(tmds_clk < 1.483500e+02 * 1000000) => (0.000000e+00-1.844674e+19 < -1.786711e-113)'
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:242 mtk_hdmi_pll_calc() warn: always true condition '(tmds_clk >= 1.483500e+02 * 1000000) => (0-u64max >= -1.786711e-113)'
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:242 mtk_hdmi_pll_calc() warn: impossible condition '(tmds_clk < 2.967000e+02 * 1000000) => (0.000000e+00-1.844674e+19 < -4.419080e+60)'
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:244 mtk_hdmi_pll_calc() warn: always true condition '(tmds_clk >= 2.967000e+02 * 1000000) => (0-u64max >= -4.419080e+60)'
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:298 mtk_hdmi_pll_calc() error: uninitialized symbol 'ret'.
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:331 mtk_hdmi_pll_drv_setting() warn: always true condition '(pixel_clk >= 7.417500e+01 * 1000000) => (0-u32max >= -7.223985e-287)'
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:336 mtk_hdmi_pll_drv_setting() warn: impossible condition '(pixel_clk < 7.417500e+01 * 1000000) => (0.000000e+00-4.294967e+09 < -7.223985e-287)'
-drivers/tee/optee/smc_abi.c:1021 irq_handler() error: uninitialized symbol 'value_valid'.
-drivers/tee/optee/smc_abi.c:1028 irq_handler() error: uninitialized symbol 'value_pending'.
-fs/xfs/scrub/refcount.c: xfs_mount.h is included more than once.
-fs/xfs/scrub/refcount.c: xfs_trans_resv.h is included more than once.
+Regards
+Andrzej
 
-Error/Warning ids grouped by kconfigs:
 
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- alpha-randconfig-r001-20230420
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- alpha-randconfig-r023-20230420
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arc-buildonly-randconfig-r004-20230419
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arc-randconfig-r043-20230420
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arm-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arm-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arm64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- arm64-randconfig-m041-20230419
-|   |-- drivers-tee-optee-smc_abi.c-irq_handler()-error:uninitialized-symbol-value_pending-.
-|   `-- drivers-tee-optee-smc_abi.c-irq_handler()-error:uninitialized-symbol-value_valid-.
-|-- arm64-randconfig-r003-20230417
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm64-randconfig-s031-20230416
-|   |-- drivers-firmware-smccc-smccc.c:sparse:sparse:symbol-smccc_soc_id_revision-was-not-declared.-Should-it-be-static
-|   `-- drivers-firmware-smccc-smccc.c:sparse:sparse:symbol-smccc_soc_id_version-was-not-declared.-Should-it-be-static
-|-- csky-randconfig-m041-20230419
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_calc()-error:uninitialized-symbol-ret-.
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_calc()-warn:always-true-condition-(tmds_clk-.483500e-)-(-u64max-.786711e-)
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_calc()-warn:always-true-condition-(tmds_clk-.967000e-)-(-u64max-.419080e-)
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_calc()-warn:impossible-condition-(tmds_clk-.483500e-)-(.000000e-.844674e-.786711e-)
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_calc()-warn:impossible-condition-(tmds_clk-.967000e-)-(.000000e-.844674e-.419080e-)
-|   |-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_drv_setting()-warn:always-true-condition-(pixel_clk-.417500e-)-(-u32max-.223985e-)
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c-mtk_hdmi_pll_drv_setting()-warn:impossible-condition-(pixel_clk-.417500e-)-(.000000e-.294967e-.223985e-)
-|-- csky-randconfig-r024-20230417
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- i386-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- i386-randconfig-m021-20230417
-|   `-- drivers-acpi-property.c-acpi_data_prop_read_single()-error:potentially-dereferencing-uninitialized-obj-.
-|-- ia64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- ia64-randconfig-r034-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- ia64-randconfig-s043-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- loongarch-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- microblaze-randconfig-m041-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- microblaze-randconfig-r004-20230420
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- mips-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- mips-randconfig-c003-20230420
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- mips-randconfig-s041-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:sparse:sparse:cast-truncates-bits-from-constant-value-(ffff-becomes-ff)
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- openrisc-randconfig-c003-20230416
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- parisc-buildonly-randconfig-r003-20230419
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- riscv-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- riscv-randconfig-r016-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- riscv-randconfig-s052-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|   |-- phy-mtk-hdmi-mt8195.c:(.text):undefined-reference-to-__floatundidf
-|   |-- phy-mtk-hdmi-mt8195.c:(.text):undefined-reference-to-__gedf2
-|   |-- phy-mtk-hdmi-mt8195.c:(.text):undefined-reference-to-__ltdf2
-|   |-- riscv64-linux-ld:phy-mtk-hdmi-mt8195.c:(.text):undefined-reference-to-__gedf2
-|   `-- riscv64-linux-ld:phy-mtk-hdmi-mt8195.c:(.text):undefined-reference-to-__ltdf2
-|-- s390-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|-- sparc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- sparc64-randconfig-s053-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- x86_64-allnoconfig
-|   |-- fs-xfs-scrub-refcount.c:xfs_mount.h-is-included-more-than-once.
-|   `-- fs-xfs-scrub-refcount.c:xfs_trans_resv.h-is-included-more-than-once.
-|-- x86_64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-bw_needed-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_validation.c:warning:variable-link-set-but-not-used
-`-- x86_64-randconfig-m001-20230417
-    `-- drivers-acpi-property.c-acpi_data_prop_read_single()-error:potentially-dereferencing-uninitialized-obj-.
-clang_recent_errors
-|-- arm64-buildonly-randconfig-r005-20230416
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- arm64-randconfig-r015-20230417
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- arm64-randconfig-r036-20230416
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dc_dmub_srv.c:warning:variable-dmub-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm.c:warning:variable-feature_support-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_get_current_backlight
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_get_target_backlight
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_init
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_init_config
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_set_ambient_level
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_set_backlight_level
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_set_level
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_set_pause
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce-dmub_abm_lcd.c:warning:no-previous-prototype-for-function-dmub_abm_set_pipe
-|   |-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-function-gfx_v9_4_3_disable_gpa_mode
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:unused-variable-golden_settings_gc_9_4_3
-|-- hexagon-randconfig-r023-20230417
-|   `-- ld.lld:error:.btf.vmlinux.bin.o:unknown-file-type
-|-- hexagon-randconfig-r045-20230420
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- mips-randconfig-r021-20230420
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- riscv-buildonly-randconfig-r006-20230419
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- riscv-randconfig-r032-20230416
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-`-- x86_64-randconfig-a011-20230417
-    |-- drivers-gpu-drm-i915-gt-uc-guc_capture_fwif.h:warning:wrong-kernel-doc-identifier-on-line:
-    |-- drivers-gpu-drm-i915-i915_pmu.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
-    |-- drivers-gpu-drm-i915-i915_request.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
-    `-- drivers-gpu-drm-i915-i915_vma.h:warning:expecting-prototype-for-i915_vma_offset().-Prototype-was-for-i915_vma_size()-instead
+> +
+>   	intel_memory_regions_hw_probe(i915);
+>   
+>   	spin_lock_init(&i915->gpu_error.lock);
 
-elapsed time: 734m
-
-configs tested: 190
-configs skipped: 20
-
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha        buildonly-randconfig-r005-20230417   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r001-20230416   gcc  
-alpha                randconfig-r001-20230420   gcc  
-alpha                randconfig-r003-20230416   gcc  
-alpha                randconfig-r013-20230416   gcc  
-alpha                randconfig-r023-20230420   gcc  
-arc                              allyesconfig   gcc  
-arc          buildonly-randconfig-r002-20230418   gcc  
-arc          buildonly-randconfig-r004-20230417   gcc  
-arc          buildonly-randconfig-r004-20230419   gcc  
-arc          buildonly-randconfig-r006-20230416   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r043-20230416   gcc  
-arc                  randconfig-r043-20230417   gcc  
-arc                  randconfig-r043-20230419   gcc  
-arc                  randconfig-r043-20230420   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         at91_dt_defconfig   gcc  
-arm                                 defconfig   gcc  
-arm                          ep93xx_defconfig   clang
-arm                            hisi_defconfig   gcc  
-arm                        keystone_defconfig   gcc  
-arm                           omap1_defconfig   clang
-arm                  randconfig-r006-20230416   gcc  
-arm                  randconfig-r046-20230416   clang
-arm                  randconfig-r046-20230417   gcc  
-arm                  randconfig-r046-20230419   gcc  
-arm                  randconfig-r046-20230420   clang
-arm                           tegra_defconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64        buildonly-randconfig-r004-20230418   clang
-arm64        buildonly-randconfig-r005-20230416   clang
-arm64        buildonly-randconfig-r005-20230419   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r003-20230417   gcc  
-arm64                randconfig-r015-20230417   clang
-arm64                randconfig-r036-20230416   clang
-csky         buildonly-randconfig-r004-20230416   gcc  
-csky         buildonly-randconfig-r006-20230418   gcc  
-csky                                defconfig   gcc  
-csky                 randconfig-r024-20230417   gcc  
-csky                 randconfig-r025-20230416   gcc  
-csky                 randconfig-r026-20230420   gcc  
-hexagon              randconfig-r005-20230417   clang
-hexagon              randconfig-r012-20230417   clang
-hexagon              randconfig-r016-20230417   clang
-hexagon              randconfig-r023-20230417   clang
-hexagon              randconfig-r031-20230418   clang
-hexagon              randconfig-r035-20230416   clang
-hexagon              randconfig-r041-20230416   clang
-hexagon              randconfig-r041-20230417   clang
-hexagon              randconfig-r041-20230419   clang
-hexagon              randconfig-r041-20230420   clang
-hexagon              randconfig-r045-20230416   clang
-hexagon              randconfig-r045-20230417   clang
-hexagon              randconfig-r045-20230419   clang
-hexagon              randconfig-r045-20230420   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-a001-20230417   gcc  
-i386                 randconfig-a002-20230417   gcc  
-i386                 randconfig-a003-20230417   gcc  
-i386                 randconfig-a004-20230417   gcc  
-i386                 randconfig-a005-20230417   gcc  
-i386                 randconfig-a006-20230417   gcc  
-i386                 randconfig-a011-20230417   clang
-i386                 randconfig-a012-20230417   clang
-i386                 randconfig-a013-20230417   clang
-i386                 randconfig-a014-20230417   clang
-i386                 randconfig-a015-20230417   clang
-i386                 randconfig-a016-20230417   clang
-i386                 randconfig-r006-20230417   gcc  
-ia64                             allmodconfig   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r022-20230416   gcc  
-ia64                 randconfig-r022-20230417   gcc  
-ia64                 randconfig-r026-20230416   gcc  
-ia64                 randconfig-r034-20230416   gcc  
-ia64                 randconfig-r036-20230418   gcc  
-ia64                            zx1_defconfig   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                          atari_defconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                        m5272c3_defconfig   gcc  
-microblaze   buildonly-randconfig-r003-20230418   gcc  
-microblaze           randconfig-r004-20230420   gcc  
-microblaze           randconfig-r021-20230417   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                         cobalt_defconfig   gcc  
-mips                  decstation_64_defconfig   gcc  
-mips                malta_qemu_32r6_defconfig   clang
-mips                        omega2p_defconfig   clang
-mips                 randconfig-r012-20230416   clang
-mips                 randconfig-r014-20230417   gcc  
-mips                 randconfig-r021-20230420   clang
-mips                 randconfig-r034-20230418   gcc  
-nios2        buildonly-randconfig-r006-20230417   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r002-20230417   gcc  
-nios2                randconfig-r025-20230417   gcc  
-openrisc     buildonly-randconfig-r001-20230418   gcc  
-openrisc     buildonly-randconfig-r002-20230416   gcc  
-openrisc             randconfig-r011-20230417   gcc  
-parisc       buildonly-randconfig-r002-20230417   gcc  
-parisc       buildonly-randconfig-r003-20230419   gcc  
-parisc                              defconfig   gcc  
-parisc               randconfig-r021-20230416   gcc  
-parisc               randconfig-r023-20230416   gcc  
-parisc               randconfig-r024-20230416   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                      cm5200_defconfig   gcc  
-powerpc                    gamecube_defconfig   clang
-powerpc                    klondike_defconfig   gcc  
-powerpc                      makalu_defconfig   gcc  
-powerpc                mpc7448_hpc2_defconfig   gcc  
-powerpc                     rainier_defconfig   gcc  
-powerpc                     redwood_defconfig   gcc  
-powerpc                     skiroot_defconfig   clang
-powerpc                     taishan_defconfig   gcc  
-powerpc                         wii_defconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv        buildonly-randconfig-r003-20230416   gcc  
-riscv        buildonly-randconfig-r003-20230417   clang
-riscv        buildonly-randconfig-r006-20230419   clang
-riscv                               defconfig   gcc  
-riscv                randconfig-r005-20230416   clang
-riscv                randconfig-r016-20230416   gcc  
-riscv                randconfig-r032-20230416   clang
-riscv                randconfig-r032-20230418   clang
-riscv                randconfig-r042-20230416   gcc  
-riscv                randconfig-r042-20230417   clang
-riscv                randconfig-r042-20230419   clang
-riscv                randconfig-r042-20230420   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r002-20230420   clang
-s390                 randconfig-r003-20230420   clang
-s390                 randconfig-r044-20230416   gcc  
-s390                 randconfig-r044-20230417   clang
-s390                 randconfig-r044-20230419   clang
-s390                 randconfig-r044-20230420   gcc  
-sh                               allmodconfig   gcc  
-sh           buildonly-randconfig-r001-20230416   gcc  
-sh                         ecovec24_defconfig   gcc  
-sh                          r7785rp_defconfig   gcc  
-sh                   randconfig-r004-20230417   gcc  
-sh                   randconfig-r011-20230416   gcc  
-sh                          rsk7264_defconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                       sparc32_defconfig   gcc  
-sparc64      buildonly-randconfig-r002-20230419   gcc  
-sparc64              randconfig-r026-20230417   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230417   gcc  
-x86_64               randconfig-a002-20230417   gcc  
-x86_64               randconfig-a003-20230417   gcc  
-x86_64               randconfig-a004-20230417   gcc  
-x86_64               randconfig-a005-20230417   gcc  
-x86_64               randconfig-a006-20230417   gcc  
-x86_64               randconfig-a011-20230417   clang
-x86_64               randconfig-a012-20230417   clang
-x86_64               randconfig-a013-20230417   clang
-x86_64               randconfig-a014-20230417   clang
-x86_64               randconfig-a015-20230417   clang
-x86_64               randconfig-a016-20230417   clang
-x86_64                           rhel-8.3-bpf   gcc  
-x86_64                         rhel-8.3-kunit   gcc  
-x86_64                           rhel-8.3-kvm   gcc  
-x86_64                           rhel-8.3-syz   gcc  
-x86_64                               rhel-8.3   gcc  
-xtensa               randconfig-r015-20230416   gcc  
-xtensa                    smp_lx200_defconfig   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
