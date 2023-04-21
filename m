@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7667C6EA9A2
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 13:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2694D6EA9A3
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 13:48:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C2910EE0E;
-	Fri, 21 Apr 2023 11:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D27A10EE0F;
+	Fri, 21 Apr 2023 11:48:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8935810EE0F
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 11:48:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5488F10EE0F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 11:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682077718; x=1713613718;
+ t=1682077722; x=1713613722;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0tYq4JkEAbUznfSNyxEOpa5pHnzpkPOve2hwmZjhTnQ=;
- b=DsjkOIOdwW7jZEN77ZDeOnaJ8hQNWZUXzzO+Aeycgnc8Dl0HIFQf8aMK
- xa7P06B/oXIQpG3dwVW1bOiGVDcPfpfoWSkkLynOUmkM3FRvUSA6tvwdJ
- vVZX6P3WSFwhgBepwMEx02y4+QJzXmkCwCxzAOihr/vEXkfcaTBnVF9Xg
- /EV9BkPYPIQqan6IMUtR0/IymMjsk0Z30TIESieYayy2hniAfj62QCbZV
- gtEV6tMJlbKbhh02ZfDVJ7TsR/WGBHMh+JpesJprtz2JktxAaJiO2MRpx
- Ikrvlk+eWd56nqEoAgEQ2DYRijqlrARuWpHaa3vjGsKSYrh6qjVeVYwQ/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="344730317"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="344730317"
+ bh=JH8aIQoBMAhXfshQCjyAu5Ry29Zvoa427HjjtIGoKis=;
+ b=O7OlVZKXZzF96cAAX3PaMRhOFU0o5c+iJaccGx5P0Hfq7FAIrodORjrV
+ 8HD/E7EIM1bFhyW5pEhpnpjSXidkQNa9Vb06HOlgwjXBhufxXTd4tlTGJ
+ GX1ju6IjtkB7B7UzUtyX/VPyePu6wXI3NF2OL68NPcpjUCnLFHfS4yRsv
+ KDKIpv6P1pol9WbPj8fo7gKmHXIm+t7197SgPQfc43bjVUP8KwBXxqUA9
+ V/waQndPhuIhg2kMAJhnzJXbaDJ6F6w3OmBbvHQBih4XlGg1Z7LW75uGW
+ rpWtZ6JWi1qZyNc6lXtHmKdus8KcRLQNxF2GrKhwpZxlPf39zUHj7dJU8 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="344730328"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="344730328"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 04:48:37 -0700
+ 21 Apr 2023 04:48:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="685709517"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="685709517"
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="685709525"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="685709525"
 Received: from hseyranx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.32.135])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 04:48:36 -0700
+ 21 Apr 2023 04:48:40 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 14:47:48 +0300
-Message-Id: <5807d1d2eb484ca90eceb4689261942a5ab3c8d1.1682077472.git.jani.nikula@intel.com>
+Date: Fri, 21 Apr 2023 14:47:49 +0300
+Message-Id: <0dae95f92108b0c1b6a6a3ae2c13f109afc317cf.1682077472.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1682077472.git.jani.nikula@intel.com>
 References: <cover.1682077472.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/13] drm/i915/lvds: switch to
- drm_edid_read_switcheroo()
+Subject: [Intel-gfx] [PATCH 11/13] drm/edid: make drm_edid_duplicate() safe
+ to call with NULL parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +64,28 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use drm_edid_read_switcheroo() to switch from struct edid to struct
-drm_edid.
+It's a bit tedious to check for NULL before calling
+drm_edid_duplicate(). Make it handle NULL parameter graciously.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lvds.c | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/drm_edid.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 8e9a3d72b83b..682d5cdaa0ba 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -943,17 +943,8 @@ void intel_lvds_init(struct drm_i915_private *i915)
- 	 */
- 	mutex_lock(&i915->drm.mode_config.mutex);
- 	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC) {
--		const struct edid *edid;
--
--		/* FIXME: Make drm_get_edid_switcheroo() return drm_edid */
--		edid = drm_get_edid_switcheroo(&connector->base,
--					       intel_gmbus_get_adapter(i915, pin));
--		if (edid) {
--			drm_edid = drm_edid_alloc(edid, (edid->extensions + 1) * EDID_LENGTH);
--			kfree(edid);
--		} else {
--			drm_edid = NULL;
--		}
-+		drm_edid = drm_edid_read_switcheroo(&connector->base,
-+						    intel_gmbus_get_adapter(i915, pin));
- 	} else {
- 		drm_edid = drm_edid_read_ddc(&connector->base,
- 					     intel_gmbus_get_adapter(i915, pin));
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 941f3d53a701..e0dbd9140726 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -2881,6 +2881,9 @@ EXPORT_SYMBOL(drm_edid_read_switcheroo);
+  */
+ struct edid *drm_edid_duplicate(const struct edid *edid)
+ {
++	if (!edid)
++		return NULL;
++
+ 	return kmemdup(edid, edid_size(edid), GFP_KERNEL);
+ }
+ EXPORT_SYMBOL(drm_edid_duplicate);
 -- 
 2.39.2
 
