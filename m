@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A7D6EACBE
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0070C6EACC7
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:25:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D105510EE47;
-	Fri, 21 Apr 2023 14:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534E410EE47;
+	Fri, 21 Apr 2023 14:25:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com
- [IPv6:2607:f8b0:4864:20::129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850C010EE2A
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 14:22:05 +0000 (UTC)
-Received: by mail-il1-x129.google.com with SMTP id
- e9e14a558f8ab-329577952c5so693565ab.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 07:22:05 -0700 (PDT)
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
+ [IPv6:2607:f8b0:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D38010EE26
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 14:24:58 +0000 (UTC)
+Received: by mail-il1-x130.google.com with SMTP id
+ e9e14a558f8ab-328cb023b1dso695535ab.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 07:24:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1682086924; x=1684678924;
+ d=google.com; s=20221208; t=1682087098; x=1684679098;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=iRE0WrMWpFap+y3dmkLyk4ksWv38PiYMbGEKVJWOWPE=;
- b=AnE8soA78cRTw/z6Mdl8v01EinY7b2zJC51/fkhvnxo5uCo0UL/jUJ5eGG8GHlK3q9
- /jEMi5cgCHXZY96W4+enSewpX/ixcLd+iCK8H+KhRTShFuwJT3LuyCk0JPDeGtQ0Pmvv
- HLI/WEYqsS8jVqiZz2E49H83PQPUgyz0+flfFchksW2GqE0c8RYZXnKJtBWNfwLf1LnU
- aE91dPOB9Vg6lS5Y+qM7c8I8fkR7pIyxcKyOPDs/EKeMZonyVcq3hu/VOJVghmjH3PuO
- McGPKBxcpjzc8u3VaiQw3aQhPKqqVbE5FZQcONugpSeuIDR7c0orO03m5TP30Nxd6Gbj
- vySA==
+ bh=Fev/HjWH2B8yyfQiDGZ9D/O2oZYyJ9gGuApag0ZRVwc=;
+ b=TVGpX8Rsft5hzMr9h6Hwyheu0HJYGuHxxs7ojc6Kil4QcUiO/DlWT0in/uLxRo6Cjj
+ k1VQcRlDqVO4SIIb5IVwDa4JdfL4zYLvXGhLV/kB+NM5PH/u+XjBKfnkjEQ9QVQmK60w
+ Vc8FzK6DfY5mi2TbK4uHxCC49bYsU4nxKZJdASBm+oks7LbQ+RxB90HBUI6mYlegxr7U
+ 1XR6A+LHNGRyTDAhBVssIxGbpCl6otjWPglcnEPEXNFs1XXpb+XtVA4I/tlXGMqxR+pq
+ 8D4T4nbhmC3rl/qw+IT0JwOuDIGlL0G4YOWFtTiFq80UoDYKM6UOS6EJnHjngA/3Jjn6
+ mLOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1682086924; x=1684678924;
+ d=1e100.net; s=20221208; t=1682087098; x=1684679098;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=iRE0WrMWpFap+y3dmkLyk4ksWv38PiYMbGEKVJWOWPE=;
- b=Jcis++jliBnRzOwA1p565ICavyBEZw7+mUqoe4sASPMnI9GndKDNRnYyYM86Sq/6wc
- DaqIz6HrnLBKovZ4Q4tx1DMHVyMePTfbeqRI9FO4fBDmd2/6yvweQ5UQrC6tgzWfNKzN
- bbLmH9FyHcOxDxb3vrArNWHqbLubDSQ46ArS0AV9RozfyPG2GlKi8PaQH5jUqKoS/mGZ
- A93K3RR2PawsvT6PrHF97gVgHMEvumnS4u4cUpLjH0d6nl9FXJITuAxl8suz93Dow61U
- wWqNx/89f0f1/Nrs+3mA0mZMyBJEROZbi0JrS4EYbhKonOuxvEMV10WhsaV06tDUdCVc
- I/sw==
-X-Gm-Message-State: AAQBX9f47/vwojLOFdDOJ94VCNhrdhD2Csff4EjfMoXotYzxj5u1poIW
- D6POPZIlCvQYkdB8Uv+j1NNYV4ELKA81vgm0oEciDA==
-X-Google-Smtp-Source: AKy350Z5Y1EuWQtA/tAHv2ZVhpFhudRKTHIxZvAilofNgLnO6LpBNA7CYSqGbpfNSM/qyCZvw+VVotb7Zt5JQ8D2KA0=
-X-Received: by 2002:a92:ca05:0:b0:32a:baa8:2253 with SMTP id
- j5-20020a92ca05000000b0032abaa82253mr322511ils.8.1682086924161; Fri, 21 Apr
- 2023 07:22:04 -0700 (PDT)
+ bh=Fev/HjWH2B8yyfQiDGZ9D/O2oZYyJ9gGuApag0ZRVwc=;
+ b=CjlJLyIrOcnb6mwhVecJO0HTvUCvts4ngGnEOlxrHeFM/TTeNpvy7NsFq/zJUNVarB
+ iNsUYj4AzgPfqzpt0xgJ01YOxIuZsKlqeb9ZBEBJeB8KsYdboULDtCVtnGRU4mhs9UOA
+ M6bZjnNgxvy1LW4gd5NbyXAxWKPfA7nrWslZfK7/a24NT98NWTjLczs+8mmqZfhommSQ
+ RFLbNT2eWfP28TLbQ0XXxQzDUMxOyFpNVdC1w5hU95Sa+mL7uw1PSI1QjfL5iwEXFjcg
+ ZkHxT6dGuEEIG+lCuqnz5triXsXwuAMwDH7hd0UMsO4NEApsu6H2w6I+MDuVsvsgn6Rf
+ y+wQ==
+X-Gm-Message-State: AAQBX9clUqR8sMowcJsvtpNnB5kYH+GyeWEzo6m6PtzqdNfRqvwUnsc+
+ 6DXIeSoe2RwmBJdNSfQ6STUs2/BjefKaEwMDfYUCPw==
+X-Google-Smtp-Source: AKy350Z0juoPECKlzKlGMdUfKVumXOK21XHMESzNTTUc7EvrFvimwX3M8kvTGyloRw/nYChUw0o5sGJI99iK2oqYk/g=
+X-Received: by 2002:a05:6e02:1a22:b0:32a:b8fd:19be with SMTP id
+ g2-20020a056e021a2200b0032ab8fd19bemr279553ile.18.1682087097600; Fri, 21 Apr
+ 2023 07:24:57 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230224-track_gt-v7-0-11f08358c1ec@intel.com>
- <20230224-track_gt-v7-4-11f08358c1ec@intel.com>
-In-Reply-To: <20230224-track_gt-v7-4-11f08358c1ec@intel.com>
+ <20230224-track_gt-v7-1-11f08358c1ec@intel.com>
+In-Reply-To: <20230224-track_gt-v7-1-11f08358c1ec@intel.com>
 From: Eric Dumazet <edumazet@google.com>
-Date: Fri, 21 Apr 2023 16:21:50 +0200
-Message-ID: <CANn89i+1UML+p1N+bHFXG70V_AqOTQA7fh10_ASvThNK7gvUMw@mail.gmail.com>
+Date: Fri, 21 Apr 2023 16:24:43 +0200
+Message-ID: <CANn89iL65YYs_+cJs6STTH=7n22VLi-eru2FzFh1rtrxp_a7Aw@mail.gmail.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v7 4/7] lib/ref_tracker: remove warnings in
- case of allocation failure
+Subject: Re: [Intel-gfx] [PATCH v7 1/7] lib/ref_tracker: add unlocked leak
+ print helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,14 +82,17 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, Apr 21, 2023 at 1:35=E2=80=AFPM Andrzej Hajda <andrzej.hajda@intel.=
 com> wrote:
 >
-> Library can handle allocation failures. To avoid allocation warnings
-> __GFP_NOWARN has been added everywhere. Moreover GFP_ATOMIC has been
-> replaced with GFP_NOWAIT in case of stack allocation on tracker free
-> call.
+> To have reliable detection of leaks, caller must be able to check under t=
+he same
+> lock both: tracked counter and the leaks. dir.lock is natural candidate f=
+or such
+> lock and unlocked print helper can be called with this lock taken.
+> As a bonus we can reuse this helper in ref_tracker_dir_exit.
 >
 > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 > ---
 
+SGTM, thanks.
+
 Reviewed-by: Eric Dumazet <edumazet@google.com>
-Thanks.
