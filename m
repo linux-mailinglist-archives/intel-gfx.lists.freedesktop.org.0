@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2706EA0EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 03:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 205F46EA0E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 03:15:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDEEB10ED75;
-	Fri, 21 Apr 2023 01:15:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA4BE10E12F;
+	Fri, 21 Apr 2023 01:15:33 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D03710E308;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCA610E12F;
  Fri, 21 Apr 2023 01:15:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682039732; x=1713575732;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZnlFMrm3vSe/fgzpcy4mVJfRTwg0AFpN2wuu12IUBAg=;
- b=jXeWBCp8xq4KGeTJz//1m8dLvUTXiVXtegIGeoSr3Brty2xW/JGBG7F6
- exAn4PW9DpNH3/STaeDXNlhjT5gic8EVpLbsXKSatce7xR+QP98jBoXBk
- zdzMYqiDpHczbeRhVPQCQT3gQS04x2GpzBi1Zk8bcjBW7o3lfuiMdrW+i
- 14PRSJrwjqAt2HpodgGDFSFqxg+FvglCa8KUVZMe8c04J0i1f8v81fmhh
- oOTjGyRpM6VGklsWse3J9WB+7mCApCjVhHu4v28pQ4RrUDDOuxGhsrnfy
- 5qjJXc6c1ZbXeD4PBx8Z2KxF/wlTwgHZ52zMDn4nkhIoBJrN6YaRZmizM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="343380936"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="343380936"
+ bh=iTOCIJh8xOMcFcx3QwMEkF3KAA1MhumGZ1hg2579bb8=;
+ b=GhOasBan+gs3HscpEcVPbl5IG6NGzF1xDY/Pg5QHG9AXen27gXpWRGSa
+ UIHftEPSQNV4H8683Im7JG2mNiETUqTlMBO9cOxtZkMSOca9iSOylUX1Z
+ ZpgGlij9OW6+aflYruJcwA+F0vuzVwDkR735pqBGh0YzkY5nTCtVdV9VM
+ 8YhRgtkBrATenu0NLZdyOfgHlN4p9P9ZOwib30vrdDZ4i/gUvTfMpb1RM
+ QEn39osTxJcZkcOKYqU8ivRfXwjN6FEnuzOrgl9h0TyQV/tiHuDPlmK4j
+ It4uOPoPwoV90K55mfoHqbwCFnDijbOx03fsj4UC6YUSA5fmgYMPKrtWX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="343380937"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="343380937"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Apr 2023 18:15:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="692114481"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="692114481"
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="692114483"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="692114483"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orsmga002.jf.intel.com with ESMTP; 20 Apr 2023 18:15:30 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu, 20 Apr 2023 18:15:20 -0700
-Message-Id: <20230421011525.3282664-2-John.C.Harrison@Intel.com>
+Date: Thu, 20 Apr 2023 18:15:21 -0700
+Message-Id: <20230421011525.3282664-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230421011525.3282664-1-John.C.Harrison@Intel.com>
 References: <20230421011525.3282664-1-John.C.Harrison@Intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/6] drm/i915/guc: Decode another GuC load
- failure case
+Subject: [Intel-gfx] [PATCH 2/6] drm/i915/guc: Print status register when
+ waiting for GuC to load
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +65,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Explain another potential firmware failure mode and early exit the
-long wait if hit.
+If the GuC load is taking an excessively long time, the wait loop
+currently prints the GT frequency. Extend that to include the GuC
+status as well so we can see if the GuC is actually making progress or
+not.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c       | 6 ++++++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-index bcb1129b36102..dabeaf4f245f3 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-@@ -44,6 +44,7 @@ enum intel_guc_load_status {
- enum intel_bootrom_load_status {
- 	INTEL_BOOTROM_STATUS_NO_KEY_FOUND                 = 0x13,
- 	INTEL_BOOTROM_STATUS_AES_PROD_KEY_FOUND           = 0x1A,
-+	INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE       = 0x2B,
- 	INTEL_BOOTROM_STATUS_RSA_FAILED                   = 0x50,
- 	INTEL_BOOTROM_STATUS_PAVPC_FAILED                 = 0x73,
- 	INTEL_BOOTROM_STATUS_WOPCM_FAILED                 = 0x74,
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-index 6fda3aec5c66a..0ff088a5e51a8 100644
+index 0ff088a5e51a8..364d0d546ec82 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-@@ -129,6 +129,7 @@ static inline bool guc_load_done(struct intel_uncore *uncore, u32 *status, bool
- 	case INTEL_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
- 	case INTEL_BOOTROM_STATUS_MPUMAP_INCORRECT:
- 	case INTEL_BOOTROM_STATUS_EXCEPTION:
-+	case INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
- 		*success = false;
- 		return true;
- 	}
-@@ -219,6 +220,11 @@ static int guc_wait_ucode(struct intel_guc *guc)
- 			guc_info(guc, "firmware signature verification failed\n");
- 			ret = -ENOEXEC;
+@@ -191,8 +191,10 @@ static int guc_wait_ucode(struct intel_guc *guc)
+ 		if (!ret || !success)
  			break;
-+
-+		case INTEL_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-+			guc_info(guc, "firmware production part check failure\n");
-+			ret = -ENOEXEC;
-+			break;
- 		}
  
- 		switch (ukernel) {
+-		guc_dbg(guc, "load still in progress, count = %d, freq = %dMHz\n",
+-			count, intel_rps_read_actual_frequency(&uncore->gt->rps));
++		guc_dbg(guc, "load still in progress, count = %d, freq = %dMHz, status = 0x%08X [0x%02X/%02X]\n",
++			count, intel_rps_read_actual_frequency(&uncore->gt->rps), status,
++			REG_FIELD_GET(GS_BOOTROM_MASK, status),
++			REG_FIELD_GET(GS_UKERNEL_MASK, status));
+ 	}
+ 	after = ktime_get();
+ 	delta = ktime_sub(after, before);
 -- 
 2.39.1
 
