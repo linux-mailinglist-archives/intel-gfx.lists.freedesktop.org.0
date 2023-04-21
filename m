@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 671906EAD12
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:37:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE1446EAD5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F4610EE27;
-	Fri, 21 Apr 2023 14:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED90010E117;
+	Fri, 21 Apr 2023 14:46:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE4E10EE27;
- Fri, 21 Apr 2023 14:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682087869; x=1713623869;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=DJwRbyhL7AkSvrMwAW6oiSEGJn5TZ51UzJgVKzDi2pk=;
- b=a+Ks2aLNt1vw7voiUBcItMPhpIF4kIgioj5Mcq0YJuXy/IdvF1E1N+n/
- x6NwjPlmB4V6iwweRwKxO9lXDGnBMspdh8OvLIGUCjFLYXguSORcaRZSn
- QCRl11RP6fxktcUg5EqcW6esYIzOAp7+PQf9u5EZ18jERi3KtIHJjHlmX
- pp02LSEscJizWIcCvnZTdju8AcXN+LE/u3GvAem0cdlBJbcnREpXUtBx2
- Rn+ZWZT+627WPc1c5OAhdG6V+m+FKA1NrNQsXuKikY3PQiiOfQDpKCIHp
- NlgkluFyxXppxXi7RF/nkpNBUg7UxVWF0C0xKBgZkEJVb//MQwRRPc42l g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="334883675"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="334883675"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 07:37:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="761598674"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="761598674"
-Received: from abaldovi-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.57.154])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 07:37:44 -0700
-Date: Fri, 21 Apr 2023 16:37:39 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Message-ID: <ZEKfs1yLQqD6IFGX@ashyti-mobl2.lan>
-References: <20230421134654.273182-1-andi.shyti@linux.intel.com>
- <20230421134654.273182-2-andi.shyti@linux.intel.com>
- <ZEKW/VslWeV+sGlq@rdvivi-mobl4> <ZEKYE+bWcV5Gg00L@rdvivi-mobl4>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 178CF10E117;
+ Fri, 21 Apr 2023 14:46:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 10888AADD5;
+ Fri, 21 Apr 2023 14:46:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZEKYE+bWcV5Gg00L@rdvivi-mobl4>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/i915_drv: Use proper parameter
- naming in for_each_gt()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 21 Apr 2023 14:46:16 -0000
+Message-ID: <168208837604.5828.16379246358054713350@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230421120307.24793-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230421120307.24793-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/psr=3A_Restore_HSW/BDW_PSR1?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +40,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+== Series Details ==
 
-On Fri, Apr 21, 2023 at 10:05:07AM -0400, Rodrigo Vivi wrote:
-> On Fri, Apr 21, 2023 at 10:00:29AM -0400, Rodrigo Vivi wrote:
-> > On Fri, Apr 21, 2023 at 03:46:53PM +0200, Andi Shyti wrote:
-> > > for_each_gt() loops through engines in the GT, not in dev_priv.
-> > 
-> > typo here? ^
-> > 
-> > with that fixed:
-> 
-> oh, in the commit subject as well...
+Series: drm/i915/psr: Restore HSW/BDW PSR1
+URL   : https://patchwork.freedesktop.org/series/116814/
+State : warning
 
-The power of habit! Thanks!
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+142f6d9f694b drm/i915: Re-init clock gating on coming out of PC8+
+fceac0743cce drm/i915/psr: Fix BDW PSR AUX CH data register offsets
+-:26: WARNING:LONG_LINE_COMMENT: line length of 111 exceeds 100 columns
+#26: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:84:
++#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+f2797b5b7fb7 drm/i915/psr: Wrap PSR1 register with functions
+-:142: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#142: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1242:
++		    intel_de_read(dev_priv, psr_ctl_reg(dev_priv, cpu_transcoder)) & EDP_PSR_ENABLE);
+
+total: 0 errors, 1 warnings, 0 checks, 208 lines checked
+d3088201e30c drm/i915/psr: Reintroduce HSW PSR1 registers
+e70295cefd48 drm/i915/psr: Bring back HSW/BDW PSR AUX CH registers/setup
+40c55dcdbc37 drm/i915/psr: HSW/BDW have no PSR2
+988e78a2917e drm/i915/psr: Restore PSR interrupt handler for HSW
+db43341eea49 drm/i915/psr: Implement WaPsrDPAMaskVBlankInSRD:hsw
+2117b84e684f drm/i915/psr: Implement WaPsrDPRSUnmaskVBlankInSRD:hsw
+-:13: WARNING:TYPO_SPELLING: 'correspoding' may be misspelled - perhaps 'corresponding'?
+#13: 
+in case it matters in some cases, and the correspoding bit
+                                          ^^^^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
+78f16cfafe7a drm/i915/psr: Do no mask display register writes on hsw/bdw
+200f043d0bf0 drm/i915/psr: Don't skip both TP1 and TP2/3 on hsw/bdw
+1b6709cbd4de drm/i915/psr: Allow PSR with sprite enabled on hsw/bdw
+41a11c91c60f drm/i915/psr: Re-enable PSR1 on hdw/bdw
+
+
