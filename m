@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB066EA9E4
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 14:03:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CB76EA9E5
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 14:03:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4B1910EE0C;
-	Fri, 21 Apr 2023 12:03:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63DF910EE12;
+	Fri, 21 Apr 2023 12:03:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4693410EE0E
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 12:03:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6598810EE0C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 12:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682078618; x=1713614618;
+ t=1682078621; x=1713614621;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=TMoHOl3M1kp5lZzgvVhEgWzDwdgCpCuRx2DPLWW9fBw=;
- b=OgoKhqLB8KQU5pMAxAadefRa66qs5+xZ4CLNMnnheDPZMw4jfQv7druC
- X0E1b87yDKXag1t6wWqxaZua9ABcPTK1H+hcDgWMkECNa08z+ZxU5ZmyD
- kEf6K3OgExYNihcjAy1y30KueOa8XnoXPT/elkxp+pTvGvNgJ93scI7LM
- 39jvzEGV/foSOU6IWP51mRPkCvFFRypKAMNsDJfqRUwGJR2airfFhived
- tJPkhlVDKrR9+8ZgBLy73eIJX6KSDeAKmKRSsfUupMlGSsnBWT3bYRVvA
- Ngq5jBVoILzXu7xahQ0dnXeKRjXydFYnTlqaSQOdjrTbjvqwz4IieDJWI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="373900135"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="373900135"
+ bh=xtKg76LqwgwtAmlGv0Ypkp8ORUQ6s9AK8W2RzI6YGHE=;
+ b=cQqmKusURvdK8x/TCiYOBq4dlEtIUXBZQfcPUHy31Hk7jSrL1FKuwtdV
+ 1HjJxakPbPfZAD6Ouje6uGC0ff36lSPTpJ4EdW+nlAlY2pIDPgNnAQWRC
+ tEes789EZc/dVsjW9qgvndsAg61sTg+c9Lx8eLrLDJH/BbWbyMBqqY91a
+ CV5K84W9XYvsu0H79lYYBnhX9VnKG8CkRiabTjTHDEAPTkgWTjiQroWJm
+ nT8vUO3lBa5zjKhJCB7zWF9auQefaic613SaiClnxzWsfd6mBUFHV+hK1
+ kOCHa9jB16c40yfHpGhUiCxtIDLN7ayxBCyQXWeQvLwc2qmgKvyPkRJqu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="373900143"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="373900143"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 05:03:37 -0700
+ 21 Apr 2023 05:03:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="722725463"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="722725463"
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="722725465"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="722725465"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 21 Apr 2023 05:03:35 -0700
+ by orsmga008.jf.intel.com with SMTP; 21 Apr 2023 05:03:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Apr 2023 15:03:35 +0300
+ Fri, 21 Apr 2023 15:03:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 15:03:03 +0300
-Message-Id: <20230421120307.24793-10-ville.syrjala@linux.intel.com>
+Date: Fri, 21 Apr 2023 15:03:04 +0300
+Message-Id: <20230421120307.24793-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230421120307.24793-1-ville.syrjala@linux.intel.com>
 References: <20230421120307.24793-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 09/13] drm/i915/psr: Implement
- WaPsrDPRSUnmaskVBlankInSRD:hsw
+Subject: [Intel-gfx] [PATCH 10/13] drm/i915/psr: Do no mask display register
+ writes on hsw/bdw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +65,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Bspec asks us to unmask "vblank to registers" in the DPRS unit.
+hsw/bdw lack the pipe register vs. display register distinction
+in their PSR masking capabilities. So to keep our CURSURFLIVE
+tricks working we need to just unmask all display register writes
+on these platforms. The downside being that any display regitster
+(eg. even SWF regs) will cause a PSR exit.
 
-Note that I was unable to observe any change in hardware
-behviour due to this bit on HSW. But let's do this anyway
-in case it matters in some cases, and the correspoding bit
-on BDW is abolutely critical as without it the hardware
-won't generate any vblanks whatsoever after PSR exit.
+Note that WaMaskMMIOWriteForPSR asks us to mask this on bdw, but
+that won't work since we need those CURSURFLIVE tricks. Observations
+on actual hardware show that this causes one extra PSR exit ~every
+10 seconds, which is pretty much irrelevant. I suspect this is
+due to the pcode poking at IPS_CTL. Disabling IPS does not stop it
+however, so either I'm wrong or pcode pokes at the register
+regardless of whether it's actually trying to enable/disable IPS.
+Also when the machine is busy (eg. just running 'find /') these
+extra PSR exits cease, which again points at pcode or some other
+PM entity as being the culprit.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_clock_gating.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 9682323510cd..d9600cd1ab06 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -559,12 +559,20 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index f5089565e800..d871a7d3357a 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1392,7 +1392,11 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	       EDP_PSR_DEBUG_MASK_LPSP |
+ 	       EDP_PSR_DEBUG_MASK_MAX_SLEEP;
  
- static void hsw_init_clock_gating(struct drm_i915_private *i915)
- {
-+	enum pipe pipe;
-+
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
- 	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+-	if (DISPLAY_VER(dev_priv) < 11)
++	/*
++	 * No separate pipe reg write mask on hsw/bdw, so have to unmask all
++	 * registers in order to keep the CURSURFLIVE tricks working :(
++	 */
++	if (IS_DISPLAY_VER(dev_priv, 9, 10))
+ 		mask |= EDP_PSR_DEBUG_MASK_DISP_REG_WRITE;
  
- 	/* WaPsrDPAMaskVBlankInSRD:hsw */
- 	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
- 
-+	for_each_pipe(i915, pipe) {
-+		/* WaPsrDPRSUnmaskVBlankInSRD:hsw */
-+		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
-+				 0, HSW_UNMASK_VBL_TO_REGS_IN_SRD);
-+	}
-+
- 	/* This is required by WaCatErrorRejectionIssue:hsw */
- 	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
- 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+ 	intel_de_write(dev_priv, psr_debug_reg(dev_priv, cpu_transcoder), mask);
 -- 
 2.39.2
 
