@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41D76EB536
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 00:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA896EB54A
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 00:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1889C10EF1E;
-	Fri, 21 Apr 2023 22:47:49 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73B0E10EF1E;
- Fri, 21 Apr 2023 22:47:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682117267; x=1713653267;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=N5Nz96zPTT4S7mlCkKCfzlD42lLGoMbiPHT6/A6l4MA=;
- b=VpaCsIrVds41sU9DkTdbWIpTTBZIOC0w/tff1xdsviSgmG5lAGxPUxb7
- ZyggYeQSaurs19onEnbcGkJNwb1zp4rbTdkHBlo8iKqjzBfOW1hVtNvAz
- eQxp/HMgt5nZz/JxTxPpSooT2+l3SwiiTrq7eIvv0eq4GQjMf1oPS0eTT
- IZFDqKXN+rBNPrVymXDk06QtJIWwru7At9RZpzwopWOZqEqg9qzGaG3il
- X+8hYsarIh0vD9JCDtNBoYtVUjJvM5JSytc7UYWPw0t2It976k/atC1Q3
- jHSfj+R0mJqjY+MIep1bzwQKrDzU9us96d0xg6+8zZCJhqXtprhBhKmhU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="374033672"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="374033672"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 15:47:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="642669301"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="642669301"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orsmga003.jf.intel.com with ESMTP; 21 Apr 2023 15:47:46 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Fri, 21 Apr 2023 15:47:42 -0700
-Message-Id: <20230421224742.2357198-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAED010EA72;
+	Fri, 21 Apr 2023 22:58:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C80210E3B9;
+ Fri, 21 Apr 2023 22:58:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3270A02F0;
+ Fri, 21 Apr 2023 22:58:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Actually return an error if GuC
- version range check fails
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Date: Fri, 21 Apr 2023 22:58:14 -0000
+Message-ID: <168211789477.5828.5499503677142017639@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230421201829.922100-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20230421201829.922100-1-vinay.belgaumkar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv5=2C1/2=5D_drm/i915/guc/slpc=3A_Provid?=
+ =?utf-8?q?e_sysfs_for_efficient_freq?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,105 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dan Carpenter <error27@gmail.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, DRI-Devel@Lists.FreeDesktop.Org,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-Dan Carpenter pointed out that 'err' was not being set in the case
-where the GuC firmware version range check fails. Fix that.
+Series: series starting with [v5,1/2] drm/i915/guc/slpc: Provide sysfs for efficient freq
+URL   : https://patchwork.freedesktop.org/series/116840/
+State : warning
 
-Note that while this is bug fix for a previous patch (see Fixes tag
-below). It is an exceedingly low risk bug. The range check is
-asserting that the GuC firmware version is within spec. So it should
-not be possible to ever have a firmware file that fails this check. If
-larger version numbers are required in the future, that would be a
-backwards breaking spec change and thus require a major version bump,
-in which case an old i915 driver would not load that new version anyway.
+== Summary ==
 
-Fixes: 9bbba0667f37 ("drm/i915/guc: Use GuC submission API version number")
-Reported-by: Dan Carpenter <error27@gmail.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index a82a53dbbc86d..6b71b9febd74c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -636,9 +636,10 @@ static bool is_ver_8bit(struct intel_uc_fw_ver *ver)
- 	return ver->major < 0xFF && ver->minor < 0xFF && ver->patch < 0xFF;
- }
- 
--static bool guc_check_version_range(struct intel_uc_fw *uc_fw)
-+static int guc_check_version_range(struct intel_uc_fw *uc_fw)
- {
- 	struct intel_guc *guc = container_of(uc_fw, struct intel_guc, fw);
-+	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
- 
- 	/*
- 	 * GuC version number components are defined as being 8-bits.
-@@ -647,24 +648,24 @@ static bool guc_check_version_range(struct intel_uc_fw *uc_fw)
- 	 */
- 
- 	if (!is_ver_8bit(&uc_fw->file_selected.ver)) {
--		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
-+		gt_warn(gt, "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
- 			intel_uc_fw_type_repr(uc_fw->type),
- 			uc_fw->file_selected.ver.major,
- 			uc_fw->file_selected.ver.minor,
- 			uc_fw->file_selected.ver.patch);
--		return false;
-+		return -EINVAL;
- 	}
- 
- 	if (!is_ver_8bit(&guc->submission_version)) {
--		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
-+		gt_warn(gt, "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
- 			intel_uc_fw_type_repr(uc_fw->type),
- 			guc->submission_version.major,
- 			guc->submission_version.minor,
- 			guc->submission_version.patch);
--		return false;
-+		return -EINVAL;
- 	}
- 
--	return true;
-+	return i915_inject_probe_error(gt->i915, -EINVAL);
- }
- 
- static int check_fw_header(struct intel_gt *gt,
-@@ -773,8 +774,11 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	if (err)
- 		goto fail;
- 
--	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC && !guc_check_version_range(uc_fw))
--		goto fail;
-+	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC) {
-+		err = guc_check_version_range(uc_fw);
-+		if (err)
-+			goto fail;
-+	}
- 
- 	if (uc_fw->file_wanted.ver.major && uc_fw->file_selected.ver.major) {
- 		/* Check the file's major version was as it claimed */
--- 
-2.39.1
 
