@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A5A6EB296
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 21:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3CC6EB2D3
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 22:19:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B6510EEEB;
-	Fri, 21 Apr 2023 19:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B9410E112;
+	Fri, 21 Apr 2023 20:19:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DC0410EEE0;
- Fri, 21 Apr 2023 19:57:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1505FA0BA8;
- Fri, 21 Apr 2023 19:57:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4087806831074951270=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F355210E112;
+ Fri, 21 Apr 2023 20:19:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682108344; x=1713644344;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xDMk5x0pu9Cr6UkJUQQLYh97lkrFmX5RBEt4nKfn/GQ=;
+ b=SWstms+MqtHEMCyxvQdLf12TgxOXyt2KTL+8m5KcnG7ZHpmmlDF2EOkV
+ tAlcv/P6b9fT1o+5mhGdACH5JO4gxyMeKfT2GBvpHnHohzBq4a1WOs0MG
+ 933pSA7+gi6L+Ln6gSMWAurssI32mTj2wcbH61K+5+YmSdHEO7AWcPz4C
+ vPTZkjC9ywJqVs1HRBKLJQQOrsw1gN0uk3oAzPIDgHoTTMi2I5hIWGyu+
+ UmjtfdYADk/Jm+nCFfGTAgogZ6rVAOjyLYaQezV/ttzpHcHOePbtDZUE2
+ EqOtbMX/NLuLYl60W/hGesbD7BSQLZGJNATxjirkyoQsJDSLP/NTUBhWj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="344827347"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="344827347"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2023 13:19:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="1022024654"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="1022024654"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2023 13:19:02 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 21 Apr 2023 13:18:28 -0700
+Message-Id: <20230421201829.922100-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nikita Zhandarovich" <n.zhandarovich@fintech.ru>
-Date: Fri, 21 Apr 2023 19:57:37 -0000
-Message-ID: <168210705705.5824.172393266687278055@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
-In-Reply-To: <20230412152910.9486-1-n.zhandarovich@fintech.ru>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igdmlk?=
- =?utf-8?q?eo/hdmi=3A_minor_fixes_for_*=5Finfoframe=5Finit_functions_=28re?=
- =?utf-8?b?djIp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 1/2] drm/i915/guc/slpc: Provide sysfs for
+ efficient freq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,232 +56,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4087806831074951270==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+SLPC enables use of efficient freq at init by default. It is
+possible for GuC to request frequencies that are higher than
+the 'software' max if user has set it lower than the efficient
+level.
 
-== Series Details ==
+Scenarios/tests that require strict fixing of freq below the efficient
+level will need to disable it through this interface.
 
-Series: video/hdmi: minor fixes for *_infoframe_init functions (rev2)
-URL   : https://patchwork.freedesktop.org/series/116819/
-State : success
+v2: Keep just one interface to toggle sysfs. With this, user will
+be completely responsible for toggling efficient frequency if need
+be. There will be no implicit disabling when user sets min < RP1 (Ashutosh)
 
-== Summary ==
+v3: Remove unused label, review comments (Ashutosh)
 
-CI Bug Log - changes from CI_DRM_13043 -> Patchwork_116819v2
-====================================================
+v4: Toggle efficient freq usage in SLPC selftest and checkpatch fixes
 
-Summary
--------
+v5: Review comments (Andi) and add a separate patch for selftest updates
 
-  **SUCCESS**
+Fixes: 95ccf312a1e4 ("drm/i915/guc/slpc: Allow SLPC to use efficient frequency")
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 35 +++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 38 +++++++++++++------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |  1 +
+ 4 files changed, 64 insertions(+), 11 deletions(-)
 
-  No regressions found.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+index 28f27091cd3b..ee2b44f896a2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+@@ -451,6 +451,33 @@ static ssize_t punit_req_freq_mhz_show(struct kobject *kobj,
+ 	return sysfs_emit(buff, "%u\n", preq);
+ }
+ 
++static ssize_t slpc_ignore_eff_freq_show(struct kobject *kobj,
++					 struct kobj_attribute *attr,
++					 char *buff)
++{
++	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
++	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
++
++	return sysfs_emit(buff, "%u\n", slpc->ignore_eff_freq);
++}
++
++static ssize_t slpc_ignore_eff_freq_store(struct kobject *kobj,
++					  struct kobj_attribute *attr,
++					  const char *buff, size_t count)
++{
++	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
++	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
++	int err;
++	u32 val;
++
++	err = kstrtou32(buff, 0, &val);
++	if (err)
++		return err;
++
++	err = intel_guc_slpc_set_ignore_eff_freq(slpc, val);
++	return err ?: count;
++}
++
+ struct intel_gt_bool_throttle_attr {
+ 	struct attribute attr;
+ 	ssize_t (*show)(struct kobject *kobj, struct kobj_attribute *attr,
+@@ -663,6 +690,8 @@ static struct kobj_attribute attr_media_freq_factor_scale =
+ INTEL_GT_ATTR_RO(media_RP0_freq_mhz);
+ INTEL_GT_ATTR_RO(media_RPn_freq_mhz);
+ 
++INTEL_GT_ATTR_RW(slpc_ignore_eff_freq);
++
+ static const struct attribute *media_perf_power_attrs[] = {
+ 	&attr_media_freq_factor.attr,
+ 	&attr_media_freq_factor_scale.attr,
+@@ -744,6 +773,12 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
+ 	if (ret)
+ 		gt_warn(gt, "failed to create punit_req_freq_mhz sysfs (%pe)", ERR_PTR(ret));
+ 
++	if (intel_uc_uses_guc_slpc(&gt->uc)) {
++		ret = sysfs_create_file(kobj, &attr_slpc_ignore_eff_freq.attr);
++		if (ret)
++			gt_warn(gt, "failed to create ignore_eff_freq sysfs (%pe)", ERR_PTR(ret));
++	}
++
+ 	if (i915_mmio_reg_valid(intel_gt_perf_limit_reasons_reg(gt))) {
+ 		ret = sysfs_create_files(kobj, throttle_reason_attrs);
+ 		if (ret)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 026d73855f36..56dbba1ef668 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -277,6 +277,7 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+ 
+ 	slpc->max_freq_softlimit = 0;
+ 	slpc->min_freq_softlimit = 0;
++	slpc->ignore_eff_freq = false;
+ 	slpc->min_is_rpmax = false;
+ 
+ 	slpc->boost_freq = 0;
+@@ -457,6 +458,29 @@ int intel_guc_slpc_get_max_freq(struct intel_guc_slpc *slpc, u32 *val)
+ 	return ret;
+ }
+ 
++int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val)
++{
++	struct drm_i915_private *i915 = slpc_to_i915(slpc);
++	intel_wakeref_t wakeref;
++	int ret;
++
++	mutex_lock(&slpc->lock);
++	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
++
++	ret = slpc_set_param(slpc,
++			     SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
++			     val);
++	if (ret)
++		guc_probe_error(slpc_to_guc(slpc), "Failed to set efficient freq(%d): %pe\n",
++				val, ERR_PTR(ret));
++	else
++		slpc->ignore_eff_freq = val;
++
++	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
++	mutex_unlock(&slpc->lock);
++	return ret;
++}
++
+ /**
+  * intel_guc_slpc_set_min_freq() - Set min frequency limit for SLPC.
+  * @slpc: pointer to intel_guc_slpc.
+@@ -482,16 +506,6 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
+ 	mutex_lock(&slpc->lock);
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+-	/* Ignore efficient freq if lower min freq is requested */
+-	ret = slpc_set_param(slpc,
+-			     SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+-			     val < slpc->rp1_freq);
+-	if (ret) {
+-		guc_probe_error(slpc_to_guc(slpc), "Failed to toggle efficient freq: %pe\n",
+-				ERR_PTR(ret));
+-		goto out;
+-	}
+-
+ 	ret = slpc_set_param(slpc,
+ 			     SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+ 			     val);
+@@ -499,7 +513,6 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
+ 	if (!ret)
+ 		slpc->min_freq_softlimit = val;
+ 
+-out:
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ 	mutex_unlock(&slpc->lock);
+ 
+@@ -752,6 +765,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 	/* Set cached media freq ratio mode */
+ 	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
+ 
++	/* Set cached value of ignore efficient freq */
++	intel_guc_slpc_set_ignore_eff_freq(slpc, slpc->ignore_eff_freq);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+index 17ed515f6a85..597eb5413ddf 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+@@ -46,5 +46,6 @@ void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
+ void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
+ int intel_guc_slpc_unset_gucrc_mode(struct intel_guc_slpc *slpc);
+ int intel_guc_slpc_override_gucrc_mode(struct intel_guc_slpc *slpc, u32 mode);
++int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+index a6ef53b04e04..a88651331497 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+@@ -31,6 +31,7 @@ struct intel_guc_slpc {
+ 	/* frequency softlimits */
+ 	u32 min_freq_softlimit;
+ 	u32 max_freq_softlimit;
++	bool ignore_eff_freq;
+ 
+ 	/* cached media ratio mode */
+ 	u32 media_ratio_mode;
+-- 
+2.38.1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/index.html
-
-Participating hosts (36 -> 36)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116819v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4] ([i915#7911] / [i915#7913])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-glk-j4005:       [PASS][5] -> [DMESG-FAIL][6] ([i915#5334])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][8] -> [ABORT][9] ([i915#4983] / [i915#8384])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg1-7:          [PASS][10] -> [ABORT][11] ([i915#4983])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg1-7/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-dg1-7/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271]) +16 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][13] ([i915#3546])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13043 -> Patchwork_116819v2
-
-  CI-20190529: 20190529
-  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116819v2: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-188c8acce610 video/hdmi: minor fixes for *_infoframe_init functions
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/index.html
-
---===============4087806831074951270==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>video/hdmi: minor fixes for *_infoframe_init functions (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116819/">https://patchwork.freedesktop.org/series/116819/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13043 -&gt; Patchwork_116819v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 36)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116819v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg1-7/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-dg1-7/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116819v2/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13043 -&gt; Patchwork_116819v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116819v2: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>188c8acce610 video/hdmi: minor fixes for *_infoframe_init functions</p>
-
-</body>
-</html>
-
---===============4087806831074951270==--
