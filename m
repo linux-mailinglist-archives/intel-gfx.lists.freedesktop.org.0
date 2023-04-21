@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E7C6EAAF4
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 14:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5B56EAB14
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 14:56:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7C410E03E;
-	Fri, 21 Apr 2023 12:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A902410E1AD;
+	Fri, 21 Apr 2023 12:56:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23B6510E03E
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Apr 2023 12:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682081568; x=1713617568;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=soTq20W9Ry/CqZBjvnUe+k9f2DEKFX1N1NIV9q58fGI=;
- b=gvzfCUS0EK6IBvcrkY9pgakqSJpZarlv8uHdos7+c8lSEWvRI4hQ6YME
- OKV0nk2SzUGhux2YRsuYD4bOR99TeMr2oqKpByjK2Uomgx5VrMdhJZgcn
- KZBX1bfGojDYlAUik3pZknv8Yl79NQdgAJea8uH8LzwyvCvKlJj+ENbf1
- fBdu0VtXANqoxc94GlIgWRJ1UNER7DvXZp7+0ZmKIdotVTNEzUCG0zqRR
- 7ytWbVpaGXMmy/fiW9ghy4XVaeZY6IRxFoTDb4G//dEZfmq/bHsHVch6i
- PI8AYUAq/LtadH28ApBEWuEmXiwAlAoaT+oxg30xvhs6gh6TADWihQ587 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="347884689"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="347884689"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 05:52:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="722733931"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="722733931"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 21 Apr 2023 05:52:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Apr 2023 15:52:43 +0300
-Date: Fri, 21 Apr 2023 15:52:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <ZEKHG4tK7RsJn2N4@intel.com>
-References: <20230421083520.14486-1-stanislav.lisovskiy@intel.com>
- <ZEJWsA2E03EWrSf3@intel.com> <ZEJ1Z2gnKPswMks7@intel.com>
- <ZEJ/XgsHWBrwWeEa@intel.com> <ZEKE/WzxGHX6tE/2@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 285F610E080;
+ Fri, 21 Apr 2023 12:56:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 22AB9A02F0;
+ Fri, 21 Apr 2023 12:56:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZEKE/WzxGHX6tE/2@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Copy c10 phy pll sw state
- from master to slave for bigjoiner
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Fri, 21 Apr 2023 12:56:37 -0000
+Message-ID: <168208179713.5824.556446406442343997@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230224-track_gt-v7-0-11f08358c1ec@intel.com>
+In-Reply-To: <20230224-track_gt-v7-0-11f08358c1ec@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_use_ref=5Ftracker_library_for_tracking_wakerefs?=
+ =?utf-8?q?_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,67 +41,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 21, 2023 at 03:43:41PM +0300, Lisovskiy, Stanislav wrote:
-> On Fri, Apr 21, 2023 at 03:19:42PM +0300, Ville Syrjälä wrote:
-> > On Fri, Apr 21, 2023 at 02:37:11PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Fri, Apr 21, 2023 at 12:26:08PM +0300, Ville Syrjälä wrote:
-> > > > On Fri, Apr 21, 2023 at 11:35:20AM +0300, Stanislav Lisovskiy wrote:
-> > > > > We try to verify pll registers in sw state for slave crtc with the hw state.
-> > > > > However in case of bigjoiner we don't calculate those at all, so this verification
-> > > > > will then always fail.
-> > > > > So we should either skip the verification for Bigjoiner slave crtc or copy sw state
-> > > > > from master crtc.
-> > > > > 
-> > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 1 +
-> > > > >  1 file changed, 1 insertion(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > index bf391a6cd8d6..83c98791fea3 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > @@ -4556,6 +4556,7 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
-> > > > >  	drm_mode_copy(&slave_crtc_state->hw.adjusted_mode,
-> > > > >  		      &master_crtc_state->hw.adjusted_mode);
-> > > > >  	slave_crtc_state->hw.scaling_filter = master_crtc_state->hw.scaling_filter;
-> > > > > +	slave_crtc_state->cx0pll_state = master_crtc_state->cx0pll_state;
-> > > > 
-> > > > Wrong place. Also we're already copying dpll_hw_state which is in the
-> > > > same union, and on first blush looks bigger than this thing. So why is
-> > > > that not working?
-> > > 
-> > > No we aren't copying it, we are "saving" it earlier, however it doesn't help at all:
-> > > 
-> > > /* preserve some things from the slave's original crtc state */
-> > > saved_state->uapi = slave_crtc_state->uapi;
-> > > saved_state->scaler_state = slave_crtc_state->scaler_state;
-> > > saved_state->shared_dpll = slave_crtc_state->shared_dpll;
-> > > saved_state->dpll_hw_state = slave_crtc_state->dpll_hw_state;
-> > 
-> > Hmm. How is anything at all working if we keep this around
-> > from the old state?
-> > 
-> > Looks like I probably broke this in
-> > commit 0ff0e219d9b8 ("drm/i915: Compute clocks earlier")
-> > and somehow no one has noticed.
-> > 
-> > The correct fix would seem to be to just nuke that
-> > dpll_hw_state preservation above.
-> 
-> Need to ask for this machine, where this is reproducible and
-> check if that helps..
+== Series Details ==
 
-We really need to get joiner tested by regular ci. With adl+
-that shouldn't even require any special hw due to the uncompressed 
-joiner. For older hw we need a DSC capable display for bigjoiner
-(or faking the DSC support and ignoring the fact that you won't
-actually see anything on the screen).
+Series: drm/i915: use ref_tracker library for tracking wakerefs (rev8)
+URL   : https://patchwork.freedesktop.org/series/100327/
+State : warning
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+Error: dim checkpatch failed
+4cc3dfa0b243 lib/ref_tracker: add unlocked leak print helper
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+To have reliable detection of leaks, caller must be able to check under the same
+
+total: 0 errors, 1 warnings, 0 checks, 105 lines checked
+de51d28343e8 lib/ref_tracker: improve printing stats
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: include/linux/ref_tracker.h:31:
++static inline void __ref_tracker_dir_init(struct ref_tracker_dir *dir,
++					unsigned int quarantine_count,
+
+-:49: WARNING:STRLCPY: Prefer strscpy over strlcpy - see: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
+#49: FILE: include/linux/ref_tracker.h:41:
++	strlcpy(dir->name, name, sizeof(dir->name));
+
+total: 0 errors, 1 warnings, 1 checks, 151 lines checked
+87f8a2f62e75 lib/ref_tracker: add printing to memory buffer
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#54: FILE: lib/ref_tracker.c:70:
++#define pr_ostream(stream, fmt, args...) \
++({ \
++	struct ostream *_s = (stream); \
++\
++	if (!_s->buf) { \
++		pr_err(fmt, ##args); \
++	} else { \
++		int ret, len = _s->size - _s->used; \
++		ret = snprintf(_s->buf + _s->used, len, pr_fmt(fmt), ##args); \
++		_s->used += min(ret, len); \
++	} \
++})
+
+total: 0 errors, 0 warnings, 1 checks, 109 lines checked
+be584c3f69e9 lib/ref_tracker: remove warnings in case of allocation failure
+04d9ce2b2595 drm/i915: Correct type of wakeref variable
+e1f156958d75 drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+-:404: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#404: FILE: drivers/gpu/drm/i915/intel_wakeref.h:24:
++typedef unsigned long intel_wakeref_t;
+
+total: 0 errors, 1 warnings, 0 checks, 426 lines checked
+c1995f5d11d1 drm/i915: track gt pm wakerefs
+-:514: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#514: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:514: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
+#514: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:845: ERROR:ASSIGN_IN_IF: do not use assignment in if condition
+#845: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1328:
++	if (!in_reset && (wakeref = intel_gt_pm_get_if_awake(gt))) {
+
+total: 1 errors, 0 warnings, 2 checks, 826 lines checked
+
+
