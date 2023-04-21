@@ -1,33 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A80036EADEA
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 17:19:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F97E6EADFA
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 17:26:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF1E510EE4A;
-	Fri, 21 Apr 2023 15:19:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37CE310E19F;
+	Fri, 21 Apr 2023 15:26:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8184A10EE3C;
- Fri, 21 Apr 2023 15:19:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 78A1BAADD2;
- Fri, 21 Apr 2023 15:19:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36CC310E19F;
+ Fri, 21 Apr 2023 15:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682090778; x=1713626778;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2ObTtvdcT0eFGY9iXcg/B15jYNp9y7zjc8a22FR+Wkk=;
+ b=GLBliB+jmzRH1Vt45LaDgncrM30ZdWafNXBRNaHeY9ecK5/3dWgxY6ij
+ 9jIwFQHB4C70kf2xMg9fyQ3KCQnuOP6aSRY0fCikIcgwYBbyO76+xAUGX
+ WSnSkrKp5nvl3sJbo1fbqZA7kYyu4y5y2nCkRVx3BQ4iBxpJYw1RQUO1P
+ 6Fbp0/tVH69QWUZgUG99Z+qdqWMEeeIYXlm3Hrp07WQ/b8UM+Iv+i/Md/
+ Imtn+JR0DFjZRT3ZEF5o7SIS/2zt2UIIE/VVH4SV/jPiaaOntHRg6J3FK
+ XAEV6Hf8olZAADDSulzJuVBR/J3Y1yEAB3fLA+0RP5tOyitPi11JFYaJ7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="408954934"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="408954934"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2023 08:26:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="866729561"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="866729561"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.140])
+ ([10.213.8.140])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2023 08:26:15 -0700
+Message-ID: <1de72f99-b013-8247-72ed-1db903ec9b8d@intel.com>
+Date: Fri, 21 Apr 2023 17:26:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Fri, 21 Apr 2023 15:19:46 -0000
-Message-ID: <168209038646.5828.190585551752787324@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
 References: <20230421134654.273182-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20230421134654.273182-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Use_i915_instead_of_dev=5Fpriv?=
+ <20230421134654.273182-2-andi.shyti@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230421134654.273182-2-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/i915_drv: Use proper parameter
+ naming in for_each_gt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,217 +67,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 21.04.2023 15:46, Andi Shyti wrote:
+> for_each_gt() loops through engines in the GT, not in dev_priv.
+> Because it's misleading, call it "gt__" instead of "dev_priv__".
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Series: Use i915 instead of dev_priv
-URL   : https://patchwork.freedesktop.org/series/116816/
-State : warning
+With fixes mentioned by Rodrigo.
 
-== Summary ==
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Error: dim checkpatch failed
-4f2ff1f3fb31 drm/i915/i915_drv: Use proper parameter naming in for_each_gt()
--:22: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:384:
-+#define for_each_engine(engine__, gt__, id__) \
- 	for ((id__) = 0; \
- 	     (id__) < I915_NUM_ENGINES; \
- 	     (id__)++) \
-+		for_each_if ((engine__) = (gt__)->engine[(id__)])
+Regards
+Andrzej
 
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id__' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:384:
-+#define for_each_engine(engine__, gt__, id__) \
- 	for ((id__) = 0; \
- 	     (id__) < I915_NUM_ENGINES; \
- 	     (id__)++) \
-+		for_each_if ((engine__) = (gt__)->engine[(id__)])
-
--:27: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#27: FILE: drivers/gpu/drm/i915/i915_drv.h:388:
-+		for_each_if ((engine__) = (gt__)->engine[(id__)])
-
-total: 1 errors, 1 warnings, 1 checks, 13 lines checked
-51c8ab2e0ecd drm/i915/i915_drv: Use i915 instead of dev_priv insied the file_priv structure
--:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#140: FILE: drivers/gpu/drm/i915/i915_drv.h:534:
-+#define IS_G4X(i915)	(IS_G45(i915) || IS_GM45(i915))
-
--:144: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#144: FILE: drivers/gpu/drm/i915/i915_drv.h:538:
-+#define IS_IRONLAKE_M(i915) \
-+	(IS_PLATFORM(i915, INTEL_IRONLAKE) && IS_MOBILE(i915))
-
--:148: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#148: FILE: drivers/gpu/drm/i915/i915_drv.h:542:
-+#define IS_IVB_GT1(i915)	(IS_IVYBRIDGE(i915) && \
-+				 INTEL_INFO(i915)->gt == 1)
-
--:161: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#161: FILE: drivers/gpu/drm/i915/i915_drv.h:555:
-+#define IS_JSL_EHL(i915)	(IS_PLATFORM(i915, INTEL_JASPERLAKE) || \
-+				IS_PLATFORM(i915, INTEL_ELKHARTLAKE))
-
--:191: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#191: FILE: drivers/gpu/drm/i915/i915_drv.h:585:
-+#define IS_HSW_EARLY_SDV(i915) (IS_HASWELL(i915) && \
-+				    (INTEL_DEVID(i915) & 0xFF00) == 0x0C00)
-
--:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#197: FILE: drivers/gpu/drm/i915/i915_drv.h:591:
-+#define IS_BDW_GT3(i915)	(IS_BROADWELL(i915) && \
-+				 INTEL_INFO(i915)->gt == 3)
-
--:201: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#201: FILE: drivers/gpu/drm/i915/i915_drv.h:595:
-+#define IS_HSW_GT3(i915)	(IS_HASWELL(i915) && \
-+				 INTEL_INFO(i915)->gt == 3)
-
--:203: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#203: FILE: drivers/gpu/drm/i915/i915_drv.h:597:
-+#define IS_HSW_GT1(i915)	(IS_HASWELL(i915) && \
-+				 INTEL_INFO(i915)->gt == 1)
-
--:257: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#257: FILE: drivers/gpu/drm/i915/i915_drv.h:610:
-+#define IS_SKL_GT2(i915)	(IS_SKYLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 2)
-
--:259: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#259: FILE: drivers/gpu/drm/i915/i915_drv.h:612:
-+#define IS_SKL_GT3(i915)	(IS_SKYLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 3)
-
--:261: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#261: FILE: drivers/gpu/drm/i915/i915_drv.h:614:
-+#define IS_SKL_GT4(i915)	(IS_SKYLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 4)
-
--:263: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#263: FILE: drivers/gpu/drm/i915/i915_drv.h:616:
-+#define IS_KBL_GT2(i915)	(IS_KABYLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 2)
-
--:265: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#265: FILE: drivers/gpu/drm/i915/i915_drv.h:618:
-+#define IS_KBL_GT3(i915)	(IS_KABYLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 3)
-
--:271: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#271: FILE: drivers/gpu/drm/i915/i915_drv.h:624:
-+#define IS_CFL_GT2(i915)	(IS_COFFEELAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 2)
-
--:273: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#273: FILE: drivers/gpu/drm/i915/i915_drv.h:626:
-+#define IS_CFL_GT3(i915)	(IS_COFFEELAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 3)
-
--:280: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#280: FILE: drivers/gpu/drm/i915/i915_drv.h:633:
-+#define IS_CML_GT2(i915)	(IS_COMETLAKE(i915) && \
-+				 INTEL_INFO(i915)->gt == 2)
-
--:295: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#295: FILE: drivers/gpu/drm/i915/i915_drv.h:644:
-+#define IS_KBL_GRAPHICS_STEP(i915, since, until) \
-+	(IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, since, until))
-
--:297: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#297: FILE: drivers/gpu/drm/i915/i915_drv.h:646:
-+#define IS_KBL_DISPLAY_STEP(i915, since, until) \
-+	(IS_KABYLAKE(i915) && IS_DISPLAY_STEP(i915, since, until))
-
--:310: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#310: FILE: drivers/gpu/drm/i915/i915_drv.h:724:
-+#define IS_GEN9_LP(i915)	(GRAPHICS_VER(i915) == 9 && IS_LP(i915))
-
--:311: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#311: FILE: drivers/gpu/drm/i915/i915_drv.h:725:
-+#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_LP(i915))
-
--:369: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'sizes' - possible side-effects?
-#369: FILE: drivers/gpu/drm/i915/i915_drv.h:780:
-+#define HAS_PAGE_SIZES(i915, sizes) ({ \
- 	GEM_BUG_ON((sizes) == 0); \
-+	((sizes) & ~RUNTIME_INFO(i915)->page_sizes) == 0; \
- })
-
--:384: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#384: FILE: drivers/gpu/drm/i915/i915_drv.h:790:
-+#define HAS_BROKEN_CS_TLB(i915)	(IS_I830(i915) || IS_I845G(i915))
-
--:388: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#388: FILE: drivers/gpu/drm/i915/i915_drv.h:792:
-+#define NEEDS_RC6_CTX_CORRUPTION_WA(i915)	\
-+	(IS_BROADWELL(i915) || GRAPHICS_VER(i915) == 9)
-
--:394: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#394: FILE: drivers/gpu/drm/i915/i915_drv.h:796:
-+#define NEEDS_WaRsDisableCoarsePowerGating(i915)			\
-+	(IS_SKL_GT3(i915) || IS_SKL_GT4(i915))
-
--:402: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#402: FILE: drivers/gpu/drm/i915/i915_drv.h:800:
-+#define HAS_GMBUS_BURST_READ(i915) (DISPLAY_VER(i915) >= 11 || \
-+					IS_GEMINILAKE(i915) || \
-+					IS_KABYLAKE(i915))
-
--:413: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#413: FILE: drivers/gpu/drm/i915/i915_drv.h:807:
-+#define HAS_128_BYTE_Y_TILING(i915) (GRAPHICS_VER(i915) != 2 && \
-+					 !(IS_I915G(i915) || IS_I915GM(i915)))
-
--:423: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#423: FILE: drivers/gpu/drm/i915/i915_drv.h:814:
-+#define HAS_CUR_FBC(i915)	(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
-
--:429: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#429: FILE: drivers/gpu/drm/i915/i915_drv.h:818:
-+#define HAS_IPS(i915)	(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
-
--:434: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#434: FILE: drivers/gpu/drm/i915/i915_drv.h:821:
-+#define HAS_DP20(i915)	(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
-
--:437: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#437: FILE: drivers/gpu/drm/i915/i915_drv.h:823:
-+#define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
-
--:456: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#456: FILE: drivers/gpu/drm/i915/i915_drv.h:833:
-+#define HAS_TRANSCODER(i915, trans)	 ((RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
-
--:486: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#486: FILE: drivers/gpu/drm/i915/i915_drv.h:852:
-+#define HAS_HECI_GSC(i915) (HAS_HECI_PXP(i915) || HAS_HECI_GSCFI(i915))
-
--:518: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#518: FILE: drivers/gpu/drm/i915/i915_drv.h:873:
-+#define HAS_SAGV(i915)		(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
-
--:557: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#557: FILE: drivers/gpu/drm/i915/i915_drv.h:902:
-+#define NUM_L3_SLICES(i915) (IS_HSW_GT3(i915) ? \
-+				 2 : HAS_L3_DPF(i915))
-
--:575: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#575: FILE: drivers/gpu/drm/i915/i915_drv.h:914:
-+#define INTEL_DISPLAY_ENABLED(i915) \
-+	(drm_WARN_ON(&(i915)->drm, !HAS_DISPLAY(i915)),		\
-+	 !(i915)->params.disable_display &&				\
-+	 !intel_opregion_headless_sku(i915))
-
--:587: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#587: FILE: drivers/gpu/drm/i915/i915_drv.h:922:
-+#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || \
-+					      IS_ALDERLAKE_S(i915))
-
-total: 0 errors, 1 warnings, 35 checks, 571 lines checked
-
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index fe7eeafe9cff6..c16f8a3cd914f 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -381,11 +381,11 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+>   }
+>   
+>   /* Simple iterator over all initialised engines */
+> -#define for_each_engine(engine__, dev_priv__, id__) \
+> +#define for_each_engine(engine__, gt__, id__) \
+>   	for ((id__) = 0; \
+>   	     (id__) < I915_NUM_ENGINES; \
+>   	     (id__)++) \
+> -		for_each_if ((engine__) = (dev_priv__)->engine[(id__)])
+> +		for_each_if ((engine__) = (gt__)->engine[(id__)])
+>   
+>   /* Iterator over subset of engines selected by mask */
+>   #define for_each_engine_masked(engine__, gt__, mask__, tmp__) \
 
