@@ -2,46 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3896EAC62
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D6B6EAC76
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 16:12:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6646B10EE47;
-	Fri, 21 Apr 2023 14:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379CA10EE26;
+	Fri, 21 Apr 2023 14:11:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C2C10EE1F;
- Fri, 21 Apr 2023 14:09:08 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id D384760E05;
- Fri, 21 Apr 2023 14:09:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A126EC4339B;
- Fri, 21 Apr 2023 14:09:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1682086147;
- bh=EcPNXFz/2vVBZwu2kGf48w1/9yroyC/oDcQGDWlaWD4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=l762Ds4IhBIA3pDqYDAK5zYE7oMetEGBSsLPgxtyug0MaLQ2XHqkJby7JBsBra4LZ
- GYp+AydBkNWpGVnMRho3Ijd3lM2a8P7AB2vh3UT1VWbpPAnrqxygqUC6iD52UyO5W0
- tO/vkdhU0wPUBFTQkSJfJ7DgE8NlQNo0Sby0xC5yHviWeYDQ+bS3ryvwnCINNoCp8Y
- AeL+FbeLE+Fdh/TXxkxgNDtqJdRDJWiiCiszI0ar6prl5FDGBawMBBzo2lEWJ0sZCh
- ckt0N3KVhUhrmhM04/DvTcJwErRGwgGwU8HBgS6lm49RgrKMfu+qSGfuoC4wxOhmez
- yOoB/ouIHlKjg==
-Date: Fri, 21 Apr 2023 07:09:05 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Eric Dumazet <edumazet@google.com>
-Message-ID: <20230421070905.3ed2bb78@kernel.org>
-In-Reply-To: <20230224-track_gt-v7-0-11f08358c1ec@intel.com>
-References: <20230224-track_gt-v7-0-11f08358c1ec@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7EA6110EE26;
+ Fri, 21 Apr 2023 14:11:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 76AFFAADD6;
+ Fri, 21 Apr 2023 14:11:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 21 Apr 2023 14:09:40 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 0/7] drm/i915: use ref_tracker library
- for tracking wakerefs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 21 Apr 2023 14:11:56 -0000
+Message-ID: <168208631648.5828.18442482930860245120@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1682077472.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1682077472.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/display_=26_drm/i915=3A_more_struct_drm=5Fedid_conversions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,17 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, "David S.
- Miller" <davem@davemloft.net>, Dmitry Vyukov <dvyukov@google.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 21 Apr 2023 13:35:04 +0200 Andrzej Hajda wrote:
-> Gently ping for network developers, could you look at ref_tracker patches,
-> as the ref_tracker library was developed for network.
+== Series Details ==
 
-Putting Eric in the To: field, I know email so hard and confusing...
+Series: drm/display & drm/i915: more struct drm_edid conversions
+URL   : https://patchwork.freedesktop.org/series/116813/
+State : warning
+
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
+
