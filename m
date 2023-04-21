@@ -1,59 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A261E6EB306
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 22:48:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1E26EB313
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 22:54:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D42810E05C;
-	Fri, 21 Apr 2023 20:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA0810EF15;
+	Fri, 21 Apr 2023 20:54:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA8410E05C;
- Fri, 21 Apr 2023 20:48:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682110132; x=1713646132;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=xSxRO8iiXGSkKzGat90zKWmdtibsD7ihmljrQYZiOnc=;
- b=isThppcOJ1KZGXifbY4V84O7o/et/E+dKZeL94wBa1QpFb4K7aF557vn
- 5QyxJLYRmBBPr1t3YFrrC/cu4rpARL6Txqiq+UJsS9p8u20nYX8xPky4V
- wQeUo+JI7Po1bkmQahsnnCEvY3spo/sfm+T1aUylxlQtcAR3PMpGS/Hxj
- 5VbMO4e8+jPBrjqHkv1htsEF8OtoQfRcbCyKlOVtr4t9VOSAuo2VmPFy6
- adi5F+m3sPeQSjqrt6iZtzPuE33i8wKudKIF1rvT3kdZ3IBAEM6PngPLw
- 35raEYEL9f+Ezpuwpc4RloGkrufPQKxB86BL0pL3ufSbP+zIPaQFn954l A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="326409209"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="326409209"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 13:48:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="695059778"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="695059778"
-Received: from miyoungj-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.209.56.12])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 13:48:50 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4803910E05C;
+ Fri, 21 Apr 2023 20:54:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 149C6AADE6;
+ Fri, 21 Apr 2023 20:54:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <BYAPR11MB2567A1A450448AE17B38ED1C9A639@BYAPR11MB2567.namprd11.prod.outlook.com>
-References: <20230419230058.2659455-1-fei.yang@intel.com>
- <20230419230058.2659455-9-fei.yang@intel.com>
- <ZEEkV3XOdmtYWnMv@ashyti-mobl2.lan>
- <471addf7-1670-32cd-9d2e-3f94d6825eab@linux.intel.com>
- <BYAPR11MB2567A1A450448AE17B38ED1C9A639@BYAPR11MB2567.namprd11.prod.outlook.com>
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: "Yang, Fei" <fei.yang@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Date: Fri, 21 Apr 2023 13:48:49 -0700
-Message-ID: <168211012988.392286.16107510619704913123@jljusten-skl>
-User-Agent: alot/0.10
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915: Allow user to set cache at BO
- creation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Fri, 21 Apr 2023 20:54:03 -0000
+Message-ID: <168211044305.5824.4161809235661294588@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230421011525.3282664-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20230421011525.3282664-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Improvements_to_uc_firmare_management_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,59 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>, "Das,
- Nirmoy" <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-04-20 09:11:18, Yang, Fei wrote:
-> > On 20/04/2023 12:39, Andi Shyti wrote:
-> >> Hi Fei,
-> >>
-> >>> To comply with the design that buffer objects shall have immutable
-> >>> cache setting through out their life cycle, {set, get}_caching ioctl's
-> >>> are no longer supported from MTL onward. With that change caching
-> >>> policy can only be set at object creation time. The current code
-> >>> applies a default (platform dependent) cache setting for all objects.
-> >>> However this is not optimal for performance tuning. The patch extends
-> >>> the existing gem_create uAPI to let user set PAT index for the object
-> >>> at creation time.
-> >>> The new extension is platform independent, so UMD's can switch to usi=
-ng
-> >>> this extension for older platforms as well, while {set, get}_caching =
-are
-> >>> still supported on these legacy paltforms for compatibility reason.
-> >>>
-> >>> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> >>> Cc: Matt Roper <matthew.d.roper@intel.com>
-> >>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> >>> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> >>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> >>
-> >> because this is an API change, we need some more information
-> >> here.
-> >>
-> >> First of all you need to CC the userspace guys that have been
-> >> working on top of your series and get their ack's.
-> >
-> > Yes, and a link to a Mesa merge request which uses the uapi should be
-> > included.
->=20
-> Working with Mesa team on this, stay tuned.
->=20
+== Series Details ==
 
-I would like to see the extension detection issue is handled before
-ack'ing this.
+Series: Improvements to uc firmare management (rev3)
+URL   : https://patchwork.freedesktop.org/series/116517/
+State : warning
 
-How about a new DRM_I915_QUERY_GEM_CREATE_EXTENSIONS item, that
-returns a u64 array of usable extension names for
-DRM_IOCTL_I915_GEM_CREATE_EXT?
+== Summary ==
 
-A similar DRM_I915_QUERY_GEM_CONTEXT_CREATE_EXTENSIONS could also
-provide an alternative to Alan's "drm/i915/uapi/pxp: Add a GET_PARAM
-for PXP", and more easily allow advertising future new extensions for
-context/buffer creation.
+Error: dim checkpatch failed
+c9c1858ce1b5 drm/i915/guc: Decode another GuC load failure case
+78137da72e02 drm/i915/guc: Print status register when waiting for GuC to load
+b5a9b016719f drm/i915/uc: Track patch level versions on reduced version firmware files
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'major_' - possible side-effects?
+#61: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
 
--Jordan
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'minor_' - possible side-effects?
+#61: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
+
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'patch_' - possible side-effects?
+#61: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
+
+total: 0 errors, 0 warnings, 3 checks, 73 lines checked
+1280d8f010c6 drm/i915/uc: Enhancements to firmware table validation
+a4d2663e570b drm/i915/uc: Reject duplicate entries in firmware table
+cd22dd08e779 drm/i915/uc: Make unexpected firmware versions an error in debug builds
+
+
