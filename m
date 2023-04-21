@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6F36EB2D6
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 22:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C81A16EB2FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Apr 2023 22:39:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21FFB10E33B;
-	Fri, 21 Apr 2023 20:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D36EC10E34B;
+	Fri, 21 Apr 2023 20:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2AA610E239;
- Fri, 21 Apr 2023 20:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682108353; x=1713644353;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=g6UrOT9Q92RRnmNu5xVfUvurC6Qvvw7fHaYydC9b0s0=;
- b=GN1oXq9A5nN1Uwzz2IyxM3h70yGQiTZv+1RhvjNBjP351GF24tCroLPE
- 3c/RiXB66G7ZEJy3jjCw3j/A95Gye/U/1uT/xQ+fjjAzaqLanVSUsZv3y
- /mjtqqVxUtiP1u1sk2I3KG8hoZ7NeTlEXRcGO9ZfrbhtynJh38LAilJ3d
- nm2cRUAKi+C9lI3YNqXkiWSKrvcSXYf/uB8oRwVhPhto4slttGllX3/dI
- mbOclESO8FPZQKBP9ZDkAR17gD89eD3FSc6SDWQctWFbDmhJH7PbgdbRl
- Ju7XBL00etbFJDoQ1b03AeRglQO3bbLmNuxdUbLSImppYS9opzK/DDJeT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="344827363"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="344827363"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 13:19:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="1022024659"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="1022024659"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2023 13:19:13 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 13:18:29 -0700
-Message-Id: <20230421201829.922100-2-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230421201829.922100-1-vinay.belgaumkar@intel.com>
-References: <20230421201829.922100-1-vinay.belgaumkar@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6181B10E340;
+ Fri, 21 Apr 2023 20:39:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 576E7AADEB;
+ Fri, 21 Apr 2023 20:39:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2804587251784002385=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 2/2] drm/i915/selftest: Update the SLPC
- selftest
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Fri, 21 Apr 2023 20:39:48 -0000
+Message-ID: <168210958835.5823.15326563400873135332@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230421162131.5487-1-nirmoy.das@intel.com>
+In-Reply-To: <20230421162131.5487-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_workaround_coherency_issue_for_Media_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,92 +40,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the new efficient frequency toggling interface. Also
-create a helper function to restore the frequencies after
-the test is done.
+--===============2804587251784002385==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_slpc.c | 42 ++++++++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
-index bd44ce73a504..248646b3d3e8 100644
---- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
-@@ -70,6 +70,31 @@ static int slpc_set_freq(struct intel_gt *gt, u32 freq)
- 	return err;
- }
- 
-+static int slpc_restore_freq(struct intel_guc_slpc *slpc, u32 min, u32 max)
-+{
-+	int err;
-+
-+	err = slpc_set_min_freq(slpc, min);
-+	if (err) {
-+		pr_err("Unable to restore min freq");
-+		return err;
-+	}
-+
-+	err = slpc_set_max_freq(slpc, max);
-+	if (err) {
-+		pr_err("Unable to restore min freq");
-+		return err;
-+	}
-+
-+	err = intel_guc_slpc_set_ignore_eff_freq(slpc, false);
-+	if (err) {
-+		pr_err("Unable to restore efficient freq");
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
- static u64 measure_power_at_freq(struct intel_gt *gt, int *freq, u64 *power)
- {
- 	int err = 0;
-@@ -268,8 +293,7 @@ static int run_test(struct intel_gt *gt, int test_type)
- 
- 	/*
- 	 * Set min frequency to RPn so that we can test the whole
--	 * range of RPn-RP0. This also turns off efficient freq
--	 * usage and makes results more predictable.
-+	 * range of RPn-RP0.
- 	 */
- 	err = slpc_set_min_freq(slpc, slpc->min_freq);
- 	if (err) {
-@@ -277,6 +301,15 @@ static int run_test(struct intel_gt *gt, int test_type)
- 		return err;
- 	}
- 
-+	/*
-+	 * Turn off efficient frequency so RPn/RP0 ranges are obeyed.
-+	 */
-+	err = intel_guc_slpc_set_ignore_eff_freq(slpc, true);
-+	if (err) {
-+		pr_err("Unable to turn off efficient freq!");
-+		return err;
-+	}
-+
- 	intel_gt_pm_wait_for_idle(gt);
- 	intel_gt_pm_get(gt);
- 	for_each_engine(engine, gt, id) {
-@@ -358,9 +391,8 @@ static int run_test(struct intel_gt *gt, int test_type)
- 			break;
- 	}
- 
--	/* Restore min/max frequencies */
--	slpc_set_max_freq(slpc, slpc_max_freq);
--	slpc_set_min_freq(slpc, slpc_min_freq);
-+	/* Restore min/max/efficient frequencies */
-+	err = slpc_restore_freq(slpc, slpc_min_freq, slpc_max_freq);
- 
- 	if (igt_flush_test(gt->i915))
- 		err = -EIO;
--- 
-2.38.1
+Series: drm/i915/mtl: workaround coherency issue for Media (rev3)
+URL   : https://patchwork.freedesktop.org/series/116751/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13043 -> Patchwork_116751v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116751v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-1:         [PASS][1] -> [ABORT][2] ([i915#7911] / [i915#7982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13043 -> Patchwork_116751v3
+
+  CI-20190529: 20190529
+  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116751v3: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b6c0c2c1546d drm/i915/mtl: workaround coherency issue for Media
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/index.html
+
+--===============2804587251784002385==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: workaround coherency issue for Media (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116751/">https://patchwork.freedesktop.org/series/116751/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13043 -&gt; Patchwork_116751v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116751v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116751v3/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13043 -&gt; Patchwork_116751v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116751v3: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b6c0c2c1546d drm/i915/mtl: workaround coherency issue for Media</p>
+
+</body>
+</html>
+
+--===============2804587251784002385==--
