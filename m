@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40EC6EBAE5
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 20:44:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9086EBAF9
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 21:23:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E342F10E08E;
-	Sat, 22 Apr 2023 18:44:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 835CF10E0CD;
+	Sat, 22 Apr 2023 19:23:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEBA310E08E
- for <intel-gfx@lists.freedesktop.org>; Sat, 22 Apr 2023 18:44:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1682189050;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=mmxRlp7sO3FmZe8GlXgS6wzBX13lPdwNbQmL4X4fggw=;
- b=Wfe0CYD27v4B8zRHSkqlNG1cu+O/LGSSF/MvjWMtJ6QoLlsM1BKn7RodvW3cjX3Dn1J8qQ
- WeEr/wxwfZ2IOddfHGkxMal+WFr/S/FtmkEC6PgDWC4FLniRKSWI6j40gkVDX/XOxg63/L
- MPaZW05/dSe2vdbkeIgvpugGslqH+v4=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-330-CSKvXFHEMXuKP48HutWcUQ-1; Sat, 22 Apr 2023 14:44:06 -0400
-X-MC-Unique: CSKvXFHEMXuKP48HutWcUQ-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
- [10.11.54.4])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 72DCB3810B06;
- Sat, 22 Apr 2023 18:44:06 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.192.21])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 758C82022EC9;
- Sat, 22 Apr 2023 18:44:05 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Sat, 22 Apr 2023 20:43:59 +0200
-Message-Id: <20230422184359.56503-1-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82BF410E04E;
+ Sat, 22 Apr 2023 19:23:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F07CBA73C7;
+ Sat, 22 Apr 2023 19:23:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7457603310492573487=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.4
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Always use unconditional msleep()
- for the panel_on_delay
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Sat, 22 Apr 2023 19:23:31 -0000
+Message-ID: <168219141195.29284.9110234506659823910@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230422184359.56503-1-hdegoede@redhat.com>
+In-Reply-To: <20230422184359.56503-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_Always_use_unconditional_msleep=28=29_for_the_pane?=
+ =?utf-8?q?l=5Fon=5Fdelay?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,79 +41,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The intel_dsi_msleep() helper skips sleeping if the MIPI-sequences have
-a version of 3 or newer and the panel is in vid-mode.
+--===============7457603310492573487==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is based on the big comment around line 730 which starts with
-"Panel enable/disable sequences from the VBT spec.", where
-the "v3 video mode seq" column does not have any wait t# entries.
+== Series Details ==
 
-Commit 6fdb335f1c9c ("drm/i915/dsi: Use unconditional msleep for
-the panel_on_delay when there is no reset-deassert MIPI-sequence")
-switched to a direct msleep() instead of intel_dsi_msleep()
-when there is no MIPI_SEQ_DEASSERT_RESET sequence, to fix
-the panel on an Acer Aspire Switch 10 E SW3-016 not turning on.
+Series: drm/i915/dsi: Always use unconditional msleep() for the panel_on_delay
+URL   : https://patchwork.freedesktop.org/series/116858/
+State : success
 
-This was done under the assumption that when there is a v3
-MIPI_SEQ_DEASSERT_RESET sequence it will take care of any
-necessary delays.
+== Summary ==
 
-On the Nextbook Ares 8A (a Cherry Trail device like the Acer SW3-016)
-there is a MIPI_SEQ_DEASSERT_RESET sequence, yet panel_on_delay
-must still be honored otherwise the panel will not turn on.
+CI Bug Log - changes from CI_DRM_13043 -> Patchwork_116858v1
+====================================================
 
-Switch to always using an unconditional msleep() for
-the panel_on_delay instead of making this depend on
-the presence of a MIPI_SEQ_DEASSERT_RESET sequence.
+Summary
+-------
 
-Fixes: 6fdb335f1c9c ("drm/i915/dsi: Use unconditional msleep for the panel_on_delay when there is no reset-deassert MIPI-sequence")
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi.c | 18 +++---------------
- 1 file changed, 3 insertions(+), 15 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index a6d6d8b33f3f..1b87f8f5f7fd 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -788,7 +788,6 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
- {
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
--	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 	enum port port;
-@@ -836,21 +835,10 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
- 	if (!IS_GEMINILAKE(dev_priv))
- 		intel_dsi_prepare(encoder, pipe_config);
- 
-+	/* Give the panel time to power-on and then deassert its reset */
- 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
--
--	/*
--	 * Give the panel time to power-on and then deassert its reset.
--	 * Depending on the VBT MIPI sequences version the deassert-seq
--	 * may contain the necessary delay, intel_dsi_msleep() will skip
--	 * the delay in that case. If there is no deassert-seq, then an
--	 * unconditional msleep is used to give the panel time to power-on.
--	 */
--	if (connector->panel.vbt.dsi.sequence[MIPI_SEQ_DEASSERT_RESET]) {
--		intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
--		intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
--	} else {
--		msleep(intel_dsi->panel_on_delay);
--	}
-+	msleep(intel_dsi->panel_on_delay);
-+	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
- 
- 	if (IS_GEMINILAKE(dev_priv)) {
- 		glk_cold_boot = glk_dsi_enable_io(encoder);
--- 
-2.39.2
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/index.html
+
+Participating hosts (36 -> 36)
+------------------------------
+
+  Additional (1): bat-mtlp-8 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116858v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@lmem0:
+    - bat-dg2-9:          [PASS][1] -> [FAIL][2] ([fdo#103375]) +6 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-9/igt@gem_exec_suspend@basic-s3@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-9/igt@gem_exec_suspend@basic-s3@lmem0.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
+    - bat-dg2-8:          [PASS][3] -> [FAIL][4] ([i915#7932])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:
+    - bat-dg2-9:          [PASS][5] -> [FAIL][6] ([fdo#103375] / [i915#7932])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#8346]: https://gitlab.freedesktop.org/drm/intel/issues/8346
+  [i915#8368]: https://gitlab.freedesktop.org/drm/intel/issues/8368
+  [i915#8369]: https://gitlab.freedesktop.org/drm/intel/issues/8369
+  [i915#8379]: https://gitlab.freedesktop.org/drm/intel/issues/8379
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13043 -> Patchwork_116858v1
+
+  CI-20190529: 20190529
+  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116858v1: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+085b6c90d21c drm/i915/dsi: Always use unconditional msleep() for the panel_on_delay
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/index.html
+
+--===============7457603310492573487==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: Always use unconditional msleep() for the panel_on_delay</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116858/">https://patchwork.freedesktop.org/series/116858/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13043 -&gt; Patchwork_116858v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): bat-mtlp-8 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116858v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-9/igt@gem_exec_suspend@basic-s3@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-9/igt@gem_exec_suspend@basic-s3@lmem0.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13043/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116858v1/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13043 -&gt; Patchwork_116858v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13043: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116858v1: 2fa9c266135355c9993507d7c27cc6722956bfec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>085b6c90d21c drm/i915/dsi: Always use unconditional msleep() for the panel_on_delay</p>
+
+</body>
+</html>
+
+--===============7457603310492573487==--
