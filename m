@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA876EB68A
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 03:01:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4623C6EB68B
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Apr 2023 03:01:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD4510E24F;
-	Sat, 22 Apr 2023 01:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5526B10E3B9;
+	Sat, 22 Apr 2023 01:01:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16DAD10E1D0;
- Sat, 22 Apr 2023 01:01:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 704CD10E3B9;
+ Sat, 22 Apr 2023 01:01:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682125288; x=1713661288;
+ t=1682125290; x=1713661290;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=githB5zBJCX/xHnLRmuyn/yGSw4HIadZsweFS/3RV1Y=;
- b=RKspaWreQu02dgA+qNlny2CJy3E8cG4BApfCAbBIRir6bJkiKxwMSn/o
- fMpc4KD7vKQL0WL2d87FK38AuXYlM4DUmiZnb3zavCttsMcv7jLRrfP4O
- +W7Q3qrHV9n64ngYRwybwE5A/JhNmj/g0DskH6o4Asj7WSqYmmPoqfv40
- Tk2LexQ3YTRXv+LN2ZWf6SAso72AtanLBwu9VbdgnG7qoA97fC29Ja3AI
- sZq45DICWMFXlpG6QrAdWt5QYdL07AcVWYVaZYlhrh8dp7+A48a9bH6xi
- 9oEgBDhskfIjEpq1bVV75S0AAQrEshrfwsqSELxKnGlmyEQdplvSiME22 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="411385211"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="411385211"
+ bh=vApr1TTck/ylQ1GrOLsEUrf01etgAhPiUXc4Iz8cVzA=;
+ b=dPz+c7vMB2pSZiiPFUNAsOgbPLDxFDsIY8JWylFXrQsvolMRi5uHgtit
+ ZmZhjSr3U3bGfJWq0SbB6WXBg1DYNrE7HU7mo5rEckANN0MDUwf7rDZz+
+ tzpY8AVJAU5beazfI8SwLyRnobU2Fw8x59a8JcoLYPFlqfZht1s5Fb/qx
+ hLmuDPKJnhyPl4mM5psp9eWApwi/u2uvo6jA+//nACLT6IKYxEspwNKoe
+ qNtM2CX+JWV01iXOPeuR03nUwogT9EuNnitUs1wT3D1LLo0TzY4AnAj2p
+ 9xAD0a2pO2TQpOsonS+RS5IpYc2HUnzyiumd4SIyddpBlh1bDFYoeMRZf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="411385215"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="411385215"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 18:01:27 -0700
+ 21 Apr 2023 18:01:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="938678650"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="938678650"
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="938678667"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="938678667"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga006.fm.intel.com with ESMTP; 21 Apr 2023 18:01:27 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 21 Apr 2023 18:01:30 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	igt-dev@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 18:01:00 -0700
-Message-Id: <20230422010103.1028886-2-vinay.belgaumkar@intel.com>
+Date: Fri, 21 Apr 2023 18:01:01 -0700
+Message-Id: <20230422010103.1028886-3-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230422010103.1028886-1-vinay.belgaumkar@intel.com>
 References: <20230422010103.1028886-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 1/4] lib/debugfs: Add per GT debugfs
- helpers
+Subject: [Intel-gfx] [PATCH i-g-t 2/4] lib: Make SLPC helper function per GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,109 +60,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These can be used to open per-gt debugfs files.
+Use default of 0 where GT id is not being used.
 
+Fixes: https://gitlab.freedesktop.org/drm/intel/-/issues/8308
+
+v2: Add a helper for GT 0 (Ashutosh)
+v3: Additional review comments (Ashutosh)
+
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Vinay Belgaumkar <viay.belgaumkar@intel.com>
 ---
- lib/igt_debugfs.c | 60 +++++++++++++++++++++++++++++++++++++++++++++++
- lib/igt_debugfs.h |  4 ++++
- 2 files changed, 64 insertions(+)
+ lib/igt_pm.c | 34 +++++++++++++++++++++++++---------
+ lib/igt_pm.h |  3 ++-
+ 2 files changed, 27 insertions(+), 10 deletions(-)
 
-diff --git a/lib/igt_debugfs.c b/lib/igt_debugfs.c
-index 05889bbe..afde2da6 100644
---- a/lib/igt_debugfs.c
-+++ b/lib/igt_debugfs.c
-@@ -217,6 +217,37 @@ int igt_debugfs_dir(int device)
- 	return open(path, O_RDONLY);
+diff --git a/lib/igt_pm.c b/lib/igt_pm.c
+index 704acf7d..15a9cf81 100644
+--- a/lib/igt_pm.c
++++ b/lib/igt_pm.c
+@@ -1329,21 +1329,37 @@ void igt_pm_print_pci_card_runtime_status(void)
+ 	}
  }
  
+-bool i915_is_slpc_enabled(int fd)
 +/**
-+ * igt_debugfs_gt_dir:
-+ * @device: fd of the device
-+ * @gt: GT instance number
-+ *
-+ * This opens the debugfs directory corresponding to device for use
-+ * with igt_sysfs_get() and related functions.
-+ *
-+ * Returns:
-+ * The directory fd, or -1 on failure.
++ * i915_is_slpc_enabled_gt:
++ * @drm_fd: DRM file descriptor
++ * @gt: GT id
++ * Check if SLPC is enabled on a GT
 + */
-+int igt_debugfs_gt_dir(int device, unsigned int gt)
-+{
-+	int debugfs_gt_dir_fd;
-+	char path[PATH_MAX];
-+	char gtpath[16];
-+	int ret;
++bool i915_is_slpc_enabled_gt(int drm_fd, int gt)
+ {
+-	int debugfs_fd = igt_debugfs_dir(fd);
++	int debugfs_fd;
+ 	char buf[4096] = {};
+-	int len;
+ 
+-	igt_require(debugfs_fd != -1);
++	debugfs_fd = igt_debugfs_gt_open(drm_fd, gt, "uc/guc_slpc_info", O_RDONLY);
 +
-+	if (!igt_debugfs_path(device, path, sizeof(path)))
-+		return -1;
++	/* if guc_slpc_info not present then return false */
++	igt_require(debugfs_fd >= 0);
 +
-+	ret = snprintf(gtpath, sizeof(gtpath), "/gt%u", gt);
-+	igt_assert(ret < sizeof(gtpath));
-+	strncat(path, gtpath, sizeof(path) - 1);
-+
-+	debugfs_gt_dir_fd = open(path, O_RDONLY);
-+	igt_debug_on_f(debugfs_gt_dir_fd < 0, "path: %s\n", path);
-+
-+	return debugfs_gt_dir_fd;
++	read(debugfs_fd, buf, sizeof(buf)-1);
+ 
+-	len = igt_debugfs_simple_read(debugfs_fd, "gt/uc/guc_slpc_info", buf, sizeof(buf));
+ 	close(debugfs_fd);
+ 
+-	if (len < 0)
+-		return false;
+-	else
+-		return strstr(buf, "SLPC state: running");
++	return strstr(buf, "SLPC state: running");
 +}
 +
- /**
-  * igt_debugfs_connector_dir:
-  * @device: fd of the device
-@@ -313,6 +344,35 @@ bool igt_debugfs_exists(int device, const char *filename, int mode)
- 	return false;
++/**
++ * i915_is_slpc_enabled:
++ * @drm_fd: DRM file descriptor
++ * Check if SLPC is enabled for the device
++ */
++bool i915_is_slpc_enabled(int drm_fd)
++{
++	return i915_is_slpc_enabled_gt(drm_fd, 0);
  }
  
-+/**
-+ * igt_debugfs_gt_open:
-+ * @device: open i915 drm fd
-+ * @gt: gt instance number
-+ * @filename: name of the debugfs node to open
-+ * @mode: mode bits as used by open()
-+ *
-+ * This opens a debugfs file as a Unix file descriptor. The filename should be
-+ * relative to the drm device's root, i.e. without "drm/$minor".
-+ *
-+ * Returns:
-+ * The Unix file descriptor for the debugfs file or -1 if that didn't work out.
-+ */
-+int
-+igt_debugfs_gt_open(int device, unsigned int gt, const char *filename, int mode)
-+{
-+	int dir, ret;
-+
-+	dir = igt_debugfs_gt_dir(device, gt);
-+	if (dir < 0)
-+		return dir;
-+
-+	ret = openat(dir, filename, mode);
-+
-+	close(dir);
-+
-+	return ret;
-+}
-+
- /**
-  * igt_debugfs_simple_read:
-  * @dir: fd of the debugfs directory
-diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h
-index 4824344a..3e6194ad 100644
---- a/lib/igt_debugfs.h
-+++ b/lib/igt_debugfs.h
-@@ -45,6 +45,10 @@ void __igt_debugfs_write(int fd, const char *filename, const char *buf, int size
- int igt_debugfs_simple_read(int dir, const char *filename, char *buf, int size);
- bool igt_debugfs_search(int fd, const char *filename, const char *substring);
+ int igt_pm_get_runtime_suspended_time(struct pci_device *pci_dev)
+diff --git a/lib/igt_pm.h b/lib/igt_pm.h
+index d0d6d673..448cf42d 100644
+--- a/lib/igt_pm.h
++++ b/lib/igt_pm.h
+@@ -84,7 +84,8 @@ void igt_pm_set_d3cold_allowed(struct igt_device_card *card, const char *val);
+ void igt_pm_setup_pci_card_runtime_pm(struct pci_device *pci_dev);
+ void igt_pm_restore_pci_card_runtime_pm(void);
+ void igt_pm_print_pci_card_runtime_status(void);
+-bool i915_is_slpc_enabled(int fd);
++bool i915_is_slpc_enabled_gt(int drm_fd, int gt);
++bool i915_is_slpc_enabled(int drm_fd);
+ int igt_pm_get_runtime_suspended_time(struct pci_device *pci_dev);
+ int igt_pm_get_runtime_usage(struct pci_device *pci_dev);
  
-+int igt_debugfs_gt_dir(int device, unsigned int gt);
-+int igt_debugfs_gt_open(int device, unsigned int gt, const char *filename,
-+			int mode);
-+
- /**
-  * igt_debugfs_read:
-  * @filename: name of the debugfs file
 -- 
 2.38.1
 
