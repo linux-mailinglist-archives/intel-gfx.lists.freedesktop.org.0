@@ -1,33 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEBCB6EC4B9
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 07:20:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDDF6EC66B
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 08:44:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 445BE10E0D2;
-	Mon, 24 Apr 2023 05:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3910E021;
+	Mon, 24 Apr 2023 06:43:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 954F810E0D2;
- Mon, 24 Apr 2023 05:20:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7A101A73C7;
- Mon, 24 Apr 2023 05:20:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8843295462366490176=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E028010E021
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Apr 2023 06:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682318637; x=1713854637;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=vyPEMEgkH5q2K2burVETVQ6dFZVVWAH4hNAMFpxeXuQ=;
+ b=dfP2uj8yK5DsErVdHVVJXzB8D8eKutA8rI2OP39HmsmxcknvtYwdcmDB
+ UDk/sE/7oWrpUO7q61m1lz9tvMoa2ZfxSyzJC1YFviKFpUJkTR3fmRnU3
+ tkJJ3hLBO0SYQxG8P4dIapg4V+H9zPgpYajNknSn2vUr/Zu3EAiNOumvD
+ EIT+GQxUgUDMCdo6IwrN2Jyav3gouCZcGPSjn3saRve1s2ui7ZSJbaNYa
+ C3EPq0Ianh/ZrCt/Fp4RQC+ipZLyTb7RPnTXsVF5s1mXqiR6bUZSYJpUf
+ JPEH3yDQLh82lMeDZlnv3+LFy9cEyFydtBw5ygsOMvgD5IxiG8bMiglWd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10689"; a="409309272"
+X-IronPort-AV: E=Sophos;i="5.99,222,1677571200"; d="scan'208";a="409309272"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2023 23:43:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10689"; a="686687690"
+X-IronPort-AV: E=Sophos;i="5.99,222,1677571200"; d="scan'208";a="686687690"
+Received: from pwysock1-mobl.ger.corp.intel.com (HELO [10.213.18.134])
+ ([10.213.18.134])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2023 23:43:53 -0700
+Message-ID: <6cf9b118-05ab-00e5-36e2-4fe8699b1ac5@intel.com>
+Date: Mon, 24 Apr 2023 08:43:51 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: fei.yang@intel.com
-Date: Mon, 24 Apr 2023 05:20:11 -0000
-Message-ID: <168231361147.1231.17225655537983390451@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230424044251.3390364-1-fei.yang@intel.com>
-In-Reply-To: <20230424044251.3390364-1-fei.yang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Allow_user_to_set_cache_at_BO_creation?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230421135948.2029121-1-jani.nikula@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230421135948.2029121-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rc6: throw out set() wrapper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,222 +63,340 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8843295462366490176==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 21.04.2023 15:59, Jani Nikula wrote:
+> Remove useless indirection that's just misdirection for the readers.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_rc6.c | 157 ++++++++++++++--------------
+>   1 file changed, 76 insertions(+), 81 deletions(-)
 
-== Series Details ==
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Series: drm/i915: Allow user to set cache at BO creation
-URL   : https://patchwork.freedesktop.org/series/116870/
-State : failure
+Regards
+Andrzej
 
-== Summary ==
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> index 8f3cd68d14f8..908a3d0f2343 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> @@ -53,11 +53,6 @@ static struct drm_i915_private *rc6_to_i915(struct intel_rc6 *rc)
+>   	return rc6_to_gt(rc)->i915;
+>   }
+>   
+> -static void set(struct intel_uncore *uncore, i915_reg_t reg, u32 val)
+> -{
+> -	intel_uncore_write_fw(uncore, reg, val);
+> -}
+> -
+>   static void gen11_rc6_enable(struct intel_rc6 *rc6)
+>   {
+>   	struct intel_gt *gt = rc6_to_gt(rc6);
+> @@ -72,19 +67,19 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+>   	 */
+>   	if (!intel_uc_uses_guc_rc(&gt->uc)) {
+>   		/* 2b: Program RC6 thresholds.*/
+> -		set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
+> -		set(uncore, GEN10_MEDIA_WAKE_RATE_LIMIT, 150);
+> +		intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
+> +		intel_uncore_write_fw(uncore, GEN10_MEDIA_WAKE_RATE_LIMIT, 150);
+>   
+> -		set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> -		set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+> +		intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> +		intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+>   		for_each_engine(engine, rc6_to_gt(rc6), id)
+> -			set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +			intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+>   
+> -		set(uncore, GUC_MAX_IDLE_COUNT, 0xA);
+> +		intel_uncore_write_fw(uncore, GUC_MAX_IDLE_COUNT, 0xA);
+>   
+> -		set(uncore, GEN6_RC_SLEEP, 0);
+> +		intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
+>   
+> -		set(uncore, GEN6_RC6_THRESHOLD, 50000); /* 50/125ms per EI */
+> +		intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 50000); /* 50/125ms per EI */
+>   	}
+>   
+>   	/*
+> @@ -105,8 +100,8 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+>   	 * Broadwell+, To be conservative, we want to factor in a context
+>   	 * switch on top (due to ksoftirqd).
+>   	 */
+> -	set(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 60);
+> -	set(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 60);
+> +	intel_uncore_write_fw(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 60);
+> +	intel_uncore_write_fw(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 60);
+>   
+>   	/* 3a: Enable RC6
+>   	 *
+> @@ -141,7 +136,7 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+>   					      VDN_MFX_POWERGATE_ENABLE(i));
+>   	}
+>   
+> -	set(uncore, GEN9_PG_ENABLE, pg_enable);
+> +	intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, pg_enable);
+>   }
+>   
+>   static void gen9_rc6_enable(struct intel_rc6 *rc6)
+> @@ -152,26 +147,26 @@ static void gen9_rc6_enable(struct intel_rc6 *rc6)
+>   
+>   	/* 2b: Program RC6 thresholds.*/
+>   	if (GRAPHICS_VER(rc6_to_i915(rc6)) >= 11) {
+> -		set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
+> -		set(uncore, GEN10_MEDIA_WAKE_RATE_LIMIT, 150);
+> +		intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
+> +		intel_uncore_write_fw(uncore, GEN10_MEDIA_WAKE_RATE_LIMIT, 150);
+>   	} else if (IS_SKYLAKE(rc6_to_i915(rc6))) {
+>   		/*
+>   		 * WaRsDoubleRc6WrlWithCoarsePowerGating:skl Doubling WRL only
+>   		 * when CPG is enabled
+>   		 */
+> -		set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 108 << 16);
+> +		intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 108 << 16);
+>   	} else {
+> -		set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16);
+> +		intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16);
+>   	}
+>   
+> -	set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> -	set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+>   	for_each_engine(engine, rc6_to_gt(rc6), id)
+> -		set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +		intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+>   
+> -	set(uncore, GUC_MAX_IDLE_COUNT, 0xA);
+> +	intel_uncore_write_fw(uncore, GUC_MAX_IDLE_COUNT, 0xA);
+>   
+> -	set(uncore, GEN6_RC_SLEEP, 0);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
+>   
+>   	/*
+>   	 * 2c: Program Coarse Power Gating Policies.
+> @@ -194,11 +189,11 @@ static void gen9_rc6_enable(struct intel_rc6 *rc6)
+>   	 * conservative, we have to factor in a context switch on top (due
+>   	 * to ksoftirqd).
+>   	 */
+> -	set(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 250);
+> -	set(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 250);
+> +	intel_uncore_write_fw(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 250);
+> +	intel_uncore_write_fw(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 250);
+>   
+>   	/* 3a: Enable RC6 */
+> -	set(uncore, GEN6_RC6_THRESHOLD, 37500); /* 37.5/125ms per EI */
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 37500); /* 37.5/125ms per EI */
+>   
+>   	rc6->ctl_enable =
+>   		GEN6_RC_CTL_HW_ENABLE |
+> @@ -210,8 +205,8 @@ static void gen9_rc6_enable(struct intel_rc6 *rc6)
+>   	 *   - Render/Media PG need to be disabled with RC6.
+>   	 */
+>   	if (!NEEDS_WaRsDisableCoarsePowerGating(rc6_to_i915(rc6)))
+> -		set(uncore, GEN9_PG_ENABLE,
+> -		    GEN9_RENDER_PG_ENABLE | GEN9_MEDIA_PG_ENABLE);
+> +		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE,
+> +				      GEN9_RENDER_PG_ENABLE | GEN9_MEDIA_PG_ENABLE);
+>   }
+>   
+>   static void gen8_rc6_enable(struct intel_rc6 *rc6)
+> @@ -221,13 +216,13 @@ static void gen8_rc6_enable(struct intel_rc6 *rc6)
+>   	enum intel_engine_id id;
+>   
+>   	/* 2b: Program RC6 thresholds.*/
+> -	set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16);
+> -	set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> -	set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+>   	for_each_engine(engine, rc6_to_gt(rc6), id)
+> -		set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> -	set(uncore, GEN6_RC_SLEEP, 0);
+> -	set(uncore, GEN6_RC6_THRESHOLD, 625); /* 800us/1.28 for TO */
+> +		intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 625); /* 800us/1.28 for TO */
+>   
+>   	/* 3: Enable RC6 */
+>   	rc6->ctl_enable =
+> @@ -245,20 +240,20 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+>   	u32 rc6vids, rc6_mask;
+>   	int ret;
+>   
+> -	set(uncore, GEN6_RC1_WAKE_RATE_LIMIT, 1000 << 16);
+> -	set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16 | 30);
+> -	set(uncore, GEN6_RC6pp_WAKE_RATE_LIMIT, 30);
+> -	set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000);
+> -	set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25);
+> +	intel_uncore_write_fw(uncore, GEN6_RC1_WAKE_RATE_LIMIT, 1000 << 16);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16 | 30);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6pp_WAKE_RATE_LIMIT, 30);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25);
+>   
+>   	for_each_engine(engine, rc6_to_gt(rc6), id)
+> -		set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +		intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+>   
+> -	set(uncore, GEN6_RC_SLEEP, 0);
+> -	set(uncore, GEN6_RC1e_THRESHOLD, 1000);
+> -	set(uncore, GEN6_RC6_THRESHOLD, 50000);
+> -	set(uncore, GEN6_RC6p_THRESHOLD, 150000);
+> -	set(uncore, GEN6_RC6pp_THRESHOLD, 64000); /* unused */
+> +	intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
+> +	intel_uncore_write_fw(uncore, GEN6_RC1e_THRESHOLD, 1000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 50000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6p_THRESHOLD, 150000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6pp_THRESHOLD, 64000); /* unused */
+>   
+>   	/* We don't use those on Haswell */
+>   	rc6_mask = GEN6_RC_CTL_RC6_ENABLE;
+> @@ -372,22 +367,22 @@ static void chv_rc6_enable(struct intel_rc6 *rc6)
+>   	enum intel_engine_id id;
+>   
+>   	/* 2a: Program RC6 thresholds.*/
+> -	set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16);
+> -	set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> -	set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 40 << 16);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
+> +	intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
+>   
+>   	for_each_engine(engine, rc6_to_gt(rc6), id)
+> -		set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> -	set(uncore, GEN6_RC_SLEEP, 0);
+> +		intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
+>   
+>   	/* TO threshold set to 500 us (0x186 * 1.28 us) */
+> -	set(uncore, GEN6_RC6_THRESHOLD, 0x186);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 0x186);
+>   
+>   	/* Allows RC6 residency counter to work */
+> -	set(uncore, VLV_COUNTER_CONTROL,
+> -	    _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH |
+> -			       VLV_MEDIA_RC6_COUNT_EN |
+> -			       VLV_RENDER_RC6_COUNT_EN));
+> +	intel_uncore_write_fw(uncore, VLV_COUNTER_CONTROL,
+> +			      _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH |
+> +						 VLV_MEDIA_RC6_COUNT_EN |
+> +						 VLV_RENDER_RC6_COUNT_EN));
+>   
+>   	/* 3: Enable RC6 */
+>   	rc6->ctl_enable = GEN7_RC_CTL_TO_MODE;
+> @@ -399,22 +394,22 @@ static void vlv_rc6_enable(struct intel_rc6 *rc6)
+>   	struct intel_engine_cs *engine;
+>   	enum intel_engine_id id;
+>   
+> -	set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 0x00280000);
+> -	set(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000);
+> -	set(uncore, GEN6_RC_IDLE_HYSTERSIS, 25);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 0x00280000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25);
+>   
+>   	for_each_engine(engine, rc6_to_gt(rc6), id)
+> -		set(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+> +		intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
+>   
+> -	set(uncore, GEN6_RC6_THRESHOLD, 0x557);
+> +	intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 0x557);
+>   
+>   	/* Allows RC6 residency counter to work */
+> -	set(uncore, VLV_COUNTER_CONTROL,
+> -	    _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH |
+> -			       VLV_MEDIA_RC0_COUNT_EN |
+> -			       VLV_RENDER_RC0_COUNT_EN |
+> -			       VLV_MEDIA_RC6_COUNT_EN |
+> -			       VLV_RENDER_RC6_COUNT_EN));
+> +	intel_uncore_write_fw(uncore, VLV_COUNTER_CONTROL,
+> +			      _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH |
+> +						 VLV_MEDIA_RC0_COUNT_EN |
+> +						 VLV_RENDER_RC0_COUNT_EN |
+> +						 VLV_MEDIA_RC6_COUNT_EN |
+> +						 VLV_RENDER_RC6_COUNT_EN));
+>   
+>   	rc6->ctl_enable =
+>   	    GEN7_RC_CTL_TO_MODE | VLV_RC_CTL_CTX_RST_PARALLEL;
+> @@ -575,9 +570,9 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
+>   
+>   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>   	if (GRAPHICS_VER(i915) >= 9)
+> -		set(uncore, GEN9_PG_ENABLE, 0);
+> -	set(uncore, GEN6_RC_CONTROL, 0);
+> -	set(uncore, GEN6_RC_STATE, 0);
+> +		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, 0);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, 0);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_STATE, 0);
+>   	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+>   }
+>   
+> @@ -684,7 +679,7 @@ void intel_rc6_unpark(struct intel_rc6 *rc6)
+>   		return;
+>   
+>   	/* Restore HW timers for automatic RC6 entry while busy */
+> -	set(uncore, GEN6_RC_CONTROL, rc6->ctl_enable);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, rc6->ctl_enable);
+>   }
+>   
+>   void intel_rc6_park(struct intel_rc6 *rc6)
+> @@ -704,7 +699,7 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+>   		return;
+>   
+>   	/* Turn off the HW timers and go directly to rc6 */
+> -	set(uncore, GEN6_RC_CONTROL, GEN6_RC_CTL_RC6_ENABLE);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, GEN6_RC_CTL_RC6_ENABLE);
+>   
+>   	if (HAS_RC6pp(rc6_to_i915(rc6)))
+>   		target = 0x6; /* deepest rc6 */
+> @@ -712,7 +707,7 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+>   		target = 0x5; /* deep rc6 */
+>   	else
+>   		target = 0x4; /* normal rc6 */
+> -	set(uncore, GEN6_RC_STATE, target << RC_SW_TARGET_STATE_SHIFT);
+> +	intel_uncore_write_fw(uncore, GEN6_RC_STATE, target << RC_SW_TARGET_STATE_SHIFT);
+>   }
+>   
+>   void intel_rc6_disable(struct intel_rc6 *rc6)
+> @@ -735,7 +730,7 @@ void intel_rc6_fini(struct intel_rc6 *rc6)
+>   
+>   	/* We want the BIOS C6 state preserved across loads for MTL */
+>   	if (IS_METEORLAKE(rc6_to_i915(rc6)) && rc6->bios_state_captured)
+> -		set(uncore, GEN6_RC_STATE, rc6->bios_rc_state);
+> +		intel_uncore_write_fw(uncore, GEN6_RC_STATE, rc6->bios_rc_state);
+>   
+>   	pctx = fetch_and_zero(&rc6->pctx);
+>   	if (pctx)
+> @@ -766,18 +761,18 @@ static u64 vlv_residency_raw(struct intel_uncore *uncore, const i915_reg_t reg)
+>   	 * before we have set the default VLV_COUNTER_CONTROL value. So always
+>   	 * set the high bit to be safe.
+>   	 */
+> -	set(uncore, VLV_COUNTER_CONTROL,
+> -	    _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH));
+> +	intel_uncore_write_fw(uncore, VLV_COUNTER_CONTROL,
+> +			      _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH));
+>   	upper = intel_uncore_read_fw(uncore, reg);
+>   	do {
+>   		tmp = upper;
+>   
+> -		set(uncore, VLV_COUNTER_CONTROL,
+> -		    _MASKED_BIT_DISABLE(VLV_COUNT_RANGE_HIGH));
+> +		intel_uncore_write_fw(uncore, VLV_COUNTER_CONTROL,
+> +				      _MASKED_BIT_DISABLE(VLV_COUNT_RANGE_HIGH));
+>   		lower = intel_uncore_read_fw(uncore, reg);
+>   
+> -		set(uncore, VLV_COUNTER_CONTROL,
+> -		    _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH));
+> +		intel_uncore_write_fw(uncore, VLV_COUNTER_CONTROL,
+> +				      _MASKED_BIT_ENABLE(VLV_COUNT_RANGE_HIGH));
+>   		upper = intel_uncore_read_fw(uncore, reg);
+>   	} while (upper != tmp && --loop);
+>   
 
-CI Bug Log - changes from CI_DRM_13050 -> Patchwork_116870v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_116870v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_116870v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/index.html
-
-Participating hosts (37 -> 35)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_116870v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@dmabuf@all-tests@dma_fence:
-    - bat-adlm-1:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-adlm-1/igt@dmabuf@all-tests@dma_fence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlm-1/igt@dmabuf@all-tests@dma_fence.html
-
-  * igt@dmabuf@all-tests@sanitycheck:
-    - bat-adlm-1:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-adlm-1/igt@dmabuf@all-tests@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlm-1/igt@dmabuf@all-tests@sanitycheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116870v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-kbl-7567u:       [PASS][5] -> [INCOMPLETE][6] ([i915#4817])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/fi-kbl-7567u/igt@i915_suspend@basic-s3-without-i915.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/fi-kbl-7567u/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-adlp-9:         NOTRUN -> [SKIP][7] ([i915#3546]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-FAIL][8] ([i915#6367]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13050 -> Patchwork_116870v1
-
-  CI-20190529: 20190529
-  CI_DRM_13050: 9687e107450f2d5b270c04f8d17183e603d2c4f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116870v1: 9687e107450f2d5b270c04f8d17183e603d2c4f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c10e10f097d5 drm/i915: Allow user to set cache at BO creation
-6ae3c0017b2b drm/i915/mtl: end support for set caching ioctl
-5ec8876ce0f5 drm/i915: make sure correct pte encode is used
-1d49d16597c9 drm/i915: use pat_index instead of cache_level
-fcf298ce961e drm/i915: preparation for using PAT index
-88c037530819 drm/i915/mtl: Add PTE encode function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/index.html
-
---===============8843295462366490176==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Allow user to set cache at BO creation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116870/">https://patchwork.freedesktop.org/series/116870/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13050 -&gt; Patchwork_116870v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_116870v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_116870v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 35)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_116870v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence:</p>
-<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-adlm-1/igt@dmabuf@all-tests@dma_fence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlm-1/igt@dmabuf@all-tests@dma_fence.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@sanitycheck:</p>
-<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-adlm-1/igt@dmabuf@all-tests@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlm-1/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116870v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/fi-kbl-7567u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/fi-kbl-7567u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13050/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13050 -&gt; Patchwork_116870v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13050: 9687e107450f2d5b270c04f8d17183e603d2c4f1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7264: 2f0a07378e58e5c7d7b589b39ace7e3a2317f6b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116870v1: 9687e107450f2d5b270c04f8d17183e603d2c4f1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c10e10f097d5 drm/i915: Allow user to set cache at BO creation<br />
-6ae3c0017b2b drm/i915/mtl: end support for set caching ioctl<br />
-5ec8876ce0f5 drm/i915: make sure correct pte encode is used<br />
-1d49d16597c9 drm/i915: use pat_index instead of cache_level<br />
-fcf298ce961e drm/i915: preparation for using PAT index<br />
-88c037530819 drm/i915/mtl: Add PTE encode function</p>
-
-</body>
-</html>
-
---===============8843295462366490176==--
