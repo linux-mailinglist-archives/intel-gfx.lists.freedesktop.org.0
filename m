@@ -2,79 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9EF46ED0F8
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 17:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C34E86ED147
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 17:27:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1979010E133;
-	Mon, 24 Apr 2023 15:09:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED6B10E53A;
+	Mon, 24 Apr 2023 15:27:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
- [66.111.4.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA35D10E133;
- Mon, 24 Apr 2023 15:09:40 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailout.nyi.internal (Postfix) with ESMTP id 780645C014E;
- Mon, 24 Apr 2023 11:09:38 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Mon, 24 Apr 2023 11:09:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1682348978; x=1682435378; bh=br2FvkkiVd9k+hHaNH9Pd3RjVFL01dwydgz
- wiLtpTq4=; b=e15dlCFA9qXwho9DW72jqNpVUNwKx1eg6liq0FCXwo3fHxGLKGQ
- TiwiaGSRG2ZTsocxtXw4S8TlVpZ9ze0A3C6d1SV4f7Bsu9Pvp7Rs/48kbL5eR5Vl
- uhxZAUw2X+v3OPS0uX39GrsnD5hIOeCBVyo6f0uZz18f1KXQhvFPGXTr/aSZdObh
- emK7qOPGsDApkPtu/+hCTM9O2B4hdCWKKJ9F6R+9b9juGOlcDis6m0ZNGHdqN3VP
- xWllgEUOvvqEghlFcTy09VVNUgs92zQb2e18BVcTuAcrbu0MFqD+eW/Dxpsip+zv
- mKV2x63s5xu8nZEUDUFZXsHB507iegiaeXw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm3; t=1682348978; x=1682435378; bh=br2FvkkiVd9k+
- hHaNH9Pd3RjVFL01dwydgzwiLtpTq4=; b=AusWtLUMcsQDQwrShNinBYrilcsn9
- Z44HTzvvbP6+cw3x+ZrU78ICS2gPJ1qH2QxSnRHdG9M6DPEflShaQ/675mw6GSfm
- RuWvORGfDsBG76cVNehHRwjiQr7+nlUK3oqJLoiLaxte34wesB1/z1mWdfst/iX8
- +pJ6KpioLW5LD06dGXSsUZXQNcI1eiZrKFM+b+9QDb47DOnfSvzf2fis2ExJ6DKK
- mTkmSjKWsDyvrAAMVgSdJ5Yuhe467QQmXts6BVr5bE3MC95bLHxrqiZstjiNrog6
- rOIkG6FgDDhLaUSzOE0u7SV0cT+6zcm+T2HoibMjiqbOOdD+0m5SwaE6A==
-X-ME-Sender: <xms:sptGZNLl26Sq51wiTh0XLRplamLP9ZCusuyTgFQRe-zaB2N2P8_oKw>
- <xme:sptGZJKiqQNNmyErshmzHblsreaHxBm_PGZmuViTjxatY75sdE2wn2OWvFQiQGFfQ
- yfI0-XnA_QaDg>
-X-ME-Received: <xmr:sptGZFu8QWlvLepv_AD7AHQ5-E5rwiay_nsblOAV0HMI8NgvD3mt25xPd_fGOYTXOJ_xQQjwsunkYHue9CPSsb3TUNK8c47ClOM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedutddgkeegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgv
- khcuofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinh
- hvihhsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnhepvdeh
- fefgffefudegveetueegfeevvedvvedtleefgefftddufeejtdfhleeftdevnecuffhomh
- grihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptden
- ucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehinhhvihhsihgslhgvth
- hhihhnghhslhgrsgdrtghomh
-X-ME-Proxy: <xmx:sptGZOZg_rJe0p8CvVq279FvOlTK6YS701BFJUNR0u0nHFgRMRH-EQ>
- <xmx:sptGZEaqqcVxO0HKGJKAGNPEuhgljw1tIejaCFoBu9ZGhNu3iMhlGg>
- <xmx:sptGZCAAp8XnrDUpGdTKBTjspC0ZBalCKmWoZZgpTZ3uisig7zc7hw>
- <xmx:sptGZBIdh_m-NeIHOlWZYqGtNfdInslv2PbQ8Rq0E1nVpbWf9Upa-w>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Apr 2023 11:09:35 -0400 (EDT)
-Date: Mon, 24 Apr 2023 17:09:31 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <ZEabrGgRA1vKn+11@mail-itl>
-References: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D16A10E535
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Apr 2023 15:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682350050; x=1713886050;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=z47KdjMN1A7ZY87G8q+G+/xR7FhYmypDY1/OgQ00caY=;
+ b=XVKmwUa7RodNclmwlOxWd/m4eyXtBQ9woWZV6bZmMUQJWjfd9RP3Rao3
+ lUfAyE5mOWWW7p0UWr+73MCRspbghdPLqv3qvvqtgAcdjfN+CA9f4g/Po
+ EDz83aKUJlbNLHzpVEz47vP2EKWDdCyqt94O1z+vvS86GIX9zh1vZJZiF
+ AhH6UjXL2wLlTgu52Ew7SFPEhcdvYk18lxpowFUl6nBzqExMxlOEBHeg2
+ QqyOJnj+qQU9kPWJnwvRxYULoCAin+Cl5SgKaOEfGJgNlp8I6id2n5ftx
+ gXnGLsRMcpsHzMYOUMfwD8PNaho2Tr37xOcHEaQfGEO+hMGUzzfoxrY9z g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="432755963"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="432755963"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2023 08:27:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="686888605"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="686888605"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga007.jf.intel.com with SMTP; 24 Apr 2023 08:27:26 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Apr 2023 18:27:25 +0300
+Date: Mon, 24 Apr 2023 18:27:25 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Message-ID: <ZEaf3aaTJVJcEiCp@intel.com>
+References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
+ <20230419022522.3457924-1-arun.r.murthy@intel.com>
+ <875y9s1gsl.fsf@intel.com>
+ <DM6PR11MB31774133756416CC0B8D0F75BA629@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <87v8hsyz4k.fsf@intel.com>
+ <DM6PR11MB3177F829830F9B226D7D560BBA629@DM6PR11MB3177.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="osZaiv/38K3nEkTW"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH] x86/mm: Fix PAT bit missing from page
- protection modify mask
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM6PR11MB3177F829830F9B226D7D560BBA629@DM6PR11MB3177.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+ requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,110 +66,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, x86@kernel.org,
- Yu Zhao <yuzhao@google.com>, David Hildenbrand <david@redhat.com>,
- intel-gfx@lists.freedesktop.org, Dave Hansen <dave.hansen@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Apr 19, 2023 at 10:07:46AM +0000, Murthy, Arun R wrote:
+> > -----Original Message-----
+> > From: Nikula, Jani <jani.nikula@intel.com>
+> > Sent: Wednesday, April 19, 2023 3:26 PM
+> > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> > gfx@lists.freedesktop.org
+> > Cc: ville.syrjala@linux.intel.com
+> > Subject: RE: [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+> > requirement
+> > 
+> > On Wed, 19 Apr 2023, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+> > >> -----Original Message-----
+> > >> From: Nikula, Jani <jani.nikula@intel.com>
+> > >> Sent: Wednesday, April 19, 2023 12:48 PM
+> > >> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> > >> gfx@lists.freedesktop.org
+> > >> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+> > >> Subject: Re: [RESEND PATCHv2] drm/i915/display/dp: 128/132b LT
+> > >> requirement
+> > >>
+> > >> On Wed, 19 Apr 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> > >> > For 128b/132b LT prior to LT DPTX should set power state, DP
+> > >> > channel coding and then link rate.
+> > >> >
+> > >> > v2: added separate function to avoid code duplication(Jani N)
+> > >> >
+> > >> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > >>
+> > >> RESEND for what reason?
+> > > Typo is sending V2 patch hence corrected and sent it again.
+> > >
+> > >>
+> > >> Two v2 and neither fixes
+> > >> https://lore.kernel.org/r/87o7nmergw.fsf@intel.com
+> > > This is pointing to the v1 patch.
+> > > V2 patch addressing review comments can be located @
+> > > https://lore.kernel.org/all/20230419022522.3457924-1-arun.r.murthy@int
+> > > el.com/
+> > 
+> > Argh.
+> > 
+> > RESEND means you're sending the exact same patch again. Hence *re-send*.
+> > That's what I thought. That's what everyone would think.
+> > 
+> > It's even documented in submitting-patches.rst [1].
+> > 
+> > ---
+> > 
+> > There's still the question of whether we could just change the order for
+> > 8b/10b too [2]. On IRC, Ville thinks we could, "i don't think there is any order
+> > specified. just use the same alwas imo".
+> > 
+> Spec DP2.1 section 3.5.1.2 (for 8b/10b LT)
+> write the following Link Configuration parameters:
+> * LINK_BW_SET register (DPCD 00100h)
+> * LANE_COUNT_SET field in the LANE_COUNT_SET register (DPCD 00101h[4:0])
+> * DOWNSPREAD_CTRL register (DPCD 00107h)
+> * MAIN_LINK_CHANNEL_CODING_SET register (DPCD 00108h)
 
---osZaiv/38K3nEkTW
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 24 Apr 2023 17:09:31 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	David Hildenbrand <david@redhat.com>, Yu Zhao <yuzhao@google.com>,
-	Juergen Gross <jgross@suse.com>, linux-kernel@vger.kernel.org,
-	Andi Shyti <andi.shyti@linux.intel.com>,
-	Chris Wilson <chris.p.wilson@linux.intel.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [RFC PATCH] x86/mm: Fix PAT bit missing from page protection
- modify mask
+Looks like an unordered list to me
 
-On Mon, Apr 24, 2023 at 02:35:24PM +0200, Janusz Krzysztofik wrote:
-> Visible glitches have been observed when running graphics applications on
-> Linux under Xen hypervisor.  Those observations have been confirmed with
-> failures from kms_pwrite_crc Intel GPU test that verifies data coherency
-> of DRM frame buffer objects using hardware CRC checksums calculated by
-> display controllers, exposed to userspace via debugfs.  Affected
-> processing paths have then been identified with new test variants that
-> mmap the objects using different methods and caching modes.
->=20
-> When running as a Xen PV guest, Linux uses Xen provided PAT configuration
-> which is different from its native one.  In particular, Xen specific PTE
-> encoding of write-combining caching, likely used by graphics applications,
-> differs from the Linux default one found among statically defined minimal
-> set of supported modes.  Since Xen defines PTE encoding of the WC mode as
-> _PAGE_PAT, it no longer belongs to the minimal set, depends on correct
-> handling of _PAGE_PAT bit, and can be mismatched with write-back caching.
->=20
-> When a user calls mmap() for a DRM buffer object, DRM device specific
-> .mmap file operation, called from mmap_region(), takes care of setting PTE
-> encoding bits in a vm_page_prot field of an associated virtual memory area
-> structure.  Unfortunately, _PAGE_PAT bit is not preserved when the vma's
-> .vm_flags are then applied to .vm_page_prot via vm_set_page_prot().  Bits
-> to be preserved are determined with _PAGE_CHG_MASK symbol that doesn't
-> cover _PAGE_PAT.  As a consequence, WB caching is requested instead of WC
-> when running under Xen (also, WP is silently changed to WT, and UC
-> downgraded to UC_MINUS).  When running on bare metal, WC is not affected,
-> but WP and WT extra modes are unintentionally replaced with WC and UC,
-> respectively.
->=20
-> WP and WT modes, encoded with _PAGE_PAT bit set, were introduced by commit
-> 281d4078bec3 ("x86: Make page cache mode a real type").  Care was taken
-> to extend _PAGE_CACHE_MASK symbol with that additional bit, but that
-> symbol has never been used for identification of bits preserved when
-> applying page protection flags.  Support for all cache modes under Xen,
-> including the problematic WC mode, was then introduced by commit
-> 47591df50512 ("xen: Support Xen pv-domains using PAT").
->=20
-> Extend bitmask used by pgprot_modify() for selecting bits to be preserved
-> with _PAGE_PAT bit.  However, since that bit can be reused as _PAGE_PSE,
-> and the _PAGE_CHG_MASK symbol, primarly used by pte_modify(), is likely
-> intentionally defined with that bit not set, keep that symbol unchanged.
->=20
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
-> Fixes: 281d4078bec3 ("x86: Make page cache mode a real type")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: stable@vger.kernel.org # v3.19+
+> 
+> Whereas for 128b/132b section 3.5.2.16 says
+> Prior to link training, a DPTX should perform the following:
+> 1 Verify that the SET_POWER_STATE field in the
+> SET_POWER_AND_SET_DP_PWR_VOLTAGE register is programmed to D0 normal
+> operation (DPCD 00600h[2:0] = 001b).
+> 2 Write DPCD 00108h = 02h to select 128b/132b DP channel coding.
+> 3 Program the target link rate and lane count by way of an AUX write transaction to
+> DPCD 00100h and 00101h, respectively
 
-I can confirm it fixes the issue, thanks!
+whereas this is an ordered list.
 
-Tested-by: Marek Marczykowski-G=C3=B3recki <marmarek@invisiblethingslab.com>
+> 
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> -------------------
+> > 
+> > BR,
+> > Jani.
+> > 
+> > 
+> > [1] https://docs.kernel.org/process/submitting-patches.html#don-t-get-
+> > discouraged-or-impatient
+> > [2] https://lore.kernel.org/r/87r0siernf.fsf@intel.com
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > >
+> > > Thanks and Regards,
+> > > Arun R Murthy
+> > > --------------------
+> > >>
+> > >> BR,
+> > >> Jani.
+> > >>
+> > >>
+> > >> > ---
+> > >> >  .../drm/i915/display/intel_dp_link_training.c | 62
+> > >> > +++++++++++++------
+> > >> >  1 file changed, 44 insertions(+), 18 deletions(-)
+> > >> >
+> > >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > >> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > >> > index 6aa4ae5e7ebe..e5809cf7d0c4 100644
+> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > >> > @@ -637,6 +637,37 @@ static bool
+> > >> intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+> > >> >     return true;
+> > >> >  }
+> > >> >
+> > >> > +static void
+> > >> > +intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+> > >> > +                           const struct intel_crtc_state *crtc_state) {
+> > >> > +   u8 link_config[2];
+> > >> > +
+> > >> > +   link_config[0] = crtc_state->vrr.flipline ?
+> > >> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> > >> > +   link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> > >> > +                    DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> > >> > +   drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
+> > >> link_config,
+> > >> > +2); }
+> > >> > +
+> > >> > +static void
+> > >> > +intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
+> > >> > +                       const struct intel_crtc_state *crtc_state,
+> > >> > +                       u8 link_bw, u8 rate_select) {
+> > >> > +   u8 link_config[2];
+> > >> > +
+> > >> > +   /* Write the link configuration data */
+> > >> > +   link_config[0] = link_bw;
+> > >> > +   link_config[1] = crtc_state->lane_count;
+> > >> > +   if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> > >> > +           link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> > >> > +   drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config,
+> > >> 2);
+> > >> > +   /* eDP 1.4 rate select method. */
+> > >> > +   if (!link_bw)
+> > >> > +           drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> > >> > +                             &rate_select, 1); }
+> > >> > +
+> > >> >  /*
+> > >> >   * Prepare link training by configuring the link parameters. On
+> > >> > DDI
+> > >> platforms
+> > >> >   * also enable the port here.
+> > >> > @@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp
+> > >> > *intel_dp,  {
+> > >> >     struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > >> > -   u8 link_config[2];
+> > >> >     u8 link_bw, rate_select;
+> > >> >
+> > >> >     if (intel_dp->prepare_link_retrain) @@ -686,23 +716,19 @@
+> > >> > intel_dp_prepare_link_train(struct intel_dp
+> > >> *intel_dp,
+> > >> >             drm_dbg_kms(&i915->drm,
+> > >> >                         "[ENCODER:%d:%s] Using LINK_RATE_SET value
+> > >> %02x\n",
+> > >> >                         encoder->base.base.id, encoder->base.name,
+> > >> rate_select);
+> > >> > -
+> > >> > -   /* Write the link configuration data */
+> > >> > -   link_config[0] = link_bw;
+> > >> > -   link_config[1] = crtc_state->lane_count;
+> > >> > -   if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> > >> > -           link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> > >> > -   drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config,
+> > >> 2);
+> > >> > -
+> > >> > -   /* eDP 1.4 rate select method. */
+> > >> > -   if (!link_bw)
+> > >> > -           drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> > >> > -                             &rate_select, 1);
+> > >> > -
+> > >> > -   link_config[0] = crtc_state->vrr.flipline ?
+> > >> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> > >> > -   link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> > >> > -           DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> > >> > -   drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
+> > >> link_config, 2);
+> > >> > +   if (intel_dp_is_uhbr(crtc_state)) {
+> > >> > +           /*
+> > >> > +            * Spec DP2.1 Section 3.5.2.16
+> > >> > +            * Prior to LT DPTX should set 128b/132b DP Channel
+> > >> > + coding
+> > >> and then set link rate
+> > >> > +            */
+> > >> > +           intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+> > >> > +           intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+> > >> > +                                       rate_select);
+> > >> > +   } else {
+> > >> > +           intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+> > >> > +                                       rate_select);
+> > >> > +           intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+> > >> > +   }
+> > >> >
+> > >> >     return true;
+> > >> >  }
+> > >>
+> > >> --
+> > >> Jani Nikula, Intel Open Source Graphics Center
+> > 
+> > --
+> > Jani Nikula, Intel Open Source Graphics Center
 
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
-
---osZaiv/38K3nEkTW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmRGm6sACgkQ24/THMrX
-1yzT0gf400BOXJvJeqI1javhvP81SDOZYUdV+Hbr92YK3/V923fZE3lL3vkMM0TQ
-TqbUZ0pvUaeds3y1dTt812XjjS/1AoT3tC+fj++bfX6LAYLuQWVO5P0gllFsb4bN
-ny3EG2Vz7YVYbFkVbWBZVhL1FgMJr176wvc0kNr1etE+PqeQjycOEK9y3lsr2gBi
-QuMreECQO49lJjzEViX0cC+OSQ8OaN460diENUnYrQf9b0Zp6OCWIWnGFjUuMO1W
-SB74scfbpDW3MvpGFjBT1vjLyTckriD/E4KvGDNETIf/nRrSa1PiVP98LHesAQwJ
-arBw1aNL48n2Xi10dhUmhhM+uQr3
-=cWLA
------END PGP SIGNATURE-----
-
---osZaiv/38K3nEkTW--
+-- 
+Ville Syrjälä
+Intel
