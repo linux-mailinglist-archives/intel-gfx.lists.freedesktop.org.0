@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD4E6ECCA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 15:09:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DE46ECE2D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Apr 2023 15:30:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCA210E453;
-	Mon, 24 Apr 2023 13:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA4510E500;
+	Mon, 24 Apr 2023 13:30:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C207A10E453
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Apr 2023 13:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682341758; x=1713877758;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jy+c+LYSk94Mkq929bi8qp8tn2tsmpPX08uQZH06Dfg=;
- b=AcPw1RkAFBLOBPeFHKX8AxhZO72KX8d+R4K09gkOQ+XlfpGTtKnhs+a0
- S8/ma/dLolTEHiCM2djsUKwRs57CNaK1FiV4phq2hzlzyYE42t1JgUvog
- mAKc7gSwgtIESLJPhXjsSK8dVXq4AvUXzmtoWw6oPcb/RRf30WLvMfzUH
- JqucF0eYiRlAPXaNQOt9Lqp0Bo4JR/qbbjrguayRk0eQCcU3eJG671sD2
- itSG4kSkxEe9zGbW6jR9hk67sO5J3haGbiPkfYZcQzUaWpR4oX2LJxxx5
- jV1u2EZG1lUAqBIjrifn0ytttZIiqSm6BjFgvg6SC/NqZPTwI6EcqZAbz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="409381676"
-X-IronPort-AV: E=Sophos;i="5.99,222,1677571200"; d="scan'208";a="409381676"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 06:09:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="1022706999"
-X-IronPort-AV: E=Sophos;i="5.99,222,1677571200"; d="scan'208";a="1022706999"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga005.fm.intel.com with SMTP; 24 Apr 2023 06:09:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Apr 2023 16:09:13 +0300
-Date: Mon, 24 Apr 2023 16:09:13 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZEZ/eb4WKq9Mvsel@intel.com>
-References: <20230331101613.936776-1-ankit.k.nautiyal@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE75610E500;
+ Mon, 24 Apr 2023 13:30:02 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 66EAB1FD7D;
+ Mon, 24 Apr 2023 13:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1682343000; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=tLPbo/UZqeeiUO9KIxTgk4ZZt8WHIXufmzl7K93VOsU=;
+ b=FXAYjaIE+ddK6693P2nO5MJMlmKsl6RFQyEWh6fs0X1nnQ0iUuiziFaq1/DFUNwDzPk4Cy
+ IDRNVmsaSryTzpdOqJhUbsNmRMdLFaogTUovOLtXQf6hwmfqS4Au+tGiQa/ty85ORN5aBZ
+ dI2wGCGSgJt4qeDybzAitw8EAgn6+rI=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E182413780;
+ Mon, 24 Apr 2023 13:29:59 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id tyikNVeERmQ8HQAAMHmgww
+ (envelope-from <jgross@suse.com>); Mon, 24 Apr 2023 13:29:59 +0000
+Message-ID: <9b5c3df3-b795-782d-d01f-ab43868f3675@suse.com>
+Date: Mon, 24 Apr 2023 15:29:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230331101613.936776-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 00/13] Handle BPC for HDMI2.1 PCON without
- DSC1.2 sink and other fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>
+References: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
+From: Juergen Gross <jgross@suse.com>
+In-Reply-To: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------KgChvB1UOSFWzuvpekN3GQ8z"
+Subject: Re: [Intel-gfx] [RFC PATCH] x86/mm: Fix PAT bit missing from page
+ protection modify mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,105 +64,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Yu Zhao <yuzhao@google.com>, David Hildenbrand <david@redhat.com>,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 31, 2023 at 03:46:00PM +0530, Ankit Nautiyal wrote:
-> This series fixes issues faced when an HDMI2.1 sink that does not
-> support DSC is connected via HDMI2.1PCON. It also includes other minor
-> HDMI2.1 PCON fixes/refactoring.
-> 
-> Patch 1-2 Have minor fixes/cleanups.
-> Patch 3-6 Pull the decision making to use DFP conversion capabilities
-> for every mode during compute config, instead of having that decision
-> during DP initializing phase.
-> Patch 7-8 Calculate the max BPC that can be sufficient with either
-> RGB or YCbcr420 format for the maximum FRL rate supported.
-> 
-> Rev2: Split the refactoring of DFP RG->YCBCR conversion into smaller
-> patches, as suggested by Jani N.
-> Also dropped the unnecessary helper for DSC1.2 support for HDMI2.1 DFP.
-> 
-> Rev3: As suggested by Ville, added new member sink_format to store the
-> final format that the sink will be using, which might be different
-> than the output format, and thus might need color/format conversion
-> performed by the PCON.
-> 
-> Rev4: Fix typo in switch case as, reported by kernel test bot.
-> 
-> Rev5: Corrected order of setting sink_format and output_format. (Ville)
-> Avoided the flag ycbcr420_output and used the sink_format to facilitate
-> 4:2:2 support at a later stage. (Ville)
-> 
-> Rev6: Added missing changes for sdvo. (Ville)
-> Added check for scaler and DSC constraints with YCbCr420.
-> 
-> Rev7: Split change to add scaler constraint in separate patch, and rebased.
-> 
-> Rev8: Rebased. Fixed check for mode rate with dsc in modevalid.
-> Fixed scaler constraint as per display version.
-> 
-> Rev9: Rebased.
-> 
-> Rev10: Addressed review comments from Ville.
-> Dropped patch to check for mode rate with dsc during modevalid, as the
-> compressed bpp is already selected with bandwidth considerations.
-> 
-> Rev11: Fixed the policy to use output format as RGB first if possible,
-> followed by YCbCr444, atlast YCbCr420. Also removed the scaler-constraints
-> with YCbCr420, as these are handled in scaler code. (Ville)
-> 
-> Rev12: Added a patch for configuring PCON to convert output_format to
-> YCBCR444. Added patch to have consistent naming for link bpp and
-> compressed bpp. 
-> 
-> Ankit Nautiyal (13):
->   drm/i915/display: Add new member to configure PCON color conversion
->   drm/i915/display: Add new member in intel_dp to store ycbcr420
->     passthrough cap
->   drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state
->     sink_format
->   drm/i915/dp: Configure PCON for conversion of output_format to
->     YCbCr444
->   drm/i915/display: Use sink_format instead of ycbcr420_output flag
->   drm/i915/dp: Add helper to get sink_format
->   drm/i915/dp: Rearrange check for illegal mode and comments in
->     mode_valid
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------KgChvB1UOSFWzuvpekN3GQ8z
+Content-Type: multipart/mixed; boundary="------------JIo6qJ5DPUNRum2MSGQXDkVy";
+ protected-headers="v1"
+From: Juergen Gross <jgross@suse.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@redhat.com>, Yu Zhao <yuzhao@google.com>,
+ linux-kernel@vger.kernel.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <9b5c3df3-b795-782d-d01f-ab43868f3675@suse.com>
+Subject: Re: [RFC PATCH] x86/mm: Fix PAT bit missing from page protection
+ modify mask
+References: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
 
-Apart from a few minor nits that set looks pretty much ready
-to go in. Maybe rebase and submit just those so we can push them?
+--------------JIo6qJ5DPUNRum2MSGQXDkVy
+Content-Type: multipart/mixed; boundary="------------nZGh77PNEWss04qVuuM8lUrp"
 
-The rest might still need some tweaking, and I probably need 
-to refresh mymemory on the FRL stuff before I look at those.
+--------------nZGh77PNEWss04qVuuM8lUrp
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
->   drm/i915/dp: Consider output_format while computing dsc bpp
->   drm/i915/dp_mst: Use output_format to get the final link bpp
->   drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC
->   drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
->   drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
->   drm/i915/dp: Use consistent name for link bpp and compressed bpp
-> 
->  drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
->  drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
->  .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   5 +
->  .../drm/i915/display/intel_display_types.h    |  12 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       | 494 ++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dp.h       |  14 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  27 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c      |   1 +
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  71 ++-
->  drivers/gpu/drm/i915/display/intel_hdmi.h     |   5 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c     |   1 +
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
->  drivers/gpu/drm/i915/display/intel_tv.c       |   1 +
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
->  15 files changed, 437 insertions(+), 203 deletions(-)
-> 
-> -- 
-> 2.25.1
+T24gMjQuMDQuMjMgMTQ6MzUsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90ZToNCj4gVmlzaWJs
+ZSBnbGl0Y2hlcyBoYXZlIGJlZW4gb2JzZXJ2ZWQgd2hlbiBydW5uaW5nIGdyYXBoaWNzIGFw
+cGxpY2F0aW9ucyBvbg0KPiBMaW51eCB1bmRlciBYZW4gaHlwZXJ2aXNvci4gIFRob3NlIG9i
+c2VydmF0aW9ucyBoYXZlIGJlZW4gY29uZmlybWVkIHdpdGgNCj4gZmFpbHVyZXMgZnJvbSBr
+bXNfcHdyaXRlX2NyYyBJbnRlbCBHUFUgdGVzdCB0aGF0IHZlcmlmaWVzIGRhdGEgY29oZXJl
+bmN5DQo+IG9mIERSTSBmcmFtZSBidWZmZXIgb2JqZWN0cyB1c2luZyBoYXJkd2FyZSBDUkMg
+Y2hlY2tzdW1zIGNhbGN1bGF0ZWQgYnkNCj4gZGlzcGxheSBjb250cm9sbGVycywgZXhwb3Nl
+ZCB0byB1c2Vyc3BhY2UgdmlhIGRlYnVnZnMuICBBZmZlY3RlZA0KPiBwcm9jZXNzaW5nIHBh
+dGhzIGhhdmUgdGhlbiBiZWVuIGlkZW50aWZpZWQgd2l0aCBuZXcgdGVzdCB2YXJpYW50cyB0
+aGF0DQo+IG1tYXAgdGhlIG9iamVjdHMgdXNpbmcgZGlmZmVyZW50IG1ldGhvZHMgYW5kIGNh
+Y2hpbmcgbW9kZXMuDQo+IA0KPiBXaGVuIHJ1bm5pbmcgYXMgYSBYZW4gUFYgZ3Vlc3QsIExp
+bnV4IHVzZXMgWGVuIHByb3ZpZGVkIFBBVCBjb25maWd1cmF0aW9uDQo+IHdoaWNoIGlzIGRp
+ZmZlcmVudCBmcm9tIGl0cyBuYXRpdmUgb25lLiAgSW4gcGFydGljdWxhciwgWGVuIHNwZWNp
+ZmljIFBURQ0KPiBlbmNvZGluZyBvZiB3cml0ZS1jb21iaW5pbmcgY2FjaGluZywgbGlrZWx5
+IHVzZWQgYnkgZ3JhcGhpY3MgYXBwbGljYXRpb25zLA0KPiBkaWZmZXJzIGZyb20gdGhlIExp
+bnV4IGRlZmF1bHQgb25lIGZvdW5kIGFtb25nIHN0YXRpY2FsbHkgZGVmaW5lZCBtaW5pbWFs
+DQo+IHNldCBvZiBzdXBwb3J0ZWQgbW9kZXMuICBTaW5jZSBYZW4gZGVmaW5lcyBQVEUgZW5j
+b2Rpbmcgb2YgdGhlIFdDIG1vZGUgYXMNCj4gX1BBR0VfUEFULCBpdCBubyBsb25nZXIgYmVs
+b25ncyB0byB0aGUgbWluaW1hbCBzZXQsIGRlcGVuZHMgb24gY29ycmVjdA0KPiBoYW5kbGlu
+ZyBvZiBfUEFHRV9QQVQgYml0LCBhbmQgY2FuIGJlIG1pc21hdGNoZWQgd2l0aCB3cml0ZS1i
+YWNrIGNhY2hpbmcuDQo+IA0KPiBXaGVuIGEgdXNlciBjYWxscyBtbWFwKCkgZm9yIGEgRFJN
+IGJ1ZmZlciBvYmplY3QsIERSTSBkZXZpY2Ugc3BlY2lmaWMNCj4gLm1tYXAgZmlsZSBvcGVy
+YXRpb24sIGNhbGxlZCBmcm9tIG1tYXBfcmVnaW9uKCksIHRha2VzIGNhcmUgb2Ygc2V0dGlu
+ZyBQVEUNCj4gZW5jb2RpbmcgYml0cyBpbiBhIHZtX3BhZ2VfcHJvdCBmaWVsZCBvZiBhbiBh
+c3NvY2lhdGVkIHZpcnR1YWwgbWVtb3J5IGFyZWENCj4gc3RydWN0dXJlLiAgVW5mb3J0dW5h
+dGVseSwgX1BBR0VfUEFUIGJpdCBpcyBub3QgcHJlc2VydmVkIHdoZW4gdGhlIHZtYSdzDQo+
+IC52bV9mbGFncyBhcmUgdGhlbiBhcHBsaWVkIHRvIC52bV9wYWdlX3Byb3QgdmlhIHZtX3Nl
+dF9wYWdlX3Byb3QoKS4gIEJpdHMNCj4gdG8gYmUgcHJlc2VydmVkIGFyZSBkZXRlcm1pbmVk
+IHdpdGggX1BBR0VfQ0hHX01BU0sgc3ltYm9sIHRoYXQgZG9lc24ndA0KPiBjb3ZlciBfUEFH
+RV9QQVQuICBBcyBhIGNvbnNlcXVlbmNlLCBXQiBjYWNoaW5nIGlzIHJlcXVlc3RlZCBpbnN0
+ZWFkIG9mIFdDDQo+IHdoZW4gcnVubmluZyB1bmRlciBYZW4gKGFsc28sIFdQIGlzIHNpbGVu
+dGx5IGNoYW5nZWQgdG8gV1QsIGFuZCBVQw0KPiBkb3duZ3JhZGVkIHRvIFVDX01JTlVTKS4g
+IFdoZW4gcnVubmluZyBvbiBiYXJlIG1ldGFsLCBXQyBpcyBub3QgYWZmZWN0ZWQsDQo+IGJ1
+dCBXUCBhbmQgV1QgZXh0cmEgbW9kZXMgYXJlIHVuaW50ZW50aW9uYWxseSByZXBsYWNlZCB3
+aXRoIFdDIGFuZCBVQywNCj4gcmVzcGVjdGl2ZWx5Lg0KPiANCj4gV1AgYW5kIFdUIG1vZGVz
+LCBlbmNvZGVkIHdpdGggX1BBR0VfUEFUIGJpdCBzZXQsIHdlcmUgaW50cm9kdWNlZCBieSBj
+b21taXQNCj4gMjgxZDQwNzhiZWMzICgieDg2OiBNYWtlIHBhZ2UgY2FjaGUgbW9kZSBhIHJl
+YWwgdHlwZSIpLiAgQ2FyZSB3YXMgdGFrZW4NCj4gdG8gZXh0ZW5kIF9QQUdFX0NBQ0hFX01B
+U0sgc3ltYm9sIHdpdGggdGhhdCBhZGRpdGlvbmFsIGJpdCwgYnV0IHRoYXQNCj4gc3ltYm9s
+IGhhcyBuZXZlciBiZWVuIHVzZWQgZm9yIGlkZW50aWZpY2F0aW9uIG9mIGJpdHMgcHJlc2Vy
+dmVkIHdoZW4NCj4gYXBwbHlpbmcgcGFnZSBwcm90ZWN0aW9uIGZsYWdzLiAgU3VwcG9ydCBm
+b3IgYWxsIGNhY2hlIG1vZGVzIHVuZGVyIFhlbiwNCj4gaW5jbHVkaW5nIHRoZSBwcm9ibGVt
+YXRpYyBXQyBtb2RlLCB3YXMgdGhlbiBpbnRyb2R1Y2VkIGJ5IGNvbW1pdA0KPiA0NzU5MWRm
+NTA1MTIgKCJ4ZW46IFN1cHBvcnQgWGVuIHB2LWRvbWFpbnMgdXNpbmcgUEFUIikuDQo+IA0K
+PiBFeHRlbmQgYml0bWFzayB1c2VkIGJ5IHBncHJvdF9tb2RpZnkoKSBmb3Igc2VsZWN0aW5n
+IGJpdHMgdG8gYmUgcHJlc2VydmVkDQo+IHdpdGggX1BBR0VfUEFUIGJpdC4gIEhvd2V2ZXIs
+IHNpbmNlIHRoYXQgYml0IGNhbiBiZSByZXVzZWQgYXMgX1BBR0VfUFNFLA0KPiBhbmQgdGhl
+IF9QQUdFX0NIR19NQVNLIHN5bWJvbCwgcHJpbWFybHkgdXNlZCBieSBwdGVfbW9kaWZ5KCks
+IGlzIGxpa2VseQ0KPiBpbnRlbnRpb25hbGx5IGRlZmluZWQgd2l0aCB0aGF0IGJpdCBub3Qg
+c2V0LCBrZWVwIHRoYXQgc3ltYm9sIHVuY2hhbmdlZC4NCg0KSG1tLCBJIHdvbmRlciB3aGV0
+aGVyIHB0ZV9ta2h1Z2UoKSBzaG91bGRuJ3QganVzdCBzZXQgX1BBR0VfUFNFLCBidXQgdXNl
+DQpwZ3Byb3RfNGtfMl9sYXJnZSgpIGJlZm9yZSBkb2luZyBzby4NCg0KT1RPSCBhIHVzZSBj
+YXNlIGxpa2UgaW4gcmVtb3ZlX21pZ3JhdGlvbl9wdGUoKSwgd2hlcmUgcHRlX21raHVnZSgp
+IGlzDQpkaXJlY3RseSBmb2xsb3dlZCBieSBhIGNhbGwgb2YgYXJjaF9tYWtlX2h1Z2VfcHRl
+KCksIHdoaWNoIGluIHR1cm4gaXMNCmNhbGxpbmcgcHRlX21raHVnZSgpIGFnYWluLCB3b3Vs
+ZCBzZXQgX2Fsd2F5c18gdGhlIFBBVCBiaXQuDQoNCldoZW4gcnVubmluZyBhcyBhIFhlbiBQ
+ViBndWVzdCB0aGlzIGRvZXNuJ3QgbWF0dGVyIGF0IGFsbCwgYXMgbGFyZ2Ugb3INCmh1Z2Ug
+cGFnZXMgYXJlbid0IHN1cHBvcnRlZCB0aGVyZS4gU28gY2xlYXJseSBzb21ldGhpbmcgZm9y
+IHRoZSBNTQ0KbWFpbnRhaW5lcnMuIDotKQ0KDQoNCkp1ZXJnZW4NCg0KUC5TLjogSmFudXN6
+LCBuaWNlIGNhdGNoISBUaGUgUXViZXNPUyBmb2xrcyB3aG8gcmVwb3J0ZWQgdGhlIHByb2Js
+ZW0NCiAgICAgICBvcmlnaW5hbGx5IHdpbGwgdGVzdCB5b3VyIHBhdGNoIHVuZGVyIFhlbiBz
+b29uLg0K
+--------------nZGh77PNEWss04qVuuM8lUrp
+Content-Type: application/pgp-keys; name="OpenPGP_0xB0DE9DD628BF132F.asc"
+Content-Disposition: attachment; filename="OpenPGP_0xB0DE9DD628BF132F.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Ville Syrjälä
-Intel
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+jR/i1DG86lem3iBDXzXsZDn8R38=3D
+=3D2wuH
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------nZGh77PNEWss04qVuuM8lUrp--
+
+--------------JIo6qJ5DPUNRum2MSGQXDkVy--
+
+--------------KgChvB1UOSFWzuvpekN3GQ8z
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmRGhFcFAwAAAAAACgkQsN6d1ii/Ey/i
+RQf/TRbhRJqx5FYf6UKJIfwG6Blsnm6rpsjHnf39a8CdQFtq+BCiarh223RPa1o+vgudpUXifDfs
+r4lZskH1YjMGUgXUBuAHeOer3Yyza5SD+2/JH3QO4WyBEpRL6bBgrWlaCFe8JfOiu7YXK3xQsSxl
+QSuruEzYvBbiE6PV7KPW987s4Ej4hi71yMKAm60APhrglk0chCZ8DK6v/PDvRXaikZfehNl5ozeN
++zxZKOqQGCf0w499k8UnuTnGiILm0/NBl+gM4A7z0/lOzAra2W4+TUd5eZ4/+8DlbeAP3X4fQAsR
+B7PhJbxs6XiIM/qB6NAum41xAZ9sn4wefCjxNEh2+A==
+=VfcL
+-----END PGP SIGNATURE-----
+
+--------------KgChvB1UOSFWzuvpekN3GQ8z--
