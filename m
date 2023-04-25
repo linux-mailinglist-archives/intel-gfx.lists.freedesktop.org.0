@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675506EDB94
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 08:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B756EDB9A
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 08:25:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE2810E67A;
-	Tue, 25 Apr 2023 06:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF01510E689;
+	Tue, 25 Apr 2023 06:25:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA29910E67A
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 06:24:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC35110E67E;
+ Tue, 25 Apr 2023 06:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682403845; x=1713939845;
+ t=1682403931; x=1713939931;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=5pJgpW2llntAvnj447E06zkySkMWTyI7p2iyCkhI0tg=;
- b=KF6GJJb2cC5xAauKocoZVsY0+z15u8fUAeqbyNpomRrN56HIVW6TOrGp
- Hj2Vrr5UEptWAPZwRPHxmqwDvqbg1/NfaNjmiNfSdvitxiUnpPJ7E68Tf
- 992JlTXgooDho+YVXtj6tW/OjlASgFoNuJniRVsVhMwcoZjHoG1JQ0ahJ
- SMAJy5wEPkeyLiZAdo7AxKZQkD713S3IZAIPJ/w5SdgKGIRWILD67M0lK
- NISZOKWsbX4O2owgnmjaozbAr7kBpOIgOW/2UOmnL6UjM93xe0eQ/16qt
- q4I12Pgq/exuKXKpssas2izQkUSuqlSoJ6gYuQRIAdq/2kwKxlRJ7jQzP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="432934245"
-X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; d="scan'208";a="432934245"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 23:24:04 -0700
+ bh=UlJU8GtcmapKDIHm1T1/Sr7ITIBa2YrtEJeOAJpSeSg=;
+ b=HMsNZBEP80ntQ1YXL+ye67iZC0aNZQNxtGSTb6ht49ZbpwGxAHLW9CL8
+ LGGckLuBL6Rrpv9YusmxNOFQTC+tYCVXDvixc947PhwGXIhzOIablJk7z
+ 6vFxMEJHwuxIzTMfFIg7fMSM+rCYShaYW4MBMw+yssiHP+4jRX73WW2MW
+ TK1ClOeUBLYwTZ8WYQoaDNrw6eYvMtfpjNoU+9/emas6OT+DqsAtyzrUw
+ 4ESbuB+hdiJTHPZJxLIVFSXhdXEpeBT61fMBy1fZFOSzVwbVC4EdKZt7Y
+ ZEGjS4wHidz4W6mxpd6+TVYHxuWhew9w9Y2n2JgDSzvTaK1sJfgHVV5Kk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="335568368"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; d="scan'208";a="335568368"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2023 23:25:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="867770283"
-X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; d="scan'208";a="867770283"
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="643660347"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; d="scan'208";a="643660347"
 Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.19.44])
  ([10.213.19.44])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 23:24:03 -0700
-Message-ID: <16497de0-1707-4b65-7d18-bc03d935358a@intel.com>
-Date: Tue, 25 Apr 2023 08:24:01 +0200
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2023 23:25:28 -0700
+Message-ID: <7973f765-5528-f0da-dab9-567277e266da@intel.com>
+Date: Tue, 25 Apr 2023 08:25:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.10.0
 Content-Language: en-US
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230424200205.1732941-1-imre.deak@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>, Fei Yang <fei.yang@intel.com>
+References: <20230424160913.19886-1-andi.shyti@linux.intel.com>
+ <20230424160913.19886-2-andi.shyti@linux.intel.com>
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
  Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230424200205.1732941-1-imre.deak@intel.com>
+In-Reply-To: <20230424160913.19886-2-andi.shyti@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp+: Disable DC5/6 states for TC
- port DDI/AUX and for combo port AUX
+Subject: Re: [Intel-gfx] [PATCH 1/2] Revert "drm/i915/mtl: fix mocs selftest"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,94 +66,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas Martins De Marchi <lucas.demarchi@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24.04.2023 22:02, Imre Deak wrote:
-> On ADLP+ Bspec allows DC5/6 to be enabled while power well 2 is enabled.
-> Since the AUX and DDI power wells (except for port A/B) are also backed
-> by power well 2, this would suggest that DC5/6 can be enabled while any
-> of these AUX or DDI port functionalities are used. As opposed to this
-> AUX transfers will time out on ADLP TypeC ports while DC6 is enabled.
+On 24.04.2023 18:09, Andi Shyti wrote:
+> This reverts commit faca6aaa4838c3c234caa619d3c7d1f09da0d303.
 > 
-> Until the restriction for DC5/6 is clarified in Bspec let's assume that
-> the intention is to allow for using these power states while pipe A/B is
-> enabled, but only for combo ports which can be used with eDP outputs.
-> Similarly assume that AUX transaction initiated by the driver on any port
-> requires DC states to be disabled.
+> This patch, in series with the next "Define MOCS and PAT tables
+> for MTL" are causing boot failures for MTL.
 > 
+> Revert them both.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Fei Yang <fei.yang@intel.com>
 > Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Fixes: 88c487938414 ("drm/i915: Use separate "DC off" power well for ADL-P and DG2")
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Great it revives bat-dg2-11.
 
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
 Regards
 Andrzej
-
 > ---
->   .../i915/display/intel_display_power_map.c    | 28 +++++++++++--------
->   1 file changed, 16 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/i915/gt/selftest_mocs.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> index 100582f105905..ca448359a8226 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> @@ -1251,22 +1251,11 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
->   	POWER_DOMAIN_PIPE_PANEL_FITTER_A,
->   	POWER_DOMAIN_INIT);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> index a8446ab825012..ca009a6a13bdb 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> @@ -131,14 +131,13 @@ static int read_mocs_table(struct i915_request *rq,
+>   			   const struct drm_i915_mocs_table *table,
+>   			   u32 *offset)
+>   {
+> -	struct intel_gt *gt = rq->engine->gt;
+>   	u32 addr;
 >   
-> -#define XELPD_PW_2_POWER_DOMAINS \
-> -	XELPD_PW_B_POWER_DOMAINS, \
-> -	XELPD_PW_C_POWER_DOMAINS, \
-> -	XELPD_PW_D_POWER_DOMAINS, \
-> -	POWER_DOMAIN_PORT_DDI_LANES_C, \
-> -	POWER_DOMAIN_PORT_DDI_LANES_D, \
-> -	POWER_DOMAIN_PORT_DDI_LANES_E, \
-> +#define XELPD_DC_OFF_PORT_POWER_DOMAINS \
->   	POWER_DOMAIN_PORT_DDI_LANES_TC1, \
->   	POWER_DOMAIN_PORT_DDI_LANES_TC2, \
->   	POWER_DOMAIN_PORT_DDI_LANES_TC3, \
->   	POWER_DOMAIN_PORT_DDI_LANES_TC4, \
-> -	POWER_DOMAIN_VGA, \
-> -	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> -	POWER_DOMAIN_AUX_IO_C, \
-> -	POWER_DOMAIN_AUX_IO_D, \
-> -	POWER_DOMAIN_AUX_IO_E, \
->   	POWER_DOMAIN_AUX_C, \
->   	POWER_DOMAIN_AUX_D, \
->   	POWER_DOMAIN_AUX_E, \
-> @@ -1279,6 +1268,20 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
->   	POWER_DOMAIN_AUX_TBT3, \
->   	POWER_DOMAIN_AUX_TBT4
+>   	if (!table)
+>   		return 0;
 >   
-> +#define XELPD_PW_2_POWER_DOMAINS \
-> +	XELPD_PW_B_POWER_DOMAINS, \
-> +	XELPD_PW_C_POWER_DOMAINS, \
-> +	XELPD_PW_D_POWER_DOMAINS, \
-> +	POWER_DOMAIN_PORT_DDI_LANES_C, \
-> +	POWER_DOMAIN_PORT_DDI_LANES_D, \
-> +	POWER_DOMAIN_PORT_DDI_LANES_E, \
-> +	POWER_DOMAIN_VGA, \
-> +	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> +	POWER_DOMAIN_AUX_IO_C, \
-> +	POWER_DOMAIN_AUX_IO_D, \
-> +	POWER_DOMAIN_AUX_IO_E, \
-> +	XELPD_DC_OFF_PORT_POWER_DOMAINS
-> +
->   I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_2,
->   	XELPD_PW_2_POWER_DOMAINS,
->   	POWER_DOMAIN_INIT);
-> @@ -1301,6 +1304,7 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_2,
->    */
+>   	if (HAS_GLOBAL_MOCS_REGISTERS(rq->engine->i915))
+> -		addr = global_mocs_offset() + gt->uncore->gsi_offset;
+> +		addr = global_mocs_offset();
+>   	else
+>   		addr = mocs_offset(rq->engine);
 >   
->   I915_DECL_PW_DOMAINS(xelpd_pwdoms_dc_off,
-> +	XELPD_DC_OFF_PORT_POWER_DOMAINS,
->   	XELPD_PW_C_POWER_DOMAINS,
->   	XELPD_PW_D_POWER_DOMAINS,
->   	POWER_DOMAIN_PORT_DSI,
 
