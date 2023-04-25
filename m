@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0946EE8EC
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 22:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F136EE8ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 22:21:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B8910E59F;
-	Tue, 25 Apr 2023 20:21:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5273C10E5A5;
+	Tue, 25 Apr 2023 20:21:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327FA10E5A5
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 20:21:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3DC310E5A5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 20:21:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682454067; x=1713990067;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QSQUtVZO1czNa8n+9lBLeZvV4CrFqgN5Dlr0PHpJnuE=;
- b=P59GCoWyqlwSLJPUO8h7R8L2Cn3S3czOPJRMCZKApkFpCSPmah7Y49VP
- Tf0A931PwpWbWAh4R6BmKgFJxlWJBjJqLtbLQju/5otwHEQ6kZOR54UiQ
- 0TIpldPiQiUpiqXIrpXBsTLK1iDu/A8a6RQwE3UlvqV7/k360rp+4EFip
- HBEIoFz9h2r0SV4kOesjsJFRZjZVmGPXjTWHt1wSjbOQIRKUb7OwJTTvY
- 6LSL4A/Et+10SY0EwYxyBjsm2xvV5KC2nseLZ0qv4vC/E8rIk66WIMIGW
- cd+4LJknTSqIdInPZ7E8tgPHprhgSOafQNO+WkOyujmdAZmtV/x83xHiO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="409854203"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="409854203"
+ t=1682454069; x=1713990069;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iPiGQURjquVk9DiEIXo1Oj7lPsM1npJIkpSCr77khzk=;
+ b=dsMWaNTJFCCzoJ0vrEnuWiUr8YcgxTAFq97XGUEHGdE3P9ucjbEEz0jB
+ G0EDYOkAAbuTc8ynuCOuThnYiIhakI9OS52GoNw08O0/70/usD80ZlyF2
+ GitptWAwhq/IwC/Hn36rH9R7QKgcwkKHmBHRBoqq7pI1dct6EsqTVNg2l
+ aASxJ+tCte/ebRUkWIDN07FNmR5F14r8mxiTe0tDVEl0mVBUoqxcyyWQs
+ Y7F9l/ZYQGFCvOQSZseOg4FNkS8XOz8qcw6ZFwkO9t1sN7BgOVIbz+//N
+ SjgVG+WstNEDhtnupaj85aNJRIZABOeRra/bITAV2x3/hr30oesPf/7oT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="409854209"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; 
+ d="scan'208,223";a="409854209"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 13:21:06 -0700
+ 25 Apr 2023 13:21:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="693663031"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="693663031"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="693663038"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; 
+ d="scan'208,223";a="693663038"
 Received: from aazuev-mobl.ccr.corp.intel.com (HELO vgovind2-mobl3.intel.com)
  ([10.252.59.124])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 13:21:04 -0700
+ 25 Apr 2023 13:21:07 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 23:20:49 +0300
-Message-Id: <20230425202056.1143994-1-vinod.govindapillai@intel.com>
+Date: Tue, 25 Apr 2023 23:20:50 +0300
+Message-Id: <20230425202056.1143994-2-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230425202056.1143994-1-vinod.govindapillai@intel.com>
+References: <20230425202056.1143994-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v1 0/7] mtl: add support for pmdemand
+Subject: [Intel-gfx] [PATCH v1 1/7] drm/i915: update the QGV point frequency
+ calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +66,31 @@ Cc: ville.syrjala@intel.com, gustavo.souza@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-pmdemand support patches for MTL
+From MTL onwwards, pcode locks the QGV point based on peak BW of
+the intended QGV point passed by the driver. So the peak BW
+calculation must match the value expected by the pcode. Update
+the calculations as per the Bspec.
 
-SAGV configuration support for MTL
+Bspec: 64636
 
-Mika Kahola (1):
-  drm/i915/mtl: Add support for PM DEMAND
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Vinod Govindapillai (6):
-  drm/i915: update the QGV point frequency calculations
-  drm/i915: store the peak bw per QGV point
-  drm/i915: extract intel_bw_check_qgv_points()
-  drm/i915: modify max_bw to return index to intel_bw_info
-  drm/i915/mtl: find best QGV point and configure sagv
-  drm/i915/display: provision to suppress drm_warn in
-    intel_get_crtc_new_encoder
-
- drivers/gpu/drm/i915/Makefile                 |   3 +-
- drivers/gpu/drm/i915/display/intel_bw.c       | 348 ++++++++++-----
- drivers/gpu/drm/i915/display/intel_bw.h       |   6 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  17 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   3 +-
- .../gpu/drm/i915/display/intel_display_core.h |   8 +
- .../drm/i915/display/intel_display_driver.c   |   7 +
- .../drm/i915/display/intel_display_power.c    |   8 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |   8 +-
- .../gpu/drm/i915/display/intel_pch_display.c  |   2 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 406 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_pmdemand.h |  25 ++
- drivers/gpu/drm/i915/display/intel_snps_phy.c |   2 +-
- drivers/gpu/drm/i915/i915_irq.c               |  22 +-
- drivers/gpu/drm/i915/i915_reg.h               |  36 +-
- 16 files changed, 771 insertions(+), 132 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index ab405c48ca3a..25ae4e5834d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -182,7 +182,7 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+ 	val2 = intel_uncore_read(&dev_priv->uncore,
+ 				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
+ 	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
+-	sp->dclk = DIV_ROUND_UP((16667 * dclk), 1000);
++	sp->dclk = (16667 * dclk + 500) / 1000;
+ 	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
+ 	sp->t_rcd = REG_FIELD_GET(MTL_TRCD_MASK, val);
+ 
 -- 
 2.34.1
 
