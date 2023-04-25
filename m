@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844E96EE0B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 12:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0696EE0F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 13:14:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F1110E71A;
-	Tue, 25 Apr 2023 10:55:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCEF710E28E;
+	Tue, 25 Apr 2023 11:14:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01DBE10E715
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 10:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682420135; x=1713956135;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=pgRFr+PbyUJ5qV5yiUihPachALU+JdWVZi/C2wjWWdQ=;
- b=McQ5j9amvg7znTLu3Dy5Ydjr8CdjadFTSpnQ3Wk4ZzbeqLj+qJqRpe50
- ztnFMCpRmR3m/wUOmHu+h+WZcH5WNc98WhOu7SrGy/InoADPzJOBU8jHe
- JG7eXu5HkSSdYpe+MZqwOLyL1PcNmytDCzRpZr2FS5dFSF4O/e2ERQT1V
- FQJgMcjZ2NnyHkSjRx8eVsN+zZIKlMDaaemCkUMJIXSmSxH1OJVXsN48z
- kzoh6ewT+mnkCjt2sMj8vDlk+KENl9RUY2ij96ySsQDztuakxZnGtpKfE
- yYr/OV8iUAOYxPcs5fW9XYTO4GmP7vCkGXOVmotZejDjINaTSwhSMsSWp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="412019671"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="412019671"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 03:55:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="687367524"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="687367524"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga007.jf.intel.com with SMTP; 25 Apr 2023 03:55:32 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Apr 2023 13:55:32 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 13:54:50 +0300
-Message-Id: <20230425105450.18441-15-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
-References: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 12ED710E28E;
+ Tue, 25 Apr 2023 11:14:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BF79A73C7;
+ Tue, 25 Apr 2023 11:14:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 14/14] drm/i915/dsi: Remove weird
- has_pch_encoder asserts
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 25 Apr 2023 11:14:25 -0000
+Message-ID: <168242126501.24067.9795169658372646664@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230425081331.21617-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230425081331.21617-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_Communicate_display_power_demands_to_pc?=
+ =?utf-8?q?ode_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,47 +41,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-No idea why the DSI code is feeling the need to assert that
-has_pch_encoder must not be set. PCH encoders aren't even a
-thing on any platform that has DSI.
+Series: drm/i915/display: Communicate display power demands to pcode (rev4)
+URL   : https://patchwork.freedesktop.org/series/115371/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 2 --
- drivers/gpu/drm/i915/display/vlv_dsi.c | 2 --
- 2 files changed, 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 3a8a4fdfbd7b..2cb9571bd327 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1245,8 +1245,6 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
--
- 	/* Wa_1409054076:icl,jsl,ehl */
- 	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
- 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 6ddf4d9c5e00..3813c44ad90e 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -829,8 +829,6 @@ static void bxt_dsi_enable(struct intel_atomic_state *state,
- 			   const struct intel_crtc_state *crtc_state,
- 			   const struct drm_connector_state *conn_state)
- {
--	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
--
- 	intel_crtc_vblank_on(crtc_state);
- }
- 
--- 
-2.39.2
+Error: dim checkpatch failed
+ff5edc1e59b9 drm/i915/display: Communicate display power demands to pcode
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+Adding new sequence with current cdclk associate with voltage value masking.
+
+-:281: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#281: FILE: drivers/gpu/drm/i915/i915_reg.h:5357:
++#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
+
+total: 0 errors, 2 warnings, 0 checks, 244 lines checked
+
 
