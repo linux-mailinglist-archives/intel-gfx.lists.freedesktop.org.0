@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024546EE5C1
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 18:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BEE6EE603
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 18:46:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81CCD10E78D;
-	Tue, 25 Apr 2023 16:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0DF810E661;
+	Tue, 25 Apr 2023 16:46:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C84610E2D9;
- Tue, 25 Apr 2023 16:30:22 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 532E010E661
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 16:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682440222; x=1713976222;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=aaD12jApJdjOdFKvWMiBIy/OKR/4Mufy/Wi2SaZkQ9U=;
- b=l9+KiVn8Kf6zEq3B5To/hsS/6xnyoWT6mwfePWAve6XF9ji5T8Ig2IVc
- Cx6Toodx0pAtCpBjFzsLkIeaABQ0N+ej48mLVXQaL+jBIyGX095O4OwqH
- 6PpNwbMtLMYMUYIg7uUG28aD4/CPqvf8p7CSZ0tXXzU9qTg8Zs11Tw93G
- DhotXwpUVVTa8vz4tfqZvLa2aC8k0U20qFI/JWsvxs2Luwe3/JszBuCD+
- WQNAVWgsTfFdWHkr65CHKFEXsuKjt+90P2ve0SM+/MofRdmblfuwkqWOY
- qOWTWwrCDBh20IcZmegeybP0QLufsWl5fJqnSoow/UPbsl1DSnCeT8zSH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="348744615"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="348744615"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 09:30:06 -0700
+ t=1682441206; x=1713977206;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZQDBBH7xTYkMcOWz9e7/7ZSq7o8Ftefo2lJuSddUlUE=;
+ b=ggUZqVNy5OAKfv4jv6Aelhs0dnViHL23IRImZTUBmzR38BfgBh41DlrP
+ mByuNmb+9QFjfgIKAdjlYIT/b1dxaid6a/FotVyyckfw20ynKL3rDpmKN
+ nr4wMdxzx0lC3qDFsyREEg5iS2/Jsn1qk3hErKniDqgOOGVCUUkaurx/N
+ CUUvB1mTDNko23SBnp2ggKjwUg3k8efu95PvJhYKeAwmF3o6zM/0usa7Y
+ HpfbtM80M5xasWBiHty2uU4KCrF9lNtSS20EWfE81NQLciOM2NxWJ2XNm
+ WXeolSN0QNUYBA8Owu1cqvPMuQyVHvuypj2PTh2/lVXoOw1xO3FCdCdqu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="345583747"
+X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="345583747"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 09:46:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="670965281"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="670965281"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga006.jf.intel.com with ESMTP; 25 Apr 2023 09:30:06 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 09:24:05 -0700
-Message-Id: <20230425162405.1730513-5-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230425162405.1730513-1-vinay.belgaumkar@intel.com>
-References: <20230425162405.1730513-1-vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="817760349"
+X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="817760349"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.59.107])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 09:46:44 -0700
+Date: Tue, 25 Apr 2023 18:46:41 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Message-ID: <ZEgD8faKJlw4SZst@ashyti-mobl2.lan>
+References: <20230424133607.3736825-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 4/4] HAX: tests/i915: Try out the SLPC IGT
- tests
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230424133607.3736825-1-tejas.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Record GT error for gt
+ failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,29 +59,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Trying out for CI. Do not review.
+Hi Tejas,
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tests/intel-ci/fast-feedback.testlist | 2 ++
- 1 file changed, 2 insertions(+)
+On Mon, Apr 24, 2023 at 07:06:07PM +0530, Tejas Upadhyay wrote:
+> igt_live_test has pr_err dumped in case of some
+> GT failures. It will be more informative regarding
+> GT if we use gt_err instead.
+> 
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-diff --git a/tests/intel-ci/fast-feedback.testlist b/tests/intel-ci/fast-feedback.testlist
-index d9fcb62d..653668dd 100644
---- a/tests/intel-ci/fast-feedback.testlist
-+++ b/tests/intel-ci/fast-feedback.testlist
-@@ -139,6 +139,8 @@ igt@prime_self_import@basic-with_fd_dup
- igt@prime_self_import@basic-with_one_bo
- igt@prime_self_import@basic-with_one_bo_two_files
- igt@prime_self_import@basic-with_two_bos
-+igt@i915_pm_freq_api@freq-basic-api
-+igt@i915_pm_freq_api@freq-reset
- igt@prime_vgem@basic-fence-flip
- igt@prime_vgem@basic-fence-mmap
- igt@prime_vgem@basic-fence-read
--- 
-2.38.1
+pushed to drm-intel-gt-next.
 
+Thanks,
+Andi
