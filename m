@@ -2,47 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC1A86EE759
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 20:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB4D6EE777
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Apr 2023 20:20:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3171510E083;
-	Tue, 25 Apr 2023 18:08:50 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A10410E083
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 18:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21E7410E0A9;
+	Tue, 25 Apr 2023 18:20:01 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C35A110E0A9;
+ Tue, 25 Apr 2023 18:19:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682446128; x=1713982128;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+Mjah5ZUti8jwOGZ2V5Hs4MAiSOx5nmvyO3haULk+GE=;
- b=HdaKyn/m4vuCB1/A5vVLxGdZ8aTe5NFrpNHE+FcP22aZtOBKYnFCDatS
- 0jOzZfSfeIFa+nd2vAWLsNnJTkq3bHmRRJ2WjZsNMJoTlmp4YYs5uLXgW
- dnikVZTx65c1vV8EAMUDn/GuUFqGLwlcTWooZvGdWEmYPLIEYg42/ZRDF
- xkgMOMpa6dWHF9Cesp+5QMfEIAbtbd3mGylQk6b18vNtI2kvxHtCMUtiw
- 7jXXXBCT2HR2PcawGknumKN2MCZ9a2sraMinKdXxXKdaGoskzcp5QIuvv
- LwReMN1IxjXJuThSvz9QptqmhrUdGBZ9AIHFMKwM6bGCNkTFLrr/N/ipx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="374807995"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="374807995"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 11:08:47 -0700
+ t=1682446799; x=1713982799;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=6Z2AM4xrsQEB+9d6uQ4pnrhzROqLvbE4l793iUoVGqg=;
+ b=bPTCH3bHu6iYwcGONkQGr2MAzj/ZOm/l1aF2FOoeOq696poL7jVfs5te
+ yQxSfRXwtkSoYAjV9CTK3NY5WpOfGQWD2btqG11tZ1Bbj1y3YBscS/SFW
+ Omhdx7/dVMPy82RzwlZoBnShiL6ugorLatEm4MjiMSx4zBHXIwbHkcB++
+ zkmP44ZucqaVKNVSHql+6zY78mefanxVUuBLmCkwHznSmi0s1e/oJM/OO
+ MciA1OKVG52QLyUohDN4S9r3BkPOFbmP0Owb0n/nJuCMLRETyxyWmukyG
+ Mi2PXgqf39PVTk8HJuJo6CX0unGRMDKfRylpr8g61EzYI1NRvpCBIFL1u A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="345614345"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="345614345"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 11:19:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="724102602"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="724102602"
-Received: from invictus.jf.intel.com ([10.165.21.201])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 11:08:47 -0700
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 11:07:33 -0700
-Message-Id: <20230425180733.800433-1-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="837550899"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="837550899"
+Received: from fyang16-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.212.168.41])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 11:19:58 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Implement Wa_14019141245
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <168243011485.13318.1376529380245430200@jlahtine-mobl.ger.corp.intel.com>
+References: <20230419230058.2659455-1-fei.yang@intel.com>
+ <ZEEkV3XOdmtYWnMv@ashyti-mobl2.lan>
+ <471addf7-1670-32cd-9d2e-3f94d6825eab@linux.intel.com>
+ <BYAPR11MB2567A1A450448AE17B38ED1C9A639@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <168211012988.392286.16107510619704913123@jljusten-skl>
+ <BYAPR11MB2567F03AD43D7E2DE2628D5D9A669@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <168232538771.392286.3227368099155268955@jljusten-skl>
+ <5d0e2cf4-a487-1a1e-dae9-4fbe8c2fe649@linux.intel.com>
+ <168235638024.392286.14697291321034695564@jljusten-skl>
+ <168243011485.13318.1376529380245430200@jlahtine-mobl.ger.corp.intel.com>
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Yang,
+ Fei" <fei.yang@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 25 Apr 2023 11:19:57 -0700
+Message-ID: <168244679731.392286.18325463358448012053@jljusten-skl>
+User-Agent: alot/0.10
+Subject: Re: [Intel-gfx] IOCTL feature detection (Was: Re: [PATCH 8/8]
+ drm/i915: Allow user to set cache at BO creation)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,66 +72,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ Intel-gfx@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>, "Das,
+ Nirmoy" <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable strict RAR to prevent spurious GPU hangs.
+On 2023-04-25 06:41:54, Joonas Lahtinen wrote:
+> (+ Faith and Daniel as they have been involved in previous discussions)
+>=20
+> Quoting Jordan Justen (2023-04-24 20:13:00)
+> > On 2023-04-24 02:08:43, Tvrtko Ursulin wrote:
+> > >=20
+> > > Being able to "list" supported extensions sounds like a reasonable
+> > > principle, albeit a departure from the design direction to date.
+> > > Which means there are probably no quick solutions. Also, AFAIU, only
+> > > PXP context create is the problematic one, right? Everything else is
+> > > pretty much instant or delayed allocation so super cheap to probe by
+> > > attempting to use.
+> > >=20
+> > > If I got that right and given this series is about
+> > > drm_i915_gem_create_ext I don't think this side discussion should be
+> > > blocking it.
+> >=20
+> > This still leaves the issue of no reasonable detection mechanism for
+> > the extension.
+>=20
+> I remember this exact discussion being repeated at least a few times in
+> the past 5 years. Previously the conclusion was always that detection by
+> trying to use the extension leads to least amount of uAPI surface. There
+> is also no concern of having mismatch in backporting of the query and the
+> functionality patches.
+>=20
+> Why exactly do you think it is more reasonable to do the following?
+>=20
+> check_if_extension_query_is_supported();
+> <check retval>
+> check_if_extension_xyz_is_supported();
+> <check retval>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 5 +++++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
- drivers/gpu/drm/i915/i915_perf_oa_regs.h    | 4 ----
- 3 files changed, 8 insertions(+), 4 deletions(-)
+As I've mentioned a couple times, I'm asking for query item that
+returns it all the extensions that conceivably could work.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index e8c3b762a92a..8fb228303744 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -529,6 +529,11 @@
- 
- #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
- 
-+#define GEN12_SQCNT1				_MMIO(0x8718)
-+#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
-+#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
-+#define	  GEN12_STRICT_RAR_ENABLE		REG_BIT(23)
-+
- #define XEHP_SQCM				MCR_REG(0x8724)
- #define   EN_32B_ACCESS				REG_BIT(30)
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 312eb8b5f949..879baa397279 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1708,6 +1708,9 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 		wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
- 	}
- 
-+	/* Wa_14019141245 */
-+	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
-+
- 	/*
- 	 * Unlike older platforms, we no longer setup implicit steering here;
- 	 * all MCR accesses are explicitly steered.
-diff --git a/drivers/gpu/drm/i915/i915_perf_oa_regs.h b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
-index ba103875e19f..e5ac7a8b5cb6 100644
---- a/drivers/gpu/drm/i915/i915_perf_oa_regs.h
-+++ b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
-@@ -134,10 +134,6 @@
- #define GDT_CHICKEN_BITS    _MMIO(0x9840)
- #define   GT_NOA_ENABLE	    0x00000080
- 
--#define GEN12_SQCNT1				_MMIO(0x8718)
--#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
--#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
--
- /* Gen12 OAM unit */
- #define GEN12_OAM_HEAD_POINTER_OFFSET   (0x1a0)
- #define  GEN12_OAM_HEAD_POINTER_MASK    0xffffffc0
--- 
-2.34.1
+In theory it could be made a single query item which somehow then
+enumerates if something is a context extension or bo extension. But,
+it seems simpler for all if we just have a couple query items
+returning a simple u64 array for the few classes of extensions.
 
+> VS
+>=20
+> create_[context,buffer,whatever]_with_extension();
+> <check errno>
+> destroy_[context,buffer,whatever]();
+>=20
+> For contexts and buffers there's no overhead,
+
+There's no-overhead to creating and destroying things? I think the 8s
+timeout when trying create a protected content context shows it's not
+always quite that simple.
+
+Over time userspace will have to continue growing this set of
+create/destroy tests as new extensions are added. Simply so we can
+discover what extensions are supported.
+
+This doesn't seem like a very robust way to advertise extensions for
+an api.
+
+Another point ... say you need to debug why some simple app is failing
+to start the driver. One tool might be strace. But now you have a
+bunch of noise of calls from the driver creating and destroying things
+just to discover what extensions the kernel supports. It would be nice
+if all this was handled with a query item vs a bunch of
+create/destroys.
+
+> and we're keeping the uAPI surface smaller (less bugs, less
+> validation effort).
+
+I understand wanting to keep the kernel uapi and implementation
+simple.
+
+Is it too complicated to return a u64 array for a query item
+indicating the extensions supported for the various classes of
+extensions? I think in most cases it'll just be essentially shuffling
+across an array of u64 items. (Since most known extensions will always
+be supported by the kernel.)
+
+> Additionally we support checking combinations of extensions A, B and
+> C without extra effort.
+
+Regarding combinations of extensions, is that really something
+userspace needs to probe? I would think if userspace knows about the
+possible extensions, then it's on userspace to use combinations
+appropriately.
+
+But, in detecting extensions, it is possible that, say extension B
+relies on extension A. Now userspace may have to probe to see if
+extension A is supported, and then probe for extension B while using
+extension A. Essentially, probing for an extension could become a bit
+complicated. Vs the kernel just giving us a u64 array of known
+extensions...
+
+-Jordan
