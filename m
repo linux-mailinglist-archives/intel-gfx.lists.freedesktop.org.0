@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B1F6EEA73
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 00:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 609CC6EEAF4
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 01:18:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68CC610E81C;
-	Tue, 25 Apr 2023 22:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16F5E10E206;
+	Tue, 25 Apr 2023 23:18:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB0F10E81C
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 22:58:06 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D9910E206
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 23:18:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682463487; x=1713999487;
+ t=1682464687; x=1714000687;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Eh9kR20tuWQJPENGOeNACgubiLYSZU8bHIZrqPT92eo=;
- b=Yzqg8GvJyb1HOLdZGf6xlE1+B5EqsojJ3UDelM5zjXZn/QlAhk9gkkS0
- eQxnq7xj5n0MI0JIvG/ZDlAdNgnqNtfnVtfcMXLbX2ND4RP3WRzf/v4MJ
- JEghVZZbg10OV/r4JPt4ru8pNVQfVtA8HDIU1Z7YvF00zyCLh0D2SomN2
- 9efLVhN5QT6qpvmbPRP8otiQShuu3qACRujeSqyTl/cZlRriQQJsgIYTf
- q2tYAuKwnSXOzc0jcGYDrs6gd9DPtHJNBL0FKOzujbyGSb48DfQBsLmQb
- WN0Fojwep2DUtlpkwZbwCkrMVeLGe38l3UK3iXnC1HH8EpEkyg46PJSTq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331151100"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331151100"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 15:58:05 -0700
+ bh=OqE97e/5quysDLOggWApe/fW7t0vRea+1h8tHOqK3uU=;
+ b=YEU4A/h/DmvwNdmOIb+ZGtDLnUJgTy8FPe9ufub5AKwcGbYRnu0EPh4g
+ GYnm9gGmVq5i+vI3bKEratK37nWcObmTbrSs3kfZF7L/GF4lsAK1MNYsL
+ 24GLFXRUOI5IZwYg31dnpY1z3tm50MAu4skqIKo/tV8g5CuN8hoIBTb6m
+ Z7b8mucGz3XKpxXLVaN1C2HlO/0dPznvAHwI9MYzqXPLBf08HHTGmjS68
+ M0XeKuU9Emaa/E4ebjmgyHjplLJHdms6HkT8omj1oupzs7UbJmXnGArnz
+ LX8T015qejwnNbFWa4YIOilpoGvl9+/vOlEORPe3yR+46e2r7Bms0c8cF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="344387408"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="344387408"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 16:18:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="939947435"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="939947435"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="724178143"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="724178143"
 Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 25 Apr 2023 15:58:04 -0700
+ by orsmga008.jf.intel.com with ESMTP; 25 Apr 2023 16:18:04 -0700
 Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1prRbn-000jqW-1N;
- Tue, 25 Apr 2023 22:58:03 +0000
-Date: Wed, 26 Apr 2023 06:57:19 +0800
+ (envelope-from <lkp@intel.com>) id 1prRvA-000jrU-0b;
+ Tue, 25 Apr 2023 23:18:04 +0000
+Date: Wed, 26 Apr 2023 07:17:57 +0800
 From: kernel test robot <lkp@intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202304260652.5QRXxuHt-lkp@intel.com>
-References: <20230425202056.1143994-5-vinod.govindapillai@intel.com>
+Message-ID: <202304260700.y79nyqxs-lkp@intel.com>
+References: <20230425202826.1144429-6-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230425202056.1143994-5-vinod.govindapillai@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v1 4/7] drm/i915: modify max_bw to return
+In-Reply-To: <20230425202826.1144429-6-vinod.govindapillai@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 5/8] drm/i915: modify max_bw to return
  index to intel_bw_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,7 +61,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gustavo.souza@intel.com, llvm@lists.linux.dev, ville.syrjala@intel.com,
+Cc: llvm@lists.linux.dev, ville.syrjala@intel.com,
  oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
@@ -72,27 +72,27 @@ kernel test robot noticed the following build warnings:
 
 [auto build test WARNING on drm-tip/drm-tip]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Govindapillai/drm-i915-update-the-QGV-point-frequency-calculations/20230426-042322
+url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Govindapillai/drm-i915-fix-the-derating-percentage-for-MTL/20230426-043120
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230425202056.1143994-5-vinod.govindapillai%40intel.com
-patch subject: [Intel-gfx] [PATCH v1 4/7] drm/i915: modify max_bw to return index to intel_bw_info
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20230426/202304260652.5QRXxuHt-lkp@intel.com/config)
+patch link:    https://lore.kernel.org/r/20230425202826.1144429-6-vinod.govindapillai%40intel.com
+patch subject: [Intel-gfx] [PATCH v2 5/8] drm/i915: modify max_bw to return index to intel_bw_info
+config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20230426/202304260700.y79nyqxs-lkp@intel.com/config)
 compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/5f1409d5142339d50e5018b0908f9e232ca1f738
+        # https://github.com/intel-lab-lkp/linux/commit/aad4c33c841b54fa494a8e76da11b72f20bee83b
         git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Vinod-Govindapillai/drm-i915-update-the-QGV-point-frequency-calculations/20230426-042322
-        git checkout 5f1409d5142339d50e5018b0908f9e232ca1f738
+        git fetch --no-tags linux-review Vinod-Govindapillai/drm-i915-fix-the-derating-percentage-for-MTL/20230426-043120
+        git checkout aad4c33c841b54fa494a8e76da11b72f20bee83b
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304260652.5QRXxuHt-lkp@intel.com/
+| Link: https://lore.kernel.org/oe-kbuild-all/202304260700.y79nyqxs-lkp@intel.com/
 
 All warnings (new ones prefixed by >>):
 
