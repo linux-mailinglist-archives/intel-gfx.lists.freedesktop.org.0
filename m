@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609CC6EEAF4
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 01:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7756EEAF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 01:28:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16F5E10E206;
-	Tue, 25 Apr 2023 23:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C38A10E206;
+	Tue, 25 Apr 2023 23:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62D9910E206
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 23:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682464687; x=1714000687;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=OqE97e/5quysDLOggWApe/fW7t0vRea+1h8tHOqK3uU=;
- b=YEU4A/h/DmvwNdmOIb+ZGtDLnUJgTy8FPe9ufub5AKwcGbYRnu0EPh4g
- GYnm9gGmVq5i+vI3bKEratK37nWcObmTbrSs3kfZF7L/GF4lsAK1MNYsL
- 24GLFXRUOI5IZwYg31dnpY1z3tm50MAu4skqIKo/tV8g5CuN8hoIBTb6m
- Z7b8mucGz3XKpxXLVaN1C2HlO/0dPznvAHwI9MYzqXPLBf08HHTGmjS68
- M0XeKuU9Emaa/E4ebjmgyHjplLJHdms6HkT8omj1oupzs7UbJmXnGArnz
- LX8T015qejwnNbFWa4YIOilpoGvl9+/vOlEORPe3yR+46e2r7Bms0c8cF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="344387408"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="344387408"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 16:18:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="724178143"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="724178143"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga008.jf.intel.com with ESMTP; 25 Apr 2023 16:18:04 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1prRvA-000jrU-0b;
- Tue, 25 Apr 2023 23:18:04 +0000
-Date: Wed, 26 Apr 2023 07:17:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202304260700.y79nyqxs-lkp@intel.com>
-References: <20230425202826.1144429-6-vinod.govindapillai@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 284E08902A;
+ Tue, 25 Apr 2023 23:28:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20D2AAADE0;
+ Tue, 25 Apr 2023 23:28:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2010382458583520969=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230425202826.1144429-6-vinod.govindapillai@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 5/8] drm/i915: modify max_bw to return
- index to intel_bw_info
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Tue, 25 Apr 2023 23:28:19 -0000
+Message-ID: <168246529910.25939.14679422616940935800@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Implement_Wa=5F14019141245_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,170 +40,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, ville.syrjala@intel.com,
- oe-kbuild-all@lists.linux.dev
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vinod,
+--===============2010382458583520969==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-tip/drm-tip]
+Series: drm/i915/mtl: Implement Wa_14019141245 (rev2)
+URL   : https://patchwork.freedesktop.org/series/116939/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Govindapillai/drm-i915-fix-the-derating-percentage-for-MTL/20230426-043120
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230425202826.1144429-6-vinod.govindapillai%40intel.com
-patch subject: [Intel-gfx] [PATCH v2 5/8] drm/i915: modify max_bw to return index to intel_bw_info
-config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20230426/202304260700.y79nyqxs-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/aad4c33c841b54fa494a8e76da11b72f20bee83b
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Vinod-Govindapillai/drm-i915-fix-the-derating-percentage-for-MTL/20230426-043120
-        git checkout aad4c33c841b54fa494a8e76da11b72f20bee83b
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304260700.y79nyqxs-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_13062 -> Patchwork_116939v2
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/i915/display/intel_bw.c:833:7: warning: variable 'idx' is uninitialized when used here [-Wuninitialized]
-                   if (idx > ARRAY_SIZE(i915->display.bw.max))
-                       ^~~
-   drivers/gpu/drm/i915/display/intel_bw.c:825:19: note: initialize the variable 'idx' to silence this warning
-                   unsigned int idx;
-                                   ^
-                                    = 0
-   1 warning generated.
+  **WARNING**
+
+  Minor unknown changes coming with Patchwork_116939v2 need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_116939v2, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_116939v2:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-tgl-1115g4:      [INCOMPLETE][1] ([i915#7443]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hugepages:
+    - {bat-mtlp-8}:       NOTRUN -> [FAIL][3] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-mtlp-8/igt@i915_selftest@live@hugepages.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116939v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:
+    - bat-dg2-8:          [PASS][4] -> [FAIL][5] ([i915#7932])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-dg2-11:         NOTRUN -> [SKIP][6] ([i915#5354]) +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@requests:
+    - {bat-mtlp-8}:       [ABORT][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-mtlp-8/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-mtlp-8/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
 
 
-vim +/idx +833 drivers/gpu/drm/i915/display/intel_bw.c
+Build changes
+-------------
 
-   804	
-   805	static int icl_find_qgv_points(struct drm_i915_private *i915,
-   806				       unsigned int data_rate,
-   807				       unsigned int num_active_planes,
-   808				       const struct intel_bw_state *old_bw_state,
-   809				       struct intel_bw_state *new_bw_state)
-   810	{
-   811		unsigned int max_bw_point = 0;
-   812		unsigned int max_bw = 0;
-   813		unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-   814		unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-   815		u16 psf_points = 0;
-   816		u16 qgv_points = 0;
-   817		int i;
-   818		int ret;
-   819	
-   820		ret = intel_atomic_lock_global_state(&new_bw_state->base);
-   821		if (ret)
-   822			return ret;
-   823	
-   824		for (i = 0; i < num_qgv_points; i++) {
-   825			unsigned int idx;
-   826			unsigned int max_data_rate;
-   827	
-   828			if (DISPLAY_VER(i915) > 11)
-   829				tgl_max_bw_index(i915, num_active_planes, i);
-   830			else
-   831				icl_max_bw_index(i915, num_active_planes, i);
-   832	
- > 833			if (idx > ARRAY_SIZE(i915->display.bw.max))
-   834				continue;
-   835	
-   836			max_data_rate = i915->display.bw.max[idx].deratedbw[i];
-   837	
-   838			/*
-   839			 * We need to know which qgv point gives us
-   840			 * maximum bandwidth in order to disable SAGV
-   841			 * if we find that we exceed SAGV block time
-   842			 * with watermarks. By that moment we already
-   843			 * have those, as it is calculated earlier in
-   844			 * intel_atomic_check,
-   845			 */
-   846			if (max_data_rate > max_bw) {
-   847				max_bw_point = i;
-   848				max_bw = max_data_rate;
-   849			}
-   850			if (max_data_rate >= data_rate)
-   851				qgv_points |= BIT(i);
-   852	
-   853			drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d\n",
-   854				    i, max_data_rate, data_rate);
-   855		}
-   856	
-   857		for (i = 0; i < num_psf_gv_points; i++) {
-   858			unsigned int max_data_rate = adl_psf_bw(i915, i);
-   859	
-   860			if (max_data_rate >= data_rate)
-   861				psf_points |= BIT(i);
-   862	
-   863			drm_dbg_kms(&i915->drm, "PSF GV point %d: max bw %d"
-   864				    " required %d\n",
-   865				    i, max_data_rate, data_rate);
-   866		}
-   867	
-   868		/*
-   869		 * BSpec states that we always should have at least one allowed point
-   870		 * left, so if we couldn't - simply reject the configuration for obvious
-   871		 * reasons.
-   872		 */
-   873		if (qgv_points == 0) {
-   874			drm_dbg_kms(&i915->drm, "No QGV points provide sufficient memory"
-   875				    " bandwidth %d for display configuration(%d active planes).\n",
-   876				    data_rate, num_active_planes);
-   877			return -EINVAL;
-   878		}
-   879	
-   880		if (num_psf_gv_points > 0 && psf_points == 0) {
-   881			drm_dbg_kms(&i915->drm, "No PSF GV points provide sufficient memory"
-   882				    " bandwidth %d for display configuration(%d active planes).\n",
-   883				    data_rate, num_active_planes);
-   884			return -EINVAL;
-   885		}
-   886	
-   887		/*
-   888		 * Leave only single point with highest bandwidth, if
-   889		 * we can't enable SAGV due to the increased memory latency it may
-   890		 * cause.
-   891		 */
-   892		if (!intel_can_enable_sagv(i915, new_bw_state)) {
-   893			qgv_points = BIT(max_bw_point);
-   894			drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d\n",
-   895				    max_bw_point);
-   896		}
-   897	
-   898		/*
-   899		 * We store the ones which need to be masked as that is what PCode
-   900		 * actually accepts as a parameter.
-   901		 */
-   902		new_bw_state->qgv_points_mask =
-   903			~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
-   904			  ADLS_PCODE_REQ_PSF_PT(psf_points)) &
-   905			icl_qgv_points_mask(i915);
-   906	
-   907		/*
-   908		 * If the actual mask had changed we need to make sure that
-   909		 * the commits are serialized(in case this is a nomodeset, nonblocking)
-   910		 */
-   911		if (new_bw_state->qgv_points_mask != old_bw_state->qgv_points_mask) {
-   912			ret = intel_atomic_serialize_global_state(&new_bw_state->base);
-   913			if (ret)
-   914				return ret;
-   915		}
-   916	
-   917		return 0;
-   918	}
-   919	
+  * Linux: CI_DRM_13062 -> Patchwork_116939v2
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+  CI-20190529: 20190529
+  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116939v2: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b560912ba833 drm/i915/mtl: Implement Wa_14019141245
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html
+
+--===============2010382458583520969==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: Implement Wa_14019141245 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116939/">https://patchwork.freedesktop.org/series/116939/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13062 -&gt; Patchwork_116939v2</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with Patchwork_116939v2 need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_116939v2, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_116939v2:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@hugepages:<ul>
+<li>{bat-mtlp-8}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-mtlp-8/igt@i915_selftest@live@hugepages.html">FAIL</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116939v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13062 -&gt; Patchwork_116939v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116939v2: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b560912ba833 drm/i915/mtl: Implement Wa_14019141245</p>
+
+</body>
+</html>
+
+--===============2010382458583520969==--
