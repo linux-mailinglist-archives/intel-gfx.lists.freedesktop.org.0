@@ -2,53 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADF96EFC7A
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 23:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 816066EFC8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 23:36:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F213710EA29;
-	Wed, 26 Apr 2023 21:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B1910E335;
+	Wed, 26 Apr 2023 21:36:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA03E10EA45
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 21:29:32 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3BCF10E335
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 21:36:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682544572; x=1714080572;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to;
- bh=HQr3QuWfqr8HjkBvQXdQGVL0T9pRPRkx4Ddqy9aDMLw=;
- b=TsjlQHYeYt983WcttMSx1EvHnNVS2NkUVf5Da789Q8XaKXW2Q0Epz0TM
- DxteRu5d6TkodH5jJ2pyYOzVz/BqiogoYphXpLwyDkKvs04AX0SWqd1t2
- eDLFiDOuxKV10/H2RnrpbgwkG0RzEP+ZoYRH3vZtH5/iqmp6EmdQoxbQN
- fHTCVoDVtyM3JfWKv5JXkUT6JGpXo2joF43HjKeY2F20hzS7OTneMkjtD
- Cd/RN9J6nREF8p7258Gc+Y98e8weLiarFQ6oXOFqmnF2b4doFRO7OsAM+
- dwVhs3R/FAm3WOJlfakWvKw/Ip9Rj904trEc8xMh7QDXIyK7+me7/wmpu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="344691052"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="344691052"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:29:32 -0700
+ t=1682545001; x=1714081001;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=wL8wMUykqXBicX84t13KYsITD+w3aIM/UR1X6YZVjPg=;
+ b=iaRzrF8stuxgJ4NkzxU0NX7Od4dCVZG5SaMjHajKqlPBCmV8VmfeZBTC
+ i6fpApArzphVJAC8qZmOsZ9y3dAvLIsAqCvLTO7OsT6POkJyUeezTSS/9
+ RpBRluFUaeSUeyxJDGnIm3eAD0Q6g9+Jd4yl0JHerRRyeNcsKH5aXjjkY
+ D3z1zKDNISQcMMXf99Voci0II18K51HC+vyU7hvQFe9//Iov0V7Sc+x4w
+ T7F5hHFUmzJl0s+8COag2kgT0uIXx9TkVE4B4tM/a7NYjt1EUiPfsJnYK
+ Z6EhzOKaKL/jjnrMUI2YrTLm7SrAeT7+PfJiJW/nbz62Z0A60TwgOAfR3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="346000687"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="346000687"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 14:36:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="805679888"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="805679888"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:29:30 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 26 Apr 2023 23:28:49 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="724615398"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="724615398"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.187])
+ ([10.213.8.187])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 14:36:38 -0700
+Message-ID: <f573abd1-669e-b376-b9da-db62f796887d@intel.com>
+Date: Wed, 26 Apr 2023 23:36:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-US
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Auld, Matthew" <matthew.auld@intel.com>
+References: <20230425-hugepage-migrate-v7-0-fa6605a986c9@intel.com>
+ <CH0PR11MB54443013C3378D4D5992033BE5659@CH0PR11MB5444.namprd11.prod.outlook.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <CH0PR11MB54443013C3378D4D5992033BE5659@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230425-hugepage-migrate-v8-2-7868d54eaa27@intel.com>
-References: <20230425-hugepage-migrate-v8-0-7868d54eaa27@intel.com>
-In-Reply-To: <20230425-hugepage-migrate-v8-0-7868d54eaa27@intel.com>
-To: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-X-Mailer: b4 0.11.1
-Subject: [Intel-gfx] [PATCH v8 2/2] drm/i915: Use correct huge page manager
+Subject: Re: [Intel-gfx] [PATCH v7 0/2] drm/i915: Hugepage manager and test
  for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,48 +71,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.
-This is because MTL reports as not supporting 64K pages, or more
-accurately, the system that reports whether a platform has 64K pages
-reports false for MTL.  This is only half correct, as the 64K page support
-reporting system only cares about 64K page support for LMEM, which MTL
-doesn't have.
 
-MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing
-over to using that manager doesn't resolve the issue because MTL is
-expecting the virtual address space for the page table to be flushed after
-initialization, so we must also add a flush statement there.
+On 26.04.2023 17:31, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Hajda, Andrzej <andrzej.hajda@intel.com>
+> Sent: Wednesday, April 26, 2023 8:14 AM
+> To: intel-gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org; Cavitt, Jonathan <jonathan.cavitt@intel.com>; Hajda, Andrzej <andrzej.hajda@intel.com>; Auld, Matthew <matthew.auld@intel.com>
+> Subject: [PATCH v7 0/2] drm/i915: Hugepage manager and test for MTL
+>> This patchset patches sent by Jonathan and Andi, with
+>> addressed CI failures:
+>> 1. Fixed checking alignment of 64K pages on both Pre-Gen12 and Gen12.
+>> 2. Fixed start alignment of 2M pages.
+>>
+>> Regards
+>> Andrzej
+>>
+>> Jonathan Cavitt (2):
+>>   drm/i915: Migrate platform-dependent mock hugepage selftests to live
+>>   drm/i915: Use correct huge page manager for MTL
+>>
+>> .../gpu/drm/i915/gem/selftests/huge_pages.c   | 88 +++++++++++++++----
+>> drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  3 +-
+>> 2 files changed, 71 insertions(+), 20 deletions(-)
+>>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> -- 
+>> 2.39.2
+>>
+>> ---
+>> Jonathan Cavitt (2):
+>>       drm/i915: Migrate platform-dependent mock hugepage selftests to live
+>>       drm/i915: Use correct huge page manager for MTL
+>>
+>> drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 105 ++++++++++++++++++------
+>> drivers/gpu/drm/i915/gt/gen8_ppgtt.c            |   3 +-
+>> 2 files changed, 82 insertions(+), 26 deletions(-)
+>> ---
+>> base-commit: 4d0066a1c0763d50b6fb017e27d12b081ce21b57
+>> change-id: 20230425-hugepage-migrate-1869aaf31a6d
+>>
+>> Best regards,
+>> -- 
+>> Andrzej Hajda <andrzej.hajda@intel.com>
+>
+> Just reviewed the changes proper.  It's been a while, so I don't remember everything
+> about the prior version, but I think I recognized what was changed:
+>
+> - I wasn't aware a 21 bit alignment was required for 2M page sizes.  I'm glad you caught that.
+> - The extra debugging/error information will be helpful in the case of a failure.
+> - Grabbing the per-context VM instead of the ppgtt vm sounds good to me.
+>
+> Everything here looks amenable.
+> Acked-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Though, given I'm also one of the signed-off-bys, I don't know if me acking it is exactly above-board.
+> -Jonathan Cavitt
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks for looking at it. CI spotted another issue: 2M pages are 
+preferred over old-64K, if former are available.
+Fixed version sent.
+Regarding tags, I've kept your authorship, s-o-b, and added my 
+Co-developed, if it is OK to you I will keep it this way.
+If you prefer otherwise let me know.
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 4daaa6f5566888..9c571185395f49 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
- 			}
- 		} while (rem >= page_size && index < max);
- 
-+		drm_clflush_virt_range(vaddr, PAGE_SIZE);
- 		vma_res->page_sizes_gtt |= page_size;
- 	} while (iter->sg && sg_dma_len(iter->sg));
- }
-@@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
- 	struct sgt_dma iter = sgt_dma(vma_res);
- 
- 	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
--		if (HAS_64K_PAGES(vm->i915))
-+		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
- 			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
- 		else
- 			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+Regards
+Andrzej
 
--- 
-2.34.1
+>
+
