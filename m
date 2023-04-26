@@ -1,63 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 782EC6EFB80
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 22:04:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 000AF6EFB8C
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 22:11:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5C210E105;
-	Wed, 26 Apr 2023 20:04:49 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 104F810E105;
- Wed, 26 Apr 2023 20:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682539488; x=1714075488;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=XqfRp5+ieFJ3Ybp5clGQt8iE0BLjp8cz8czLwrjjhqw=;
- b=g62SB31bb09eQb8BNe9Q1d2TcyIPRBbrmGJIgL5Omtz8w42xCXVYhavK
- E46s7sYpbW/AmVEJ8N2yGrpQVOG2kKatGt2m7b/7F0T9vahWUj8R0pLE9
- x2ip76aP21ymVW/dxAmrAKiZZ93KAcL3NrqYJyPzp7Yq94i2XcOei5mnP
- vjMRniRDTbaEwy1FkW8M4m9hkIoDjsjEnBwpdmAODZEyP9I1DUMY9V55E
- ezrwVQ150zx4NLFmIsBl1cFJuuucJT4+H5r6el4LbJIl4VDYYNM7npQUk
- jtBOEKtL+C+eb5fQdP/kiSRu5XJBpfcy8mSxlPWNSHLKKEf5xz9MkQs7P Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="375191068"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="375191068"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 13:04:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="940378648"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="940378648"
-Received: from taylorv1-mobl.amr.corp.intel.com (HELO localhost)
- ([10.212.168.208])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 13:04:46 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4509610E0F1;
+	Wed, 26 Apr 2023 20:11:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E1D1410E0F1;
+ Wed, 26 Apr 2023 20:10:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01EE5A41FB;
+ Wed, 26 Apr 2023 20:10:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ZEkQi6Zrb6lR4DEm@phenom.ffwll.local>
-References: <20230419230058.2659455-9-fei.yang@intel.com>
- <471addf7-1670-32cd-9d2e-3f94d6825eab@linux.intel.com>
- <BYAPR11MB2567A1A450448AE17B38ED1C9A639@BYAPR11MB2567.namprd11.prod.outlook.com>
- <168211012988.392286.16107510619704913123@jljusten-skl>
- <BYAPR11MB2567F03AD43D7E2DE2628D5D9A669@BYAPR11MB2567.namprd11.prod.outlook.com>
- <168232538771.392286.3227368099155268955@jljusten-skl>
- <5d0e2cf4-a487-1a1e-dae9-4fbe8c2fe649@linux.intel.com>
- <168235638024.392286.14697291321034695564@jljusten-skl>
- <168243011485.13318.1376529380245430200@jlahtine-mobl.ger.corp.intel.com>
- <ZEkQi6Zrb6lR4DEm@phenom.ffwll.local>
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Wed, 26 Apr 2023 13:04:45 -0700
-Message-ID: <168253948596.392286.2237664538921869335@jljusten-skl>
-User-Agent: alot/0.10
-Subject: Re: [Intel-gfx] IOCTL feature detection (Was: Re: [PATCH 8/8]
- drm/i915: Allow user to set cache at BO creation)
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rob Clark" <robdclark@gmail.com>
+Date: Wed, 26 Apr 2023 20:10:58 -0000
+Message-ID: <168253985800.17151.10032806988693034494@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230426184131.1173689-1-robdclark@gmail.com>
+In-Reply-To: <20230426184131.1173689-1-robdclark@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/syncobj=3A_Add_deadline_support_for_syncobj_waits?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,53 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>, Intel-gfx@lists.freedesktop.org,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Faith Ekstrand <faith.ekstrand@collabora.com>, "Das,
- Nirmoy" <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-04-26 04:52:43, Daniel Vetter wrote:
->=20
-> Joonas asked me to put my thoughts here:
->=20
-> - in general the "feature discovery by trying it out" approach is most
->   robust and hence preferred, but it's also not something that's required
->   when there's good reasons against it
+== Series Details ==
 
-More robust in what sense?
+Series: drm/syncobj: Add deadline support for syncobj waits
+URL   : https://patchwork.freedesktop.org/series/117007/
+State : warning
 
-Userspace has to set up some scenario to use the interface, which
-hopefully is not too complex. It's difficult to predict what it may
-look like in the future since we are talking about undefined
-extensions.
+== Summary ==
 
-Userspace has to rely on the kernel making creating and destroying
-this thing essentially free. For
-I915_GEM_CREATE_EXT_PROTECTED_CONTENT, that did not work out. For
-I915_GEM_CREATE_EXT_SET_PAT, just wondering, since the PAT indices are
-platform specific, what might happen if we tried to choose some common
-index value to detect the extension in a generic manner? Could it
-potentially lead to unexpected behavior, or maybe just an error. I
-guess it's really extension specific what kind of issues potentially
-could arise.
+Error: dim checkpatch failed
+7f9a8376197d drm/syncobj: Add deadline support for syncobj waits
+-:42: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#42: FILE: drivers/gpu/drm/drm_syncobj.c:981:
++						  uint32_t *idx,
 
-> tldr; prefer discovery, don't sweat it if not, definitely don't
-> overengineer this with some magic "give me all extensions" thing because
-> that results in guaranteed cross-component backporting pains sooner or
-> later. Or inconsistency, which defeats the point.
+-:97: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#97: FILE: drivers/gpu/drm/drm_syncobj.c:1264:
++	unsigned possible_flags;
 
-I guess I don't know the full context of your concerns here.
+-:138: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#138: FILE: drivers/gpu/drm/drm_syncobj.c:1307:
++	unsigned possible_flags;
 
-For returning the gem-create extensions, isn't this just a matter of
-returning the valid indices to the create_extensions array in
-i915_gem_create.c? Is that an over-engineered query?
+total: 0 errors, 2 warnings, 1 checks, 177 lines checked
 
-It seems weird that there's a reasonably well defined "extension"
-mechanism here, but no way for the kernel to just tell us what
-extensions it knows about.
 
--Jordan
