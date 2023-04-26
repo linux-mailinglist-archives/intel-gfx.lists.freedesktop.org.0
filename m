@@ -1,64 +1,148 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599366EFA27
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 20:41:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2B36EFB01
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 21:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B01610E9D9;
-	Wed, 26 Apr 2023 18:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44B010E321;
+	Wed, 26 Apr 2023 19:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
- [IPv6:2607:f8b0:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4017810E995;
- Wed, 26 Apr 2023 18:41:40 +0000 (UTC)
-Received: by mail-pf1-x430.google.com with SMTP id
- d2e1a72fcca58-63b35789313so5403795b3a.3; 
- Wed, 26 Apr 2023 11:41:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1682534499; x=1685126499;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=SYpdWPBKF6WtvjS6a95BWqItPJIuC0oKimDsWIUQ4Q8=;
- b=sFN+mXF7tDhvfEqtwRAOVcywLlHnmCxmo3SkqkYCwX+aD6EpwcgaYuTqrCvBQjzDix
- gicnyQ+E1rw4sAtqiFpg2XESPWemVwoSlDVp0kVzEBbSBWozPtvGSpabuqh4UBrrr2Id
- 7Frc0QzPt0PMp63P6YvQZFv2VjKlflSnBcPdlLlkr8AQtnMJSVYiJj1+LaKqxu8ADaSG
- /Fj4dR3bedGWQk9Y7x/rWFSpGbdaJI5yN+vFiMza60BIKMJKHhPSGfRElZMVpY/gicDY
- cyCoWaTNHWWhYfk19MFx+riNunmuxEAzBXJJdm5TVB4HMg23FbDaAyYhS8y0EjGshuTn
- n4Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1682534499; x=1685126499;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=SYpdWPBKF6WtvjS6a95BWqItPJIuC0oKimDsWIUQ4Q8=;
- b=KhWGaJKqDg+HrQpffq4tzCjLexe6YdEHmsr1vv9GZkD72GW2dte/KhxmlLVUVu26ik
- 52w0Ei7sJqeVQkgoTRDIQ9QCysrsWzZIhCICpbg2CGIHptmHG0rtMz/PAgl2Et+z2n2a
- Jf4b6AojClO7ccxOOZE0LipWRgL0wSePS0Z5b5BxJx+qPwTjTDkfCfslQ8bxRnIkHcx/
- ow7P7PSu4RNSDrz5UZ9lymi8dETSvMXci3oTAYYG57GVOaOFacH1HO2ZB+uu3jn0LApU
- ahYJJK3Ut65TP2biMTjYCSo8l90VB4Rjgd+r4hCm8psxicGvMCIthUcZiPFynUlDEyR+
- +Evw==
-X-Gm-Message-State: AAQBX9d9RYjsGwXzYAW+gd2bfhRPZ6o1Ut24I/zNS6ybP+TIHmg/7rPz
- Am0DhvoWaOBneItWbiioOdMMcUUtzBE=
-X-Google-Smtp-Source: AKy350Y28ghKhL5CtmgJLuAj4gwRtgOUa1NPg+23FyPvJPmR0DnxUxSzzaMd/0Xi4bzvresYErsnSg==
-X-Received: by 2002:a05:6a00:2387:b0:640:dbe4:190c with SMTP id
- f7-20020a056a00238700b00640dbe4190cmr13730052pfc.4.1682534498911; 
- Wed, 26 Apr 2023 11:41:38 -0700 (PDT)
-Received: from localhost ([2a00:79e1:abd:4a00:61b:48ed:72ab:435b])
- by smtp.gmail.com with ESMTPSA id
- t6-20020aa79386000000b0063b6bc2be16sm11972570pfe.141.2023.04.26.11.41.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Apr 2023 11:41:38 -0700 (PDT)
-From: Rob Clark <robdclark@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 11:41:30 -0700
-Message-Id: <20230426184131.1173689-1-robdclark@gmail.com>
-X-Mailer: git-send-email 2.39.2
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 213FD10E321
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 19:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682537007; x=1714073007;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:to:date:message-id:mime-version;
+ bh=h9BezwbaZcAbXDPe0C5uwxVmU/0aYSPN+I+uJQ9TISQ=;
+ b=NksjnKevRUXzbVHtgBMyS508xjuePONyJSkp097nul1aM7NRUA/Olk1t
+ sm1Y6B9Z5wx4nCtm3uv7FiZ8LLbMaU6AzTf3MdV8n2q78dY+C0z2EYJRY
+ pzdb2jGUlY5lFFl/j9+YBe+K3LCZBEYKc1xSa2rPZ1RYEue4U7iKFC2Iz
+ 3yH4Rifg++aFeC1a8thimtZDsbCgpChjY6kTtSYFL2kPeW6tcltO93/JM
+ aX+D+aTvn3uqzhw6krQ/A+Isl/6IANP43NBQ4FkLaS6/GEt8Jmik8ddZk
+ 5qyctSzKVtANcJaf3JW/hvrcXu3u9ILGzssSWzOlQhiu3BdEJFBw8+hE7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="347236078"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="347236078"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 12:23:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="763461088"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="763461088"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga004.fm.intel.com with ESMTP; 26 Apr 2023 12:23:26 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 26 Apr 2023 12:23:25 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 12:23:25 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 26 Apr 2023 12:23:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BnnAMNZIkUu0wQXnujjp71jOhtHezhFpI7YzwQxwEkTbblkAqWjIaC399CS0JdMu/8mi7RFd8pcj5q4GnIkZsFdGC2+RX91LPF2LXeNivZTn/dJVA+AtS5pOH2az/BZ+6cxWPeOj9HHEY7eeWL4tEs634Gmb82LrSXZKtHKY4dZNeu1pYU5Xa0ZOtcccC+amHBQam/Viq0BAJKt3eT9l3GrXZOil/b7R1N7cKzwx8AAV3dY49w1ucZjyP5x/zgzNFRzvSiyW9PG8VjH9KXGgKP/chDlQ+wnQEfbLup5lDo/G4MFFMI3tsbmN2i1WZZgQd9v6CPZ+VPPKdQoLXUpojg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kI2LPn82uSULuFYDnvRJp+l6wwnc6c5sj5fKF2JR9ts=;
+ b=bqrr0gU79EhE0cgd9ToSXArZ15OgrhQ7s2a2pk7I/NryrcB526sD7QY0eR6owkj9X5P4muTlDaGl/H74jvlqxhlQV9wEn0AsMZE+QvgJMMMhLcihaRuuuEU/BwL3zdyXbCk9YvF7qHmQH74sBZcRZxQ3TY/yWQ9K3lC/RDksJnYjWeNas8+YGMCZgjZ/MpSWkf3NGYMJWmystgSip6E5DilzJE6c7AvdplBBQqOAvlEKIH484Tp5WYDdIGfdolHuJGNIV9Rf+48uSQ8DYocMsv6r96ulIPBCZpDdQ/eLgbHkIl2C3iuk3tYFp9U/kvFSWh5X1D9JQNvgZta5x1JAwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
+ by IA1PR11MB8222.namprd11.prod.outlook.com (2603:10b6:208:44e::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.20; Wed, 26 Apr
+ 2023 19:23:23 +0000
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::28c6:f268:89bd:e45a]) by BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::28c6:f268:89bd:e45a%7]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
+ 19:23:23 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <168251328980.2664.15413475376781466021@gjsousa-mobl2>
+References: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
+ <168251328980.2664.15413475376781466021@gjsousa-mobl2>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+Date: Wed, 26 Apr 2023 16:23:19 -0300
+Message-ID: <168253699955.2664.12623580571586119826@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: SJ0PR05CA0093.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::8) To BN8PR11MB3556.namprd11.prod.outlook.com
+ (2603:10b6:408:8d::31)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/syncobj: Add deadline support for syncobj
- waits
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|IA1PR11MB8222:EE_
+X-MS-Office365-Filtering-Correlation-Id: e253ae43-cd75-446f-5894-08db468bb3cd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tHT17K30IC2GGJPC+R6j77tx5//hnWbWTT1Z8JnJ+B2WLKg2L9/b2IHcRs4fjr+rWtgh7EKj3eQgXjwLuR32WOgE+1kuEjjowoiYumoXxly/99IuyXtRMPV6RFap+Nuc4zJ8JbTnX5oLrADGAK5n4FmGwjrMKzG3i6l3QNid/SZQmODNWBDy9rQxEjWFnmqgnAA6qgRMzfTRcoqt1nRTPFPFxMeCweIEK14wn9GpdSqEpHtbDSnPr+R1qhBnOMHgLpEn2zYZzR4LkD43WFmt+O49tjlAr2L7RbmILkhkF/Q8NZzYnc/pXiOflF+plMT2rarUX61IjOs2j4obUU1vcOPhf7YsGA93GmoxfxgSY0xZYY3FaosT4ZhJ0TbzT6cUt/GAe+5mNg5f9rNiV1Mw66Dd7uOSD417sgbAdDBoJXLStFFlN2sFsndU/sRU6TupeRO2Tec6plVg3ATTIRubopOlZ+k5PeMgKbtYnaemR7pifPgII9lZDpd4HaWxZCMvaKbeUvWPvez0huWvY3YJLA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(346002)(376002)(136003)(396003)(39860400002)(366004)(451199021)(966005)(478600001)(6486002)(9686003)(6506007)(33716001)(26005)(186003)(6512007)(44832011)(5660300002)(82960400001)(66946007)(38100700002)(41300700001)(2906002)(66556008)(66476007)(86362001)(8676002)(8936002)(316002)(6666004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTZ1UlBoNFVqdVp6dEk0UXlOSzZVZ3QwWS9MMGg1WWVSakY2NWdmU3BUNzBJ?=
+ =?utf-8?B?cVRhTUxzczk2U1E3VHkySjBmTVpTQzFoYmxxMDVCZ29VbEpSTEZ4L0xveWUw?=
+ =?utf-8?B?YVVGcno1V211U1U5VzNIYzVuc0xVdVBGSk9wSDg2WUVQY1FWekRoZVo4NFA5?=
+ =?utf-8?B?M1lIdjZudU03YjZmcFQrUHk2OGRvVjcwcVFKOTM2NjlaeE1TWnZNSU95S0RN?=
+ =?utf-8?B?YWNtUTlxU2FqYUMxNmQxbWxZK3NhZG5OajRhZXpWYjFQMmQzbWpiUXNFVWVp?=
+ =?utf-8?B?V1Y4VmVKU0J1TUp0UU5CZzE2dnpRTmdudUF1ZEd4Wjl0dm5MeVJMOElNWndl?=
+ =?utf-8?B?SDZUOHhHOTJtWVNnbG1BTzdyL1drU094NEl1VVpZbmxmVGRhR2lWdmt2VWxw?=
+ =?utf-8?B?Znd1d0tWa1dNalpmdE1aeFVwZGZRckRkSXhuNWJLRDVJalNHZDhOSkpKcnFU?=
+ =?utf-8?B?TjV0OWk5ZWVPLzJxSGN6R3lrQ21kM2pUN0RCNk9QeHRzQlhUSU9MK0F5Q2ZB?=
+ =?utf-8?B?SGZzeWp1UkhIZnFjWXVQbnFhbUNIU2hqYmtwME9rS29BQytvUi9oTjY2R0Vl?=
+ =?utf-8?B?c2IyUzZ0TTFYZGxnTUxjQ2dqOW96aDZqTEJHaE96SjJidzJtRVpQUzk1SGNh?=
+ =?utf-8?B?OW5JSkFGK1dzT1JGSE5tc3pLUTJjWnlYWUFwWDZWRHJjd3dnMWlvczlqZVJi?=
+ =?utf-8?B?T1JSeFJ5Yi9GcWp1bmxaZGIzTng4NWE5TVh4TW1KNDJQNWRCQ09TazV4Y1NN?=
+ =?utf-8?B?dDl5SXRpQitSR2ZKTXU4SVFDdnpROXM4UjhtZURVQ09rZmpYZE9haWhZQzVk?=
+ =?utf-8?B?OXRGU1NQdjhnbkdFU2cyTXpSalNxZFNLRTlaaUM0T2VueVJ0NE1oTHJVejcz?=
+ =?utf-8?B?azQxTitCZExzeDBhQ0dzV1VzSWplcEcrY1FLODh4TWNxUFBZVGhjWVFLWG0r?=
+ =?utf-8?B?WC9uRDRVbXp2VEUySWpWQjRqbzlSTTVteGZqZFkwcWZSRzJvNFl2SkgycEVL?=
+ =?utf-8?B?VGErRXNFRS9MV21NeVRDVytEcjJ4ZG1qN2hvNmZvaE90NWxPK2cvSkN6NElM?=
+ =?utf-8?B?NFM1SnBvOTArTzZPUnExcW1MKzlSNDZjU1NZQWsvL1NLQ0hhV0N4MU1pQXRO?=
+ =?utf-8?B?ZmRBM1poblgzb1MvU0RsTmVtNGcyTE0vaWV3Wmg1Y3poQjhWU0FmQnVlTUdO?=
+ =?utf-8?B?Z0pYZjVjZDNjRCtHekZWdDBXTjBNQ1JNa2dLYmdmb2FzRjlGMUpoUTVzNW5B?=
+ =?utf-8?B?WU1lTUhTU28yUllsaWdESEdLczAzVklIMTltKzdFbEg3OERUTkFucFQ4MDJ1?=
+ =?utf-8?B?M0xNc0d4YVZFZklDTzdsVUZxRGJDS0JYYUtnQ09pM0FEbTV2SE5ZUyt2RUpP?=
+ =?utf-8?B?bUlnMmdjLzdGZnRhSTZOYzJMN0dpYTE1MlM4djFjamV6UFRQOG5ZcGdKanVQ?=
+ =?utf-8?B?Q09sbFZzWHpxbFZycDE0WCtjL0JHTFhrYnpuUk5oWXRmRjVVblBubXZxb0RP?=
+ =?utf-8?B?aDFoL2JxUXVlT01UcXliU05UTXhPSGYrWHBLNXJQeFpxYzBhMDVDZTg3OXpr?=
+ =?utf-8?B?K3RJbC9UNXFJZXo4SlN0M3JRNzR5dWs1TU0reTRMZUlwc0crTmVsOTFIVEty?=
+ =?utf-8?B?TldZRlpHZ2lRakNCRlpwWHRWbnIva1JvdG9YMmxmQ09lekZZZ2Z3ZVlPaXVk?=
+ =?utf-8?B?dHNGSHFnbkIwZUdkSEUvVE5rZHVKcWFrRXlGQzcwdXNMc3Y2dFVrcFVlSHVL?=
+ =?utf-8?B?MjdkZnBQbjJZcm9mamhERE1YY0RsU0FDVjRzRSt6QldhQVIvYnVmd2E4eWt4?=
+ =?utf-8?B?QUJRQ0trN0pPQlRROEhXY1BNcHBIVkVDWWNlaUtFajJtK2NzWWcrK0tKWjA4?=
+ =?utf-8?B?bnRDdmpaWHlXNlJ5Qlg5Z2hWemdHdG1CeVRrUWljTUJWc1ZOOFYwNktEUWZW?=
+ =?utf-8?B?SDc3dlEzN1Q3MDBiYlU1N1dLVnlhL3NFUnZJWlZYYzRzMmhzaSs0Y29mdkU3?=
+ =?utf-8?B?SmxZZTFCdm9Na2RiTXE3MGpYZnBQMTErRmk5OTVZdWRDSzRNdW5RKzN5ZXJo?=
+ =?utf-8?B?b2VvS2FNekdmTVExNEdtelNMM2doRDFuUHgyeXBldTFuSE84L3JTYkkxU0V5?=
+ =?utf-8?B?cWp4bms3aHlmSFJ5a0ZKMnNSblZnWHhwd1JSTXIwM2xMMElLVzNualJHa3Zr?=
+ =?utf-8?B?ZEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e253ae43-cd75-446f-5894-08db468bb3cd
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 19:23:23.6797 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: e1JzRTz5OEiqHxWJY4jv0Qh7RAaO/SPpPJjHYIrMiIyXvGHURSlvKU23wE3FyHfbDZDhfz+jXk1+TcFNlmIdPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8222
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Add the missing CPU
+ transcoder mask in intel_device_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,242 +155,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Matt Turner <mattst88@gmail.com>, freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
+Quoting Gustavo Sousa (2023-04-26 09:48:09)
+>Quoting Radhakrishna Sripada (2023-04-20 19:12:47)
+>>CPU transcoder mask is used to iterate over the available
+>>CPU transcoders in the macro for_each_cpu_transcoder().
+>>
+>>The macro is broken on MTL and got highlighted when audio
+>>state was being tracked for each transcoder added in [1].
+>>
+>>Add the missing CPU transcoder mask which is similar to ADL-P
+>>mask but without DSI transcoders.
+>>
+>>[1]: https://patchwork.freedesktop.org/patch/523723/
+>>
+>>Fixes: 7835303982d1 ("drm/i915/mtl: Add MeteorLake PCI IDs")
+>>Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>
+>Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Add a new flag to let userspace provide a deadline as a hint for syncobj
-and timeline waits.  This gives a hint to the driver signaling the
-backing fences about how soon userspace needs it to compete work, so it
-can addjust GPU frequency accordingly.  An immediate deadline can be
-given to provide something equivalent to i915 "wait boost".
+Promoting this to a
 
-v2: Use absolute u64 ns value for deadline hint, drop cap and driver
-    feature flag in favor of allowing count_handles==0 as a way for
-    userspace to probe kernel for support of new flag
-v3: More verbose comments about UAPI
-v4: Fix negative zero, s/deadline_ns/deadline_nsec/ for consistency with
-    existing ioctl struct fields
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
-Discussion on mesa MR (https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/2197)
-seems to have died down.  So resending this as a singlton.  This version
-has some minor cosmetic cleanups compared to the previous iteration.
-
-There are some other remaining UABI bits, waiting for someone to have a
-chance to implement userspace for, such as sync_file SET_DEADLINE ioctl,
-which can be found: https://patchwork.freedesktop.org/series/93035/
-
- drivers/gpu/drm/drm_syncobj.c | 64 ++++++++++++++++++++++++++++-------
- include/uapi/drm/drm.h        | 17 ++++++++++
- 2 files changed, 68 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 0c2be8360525..3f86e2b84200 100644
---- a/drivers/gpu/drm/drm_syncobj.c
-+++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -126,6 +126,11 @@
-  * synchronize between the two.
-  * This requirement is inherited from the Vulkan fence API.
-  *
-+ * If &DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE is set, the ioctl will also set
-+ * a fence deadline hint on the backing fences before waiting, to provide the
-+ * fence signaler with an appropriate sense of urgency.  The deadline is
-+ * specified as an absolute &CLOCK_MONOTONIC value in units of ns.
-+ *
-  * Similarly, &DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT takes an array of syncobj
-  * handles as well as an array of u64 points and does a host-side wait on all
-  * of syncobj fences at the given points simultaneously.
-@@ -973,7 +978,8 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
- 						  uint32_t count,
- 						  uint32_t flags,
- 						  signed long timeout,
--						  uint32_t *idx)
-+						  uint32_t *idx,
-+						  ktime_t *deadline)
- {
- 	struct syncobj_wait_entry *entries;
- 	struct dma_fence *fence;
-@@ -1053,6 +1059,15 @@ static signed long drm_syncobj_array_wait_timeout(struct drm_syncobj **syncobjs,
- 			drm_syncobj_fence_add_wait(syncobjs[i], &entries[i]);
- 	}
- 
-+	if (deadline) {
-+		for (i = 0; i < count; ++i) {
-+			fence = entries[i].fence;
-+			if (!fence)
-+				continue;
-+			dma_fence_set_deadline(fence, *deadline);
-+		}
-+	}
-+
- 	do {
- 		set_current_state(TASK_INTERRUPTIBLE);
- 
-@@ -1151,7 +1166,8 @@ static int drm_syncobj_array_wait(struct drm_device *dev,
- 				  struct drm_file *file_private,
- 				  struct drm_syncobj_wait *wait,
- 				  struct drm_syncobj_timeline_wait *timeline_wait,
--				  struct drm_syncobj **syncobjs, bool timeline)
-+				  struct drm_syncobj **syncobjs, bool timeline,
-+				  ktime_t *deadline)
- {
- 	signed long timeout = 0;
- 	uint32_t first = ~0;
-@@ -1162,7 +1178,8 @@ static int drm_syncobj_array_wait(struct drm_device *dev,
- 							 NULL,
- 							 wait->count_handles,
- 							 wait->flags,
--							 timeout, &first);
-+							 timeout, &first,
-+							 deadline);
- 		if (timeout < 0)
- 			return timeout;
- 		wait->first_signaled = first;
-@@ -1172,7 +1189,8 @@ static int drm_syncobj_array_wait(struct drm_device *dev,
- 							 u64_to_user_ptr(timeline_wait->points),
- 							 timeline_wait->count_handles,
- 							 timeline_wait->flags,
--							 timeout, &first);
-+							 timeout, &first,
-+							 deadline);
- 		if (timeout < 0)
- 			return timeout;
- 		timeline_wait->first_signaled = first;
-@@ -1243,17 +1261,22 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
- {
- 	struct drm_syncobj_wait *args = data;
- 	struct drm_syncobj **syncobjs;
-+	unsigned possible_flags;
-+	ktime_t t, *tp = NULL;
- 	int ret = 0;
- 
- 	if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ))
- 		return -EOPNOTSUPP;
- 
--	if (args->flags & ~(DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
--			    DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT))
-+	possible_flags = DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
-+			 DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
-+			 DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE;
-+
-+	if (args->flags & ~possible_flags)
- 		return -EINVAL;
- 
- 	if (args->count_handles == 0)
--		return -EINVAL;
-+		return 0;
- 
- 	ret = drm_syncobj_array_find(file_private,
- 				     u64_to_user_ptr(args->handles),
-@@ -1262,8 +1285,13 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
- 	if (ret < 0)
- 		return ret;
- 
-+	if (args->flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE) {
-+		t = ns_to_ktime(args->deadline_nsec);
-+		tp = &t;
-+	}
-+
- 	ret = drm_syncobj_array_wait(dev, file_private,
--				     args, NULL, syncobjs, false);
-+				     args, NULL, syncobjs, false, tp);
- 
- 	drm_syncobj_array_free(syncobjs, args->count_handles);
- 
-@@ -1276,18 +1304,23 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
- {
- 	struct drm_syncobj_timeline_wait *args = data;
- 	struct drm_syncobj **syncobjs;
-+	unsigned possible_flags;
-+	ktime_t t, *tp = NULL;
- 	int ret = 0;
- 
- 	if (!drm_core_check_feature(dev, DRIVER_SYNCOBJ_TIMELINE))
- 		return -EOPNOTSUPP;
- 
--	if (args->flags & ~(DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
--			    DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
--			    DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE))
-+	possible_flags = DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL |
-+			 DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT |
-+			 DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE |
-+			 DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE;
-+
-+	if (args->flags & ~possible_flags)
- 		return -EINVAL;
- 
- 	if (args->count_handles == 0)
--		return -EINVAL;
-+		return 0;
- 
- 	ret = drm_syncobj_array_find(file_private,
- 				     u64_to_user_ptr(args->handles),
-@@ -1296,8 +1329,13 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
- 	if (ret < 0)
- 		return ret;
- 
-+	if (args->flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE) {
-+		t = ns_to_ktime(args->deadline_nsec);
-+		tp = &t;
-+	}
-+
- 	ret = drm_syncobj_array_wait(dev, file_private,
--				     NULL, args, syncobjs, true);
-+				     NULL, args, syncobjs, true, tp);
- 
- 	drm_syncobj_array_free(syncobjs, args->count_handles);
- 
-diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
-index 642808520d92..cd38b0891f25 100644
---- a/include/uapi/drm/drm.h
-+++ b/include/uapi/drm/drm.h
-@@ -887,6 +887,7 @@ struct drm_syncobj_transfer {
- #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL (1 << 0)
- #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT (1 << 1)
- #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE (1 << 2) /* wait for time point to become available */
-+#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE (1 << 3) /* set fence deadline based to deadline_ns */
- struct drm_syncobj_wait {
- 	__u64 handles;
- 	/* absolute timeout */
-@@ -895,6 +896,14 @@ struct drm_syncobj_wait {
- 	__u32 flags;
- 	__u32 first_signaled; /* only valid when not waiting all */
- 	__u32 pad;
-+	/**
-+	 * @deadline_nsec - fence deadline hint
-+	 *
-+	 * Deadline hint, in absolute CLOCK_MONOTONIC, to set on backing
-+	 * fence(s) if the DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE flag is
-+	 * set.
-+	 */
-+	__u64 deadline_nsec;
- };
- 
- struct drm_syncobj_timeline_wait {
-@@ -907,6 +916,14 @@ struct drm_syncobj_timeline_wait {
- 	__u32 flags;
- 	__u32 first_signaled; /* only valid when not waiting all */
- 	__u32 pad;
-+	/**
-+	 * @deadline_nsec - fence deadline hint
-+	 *
-+	 * Deadline hint, in absolute CLOCK_MONOTONIC, to set on backing
-+	 * fence(s) if the DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE flag is
-+	 * set.
-+	 */
-+	__u64 deadline_nsec;
- };
- 
- 
--- 
-2.39.2
-
+>
+>>---
+>> drivers/gpu/drm/i915/i915_pci.c | 2 ++
+>> 1 file changed, 2 insertions(+)
+>>
+>>diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+>>index d64e074d7457..847057569796 100644
+>>--- a/drivers/gpu/drm/i915/i915_pci.c
+>>+++ b/drivers/gpu/drm/i915/i915_pci.c
+>>@@ -1135,6 +1135,8 @@ static const struct intel_gt_definition xelpmp_extr=
+a_gt[] =3D {
+>> static const struct intel_device_info mtl_info =3D {
+>>        XE_HP_FEATURES,
+>>        XE_LPDP_FEATURES,
+>>+  .__runtime.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_=
+B) |
+>>+                         BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>>        /*
+>>         * Real graphics IP version will be obtained from hardware GMD_ID
+>>         * register.  Value provided here is just for sanity checking.
+>>--=20
+>>2.34.1
+>>
