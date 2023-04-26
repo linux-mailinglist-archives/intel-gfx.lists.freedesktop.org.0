@@ -1,151 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3403D6EFC46
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 23:16:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C69156EFC75
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 23:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D66910E329;
-	Wed, 26 Apr 2023 21:16:34 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5D410E238;
- Wed, 26 Apr 2023 21:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A03010EA45;
+	Wed, 26 Apr 2023 21:29:33 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A77710EA29
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 21:29:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682543792; x=1714079792;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=qA/XPD8SFng3qP5QEs7gxhxg2nCgVjM93lm+vZH/Z4A=;
- b=OKMunohso8efwsRjpoIR67jUKfEQnWUVYKEAp3iaukVMCbkOnXS6gPFS
- gAktX2X676HaVP9ZBovkzNh2OmDxUm+ig+R2kvFZ26XtQnWJ42VC21i2n
- KvswWYIvlRu/LbT46XaXMNtrzUr5vC+cybm3+Ny1r7woxHrhQdsGbFEgF
- ORxzlDcvOQJ3AsBcgRkT5XSJNG/U/5JE2B/CZYD2cIfk1bP7gkkSjvDY5
- hWFzOWiP5DtrCkSWJZdObk6Pffp/lvZSazoN/dmCSD1LBHuAbFZoyepAe
- SJjBiTpftFaNy1RmdCWuil+xaRFdK1XcDfZdKei4u4JnTUmCbBIiJpgvu Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="412552055"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="412552055"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:16:31 -0700
+ t=1682544571; x=1714080571;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to;
+ bh=n2S6Oqqx2tDXFa9lA26s/eufyyhgFSeaQ5i/57xJ+Mo=;
+ b=ZApgK3bBeMrnNVsuewP3wyYslWxT6qLT5IxDvnhZJ026xPOUbCNmV3ir
+ Pf08f/6iBWgap5fgE6KLJCSj/Py4cTftmD8HdibaYSBxFUsBEnp4/khV/
+ HyaDZx7wKmeAW2mMfpxFYbjJB6Kg4el/88/XmJFfZMppOmoCNhJiQgSYz
+ 9Nnoam4juinDBoi2H32Rx+mjzK5phWLrjP5g7E2aWfD0jQd3y3QJk8Rd8
+ CpgHHwxp4OI0r31np0fTAE7qNQcv3XzfJRajmoUhSkj0RpFu+fDPKuASt
+ lil+71fhKp+F2lI1pHU/JAtDo6UMmYgb5LA10mg+foajFtmHtbLEPctx3 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="344691039"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="344691039"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 14:29:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="758783682"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="758783682"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 26 Apr 2023 14:16:31 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 26 Apr 2023 14:16:30 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 14:16:30 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 26 Apr 2023 14:16:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I42Q+OwrV11B46hMUyB3yR/4Bm0hfTST4gO+RawKdLCs2590gscvTYKKOa6JAHoebgU6bmIZL2IXKZl2c77FK3BaM0Pm2QxTBantgfyya6pXO54EOVkYS/tSOJ2Dz0dHABe+B54mBLPBOpo+BAyd7QdJYCxRGkoPf/YLhCJk/Ctp6gGgygfdpRAnfK7+89NYwB5bohUeER7mWau9VaCy6FsBVnkvomNTRLrLXUdoXMczNPDG8olODPDCV80ADyH+TX0tm55g/yYlIG5Ll6HBnxOEvKHlzQ+je1LemzGozXYxnAPE9iYG/qnpt7UWvFo+Iaw9GnVZEF5vUT6c/byw1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qA/XPD8SFng3qP5QEs7gxhxg2nCgVjM93lm+vZH/Z4A=;
- b=lXQGNyKGS5MtushjcZ/2qHKgIi5MPPAMFKGpPtCKowMM0Nh6V6zQZFGZBadZcVOJif3bG1BaE2oQjATCVssYXRmbO9W8xu8NbYyw3UnWqIEytAB5ceNIAY14nBxXO7DHJdwRYWIK8/1fCLcqLNcrEUq66SGY7aGqcEgiX/cGddArUJlQAVR/9Oyo0eXE4MQtfBLprtVr8VKrK/Sw11qrXhNMQl62Q3M90numT447Y2AmImXI3ArR64GYc+vM3hspyzl1rdw9ZgPgO2JEJQnotlgZC5pQnO6hAOMd5mX1uvpGv7aBDV1ctwZ1wtoaEEXc5F452G06nr90s+rYhjas8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
- CY8PR11MB7848.namprd11.prod.outlook.com (2603:10b6:930:6c::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6340.20; Wed, 26 Apr 2023 21:16:25 +0000
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::34a1:94e9:ec9b:dfe3]) by DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::34a1:94e9:ec9b:dfe3%6]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
- 21:16:25 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "Harrison, John C" <john.c.harrison@intel.com>,
- "Intel-GFX@Lists.FreeDesktop.Org" <Intel-GFX@Lists.FreeDesktop.Org>
-Thread-Topic: [Intel-gfx] [PATCH 6/6] drm/i915/guc: Capture list clean up - 5
-Thread-Index: AQHZeGxWzl9WUMpv40e1LYxru3IPOq8+F9uA
-Date: Wed, 26 Apr 2023 21:16:25 +0000
-Message-ID: <34b960b6fc19503b72034d18dcf175934766fe12.camel@intel.com>
-References: <17322661-e12f-7e14-b190-1089cc04a9e5@intel.com>
- <20230426182407.4097589-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20230426182407.4097589-1-John.C.Harrison@Intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|CY8PR11MB7848:EE_
-x-ms-office365-filtering-correlation-id: 3ddc2a43-923a-4320-05ad-08db469b7e50
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zwpSdu1efcdnBPVcBFD0UEi+AcCOd9cshqzG87URu8mOPQ+59ScwP1n6VoVnZwqSw7WVqNfn7o/jkPOVCKKpqeRDSM/67jukkpAmDSGUA3h6iomrS5GRP4+lO7gG9+CYYlm3IbKz4LSBNMx7OcaU+4eUMWJXa+DrD8h3guoPjW22E+xWtfRfxQt3uVrkhJ5BeItDjIZTdOKufABWCg5SkPki7f6TRAKl8S56ua4mjqcZ7Q5EOPrUnBRAf/if9uV27T+Bra37IYTCaWCR7fK7XQlY2QNFKd2bGLblXj7tbgZMwemI86ctKQf1snH65ZjHgerp082jkUoFExPT/3ZTfSkv3/EXJX8meBP1gRR3wD5Vdf+y8Doh6SdUzcwKvL4K++jj2D0RYzCsJgJ4goUXTmtb4Y9Liy9iwL+SBhoLCinOr3EuUQaBTCEgEGHGVPLNLwg0GAm9q/RYM439Oppr0t9PcfGemPD8Pdlt9MqLpd58JQ9nRHgI09nONk7uF36DjVfnABBpi5Il/Bnr56ULi3xN66JxdxIQcIQU2IhJJlrTFqW+x6AaK6lED1ckF9itNHj0DM0wJ9e2CeqI+9A8JY697gB4fFh5EPpdLF99K2AWIVjvsXe32ZdC9CQ2psMx
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(39860400002)(366004)(376002)(346002)(136003)(451199021)(110136005)(36756003)(38070700005)(558084003)(478600001)(86362001)(122000001)(38100700002)(8676002)(2906002)(8936002)(4326008)(64756008)(66446008)(82960400001)(450100002)(66476007)(66556008)(76116006)(316002)(66946007)(5660300002)(41300700001)(186003)(6512007)(26005)(91956017)(6506007)(2616005)(6486002)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MlJiMDF1NU5OU2o2OStmS3E5c3Q3TXZOL1YvVnJlVllVcnlrNzlDelRCSVVS?=
- =?utf-8?B?dGkyMHVJSFJQWi91N0tsdmRQWFlNcStVNFBUWHkxOGFqbC9hQ0pOZWg0djJJ?=
- =?utf-8?B?T0MxVkl2RW5jS0trMHZOa2dZTm1jZ2dpdEFSMzR0YXQ0Ymk5WTVsQWhBSlNC?=
- =?utf-8?B?WFRrbEtCQm1tMEsxcmNWaUs5a0ZVVDRyY2NWVFd2SFZGU3RMc0QzS3o4ZlR2?=
- =?utf-8?B?aHEva3lpVFB0OVgzd0pTZFZ1WnJvWHBEOEF1MEZya3JHckNEWDdPd1RkVUJV?=
- =?utf-8?B?cXlrUHF5Mm5CbjlXYUVya0JvbmtkaUhYUzFyZ1BQZ3lVR1I1T2NDRU00YnVy?=
- =?utf-8?B?KzRaM3R5YVk5NnN6Sm92TW1NMGdHU3JyTksva3dDakk4a1ZXaVRKK2R4ajY4?=
- =?utf-8?B?c3MzQ3NzUlI5TTZSYjdJL0pzRDE5TElEUjVYdXM4bExGUTViQ2dLM2p6TTNO?=
- =?utf-8?B?b1A4ZnFYeTJwa2hUVG5ZUiszWitDR3ZkRm1qKzlYQjNhV0lWZmZPL1h2OGJ1?=
- =?utf-8?B?cldLR2RGVkE1US9WbXZzMkdxZUFPZmVDbGI1TFZZVUVzcWZsTGlrN3J0d29J?=
- =?utf-8?B?RzVMOUlLSmY4TE02RlpMeEovOC9ybk8ybFRyTzZjOTFpVjFDYUVIWW1weSs4?=
- =?utf-8?B?am8zQ3pBNGlOaG1IU25YU25OZ1lVcFBlZ0Z0MGpRT1VBdUxYUGR2OFdUTEdt?=
- =?utf-8?B?WTdweWJNZHFaWVlnS1pBQjk5WEE5ektqTVRrT0pwTy9KNjdGK3NDUW4xSmtn?=
- =?utf-8?B?cGs2MCs2OW1ZRmhDN2hkZ3UyclpoUVFRSVpqUGY2K1F1biswekhCSlFWVGtX?=
- =?utf-8?B?STY3V0RQdFJuL1MwTkVSOGZPdG41Q0xEd3FNSnNlN2RWREg1NGRjQ25wVE52?=
- =?utf-8?B?VEZ6MWVYRGNvaHM0Q3RVeWtyK1NkQXZIK0JaL2djRVBCSEFTUkp0ZDRTaTdq?=
- =?utf-8?B?UkErcE81aVQySkZZSlNWdUxSMEV6cUFZNzJUUjM0TnIrNmxhaW94bVhiTXFy?=
- =?utf-8?B?d0xvOStIWExWQkp0YTdYRmVsR3oxK28weURlR0pOUmlFZlhIYm9nd0pZdlps?=
- =?utf-8?B?eHZZcnhtSDdYQVNGZ3YyRVE4aVdTbE9QUXVCaUhnYysxYWZWb2lqb1ZTY0tB?=
- =?utf-8?B?Vk5EVXE5Q203eEJ4WTUzYlpsZWk0MThyZDIzdFE3dWlRRkRYQ3RadlU1Ykh0?=
- =?utf-8?B?dmdWcU5YS0Y3K20yZ2hCTFJ0Nk1BaTRTc3BQV0pJcjAzWWZYSG1oV0tKcTU0?=
- =?utf-8?B?Vytsa3NUSGVma1d6UVYySSttN2tURE9zR0h5OEZEVVpTZ0RSQWl0SXIwRTlo?=
- =?utf-8?B?Z2ZWMU81U0xCaDBrd052MkJGN3pCeFZoOGt0NjJDMWs5cysxcTlObmZFWjNv?=
- =?utf-8?B?aS95NVdBSTl6bkdPK0o3L2tUMHFmazRBL1FGNnRrbGhWSmpsMzNHQ29UQytL?=
- =?utf-8?B?OUc4Szg0anhhOFBjR2NJSmxEWGdQQWFRMU1zVWNEa3dhSXBESEltdVNvdzAz?=
- =?utf-8?B?N0tTRldDb0J4Yk5zdXBLZUp6RDZ2bmdxS1NzWGlTdnFxM0JzQ1pubk40bTU1?=
- =?utf-8?B?bW1UU25ZNWtwS1E1VFg2VzZueGRURGpBdCtUZEcxdlBnSEY2cjFyK25HV1lw?=
- =?utf-8?B?WDJYWVpObTVuZEhUNXhZbEl0TjNoQ2FiUUgwQVVvYndxZjh6WTgxUmVVek9Y?=
- =?utf-8?B?MExsay9mSndrZmlpaWpSR0pqQTE1S0hDZTZZNUg2dE8rYWs4SVVoS1FKcUZO?=
- =?utf-8?B?QWJDWXdWNUxmN3o5cjVlRDdmK282eHF0Qm1JcGhqQWhRRmFXTDd0N3ZMbmkw?=
- =?utf-8?B?by96a3hKekZYY0VhN3h2MVJieW56LzV0SHlFUGVIMVg4L2hJOVhPVXFKTExO?=
- =?utf-8?B?TVhMbHozZ1ZnUVlKbVgweUpJQkdSbXk3M2pJRGVHSnNGNXBKMlowQWFGZUh2?=
- =?utf-8?B?Ukg5Mkxnc3JEcThDNlY0aTlRMUxvNGVScDYyQW5xR1BxbDNITmVkQUhYMjF0?=
- =?utf-8?B?Y3ROQVBIUjU1OXNvWjJISlNnWm40UHBmdmlJUXZHekM5K0xTcUVFZWpRYzdj?=
- =?utf-8?B?V3dENkVVYjlkRHNvZE1xQ01jVXhqaU5EVkZhcWk1ZHQ0dTF5NThYdTlqbDA5?=
- =?utf-8?B?MWZzNTRoOFdvVTFCV3BRWFJJV0w0SHNrSHVHUEh4cHdweEhYQUFOREs1Q09r?=
- =?utf-8?Q?ONudyY4qTfNBDl7X2S6GXyU=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C285E2FD5E91DC4684B69C647180446E@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="805679873"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="805679873"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 14:29:29 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Wed, 26 Apr 2023 23:28:48 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ddc2a43-923a-4320-05ad-08db469b7e50
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2023 21:16:25.5923 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FH8z97h9qOADRjfuUDa4vY3T6g8Jmcur8E2FC4bmgdA4qvgxlecNK/NzZT5os2qCvn+d4rw/GQ607h5FtVKowSpjmxumxom8kjJw3s+lbGqrJrLzRCO27CXIhX39+kCG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7848
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/guc: Capture list clean up - 5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230425-hugepage-migrate-v8-1-7868d54eaa27@intel.com>
+References: <20230425-hugepage-migrate-v8-0-7868d54eaa27@intel.com>
+In-Reply-To: <20230425-hugepage-migrate-v8-0-7868d54eaa27@intel.com>
+To: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+X-Mailer: b4 0.11.1
+Subject: [Intel-gfx] [PATCH v8 1/2] drm/i915: Migrate platform-dependent
+ mock hugepage selftests to live
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,14 +62,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRI-Devel@Lists.FreeDesktop.Org" <DRI-Devel@Lists.FreeDesktop.Org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTA0LTI2IGF0IDExOjI0IC0wNzAwLCBKb2huLkMuSGFycmlzb25ASW50ZWwu
-Y29tIHdyb3RlOg0KPiBGcm9tOiBKb2huIEhhcnJpc29uIDxKb2huLkMuSGFycmlzb25ASW50ZWwu
-Y29tPg0KPiANCj4gUmVuYW1lIHRoZSAnZGVmYXVsdF8nIHJlZ2lzdGVyIGxpc3QgcHJlZml4IHRv
-ICdnZW44XycgYXMgdGhhdCBpcyB0aGUNCj4gbW9yZSBhY2N1cmF0ZSBuYW1lLg0KPiANCj4gU2ln
-bmVkLW9mZi1ieTogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4NCg0K
-UmV2aWV3ZWQtYnk6IEFsYW4gUHJldmluIDxhbGFuLnByZXZpbi50ZXJlcy5hbGV4aXNAaW50ZWwu
-Y29tPg0K
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+Convert the igt_mock_ppgtt_huge_fill and igt_mock_ppgtt_64K mock selftests
+into live selftests as their requirements have recently become
+platform-dependent. Additionally, apply necessary platform dependency
+checks to these tests.
+
+v8:
+- handle properly 64K and 2M pages
+v9:
+- do not expect 64K pages if 2M are present
+- fix hex printing
+- obey commit message line limit
+
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Co-developed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 106 ++++++++++++++++++------
+ 1 file changed, 81 insertions(+), 25 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index defece0bcb811f..cb5863f37f9d37 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -695,8 +695,7 @@ static int igt_mock_ppgtt_misaligned_dma(void *arg)
+ 	return err;
+ }
+ 
+-static void close_object_list(struct list_head *objects,
+-			      struct i915_ppgtt *ppgtt)
++static void close_object_list(struct list_head *objects)
+ {
+ 	struct drm_i915_gem_object *obj, *on;
+ 
+@@ -710,17 +709,36 @@ static void close_object_list(struct list_head *objects,
+ 	}
+ }
+ 
+-static int igt_mock_ppgtt_huge_fill(void *arg)
++static int igt_ppgtt_huge_fill(void *arg)
+ {
+-	struct i915_ppgtt *ppgtt = arg;
+-	struct drm_i915_private *i915 = ppgtt->vm.i915;
+-	unsigned long max_pages = ppgtt->vm.total >> PAGE_SHIFT;
++	struct drm_i915_private *i915 = arg;
++	unsigned int supported = RUNTIME_INFO(i915)->page_sizes;
++	bool has_pte64 = GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50);
++	struct i915_address_space *vm;
++	struct i915_gem_context *ctx;
++	unsigned long max_pages;
+ 	unsigned long page_num;
++	struct file *file;
+ 	bool single = false;
+ 	LIST_HEAD(objects);
+ 	IGT_TIMEOUT(end_time);
+ 	int err = -ENODEV;
+ 
++	if (supported == I915_GTT_PAGE_SIZE_4K)
++		return 0;
++
++	file = mock_file(i915);
++	if (IS_ERR(file))
++		return PTR_ERR(file);
++
++	ctx = hugepage_ctx(i915, file);
++	if (IS_ERR(ctx)) {
++		err = PTR_ERR(ctx);
++		goto out;
++	}
++	vm = i915_gem_context_get_eb_vm(ctx);
++	max_pages = vm->total >> PAGE_SHIFT;
++
+ 	for_each_prime_number_from(page_num, 1, max_pages) {
+ 		struct drm_i915_gem_object *obj;
+ 		u64 size = page_num << PAGE_SHIFT;
+@@ -750,13 +768,14 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+ 
+ 		list_add(&obj->st_link, &objects);
+ 
+-		vma = i915_vma_instance(obj, &ppgtt->vm, NULL);
++		vma = i915_vma_instance(obj, vm, NULL);
+ 		if (IS_ERR(vma)) {
+ 			err = PTR_ERR(vma);
+ 			break;
+ 		}
+ 
+-		err = i915_vma_pin(vma, 0, 0, PIN_USER);
++		/* vma start must be aligned to BIT(21) to allow 2M PTEs */
++		err = i915_vma_pin(vma, 0, BIT(21), PIN_USER);
+ 		if (err)
+ 			break;
+ 
+@@ -784,12 +803,13 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+ 		GEM_BUG_ON(!expected_gtt);
+ 		GEM_BUG_ON(size);
+ 
+-		if (expected_gtt & I915_GTT_PAGE_SIZE_4K)
++		if (!has_pte64 && (obj->base.size < I915_GTT_PAGE_SIZE_2M ||
++				   expected_gtt & I915_GTT_PAGE_SIZE_2M))
+ 			expected_gtt &= ~I915_GTT_PAGE_SIZE_64K;
+ 
+ 		i915_vma_unpin(vma);
+ 
+-		if (vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
++		if (!has_pte64 && vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
+ 			if (!IS_ALIGNED(vma->node.start,
+ 					I915_GTT_PAGE_SIZE_2M)) {
+ 				pr_err("node.start(%llx) not aligned to 2M\n",
+@@ -808,7 +828,7 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+ 		}
+ 
+ 		if (vma->resource->page_sizes_gtt != expected_gtt) {
+-			pr_err("gtt=%u, expected=%u, size=%zd, single=%s\n",
++			pr_err("gtt=%#x, expected=%#x, size=0x%zx, single=%s\n",
+ 			       vma->resource->page_sizes_gtt, expected_gtt,
+ 			       obj->base.size, str_yes_no(!!single));
+ 			err = -EINVAL;
+@@ -823,19 +843,25 @@ static int igt_mock_ppgtt_huge_fill(void *arg)
+ 		single = !single;
+ 	}
+ 
+-	close_object_list(&objects, ppgtt);
++	close_object_list(&objects);
+ 
+ 	if (err == -ENOMEM || err == -ENOSPC)
+ 		err = 0;
+ 
++	i915_vm_put(vm);
++out:
++	fput(file);
+ 	return err;
+ }
+ 
+-static int igt_mock_ppgtt_64K(void *arg)
++static int igt_ppgtt_64K(void *arg)
+ {
+-	struct i915_ppgtt *ppgtt = arg;
+-	struct drm_i915_private *i915 = ppgtt->vm.i915;
++	struct drm_i915_private *i915 = arg;
++	bool has_pte64 = GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50);
+ 	struct drm_i915_gem_object *obj;
++	struct i915_address_space *vm;
++	struct i915_gem_context *ctx;
++	struct file *file;
+ 	const struct object_info {
+ 		unsigned int size;
+ 		unsigned int gtt;
+@@ -907,16 +933,41 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 	if (!HAS_PAGE_SIZES(i915, I915_GTT_PAGE_SIZE_64K))
+ 		return 0;
+ 
++	file = mock_file(i915);
++	if (IS_ERR(file))
++		return PTR_ERR(file);
++
++	ctx = hugepage_ctx(i915, file);
++	if (IS_ERR(ctx)) {
++		err = PTR_ERR(ctx);
++		goto out;
++	}
++	vm = i915_gem_context_get_eb_vm(ctx);
++
+ 	for (i = 0; i < ARRAY_SIZE(objects); ++i) {
+ 		unsigned int size = objects[i].size;
+ 		unsigned int expected_gtt = objects[i].gtt;
+ 		unsigned int offset = objects[i].offset;
+ 		unsigned int flags = PIN_USER;
+ 
++		/*
++		 * For modern GTT models, the requirements for marking a page-table
++		 * as 64K have been relaxed.  Account for this.
++		 */
++		if (has_pte64) {
++			expected_gtt = 0;
++			if (size >= SZ_64K)
++				expected_gtt |= I915_GTT_PAGE_SIZE_64K;
++			if (size & (SZ_64K - 1))
++				expected_gtt |= I915_GTT_PAGE_SIZE_4K;
++		}
++
+ 		for (single = 0; single <= 1; single++) {
+ 			obj = fake_huge_pages_object(i915, size, !!single);
+-			if (IS_ERR(obj))
+-				return PTR_ERR(obj);
++			if (IS_ERR(obj)) {
++				err = PTR_ERR(obj);
++				goto out_vm;
++			}
+ 
+ 			err = i915_gem_object_pin_pages_unlocked(obj);
+ 			if (err)
+@@ -928,7 +979,7 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 			 */
+ 			obj->mm.page_sizes.sg &= ~I915_GTT_PAGE_SIZE_2M;
+ 
+-			vma = i915_vma_instance(obj, &ppgtt->vm, NULL);
++			vma = i915_vma_instance(obj, vm, NULL);
+ 			if (IS_ERR(vma)) {
+ 				err = PTR_ERR(vma);
+ 				goto out_object_unpin;
+@@ -945,7 +996,8 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 			if (err)
+ 				goto out_vma_unpin;
+ 
+-			if (!offset && vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
++			if (!has_pte64 && !offset &&
++			    vma->page_sizes.sg & I915_GTT_PAGE_SIZE_64K) {
+ 				if (!IS_ALIGNED(vma->node.start,
+ 						I915_GTT_PAGE_SIZE_2M)) {
+ 					pr_err("node.start(%llx) not aligned to 2M\n",
+@@ -964,9 +1016,10 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 			}
+ 
+ 			if (vma->resource->page_sizes_gtt != expected_gtt) {
+-				pr_err("gtt=%u, expected=%u, i=%d, single=%s\n",
++				pr_err("gtt=%#x, expected=%#x, i=%d, single=%s offset=%#x size=%#x\n",
+ 				       vma->resource->page_sizes_gtt,
+-				       expected_gtt, i, str_yes_no(!!single));
++				       expected_gtt, i, str_yes_no(!!single),
++				       offset, size);
+ 				err = -EINVAL;
+ 				goto out_vma_unpin;
+ 			}
+@@ -982,7 +1035,7 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 		}
+ 	}
+ 
+-	return 0;
++	goto out_vm;
+ 
+ out_vma_unpin:
+ 	i915_vma_unpin(vma);
+@@ -992,7 +1045,10 @@ static int igt_mock_ppgtt_64K(void *arg)
+ 	i915_gem_object_unlock(obj);
+ out_object_put:
+ 	i915_gem_object_put(obj);
+-
++out_vm:
++	i915_vm_put(vm);
++out:
++	fput(file);
+ 	return err;
+ }
+ 
+@@ -1910,8 +1966,6 @@ int i915_gem_huge_page_mock_selftests(void)
+ 		SUBTEST(igt_mock_exhaust_device_supported_pages),
+ 		SUBTEST(igt_mock_memory_region_huge_pages),
+ 		SUBTEST(igt_mock_ppgtt_misaligned_dma),
+-		SUBTEST(igt_mock_ppgtt_huge_fill),
+-		SUBTEST(igt_mock_ppgtt_64K),
+ 	};
+ 	struct drm_i915_private *dev_priv;
+ 	struct i915_ppgtt *ppgtt;
+@@ -1962,6 +2016,8 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_ppgtt_sanity_check),
+ 		SUBTEST(igt_ppgtt_compact),
+ 		SUBTEST(igt_ppgtt_mixed),
++		SUBTEST(igt_ppgtt_huge_fill),
++		SUBTEST(igt_ppgtt_64K),
+ 	};
+ 
+ 	if (!HAS_PPGTT(i915)) {
+
+-- 
+2.34.1
