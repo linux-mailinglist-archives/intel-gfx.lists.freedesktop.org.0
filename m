@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58CC6EEB2F
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 02:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD826EEB5F
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 02:20:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34E9810E830;
-	Wed, 26 Apr 2023 00:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6F210E844;
+	Wed, 26 Apr 2023 00:20:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB0ED10E850;
- Wed, 26 Apr 2023 00:02:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 00F7510E844;
+ Wed, 26 Apr 2023 00:20:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8AAD6A66C9;
- Wed, 26 Apr 2023 00:02:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2954123835286406064=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id F1E35A41FB;
+ Wed, 26 Apr 2023 00:20:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Wed, 26 Apr 2023 00:02:00 -0000
-Message-ID: <168246732056.17155.9706441128656510161@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Date: Wed, 26 Apr 2023 00:20:10 -0000
+Message-ID: <168246841098.17151.8161153296048606720@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230425194441.68086-1-hdegoede@redhat.com>
-In-Reply-To: <20230425194441.68086-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dsi=3A_Use_unconditional_msleep=28=29_instead_of_intel=5F?=
- =?utf-8?b?ZHNpX21zbGVlcCgp?=
+References: <20230425202826.1144429-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20230425202826.1144429-1-vinod.govindapillai@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mtl=3A_add_support_for_pmdemand_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,263 +45,124 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2954123835286406064==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dsi: Use unconditional msleep() instead of intel_dsi_msleep()
-URL   : https://patchwork.freedesktop.org/series/116947/
-State : failure
+Series: mtl: add support for pmdemand (rev2)
+URL   : https://patchwork.freedesktop.org/series/116949/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13062 -> Patchwork_116947v1
-====================================================
+Error: dim checkpatch failed
+5016f41822c8 drm/i915: fix the derating percentage for MTL
+058a5643fd59 drm/i915: update the QGV point frequency calculations
+c577a850a946 drm/i915: store the peak bw per QGV point
+ed6ff8e568de drm/i915: extract intel_bw_check_qgv_points()
+55901493e37d drm/i915: modify max_bw to return index to intel_bw_info
+3625a67eea00 drm/i915/mtl: find best QGV point and configure sagv
+48f2141f0a8f drm/i915/mtl: Add support for PM DEMAND
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:92: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#92: FILE: drivers/gpu/drm/i915/display/intel_display_core.h:350:
++		struct mutex lock;
 
-Summary
--------
+-:165: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#165: 
+new file mode 100644
 
-  **FAILURE**
+-:276: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#276: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:107:
++
++
 
-  Serious unknown changes coming with Patchwork_116947v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_116947v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:475: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
+#475: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:306:
++#define UPDATE_PMDEMAND_VAL(val, F, f) do {            \
++	val &= (~(XELPDP_PMDEMAND_##F##_MASK));         \
++	val |= (XELPDP_PMDEMAND_##F((u32)(old ? max(old->f, new->f) : new->f))); \
++} while (0)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/index.html
+-:475: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'val' may be better as '(val)' to avoid precedence issues
+#475: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:306:
++#define UPDATE_PMDEMAND_VAL(val, F, f) do {            \
++	val &= (~(XELPDP_PMDEMAND_##F##_MASK));         \
++	val |= (XELPDP_PMDEMAND_##F((u32)(old ? max(old->f, new->f) : new->f))); \
++} while (0)
 
-Participating hosts (39 -> 38)
-------------------------------
+-:475: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'f' - possible side-effects?
+#475: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:306:
++#define UPDATE_PMDEMAND_VAL(val, F, f) do {            \
++	val &= (~(XELPDP_PMDEMAND_##F##_MASK));         \
++	val |= (XELPDP_PMDEMAND_##F((u32)(old ? max(old->f, new->f) : new->f))); \
++} while (0)
 
-  Missing    (1): fi-snb-2520m 
+-:475: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'f' may be better as '(f)' to avoid precedence issues
+#475: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:306:
++#define UPDATE_PMDEMAND_VAL(val, F, f) do {            \
++	val &= (~(XELPDP_PMDEMAND_##F##_MASK));         \
++	val |= (XELPDP_PMDEMAND_##F((u32)(old ? max(old->f, new->f) : new->f))); \
++} while (0)
 
-Possible new issues
--------------------
+-:533: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#533: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:364:
++static bool intel_pmdemand_state_changed(
 
-  Here are the unknown changes that may have been introduced in Patchwork_116947v1:
+-:605: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#605: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.h:24:
++
++
 
-### IGT changes ###
+-:623: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#623: FILE: drivers/gpu/drm/i915/i915_irq.c:60:
+ 
++
 
-#### Possible regressions ####
+-:689: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#689: FILE: drivers/gpu/drm/i915/i915_reg.h:4519:
++#define  XELPDP_PMDEMAND_QCLK_GV_BW(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, x)
 
-  * igt@gem_exec_fence@basic-await@ccs3:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@gem_exec_fence@basic-await@ccs3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-8/igt@gem_exec_fence@basic-await@ccs3.html
+-:691: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#691: FILE: drivers/gpu/drm/i915/i915_reg.h:4521:
++#define  XELPDP_PMDEMAND_VOLTAGE_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, x)
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         NOTRUN -> [ABORT][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+-:693: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#693: FILE: drivers/gpu/drm/i915/i915_reg.h:4523:
++#define  XELPDP_PMDEMAND_QCLK_GV_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, x)
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][4] -> [FAIL][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-    - fi-apl-guc:         [PASS][6] -> [FAIL][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+-:695: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#695: FILE: drivers/gpu/drm/i915/i915_reg.h:4525:
++#define  XELPDP_PMDEMAND_PIPES(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PIPES_MASK, x)
 
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+-:697: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#697: FILE: drivers/gpu/drm/i915/i915_reg.h:4527:
++#define  XELPDP_PMDEMAND_DBUFS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DBUFS_MASK, x)
 
-  
-#### Warnings ####
+-:703: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#703: FILE: drivers/gpu/drm/i915/i915_reg.h:4533:
++#define  XELPDP_PMDEMAND_CDCLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, x)
 
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-tgl-1115g4:      [INCOMPLETE][9] ([i915#7443]) -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
+-:705: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#705: FILE: drivers/gpu/drm/i915/i915_reg.h:4535:
++#define  XELPDP_PMDEMAND_DDICLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, x)
 
-  
-Known issues
-------------
+-:707: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#707: FILE: drivers/gpu/drm/i915/i915_reg.h:4537:
++#define  XELPDP_PMDEMAND_SCALERS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_SCALERS_MASK, x)
 
-  Here are the changes found in Patchwork_116947v1 that come from known issues:
+total: 0 errors, 9 warnings, 9 checks, 639 lines checked
+f53338fb7529 drm/i915/display: provision to suppress drm_warn in intel_get_crtc_new_encoder
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/display/intel_display.c:788:
++		drm_WARN(state->base.dev, num_encoders != 1,
++			"%d encoders for pipe %c\n",
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [PASS][11] -> [FAIL][12] ([i915#7932])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][13] ([i915#5354])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3:
-    - bat-dg2-11:         [PASS][14] -> [FAIL][15] ([fdo#103375]) +6 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [ABORT][16] ([i915#8384]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13062 -> Patchwork_116947v1
-
-  CI-20190529: 20190529
-  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116947v1: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0bbf45bcf1b3 drm/i915/dsi: Use unconditional msleep() instead of intel_dsi_msleep()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/index.html
-
---===============2954123835286406064==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 95 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsi: Use unconditional msleep() instead of intel_dsi_msleep()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116947/">https://patchwork.freedesktop.org/series/116947/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13062 -&gt; Patchwork_116947v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_116947v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_116947v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_116947v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-await@ccs3:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@gem_exec_fence@basic-await@ccs3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-8/igt@gem_exec_fence@basic-await@ccs3.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116947v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) +6 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116947v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13062 -&gt; Patchwork_116947v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116947v1: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0bbf45bcf1b3 drm/i915/dsi: Use unconditional msleep() instead of intel_dsi_msleep()</p>
-
-</body>
-</html>
-
---===============2954123835286406064==--
