@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49CE6EF5D4
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 15:50:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0063D6EF5F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 16:03:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E99B210E9B0;
-	Wed, 26 Apr 2023 13:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0A910E59E;
+	Wed, 26 Apr 2023 14:03:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBBAE10E9A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 13:50:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682517042; x=1714053042;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=juIg7yORQxVRGZZe929+16wzTQX7ty5rpdcQDOkFErE=;
- b=ln6RiTBwYfiE4GwdJGmdW9VC4ZrdNr3MPaphn6knC+xLxcRmZ1HG9Qv4
- EOZ3g65M+r8kVC6rjbilkTG14OWlbSannO3wksR9noISC2FiiGDf41mpc
- QQWjiuoj9bsxtCLv1dfo0bJrV9EUqNVUWrkKDmv976b9KOvMtmgezYeqB
- 71qzywqe6NjII1MmY1L5wwcZvGQp9CImkugjyB7LrTNYH8UiFmAw277x0
- y/9Bt4OY27FxyweP0VIfwpjlbeRCu8Cu/nOy2uzKNN9X6rDbQzMeuDybD
- A+47kcDGAvlfRZUk4TM3sHbD/m3lJI1jnJ8l20RiXT8bcbRO4X+u/mNRH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="327436845"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="327436845"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 06:50:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="805514280"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="805514280"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 26 Apr 2023 06:50:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Apr 2023 16:50:40 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 16:50:19 +0300
-Message-Id: <20230426135019.7603-8-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
-References: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 06B5B10E0F3;
+ Wed, 26 Apr 2023 14:03:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 00902AADE7;
+ Wed, 26 Apr 2023 14:03:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 7/7] drm/i915: Define more PS_CTRL bits
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Date: Wed, 26 Apr 2023 14:03:30 -0000
+Message-ID: <168251781099.17155.7424987004989966411@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230426130619.1227635-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20230426130619.1227635-1-vinod.govindapillai@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mtl=3A_add_support_for_pmdemand_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,57 +40,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-To avoid annoying spec lookups let's define more PS_CTRL
-bits in the header.
+Series: mtl: add support for pmdemand (rev3)
+URL   : https://patchwork.freedesktop.org/series/116949/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f5ae8d1eb6ff..e08bb15eddcf 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4055,6 +4055,9 @@
- #define _PS_2B_CTRL      0x68A80
- #define _PS_1C_CTRL      0x69180
- #define   PS_SCALER_EN				REG_BIT(31)
-+#define   PS_SCALER_TYPE_MASK			REG_BIT(30) /* icl+ */
-+#define   PS_SCALER_TYPE_NON_LINEAR		REG_FIELD_PREP(PS_SCALER_TYPE_MASK, 0)
-+#define   PS_SCALER_TYPE_LINEAR			REG_FIELD_PREP(PS_SCALER_TYPE_MASK, 1)
- #define   SKL_PS_SCALER_MODE_MASK		REG_GENMASK(29, 28) /* skl/bxt */
- #define   SKL_PS_SCALER_MODE_DYN		REG_FIELD_PREP(SKL_PS_SCALER_MODE_MASK, 0)
- #define   SKL_PS_SCALER_MODE_HQ			REG_FIELD_PREP(SKL_PS_SCALER_MODE_MASK, 1)
-@@ -4062,6 +4065,7 @@
- #define   PS_SCALER_MODE_MASK			REG_BIT(29) /* glk-tgl */
- #define   PS_SCALER_MODE_NORMAL			REG_FIELD_PREP(PS_SCALER_MODE_MASK, 0)
- #define   PS_SCALER_MODE_PLANAR			REG_FIELD_PREP(PS_SCALER_MODE_MASK, 1)
-+#define   PS_ADAPTIVE_FILTERING_EN		REG_BIT(28) /* icl+ */
- #define   PS_BINDING_MASK			REG_GENMASK(27, 25)
- #define   PS_BINDING_PIPE			REG_FIELD_PREP(PS_BINDING_MASK, 0)
- #define   PS_BINDING_PLANE(plane_id)		REG_FIELD_PREP(PS_BINDING_MASK, (plane_id) + 1)
-@@ -4070,8 +4074,15 @@
- #define   PS_FILTER_PROGRAMMED			REG_FIELD_PREP(PS_FILTER_MASK, 1)
- #define   PS_FILTER_EDGE_ENHANCE		REG_FIELD_PREP(PS_FILTER_MASK, 2)
- #define   PS_FILTER_BILINEAR			REG_FIELD_PREP(PS_FILTER_MASK, 3)
-+#define   PS_ADAPTIVE_FILTER_MASK		REG_BIT(22) /* icl+ */
-+#define   PS_ADAPTIVE_FILTER_MEDIUM		REG_FIELD_PREP(PS_ADAPTIVE_FILTER_MASK, 0)
-+#define   PS_ADAPTIVE_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PS_ADAPTIVE_FILTER_MASK, 1)
-+#define   PS_PIPE_SCALER_LOC_MASK		REG_BIT(21) /* icl+ */
-+#define   PS_PIPE_SCALER_LOC_AFTER_OUTPUT_CSC	REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 0) /* non-linear */
-+#define   PS_PIPE_SCALER_LOC_AFTER_CSC		REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 1) /* linear */
- #define   PS_VERT3TAP				REG_BIT(21) /* skl/bxt */
- #define   PS_VERT_INT_INVERT_FIELD		REG_BIT(20)
-+#define   PS_PROG_SCALE_FACTOR			REG_BIT(19) /* tgl+ */
- #define   PS_PWRUP_PROGRESS			REG_BIT(17)
- #define   PS_V_FILTER_BYPASS			REG_BIT(8)
- #define   PS_VADAPT_EN				REG_BIT(7) /* skl/bxt */
--- 
-2.39.2
+Error: dim checkpatch failed
+43c400d7f94f drm/i915: fix the derating percentage for MTL
+1516c3767a49 drm/i915: update the QGV point frequency calculations
+ab8840a89119 drm/i915: store the peak bw per QGV point
+b38a10b76f6f drm/i915: extract intel_bw_check_qgv_points()
+838ba80144b8 drm/i915: modify max_bw to return index to intel_bw_info
+5297994969ad drm/i915/mtl: find best QGV point and configure sagv
+01b1d8b5fa24 drm/i915/mtl: Add support for PM DEMAND
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:94: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#94: FILE: drivers/gpu/drm/i915/display/intel_display_core.h:350:
++		struct mutex lock;
+
+-:167: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#167: 
+new file mode 100644
+
+-:278: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#278: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:107:
++
++
+
+-:487: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'f' - possible side-effects?
+#487: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:316:
++#define GET_PARAM_VAL(f) ((u32)(old ? max(old->f, new->f) : new->f))
+
+-:487: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'f' may be better as '(f)' to avoid precedence issues
+#487: FILE: drivers/gpu/drm/i915/display/intel_pmdemand.c:316:
++#define GET_PARAM_VAL(f) ((u32)(old ? max(old->f, new->f) : new->f))
+
+-:726: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#726: FILE: drivers/gpu/drm/i915/i915_reg.h:4519:
++#define  XELPDP_PMDEMAND_QCLK_GV_BW(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, x)
+
+-:728: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#728: FILE: drivers/gpu/drm/i915/i915_reg.h:4521:
++#define  XELPDP_PMDEMAND_VOLTAGE_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, x)
+
+-:730: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#730: FILE: drivers/gpu/drm/i915/i915_reg.h:4523:
++#define  XELPDP_PMDEMAND_QCLK_GV_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, x)
+
+-:732: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#732: FILE: drivers/gpu/drm/i915/i915_reg.h:4525:
++#define  XELPDP_PMDEMAND_PIPES(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PIPES_MASK, x)
+
+-:734: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#734: FILE: drivers/gpu/drm/i915/i915_reg.h:4527:
++#define  XELPDP_PMDEMAND_DBUFS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DBUFS_MASK, x)
+
+-:740: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#740: FILE: drivers/gpu/drm/i915/i915_reg.h:4533:
++#define  XELPDP_PMDEMAND_CDCLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, x)
+
+-:742: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#742: FILE: drivers/gpu/drm/i915/i915_reg.h:4535:
++#define  XELPDP_PMDEMAND_DDICLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, x)
+
+-:744: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#744: FILE: drivers/gpu/drm/i915/i915_reg.h:4537:
++#define  XELPDP_PMDEMAND_SCALERS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_SCALERS_MASK, x)
+
+total: 0 errors, 9 warnings, 4 checks, 675 lines checked
+588c687d2318 drm/i915/display: provision to suppress drm_warn in intel_get_crtc_new_encoder
+
 
