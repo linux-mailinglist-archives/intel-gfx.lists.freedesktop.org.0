@@ -2,151 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9086EF53E
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 15:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 281E36EF567
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 15:20:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE7E310E03E;
-	Wed, 26 Apr 2023 13:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E915B10E99C;
+	Wed, 26 Apr 2023 13:20:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3635610E03E
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 13:13:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682514815; x=1714050815;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=A12MEhaFTuVfAe5T8c9V58h06Cp9owJna+BaaXIDmDQ=;
- b=ndPzXmpByRyVxBcuMPNm455PC1mjteuPDcTz2r8pSaMgyVkrjIqd4I+w
- zeE0QjRGZBvwi0FDK4tn0AI3rysR+qNiWHdk5ayJ8FNyicQKLcOiQdej6
- zoa3v+IZcIMzF1jgJyU2mUqVcnS2p9kExf+sjKjXQ0mLhQktBkHU+qq/z
- 9pGmrqvY8tTqamq1tcmPfSjUaWVtYQXuQ5V8XDiTElgvdvMcKJDvWYFV5
- Duu3Iei8VBfth8bnKbqyqdTNLIK9isjb6dMxsYpWBHZseBfWhAX173yeB
- eduHwzHmHSuuAUG3dyUgxVcDdz8Nh8uatHv33t63ceWN+l6W+UwOlrHME A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="326702501"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="326702501"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 06:13:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="671338475"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="671338475"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga006.jf.intel.com with ESMTP; 26 Apr 2023 06:13:33 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 26 Apr 2023 06:13:32 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 26 Apr 2023 06:13:32 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 06:13:32 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 26 Apr 2023 06:13:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j5OvlpLkjwcORV6jtgfiYyshWQb/H1X4hDcY2Lg4jSTqSExWbh5qOi/5DxWpF4HZ8NG5BhmYTiM4Ui6Ky4BuwmArSUB8NBIpJrzGm1VOffZr1d92Zt65qdmbL3sQDe86DSxD0BV4tnKo4wPwk1T8P6OKUhxIVH856Q4SuI09ljHkeu55bKj+LbbsfiuUQTZAOYi9Yi+1VkF/BV6JTff3kjZCY516m6G6T+dHV2OahdRRqtRK7FycsvAF/CUbLXmpjQCo7EbCvxJ6lYQrfMyhocZIwWrTSbfpW8+FBumibmHGVjGz8k2kMR198h1MvQYaB5UuU9yfQypQEI5+mi9Fmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UxKwsi9EQkbmz3d2IW9UgMrCJuYE+apeHGtuaFfAmDA=;
- b=fJ4+blv7RdD/FfjKV5cRX/6fsQne6EfZFgzoI8x8TD75lMupeKbnZHU3ZDbiCdiASCBk9GwycodKAzHkUNi8LJbON/tPTRrwdaGnew6EHYTpvbTUtGkCQciRf6srs3TO1shOgfmid3PbK4XpYvd12T+3Ehq7tccPDFdW8wiggKX07LYB8d0ROEPpwesdsINr01k8XfFwYndXKK6SpLXhL5ASoWzMl0OcnXGQh3pZw57LXaJvWXxnybkuUNf58f6/sB8lEqqqLZAX9vXFQNuai7j7CBSxb/kaUaQuZHbT5S7Jn3LkRVJOl6hwy6rn//AJvEnyftc2Gxr9P0o3Jtittg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by PH8PR11MB7966.namprd11.prod.outlook.com (2603:10b6:510:25d::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Wed, 26 Apr
- 2023 13:13:28 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::28c6:f268:89bd:e45a]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::28c6:f268:89bd:e45a%7]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
- 13:13:28 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230420221248.2511314-2-radhakrishna.sripada@intel.com>
-References: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
- <20230420221248.2511314-2-radhakrishna.sripada@intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-Date: Wed, 26 Apr 2023 10:13:23 -0300
-Message-ID: <168251480380.2664.2798787710641823280@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: BYAPR08CA0053.namprd08.prod.outlook.com
- (2603:10b6:a03:117::30) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 336E510E99C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 13:20:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1682515224;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3tF50+FCEBA470O0m1Pz3/uU72DgfPgXqci+5b6Z6Us=;
+ b=hTUQm9txUiL8QnN3F5ADFPh7bsJqv5X4+cZqB/p5uLZRudJy0+wepI4V+bu7lI3am/TSdJ
+ 09Z6a3wH0WRWLYHXH6XxJZhqMqppKgk2pCTANRLCOtr0coPSzLKBY9ukHWuPdx+oiSGqIP
+ cvnmjCko9//OJtZXst07TvrVXj1P1Tw=
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-384-a1UMnW_UPzu0IeB1eCGG8A-1; Wed, 26 Apr 2023 09:20:23 -0400
+X-MC-Unique: a1UMnW_UPzu0IeB1eCGG8A-1
+Received: by mail-io1-f70.google.com with SMTP id
+ ca18e2360f4ac-760814f124fso1033275339f.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 06:20:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682515222; x=1685107222;
+ h=content-transfer-encoding:mime-version:organization:references
+ :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3tF50+FCEBA470O0m1Pz3/uU72DgfPgXqci+5b6Z6Us=;
+ b=BLEyiBm2PCLq5l6+ntfJE7tCPGhtW0uzaQnBs1+Ad8O18pSgSSD3r4n4avGM1fsOnl
+ etgIZgnfNZBYTg+fhcSEU/kedREsPeRe6ieY1Ik3dtVyOo2q4IPMuEyFD9mSKbv0Uee/
+ 1Gbg6i+RV7ObNo//uBsfZtcq7rRoNSKKnU0ZCGjjntJnnH7QyOPC0FWELMXPgFsegxoh
+ jWYX4CgRLUBJS4ZrBric4AkSrI7PvdcEOk7eHD/aIbFnIlDdv5sCniEQ7v2ddcM6HfTq
+ CsYkv41ANrLceL+Iv3e3raV7jFT1hYhL4vXyDm/WUJ6zkshQXhlu5fmo+dhLbl/HugHY
+ jYSw==
+X-Gm-Message-State: AAQBX9e2k9d0KGkdH0SEfhknfjvDKPkCWdi0aBE7A4iJw2Q8bIm0T6OW
+ dAsKrYa/lYP+rwQlysLbxVlCUPHNjjqdtv3DB1m6PJCGE2jeYwbbqPw8ANIT+JET2rNMib64VcG
+ nqV82y6/J43kcm7QX0ry74qyswr7S
+X-Received: by 2002:a5d:96c2:0:b0:763:6b5a:cb1e with SMTP id
+ r2-20020a5d96c2000000b007636b5acb1emr9806282iol.10.1682515222505; 
+ Wed, 26 Apr 2023 06:20:22 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bVAxUZl+SaNxB4KtQp9lG5YMqf1m8i1/etdz67vKvzBfIWPiTagkhyoXG3sdYL8vcNxrib3g==
+X-Received: by 2002:a5d:96c2:0:b0:763:6b5a:cb1e with SMTP id
+ r2-20020a5d96c2000000b007636b5acb1emr9806258iol.10.1682515222228; 
+ Wed, 26 Apr 2023 06:20:22 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ h20-20020a5d9e14000000b0075d23c433efsm4465857ioh.29.2023.04.26.06.20.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Apr 2023 06:20:21 -0700 (PDT)
+Date: Wed, 26 Apr 2023 07:20:20 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <20230426072020.62834ac6.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB75298CDC8108BA213243DBB8C3659@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <BN9PR11MB5276782DA56670C8209470828C989@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <ZDfslVwqk6JtPpyD@nvidia.com>
+ <20230413120712.3b9bf42d.alex.williamson@redhat.com>
+ <BN9PR11MB5276A160CA699933B897C8C18C999@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB7529B7481AC97261E12AA116C3999@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230414111043.40c15dde.alex.williamson@redhat.com>
+ <DS0PR11MB75290A78D6879EC2E31E21AEC39C9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230417130140.1b68082e.alex.williamson@redhat.com>
+ <ZD2erN3nKbnyqei9@nvidia.com>
+ <20230417140642.650fc165.alex.williamson@redhat.com>
+ <ZD6TvA+9oI0v4vC2@nvidia.com>
+ <20230418123920.5d92f402.alex.williamson@redhat.com>
+ <DS0PR11MB7529C11E11F187D7BD88C18AC3639@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230420080839.652732dc.alex.williamson@redhat.com>
+ <DS0PR11MB75298CDC8108BA213243DBB8C3659@DS0PR11MB7529.namprd11.prod.outlook.com>
+Organization: Red Hat
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|PH8PR11MB7966:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ed4999e-0788-4ffe-407e-08db465806a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1/iEfXyQhDJWFnMhLXJvZOK4gr8931musKMcZ4mDT539TYX4zpbsH02A7OTN71H7Z9N8yUfmrF+QJuVJC6iwkDnUHoEOPlFxmVldvQIaQcmoQ86iuXZxgUyw7ub25jtf9CtTz6hgu/4QPxyu+dKQHny5HPgU8qmQjQ2VeXjquhr0ZY0Y0WYKtjAfu8fcrd18U0qQH3C5jbzPg5iRCY3o5NoecrbfPhH7pu2h9P7sB8KpzFV40xcWrl+aE6FQ/DleJnkQRR4upeDhzsLD+gbVBYqn2o1eJ/Qloou5xj7Y/70zuvYYeUq4QtA1dR9A3bnGw9Z2mwYg2QTVSKM84/pXFbcZi7PnydxI/1nZn/5KmLw7xvK7h5xjawVd1/tAYQwLgg3EWwFT0qmy3GSWV3o28kCmP2Gjjd0KVCR+nLxtixEEYMKJFK6j23Ow5hInIcoG3ORoQdkIIqJD4N7KHA56wiN0GjMyzDDSzJK3mWkZ1U9xdRFjvtmrBGs7gEEYC8PJNMqqQHMT11wCK8jPXJLvry68QagTM5vBa+/afjYvToFgch7Jm5VK6/OSP0rqnwYk
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(366004)(396003)(346002)(136003)(39860400002)(376002)(451199021)(41300700001)(26005)(6512007)(9686003)(6506007)(5660300002)(82960400001)(8936002)(8676002)(83380400001)(44832011)(2906002)(38100700002)(316002)(66946007)(66556008)(66476007)(478600001)(86362001)(186003)(6666004)(6486002)(33716001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3VQOGtuck4zK3V6bFZZUEdYZFlZQmlZeE9NTll2cGdoQnlzRWxvL1Q1dUw5?=
- =?utf-8?B?WjljbUNpVk9TVDhLWVZMMXp6STRpQk1vaTA4NTAwVllSTzZEWHdGL3FQVUxP?=
- =?utf-8?B?a1FWRno5VE9LRG9TRnVrSllNSUdONFk2VHliRTJoV0ptWmNxY2VmRFhabWti?=
- =?utf-8?B?dkJtM2pKTUk1M3dPRHlGdERFbitWOVlobDJwNHBzZDFEdEFyV3VRR3VjYzFt?=
- =?utf-8?B?WXYzeUxTZGhEaVBETGJ0dGNsVU41LzVzT3o1c3dTSkd0R3VNVzFSMDc3a2N5?=
- =?utf-8?B?QlRlMXExbDhSQ1JFM2Z1NWVoRjRXVkZrL2w2TmZ2UHI0UGM5ZE5jRFkwa3Q5?=
- =?utf-8?B?Y0MvT3NRcC8vcVVGa1RFWUlWRk9DcHFwdzlia3BuV1pRUFM3cVlnMmVmNG5F?=
- =?utf-8?B?aVQwd3hlS3k1em5ScGYzUDNIcEhpZ1k2QVUxa2VPUXpkczZQTUVqRWxjN2V2?=
- =?utf-8?B?dVVXMXVKWDNyNXkzZGppbkRqRjhSelhiOCtaRU5FeE5FYjl1S3g1UW5IdGtr?=
- =?utf-8?B?cjlZcjZVdElyekliUmJpRzF0RU5OVURrYXRkdGx2cFB3ZHdnSmRidWlaRy9z?=
- =?utf-8?B?bDM5cjJQU2NFSEpEZUgvMzBKVmtQd0dUVW41OW5RZjlURkNNeHRTVG1CRm9C?=
- =?utf-8?B?eFNkSmRYeHVQSGI1NnA1dDZxZTdPNHJWa2RFbFJYVk1QQUY5dld4bWZaakww?=
- =?utf-8?B?MGhCZ0JSNUkyaWhNQUZQLzhhTjNrZTBaUkl5b29LZVBNYTB4R3UxSzJRUnUz?=
- =?utf-8?B?L05IdDFNQ3ZZQjBEWnE0Z1ZLYmNiVXVPVjgwR0ZEakE5blZnNGxwRld2TGhw?=
- =?utf-8?B?UUZwcC93R1ovckI3cHZ4aUFCUnVsWk93SkRwVlZTVERSVUtENW9uZDY2VHZU?=
- =?utf-8?B?RWNheTRVWk44TE9NYWV6Q2ZDbTI3KzdKL0gvTCtZUUozL0pWbnNuZDRsZG9y?=
- =?utf-8?B?VlN0UDdUakhSUkE4STJvMm9kMzZGVmtYRXgvVGxPNG5xZWZuRWdvZ05wNEVt?=
- =?utf-8?B?SVJOemRBaldKcmRnSmpDRDMrcnNIQ1JYb2pHa3FFNk9peElQQjZLNUxmSVNv?=
- =?utf-8?B?RmY0bVZTSmF3OGR6dU1UUzdKa3ZLbFVXWGZQZnFEbmhyd3NjdVRRU1dzN1pH?=
- =?utf-8?B?c3ErSkt2YzBmUS9zR29Yd1pWdGh5bjMrNjNXK3dwWE90U040V2wyNW9XVFAy?=
- =?utf-8?B?OFFKa0RKNVYweUVJV2tsNTE0TW5SNzBjenVRc0YzUnprTVFyaE9XS3I0emFC?=
- =?utf-8?B?akdIM2JETGxlempzZzF2djhLUFcyZTQvTWp1ZTFaS25BKzlGVmpia3N2YWRQ?=
- =?utf-8?B?ajY3bDRILzlOREZFc0xjMllKOC8zTk1WQzVQZWFuQzMvSGozVVRMK0RMRzEr?=
- =?utf-8?B?cGFRWXdadWpRaTloWWFzQk8wMGZYUjZSSGEvMzlNQ3M5QlpXVnIvR1BzTTEv?=
- =?utf-8?B?UlNHRkZEUEloS1FjWStkU3BFcmdlSkJqWHRJRXB3UElISmpEbTB0eEZZcWo1?=
- =?utf-8?B?SEU5RWVobVRSOVdMNHFxT1M0M2hRbURmOVc1di9hOGRXNkt0UjYzWnc4VkZw?=
- =?utf-8?B?RmNob0JZMGsxNWlneGtvYjFaRThtd0lLUXRaeGxjWWpPV1BDaHBjSFZkMEhX?=
- =?utf-8?B?dHZDaTRzRWxrVFNCczlOcDJUU054WVFhZWVMZEJaM3d1SzV5UmtHM1NVMXJT?=
- =?utf-8?B?ZjV0VWswa0xESzJaUWM1OEhtMjlPQnFSQzlQL25mSW02b0cvd0hXb0pnU3NE?=
- =?utf-8?B?eENST2RLZHdDam9saVA0UlNYVThEa3JGdWdiRHROUUtDRm9TR1Vsam5DU2dt?=
- =?utf-8?B?N211ZHN6TWVVVXhLUnVsUElHQ3lnbDNvVDBqU3NaZnFwQnVxMzgzTHVuYlYw?=
- =?utf-8?B?Z3d5TkVWS1NxLytaeS84SC9pUFBrMVI0akV4SkpJMDI2RlJtak1Ba2o3QmNt?=
- =?utf-8?B?dGZiWkNQdWFUd09iYzZmditGb1dtWTY3aFlHS05Eb0o0aGs2bStGbXgrdnN0?=
- =?utf-8?B?OFFzeHZLTDhPTFhBcEFOYW1oc0J5b0dQU2JoT3g3cVF2RDVhUXZrTGQwUUZ2?=
- =?utf-8?B?Skl1Wk1rNHZaQUwvcVJ2T3dkZUtnQnFHYjI5UWF5a1RXQXJEem15Wkl4aDVU?=
- =?utf-8?B?RFVmSEpwalc0VzhReHJyN1d1a0R6MDg2Qm9sMlFlb3RhK2FsQUpGdzZwVmxl?=
- =?utf-8?B?Zmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ed4999e-0788-4ffe-407e-08db465806a7
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 13:13:28.7553 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qaSFql0Z2Gocv2zf9E0Bw9EzYVcOCE5QucI3xlr0KsJRCTKCxEBI1Yzzb9+6tDLQCJb3quIRd2rPVkoi/acEoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7966
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Copy c10 phy pll sw state
- from master to slave for bigjoiner
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] vfio/pci: Report dev_id in
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,56 +97,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Radhakrishna Sripada (2023-04-20 19:12:48)
->From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->
->We try to verify pll registers in sw state for slave crtc with the hw stat=
-e.
->However in case of bigjoiner we don't calculate those at all, so this veri=
-fication
->will then always fail.
->So we should either skip the verification for Bigjoiner slave crtc or copy=
- sw state
->from master crtc.
->
->Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_display.c | 1 +
-> 1 file changed, 1 insertion(+)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/dr=
-m/i915/display/intel_display.c
->index bf391a6cd8d6..83c98791fea3 100644
->--- a/drivers/gpu/drm/i915/display/intel_display.c
->+++ b/drivers/gpu/drm/i915/display/intel_display.c
->@@ -4556,6 +4556,7 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomi=
-c_state *state,
->        drm_mode_copy(&slave_crtc_state->hw.adjusted_mode,
->                      &master_crtc_state->hw.adjusted_mode);
->        slave_crtc_state->hw.scaling_filter =3D master_crtc_state->hw.scal=
-ing_filter;
->+  slave_crtc_state->cx0pll_state =3D master_crtc_state->cx0pll_state;
+On Wed, 26 Apr 2023 07:22:17 +0000
+"Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
-We are unconditionally copying cx0pll_state here, which is part of a union.
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Thursday, April 20, 2023 10:09 PM  
+> [...]
+> > > > Whereas dev-id < 0
+> > > > (== -1) is an affected device which prevents hot-reset, ex. an un-owned
+> > > > device, device configured within a different iommufd_ctx, or device
+> > > > opened outside of the vfio cdev API."  Is that about right?  Thanks,  
+> > >
+> > > Do you mean to have separate err-code for the three possibilities? As
+> > > the devid is generated by iommufd and it is u32. I'm not sure if we can
+> > > have such err-code definition without reserving some ids in iommufd.  
+> > 
+> > Yes, if we're going to report the full dev-set, I think we need at
+> > least two unique error codes or else the user has no way to determine
+> > the subset of invalid dev-ids which block the reset.  I think Jason is
+> > proposing the set of valid dev-ids are >0, a dev-id of zero indicates
+> > some form of non-blocking, while <0 (or maybe specifically -1)
+> > indicates a blocking device.  I was trying to get consensus on a formal
+> > definition of each of those error codes in my previous reply.  Thanks,  
+> 
+> Seems like RESETTABLE flag is not needed if we report -1 for the devices
+> that block hotreset. Userspace can deduce if the calling device is resettable
+> or not by checking if there is any -1 in the affected device list.
 
-I haven't checked, but does the verification issue mentioned in the message
-above happens only for cx0? In that case, one option would be having the li=
-ne
-above guarded with something that tells us that we are really using the cx0=
- phys
-(maybe DISPLAY_VERSION(i915) >=3D 14?).
+There is some redundancy there, yes.  Given the desire for a null array
+on the actual reset ioctl I assumed there would also be a desire to
+streamline the info ioctl such that userspace isn't required to parse
+the return array, for example maybe userspace isn't required to pass a
+full buffer and can get the reset availability status from only the
+header.  Of course it's still the responsibility of userspace to know
+the extent of the reset.  Thanks,
 
-That said, I think it would be even better (and safer) if we correctly copi=
-ed
-the union data no matter which is the currently active member.
+Alex
 
->=20
->        copy_bigjoiner_crtc_state_nomodeset(state, slave_crtc);
->=20
->--=20
->2.34.1
->
