@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CB96EEE20
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 08:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 397276EEE39
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 08:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89BF010E8B8;
-	Wed, 26 Apr 2023 06:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA2D10E8BF;
+	Wed, 26 Apr 2023 06:23:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 730E510E8B2;
- Wed, 26 Apr 2023 06:13:50 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B7C510E09B;
+ Wed, 26 Apr 2023 06:23:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682489630; x=1714025630;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I8bBOBE2tRibyZSoE0eVxxJLlRgeLjMj4rXll4Vn914=;
- b=BUOSJF8U7qZhyYvKHNATrjZsvFtU4VP34HS2hkKU1jKXEHu6dXeiJDol
- fdXrwN5FQ9JYY/P0kRcKjNR4qWgxnCAueKdyp4kNbPLbKoLig1BknwP5K
- bZ4izEMMcEJjAH+4S8flMAN2sGPi4UYZPnCVeeDQnbB4qTgiiGyr0PB8g
- /I/d4Q7etR+JnypTyIM0Ah/D8g/4YwDOg5vsipMH7bkEwBj/YrIuQP1Pt
- ETQ6YLfxrkNeocDuFo/ij4Dc9FF7AW8ltJh0R9DTunHMYu8SoxdSnrOCm
- wuFAWu1/CFIOFM5WayK4JYtSKwJujbeTqfEyqHOyJbPZg9wBp3VrTwbvq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331234663"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="331234663"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 23:13:48 -0700
+ t=1682490198; x=1714026198;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5BHsz54H+vz6p8MvH4b83I1LZOBj64vP9a+O/jl6fi4=;
+ b=kJSJbw/kr+8RKBeNb+ZkcP64OM2YHvHMyg1pdeLyc2Wxd0SxoNknvlNH
+ 58YOBNTlhyXobR8OiBNEcm6pgfPA7fiPpDpk+syawauifIcS7F6EjP7Wl
+ n6zjbyZOAs/3KCnxgGRnQ7eCA2Z8Fu80z+CODmZUSWYcmF8aGD2U+zLB2
+ GY9wdiiLI25YBdIPP9V0TrGfiCzaXKirbVlF0mDPKZ2rdlP8ghKEmrVbF
+ wJl6nbjeoAqExNmCOdVm0HMs14+3EuUs8hA0ylIAh2O2DMGjpyfcAJtR1
+ tEcL7viVksM3Ae3zFfaFlHWTlC7C6lYycfPTfiJ1UI5YLXXQMaAymUfvR g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="326622687"
+X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="326622687"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 23:23:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="837767314"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="837767314"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="817990912"
+X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="817990912"
 Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 23:13:47 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 23:23:16 -0700
 From: fei.yang@intel.com
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 23:14:52 -0700
-Message-Id: <20230426061452.320390-4-fei.yang@intel.com>
+Date: Tue, 25 Apr 2023 23:24:18 -0700
+Message-Id: <20230426062423.320519-1-fei.yang@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230426061452.320390-1-fei.yang@intel.com>
-References: <20230426061452.320390-1-fei.yang@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: make sure correct pte encode
- is used
+Subject: [Intel-gfx] [PATCH v2 0/5] drm/i915: Allow user to set cache at BO
+ creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +56,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Fei Yang <fei.yang@intel.com>
 
-PTE encode is platform dependent. After replacing cache_level with
-pat_index, the newly introduced mtl_pte_encode is actually generic
-for all gen12 platforms, thus rename it to gen12_pte_encode and
-apply it to all gen12 platforms.
+The first three patches in this series are taken from
+https://patchwork.freedesktop.org/series/116868/
+These patches are included here because the last patch
+has dependency on the pat_index refactor.
 
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+This series is focusing on uAPI changes,
+1. end support for set caching ioctl [PATCH 4/5]
+2. add set_pat extension for gem_create [PATCH 5/5]
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index ee52e5833c50..81b7725812ce 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -55,9 +55,9 @@ static u64 gen8_pte_encode(dma_addr_t addr,
- 	return pte;
- }
- 
--static u64 mtl_pte_encode(dma_addr_t addr,
--			  unsigned int pat_index,
--			  u32 flags)
-+static u64 gen12_pte_encode(dma_addr_t addr,
-+			    unsigned int pat_index,
-+			    u32 flags)
- {
- 	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
- 
-@@ -994,8 +994,8 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
- 	 */
- 	ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
- 
--	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
--		ppgtt->vm.pte_encode = mtl_pte_encode;
-+	if (GRAPHICS_VER(gt->i915) >= 12)
-+		ppgtt->vm.pte_encode = gen12_pte_encode;
- 	else
- 		ppgtt->vm.pte_encode = gen8_pte_encode;
- 
+v2: drop one patch that was merged separately
+    341ad0e8e254 drm/i915/mtl: Add PTE encode function
+
+Fei Yang (5):
+  drm/i915: preparation for using PAT index
+  drm/i915: use pat_index instead of cache_level
+  drm/i915: make sure correct pte encode is used
+  drm/i915/mtl: end support for set caching ioctl
+  drm/i915: Allow user to set cache at BO creation
+
+ drivers/gpu/drm/i915/display/intel_dpt.c      | 12 +--
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    | 36 +++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 30 +++----
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 67 +++++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  | 26 +++++-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 73 +++++++++--------
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 76 +++++++++---------
+ drivers/gpu/drm/i915/gt/intel_gtt.h           | 20 +++--
+ drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
+ drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 +++++------
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
+ drivers/gpu/drm/i915/i915_debugfs.c           | 55 ++++++++++---
+ drivers/gpu/drm/i915/i915_gem.c               | 16 +++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 79 ++++++++++++++++---
+ drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
+ drivers/gpu/drm/i915/i915_vma.h               |  2 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
+ drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
+ .../drm/i915/selftests/intel_memory_region.c  |  4 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
+ include/uapi/drm/i915_drm.h                   | 36 +++++++++
+ tools/include/uapi/drm/i915_drm.h             | 36 +++++++++
+ 44 files changed, 605 insertions(+), 243 deletions(-)
+
 -- 
 2.25.1
 
