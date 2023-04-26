@@ -1,49 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFC16EF864
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 18:26:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89ADF6EF874
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 18:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4864810E1DF;
-	Wed, 26 Apr 2023 16:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2E010E8BF;
+	Wed, 26 Apr 2023 16:29:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A12EB10E1DF;
- Wed, 26 Apr 2023 16:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682526391; x=1714062391;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0Tb64pCqpaZv7itm0AuAXxsOPFO+ecxgH9Ovs/Ou7KA=;
- b=C2L8yN+ChFow2A3AEZeOnx8RNE4GaFCM9hotmOpOYf8W72omNlHWnVRC
- r/c4krJrkvUh0G1SIUdeVH1sFbqqB58LfM+iObvYfOi1OtrVn9pe7vg2G
- Ar5sbfZ+tALUAGUBHwGbf0C5f66gaNbk2GjIccDqOjnYEC75N92kG3AYX
- 5lnacNdoxQLDaNe24+ZSSpeC1yI2B9vCaphkevT2pzznxm86xN0p4fZ3K
- iGSd1P1Ls8FBhU678W/u4zkL94GpE0z/fLW0yyyPHmMzVaL8OnSXcc/MJ
- jvaH7ORO36AQF7N3DPFJdDATSBdOO32CpPqFCR+J4g05pJA7oUgdqos1L w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="331394304"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="331394304"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:26:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="694011467"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="694011467"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.12])
- by orsmga002.jf.intel.com with ESMTP; 26 Apr 2023 09:26:19 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 09:11:33 -0700
-Message-Id: <20230426161133.1009519-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
+ [IPv6:2607:f8b0:4864:20::d2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 530E410E694
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 16:29:35 +0000 (UTC)
+Received: by mail-io1-xd2c.google.com with SMTP id
+ ca18e2360f4ac-760f8ffb27fso162507739f.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 09:29:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1682526573; x=1685118573;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=TIDVwkBe6JgOdUFARGozlMNyy0dDCnMU/+lG8y5/nQs=;
+ b=cWVMkmgt9ObIOIZ+CfDwNRly4zcDmy0JyvZ0EolmH6lnHt6uGYsFuDeeM5GwhCPFTR
+ TkVWf7vQb5W3OekXlUNnm2DDJ9Pk5x7Zo41k31iy+iPcMhz+kfuBG1HyYb9UiZkXq3Vw
+ TnY8zbIJUDe4yggKB3nnDvOCmFqaGvVQCR6zc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682526573; x=1685118573;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=TIDVwkBe6JgOdUFARGozlMNyy0dDCnMU/+lG8y5/nQs=;
+ b=iLDX1Gp8WOPYIIL9UgCUw4xEiTbv6jAOt1Z46Nk7xfcCFZ0FnDnpmrrB7iwPlXno22
+ NRlW5gj3wl8qvIzb3U4pOHY8/xTmLEdAY3GZ5VsiQ78oltLmVLceuuGfz+nVOd0rDr3y
+ QAYWiELcSAU9TysVLcbMvUqa4wMHx7mifJwcykrOjmuCQKHenG/xniOCp3nCCqJ/YnBP
+ en/QpLu3INgZm9F4lkD6fq4MZZJ3KvLai1kvv+4WArnRYjnxQGuCW4HRwXm9uJAl0IgN
+ sRjffUP0YwS97AGSFLfzEDhCs9KBxS4esgKqJIVDjRDuh0UfQPsrn/S6zgUracax7vX6
+ lAPQ==
+X-Gm-Message-State: AAQBX9eGcLOXGWC0t96qeQQt4/5wKzUlomCyLBjHJ1koU1KSYN+wAKr4
+ V7Z1IX8d9650dhFtbVDkKMgwIb4dTKQCvnCfnqo=
+X-Google-Smtp-Source: AKy350bhF5jsRdJKh2RF+kw3B/xdvzqfMo9ZL/yIYmvRX6u9PllBbxELoG73kFvJfV6Oa2EmooKJiA==
+X-Received: by 2002:a5e:8803:0:b0:760:d52a:c1a8 with SMTP id
+ l3-20020a5e8803000000b00760d52ac1a8mr9846935ioj.3.1682526573594; 
+ Wed, 26 Apr 2023 09:29:33 -0700 (PDT)
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com.
+ [209.85.166.177]) by smtp.gmail.com with ESMTPSA id
+ b26-20020a05663801ba00b004063842e6aasm4967468jaq.46.2023.04.26.09.29.28
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 26 Apr 2023 09:29:29 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id
+ e9e14a558f8ab-325f728402cso285605ab.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 09:29:28 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1e0a:b0:32b:1de1:17de with SMTP id
+ g10-20020a056e021e0a00b0032b1de117demr419402ila.2.1682526568182; Wed, 26 Apr
+ 2023 09:29:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Set wedged if enable guc
- communication failed
+References: <20230419154321.1993419-1-markyacoub@google.com>
+In-Reply-To: <20230419154321.1993419-1-markyacoub@google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 26 Apr 2023 09:29:14 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V1+PMH3YGOcnvziOC7-_NY1yO4w=b4q2RLCdtEtETB3Q@mail.gmail.com>
+Message-ID: <CAD=FV=V1+PMH3YGOcnvziOC7-_NY1yO4w=b4q2RLCdtEtETB3Q@mail.gmail.com>
+To: Mark Yacoub <markyacoub@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v10 00/10] drm/hdcp: Pull HDCP
+ auth/exchange/check into helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,114 +79,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ seanpaul@chromium.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dmitry.baryshkov@linaro.org,
+ freedreno@lists.freedesktop.org, Mark Yacoub <markyacoub@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add err code check for enable_communication on resume path. When resume failed, we can no longer use the GPU, marking the GPU as wedged.
+Hi,
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm.c |  7 ++++++-
- drivers/gpu/drm/i915/gt/intel_reset.c | 19 ++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_reset.h |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 +++++++--
- 4 files changed, 30 insertions(+), 6 deletions(-)
+On Wed, Apr 19, 2023 at 8:43=E2=80=AFAM Mark Yacoub <markyacoub@chromium.or=
+g> wrote:
+>
+> Hi all,
+> This is v10 of the HDCP patches. The patches are authored by Sean Paul.
+> I rebased and addressed the review comments in v6-v10.
+>
+> Main change in v10 is handling the kernel test bot warnings.
+>
+> Patches 1-4 focus on moving the common HDCP helpers to common DRM.
+> This introduces a slight change in the original intel flow
+> as it splits the unique driver protocol from the generic implementation.
+>
+> Patches 5-7 split the HDCP flow on the i915 driver to make use of the com=
+mon DRM helpers.
+>
+> Patches 8-10 implement HDCP on MSM driver.
+>
+> Thanks,
+> -Mark Yacoub
+>
+> Sean Paul (10):
+>   drm/hdcp: Add drm_hdcp_atomic_check()
+>   drm/hdcp: Avoid changing crtc state in hdcp atomic check
+>   drm/hdcp: Update property value on content type and user changes
+>   drm/hdcp: Expand HDCP helper library for enable/disable/check
+>   drm/i915/hdcp: Consolidate HDCP setup/state cache
+>   drm/i915/hdcp: Retain hdcp_capable return codes
+>   drm/i915/hdcp: Use HDCP helpers for i915
+>   dt-bindings: msm/dp: Add bindings for HDCP registers
+>   arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
+>   drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
+>
+>  .../bindings/display/msm/dp-controller.yaml   |    7 +-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |    8 +
+>  drivers/gpu/drm/display/drm_hdcp_helper.c     | 1224 +++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |    8 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   32 +-
+>  .../drm/i915/display/intel_display_debugfs.c  |   12 +-
+>  .../drm/i915/display/intel_display_types.h    |   51 +-
+>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  352 ++---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   16 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 1060 +++-----------
+>  drivers/gpu/drm/i915/display/intel_hdcp.h     |   48 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  267 ++--
+>  drivers/gpu/drm/msm/Kconfig                   |    1 +
+>  drivers/gpu/drm/msm/Makefile                  |    1 +
+>  drivers/gpu/drm/msm/dp/dp_catalog.c           |  156 +++
+>  drivers/gpu/drm/msm/dp/dp_catalog.h           |   18 +
+>  drivers/gpu/drm/msm/dp/dp_debug.c             |   46 +-
+>  drivers/gpu/drm/msm/dp/dp_debug.h             |   11 +-
+>  drivers/gpu/drm/msm/dp/dp_display.c           |   39 +-
+>  drivers/gpu/drm/msm/dp/dp_display.h           |    5 +
+>  drivers/gpu/drm/msm/dp/dp_drm.c               |   39 +-
+>  drivers/gpu/drm/msm/dp/dp_drm.h               |    7 +
+>  drivers/gpu/drm/msm/dp/dp_hdcp.c              |  389 ++++++
+>  drivers/gpu/drm/msm/dp/dp_hdcp.h              |   33 +
+>  drivers/gpu/drm/msm/dp/dp_parser.c            |   14 +
+>  drivers/gpu/drm/msm/dp/dp_parser.h            |    4 +
+>  drivers/gpu/drm/msm/dp/dp_reg.h               |   30 +-
+>  drivers/gpu/drm/msm/msm_atomic.c              |   19 +
+>  include/drm/display/drm_hdcp.h                |  296 ++++
+>  include/drm/display/drm_hdcp_helper.h         |   23 +
+>  30 files changed, 2867 insertions(+), 1349 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index e02cb90723ae..775ce511f810 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -373,8 +373,13 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
- 	intel_ggtt_restore_fences(gt->ggtt);
- 
- 	ret = intel_uc_runtime_resume(&gt->uc);
--	if (ret)
-+	if (ret && intel_uc_uses_guc_submission(&gt->uc)) {
-+		/* Resume failed on GuC submission, we can no longer use the GPU, marking the GPU
-+		 * as wedged.
-+		 */
-+		intel_gt_set_wedged_flag(gt);
- 		return ret;
-+	}
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 195ff72d7a14..05142761770a 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -962,6 +962,20 @@ static void nop_submit_request(struct i915_request *request)
- 	}
- }
- 
-+void intel_gt_set_wedged_flag(struct intel_gt *gt)
-+{
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	if (test_bit(I915_WEDGED, &gt->reset.flags))
-+		return;
-+
-+	for_each_engine(engine, gt, id)
-+		engine->submit_request = nop_submit_request;
-+
-+	set_bit(I915_WEDGED, &gt->reset.flags);
-+}
-+
- static void __intel_gt_set_wedged(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
-@@ -984,8 +998,8 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
- 		__intel_gt_reset(gt, ALL_ENGINES);
- 
--	for_each_engine(engine, gt, id)
--		engine->submit_request = nop_submit_request;
-+
-+	intel_gt_set_wedged_flag(gt);
- 
- 	/*
- 	 * Make sure no request can slip through without getting completed by
-@@ -993,7 +1007,6 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 	 * in nop_submit_request.
- 	 */
- 	synchronize_rcu_expedited();
--	set_bit(I915_WEDGED, &gt->reset.flags);
- 
- 	/* Mark all executing requests as skipped */
- 	local_bh_disable();
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
-index 25c975b6e8fc..3796b8d877b7 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.h
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.h
-@@ -42,6 +42,7 @@ int __must_check intel_gt_reset_trylock(struct intel_gt *gt, int *srcu);
- int __must_check intel_gt_reset_lock_interruptible(struct intel_gt *gt, int *srcu);
- void intel_gt_reset_unlock(struct intel_gt *gt, int tag);
- 
-+void intel_gt_set_wedged_flag(struct intel_gt *gt);
- void intel_gt_set_wedged(struct intel_gt *gt);
- bool intel_gt_unset_wedged(struct intel_gt *gt);
- int intel_gt_terminally_wedged(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 4ccb4be4c9cb..62c5a953991c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -700,8 +700,13 @@ static int __uc_resume(struct intel_uc *uc, bool enable_communication)
- 	/* Make sure we enable communication if and only if it's disabled */
- 	GEM_BUG_ON(enable_communication == intel_guc_ct_enabled(&guc->ct));
- 
--	if (enable_communication)
--		guc_enable_communication(guc);
-+	if (enable_communication) {
-+		err = guc_enable_communication(guc);
-+		if (err) {
-+			DRM_DEBUG_DRIVER("Failed to enable communication, %pe", ERR_PTR(err));
-+			return err;
-+		}
-+	}
- 
- 	/* If we are only resuming GuC communication but not reloading
- 	 * GuC, we need to ensure the ARAT timer interrupt is enabled
--- 
-2.34.1
+Mark asked me if I had any advice for getting this patch series
+landed. I haven't been following the patch series super closely, but
+as I understand it:
 
+1. The first several patches (the generic ones) seem fairly well
+reviewed and haven't changed in any significant ways in a while. The
+ideal place to land these would be drm-misc, I think.
+
+2. The i915 patches also seem OK to land. The ideal place would be the
+Intel DRM tree, I think.
+
+3. The msm patches are not fully baked yet. Not only is there a kernel
+bot complaint on patch #10, but Mark also said that comments from v6
+haven't yet fully been addressed and he's talked with Dmitry on IRC
+about this and has a plan to move forward.
+
+
+The question becomes: can/should we land the generic and maybe the
+i915 patches now while the msm patches are reworked. Do folks have an
+opinion here? If we're OK landing some of the patches, I guess we have
+a few options:
+
+a) Just land the generic patches to drm-misc and put the i915 ones on
+the backburner until drm-misc has made it to somewhere that the
+drm-intel tree is based on. If we want to go this route and nobody
+objects, I don't mind being the person who does the gruntwork of
+actually landing them on drm-misc-next, though I certainly wouldn't
+rush to make sure that nobody is unhappy with this idea.
+
+b) Land the generic patches in some type of immutable branch so they
+can be pulled into drm-misc and the Intel DRM tree. Someone more
+senior to me would need to help with this, but if we really want to go
+this way I can poke folks on IRC.
+
+c) Land the generic and Intel patches in the Intel tree. The msm
+patches would not be able to land until these trickled up the chain,
+but the msm patches aren't fully ready yet anyway so maybe this is OK.
+
+d) Land the generic and Intel patches in the drm-misc tree. If folks
+are OK with this I can be the person to pull the trigger, but I'd want
+to be very sure that Intel DRM folks are on board. :-)
+
+
+My preference would be c), then d), then a), then b). ...this is all
+assuming, of course, that nobody on this thread objects to landing the
+generic/i195 patches now.
+
+
+-Doug
