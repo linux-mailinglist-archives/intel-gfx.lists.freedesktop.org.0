@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12ECB6EF6B6
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 16:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6364D6EF6CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 16:54:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A43A10E9C9;
-	Wed, 26 Apr 2023 14:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6ECE10E6F5;
+	Wed, 26 Apr 2023 14:54:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E61EB10E9C9;
- Wed, 26 Apr 2023 14:45:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DCEF5AADE8;
- Wed, 26 Apr 2023 14:45:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0862966932977950860=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9A210E293;
+ Wed, 26 Apr 2023 14:54:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682520866; x=1714056866;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4m9wk/nfUu+Ko6ZOipEux5/ofaGiWcx58iIPXEvzblM=;
+ b=UE7OXN2K96K3sYHGp/NYpOqG8GLXhOSnbDvL9ync/yAIB3ufFwx8/xS7
+ ST1agcBaLAxPbrOfKMNKErK6Rw7Z3amAJXsqL4Z43x6JiKB/7k9FMwbmi
+ QMbXzjcPO/weSgb2s8fNJY51nLWVurBqq0wrIRTtyc0K/ixnWFOW7Jcsl
+ BauQ7GHCxM+NgBZurrb9w8P8yFAoaX7h/lJ/XWUZabuNnVx82x/QXWd/u
+ Bj43oqBcEGpc7VCf+c39X3UDIPaZdC+5ibPxXmInWU0c15W2OYE2bqhGc
+ Gu2DXuP+xRlIc23axUtfnKZXVc4drWxky3yOpnaG8yPOcgNZm8kr5X/tI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="433410210"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="433410210"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 07:54:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="758643974"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="758643974"
+Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
+ by fmsmga008.fm.intel.com with ESMTP; 26 Apr 2023 07:54:21 -0700
+From: Yi Liu <yi.l.liu@intel.com>
+To: alex.williamson@redhat.com,
+	jgg@nvidia.com,
+	kevin.tian@intel.com
+Date: Wed, 26 Apr 2023 07:54:10 -0700
+Message-Id: <20230426145419.450922-1-yi.l.liu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 26 Apr 2023 14:45:37 -0000
-Message-ID: <168252033787.17154.10832690790595657916@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Scaler/pfit_stuff_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/9] Enhance vfio PCI hot reset for vfio cdev
+ device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,235 +57,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, yi.l.liu@intel.com,
+ kvm@vger.kernel.org, lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org,
+ nicolinc@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0862966932977950860==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+VFIO_DEVICE_PCI_HOT_RESET requires user to pass an array of group fds
+to prove that it owns all devices affected by resetting the calling
+device. While for cdev devices, user can use an iommufd-based ownership
+checking model and invoke VFIO_DEVICE_PCI_HOT_RESET with a zero-length
+fd array.
 
-== Series Details ==
+This series first creates iommufd_access for noiommu devices to fill the
+gap for adding iommufd-based ownership checking model, then extends
+VFIO_DEVICE_GET_PCI_HOT_RESET_INFO to check ownership and return the
+check result and the devid of affected devices to user. In the end, extends
+the VFIO_DEVICE_PCI_HOT_RESET to accept zero-length fd array for hot-reset
+with cdev devices.
 
-Series: drm/i915: Scaler/pfit stuff (rev3)
-URL   : https://patchwork.freedesktop.org/series/116661/
-State : success
+The new hot reset method and updated _INFO ioctl are tested with the
+below qemu:
 
-== Summary ==
+https://github.com/yiliu1765/qemu/tree/iommufd_rfcv4.mig.reset.v4_var3
+(requires to test with the cdev kernel)
 
-CI Bug Log - changes from CI_DRM_13063 -> Patchwork_116661v3
-====================================================
+Change log:
 
-Summary
--------
+v4:
+ - Rename the patch series subject
+ - Patch 01 is moved from the cdev series
+ - Patch 02, 06 are new per review comments in v3
+ - Patch 03/04/05/07/08/09 are from v3 with updates
 
-  **SUCCESS**
+v3: https://lore.kernel.org/kvm/20230401144429.88673-1-yi.l.liu@intel.com/
+ - Remove the new _INFO ioctl of v2, extend the existing _INFO ioctl to
+   report devid (Alex)
+ - Add r-b from Jason
+ - Add t-b from Terrence Xu and Yanting Jiang (mainly regression test)
 
-  No regressions found.
+v2: https://lore.kernel.org/kvm/20230327093458.44939-1-yi.l.liu@intel.com/
+ - Split the patch 03 of v1 to be 03, 04 and 05 of v2 (Jaon)
+ - Add r-b from Kevin and Jason
+ - Add patch 10 to introduce a new _INFO ioctl for the usage of device
+   fd passing usage in cdev path (Jason, Alex)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/index.html
+v1: https://lore.kernel.org/kvm/20230316124156.12064-1-yi.l.liu@intel.com/
 
-Participating hosts (38 -> 37)
-------------------------------
+Regards,
+	Yi Liu
 
-  Missing    (1): fi-snb-2520m 
+Yi Liu (9):
+  vfio: Determine noiommu in vfio_device registration
+  vfio-iommufd: Create iommufd_access for noiommu devices
+  vfio/pci: Update comment around group_fd get in
+    vfio_pci_ioctl_pci_hot_reset()
+  vfio/pci: Move the existing hot reset logic to be a helper
+  vfio: Mark cdev usage in vfio_device
+  iommufd: Reserved -1 in the iommufd xarray
+  vfio-iommufd: Add helper to retrieve iommufd_ctx and devid for
+    vfio_device
+  vfio/pci: Extend VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device
+    cdev
+  vfio/pci: Allow passing zero-length fd array in
+    VFIO_DEVICE_PCI_HOT_RESET
 
-Known issues
-------------
+ drivers/iommu/iommufd/device.c   |  24 ++++
+ drivers/iommu/iommufd/main.c     |   5 +-
+ drivers/vfio/iommufd.c           |  48 +++++--
+ drivers/vfio/pci/vfio_pci_core.c | 223 +++++++++++++++++++++++++------
+ drivers/vfio/vfio.h              |   7 +-
+ drivers/vfio/vfio_main.c         |   4 +
+ include/linux/iommufd.h          |   6 +
+ include/linux/vfio.h             |  22 +++
+ include/uapi/linux/vfio.h        |  61 ++++++++-
+ 9 files changed, 347 insertions(+), 53 deletions(-)
 
-  Here are the changes found in Patchwork_116661v3 that come from known issues:
+-- 
+2.34.1
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         NOTRUN -> [FAIL][1] ([i915#6997] / [i915#7913])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][2] ([i915#7828])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][3] ([i915#1845] / [i915#5354])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-adlp-9:         NOTRUN -> [SKIP][4] ([i915#3546]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][5] ([i915#1845])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-2:         [ABORT][6] ([i915#7913]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:
-    - bat-dg2-9:          [FAIL][8] ([fdo#103375]) -> [PASS][9] +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:
-    - bat-dg2-9:          [FAIL][10] ([fdo#103375] / [i915#7932]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13063 -> Patchwork_116661v3
-
-  CI-20190529: 20190529
-  CI_DRM_13063: d56dad364b19dce932190540edc2f30000c92760 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7271: d12d7eb92226e14745a80e6bdd95384913a43548 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116661v3: d56dad364b19dce932190540edc2f30000c92760 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f2eea8befe00 drm/i915: Define more PS_CTRL bits
-fb489374be0a drm/i915: Use REG_BIT() & co. for pipe scaler registers
-d107b29a31ac drm/i915: Define bitmasks for skl+ scaler window pos/size
-fc7da0aaacd5 drm/i915: s/PS_COEE_INDEX_AUTO_INC/PS_COEF_INDEX_AUTO_INC/
-6402d3e43587 drm/i915: Rename skl+ scaler binding bits
-fa48e7d0281b drm/i915: Remove dead scaler register defines
-7df33a64a958 drm/i915: Define bitmasks for ilk pfit window pos/size
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/index.html
-
---===============0862966932977950860==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Scaler/pfit stuff (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116661/">https://patchwork.freedesktop.org/series/116661/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13063 -&gt; Patchwork_116661v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116661v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@i915_selftest@live@slpc.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13063/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116661v3/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13063 -&gt; Patchwork_116661v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13063: d56dad364b19dce932190540edc2f30000c92760 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7271: d12d7eb92226e14745a80e6bdd95384913a43548 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116661v3: d56dad364b19dce932190540edc2f30000c92760 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f2eea8befe00 drm/i915: Define more PS_CTRL bits<br />
-fb489374be0a drm/i915: Use REG_BIT() &amp; co. for pipe scaler registers<br />
-d107b29a31ac drm/i915: Define bitmasks for skl+ scaler window pos/size<br />
-fc7da0aaacd5 drm/i915: s/PS_COEE_INDEX_AUTO_INC/PS_COEF_INDEX_AUTO_INC/<br />
-6402d3e43587 drm/i915: Rename skl+ scaler binding bits<br />
-fa48e7d0281b drm/i915: Remove dead scaler register defines<br />
-7df33a64a958 drm/i915: Define bitmasks for ilk pfit window pos/size</p>
-
-</body>
-</html>
-
---===============0862966932977950860==--
