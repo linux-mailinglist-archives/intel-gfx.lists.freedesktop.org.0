@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9D06EEC4F
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 04:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 471B46EECDC
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 05:58:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1435010E866;
-	Wed, 26 Apr 2023 02:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E9A10E87B;
+	Wed, 26 Apr 2023 03:58:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD7710E864;
- Wed, 26 Apr 2023 02:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682475744; x=1714011744;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=8SZ3I2m1PTCJhxsTYgIZ6hOWIPZ8k9drMMvfpZQsbdc=;
- b=Q9szV3EAdzOmKPWKe+Kp557gU8TXj7StyyvCojDUQrxSlebOxiwBrNZq
- 73RduoaRZe64iMbBWL7u6UB9jc4CI+zRRhFsoF++nYuTYDll7+4lwbqbv
- dn45EeTdgyRg17ku9NKJq0n9V6USnO6qFP9EoiWxdVpCqK2AGVlw8pJMO
- pnIXLZRKNaFe/hQdG3urhghdBZeHcwyXElv5SZ8M3OcLsoUgLihMITenG
- Mf/i5EtY6fZuyMsnz2KRpmCWq/fAMEEHy8TppmqBkMPW2Xsy9isYKnlMZ
- BBfSGoNS36nOCsh0+whfkB1GP0XqXsm4b/OkBGQx6RZQlxuSk6dCFLfR6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="346991732"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="346991732"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 19:22:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="644061305"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="644061305"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 25 Apr 2023 19:22:13 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1prUnM-000k0m-1o;
- Wed, 26 Apr 2023 02:22:12 +0000
-Date: Wed, 26 Apr 2023 10:21:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <64488a9a.Dl/ldFuPHOHNov5Q%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8738610E873;
+ Wed, 26 Apr 2023 03:57:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 046ABA0BCB;
+ Wed, 26 Apr 2023 03:57:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4002856976800707995=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- f600e0bbde8562a06bee31b3eb1b69d49acac4c5
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Wed, 26 Apr 2023 03:57:57 -0000
+Message-ID: <168248147798.17153.16328557072670560873@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Implement_Wa=5F14019141245_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,328 +40,356 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Memory Management List <linux-mm@kvack.org>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-mediatek@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-ext4@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: f600e0bbde8562a06bee31b3eb1b69d49acac4c5  Add linux-next specific files for 20230425
+--===============4002856976800707995==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Error/Warning reports:
+== Series Details ==
 
-https://lore.kernel.org/oe-kbuild-all/202304102354.Q4VOXGTE-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304140707.CoH337Ux-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304210303.nlMI0sRQ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304210349.DykCi88S-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304230014.YbScpx20-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202304260503.EVDTG0PJ-lkp@intel.com
+Series: drm/i915/mtl: Implement Wa_14019141245 (rev2)
+URL   : https://patchwork.freedesktop.org/series/116939/
+State : success
 
-Error/Warning: (recently discovered and may have been fixed)
+== Summary ==
 
-drivers/accel/habanalabs/gaudi/gaudi.c:117:19: warning: unused variable 'gaudi_irq_name' [-Wunused-const-variable]
-drivers/base/regmap/regcache-maple.c:113:23: warning: 'lower_index' is used uninitialized [-Wuninitialized]
-drivers/base/regmap/regcache-maple.c:113:36: warning: 'lower_last' is used uninitialized [-Wuninitialized]
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:458:16: warning: variable 'j' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:1078:6: warning: no previous prototype for 'gfx_v9_4_3_disable_gpa_mode' [-Wmissing-prototypes]
-drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:62: warning: wrong kernel-doc identifier on line:
-drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-drivers/gpu/drm/i915/i915_request.h:176: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-drivers/gpu/drm/i915/i915_vma.h:145: warning: expecting prototype for i915_vma_offset(). Prototype was for i915_vma_size() instead
-drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c:298:6: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-fs/ext4/super.c:1262:13: warning: unused variable 'i' [-Wunused-variable]
-fs/ext4/super.c:1262:6: warning: unused variable 'i' [-Wunused-variable]
-s390-linux-ld: arc-rimi.c:(.text+0x18c): undefined reference to `iounmap'
+CI Bug Log - changes from CI_DRM_13062_full -> Patchwork_116939v2_full
+====================================================
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+Summary
+-------
 
-drivers/acpi/property.c:985 acpi_data_prop_read_single() error: potentially dereferencing uninitialized 'obj'.
+  **SUCCESS**
 
-Error/Warning ids grouped by kconfigs:
+  No regressions found.
 
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- alpha-buildonly-randconfig-r006-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- alpha-randconfig-r013-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arc-allyesconfig
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arc-randconfig-c031-20230423
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arc-randconfig-m031-20230423
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arc-randconfig-r043-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arm-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arm-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arm64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- arm64-randconfig-r031-20230423
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- i386-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- i386-randconfig-a011-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- i386-randconfig-a016-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- i386-randconfig-c021
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- i386-randconfig-m021-20230424
-|   `-- drivers-acpi-property.c-acpi_data_prop_read_single()-error:potentially-dereferencing-uninitialized-obj-.
-|-- ia64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- loongarch-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- loongarch-loongson3_defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- mips-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- mips-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- openrisc-buildonly-randconfig-r002-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- parisc-randconfig-c043-20230423
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- parisc-randconfig-s052-20230423
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- powerpc-randconfig-s031-20230423
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|   `-- drivers-spi-spi-fsl-cpm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-unsigned-short-usertype-got-restricted-__le16
-|-- riscv-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- riscv-buildonly-randconfig-r005-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- s390-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- s390-randconfig-r022-20230424
-|   `-- s390-linux-ld:arc-rimi.c:(.text):undefined-reference-to-iounmap
-|-- s390-randconfig-r044-20230424
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- sparc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- sparc64-buildonly-randconfig-r002-20230423
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-|-- x86_64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:no-previous-prototype-for-gfx_v9_4_3_disable_gpa_mode
-`-- x86_64-randconfig-m001
-    `-- drivers-acpi-property.c-acpi_data_prop_read_single()-error:potentially-dereferencing-uninitialized-obj-.
-clang_recent_errors
-|-- arm-randconfig-r046-20230424
-|   `-- drivers-phy-mediatek-phy-mtk-hdmi-mt8195.c:warning:variable-ret-is-uninitialized-when-used-here
-|-- i386-randconfig-a001-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- i386-randconfig-a003-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- i386-randconfig-a004-20230424
-|   |-- drivers-gpu-drm-i915-gt-uc-guc_capture_fwif.h:warning:wrong-kernel-doc-identifier-on-line:
-|   |-- drivers-gpu-drm-i915-i915_pmu.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
-|   |-- drivers-gpu-drm-i915-i915_request.h:warning:This-comment-starts-with-but-isn-t-a-kernel-doc-comment.-Refer-Documentation-doc-guide-kernel-doc.rst
-|   `-- drivers-gpu-drm-i915-i915_vma.h:warning:expecting-prototype-for-i915_vma_offset().-Prototype-was-for-i915_vma_size()-instead
-|-- i386-randconfig-a005-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a001-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a003-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a004-20230424
-|   |-- drivers-accel-habanalabs-gaudi-gaudi.c:warning:unused-variable-gaudi_irq_name
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a005-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a006-20230424
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-|-- x86_64-randconfig-a012
-|   `-- fs-ext4-super.c:warning:unused-variable-i
-`-- x86_64-randconfig-a014
-    `-- fs-ext4-super.c:warning:unused-variable-i
+  
 
-elapsed time: 723m
+Participating hosts (8 -> 7)
+------------------------------
 
-configs tested: 136
-configs skipped: 8
+  Missing    (1): shard-rkl0 
 
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha        buildonly-randconfig-r006-20230424   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r011-20230423   gcc  
-alpha                randconfig-r013-20230424   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                     nsimosci_hs_defconfig   gcc  
-arc                  randconfig-r043-20230423   gcc  
-arc                  randconfig-r043-20230424   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         assabet_defconfig   gcc  
-arm          buildonly-randconfig-r004-20230423   gcc  
-arm                                 defconfig   gcc  
-arm                            hisi_defconfig   gcc  
-arm                  randconfig-r015-20230424   clang
-arm                  randconfig-r016-20230423   gcc  
-arm                  randconfig-r023-20230425   gcc  
-arm                  randconfig-r046-20230423   gcc  
-arm                  randconfig-r046-20230424   clang
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r013-20230423   clang
-arm64                randconfig-r031-20230423   gcc  
-arm64                randconfig-r035-20230423   gcc  
-csky                                defconfig   gcc  
-csky                 randconfig-r021-20230425   gcc  
-csky                 randconfig-r033-20230423   gcc  
-hexagon              randconfig-r004-20230425   clang
-hexagon              randconfig-r014-20230423   clang
-hexagon              randconfig-r041-20230423   clang
-hexagon              randconfig-r041-20230424   clang
-hexagon              randconfig-r045-20230423   clang
-hexagon              randconfig-r045-20230424   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-a001-20230424   clang
-i386                 randconfig-a002-20230424   clang
-i386                 randconfig-a003-20230424   clang
-i386                 randconfig-a004-20230424   clang
-i386                 randconfig-a005-20230424   clang
-i386                 randconfig-a006-20230424   clang
-i386                 randconfig-a011-20230424   gcc  
-i386                 randconfig-a012-20230424   gcc  
-i386                 randconfig-a013-20230424   gcc  
-i386                 randconfig-a014-20230424   gcc  
-i386                 randconfig-a015-20230424   gcc  
-i386                 randconfig-a016-20230424   gcc  
-ia64                             allmodconfig   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r001-20230425   gcc  
-ia64                 randconfig-r026-20230425   gcc  
-loongarch                        alldefconfig   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch                 loongson3_defconfig   gcc  
-loongarch            randconfig-r002-20230425   gcc  
-loongarch            randconfig-r034-20230423   gcc  
-m68k                             allmodconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                          multi_defconfig   gcc  
-m68k                        mvme16x_defconfig   gcc  
-m68k                 randconfig-r015-20230423   gcc  
-microblaze   buildonly-randconfig-r004-20230424   gcc  
-microblaze                          defconfig   gcc  
-microblaze           randconfig-r014-20230424   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                          ath79_defconfig   clang
-mips         buildonly-randconfig-r003-20230423   clang
-mips                 randconfig-r031-20230424   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r034-20230424   gcc  
-openrisc     buildonly-randconfig-r002-20230424   gcc  
-openrisc             randconfig-r032-20230423   gcc  
-openrisc             randconfig-r036-20230423   gcc  
-openrisc             randconfig-r036-20230424   gcc  
-parisc                              defconfig   gcc  
-parisc               randconfig-r012-20230424   gcc  
-parisc               randconfig-r025-20230425   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                      bamboo_defconfig   gcc  
-powerpc                   currituck_defconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv        buildonly-randconfig-r003-20230424   gcc  
-riscv        buildonly-randconfig-r005-20230424   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r042-20230423   clang
-riscv                randconfig-r042-20230424   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r012-20230423   clang
-s390                 randconfig-r044-20230423   clang
-s390                 randconfig-r044-20230424   gcc  
-sh                               allmodconfig   gcc  
-sh                         ap325rxa_defconfig   gcc  
-sh           buildonly-randconfig-r001-20230423   gcc  
-sh           buildonly-randconfig-r005-20230423   gcc  
-sh                          kfr2r09_defconfig   gcc  
-sh                   randconfig-r032-20230424   gcc  
-sh                   randconfig-r033-20230424   gcc  
-sparc        buildonly-randconfig-r001-20230424   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r016-20230424   gcc  
-sparc                randconfig-r022-20230425   gcc  
-sparc64      buildonly-randconfig-r002-20230423   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230424   clang
-x86_64               randconfig-a002-20230424   clang
-x86_64               randconfig-a003-20230424   clang
-x86_64               randconfig-a004-20230424   clang
-x86_64               randconfig-a005-20230424   clang
-x86_64               randconfig-a006-20230424   clang
-x86_64                        randconfig-a011   gcc  
-x86_64                        randconfig-a012   clang
-x86_64                        randconfig-a013   gcc  
-x86_64                        randconfig-a014   clang
-x86_64                        randconfig-a015   gcc  
-x86_64                        randconfig-a016   clang
-x86_64                               rhel-8.3   gcc  
-xtensa       buildonly-randconfig-r006-20230423   gcc  
-xtensa               randconfig-r006-20230425   gcc  
-xtensa               randconfig-r024-20230425   gcc  
+Possible new issues
+-------------------
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+  Here are the unknown changes that may have been introduced in Patchwork_116939v2_full:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_eio@hibernate:
+    - {shard-dg1}:        [PASS][1] -> [ABORT][2] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-15/igt@gem_eio@hibernate.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-14/igt@gem_eio@hibernate.html
+
+  * igt@gem_lmem_swapping@smem-oom@lmem0:
+    - {shard-dg1}:        [PASS][3] -> [TIMEOUT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-13/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-16/igt@gem_lmem_swapping@smem-oom@lmem0.html
+
+  * igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4:
+    - {shard-dg1}:        [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-12/igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-13/igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4.html
+
+  * igt@kms_rotation_crc@sprite-rotation-90:
+    - {shard-rkl}:        [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-1/igt@kms_rotation_crc@sprite-rotation-90.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-7/igt@kms_rotation_crc@sprite-rotation-90.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_116939v2_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [PASS][9] -> [FAIL][10] ([i915#2846])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-glk3/igt@gem_exec_fair@basic-deadline.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-glk6/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_ppgtt@blt-vs-render-ctx0:
+    - shard-snb:          [PASS][11] -> [FAIL][12] ([i915#8295])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-snb5/igt@gem_ppgtt@blt-vs-render-ctx0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctx0.html
+
+  * igt@gen9_exec_parse@allowed-single:
+    - shard-apl:          [PASS][13] -> [ABORT][14] ([i915#5566])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-apl3/igt@gen9_exec_parse@allowed-single.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-apl4/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@kms_flip@2x-plain-flip-fb-recreate:
+    - shard-snb:          NOTRUN -> [SKIP][15] ([fdo#109271]) +26 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb5/igt@kms_flip@2x-plain-flip-fb-recreate.html
+
+  * igt@kms_setmode@basic@pipe-a-vga-1:
+    - shard-snb:          NOTRUN -> [FAIL][16] ([i915#5465]) +1 similar issue
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb7/igt@kms_setmode@basic@pipe-a-vga-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@drm_fdinfo@idle@rcs0:
+    - {shard-rkl}:        [FAIL][17] ([i915#7742]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-2/igt@drm_fdinfo@idle@rcs0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-1/igt@drm_fdinfo@idle@rcs0.html
+
+  * igt@gem_eio@hibernate:
+    - {shard-tglu}:       [ABORT][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-tglu-10/igt@gem_eio@hibernate.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-tglu-4/igt@gem_eio@hibernate.html
+
+  * igt@gem_exec_fair@basic-pace-share@rcs0:
+    - {shard-rkl}:        [FAIL][21] ([i915#2842]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-3/igt@gem_exec_fair@basic-pace-share@rcs0.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-4/igt@gem_exec_fair@basic-pace-share@rcs0.html
+    - {shard-tglu}:       [FAIL][23] ([i915#2842]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-tglu-4/igt@gem_exec_fair@basic-pace-share@rcs0.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-tglu-8/igt@gem_exec_fair@basic-pace-share@rcs0.html
+
+  * igt@kms_cursor_legacy@single-move@pipe-b:
+    - {shard-rkl}:        [INCOMPLETE][25] ([i915#8011]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-7/igt@kms_cursor_legacy@single-move@pipe-b.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-3/igt@kms_cursor_legacy@single-move@pipe-b.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109279]: https://bugs.freedesktop.org/show_bug.cgi?id=109279
+  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109300]: https://bugs.freedesktop.org/show_bug.cgi?id=109300
+  [fdo#109312]: https://bugs.freedesktop.org/show_bug.cgi?id=109312
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111644]: https://bugs.freedesktop.org/show_bug.cgi?id=111644
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
+  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
+  [i915#3023]: https://gitlab.freedesktop.org/drm/intel/issues/3023
+  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
+  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5465]: https://gitlab.freedesktop.org/drm/intel/issues/5465
+  [i915#5566]: https://gitlab.freedesktop.org/drm/intel/issues/5566
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6755]: https://gitlab.freedesktop.org/drm/intel/issues/6755
+  [i915#6768]: https://gitlab.freedesktop.org/drm/intel/issues/6768
+  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
+  [i915#7707]: https://gitlab.freedesktop.org/drm/intel/issues/7707
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
+  [i915#8295]: https://gitlab.freedesktop.org/drm/intel/issues/8295
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13062 -> Patchwork_116939v2
+
+  CI-20190529: 20190529
+  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_116939v2: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html
+
+--===============4002856976800707995==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: Implement Wa_14019141245 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116939/">https://patchwork.freedesktop.org/series/116939/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13062_full -&gt; Patchwork_116939v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 7)</h2>
+<p>Missing    (1): shard-rkl0 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_116939v2_full:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@gem_eio@hibernate:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-15/igt@gem_eio@hibernate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-14/igt@gem_eio@hibernate.html">ABORT</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-13/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-16/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-dg1-12/igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-dg1-13/igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a4.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_rotation_crc@sprite-rotation-90:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-1/igt@kms_rotation_crc@sprite-rotation-90.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-7/igt@kms_rotation_crc@sprite-rotation-90.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_116939v2_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-glk3/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-glk6/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ppgtt@blt-vs-render-ctx0:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-snb5/igt@gem_ppgtt@blt-vs-render-ctx0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctx0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8295">i915#8295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-single:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-apl3/igt@gen9_exec_parse@allowed-single.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-apl4/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-plain-flip-fb-recreate:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb5/igt@kms_flip@2x-plain-flip-fb-recreate.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic@pipe-a-vga-1:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-snb7/igt@kms_setmode@basic@pipe-a-vga-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5465">i915#5465</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@drm_fdinfo@idle@rcs0:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-2/igt@drm_fdinfo@idle@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-1/igt@drm_fdinfo@idle@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@hibernate:</p>
+<ul>
+<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-tglu-10/igt@gem_eio@hibernate.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-tglu-4/igt@gem_eio@hibernate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-share@rcs0:</p>
+<ul>
+<li>
+<p>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-3/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-4/igt@gem_exec_fair@basic-pace-share@rcs0.html">PASS</a></p>
+</li>
+<li>
+<p>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-tglu-4/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-tglu-8/igt@gem_exec_fair@basic-pace-share@rcs0.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@single-move@pipe-b:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13062/shard-rkl-7/igt@kms_cursor_legacy@single-move@pipe-b.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8011">i915#8011</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116939v2/shard-rkl-3/igt@kms_cursor_legacy@single-move@pipe-b.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13062 -&gt; Patchwork_116939v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13062: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7270: 3bd8bf9bca97bbfb7b4b408f9fccd0cf6f742d4c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_116939v2: 5a0333cf630a335d7e8f60fd2b8526ed0895900c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============4002856976800707995==--
