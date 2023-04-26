@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7086EF790
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 17:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255206EF792
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 17:14:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1276B10E117;
-	Wed, 26 Apr 2023 15:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C43510E175;
+	Wed, 26 Apr 2023 15:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14CF210E175
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 15:14:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDCD210E127
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 15:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682522087; x=1714058087;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to;
- bh=a4tnm3fwJS5ag19L8vGA9PFPuKrEXPbjh7N3g3Z0zMY=;
- b=T+VTCqasEg4m73b5bXyMHq62RPL5g6fiwudIv/2n8B9GqC3UvnscifYk
- 45z4DTsxiZn99zuBBfafDsrnWuzUYCGPqXKBWOW0OXp4LjytKwlsLTnU7
- xiF45+OzoG6z5J5Ju9sqCLyooHfUx2zan2wYU/vDZZDcrfNhkGdQh4HIy
- +Wd1dQC6dPihf0dj94Gi5wzLLe7xtE1Jk4NZ0UnjaJbq0hmPB90llVbtI
- VNGtttTJ17raQA4M3Z7ULWGp+MI9zvi9G+ZFkbnnVJQ0Fyy4ImzfEEBsF
- QNsTK3khXGBYDExx1JSwuCGGl9S3+hpuXYONvh7bqoKXodOy+fBxYvu/n A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="412444653"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="412444653"
+ t=1682522088; x=1714058088;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to;
+ bh=a3rq7E5TI8RGgUZf3JtgYbiTIUGic08SWRrQO5vrU5I=;
+ b=f33gRf1YGcKN6brUlXQSBQmb6exzXcScVhLaWAkbj6VDVLezF4iIeGRx
+ /pgFjSoAAC9fRu9A0WmyiB7I5KeC2Z6s6r2s5nol4j55hQkzZVH49OfqZ
+ wVSZsgsxmqzs18QwXVCZwMgByMQ5km1YvQ4vMfkgs/pRVT9F31O6w9q+/
+ iybCiKWREMyZ/L/g52yEM8xkK8HlqE1DcDr8PHqDXNlkyOBjoXKj41fCv
+ L63mZBOhz7ns9OSZc0qYtCOpPgWdzh4DQEdNSSxcTAcAH/Y17WSFP0fL4
+ jJROomx4qDrYHuKKjCwaaeUxhxeYs2YDS3aXENnmjIKZdt6qFWUeLoEdr w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="412444682"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="412444682"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 08:14:31 -0700
+ 26 Apr 2023 08:14:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="671366410"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="671366410"
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="671366449"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="671366449"
 Received: from lab-ah.igk.intel.com ([10.102.138.202])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 08:14:29 -0700
+ 26 Apr 2023 08:14:32 -0700
 From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 26 Apr 2023 17:14:10 +0200
-Message-Id: <20230425-hugepage-migrate-v7-0-fa6605a986c9@intel.com>
+Date: Wed, 26 Apr 2023 17:14:11 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMI/SWQC/02Nyw6CMBBFf4V0bZs+FMWV/2FcDDDQSaCQaTEYw
- r9bXLk89+bkbCIiE0ZxLzbB+KZIU8hwPRWi8RB6lNRmFlZbp8/2Iv3S4wx5H6lnSCjNrawAOmeg
- bEXWaogoa4bQ+ENseZSJ5uOZGTtaf7HnK3PHU/48I/wljLXGaX1TlalKp6WVEFpS0X8SPQYKy6o
- oJBxUM41i379z622EwQAAAA==
+Message-Id: <20230425-hugepage-migrate-v7-2-fa6605a986c9@intel.com>
+References: <20230425-hugepage-migrate-v7-0-fa6605a986c9@intel.com>
+In-Reply-To: <20230425-hugepage-migrate-v7-0-fa6605a986c9@intel.com>
 To: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
 X-Mailer: b4 0.11.1
-Subject: [Intel-gfx] [PATCH v7 0/2] drm/i915: Hugepage manager and test for
- MTL
+Subject: [Intel-gfx] [PATCH v7 2/2] drm/i915: Use correct huge page manager
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +65,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patchset patches sent by Jonathan and Andi, with 
-addressed CI failures:
-1. Fixed checking alignment of 64K pages on both Pre-Gen12 and Gen12.
-2. Fixed start alignment of 2M pages.
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Regards
-Andrzej
+MTL currently uses gen8_ppgtt_insert_huge when managing huge pages.  This is because
+MTL reports as not supporting 64K pages, or more accurately, the system that reports
+whether a platform has 64K pages reports false for MTL.  This is only half correct,
+as the 64K page support reporting system only cares about 64K page support for LMEM,
+which MTL doesn't have.
 
-Jonathan Cavitt (2):
-  drm/i915: Migrate platform-dependent mock hugepage selftests to live
-  drm/i915: Use correct huge page manager for MTL
+MTL should be using xehpsdv_ppgtt_insert_huge.  However, simply changing over to
+using that manager doesn't resolve the issue because MTL is expecting the virtual
+address space for the page table to be flushed after initialization, so we must also
+add a flush statement there.
 
-.../gpu/drm/i915/gem/selftests/huge_pages.c   | 88 +++++++++++++++----
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  3 +-
- 2 files changed, 71 insertions(+), 20 deletions(-)
-
-Cc: intel-gfx@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
--- 
-2.39.2
-
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
-Jonathan Cavitt (2):
-      drm/i915: Migrate platform-dependent mock hugepage selftests to live
-      drm/i915: Use correct huge page manager for MTL
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 105 ++++++++++++++++++------
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c            |   3 +-
- 2 files changed, 82 insertions(+), 26 deletions(-)
----
-base-commit: 4d0066a1c0763d50b6fb017e27d12b081ce21b57
-change-id: 20230425-hugepage-migrate-1869aaf31a6d
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 4daaa6f5566888..9c571185395f49 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -570,6 +570,7 @@ xehpsdv_ppgtt_insert_huge(struct i915_address_space *vm,
+ 			}
+ 		} while (rem >= page_size && index < max);
+ 
++		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+ 		vma_res->page_sizes_gtt |= page_size;
+ 	} while (iter->sg && sg_dma_len(iter->sg));
+ }
+@@ -707,7 +708,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ 	struct sgt_dma iter = sgt_dma(vma_res);
+ 
+ 	if (vma_res->bi.page_sizes.sg > I915_GTT_PAGE_SIZE) {
+-		if (HAS_64K_PAGES(vm->i915))
++		if (GRAPHICS_VER_FULL(vm->i915) >= IP_VER(12, 50))
+ 			xehpsdv_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
+ 		else
+ 			gen8_ppgtt_insert_huge(vm, vma_res, &iter, cache_level, flags);
 
-Best regards,
 -- 
-Andrzej Hajda <andrzej.hajda@intel.com>
+2.34.1
