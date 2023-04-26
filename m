@@ -2,142 +2,146 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027A16EF4A4
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 14:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03EAD6EF4C9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 14:57:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B524610E0BE;
-	Wed, 26 Apr 2023 12:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC3DA10E963;
+	Wed, 26 Apr 2023 12:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA95710E0BE
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 12:48:19 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03D1E10E963
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 12:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682513299; x=1714049299;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=FCl6OsyOrO1rUkCOWto4TULSFHqyAoTCiL0WnZK/5sk=;
- b=gm11CnzXF1+PRX3nXbxe8/P+A9qbTqTKGCyJh8/10f24oCEIx5wHGEpW
- AISmJXTSzemqDHjSTjrVW4EZIZbzcmMutUpg8VQT4EJZuV5CMJE9pXj1H
- 9HXM3vIzSLWd5gDznDehzaODTKD1+GHWm25PipR7gnF8HxTr7IDnZk+hg
- gp4O5aUmSI/FK8sXiWO5Gkf9mDEqQctPNAYK+zwJUzL6ztk+OWU8McSOP
- OUIcEVh6ALrHYZN4N66DQVB/j4S4HXddh0+yE6gkcUlGnZjD2uqrwzYFG
- VYfA3PyGhbescduvtAILC2aC/PuTgsRLnkVa79gFix2KrJ+xzP0TNvjgC w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="349029479"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="349029479"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 05:48:18 -0700
+ t=1682513864; x=1714049864;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ mime-version; bh=FKeB8PzSm7fQEf8zq3c+ka1uyYJDIn8lSFaljsVTR7c=;
+ b=DWnoga0+gydMbACG/3zhGCiftKGsbnGUUDR8M4p9VUow6CDrL70A+diD
+ SL9v36KYOug/kIpComAwA2YlgsKvtKB+nlXqWkblbElG5a8AKkFDeAXqL
+ FLOXown/aaiGUyPPov6CQHgKXng3aMR1YhURt16J53j495wd4Y1hxpi7T
+ C/f4Rd9S0ct7Y6hGdE02+X72X7UoXrOITQrEhptPQ/34xVLvS1yls0iof
+ F13XtgYgqenKHh/bWFP7RIN+WKU7yiSUiMqwLvVhZVuquR4zQn2ouaAEj
+ BdoHD/7nd8KmDW8dEQMOdkfalvaI66NcMP4FyDtJUq/Tp7iRe9cLNq4Mc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331323538"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; 
+ d="scan'208,217";a="331323538"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 05:57:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="644233842"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="644233842"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="687929482"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; 
+ d="scan'208,217";a="687929482"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP; 26 Apr 2023 05:48:18 -0700
+ by orsmga007.jf.intel.com with ESMTP; 26 Apr 2023 05:57:43 -0700
 Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 26 Apr 2023 05:48:18 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.23; Wed, 26 Apr 2023 05:57:43 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 05:48:18 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 05:57:43 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 26 Apr 2023 05:48:18 -0700
+ 15.1.2507.23; Wed, 26 Apr 2023 05:57:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AqzHKbRLUoX+L8HumjsA4wja0GX1k4Gm1QiQn+3kgd0S/H89ZnDm9cQtjJQBMG1CFrWl751Zvm48DpLIpImsAG/1dW1k2nAjNnhXk/uEJdxj+U8jl1V58++XaQ/d2de44DJtNjEPWHGXgqwOdsGInpgiqyLi+4tqXUmPvnzhzwMfQQOIOQHNPcF5NE3RceAjydICUzJ9zpfAkTuMkAqcWgK0pArRd5g4wXdcCPk8ePwTLC+wjca4hKTUpILy1Nz4Xf42qk5K8H8z5aY7n73nLnIoH9b8UuVH3yGP+kgRnuL3R0WXk2JTpCEOAK4lAqOhhsHfBznuVAavg9NtX5mVkA==
+ b=ml6PtKiocPuCOIXrFu9/Up3wWj3JkNsxU0fGth4Z+hMFCBLvY5q2wIEgkDADKbXOTTCQZvpltintzqQvGYPBO+gRHrHUkdn42LSV+niDjyg+8SNOuG18dV2iJfcCIiUXWGf0RqBHJNuhVVUSX6NnHBYVyrWdsBlUKRGGLhqojDX7hjaJy2cXB2AHXmWKu9oc6i2CSjR9FpLO0gaNdGY4nYAoYjGMks8/nzyDLemIQ8WSudwTlKxFfDLSj5oaMo8DO2ZS3it0JbX7WgMbbq4ntzn4rOO/0OxROWWZ0EVM+QDgP27scbQ1PZcmlTauCA5N72ogwZkpPu6T+FNU81km3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7xo6l3LzL+Kq82Ih69M4qgR9AtihOS/7Y2wAetpc0oY=;
- b=GPcZKNzvHGnaRsx4ENSVlXcCkqAS/4SqvEq5o70HxGPwHglaKIDExFpI/uJo9F7J0Gc2vhBiEUDqlOCjiy6+bZWp+5LSpQJVPqRt5hAlp5GEmL/84SN+DsXzphykZKa1tfH+lEZVEQbK7+gztqiaL9M+VSr/wawqXbq95QAOiXUtzFGXRytU37rIVLvELzP7+YD8QLEuwSSFLg1D0Td5wDYDIZf00gFI4fQVY4I0VSsQ5y3FOYG/j+gtX0DXKw0A+XBtX4xYgQgx6mLcNaweiuGqb3mLkOJzJoW2lZzBMVx6PNhibD7bG25aRfW97zgAEIugxSv55287hoQBhJJB2g==
+ bh=Ddu5sYcS/GAteZRIudq181vyB4qmhNUAFjqFaRZHPSI=;
+ b=PZ2g+bP1bZIBV9COlEyw5M5ewkLNWMgf9OCn5VZTt/IyTe/Z8dLTjqjrWnSCO7QcK2OoYUIsHMdnvUoeeI4LzP32aJXUCbeEC1mlmV1Ox3q6gfTlf+qjYZ/l4nb6i6igZA4uU16Uta4ktjSDuEXGjQkIZ1bN6AH1o6ACl4y0aN/pigQ5ivD08DlX9YsVZlDZv6aJAeRKBOaTa1gQZPTrGX3WJqHQmje+yoK6lCyn3q+UTKh7j9hOh4zhEUuPn2+1C1Or0Cf7+0J6dALV2LlH+bc80amOVOj9yumbeMPhXGkSP1prgeLjCsS7f0VQVv/0Tgx6wgW+6ZZO4R719aQufw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by CO1PR11MB4770.namprd11.prod.outlook.com (2603:10b6:303:94::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.34; Wed, 26 Apr
- 2023 12:48:16 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::28c6:f268:89bd:e45a]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::28c6:f268:89bd:e45a%7]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
- 12:48:16 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
-References: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+Received: from DM6PR11MB2907.namprd11.prod.outlook.com (2603:10b6:5:64::33) by
+ CO1PR11MB5090.namprd11.prod.outlook.com (2603:10b6:303:96::21) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.21; Wed, 26 Apr 2023 12:57:41 +0000
+Received: from DM6PR11MB2907.namprd11.prod.outlook.com
+ ([fe80::22a6:927d:6b03:69ee]) by DM6PR11MB2907.namprd11.prod.outlook.com
+ ([fe80::22a6:927d:6b03:69ee%5]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
+ 12:57:41 +0000
+Content-Type: multipart/alternative;
+ boundary="------------ERDnYp0p2H1B0ef8Rtj09bj0"
+Message-ID: <05945246-ed8b-d18f-63bb-46c3c400ea80@intel.com>
+Date: Wed, 26 Apr 2023 18:27:31 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
 To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
  <intel-gfx@lists.freedesktop.org>
-Date: Wed, 26 Apr 2023 09:48:09 -0300
-Message-ID: <168251328980.2664.15413475376781466021@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR03CA0143.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::28) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+References: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
+From: "Kalvala, Haridhar" <haridhar.kalvala@intel.com>
+In-Reply-To: <20230420221248.2511314-1-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: PN2PR01CA0106.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::21) To DM6PR11MB2907.namprd11.prod.outlook.com
+ (2603:10b6:5:64::33)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|CO1PR11MB4770:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15da9a2d-791c-4b84-d4b1-08db465480c8
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2907:EE_|CO1PR11MB5090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 55040c35-3a2a-4f18-29dc-08db4655d197
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HkVrq2cocOZMFoCjBnkEBlL45e1G6JkuowhefL1y0k9SkN/edpBO5tQB2QpV5QhiX+70/jQK4L5HtuCkj0Velg4k+pWUR9HjNNipNlGU+ePPPUAun8H2FvzkStwdkTz/QbU1zWxmxao5vgQViudiekeC7LRkLg+ms19F7Fd740im9C0u8/IrJJ/hHMyxXwRiqHqLVOW+O70Ez4i9eHPaOlhjD1ylkVxeMcteW3bWLbmdUFN9hHAbGM6pYHRt4H8KtVe+2MdCfcUTiRaK8LLtLkgVC+BdWkz4N5vY6fYsV92drT5mcWb4ihqXbSA+vbarMMfNj7CnuxQQeSeKYvi6aTHCIHJei5Oq7o+GCx/xnCJ4FryYMLCMiEy7n+EyW6vVyQsF7H/UDLQ00a5VopDMwvs3z96MiltPlgfW6h9ve5EGLv4K3vovieET+8SSvZXXqccGZ4xeYAmOv/rP6Q/8En5eSvFzkranOA9bjSBxgxjp9Uxx6/KbzTUqVexApJaXPTqJYsJG3VcSLYBm/plEmQ==
+X-Microsoft-Antispam-Message-Info: KIdimWb3+YJDYmcPHxqaC4eTh4OV49cRzDaFtom2ZRP1uewooW53lk/r/3ul8r1nnW1rvjIZJZXqg7qTeGwPcGUBj5SADysFkvSvbgQZJXUt1gcRF5Wl4HhbmUjoKoyOJnuhpZBtiYW/cGJp8cEvWWjjelixmZWtRbzjErdSsxIvtv7wflmuaFOKBkF4V5aTwce0YVDc/G8qq1ssbBJqcDG/khRYhJ35jT0wMN8K7fsjU4+y8EEyjeMaH1zImRSzSwKB+LhFAi0snFNWisUpNUusSkSV9hCRzBVelsUh9L7ujXBBMPFzHc6OYDKUz6aaYILQ9NjoSUlbOoMaRJT7Qgx03CGhLD3uW2EdOLvC7VF8Kg25Qrg2lp6C5Sy9cnEmwIGQ0TDiEhZROK/95knbvUEkIydHrRmJRZVYoz5EJhcTwe2tQ3QVwRmYSoSlvDxRITpWoVeustl9UZ1EXGmpu0c9i39sy1Nw/Vxn/D8EB25PPKB74MgZN1+SLh1/yjf7wgRWByEMtIdpdT6mld5z+ujQA9d0zpo/eI4ddf+hj2CpN90e4qxOthGL9kE93sIWZm3Kis5Z40EPIhvhAQ9sWgc64N22OUzplg/G83R8DCs=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(366004)(136003)(376002)(396003)(39860400002)(346002)(451199021)(316002)(82960400001)(5660300002)(44832011)(8676002)(8936002)(66946007)(66556008)(38100700002)(86362001)(2906002)(41300700001)(66476007)(966005)(26005)(6512007)(6506007)(9686003)(33716001)(6486002)(478600001)(186003)(6666004);
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2907.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(136003)(346002)(39860400002)(366004)(376002)(451199021)(316002)(66476007)(66556008)(66946007)(966005)(6666004)(6486002)(33964004)(86362001)(478600001)(31696002)(36756003)(186003)(6512007)(6506007)(53546011)(26005)(41300700001)(38100700002)(166002)(2616005)(82960400001)(2906002)(31686004)(5660300002)(8936002)(8676002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qm5zKzJkdmJ3aFY1cy8vc1p2Sy9qeGswdUFPSGxyRGFPTGtFeXFMQThKcDhV?=
- =?utf-8?B?Z1JEWWxLbFVwZ04vd1grRmRoRUhIQytKaUF3bGh2RW5JQXZpOGxGbExyODB0?=
- =?utf-8?B?QVRBdVNaaitFcXZTQi83YzhDbm9QRE11cWdUL3dQMnRacmNaNXpsODRWMThW?=
- =?utf-8?B?UndIMmpDdW04bnk2U2xDaFVQQjF3ck8vYU0reGl2MnBuTTAraW1NQXNJTjR0?=
- =?utf-8?B?MGVTNnRKUjh5aFBlSk9vZDEwUXVlVVhSbFlmRDlLRkRkV3ZTLzg5U0x0TkNu?=
- =?utf-8?B?S0ZWS2Fxa1BOd3AvVm91ZUg5MnEyVy81SzlzMk9uOTBVVkphazJhMjcrUnFi?=
- =?utf-8?B?ZXRiL0tYMzhsVnZpR0hkYjVTN3B2UDZjRVlTQmlocE42Y0gxUThBZlBOVVZT?=
- =?utf-8?B?Q28zQjlER1o1US9MaGl5ZE5YaXBXaCtpUThaemtRRkFiT2RyaWkyejM2L1cx?=
- =?utf-8?B?UFdma3B3d3lxY1RWcFpRZzJIelJDRmlJZ1JxT01mVzkzaWxnRVo1dktjelg3?=
- =?utf-8?B?TmtWY08rNzNDS3l5RGpUVlQxU3NXZWpDZUMwQlIrRGt5ZUdLTEU1cXJ1ZnU2?=
- =?utf-8?B?eGl6dzZ5dlRTWVozdFFXLzZIVXVHazlwTmpDdXkvM1VPb0taNXdhdm15UnhJ?=
- =?utf-8?B?VTJyUm12QXJvdjk3OTNkZWNuNnRNazFaTC9BMW05SmNINXFyczdyTGk4NmJU?=
- =?utf-8?B?U3RTSmtKNzZtSGxIUVFBSGJnVUVvVU9DNlZlN05nZ3E2RElWR2JSUzRidjJY?=
- =?utf-8?B?TE9iakh2bHp2d3RycFhKMCt4eGg3VC85VW1BUjI0QVVaaTF2U1daUndHY25W?=
- =?utf-8?B?N2ZtSzNMTVdLQ1B3bHNQUzlVZmlnWGgrNkxwVVEzS1lYUXoyb0ExVWduS2Ry?=
- =?utf-8?B?QjVLQlBrQjJzd3E0WG9hZjBiSFpaVHJKUXF2b2JVRDY3bGd2MXJDRURCNEdI?=
- =?utf-8?B?NEpzY1Y2YXg1YkpJUlY0L2E3dnJDUzhKMG5ubWZwMjZzKzQwVkpUQ2h3QnhB?=
- =?utf-8?B?Mm90Z2JGc3M5U241bkYwbHJTMDVIUFp4MWplUEZyalV6a2tHalY0QnVEczdD?=
- =?utf-8?B?a0tNam1LV29PMGRESS92MUR3UGJHaGFpcEsraVRCWlZYaWorOHhnUDBIdXE5?=
- =?utf-8?B?UkIwenlCQ0NJV1NRYjVNRWFkRkVEYzVzbVFDbm1kb3J0MTltU2paZHl0ZGNk?=
- =?utf-8?B?bmFadmp1Z0ltb2Q5dUZwQ2c2eEFtRHhIc1p2YWxDdjJjOTNwV1Vic0VlNE5h?=
- =?utf-8?B?cVI3alZPOG16V1BoSDlCaUFSQzUzZHdtU29sVVVuT1BCWUpRby9QcmNRVnNM?=
- =?utf-8?B?YUtGWGE4TzVmNlFlUHBodlNiWTg1Z3g5ZVRBUFB2NGZ6TnF5UzZ5aXlpSzdK?=
- =?utf-8?B?dHo4LzVJbHZPSEkwWFZ3U3pGd3dsRHNpOXhhRXF4K3FYT0swRGZtUHNZSzBw?=
- =?utf-8?B?OTBqVUlhWmg3WEpRZmZrdE85cWl2MmhPakwyMFJjVHphQ3RtTW9COG1IYWIv?=
- =?utf-8?B?aVl2N3RVcGhKcmtudlY2V1pIOXA5a2FUUHU1ajVFd1kxMXpsNWhlVXF5RG1Z?=
- =?utf-8?B?N3pRZkd4NmV0S3JOMXArOFBBQjhTMytKdmRVR1NMSDRhd1dBQkpubzVpazE1?=
- =?utf-8?B?YmdXeEl2NDJYYTJXK2ZPajRod2wxL1hKOVdlTU5nbllYdFVudmlCbTYxOHQ1?=
- =?utf-8?B?VzRubTNBOW9JMXc1em1kbHpiSFVNV1JBS0lwRkFjUm5wbmhWV3d5WTExRjhG?=
- =?utf-8?B?andpcENpT1crNXJSQ040UjJhMzZQYUFva04zMXFFUHp4RGdOanhqOWFFSzZI?=
- =?utf-8?B?cnE5a2NuVEFsbklScHAzbjBkMWFIZ2UzT0JiUEszMGNMdmZWVFhwemM1MDNy?=
- =?utf-8?B?dzdQdGJZaWg2cEVobjZDbThDUVRvbDFxNnVmdXA4WitLMEd2VHluNTVhODdp?=
- =?utf-8?B?Ny9aUHdlcDAwUEIvSXU5RWI5UXA5ZVZaVFd0VEdNQ2hGY3hleEZVZ2hwcnhG?=
- =?utf-8?B?NlR6MVJYQ2swMVpvK0pvRkJ1cFpxYnZKRG1mZjdDS2xXNkFFbnNzYU5aTi82?=
- =?utf-8?B?UjM3NWRpYnNoMFlaQzU1UVFuM1Bua0oveGpPaGhsU1k2OEEzM3FJWU9kMWNB?=
- =?utf-8?Q?sdhUwKkQf55I1BODy4Cnfy3ch?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15da9a2d-791c-4b84-d4b1-08db465480c8
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V1FFWWpKcHJoRmJSN0dTUzh1V08yZHRCSHpSU2IyQWV0VTBZbHVHaUZidjVW?=
+ =?utf-8?B?Q2FqRkRNN0gyUU5LbmlMcFBiRUpmMXZLUWZMK0lXekVuL2RvZ3pZQ25vVktm?=
+ =?utf-8?B?UTJpcGJkWDlha05ib0M1OVZFWWdlZHlDaVV2d1NnN2FkK3ZHeGJFVzVoQ1RT?=
+ =?utf-8?B?OUJDNy9rU3lNU2lpK2NILzYybjcydWNTZjFvdkI5UGhZRGJNNng2T3dSZUtx?=
+ =?utf-8?B?Z3VCckdURGk2SC9vRnFCcmhNdnVBbjlUeVFoM1pCK2xET2RHMDNORGQyWVlD?=
+ =?utf-8?B?bHVtaXJmQzg3NzJyQzRyYjZSdW9IWUVvVTlVRnFvVDc3OFdkckd1VXlwaDhy?=
+ =?utf-8?B?N0FWTmZEZDdnQm9JRnFaVGFuRVMwM2JURXlwbkN5SWlRUkxUblBwNHZaQnI5?=
+ =?utf-8?B?c3JqTzlleVZSUkhVU21RTE1YajFJSTBzTUdaRVBsQnBTM0VuRU02UFN4ZVRl?=
+ =?utf-8?B?bmRTT0p1R3RycWJvSjB1WTM1V1B1TlNsWVFFRGNMNUxlREdMYWlFT04rdHBF?=
+ =?utf-8?B?RzVlRVhMTGg5NU1ZOXVTU09CV1JPTXZZbGw0bk5QbzE2c3VRSlNRRmdpZGM4?=
+ =?utf-8?B?eTRYckZkVmJVK3pLNWw4bUt4Q3NuTCsvb2ZSMVU1WDNVN24xYktMU0hYNW1k?=
+ =?utf-8?B?U1k2aVZlbXVrc0NLTll1WGJZRU5wZDY4aGl4NWJ4T2xvOGtMWnJOMDZDSDZ5?=
+ =?utf-8?B?anVITURzRGtQYURJeEp3Y0dURHdNS0QweXVtSzcxZVNYUnNUdWk0SjVtWHpk?=
+ =?utf-8?B?NFdFNjk3VE9nVG1lWHVmVTR6OFJJU1MvOG44b1dCTmx2QjluU2QyT2NqN1ZY?=
+ =?utf-8?B?di94SUtmem9Nb3VEUWd2REJMQ3h1eWV2UVAxZTBrTEZwMktPUDlrUFRKeWxz?=
+ =?utf-8?B?YWpZdG9ZT0p6QStSUXpscmVzNUNzUG9OaXczR3hiaEFzZ2xseXljNkllWnA5?=
+ =?utf-8?B?YTRDSWRTSGQxWjVlTUhQdUljWnp5eHpFQ0l1bFVlMDAyTjVvSFFVY3A0NzFW?=
+ =?utf-8?B?SVZIS2pYM0FPSWdjL1p2ZkJEaEVITzVsSnRuNmo3T0dFSEJWNlJ5clJRd0V2?=
+ =?utf-8?B?OFlBR2pJNElQeHUraXYrajNCVnRyOFVnZEFyamlhS2o4QTNDTUhURndSQTFF?=
+ =?utf-8?B?WUxtQk02czdLQlZSd1hNSDlzV3dPOGJYMjVCc2p6Nm41TnBTZzF5b2R3N3Zp?=
+ =?utf-8?B?WHlMUWF4cndGR3UrWHcwOXNoMmtGWG1LSko5Vnl2Zzc0TjZjaERGUkh3QVZz?=
+ =?utf-8?B?eEc2RWhtMUdZZ3FuRmhNNmR3a3o4UGx3blJYa0JLZWtoU2xCTDBXakEweFNv?=
+ =?utf-8?B?UEpOWGczc0xHWFRBVXNlL0JHVk95a1VGL3ArU3lJVnRVMGZsdExPVEJwTVlj?=
+ =?utf-8?B?ellUY2loRFI1amNWenFhR1lwNE82UTEyVEpRZFJ0YzU3ZVJ1aUtsNTlZMk91?=
+ =?utf-8?B?L1ZjK1R6OG5JUHNkdXpQOU81ck5SdEU1cEp1TnZ2UjdGcDFBRkNoRTB3V1hk?=
+ =?utf-8?B?VFAvd3MzV3ZwMzYraVBCd2owdHJrNlFGTjdaRTFQM09jdUR3N2hpcG1YRVhR?=
+ =?utf-8?B?YU8wQnhQbXNZQUVJR01McThSbFVVMG5hd2ZHYSthckE2aHhNQlQzbTJIcFY3?=
+ =?utf-8?B?eHZCbnc5MkROcE1vZUxkL3Zsb3hkdnFoNXcwcDZaa0lUZ0RHRmJrak50UEZs?=
+ =?utf-8?B?MVg3WGpqeEM1djZ6NnM1ck1OeVFrLzBpR1RrM1g0MHcrQUhIWERsWHcrTnJM?=
+ =?utf-8?B?eS9YSEIrKzRhYlZlRHVRbXh0bG85ZmMxdXJIcnZ2SVJrc2dFYTVkNFAxL3pX?=
+ =?utf-8?B?T0UwbUlLWjB2MEg3QkROUzFmaURPN3crcURDUzdCbnh5Vk9qUWhTMFRhcmpi?=
+ =?utf-8?B?L2hQNTlpL1c5eFkyUTRzRXNYZmhOVWhQYkwwb0NuMi9ReExaK2ptWGFib0pt?=
+ =?utf-8?B?SEhSNUxhajcyby9lV1lIV2RmZDk2SkJPbVBkdzZabFhwNlp5U29EYStOT3NI?=
+ =?utf-8?B?aEFqNzU1WUpZZ1pLbjhqcHVheVR4ek9hNjBWRkhxWGcvMmMyTEs5eW9LaDlo?=
+ =?utf-8?B?MTVzM2FUTVd0Q2NJdjIvY0JOYk1TRHpoUjN4ODNmOUkydDI3LzB1WVhrV1Er?=
+ =?utf-8?B?b1JkZTBkMDVIWXhpYjRjamFoeFd2dGVBbU11R1VOUzJCQ0xHSmZuWWNOV2FN?=
+ =?utf-8?B?Tnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55040c35-3a2a-4f18-29dc-08db4655d197
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2907.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 12:48:16.0802 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 12:57:40.9478 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: daA7ZZDXAQ1KJOvkb0qU6Ypm6oU1mq9uWDYr2nsZD4FNwAm02lOv4BHo6RcpXT3lMmK2TlVvTdbQE3bzE8q2CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4770
+X-MS-Exchange-CrossTenant-UserPrincipalName: DNTjHjt2sqBU+UJjQK+af9wH4dCvsO/NnIy9g9Ek5vmRlq31YavaLMaBLjLlcuf0igNXT8436vz6xtZ1vANwpLgB1/Zh0SLxePndxZkF+F4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5090
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Add the missing CPU
  transcoder mask in intel_device_info
@@ -156,44 +160,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Radhakrishna Sripada (2023-04-20 19:12:47)
->CPU transcoder mask is used to iterate over the available
->CPU transcoders in the macro for_each_cpu_transcoder().
->
->The macro is broken on MTL and got highlighted when audio
->state was being tracked for each transcoder added in [1].
->
->Add the missing CPU transcoder mask which is similar to ADL-P
->mask but without DSI transcoders.
->
->[1]: https://patchwork.freedesktop.org/patch/523723/
->
->Fixes: 7835303982d1 ("drm/i915/mtl: Add MeteorLake PCI IDs")
->Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+--------------ERDnYp0p2H1B0ef8Rtj09bj0
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
->---
-> drivers/gpu/drm/i915/i915_pci.c | 2 ++
-> 1 file changed, 2 insertions(+)
+On 4/21/2023 3:42 AM, Radhakrishna Sripada wrote:
+> CPU transcoder mask is used to iterate over the available
+> CPU transcoders in the macro for_each_cpu_transcoder().
 >
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_p=
-ci.c
->index d64e074d7457..847057569796 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -1135,6 +1135,8 @@ static const struct intel_gt_definition xelpmp_extra=
-_gt[] =3D {
-> static const struct intel_device_info mtl_info =3D {
->        XE_HP_FEATURES,
->        XE_LPDP_FEATURES,
->+  .__runtime.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B=
-) |
->+                         BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
->        /*
->         * Real graphics IP version will be obtained from hardware GMD_ID
->         * register.  Value provided here is just for sanity checking.
->--=20
->2.34.1
+> The macro is broken on MTL and got highlighted when audio
+> state was being tracked for each transcoder added in [1].
 >
+> Add the missing CPU transcoder mask which is similar to ADL-P
+> mask but without DSI transcoders.
+>
+> [1]:https://patchwork.freedesktop.org/patch/523723/
+>
+> Fixes: 7835303982d1 ("drm/i915/mtl: Add MeteorLake PCI IDs")
+> Cc: Ville Syrjälä<ville.syrjala@linux.intel.com>
+> Signed-off-by: Radhakrishna Sripada<radhakrishna.sripada@intel.com>
+
+Acked-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+
+> ---
+>   drivers/gpu/drm/i915/i915_pci.c | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index d64e074d7457..847057569796 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1135,6 +1135,8 @@ static const struct intel_gt_definition xelpmp_extra_gt[] = {
+>   static const struct intel_device_info mtl_info = {
+>   	XE_HP_FEATURES,
+>   	XE_LPDP_FEATURES,
+> +	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> +			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>   	/*
+>   	 * Real graphics IP version will be obtained from hardware GMD_ID
+>   	 * register.  Value provided here is just for sanity checking.
+
+-- 
+Regards,
+Haridhar Kalvala
+
+--------------ERDnYp0p2H1B0ef8Rtj09bj0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 4/21/2023 3:42 AM, Radhakrishna
+      Sripada wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20230420221248.2511314-1-radhakrishna.sripada@intel.com">
+      <pre class="moz-quote-pre" wrap="">CPU transcoder mask is used to iterate over the available
+CPU transcoders in the macro for_each_cpu_transcoder().
+
+The macro is broken on MTL and got highlighted when audio
+state was being tracked for each transcoder added in [1].
+
+Add the missing CPU transcoder mask which is similar to ADL-P
+mask but without DSI transcoders.
+
+[1]: <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/523723/">https://patchwork.freedesktop.org/patch/523723/</a>
+
+Fixes: 7835303982d1 (&quot;drm/i915/mtl: Add MeteorLake PCI IDs&quot;)
+Cc: Ville Syrjälä <a class="moz-txt-link-rfc2396E" href="mailto:ville.syrjala@linux.intel.com">&lt;ville.syrjala@linux.intel.com&gt;</a>
+Signed-off-by: Radhakrishna Sripada <a class="moz-txt-link-rfc2396E" href="mailto:radhakrishna.sripada@intel.com">&lt;radhakrishna.sripada@intel.com&gt;</a></pre>
+    </blockquote>
+    <p>Acked-by: Haridhar Kalvala <a class="moz-txt-link-rfc2396E" href="mailto:haridhar.kalvala@intel.com">&lt;haridhar.kalvala@intel.com&gt;</a><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times
+        New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:
+        EN-US;mso-bidi-language:AR-SA"></span></p>
+    <blockquote type="cite" cite="mid:20230420221248.2511314-1-radhakrishna.sripada@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+---
+ drivers/gpu/drm/i915/i915_pci.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index d64e074d7457..847057569796 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1135,6 +1135,8 @@ static const struct intel_gt_definition xelpmp_extra_gt[] = {
+ static const struct intel_device_info mtl_info = {
+ 	XE_HP_FEATURES,
+ 	XE_LPDP_FEATURES,
++	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ 	/*
+ 	 * Real graphics IP version will be obtained from hardware GMD_ID
+ 	 * register.  Value provided here is just for sanity checking.
+</pre>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Regards,
+Haridhar Kalvala</pre>
+  </body>
+</html>
+
+--------------ERDnYp0p2H1B0ef8Rtj09bj0--
