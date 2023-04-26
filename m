@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 276756EEDE2
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 07:59:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9663C6EEDF7
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 08:04:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 590FB10E89B;
-	Wed, 26 Apr 2023 05:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8378410E8A6;
+	Wed, 26 Apr 2023 06:04:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C860210E89E;
- Wed, 26 Apr 2023 05:59:52 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0397310E8A3;
+ Wed, 26 Apr 2023 06:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682488793; x=1714024793;
- h=message-id:date:mime-version:from:subject:to:cc;
- bh=F8GtQx+smirhZawJSh9U1XxVjNFwvA5P0Nq79tBw248=;
- b=hU52Bk2SpiwTPR6tw7evPt5/d6GcCJ8qSuON3iPj26csKXKotKMt1rRK
- LoYCK2mpzB/jdMb2g5p83zgVB0oazTFEDR+5J7TDA36asIKrb21d+lm4u
- e4RszGIx/r5pEFVLVki4LouKg4c/hgGp1VoDQDYj+s1LMjnfwsrxJZYiV
- vPQmqzmo+ERv+WVRvArvJtXXByD5TMb3w1irPFSRI5MRNUt5zQyiL8rm8
- ZRl6o1+9avshOmrlexS1oAioybsXCaIV/QMLcCb0NcS7GEADtBN0ms3oF
- 7YHaTt7j34Q8BV+Zlpf1N+MgRKyd2UjIRg1CfKSUNOdGNdYEXUJfdfTWK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="326615287"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; 
- d="scan'208,217";a="326615287"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 22:59:37 -0700
+ t=1682489090; x=1714025090;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ content-transfer-encoding;
+ bh=3SEcgBRccRZ/r/EX9X0r/aUjaYTFykKZyDakmFpR3kI=;
+ b=n6NhSm83mzgZi7pzlFgE7fzFB4lhxZTXksMPD/ygRXUqHTNPQU8NiJq/
+ gk5wVsG8DORB1poqHKpodNX9YCK3k6ukqxdJwjuUW/HAK/j5PrNoHA4iL
+ EaDXbCJUeAwZ5TRrwawosAjCl2XnnGKU/j5QFTnXPyegFYtmQN0l8oEqD
+ Nhb4Ziadcf0XUlsN1W+OlMazDVtYrG8GxQ2JwcjQxxcVFaHWNzVppmMVA
+ IBua9W6WxnqyXwXZPYWL+9qEf8i6NuOU/kqoLPa2uSrLjoJKVPR67704H
+ 9HQwIvkpHasAoFTXLsye++POIY0Pf6xm5PGrmmJiklCEdRprYMHtfDFkr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="433288106"
+X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="433288106"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 23:04:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="693819403"
-X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; 
- d="scan'208,217";a="693819403"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="805351727"
+X-IronPort-AV: E=Sophos;i="5.99,227,1677571200"; d="scan'208";a="805351727"
 Received: from mpkangas-mobl1.ger.corp.intel.com (HELO [10.249.38.1])
  ([10.249.38.1])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 22:59:34 -0700
-Content-Type: multipart/alternative;
- boundary="------------EKTYVz655X0ecc43iVa93F8X"
-Message-ID: <a91d6e42-3c29-d8f8-cb09-68177cecbc74@linux.intel.com>
-Date: Wed, 26 Apr 2023 07:59:31 +0200
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 23:04:43 -0700
+Message-ID: <45757de9-75d8-5b41-f1f9-562a7c4675b9@linux.intel.com>
+Date: Wed, 26 Apr 2023 08:04:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.10.0
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,173 +65,66 @@ Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------EKTYVz655X0ecc43iVa93F8X
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hey Dave, Daniel,
 
-Hi Dave, Daniel,
-
-drm-misc-fixes pull request for rc1. drm-misc-next-fixes coming up.. next
+Complementary pull request for drm-misc-next-fixes!
 
 ~Maarten
 
-drm-misc-fixes-2023-04-26:
-drm-misc-fixes for v6.4-rc1:
-- Fix DSC macros.
-- Fix VESA format for simplefb.
-- Prohibit potential out-of-bounds access in generic fbdev emulation.
-- Improve AST2500+ compat on ARM.
-The following changes since commit 
-b63a553e8f5aa6574eeb535a551817a93c426d8c:
+drm-misc-next-fixes-2023-04-26:
 
-  drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume 
-(2023-04-17 23:40:40 +0200)
+drm-misc-next-fixes for v6.4-rc1:
+- Revert uAPI from accel/qaic.
+- Fix TTM build on archs where PMD_SHIFT is not constant.
+- Improve error handling in nt35950.
+- Fix double unregister in otm8009a when removing the driver.
+The following changes since commit d8dab40a8b37fe8207e1edf68205c709b477e0a4:
+
+   Merge tag 'drm-misc-next-2023-04-12' of 
+git://anongit.freedesktop.org/drm/drm-misc into drm-next (2023-04-12 
+16:23:04 +0200)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-04-26
+   git://anongit.freedesktop.org/drm/drm-misc 
+tags/drm-misc-next-fixes-2023-04-26
 
-for you to fetch changes up to 0d68683838f2850dd8ff31f1121e05bfb7a2def0:
+for you to fetch changes up to a50be876f4fe2349dc8b056a49d87f69c944570f:
 
-  drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values (2023-04-24 22:40:57 
-+0300)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.4-rc1:
-- Fix DSC macros.
-- Fix VESA format for simplefb.
-- Prohibit potential out-of-bounds access in generic fbdev emulation.
-- Improve AST2500+ compat on ARM.
+   drm/panel: novatek-nt35950: Only unregister DSI1 if it exists 
+(2023-04-18 10:20:26 +0200)
 
 ----------------------------------------------------------------
-Jammy Huang (1):
-      drm/ast: Fix ARM compatibility
+drm-misc-next-fixes for v6.4-rc1:
+- Revert uAPI from accel/qaic.
+- Fix TTM build on archs where PMD_SHIFT is not constant.
+- Improve error handling in nt35950.
+- Fix double unregister in otm8009a when removing the driver.
 
-Jani Nikula (2):
-      drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte usage
-      drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values
+----------------------------------------------------------------
+Christian König (1):
+       drm/ttm: revert "Reduce the number of used allocation orders for 
+TTM pages"
 
-Pierre Asselin (1):
-      firmware/sysfb: Fix VESA format selection
+James Cowgill (1):
+       drm/panel: otm8009a: Set backlight parent to panel device
 
-Sui Jingfeng (1):
-      drm/fbdev-generic: prohibit potential out-of-bounds access
+Jeffrey Hugo (1):
+       Revert "accel/qaic: Add mhi_qaic_cntl"
 
-drivers/firmware/sysfb_simplefb.c   |  4 +++-
-drivers/gpu/drm/ast/ast_main.c      |  9 +++++----
-drivers/gpu/drm/drm_fb_helper.c     | 16 ++++++++++++----
-include/drm/display/drm_dp.h        |  5 ++---
-include/drm/display/drm_dp_helper.h |  5 ++---
-5 files changed, 24 insertions(+), 15 deletions(-)
+Konrad Dybcio (2):
+       drm/panel: novatek-nt35950: Improve error handling
+       drm/panel: novatek-nt35950: Only unregister DSI1 if it exists
 
+  drivers/accel/qaic/Makefile                      |   1 -
+  drivers/accel/qaic/mhi_qaic_ctrl.c               | 569 
+-----------------------
+  drivers/accel/qaic/mhi_qaic_ctrl.h               |  12 -
+  drivers/accel/qaic/qaic_drv.c                    |  10 -
+  drivers/gpu/drm/panel/panel-novatek-nt35950.c    |  10 +-
+  drivers/gpu/drm/panel/panel-orisetech-otm8009a.c |   2 +-
+  drivers/gpu/drm/ttm/ttm_pool.c                   |  30 +-
+  7 files changed, 21 insertions(+), 613 deletions(-)
+  delete mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.c
+  delete mode 100644 drivers/accel/qaic/mhi_qaic_ctrl.h
 
---------------EKTYVz655X0ecc43iVa93F8X
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi Dave, Daniel,</p>
-    <p>drm-misc-fixes pull request for rc1. drm-misc-next-fixes coming
-      up.. next<br>
-    </p>
-    <p>~Maarten</p>
-    <p><span style="font-family:monospace"><span
-          style="color:#000000;background-color:#ffffff;">drm-misc-fixes-2023-04-26:
-        </span><br>
-        drm-misc-fixes for v6.4-rc1:
-        <br>
-        - Fix DSC macros.
-        <br>
-        - Fix VESA format for simplefb.
-        <br>
-        - Prohibit potential out-of-bounds access in generic fbdev
-        emulation.
-        <br>
-        - Improve AST2500+ compat on ARM.
-        <br>
-        The following changes since commit
-        b63a553e8f5aa6574eeb535a551817a93c426d8c:
-        <br>
-        <br>
-         drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume
-        (2023-04-17 23:40:40 +0200)
-        <br>
-        <br>
-        are available in the Git repository at:
-        <br>
-        <br>
-         git://anongit.freedesktop.org/drm/drm-misc
-        tags/drm-misc-fixes-2023-04-26
-        <br>
-        <br>
-        for you to fetch changes up to
-        0d68683838f2850dd8ff31f1121e05bfb7a2def0:
-        <br>
-        <br>
-         drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values (2023-04-24
-        22:40:57 +0300)
-        <br>
-        <br>
-        ----------------------------------------------------------------
-        <br>
-        drm-misc-fixes for v6.4-rc1:
-        <br>
-        - Fix DSC macros.
-        <br>
-        - Fix VESA format for simplefb.
-        <br>
-        - Prohibit potential out-of-bounds access in generic fbdev
-        emulation.
-        <br>
-        - Improve AST2500+ compat on ARM.
-        <br>
-        <br>
-        ----------------------------------------------------------------
-        <br>
-        Jammy Huang (1):
-        <br>
-             drm/ast: Fix ARM compatibility
-        <br>
-        <br>
-        Jani Nikula (2):
-        <br>
-             drm/dsc: fix drm_edp_dsc_sink_output_bpp() DPCD high byte
-        usage
-        <br>
-             drm/dsc: fix DP_DSC_MAX_BPP_DELTA_* macro values
-        <br>
-        <br>
-        Pierre Asselin (1):
-        <br>
-             firmware/sysfb: Fix VESA format selection
-        <br>
-        <br>
-        Sui Jingfeng (1):
-        <br>
-             drm/fbdev-generic: prohibit potential out-of-bounds access
-        <br>
-        <br>
-        drivers/firmware/sysfb_simplefb.c   |  4 +++-
-        <br>
-        drivers/gpu/drm/ast/ast_main.c      |  9 +++++----
-        <br>
-        drivers/gpu/drm/drm_fb_helper.c     | 16 ++++++++++++----
-        <br>
-        include/drm/display/drm_dp.h        |  5 ++---
-        <br>
-        include/drm/display/drm_dp_helper.h |  5 ++---
-        <br>
-        5 files changed, 24 insertions(+), 15 deletions(-)<br>
-        <br>
-        <br>
-      </span></p>
-  </body>
-</html>
-
---------------EKTYVz655X0ecc43iVa93F8X--
