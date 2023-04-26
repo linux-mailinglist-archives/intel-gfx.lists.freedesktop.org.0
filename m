@@ -1,51 +1,144 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938EB6EF8CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 18:53:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BB76EF8DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Apr 2023 18:59:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A9810E250;
-	Wed, 26 Apr 2023 16:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B83D10E8A8;
+	Wed, 26 Apr 2023 16:59:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC2D210E90A
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 16:53:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 106E710E8A8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 16:59:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682528003; x=1714064003;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FF6cm1WBg7t2G7r0/SSmQT1U1VxXRXTDo72teiszQlE=;
- b=gb83VS7qwc0qwVQK/Un7b2pqaspYDxsZnv+g2HbZKWUzP0fC1CmNWPEM
- IfBb0ztpvKr92fTk6Z9R4kRD6Gn6JqL6XETIleVG0/6kZBgow0vES8MBZ
- fJ9xlBIsT4B+kMOU7BU5gDDRmgYaTsyUaiLANNDjG/OucBixaAz3ssVs8
- cp6RiwOhQZnA2f3wFGbDB7ZCX6nejL511eHHnGJRg7uB9JUVkkkKpMW5J
- gRErnXoyhhPMa6zSjB6FXdh8tsKT+Jsn2k9bkVWcLNzTre5qzz6bHt0v/
- 6U7telcz3065Af/SDzA6thUwmKQzGUCn4yWGK/OYtErzToA9a1sT+tdeV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="327493527"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="327493527"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:53:23 -0700
+ t=1682528367; x=1714064367;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=0FtL8C6pb0zUEkFDNDiX1sGRRZfaYE1Qmpe7P5DrN5k=;
+ b=G1MuVcyQ1dNxr1oYfCLia/bwzHngsbMPJFt2CwKKAuRmhBwHGFM+sLDb
+ VpCuTHuucnhzmTcRsvv0HFmaKV68hyvoQXAguikdG+8YXmIUXoURUOCNG
+ nuk1N0e/3KF6zjbQq5u5hztyd9zb8E3Lc2ZSVZo59O/V0ATiYXMs8ekxW
+ DkEQVssBMlC9hW0FMOuTmhjum/Q7HSUlsz8bwuj/7wXHlCClplnlgQsCt
+ 8PCLPQbUmgXe6AkTI3xuFnDPQZSGVgCHZV0gn42qBVyic4Tq5mYC4jCZU
+ y75ed2whFCZUBvzYL03gK1Bldp38yaVjUMYQkQWzVAxX6oNdswuej3O4W Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="410184975"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="410184975"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 09:59:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="671402822"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="671402822"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:53:22 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 19:53:05 +0300
-Message-Id: <20230426165305.2049341-12-imre.deak@intel.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230426165305.2049341-1-imre.deak@intel.com>
-References: <20230426165305.2049341-1-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="688016865"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="688016865"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga007.jf.intel.com with ESMTP; 26 Apr 2023 09:59:26 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 26 Apr 2023 09:59:26 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 26 Apr 2023 09:59:26 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 26 Apr 2023 09:59:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eeix3MLW872XpT4iLaShpuqlap75DwD8iXxQuTP9JggQu5Sf6OSeJvM+9iGxFAuIcHmyXM3WGHDIOW5HlJLKy3BEn89tvMKmEOy2+IyfuvwG2HaI0nLMWIBLy0QQ2qbeh9pN2T6iHX4XfNbc+KkH3S8xkxUu9H75ffn1nMUv5szdi5ZfK3hl5rjliuXJcw3t4XdPNxE/e+w03sdzV88huu4Pb0vf/M/UrjvxYgTsfEiOeAqlGSOwU4R69tG9ZZLAxrs0P77c5wi7fa+DEgoEY+ZQBu+uLrPbE9VnqbYdkyYI7PC49C2wXQ7V5oHT3pjl8YjJ2P9rOYTRxVJmgSyRRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DpHkJn6ycKfRR1Q7Lbv3tugsxy1ncWb+Sav6MNaIPR4=;
+ b=IEAht6unSOAe2BjMzUpntxN+JhSVBWEaLoJU1lyHbwI68zxSKpc+vzduhPRF38ee5tCorEzL9lfUkVpSBl8mN9F/LJqpODNyRzfsQOTwBvXr64a2+x064p6mlrE0WW6KTIs1EyBQKeLDvJq7EO1afkIOvnNZ2+I5uN9HCwrCOJ97PYkmRICWvn7pjquHzkUFIu5/cQp/9lU2TVaOd6egZVH/2XybV0nwZJRBpJIkpxydUK138agJ6IM8D1zrNRmqvqHbC1SbzOZG48NouuvQbt7Z3hhnU+/IPtAlQpVxnPjGZTPUIr3gfdJHYPvQYBn0/J7RUC7JIHVoQy7dfB8t1w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ CY5PR11MB6389.namprd11.prod.outlook.com (2603:10b6:930:3a::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.21; Wed, 26 Apr 2023 16:59:24 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9c02:9b11:8756:fe69]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::9c02:9b11:8756:fe69%5]) with mapi id 15.20.6340.021; Wed, 26 Apr 2023
+ 16:59:24 +0000
+Date: Wed, 26 Apr 2023 09:59:14 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <ZElYYunD19Va7bnR@orsosgc001.jf.intel.com>
+References: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230425183011.865085-1-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0121.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::6) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915/tc: Reset TypeC PHYs left
- enabled in DP-alt mode after the sink disconnects
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|CY5PR11MB6389:EE_
+X-MS-Office365-Filtering-Correlation-Id: c28989e8-94ce-452a-8468-08db46779620
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: z5DbYqmIsHwg8ZQ3VbjIHengeH7Xpm0hfHjt4tmUWsN/FkyM8QdL4DsrCV+CfvxZbBvQD7qJDA7/9XvmWRJtNBifd8HWbnotp/GRxL1HOla20gOwHUruuVhz6xLH7piMmLa0LEkV1Yhl+unOCHbWNa6NaMksqqNlGPb/kJ4f7DpI1sYOfPEpQbUb7kivBX5d6tWdZJORRY65gUdpRkZuY6SXHLl7wKzeUUl6cQGiE1N6RxzvullseuQU7qo05mQo3yIwShAnbtjV5mvpkeHwlrVt6NIF5f9SvDA01LNpc11DhwOOGZT3+Smi4QUWjBfovqLXzEvBJb15SQ29RdkkG2NowGbtmY//FuKABzc0a7xDvMoBF8Ax8YS6D2x0oJpbCrFe1I6aizuspKze4k28/DM6o9RBV/pwQBGg4568WARF8nHDzyUIFs5UGvNKOUsv9S9jylf6y53y+h1EqFD28MKtoW9AT0+F3FcUfJiL9WFg/PMpgqr7OzwonJxtJ1YYPvIUQc2EBfWAaH12tUswlktPQ2PNU9XikB2U+GmZwY/Rxn2UApBTE9NNi6/etLf1
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(346002)(366004)(396003)(136003)(39860400002)(451199021)(83380400001)(186003)(6512007)(26005)(6506007)(6636002)(316002)(86362001)(82960400001)(4326008)(66476007)(38100700002)(66556008)(66946007)(2906002)(41300700001)(107886003)(478600001)(5660300002)(8676002)(6862004)(6486002)(8936002)(6666004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmJFUzUwVVNWb2lrUjcyT0pIMlN0cFRLSDB6REQ2V2kwOW5iMit0S0p1QkZ2?=
+ =?utf-8?B?M0hKdERINW1YcHU0NEFQd1kxNk1saXpacnNJU1dwR0RuY0c5WncwYXEzTFBw?=
+ =?utf-8?B?dExaSnhLTFhrR3lIYlE4ZnYyOHVnajFpaXBrQ1d4enZyenhmdlFaSFIvUlho?=
+ =?utf-8?B?KzNESmxxRndTSkk3NlBTck9ydUFGTnZLWU9vNjA3N1ovMGZ0UFQ2ZzluZXFE?=
+ =?utf-8?B?UTVVSjVGWVExaFBWNTZrQ2JFcUw0VWRZOE1WUmxWTGFLK3RkL3NpV0JubXRV?=
+ =?utf-8?B?M05XNWF4ekk5c3hKc2tqZU1CZDlJU24wdktZL01UelB1Z3k5cURuRnZFK09w?=
+ =?utf-8?B?ODNaZmIxdFB6ZGYzS3FsOWdtS1UzMWNUb1Z4TW83M0FQQ1VaVDMrNkd5V29U?=
+ =?utf-8?B?eVhIRWM0eTJmTkRQYmpCMVR4T3hQTDgreEJHN0pkVGJGdVdrVzV3b1dobi9Z?=
+ =?utf-8?B?cWxtcW1MeXBGWXM3Z3NTa0RVaTY3QW0veVl5cGJPTUV3TnZlOWxMQlg2dkRX?=
+ =?utf-8?B?dzZuckFWK3E2VlNQOWhzRUtIRlJwWUk0OXA4QlZ1bFRYRzJtdnZSU3I5TEhl?=
+ =?utf-8?B?MnVlSDN2M2RKVU5oaDNmZWlleTk1RFJTZGpneFArR0VtSXFVdHUwd1RNQlVZ?=
+ =?utf-8?B?Ykg0WFpEY3V1ZmQxQjYya01aWGMzczFGYnpNKzM2U3h0WUt1RjliSWVIKzNu?=
+ =?utf-8?B?NERyTWxudzB2YXQwQWxrVDRzRmdicW5NS3k5eHprVDlpb0VnYXhqaFFzaklS?=
+ =?utf-8?B?WDJsbkNWaGtnQ3FoMTBOeWREbWhXZ0JyMmdTZU5uN1EzZnN1VC9HRWRQYlhw?=
+ =?utf-8?B?UDFoSnE0ckFjdkhqUGh6TzZEaUluOUp0VDdmQ1RRRDF1dktzOGNjMmxkTnpH?=
+ =?utf-8?B?cXVJRlFJVTY3Z2RzQmw3SitwSDhTeWYxRE45a1VBWlRWbkFERXNUdXVJcVpu?=
+ =?utf-8?B?YzhyTmF5MmZ4ZTh1MzkrdERKalBINHBFNlNpcHNuNVdtbXZlWi80WStCUEwy?=
+ =?utf-8?B?eFVjZVZvSW1KUDlsUS9OR0ZvQ1BaUHExWWVYWW15Ni9hZ1IyRFJXcXpYQW0v?=
+ =?utf-8?B?R2UwVXhGSDBIeHptZmpMZEh5V245ZUxYNnBHTG52cFpPMHJKOStKbUlGY0R0?=
+ =?utf-8?B?RzhKZXFXaFNmdk9ZVE12b3dFbkZXSEJlMUFwNDd5blNIc2JKR1pNK1A5K1Ft?=
+ =?utf-8?B?NTFtd3BSelBReUJjOCtYM2c5MXFvM3RLMDcySGlLUXRhbjhJVDArWjltTUJW?=
+ =?utf-8?B?MmxFeTBOMGYwNEsxL3I0THkvWUozRmZ2YWhQSWExWCtOMmMwVm9VSDNLZGFq?=
+ =?utf-8?B?Y3ZDemlUSUZRYnF1bm0zZUZJQmRkTWJJNzVKaTdtOCt0WFQwNVZ4ZDVWdVY0?=
+ =?utf-8?B?MHBzMzdUQTZ0Q3htcXdRbDVsVFl5SUE0anE4ZmE3cGpyZmhBRk9xdDZwbmVN?=
+ =?utf-8?B?WjJ0UWNaTnJTaDNLeC9laDhMZUEzV1Yzd1JId3pBcDBiRnpyV3ptVU1lRnNh?=
+ =?utf-8?B?SCtTMHU2V2c3TVpNbVI1WG5Gd2N2aG1qMFROTVdGNjRxbU40ZDZQdmxZZXAy?=
+ =?utf-8?B?cjRTUEcvNVVzWVNwcUc3VElZZ291TUhWdDhEV1QrZm1HMzJIcURRM3Z6UDhJ?=
+ =?utf-8?B?MDFUa25aN2lVTkxDZUFkSDZFV3NkUFRMMUhDYzJwcjU0a1dmdnVQTHIwTUJ1?=
+ =?utf-8?B?b1dsT1BXZCtoNTZnQVdmR1V1K1VxOXh1WG5Ja0RHMWt6Zm1zKzh3UEZNTlho?=
+ =?utf-8?B?d2RkbjBaQXhZR0NjejdiUVk2UGYxWlc5cTdMLzRxeGMwN0tOVG9OZ0ZLK3A3?=
+ =?utf-8?B?ZXlPdGtoRXlEeHkyangvMlJ4N3ZBWWJWaG9takM5dThQQXlXKzVTWndZa2N4?=
+ =?utf-8?B?UE5zQ1Y5V25EbytZVXNZbnpoR1owTUhmM1E0VWtVSm1VNnc1UlN4b05vVVht?=
+ =?utf-8?B?ek9sVXJPQmprZkxDbm1uV0pidWJHRVVnaktEMHV0NGNMVSsrTmVLQ3A1VDBi?=
+ =?utf-8?B?VDdYOW9CYThURlRLWFRMUkJPQlAweHRXOGNNcE5tdnhRQXNFbEZuS2I0dzFK?=
+ =?utf-8?B?MmZmYXRITEZvR2dMNnE5RDdselhraVhBOFMwWG81a21USEFnYXBEWmI3WGt0?=
+ =?utf-8?B?dnBiTnlCeDhWTS85Q1VWeFdqblZEeFRpZlVqSTdCT09LZnVaNkw0ZEV3MXFo?=
+ =?utf-8?Q?91Dp7ZjvpmpDH9IjPP07Yrw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c28989e8-94ce-452a-8468-08db46779620
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 16:59:23.8812 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0cywX8x4m6ftPNB6ue8HkIQTg+uV0OycI4O6dDuNSRAPiri7dfGZZeNav+n9ix71xJxQGMnme3nrz6Of+3Ml8RgNiNW6VyM4IJdYMHTr5WA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6389
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v1.1] drm/i915/mtl: Implement Wa_14019141245
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,339 +151,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the output on a DP-alt link is kept enabled for too long (about 20
-sec), then some IOM/TCSS firmware timeout will cause havoc on the PCI
-bus, at least for other GFX devices on it which will stop powering up.
-Since user space is not guaranteed to do a disabling modeset in time,
-switch such disconnected but active links to TBT mode - which is without
-such shortcomings - with a 2 second delay.
+On Tue, Apr 25, 2023 at 11:30:11AM -0700, Radhakrishna Sripada wrote:
+>Enable strict RAR to prevent spurious GPU hangs.
+>
+>v1.1: Rebase
+>
+>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 5 +++++
+> drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++++
+> drivers/gpu/drm/i915/i915_perf_oa_regs.h    | 4 ----
+> 3 files changed, 9 insertions(+), 4 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>index e8c3b762a92a..af80d2fe739b 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>@@ -529,6 +529,11 @@
+>
+> #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
+>
+>+#define GEN12_SQCNT1				_MMIO(0x8718)
+>+#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
+>+#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
+>+#define   GEN12_STRICT_RAR_ENABLE		REG_BIT(23)
+>+
+> #define XEHP_SQCM				MCR_REG(0x8724)
+> #define   EN_32B_ACCESS				REG_BIT(30)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>index de4f8e2e8e8c..ad9e7f49a6fa 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>@@ -1699,6 +1699,9 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> 	wa_mcr_write_or(wal, RENDER_MOD_CTRL, FORCE_MISS_FTLB);
+> 	wa_mcr_write_or(wal, COMP_MOD_CTRL, FORCE_MISS_FTLB);
+>
+>+	/* Wa_14019141245 */
+>+	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+>+
 
-If the above condition is detected already during the driver load/system
-resume sanitization step disable the output instead, as at that point no
-user space or kernel client depends on a consistent output state yet and
-because subsequent atomic modeset on such connectors - without the
-actual sink capabilities available - can fail.
+Was wondering if this should be a rmw, but since this write is at driver 
+probe and OA always does a rmw on this register, this looks fine.
 
-To account for a race condition during driver loading where the sink is
-disconnected after the above sanitization step and the HPD interrupts
-getting enabled, do an explicit check/link reset if needed from the
-encoder's late_register hook, which is called after the HPD interrupts
-are enabled already.
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Tested-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5860
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      | 53 +++++++++++++++++--
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 49 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h       |  2 +
- .../drm/i915/display/intel_modeset_setup.c    | 34 +++++++-----
- drivers/gpu/drm/i915/display/intel_tc.c       | 21 ++++++++
- drivers/gpu/drm/i915/display/intel_tc.h       |  1 +
- 7 files changed, 145 insertions(+), 17 deletions(-)
+Thanks,
+Umesh
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0c8bc32f293b0..a3aaedc97d3eb 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3312,6 +3312,8 @@ static void intel_disable_ddi(struct intel_atomic_state *state,
- 			      const struct intel_crtc_state *old_crtc_state,
- 			      const struct drm_connector_state *old_conn_state)
- {
-+	cancel_delayed_work(&enc_to_dig_port(encoder)->reset_link_work);
-+
- 	intel_hdcp_disable(to_intel_connector(old_conn_state->connector));
- 
- 	if (intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_HDMI))
-@@ -4220,9 +4222,29 @@ static void intel_ddi_encoder_reset(struct drm_encoder *encoder)
- 		intel_tc_port_init_mode(dig_port);
- }
- 
-+static bool intel_ddi_tc_port_reset_link(struct intel_encoder *encoder)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (!intel_tc_port_link_needs_reset(dig_port))
-+		return false;
-+
-+	queue_delayed_work(system_unbound_wq, &dig_port->reset_link_work, msecs_to_jiffies(2000));
-+
-+	return true;
-+}
-+
-+static int intel_ddi_encoder_late_register(struct drm_encoder *_encoder)
-+{
-+	intel_ddi_tc_port_reset_link(to_intel_encoder(_encoder));
-+
-+	return 0;
-+}
-+
- static const struct drm_encoder_funcs intel_ddi_funcs = {
- 	.reset = intel_ddi_encoder_reset,
- 	.destroy = intel_ddi_encoder_destroy,
-+	.late_register = intel_ddi_encoder_late_register,
- };
- 
- static struct intel_connector *
-@@ -4397,6 +4419,25 @@ static void call_with_modeset_ctx(int (*fn)(struct intel_encoder *encoder,
- 		 "Acquiring modeset locks failed with %i\n", ret);
- }
- 
-+static void intel_ddi_tc_link_reset_work(struct work_struct *work)
-+{
-+	struct intel_digital_port *dig_port =
-+		container_of(work, struct intel_digital_port, reset_link_work.work);
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_encoder *encoder = &dig_port->base;
-+
-+	mutex_lock(&i915->drm.mode_config.mutex);
-+
-+	if (intel_tc_port_link_needs_reset(dig_port)) {
-+		drm_dbg_kms(&i915->drm,
-+			    "[ENCODER:%d:%s] TypeC DP-alt sink disconnected, resetting link\n",
-+			    encoder->base.base.id, encoder->base.name);
-+		call_with_modeset_ctx(intel_dp_reset_link, &dig_port->base);
-+	}
-+
-+	mutex_unlock(&i915->drm.mode_config.mutex);
-+}
-+
- static enum intel_hotplug_state
- intel_ddi_hotplug(struct intel_encoder *encoder,
- 		  struct intel_connector *connector)
-@@ -4417,10 +4458,12 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
- 
- 	state = intel_encoder_hotplug(encoder, connector);
- 
--	if (connector->base.connector_type == DRM_MODE_CONNECTOR_HDMIA)
--		call_with_modeset_ctx(intel_hdmi_reset_link, encoder);
--	else
--		call_with_modeset_ctx(intel_dp_retrain_link, encoder);
-+	if (!intel_ddi_tc_port_reset_link(encoder)) {
-+		if (connector->base.connector_type == DRM_MODE_CONNECTOR_HDMIA)
-+			call_with_modeset_ctx(intel_hdmi_reset_link, encoder);
-+		else
-+			call_with_modeset_ctx(intel_dp_retrain_link, encoder);
-+	}
- 
- 	/*
- 	 * Unpowered type-c dongles can take some time to boot and be
-@@ -4956,6 +4999,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 			encoder->pipe_mask = intel_ddi_splitter_pipe_mask(dev_priv);
- 	}
- 
-+	INIT_DELAYED_WORK(&dig_port->reset_link_work, intel_ddi_tc_link_reset_work);
-+
- 	/*
- 	 * In theory we don't need the encoder->type check,
- 	 * but leave it just in case we have some really bad VBTs...
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 35c260bd14618..c026940dbeae0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1803,6 +1803,8 @@ struct intel_digital_port {
- 
- 	struct intel_tc_port *tc;
- 
-+	struct delayed_work reset_link_work;
-+
- 	/* protects num_hdcp_streams reference count, hdcp_port_data and hdcp_auth_status */
- 	struct mutex hdcp_mutex;
- 	/* the number of pipes using HDCP signalling out of this port */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1e91175506f5d..24d0b15d0e925 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4250,6 +4250,55 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+int intel_dp_reset_link(struct intel_encoder *encoder,
-+			struct drm_modeset_acquire_ctx *ctx)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct drm_atomic_state *_state;
-+	struct intel_atomic_state *state;
-+	struct intel_crtc *crtc;
-+	u8 pipe_mask;
-+	int ret = 0;
-+
-+	ret = drm_modeset_lock(&i915->drm.mode_config.connection_mutex,
-+			       ctx);
-+	if (ret)
-+		return ret;
-+
-+	ret = intel_dp_get_active_pipes(enc_to_intel_dp(encoder), ctx, &pipe_mask);
-+	if (ret)
-+		return ret;
-+
-+	if (!pipe_mask)
-+		return 0;
-+
-+	_state = drm_atomic_state_alloc(&i915->drm);
-+	if (!_state)
-+		return -ENOMEM;
-+	state = to_intel_atomic_state(_state);
-+
-+	state->base.acquire_ctx = ctx;
-+	state->internal = true;
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
-+		struct intel_crtc_state *crtc_state;
-+
-+		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
-+		if (IS_ERR(crtc_state)) {
-+			ret = PTR_ERR(crtc_state);
-+			break;
-+		}
-+
-+		crtc_state->uapi.connectors_changed = true;
-+	}
-+
-+	ret = drm_atomic_commit(&state->base);
-+
-+	drm_atomic_state_put(&state->base);
-+
-+	return ret;
-+}
-+
- static int intel_dp_prep_phy_test(struct intel_dp *intel_dp,
- 				  struct drm_modeset_acquire_ctx *ctx,
- 				  u8 *pipe_mask)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index ca12a1733df6f..02fe28544e775 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -45,6 +45,8 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
- bool intel_dp_is_connected(struct intel_dp *intel_dp);
- int intel_dp_retrain_link(struct intel_encoder *encoder,
- 			  struct drm_modeset_acquire_ctx *ctx);
-+int intel_dp_reset_link(struct intel_encoder *encoder,
-+			struct drm_modeset_acquire_ctx *ctx);
- void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode);
- void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 					   const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index f613c074187a2..16120011437f6 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -26,6 +26,7 @@
- #include "intel_fifo_underrun.h"
- #include "intel_modeset_setup.h"
- #include "intel_pch_display.h"
-+#include "intel_tc.h"
- #include "intel_vblank.h"
- #include "intel_wm.h"
- #include "skl_watermark.h"
-@@ -253,17 +254,6 @@ intel_sanitize_plane_mapping(struct drm_i915_private *i915)
- 	}
- }
- 
--static bool intel_crtc_has_encoders(struct intel_crtc *crtc)
--{
--	struct drm_device *dev = crtc->base.dev;
--	struct intel_encoder *encoder;
--
--	for_each_encoder_on_crtc(dev, &crtc->base, encoder)
--		return true;
--
--	return false;
--}
--
- static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-@@ -382,6 +372,9 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
-+	struct intel_encoder *encoder;
-+	bool needs_link_reset = false;
-+	bool has_encoder = false;
- 
- 	if (crtc_state->hw.active) {
- 		struct intel_plane *plane;
-@@ -401,13 +394,28 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
- 		intel_color_commit_arm(crtc_state);
- 	}
- 
-+	if (!crtc_state->hw.active ||
-+	    intel_crtc_is_bigjoiner_slave(crtc_state))
-+		return;
-+
-+	for_each_encoder_on_crtc(&i915->drm, &crtc->base, encoder) {
-+		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+		has_encoder = true;
-+
-+		if (!dig_port || !intel_tc_port_link_needs_reset(dig_port))
-+			continue;
-+
-+		needs_link_reset = true;
-+		break;
-+	}
-+
- 	/*
- 	 * Adjust the state of the output pipe according to whether we have
- 	 * active connectors/encoders.
- 	 * TODO: Add support for MST
- 	 */
--	if (crtc_state->hw.active && !intel_crtc_has_encoders(crtc) &&
--	    !intel_crtc_is_bigjoiner_slave(crtc_state))
-+	if (!has_encoder || needs_link_reset)
- 		disable_crtc_with_slaves(crtc, ctx);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 3b60995e9dfb3..358058c7bb464 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1335,6 +1335,27 @@ bool intel_tc_port_connected(struct intel_encoder *encoder)
- 	return is_connected;
- }
- 
-+bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+	bool ret;
-+
-+	if (!intel_phy_is_tc(i915, phy))
-+		return false;
-+
-+	mutex_lock(&tc->lock);
-+
-+	ret = tc->link_refcount &&
-+	      intel_tc_port_in_dp_alt_mode(dig_port) &&
-+	      intel_tc_port_needs_reset(tc);
-+
-+	mutex_unlock(&tc->lock);
-+
-+	return ret;
-+}
-+
- static void __intel_tc_port_lock(struct intel_tc_port *tc,
- 				 int required_lanes)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index dd0810f9ea95e..c4cf1eac54a1c 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -34,6 +34,7 @@ void intel_tc_port_flush_work(struct intel_digital_port *dig_port);
- void intel_tc_port_get_link(struct intel_digital_port *dig_port,
- 			    int required_lanes);
- void intel_tc_port_put_link(struct intel_digital_port *dig_port);
-+bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port);
- bool intel_tc_port_ref_held(struct intel_digital_port *dig_port);
- 
- int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy);
--- 
-2.37.2
-
+> 	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+> 	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+> 		/* Wa_14014830051 */
+>@@ -1707,6 +1710,7 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> 		/* Wa_14015795083 */
+> 		wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
+> 	}
+>+
+> 	/*
+> 	 * Unlike older platforms, we no longer setup implicit steering here;
+> 	 * all MCR accesses are explicitly steered.
+>diff --git a/drivers/gpu/drm/i915/i915_perf_oa_regs.h b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+>index ba103875e19f..e5ac7a8b5cb6 100644
+>--- a/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+>+++ b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+>@@ -134,10 +134,6 @@
+> #define GDT_CHICKEN_BITS    _MMIO(0x9840)
+> #define   GT_NOA_ENABLE	    0x00000080
+>
+>-#define GEN12_SQCNT1				_MMIO(0x8718)
+>-#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
+>-#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
+>-
+> /* Gen12 OAM unit */
+> #define GEN12_OAM_HEAD_POINTER_OFFSET   (0x1a0)
+> #define  GEN12_OAM_HEAD_POINTER_MASK    0xffffffc0
+>-- 
+>2.34.1
+>
