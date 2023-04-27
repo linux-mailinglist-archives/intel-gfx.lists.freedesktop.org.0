@@ -1,59 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C986F078A
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Apr 2023 16:33:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED94B6F07C7
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Apr 2023 17:01:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B937E10EB63;
-	Thu, 27 Apr 2023 14:33:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5543010EB5E;
+	Thu, 27 Apr 2023 15:01:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B54410EB62;
- Thu, 27 Apr 2023 14:33:37 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF1310EB5E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 15:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682606018; x=1714142018;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=78ZXhodoJwKFvk39f1B6t8zkqni33BLh9z/o5ZxKRjA=;
- b=Uzbcx5d7t3/pHfoHERq5tqtLltpB9y0fNSsigbfGjp5m6Ohzw8N0vV/u
- s/inMsV9r7GjMbdWTRp6HEjfihTFtzbcrIL8fK7g3u+xa9ABtzjXWSYPi
- faqE1md8X7NIifLRbTQ8xKex/RRaW+lyykfTtRnjeEfmyrxelffS+yjr8
- e2Bd1SBScwotTQLEq32nFWzw1+q5VDl7y+wK706KnxuKCEMsWU3f9VpsO
- E1c6nODCBsbby+v+JC0yHJ6osxh3BoWG/9sBXPUU7byAY5GEDJZ4VIhUG
- CdjDGqP3udZSzTLvHv5FHXFHoETDKmCQcsUiRFftGTGjJCL9PJtM6Wsvj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="350330935"
-X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="350330935"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 07:33:37 -0700
+ t=1682607660; x=1714143660;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NSdJubwgjS8HrulucKZlNw2FQZJMZhMxm0DmmBmIoBU=;
+ b=cME3UTEG2lZQyQOyaPSbeKdvx5TEd+C26rzTI2kgO9j1RIFrGO0P/15T
+ pt7eCZ/WRLTTUwr9X36h/2EkSrq0Rlm0PMAkz+ceV4coc4YCF6rjNDB5s
+ r/D14OpyHbGktI7v7NMWZ8vTKjkU8CA6IGwBvxdZPngO6/wYD1CKWYCi6
+ pYJZ+ca+ulwZNADqskdhJUUYMPLL8vsG4hyb0GTu3SSPRx6QJzDJIIHY/
+ nrEIlTP9ZWWpL5LWnuZQCeKAx10pnqtGpso2Pjl4f7LWC4EOPWJasoMqo
+ kWXFFrwSOWNyONqQGatE82dVbd8hVD09otV+Sofw3Zd0TbS/8pcw1bC5E A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="410520802"
+X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="410520802"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2023 08:00:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="940706332"
-X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="940706332"
-Received: from ebaldwin-mobl.ger.corp.intel.com (HELO [10.213.239.242])
- ([10.213.239.242])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 07:33:35 -0700
-Message-ID: <7d5d497d-b552-d8d9-e58c-20f4b0ded76c@linux.intel.com>
-Date: Thu, 27 Apr 2023 15:33:33 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="838420094"
+X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="838420094"
+Received: from jfedorov-mobl2.ccr.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.251.216.111])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2023 08:00:49 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Apr 2023 18:00:08 +0300
+Message-Id: <20230427150016.1566833-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: "Yang, Fei" <fei.yang@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230426062423.320519-1-fei.yang@intel.com>
- <c7cb1466-e698-ff3f-0572-4693c4b0025c@linux.intel.com>
- <BYAPR11MB2567F72C44D485E628A574069A659@BYAPR11MB2567.namprd11.prod.outlook.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <BYAPR11MB2567F72C44D485E628A574069A659@BYAPR11MB2567.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 0/5] drm/i915: Allow user to set cache at
- BO creation
+Subject: [Intel-gfx] [PATCH v3 0/8] mtl: add support for pmdemand
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,82 +58,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+pmdemand support patches for MTL
 
-On 26/04/2023 16:41, Yang, Fei wrote:
->  > On 26/04/2023 07:24, fei.yang@intel.com wrote:
->  >> From: Fei Yang <fei.yang@intel.com>
->  >>
->  >> The first three patches in this series are taken from
->  >> https://patchwork.freedesktop.org/series/116868/
->  >> These patches are included here because the last patch
->  >> has dependency on the pat_index refactor.
->  >>
->  >> This series is focusing on uAPI changes,
->  >> 1. end support for set caching ioctl [PATCH 4/5]
->  >> 2. add set_pat extension for gem_create [PATCH 5/5]
->  >>
->  >> v2: drop one patch that was merged separately
->  >>      341ad0e8e254 drm/i915/mtl: Add PTE encode function
->  >
->  > Are the re-sends for stabilizing the series, or focusing on merge?
-> 
-> v2 was sent just to drop one of patches that has already been merged.
-> 
->  > If the latter then opens are:
->  >
->  > 1) Link to Mesa MR reviewed and ready to merge.
->  >
->  > 2) IGT reviewed.
->  >
->  > 3) I raised an open that get/set_caching should not "lie" but return an
->  > error if set pat extension has been used. I don't see a good reason not
->  > to do that.
-> 
-> I don't think it's "lying" to the userspace. the comparison is only valid
-> for objects created by KMD because only such object uses the pat_index
-> from the cachelevel_to_pat table.
+SAGV configuration support for MTL
 
-Lets double check my understanding is correct. Userspace sequence of 
-operations:
+v2: added one missing patch in the previous version
 
-1)
-obj = gem_create()+set_pat(PAT_UC)
+v3: chekcpatch warning fixes
+    update index handling for the icl/tgl QGV point handling
+    program pmdemand code simplified
 
-2a)
-get_caching(obj)
+v4: update to debufs and pipe values pmdemand regiters
+    removed the macro usage in update_pmdemand_values
 
-What gets reported?
+Mika Kahola (1):
+  drm/i915/mtl: Add support for PM DEMAND
 
-2b)
-set_caching(obj, I915_CACHE_LLC)
+Vinod Govindapillai (7):
+  drm/i915: fix the derating percentage for MTL
+  drm/i915: update the QGV point frequency calculations
+  drm/i915: store the peak bw per QGV point
+  drm/i915: extract intel_bw_check_qgv_points()
+  drm/i915: modify max_bw to return index to intel_bw_info
+  drm/i915/mtl: find best QGV point and configure sagv
+  drm/i915/display: provision to suppress drm_warn in
+    intel_get_crtc_new_encoder
 
-What is the return code?
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       | 350 +++++++++-----
+ drivers/gpu/drm/i915/display/intel_bw.h       |   6 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  17 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |   3 +-
+ .../gpu/drm/i915/display/intel_display_core.h |   8 +
+ .../drm/i915/display/intel_display_driver.c   |   7 +
+ .../drm/i915/display/intel_display_power.c    |   8 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   8 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 455 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_pmdemand.h |  24 +
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |   2 +-
+ drivers/gpu/drm/i915/i915_irq.c               |  21 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  36 +-
+ 16 files changed, 819 insertions(+), 133 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.h
 
-If answer to 2a is I915_CACHING_CACHED and to 2b) success, then please 
-state a good reason why both shouldn't return an error.
+-- 
+2.34.1
 
-> 
->  > + Joonas on this one.
->  >
->  > 4) Refactoring as done is not very pretty and I proposed an idea for a
->  > nicer approach. Feasible or not, open for discussion.
-> 
-> Still digesting your proposal. but not sure how would you define things
-> like PAT_UC as that is platform dependent, not a constant.
-
-"PAT_UC" in my outline was purely a driver specific value, similarly as 
-I915_CACHE_... are. With the whole point that driver can ask if 
-something is uncached, WT or whatever. Using the platform specific 
-mapping table which converts platform specific obj->pat_index to driver 
-representation of caching modes (PAT_UC etc).
-
-Quite possible I missed some detail, but if I haven't then it could be 
-a neat and lightweight solution.
-
-Regards,
-
-Tvrtko
