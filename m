@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E666F0628
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Apr 2023 14:46:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA9F6F0648
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Apr 2023 15:02:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5010910EB4A;
-	Thu, 27 Apr 2023 12:45:56 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4B4A10EB4A;
- Thu, 27 Apr 2023 12:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7859D10EB33;
+	Thu, 27 Apr 2023 13:02:36 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2441210EB33
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 13:02:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682599553; x=1714135553;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5wYSUCOP8c/f8dUmE993Lb7hQFoS+E3Lw+fDhhj/isw=;
- b=bEKgJURKuzj407UUIQpOo73d2gzqSVgy546se+GBdhP9wg36sNjQvM1P
- 6MDdJtOGBDSZwRBSFk4zUUZ8oIrxAHdiHeTTyqO+Aye36I5/zbDdIs3t9
- RCc3nTZO8Qy0Y4Ld6xWfOx03QXmRIKocYft97BQXReyqkO+6NNY9V1C91
- akJdwEYQPS0VootJkZ0b1Vo1tEXVPTkRN3j+GmwDICImCIwJuP0Sf+FZs
- VOm0ii45u/T6+N0Ru8eDpnSO9BsmNFIMyUG9b4vTujzXGeFdrB3c9/n23
- 4XVed0eN6KjrH5UMsMa6Ve7GQ441nWQZg3pGkjz4K7bOehtZQPIsa4fVV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="331680649"
-X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="331680649"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 05:45:53 -0700
+ t=1682600554; x=1714136554;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EeEP8R18PbR9BXIcpZ2LnQ2iZmc4mD+gjEml3mtPfVg=;
+ b=i/Tv5keRVyDkhrVRv4TKSNkBYXP9CMVfI/wM+QKZ1NxjloGKByP4rpND
+ YseXNf75MiYVg0DDs7bHSStA9AAVH4jTXGq1N9h1exxj5Ndy0qWeqhXcg
+ MKzbQ2cPG/DIIVfmNFFi+Uvyw0eDAebqITBGouTJ0jaMt0uU9aORxiWgO
+ 9TKealFQp9UVuybU4z7e5lP2PYf4Ar6xOo+SB3bzx+ifPjEfgK7ckz7kF
+ A8LqiYVJc6EslXZFDVhEOZHtXyA5El8RnCjTXUn0t3Z+iafSM3eoM6bNB
+ xFmcH5WreLGtb+1pZm8VjU6SMbPGr7m+MQtp43AG2amSdllfLelen4x52 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="412761835"
+X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="412761835"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2023 06:00:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="688414526"
-X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="688414526"
-Received: from ebaldwin-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.239.242])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 05:45:52 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 27 Apr 2023 13:45:37 +0100
-Message-Id: <20230427124537.820273-5-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230427124537.820273-1-tvrtko.ursulin@linux.intel.com>
-References: <20230427124537.820273-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="805950100"
+X-IronPort-AV: E=Sophos;i="5.99,230,1677571200"; d="scan'208";a="805950100"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2023 06:00:51 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Apr 2023 18:25:59 +0530
+Message-Id: <20230427125605.487769-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 4/4] drm/i915: Expose RPS thresholds in sysfs
+Subject: [Intel-gfx] [PATCH 0/6] Introduce sink_format and other fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,154 +59,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+This patch series is part of a previous series:
+https://patchwork.freedesktop.org/series/109470/
 
-User feedback indicates significant performance gains are possible in
-specific games with non default RPS up/down thresholds.
+This adds new member sink_format to store the final format that the
+sink will be using, which might be different than the output format,
+and thus might need color/format conversion performed by the PCON.
 
-Expose these tunables via sysfs which will allow users to achieve best
-performance when running games and best power efficiency elsewhere.
+Last patch just refactors some lines in mode_valid code for DP.
 
-Note this patch supports non GuC based platforms only.
+Ankit Nautiyal (6):
+  drm/i915/display: Add new member to configure PCON color conversion
+  drm/i915/dp: Replace intel_dp.dfp members with the new crtc_state
+    sink_format
+  drm/i915/dp: Configure PCON for conversion of output_format to
+    YCbCr444
+  drm/i915/display: Use sink_format instead of ycbcr420_output flag
+  drm/i915/dp: Add helper to get sink_format
+  drm/i915/dp: Rearrange check for illegal mode and comments in
+    mode_valid
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8389
----
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 104 ++++++++++++++++++++
- 1 file changed, 104 insertions(+)
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
+ drivers/gpu/drm/i915/display/intel_crt.c      |   1 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +
+ .../drm/i915/display/intel_display_types.h    |  12 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 263 ++++++++++++------
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  71 +++--
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   5 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_tv.c       |   1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
+ 14 files changed, 250 insertions(+), 119 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 28f27091cd3b..df1f9ef08475 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -671,6 +671,76 @@ static const struct attribute *media_perf_power_attrs[] = {
- 	NULL
- };
- 
-+static ssize_t
-+rps_up_threshold_pct_show(struct kobject *kobj, struct kobj_attribute *attr,
-+			  char *buf)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_rps *rps = &gt->rps;
-+
-+	return sysfs_emit(buf, "%u\n", intel_rps_get_up_threshold(rps));
-+}
-+
-+static ssize_t
-+rps_up_threshold_pct_store(struct kobject *kobj, struct kobj_attribute *attr,
-+			   const char *buf, size_t count)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_rps *rps = &gt->rps;
-+	int ret;
-+	u8 val;
-+
-+	ret = kstrtou8(buf, 10, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = intel_rps_set_up_threshold(rps, val);
-+
-+	return ret == 0 ? count : ret;
-+}
-+
-+static struct kobj_attribute rps_up_threshold_pct =
-+__ATTR(rps_up_threshold_pct, 0664,
-+       rps_up_threshold_pct_show, rps_up_threshold_pct_store);
-+
-+static ssize_t
-+rps_down_threshold_pct_show(struct kobject *kobj, struct kobj_attribute *attr,
-+			    char *buf)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_rps *rps = &gt->rps;
-+
-+	return sysfs_emit(buf, "%u\n", intel_rps_get_down_threshold(rps));
-+}
-+
-+static ssize_t
-+rps_down_threshold_pct_store(struct kobject *kobj, struct kobj_attribute *attr,
-+			     const char *buf, size_t count)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_rps *rps = &gt->rps;
-+	int ret;
-+	u8 val;
-+
-+	ret = kstrtou8(buf, 10, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = intel_rps_set_down_threshold(rps, val);
-+
-+	return ret == 0 ? count : ret;
-+}
-+
-+static struct kobj_attribute rps_down_threshold_pct =
-+__ATTR(rps_down_threshold_pct, 0664,
-+       rps_down_threshold_pct_show, rps_down_threshold_pct_store);
-+
-+static const struct attribute * const gen6_gt_rps_attrs[] = {
-+	&rps_up_threshold_pct.attr,
-+	&rps_down_threshold_pct.attr,
-+	NULL
-+};
-+
- static ssize_t
- default_min_freq_mhz_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
- {
-@@ -693,9 +763,37 @@ default_max_freq_mhz_show(struct kobject *kobj, struct kobj_attribute *attr, cha
- static struct kobj_attribute default_max_freq_mhz =
- __ATTR(rps_max_freq_mhz, 0444, default_max_freq_mhz_show, NULL);
- 
-+static ssize_t
-+default_rps_up_threshold_pct_show(struct kobject *kobj,
-+				  struct kobj_attribute *attr,
-+				  char *buf)
-+{
-+	struct intel_gt *gt = kobj_to_gt(kobj->parent);
-+
-+	return sysfs_emit(buf, "%u\n", gt->defaults.rps_up_threshold);
-+}
-+
-+static struct kobj_attribute default_rps_up_threshold_pct =
-+__ATTR(rps_up_threshold_pct, 0444, default_rps_up_threshold_pct_show, NULL);
-+
-+static ssize_t
-+default_rps_down_threshold_pct_show(struct kobject *kobj,
-+				    struct kobj_attribute *attr,
-+				    char *buf)
-+{
-+	struct intel_gt *gt = kobj_to_gt(kobj->parent);
-+
-+	return sysfs_emit(buf, "%u\n", gt->defaults.rps_down_threshold);
-+}
-+
-+static struct kobj_attribute default_rps_down_threshold_pct =
-+__ATTR(rps_down_threshold_pct, 0444, default_rps_down_threshold_pct_show, NULL);
-+
- static const struct attribute * const rps_defaults_attrs[] = {
- 	&default_min_freq_mhz.attr,
- 	&default_max_freq_mhz.attr,
-+	&default_rps_up_threshold_pct.attr,
-+	&default_rps_down_threshold_pct.attr,
- 	NULL
- };
- 
-@@ -723,6 +821,12 @@ static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj)
- 	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915))
- 		ret = sysfs_create_file(kobj, vlv_attr);
- 
-+	if (is_object_gt(kobj) && !intel_uc_uses_guc_slpc(&gt->uc)) {
-+		ret = sysfs_create_files(kobj, gen6_gt_rps_attrs);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return ret;
- }
- 
 -- 
-2.37.2
+2.25.1
 
