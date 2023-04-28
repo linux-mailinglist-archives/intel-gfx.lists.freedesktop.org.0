@@ -2,63 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7116F1C3D
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 18:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6B66F1C36
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 18:06:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEFE710E3F9;
-	Fri, 28 Apr 2023 16:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6828910E3F3;
+	Fri, 28 Apr 2023 16:06:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 331 seconds by postgrey-1.36 at gabe;
- Fri, 28 Apr 2023 16:06:12 UTC
-Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B5510E3E8
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 16:06:12 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id D90553F46E;
- Fri, 28 Apr 2023 18:00:38 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -4.155
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.155 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, HTML_MESSAGE=0.001,
- NICE_REPLY_A=-2.047, T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5r43vDgbINYw; Fri, 28 Apr 2023 18:00:37 +0200 (CEST)
-Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 79B803FB3A;
- Fri, 28 Apr 2023 18:00:36 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [134.191.232.81])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 008C3363210;
- Fri, 28 Apr 2023 18:00:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1682697635; bh=cpyZh8T+h8QBiANpBWAGmIkCnLsyPurWUI4Sx9sCIMI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=hvr05EsqsDTen33Es0bwKwBXsQEwP2g1u3RPnesJ20M3Ix7DzLb/x8u534YMCaDYK
- mMij3SsdlZKy1QIdKS0CJ4oEgaSNS0ZH71hJk5rQNFZZ/j1SLm5sb7mTP54pwPwEbk
- SnslQPnWC5Qtec808OJH/R9lJD9pRY9Hzr9hnijk=
-Content-Type: multipart/alternative;
- boundary="------------TBjWPXGSST10I4z0rAAYmFJq"
-Message-ID: <73356be7-f57e-154a-e587-2785d62e61cd@shipmail.org>
-Date: Fri, 28 Apr 2023 18:00:31 +0200
-MIME-Version: 1.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61B5310E3E8;
+ Fri, 28 Apr 2023 16:06:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682697961; x=1714233961;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yO+OpdOQ6Siaz1WCBYdwl+92Lb1zta6RHYaWHshrI4g=;
+ b=KEU2prMuNfsSfJUVbbEUqV/hHJAhZ3laY0AjVISQAFiZARvQeioVzpr4
+ PwNQ6fpnOGVe2dhyheldKtdU7gRnCfBmBgnyLjV/mLwUTdg0SeSJANkoM
+ AAviRZCeJMz5hlT7OlG0zm0NYAWVI78OjFrEFQUKSI5n33GCa+9yCCjxv
+ VaqMwGRrh3H8fr8RhcUP96+TI8mgzfZ2SaF1WFVl49Gqh8Im5K1d1LmtJ
+ hjGvyPGuZwf23e3qwhWTMU/OP8aaVhhnMu5MPdY6qbOcgah7O6U++EUuB
+ N34NKJfPRPYD/+cDrk0mUT/ZkM+xUF9eKdJufWJwmUzzo2coQFSbFekKN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="328123741"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="328123741"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 09:06:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="725395425"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="725395425"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 28 Apr 2023 09:06:00 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 28 Apr 2023 09:05:59 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 28 Apr 2023 09:05:59 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 28 Apr 2023 09:05:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XpJ1Q3BPO5C2VDlQvXNTNdVn6V1DkO04N5mzwMc6fSiKE2sKLWiU0AXRr1a9AZXMaiDI+DpViiQzuUaaq/t0pv49Mqf+fn+Vemx9Fw8LtHnGfLvrMqkCqxivc7DJyGzbKWK0LqPkaeKNPbT+gkPrNFcef+Z37aX0IpOKCcfGSP/u1z84IKCdcAZrqhktDHdsBoh9ekOf/Y4FUMzwjKkytkvnZ/DLJwsQbfvhVZ+oND3a6Mv89d6Bp6/BWLgnYmpmTzKOE/SVuaFKxiryt/GLkJz9BFDR5L4o2+CPvnbA/4Fimv5OvviapC5CiLa2C8NzIgYT0t+kgEcOaebljK5A3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7giEEjhuWgMZ4xC8v1M5TcxmXf1JOdd/9wDb1cZ8R6I=;
+ b=KAo6tAuX9aSaDpvlUbPyT0DTvuoqEFZHeSuFvnXkgIJTHZ4A7Fsz0VxKSN8hp+yKtyI2HhkXdcMdjDzojRgPwI57rt7vODA18YiLRglRkPEpIzEpM7mSh+bntC9XgLBTxY5AlSm9Yr31b6k1uDyJ+Lb+F+ayZjKnAYfebXZqoSOwBf+dTFye+nCQsJDev98EQmB8nxnYBNDTmxwPI5H/8qGNEO7o1Jit/PptXjHLmcHm2CMMlj4EsFQvxvJdHR5TCVtbC42U3284qCQ9QAz3igMefpA3wekBp3qY7W2tS/MCnoOqO5CfFSeMjySUFvt9yAE5zQUJfxMX8ZWQvzYOvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by MW3PR11MB4761.namprd11.prod.outlook.com (2603:10b6:303:53::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Fri, 28 Apr
+ 2023 16:05:57 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5%3]) with mapi id 15.20.6340.021; Fri, 28 Apr 2023
+ 16:05:57 +0000
+Message-ID: <3b83d829-048b-174f-a21d-b28ad0b7b49e@intel.com>
+Date: Sat, 29 Apr 2023 00:07:24 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+ Firefox/102.0 Thunderbird/102.9.0
 Content-Language: en-US
-To: "Yang, Fei" <fei.yang@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230428054737.1765778-1-fei.yang@intel.com>
- <e1c73441-df6f-799c-eda0-8639067a0fea@shipmail.org>
- <BYAPR11MB25676E1468DEEB827E889DA39A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <BYAPR11MB25676E1468DEEB827E889DA39A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH v3 0/5] drm/i915: Allow user to set cache at
- BO creation
+To: Jason Gunthorpe <jgg@nvidia.com>
+References: <20230426145419.450922-1-yi.l.liu@intel.com>
+ <20230426145419.450922-3-yi.l.liu@intel.com>
+ <BN9PR11MB52768AF474FAB2AF36AC00508C6A9@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <DS0PR11MB752972AC1A6030CB442ACF3FC36A9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230427123203.22307c4f.alex.williamson@redhat.com>
+ <a6b77884-1678-b17c-f6a4-28d56e6c366b@intel.com>
+ <ZEu3Ga9cIQAykBGf@nvidia.com>
+From: Yi Liu <yi.l.liu@intel.com>
+In-Reply-To: <ZEu3Ga9cIQAykBGf@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0110.apcprd03.prod.outlook.com
+ (2603:1096:4:91::14) To DS0PR11MB7529.namprd11.prod.outlook.com
+ (2603:10b6:8:141::20)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7529:EE_|MW3PR11MB4761:EE_
+X-MS-Office365-Filtering-Correlation-Id: db1c504d-7d71-4c88-4955-08db480273a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4MmevqNMz5cIY8lPqcHldKBei7uNwh4xsUJ/8UAu/2k9NLaWqHhudMOdbMzbq3d0h62HEUlYMkRTevJiSP1CIre4MUfAEHQ6WPoP8WOLvPg2ccThp/T5frLmMoVSjm0D7bqgTeFqm7ZsVW1+R0JEm1AK4wDoI46jnbDpII+kjOthDmEN8RbUg8jL+VCy8j5mLHEx7QKlRRvdkdQx2/uv3qT1K5g5bm2aMx77JzixBpKFtrNSSYM0XE8IeRxFjiLxr7z0h3dhyb+wXcfWsXhpjA5DRvpTfsvJTapIK2yq7sRdZVOlCyGpwGXZ1+aipn8x+QICMpLtAHqjWDszHF9ULrjG+UIcBlDCsnmt3o2KNWX2KDwUTExRJX3u8dxfE/ayx+ILKWBEC0wIbner6KjWtmY0nl0JTvhMIviIymdpLlQxznvLeO6P0bOYB0P7xp4BMX60QTfjV2lCh2lto9FThMfdQvHzdWGxgLfW6Iiam4nwyJ4tRcOZCr4CEX4EmtxCT97aweKDx0IxmeskmQhnsTbSwa9cEPPdz2p/FARIyc9hBKMnkgfn5upc2RStcvJ05hrfFWbxYc50ic9QJ/naD9LwlJ2L43ZahGX9+kxcrQa/E6HYHFZLYGnR7NTJoo2Xf/jh1ACKCQPljaW+VPBgFw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(366004)(376002)(39860400002)(396003)(136003)(451199021)(66556008)(38100700002)(5660300002)(31696002)(66946007)(66476007)(8936002)(8676002)(82960400001)(41300700001)(316002)(86362001)(4326008)(7416002)(6916009)(53546011)(186003)(26005)(6506007)(6512007)(6666004)(6486002)(36756003)(83380400001)(2616005)(31686004)(2906002)(478600001)(54906003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bUp0UFkxZHN4YXJYUlRkWVkrMjRwTTRLdW1xY0NiVXB6NzExTVp1UXZpWXBm?=
+ =?utf-8?B?YmRxajdnTHJ5TEliV2ZZOU5idFNiUzd2Um9lYXJ4amwvN3hjTW03M21IQk80?=
+ =?utf-8?B?V0JRbzh2aCtuMWlxc2VkcDBEREZmdG1XNkMvb1FmRm9XMWNGdGRmTnROVzFT?=
+ =?utf-8?B?cVdMZ2pGeFZ2ZEZpUHVWejBnRFR1Z2hvaW5OZXJlQ2U3eElEdytYSk1KVmhQ?=
+ =?utf-8?B?ajNodEFKOVdhYnErTVZXU2JNcGxsb0pGU280Z3dWZ0FXVjNYMWZqVm9Bb0Fr?=
+ =?utf-8?B?UngyaWNhdmRYSmFwd1o3QWZSV3k0UTlNd0d1aVVIRjdrUXViU0FINmVUaDNw?=
+ =?utf-8?B?T0c4eG1TUmIyb0c2NmRoM2IxVmdQNXRKVlh2ZkFJSmYzRmd3bEpKMjFmSEZP?=
+ =?utf-8?B?Si9PQ3NBUXFJMW8ra1psYzZVR0toQ0VrS25xR3VRLzVVVTdwcCtkbVV0Mklm?=
+ =?utf-8?B?VVd6YTdJVjlCbXFmNHJlUjh6bFpSZFphU3R0TFBiK3hFM0pGNkdHMEhiNG9E?=
+ =?utf-8?B?WkJ2OG04Sm9ZS29UUHVwRm1sWjJYUmxUTTNGRGxDZjRlekxYL2hpRTh6VFFo?=
+ =?utf-8?B?MnVHem9aTkFack5tZCtmY3lsU29SV0RvTDFiQ3k0OWZmeHIwVk1aSzE1R3FB?=
+ =?utf-8?B?S3RieGRncEt2Y0VyaWpINUxBMFRXOW5TVkN1TXBKUjBnSmJDYW1wK3dCWVJv?=
+ =?utf-8?B?Y2RzRFpFMzVCSE41MGJiNTF2Q21YR2ZZekZvdjJqMWRHZzdtVmtuQWFmQU41?=
+ =?utf-8?B?V1p5UWE2TFhhZStpbUxxSmZOMlArYUtxdDAyMTVhY2x6bTJEMVIzRTUraGhj?=
+ =?utf-8?B?eFRwU3F1UFBCTURCajhoYWdQNUtkUWN3L3lrVUkvUkIwVng2NnczMlB1TW52?=
+ =?utf-8?B?cU5lNlVwVzlaU3BRdndHaFl6alZrUUVJblF2YXQ0V3p3MzdrN01Ha3lFUjNu?=
+ =?utf-8?B?Z21UT0hPSUxXMWcwUGNtKzZWN2s0YXhCTHBNTWhDRmxibm9tVXNydGh4d3Qv?=
+ =?utf-8?B?aENDcTlQc2xEQ0ZDR1ZmaGJoNmpiSVg0b2dBZVg5REI4T09zbzFjcDE5OUtk?=
+ =?utf-8?B?UmxsREZyRjl1bTF3VzNkcGxMcDRXdUdCYVRMWk1IazJTb2ZQUG5RNU1PQ2d5?=
+ =?utf-8?B?OEVXMENlNXNFb3FneUYvVkZIdU95djVnbmRtbHYrYVdHUlJBcG5JODZmMktD?=
+ =?utf-8?B?NWZtL3ZqWDZVZ1VGdHJCZk8xVm1KZk1jclJFWW5jdVp3TnB1eEtuNytIQXYy?=
+ =?utf-8?B?dWU5Q3lzbnl1SDVIYm5ROTE5dHFTbEhxTVkwaDlIcUZibHlIL3BjblBQazQx?=
+ =?utf-8?B?bDBMQytHU1Uza0tYNVJUWVh1TW55RDJGTm80K0VSNUdHMU9ITUNJSm5US3Fy?=
+ =?utf-8?B?VlA2SllWOWlWZVpvS2ZsOEh4MkNWVmkyZ29VYjFJaU1hSmRQQUdTNUg2Vm9D?=
+ =?utf-8?B?WURkbWRLaWszbFA4Mm52N3Jock1RNDRDTWZWK0JnUXFwSjlaZENadkQ4dVR1?=
+ =?utf-8?B?M09rbDl5NUdxVzdPblhSYkgvYkhzeVRyZ0N3azRHbVNsSFd2aEx3czJ0UEVz?=
+ =?utf-8?B?UnB3N1l0anlycVdKU2RIVThhelE4anBwTEJaVnl1dWVEc0hLRnNTVS9VWm53?=
+ =?utf-8?B?elBrOGpSQUpqUTBlSUFkSEpETHRnclB4YmVIcWFmRnhaenRBZ1hsenUvYllV?=
+ =?utf-8?B?azdDcGVsaW9PYVJBMlhraHp3bFN3VVMrNnBVTFZGMFphNjJuMWhhMVZHUVFa?=
+ =?utf-8?B?WGprTFJTaHpqS3hPSEU0YXJCV216WWJQbVNROS8vb1FvSUxtcW5yQTRoNUxi?=
+ =?utf-8?B?UWpmd2Y3bmFIaUQ2WXZGNHZYYUxEVWVVaTczOForYlpQQ3g1TWd0cFNnYzVJ?=
+ =?utf-8?B?dTMyWDd5dU16MmFPSGF1UTlNNXlTVVR0VUNGeWlwcStTVHhHZU50MEdBOUt3?=
+ =?utf-8?B?bzM1ZHRLYTdxQXh1RXhOK2tNNnlXWTZKU2FHQjU4c052amtnS2hDeE5CUTVu?=
+ =?utf-8?B?RlR0TVRWYitIOExGVmhuYzF3NkU3M1Z5YzNueFpyS2FvUUZVQ2t5d0IrVndt?=
+ =?utf-8?B?WGQ1MTdoUFVFU2lhbnJ3SnlHMi9KaDRNaStobkU4SG9oSFl4MERTcjc5THJT?=
+ =?utf-8?Q?U1IkVQnOOaM70FAKMpjd5HivH?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: db1c504d-7d71-4c88-4955-08db480273a4
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2023 16:05:57.4564 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VjIXySuzWE/J4BbqM1MhS2d1F/EzdtBaaZUrygPLIFYOBP3HHAbKnaMdfyM/pbe0YCsQwahL8MDgg0v39bZYDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4761
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v4 2/9] vfio-iommufd: Create iommufd_access
+ for noiommu devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,374 +160,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, 
+ Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Xu, Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
+ Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------TBjWPXGSST10I4z0rAAYmFJq
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On 2023/4/28 20:07, Jason Gunthorpe wrote:
+> On Fri, Apr 28, 2023 at 02:21:26PM +0800, Yi Liu wrote:
+> 
+>> but this patch needs to use vfio_iommufd_emulated_bind() and
+>> vfio_iommufd_emulated_unbind() for the noiommu devices when binding
+>> to iommufd. So needs to check noiommu in the vfio_iommufd_bind()
+>> and vfio_iommu_unbind() as well.
+> 
+> I'm not sure this is strictly necessary, it just needs an access
+> 
+> The emulated stuff is for mdev only, it should not be confused with
+> no-iommu
 
+hmmm. I guess the confusion is due to the reuse of 
+vfio_iommufd_emulated_bind().
 
-On 4/28/23 17:19, Yang, Fei wrote:
-> > On 4/28/23 07:47, fei.yang@intel.com wrote:
-> >> From: Fei Yang <fei.yang@intel.com>
-> >>
-> >> The first three patches in this series are taken from
-> >> https://patchwork.freedesktop.org/series/116868/
-> >> These patches are included here because the last patch
-> >> has dependency on the pat_index refactor.
-> >>
-> >> This series is focusing on uAPI changes,
-> >> 1. end support for set caching ioctl [PATCH 4/5]
-> >> 2. add set_pat extension for gem_create [PATCH 5/5]
-> >>
-> >> v2: drop one patch that was merged separately
-> >>      341ad0e8e254 drm/i915/mtl: Add PTE encode function
-> >> v3: rebase on https://patchwork.freedesktop.org/series/117082/
-> >
-> > Hi, Fei.
-> >
-> > Does this uAPI update also affect any discrete GPUs supported by i915,
->
-> It does.
->
-> > And in that case, does it allow setting non-snooping PAT indices on
-> > those devices?
->
-> It allows setting PAT indices specified in
-> KMD does a sanity check so that it won't go over the max recommended
-> by bspec.
->
-> > If so, since the uAPI for discrete GPU devices doesn't allow incoherency
-> > between GPU and CPU (apart from write-combining buffering), the correct
-> > CPU caching mode matching the PAT index needs to be selected for the
-> > buffer object in i915_ttm_select_tt_caching().
->
-> The patch doesn't affect the CPU caching mode setting logic though.
-> And the caching settings for objects created by kernel should remain
-> the same for both CPU and GPU, objects created by userspace are
-> managed completely by userspace.
->
-> One question though, what do you mean by non-snooping PAT indices?
-> The PAT index registers don't really control coherency mode in the past,
-> I believe MTL is the first one that has COH_MODE in the PAT registers.
-> Aren't discrete GPUs snooping CPU cache automatically?
+> 
+> Eg if you had a no_iommu_access value to store the access it would be
+> fine and could serve as the 'this is no_iommu' flag
 
-Yes, that was actually the bottom question: What do these PAT settings 
-allow you to do WRT the snooping on supported discrete devices (DG2) on 
-i915?
+So this no_iommu_access shall be created per iommufd bind, and call the
+iommufd_access_create() with iommufd_access_ops. is it? If so, this is
+not 100% the same with no_iommu flag as this flag is static after device
+registration.
 
-If they indeed don't allow disabling snooping, then that's not a 
-problem. If they do, the ttm code there needs some modification.
+> 
+> The only purpose of the access at this moment is to get an iommufdctx
+> id to return to userspace.
 
+yes. and it is the iommufd_access ID to be returned to userspace.
 
-Thanks,
-
-Thomas
-
-
-
->
-> -Fei
->
-> > Thanks,
-> > Thomas
-> >
-> >>
-> >> Fei Yang (5):
-> >>    drm/i915: preparation for using PAT index
-> >>    drm/i915: use pat_index instead of cache_level
-> >>    drm/i915: make sure correct pte encode is used
-> >>    drm/i915/mtl: end support for set caching ioctl
-> >>    drm/i915: Allow user to set cache at BO creation
-> >>
-> >> drivers/gpu/drm/i915/display/intel_dpt.c      | 12 +--
-> >> drivers/gpu/drm/i915/gem/i915_gem_create.c    | 36 +++++++++
-> >> drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 46 ++++++-----
-> >> .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-
-> >> drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-
-> >> drivers/gpu/drm/i915/gem/i915_gem_object.c    | 67 +++++++++++++++-
-> >> drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
-> >> .../gpu/drm/i915/gem/i915_gem_object_types.h  | 26 +++++-
-> >> drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 ++-
-> >> drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
-> >> drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
-> >> drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--
-> >> .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
-> >> .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
-> >> .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
-> >> drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
-> >> drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 73 +++++++++--------
-> >> drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-
-> >> drivers/gpu/drm/i915/gt/intel_ggtt.c          | 76 +++++++++---------
-> >> drivers/gpu/drm/i915/gt/intel_gtt.h           | 20 +++--
-> >>   drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
-> >> drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
-> >> drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
-> >> drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 +++++------
-> >> drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
-> >> drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
-> >> drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
-> >> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
-> >> drivers/gpu/drm/i915/i915_debugfs.c           | 55 ++++++++++---
-> >> drivers/gpu/drm/i915/i915_gem.c               | 16 +++-
-> >> drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
-> >> drivers/gpu/drm/i915/i915_pci.c               | 79 ++++++++++++++++---
-> >> drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
-> >> drivers/gpu/drm/i915/i915_vma.h               |  2 +-
-> >> drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
-> >> drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
-> >> drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
-> >> .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
-> >> drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
-> >> .../drm/i915/selftests/intel_memory_region.c  |  4 +-
-> >> .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++
-> >> drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
-> >> include/uapi/drm/i915_drm.h                   | 36 +++++++++
-> >> tools/include/uapi/drm/i915_drm.h             | 36 +++++++++
-> >>   44 files changed, 621 insertions(+), 243 deletions(-)
-> >>
->
---------------TBjWPXGSST10I4z0rAAYmFJq
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 4/28/23 17:19, Yang, Fei wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:BYAPR11MB25676E1468DEEB827E889DA39A6B9@BYAPR11MB2567.namprd11.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof
-        ContentPasted0 ContentPasted2">
-        &gt; On 4/28/23 07:47, <a class="moz-txt-link-abbreviated" href="mailto:fei.yang@intel.com">fei.yang@intel.com</a> wrote:
-        <div class="ContentPasted0">&gt;&gt; From: Fei Yang
-          <a class="moz-txt-link-rfc2396E" href="mailto:fei.yang@intel.com">&lt;fei.yang@intel.com&gt;</a></div>
-        <div class="ContentPasted0">&gt;&gt;</div>
-        <div class="ContentPasted0">&gt;&gt; The first three patches in
-          this series are taken from</div>
-        <div class="ContentPasted0">&gt;&gt;
-          <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/116868/">https://patchwork.freedesktop.org/series/116868/</a></div>
-        <div class="ContentPasted0">&gt;&gt; These patches are included
-          here because the last patch</div>
-        <div class="ContentPasted0">&gt;&gt; has dependency on the
-          pat_index refactor.</div>
-        <div class="ContentPasted0">&gt;&gt;</div>
-        <div class="ContentPasted0">&gt;&gt; This series is focusing on
-          uAPI changes,</div>
-        <div class="ContentPasted0">&gt;&gt; 1. end support for set
-          caching ioctl [PATCH 4/5]</div>
-        <div class="ContentPasted0">&gt;&gt; 2. add set_pat extension
-          for gem_create [PATCH 5/5]</div>
-        <div class="ContentPasted0">&gt;&gt;</div>
-        <div class="ContentPasted0">&gt;&gt; v2: drop one patch that was
-          merged separately</div>
-        <div class="ContentPasted0">&gt;&gt;      341ad0e8e254
-          drm/i915/mtl: Add PTE encode function</div>
-        <div class="ContentPasted0">&gt;&gt; v3: rebase on
-          <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/117082/">https://patchwork.freedesktop.org/series/117082/</a></div>
-        <div class="ContentPasted0">&gt;</div>
-        <div class="ContentPasted0">&gt; Hi, Fei.</div>
-        <div class="ContentPasted0">&gt;</div>
-        <div class="ContentPasted0">&gt; Does this uAPI update also
-          affect any discrete GPUs supported by i915,</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">It does.</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">&gt; And in that case, does it allow
-          setting non-snooping PAT indices on</div>
-        <div class="ContentPasted0">&gt; those devices?</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">It allows setting PAT indices
-          specified in <br>
-        </div>
-        <div class="ContentPasted0">KMD does a sanity check so that it
-          won't go over the max recommended</div>
-        <div class="ContentPasted0">by bspec.</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">&gt; If so, since the uAPI for
-          discrete GPU devices doesn't allow incoherency</div>
-        <div class="ContentPasted0">&gt; between GPU and CPU (apart from
-          write-combining buffering), the correct</div>
-        <div class="ContentPasted0">&gt; CPU caching mode matching the
-          PAT index needs to be selected for the</div>
-        <div class="ContentPasted0">&gt; buffer object in
-          i915_ttm_select_tt_caching().</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">The patch doesn't affect the CPU
-          caching mode setting logic though.</div>
-        <div class="ContentPasted0">And the caching settings for objects
-          created by kernel should remain</div>
-        <div class="ContentPasted0">the same for both CPU and GPU,
-          objects created by userspace are</div>
-        <div class="ContentPasted0">managed completely by userspace.</div>
-        <div><br class="ContentPasted0">
-        </div>
-        <div class="ContentPasted0">One question though, what do you
-          mean by non-snooping PAT indices?</div>
-        <div class="ContentPasted0">The PAT index registers don't really
-          control coherency mode in the past,</div>
-        <div class="ContentPasted0">I believe MTL is the first one that
-          has COH_MODE in the PAT registers.</div>
-        <div class="ContentPasted0">Aren't discrete GPUs snooping CPU
-          cache automatically?</div>
-      </div>
-    </blockquote>
-    <p>Yes, that was actually the bottom question: What do these PAT
-      settings allow you to do WRT the snooping on supported discrete
-      devices (DG2) on i915?</p>
-    <p>If they indeed don't allow disabling snooping, then that's not a
-      problem. If they do, the ttm code there needs some modification.<br>
-    </p>
-    <p><br>
-    </p>
-    <p>Thanks,</p>
-    <p>Thomas</p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-cite="mid:BYAPR11MB25676E1468DEEB827E889DA39A6B9@BYAPR11MB2567.namprd11.prod.outlook.com">
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof
-        ContentPasted0 ContentPasted2">
-        <div class="ContentPasted1"><br>
-        </div>
-        <div class="ContentPasted1">-Fei</div>
-        <div class="ContentPasted1"><br>
-        </div>
-        <div class="ContentPasted1">&gt; Thanks,</div>
-        <div class="ContentPasted1">&gt; Thomas</div>
-        <div class="ContentPasted1">&gt;</div>
-        <div class="ContentPasted1">&gt;&gt;</div>
-        <div class="ContentPasted1">&gt;&gt; Fei Yang (5):</div>
-        <div class="ContentPasted1">&gt;&gt;    drm/i915: preparation
-          for using PAT index</div>
-        <div class="ContentPasted1">&gt;&gt;    drm/i915: use pat_index
-          instead of cache_level</div>
-        <div class="ContentPasted1">&gt;&gt;    drm/i915: make sure
-          correct pte encode is used</div>
-        <div class="ContentPasted1">&gt;&gt;    drm/i915/mtl: end
-          support for set caching ioctl</div>
-        <div class="ContentPasted1">&gt;&gt;    drm/i915: Allow user to
-          set cache at BO creation</div>
-        <div class="ContentPasted1">&gt;&gt;</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/display/intel_dpt.c      | 12 +--</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_create.c    | 36 +++++++++</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 46 ++++++-----</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_object.c    | 67
-          +++++++++++++++-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          .../gpu/drm/i915/gem/i915_gem_object_types.h  | 26 +++++-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 ++-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 73
-          +++++++++--------</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/intel_ggtt.c          | 76
-          +++++++++---------</div>
-        <div class="ContentPasted1">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/intel_gtt.h           | 20 +++--</div>
-        &gt;&gt;   drivers/gpu/drm/i915/gt/intel_migrate.c       | 47
-        ++++++-----
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 +++++------</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_debugfs.c           | 55
-          ++++++++++---</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_gem.c               | 16 +++-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_pci.c               | 79
-          ++++++++++++++++---</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_vma.c               | 16 ++--</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_vma.h               |  2 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/i915_vma_types.h         |  2 -</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/intel_device_info.h      |  5 ++</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          .../drm/i915/selftests/intel_memory_region.c  |  4 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          include/uapi/drm/i915_drm.h                   | 36 +++++++++</div>
-        <div class="ContentPasted2">&gt;&gt;  
-          tools/include/uapi/drm/i915_drm.h             | 36 +++++++++</div>
-        <div class="ContentPasted2">&gt;&gt;   44 files changed, 621
-          insertions(+), 243 deletions(-)</div>
-        <div class="ContentPasted2">&gt;&gt;</div>
-        <br>
-      </div>
-    </blockquote>
-  </body>
-</html>
-
---------------TBjWPXGSST10I4z0rAAYmFJq--
+-- 
+Regards,
+Yi Liu
