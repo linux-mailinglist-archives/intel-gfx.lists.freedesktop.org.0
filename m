@@ -2,61 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A805E6F131D
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 10:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC17D6F1311
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 10:15:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F53510EC7B;
-	Fri, 28 Apr 2023 08:15:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 537 seconds by postgrey-1.36 at gabe;
- Fri, 28 Apr 2023 08:15:56 UTC
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA9F10E65E;
- Fri, 28 Apr 2023 08:15:56 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id A02D63F819;
- Fri, 28 Apr 2023 10:06:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id DPV-orLKB_Mt; Fri, 28 Apr 2023 10:06:55 +0200 (CEST)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 9961B3F802;
- Fri, 28 Apr 2023 10:06:54 +0200 (CEST)
-Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 0EB4436322E;
- Fri, 28 Apr 2023 10:06:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1682669214; bh=iBHmpox9n0J5Bo93oJctoF5qYJPhn8L69X0KpoEdt88=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=hGimOHXSqYe/+orzsDMfMhzPtwuElrPg2gq7+dV7Jhjaz13tfLGlNGVC6rHvDcTU3
- ZX+1qZYuEGyuIKl5sUxxNok7MfBRVzzZKqjk+WQSPR3b5TWpJSfNBlwSjulUiut6yh
- hx9q3jaoOrcdCNBhqxo2p8+RCeD6Ntxxr6Hs7DDg=
-Message-ID: <e1c73441-df6f-799c-eda0-8639067a0fea@shipmail.org>
-Date: Fri, 28 Apr 2023 10:06:53 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDF5210E65E;
+	Fri, 28 Apr 2023 08:15:07 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D15C610E65E;
+ Fri, 28 Apr 2023 08:15:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682669705; x=1714205705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1IuvXQBidCIhMhVFkMAv2ZYRCd3w9TqEaED6SaU7+4k=;
+ b=IrfqKV0cKweWfh6+HddNCzAlZUg3auZ4t5vWPbOqS30MiYbp6rLFkijL
+ vYe9iQUNWDm1MhlXY7hpyLGFbdIbXA0EGYVvk10KguHTC+GwCdJkfz0NY
+ +f1HBRtnV1m+gPMFtavbYdye2zd1Uw0MS1MnrmZnY/IA94Ak9+zNmeVbR
+ 7rdJGM/IzsGNiHqLXOruQzsQofBghH4qHP+EHi2CbJnLsY9sRis53Nmyn
+ XampD6X+TYsovOs33maM6BblnL0R6g9L1sMcIcM731SWzC3zI7C2dNQ95
+ lzytF8tLj6Z+OOcPIRmcmsp0qV8TF/ORdlQ2WLrj1NKlNQv6EKxtRIi+W g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="328011787"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="328011787"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 01:15:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="694726753"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="694726753"
+Received: from ksathish-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.194.196])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 01:15:03 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 28 Apr 2023 09:14:53 +0100
+Message-Id: <20230428081457.857009-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20230428054737.1765778-1-fei.yang@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20230428054737.1765778-1-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 0/5] drm/i915: Allow user to set cache at
- BO creation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC v2 0/4] Expose RPS thresholds in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,92 +57,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 4/28/23 07:47, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
->
-> The first three patches in this series are taken from
-> https://patchwork.freedesktop.org/series/116868/
-> These patches are included here because the last patch
-> has dependency on the pat_index refactor.
->
-> This series is focusing on uAPI changes,
-> 1. end support for set caching ioctl [PATCH 4/5]
-> 2. add set_pat extension for gem_create [PATCH 5/5]
->
-> v2: drop one patch that was merged separately
->      341ad0e8e254 drm/i915/mtl: Add PTE encode function
-> v3: rebase on https://patchwork.freedesktop.org/series/117082/
+From patch 4:
 
-Hi, Fei.
+    User feedback indicates significant performance gains are possible in
+    specific games with non default RPS up/down thresholds.
 
-Does this uAPI update also affect any discrete GPUs supported by i915, 
-And in that case, does it allow setting non-snooping PAT indices on 
-those devices?
+    Expose these tunables via sysfs which will allow users to achieve best
+    performance when running games and best power efficiency elsewhere.
 
-If so, since the uAPI for discrete GPU devices doesn't allow incoherency 
-between GPU and CPU (apart from write-combining buffering), the correct 
-CPU caching mode matching the PAT index needs to be selected for the 
-buffer object in i915_ttm_select_tt_caching().
+    Note this patch supports non GuC based platforms only.
 
-Thanks,
-Thomas
+    References: https://gitlab.freedesktop.org/drm/intel/-/issues/8389
 
->
-> Fei Yang (5):
->    drm/i915: preparation for using PAT index
->    drm/i915: use pat_index instead of cache_level
->    drm/i915: make sure correct pte encode is used
->    drm/i915/mtl: end support for set caching ioctl
->    drm/i915: Allow user to set cache at BO creation
->
->   drivers/gpu/drm/i915/display/intel_dpt.c      | 12 +--
->   drivers/gpu/drm/i915/gem/i915_gem_create.c    | 36 +++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 46 ++++++-----
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++-
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  3 +-
->   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 67 +++++++++++++++-
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
->   .../gpu/drm/i915/gem/i915_gem_object_types.h  | 26 +++++-
->   drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  9 ++-
->   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
->   drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 16 ++--
->   .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
->   .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
->   .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
->   drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
->   drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 73 +++++++++--------
->   drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-
->   drivers/gpu/drm/i915/gt/intel_ggtt.c          | 76 +++++++++---------
->   drivers/gpu/drm/i915/gt/intel_gtt.h           | 20 +++--
->   drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
->   drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
->   drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
->   drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 +++++------
->   drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
->   drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
->   drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
->   drivers/gpu/drm/i915/i915_debugfs.c           | 55 ++++++++++---
->   drivers/gpu/drm/i915/i915_gem.c               | 16 +++-
->   drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
->   drivers/gpu/drm/i915/i915_pci.c               | 79 ++++++++++++++++---
->   drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
->   drivers/gpu/drm/i915/i915_vma.h               |  2 +-
->   drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
->   drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
->   drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
->   .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
->   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
->   .../drm/i915/selftests/intel_memory_region.c  |  4 +-
->   .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++
->   drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
->   include/uapi/drm/i915_drm.h                   | 36 +++++++++
->   tools/include/uapi/drm/i915_drm.h             | 36 +++++++++
->   44 files changed, 621 insertions(+), 243 deletions(-)
->
+Issue 8389 suggests 10-15% performance gains are possible with tweaked
+thresholds.
+
+One question is are we able to find a "one size fits all" values.
+
+However regardless of that, given we already expose frequency controls in sysfs
+with the same reasoning of allowing system owners explicit control if so wanted,
+I think exposing the thresholds can be equally justified.
+
+v2:
+ * Hopefully fixed the debug build issue.
+ * Re-program the hw registers on change too!
+
+Tvrtko Ursulin (4):
+  drm/i915: Move setting of rps thresholds to init
+  drm/i915: Record default rps threshold values
+  drm/i915: Add helpers for managing rps thresholds
+  drm/i915: Expose RPS thresholds in sysfs
+
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 104 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    |   3 +
+ drivers/gpu/drm/i915/gt/intel_rps.c         |  70 ++++++++++---
+ drivers/gpu/drm/i915/gt/intel_rps.h         |   4 +
+ 4 files changed, 170 insertions(+), 11 deletions(-)
+
+-- 
+2.37.2
+
