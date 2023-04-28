@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5776F1071
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 04:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8845A6F10A0
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 05:00:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAF2410EC41;
-	Fri, 28 Apr 2023 02:34:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8D010E00B;
+	Fri, 28 Apr 2023 03:00:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73BD010EC39;
- Fri, 28 Apr 2023 02:34:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682649280; x=1714185280;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rs2nq581ldEuTM6lWyDSbnCHfj1xsJRLbiW5aWmTsjw=;
- b=aCEnDCmzjdWMmymWG9AVMRJ101144uE9TciSA/TFl6lhPZBi5OMbRsH1
- 647tDRuO1CZO6j0306R3ycHGdRu2hR7U2DHSWHlY1ne9Yr6sCWC7rXKOJ
- xD/Wu758YQxYLQr0swJdgLDfj0Lau8wp2XE1kOMbdXkvPZq9vlAcnrtmm
- dYQ9l4NY/Wh8bfmjOajyW93DnNYe8d9LPMYYZ06bhmV2KW7qVponDHy+c
- Gx8uMQB0fjfYGl65HdJjyj++fE3GvHabBZ8s0Rzby0o1y5ckd6CRgT8FR
- 8F8BnliyRkAMNYAkDmiw3k8vbd85YYQMmZU8K9R7/qKyDoFqSJqvWmGVh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="346386516"
-X-IronPort-AV: E=Sophos;i="5.99,233,1677571200"; d="scan'208";a="346386516"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 19:34:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="644937262"
-X-IronPort-AV: E=Sophos;i="5.99,233,1677571200"; d="scan'208";a="644937262"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2023 19:34:40 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Apr 2023 19:34:16 -0700
-Message-Id: <20230428023416.4051910-9-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230428023416.4051910-1-daniele.ceraolospurio@intel.com>
-References: <20230428023416.4051910-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B1A010E00B;
+ Fri, 28 Apr 2023 03:00:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20EE8A66C9;
+ Fri, 28 Apr 2023 03:00:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/huc: define HuC FW version for MTL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Fri, 28 Apr 2023 03:00:06 -0000
+Message-ID: <168265080610.32439.1856865667585910214@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230428023416.4051910-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230428023416.4051910-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_HuC_loading_and_authentication_for_MTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,31 +40,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the same logic as DG2, so just a meu binary with no version number.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: drm/i915: HuC loading and authentication for MTL
+URL   : https://patchwork.freedesktop.org/series/117080/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 3338dd45e78b..796f54a62eef 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -102,6 +102,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
- 	fw_def(SKYLAKE,      0, guc_mmp(skl,  70, 1, 1))
- 
- #define INTEL_HUC_FIRMWARE_DEFS(fw_def, huc_raw, huc_mmp, huc_gsc) \
-+	fw_def(METEORLAKE,   0, huc_gsc(mtl)) \
- 	fw_def(DG2,          0, huc_gsc(dg2)) \
- 	fw_def(ALDERLAKE_P,  0, huc_raw(tgl)) \
- 	fw_def(ALDERLAKE_P,  0, huc_mmp(tgl,  7, 9, 3)) \
--- 
-2.40.0
+== Summary ==
+
+Error: dim checkpatch failed
+0ce1e3ea75ee DO NOT REVIEW: drm/i915: Add support for MTL GSC SW Proxy
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:133: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#133: 
+new file mode 100644
+
+-:138: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#138: FILE: drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c:1:
++#include "intel_gsc_proxy.h"
+
+-:140: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#140: FILE: drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c:3:
++// SPDX-License-Identifier: MIT
+
+-:278: WARNING:MEMORY_BARRIER: memory barrier without comment
+#278: FILE: drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c:141:
++	wmb();
+
+-:321: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#321: FILE: drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c:184:
++
++}
+
+total: 0 errors, 4 warnings, 1 checks, 988 lines checked
+d626311e03a1 drm/i915/uc: perma-pin firmwares
+-:114: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#114: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:117:
++intel_uc_ops_function(resume_mappings, resume_mappings, void, );
+
+total: 1 errors, 0 warnings, 0 checks, 196 lines checked
+243c17062287 drm/i915/huc: Parse the GSC-enabled HuC binary
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
+
+-:411: WARNING:LINE_SPACING: Missing a blank line after declarations
+#411: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:623:
++		u32 delta = uc_fw->dma_start_offset;
++		__check_ccs_header(gt, fw->data + delta, fw->size - delta, uc_fw);
+
+total: 0 errors, 2 warnings, 0 checks, 379 lines checked
+444c00ae6339 drm/i915/huc: Load GSC-enabled HuC via DMA xfer if the fuse says so
+-:56: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#56: FILE: drivers/gpu/drm/i915/gt/uc/intel_huc.c:321:
++		huc_err(huc," HW in legacy mode, but we have an incompatible meu blob\n");
+ 		           ^
+
+total: 1 errors, 0 warnings, 0 checks, 131 lines checked
+956cd2b7b0be drm/i915/huc: differentiate the 2 steps of the MTL HuC auth flow
+-:47: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#47: FILE: drivers/gpu/drm/i915/gt/uc/intel_huc.c:128:
++	GEM_BUG_ON(intel_huc_is_authenticated(huc, INTEL_HUC_AUTH_BY_GSC));
+
+-:298: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'base' may be better as '(base)' to avoid precedence issues
+#298: FILE: drivers/gpu/drm/i915/i915_reg.h:944:
++#define HECI_FWSTS5(base)		_MMIO(base + 0xc68)
+
+total: 0 errors, 1 warnings, 1 checks, 258 lines checked
+6340719ed1b3 drm/i915/mtl/huc: auth HuC via GSC
+-:9: WARNING:TYPO_SPELLING: 'fuction' may be misspelled - perhaps 'function'?
+#9: 
+The intel_huc_auth fuction is also updated to handle both authentication
+                   ^^^^^^^
+
+-:83: WARNING:LINE_SPACING: Missing a blank line after declarations
+#83: FILE: drivers/gpu/drm/i915/gt/uc/intel_huc.c:359:
++		struct i915_vma *vma = intel_guc_allocate_vma(&gt->uc.guc, SZ_8K);
++		if (IS_ERR(vma)) {
+
+-:155: ERROR:SPACING: space required before the open parenthesis '('
+#155: FILE: drivers/gpu/drm/i915/gt/uc/intel_huc.c:479:
++	switch(type) {
+
+total: 1 errors, 2 warnings, 0 checks, 328 lines checked
+83b98c868a5c drm/i915/mtl/huc: Use the media gt for the HuC getparam
+c7c054ca0cad drm/i915/huc: define HuC FW version for MTL
+
 
