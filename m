@@ -1,56 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4D36F1369
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 10:44:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABC76F136D
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 10:46:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69AC310E3A2;
-	Fri, 28 Apr 2023 08:44:57 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A1FB10E3A2;
- Fri, 28 Apr 2023 08:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD2C310E0CA;
+	Fri, 28 Apr 2023 08:46:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83CB610E0CA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 08:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682671496; x=1714207496;
- h=message-id:date:mime-version:subject:from:to:references:
- in-reply-to:content-transfer-encoding;
- bh=HaArLA49P7+6NLAqGisNOe4gyVgpD4p1Dtm5COyMi7k=;
- b=WLovsS0jrSAZOEgWbLTWwdsmRN7DVa3wfXaAFnZH8/MN8DJllU8offqG
- M2WtQMPNPfrBR1K5wEP5bTmSpC9t3y56sXvFLERcixlXrYhOPjXF3GdCU
- ++90FqZ1eVxOHh1SsVl2IbBbfSxibJr7ahRmKRH2V8EWKLOaOgq6PSovT
- V3oq60usapPqp8Y2ul6Rtr+Em5HFmmqltPshp7SC8G7/jW2/XIOz299gd
- HeMigVcyVFkCpETpzt7xGo01ijPU+RQlVnxGI8j5FCqfH325IIj+YG+Zj
- JyROVyto+cAjqACjawniwgljbO1nPSyt4+wEEzc0DKg1aomhXLGRzHYf1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="413069042"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="413069042"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 01:44:55 -0700
+ t=1682671579; x=1714207579;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=MiIRPSbnyPcNBtaIyN1Mx4srv0050xqGX02MVcrejCc=;
+ b=i+pWaa7+C+SMFE5YaDGDKHilbyWmgsuDhCjNMQ7Pv9lcml8YQj8GHU20
+ 4Q1mAjE/96lfEps+vAXPnp0hvKBdizwQAa4xv8E8FeJxzUI0XH2hsj78c
+ rjd3/UmY5bveGUfe4Y7QjMUMYcU3JkswwxDw75k5RfVEq7Zo+dTrX/AsX
+ ChMxgSBwKWbi5RSP8bbDf5b3H0141Nd9dJTjeBkj/2/wWwn++dLIE2PoW
+ 45Vws9HiRyC/nwYPUBdDybzWb8AFPtmO125dtjTbK27f68+rGTXc6J/xX
+ cZFAWEB88kp5kHRJTSLFIGQE7b2lV0ZmbxLqPMRkWpfAIbUwCUDc5Lcsq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="331994904"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="331994904"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 01:46:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727456396"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="727456396"
-Received: from ksathish-mobl.ger.corp.intel.com (HELO [10.213.194.196])
- ([10.213.194.196])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 01:44:54 -0700
-Message-ID: <3b2a7f29-6490-00d0-8f29-f8bd5cea0d11@linux.intel.com>
-Date: Fri, 28 Apr 2023 09:44:53 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="694730918"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="694730918"
+Received: from ahermans-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.35.91])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 01:46:17 -0700
+Date: Fri, 28 Apr 2023 10:46:14 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZEuH1i5ZEbjHcYEK@ashyti-mobl2.lan>
+References: <20230425-hugepage-migrate-v8-0-7868d54eaa27@intel.com>
+ <20230425-hugepage-migrate-v8-1-7868d54eaa27@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230428081457.857009-1-tvrtko.ursulin@linux.intel.com>
- <20230428081457.857009-5-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230428081457.857009-5-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 4/4] drm/i915: Expose RPS thresholds in sysfs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230425-hugepage-migrate-v8-1-7868d54eaa27@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v8 1/2] drm/i915: Migrate platform-dependent
+ mock hugepage selftests to live
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +60,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, linux-kernel@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Andrzej,
 
-On 28/04/2023 09:14, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Wed, Apr 26, 2023 at 11:28:48PM +0200, Andrzej Hajda wrote:
+> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 > 
-> User feedback indicates significant performance gains are possible in
-> specific games with non default RPS up/down thresholds.
+> Convert the igt_mock_ppgtt_huge_fill and igt_mock_ppgtt_64K mock selftests
+> into live selftests as their requirements have recently become
+> platform-dependent. Additionally, apply necessary platform dependency
+> checks to these tests.
 > 
-> Expose these tunables via sysfs which will allow users to achieve best
-> performance when running games and best power efficiency elsewhere.
+> v8:
+> - handle properly 64K and 2M pages
+> v9:
+> - do not expect 64K pages if 2M are present
+> - fix hex printing
+> - obey commit message line limit
 > 
-> Note this patch supports non GuC based platforms only.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8389
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Co-developed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-[snip]
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index a5a7315f5ace..f790e81546ff 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -2588,7 +2588,12 @@ static int rps_set_threshold(struct intel_rps *rps, u8 *threshold, u8 val)
->   	ret = mutex_lock_interruptible(&rps->lock);
->   	if (ret)
->   		return ret;
-> -	*threshold = val;
-> +	if (*threshold != val) {
-> +		*threshold = val;
-> +		intel_rps_set(rps, clamp(rps->cur_freq,
-> +					 rps->min_freq_softlimit,
-> +					 rps->max_freq_softlimit));
-> +	}
->   	mutex_unlock(&rps->lock);
->   
->   	return 0;
-
-This hunk belongs to a previous patch - moved locally.
-
-Regards,
-
-Tvrtko
+Andi
