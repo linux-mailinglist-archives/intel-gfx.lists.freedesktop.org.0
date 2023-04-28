@@ -2,53 +2,160 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED006F1EC0
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 21:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FA96F1F03
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 21:55:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9462810EDCD;
-	Fri, 28 Apr 2023 19:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE6A10EDE9;
+	Fri, 28 Apr 2023 19:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB5610EDCD
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 19:29:36 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5127410EDE9;
+ Fri, 28 Apr 2023 19:55:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682710176; x=1714246176;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TjilN+qelYpfQVnXdeKbwiFDpv0B+6AWRKgMLq+AecY=;
- b=XJC6KJO93bvIUkbruB9wx7ubcVzhf4JAiQidpRXtaj87sX/vWybiMtE1
- XLqOqX5N8b4rmqJrEd9I9Qcvg3btsxN9fQFdaMeVUgQbb3A4dB7RzWhLw
- 5eV16okdaomfoOW6IlIMnyIYdkMIU7j/F1SOiJa/NePcqhAEKU2PvyPab
- LO0KfFnTYSYhD7uRemMkpkO8kD9xZgT2YXuQ9JGrMdT18jY+4OuCUlDbr
- WK50WDN1iNQ2TNe/qlWZPONM8g/I2u3ZnNYwLQ1zR7ndbhYON3h0w6azz
- RDE2z6sqBHwET3AOaQncqlUypIAlZ95QO44jw5jJE+RRTrtwMQb10Kut4 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="347860164"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="347860164"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 12:29:35 -0700
+ t=1682711701; x=1714247701;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:mime-version;
+ bh=gkVKk2SWnj1lUFWtAlJC+4wyERnb9XtfPYVXZYLgOxo=;
+ b=aZ33NVShAm+4T4aORdzVpW4g6UZVzpiiKvU5IbIoJYAXgmF49Tj/R92e
+ OzSlNZiFwmQDZAt5UQ4JcCA66xDQEeQNETFQ4cmUmquFfoAZrt1EM3REP
+ 6CypnzL3J4PvMDlhyHQyeEMTeMFB74tAIZ7iAnKj53JDmPjplPrXIc3Dj
+ DglqD8vLV1hr7gyDLkjgZEcxD3xOfwnMB/gt4L0nzJp+D8n/ZdPsCj2Y9
+ 1oup15r11Xy0pvO/mIjgAkI5Ivh9owvLHd7K5qPEJWAKMHMurKo+oopiQ
+ kcwlb5XErpmGNIWxVeZ9EvTv9wEGQjHf+NGIOHfFigDUDwTTDqQfj5NZn w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="336923919"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; 
+ d="scan'208,217";a="336923919"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 12:51:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="759773364"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="759773364"
-Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 12:29:34 -0700
-Date: Fri, 28 Apr 2023 22:30:09 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZEwewWnLHIWs4ry/@ideak-desk.fi.intel.com>
-References: <20230426165305.2049341-1-imre.deak@intel.com>
- <20230426165305.2049341-7-imre.deak@intel.com>
- <ZEvWgQO5rf4Zu+nC@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="672314142"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; 
+ d="scan'208,217";a="672314142"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP; 28 Apr 2023 12:51:13 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 28 Apr 2023 12:51:13 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 28 Apr 2023 12:51:13 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 28 Apr 2023 12:51:13 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 28 Apr 2023 12:51:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ADSynqR4K9HaurEpAnJ7tzOyMirAOlZtsm1KTOYRQUEu8MtDNstmRHd60UlWP/r3SuBjQGMJVBYHtg7QFoJiF4nUjJaKB2jckXGoz1MB/ud19yitvVMlFFf5lu53gtrnmv6YDfb2r8XRmo3m/csUWcX0DZOPdWs7IeVrxgG5yfXwWOpt2jkOGUJgw83sxdXear/yPgwtqiJhTlh8/2+9xgOaRkBK95l9mmVsypns18UaWzycaT/vFL/PfBIBWQPyP7YG54hYeP4/5LO+YThqSoUVNKhS5mEWLda7MC+KUu/0TQgOLVLNtEjs30JEHvTp0xr2cNo9G/8YtvlIlXsujw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gkVKk2SWnj1lUFWtAlJC+4wyERnb9XtfPYVXZYLgOxo=;
+ b=dCTT+hJv2QP+1JK/4t97bO14hgEW+wvY0SntzFKNfZHOFfxE52qB3Ejdk5X8tU0UZfMnbQ+aXyHSIRgB5J2J3zjLNFXW+CEaeF8caqwBJqpwE80Z22OoRE85vYvSxHBH9Cy/UHz5pCNzWLoZgy7grDPD+GC6PTsnNK6dwPxgx4gsEb+sY3h0cmVhObjgE0vk/nofvX1dp4pBcLI5cq4+r8/mev4JlIeV1NCKsDufkrCcqyb8ruWYKFKeG/9y156YzHTdk/ZP6byOtcnmr8T3fFlzJwp03yX9UOCWhUURKpbtlxpsjG7nimQdLtJNF6jux3TCDdUb7sjmNImhFxq5XQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
+ by IA1PR11MB7891.namprd11.prod.outlook.com (2603:10b6:208:3fa::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.24; Fri, 28 Apr
+ 2023 19:51:11 +0000
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::37e2:bdec:585b:383c]) by BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::37e2:bdec:585b:383c%3]) with mapi id 15.20.6340.023; Fri, 28 Apr 2023
+ 19:51:10 +0000
+From: "Yang, Fei" <fei.yang@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 0/5] drm/i915: Allow user to set cache at
+ BO creation
+Thread-Index: AQHZeAeZkZKypP7iykq5Xmf4cFmAea89ZlWAgABPazKAAYStgIAAEzrSgAEuDgCAAJFgLQ==
+Date: Fri, 28 Apr 2023 19:51:10 +0000
+Message-ID: <BYAPR11MB2567A74AC05EA384342871099A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
+References: <20230426062423.320519-1-fei.yang@intel.com>
+ <c7cb1466-e698-ff3f-0572-4693c4b0025c@linux.intel.com>
+ <BYAPR11MB2567F72C44D485E628A574069A659@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <7d5d497d-b552-d8d9-e58c-20f4b0ded76c@linux.intel.com>
+ <BYAPR11MB25676FC11B8AC0045BABCC849A6A9@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <962c29c2-ca50-118e-4849-77324b510929@linux.intel.com>
+In-Reply-To: <962c29c2-ca50-118e-4849-77324b510929@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|IA1PR11MB7891:EE_
+x-ms-office365-filtering-correlation-id: 2746ac81-4ec6-439c-8449-08db4821ea85
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dleH/CCfSHo9w1xtC3th+WgL6fGv9PWUYCFn4DLB2Rfg5zVAyguAKR7iYrRdzE2zvmzLslgdbSOvoJKCHgxfxeGtMqR5zeJ0eqj3+mPTJB/ACVoQo0F1p8hjevEAiG474oKjoXY+zzEpDU35g9d1d5L/B/d1rK95ewttoM75AGO7wA0sQc99Z3a/PD8DBUkhX8Ilb3pmpitGXAIePzkSV7hH+iU5OVAS2bfkaGKsfY+Feq0RKwRy6q7aqjFJZ1Q5fH62FzIqig317BscelLFNInp2k5t6/v2WYwA15eY6ydYpOfptAqg6zldXhI7ZVWsHmJwXR4BUdIZsNjf8cJSTRNNUceeKNXbPn6RuWQYzwwe1UXT/4OMHe/SLq3FP7vvbRkDUtTFbfvz/bWRHNIss0sdU1v04NSueXzSJCb8P7q1Vfx77DwJclU2UNfpUFKPuzqX3M+Y+Jbsgv0700/VCWdBzE+NCJKP4GDwrgDUlLlZOdkSneeiM/+1KxQbXJ6b1v9iClWv5L5G7oaF8bQnwNpeJRJB2DW8mVUdd2XbAiQ3BZkkUEXuUVXq+7jStKQN
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(136003)(376002)(39860400002)(396003)(366004)(451199021)(38100700002)(86362001)(38070700005)(8676002)(6506007)(4326008)(8936002)(9686003)(5660300002)(52536014)(122000001)(2906002)(19627405001)(82960400001)(316002)(66946007)(76116006)(66556008)(64756008)(66446008)(66476007)(53546011)(186003)(26005)(478600001)(966005)(7696005)(55016003)(110136005)(54906003)(83380400001)(33656002)(41300700001)(71200400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bUlRQ1FsTnlKZXFZQkdqK04rd3R4M0RLUC9jUUFBTXRBbmY3eXcvRitPKzhZ?=
+ =?utf-8?B?bzdqekw0NEs2bXJhNm9VT0hOeWZsY0tMMmdSeXZiRFZNellHZWZVRnQ5a2xY?=
+ =?utf-8?B?dHBMb0tjdkZZSTZyc3hvNXlITS9mV1AvYlNIaU5vY2tsNzhoSU05V2N4TDAv?=
+ =?utf-8?B?MnFXbHFTUjFtYkN3Z0diY0FzVGE1YWRzd1dpdnpQRzJxQTRsa1JuSUkzTC9L?=
+ =?utf-8?B?MWp3R0ZtK3VDaVhVcmNaYVQwT0EzamhiZUx0eVZRdWdBSExDRWVjYnBiL2hq?=
+ =?utf-8?B?VlJIZWlzQzBWWHlSdThOMmRha1J0Y1FvYVMzQlBRWlczUDhqcnA1QklwZmp0?=
+ =?utf-8?B?TDVsOUMzcUhJWkh3czJqbEt2U1RTR1MwWWZTbEFkUVpqQ29ZeDFwWE5qVHdQ?=
+ =?utf-8?B?MHVGeWU4dFhTQy8zZ2I4WTlWZnMzeW5UdG9KSEN6dnFqb01DbnZ4WjlRL3g0?=
+ =?utf-8?B?UExnUFZhelZaSmc1azlVdXFxNWJGZlVBVTEwdE5HMjlDV2dhYVE3ZkVvNjl0?=
+ =?utf-8?B?cEw5TnBseGg2Z0luT3FHQ0Y2QWEzam14dmxkY3ZLTnJRalJ0WlVHblh5ZkNY?=
+ =?utf-8?B?aWh3RWdMT0U5SHFMclNFY1RPWmM0bWJ2TzJyL1lOc1htTGdENXJEc1dBVm8r?=
+ =?utf-8?B?TklHRzZPM043OWlScFBPSEdkUU5PTGRJU3J1SEJGb3NQWWthU2xueERTVFBr?=
+ =?utf-8?B?TUE2Wkkrb2hPaE1uOGlObXFkMWxxM2tNTEtKVGRINDRmS0pNdXZhRjZFZWVq?=
+ =?utf-8?B?d0lHSjdEcFdpdFBaR3dsK1hnZHljNUFlR2Iyd0UrQTR6a21wTG1wckdzSTFw?=
+ =?utf-8?B?VVJpdTBSNStrNUk5RmdqaWVtMm9iVUVGWk1xb3FOcnZoNXBnU3Bhbzg0QTJS?=
+ =?utf-8?B?VVZJT01KaEl5Q0tkUnd1Mm5zQVNrMWRCa3B6UWo3aUM4UFZweEsxbUVvY1lS?=
+ =?utf-8?B?VGwyRGNIdmU4OE81bU9xTC90UkNZeUVVKzZFTjRyQ08zN0pDL25RNjd4dGhs?=
+ =?utf-8?B?bEZvRGpqU2kvL3VvMnhTc1RuWDNHR3YzOENhdUsvQWl6bnd4ZUkzdjRJd050?=
+ =?utf-8?B?UkU3YnAyZzUvTzN5Y1VFQ1hxZXZrYy9aMnBydHhGMlJRbDRyTkZWcGZ1YWF6?=
+ =?utf-8?B?ZG9XVmpTSVdoYW13bUVseGJLby8wa2hXUitSY25BSy93UjVDUHJ3dkloZmVi?=
+ =?utf-8?B?Z2lBSzFNM2M5cHRqWFg5Uko0R2JCakNabXFnU0FoNzNPcEVGWlF3djRNNHpW?=
+ =?utf-8?B?dUhkb01mRUhORys5clpRVEFFTHFqTHRCbWp3NHByQ0U5cFlYeUJXWHVqNlRI?=
+ =?utf-8?B?eEtQbUZlbXRCOWJ1VFRFVUtjbkQ1a3dnc0xMRjc1SjJROVpzWHlSUUxXdStN?=
+ =?utf-8?B?Y3hpMzJSdklDTk5QaTByZEJyN1FCQUN5eGF0NWQ2WXdjUGQrM2xoVXBrbm83?=
+ =?utf-8?B?cWoxQ2pJcnJUV2NYY1F6cGFnVk1SWDVQTnZCTDVITnZvUTVTZXRrN2VyYVEy?=
+ =?utf-8?B?cCtoZDNlNHdLUUlHOFNjWWpCOEwzc3ZIWlRZcVVMNFFGbDl0MS9teTB2eXpR?=
+ =?utf-8?B?Wk96SFFhZVkxRnNHeExvd0J5MWFLc3ZadU1uWlo1NFVyWnpuVk9MWHR6NHpH?=
+ =?utf-8?B?bTRiOTJTVllOUW91elpVTUlJYm51QnR2Rnk5eWZEajNqTzEyRm43R1VlTzI5?=
+ =?utf-8?B?WDVWOFAwZ2ZDVWNNYThCd21ZZ1ZGbUxTNFJhcVBlWncyMUoyN0daWU1TS0N1?=
+ =?utf-8?B?RWdaNUJBMHI0M1MwdFBidjBGVjl4N3h0R1VRV2MxcTJqYTVwRjNOMVpJbUY3?=
+ =?utf-8?B?ZFpzbmx3ZFIybm9PWW9qYWY1UUdOS3NtRVBBSDVpV2MxK2FVdVV6MkZvV0g0?=
+ =?utf-8?B?MzRubTJEMTd3RkREQ1dhMWdqbmtheTk0M2hmRm1lMENrRjAveG9GeGdEc25Y?=
+ =?utf-8?B?V0h1TnhDN3JHZ3ZiSEtYS2N5V0p3SW9FTXRXOWQ0d25WQzlxaUllNHVuUnBh?=
+ =?utf-8?B?SG9lSzhOdHV6L09Zd0NMTk5kRVUyVmN0YVJXdyt0THBGcUgzYk9pLzRLeDNO?=
+ =?utf-8?B?aDZRd21qb3cyU2ZMWlhsZVAzbWxzVG04c0VEcmxFYTZmT2xiYW5rKzFRNVlD?=
+ =?utf-8?Q?lWps=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BYAPR11MB2567A74AC05EA384342871099A6B9BYAPR11MB2567namp_"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZEvWgQO5rf4Zu+nC@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915/dp: Add link training debug
- and error printing helpers
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2746ac81-4ec6-439c-8449-08db4821ea85
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2023 19:51:10.8686 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xyqlZZYuvsTTPTzgh+TjfcTMfigepF9RpZMt2dtNDBST/jxgdfEE1m0zxFSsdVpM1E6sfloImPkCcRG7Wlah0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7891
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 0/5] drm/i915: Allow user to set cache at
+ BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,860 +168,375 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 28, 2023 at 05:21:53PM +0300, Ville Syrjälä wrote:
-> On Wed, Apr 26, 2023 at 07:53:00PM +0300, Imre Deak wrote:
-> > Add functions for printing link training debug and error messages, both
-> > to prepare for the next patch, which downgrades an error to debug if the
-> > sink is disconnected and to remove some code duplication.
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_dp_link_training.c | 376 +++++++-----------
-> >  1 file changed, 139 insertions(+), 237 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 6aa4ae5e7ebe3..12f2880e474ed 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -26,6 +26,47 @@
-> >  #include "intel_dp.h"
-> >  #include "intel_dp_link_training.h"
-> >  
-> > +__printf(5, 6)
-> > +static void lt_msg(struct intel_connector *connector, struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
-> > +		   bool is_error, const char *format, ...)
-> 
-> I pretty much hate custom debug/error print functions. Makes it
-> hard togrep/etc. and just generally causes more "wtf is this?"
-> moments when reading the code. Unfortunateely the macro hell in
-> drm_print.h seems to make it really hard to do anything generic
-> directly :(
+--_000_BYAPR11MB2567A74AC05EA384342871099A6B9BYAPR11MB2567namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I guess could use something like drm_printf(&intel_dp->printer, ...)
-instead, but that would still need passing the PHY format prefix at each
-callsite.
+PiBPbiAyNy8wNC8yMDIzIDE3OjA3LCBZYW5nLCBGZWkgd3JvdGU6DQo+Pj4gT24gMjYvMDQvMjAy
+MyAxNjo0MSwgWWFuZywgRmVpIHdyb3RlOg0KPj4+Pj4gT24gMjYvMDQvMjAyMyAwNzoyNCwgZmVp
+LnlhbmdAaW50ZWwuY29tIHdyb3RlOg0KPj4+Pj4+IEZyb206IEZlaSBZYW5nIDxmZWkueWFuZ0Bp
+bnRlbC5jb20+DQo+Pj4+Pj4NCj4+Pj4+PiBUaGUgZmlyc3QgdGhyZWUgcGF0Y2hlcyBpbiB0aGlz
+IHNlcmllcyBhcmUgdGFrZW4gZnJvbQ0KPj4+Pj4+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvMTE2ODY4Lw0KPj4+Pj4+IFRoZXNlIHBhdGNoZXMgYXJlIGluY2x1ZGVk
+IGhlcmUgYmVjYXVzZSB0aGUgbGFzdCBwYXRjaA0KPj4+Pj4+IGhhcyBkZXBlbmRlbmN5IG9uIHRo
+ZSBwYXRfaW5kZXggcmVmYWN0b3IuDQo+Pj4+Pj4NCj4+Pj4+PiBUaGlzIHNlcmllcyBpcyBmb2N1
+c2luZyBvbiB1QVBJIGNoYW5nZXMsDQo+Pj4+Pj4gMS4gZW5kIHN1cHBvcnQgZm9yIHNldCBjYWNo
+aW5nIGlvY3RsIFtQQVRDSCA0LzVdDQo+Pj4+Pj4gMi4gYWRkIHNldF9wYXQgZXh0ZW5zaW9uIGZv
+ciBnZW1fY3JlYXRlIFtQQVRDSCA1LzVdDQo+Pj4+Pj4NCj4+Pj4+PiB2MjogZHJvcCBvbmUgcGF0
+Y2ggdGhhdCB3YXMgbWVyZ2VkIHNlcGFyYXRlbHkNCj4+Pj4+PiAgICAgIDM0MWFkMGU4ZTI1NCBk
+cm0vaTkxNS9tdGw6IEFkZCBQVEUgZW5jb2RlIGZ1bmN0aW9uDQo+Pj4+Pg0KPj4+Pj4gQXJlIHRo
+ZSByZS1zZW5kcyBmb3Igc3RhYmlsaXppbmcgdGhlIHNlcmllcywgb3IgZm9jdXNpbmcgb24gbWVy
+Z2U/DQo+Pj4+DQo+Pj4+IHYyIHdhcyBzZW50IGp1c3QgdG8gZHJvcCBvbmUgb2YgcGF0Y2hlcyB0
+aGF0IGhhcyBhbHJlYWR5IGJlZW4gbWVyZ2VkLg0KPj4+Pg0KPj4+Pj4gSWYgdGhlIGxhdHRlciB0
+aGVuIG9wZW5zIGFyZToNCj4+Pj4+DQo+Pj4+PiAxKSBMaW5rIHRvIE1lc2EgTVIgcmV2aWV3ZWQg
+YW5kIHJlYWR5IHRvIG1lcmdlLg0KPj4+Pj4NCj4+Pj4+IDIpIElHVCByZXZpZXdlZC4NCj4+Pj4+
+DQo+Pj4+PiAzKSBJIHJhaXNlZCBhbiBvcGVuIHRoYXQgZ2V0L3NldF9jYWNoaW5nIHNob3VsZCBu
+b3QgImxpZSIgYnV0IHJldHVybiBhbg0KPj4+Pj4gZXJyb3IgaWYgc2V0IHBhdCBleHRlbnNpb24g
+aGFzIGJlZW4gdXNlZC4gSSBkb24ndCBzZWUgYSBnb29kIHJlYXNvbiBub3QNCj4+Pj4+IHRvIGRv
+IHRoYXQuDQo+Pj4+DQo+Pj4+IEkgZG9uJ3QgdGhpbmsgaXQncyAibHlpbmciIHRvIHRoZSB1c2Vy
+c3BhY2UuIHRoZSBjb21wYXJpc29uIGlzIG9ubHkgdmFsaWQNCj4+Pj4gZm9yIG9iamVjdHMgY3Jl
+YXRlZCBieSBLTUQgYmVjYXVzZSBvbmx5IHN1Y2ggb2JqZWN0IHVzZXMgdGhlIHBhdF9pbmRleA0K
+Pj4+PiBmcm9tIHRoZSBjYWNoZWxldmVsX3RvX3BhdCB0YWJsZS4NCj4+Pg0KPj4+IExldHMgZG91
+YmxlIGNoZWNrIG15IHVuZGVyc3RhbmRpbmcgaXMgY29ycmVjdC4gVXNlcnNwYWNlIHNlcXVlbmNl
+IG9mDQo+Pj4gb3BlcmF0aW9uczoNCj4+PiAxKQ0KPj4+IG9iaiA9IGdlbV9jcmVhdGUoKStzZXRf
+cGF0KFBBVF9VQykNCj4+Pg0KPj4+IDJhKQ0KPj4+IGdldF9jYWNoaW5nKG9iaikNCj4+PiBXaGF0
+IGdldHMgcmVwb3J0ZWQ/DQo+Pg0KPj4gSSBzZWUgeW91ciBwb2ludCBoZXJlLiBuaWNlIGNhdGNo
+Lg0KPj4gVGhhdCBzaG91bGQgYmUgaGFuZGxlZCBieSwNCj4+IGlmIChvYmotPmNhY2hlbF9sZXZl
+bCA9PSBJOTE1X0NBQ0hFX0lOVkFMKSAvKiBpbmRpY2F0ZWQgcGF0LWluZGV4IGlzIHNldCBieSB1
+c2Vyc3BhY2UgKi8NCj4+IOKAguKAguKAguKAguKAguKAgnJldHVybiAtRU9QTk9UU1VQUDsNCj4+
+IFdpbGwgdXBkYXRlIHRoZSBwYXRjaC4NCj4+DQo+Pj4NCj4+PiAyYikNCj4+PiBzZXRfY2FjaGlu
+ZyhvYmosIEk5MTVfQ0FDSEVfTExDKQ0KPj4+IFdoYXQgaXMgdGhlIHJldHVybiBjb2RlPw0KPj4N
+Cj4+IFRoaXMgd2lsbCBlaXRoZXIgcmV0dXJuIC1FT1BOT1RTVVBQLCBvciBpZ25vcmVkIGJlY2F1
+c2Ugc2V0X3BhdA0KPj4gZXh0ZW5zaW9uIHdhcyBjYWxsZWQuDQo+DQo+IEkgc2VlIHRoYXQgeW91
+IG1hZGUgaXQgZmFpbCBpbnN0ZWFkIG9mIGZha2Ugc3VjY2VzcyBpbiB0aGUgbGF0ZXN0IHJlc3Bp
+bg0KPiBhbmQgSSBkZWZpbml0ZWx5IGFncmVlIHdpdGggdGhhdC4NCg0KVGhhbmtzIGZvciB5b3Vy
+IHBpY2t5IGV5ZXMuIDopDQoNCj4+Pg0KPj4+IElmIGFuc3dlciB0byAyYSBpcyBJOTE1X0NBQ0hJ
+TkdfQ0FDSEVEIGFuZCB0byAyYikgc3VjY2VzcywgdGhlbiBwbGVhc2UNCj4+PiBzdGF0ZSBhIGdv
+b2QgcmVhc29uIHdoeSBib3RoIHNob3VsZG4ndCByZXR1cm4gYW4gZXJyb3IuDQo+Pj4NCj4+Pj4N
+Cj4+Pj4+ICsgSm9vbmFzIG9uIHRoaXMgb25lLg0KPj4+Pj4NCj4+Pj4+IDQpIFJlZmFjdG9yaW5n
+IGFzIGRvbmUgaXMgbm90IHZlcnkgcHJldHR5IGFuZCBJIHByb3Bvc2VkIGFuIGlkZWEgZm9yIGEN
+Cj4+Pj4+IG5pY2VyIGFwcHJvYWNoLiBGZWFzaWJsZSBvciBub3QsIG9wZW4gZm9yIGRpc2N1c3Np
+b24uDQo+Pj4+DQo+Pj4+IFN0aWxsIGRpZ2VzdGluZyB5b3VyIHByb3Bvc2FsLiBidXQgbm90IHN1
+cmUgaG93IHdvdWxkIHlvdSBkZWZpbmUgdGhpbmdzDQo+Pj4+IGxpa2UgUEFUX1VDIGFzIHRoYXQg
+aXMgcGxhdGZvcm0gZGVwZW5kZW50LCBub3QgYSBjb25zdGFudC4NCj4+Pg0KPj4+ICJQQVRfVUMi
+IGluIG15IG91dGxpbmUgd2FzIHB1cmVseSBhIGRyaXZlciBzcGVjaWZpYyB2YWx1ZSwgc2ltaWxh
+cmx5IGFzDQo+Pj4gSTkxNV9DQUNIRV8uLi4gYXJlLg0KPj4NCj4+IE9rYXkuIFRoZW4geW91IHdl
+cmUgc3VnZ2VzdGluZyB0byBhZGQgYSB0cmFuc2xhdGlvbiB0YWJsZSBmb3INCj4+IHBhdF9pbmRl
+eC10by0oUEFULVVDL1dCL1dUKT8NCj4+IEl0J3MgZ29pbmcgdG8gYmUgYSBOOjEgbWFwcGluZy4N
+Cj4NCj4gUEFUIGluZGV4IHRvIGEgdmFsdWUsIHByb2JhYmx5IGEgYml0bWFzaywgYnVpbHQgb3V0
+IG9mIGJpdHMgd2hpY2ggZGVmaW5lDQo+IGNhY2hpbmcgbW9kZXMuIExpa2UgIlBBVF9XQiB8IFBB
+VF8xV0FZX0NPSEVSRU5UIiwgb3IganVzdCBQQVRfV0IuIFdvdWxkDQo+IHRoYXQgYXBwcm9hY2gg
+YmUgZW5vdWdoIHRvIGV4cHJlc3MgZXZlcnl0aGluZz8NCg0KSSB3YXMgdGhpbmtpbmcgYWJvdXQg
+ZHVtcGluZyB0aGUgUEFUIHRhYmxlcyBmcm9tIEJzcGVjIGludG8gc3RydWN0IGludGVsX2Rldmlj
+ZV9pbmZvIHt9Lg0KQnV0IHRoYXQgd291bGQgYmUgb25seSB1c2VmdWwgdG8gdW5pZnkgYWxsIHRo
+b3NlICpfc2V0dXBfcHJpdmF0ZV9wcGF0KCkgZnVuY3Rpb25zIGluDQppbnRlbF9ndHQuYy4gS2Vy
+bmVsIGRvZXNuJ3QgcmVhbGx5IGNhcmUgbXVjaCBhYm91dCBQQVQgaW5kZXggZXhjZXB0IG1ha2lu
+ZyBzdXJlIHRoZSBiaXRzDQphcmUgcHJvZ3JhbW1lZCBjb3JyZWN0bHkgaW4gUFRFLg0KDQo+Pg0K
+Pj4+IFdpdGggdGhlIHdob2xlIHBvaW50IHRoYXQgZHJpdmVyIGNhbiBhc2sgaWYNCj4+PiBzb21l
+dGhpbmcgaXMgdW5jYWNoZWQsIFdUIG9yIHdoYXRldmVyLiBVc2luZyB0aGUgcGxhdGZvcm0gc3Bl
+Y2lmaWMNCj4+PiBtYXBwaW5nIHRhYmxlIHdoaWNoIGNvbnZlcnRzIHBsYXRmb3JtIHNwZWNpZmlj
+IG9iai0+cGF0X2luZGV4IHRvIGRyaXZlcg0KPj4+IHJlcHJlc2VudGF0aW9uIG9mIGNhY2hpbmcg
+bW9kZXMgKFBBVF9VQyBldGMpLg0KPj4NCj4+IEFyZSB5b3Ugc3VnZ2VzdGluZyBjb21wbGV0ZWx5
+IHJlbW92ZSBpOTE1X2NhY2hlX2xldmVsIGFuZCB1c2UNCj4+IChQQVQtVUMvV0IvV1QpIGluc3Rl
+YWQ/DQo+DQo+IE5vdCBjb21wbGV0ZWx5IGJ1dCB0aHJvdWdob3V0IHRoZSBtb3N0IGludGVybmFs
+IGNvZGUgcGF0aHMsIHdoaWNoIHdvdWxkDQo+IGFsbCBqdXN0IHdvcmsgb24gUEFUIGluZGV4LiBC
+YXNpY2FsbHkgb2JqZWN0IGFsd2F5cyBoYXMgUEFUIGluZGV4IHNldCwNCj4gd2l0aCBhIHNlcGFy
+YXRlIGJvb2xlYW4gc2F5aW5nIHdoZXRoZXIgaXQgY2FtZSBmcm9tIGdlbV9jcmVhdGVfZXh0IG9y
+DQo+IHNldF9jYWNoZV9sZXZlbC4NCg0KV2hhdCdzIGluIG15IG1pbmQgYXMgYW4gaW1wcm92ZW1l
+bnQgaXMgdG8gY29tcGxldGVseSByZW1vdmUgaTkxNV9jYWNoZV9sZXZlbC4NCktNRCBpcyBzdXBw
+b3NlZCB0byBhYnN0cmFjdCB0aGUgaGFyZHdhcmUsIGJ1dCBpbiB0aGlzIGNhc2UsIHNpbmNlIHRo
+ZSBkZXNnaW4NCmlzIHRoYXQgVU1EcyB1bmRlcnN0YW5kIFBBVCBpbmRleCAoYW5kIE1PQ1MgYXMg
+d2VsbCksIGhhdmluZyBhbiBhYnN0cmFjdGlvbg0KaW4gYmV0d2VlbiB3b3VsZCBvbmx5IGludHJv
+ZHVjZSBhbWJpZ3VpdHkgYW5kIGNvbXBsZXhpdHkuDQoNCkFsc28ga2VybmVsIGRvZXNuJ3QgbmVl
+ZCB0byBwbGF5IHdpdGggYWxsIGF2YWlsYWJsZSBQQVQgaW5kaWNlcywgc28gaXQgc2hvdWxkDQpi
+ZSBva2F5IHRvIGFkZCBpOTE1LT5wYXRfe3VjfHdifHd0fSBhbmQgaW5pdGlhbGl6ZSB0aGVtIHdp
+dGggcHJvcGVyIGluZGljZXMNCnJlc3BlY3RpdmVseS4gVGhhdCB0YWtlcyBjYXJlIG9mIHRoZSBQ
+QVQgY2hlY2tpbmcgYXMgd2VsbCB3aGVyZXZlciBpdCdzIG5lZWRlZCwNCmxpa2UgImlmIChwYXRf
+aW5kZXggPT0gaTkxNS0+cGF0X3VjKSINCg0KPj4gTGV0J3Mgc2F5IGEgS01EIG9iamVjdCB3YW50
+cyB0byBiZSBzZXQgYXMgV0IsIGhvdyB5b3UgZ2V0IHRoZSBleGFjdCBwYXRfaW5kZXggdG8gdXNl
+Pw0KPj4gTm90ZSB0aGF0IHRoZXJlIGFyZSBtdWx0aXBsZSBQQVQgaW5kaWNlcyBoYXZpbmcgY2Fj
+aGluZyBtb2QgV0IsIGJ1dCB0aGV5IGFyZSBkaWZmZXJlbnQsDQo+PiBlLmcuIGRvIHlvdSB3YW50
+IGp1c3QgV0Igb3IgV0Igd2l0aCAxLXdheS1jb2hlcmVuY3kgb3IgV0Igd2l0aCAyLXdheQ0KPj4g
+Y29oZXJlbmN5Pw0KPg0KPiBKdXN0IHVzZSB0aGUgY2FjaGVfbGV2ZWwgdG8gcGF0X2luZGV4IG1h
+cHBpbmcgeW91IGFkZGVkIGluIHRoZSBzZXJpZXM/DQo+DQo+PiBBbHNvLCBpbiBjYXNlIGEgY2hl
+Y2tpbmcgb2YgcGF0X2luZGV4IGlzIG5lZWRlZCwgZG8gd2Ugc2F5IFdCIHdpdGgNCj4+IDEtd2F5
+LWNvaGVyZW5jeSBpcyBlcXVhbCB0byBXQiBvciBub3Q/DQo+DQo+IFlvdSBtZWFuIHRoZSBjYWxs
+IHNpdGVzIHdoZXJlIGk5MTUgaXMgY2hlY2tpbmcgdGhlIG9iamVjdCBjYWNoaW5nIG1vZGU/DQo+
+IFdlIGhhdmUgdHdvIGNhbGwgc2l0ZXMgd2hpY2ggY2hlY2sgZm9yICFJOTE1X0NBQ0hFX05PTkUu
+IFRob3NlIHdvdWxkDQo+IGp1c3QgY2hlY2sgaWYgUEFUX1VDIGlzIG5vdCBzZXQuDQo+DQo+IFRo
+ZW4gdGhlIG9uZSBpbiBncHVfd3JpdGVfbmVlZHNfY2xmbHVzaCBpcyBjaGVja2luZyBmb3IgbmVp
+dGhlciBVQyBub3INCj4gV1QsIHdoaWNoIGFsc28gZGlyZWN0bHkgdHJhbnNsYXRlcy4NCj4NCj4g
+Rm9yIHRoZSBXQiBjYXNlIHRoZXJlIGFyZW4ndCBhbnkgY2FsbGVycyBidXQgaWYgd2UganVzdCBj
+aGVja2VkIGZvcg0KPiAiYmFzZSIgUEFUX1dCIGJpdCBiZWluZyBzZXQgdGhhdCB3b3VsZCB3b3Jr
+Lg0KPg0KPiBTbyBpbiBhbGwgY2FzZXMgaGVscGVyIHdoaWNoIGRvZXMgInJldHVybiBiaXRzX3Jl
+cXVpcmVkIHwgYml0c19zZXQiDQo+IHNlZW1zIHdvdWxkIHdvcmsgZmluZS4NCj4NCj4+IEJUVywg
+aXNuJ3QgUEFULVVDL1dCL1dUIHRoZSBzYW1lIGtpbmQgb2YgYWJzdHJhY3Rpb24gYXMgZW51bQ0K
+Pj4gaTkxNV9jYWNoZV9sZXZlbCwgSSdtIG5vdA0KPj4gc3VyZSBob3cgdGhhdCB3b3VsZCBzaW1w
+bGlmeSBhbnl0aGluZy4NCj4NCj4gQXMgSSB3cm90ZSBiZWZvcmUsIEkgKnRoaW5rKiBpdCBwcm92
+aWRlcyBhIHdheSBvZiBub3QgbmVlZGluZyB0bw0KPiBzcHJpbmtsZSBhcm91bmQgaTkxNV9nZW1f
+Z2V0X3BhdF9pbmRleCBhbmQgYSBzaW1wbGVyICJoYXNfY2FjaGVfbGV2ZWwiLg0KPiBDb25jZXB0
+dWFsbHkgY2FjaGVfbGV2ZWwtPnBhdF9pbmRleCBpcyBkb25lIG9ubHkgaW4gZ2VtX2NyZWF0ZV9l
+eHQgYW5kDQo+IHNldF9jYWNoZV9sZXZlbC4gTG93ZXIgbGV2ZWwgY29kZSBkb2VzIG5vdCBoYXZl
+IHRvIGNvbnN1bHQgY2FjaGVfbGV2ZWwNCj4gYXQgYWxsLiBBbmQgZXhpc3RlbmNlIG9mIHRhYmxl
+cyBzaW1wbGlmaWVzIHRoZSBwcmV0dHkgcHJpbnRpbmcgY29kZSB0byBhDQo+IHBsYXRmb3JtIGFn
+bm9zdGljIGxvb3AuDQo+DQo+IEkgKnRoaW5rKiBhdCBsZWFzdC4uIFdlIGNhbiBsZWF2ZSBpdCBh
+bGwgZm9yIGxhdGVyLiBNeSBtYWluIGNvbmNlcm4gd2FzDQo+IHRoYXQgVUFQSSBuZWVkcyB0byBi
+ZSBjbGVhciBhbmQgc29saWQgd2hpY2ggaXQgbm93IHNlZW1zIHRvIGJlLg0KDQpJJ20gaGVzaXRh
+bnQgdG8gZG8gYWxsIHRoYXQgSSBzYWlkIGFib3ZlIGluIG9uZSBzaG90LiBCdXQgSSB0aGluayBj
+b21wbGV0ZWx5DQpyZW1vdmluZyBlbnVtIGk5MTVfY2FjaGVfbGV2ZWwgaXMgd2hhdCB0byBkbyBu
+ZXh0Lg0KDQotRmVpDQoNCj4gUmVnYXJkcywNCj4NCj4gVHZydGtvDQo+DQo+Pg0KPj4+IFF1aXRl
+IHBvc3NpYmxlIEkgbWlzc2VkIHNvbWUgZGV0YWlsLCBidXQgaWYgSSBoYXZlbid0IHRoZW4gaXQg
+Y291bGQgYmUNCj4+PiBhIG5lYXQgYW5kIGxpZ2h0d2VpZ2h0IHNvbHV0aW9uLg0K
 
-> 
-> > +{
-> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > +	char conn_str[128] = {};
-> > +	struct va_format vaf;
-> > +	va_list args;
-> > +
-> > +	va_start(args, format);
-> > +	vaf.fmt = format;
-> > +	vaf.va = &args;
-> > +
-> > +	if (connector)
-> > +		snprintf(conn_str, sizeof(conn_str), "[CONNECTOR:%d:%s]",
-> > +			 connector->base.base.id, connector->base.name);
-> 
-> Are there actually places where we don't have/can't get the
-> connector?
+--_000_BYAPR11MB2567A74AC05EA384342871099A6B9BYAPR11MB2567namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I guess link training messages could always print
-intel_dp->attached_connector (not sure if for MST it's worth / practical
-to list all the connectors).
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YgQ29udGVudFBhc3RlZDAg
+Q29udGVudFBhc3RlZDEgQ29udGVudFBhc3RlZDIgQ29udGVudFBhc3RlZDMgQ29udGVudFBhc3Rl
+ZDQiPg0KJmd0OyBPbiAyNy8wNC8yMDIzIDE3OjA3LCBZYW5nLCBGZWkgd3JvdGU6DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7IE9uIDI2LzA0LzIwMjMgMTY6NDEsIFlh
+bmcsIEZlaSB3cm90ZTo8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0
+OyZndDsmZ3Q7Jmd0OyBPbiAyNi8wNC8yMDIzIDA3OjI0LCBmZWkueWFuZ0BpbnRlbC5jb20gd3Jv
+dGU6PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZn
+dDsmZ3Q7IEZyb206IEZlaSBZYW5nICZsdDtmZWkueWFuZ0BpbnRlbC5jb20mZ3Q7PC9kaXY+DQo8
+ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsmZ3Q7PC9kaXY+
+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsmZ3Q7IFRo
+ZSBmaXJzdCB0aHJlZSBwYXRjaGVzIGluIHRoaXMgc2VyaWVzIGFyZSB0YWtlbiBmcm9tPC9kaXY+
+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsmZ3Q7IGh0
+dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTE2ODY4LzwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyBUaGVzZSBw
+YXRjaGVzIGFyZSBpbmNsdWRlZCBoZXJlIGJlY2F1c2UgdGhlIGxhc3QgcGF0Y2g8L2Rpdj4NCjxk
+aXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyZndDsgaGFzIGRl
+cGVuZGVuY3kgb24gdGhlIHBhdF9pbmRleCByZWZhY3Rvci48L2Rpdj4NCjxkaXYgY2xhc3M9IkNv
+bnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9
+IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyZndDsgVGhpcyBzZXJpZXMgaXMg
+Zm9jdXNpbmcgb24gdUFQSSBjaGFuZ2VzLDwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDAiPiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyAxLiBlbmQgc3VwcG9ydCBmb3Igc2V0IGNhY2hp
+bmcgaW9jdGwgW1BBVENIIDQvNV08L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4m
+Z3Q7Jmd0OyZndDsmZ3Q7Jmd0OyZndDsgMi4gYWRkIHNldF9wYXQgZXh0ZW5zaW9uIGZvciBnZW1f
+Y3JlYXRlIFtQQVRDSCA1LzVdPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0
+OyZndDsmZ3Q7Jmd0OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+
+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsmZ3Q7IHYyOiBkcm9wIG9uZSBwYXRjaCB0aGF0IHdhcyBtZXJn
+ZWQgc2VwYXJhdGVseTwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7
+Jmd0OyZndDsmZ3Q7Jmd0OyAmbmJzcDsgJm5ic3A7ICZuYnNwOzM0MWFkMGU4ZTI1NCBkcm0vaTkx
+NS9tdGw6IEFkZCBQVEUgZW5jb2RlIGZ1bmN0aW9uPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50
+UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQ
+YXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyBBcmUgdGhlIHJlLXNlbmRzIGZvciBzdGFiaWxp
+emluZyB0aGUgc2VyaWVzLCBvciBmb2N1c2luZyBvbiBtZXJnZT88L2Rpdj4NCjxkaXYgY2xhc3M9
+IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyB2MiB3YXMgc2VudCBqdXN0IHRvIGRyb3Agb25l
+IG9mIHBhdGNoZXMgdGhhdCBoYXMgYWxyZWFkeSBiZWVuIG1lcmdlZC48L2Rpdj4NCjxkaXYgY2xh
+c3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJD
+b250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsgSWYgdGhlIGxhdHRlciB0aGVuIG9w
+ZW5zIGFyZTo8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsm
+Z3Q7Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyZn
+dDsmZ3Q7IDEpIExpbmsgdG8gTWVzYSBNUiByZXZpZXdlZCBhbmQgcmVhZHkgdG8gbWVyZ2UuPC9k
+aXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDs8L2Rp
+dj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyAyKSBJ
+R1QgcmV2aWV3ZWQuPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsm
+Z3Q7Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZn
+dDsmZ3Q7Jmd0OyAzKSBJIHJhaXNlZCBhbiBvcGVuIHRoYXQgZ2V0L3NldF9jYWNoaW5nIHNob3Vs
+ZCBub3QgJnF1b3Q7bGllJnF1b3Q7IGJ1dCByZXR1cm4gYW48L2Rpdj4NCjxkaXYgY2xhc3M9IkNv
+bnRlbnRQYXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7Jmd0OyBlcnJvciBpZiBzZXQgcGF0IGV4dGVu
+c2lvbiBoYXMgYmVlbiB1c2VkLiBJIGRvbid0IHNlZSBhIGdvb2QgcmVhc29uIG5vdDwvZGl2Pg0K
+PGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7IHRvIGRvIHRo
+YXQuPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7Jmd0Ozwv
+ZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyZndDsgSSBkb24n
+dCB0aGluayBpdCdzICZxdW90O2x5aW5nJnF1b3Q7IHRvIHRoZSB1c2Vyc3BhY2UuIHRoZSBjb21w
+YXJpc29uIGlzIG9ubHkgdmFsaWQ8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQwIj4m
+Z3Q7Jmd0OyZndDsmZ3Q7IGZvciBvYmplY3RzIGNyZWF0ZWQgYnkgS01EIGJlY2F1c2Ugb25seSBz
+dWNoIG9iamVjdCB1c2VzIHRoZSBwYXRfaW5kZXg8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQ
+YXN0ZWQwIj4mZ3Q7Jmd0OyZndDsmZ3Q7IGZyb20gdGhlIGNhY2hlbGV2ZWxfdG9fcGF0IHRhYmxl
+LjwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OzwvZGl2Pg0K
+PGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyBMZXRzIGRvdWJsZSBjaGVj
+ayBteSB1bmRlcnN0YW5kaW5nIGlzIGNvcnJlY3QuIFVzZXJzcGFjZSBzZXF1ZW5jZSBvZjwvZGl2
+Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyBvcGVyYXRpb25zOjwv
+ZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyAxKTwvZGl2Pg0K
+PGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDAiPiZndDsmZ3Q7Jmd0OyBvYmogPSBnZW1fY3JlYXRl
+KCkrc2V0X3BhdChQQVRfVUMpPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0
+OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMCI+Jmd0OyZndDsmZ3Q7
+IDJhKTwvZGl2Pg0KJmd0OyZndDsmZ3Q7IGdldF9jYWNoaW5nKG9iaikNCjxkaXYgY2xhc3M9IkNv
+bnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDsgV2hhdCBnZXRzIHJlcG9ydGVkPzwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMSI+Jmd0OyZndDsgSSBzZWUgeW91ciBwb2ludCBoZXJlLiBuaWNlIGNhdGNoLjwv
+ZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7IFRoYXQgc2hvdWxkIGJl
+IGhhbmRsZWQgYnksPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsg
+aWYgKG9iai0mZ3Q7Y2FjaGVsX2xldmVsID09IEk5MTVfQ0FDSEVfSU5WQUwpIC8qIGluZGljYXRl
+ZCBwYXQtaW5kZXggaXMgc2V0IGJ5IHVzZXJzcGFjZSAqLzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29u
+dGVudFBhc3RlZDEiPiZndDsmZ3Q7IOKAguKAguKAguKAguKAguKAgnJldHVybiAtRU9QTk9UU1VQ
+UDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyBXaWxsIHVwZGF0
+ZSB0aGUgcGF0Y2guPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDs8
+L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDs8L2Rpdj4NCjxk
+aXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDsgMmIpPC9kaXY+DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7IHNldF9jYWNoaW5nKG9iaiwgSTkxNV9D
+QUNIRV9MTEMpPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7
+IFdoYXQgaXMgdGhlIHJldHVybiBjb2RlPzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDEiPiZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsg
+VGhpcyB3aWxsIGVpdGhlciByZXR1cm4gLUVPUE5PVFNVUFAsIG9yIGlnbm9yZWQgYmVjYXVzZSBz
+ZXRfcGF0PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsgZXh0ZW5z
+aW9uIHdhcyBjYWxsZWQuPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0Ozwv
+ZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsgSSBzZWUgdGhhdCB5b3UgbWFk
+ZSBpdCBmYWlsIGluc3RlYWQgb2YgZmFrZSBzdWNjZXNzIGluIHRoZSBsYXRlc3QgcmVzcGluPC9k
+aXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyBhbmQgSSBkZWZpbml0ZWx5IGFn
+cmVlIHdpdGggdGhhdC48L2Rpdj4NCjxkaXY+PGJyIGNsYXNzPSJDb250ZW50UGFzdGVkMSI+DQo8
+L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj5UaGFua3MgZm9yIHlvdXIgcGlja3kg
+ZXllcy4gOik8L2Rpdj4NCjxkaXY+PGJyIGNsYXNzPSJDb250ZW50UGFzdGVkMSI+DQo8L2Rpdj4N
+CjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xh
+c3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDsgSWYgYW5zd2VyIHRvIDJhIGlzIEk5MTVf
+Q0FDSElOR19DQUNIRUQgYW5kIHRvIDJiKSBzdWNjZXNzLCB0aGVuIHBsZWFzZTwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7Jmd0OyBzdGF0ZSBhIGdvb2QgcmVhc29u
+IHdoeSBib3RoIHNob3VsZG4ndCByZXR1cm4gYW4gZXJyb3IuPC9kaXY+DQo8ZGl2IGNsYXNzPSJD
+b250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFz
+dGVkMSI+Jmd0OyZndDsmZ3Q7Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDEi
+PiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7ICsgSm9vbmFzIG9uIHRoaXMgb25lLjwvZGl2Pg0KPGRpdiBj
+bGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7Jmd0OyZndDsgNCkgUmVmYWN0b3Jpbmcg
+YXMgZG9uZSBpcyBub3QgdmVyeSBwcmV0dHkgYW5kIEkgcHJvcG9zZWQgYW4gaWRlYSBmb3IgYTwv
+ZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7Jmd0OyZndDsmZ3Q7IG5p
+Y2VyIGFwcHJvYWNoLiBGZWFzaWJsZSBvciBub3QsIG9wZW4gZm9yIGRpc2N1c3Npb24uPC9kaXY+
+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7Jmd0OzwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7Jmd0OyZndDsgU3RpbGwgZGlnZXN0aW5n
+IHlvdXIgcHJvcG9zYWwuIGJ1dCBub3Qgc3VyZSBob3cgd291bGQgeW91IGRlZmluZSB0aGluZ3M8
+L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDsmZ3Q7IGxpa2Ug
+UEFUX1VDIGFzIHRoYXQgaXMgcGxhdGZvcm0gZGVwZW5kZW50LCBub3QgYSBjb25zdGFudC48L2Rp
+dj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDs8L2Rpdj4NCjxkaXYg
+Y2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyZndDsgJnF1b3Q7UEFUX1VDJnF1b3Q7IGlu
+IG15IG91dGxpbmUgd2FzIHB1cmVseSBhIGRyaXZlciBzcGVjaWZpYyB2YWx1ZSwgc2ltaWxhcmx5
+IGFzPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsmZ3Q7IEk5MTVf
+Q0FDSEVfLi4uIGFyZS48L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0
+OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDEiPiZndDsmZ3Q7IE9rYXkuIFRoZW4g
+eW91IHdlcmUgc3VnZ2VzdGluZyB0byBhZGQgYSB0cmFuc2xhdGlvbiB0YWJsZSBmb3I8L2Rpdj4N
+CjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQxIj4mZ3Q7Jmd0OyBwYXRfaW5kZXgtdG8tKFBBVC1V
+Qy9XQi9XVCk/PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMSI+Jmd0OyZndDsgSXQn
+cyBnb2luZyB0byBiZSBhIE46MSBtYXBwaW5nLjwvZGl2Pg0KJmd0Ow0KPGRpdiBjbGFzcz0iQ29u
+dGVudFBhc3RlZDIiPiZndDsgUEFUIGluZGV4IHRvIGEgdmFsdWUsIHByb2JhYmx5IGEgYml0bWFz
+aywgYnVpbHQgb3V0IG9mIGJpdHMgd2hpY2ggZGVmaW5lPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMiI+Jmd0OyBjYWNoaW5nIG1vZGVzLiBMaWtlICZxdW90O1BBVF9XQiB8IFBBVF8x
+V0FZX0NPSEVSRU5UJnF1b3Q7LCBvciBqdXN0IFBBVF9XQi4gV291bGQ8L2Rpdj4NCjxkaXYgY2xh
+c3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7IHRoYXQgYXBwcm9hY2ggYmUgZW5vdWdoIHRvIGV4cHJl
+c3MgZXZlcnl0aGluZz88L2Rpdj4NCjxkaXY+PGJyIGNsYXNzPSJDb250ZW50UGFzdGVkMiI+DQo8
+L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj5JIHdhcyB0aGlua2luZyBhYm91dCBk
+dW1waW5nIHRoZSBQQVQgdGFibGVzIGZyb20gQnNwZWMgaW50byBzdHJ1Y3QgaW50ZWxfZGV2aWNl
+X2luZm8ge30uPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+QnV0IHRoYXQgd291
+bGQgYmUgb25seSB1c2VmdWwgdG8gdW5pZnkgYWxsIHRob3NlICpfc2V0dXBfcHJpdmF0ZV9wcGF0
+KCkgZnVuY3Rpb25zIGluPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+aW50ZWxf
+Z3R0LmMuIEtlcm5lbCBkb2Vzbid0IHJlYWxseSBjYXJlIG11Y2ggYWJvdXQgUEFUIGluZGV4IGV4
+Y2VwdCBtYWtpbmcgc3VyZSB0aGUgYml0czwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDIiPmFyZSBwcm9ncmFtbWVkIGNvcnJlY3RseSBpbiBQVEUuPC9kaXY+DQo8ZGl2PjxiciBjbGFz
+cz0iQ29udGVudFBhc3RlZDIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+
+Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7Jmd0OyZndDsg
+V2l0aCB0aGUgd2hvbGUgcG9pbnQgdGhhdCBkcml2ZXIgY2FuIGFzayBpZjwvZGl2Pg0KPGRpdiBj
+bGFzcz0iQ29udGVudFBhc3RlZDIiPiZndDsmZ3Q7Jmd0OyBzb21ldGhpbmcgaXMgdW5jYWNoZWQs
+IFdUIG9yIHdoYXRldmVyLiBVc2luZyB0aGUgcGxhdGZvcm0gc3BlY2lmaWM8L2Rpdj4NCjxkaXYg
+Y2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7Jmd0OyZndDsgbWFwcGluZyB0YWJsZSB3aGljaCBj
+b252ZXJ0cyBwbGF0Zm9ybSBzcGVjaWZpYyBvYmotJmd0O3BhdF9pbmRleCB0byBkcml2ZXI8L2Rp
+dj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7Jmd0OyZndDsgcmVwcmVzZW50YXRp
+b24gb2YgY2FjaGluZyBtb2RlcyAoUEFUX1VDIGV0YykuPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMiI+Jmd0OyZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4m
+Z3Q7Jmd0OyBBcmUgeW91IHN1Z2dlc3RpbmcgY29tcGxldGVseSByZW1vdmUgaTkxNV9jYWNoZV9s
+ZXZlbCBhbmQgdXNlPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+Jmd0OyZndDsg
+KFBBVC1VQy9XQi9XVCkgaW5zdGVhZD88L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQy
+Ij4mZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+Jmd0OyBOb3QgY29tcGxl
+dGVseSBidXQgdGhyb3VnaG91dCB0aGUgbW9zdCBpbnRlcm5hbCBjb2RlIHBhdGhzLCB3aGljaCB3
+b3VsZDwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDIiPiZndDsgYWxsIGp1c3Qgd29y
+ayBvbiBQQVQgaW5kZXguIEJhc2ljYWxseSBvYmplY3QgYWx3YXlzIGhhcyBQQVQgaW5kZXggc2V0
+LDwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDIiPiZndDsgd2l0aCBhIHNlcGFyYXRl
+IGJvb2xlYW4gc2F5aW5nIHdoZXRoZXIgaXQgY2FtZSBmcm9tIGdlbV9jcmVhdGVfZXh0IG9yPC9k
+aXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+Jmd0OyBzZXRfY2FjaGVfbGV2ZWwuPC9k
+aXY+DQo8ZGl2PjxiciBjbGFzcz0iQ29udGVudFBhc3RlZDIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNz
+PSJDb250ZW50UGFzdGVkMiI+V2hhdCdzIGluIG15IG1pbmQgYXMgYW4gaW1wcm92ZW1lbnQgaXMg
+dG8gY29tcGxldGVseSByZW1vdmUgaTkxNV9jYWNoZV9sZXZlbC48L2Rpdj4NCjxkaXYgY2xhc3M9
+IkNvbnRlbnRQYXN0ZWQyIj5LTUQgaXMgc3VwcG9zZWQgdG8gYWJzdHJhY3QgdGhlIGhhcmR3YXJl
+LCBidXQgaW4gdGhpcyBjYXNlLCBzaW5jZSB0aGUgZGVzZ2luPC9kaXY+DQo8ZGl2IGNsYXNzPSJD
+b250ZW50UGFzdGVkMiI+aXMgdGhhdCBVTURzIHVuZGVyc3RhbmQgUEFUIGluZGV4IChhbmQgTU9D
+UyBhcyB3ZWxsKSwgaGF2aW5nIGFuIGFic3RyYWN0aW9uPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMiI+aW4gYmV0d2VlbiB3b3VsZCBvbmx5IGludHJvZHVjZSBhbWJpZ3VpdHkgYW5k
+IGNvbXBsZXhpdHkuPC9kaXY+DQo8ZGl2PjxiciBjbGFzcz0iQ29udGVudFBhc3RlZDIiPg0KPC9k
+aXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+QWxzbyBrZXJuZWwgZG9lc24ndCBuZWVk
+IHRvIHBsYXkgd2l0aCBhbGwgYXZhaWxhYmxlIFBBVCBpbmRpY2VzLCBzbyBpdCBzaG91bGQ8L2Rp
+dj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj5iZSBva2F5IHRvIGFkZCBpOTE1LSZndDtw
+YXRfe3VjfHdifHd0fSBhbmQgaW5pdGlhbGl6ZSB0aGVtIHdpdGggcHJvcGVyIGluZGljZXM8L2Rp
+dj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj5yZXNwZWN0aXZlbHkuIFRoYXQgdGFrZXMg
+Y2FyZSBvZiB0aGUgUEFUIGNoZWNraW5nIGFzIHdlbGwgd2hlcmV2ZXIgaXQncyBuZWVkZWQsPC9k
+aXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+bGlrZSAmcXVvdDtpZiAocGF0X2luZGV4
+ID09IGk5MTUtJmd0O3BhdF91YykmcXVvdDs8L2Rpdj4NCjxkaXY+PGJyIGNsYXNzPSJDb250ZW50
+UGFzdGVkMiI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7Jmd0OyBM
+ZXQncyBzYXkgYSBLTUQgb2JqZWN0IHdhbnRzIHRvIGJlIHNldCBhcyBXQiwgaG93IHlvdSBnZXQg
+dGhlIGV4YWN0IHBhdF9pbmRleCB0byB1c2U/PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFz
+dGVkMiI+Jmd0OyZndDsgTm90ZSB0aGF0IHRoZXJlIGFyZSBtdWx0aXBsZSBQQVQgaW5kaWNlcyBo
+YXZpbmcgY2FjaGluZyBtb2QgV0IsIGJ1dCB0aGV5IGFyZSBkaWZmZXJlbnQsPC9kaXY+DQo8ZGl2
+IGNsYXNzPSJDb250ZW50UGFzdGVkMiI+Jmd0OyZndDsgZS5nLiBkbyB5b3Ugd2FudCBqdXN0IFdC
+IG9yIFdCIHdpdGggMS13YXktY29oZXJlbmN5IG9yIFdCIHdpdGggMi13YXk8L2Rpdj4NCjxkaXYg
+Y2xhc3M9IkNvbnRlbnRQYXN0ZWQyIj4mZ3Q7Jmd0OyBjb2hlcmVuY3k/PC9kaXY+DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMiI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDIiPiZndDsgSnVzdCB1c2UgdGhlIGNhY2hlX2xldmVsIHRvIHBhdF9pbmRleCBtYXBwaW5nIHlv
+dSBhZGRlZCBpbiB0aGUgc2VyaWVzPzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDIi
+PiZndDs8L2Rpdj4NCiZndDsmZ3Q7IEFsc28sIGluIGNhc2UgYSBjaGVja2luZyBvZiBwYXRfaW5k
+ZXggaXMgbmVlZGVkLCBkbyB3ZSBzYXkgV0Igd2l0aA0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDMiPiZndDsmZ3Q7IDEtd2F5LWNvaGVyZW5jeSBpcyBlcXVhbCB0byBXQiBvciBub3Q/PC9kaXY+
+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29u
+dGVudFBhc3RlZDMiPiZndDsgWW91IG1lYW4gdGhlIGNhbGwgc2l0ZXMgd2hlcmUgaTkxNSBpcyBj
+aGVja2luZyB0aGUgb2JqZWN0IGNhY2hpbmcgbW9kZT88L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRl
+bnRQYXN0ZWQzIj4mZ3Q7IFdlIGhhdmUgdHdvIGNhbGwgc2l0ZXMgd2hpY2ggY2hlY2sgZm9yICFJ
+OTE1X0NBQ0hFX05PTkUuIFRob3NlIHdvdWxkPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFz
+dGVkMyI+Jmd0OyBqdXN0IGNoZWNrIGlmIFBBVF9VQyBpcyBub3Qgc2V0LjwvZGl2Pg0KPGRpdiBj
+bGFzcz0iQ29udGVudFBhc3RlZDMiPiZndDs8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0
+ZWQzIj4mZ3Q7IFRoZW4gdGhlIG9uZSBpbiBncHVfd3JpdGVfbmVlZHNfY2xmbHVzaCBpcyBjaGVj
+a2luZyBmb3IgbmVpdGhlciBVQyBub3I8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQz
+Ij4mZ3Q7IFdULCB3aGljaCBhbHNvIGRpcmVjdGx5IHRyYW5zbGF0ZXMuPC9kaXY+DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3Rl
+ZDMiPiZndDsgRm9yIHRoZSBXQiBjYXNlIHRoZXJlIGFyZW4ndCBhbnkgY2FsbGVycyBidXQgaWYg
+d2UganVzdCBjaGVja2VkIGZvcjwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDMiPiZn
+dDsgJnF1b3Q7YmFzZSZxdW90OyBQQVRfV0IgYml0IGJlaW5nIHNldCB0aGF0IHdvdWxkIHdvcmsu
+PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFz
+cz0iQ29udGVudFBhc3RlZDMiPiZndDsgU28gaW4gYWxsIGNhc2VzIGhlbHBlciB3aGljaCBkb2Vz
+ICZxdW90O3JldHVybiBiaXRzX3JlcXVpcmVkIHwgYml0c19zZXQmcXVvdDs8L2Rpdj4NCjxkaXYg
+Y2xhc3M9IkNvbnRlbnRQYXN0ZWQzIj4mZ3Q7IHNlZW1zIHdvdWxkIHdvcmsgZmluZS48L2Rpdj4N
+CjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQzIj4mZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMyI+Jmd0OyZndDsgQlRXLCBpc24ndCBQQVQtVUMvV0IvV1QgdGhlIHNhbWUga2lu
+ZCBvZiBhYnN0cmFjdGlvbiBhcyBlbnVtPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVk
+MyI+Jmd0OyZndDsgaTkxNV9jYWNoZV9sZXZlbCwgSSdtIG5vdDwvZGl2Pg0KPGRpdiBjbGFzcz0i
+Q29udGVudFBhc3RlZDMiPiZndDsmZ3Q7IHN1cmUgaG93IHRoYXQgd291bGQgc2ltcGxpZnkgYW55
+dGhpbmcuPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDMiPiZndDsgQXMgSSB3cm90ZSBiZWZvcmUsIEkgKnRoaW5r
+KiBpdCBwcm92aWRlcyBhIHdheSBvZiBub3QgbmVlZGluZyB0bzwvZGl2Pg0KPGRpdiBjbGFzcz0i
+Q29udGVudFBhc3RlZDMiPiZndDsgc3ByaW5rbGUgYXJvdW5kIGk5MTVfZ2VtX2dldF9wYXRfaW5k
+ZXggYW5kIGEgc2ltcGxlciAmcXVvdDtoYXNfY2FjaGVfbGV2ZWwmcXVvdDsuPC9kaXY+DQo8ZGl2
+IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OyBDb25jZXB0dWFsbHkgY2FjaGVfbGV2ZWwtJmd0
+O3BhdF9pbmRleCBpcyBkb25lIG9ubHkgaW4gZ2VtX2NyZWF0ZV9leHQgYW5kPC9kaXY+DQo8ZGl2
+IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OyBzZXRfY2FjaGVfbGV2ZWwuIExvd2VyIGxldmVs
+IGNvZGUgZG9lcyBub3QgaGF2ZSB0byBjb25zdWx0IGNhY2hlX2xldmVsPC9kaXY+DQo8ZGl2IGNs
+YXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OyBhdCBhbGwuIEFuZCBleGlzdGVuY2Ugb2YgdGFibGVz
+IHNpbXBsaWZpZXMgdGhlIHByZXR0eSBwcmludGluZyBjb2RlIHRvIGE8L2Rpdj4NCjxkaXYgY2xh
+c3M9IkNvbnRlbnRQYXN0ZWQzIj4mZ3Q7IHBsYXRmb3JtIGFnbm9zdGljIGxvb3AuPC9kaXY+DQo8
+ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVu
+dFBhc3RlZDMiPiZndDsgSSAqdGhpbmsqIGF0IGxlYXN0Li4gV2UgY2FuIGxlYXZlIGl0IGFsbCBm
+b3IgbGF0ZXIuIE15IG1haW4gY29uY2VybiB3YXM8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQ
+YXN0ZWQzIj4mZ3Q7IHRoYXQgVUFQSSBuZWVkcyB0byBiZSBjbGVhciBhbmQgc29saWQgd2hpY2gg
+aXQgbm93IHNlZW1zIHRvIGJlLjwvZGl2Pg0KPGRpdj48YnIgY2xhc3M9IkNvbnRlbnRQYXN0ZWQz
+Ij4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDMiPkknbSBoZXNpdGFudCB0byBk
+byBhbGwgdGhhdCBJIHNhaWQgYWJvdmUgaW4gb25lIHNob3QuIEJ1dCBJIHRoaW5rIGNvbXBsZXRl
+bHk8L2Rpdj4NCjxkaXYgY2xhc3M9IkNvbnRlbnRQYXN0ZWQzIj5yZW1vdmluZyBlbnVtIGk5MTVf
+Y2FjaGVfbGV2ZWwgaXMgd2hhdCB0byBkbyBuZXh0LjwvZGl2Pg0KPGRpdj48YnIgY2xhc3M9IkNv
+bnRlbnRQYXN0ZWQzIj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDMiPi1GZWk8
+L2Rpdj4NCjxkaXY+PGJyIGNsYXNzPSJDb250ZW50UGFzdGVkMyI+DQo8L2Rpdj4NCjxkaXYgY2xh
+c3M9IkNvbnRlbnRQYXN0ZWQzIj4mZ3Q7IFJlZ2FyZHMsPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRpdiBjbGFzcz0iQ29udGVudFBhc3RlZDMiPiZndDsg
+VHZydGtvPC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250ZW50UGFzdGVkMyI+Jmd0OzwvZGl2Pg0KPGRp
+diBjbGFzcz0iQ29udGVudFBhc3RlZDMiPiZndDsmZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSJDb250
+ZW50UGFzdGVkMyI+Jmd0OyZndDsmZ3Q7IFF1aXRlIHBvc3NpYmxlIEkgbWlzc2VkIHNvbWUgZGV0
+YWlsLCBidXQgaWYgSSBoYXZlbid0IHRoZW4gaXQgY291bGQgYmU8L2Rpdj4NCiZndDsmZ3Q7Jmd0
+OyBhIG5lYXQgYW5kIGxpZ2h0d2VpZ2h0IHNvbHV0aW9uLjxicj4NCjwvZGl2Pg0KPC9ib2R5Pg0K
+PC9odG1sPg0K
 
-> > +
-> > +	if (is_error)
-> > +		drm_err(&i915->drm, "%s[ENCODER:%d:%s][%s] %pV\n",
-> > +			conn_str,
-> > +			encoder->base.base.id, encoder->base.name,
-> > +			drm_dp_phy_name(dp_phy),
-> > +			&vaf);
-> > +	else
-> > +		drm_dbg(&i915->drm, "%s[ENCODER:%d:%s][%s] %pV\n",
-> 
-> That has lost the correct debug category.
-
-Yes, should've been drm_dbg_kms().
-
-> 
-> > +			conn_str,
-> > +			encoder->base.base.id, encoder->base.name,
-> > +			drm_dp_phy_name(dp_phy),
-> > +			&vaf);
-> 
-> Hmm. ___drm_dev_dbg() already uses this vaf stuff.
-> Does chaining it like that work correctly?
-
-Didn't think of it, but can't see why not, it's used at least in a few
-places like that.
-
-> > +}
-> > +
-> > +#define lt_err(intel_dp, dp_phy, format, ...) \
-> > +	lt_msg(NULL, intel_dp, dp_phy, true, format, ## __VA_ARGS__)
-> > +
-> > +#define lt_dbg(intel_dp, dp_phy, format, ...) \
-> > +	lt_msg(NULL, intel_dp, dp_phy, false, format, ## __VA_ARGS__)
-> > +
-> > +#define lt_conn_dbg(connector, intel_dp, dp_phy, format, ...) \
-> > +	lt_msg(connector, intel_dp, dp_phy, false, format, ## __VA_ARGS__)
-> > +
-> >  static void intel_dp_reset_lttpr_common_caps(struct intel_dp *intel_dp)
-> >  {
-> >  	memset(intel_dp->lttpr_common_caps, 0, sizeof(intel_dp->lttpr_common_caps));
-> > @@ -47,29 +88,21 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
-> >  					 const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> >  					 enum drm_dp_phy dp_phy)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
-> >  
-> >  	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dpcd, dp_phy, phy_caps) < 0) {
-> > -		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy));
-> > +		lt_dbg(intel_dp, dp_phy, "failed to read the PHY caps\n");
-> >  		return;
-> >  	}
-> >  
-> > -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -		    "[ENCODER:%d:%s][%s] PHY capabilities: %*ph\n",
-> > -		    encoder->base.base.id, encoder->base.name,
-> > -		    drm_dp_phy_name(dp_phy),
-> > -		    (int)sizeof(intel_dp->lttpr_phy_caps[0]),
-> > -		    phy_caps);
-> > +	lt_dbg(intel_dp, dp_phy, "PHY capabilities: %*ph\n",
-> > +	       (int)sizeof(intel_dp->lttpr_phy_caps[0]),
-> > +	       phy_caps);
-> >  }
-> >  
-> >  static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp,
-> >  					    const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	int ret;
-> >  
-> >  	ret = drm_dp_read_lttpr_common_caps(&intel_dp->aux, dpcd,
-> > @@ -77,11 +110,9 @@ static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp,
-> >  	if (ret < 0)
-> >  		goto reset_caps;
-> >  
-> > -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -		    "[ENCODER:%d:%s] LTTPR common capabilities: %*ph\n",
-> > -		    encoder->base.base.id, encoder->base.name,
-> > -		    (int)sizeof(intel_dp->lttpr_common_caps),
-> > -		    intel_dp->lttpr_common_caps);
-> > +	lt_dbg(intel_dp, DP_PHY_DPRX, "LTTPR common capabilities: %*ph\n",
-> > +	       (int)sizeof(intel_dp->lttpr_common_caps),
-> > +	       intel_dp->lttpr_common_caps);
-> >  
-> >  	/* The minimum value of LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV is 1.4 */
-> >  	if (intel_dp->lttpr_common_caps[0] < 0x14)
-> > @@ -105,8 +136,6 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
-> >  
-> >  static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	int lttpr_count;
-> >  	int i;
-> >  
-> > @@ -138,9 +167,8 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
-> >  		return 0;
-> >  
-> >  	if (!intel_dp_set_lttpr_transparent_mode(intel_dp, false)) {
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s] Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n",
-> > -			    encoder->base.base.id, encoder->base.name);
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX,
-> > +		       "Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n");
-> >  
-> >  		intel_dp_set_lttpr_transparent_mode(intel_dp, true);
-> >  		intel_dp_reset_lttpr_count(intel_dp);
-> > @@ -409,26 +437,22 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
-> >  			  enum drm_dp_phy dp_phy,
-> >  			  const u8 link_status[DP_LINK_STATUS_SIZE])
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	int lane;
-> >  
-> >  	if (intel_dp_is_uhbr(crtc_state)) {
-> > -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
-> > -			    "TX FFE request: " TRAIN_REQ_FMT "\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy),
-> > -			    crtc_state->lane_count,
-> > -			    TRAIN_REQ_TX_FFE_ARGS(link_status));
-> > +		lt_dbg(intel_dp, dp_phy,
-> > +		       "128b/132b, lanes: %d, "
-> > +		       "TX FFE request: " TRAIN_REQ_FMT "\n",
-> > +		       crtc_state->lane_count,
-> > +		       TRAIN_REQ_TX_FFE_ARGS(link_status));
-> >  	} else {
-> > -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 8b/10b, lanes: %d, "
-> > -			    "vswing request: " TRAIN_REQ_FMT ", "
-> > -			    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy),
-> > -			    crtc_state->lane_count,
-> > -			    TRAIN_REQ_VSWING_ARGS(link_status),
-> > -			    TRAIN_REQ_PREEMPH_ARGS(link_status));
-> > +		lt_dbg(intel_dp, dp_phy,
-> > +		       "8b/10b, lanes: %d, "
-> > +		       "vswing request: " TRAIN_REQ_FMT ", "
-> > +		       "pre-emphasis request: " TRAIN_REQ_FMT "\n",
-> > +		       crtc_state->lane_count,
-> > +		       TRAIN_REQ_VSWING_ARGS(link_status),
-> > +		       TRAIN_REQ_PREEMPH_ARGS(link_status));
-> >  	}
-> >  
-> >  	for (lane = 0; lane < 4; lane++)
-> > @@ -487,16 +511,11 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
-> >  				       enum drm_dp_phy dp_phy,
-> >  				       u8 dp_train_pat)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	u8 train_pat = intel_dp_training_pattern_symbol(dp_train_pat);
-> >  
-> >  	if (train_pat != DP_TRAINING_PATTERN_DISABLE)
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s][%s] Using DP training pattern TPS%c\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy),
-> > -			    dp_training_pattern_name(train_pat));
-> > +		lt_dbg(intel_dp, dp_phy, "Using DP training pattern TPS%c\n",
-> > +		       dp_training_pattern_name(train_pat));
-> >  
-> >  	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
-> >  }
-> > @@ -531,24 +550,21 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
-> >  				enum drm_dp_phy dp_phy)
-> >  {
-> >  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  
-> >  	if (intel_dp_is_uhbr(crtc_state)) {
-> > -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
-> > -			    "TX FFE presets: " TRAIN_SET_FMT "\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy),
-> > -			    crtc_state->lane_count,
-> > -			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
-> > +		lt_dbg(intel_dp, dp_phy,
-> > +		       "128b/132b, lanes: %d, "
-> > +		       "TX FFE presets: " TRAIN_SET_FMT "\n",
-> > +		       crtc_state->lane_count,
-> > +		       TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
-> >  	} else {
-> > -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 8b/10b, lanes: %d, "
-> > -			    "vswing levels: " TRAIN_SET_FMT ", "
-> > -			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy),
-> > -			    crtc_state->lane_count,
-> > -			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
-> > -			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
-> > +		lt_dbg(intel_dp, dp_phy,
-> > +		       "8b/10b, lanes: %d, "
-> > +		       "vswing levels: " TRAIN_SET_FMT ", "
-> > +		       "pre-emphasis levels: " TRAIN_SET_FMT "\n",
-> > +		       crtc_state->lane_count,
-> > +		       TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
-> > +		       TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
-> >  	}
-> >  
-> >  	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
-> > @@ -645,8 +661,6 @@ static bool
-> >  intel_dp_prepare_link_train(struct intel_dp *intel_dp,
-> >  			    const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	u8 link_config[2];
-> >  	u8 link_bw, rate_select;
-> >  
-> > @@ -671,21 +685,19 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
-> >  		struct intel_connector *connector = intel_dp->attached_connector;
-> >  		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
-> >  
-> > -		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Reloading eDP link rates\n",
-> > -			    connector->base.base.id, connector->base.name);
-> > +		lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX,
-> > +			    "Reloading eDP link rates\n");
-> >  
-> >  		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
-> >  				 sink_rates, sizeof(sink_rates));
-> >  	}
-> >  
-> >  	if (link_bw)
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s] Using LINK_BW_SET value %02x\n",
-> > -			    encoder->base.base.id, encoder->base.name, link_bw);
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX, "Using LINK_BW_SET value %02x\n",
-> > +		       link_bw);
-> >  	else
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
-> > -			    encoder->base.base.id, encoder->base.name, rate_select);
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX, "Using LINK_RATE_SET value %02x\n",
-> > +		       rate_select);
-> >  
-> >  	/* Write the link configuration data */
-> >  	link_config[0] = link_bw;
-> > @@ -737,15 +749,10 @@ void
-> >  intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
-> >  			  const u8 link_status[DP_LINK_STATUS_SIZE])
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > -
-> > -	drm_dbg_kms(&i915->drm,
-> > -		    "[ENCODER:%d:%s][%s] ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
-> > -		    encoder->base.base.id, encoder->base.name,
-> > -		    drm_dp_phy_name(dp_phy),
-> > -		    link_status[0], link_status[1], link_status[2],
-> > -		    link_status[3], link_status[4], link_status[5]);
-> > +	lt_dbg(intel_dp, dp_phy,
-> > +	       "ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
-> > +	       link_status[0], link_status[1], link_status[2],
-> > +	       link_status[3], link_status[4], link_status[5]);
-> >  }
-> >  
-> >  /*
-> > @@ -757,8 +764,6 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
-> >  				      const struct intel_crtc_state *crtc_state,
-> >  				      enum drm_dp_phy dp_phy)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	u8 old_link_status[DP_LINK_STATUS_SIZE] = {};
-> >  	int voltage_tries, cr_tries, max_cr_tries;
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> > @@ -773,9 +778,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
-> >  	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
-> >  				       DP_TRAINING_PATTERN_1 |
-> >  				       DP_LINK_SCRAMBLING_DISABLE)) {
-> > -		drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to enable link training\n",
-> > -			encoder->base.base.id, encoder->base.name,
-> > -			drm_dp_phy_name(dp_phy));
-> > +		lt_err(intel_dp, dp_phy, "Failed to enable link training\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -798,35 +801,24 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
-> >  
-> >  		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
-> >  						     link_status) < 0) {
-> > -			drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to get link status\n",
-> > -				encoder->base.base.id, encoder->base.name,
-> > -				drm_dp_phy_name(dp_phy));
-> > +			lt_err(intel_dp, dp_phy, "Failed to get link status\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_clock_recovery_ok(link_status, crtc_state->lane_count)) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s][%s] Clock recovery OK\n",
-> > -				    encoder->base.base.id, encoder->base.name,
-> > -				    drm_dp_phy_name(dp_phy));
-> > +			lt_dbg(intel_dp, dp_phy, "Clock recovery OK\n");
-> >  			return true;
-> >  		}
-> >  
-> >  		if (voltage_tries == 5) {
-> >  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
-> > -				    encoder->base.base.id, encoder->base.name,
-> > -				    drm_dp_phy_name(dp_phy));
-> > +			lt_dbg(intel_dp, dp_phy, "Same voltage tried 5 times\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (max_vswing_reached) {
-> >  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
-> > -				    encoder->base.base.id, encoder->base.name,
-> > -				    drm_dp_phy_name(dp_phy));
-> > +			lt_dbg(intel_dp, dp_phy, "Max Voltage Swing reached\n");
-> >  			return false;
-> >  		}
-> >  
-> > @@ -834,10 +826,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
-> >  		intel_dp_get_adjust_train(intel_dp, crtc_state, dp_phy,
-> >  					  link_status);
-> >  		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s][%s] Failed to update link training\n",
-> > -				encoder->base.base.id, encoder->base.name,
-> > -				drm_dp_phy_name(dp_phy));
-> > +			lt_err(intel_dp, dp_phy, "Failed to update link training\n");
-> >  			return false;
-> >  		}
-> >  
-> > @@ -853,10 +842,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
-> >  	}
-> >  
-> >  	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> > -	drm_err(&i915->drm,
-> > -		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
-> > -		encoder->base.base.id, encoder->base.name,
-> > -		drm_dp_phy_name(dp_phy), max_cr_tries);
-> > +	lt_err(intel_dp, dp_phy, "Failed clock recovery %d times, giving up!\n",
-> > +	       max_cr_tries);
-> >  
-> >  	return false;
-> >  }
-> > @@ -890,11 +877,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
-> >  		return DP_TRAINING_PATTERN_4;
-> >  	} else if (crtc_state->port_clock == 810000) {
-> >  		if (!source_tps4)
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "8.1 Gbps link rate without source TPS4 support\n");
-> > +			lt_dbg(intel_dp, dp_phy,
-> > +			       "8.1 Gbps link rate without source TPS4 support\n");
-> >  		if (!sink_tps4)
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "8.1 Gbps link rate without sink TPS4 support\n");
-> > +			lt_dbg(intel_dp, dp_phy,
-> > +			       "8.1 Gbps link rate without sink TPS4 support\n");
-> >  	}
-> >  
-> >  	/*
-> > @@ -908,11 +895,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
-> >  		return  DP_TRAINING_PATTERN_3;
-> >  	} else if (crtc_state->port_clock >= 540000) {
-> >  		if (!source_tps3)
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    ">=5.4/6.48 Gbps link rate without source TPS3 support\n");
-> > +			lt_dbg(intel_dp, dp_phy,
-> > +			       ">=5.4/6.48 Gbps link rate without source TPS3 support\n");
-> >  		if (!sink_tps3)
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    ">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
-> > +			lt_dbg(intel_dp, dp_phy,
-> > +			       ">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
-> >  	}
-> >  
-> >  	return DP_TRAINING_PATTERN_2;
-> > @@ -928,8 +915,6 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  					    const struct intel_crtc_state *crtc_state,
-> >  					    enum drm_dp_phy dp_phy)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	int tries;
-> >  	u32 training_pattern;
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> > @@ -948,10 +933,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  	/* channel equalization */
-> >  	if (!intel_dp_set_link_train(intel_dp, crtc_state, dp_phy,
-> >  				     training_pattern)) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s][%s] Failed to start channel equalization\n",
-> > -			encoder->base.base.id, encoder->base.name,
-> > -			drm_dp_phy_name(dp_phy));
-> > +		lt_err(intel_dp, dp_phy, "Failed to start channel equalization\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -960,10 +942,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  
-> >  		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
-> >  						     link_status) < 0) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s][%s] Failed to get link status\n",
-> > -				encoder->base.base.id, encoder->base.name,
-> > -				drm_dp_phy_name(dp_phy));
-> > +			lt_err(intel_dp, dp_phy, "Failed to get link status\n");
-> >  			break;
-> >  		}
-> >  
-> > @@ -971,21 +950,15 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  		if (!drm_dp_clock_recovery_ok(link_status,
-> >  					      crtc_state->lane_count)) {
-> >  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s][%s] Clock recovery check failed, cannot "
-> > -				    "continue channel equalization\n",
-> > -				    encoder->base.base.id, encoder->base.name,
-> > -				    drm_dp_phy_name(dp_phy));
-> > +			lt_dbg(intel_dp, dp_phy,
-> > +			       "Clock recovery check failed, cannot continue channel equalization\n");
-> >  			break;
-> >  		}
-> >  
-> >  		if (drm_dp_channel_eq_ok(link_status,
-> >  					 crtc_state->lane_count)) {
-> >  			channel_eq = true;
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s][%s] Channel EQ done. DP Training successful\n",
-> > -				    encoder->base.base.id, encoder->base.name,
-> > -				    drm_dp_phy_name(dp_phy));
-> > +			lt_dbg(intel_dp, dp_phy, "Channel EQ done. DP Training successful\n");
-> >  			break;
-> >  		}
-> >  
-> > @@ -993,10 +966,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  		intel_dp_get_adjust_train(intel_dp, crtc_state, dp_phy,
-> >  					  link_status);
-> >  		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s][%s] Failed to update link training\n",
-> > -				encoder->base.base.id, encoder->base.name,
-> > -				drm_dp_phy_name(dp_phy));
-> > +			lt_err(intel_dp, dp_phy, "Failed to update link training\n");
-> >  			break;
-> >  		}
-> >  	}
-> > @@ -1004,10 +974,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
-> >  	/* Try 5 times, else fail and try at lower BW */
-> >  	if (tries == 5) {
-> >  		intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s][%s] Channel equalization failed 5 times\n",
-> > -			    encoder->base.base.id, encoder->base.name,
-> > -			    drm_dp_phy_name(dp_phy));
-> > +		lt_dbg(intel_dp, dp_phy, "Channel equalization failed 5 times\n");
-> >  	}
-> >  
-> >  	return channel_eq;
-> > @@ -1058,9 +1025,6 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
-> >  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
-> >  			      const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -
-> >  	intel_dp->link_trained = true;
-> >  
-> >  	intel_dp_disable_dpcd_training_pattern(intel_dp, DP_PHY_DPRX);
-> > @@ -1069,9 +1033,7 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
-> >  
-> >  	if (intel_dp_is_uhbr(crtc_state) &&
-> >  	    wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[ENCODER:%d:%s] 128b/132b intra-hop not clearing\n",
-> > -			    encoder->base.base.id, encoder->base.name);
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
-> >  	}
-> >  }
-> >  
-> > @@ -1081,7 +1043,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
-> >  			enum drm_dp_phy dp_phy)
-> >  {
-> >  	struct intel_connector *connector = intel_dp->attached_connector;
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	bool ret = false;
-> >  
-> >  	if (!intel_dp_link_training_clock_recovery(intel_dp, crtc_state, dp_phy))
-> > @@ -1093,11 +1054,8 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
-> >  	ret = true;
-> >  
-> >  out:
-> > -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -		    "[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] Link Training %s at link rate = %d, lane count = %d\n",
-> > -		    connector->base.base.id, connector->base.name,
-> > -		    encoder->base.base.id, encoder->base.name,
-> > -		    drm_dp_phy_name(dp_phy),
-> > +	lt_conn_dbg(connector, intel_dp, dp_phy,
-> > +		    "Link Training %s at link rate = %d, lane count = %d\n",
-> >  		    ret ? "passed" : "failed",
-> >  		    crtc_state->port_clock, crtc_state->lane_count);
-> >  
-> > @@ -1108,13 +1066,10 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
-> >  						     const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_connector *intel_connector = intel_dp->attached_connector;
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  
-> >  	if (intel_dp->hobl_active) {
-> > -		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -			    "[ENCODER:%d:%s] Link Training failed with HOBL active, "
-> > -			    "not enabling it from now on",
-> > -			    encoder->base.base.id, encoder->base.name);
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX,
-> > +		       "Link Training failed with HOBL active, not enabling it from now on\n");
-> >  		intel_dp->hobl_failed = true;
-> >  	} else if (intel_dp_get_link_train_fallback_values(intel_dp,
-> >  							   crtc_state->port_clock,
-> > @@ -1161,8 +1116,6 @@ static bool
-> >  intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  			  const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> >  	int delay_us;
-> >  	int try, max_tries = 20;
-> > @@ -1177,9 +1130,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  	 */
-> >  	if (!intel_dp_reset_link_train(intel_dp, crtc_state, DP_PHY_DPRX,
-> >  				       DP_TRAINING_PATTERN_1)) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS1\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS1\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -1187,27 +1138,21 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  
-> >  	/* Read the initial TX FFE settings. */
-> >  	if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Failed to read TX FFE presets\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to read TX FFE presets\n");
-> >  		return false;
-> >  	}
-> >  
-> >  	/* Update signal levels and training set as requested. */
-> >  	intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
-> >  	if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Failed to set initial TX FFE settings\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to set initial TX FFE settings\n");
-> >  		return false;
-> >  	}
-> >  
-> >  	/* Start transmitting 128b/132b TPS2. */
-> >  	if (!intel_dp_set_link_train(intel_dp, crtc_state, DP_PHY_DPRX,
-> >  				     DP_TRAINING_PATTERN_2)) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS2\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -1224,32 +1169,25 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
-> >  
-> >  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Failed to read link status\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_link_training_failed(link_status)) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX,
-> > +			       "Downstream link training failure\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_lane_channel_eq_done(link_status, crtc_state->lane_count)) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s] Lane channel eq done\n",
-> > -				    encoder->base.base.id, encoder->base.name);
-> > +			lt_dbg(intel_dp, DP_PHY_DPRX, "Lane channel eq done\n");
-> >  			break;
-> >  		}
-> >  
-> >  		if (timeout) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Lane channel eq timeout\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Lane channel eq timeout\n");
-> >  			return false;
-> >  		}
-> >  
-> > @@ -1259,18 +1197,14 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  		/* Update signal levels and training set as requested. */
-> >  		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
-> >  		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Failed to update TX FFE settings\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to update TX FFE settings\n");
-> >  			return false;
-> >  		}
-> >  	}
-> >  
-> >  	if (try == max_tries) {
-> >  		intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Max loop count reached\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Max loop count reached\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -1279,32 +1213,24 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
-> >  			timeout = true; /* try one last time after deadline */
-> >  
-> >  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Failed to read link status\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_link_training_failed(link_status)) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Downstream link training failure\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_eq_interlane_align_done(link_status)) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s] Interlane align done\n",
-> > -				    encoder->base.base.id, encoder->base.name);
-> > +			lt_dbg(intel_dp, DP_PHY_DPRX, "Interlane align done\n");
-> >  			break;
-> >  		}
-> >  
-> >  		if (timeout) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Interlane align timeout\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Interlane align timeout\n");
-> >  			return false;
-> >  		}
-> >  
-> > @@ -1322,16 +1248,12 @@ intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
-> >  			   const struct intel_crtc_state *crtc_state,
-> >  			   int lttpr_count)
-> >  {
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> > -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> >  	unsigned long deadline;
-> >  
-> >  	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
-> >  			       DP_TRAINING_PATTERN_2_CDS) != 1) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2 CDS\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS2 CDS\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -1347,34 +1269,26 @@ intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
-> >  		usleep_range(2000, 3000);
-> >  
-> >  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Failed to read link status\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_eq_interlane_align_done(link_status) &&
-> >  		    drm_dp_128b132b_cds_interlane_align_done(link_status) &&
-> >  		    drm_dp_128b132b_lane_symbol_locked(link_status, crtc_state->lane_count)) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "[ENCODER:%d:%s] CDS interlane align done\n",
-> > -				    encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "CDS interlane align done\n");
-> >  			break;
-> >  		}
-> >  
-> >  		if (drm_dp_128b132b_link_training_failed(link_status)) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "Downstream link training failure\n");
-> >  			return false;
-> >  		}
-> >  
-> >  		if (timeout) {
-> >  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> > -			drm_err(&i915->drm,
-> > -				"[ENCODER:%d:%s] CDS timeout\n",
-> > -				encoder->base.base.id, encoder->base.name);
-> > +			lt_err(intel_dp, DP_PHY_DPRX, "CDS timeout\n");
-> >  			return false;
-> >  		}
-> >  	}
-> > @@ -1390,15 +1304,11 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
-> >  			     const struct intel_crtc_state *crtc_state,
-> >  			     int lttpr_count)
-> >  {
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> >  	struct intel_connector *connector = intel_dp->attached_connector;
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	bool passed = false;
-> >  
-> >  	if (wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-> > -		drm_err(&i915->drm,
-> > -			"[ENCODER:%d:%s] 128b/132b intra-hop not clear\n",
-> > -			encoder->base.base.id, encoder->base.name);
-> > +		lt_err(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clear\n");
-> >  		return false;
-> >  	}
-> >  
-> > @@ -1406,10 +1316,8 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
-> >  	    intel_dp_128b132b_lane_cds(intel_dp, crtc_state, lttpr_count))
-> >  		passed = true;
-> >  
-> > -	drm_dbg_kms(&i915->drm,
-> > -		    "[CONNECTOR:%d:%s][ENCODER:%d:%s] 128b/132b Link Training %s at link rate = %d, lane count = %d\n",
-> > -		    connector->base.base.id, connector->base.name,
-> > -		    encoder->base.base.id, encoder->base.name,
-> > +	lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX,
-> > +		    "128b/132b Link Training %s at link rate = %d, lane count = %d\n",
-> >  		    passed ? "passed" : "failed",
-> >  		    crtc_state->port_clock, crtc_state->lane_count);
-> >  
-> > @@ -1431,7 +1339,6 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
-> >  {
-> >  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> >  	struct intel_connector *connector = intel_dp->attached_connector;
-> > -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	bool passed;
-> >  
-> >  	/*
-> > @@ -1464,10 +1371,7 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
-> >  	 * ignore_long_hpd flag can unset from the testcase.
-> >  	 */
-> >  	if (!passed && i915->display.hotplug.ignore_long_hpd) {
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "[CONNECTOR:%d:%s][ENCODER:%d:%s] Ignore the link failure\n",
-> > -			    connector->base.base.id, connector->base.name,
-> > -			    encoder->base.base.id, encoder->base.name);
-> > +		lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX, "Ignore the link failure\n");
-> >  		return;
-> >  	}
-> >  
-> > @@ -1478,8 +1382,6 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
-> >  void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
-> >  				 const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > -
-> >  	/*
-> >  	 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
-> >  	 * disable SDP CRC. This is applicable for Display version 13.
-> > @@ -1492,5 +1394,5 @@ void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
-> >  				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
-> >  				   DP_SDP_CRC16_128B132B_EN);
-> >  
-> > -	drm_dbg_kms(&i915->drm, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
-> > +	lt_dbg(intel_dp, DP_PHY_DPRX, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
-> >  }
-> > -- 
-> > 2.37.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+--_000_BYAPR11MB2567A74AC05EA384342871099A6B9BYAPR11MB2567namp_--
