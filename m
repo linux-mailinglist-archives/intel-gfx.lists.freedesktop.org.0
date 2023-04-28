@@ -1,57 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215D96F1471
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 11:46:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F556F14CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 11:59:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9070910E3B6;
-	Fri, 28 Apr 2023 09:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37FCA10E3BD;
+	Fri, 28 Apr 2023 09:59:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACE3410E3B6;
- Fri, 28 Apr 2023 09:46:25 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E399310E3BD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 09:59:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682675185; x=1714211185;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=iUth5jhfQwmZML5AySG8xVTQC1dZMSTLC2HwysaFJlw=;
- b=TpctRDTE8mDYqvQJx4gZe9u3Vn7Gu4H9DoS80HthSZDH1WQbCpKPtr19
- 3D+fD8TwOQQAxf+DHmUFDNyqL/Epa+ib+cC/uiSSpaANd8tXtpD6FbKM+
- bJA+o+OC6nITkutj3Lp8h9OuzliLLPXYBgQvWkK36SiB8B2fRnikc7yf9
- dPdixw50dTic4bducqa0Cdz9snJbuAPuu6ycAgX/ofOKq9QvAgGcHpxLE
- viTnfz7DyW6UHQ/BL1zytThi4aWsou8yDyJ1xyaC7sL57HaP29mhZD5u3
- xl29hrv1DPMpNJglR3TKthuFBHbJUomKNQnb/PN+EZo7GCJks8hC4Sj2e Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="350612862"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="350612862"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 02:46:24 -0700
+ t=1682675973; x=1714211973;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UfA7Gdlb5T8uYz9m67JDJMdyea6etQo1QbjWAL/Nev4=;
+ b=SjX2/A+xmgJNpPNlS+9dkCAZAatH8dcXPa/BvV8AQ56+gLTzrBvImA8r
+ yhXkaaOK/BU1rKvk4SR8Hvch5HSb8NOr10N3/ZJ6MJn+oG3Tfw3MwvCWS
+ oo8eBxeLzIwN76vlH9hhmzQFUCsMlbp+JSEYdOqB72hd6gZN/a5JtURI/
+ VEe63om7ED0E9EgbO/obQqqVcmySvzpXu88S1Ruve2esgQnZLiynSqBnq
+ 7AIoaEKyMeH79tJwmtE1TB/KyElax0iD6zXqfToP/nR8FRZ+dBARaB1Lk
+ VQXgh4pzWTjMRI+iB8JGkiX0eDSaMKSlpmkyv4RsoGOElbisg4DGoPTap A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="375698103"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="375698103"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 02:59:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="806337526"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="806337526"
-Received: from ksathish-mobl.ger.corp.intel.com (HELO [10.213.194.196])
- ([10.213.194.196])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 02:46:23 -0700
-Message-ID: <bb5b0499-7ede-1e56-486a-6a6539c9ccb7@linux.intel.com>
-Date: Fri, 28 Apr 2023 10:46:20 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="725295711"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="725295711"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga008.jf.intel.com with ESMTP; 28 Apr 2023 02:59:32 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Apr 2023 12:54:20 +0300
+Message-Id: <20230428095433.4109054-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20230428054737.1765778-1-fei.yang@intel.com>
- <20230428054737.1765778-6-fei.yang@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230428054737.1765778-6-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 5/5] drm/i915: Allow user to set cache at
- BO creation
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/13] drm/i915/mtl: Add support for C20 phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,253 +55,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Add support for C20 phy for Type-C connections. C20 phy differs from
+C10 and hence we need to separately handle this case.
 
-On 28/04/2023 06:47, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> To comply with the design that buffer objects shall have immutable
-> cache setting through out their life cycle, {set, get}_caching ioctl's
-> are no longer supported from MTL onward. With that change caching
-> policy can only be set at object creation time. The current code
-> applies a default (platform dependent) cache setting for all objects.
-> However this is not optimal for performance tuning. The patch extends
-> the existing gem_create uAPI to let user set PAT index for the object
-> at creation time.
-> The new extension is platform independent, so UMD's can switch to using
-> this extension for older platforms as well, while {set, get}_caching are
-> still supported on these legacy paltforms for compatibility reason.
-> 
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 ++++++++++++++++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
->   include/uapi/drm/i915_drm.h                | 36 ++++++++++++++++++++++
->   tools/include/uapi/drm/i915_drm.h          | 36 ++++++++++++++++++++++
->   4 files changed, 114 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> index bfe1dbda4cb7..723c3ddd6c74 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> @@ -245,6 +245,7 @@ struct create_ext {
->   	unsigned int n_placements;
->   	unsigned int placement_mask;
->   	unsigned long flags;
-> +	unsigned int pat_index;
->   };
->   
->   static void repr_placements(char *buf, size_t size,
-> @@ -394,11 +395,39 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
->   	return 0;
->   }
->   
-> +static int ext_set_pat(struct i915_user_extension __user *base, void *data)
-> +{
-> +	struct create_ext *ext_data = data;
-> +	struct drm_i915_private *i915 = ext_data->i915;
-> +	struct drm_i915_gem_create_ext_set_pat ext;
-> +	unsigned int max_pat_index;
-> +
-> +	BUILD_BUG_ON(sizeof(struct drm_i915_gem_create_ext_set_pat) !=
-> +		     offsetofend(struct drm_i915_gem_create_ext_set_pat, rsvd));
-> +
-> +	if (copy_from_user(&ext, base, sizeof(ext)))
-> +		return -EFAULT;
-> +
-> +	max_pat_index = INTEL_INFO(i915)->max_pat_index;
-> +
-> +	if (ext.pat_index > max_pat_index) {
-> +		drm_dbg(&i915->drm, "PAT index is invalid: %u\n",
-> +			ext.pat_index);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ext_data->pat_index = ext.pat_index;
-> +
-> +	return 0;
-> +}
-> +
->   static const i915_user_extension_fn create_extensions[] = {
->   	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] = ext_set_placements,
->   	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
-> +	[I915_GEM_CREATE_EXT_SET_PAT] = ext_set_pat,
->   };
->   
-> +#define PAT_INDEX_NOT_SET	0xffff
->   /**
->    * i915_gem_create_ext_ioctl - Creates a new mm object and returns a handle to it.
->    * @dev: drm device pointer
-> @@ -418,6 +447,7 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
->   	if (args->flags & ~I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS)
->   		return -EINVAL;
->   
-> +	ext_data.pat_index = PAT_INDEX_NOT_SET;
->   	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
->   				   create_extensions,
->   				   ARRAY_SIZE(create_extensions),
-> @@ -454,5 +484,11 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
->   	if (IS_ERR(obj))
->   		return PTR_ERR(obj);
->   
-> +	if (ext_data.pat_index != PAT_INDEX_NOT_SET) {
-> +		i915_gem_object_set_pat_index(obj, ext_data.pat_index);
-> +		/* Mark pat_index is set by UMD */
-> +		obj->cache_level = I915_CACHE_INVAL;
-> +	}
-> +
->   	return i915_gem_publish(obj, file, &args->size, &args->handle);
->   }
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 27c948350b5b..61651f7e5806 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -209,6 +209,12 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
->   	if (!(obj->flags & I915_BO_ALLOC_USER))
->   		return false;
->   
-> +	/*
-> +	 * Always flush cache for UMD objects at creation time.
-> +	 */
-> +	if (obj->cache_level == I915_CACHE_INVAL)
-> +		return true;
+v2: Fixes for C20 pll programming and hw readout
 
-Can this affect performance? Would you be able to make the check smarter 
-if the driver had that translation table we talked about (per platform 
-pat index to caching modes)?
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 
-> +
->   	/*
->   	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
->   	 * possible for userspace to bypass the GTT caching bits set by the
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index dba7c5a5b25e..03c5c314846e 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -3630,9 +3630,13 @@ struct drm_i915_gem_create_ext {
->   	 *
->   	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
->   	 * struct drm_i915_gem_create_ext_protected_content.
-> +	 *
-> +	 * For I915_GEM_CREATE_EXT_SET_PAT usage see
-> +	 * struct drm_i915_gem_create_ext_set_pat.
->   	 */
->   #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
->   #define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
-> +#define I915_GEM_CREATE_EXT_SET_PAT 2
->   	__u64 extensions;
->   };
->   
-> @@ -3747,6 +3751,38 @@ struct drm_i915_gem_create_ext_protected_content {
->   	__u32 flags;
->   };
->   
-> +/**
-> + * struct drm_i915_gem_create_ext_set_pat - The
-> + * I915_GEM_CREATE_EXT_SET_PAT extension.
-> + *
-> + * If this extension is provided, the specified caching policy (PAT index) is
-> + * applied to the buffer object.
-> + *
-> + * Below is an example on how to create an object with specific caching policy:
-> + *
-> + * .. code-block:: C
-> + *
-> + *      struct drm_i915_gem_create_ext_set_pat set_pat_ext = {
-> + *              .base = { .name = I915_GEM_CREATE_EXT_SET_PAT },
-> + *              .pat_index = 0,
-> + *      };
-> + *      struct drm_i915_gem_create_ext create_ext = {
-> + *              .size = PAGE_SIZE,
-> + *              .extensions = (uintptr_t)&set_pat_ext,
-> + *      };
-> + *
-> + *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
-> + *      if (err) ...
-> + */
-> +struct drm_i915_gem_create_ext_set_pat {
-> +	/** @base: Extension link. See struct i915_user_extension. */
-> +	struct i915_user_extension base;
-> +	/** @pat_index: PAT index to be set */
-> +	__u32 pat_index;
-> +	/** @rsvd: reserved for future use */
-> +	__u32 rsvd;
-> +};
-> +
->   /* ID of the protected content session managed by i915 when PXP is active */
->   #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
->   
-> diff --git a/tools/include/uapi/drm/i915_drm.h b/tools/include/uapi/drm/i915_drm.h
-> index 8df261c5ab9b..8cdcdb5fac26 100644
-> --- a/tools/include/uapi/drm/i915_drm.h
-> +++ b/tools/include/uapi/drm/i915_drm.h
-> @@ -3607,9 +3607,13 @@ struct drm_i915_gem_create_ext {
->   	 *
->   	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
->   	 * struct drm_i915_gem_create_ext_protected_content.
-> +	 *
-> +	 * For I915_GEM_CREATE_EXT_SET_PAT usage see
-> +	 * struct drm_i915_gem_create_ext_set_pat.
->   	 */
->   #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
->   #define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
-> +#define I915_GEM_CREATE_EXT_SET_PAT 2
->   	__u64 extensions;
->   };
->   
-> @@ -3724,6 +3728,38 @@ struct drm_i915_gem_create_ext_protected_content {
->   	__u32 flags;
->   };
->   
-> +/**
-> + * struct drm_i915_gem_create_ext_set_pat - The
-> + * I915_GEM_CREATE_EXT_SET_PAT extension.
-> + *
-> + * If this extension is provided, the specified caching policy (PAT index) is
-> + * applied to the buffer object.
-> + *
-> + * Below is an example on how to create an object with specific caching policy:
-> + *
-> + * .. code-block:: C
-> + *
-> + *      struct drm_i915_gem_create_ext_set_pat set_pat_ext = {
-> + *              .base = { .name = I915_GEM_CREATE_EXT_SET_PAT },
-> + *              .pat_index = 0,
-> + *      };
-> + *      struct drm_i915_gem_create_ext create_ext = {
-> + *              .size = PAGE_SIZE,
-> + *              .extensions = (uintptr_t)&set_pat_ext,
-> + *      };
-> + *
-> + *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
-> + *      if (err) ...
-> + */
+Anusha Srivatsa (1):
+  drm/i915/mtl: Pin assignment for TypeC
 
-Somewhere around here we need to point readers into where they can find 
-further information about what PAT indexes are. Where to find per 
-platform definitions and that.
+Gustavo Sousa (1):
+  drm/i915/mtl: Define mask for DDI AUX interrupts
 
-Regards,
+Imre Deak (1):
+  drm/i915/mtl: TypeC HPD live status query
 
-Tvrtko
+Mika Kahola (10):
+  drm/i915/mtl: C20 PLL programming
+  drm/i915/mtl: C20 HW readout
+  drm/i915/mtl: Dump C20 pll hw state
+  drm/i915/mtl: C20 port clock calculation
+  drm/i915/mtl: Add voltage swing sequence for C20
+  drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA
+  drm/i915/mtl: Enabling/disabling sequence Thunderbolt pll
+  drm/i915/mtl: Readout Thunderbolt HW state
+  drm/i915/mtl: Power up TCSS
+  drm/i915/mtl: Enable TC ports
 
-> +struct drm_i915_gem_create_ext_set_pat {
-> +	/** @base: Extension link. See struct i915_user_extension. */
-> +	struct i915_user_extension base;
-> +	/** @pat_index: PAT index to be set */
-> +	__u32 pat_index;
-> +	/** @rsvd: reserved for future use */
-> +	__u32 rsvd;
-> +};
-> +
->   /* ID of the protected content session managed by i915 when PXP is active */
->   #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
->   
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 1137 ++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   23 +-
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   41 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   25 +-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |   53 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |    7 +-
+ .../drm/i915/display/intel_display_types.h    |   16 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   12 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |    2 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |    6 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |    1 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |  255 +++-
+ drivers/gpu/drm/i915/i915_irq.c               |    5 +-
+ 13 files changed, 1510 insertions(+), 73 deletions(-)
+
+-- 
+2.34.1
+
