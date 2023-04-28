@@ -1,55 +1,152 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF50F6F1A69
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 16:22:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251376F1A72
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 16:26:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7729610ED76;
-	Fri, 28 Apr 2023 14:21:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBF4910E146;
+	Fri, 28 Apr 2023 14:25:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EAB010ED76
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 14:21:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF53710E11E;
+ Fri, 28 Apr 2023 14:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682691717; x=1714227717;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=olhRMOJJLpzs4MqLLoS1huCHnAelpLuhopRkz12+SpI=;
- b=XIdv9gD78I5zKjbv1LU0rgcA/DSW2IUQf6qaAcBqFpFhmAXMOFnirqR5
- tL2FeLtibU4d3mIHqYePB9LnAM5VvZR/OYrXhP6I1dg8B4LphdH/9w4Y7
- AW9pcJcpfRVMu6MmKzPEvpE4mvcpNWkmwVT56WGGrmvAKk4LoAHWtr7kS
- JRGHMCU1Cw0Trt1pHq/J/C4asQfZ9zGIO+13gVaVg8G1mMBCUaHRYGoGA
- iXEIue3thOxTtbH38mOkcK4B2W2pP8Ud7kirYvecLJuw8jqxFjKf0TNKn
- zMwPNvitVtUBBJFCVl7003ECCcz12P351nefgqxS13yhLhd3LAMhWB47W g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="410858209"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="410858209"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ t=1682691955; x=1714227955;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=JwRIBiz+Fkjt4IFmX9EeZXy9Fe1LOccxJCt/GKXM/bs=;
+ b=jWy/bH8LmLvbsr7MzBJGMUAyO5K2F2OMRXYIXXjCEeIaKVW65+E9Z76Y
+ 11LayllGY7VRGpSVY01TzzQvmhfwj2CpHFAmw34M6ozUIu4GhDpU+TruJ
+ hgfaD/girfHeCfdaa+lBfSCwzzJd5d/ZdcauAuGmSlS6wNLi2cLaau+Vt
+ PpZPhdgJ3pQqcmAzXgJTru/WWu/V7AiJM3rFmUsweNUUaPLQ+lE0jMWvx
+ HX3eMKBBmx3y+XB4RlxgFcMyU3atL2gSDUbYXlalFBroOgKi5PdS8OQqj
+ dkSHXTzt8chXYk86sXmCtI0mbXc59eLMf6hfUkA2EEyNV684+hrpIpCHV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="410859134"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="410859134"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 07:21:56 -0700
+ 28 Apr 2023 07:25:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="645140294"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="645140294"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga003.jf.intel.com with SMTP; 28 Apr 2023 07:21:53 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Apr 2023 17:21:53 +0300
-Date: Fri, 28 Apr 2023 17:21:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZEvWgQO5rf4Zu+nC@intel.com>
-References: <20230426165305.2049341-1-imre.deak@intel.com>
- <20230426165305.2049341-7-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="819029880"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="819029880"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga004.jf.intel.com with ESMTP; 28 Apr 2023 07:25:54 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 28 Apr 2023 07:25:54 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 28 Apr 2023 07:25:54 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.175)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 28 Apr 2023 07:25:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HXuSK7lEcSiT1v+SIAznXNPTG0Ym/+z2UVoRf4eB9cWmJ5iUZ4fyjkeAzOhUP6FUNQt5PRG6Nv/zr9w9R3203dHiNF3B1d4D2a7e1ZPioPafayFKISdHJ2w7KXr1YXaUjG8mAo7DUdi4Vz1oOMlZw30AV9SjfwTq91wBUA3hFgErJBf+I0yO/kIU2uQsCDLzVGZI7xIeZRJ/yLsl8BbdTQCpAg1Dc4i5tJohqwjcFZFXUES7F5rmQ9t07hn4APZ+oLzzgCyKHbrF4WFdr+SGhnEnHNznuPytcQOsMdRP9EZBGixqtZWXog6AVzTeLvTo7rMq7IEGCjS532/SD9KFpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b4henntU9qiOnaIs3SJC4yytx+Zt4iSQ55ZMQOb3XbA=;
+ b=Zrlo6PIbSClN5hD4dNA1Ui1fAyl+bcfetuWhFb6tb4c7bW26SGjjOsVf1t3muz4/4rntPhvyigevW6h80H4XnvKudmXYdhk3dWULHDYJhsbl1dHlkBRg4Zz3h6ABVETTiEp5R2lspjYcMWgQt0ZCvZRVIVvzmSrMcjSfU+EKWNk7DKMaemofCswUX8cEG5y6uO53Dc99dEFvv5f45QG+oTk6tv06v+/pp8ueO9XAjmPa14ssfSs1UKwBKDDVjjfhNUh3iqXVi9oLTSkAAmgABDA8+xLFnMTRbPMycwHghvYcs3U/BvARANjV7h+RxHWCnL8TiiC851GNgFQqKDbwwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ DS0PR11MB7530.namprd11.prod.outlook.com (2603:10b6:8:146::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.21; Fri, 28 Apr 2023 14:25:52 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0%7]) with mapi id 15.20.6340.023; Fri, 28 Apr 2023
+ 14:25:52 +0000
+Message-ID: <7cc5fec6-3d4c-328b-6ac3-c7c3b1368a57@intel.com>
+Date: Fri, 28 Apr 2023 07:25:49 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: "Saarinen, Jani" <jani.saarinen@intel.com>, "Ye, Tony"
+ <tony.ye@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+References: <20230428023416.4051910-1-daniele.ceraolospurio@intel.com>
+ <9215760a-dbc4-16e1-6856-e9966992a231@intel.com>
+ <DM8PR11MB5655599E9FE225DFFC35FC87E06B9@DM8PR11MB5655.namprd11.prod.outlook.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <DM8PR11MB5655599E9FE225DFFC35FC87E06B9@DM8PR11MB5655.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR05CA0035.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::10) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230426165305.2049341-7-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915/dp: Add link training debug
- and error printing helpers
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|DS0PR11MB7530:EE_
+X-MS-Office365-Filtering-Correlation-Id: 436205f1-b16d-4126-ee01-08db47f4782f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Hr1QldRMEI+sIGrwzeeEkYwLB76IdBjNzE5dWkDUu9VwIqZGjvYalZLqzfwkPySokPPsZG/Hl/tDQydI1HFbjHYSYMMIxm/u96aFUX9MkrdkUKKCEUHvKM9NodABpkdZ0jM5b4z/R4SDJHum4qKVhSJetD5zydGm2pUrbwpCkayQbh+lRIzvjzL1zE1OHfpplc5VW1HH5AUMnhiN++9pkLuMBTQYxDVwxEgBv9UrdxFAvrYpeggLKlw6Pw8FYzjWmEKuWsH9tAdEkzlAL9MZjlIcCnx1AAO5XEHb/5BVdwB2pg0B4eGjYd1QCOYQywCayTMbyaoqh6hz7Qnn/DYEOu6DD64dcl9kr+Et5auh7qA7rv5OsLFVNa5glytJt7HhLI8ydelyzgpgj2Ogk0Db7/3rcmLnW7oI/d15+QpjmRFsjMsNv3HhDjZ/RNjJ4F/Skv1p/QS40nirWUt6X3s5ZWpXyKtjQwiQ0I1LsEghpu1bux03nrDOaAtE/QkR9BaCFV+DDcANbsml9lfP8FQngI+StneZVBTKj+1znaX2VNZqlrUakhtCqcU2yptKU9JG9miVesL8JeJCoB4HXc1QHYmuh0D+/DAbuSE8TtQ2/4ztE4NLjyXkW6+Ldm7sv9Br
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(136003)(376002)(396003)(366004)(346002)(451199021)(54906003)(41300700001)(66476007)(450100002)(478600001)(66556008)(66946007)(110136005)(8936002)(5660300002)(8676002)(4326008)(82960400001)(38100700002)(316002)(186003)(53546011)(83380400001)(6486002)(6666004)(26005)(2616005)(107886003)(966005)(6506007)(6512007)(2906002)(31696002)(86362001)(36756003)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SlM0TGZ0MW5iQUY3VWtjWHhrckF5Z1JTaFhhNk15TXQxR21SZUt2UGtJeWVU?=
+ =?utf-8?B?SUpVS3FvdnZDenZXbWwzWERvdlFocTlPNUtQMzNkYmdubHhBdWhuMkhaeUZw?=
+ =?utf-8?B?VkZyQmdlNXlDY2hBQyt6bEdtYTdqekRER2JTbkNqeDhNMkhHNkhybDhmdEhj?=
+ =?utf-8?B?MGNTUFYwOWpZQ3pTeWVTRW1YU2ZtVGVSaXZVVEdQKzg4RG9TYlE1NGxYVHVD?=
+ =?utf-8?B?SVdqbGZ4c2lZNit6WEQrMElPRlNPZkFQc05LSnRvRXgzOXhseUtuWDdIY3Z4?=
+ =?utf-8?B?NGpFL2pvcjR5bEVpVXlOeFpCTUhEeEd6cXYxU3h4V09Hc3ZQMzZDaFJnYkxH?=
+ =?utf-8?B?QTMvN211TjdiRUo5MzlERzdibHl6ZCttTi85THZJSmQyWk9oQ0VYMDB6Ny8v?=
+ =?utf-8?B?UmhXTW82M1ZBRXBPM2JHRnY2Qi9rUXFHYTIzOE9nL1AxdllodkthTFluanQw?=
+ =?utf-8?B?WjljVUxqQlFrcWdaS3JJMjNHNmx3bHhDd3hJUTVNVW0xclloSm9uZmxoR2po?=
+ =?utf-8?B?Qmh3K0UwVXExbXd6RmJuSHhPUXlpenpTWFZhaGRMa2crb05hejdBcnJacEdO?=
+ =?utf-8?B?eDJ3N1E4NmU5S2VnMWtGUnBucUFTWlBLRXkyVVFRdVFVQmxSSTN4N3pOMFVx?=
+ =?utf-8?B?ZzJwU3pHTW9JZ2JvSHNNelphODFrRnlEMXdZVW1DL1R1NkZIc2pWTjZtK3lB?=
+ =?utf-8?B?V2tOUEI0VlVaVFFqc3FLMlI4Uy9RUkpvRmYxbHNMVWRXdGtGZlphakRJQkZZ?=
+ =?utf-8?B?bjdhZ0R5SkxOa084QVhJSHcrU0UwZGdDM3NZWXRQbUkzSk9rMytDM2ZLelA5?=
+ =?utf-8?B?R0VCMDhkSzNLcFQwTTNnVlhRMVdQd1cydWlIbGp1M3RORk1TcjdBUWkxWmNq?=
+ =?utf-8?B?dGRCSDZsVnE1TWFzZkROYWlqdFJnNWQ1bzRQOUdneXlqSVVpd2FldVc2VCtS?=
+ =?utf-8?B?VUt5Z3VJdFFIODA2enBadGNpRmljbzVlQjFNZ2Jkalo1U3hhWmt6UmoyV0JI?=
+ =?utf-8?B?cTFTamRySmU0RjVKY2hwd3Rvd2RQREVSZWhKTjdvNzBKait6eHBBQUdDM0dp?=
+ =?utf-8?B?Sy8zNFBvRC9yWGhIcUJ6THVTWFUxYlY5bzlmdjlXcEI5ZmNGQ255dlRvS1or?=
+ =?utf-8?B?VW9kTE5Zd09Hc3NUaUZ3ZUY5bE1TZlg3WklIRnozWC9XQ3ozSzN2c3NLd2Fw?=
+ =?utf-8?B?VEpZTUV1ZHo5L2ZSWWY1MG00OGxNNnBJQyt0TUduZHhvWHUxcHI3U0N5N1A2?=
+ =?utf-8?B?S0lMbU5reDExZUFhKzVCTnZlZFBTUFBpaU02NnY3d3pwZWhmd0twSmtQS3Nx?=
+ =?utf-8?B?bE9KSTRYc1JYL0JBYUZTUnhHV2NtL05YamdwM2I1UmVTUmhIa21QRDhPcVRj?=
+ =?utf-8?B?WFdJejFBaklxc1FUTlVrZXZQeEZXQ1A3VkZuRmRuWWp3dkNBdTJoQ0lwYTVu?=
+ =?utf-8?B?T0RWZDNERlM1cFpiQ0RGMjhUdjZYSG5QOGdyTmpLWks4VFI5NmRDeW9oRnNE?=
+ =?utf-8?B?TnBQRk5JV2djK0lrbnFNb2RZZ0QxUHlJazBTWitFVlBrUkR1eHY0bFZmeGVi?=
+ =?utf-8?B?Z1llVkJMUVRaZVhmSHJvUE1BK2JBdjVKN0tOREFhait5M1dKbGlOcENVUG0w?=
+ =?utf-8?B?VmN4MGQ2dVRtQUZabDF4RWYvVU10Q1YrV24wVk9sZGtjSEF1T3B4elNKV2x5?=
+ =?utf-8?B?RmVsc3kxWDRETXEvT2pRQ01BRkhEa1dBSzZQOXpPbWU4bEN4aFdaL1JmOXBC?=
+ =?utf-8?B?R2NkL3JHb2o0UWhwQ3ZuR1U1SzlWMGhuYy9vTnJBN3ZkcWFLaVk3WHdNUWFw?=
+ =?utf-8?B?ZzNYYUhKcTdydFppdUlWN2tEYUtzbit3YnFWSHVaaW1aU2Q2Y2VHZmdPd3gv?=
+ =?utf-8?B?NnJJaWE5b2dkZUpRdDdpM2hrcWhFQVBOOUFkRDdYYmNWajI5MWJKVCtJMkZ5?=
+ =?utf-8?B?dkVMZlk0WG9DSUJPbTBNS0pkMVV5bkFCT0RLZEs4MlpRUmwzUXlvVkMrQVpo?=
+ =?utf-8?B?WjlUN1J2UXBEZTFzTHNucGdONmEraEtYVVJIUDNaeHVVZWZZOWtiMDZYekNX?=
+ =?utf-8?B?VlhVM2o1dDVKZFBGK3VSZUpzVDVsK2hFSVpIcE1nRzQzamJsSTh2NlhJZ2hm?=
+ =?utf-8?B?RGhWZGdZM01Ha0tTWWdBOGV0U1RvL3AvZHMzN0FKdlJaYXFDT2RVNkg1Vktp?=
+ =?utf-8?B?U2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 436205f1-b16d-4126-ee01-08db47f4782f
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2023 14:25:51.9229 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7h3E+82/Z9u1VWqQyjrw/1xauolS+G8QMFRb6PGdfof8INSb2BWfvybRx1abrO/NZlMaIx5cKL2g6ErDuj1CJ8SGtbfCmBlb3IVFMwX3uGE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7530
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915: HuC loading and
+ authentication for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,843 +159,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Zhang, 
+ Carl" <carl.zhang@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 26, 2023 at 07:53:00PM +0300, Imre Deak wrote:
-> Add functions for printing link training debug and error messages, both
-> to prepare for the next patch, which downgrades an error to debug if the
-> sink is disconnected and to remove some code duplication.
-> 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_link_training.c | 376 +++++++-----------
->  1 file changed, 139 insertions(+), 237 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 6aa4ae5e7ebe3..12f2880e474ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -26,6 +26,47 @@
->  #include "intel_dp.h"
->  #include "intel_dp_link_training.h"
->  
-> +__printf(5, 6)
-> +static void lt_msg(struct intel_connector *connector, struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
-> +		   bool is_error, const char *format, ...)
 
-I pretty much hate custom debug/error print functions. Makes it
-hard togrep/etc. and just generally causes more "wtf is this?"
-moments when reading the code. Unfortunateely the macro hell in
-drm_print.h seems to make it really hard to do anything generic
-directly :(
 
-> +{
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> +	char conn_str[128] = {};
-> +	struct va_format vaf;
-> +	va_list args;
-> +
-> +	va_start(args, format);
-> +	vaf.fmt = format;
-> +	vaf.va = &args;
-> +
-> +	if (connector)
-> +		snprintf(conn_str, sizeof(conn_str), "[CONNECTOR:%d:%s]",
-> +			 connector->base.base.id, connector->base.name);
+On 4/27/2023 10:25 PM, Saarinen, Jani wrote:
+> Hi,
+>
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ye, Tony
+>> Sent: perjantai 28. huhtikuuta 2023 6.11
+>> To: Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; intel-
+>> gfx@lists.freedesktop.org
+>> Cc: Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; dri-
+>> devel@lists.freedesktop.org; Zhang, Carl <carl.zhang@intel.com>
+>> Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915: HuC loading and authentication for
+>> MTL
+>>
+>> Acked-by: Tony Ye <tony.ye@intel.com>
+> CI results would be also good to look at before... https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v1/index.html?
+> For some reason no single MTL tests and many aborts...
 
-Are there actually places where we don't have/can't get the
-connector?
+Is there any way to know if the MTLs where just offline or if they 
+failed driver load? This is working fine in my local MTL testing, so not 
+sure what might be broken.
+Regarding the aborts, looks like I have broken DG2 reset. I tested a 
+previous local version of this on DG2 but not the latest, so I must've 
+broken something when refactoring the code. I'll figure it out and fix 
+it up.
 
-> +
-> +	if (is_error)
-> +		drm_err(&i915->drm, "%s[ENCODER:%d:%s][%s] %pV\n",
-> +			conn_str,
-> +			encoder->base.base.id, encoder->base.name,
-> +			drm_dp_phy_name(dp_phy),
-> +			&vaf);
-> +	else
-> +		drm_dbg(&i915->drm, "%s[ENCODER:%d:%s][%s] %pV\n",
+Daniele
 
-That has lost the correct debug category.
+>
+>> Thanks,
+>>
+>> Tony
+>>
+>> On 4/27/2023 7:34 PM, Daniele Ceraolo Spurio wrote:
+>>> The HuC loading and authentication flow is once again changing and a
+>>> new "clear-media only" authentication step is introduced. The flow is
+>>> as
+>>> follows:
+>>>
+>>> 1) The HuC is loaded via DMA - same as all non-GSC HuC binaries.
+>>>
+>>> 2) The HuC is authenticated by the GuC - this is the same step as
+>>> performed for all non-GSC HuC binaries and re-uses the same code, but
+>>> it is now resulting in a partial authentication that only allows
+>>> clear-media workloads.
+>>>
+>>> 3) The HuC is fully authenticated for all workloads by the GSC - this
+>>> is done via a new PXP command, submitted via the GSCCS.
+>>>
+>>> The advantage of this new flow is that we can start processing
+>>> clear-media workloads without having to wait for the GSC to be ready,
+>>> which can take several seconds.
+>>>
+>>> As part of this change, the HuC status getparam has been updated with
+>>> a new value to indicate a partial authentication. Note tha the media
+>>> driver is checking for value > 0 for clear media workloads, so no
+>>> changes are required in userspace for that to work.
+>>>
+>>> The SW proxy series [1] has been included, squashed in a single patch,
+>>> as some of some of the patches in this series depend on it. This is
+>>> not a functional dependencies, the patches just touch the same code;
+>>> the proxy patches are planned to be merged first, so it is easier to
+>>> base the new patches on top of it to avoid having to rebase them later.
+>>>
+>>> [1]https://patchwork.freedesktop.org/series/115806/
+>>> Cc: Alan Previn<alan.previn.teres.alexis@intel.com>
+>>> Cc: Tony Ye<tony.ye@intel.com>
+>>>
+>>> Daniele Ceraolo Spurio (8):
+>>>     DO NOT REVIEW: drm/i915: Add support for MTL GSC SW Proxy
+>>>     drm/i915/uc: perma-pin firmwares
+>>>     drm/i915/huc: Parse the GSC-enabled HuC binary
+>>>     drm/i915/huc: Load GSC-enabled HuC via DMA xfer if the fuse says so
+>>>     drm/i915/huc: differentiate the 2 steps of the MTL HuC auth flow
+>>>     drm/i915/mtl/huc: auth HuC via GSC
+>>>     drm/i915/mtl/huc: Use the media gt for the HuC getparam
+>>>     drm/i915/huc: define HuC FW version for MTL
+>>>
+>>>    drivers/gpu/drm/i915/Makefile                 |   1 +
+>>>    drivers/gpu/drm/i915/gt/intel_ggtt.c          |   3 +
+>>>    drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  22 +-
+>>>    drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   3 +
+>>>    .../drm/i915/gt/uc/intel_gsc_meu_headers.h    |  74 +++
+>>>    drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c  | 424 ++++++++++++++++++
+>>>    drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.h  |  18 +
+>>>    drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     |  89 +++-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h     |  17 +-
+>>>    .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c |   2 +-
+>>>    .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |   1 +
+>>>    drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc.c        | 182 +++++---
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  26 +-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     | 214 ++++++++-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h     |   6 +-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc_print.h  |  21 +
+>>>    drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  10 +-
+>>>    drivers/gpu/drm/i915/gt/uc/intel_uc.h         |   2 +
+>>>    drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 120 ++---
+>>>    drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |   9 +-
+>>>    drivers/gpu/drm/i915/i915_getparam.c          |   6 +-
+>>>    drivers/gpu/drm/i915/i915_reg.h               |   3 +
+>>>    .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  14 +-
+>>>    drivers/gpu/drm/i915/pxp/intel_pxp_huc.c      |   2 +-
+>>>    drivers/misc/mei/Kconfig                      |   2 +-
+>>>    drivers/misc/mei/Makefile                     |   1 +
+>>>    drivers/misc/mei/gsc_proxy/Kconfig            |  14 +
+>>>    drivers/misc/mei/gsc_proxy/Makefile           |   7 +
+>>>    drivers/misc/mei/gsc_proxy/mei_gsc_proxy.c    | 208 +++++++++
+>>>    include/drm/i915_component.h                  |   3 +-
+>>>    include/drm/i915_gsc_proxy_mei_interface.h    |  53 +++
+>>>    include/uapi/drm/i915_drm.h                   |   3 +-
+>>>    33 files changed, 1428 insertions(+), 134 deletions(-)
+>>>    create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h
+>>>    create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+>>>    create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.h
+>>>    create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
+>>>    create mode 100644 drivers/misc/mei/gsc_proxy/Kconfig
+>>>    create mode 100644 drivers/misc/mei/gsc_proxy/Makefile
+>>>    create mode 100644 drivers/misc/mei/gsc_proxy/mei_gsc_proxy.c
+>>>    create mode 100644 include/drm/i915_gsc_proxy_mei_interface.h
+>>>
 
-> +			conn_str,
-> +			encoder->base.base.id, encoder->base.name,
-> +			drm_dp_phy_name(dp_phy),
-> +			&vaf);
-
-Hmm. ___drm_dev_dbg() already uses this vaf stuff.
-Does chaining it like that work correctly?
-
-> +}
-> +
-> +#define lt_err(intel_dp, dp_phy, format, ...) \
-> +	lt_msg(NULL, intel_dp, dp_phy, true, format, ## __VA_ARGS__)
-> +
-> +#define lt_dbg(intel_dp, dp_phy, format, ...) \
-> +	lt_msg(NULL, intel_dp, dp_phy, false, format, ## __VA_ARGS__)
-> +
-> +#define lt_conn_dbg(connector, intel_dp, dp_phy, format, ...) \
-> +	lt_msg(connector, intel_dp, dp_phy, false, format, ## __VA_ARGS__)
-> +
->  static void intel_dp_reset_lttpr_common_caps(struct intel_dp *intel_dp)
->  {
->  	memset(intel_dp->lttpr_common_caps, 0, sizeof(intel_dp->lttpr_common_caps));
-> @@ -47,29 +88,21 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
->  					 const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  					 enum drm_dp_phy dp_phy)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
->  
->  	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dpcd, dp_phy, phy_caps) < 0) {
-> -		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> -			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy));
-> +		lt_dbg(intel_dp, dp_phy, "failed to read the PHY caps\n");
->  		return;
->  	}
->  
-> -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> -		    "[ENCODER:%d:%s][%s] PHY capabilities: %*ph\n",
-> -		    encoder->base.base.id, encoder->base.name,
-> -		    drm_dp_phy_name(dp_phy),
-> -		    (int)sizeof(intel_dp->lttpr_phy_caps[0]),
-> -		    phy_caps);
-> +	lt_dbg(intel_dp, dp_phy, "PHY capabilities: %*ph\n",
-> +	       (int)sizeof(intel_dp->lttpr_phy_caps[0]),
-> +	       phy_caps);
->  }
->  
->  static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp,
->  					    const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	int ret;
->  
->  	ret = drm_dp_read_lttpr_common_caps(&intel_dp->aux, dpcd,
-> @@ -77,11 +110,9 @@ static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp,
->  	if (ret < 0)
->  		goto reset_caps;
->  
-> -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> -		    "[ENCODER:%d:%s] LTTPR common capabilities: %*ph\n",
-> -		    encoder->base.base.id, encoder->base.name,
-> -		    (int)sizeof(intel_dp->lttpr_common_caps),
-> -		    intel_dp->lttpr_common_caps);
-> +	lt_dbg(intel_dp, DP_PHY_DPRX, "LTTPR common capabilities: %*ph\n",
-> +	       (int)sizeof(intel_dp->lttpr_common_caps),
-> +	       intel_dp->lttpr_common_caps);
->  
->  	/* The minimum value of LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV is 1.4 */
->  	if (intel_dp->lttpr_common_caps[0] < 0x14)
-> @@ -105,8 +136,6 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
->  
->  static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	int lttpr_count;
->  	int i;
->  
-> @@ -138,9 +167,8 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
->  		return 0;
->  
->  	if (!intel_dp_set_lttpr_transparent_mode(intel_dp, false)) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s] Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n",
-> -			    encoder->base.base.id, encoder->base.name);
-> +		lt_dbg(intel_dp, DP_PHY_DPRX,
-> +		       "Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n");
->  
->  		intel_dp_set_lttpr_transparent_mode(intel_dp, true);
->  		intel_dp_reset_lttpr_count(intel_dp);
-> @@ -409,26 +437,22 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
->  			  enum drm_dp_phy dp_phy,
->  			  const u8 link_status[DP_LINK_STATUS_SIZE])
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	int lane;
->  
->  	if (intel_dp_is_uhbr(crtc_state)) {
-> -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
-> -			    "TX FFE request: " TRAIN_REQ_FMT "\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy),
-> -			    crtc_state->lane_count,
-> -			    TRAIN_REQ_TX_FFE_ARGS(link_status));
-> +		lt_dbg(intel_dp, dp_phy,
-> +		       "128b/132b, lanes: %d, "
-> +		       "TX FFE request: " TRAIN_REQ_FMT "\n",
-> +		       crtc_state->lane_count,
-> +		       TRAIN_REQ_TX_FFE_ARGS(link_status));
->  	} else {
-> -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 8b/10b, lanes: %d, "
-> -			    "vswing request: " TRAIN_REQ_FMT ", "
-> -			    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy),
-> -			    crtc_state->lane_count,
-> -			    TRAIN_REQ_VSWING_ARGS(link_status),
-> -			    TRAIN_REQ_PREEMPH_ARGS(link_status));
-> +		lt_dbg(intel_dp, dp_phy,
-> +		       "8b/10b, lanes: %d, "
-> +		       "vswing request: " TRAIN_REQ_FMT ", "
-> +		       "pre-emphasis request: " TRAIN_REQ_FMT "\n",
-> +		       crtc_state->lane_count,
-> +		       TRAIN_REQ_VSWING_ARGS(link_status),
-> +		       TRAIN_REQ_PREEMPH_ARGS(link_status));
->  	}
->  
->  	for (lane = 0; lane < 4; lane++)
-> @@ -487,16 +511,11 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
->  				       enum drm_dp_phy dp_phy,
->  				       u8 dp_train_pat)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	u8 train_pat = intel_dp_training_pattern_symbol(dp_train_pat);
->  
->  	if (train_pat != DP_TRAINING_PATTERN_DISABLE)
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s][%s] Using DP training pattern TPS%c\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy),
-> -			    dp_training_pattern_name(train_pat));
-> +		lt_dbg(intel_dp, dp_phy, "Using DP training pattern TPS%c\n",
-> +		       dp_training_pattern_name(train_pat));
->  
->  	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
->  }
-> @@ -531,24 +550,21 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
->  				enum drm_dp_phy dp_phy)
->  {
->  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  
->  	if (intel_dp_is_uhbr(crtc_state)) {
-> -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
-> -			    "TX FFE presets: " TRAIN_SET_FMT "\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy),
-> -			    crtc_state->lane_count,
-> -			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
-> +		lt_dbg(intel_dp, dp_phy,
-> +		       "128b/132b, lanes: %d, "
-> +		       "TX FFE presets: " TRAIN_SET_FMT "\n",
-> +		       crtc_state->lane_count,
-> +		       TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
->  	} else {
-> -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 8b/10b, lanes: %d, "
-> -			    "vswing levels: " TRAIN_SET_FMT ", "
-> -			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy),
-> -			    crtc_state->lane_count,
-> -			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
-> -			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
-> +		lt_dbg(intel_dp, dp_phy,
-> +		       "8b/10b, lanes: %d, "
-> +		       "vswing levels: " TRAIN_SET_FMT ", "
-> +		       "pre-emphasis levels: " TRAIN_SET_FMT "\n",
-> +		       crtc_state->lane_count,
-> +		       TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
-> +		       TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
->  	}
->  
->  	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
-> @@ -645,8 +661,6 @@ static bool
->  intel_dp_prepare_link_train(struct intel_dp *intel_dp,
->  			    const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	u8 link_config[2];
->  	u8 link_bw, rate_select;
->  
-> @@ -671,21 +685,19 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
->  		struct intel_connector *connector = intel_dp->attached_connector;
->  		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
->  
-> -		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Reloading eDP link rates\n",
-> -			    connector->base.base.id, connector->base.name);
-> +		lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX,
-> +			    "Reloading eDP link rates\n");
->  
->  		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
->  				 sink_rates, sizeof(sink_rates));
->  	}
->  
->  	if (link_bw)
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s] Using LINK_BW_SET value %02x\n",
-> -			    encoder->base.base.id, encoder->base.name, link_bw);
-> +		lt_dbg(intel_dp, DP_PHY_DPRX, "Using LINK_BW_SET value %02x\n",
-> +		       link_bw);
->  	else
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
-> -			    encoder->base.base.id, encoder->base.name, rate_select);
-> +		lt_dbg(intel_dp, DP_PHY_DPRX, "Using LINK_RATE_SET value %02x\n",
-> +		       rate_select);
->  
->  	/* Write the link configuration data */
->  	link_config[0] = link_bw;
-> @@ -737,15 +749,10 @@ void
->  intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
->  			  const u8 link_status[DP_LINK_STATUS_SIZE])
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> -
-> -	drm_dbg_kms(&i915->drm,
-> -		    "[ENCODER:%d:%s][%s] ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
-> -		    encoder->base.base.id, encoder->base.name,
-> -		    drm_dp_phy_name(dp_phy),
-> -		    link_status[0], link_status[1], link_status[2],
-> -		    link_status[3], link_status[4], link_status[5]);
-> +	lt_dbg(intel_dp, dp_phy,
-> +	       "ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
-> +	       link_status[0], link_status[1], link_status[2],
-> +	       link_status[3], link_status[4], link_status[5]);
->  }
->  
->  /*
-> @@ -757,8 +764,6 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
->  				      const struct intel_crtc_state *crtc_state,
->  				      enum drm_dp_phy dp_phy)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	u8 old_link_status[DP_LINK_STATUS_SIZE] = {};
->  	int voltage_tries, cr_tries, max_cr_tries;
->  	u8 link_status[DP_LINK_STATUS_SIZE];
-> @@ -773,9 +778,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
->  	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
->  				       DP_TRAINING_PATTERN_1 |
->  				       DP_LINK_SCRAMBLING_DISABLE)) {
-> -		drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to enable link training\n",
-> -			encoder->base.base.id, encoder->base.name,
-> -			drm_dp_phy_name(dp_phy));
-> +		lt_err(intel_dp, dp_phy, "Failed to enable link training\n");
->  		return false;
->  	}
->  
-> @@ -798,35 +801,24 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
->  
->  		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
->  						     link_status) < 0) {
-> -			drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to get link status\n",
-> -				encoder->base.base.id, encoder->base.name,
-> -				drm_dp_phy_name(dp_phy));
-> +			lt_err(intel_dp, dp_phy, "Failed to get link status\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_clock_recovery_ok(link_status, crtc_state->lane_count)) {
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s][%s] Clock recovery OK\n",
-> -				    encoder->base.base.id, encoder->base.name,
-> -				    drm_dp_phy_name(dp_phy));
-> +			lt_dbg(intel_dp, dp_phy, "Clock recovery OK\n");
->  			return true;
->  		}
->  
->  		if (voltage_tries == 5) {
->  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
-> -				    encoder->base.base.id, encoder->base.name,
-> -				    drm_dp_phy_name(dp_phy));
-> +			lt_dbg(intel_dp, dp_phy, "Same voltage tried 5 times\n");
->  			return false;
->  		}
->  
->  		if (max_vswing_reached) {
->  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
-> -				    encoder->base.base.id, encoder->base.name,
-> -				    drm_dp_phy_name(dp_phy));
-> +			lt_dbg(intel_dp, dp_phy, "Max Voltage Swing reached\n");
->  			return false;
->  		}
->  
-> @@ -834,10 +826,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
->  		intel_dp_get_adjust_train(intel_dp, crtc_state, dp_phy,
->  					  link_status);
->  		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s][%s] Failed to update link training\n",
-> -				encoder->base.base.id, encoder->base.name,
-> -				drm_dp_phy_name(dp_phy));
-> +			lt_err(intel_dp, dp_phy, "Failed to update link training\n");
->  			return false;
->  		}
->  
-> @@ -853,10 +842,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
->  	}
->  
->  	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> -	drm_err(&i915->drm,
-> -		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
-> -		encoder->base.base.id, encoder->base.name,
-> -		drm_dp_phy_name(dp_phy), max_cr_tries);
-> +	lt_err(intel_dp, dp_phy, "Failed clock recovery %d times, giving up!\n",
-> +	       max_cr_tries);
->  
->  	return false;
->  }
-> @@ -890,11 +877,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
->  		return DP_TRAINING_PATTERN_4;
->  	} else if (crtc_state->port_clock == 810000) {
->  		if (!source_tps4)
-> -			drm_dbg_kms(&i915->drm,
-> -				    "8.1 Gbps link rate without source TPS4 support\n");
-> +			lt_dbg(intel_dp, dp_phy,
-> +			       "8.1 Gbps link rate without source TPS4 support\n");
->  		if (!sink_tps4)
-> -			drm_dbg_kms(&i915->drm,
-> -				    "8.1 Gbps link rate without sink TPS4 support\n");
-> +			lt_dbg(intel_dp, dp_phy,
-> +			       "8.1 Gbps link rate without sink TPS4 support\n");
->  	}
->  
->  	/*
-> @@ -908,11 +895,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
->  		return  DP_TRAINING_PATTERN_3;
->  	} else if (crtc_state->port_clock >= 540000) {
->  		if (!source_tps3)
-> -			drm_dbg_kms(&i915->drm,
-> -				    ">=5.4/6.48 Gbps link rate without source TPS3 support\n");
-> +			lt_dbg(intel_dp, dp_phy,
-> +			       ">=5.4/6.48 Gbps link rate without source TPS3 support\n");
->  		if (!sink_tps3)
-> -			drm_dbg_kms(&i915->drm,
-> -				    ">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
-> +			lt_dbg(intel_dp, dp_phy,
-> +			       ">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
->  	}
->  
->  	return DP_TRAINING_PATTERN_2;
-> @@ -928,8 +915,6 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  					    const struct intel_crtc_state *crtc_state,
->  					    enum drm_dp_phy dp_phy)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	int tries;
->  	u32 training_pattern;
->  	u8 link_status[DP_LINK_STATUS_SIZE];
-> @@ -948,10 +933,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  	/* channel equalization */
->  	if (!intel_dp_set_link_train(intel_dp, crtc_state, dp_phy,
->  				     training_pattern)) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s][%s] Failed to start channel equalization\n",
-> -			encoder->base.base.id, encoder->base.name,
-> -			drm_dp_phy_name(dp_phy));
-> +		lt_err(intel_dp, dp_phy, "Failed to start channel equalization\n");
->  		return false;
->  	}
->  
-> @@ -960,10 +942,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  
->  		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
->  						     link_status) < 0) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s][%s] Failed to get link status\n",
-> -				encoder->base.base.id, encoder->base.name,
-> -				drm_dp_phy_name(dp_phy));
-> +			lt_err(intel_dp, dp_phy, "Failed to get link status\n");
->  			break;
->  		}
->  
-> @@ -971,21 +950,15 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  		if (!drm_dp_clock_recovery_ok(link_status,
->  					      crtc_state->lane_count)) {
->  			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s][%s] Clock recovery check failed, cannot "
-> -				    "continue channel equalization\n",
-> -				    encoder->base.base.id, encoder->base.name,
-> -				    drm_dp_phy_name(dp_phy));
-> +			lt_dbg(intel_dp, dp_phy,
-> +			       "Clock recovery check failed, cannot continue channel equalization\n");
->  			break;
->  		}
->  
->  		if (drm_dp_channel_eq_ok(link_status,
->  					 crtc_state->lane_count)) {
->  			channel_eq = true;
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s][%s] Channel EQ done. DP Training successful\n",
-> -				    encoder->base.base.id, encoder->base.name,
-> -				    drm_dp_phy_name(dp_phy));
-> +			lt_dbg(intel_dp, dp_phy, "Channel EQ done. DP Training successful\n");
->  			break;
->  		}
->  
-> @@ -993,10 +966,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  		intel_dp_get_adjust_train(intel_dp, crtc_state, dp_phy,
->  					  link_status);
->  		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s][%s] Failed to update link training\n",
-> -				encoder->base.base.id, encoder->base.name,
-> -				drm_dp_phy_name(dp_phy));
-> +			lt_err(intel_dp, dp_phy, "Failed to update link training\n");
->  			break;
->  		}
->  	}
-> @@ -1004,10 +974,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
->  	/* Try 5 times, else fail and try at lower BW */
->  	if (tries == 5) {
->  		intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s][%s] Channel equalization failed 5 times\n",
-> -			    encoder->base.base.id, encoder->base.name,
-> -			    drm_dp_phy_name(dp_phy));
-> +		lt_dbg(intel_dp, dp_phy, "Channel equalization failed 5 times\n");
->  	}
->  
->  	return channel_eq;
-> @@ -1058,9 +1025,6 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
->  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
->  			      const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -
->  	intel_dp->link_trained = true;
->  
->  	intel_dp_disable_dpcd_training_pattern(intel_dp, DP_PHY_DPRX);
-> @@ -1069,9 +1033,7 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
->  
->  	if (intel_dp_is_uhbr(crtc_state) &&
->  	    wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s] 128b/132b intra-hop not clearing\n",
-> -			    encoder->base.base.id, encoder->base.name);
-> +		lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
->  	}
->  }
->  
-> @@ -1081,7 +1043,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
->  			enum drm_dp_phy dp_phy)
->  {
->  	struct intel_connector *connector = intel_dp->attached_connector;
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	bool ret = false;
->  
->  	if (!intel_dp_link_training_clock_recovery(intel_dp, crtc_state, dp_phy))
-> @@ -1093,11 +1054,8 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
->  	ret = true;
->  
->  out:
-> -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> -		    "[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] Link Training %s at link rate = %d, lane count = %d\n",
-> -		    connector->base.base.id, connector->base.name,
-> -		    encoder->base.base.id, encoder->base.name,
-> -		    drm_dp_phy_name(dp_phy),
-> +	lt_conn_dbg(connector, intel_dp, dp_phy,
-> +		    "Link Training %s at link rate = %d, lane count = %d\n",
->  		    ret ? "passed" : "failed",
->  		    crtc_state->port_clock, crtc_state->lane_count);
->  
-> @@ -1108,13 +1066,10 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
->  						     const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_connector *intel_connector = intel_dp->attached_connector;
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  
->  	if (intel_dp->hobl_active) {
-> -		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> -			    "[ENCODER:%d:%s] Link Training failed with HOBL active, "
-> -			    "not enabling it from now on",
-> -			    encoder->base.base.id, encoder->base.name);
-> +		lt_dbg(intel_dp, DP_PHY_DPRX,
-> +		       "Link Training failed with HOBL active, not enabling it from now on\n");
->  		intel_dp->hobl_failed = true;
->  	} else if (intel_dp_get_link_train_fallback_values(intel_dp,
->  							   crtc_state->port_clock,
-> @@ -1161,8 +1116,6 @@ static bool
->  intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  			  const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	u8 link_status[DP_LINK_STATUS_SIZE];
->  	int delay_us;
->  	int try, max_tries = 20;
-> @@ -1177,9 +1130,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  	 */
->  	if (!intel_dp_reset_link_train(intel_dp, crtc_state, DP_PHY_DPRX,
->  				       DP_TRAINING_PATTERN_1)) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS1\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS1\n");
->  		return false;
->  	}
->  
-> @@ -1187,27 +1138,21 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  
->  	/* Read the initial TX FFE settings. */
->  	if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Failed to read TX FFE presets\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to read TX FFE presets\n");
->  		return false;
->  	}
->  
->  	/* Update signal levels and training set as requested. */
->  	intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
->  	if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Failed to set initial TX FFE settings\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to set initial TX FFE settings\n");
->  		return false;
->  	}
->  
->  	/* Start transmitting 128b/132b TPS2. */
->  	if (!intel_dp_set_link_train(intel_dp, crtc_state, DP_PHY_DPRX,
->  				     DP_TRAINING_PATTERN_2)) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS2\n");
->  		return false;
->  	}
->  
-> @@ -1224,32 +1169,25 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
->  
->  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Failed to read link status\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_128b132b_link_training_failed(link_status)) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX,
-> +			       "Downstream link training failure\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_128b132b_lane_channel_eq_done(link_status, crtc_state->lane_count)) {
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s] Lane channel eq done\n",
-> -				    encoder->base.base.id, encoder->base.name);
-> +			lt_dbg(intel_dp, DP_PHY_DPRX, "Lane channel eq done\n");
->  			break;
->  		}
->  
->  		if (timeout) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Lane channel eq timeout\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Lane channel eq timeout\n");
->  			return false;
->  		}
->  
-> @@ -1259,18 +1197,14 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  		/* Update signal levels and training set as requested. */
->  		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
->  		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Failed to update TX FFE settings\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to update TX FFE settings\n");
->  			return false;
->  		}
->  	}
->  
->  	if (try == max_tries) {
->  		intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Max loop count reached\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Max loop count reached\n");
->  		return false;
->  	}
->  
-> @@ -1279,32 +1213,24 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
->  			timeout = true; /* try one last time after deadline */
->  
->  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Failed to read link status\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_128b132b_link_training_failed(link_status)) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Downstream link training failure\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_128b132b_eq_interlane_align_done(link_status)) {
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s] Interlane align done\n",
-> -				    encoder->base.base.id, encoder->base.name);
-> +			lt_dbg(intel_dp, DP_PHY_DPRX, "Interlane align done\n");
->  			break;
->  		}
->  
->  		if (timeout) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Interlane align timeout\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Interlane align timeout\n");
->  			return false;
->  		}
->  
-> @@ -1322,16 +1248,12 @@ intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
->  			   const struct intel_crtc_state *crtc_state,
->  			   int lttpr_count)
->  {
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	u8 link_status[DP_LINK_STATUS_SIZE];
->  	unsigned long deadline;
->  
->  	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
->  			       DP_TRAINING_PATTERN_2_CDS) != 1) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2 CDS\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "Failed to start 128b/132b TPS2 CDS\n");
->  		return false;
->  	}
->  
-> @@ -1347,34 +1269,26 @@ intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
->  		usleep_range(2000, 3000);
->  
->  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Failed to read link status\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
->  			return false;
->  		}
->  
->  		if (drm_dp_128b132b_eq_interlane_align_done(link_status) &&
->  		    drm_dp_128b132b_cds_interlane_align_done(link_status) &&
->  		    drm_dp_128b132b_lane_symbol_locked(link_status, crtc_state->lane_count)) {
-> -			drm_dbg_kms(&i915->drm,
-> -				    "[ENCODER:%d:%s] CDS interlane align done\n",
-> -				    encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "CDS interlane align done\n");
->  			break;
->  		}
->  
->  		if (drm_dp_128b132b_link_training_failed(link_status)) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] Downstream link training failure\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "Downstream link training failure\n");
->  			return false;
->  		}
->  
->  		if (timeout) {
->  			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> -			drm_err(&i915->drm,
-> -				"[ENCODER:%d:%s] CDS timeout\n",
-> -				encoder->base.base.id, encoder->base.name);
-> +			lt_err(intel_dp, DP_PHY_DPRX, "CDS timeout\n");
->  			return false;
->  		}
->  	}
-> @@ -1390,15 +1304,11 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
->  			     const struct intel_crtc_state *crtc_state,
->  			     int lttpr_count)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_connector *connector = intel_dp->attached_connector;
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	bool passed = false;
->  
->  	if (wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-> -		drm_err(&i915->drm,
-> -			"[ENCODER:%d:%s] 128b/132b intra-hop not clear\n",
-> -			encoder->base.base.id, encoder->base.name);
-> +		lt_err(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clear\n");
->  		return false;
->  	}
->  
-> @@ -1406,10 +1316,8 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
->  	    intel_dp_128b132b_lane_cds(intel_dp, crtc_state, lttpr_count))
->  		passed = true;
->  
-> -	drm_dbg_kms(&i915->drm,
-> -		    "[CONNECTOR:%d:%s][ENCODER:%d:%s] 128b/132b Link Training %s at link rate = %d, lane count = %d\n",
-> -		    connector->base.base.id, connector->base.name,
-> -		    encoder->base.base.id, encoder->base.name,
-> +	lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX,
-> +		    "128b/132b Link Training %s at link rate = %d, lane count = %d\n",
->  		    passed ? "passed" : "failed",
->  		    crtc_state->port_clock, crtc_state->lane_count);
->  
-> @@ -1431,7 +1339,6 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_connector *connector = intel_dp->attached_connector;
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	bool passed;
->  
->  	/*
-> @@ -1464,10 +1371,7 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
->  	 * ignore_long_hpd flag can unset from the testcase.
->  	 */
->  	if (!passed && i915->display.hotplug.ignore_long_hpd) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[CONNECTOR:%d:%s][ENCODER:%d:%s] Ignore the link failure\n",
-> -			    connector->base.base.id, connector->base.name,
-> -			    encoder->base.base.id, encoder->base.name);
-> +		lt_conn_dbg(connector, intel_dp, DP_PHY_DPRX, "Ignore the link failure\n");
->  		return;
->  	}
->  
-> @@ -1478,8 +1382,6 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
->  void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
->  				 const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -
->  	/*
->  	 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
->  	 * disable SDP CRC. This is applicable for Display version 13.
-> @@ -1492,5 +1394,5 @@ void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
->  				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
->  				   DP_SDP_CRC16_128B132B_EN);
->  
-> -	drm_dbg_kms(&i915->drm, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
-> +	lt_dbg(intel_dp, DP_PHY_DPRX, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
->  }
-> -- 
-> 2.37.2
-
--- 
-Ville Syrjälä
-Intel
