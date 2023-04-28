@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902EA6F19CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 15:39:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80706F19E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 15:45:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D08610E3DE;
-	Fri, 28 Apr 2023 13:39:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6AD610ED50;
+	Fri, 28 Apr 2023 13:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D8D310E3DE;
- Fri, 28 Apr 2023 13:39:24 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57FDB10ED50
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 13:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682689164; x=1714225164;
+ t=1682689542; x=1714225542;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/Ngfc4XyZJaFdutDZ0Iq0sGAnXwE+B6C+W1EN7H7KGc=;
- b=hyrsHJ70blIuChKWX0JUEot4a9KGpD1/6r3N9l3OlvjukcsMStEd94Tb
- kwDdEEGVlPO+/6ibMAl55fLOasr/ke0KSvZny4TfznhEv/zkvSPG3BIcz
- UWye26c44BSVYbpMGeHx2EJ783HcUZ4DOHS8SNphsEluTTm7UqShXN+9W
- AX2f2vRkL16a/tzMihtvtdlj6JC5HoW8JIMnDU+XHwZ2fU48dlY1vwcuQ
- b2IBKmu/cCMuENeCNICQC91M+j/S15zpYh1qvRh95jip67iSyz6opiM7K
- 2TnxIkOWOWW+I/Mh572paW8QeIrAD5ajjFiL4zfTRvkWc7NIy+QlMyeIQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="410848123"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="410848123"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 06:39:23 -0700
+ mime-version:in-reply-to;
+ bh=CfgcV/xgCbtVYVTHTXHqVD5wdtu8TSzqhO7/qCUeOao=;
+ b=Ok4Gmg+th3MOQ8WT1S7h49dVxQmEcKm1tzFy5G3AxaZvt9AsM70LsG3L
+ VGCrkBNIzOLCoS+UMMKuu2zlgJTYF8T/NXa6eWt/nfahkUJLK7XhkkfGT
+ zG14Al9jkJaYtTSmOQ0PbBwdfG+NLSVV6Tc1Kdv/9JfHaYtbgIH6s2voW
+ kdkB5bkc8K7hBUccmz2ArACt12sihNipi09Ip0ZVn8ypl4ytbBwry8rfv
+ V72J1AufgSTSxpoxJKLowDIYW5eNil60cSLwo0Dy0suEB53GpOLgZ82gK
+ hbv6YuqXYKh0NQ0so5JKWtnYTRhYfGSR5jiRWxHurOhFFLc5UhvgsV807 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349776881"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="349776881"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 06:45:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="941104254"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="941104254"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga006.fm.intel.com with SMTP; 28 Apr 2023 06:39:21 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Apr 2023 16:39:20 +0300
-Date: Fri, 28 Apr 2023 16:39:20 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Xaver Hugl <xaver.hugl@gmail.com>
-Message-ID: <ZEvMiJTHENBV6P56@intel.com>
-References: <20230411222931.15127-2-ville.syrjala@linux.intel.com>
- <3e6ce087-411a-8f2e-974e-2a9379587159@gmail.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="1024605020"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="1024605020"
+Received: from ahermans-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.35.91])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 06:45:39 -0700
+Date: Fri, 28 Apr 2023 15:45:37 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Message-ID: <ZEvOAeixZObD9b52@ashyti-mobl2.lan>
+References: <20230428125952.4037964-1-tejas.upadhyay@intel.com>
+ <20230428125952.4037964-2-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3e6ce087-411a-8f2e-974e-2a9379587159@gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/uapi: Document CTM matrix better
+In-Reply-To: <20230428125952.4037964-2-tejas.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Use gt_err for GT info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,17 +59,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 28, 2023 at 12:31:10AM +0200, Xaver Hugl wrote:
-> I can't say anything about the other commits in this series, but
-> "Document in which order the CTM matrix elements are stored" is
-> Reviewed-by: Xaver Hugl <xaver.hugl@gmail.com>
+Hi Tejas,
 
-Thanks for the review+ack. Pushed to drm-misc-next.
+On Fri, Apr 28, 2023 at 06:29:51PM +0530, Tejas Upadhyay wrote:
+> It will be more informative regarding
+> GT if we use gt_err instead.
+> 
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
--- 
-Ville Syrjälä
-Intel
+Thanks for this cleanup!
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+
+Andi
