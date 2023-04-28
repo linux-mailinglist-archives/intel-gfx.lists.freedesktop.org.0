@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A816F14D6
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 12:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E02866F14D9
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 12:00:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B398A10ECC6;
-	Fri, 28 Apr 2023 09:59:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5307C10ECE6;
+	Fri, 28 Apr 2023 10:00:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BC510ECB9
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 09:59:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1625F10ECB9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Apr 2023 09:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682675994; x=1714211994;
+ t=1682675996; x=1714211996;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qt3SE/DOwiY8PmmIhoxWiI4CWRspc887KW+ZnXhwOcQ=;
- b=H9gNH9JLSgyrbxAgPJHD3e+j25lgnlLRzlU6JO++MY7JVta6mkbtw31P
- AUqI62Q/TBIfoB54fB/EczOBYSgs3Gn5L9i6Fi3WvL5Jao1Y+a9raZnjM
- wLfDg9HAtY0c1DFUDRvXZA7DAsnH3wnQbH2sOs7L+N1GO5iRXLGCgdXZh
- pZ00wEERZzcDS9dhGvNXviUDwSiPZWBQsYGFxU8RYKh020LDl/i0wW4zU
- qIwmQrgXUoG752T9vy/yyJAKzZbqkHu4nm2glrkNRmSp9HtMjQw8JFgqv
- y8Ow2rj5AU7tHVtwp56vjkAhT7rLfA9l7yUhziPYFw0CTV8VLLdXIpaJU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="375698245"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="375698245"
+ bh=wK6x76aYBUbyjCH+KdwmSEtUsYU9cNQjl1jNzFlsKF0=;
+ b=FCU01MU1BUxdkbUTK9+ZeuSe0dXwbyaoK2flgCw+/ezdpvoc6bewbQ41
+ 3+YFvuLwbZZKDOzkPif/XY6XcIUJH71WfSDe3CtUK5pymHnMxFF6PNdYR
+ 98wB9B9AjZwMUAWCllCEukyhl1Tbvvzm4kcScULqEB/GemZlw1Uf672c5
+ mJDtaiUBJRvU74WQ7d4upQfRRIG5NqUHNSQdCscvrc1MEKseBBYiw53mH
+ KN99G37EU3C/hhuoz7RhzFFTURO1XtV+rkLcyw1sC30Ba6F+6BQO46mL+
+ UINB2bnWJp786wCHoEDXuJv0BlTrONZY5uDs9BO+JsELll8LgyWesK+YN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="375698265"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="375698265"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 02:59:53 -0700
+ 28 Apr 2023 02:59:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="725295771"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="725295771"
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="725295775"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="725295775"
 Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga008.jf.intel.com with ESMTP; 28 Apr 2023 02:59:51 -0700
+ by orsmga008.jf.intel.com with ESMTP; 28 Apr 2023 02:59:53 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Apr 2023 12:54:31 +0300
-Message-Id: <20230428095433.4109054-12-mika.kahola@intel.com>
+Date: Fri, 28 Apr 2023 12:54:32 +0300
+Message-Id: <20230428095433.4109054-13-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230428095433.4109054-1-mika.kahola@intel.com>
 References: <20230428095433.4109054-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 11/13] drm/i915/mtl: TypeC HPD live status
- query
+Subject: [Intel-gfx] [PATCH v2 12/13] drm/i915/mtl: Pin assignment for TypeC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,68 +59,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-The HPD live status for MTL has to be read from different set of
-registers. MTL deserves a new function for this purpose
-and cannot reuse the existing  HPD live status detection
+Unlike previous platforms that used PORT_TX_DFLEXDPSP
+for max_lane calculation, MTL uses only PORT_TX_DFLEXPA1
+from which the max_lanes has to be calculated.
+
+Bspec: 50235, 65380
 
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Jose Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 30 ++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_tc.c | 28 +++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 951b12ac51dc..b192265a3d78 100644
+index b192265a3d78..4fca711a58bc 100644
 --- a/drivers/gpu/drm/i915/display/intel_tc.c
 +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -886,6 +886,34 @@ static const struct intel_tc_phy_ops adlp_tc_phy_ops = {
-  * XELPDP TC PHY handlers
-  * ----------------------
-  */
-+static u32 xelpdp_tc_phy_hpd_live_status(struct intel_tc_port *tc)
+@@ -16,6 +16,10 @@
+ #include "intel_mg_phy_regs.h"
+ #include "intel_tc.h"
+ 
++#define DP_PIN_ASSIGNMENT_C	0x3
++#define DP_PIN_ASSIGNMENT_D	0x4
++#define DP_PIN_ASSIGNMENT_E	0x5
++
+ enum tc_port_mode {
+ 	TC_PORT_DISCONNECTED,
+ 	TC_PORT_TBT_ALT,
+@@ -281,6 +285,27 @@ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
+ 	       DP_PIN_ASSIGNMENT_SHIFT(tc->phy_fia_idx);
+ }
+ 
++static int mtl_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
 +{
-+	struct drm_i915_private *i915 = tc_to_i915(tc);
-+	struct intel_digital_port *dig_port = tc->dig_port;
-+	enum hpd_pin hpd_pin = dig_port->base.hpd_pin;
-+	u32 pica_isr_bits = i915->display.hotplug.hpd[hpd_pin];
-+	u32 pch_isr_bit = i915->display.hotplug.pch_hpd[hpd_pin];
++	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
 +	intel_wakeref_t wakeref;
-+	u32 pica_isr;
-+	u32 pch_isr;
-+	u32 mask = 0;
++	u32 pin_mask;
 +
-+	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref) {
-+		pica_isr = intel_de_read(i915, PICAINTERRUPT_ISR);
-+		pch_isr = intel_de_read(i915, SDEISR);
++	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
++		pin_mask = intel_tc_port_get_pin_assignment_mask(dig_port);
++
++	switch (pin_mask) {
++	default:
++		MISSING_CASE(pin_mask);
++		fallthrough;
++	case DP_PIN_ASSIGNMENT_D:
++		return 2;
++	case DP_PIN_ASSIGNMENT_C:
++	case DP_PIN_ASSIGNMENT_E:
++		return 4;
 +	}
-+
-+	if (pica_isr & (pica_isr_bits & XELPDP_DP_ALT_HOTPLUG_MASK))
-+		mask |= BIT(TC_PORT_DP_ALT);
-+	if (pica_isr & (pica_isr_bits & XELPDP_TBT_HOTPLUG_MASK))
-+		mask |= BIT(TC_PORT_TBT_ALT);
-+
-+	if (tc->legacy_port && (pch_isr & pch_isr_bit))
-+		mask |= BIT(TC_PORT_LEGACY);
-+
-+	return mask;
 +}
 +
- static bool
- xelpdp_tc_phy_tcss_power_is_enabled(struct intel_tc_port *tc)
+ int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
  {
-@@ -1039,7 +1067,7 @@ static void xelpdp_tc_phy_disconnect(struct intel_tc_port *tc)
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+@@ -294,6 +319,9 @@ int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
  
- static const struct intel_tc_phy_ops xelpdp_tc_phy_ops = {
- 	.cold_off_domain = tgl_tc_phy_cold_off_domain,
--	.hpd_live_status = adlp_tc_phy_hpd_live_status,
-+	.hpd_live_status = xelpdp_tc_phy_hpd_live_status,
- 	.is_ready = adlp_tc_phy_is_ready,
- 	.is_owned = xelpdp_tc_phy_is_owned,
- 	.get_hw_state = xelpdp_tc_phy_get_hw_state,
+ 	assert_tc_cold_blocked(tc);
+ 
++	if (DISPLAY_VER(i915) >= 14)
++		return mtl_tc_port_get_pin_assignment_mask(dig_port);
++
+ 	lane_mask = 0;
+ 	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
+ 		lane_mask = intel_tc_port_get_lane_mask(dig_port);
 -- 
 2.34.1
 
