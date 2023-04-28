@@ -2,143 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F036F143C
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 11:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4707C6F1458
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Apr 2023 11:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9A410EC9E;
-	Fri, 28 Apr 2023 09:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DB310E3B6;
+	Fri, 28 Apr 2023 09:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE09F10EC9E;
- Fri, 28 Apr 2023 09:33:40 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BB710E3B6;
+ Fri, 28 Apr 2023 09:43:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682674420; x=1714210420;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=KQTdUJAY6LXd1F6KKtiR9Qor66UqRPUxQL5dHgX+2+Y=;
- b=ciewnbI1Y6vhE5rGUn8mFVNN0KjGZ/LNkcPn0DhxAsKsuSUs0YO2BMl3
- 6Qof1vdo5Vj/1YmTphSc1e0e5iEfvsaERP8/Kx0M4X0yArIa3a06JgujY
- p5QL00DVh8rrv+wCCA0FMhgzUGMDWUuEV7GiY5j2Ot47RgHo0gGlEf6OU
- fTQyXmtTmulE3bveyakV+ZDye2HBPqBlCUncdBWTFYqyKWGsFzxzze6ey
- r03VQ5lg0iWXkLPAd/unT8/9Z24du/m5lt49xZYEzHuuh+p5yNmnyNAJR
- GwD5yhwjWBQfnO1luuOmCpkqYm3cYeLYVJ2oAY+/d8pfds6q2pxHQTTbt w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="332009112"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="332009112"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 02:29:42 -0700
+ t=1682675013; x=1714211013;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6JMYowT+3BNj7Tyvw43TWjHH9QzaxU2LV3yJgoolpP0=;
+ b=Ihx6+d58fM1+c6vy5cl/JkaMaUnnb8/u/THOCaWCSB23Zp6Aw9dA4cAA
+ BbumVRHer7WbjLRWO6BiRDyeSBIu9JZRSQUS0o0ED237PysEr+xoFkrKE
+ MdPakGD9MGJGHG5P6EEk9OpypIVJAuTOshsCZWtMfVqeIL4o+TAiecAZL
+ LQu+AtAYrt2ib4WGDVGYv6kvJ997pldwSbkrcg03GQ+jWCmlfMZxWHzxG
+ UNvE8SCQBHBZtmc8cvqY7q/TCo8O6F+D5HAItNeA/VJOHMupVEiwnRefY
+ Kl2EIV4UsDxjzEKl/Azy9O5mwqAsOHdYL0hhz0ig2h9WHZjeYHPAjWLEH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="346469242"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="346469242"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 02:43:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727466702"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="727466702"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 28 Apr 2023 02:29:42 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 28 Apr 2023 02:29:41 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 28 Apr 2023 02:29:41 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 28 Apr 2023 02:29:41 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 28 Apr 2023 02:29:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oMGwJB5fYbJlBsInC2BLr+SwGnDdvZWvXrjvHgdggjkLSefXipR5/ravqhDKlKQLlfMEEE0cHmwO0MjCj10zlSdqpy7Ytzij04S639KgtMJpgXipTrYdcW5bt62F1nM53QN+19Sgms0OtjsGCt6J8F/r3aGKPD1nGx1N7r/Tj7rcLBKYxruy2/HDppJUnP2q21hScDxGMKIOeG59olzthild+dGtwwNugziqiMz3gmwfaAE3iXBT/mFQOizVmxNg2OhObAX6vhfJ7LxFZy1yNs2G48nSNmyTr8Q3OI0XKrN+j1NCXqDVXnKMG0AiXjaQYSE5Cryu62TDr6T6Tx793w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KQTdUJAY6LXd1F6KKtiR9Qor66UqRPUxQL5dHgX+2+Y=;
- b=fZmnNMvev+1E3RX1SwbHUVgxkKFlJZPyZpr0H4zTTbQttaz4Gz/eIQwCRDSGr4g7jgAwjlEjPZF3oxFALt54J2BEJpnOi5C74/8jxiC6MD/iIwF4THW182KR5Pyjm0Bvvj0Okngywa8bY1rjI2KWPEzcDBMbLu0Xm6hzRJf0I4Hfay83EQw9fN/h7+2OAmtREOcuAH+5gGABJMRwuY4ZsHeZKX9YAZYRw9eZVIZBjpshl0Vm6Bf2W+vuEi6letODQwxNSe0XZHmqBEW2vByb6+98O1YX/mPWc1DtdHo/Vq1y391eDHzUgKFQhjkao203HXzK37MlSWeEyLEg3/GfdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB6763.namprd11.prod.outlook.com (2603:10b6:303:20b::7)
- by CO1PR11MB4881.namprd11.prod.outlook.com (2603:10b6:303:91::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Fri, 28 Apr
- 2023 09:29:40 +0000
-Received: from MW4PR11MB6763.namprd11.prod.outlook.com
- ([fe80::ea27:a8a0:3e6:db89]) by MW4PR11MB6763.namprd11.prod.outlook.com
- ([fe80::ea27:a8a0:3e6:db89%7]) with mapi id 15.20.6340.022; Fri, 28 Apr 2023
- 09:29:40 +0000
-From: "Jiang, Yanting" <yanting.jiang@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>
-Thread-Topic: [PATCH v10 00/22] Add vfio_device cdev for iommufd support
-Thread-Index: AQHZeFBRt22apuS4K0ub6JTy9+/DAa9AdxPg
-Date: Fri, 28 Apr 2023 09:29:40 +0000
-Message-ID: <MW4PR11MB67633DB179D9DD03E0C3F680E86B9@MW4PR11MB6763.namprd11.prod.outlook.com>
-References: <20230426150321.454465-1-yi.l.liu@intel.com>
-In-Reply-To: <20230426150321.454465-1-yi.l.liu@intel.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6763:EE_|CO1PR11MB4881:EE_
-x-ms-office365-filtering-correlation-id: c3a495e7-65c4-43f0-8cf1-08db47cb1796
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XxrmxKBaI5qMJpPZXlUv5Hvq4QaznMuqUYdtVyehg8an4pcWB3z0VKRkI+0gV+A+0NlLUgmUb5ogiqWT5bpJb9ko7P80pKYSKHVQxyZgSBt2VId/jHrA+UTPYn0nk65KHSK53J3QaxSqF0Ds+9OBwOEYbzjc5IBh35sGgJ7goSf6DG5xuOHa2vWrY6Lg+fSu6w4cXOuWiT8m7WYRgZWSCeOAcwx9vhMLRixRYqpr/wP2A0kgIB9tL/44Sk4P+fHyu0A61Es4DRJ2bBhFqOltFM8PvT0JMlcjpzqbt2SCwo9Wvi3TN3VrA/ZNhqa43TKj/knRDLquLli/hCrSGXM29I6XUVcHy+TVCALJNsHNSffm7plFxBqrQLGiEk9sNmOC+HbrG+21uJ/ure3HLZXu/UYP7bXaqWRPoIrE6ysDXZin8PMnWspyyk4TpYd/4VwbnpCxSUMqE6mFX9QvJwsoKJ53PwgIJhP87lvbqQ9m1qS7Yd1nZ19rVeDmiQ0RDl9qNmod2M2a7uhDKv564+eUoyHkLgYPZa4YZuPR1V1WSwcayOrr37mthKoX1aaV2qE2DQS0gtQSe5Pcs4q03ROEhEsXcxpzCi7FKKpsSrakbTA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6763.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(136003)(346002)(376002)(396003)(39860400002)(451199021)(66446008)(66556008)(316002)(76116006)(66476007)(6636002)(4326008)(110136005)(66946007)(54906003)(7416002)(5660300002)(82960400001)(52536014)(55016003)(41300700001)(8936002)(64756008)(8676002)(38070700005)(2906002)(38100700002)(122000001)(186003)(966005)(26005)(6506007)(9686003)(83380400001)(33656002)(86362001)(478600001)(71200400001)(7696005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iHcV9zXz/EESUKxlzTi9Ju5DFNTr/DQmveP18oMGj+ZgyWLWYWPqC3OiQpo9?=
- =?us-ascii?Q?bxd43XDMy/PSwkrWTETbkn0eP8gENCV4SrPx0wWNQcRl5SJXnS3uS7OY69lj?=
- =?us-ascii?Q?/Wibqst8m7j/A2GUyedY3+tp1lFkj6ZTAPDbJuRs6CBmvpIyZYHuJ+3XvcoZ?=
- =?us-ascii?Q?EwS5g52PsZ/RUVE7xWgkAl/VWE45gZaSL+hZpWFbo5iEzJkrMTRgUol8eh6U?=
- =?us-ascii?Q?exDhx+TF0/PCKE24bEOp51Khd1HHQzxqdu8ovZzuVlJ7EeYmX0mlYaEC9Sya?=
- =?us-ascii?Q?Cvtjl8lU/t6UfhBUs2pWLZJT4NF76DCSebEfriQSX74zuFWZLtgrvNBgCdv/?=
- =?us-ascii?Q?18nNFwZoLHxBHyWPuWzy34O0hW9LZ7sWTBCGZQSFLjTvR0QUZ1GirUKJxc9g?=
- =?us-ascii?Q?eJ/d4fZN6luld33CchjDwI3uhLgRGyHL10YfU8s1qmGeDQuwpGrmZKKDhbNC?=
- =?us-ascii?Q?4cjBVua/u4xFqygpfs/luDv602V4VsXohJ14h7T/woeR82oKDRdSYPL5JCGN?=
- =?us-ascii?Q?7Ccv4v4z8o0IXn5XWhCv/u4bAJDPtVw166km2MObWyqJmYqmAelSZkeSFwPZ?=
- =?us-ascii?Q?VThverGKXkK8wlEMUroJf+X6YKVB1/MlOobeznbpORP4PVMw963LQGeKgIOU?=
- =?us-ascii?Q?M0iv8t051semyKqKy+THZ9ufIQpo2SZ9dWcmRbPzAJtfdJzs6V4CqeafbItL?=
- =?us-ascii?Q?sNpmomPyG5T81Kw9ZzywZt+hYKxr62FGK/hz6K5H9DRg1XvThQZloImT1+tu?=
- =?us-ascii?Q?44tK7DY1zTTjisQfgibZ8XhUMbAHvDX8i2YcLEUvRDhmqEeiSKk/lstUej4p?=
- =?us-ascii?Q?ERq2p1bhaH9n6YW/+glUW/MU1IEBo/sGOI1ammrZvfQlIwSsz76uyEwJMcjc?=
- =?us-ascii?Q?NyiF9sVgx6a2ybXXDKTS8SN9q9gr+IEcNLblc4VNiWRCixqrfs14ywn/Vs+z?=
- =?us-ascii?Q?Ut9Htq0Cu/msBYjpoTiB0a4LxBfLI73BuqsUGYlRVbhSPpQFm3dAnZr77xLq?=
- =?us-ascii?Q?y0SOCidWQJuFYIq4rubh8xLIYq6kTOiK7Bic/XUvHK36c0yflWX/oaG/NIge?=
- =?us-ascii?Q?am4FZTM88XAGNauGlT79sHIrDoos4czZKTVpPlO+2to2oYN6GYygCqE+dPN0?=
- =?us-ascii?Q?IauIO1IvTMQvdIUYJ99/1YEUnAZ0m+ggFfiU4WKgwMmuP5yWiJVkmqnA9xnk?=
- =?us-ascii?Q?nIhAJsVzzO8tGDF6wgUgsYWvkeqxvaMsSqNIkxcdYPHjZ5vxyL7ovVdQdkma?=
- =?us-ascii?Q?9sPqw2h/I5miCbEw/pTP9OkZsPLBrtJZcPZxPGSGX1LoB6s+2hdyCAYbzxY5?=
- =?us-ascii?Q?EFUqST7+6T//3vZQkiP4OZFsnJUe4SpV2GSYcLub9smWAdHlT2bbdvKOGEBa?=
- =?us-ascii?Q?h6QuQujgLcCKcSzvD1RUmDUsInnG//X7VYqsdXu97lOLyzEFmKTIimnd4wrX?=
- =?us-ascii?Q?ZOYm83rlDXcynyBwMwEGl9C8cm0hf6lNA5dmGINqSpazkw/g7n5Ni4tkkL38?=
- =?us-ascii?Q?4gWNEFwYaOjJhhTHQ8ylFxeP5ep7AYVqMeHvP9c9KkS8AwDSMLNqshfYypma?=
- =?us-ascii?Q?hNiNsLXK+G8uOOt0o5vIl1rTU5xmrID7OUlagHaH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="759593119"
+X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="759593119"
+Received: from ksathish-mobl.ger.corp.intel.com (HELO [10.213.194.196])
+ ([10.213.194.196])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 02:43:31 -0700
+Message-ID: <962c29c2-ca50-118e-4849-77324b510929@linux.intel.com>
+Date: Fri, 28 Apr 2023 10:43:28 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6763.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3a495e7-65c4-43f0-8cf1-08db47cb1796
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2023 09:29:40.2413 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dgU2uSyHldWnFXb3L5tOS4XQzXF3R4xDoiJEwVvFNoA1syYg8wKPyzzGMf2W58f+4NhK30+gnR6h2SlpZQK71w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4881
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v10 00/22] Add vfio_device cdev for iommufd
- support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: "Yang, Fei" <fei.yang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230426062423.320519-1-fei.yang@intel.com>
+ <c7cb1466-e698-ff3f-0572-4693c4b0025c@linux.intel.com>
+ <BYAPR11MB2567F72C44D485E628A574069A659@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <7d5d497d-b552-d8d9-e58c-20f4b0ded76c@linux.intel.com>
+ <BYAPR11MB25676FC11B8AC0045BABCC849A6A9@BYAPR11MB2567.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <BYAPR11MB25676FC11B8AC0045BABCC849A6A9@BYAPR11MB2567.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 0/5] drm/i915: Allow user to set cache at
+ BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,86 +68,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "joro@8bytes.org" <joro@8bytes.org>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "Hao, Xudong" <xudong.hao@intel.com>, "Duan,
- Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>, "nicolinc@nvidia.com" <nicolinc@nvidia.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "lulu@redhat.com" <lulu@redhat.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH v10 00/22] Add vfio_device cdev for iommufd support
->=20
-> Existing VFIO provides group-centric user APIs for userspace. Userspace o=
-pens
-> the /dev/vfio/$group_id first before getting device fd and hence getting =
-access
-> to device. This is not the desired model for iommufd. Per the conclusion =
-of
-> community discussion[1], iommufd provides device-centric kAPIs and requir=
-es its
-> consumer (like VFIO) to be device-centric user APIs. Such user APIs are u=
-sed to
-> associate device with iommufd and also the I/O address spaces managed by =
-the
-> iommufd.
->=20
-> This series first introduces a per device file structure to be prepared f=
-or further
-> enhancement and refactors the kvm-vfio code to be prepared for accepting
-> device file from userspace. After this, adds a mechanism for blocking dev=
-ice
-> access before iommufd bind. Then refactors the vfio to be able to handle =
-cdev
-> path (e.g. iommufd binding, no-iommufd, [de]attach ioas).
-> This refactor includes making the device_open exclusive between the group=
- and
-> the cdev path, only allow single device open in cdev path; vfio-iommufd c=
-ode is
-> also refactored to support cdev. e.g. split the vfio_iommufd_bind() into =
-two
-> steps. Eventually, adds the cdev support for vfio device and the new ioct=
-ls, then
-> makes group infrastructure optional as it is not needed when vfio device =
-cdev is
-> compiled.
->=20
-> This series is based on some preparation works done to vfio emulated devi=
-ces[2]
-> and vfio pci hot reset enhancements[3].
->=20
-> This series is a prerequisite for iommu nesting for vfio device[4] [5].
->=20
-> The complete code can be found in below branch, simple tests done to the
-> legacy group path and the cdev path. Draft QEMU branch can be found at[6]
-> However, the noiommu mode test is only done with some hacks in kernel and
-> qemu to check if qemu can boot with noiommu devices.
->=20
-> https://github.com/yiliu1765/iommufd/tree/vfio_device_cdev_v10
-> (config CONFIG_IOMMUFD=3Dy CONFIG_VFIO_DEVICE_CDEV=3Dy)
->=20
-> base-commit: c3822365940319ad86487cc1daf6f1a4c271191e
-> (based on Alex's next branch and merged the vfio_mdev_ops branch from
-> Jason's repo)
->=20
 
-Tested NIC passthrough on Intel platform.
-Result looks good hence,
-Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+On 27/04/2023 17:07, Yang, Fei wrote:
+>  > On 26/04/2023 16:41, Yang, Fei wrote:
+>  >>> On 26/04/2023 07:24, fei.yang@intel.com wrote:
+>  >>>> From: Fei Yang <fei.yang@intel.com>
+>  >>>>
+>  >>>> The first three patches in this series are taken from
+>  >>>> https://patchwork.freedesktop.org/series/116868/
+>  >>>> These patches are included here because the last patch
+>  >>>> has dependency on the pat_index refactor.
+>  >>>>
+>  >>>> This series is focusing on uAPI changes,
+>  >>>> 1. end support for set caching ioctl [PATCH 4/5]
+>  >>>> 2. add set_pat extension for gem_create [PATCH 5/5]
+>  >>>>
+>  >>>> v2: drop one patch that was merged separately
+>  >>>>      341ad0e8e254 drm/i915/mtl: Add PTE encode function
+>  >>>
+>  >>> Are the re-sends for stabilizing the series, or focusing on merge?
+>  >>
+>  >> v2 was sent just to drop one of patches that has already been merged.
+>  >>
+>  >>> If the latter then opens are:
+>  >>>
+>  >>> 1) Link to Mesa MR reviewed and ready to merge.
+>  >>>
+>  >>> 2) IGT reviewed.
+>  >>>
+>  >>> 3) I raised an open that get/set_caching should not "lie" but return an
+>  >>> error if set pat extension has been used. I don't see a good reason not
+>  >>> to do that.
+>  >>
+>  >> I don't think it's "lying" to the userspace. the comparison is only 
+> valid
+>  >> for objects created by KMD because only such object uses the pat_index
+>  >> from the cachelevel_to_pat table.
+>  >
+>  > Lets double check my understanding is correct. Userspace sequence of
+>  > operations:
+>  > 1)
+>  > obj = gem_create()+set_pat(PAT_UC)
+>  >
+>  > 2a)
+>  > get_caching(obj)
+>> What gets reported?
+> 
+> I see your point here. nice catch.
+> That should be handled by,
+> if (obj->cachel_level == I915_CACHE_INVAL) /* indicated pat-index is set 
+> by userspace */
+>       return -EOPNOTSUPP;
+> Will update the patch.
+> 
+>  >
+>  > 2b)
+>  > set_caching(obj, I915_CACHE_LLC)
+>> What is the return code?
+> 
+> This will either return -EOPNOTSUPP, or ignored because set_pat 
+> extension was called.
 
-Thanks,
-Yanting
+I see that you made it fail instead of fake success in the latest respin 
+and I definitely agree with that.
 
+> 
+>  >
+>  > If answer to 2a is I915_CACHING_CACHED and to 2b) success, then please
+>  > state a good reason why both shouldn't return an error.
+>  >
+>  >>
+>  >>> + Joonas on this one.
+>  >>>
+>  >>> 4) Refactoring as done is not very pretty and I proposed an idea for a
+>  >>> nicer approach. Feasible or not, open for discussion.
+>  >>
+>  >> Still digesting your proposal. but not sure how would you define things
+>  >> like PAT_UC as that is platform dependent, not a constant.
+>  >
+>  > "PAT_UC" in my outline was purely a driver specific value, similarly as
+>  > I915_CACHE_... are.
+> 
+> Okay. Then you were suggesting to add a translation table for 
+> pat_index-to-(PAT-UC/WB/WT)?
+> It's going to be a N:1 mapping.
+
+PAT index to a value, probably a bitmask, built out of bits which define 
+caching modes. Like "PAT_WB | PAT_1WAY_COHERENT", or just PAT_WB. Would 
+that approach be enough to express everything?
+
+> 
+>  > With the whole point that driver can ask if
+>  > something is uncached, WT or whatever. Using the platform specific
+>  > mapping table which converts platform specific obj->pat_index to driver
+>  > representation of caching modes (PAT_UC etc).
+> 
+> Are you suggesting completely remove i915_cache_level and use 
+> (PAT-UC/WB/WT) instead?
+
+Not completely but throughout the most internal code paths, which would 
+all just work on PAT index. Basically object always has PAT index set, 
+with a separate boolean saying whether it came from gem_create_ext or 
+set_cache_level.
+
+> Let's say a KMD object wants to be set as WB, how you get the exact 
+> pat_index to use?
+> Note that there are multiple PAT indices having caching mod WB, but they 
+> are different,
+> e.g. do you want just WB or WB with 1-way-coherency or WB with 2-way 
+> coherency?
+
+Just use the cache_level to pat_index mapping you added in the series?
+
+> Also, in case a checking of pat_index is needed, do we say WB with 
+> 1-way-coherency is
+> equal to WB or not?
+
+You mean the call sites where i915 is checking the object caching mode?
+
+We have two call sites which check for !I915_CACHE_NONE. Those would 
+just check if PAT_UC is not set.
+
+Then the one in gpu_write_needs_clflush is checking for neither UC nor 
+WT, which also directly translates.
+
+For the WB case there aren't any callers but if we just checked for 
+"base" PAT_WB bit being set that would work.
+
+So in all cases helper which does "return bits_required | bits_set" 
+seems would work fine.
+
+> BTW, isn't PAT-UC/WB/WT the same kind of abstraction as enum 
+> i915_cache_level, I'm not
+> sure how that would simplify anything.
+
+As I wrote before, I *think* it provides a way of not needing to 
+sprinkle around i915_gem_get_pat_index and a simpler "has_cache_level". 
+Conceptually cache_level->pat_index is done only in gem_create_ext and 
+set_cache_level. Lower level code does not have to consult cache_level 
+at all. And existence of tables simplifies the pretty printing code to a 
+platform agnostic loop.
+
+I *think* at least.. We can leave it all for later. My main concern was 
+that UAPI needs to be clear and solid which it now seems to be.
+
+Regards,
+
+Tvrtko
+
+> 
+>  > Quite possible I missed some detail, but if I haven't then it could be
+>  > a neat and lightweight solution.
+>  >
+>  > Regards,
+>  >
+>  > Tvrtko
