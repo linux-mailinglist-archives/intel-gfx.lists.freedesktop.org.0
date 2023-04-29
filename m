@@ -2,55 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4BC6F23A7
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Apr 2023 09:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 269656F23C0
+	for <lists+intel-gfx@lfdr.de>; Sat, 29 Apr 2023 10:56:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D79B10E07E;
-	Sat, 29 Apr 2023 07:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5864B10E04F;
+	Sat, 29 Apr 2023 08:56:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3098C10E07E
- for <intel-gfx@lists.freedesktop.org>; Sat, 29 Apr 2023 07:49:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682754600; x=1714290600;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mDdPnUzpie9RaagqNihEiWXxZD+7CZ37wFjgykdil7w=;
- b=fZnf/YBg4aAN+F3pDMftLbt9XTDbguCo3Td+iRFIr6DFicK8AuXNm5la
- ZOHkWAd/oUH7UHoXTsyGYoZ9Muiu+mMKzChn4KZWPKxPWn1r/R9mDaQjL
- 5XMjGAh958vr+h4+aGykGHB6UeFMb7X1bw4n/Aeb4+Qix5rdu0DvOkwcO
- qJkvz2nOFb80y87EMfIyQ02hnr5gzDFWUOBC3nZCWFBLdlNsSt5tvCqa4
- zpS84nyO9OOtZGYZztivis/9o27yUG0RSOQsw4CE6L1tSxFtu5kQTNOsE
- KnqTcts5Gb1X9elZF2oNYfV+WQpnSeGQBod7zbGwLdX+xnInzcvT75bTy w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349952081"
-X-IronPort-AV: E=Sophos;i="5.99,236,1677571200"; d="scan'208";a="349952081"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2023 00:49:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="784573668"
-X-IronPort-AV: E=Sophos;i="5.99,236,1677571200"; d="scan'208";a="784573668"
-Received: from unknown (HELO ideak-desk) ([10.237.72.78])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2023 00:49:57 -0700
-Date: Sat, 29 Apr 2023 10:50:26 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <ZEzMQjoV3ArbzB/z@ideak-desk>
-References: <20230426165305.2049341-1-imre.deak@intel.com>
- <20230426165305.2049341-6-imre.deak@intel.com>
- <ZEvR++IEZDI+uKB5@intel.com> <ZEwA1x2Yi8X8Wh3i@rkl>
- <ZEwGqwjbTtqHWwGr@ideak-desk.fi.intel.com>
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F29F910E04F;
+ Sat, 29 Apr 2023 08:55:57 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id E6E863F41E;
+ Sat, 29 Apr 2023 10:55:54 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.098
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.098 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, HTML_MESSAGE=0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ifAiy-XCBSGm; Sat, 29 Apr 2023 10:55:53 +0200 (CEST)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 030DE3F480;
+ Sat, 29 Apr 2023 10:55:52 +0200 (CEST)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 4E24B363216;
+ Sat, 29 Apr 2023 10:55:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1682758552; bh=mUo5YJJWyET87wVzHkPrGqHTYJW4xa02rhEgDnwoJrs=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=gQyn1fdecB0QfYT8oNt8iB4KOWIm0Yj389V3TYQqbi+S5jXw/66vMdJbs78Qn2aaM
+ Bg13W52KWAekJaxTBenUGOA9mpMAKNl7SqtIsXRhOLH4p/ijhSxzKA85EsxUjOsJAn
+ RXu44lj8DG6JtWIVWHeZW9f78vAvRytSNAwOS+MI=
+Content-Type: multipart/alternative;
+ boundary="------------Jhm0zFU0j9KxALz0lmE946Vu"
+Message-ID: <06d6babb-5933-7fe5-5686-2336d695f8bd@shipmail.org>
+Date: Sat, 29 Apr 2023 10:55:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZEwGqwjbTtqHWwGr@ideak-desk.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Add support for disabling
- any CRTCs during HW readout/sanitization
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: "Yang, Fei" <fei.yang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230428054737.1765778-1-fei.yang@intel.com>
+ <e1c73441-df6f-799c-eda0-8639067a0fea@shipmail.org>
+ <BYAPR11MB25676E1468DEEB827E889DA39A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <73356be7-f57e-154a-e587-2785d62e61cd@shipmail.org>
+ <BYAPR11MB256741725865292D644140079A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <BYAPR11MB256741725865292D644140079A6B9@BYAPR11MB2567.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH v3 0/5] drm/i915: Allow user to set cache at
+ BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,147 +72,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 28, 2023 at 08:47:23PM +0300, Imre Deak wrote:
-> On Fri, Apr 28, 2023 at 08:22:54PM +0300, Imre Deak wrote:
-> > On Fri, Apr 28, 2023 at 05:02:35PM +0300, Ville Syrjälä wrote:
-> > > On Wed, Apr 26, 2023 at 07:52:59PM +0300, Imre Deak wrote:
-> > > > [...] 
-> > > > +static u32 get_transcoder_pipes(struct drm_i915_private *i915, u32 transcoder_mask)
-> > > > +{
-> > > > +	struct intel_crtc *slave_crtc;
-> > > > +	u32 pipes = 0;
-> > > > +
-> > > > +	for_each_intel_crtc(&i915->drm, slave_crtc) {
-> > > > +		struct intel_crtc_state *slave_crtc_state =
-> > > > +			to_intel_crtc_state(slave_crtc->base.state);
-> > > > +
-> > > > +		if (slave_crtc_state->cpu_transcoder == INVALID_TRANSCODER)
-> > > > +			continue;
-> > > > +
-> > > > +		if (transcoder_mask & BIT(slave_crtc_state->cpu_transcoder))
-> > > > +			pipes |= BIT(slave_crtc->pipe);
-> > > > +	}
-> > > > +
-> > > > +	return pipes;
-> > > > +}
-> > > > +
-> > > > +static u32 get_bigjoiner_slave_pipes(struct drm_i915_private *i915, u32 master_pipes)
-> > > > +{
-> > > > +	struct intel_crtc *master_crtc;
-> > > > +	u32 pipes = 0;
-> > > > +
-> > > > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, master_crtc, master_pipes) {
-> > > > +		struct intel_crtc_state *master_crtc_state =
-> > > > +			to_intel_crtc_state(master_crtc->base.state);
-> > > > +
-> > > > +		pipes |= intel_crtc_bigjoiner_slave_pipes(master_crtc_state);
-> > > > +	}
-> > > > +
-> > > > +	return pipes;
-> > > > +}
-> > > > +
-> > > > +static void kill_bigjoiner_slave_noatomic(struct intel_crtc *master_crtc)
-> > > > +{
-> > > > +	struct drm_i915_private *i915 = to_i915(master_crtc->base.dev);
-> > > > +	struct intel_crtc_state *master_crtc_state =
-> > > > +		to_intel_crtc_state(master_crtc->base.state);
-> > > > +	struct intel_crtc *slave_crtc;
-> > > > +
-> > > > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
-> > > > +					 intel_crtc_bigjoiner_slave_pipes(master_crtc_state)) {
-> > > > +		struct intel_crtc_state *slave_crtc_state =
-> > > > +			to_intel_crtc_state(slave_crtc->base.state);
-> > > > +
-> > > > +		slave_crtc_state->bigjoiner_pipes = 0;
-> > > > +	}
-> > > > +
-> > > > +	master_crtc_state->bigjoiner_pipes = 0;
-> > > > +}
-> > > > +
-> > > > +static void disable_crtc_with_slaves(struct intel_crtc *crtc,
-> > > > +				     struct drm_modeset_acquire_ctx *ctx)
-> > > > +{
-> > > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > > > +	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
-> > > > +	u32 bigjoiner_masters = BIT(crtc->pipe) |
-> > > > +				get_transcoder_pipes(i915, crtc_state->sync_mode_slaves_mask);
-> > > 
-> > > The resulting bitmask would seem to also include the bigjoiner slaves.
-> > 
-> > Hrm, doesn't sync_mode_slaves_mask contain only the transcoder bits for
-> > the port-synced master CRTCs? I assumed that those port-synced master
-> > CRTCs would point to their slave pipes via their
-> > crtc_state->bigjoiner_pipes mask.
-> 
-> Ah, understood the issue, the port_synced slave CRTCs need to get
-> disabled before the port_sync master.
-> 
-> So I think the following gives the correct order:
-> 
-> 	u32 portsync_slaves = get_transcoder_pipes(i915,
-> 						   crtc_state->sync_mode_slaves_mask);
-> 	u32 bigjoiner_slaves = get_bigjoiner_slave_pipes(i915,
-> 							 BIT(crtc->pipe) |
-> 							 portsync_slaves);
-> 
-> 	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, bigjoiner_slaves)
-> 		intel_crtc_disable_noatomic(temp_crtc, ctx);
-> 
-> 	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, portsync_slaves) {
-> 		intel_crtc_disable_noatomic(temp_crtc, ctx);
-> 		kill_bigjoiner_slave_noatomic(temp_crtc);
-> 	}
-> 
-> 	intel_crtc_disable_noatomic(crtc);
-> 	kill_bigjoiner_slave_noatomic(crtc);
-> 
-> ?
+This is a multi-part message in MIME format.
+--------------Jhm0zFU0j9KxALz0lmE946Vu
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-And that a bigjoiner slave pipe's transcoder points to the master
-transcoder :/ so those slave pipes need to be filtered out in
-get_transcoder_pipes().
 
-> > > > +	u32 bigjoiner_slaves = get_bigjoiner_slave_pipes(i915, bigjoiner_masters);
-> > > > +	struct intel_crtc *temp_crtc;
-> > > > +
-> > > > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, bigjoiner_slaves)
-> > > > +		intel_crtc_disable_noatomic(temp_crtc, ctx);
-> > > > +
-> > > > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, bigjoiner_masters) {
-> > > > +		intel_crtc_disable_noatomic(temp_crtc, ctx);
-> > > > +		kill_bigjoiner_slave_noatomic(temp_crtc);
-> > > > +	}
-> > > > +}
-> > > > +
-> > > >  static void intel_sanitize_crtc(struct intel_crtc *crtc,
-> > > >  				struct drm_modeset_acquire_ctx *ctx)
-> > > >  {
-> > > > @@ -299,10 +404,11 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
-> > > >  	/*
-> > > >  	 * Adjust the state of the output pipe according to whether we have
-> > > >  	 * active connectors/encoders.
-> > > > +	 * TODO: Add support for MST
-> > > >  	 */
-> > > >  	if (crtc_state->hw.active && !intel_crtc_has_encoders(crtc) &&
-> > > >  	    !intel_crtc_is_bigjoiner_slave(crtc_state))
-> > > > -		intel_crtc_disable_noatomic(crtc, ctx);
-> > > > +		disable_crtc_with_slaves(crtc, ctx);
-> > > 
-> > > I'd like to keep the _noatomic() in the name.
-> > 
-> > Ok, will change this.
-> > 
-> > > 
-> > > >  }
-> > > >  
-> > > >  static bool has_bogus_dpll_config(const struct intel_crtc_state *crtc_state)
-> > > > -- 
-> > > > 2.37.2
-> > > 
-> > > -- 
-> > > Ville Syrjälä
-> > > Intel
+On 4/28/23 19:43, Yang, Fei wrote:
+> >> On 4/28/23 17:19, Yang, Fei wrote:
+> >>> On 4/28/23 07:47, fei.yang@intel.com wrote:
+> >>>> From: Fei Yang <fei.yang@intel.com>
+> >>>>
+> >>>> The first three patches in this series are taken from
+> >>>> https://patchwork.freedesktop.org/series/116868/
+> >>>> These patches are included here because the last patch
+> >>>> has dependency on the pat_index refactor.
+> >>>>
+> >>>> This series is focusing on uAPI changes,
+> >>>> 1. end support for set caching ioctl [PATCH 4/5]
+> >>>> 2. add set_pat extension for gem_create [PATCH 5/5]
+> >>>>
+> >>>> v2: drop one patch that was merged separately
+> >>>> Â  Â  Â 341ad0e8e254 drm/i915/mtl: Add PTE encode function
+> >>>> v3: rebase on https://patchwork.freedesktop.org/series/117082/
+> >>>
+> >>> Hi, Fei.
+> >>>
+> >>> Does this uAPI update also affect any discrete GPUs supported by i915,
+> >>
+> >> It does.
+> >>
+> >>> And in that case, does it allow setting non-snooping PAT indices on
+> >>> those devices?
+> >>
+> >> It allows setting PAT indices specified in
+> >> KMD does a sanity check so that it won't go over the max recommended
+> >> by bspec.
+> >>
+> >>> If so, since the uAPI for discrete GPU devices doesn't allow 
+> incoherency
+> >>> between GPU and CPU (apart from write-combining buffering), the 
+> correct
+> >>> CPU caching mode matching the PAT index needs to be selected for the
+> >>> buffer object in i915_ttm_select_tt_caching().
+> >>
+> >> The patch doesn't affect the CPU caching mode setting logic though.
+> >> And the caching settings for objects created by kernel should remain
+> >> the same for both CPU and GPU, objects created by userspace are
+> >> managed completely by userspace.
+> >>
+> >> One question though, what do you mean by non-snooping PAT indices?
+> >
+> > Yes, that was actually the bottom question: What do these PAT settings
+> > allow you to do WRT the snooping on supported discrete devices (DG2) on
+> > i915?
+> > If they indeed don't allow disabling snooping, then that's not a 
+> problem.
+>
+> When dGPU's access SysMem, the PCIe default is for that access to 
+> snoop the
+> host's caches. All of our current dGPU's do that -- independent of PAT 
+> setting.
+>
+> > If they do, the ttm code there needs some modification.
+>
+> I'm not familiar with ttm, but if your concern is that certain PAT index
+> could disable snooping, that is not possible for current dGPU's.
+> I think it is possible for Xe2/3 though, because there will be COH_MODE
+> defined in the PAT registers going forward.
+
+
+OK. If that's the case, then it should be safe to disregard this concern.
+
+Thanks,
+
+
+Thomas
+
+
+
+>
+> -Fei
+>
+--------------Jhm0zFU0j9KxALz0lmE946Vu
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 4/28/23 19:43, Yang, Fei wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:BYAPR11MB256741725865292D644140079A6B9@BYAPR11MB2567.namprd11.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
+      &gt;&gt; On 4/28/23 17:19, Yang, Fei wrote:
+      <div>&gt;&gt;&gt; On 4/28/23 07:47, <a class="moz-txt-link-abbreviated" href="mailto:fei.yang@intel.com">fei.yang@intel.com</a> wrote:</div>
+      <div>&gt;&gt;&gt;&gt; From: Fei Yang <a class="moz-txt-link-rfc2396E" href="mailto:fei.yang@intel.com">&lt;fei.yang@intel.com&gt;</a></div>
+      <div>&gt;&gt;&gt;&gt;</div>
+      <div>&gt;&gt;&gt;&gt; The first three patches in this series are
+        taken from</div>
+      <div>&gt;&gt;&gt;&gt;
+        <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/116868/">https://patchwork.freedesktop.org/series/116868/</a></div>
+      <div>&gt;&gt;&gt;&gt; These patches are included here because the
+        last patch</div>
+      <div>&gt;&gt;&gt;&gt; has dependency on the pat_index refactor.</div>
+      <div>&gt;&gt;&gt;&gt;</div>
+      <div>&gt;&gt;&gt;&gt; This series is focusing on uAPI changes,</div>
+      <div>&gt;&gt;&gt;&gt; 1. end support for set caching ioctl [PATCH
+        4/5]</div>
+      <div>&gt;&gt;&gt;&gt; 2. add set_pat extension for gem_create
+        [PATCH 5/5]</div>
+      <div>&gt;&gt;&gt;&gt;</div>
+      <div>&gt;&gt;&gt;&gt; v2: drop one patch that was merged
+        separately</div>
+      <div>&gt;&gt;&gt;&gt; Â  Â  Â 341ad0e8e254 drm/i915/mtl: Add PTE
+        encode function</div>
+      <div>&gt;&gt;&gt;&gt; v3: rebase on
+        <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/117082/">https://patchwork.freedesktop.org/series/117082/</a></div>
+      <div>&gt;&gt;&gt;</div>
+      <div>&gt;&gt;&gt; Hi, Fei.</div>
+      <div>&gt;&gt;&gt;</div>
+      <div>&gt;&gt;&gt; Does this uAPI update also affect any discrete
+        GPUs supported by i915,</div>
+      <div>&gt;&gt;</div>
+      <div>&gt;&gt; It does.</div>
+      <div>&gt;&gt;</div>
+      <div>&gt;&gt;&gt; And in that case, does it allow setting
+        non-snooping PAT indices on</div>
+      <div>&gt;&gt;&gt; those devices?</div>
+      <div>&gt;&gt;</div>
+      <div>&gt;&gt; It allows setting PAT indices specified in</div>
+      <div>&gt;&gt; KMD does a sanity check so that it won't go over the
+        max recommended</div>
+      <div>&gt;&gt; by bspec.</div>
+      <div>&gt;&gt;</div>
+      <div>&gt;&gt;&gt; If so, since the uAPI for discrete GPU devices
+        doesn't allow incoherency</div>
+      <div>&gt;&gt;&gt; between GPU and CPU (apart from write-combining
+        buffering), the correct</div>
+      <div>&gt;&gt;&gt; CPU caching mode matching the PAT index needs to
+        be selected for the</div>
+      <div>&gt;&gt;&gt; buffer object in i915_ttm_select_tt_caching().</div>
+      <div>&gt;&gt;</div>
+      <div>&gt;&gt; The patch doesn't affect the CPU caching mode
+        setting logic though.</div>
+      <div>&gt;&gt; And the caching settings for objects created by
+        kernel should remain</div>
+      <div>&gt;&gt; the same for both CPU and GPU, objects created by
+        userspace are</div>
+      <div>&gt;&gt; managed completely by userspace.</div>
+      <div>&gt;&gt;</div>
+      <div class="elementToProof">&gt;&gt; One question though, what do
+        you mean by non-snooping PAT indices?</div>
+      <div class="elementToProof ContentPasted0">&gt;
+        <div class="ContentPasted0">&gt; Yes, that was actually the
+          bottom question: What do these PAT settings</div>
+        <div class="ContentPasted0">&gt; allow you to do WRT the
+          snooping on supported discrete devices (DG2) on</div>
+        <div class="ContentPasted0">&gt; i915?</div>
+        <div class="ContentPasted0">&gt; If they indeed don't allow
+          disabling snooping, then that's not a problem.</div>
+        <div><br class="ContentPasted0">
+        </div>
+        <div class="ContentPasted0">When dGPU's access SysMem, the PCIe
+          default is for that access to snoop the</div>
+        <div class="ContentPasted0">host's caches. All of our current
+          dGPU's do that -- independent of PAT setting.</div>
+        <div><br class="ContentPasted0">
+        </div>
+        <div class="ContentPasted0">&gt; If they do, the ttm code there
+          needs some modification.</div>
+        <div><br class="ContentPasted0">
+        </div>
+        <div class="ContentPasted0">I'm not familiar with ttm, but if
+          your concern is that certain PAT index</div>
+        <div class="ContentPasted0">could disable snooping, that is not
+          possible for current dGPU's.</div>
+        <div class="ContentPasted0">I think it is possible for Xe2/3
+          though, because there will be COH_MODE</div>
+        <div class="ContentPasted0">defined in the PAT registers going
+          forward.</div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>OK. If that's the case, then it should be safe to disregard this
+      concern.</p>
+    <p>Thanks,</p>
+    <p><br>
+    </p>
+    <p>Thomas</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:BYAPR11MB256741725865292D644140079A6B9@BYAPR11MB2567.namprd11.prod.outlook.com">
+      <div class="elementToProof ContentPasted0">
+        <div><br class="ContentPasted0">
+        </div>
+        <div class="ContentPasted0">-Fei</div>
+        <br>
+      </div>
+    </blockquote>
+  </body>
+</html>
+
+--------------Jhm0zFU0j9KxALz0lmE946Vu--
