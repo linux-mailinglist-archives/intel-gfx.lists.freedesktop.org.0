@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436526F44D6
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 15:14:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B38BA6F44E1
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 15:19:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 504E610E24E;
-	Tue,  2 May 2023 13:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4489310E1A4;
+	Tue,  2 May 2023 13:19:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7450310E24E
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 13:14:00 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AEF510E1A4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 13:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683033240; x=1714569240;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=UKS6eb6mm7wnEJz0YAhtu/APb6Zrywv1tOaxnDfoKl8=;
- b=LbHgJCRCDCLC4t6KBS74EMr0I5xMkOxpeGDqTpHVIVglko4JsgrWP+fR
- +O+fscuL/OzpJt//Y1PSvhFkAbuwpbZ7JVrODDVEQYgo1lA4wncjyoYSA
- HTeMkdoRAiSk20rKZ3Dr/p5gznTppYHO8DLW+jlSulMrMWCmfLGBoxt4d
- 0bpRIeN8TuYNOsO21pB+VHZEAIlmnDa0ehR24p7YsVx38IkhW6l2m4h8F
- h7i3XKEmi6/pVnh4i5IB012vQJ3Bp9LPcD9vrlyvVXg6ByKzMwZoynGvL
- YKhq0p8/R4DzxB7ixZlHIdOn6qyTzX3zrZsxFfl0PAfCPUiwrr7OgwEtb w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="347210488"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="347210488"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 06:13:59 -0700
+ t=1683033545; x=1714569545;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LBCUmWwO40adfKQbaTNjB8avXIqrF3t5mAaT2RVhLFE=;
+ b=LH8rrVhX6aHJ3lBm7eyWvjMtOhOTjLn45R/RH6kX/Eu7CsRX23jvYizJ
+ BKa2dYjVw3Tx6MjoeU9/aZXzW3py27DDv6N3un+2ts6ngI3OsRn4/U/8d
+ 4fXLb+D3xprZulnmamLY/ntnuC4qpFPqjh7W4lyeAVm2AFDOj1DSWXe8q
+ ouh0FpRuavHSGDgKqOscJDzPdgEE+FFnUsw+XzbER8SGoJX7CPpzWojlE
+ x8dyp42znuWJf9V69sdxHcBL6XoAwKiGx37LV5vecPC9FfgA4ITgENp7Z
+ Xbkost72q/EY2sNg1ewmEW8bNvTrWixeNg30Xs5g1+tfDEgp4O7J+xUB8 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="411536069"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="411536069"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 06:19:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="690278833"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="690278833"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga007.jf.intel.com with SMTP; 02 May 2023 06:13:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 May 2023 16:13:55 +0300
-Date: Tue, 2 May 2023 16:13:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kurt Garloff <kurt@garloff.de>
-Message-ID: <ZFEMkypQy1I4vprK@intel.com>
-References: <4115dc28-45b6-cad1-1e38-39e5a0484a8a@garloff.de>
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="698967500"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="698967500"
+Received: from awojtkie-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.50])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 06:19:02 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230425025944.151744-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
+ <20230425025944.151744-1-arun.r.murthy@intel.com>
+Date: Tue, 02 May 2023 16:18:59 +0300
+Message-ID: <87lei627ng.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4115dc28-45b6-cad1-1e38-39e5a0484a8a@garloff.de>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] 6.1.23: 0fc6fea41c71 breaks GPD Pocket 3 modeset
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/display/dp: 128/132b LT
+ requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +60,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Apr 29, 2023 at 09:55:45PM +0200, Kurt Garloff wrote:
-> Hi Ville,
-> 
-> While
-> 0fc6fea41c71 drm/i915: Disable DC states for all commits
-> (cherry picked from commit 41b4c7fe72b6105a4b49395eea9aa40cef94288d)
-> does look correct to me, it does break modesetting on the GPD Pocket 3,
-> a i7-1195G7 laptop. I run the kernel with
-> fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up \
-> mem_sleep_default=s2idle
-> No special i915 parameters.
-> Hardware is described here:
-> https://wiki.archlinux.org/title/GPD_Pocket_3
-> 
-> I disected this patch which was merged (backported) for 6.1.23.
-> I currently run 6.1.26 with it reverted.
-> 
-> Without reverting it, when fbcon is switched to show the splash
-> screen (GPD logo with Ubuntu added in on working kernels), the
-> screen remains black (backlight on, but nothing displayed) and
-> nothing happens any more.
+On Tue, 25 Apr 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> For 128b/132b LT prior to LT DPTX should set power state, DP channel
+> coding and then link rate.
+>
+> v2: added separate function to avoid code duplication(Jani N)
+> v3: DP2.1 section 3.5.2.16 is ordered, 3.5.1.2 is unordered and hence
+>     discarding <Ville>
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-Please file a bug at
-https://gitlab.freedesktop.org/drm/intel/issues/new
+Thanks for the patch, pushed to drm-intel-next.
 
-Boot both kernels (revert vs. no revert), passing
-'drm.debug=0xe log_buf_len=4M' to the kernel cmdline,
-and attach the resulting dmesg from each to the bug.
+BR,
+Jani.
 
-Also would be good if you try to reproduce on the
-latest drm-tip (git://anongit.freedesktop.org/drm-tip drm-tip)
-as well.
+
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 56 +++++++++++++------
+>  1 file changed, 38 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 6aa4ae5e7ebe..27eb41499d7e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -637,6 +637,37 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
+>  	return true;
+>  }
+>  
+> +static void
+> +intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+> +				const struct intel_crtc_state *crtc_state)
+> +{
+> +	u8 link_config[2];
+> +
+> +	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> +	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> +			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> +	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+> +}
+> +
+> +static void
+> +intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
+> +			    const struct intel_crtc_state *crtc_state,
+> +			    u8 link_bw, u8 rate_select)
+> +{
+> +	u8 link_config[2];
+> +
+> +	/* Write the link configuration data */
+> +	link_config[0] = link_bw;
+> +	link_config[1] = crtc_state->lane_count;
+> +	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> +		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> +	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+> +	/* eDP 1.4 rate select method. */
+> +	if (!link_bw)
+> +		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> +				  &rate_select, 1);
+> +}
+> +
+>  /*
+>   * Prepare link training by configuring the link parameters. On DDI platforms
+>   * also enable the port here.
+> @@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+>  {
+>  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	u8 link_config[2];
+>  	u8 link_bw, rate_select;
+>  
+>  	if (intel_dp->prepare_link_retrain)
+> @@ -686,23 +716,13 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
+>  		drm_dbg_kms(&i915->drm,
+>  			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
+>  			    encoder->base.base.id, encoder->base.name, rate_select);
+> -
+> -	/* Write the link configuration data */
+> -	link_config[0] = link_bw;
+> -	link_config[1] = crtc_state->lane_count;
+> -	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+> -		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> -	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+> -
+> -	/* eDP 1.4 rate select method. */
+> -	if (!link_bw)
+> -		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> -				  &rate_select, 1);
+> -
+> -	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
+> -	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
+> -		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
+> -	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+> +	/*
+> +	 * Spec DP2.1 Section 3.5.2.16
+> +	 * Prior to LT DPTX should set 128b/132b DP Channel coding and then set link rate
+> +	 */
+> +	intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
+> +	intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
+> +				    rate_select);
+>  
+>  	return true;
+>  }
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
