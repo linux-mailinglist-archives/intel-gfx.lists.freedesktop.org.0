@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00056F4B8F
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 22:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D5A26F4BAF
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 22:58:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5304510E097;
-	Tue,  2 May 2023 20:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E9210E091;
+	Tue,  2 May 2023 20:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0220810E094;
- Tue,  2 May 2023 20:43:13 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC0810E091
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 20:58:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683060194; x=1714596194;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=iL8g1yXa/B6Zqtk9KfJ6MRfSv7ALi5Zfa0rUJdGY2kc=;
- b=LDpNmRMqzr/E8JSRDh5LF3Iq8kZq2Yce10bU1u/4v9kUN3q58PA0hez6
- 3K+gOnR2di/3XyCeeqKLuEuhNUnu1UtmbN19syoFyycnuGZjJJ6qvcUnZ
- LF5W6ZBYb2O6JV+rqy77yZzhRmQvsmeDfwD1aeK934uzBLFga344mpeA1
- D61O1JCIgNm4nFsgFKqD1GllVILzDVL0x5HFId+/1PckQ9MA0/yJD+LXh
- vhtlpA24d/TRdb99+irRL+YA2h6bgNiEjfZ2YHJ19l5zw3syYgrjtkKoD
- +gVO0LLXNnCOfiexaohg3lPODlAFRyXJRASXbARPm4datswZK7gL9iZKN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="413952729"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="413952729"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 13:43:12 -0700
+ t=1683061123; x=1714597123;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UkVgXh9CdhGj61q9jOtwl33TXIs/uBe3xnUdC8k6DlA=;
+ b=m1cW91YFU52N4skZEMDmkvFr3+eyaG2AfnpF64MfKaQ2oA2wudRdZ/n0
+ RFC5kZZToDLEKGgL8g8xlvLSGqklUOfrC1onvtUVBDz79UD1wqDjuwwHN
+ c4MWyzVNHLJzCE741eTgCeJYZmtyqIwp8J5Yq4KBOBtuheBomOK74TDyr
+ teFSTH2BWd/vYYvQq71cA12PM40Z3WiCuflobcnfgBD6IlG/3NqhcavqN
+ QA4BwwfgWewUCuYyA8Usk+t6dCjfaILdHlzgxR+swOWOqm9VwV586a9+K
+ UJdJA1pht1xd3hkoQLz/Bi6HaJxXeC746UyX/btqlnX8DZ0NFnoHzcl0m Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="434812469"
+X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="434812469"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 13:58:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="840435241"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="840435241"
-Received: from pliberma-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.61.88])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 13:43:07 -0700
-Date: Tue, 2 May 2023 22:42:52 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <ZFF1zA/VKPrFPodp@ashyti-mobl2.lan>
-References: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="785818172"
+X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="785818172"
+Received: from mbosch-mobl.amr.corp.intel.com (HELO localhost) ([10.209.88.12])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 13:58:41 -0700
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 May 2023 13:57:44 -0700
+Message-Id: <20230502205744.1067094-1-jordan.l.justen@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230424123524.17008-1-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH] x86/mm: Fix PAT bit missing from page
- protection modify mask
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/uapi: Add
+ DRM_I915_QUERY_GEM_CREATE_EXTENSIONS query item
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,96 +56,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, x86@kernel.org,
- Yu Zhao <yuzhao@google.com>, David Hildenbrand <david@redhat.com>,
- intel-gfx@lists.freedesktop.org, Dave Hansen <dave.hansen@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Cc: Fei Yang <fei.yang@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_create.c | 30 ++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_create.h |  2 ++
+ drivers/gpu/drm/i915/i915_query.c          | 36 ++++++++++++++++++++++
+ include/uapi/drm/i915_drm.h                |  2 ++
+ 4 files changed, 70 insertions(+)
 
-a kind reminder on this patch, would be fantastic if anyone from
-the x86 maintainers cha give it a look.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+index bfe1dbda4cb7..56342a352599 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+@@ -399,6 +399,36 @@ static const i915_user_extension_fn create_extensions[] = {
+ 	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
+ };
+ 
++/**
++ * Fills buffer will known create_ext extensions
++ * @buffer: buffer to fill with extensions
++ * @buffer_size: size of the buffer in bytes
++ *
++ * If @buffer_size is 0, then @buffer is not accessed, and the
++ * required buffer size is returned.
++ *
++ * If @buffer_size != 0, but not large enough, then -EINVAL is
++ * returned.
++ *
++ * If @buffer_size is large enough, then @buffer will be filled as a
++ * u64 array of extension names.
++ */
++int
++i915_gem_create_ext_get_extensions(void *buffer, size_t buffer_size)
++{
++	unsigned int i;
++
++	if (buffer_size == 0)
++		return ARRAY_SIZE(create_extensions) * sizeof(u64);
++	else if (buffer_size < (ARRAY_SIZE(create_extensions) * sizeof(u64)))
++		return -EINVAL;
++
++	for (i = 0; i < ARRAY_SIZE(create_extensions); i++)
++		((u64*)buffer)[i] = i;
++
++	return ARRAY_SIZE(create_extensions) * sizeof(u64);
++}
++
+ /**
+  * i915_gem_create_ext_ioctl - Creates a new mm object and returns a handle to it.
+  * @dev: drm device pointer
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.h b/drivers/gpu/drm/i915/gem/i915_gem_create.h
+index 9536aa906001..e7ebef308038 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_create.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_create.h
+@@ -14,4 +14,6 @@ int i915_gem_dumb_create(struct drm_file *file_priv,
+ 			 struct drm_device *dev,
+ 			 struct drm_mode_create_dumb *args);
+ 
++int i915_gem_create_ext_get_extensions(void *buffer, size_t buffer_size);
++
+ #endif /* __I915_GEM_CREATE_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+index 00871ef99792..f360f76516de 100644
+--- a/drivers/gpu/drm/i915/i915_query.c
++++ b/drivers/gpu/drm/i915/i915_query.c
+@@ -9,6 +9,7 @@
+ #include "i915_drv.h"
+ #include "i915_perf.h"
+ #include "i915_query.h"
++#include "gem/i915_gem_create.h"
+ #include "gt/intel_engine_user.h"
+ #include <uapi/drm/i915_drm.h>
+ 
+@@ -551,6 +552,40 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
+ 	return hwconfig->size;
+ }
+ 
++static int query_gem_create_extensions(struct drm_i915_private *i915,
++				       struct drm_i915_query_item *query_item)
++{
++	void *buffer;
++	int buffer_size, fill_size;
++
++	buffer_size = i915_gem_create_ext_get_extensions(NULL, 0);
++
++	if (query_item->length == 0)
++		return buffer_size;
++
++	if (query_item->length < buffer_size)
++		return -EINVAL;
++
++	buffer = kzalloc(buffer_size, GFP_KERNEL);
++	if (!buffer)
++		return -ENOMEM;
++
++	fill_size = i915_gem_create_ext_get_extensions(buffer, buffer_size);
++	if (fill_size != buffer_size) {
++		kfree(buffer);
++		return -EINVAL;
++	}
++
++	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
++			 buffer, buffer_size)) {
++		kfree(buffer);
++		return -EFAULT;
++	}
++
++	kfree(buffer);
++	return buffer_size;
++}
++
+ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 					struct drm_i915_query_item *query_item) = {
+ 	query_topology_info,
+@@ -559,6 +594,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 	query_memregion_info,
+ 	query_hwconfig_blob,
+ 	query_geometry_subslices,
++	query_gem_create_extensions,
+ };
+ 
+ int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index dba7c5a5b25e..46be28ee3795 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2963,6 +2963,7 @@ struct drm_i915_query_item {
+ 	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
+ 	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
+ 	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
++	 *  - %DRM_I915_QUERY_GEM_CREATE_EXTENSIONS (u64 array of known DRM_I915_GEM_CREATE_EXT extensions)
+ 	 */
+ 	__u64 query_id;
+ #define DRM_I915_QUERY_TOPOLOGY_INFO		1
+@@ -2971,6 +2972,7 @@ struct drm_i915_query_item {
+ #define DRM_I915_QUERY_MEMORY_REGIONS		4
+ #define DRM_I915_QUERY_HWCONFIG_BLOB		5
+ #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
++#define DRM_I915_QUERY_GEM_CREATE_EXTENSIONS	7
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/**
+-- 
+2.39.2
 
-The patch has been tested thoroughly and even if it's marked as
-an RFC in my opinion it can be already considered for a proper
-review.
-
-Thanks,
-Andi
-
-On Mon, Apr 24, 2023 at 02:35:24PM +0200, Janusz Krzysztofik wrote:
-> Visible glitches have been observed when running graphics applications on
-> Linux under Xen hypervisor.  Those observations have been confirmed with
-> failures from kms_pwrite_crc Intel GPU test that verifies data coherency
-> of DRM frame buffer objects using hardware CRC checksums calculated by
-> display controllers, exposed to userspace via debugfs.  Affected
-> processing paths have then been identified with new test variants that
-> mmap the objects using different methods and caching modes.
-> 
-> When running as a Xen PV guest, Linux uses Xen provided PAT configuration
-> which is different from its native one.  In particular, Xen specific PTE
-> encoding of write-combining caching, likely used by graphics applications,
-> differs from the Linux default one found among statically defined minimal
-> set of supported modes.  Since Xen defines PTE encoding of the WC mode as
-> _PAGE_PAT, it no longer belongs to the minimal set, depends on correct
-> handling of _PAGE_PAT bit, and can be mismatched with write-back caching.
-> 
-> When a user calls mmap() for a DRM buffer object, DRM device specific
-> .mmap file operation, called from mmap_region(), takes care of setting PTE
-> encoding bits in a vm_page_prot field of an associated virtual memory area
-> structure.  Unfortunately, _PAGE_PAT bit is not preserved when the vma's
-> .vm_flags are then applied to .vm_page_prot via vm_set_page_prot().  Bits
-> to be preserved are determined with _PAGE_CHG_MASK symbol that doesn't
-> cover _PAGE_PAT.  As a consequence, WB caching is requested instead of WC
-> when running under Xen (also, WP is silently changed to WT, and UC
-> downgraded to UC_MINUS).  When running on bare metal, WC is not affected,
-> but WP and WT extra modes are unintentionally replaced with WC and UC,
-> respectively.
-> 
-> WP and WT modes, encoded with _PAGE_PAT bit set, were introduced by commit
-> 281d4078bec3 ("x86: Make page cache mode a real type").  Care was taken
-> to extend _PAGE_CACHE_MASK symbol with that additional bit, but that
-> symbol has never been used for identification of bits preserved when
-> applying page protection flags.  Support for all cache modes under Xen,
-> including the problematic WC mode, was then introduced by commit
-> 47591df50512 ("xen: Support Xen pv-domains using PAT").
-> 
-> Extend bitmask used by pgprot_modify() for selecting bits to be preserved
-> with _PAGE_PAT bit.  However, since that bit can be reused as _PAGE_PSE,
-> and the _PAGE_CHG_MASK symbol, primarly used by pte_modify(), is likely
-> intentionally defined with that bit not set, keep that symbol unchanged.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
-> Fixes: 281d4078bec3 ("x86: Make page cache mode a real type")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: stable@vger.kernel.org # v3.19+
-> ---
->  arch/x86/include/asm/pgtable.h | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/pgtable.h b/arch/x86/include/asm/pgtable.h
-> index 7425f32e52932..f797f8da2e5b6 100644
-> --- a/arch/x86/include/asm/pgtable.h
-> +++ b/arch/x86/include/asm/pgtable.h
-> @@ -654,8 +654,10 @@ static inline pmd_t pmd_modify(pmd_t pmd, pgprot_t newprot)
->  #define pgprot_modify pgprot_modify
->  static inline pgprot_t pgprot_modify(pgprot_t oldprot, pgprot_t newprot)
->  {
-> -	pgprotval_t preservebits = pgprot_val(oldprot) & _PAGE_CHG_MASK;
-> -	pgprotval_t addbits = pgprot_val(newprot) & ~_PAGE_CHG_MASK;
-> +	unsigned long mask = _PAGE_CHG_MASK | _PAGE_CACHE_MASK;
-> +
-> +	pgprotval_t preservebits = pgprot_val(oldprot) & mask;
-> +	pgprotval_t addbits = pgprot_val(newprot) & ~mask;
->  	return __pgprot(preservebits | addbits);
->  }
->  
-> -- 
-> 2.40.0
