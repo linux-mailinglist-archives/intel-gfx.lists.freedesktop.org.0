@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031186F4774
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 17:38:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D74A6F4775
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 17:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB5010E37B;
-	Tue,  2 May 2023 15:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A0B610E39D;
+	Tue,  2 May 2023 15:38:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B573E10E5A2
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 15:38:52 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA9B510E39D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 15:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683041932; x=1714577932;
+ t=1683041937; x=1714577937;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zvYpiSIE0pVgop1LmCttrpHzo5I3hxlAcXbez8BqOns=;
- b=DZwMyj6GnIkaUezqJd8nb2zrFG6P+v5BMzNHFgV6NG1nP4lSjM44PA+x
- fYEpXs+K92vWSxCw5Te1Rg81mBmMzKa3nDYqMh/GrDQXWtG3kQQKtleTH
- WTqrUXVV5TvoAUhsWWbInkvuav4qgg18DCzlXGPmDzDwGySm22jUJ5XPN
- Un8fZWv5SSh5k6+urn7jUg4bUnjTxwnQ9Yznqtf5DNRH64hkMsq1dj9Of
- NNcWcgA76sLQSzksO3pv2OxU1aDzi4eurrWwRDnfPtQ9AN84kcbunS+9+
- nTFFMV99BCB71LRspkDQYWedXxFTilDC5lkzOFUytFfbNMPVBArUHAHsg w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="337554218"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="337554218"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 08:38:52 -0700
+ bh=+QradLMzJ+RSZsZH9yaP2U3TFIEhYH+rVYbd3S5dnIU=;
+ b=dxEfIuRblguRk+Ux0UIPZu4L+CY57xxRJ9qw6T0VCJdp7Rhe+iJy8+2g
+ WYPnRXopREJL8w1p07zvKwgXAUansCeejHIiXZec3pjF0GMEHhIF5ba5o
+ twRDGTkDSc1128jXu2ryO0h3ra5pbUEg/qB6T5tUNC4Rgjm2Ft4Oawc0R
+ 7b5+Bcsbeqe0bisrqTAiJf1Y/czfZIQIzGBdgz86b4hELkGIob5Lznf3m
+ 4zMo0uTl3nTuMxjQQJyQEds5srsSCcSEPbP/SvAt/bFiF2GFXvpFStWqo
+ D44e0b/Jb0u6Kuuj9RPf9s3WzdJfCOyxzMBKV9+u9PwOEhXJrfUAY7dLX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="434746241"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="434746241"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 08:38:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="728976858"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="728976858"
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="726791151"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="726791151"
 Received: from awojtkie-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.50])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 08:38:51 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 08:38:55 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  2 May 2023 18:37:31 +0300
-Message-Id: <c22e58e770019667980b3617f6e963b76d7e79a7.1683041799.git.jani.nikula@intel.com>
+Date: Tue,  2 May 2023 18:37:32 +0300
+Message-Id: <dafd771bb75cf14965dd3b666987c58a438de134.1683041799.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1683041799.git.jani.nikula@intel.com>
 References: <cover.1683041799.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 14/24] drm/i915/gtt: fix i915_vm_resv_put()
- kernel-doc parameter name
+Subject: [Intel-gfx] [PATCH 15/24] drm/i915/engine: hide preempt_hang
+ selftest member from kernel-doc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,27 +64,25 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drivers/gpu/drm/i915/gt/intel_gtt.h:515: warning: Function parameter or member 'vm' not described in 'i915_vm_resv_put'
-drivers/gpu/drm/i915/gt/intel_gtt.h:515: warning: Excess function parameter 'resv' description in 'i915_vm_resv_put'
+drivers/gpu/drm/i915/gt/intel_engine_types.h:293: warning: Function parameter or member 'preempt_hang' not described in 'intel_engine_execlists'
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gtt.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 1910683f03b4..9aff343beaa8 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -509,7 +509,7 @@ static inline void i915_vm_put(struct i915_address_space *vm)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 960291f88fd6..e99a6fa03d45 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -289,6 +289,7 @@ struct intel_engine_execlists {
+ 	 */
+ 	u8 csb_head;
  
- /**
-  * i915_vm_resv_put - Release a reference on the vm's reservation lock
-- * @resv: Pointer to a reservation lock obtained from i915_vm_resv_get()
-+ * @vm: The vm whose reservation lock reference we want to release
-  */
- static inline void i915_vm_resv_put(struct i915_address_space *vm)
- {
++	/* private: selftest */
+ 	I915_SELFTEST_DECLARE(struct st_preempt_hang preempt_hang;)
+ };
+ 
 -- 
 2.39.2
 
