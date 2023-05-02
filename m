@@ -2,53 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168316F3EDB
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 10:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D65C6F3F48
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 10:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A43CC10E4AF;
-	Tue,  2 May 2023 08:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 613EC10E4E0;
+	Tue,  2 May 2023 08:38:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F03210E37C;
- Tue,  2 May 2023 08:12:41 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F40A10E4E1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 08:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683015161; x=1714551161;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=aRI90Oy+HqlK84Xuqr7+48kIlZ9I7LkLkQI16YjvfpU=;
- b=iHMn81zIsEhL+wjmqqMFlFFTYkYICf+Yllh18xUL4Ign7huzT4WssNbr
- 1N4Prz/wEKGxDNRc+7tFmCphWiJ4Ovp5BQddY22JidhZgkjFIKjyEKlva
- mdSTUriGIDavCoPqjVdwgsS9M5Bpf5/160Lv8XGtyEUyb66QmyzWJeEUP
- manaWnoJW0nowJAIfVyVFZ2TQg1ErFSyDqSFP/NLgNw9WljF8LJ3Ew9iy
- zZ19tMAIW9pmF9Gjgb+TtWHJ66AqN1hm7/iop+hWyyhnNiCV9X2E2sVnQ
- KD5Ra6vfU+9lQ8ysX81sNHUXzw7l52SFAknoVDSexoiMGznY03xG2pHJ1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="411472088"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="411472088"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 01:12:40 -0700
+ t=1683016705; x=1714552705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uTJVYAjUnW+kISfCuzKBtVLq/Lb7HJfETssR0eJZ9oo=;
+ b=BA6B3ie/KAx8IDNVKduqlkXLElZn9IkDLvScatCsKJvxhHk27GOc1Rkb
+ 6ElewHXiEGkTA5lZQLG8I8AFWgJK66qpXI1iI5AZmHlrUt7m2Ewma0tz+
+ aohufp/2oXpGmfkMvrTgO79431XBPBjrD75Hg8n1hpV84oAwKaZKkDLTU
+ BAuO/0AoyVifB4KwFkHfux4dz2MygrAbkA+xx9VLFI6IjlCjaIe6wtNaE
+ ZDXUqoSIPT0BD9JYrC3COs6IbDnsMMS0LaTbhve4xP8SdFLZqT/biiMuG
+ AExNeY3njaa7Hrh5pElS/PC/3ywYYXfbh7AjAfM+lMMp1XD8ifCityLTZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="413781241"
+X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="413781241"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 01:38:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="1025966257"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="1025966257"
-Received: from xinpan-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.35.163])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 01:12:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <c2617e8c-c2d5-0b86-b400-570d3f808454@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230406134615.1422509-1-jani.nikula@intel.com>
- <c2617e8c-c2d5-0b86-b400-570d3f808454@intel.com>
-Date: Tue, 02 May 2023 11:12:36 +0300
-Message-ID: <871qjz2lu3.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765689602"
+X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="765689602"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga004.fm.intel.com with ESMTP; 02 May 2023 01:38:22 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 May 2023 14:06:52 +0530
+Message-Id: <20230502083652.463435-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/dsc: fix
- drm_edp_dsc_sink_output_bpp() DPCD high byte usage
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Check if media_gt exists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,67 +54,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Apr 2023, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> LGTM.
->
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Check if media_gt exits if we are using gsc cs
 
-Thanks for the reviews, pushed these a week+ ago.
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-BR,
-Jani.
-
-
->
-> On 4/6/2023 7:16 PM, Jani Nikula wrote:
->> The operator precedence between << and & is wrong, leading to the high
->> byte being completely ignored. For example, with the 6.4 format, 32
->> becomes 0 and 24 becomes 8. Fix it, and remove the slightly confusing
->> and unnecessary DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT macro while at it.
->>
->> Fixes: 0575650077ea ("drm/dp: DRM DP helper/macros to get DP sink DSC parameters")
->> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->> Cc: Manasi Navare <navaremanasi@google.com>
->> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> Cc: <stable@vger.kernel.org> # v5.0+
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>   include/drm/display/drm_dp.h        | 1 -
->>   include/drm/display/drm_dp_helper.h | 5 ++---
->>   2 files changed, 2 insertions(+), 4 deletions(-)
->>
->> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
->> index 358db4a9f167..89d5a700b04d 100644
->> --- a/include/drm/display/drm_dp.h
->> +++ b/include/drm/display/drm_dp.h
->> @@ -286,7 +286,6 @@
->>   
->>   #define DP_DSC_MAX_BITS_PER_PIXEL_HI        0x068   /* eDP 1.4 */
->>   # define DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK  (0x3 << 0)
->> -# define DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT 8
->>   # define DP_DSC_MAX_BPP_DELTA_VERSION_MASK  0x06
->>   # define DP_DSC_MAX_BPP_DELTA_AVAILABILITY  0x08
->>   
->> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
->> index 533d3ee7fe05..86f24a759268 100644
->> --- a/include/drm/display/drm_dp_helper.h
->> +++ b/include/drm/display/drm_dp_helper.h
->> @@ -181,9 +181,8 @@ static inline u16
->>   drm_edp_dsc_sink_output_bpp(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
->>   {
->>   	return dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_LOW - DP_DSC_SUPPORT] |
->> -		(dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
->> -		 DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK <<
->> -		 DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT);
->> +		((dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
->> +		  DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK) << 8);
->>   }
->>   
->>   static inline u32
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 650232c4892b..f3956eca4ec4 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -214,7 +214,7 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
+ 
+ 	/* If MTL+ make sure gsc is loaded and proxy is setup */
+ 	if (intel_hdcp_gsc_cs_required(dev_priv))
+-		if (!intel_uc_fw_is_running(&gsc->fw))
++		if (!gt || !intel_uc_fw_is_running(&gsc->fw))
+ 			return false;
+ 
+ 	/* MEI/GSC interface is solid depending on which is used */
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
