@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8776F4640
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 16:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 044626F46C6
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 17:07:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2B210E599;
-	Tue,  2 May 2023 14:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48CAB10E57F;
+	Tue,  2 May 2023 15:07:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A1B610E595;
- Tue,  2 May 2023 14:39:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683038392; x=1714574392;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bUknhqy/2r1kXb94zXaRIlk1AnnhDyf++v87ibb/fUs=;
- b=LV5msKIB9p5OlmsP4nq/urP7V0oFdomPWmQJOUffPkGcjdSn71vZB5JM
- F1Qebeepr0RwT6UUsGAgstLToRAm3g5eEaqeGZ34KRjfisZft2rSAP57v
- g+0GbtjS5ZU9ZRApP3mfk2VztW7q0xRuDrvlW9MvVBuaPMWVfcAWcsJj4
- JtluCKjr0rTMw2GkJxC83IJj96WbxyYL9fieULvsxiJdMYhHnhuYTPUr2
- 3H0G1Rnjg7QzNPSY4ILFvPAorBKwFEqkUW9d186kZICcFjmoFf/KqrldT
- ih37sbqjuuhwq5cmtbZ4SqnyBmYQ6umVuX7hMtx5u2XjXcat7K6KWLkrs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="351397000"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="351397000"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 07:39:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="698991912"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="698991912"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga007.fm.intel.com with SMTP; 02 May 2023 07:39:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 May 2023 17:39:49 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue,  2 May 2023 17:39:06 +0300
-Message-Id: <20230502143906.2401-12-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
-References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCC1B10E57F;
+ Tue,  2 May 2023 15:07:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BE88DAADD6;
+ Tue,  2 May 2023 15:07:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915: Reduce combo PHY log spam
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 02 May 2023 15:07:53 -0000
+Message-ID: <168304007377.18873.258232227180540032@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_MST+DSC_nukage_and_state_stuff?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +40,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-We always check whether combo PHYs need to be re-initialized
-after disabling DC states, which leads to log spam. Switch things
-around so that we only log something when we actually have to
-re-initialized a PHY.
+Series: drm/i915: MST+DSC nukage and state stuff
+URL   : https://patchwork.freedesktop.org/series/117201/
+State : warning
 
-The log spam was exacerbated by commit 41b4c7fe72b6 ("drm/i915:
-Disable DC states for all commits") since we now disable DC
-states far more often.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_combo_phy.c | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+Error: dim checkpatch failed
+b98a8e6872f9 drm/dp_mst: Fix fractional DSC bpp handling
+81bfa5ca1aa8 drm/i915/mst: Remove broken MST DSC support
+7287f3ff6156 drm/i915/mst: Read out FEC state
+-:24: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#24: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3769:
++					      dp_tp_ctl_reg(encoder, pipe_config)) & DP_TP_CTL_FEC_ENABLE;
 
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 922a6d87b553..ee843f2b1af1 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -114,10 +114,6 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
- 
- 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
- 
--	drm_dbg_kms(&dev_priv->drm,
--		    "Combo PHY %c Voltage/Process Info : %s\n",
--		    phy_name(phy), procmon->name);
--
- 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
- 			    (0xff << 16) | 0xff, procmon->dw1);
- 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-@@ -312,14 +308,17 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
- 	enum phy phy;
- 
- 	for_each_combo_phy(dev_priv, phy) {
-+		const struct icl_procmon *procmon;
- 		u32 val;
- 
--		if (icl_combo_phy_verify_state(dev_priv, phy)) {
--			drm_dbg(&dev_priv->drm,
--				"Combo PHY %c already enabled, won't reprogram it.\n",
--				phy_name(phy));
-+		if (icl_combo_phy_verify_state(dev_priv, phy))
- 			continue;
--		}
-+
-+		procmon = icl_get_procmon_ref_values(dev_priv, phy);
-+
-+		drm_dbg(&dev_priv->drm,
-+			"Initializing combo PHY %c (Voltage/Process Info : %s)\n",
-+			phy_name(phy), procmon->name);
- 
- 		if (!has_phy_misc(dev_priv, phy))
- 			goto skip_phy_misc;
--- 
-2.39.2
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+8b161765a004 drm/i915: Fix FEC pipe A vs. DDI A mixup
+020a66619ead drm/i915: Check lane count when determining FEC support
+ce9fd402683b drm/i915: Fix FEC state dump
+-:48: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#48: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3731:
++					      dp_tp_ctl_reg(encoder, pipe_config)) & DP_TP_CTL_FEC_ENABLE;
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+a63fb1144f6f drm/i915: Split some long lines
+e0509a0619cd drm/i915: Introduce crtc_state->enhanced_framing
+5cbdfdb85cd6 drm/i915: Stop spamming the logs with PLL state
+124fa6dba488 drm/i915: Drop some redundant eDP checks
+5588b8335ec1 drm/i915: Reduce combo PHY log spam
+
 
