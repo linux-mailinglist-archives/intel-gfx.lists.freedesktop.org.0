@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38BA6F44E1
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 15:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A80C6F4629
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 May 2023 16:39:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4489310E1A4;
-	Tue,  2 May 2023 13:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4C810E29E;
+	Tue,  2 May 2023 14:39:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AEF510E1A4
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 May 2023 13:19:05 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB32210E28C;
+ Tue,  2 May 2023 14:39:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683033545; x=1714569545;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LBCUmWwO40adfKQbaTNjB8avXIqrF3t5mAaT2RVhLFE=;
- b=LH8rrVhX6aHJ3lBm7eyWvjMtOhOTjLn45R/RH6kX/Eu7CsRX23jvYizJ
- BKa2dYjVw3Tx6MjoeU9/aZXzW3py27DDv6N3un+2ts6ngI3OsRn4/U/8d
- 4fXLb+D3xprZulnmamLY/ntnuC4qpFPqjh7W4lyeAVm2AFDOj1DSWXe8q
- ouh0FpRuavHSGDgKqOscJDzPdgEE+FFnUsw+XzbER8SGoJX7CPpzWojlE
- x8dyp42znuWJf9V69sdxHcBL6XoAwKiGx37LV5vecPC9FfgA4ITgENp7Z
- Xbkost72q/EY2sNg1ewmEW8bNvTrWixeNg30Xs5g1+tfDEgp4O7J+xUB8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="411536069"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="411536069"
+ t=1683038350; x=1714574350;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W++mSXj606OUWZamGXCrIXD2DE8hzdzlxYfmpGAqrE8=;
+ b=n3JQ1rDfW2L1pcmzFVwsY6vUDgil5KFEvGV9n36HQ8ahxrHyepX4uBQ+
+ J49frLXaHWZD+NpoG3bvVLv+faASn1XeFCxR4ZrS/8b7hFOd948wdYty1
+ FEh1ygB3EEDLOBVowyLNz5Swt8+AVVYbuGNi6gd2UNiWEVojXHUYvf6Pv
+ FZA4uE+TWCY4t2yca5yLqvYI3b5c8k8OFhOQsHuy/W2UQIpIeRV+/IlwA
+ qDQHvtyKgBxgBu0UBIV9XYWTQMrHUp7Bj42cixO2uCAO/QvAG/Cgmd3Cf
+ N/OzYYVUExgCw9CR25WQ100f6hRYj2L0cK4xou028jBpaSMcfbvjFaFnp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="351396769"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="351396769"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 06:19:04 -0700
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 07:39:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="698967500"
-X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="698967500"
-Received: from awojtkie-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.50])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 06:19:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230425025944.151744-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230417100021.3205172-1-arun.r.murthy@intel.com>
- <20230425025944.151744-1-arun.r.murthy@intel.com>
-Date: Tue, 02 May 2023 16:18:59 +0300
-Message-ID: <87lei627ng.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="698991602"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="698991602"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga007.fm.intel.com with SMTP; 02 May 2023 07:39:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 02 May 2023 17:39:06 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue,  2 May 2023 17:38:55 +0300
+Message-Id: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/display/dp: 128/132b LT
- requirement
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/11] drm/i915: MST+DSC nukage and state stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,110 +57,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Apr 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> For 128b/132b LT prior to LT DPTX should set power state, DP channel
-> coding and then link rate.
->
-> v2: added separate function to avoid code duplication(Jani N)
-> v3: DP2.1 section 3.5.2.16 is ordered, 3.5.1.2 is unordered and hence
->     discarding <Ville>
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Thanks for the patch, pushed to drm-intel-next.
+The big one here is removal of the defunct i915 MST DSC code.
+That one clearly needs a lot more love, and the big issue
+there (FEC) probably can't be done in a way that can be
+easily backported. So IMO we just need to nuke the whole
+MST+DSC thing for now, or else we'll end up with impossible
+to debug bug reports.
 
-BR,
-Jani.
+The rest is mainly improvements around state
+readout/check/dumping.
 
+Ville Syrjälä (11):
+  drm/dp_mst: Fix fractional DSC bpp handling
+  drm/i915/mst: Remove broken MST DSC support
+  drm/i915/mst: Read out FEC state
+  drm/i915: Fix FEC pipe A vs. DDI A mixup
+  drm/i915: Check lane count when determining FEC support
+  drm/i915: Fix FEC state dump
+  drm/i915: Split some long lines
+  drm/i915: Introduce crtc_state->enhanced_framing
+  drm/i915: Stop spamming the logs with PLL state
+  drm/i915: Drop some redundant eDP checks
+  drm/i915: Reduce combo PHY log spam
 
-> ---
->  .../drm/i915/display/intel_dp_link_training.c | 56 +++++++++++++------
->  1 file changed, 38 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 6aa4ae5e7ebe..27eb41499d7e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -637,6 +637,37 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
->  	return true;
->  }
->  
-> +static void
-> +intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
-> +				const struct intel_crtc_state *crtc_state)
-> +{
-> +	u8 link_config[2];
-> +
-> +	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-> +	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
-> +			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
-> +	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-> +}
-> +
-> +static void
-> +intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
-> +			    const struct intel_crtc_state *crtc_state,
-> +			    u8 link_bw, u8 rate_select)
-> +{
-> +	u8 link_config[2];
-> +
-> +	/* Write the link configuration data */
-> +	link_config[0] = link_bw;
-> +	link_config[1] = crtc_state->lane_count;
-> +	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
-> +		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
-> +	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
-> +	/* eDP 1.4 rate select method. */
-> +	if (!link_bw)
-> +		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
-> +				  &rate_select, 1);
-> +}
-> +
->  /*
->   * Prepare link training by configuring the link parameters. On DDI platforms
->   * also enable the port here.
-> @@ -647,7 +678,6 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
->  {
->  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> -	u8 link_config[2];
->  	u8 link_bw, rate_select;
->  
->  	if (intel_dp->prepare_link_retrain)
-> @@ -686,23 +716,13 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp,
->  		drm_dbg_kms(&i915->drm,
->  			    "[ENCODER:%d:%s] Using LINK_RATE_SET value %02x\n",
->  			    encoder->base.base.id, encoder->base.name, rate_select);
-> -
-> -	/* Write the link configuration data */
-> -	link_config[0] = link_bw;
-> -	link_config[1] = crtc_state->lane_count;
-> -	if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
-> -		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
-> -	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
-> -
-> -	/* eDP 1.4 rate select method. */
-> -	if (!link_bw)
-> -		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
-> -				  &rate_select, 1);
-> -
-> -	link_config[0] = crtc_state->vrr.flipline ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-> -	link_config[1] = intel_dp_is_uhbr(crtc_state) ?
-> -		DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
-> -	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-> +	/*
-> +	 * Spec DP2.1 Section 3.5.2.16
-> +	 * Prior to LT DPTX should set 128b/132b DP Channel coding and then set link rate
-> +	 */
-> +	intel_dp_update_downspread_ctrl(intel_dp, crtc_state);
-> +	intel_dp_update_link_bw_set(intel_dp, crtc_state, link_bw,
-> +				    rate_select);
->  
->  	return true;
->  }
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |  20 +-
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  10 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  17 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |   2 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   3 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  29 +--
+ drivers/gpu/drm/i915/display/intel_display.c  |   1 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  29 +--
+ .../drm/i915/display/intel_dp_link_training.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 181 +-----------------
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   9 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |   3 +-
+ .../gpu/drm/tests/drm_dp_mst_helper_test.c    |   2 +-
+ include/drm/display/drm_dp_mst_helper.h       |   2 +-
+ 17 files changed, 80 insertions(+), 236 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.2
+
