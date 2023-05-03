@@ -2,28 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FD86F536A
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:36:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9956F53A4
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:49:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F9810E234;
-	Wed,  3 May 2023 08:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B335E10E20A;
+	Wed,  3 May 2023 08:49:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 017EA10E21F;
- Wed,  3 May 2023 08:36:10 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: dri-devel@lists.freedesktop.org, cgroups@vger.kernel.org,
- intel-xe@lists.freedesktop.org
-Date: Wed,  3 May 2023 10:35:00 +0200
-Message-Id: <20230503083500.645848-5-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 840B510E20A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:49:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683103742; x=1714639742;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=/YGOTE2WaNdoZweTYCYgpDP4lajIBAx9h+JbteQiR4A=;
+ b=StoDXLzVXdrK7zl92ZGLHx94SScXHXCTwAMj1Ewdfe5qwkUQ2sgMFyxU
+ Aa9jMyu9CtgGAaIB7fuFX+2cnpjhqrz2kvcIWz3T9hVwqgQLIfGbgK7R8
+ RzKhCp4+35H7Y/NZEfagQMOb5Kezwgmvrlfwv02fYll9mBmzbuSjhPxDT
+ Tq7z4YE+w/JYKOu4OCrioU2t9uxIzlKFSJKrCE0VX19ZbhH63srjtMRty
+ AWvu0gWhAZplG1ZenNu8f7MgyezEgE9pD9TZhs1KAeDM2TvuBrYRIoe1A
+ GmRHJ8mDILwpt6q599twr/dcF6OFIaCKb08p7wzWAf2EqRkyBLUVwSsrN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="411754131"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="411754131"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:49:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="766060911"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="766060911"
+Received: from ebrosekx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.204])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:49:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230425105450.18441-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
+ <20230425105450.18441-2-ville.syrjala@linux.intel.com>
+Date: Wed, 03 May 2023 11:48:58 +0300
+Message-ID: <87a5yl241x.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 4/4] drm/xe: Add support for the drm cgroup
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/14] drm/i915/icl: Do panel power on +
+ reset deassert earlier on icl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,164 +62,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add some code to implement basic support for the vram0, vram1 and stolen
-memory regions.
+On Tue, 25 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Looks like we're trying to talk to the DSI panel even before turning
+> it on, on icl+. Bspec doesn't actually specify when these should be
+> done, but certainly we need to turn the panel on at least before
+> talking to it. So let's move the power on + reset deassert steps to
+> be the first thing we do. This is also what Windows does.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-I fear the try_charge code should probably be done inside TTM. This
-code should interact with the shrinker, but for a simple RFC it's good
-enough.
+Needs a rebase on c8c2969bfcba ("drm/i915/dsi: Use unconditional
+msleep() instead of intel_dsi_msleep()") but otherwise,
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_device.c             |  4 ++++
- drivers/gpu/drm/xe/xe_device_types.h       |  4 ++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 21 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  5 +++++
- 4 files changed, 32 insertions(+), 2 deletions(-)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 45d6e5ff47fd..f0a5af15a662 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -291,6 +291,10 @@ int xe_device_probe(struct xe_device *xe)
- 	/* Allocate and map stolen after potential VRAM resize */
- 	xe_ttm_stolen_mgr_init(xe);
- 
-+	err = drmmcg_register_device(&xe->drm, &xe->cg);
-+	if (err)
-+		goto err_irq_shutdown;
-+
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
- 	 * we can try to init display, and inherit the initial fb.
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1cb404e48aaa..04b85060cbec 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -12,6 +12,8 @@
- #include <drm/drm_file.h>
- #include <drm/ttm/ttm_device.h>
- 
-+#include <linux/cgroup_drm.h>
-+
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
- #include "xe_step_types.h"
-@@ -55,6 +57,8 @@ struct xe_device {
- 	/** @drm: drm device */
- 	struct drm_device drm;
- 
-+	struct drmcgroup_device cg;
-+
- 	/** @info: device info */
- 	struct intel_device_info {
- 		/** @graphics_name: graphics IP name */
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 73836b9b7fed..263cd4ef7b6d 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -50,6 +50,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 			       struct ttm_resource **res)
- {
- 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
-+	struct xe_device *xe = ttm_to_xe_device(tbo->bdev);
- 	struct xe_ttm_vram_mgr_resource *vres;
- 	struct drm_buddy *mm = &mgr->mm;
- 	u64 size, remaining_size, min_page_size;
-@@ -116,9 +117,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 
- 	mutex_lock(&mgr->lock);
- 	if (lpfn <= mgr->visible_size >> PAGE_SHIFT && size > mgr->visible_avail) {
--		mutex_unlock(&mgr->lock);
- 		err = -ENOSPC;
--		goto error_fini;
-+		goto error_unlock;
- 	}
- 
- 	if (place->fpfn + (size >> PAGE_SHIFT) != place->lpfn &&
-@@ -129,6 +129,10 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 		lpfn = max_t(unsigned long, place->fpfn + (size >> PAGE_SHIFT), lpfn);
- 	}
- 
-+	err = drmcg_try_charge(&vres->cg, &xe->cg, mgr->mem_type, vres->base.size);
-+	if (err)
-+		goto error_unlock;
-+
- 	remaining_size = size;
- 	do {
- 		/*
-@@ -197,6 +201,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 
- error_free_blocks:
- 	drm_buddy_free_list(mm, &vres->blocks);
-+	drmcg_uncharge(vres->cg, &xe->cg, mgr->mem_type, vres->base.size);
-+error_unlock:
- 	mutex_unlock(&mgr->lock);
- error_fini:
- 	ttm_resource_fini(man, &vres->base);
-@@ -211,6 +217,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- 	struct xe_ttm_vram_mgr_resource *vres =
- 		to_xe_ttm_vram_mgr_resource(res);
- 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
-+	struct xe_device *xe = ttm_to_xe_device(man->bdev);
- 	struct drm_buddy *mm = &mgr->mm;
- 
- 	mutex_lock(&mgr->lock);
-@@ -218,6 +225,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- 	mgr->visible_avail += vres->used_visible_size;
- 	mutex_unlock(&mgr->lock);
- 
-+	drmcg_uncharge(vres->cg, &xe->cg, mgr->mem_type, vres->base.size);
- 	ttm_resource_fini(man, res);
- 
- 	kfree(vres);
-@@ -337,6 +345,15 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	struct ttm_resource_manager *man = &mgr->manager;
- 	int err;
- 
-+	xe->cg.regions[mem_type].size = size;
-+
-+	if (mem_type == XE_PL_STOLEN) {
-+		xe->cg.regions[mem_type].name = "stolen";
-+	} else {
-+		xe->cg.regions[mem_type].name =
-+			mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
-+	}
-+
- 	man->func = &xe_ttm_vram_mgr_func;
- 	mgr->mem_type = mem_type;
- 	mutex_init(&mgr->lock);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 3d9417ff7434..232585d7ae69 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -9,6 +9,8 @@
- #include <drm/drm_buddy.h>
- #include <drm/ttm/ttm_device.h>
- 
-+struct drmcgroup_state;
-+
- struct xe_gt;
- 
- /**
-@@ -47,6 +49,9 @@ struct xe_ttm_vram_mgr_resource {
- 	u64 used_visible_size;
- 	/** @flags: flags associated with the resource */
- 	unsigned long flags;
-+
-+	/** @cg: cgroup this resource is charged to */
-+	struct drmcgroup_state *cg;
- };
- 
- #endif
--- 
-2.34.1
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index ad78148e0788..d424d30a01e8 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1138,10 +1138,6 @@ static void gen11_dsi_powerup_panel(struct intel_e=
+ncoder *encoder)
+>  				"error setting max return pkt size%d\n", tmp);
+>  	}
+>=20=20
+> -	/* panel power on related mipi dsi vbt sequences */
+> -	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
+> -	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
+> -	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
+>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+>=20=20
+> @@ -1154,6 +1150,12 @@ static void gen11_dsi_pre_pll_enable(struct intel_=
+atomic_state *state,
+>  				     const struct intel_crtc_state *crtc_state,
+>  				     const struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
+> +
+> +	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
+> +	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
+> +	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+> +
+>  	/* step2: enable IO power */
+>  	gen11_dsi_enable_io_power(encoder);
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
