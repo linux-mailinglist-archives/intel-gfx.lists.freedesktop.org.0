@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9746F4FCA
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 07:41:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B596F510F
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 09:17:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8C6E10E010;
-	Wed,  3 May 2023 05:41:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 014CC10E1B5;
+	Wed,  3 May 2023 07:17:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 231ED10E010
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 05:41:21 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED46310E1B5;
+ Wed,  3 May 2023 07:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683092481; x=1714628481;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:from:subject:cc:to:message-id:date;
- bh=yxhlf8OJTnjUX8RhEDa2/4ynBvV1T9iW+Z0p+EyULrU=;
- b=j9ekiLkiK32oNEdD9NbTfhryN/Go8eCloRITxEA2LrKpfjxZzxw+eUR8
- KA2n24L55WJ1MGCudnRg0/LJBb38nwf22Q6Lw9sHJR2unZi5jP87khN0k
- S9k+6vCbIN4NffVyDmA+kKv58FutDw1NKXwxCxES1nwaBheP2YhmIUG5B
- +ckHephDAItuu+yVmOI9q4bBnJ462N1nn6U8tVnJcpkekRN+ATYwR9Onq
- o6FQDHacZnM8HbujKBf/Vi79x3cn1eRTJFOkN7VCczLG8lJvHWtUMxtho
- 7Thsc2HHt1BbFpSg3W9zH05CMbutE//WsgwiUOT9gG663SZTIbV+HdSaG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="411722942"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="411722942"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 22:41:19 -0700
+ t=1683098276; x=1714634276;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OhiBpaS6d2q5twhFhB0AUUvTpsX4MPGD7rgiEPm2qdk=;
+ b=ZvIZOlEATdfesVRTL5Ir52CeoYAzk9b1AB3AtKFVZGSnsJ4ItFLQIKPZ
+ GqShFNEZHRPZdWYWLpV9M7oy6/Xt5wh5Cn8WgfCr4Ug/xK8XIu2b8CX7G
+ fYWQV3LKOJ9aqwCiGfOFMgrXEh6K7sPe/r/arGCJSVEal2NiYG+FJDi8f
+ oAoo2Mp6DzEP9IHfVMb8uAnPNU7UIb+wNUo4w2MXZUZ+3b/28WUbTjnFu
+ DpiXU4QFCvYcB3T/43NDZjrautjkQXh0l70O+4sgZK3DUfIyYRWRkvkSf
+ /Dab5J8BbqXSQK2w/5J2sLv2PdfRIUjOFI+Sk9pDEcVT2BvNWNbY1bs6/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="348629788"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="348629788"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 00:17:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="673950043"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="673950043"
-Received: from ajgorman-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.12.125])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 22:41:17 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="820664601"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="820664601"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 00:17:53 -0700
+Date: Wed, 3 May 2023 10:17:45 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <ZFIKmVvB1gjcP420@intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230502205744.1067094-1-jordan.l.justen@intel.com>
-References: <20230502205744.1067094-1-jordan.l.justen@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Jordan Justen <jordan.l.justen@intel.com>, intel-gfx@lists.freedesktop.org
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <168309246907.7324.16585705318101149558@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 03 May 2023 08:41:09 +0300
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uapi: Add
- DRM_I915_QUERY_GEM_CREATE_EXTENSIONS query item
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230502143906.2401-3-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/11] drm/i915/mst: Remove broken MST DSC
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,190 +60,302 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jordan,
+On Tue, May 02, 2023 at 05:38:57PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> The MST DSC code has a myriad of issues:
+> - Platform checks are wrong (MST+DSC is TGL+ only IIRC)
+> - Return values of .mode_valid_ctx() are wrong
+> - .mode_valid_ctx() assumes bigjoiner might be used, but ther rest
+>   of the code doesn't agree
+> - compressed bpp calculations don't make sense
+> - FEC handling needs to consider the entire link as opposed to just
+>   the single stream. Currently FEC would only get enabled if the
+>   first enabled stream is compressed. Also I'm not seeing anything
+>   that would account for the FEC overhead in any bandwidth calculations
+> - PPS SDP is only handled for the first stream via the dig_port
+>   hooks, other streams will not be transmittitng any PPS SDPs
+> - PPS SDP readout is missing (also missing for SST!)
+> - VDSC readout is missing (also missing for SST!)
+> 
+> The FEC issues is really the big one since we have no way currently
+> to apply such link wide configuration constraints. Changing that is
+> going to require a much bigger rework of the higher level modeset
+> .compute_config() logic. We will also need such a rework to properly
+> distribute the available bandwidth across all the streams on the
+> same link (which is a must to eg. enable deep color).
 
-This approach was specifically NACKed in the PAT index thread so please
-at least mark any such series as RFC if they are intended to facilitate
-further dialog on the topic.
+Hi Ville,
 
-I've still not seen any explanation why this would be needed at this specif=
-ic
-case for the PAT index setting feature. Repeating here: You should be able
-to detect missing extension by trying to use it. Just because PXP has some
-issues on that front doesn't mean we'll change the practices for all other
-interfaces.
+I'm not going to argue even that this code has some issues or not,
+sure it has. However you are currently totally removing everything
+without proposing what fixes have to be done or could have been done
+instead.
+We had multiple DP MST hubs which started to work because of this code,
+also we had a public gitlab issues which were solved. So now they will loose
+that support. I mean if this goes through, then I guess its up to you to 
+handle this. Why not just fix instead of remove? Just add fixing patches on
+top of those which remove the wrong code.
+Now we are simply removing all that works at least,
+instead of proposing how to fix, leaving no support at all. 
+I have 2 MST hubs on my desk which won't work after this code is removed,
+so if this patch goes through I recommend taking them.
+But at least from my side, I think this is kinda unconstructive.
 
-We should instead spend the time considering a better solution for PXP and
-see how that can be implemented for the drm/xe driver.
+Stan
 
-Regards, Joonas
 
-Quoting Jordan Justen (2023-05-02 23:57:44)
-> Cc: Fei Yang <fei.yang@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
+> 
+> Cc: stable@vger.kernel.org
+> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Fixes: d51f25eb479a ("drm/i915: Add DSC support to MST path")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_create.c | 30 ++++++++++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_create.h |  2 ++
->  drivers/gpu/drm/i915/i915_query.c          | 36 ++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h                |  2 ++
->  4 files changed, 70 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_create.c
-> index bfe1dbda4cb7..56342a352599 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> @@ -399,6 +399,36 @@ static const i915_user_extension_fn create_extension=
-s[] =3D {
->         [I915_GEM_CREATE_EXT_PROTECTED_CONTENT] =3D ext_set_protected,
->  };
-> =20
-> +/**
-> + * Fills buffer will known create_ext extensions
-> + * @buffer: buffer to fill with extensions
-> + * @buffer_size: size of the buffer in bytes
-> + *
-> + * If @buffer_size is 0, then @buffer is not accessed, and the
-> + * required buffer size is returned.
-> + *
-> + * If @buffer_size !=3D 0, but not large enough, then -EINVAL is
-> + * returned.
-> + *
-> + * If @buffer_size is large enough, then @buffer will be filled as a
-> + * u64 array of extension names.
-> + */
-> +int
-> +i915_gem_create_ext_get_extensions(void *buffer, size_t buffer_size)
-> +{
-> +       unsigned int i;
-> +
-> +       if (buffer_size =3D=3D 0)
-> +               return ARRAY_SIZE(create_extensions) * sizeof(u64);
-> +       else if (buffer_size < (ARRAY_SIZE(create_extensions) * sizeof(u6=
-4)))
-> +               return -EINVAL;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(create_extensions); i++)
-> +               ((u64*)buffer)[i] =3D i;
-> +
-> +       return ARRAY_SIZE(create_extensions) * sizeof(u64);
-> +}
-> +
->  /**
->   * i915_gem_create_ext_ioctl - Creates a new mm object and returns a han=
-dle to it.
->   * @dev: drm device pointer
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.h b/drivers/gpu/drm=
-/i915/gem/i915_gem_create.h
-> index 9536aa906001..e7ebef308038 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.h
-> @@ -14,4 +14,6 @@ int i915_gem_dumb_create(struct drm_file *file_priv,
->                          struct drm_device *dev,
->                          struct drm_mode_create_dumb *args);
-> =20
-> +int i915_gem_create_ext_get_extensions(void *buffer, size_t buffer_size);
-> +
->  #endif /* __I915_GEM_CREATE_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i91=
-5_query.c
-> index 00871ef99792..f360f76516de 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -9,6 +9,7 @@
->  #include "i915_drv.h"
->  #include "i915_perf.h"
->  #include "i915_query.h"
-> +#include "gem/i915_gem_create.h"
->  #include "gt/intel_engine_user.h"
->  #include <uapi/drm/i915_drm.h>
-> =20
-> @@ -551,6 +552,40 @@ static int query_hwconfig_blob(struct drm_i915_priva=
-te *i915,
->         return hwconfig->size;
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 176 +-------------------
+>  1 file changed, 5 insertions(+), 171 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 44c15d6faac4..d762f37fafb5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -72,8 +72,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  						int min_bpp,
+>  						struct link_config_limits *limits,
+>  						struct drm_connector_state *conn_state,
+> -						int step,
+> -						bool dsc)
+> +						int step)
+>  {
+>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+>  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+> @@ -104,7 +103,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
+>  		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
+>  
+> -		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, dsc);
+> +		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, false);
+>  		if (ret)
+>  			continue;
+>  
+> @@ -136,11 +135,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
+>  			    slots);
+>  	} else {
+> -		if (!dsc)
+> -			crtc_state->pipe_bpp = bpp;
+> -		else
+> -			crtc_state->dsc.compressed_bpp = bpp;
+> -		drm_dbg_kms(&i915->drm, "Got %d slots for pipe bpp %d dsc %d\n", slots, bpp, dsc);
+> +		crtc_state->pipe_bpp = bpp;
+> +		drm_dbg_kms(&i915->drm, "Got %d slots for pipe bpp %d\n", slots, bpp);
+>  	}
+>  
+>  	return slots;
+> @@ -157,7 +153,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>  
+>  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, limits->max_bpp,
+>  						     limits->min_bpp, limits,
+> -						     conn_state, 2 * 3, false);
+> +						     conn_state, 2 * 3);
+>  
+>  	if (slots < 0)
+>  		return slots;
+> @@ -173,99 +169,6 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>  	return 0;
 >  }
-> =20
-> +static int query_gem_create_extensions(struct drm_i915_private *i915,
-> +                                      struct drm_i915_query_item *query_=
-item)
-> +{
-> +       void *buffer;
-> +       int buffer_size, fill_size;
-> +
-> +       buffer_size =3D i915_gem_create_ext_get_extensions(NULL, 0);
-> +
-> +       if (query_item->length =3D=3D 0)
-> +               return buffer_size;
-> +
-> +       if (query_item->length < buffer_size)
-> +               return -EINVAL;
-> +
-> +       buffer =3D kzalloc(buffer_size, GFP_KERNEL);
-> +       if (!buffer)
-> +               return -ENOMEM;
-> +
-> +       fill_size =3D i915_gem_create_ext_get_extensions(buffer, buffer_s=
-ize);
-> +       if (fill_size !=3D buffer_size) {
-> +               kfree(buffer);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-> +                        buffer, buffer_size)) {
-> +               kfree(buffer);
-> +               return -EFAULT;
-> +       }
-> +
-> +       kfree(buffer);
-> +       return buffer_size;
-> +}
-> +
->  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_pri=
-v,
->                                         struct drm_i915_query_item *query=
-_item) =3D {
->         query_topology_info,
-> @@ -559,6 +594,7 @@ static int (* const i915_query_funcs[])(struct drm_i9=
-15_private *dev_priv,
->         query_memregion_info,
->         query_hwconfig_blob,
->         query_geometry_subslices,
-> +       query_gem_create_extensions,
->  };
-> =20
->  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file=
- *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index dba7c5a5b25e..46be28ee3795 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2963,6 +2963,7 @@ struct drm_i915_query_item {
->          *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_m=
-emory_regions)
->          *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
->          *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_que=
-ry_topology_info)
-> +        *  - %DRM_I915_QUERY_GEM_CREATE_EXTENSIONS (u64 array of known D=
-RM_I915_GEM_CREATE_EXT extensions)
->          */
->         __u64 query_id;
->  #define DRM_I915_QUERY_TOPOLOGY_INFO           1
-> @@ -2971,6 +2972,7 @@ struct drm_i915_query_item {
->  #define DRM_I915_QUERY_MEMORY_REGIONS          4
->  #define DRM_I915_QUERY_HWCONFIG_BLOB           5
->  #define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
-> +#define DRM_I915_QUERY_GEM_CREATE_EXTENSIONS   7
->  /* Must be kept compact -- no holes and well documented */
-> =20
->         /**
-> --=20
+>  
+> -static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+> -						struct intel_crtc_state *crtc_state,
+> -						struct drm_connector_state *conn_state,
+> -						struct link_config_limits *limits)
+> -{
+> -	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+> -	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+> -	struct intel_connector *connector =
+> -		to_intel_connector(conn_state->connector);
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> -	const struct drm_display_mode *adjusted_mode =
+> -		&crtc_state->hw.adjusted_mode;
+> -	int slots = -EINVAL;
+> -	int i, num_bpc;
+> -	u8 dsc_bpc[3] = {0};
+> -	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
+> -	u8 dsc_max_bpc;
+> -	bool need_timeslot_recalc = false;
+> -	u32 last_compressed_bpp;
+> -
+> -	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+> -	if (DISPLAY_VER(i915) >= 12)
+> -		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
+> -	else
+> -		dsc_max_bpc = min_t(u8, 10, conn_state->max_requested_bpc);
+> -
+> -	max_bpp = min_t(u8, dsc_max_bpc * 3, limits->max_bpp);
+> -	min_bpp = limits->min_bpp;
+> -
+> -	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
+> -						       dsc_bpc);
+> -
+> -	drm_dbg_kms(&i915->drm, "DSC Source supported min bpp %d max bpp %d\n",
+> -		    min_bpp, max_bpp);
+> -
+> -	sink_max_bpp = dsc_bpc[0] * 3;
+> -	sink_min_bpp = sink_max_bpp;
+> -
+> -	for (i = 1; i < num_bpc; i++) {
+> -		if (sink_min_bpp > dsc_bpc[i] * 3)
+> -			sink_min_bpp = dsc_bpc[i] * 3;
+> -		if (sink_max_bpp < dsc_bpc[i] * 3)
+> -			sink_max_bpp = dsc_bpc[i] * 3;
+> -	}
+> -
+> -	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
+> -		    sink_min_bpp, sink_max_bpp);
+> -
+> -	if (min_bpp < sink_min_bpp)
+> -		min_bpp = sink_min_bpp;
+> -
+> -	if (max_bpp > sink_max_bpp)
+> -		max_bpp = sink_max_bpp;
+> -
+> -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
+> -						     min_bpp, limits,
+> -						     conn_state, 2 * 3, true);
+> -
+> -	if (slots < 0)
+> -		return slots;
+> -
+> -	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
+> -
+> -	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
+> -									last_compressed_bpp,
+> -									crtc_state->pipe_bpp);
+> -
+> -	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
+> -		need_timeslot_recalc = true;
+> -
+> -	/*
+> -	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
+> -	 * the actual compressed bpp we use.
+> -	 */
+> -	if (need_timeslot_recalc) {
+> -		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
+> -							     crtc_state->dsc.compressed_bpp,
+> -							     crtc_state->dsc.compressed_bpp,
+> -							     limits, conn_state, 2 * 3, true);
+> -		if (slots < 0)
+> -			return slots;
+> -	}
+> -
+> -	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
+> -			       crtc_state->lane_count,
+> -			       adjusted_mode->crtc_clock,
+> -			       crtc_state->port_clock,
+> -			       &crtc_state->dp_m_n,
+> -			       crtc_state->fec_enable);
+> -	crtc_state->dp_m_n.tu = slots;
+> -
+> -	return 0;
+> -}
+>  static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+>  				     struct intel_crtc_state *crtc_state,
+>  				     struct drm_connector_state *conn_state)
+> @@ -349,29 +252,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+>  
+>  	ret = intel_dp_mst_compute_link_config(encoder, pipe_config,
+>  					       conn_state, &limits);
+> -
+> -	if (ret == -EDEADLK)
+> -		return ret;
+> -
+> -	/* enable compression if the mode doesn't fit available BW */
+> -	drm_dbg_kms(&dev_priv->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
+> -	if (ret || intel_dp->force_dsc_en) {
+> -		/*
+> -		 * Try to get at least some timeslots and then see, if
+> -		 * we can fit there with DSC.
+> -		 */
+> -		drm_dbg_kms(&dev_priv->drm, "Trying to find VCPI slots in DSC mode\n");
+> -
+> -		ret = intel_dp_dsc_mst_compute_link_config(encoder, pipe_config,
+> -							   conn_state, &limits);
+> -		if (ret < 0)
+> -			return ret;
+> -
+> -		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
+> -						  conn_state, &limits,
+> -						  pipe_config->dp_m_n.tu, false);
+> -	}
+> -
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -909,10 +789,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+>  	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+>  	int ret;
+> -	bool dsc = false, bigjoiner = false;
+> -	u16 dsc_max_output_bpp = 0;
+> -	u8 dsc_slice_count = 0;
+> -	int target_clock = mode->clock;
+>  
+>  	if (drm_connector_is_unregistered(connector)) {
+>  		*status = MODE_ERROR;
+> @@ -950,48 +826,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+>  		return 0;
+>  	}
+>  
+> -	if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_clock)) {
+> -		bigjoiner = true;
+> -		max_dotclk *= 2;
+> -	}
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 10 &&
+> -	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
+> -		/*
+> -		 * TBD pass the connector BPC,
+> -		 * for now U8_MAX so that max BPC on that platform would be picked
+> -		 */
+> -		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
+> -
+> -		if (drm_dp_sink_supports_fec(intel_dp->fec_capable)) {
+> -			dsc_max_output_bpp =
+> -				intel_dp_dsc_get_output_bpp(dev_priv,
+> -							    max_link_clock,
+> -							    max_lanes,
+> -							    target_clock,
+> -							    mode->hdisplay,
+> -							    bigjoiner,
+> -							    pipe_bpp, 64) >> 4;
+> -			dsc_slice_count =
+> -				intel_dp_dsc_get_slice_count(intel_dp,
+> -							     target_clock,
+> -							     mode->hdisplay,
+> -							     bigjoiner);
+> -		}
+> -
+> -		dsc = dsc_max_output_bpp && dsc_slice_count;
+> -	}
+> -
+> -	/*
+> -	 * Big joiner configuration needs DSC for TGL which is not true for
+> -	 * XE_LPD where uncompressed joiner is supported.
+> -	 */
+> -	if (DISPLAY_VER(dev_priv) < 13 && bigjoiner && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+> -	if (mode_rate > max_rate && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+>  	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  	return 0;
+>  }
+> -- 
 > 2.39.2
->=20
+> 
