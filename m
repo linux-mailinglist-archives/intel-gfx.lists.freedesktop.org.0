@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9091B6F53A5
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:50:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6126F53B7
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:53:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A8410E20A;
-	Wed,  3 May 2023 08:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6437210E211;
+	Wed,  3 May 2023 08:52:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8821F10E20A
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:49:58 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A68E910E211
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:52:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683103798; x=1714639798;
+ t=1683103976; x=1714639976;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=LDgwRdC6MSH1GDv5jLfiqkQObJM4S1LeuVa0ZaObkRE=;
- b=Qua+LoPM7fPO4tBmcu41SFFeO+XzvGZUMJTCq7BqQ3UzXZN7txr7t3n0
- 3ppV+syPbOod25ke8rgJt6+kP8cZMqCBtCRjfvDyCDGoIIDKJFSJOc60P
- SUZdZtpb4v313E6D9oPppLnIZZVglQn0AF9e/Ej3I1RamxxLiAEgdyOuh
- 2ZX7gevcL1HCnRqVRbRqnswen52fFSzcqzyHdFO0Y3yt+Usxm5ZRsCx9V
- 2I0H0KbI4V4S8lqZBKHJhrUeGZy/IOGd8hy+Bw9Uemu32831E+pVR2GA5
- ZRpOvlLr5jBWcU/9vbBOpDgp9yN/LzZaJHi4vXcHnyVE2+PejAlqMuj/2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="414060246"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="414060246"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 01:49:56 -0700
+ bh=5BARNYNODi3UQskGYl55w/LPfATFe0nZAPtZJM5F29E=;
+ b=WG5do3Sk66NVh1bzkjcivrKFMJj10tWXdLOCpVDjd94wPKYSidNp4ezu
+ TK7QWVQUK8vc619jBALeoHPjR9eCMA7asmcnjXbQMNskCLpeuXw6+lkc6
+ 36cA0Lri9vIl7v43m56jJD5/9RzVGezLg958gQPwAB5XQvZdijOotVMAh
+ T6qIXc5AU+wLCoIXcC88IFSxwooaGMH9ctPmG8ShE4W6u+iKTcIBB7Gzf
+ Mphn1Pa7ZFWYIWWVwcYB9Y3HbzVdfm0bFDi+j8UEX+SMInRpiartBTrC0
+ BeH0xBKOn6C/pw5URMPaJu4nMRTbxMO7yYdaO8h799TiRzrRxK0j3TB9i A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="332966559"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="332966559"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:52:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="761417017"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="761417017"
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="808178577"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="808178577"
 Received: from ebrosekx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.204])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 01:49:55 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:52:54 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230425105450.18441-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230425105450.18441-10-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
- <20230425105450.18441-4-ville.syrjala@linux.intel.com>
-Date: Wed, 03 May 2023 11:49:53 +0300
-Message-ID: <877ctp240e.fsf@intel.com>
+ <20230425105450.18441-10-ville.syrjala@linux.intel.com>
+Date: Wed, 03 May 2023 11:52:52 +0300
+Message-ID: <874jot23vf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 03/14] drm/i915/dsi: Always do panel power
- up delay on icl+
+Subject: Re: [Intel-gfx] [PATCH 09/14] drm/i915/dsi: Move most things from
+ .enable() into .post_disable()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,35 +68,69 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 25 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Windows doesn't try any tricks to optimize out the DSI panel power
-> delays. Let's follow suit since anything else is entirely untested
-> behaviour. Why would the VBT even specify a power on delay if we're
-> not supposed to use it?
+> encoder->disable() is supposed to happen before the pipe/transcoder
+> gets disabled. The icl+ DSI code screwed that up and put most things
+> (including the transcoder disable itself) into  encoder->disable().
+> Follow the common rules and hoist most things into the
+> encoder->post_disable() hook.
+
+Subject: s/enable/disable/
+
+ISTR there was something in the ICL mode set sequence that basically
+made us work around the order in hsw_crtc_enable and
+hsw_crtc_disable. But if this matches what Windows does, *shrug*.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Redundant after c8c2969bfcba ("drm/i915/dsi: Use unconditional msleep()
-instead of intel_dsi_msleep()").
-
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
 5/display/icl_dsi.c
-> index 97b889f2b0e2..b35b69227e6f 100644
+> index 600199d51d69..0e2ed4776766 100644
 > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
 > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1152,7 +1152,7 @@ static void gen11_dsi_pre_pll_enable(struct intel_a=
-tomic_state *state,
+> @@ -1395,11 +1395,20 @@ static void gen11_dsi_disable(struct intel_atomic=
+_state *state,
+>  			      const struct drm_connector_state *old_conn_state)
+>  {
 >  	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
+> -	struct intel_crtc *crtc =3D to_intel_crtc(old_conn_state->crtc);
 >=20=20
->  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
-> -	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
-> +	msleep(intel_dsi->panel_on_delay);
->  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+>  	/* step1: turn off backlight */
+>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_OFF);
+>  	intel_backlight_disable(old_conn_state);
+> +}
+> +
+> +static void gen11_dsi_post_disable(struct intel_atomic_state *state,
+> +				   struct intel_encoder *encoder,
+> +				   const struct intel_crtc_state *old_crtc_state,
+> +				   const struct drm_connector_state *old_conn_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(old_conn_state->crtc);
+> +
+> +	intel_crtc_vblank_off(old_crtc_state);
 >=20=20
->  	/* step2: enable IO power */
+>  	/* step2d,e: disable transcoder and wait */
+>  	gen11_dsi_disable_transcoder(encoder);
+> @@ -1420,14 +1429,6 @@ static void gen11_dsi_disable(struct intel_atomic_=
+state *state,
+>=20=20
+>  	/* step4: disable IO power */
+>  	gen11_dsi_disable_io_power(encoder);
+> -}
+> -
+> -static void gen11_dsi_post_disable(struct intel_atomic_state *state,
+> -				   struct intel_encoder *encoder,
+> -				   const struct intel_crtc_state *old_crtc_state,
+> -				   const struct drm_connector_state *old_conn_state)
+> -{
+> -	intel_crtc_vblank_off(old_crtc_state);
+>=20=20
+>  	intel_dsc_disable(old_crtc_state);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
