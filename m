@@ -2,116 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3DA56F5F54
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 21:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5276F6020
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 22:37:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5242810E34C;
-	Wed,  3 May 2023 19:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4E1F10E038;
+	Wed,  3 May 2023 20:37:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2061e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7ea9::61e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4BA310E34C;
- Wed,  3 May 2023 19:42:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ofyua9kZEYSEVLlfjYUMw2EZeWLO6QUSdWhU9WmBANT6ZRarK7dsHFj9jmwzllbHE3THBgJ/Vyghcgt9YdnU5v6PG51zc72NctsOkUpsA/iPcyJHgcgn4I1aK/82XXmdqolo+E9oIulkIySt+4FXCEXgINYmRUHXISjJNY+G+SxCdEV2FDYwLn8K7kA1cICnFVq5M57XGtMPFA7ACJpGL54tVXPDMMmmWWWxL28dpMDE4ZYy+GsYruGaqthOmdR/dc9AEKfsGIbFpq+zxBOzYjkFMxl2cob0DaulmXRm7vYt0vc2MpkN2cxr76+hXVKrhgzSXpto0lhPU4mLEp1bXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2PdG9Ad+v7Zcl9tGZN2uqmOHaIoaDnB4hv5HJP5QKM=;
- b=fw0oEcloWR98fnwOmnyaeQs+Vwy0JgDMFPAeQ1IvotcXq8lgCv5zKROB/g24V95KmJM8okvNnGqP64ReuBZAxBsMiZRdhu6kvPy3ois0VIM6R25RPt0x+6fhOqe9rbdBglsVOcDM8IyYV/12TudO+67h0ZP8NTZNmNvzuR8qinuaTHPbSE8OPnAACy0++EKQ3rzTPOfHPXTrAEsHf6sEn14wcc0zlgUFL3loK5QWZMHeqwJ3Fo09Grb88+Lz09NjW79REY4FRligcFvaHpfpKhwcONtT8+UqLqJR0SeAZF7a8Qjb+AmHtqERNYSaKgRtFndcEZ3BnV8QpWb7F7eYpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2PdG9Ad+v7Zcl9tGZN2uqmOHaIoaDnB4hv5HJP5QKM=;
- b=dXkIPP7PWfCtzIQ3f5CQmwCAwG4RHacLPgNovF3EZPr4CamIgP06Cfn4UWen77+7vLIvNnsNrMelbRHz5ugbP8oKfFP4QUjCjQkDHm5iPmKtrxgrJhLKRg5Zo8lqyFUHnKiCFCtM2o6A4dP//qiRnrQMpgUqmi5Kj6DKIKJCRKbtt44B6ogP+Iw1AdoWof+Ap9pZKTf6KvvnCcZVLvRa2itS++gEiOKZwPMTRFmEWTSXxPvUFj0/1MHHL8fIqcRuBtpwk8dzcjy362gD5dVDu8bgm1oPMqOnh42Fxx0ybKs0ddPrwqtfPFhkS6i0GsjNlu8+Pdt05FP8nbVKOC/yjQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by CY5PR12MB6370.namprd12.prod.outlook.com (2603:10b6:930:20::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Wed, 3 May
- 2023 19:42:17 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab%6]) with mapi id 15.20.6363.022; Wed, 3 May 2023
- 19:42:17 +0000
-Date: Wed, 3 May 2023 16:42:15 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZFK5F+JJiSG/hzsr@nvidia.com>
-References: <20230426145419.450922-1-yi.l.liu@intel.com>
- <20230426145419.450922-3-yi.l.liu@intel.com>
- <BN9PR11MB52768AF474FAB2AF36AC00508C6A9@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB752972AC1A6030CB442ACF3FC36A9@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230427123203.22307c4f.alex.williamson@redhat.com>
- <a6b77884-1678-b17c-f6a4-28d56e6c366b@intel.com>
- <ZEu3Ga9cIQAykBGf@nvidia.com>
- <3b83d829-048b-174f-a21d-b28ad0b7b49e@intel.com>
- <ZFFSff0cV/eC7IZ2@nvidia.com>
- <DS0PR11MB7529DCEF617AD24D62E33C2DC36C9@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529DCEF617AD24D62E33C2DC36C9@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: DM6PR06CA0091.namprd06.prod.outlook.com
- (2603:10b6:5:336::24) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B98010E038
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 20:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1683146247;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ejBjiwg9Kdo3OOL75f3icHdtYQn0MR8jOeEcVkge5gY=;
+ b=Qlxazdp0QVseSd5tiQpRqaAGPBEz9qnoqkJB/+2Jc00r96gKtusChz3CMmjlcyLgAvMFzN
+ BIDaxwEsBx/zAqoNSqjdvqB53sTpe8LRn+dQ+kizay9896Vxy5HC06j5/DBMOTmKe3JMGs
+ +HOzT6lIOtc0EnDDgqAdd1bDo4+ye1k=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-498-Q7DcFk_5OvGkZVMls1YKOw-1; Wed, 03 May 2023 16:37:25 -0400
+X-MC-Unique: Q7DcFk_5OvGkZVMls1YKOw-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-61b78e49e99so5505536d6.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 May 2023 13:37:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683146245; x=1685738245;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=jxZmEvSZLIclMjAyiJjtXAUboU5I2x1ZKnLr6hWf8t0=;
+ b=hbzxh4u2X289fI0xWmelIEjW8BHKABUY5mRRSPyw4Y/9eHGctzkcYVdiVK/wlFgGk1
+ dNfVC61PTbrSFtrJ/Dv+blqOhcRXfr8wfGca4k3tKia+YJ3pmcItpxW6J2TuJstKlXOK
+ PmjINyMWy5hnstrEpSiUIPUjp1UU8SoaukW2KQqhHad/PLoLu20c16HDh4UvpmhXTHQb
+ rNs0xoPf50ivC8GtjLC8oVw4u/rnwT+b+MjNVt1Bs5x8zD5n2AiTmWA79EErDKwWjMT/
+ Ve8jjeH4P/WiV51bqWZPDqCUe8JSGHCn/esmDgQX7B3U6swEMCj0EJkg6vo3yEyC5oPa
+ 46Vg==
+X-Gm-Message-State: AC+VfDwcXMvwiQSs9owuGA/TeAfYcRXSfihx7TWgs8zdMbGbeREbJTAk
+ fw/60rbkF3kUuZFO6avZu/dhnJwqwF37vabm52SP4fcHuEmfeZZcXulGtU7VhMHGdPg8VpZcLrD
+ MOJROlMmN4MbyB4+8FuaZX5CH3J06
+X-Received: by 2002:ad4:5c82:0:b0:5a9:c758:ba0e with SMTP id
+ o2-20020ad45c82000000b005a9c758ba0emr14540557qvh.16.1683146245330; 
+ Wed, 03 May 2023 13:37:25 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5FkLXtDlKK5ZFqmVZuzMls6ee2W+aFWLHgO+ofkmr1cDxTbpsoEQ2ttAKhp5ub41b9ZCbbYQ==
+X-Received: by 2002:ad4:5c82:0:b0:5a9:c758:ba0e with SMTP id
+ o2-20020ad45c82000000b005a9c758ba0emr14540529qvh.16.1683146245071; 
+ Wed, 03 May 2023 13:37:25 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c62:8200::feb? ([2600:4040:5c62:8200::feb])
+ by smtp.gmail.com with ESMTPSA id
+ w10-20020a0cb54a000000b005ef81cc63ccsm10855948qvd.117.2023.05.03.13.37.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 03 May 2023 13:37:24 -0700 (PDT)
+Message-ID: <b2256be0b12ed8c2791eb8f859d3b88f17489239.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org
+Date: Wed, 03 May 2023 16:37:23 -0400
+In-Reply-To: <20230502143906.2401-2-ville.syrjala@linux.intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-2-ville.syrjala@linux.intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CY5PR12MB6370:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02e82eeb-f317-4a15-2af5-08db4c0e8091
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UATqIv5ONf5mRRBheivEPbz/ga7vmKFTWg2Vk4xjHBf/yoZaJ0iTJYjV37Tq0FFClJP/siG7Ggyrc7sjbu6CBjVmlnM1tZT6aS9BoFWy3MXGW86MTDOJnVzrXC75YBewDckAObDBplLpHpYJe5Vy18AEFAnIajykVO+0QMELABc1l9X+08+yxrdoH2vOYZyD84Dagq1rGVP5ONd1/Jr8XD/sQBYuRrfJWgk6MjaLAXbPoreHwrzMYYh6Bdm0G58iRULCFnnQN5LsIulgU7hlBziTKusyoEapjgQ0Tmmy4fJ7lIQFqchbm3hJ+fMocDwkFNFjt+AXLmHCCCHhFKki8xvSh4SKGNFdTu4sEsHy6W1GqEE0jquQW5A6TAxaHExQ3ouT6r5pYK3hlKKBR9YiBXogspBj7IpDOZMkxXMsjuSPGVUKqDPk7JRtMJIcw2+duJSfnxvWBXxaeebaoQOepPBcgDkFeoeT9XBw08/2+dOARclprHkwMUn704RJGMsVvOTXk9sAmSzd7OhAKbxdQnqFKhM1UyQmwZyc97odE3w+1Xn7WmvCYojHPhQqkqYC
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(451199021)(86362001)(5660300002)(7416002)(8936002)(8676002)(4326008)(66476007)(66556008)(66946007)(41300700001)(316002)(38100700002)(4744005)(6916009)(2906002)(186003)(6512007)(6506007)(26005)(6486002)(36756003)(54906003)(2616005)(478600001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?68RMtoL1G6KaykyOmU01L38SIpKOTcLDT5UANYS+ZbvQYfLQ9ekzppE062g9?=
- =?us-ascii?Q?hyM5I5zXzpF2PnZCDX9YRF56YHozl95wBivBSBjgyEAMUG5IUC+sANiLTIp8?=
- =?us-ascii?Q?0HWpe/Kz6WA3Vlm6G+cj7z1ALnkNjQ3JI60r91j0A9KvYoFXO8gfJTqpSzyF?=
- =?us-ascii?Q?0jMS4Bg9Cm0DCCQkuIF5zmPtnzujZlcaLRx8fLlwfqPoEExKc8Gn5+yGAygJ?=
- =?us-ascii?Q?37SETxUxob8IcixCKO4u3IBQGAtr7AXVTDgTyKIYgpgrs+aQ5gGYR9Mnt721?=
- =?us-ascii?Q?WCeEv80p5i4EIH3IhsmjBkTa/vVlhpbnGo2pzXuJmMExa+91ch7WT8C95LKz?=
- =?us-ascii?Q?Mfvo6IQ2iXzfucOMT2m2StWW/jhvL8gx2flyNfGEigxpHQdIbi8gK47d/YmT?=
- =?us-ascii?Q?yNsR3nY91Rg2f0mLMlH4nIbXlP6gt2e/blHGw8jdYt6Hzb9glp18bz2MT+jC?=
- =?us-ascii?Q?g31b28rPweQsJh8zuvgRq9fklaP5FmRlvL3zxfh85yHPwd4acnOKrGSmcgEB?=
- =?us-ascii?Q?Bpbl2BHcTiVWXUyproJQKr7ckvVaejLKUYVj0FXsd6Js7cZqz5Z2MHYX4Xs3?=
- =?us-ascii?Q?nzHsqMHAkyDg53HXxSJ2wi/3NGpGcI/NRTaU10KA04CVo4Fixcact459cnzZ?=
- =?us-ascii?Q?GcqWUD/D0ex+AwvXopVC8JZi8Vw/saZ5KtW3aWOuZRMuz1nJeu6I+my5SPo1?=
- =?us-ascii?Q?80MRqriiL2CIF4YTohT+P7EMGKvacGqsY1mlp9OcdJX3xc9Ss5kp8gB7HxzP?=
- =?us-ascii?Q?IPbGCrFPkUeDP10tr7qrW2Dlk9HTCsESU0VPwe0uhl1s9WCD5M+jtjws3E4U?=
- =?us-ascii?Q?qKh76cf97sAPnLqDKPq6dcq4YabbYDDFBOHGNiyH2KrKmMlzzNRU2GfFxuKk?=
- =?us-ascii?Q?RJ5Ve6QT6qLsktSPUM00xLJPC4Mm+SQLPvdcj3/Syeyr/HRxaAmEJAaCCCvT?=
- =?us-ascii?Q?8S6x+CTMQVVEiXNWw24AiDnTisEnfH2oGxMu5WxmmNZEnNiaEof3ex/nNi1W?=
- =?us-ascii?Q?ybX98YAFA2+3g2ylMOm+rgh+7o2xW/Qw1ZXsRueCY36V2argRSpkpVzfPjWT?=
- =?us-ascii?Q?+HaptlMDd+DfisLmYZUnPa7P9WEWzXljaQp+zS5FYFzMmmVqQSOENgN47cL9?=
- =?us-ascii?Q?snAoSdCBmMKEYEHHDapfX2b/CsT83OU8ErIWcadf9v1pLpPjG+cFIc4ZKr7/?=
- =?us-ascii?Q?2F7MnRPecL8dsf3Dd1NKG4W+nf1Sb/cb9EdbzajXQqe9DfsRenZjGlxv6IYf?=
- =?us-ascii?Q?vY/MpntsVCIgTlqzvrHqnloFfUpfxRgC5Tunz+qXZlsil9qMNH7agEP5NKZx?=
- =?us-ascii?Q?evhSjw75E1zMpxsrXNxucNIB8c5ru/Hg2FmsurSPR7mpZyAcXbFj3g1uHdjp?=
- =?us-ascii?Q?VdFeOXBSYD5u+l545KYd40rOYhLH41J6SHwDHeRaODa9FRFxR9SaJ/sWD+uf?=
- =?us-ascii?Q?KuMlZF1KZXVTvhn8mjlcidRkDJbJGM/8tcoWtR2kjguRC3I5ATyxb72CHghg?=
- =?us-ascii?Q?O3r6hfMdubjJLTBL22jqnvgd/K52LalSc624dc7lk9EK6b2/cYj6W4mScQJb?=
- =?us-ascii?Q?/4nHNbhEeH5OQn3FRPY6Sv6XMfFTS/7BLRK/K30e?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02e82eeb-f317-4a15-2af5-08db4c0e8091
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 19:42:17.5562 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oHRNduJbbqFk7KJNV+LyerPeGU30fqfpF9DA9RDFVyoloG80O+3ZySTTIOA+wXN5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6370
-Subject: Re: [Intel-gfx] [PATCH v4 2/9] vfio-iommufd: Create iommufd_access
- for noiommu devices
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/dp_mst: Fix fractional DSC bpp
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,46 +87,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org, Manasi Navare <manasi.d.navare@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ David Francis <David.Francis@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 03, 2023 at 09:48:36AM +0000, Liu, Yi L wrote:
-> > From: Jason Gunthorpe <jgg@nvidia.com>
-> > Sent: Wednesday, May 3, 2023 2:12 AM
-> > 
-> > On Sat, Apr 29, 2023 at 12:07:24AM +0800, Yi Liu wrote:
-> > > > The emulated stuff is for mdev only, it should not be confused with
-> > > > no-iommu
-> > >
-> > > hmmm. I guess the confusion is due to the reuse of
-> > > vfio_iommufd_emulated_bind().
-> > 
-> > This is probabl y not a good direction
-> 
-> I see. But if not reusing, then there may be a few code duplications.
-> I'm fine to add separate _bind/unbind() functions for noiommu devices
-> if Alex and you prefer it.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-I think you will find there is minimal duplication
+Thanks!
 
-Jason
+On Tue, 2023-05-02 at 17:38 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> The current code does '(bpp << 4) / 16' in the MST PBN
+> calculation, but that is just the same as 'bpp' so the
+> DSC codepath achieves absolutely nothing. Fix it up so that
+> the fractional part of the bpp value is actually used instead
+> of truncated away. 64*1006 has enough zero lsbs that we can
+> just shift that down in the dividend and thus still manage
+> to stick to a 32bit divisor.
+>=20
+> And while touching this, let's just make the whole thing more
+> straightforward by making the passed in bpp value .4 binary
+> fixed point always, instead of having to pass in different
+> things based on whether DSC is enabled or not.
+>=20
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: David Francis <David.Francis@amd.com>
+> Cc: Mikita Lipski <mikita.lipski@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Fixes: dc48529fb14e ("drm/dp_mst: Add PBN calculation for DSC modes")
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
+>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 20 +++++--------------
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  5 ++---
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  3 +--
+>  .../gpu/drm/tests/drm_dp_mst_helper_test.c    |  2 +-
+>  include/drm/display/drm_dp_mst_helper.h       |  2 +-
+>  7 files changed, 12 insertions(+), 24 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 6cacb76f389e..7d58f08a5444 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -6763,7 +6763,7 @@ static int dm_encoder_helper_atomic_check(struct dr=
+m_encoder *encoder,
+>  =09=09=09=09=09=09=09=09    max_bpc);
+>  =09=09bpp =3D convert_dc_color_depth_into_bpc(color_depth) * 3;
+>  =09=09clock =3D adjusted_mode->clock;
+> -=09=09dm_new_connector_state->pbn =3D drm_dp_calc_pbn_mode(clock, bpp, f=
+alse);
+> +=09=09dm_new_connector_state->pbn =3D drm_dp_calc_pbn_mode(clock, bpp <<=
+ 4);
+>  =09}
+> =20
+>  =09dm_new_connector_state->vcpi_slots =3D
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
+b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> index 994ba426ca66..eb4b666e50e8 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> @@ -1515,7 +1515,7 @@ enum dc_status dm_dp_mst_is_port_support_mode(
+>  =09} else {
+>  =09=09/* check if mode could be supported within full_pbn */
+>  =09=09bpp =3D convert_dc_color_depth_into_bpc(stream->timing.display_col=
+or_depth) * 3;
+> -=09=09pbn =3D drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bp=
+p, false);
+> +=09=09pbn =3D drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bp=
+p << 4);
+> =20
+>  =09=09if (pbn > aconnector->mst_output_port->full_pbn)
+>  =09=09=09return DC_FAIL_BANDWIDTH_VALIDATE;
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
+drm/display/drm_dp_mst_topology.c
+> index 38dab76ae69e..cd4c4f22c903 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -4619,13 +4619,12 @@ EXPORT_SYMBOL(drm_dp_check_act_status);
+> =20
+>  /**
+>   * drm_dp_calc_pbn_mode() - Calculate the PBN for a mode.
+> - * @clock: dot clock for the mode
+> - * @bpp: bpp for the mode.
+> - * @dsc: DSC mode. If true, bpp has units of 1/16 of a bit per pixel
+> + * @clock: dot clock
+> + * @bpp: bpp as .4 binary fixed point
+>   *
+>   * This uses the formula in the spec to calculate the PBN value for a mo=
+de.
+>   */
+> -int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc)
+> +int drm_dp_calc_pbn_mode(int clock, int bpp)
+>  {
+>  =09/*
+>  =09 * margin 5300ppm + 300ppm ~ 0.6% as per spec, factor is 1.006
+> @@ -4636,18 +4635,9 @@ int drm_dp_calc_pbn_mode(int clock, int bpp, bool =
+dsc)
+>  =09 * peak_kbps *=3D (1006/1000)
+>  =09 * peak_kbps *=3D (64/54)
+>  =09 * peak_kbps *=3D 8    convert to bytes
+> -=09 *
+> -=09 * If the bpp is in units of 1/16, further divide by 16. Put this
+> -=09 * factor in the numerator rather than the denominator to avoid
+> -=09 * integer overflow
+>  =09 */
+> -
+> -=09if (dsc)
+> -=09=09return DIV_ROUND_UP_ULL(mul_u32_u32(clock * (bpp / 16), 64 * 1006)=
+,
+> -=09=09=09=09=098 * 54 * 1000 * 1000);
+> -
+> -=09return DIV_ROUND_UP_ULL(mul_u32_u32(clock * bpp, 64 * 1006),
+> -=09=09=09=098 * 54 * 1000 * 1000);
+> +=09return DIV_ROUND_UP_ULL(mul_u32_u32(clock * bpp, 64 * 1006 >> 4),
+> +=09=09=09=091000 * 8 * 54 * 1000);
+>  }
+>  EXPORT_SYMBOL(drm_dp_calc_pbn_mode);
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 2c49d9ab86a2..44c15d6faac4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -109,8 +109,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struc=
+t intel_encoder *encoder,
+>  =09=09=09continue;
+> =20
+>  =09=09crtc_state->pbn =3D drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock=
+,
+> -=09=09=09=09=09=09       dsc ? bpp << 4 : bpp,
+> -=09=09=09=09=09=09       dsc);
+> +=09=09=09=09=09=09       bpp << 4);
+> =20
+>  =09=09slots =3D drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+>  =09=09=09=09=09=09      connector->port,
+> @@ -936,7 +935,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *con=
+nector,
+>  =09=09return ret;
+> =20
+>  =09if (mode_rate > max_rate || mode->clock > max_dotclk ||
+> -=09    drm_dp_calc_pbn_mode(mode->clock, min_bpp, false) > port->full_pb=
+n) {
+> +=09    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn)=
+ {
+>  =09=09*status =3D MODE_CLOCK_HIGH;
+>  =09=09return 0;
+>  =09}
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
+uveau/dispnv50/disp.c
+> index 5bb777ff1313..d896cbb8cf3d 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -961,8 +961,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+>  =09=09const int clock =3D crtc_state->adjusted_mode.clock;
+> =20
+>  =09=09asyh->or.bpc =3D connector->display_info.bpc;
+> -=09=09asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3,
+> -=09=09=09=09=09=09    false);
+> +=09=09asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3 << 4=
+);
+>  =09}
+> =20
+>  =09mst_state =3D drm_atomic_get_mst_topology_state(state, &mstm->mgr);
+> diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu=
+/drm/tests/drm_dp_mst_helper_test.c
+> index 545beea33e8c..39fc449148e1 100644
+> --- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
+> +++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
+> @@ -56,7 +56,7 @@ static void drm_test_dp_mst_calc_pbn_mode(struct kunit =
+*test)
+>  {
+>  =09const struct drm_dp_mst_calc_pbn_mode_test *params =3D test->param_va=
+lue;
+> =20
+> -=09KUNIT_EXPECT_EQ(test, drm_dp_calc_pbn_mode(params->clock, params->bpp=
+, params->dsc),
+> +=09KUNIT_EXPECT_EQ(test, drm_dp_calc_pbn_mode(params->clock, params->bpp=
+ << 4),
+>  =09=09=09params->expected);
+>  }
+> =20
+> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/displa=
+y/drm_dp_mst_helper.h
+> index 32c764fb9cb5..c254500b4507 100644
+> --- a/include/drm/display/drm_dp_mst_helper.h
+> +++ b/include/drm/display/drm_dp_mst_helper.h
+> @@ -829,7 +829,7 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector=
+ *connector, struct drm_dp_
+>  int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
+>  =09=09=09     int link_rate, int link_lane_count);
+> =20
+> -int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
+> +int drm_dp_calc_pbn_mode(int clock, int bpp);
+> =20
+>  void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state=
+, uint8_t link_encoding_cap);
+> =20
+
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
