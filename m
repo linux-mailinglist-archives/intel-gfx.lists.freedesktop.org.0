@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 423696F4DC1
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 01:40:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1D06F4E01
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 02:06:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78ACC10E178;
-	Tue,  2 May 2023 23:40:03 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DFCB10E127;
- Tue,  2 May 2023 23:39:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683070798; x=1714606798;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pg9Lmo5mqLCogzcNdwUvyTUQeFEVqby+apkLh04aMdA=;
- b=fesSFEjb/Qp+r2vgP7pnkWrPTQujbufYTAlM+mUQkK4Wz2VLYTxCDTFT
- GhT4QPaKrHeiLOj9rGAoILfiUmgHX6TtmTznH/aTuUU5lFwjbF0+sZYwq
- x59zBCQUfDWUdte5SJL+rTYcHYS1r8W4T5muQy0kd3OeYGyIgrJxJy9AK
- ONqia2fwXMCaeQpvqdwS5ZQ5VCcyaXBM8UY1uXGeLJEPLefGe1sWVrduy
- LQvXeAk9Jin2bSP3xlpA8bk9isxI4N9ldhcVEVIRxoXhBxgOxp/XLWHOW
- VmvgqDKv2DbdeV3ZFu8Zl+e0VBolQyU/HxXhZQUexsW67xJ/H0TdCwFbC Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="350601515"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="350601515"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 16:39:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="673865826"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; d="scan'208";a="673865826"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orsmga006.jf.intel.com with ESMTP; 02 May 2023 16:39:57 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Tue,  2 May 2023 16:40:07 -0700
-Message-Id: <20230502234007.1762014-7-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230502234007.1762014-1-John.C.Harrison@Intel.com>
-References: <20230502234007.1762014-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFF5D10E17A;
+	Wed,  3 May 2023 00:06:51 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B1B7C10E139;
+ Wed,  3 May 2023 00:06:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5430AAADE4;
+ Wed,  3 May 2023 00:06:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915/uc: Make unexpected firmware
- versions an error in debug builds
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Wed, 03 May 2023 00:06:49 -0000
+Message-ID: <168307240931.9279.9191768139668094508@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230502234007.1762014-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20230502234007.1762014-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Improvements_to_uc_firmare_management_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-If the DEBUG_GEM config option is set then escalate the 'unexpected
-firmware version' message from a notice to an error. This will ensure
-that the CI system treats such occurences as a failure and logs a bug
-about it (or fails the pre-merge testing).
+Series: Improvements to uc firmare management (rev5)
+URL   : https://patchwork.freedesktop.org/series/116517/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 34 ++++++++++++++----------
- 1 file changed, 20 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 010c049609102..41ebd0ee0bb5e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -17,6 +17,12 @@
- #include "i915_drv.h"
- #include "i915_reg.h"
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
-+#define UNEXPECTED	gt_err
-+#else
-+#define UNEXPECTED	gt_notice
-+#endif
-+
- static inline struct intel_gt *
- ____uc_fw_to_gt(struct intel_uc_fw *uc_fw, enum intel_uc_fw_type type)
- {
-@@ -833,10 +839,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	if (uc_fw->file_wanted.ver.major && uc_fw->file_selected.ver.major) {
- 		/* Check the file's major version was as it claimed */
- 		if (uc_fw->file_selected.ver.major != uc_fw->file_wanted.ver.major) {
--			gt_notice(gt, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
--				  intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--				  uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
--				  uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
-+			UNEXPECTED(gt, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
-+				   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+				   uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
-+				   uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
- 			if (!intel_uc_fw_is_overridden(uc_fw)) {
- 				err = -ENOEXEC;
- 				goto fail;
-@@ -854,16 +860,16 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 		/* Preserve the version that was really wanted */
- 		memcpy(&uc_fw->file_wanted, &file_ideal, sizeof(uc_fw->file_wanted));
- 
--		gt_notice(gt, "%s firmware %s (%d.%d.%d) is recommended, but only %s (%d.%d.%d) was found\n",
--			  intel_uc_fw_type_repr(uc_fw->type),
--			  uc_fw->file_wanted.path,
--			  uc_fw->file_wanted.ver.major,
--			  uc_fw->file_wanted.ver.minor,
--			  uc_fw->file_wanted.ver.patch,
--			  uc_fw->file_selected.path,
--			  uc_fw->file_selected.ver.major,
--			  uc_fw->file_selected.ver.minor,
--			  uc_fw->file_selected.ver.patch);
-+		UNEXPECTED(gt, "%s firmware %s (%d.%d.%d) is recommended, but only %s (%d.%d.%d) was found\n",
-+			   intel_uc_fw_type_repr(uc_fw->type),
-+			   uc_fw->file_wanted.path,
-+			   uc_fw->file_wanted.ver.major,
-+			   uc_fw->file_wanted.ver.minor,
-+			   uc_fw->file_wanted.ver.patch,
-+			   uc_fw->file_selected.path,
-+			   uc_fw->file_selected.ver.major,
-+			   uc_fw->file_selected.ver.minor,
-+			   uc_fw->file_selected.ver.patch);
- 		gt_info(gt, "Consider updating your linux-firmware pkg or downloading from %s\n",
- 			INTEL_UC_FIRMWARE_URL);
- 	}
--- 
-2.39.1
+Error: dim checkpatch failed
+ac121650f88b drm/i915/guc: Decode another GuC load failure case
+dfb69d74ee3f drm/i915/guc: Print status register when waiting for GuC to load
+7c31ad126307 drm/i915/uc: Track patch level versions on reduced version firmware files
+-:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'major_' - possible side-effects?
+#62: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
+
+-:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'minor_' - possible side-effects?
+#62: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
+
+-:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'patch_' - possible side-effects?
+#62: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:200:
++#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
++	UC_FW_BLOB_NEW(major_, minor_, patch_, false, \
++		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_, patch_))
+
+total: 0 errors, 0 warnings, 3 checks, 73 lines checked
+d7ac412aab55 drm/i915/uc: Enhancements to firmware table validation
+f7f70436f73b drm/i915/uc: Reject duplicate entries in firmware table
+533b68d27af4 drm/i915/uc: Make unexpected firmware versions an error in debug builds
+
 
